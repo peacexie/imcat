@@ -1,0 +1,22 @@
+/* CSS Document */
+
+.cseal_out { position:relative; }
+.cseal_in {
+	width:153px; height:153px;
+	position: absolute; text-align:center;
+	padding:0px; border:1px solid #CCC;
+}
+.cseal_tl { top:10px; left:10px; }
+.cseal_tr { top:10px; right:10px; }
+.cseal_tc { top:10px; right:60px; }
+.cseal_bl { bottom:10px; left:10px; }
+.cseal_br { bottom:10px; right:10px; }
+.cseal_bc { bottom:10px; right:60px; }
+.cseal_text {
+	width:80px; height:24px; overflow:hidden;
+	text-align:center; color:#F00;
+	margin:104px auto 0 auto;
+	padding:1px 2px; border:1px solid #333;
+	display:block; font-style:normal; font-weight:normal;
+}
+

@@ -1,0 +1,62 @@
+{imp:"b_lay/a-dops"}<!--模板继承-->
+
+{block:action}
+
+<?php
+if(!empty($bsend)){
+
+    $fs_do = basReq::val('fs_do');
+    $fs = basReq::arr('fs');
+    if(empty($fs_do)) $msg = "请选择操作项目！";
+    if(empty($fs)) $msg = "请勾选操作记录！";
+    $cnt = 0; $msgop = '';
+    foreach($fs as $id=>$v){ 
+        if(in_array($fs_do,array('show','hidden'))){ 
+            $cnt += $dop->opShow($id,$fs_do);
+            $msgop = $fs_do=='show' ? '审核' : '隐藏';
+        }elseif($fs_do=='del'){ 
+            $cnt += $dop->opDelete($id);
+            $msgop = '删除';
+        }elseif($fs_do=='(xxx)'){ 
+            $msgop = '';
+        }
+    }
+    $msg = "$cnt 条记录 $msgop 成功！";
+
+}else{
+
+    $dop->sobar("[$gname]管理".(empty($msg)?'':"<br><span class='cF00'>$msg</span>")); 
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
+    echo "<th>选</th><th>标题</th><th>栏目</th><th>显示</th>"; 
+    echo "<th>添加时间</th><th>添加账号</th><th>修改时间</th>"; 
+    echo "<th>修改</th>\n</tr>\n";
+    $idfirst = ''; $idend = '';
+    if($rs=$dop->getRecs()){ 
+        foreach($rs as $r){ 
+          $did = $idend = $r['did'];
+          if(empty($idfirst)) $idfirst = $did;
+          $title = basStr::cutWidth($r['title'],24,'..');
+          $title = "<a href='?indoc.$r[did]' target='_blank'>".basStr::filTitle($title)."</a>";
+          echo "<tr>\n";
+          echo $cv->Select($did);
+          echo "<td class='tl'>$title</td>\n";
+          echo $cv->Types($r['catid']);
+          echo $cv->Show($r['show']);
+          echo $cv->Time($r['atime']);
+          echo $cv->Field($r['auser']);
+          echo $cv->Time($r['etime'],'y');
+          echo $cv->Url('修改',1,"?mkv=indoc-iedit&did=$r[did]&recbk=ref","");
+          echo "</tr>"; 
+        }
+        $dop->pgbar($idfirst,$idend);
+    }else{
+        echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+    }
+    glbHtml::fmt_end(array("mod|$mod"));
+}
+
+?>
+
+{/block:action}
+
+{block:uend}{:parent}{/block:uend}

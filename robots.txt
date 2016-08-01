@@ -1,0 +1,31 @@
+#
+# robots.txt for txmao
+# Version 3.2
+#
+
+User-agent: *
+
+Disallow: /@read.htm
+Disallow: /code/
+
+Disallow: /root/a3rd/
+Disallow: /root/plus/
+Disallow: /root/run/
+Disallow: /root/tools/
+
+Disallow: /dtmp/
+Disallow: /vary/dtmp/
+
+Disallow: /vendor/
+Disallow: /vimp/vendor/
+
+Disallow: /vendui/
+Disallow: /vimp/vendui/
+
+Allow: /vimp/static/
+Allow: /vary/html/
+Allow: /vary/ures/
+
+Allow: /static/
+Allow: /html/
+Allow: /ures/

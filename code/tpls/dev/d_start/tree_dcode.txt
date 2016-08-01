@@ -1,0 +1,92 @@
+卷 eData 的文件夹 PATH 列表
+卷序列号为 00000200 C821:C0A2
+E:.
+├─adpt
+│  ├─cache
+│  ├─cron
+│  ├─dbdrv
+│  ├─ipapi
+│  ├─smsapi
+│  ├─wechat
+│  └─weuser
+├─cfgs
+│  ├─boot
+│  ├─excfg
+│  ├─player
+│  ├─scfile
+│  ├─stinc
+│  └─sycfg
+├─core
+│  ├─blib
+│  ├─clib
+│  ├─dops
+│  ├─elib
+│  ├─glib
+│  ├─sdev
+│  ├─uext
+│  └─vops
+├─flow
+│  ├─admin
+│  ├─apis
+│  ├─awex
+│  ├─binc
+│  ├─dops
+│  ├─eact
+│  ├─eacu
+│  ├─emod
+│  └─emou
+├─lang
+│  ├─admin
+│  ├─core
+│  ├─user
+│  └─vops
+└─tpls
+    ├─adm
+    │  ├─b_func
+    │  ├─frame
+    │  └─_config
+    ├─chn
+    │  ├─b_func
+    │  ├─c_mod
+    │  ├─c_page
+    │  ├─c_pub
+    │  ├─m_about
+    │  ├─m_ocar
+    │  └─_config
+    ├─demodir
+    │  ├─b_func
+    │  ├─c_mod
+    │  ├─c_page
+    │  ├─c_pub
+    │  └─_config
+    ├─dev
+    │  ├─b_func
+    │  ├─c_demo
+    │  ├─c_mod
+    │  ├─c_page
+    │  ├─c_pub
+    │  ├─d_advset
+    │  ├─d_dev2nd
+    │  ├─d_start
+    │  ├─d_tester
+    │  ├─d_tools
+    │  ├─d_tpltag
+    │  ├─d_uplog
+    │  └─_config
+    ├─mob
+    │  ├─b_func
+    │  ├─c_mod
+    │  ├─c_page
+    │  ├─c_pub
+    │  ├─indoc
+    │  ├─m_about
+    │  ├─m_user
+    │  └─_config
+    └─umc
+        ├─b_func
+        ├─b_lay
+        ├─faqs
+        ├─indoc
+        ├─order
+        ├─user
+        └─_config

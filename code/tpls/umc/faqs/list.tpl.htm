@@ -1,0 +1,30 @@
+{imp:"faqs/a_layout"}<!--模板继承-->
+
+{block:action}<?php
+//$tag = basReq::val('tag'); 
+$whrs = tex_faqs::expwhr($this); //echo $where;
+$whr = $whrs[0]; $ord = $whrs[1];
+?>
+<dl>
+{tag:qas=[Page][modid,faqs][where,$whr][order,$ord][show,1][limit,10]}
+    {:row}
+    <dt>{if !empty($t_hinfo) }<b class="icons ico-suitcase"></b>{/if}<a href="{surl("faqs.$t_did")}">{title($t_title,24,$v)}</a></dt>
+    <dd><i>{stime($t_atime,min)}</i>
+    <span class="right">回复:<i id="jsid_count_qarep:{$t_did}">0<!--`faqs`--></i> &nbsp; &nbsp; 浏览:{$t_click}  {if !empty($t_catid) } &nbsp; &nbsp; 分类:<a href="{surl("faqs-$t_catid")}">{sopt($t_catid,$this->mod,1,0)}</a>{/if}</span>
+    <div  class="cst-tag1">{php echo tex_faqs::navTags($this,$t_tags); }</div>
+    </dd>
+    {/row}
+    <dd>
+    <?php 
+    if($_cbase['page']['prec']){ echo $_cbase['page']['bar']; }
+    else{ echo "<dt>暂无记录！</dt>"; }
+    ?>
+    </dd>
+{/tag:qas}
+</dl>{/block:action}
+
+{block:uend}{:parent}{php}
+$jstr = tex_faqs::ejsCfgs($this); 
+echo "<script>$jstr</script>"; //print_r($this); //print_r($user);
+{/php}{/block:uend}
+

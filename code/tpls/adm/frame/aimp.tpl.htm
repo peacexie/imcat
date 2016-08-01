@@ -1,0 +1,13 @@
+{block:ainit}{php extract(basReq::sysVars()); $db=glbDBObj::dbObj(); }{/block:ainit}
+<!DOCTYPE html><html><head>
+{block:atitle}{php $this->pmeta('管理中心-'.$_cbase['sys_name']); }{/block:atitle}
+<meta name='robots' content='noindex, nofollow'>
+{php glbHtml::page('imadm'); }
+{block:ahead}{/block:ahead}
+</head><body class="abprop">
+{block:abody}abody{/block:abody}
+</body></html>
+{block:aend}
+{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);\n")."\n"; }
+{/block:aend}
+

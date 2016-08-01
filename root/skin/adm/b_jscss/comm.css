@@ -1,0 +1,108 @@
+/* CSS Document */
+
+*{ word-wrap:break-word; outline:none; }
+body{ background:#FFF; border:0px; padding:0px; margin:0px; }
+body, td, input, textarea, select, button{ color:#333; line-height:150%; font:12px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
+ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%; margin:0; padding:0; }
+li{ list-style:none; }
+
+a img{ border:none; }
+table{ border-collapse:collapse;}
+label, .pointer, .label { cursor:pointer; }
+label.click { text-decoration:underline; }
+span label, div label, td label { font-weight:normal; }
+
+a{ color:#134D9D; text-decoration:none; cursor:pointer; }
+a:hover { text-decoration:underline; cursor:pointer; }
+a.cur { color:#C00; }
+
+/* form */
+textarea, input, select{ padding:2px; border:1px solid; border-color:#666 #ccc #ccc #666; background:#F9F9F9; color:#333; }
+option{ font-family:"Courier New", Courier, monospace; }
+.txt, select, .vmiddle { vertical-align:middle; }
+select { height:22px; overflow:hidden; padding:2px; margin:2px 0px; }
+.txt:hover, .txt:focus, textarea:hover, textarea:focus{ border-color:#09C; background:#F5F9FD; }
+.hover:hover { background:#05F9FD; }
+
+.hover:hover .addchildboard, .hover:hover .deleterow { color: #F5F9FD; cursor:pointer; }
+.txtnobd{ border:1px solid #FFF; background:#FFF; cursor:pointer; }
+input.rdcb{ border:0px solid; vertical-align:middle; margin-right:5px; padding:0px 0px 0px 0px; margin:0px 0px 0px 0px; }
+label { margin:0px 5px 0px 1px; display:inline-block; }
+label.ph0 { margin:0px; }
+input.file{ width:420px; }
+input.disc{ background-color:#ccc; }
+input.disf{ color:#fff; background-color:#CCC; }
+.btn{ margin:3px 0; padding:1px 3px; border-color:#ddd #666 #666 #ddd; background:#DDD; color:#000; cursor:pointer; vertical-align:middle; }
+.btn:hover { text-decoration: none; }
+.line { border-bottom: 1px solid #0F0; }
+
+/* table */
+table.tbdata td{ border-color:#A6CAF0;  }
+table.tbdata tr td:hover{ border-color:#3A6EA5; background:#DFF; }
+table.tblist td{ border-color:#A6CAF0; }
+table.tblist tr:hover{ background:#DFF; }
+th{ font-size:13px; font-weight:bold; }
+table.tbdata th, table.tblist th{ text-align:center; color:#333; background:#A6CAE0; background-image:url(../../a_img/nv_01.png); background-position:0px -250px; border-color:#CCC; padding:3px 0; border-bottom:1px solid #808080; }
+table.tbdata, table.tblist{ width:100%; border-color:#A6CAF0; margin:0px auto; }
+table.tbbar1{ width:100%; border-color:#A6CAF0; margin:0px auto; }
+table.tbdata td, table.tblist td, table.tbbar1 td{ line-height:180%; padding:3px; }
+
+/* title */
+h3{ margin-bottom:10px; font-size:14px; color:#09C; }
+.spectitle{ border-bottom:1px dashed #F66; }
+p.err{ font-size:18px; padding:10px; }
+
+#adf_title,#adf_nav1 { height:26px; background-image:url(../../a_img/nv_01.png); background-position:0px -180px; border-bottom:1px solid #3A6EA5; padding:4px 5px 4px 0px; }
+#adf_title { width:155px; float:left; text-align:center; border-right:1px solid #3A6EA5; }
+#adf_nav1 { margin-left:151px; padding-left:8px; }
+#adf_nav1 a { display:inline-block; padding:0px 6px 0px 6px; border-right:1px solid #999; }
+#adf_nav1 p a { border-right:0px; border-left:1px solid #999; }
+#adf_left { width:155px; float:left; border-right:1px solid #3A6EA5; overflow-x:hidden; overflow-y:scroll;  }
+#adf_right { margin:0px 0px 0px 156px; padding:0px 0px 0px 0px; }
+#adf_copy { text-align:center; border-top:1px solid #A6CAF0; padding:8px 1px 0px 1px; margin:5px 5px 2px 5px; }
+#adf_logo { color:#555; text-align:left; padding:19px 0 0 53px; list-style:none; background-image:url(../../a_img/logo088x31.jpg); background-position:12px 3px; background-repeat:no-repeat; }
+
+ul.adf_mnu2 li.adf_dir { color:#3A6EA5; font-weight:bold; background-image:url(../../a_img/tree.gif); background-position:10px -118px; background-repeat:no-repeat; padding:3px 3px 3px 35px; }
+ul.adf_mnu2 li { line-height:150%; background-image:url(../../a_img/tree.gif); background-position:2px -19px; background-repeat:no-repeat; padding:3px 3px 3px 15px; }
+ul.adf_mnu2 li a { display:inline-block; padding:0px 1px 0px 3px; }
+
+.adl_box { text-align:left; margin:10px auto 0 auto; width:620px; }
+.adl_box i{ font-style:normal; padding:0 3px; }
+.adl_box .adl_logo p{ line-height:250%; }
+.adl_box .adl_logo p.ps50{ padding:0 25px 0 50px; }
+.adl_box .adl_logo { width:260px; height:190px; float:left; background-image:url(../../a_img/logo120x60.jpg); background-position:bottom left; background-repeat:no-repeat; padding:10px 0 0 0; }
+.adl_box .adl_read { width:330px; height:220px; float:right; padding-left:20px; background-image:url(../../a_img/line_h1.jpg); background-position:3px -120px; background-repeat:no-repeat; }
+.adl_box h1{ font-size:18px; color:#09C; padding:3px 0; margin:5px 0 8px 0; border-bottom: 2px solid #3A6EA5; }
+.adl_box .adl_read li{ display:inline-block; list-style:disc; list-style-position:inside; padding:3px 0; }
+.adl_box .adl_tip { clear:both; height:35px; font-size:12px; color:#F33; padding:8px 5px 1px 8px; margin:1px auto; background-image:url(../../a_img/nv_02.png); background-position:0px -5px; background-repeat:repeat-x; }
+.adl_box .adl_remsg { clear:both; height:35px; font-size:12px; color:#F33; background:#FFC; padding:8px 5px 1px 8px; margin:1px auto; border:1px solid #0A246A; }
+
+.mpic_out .pview { width:124px; height:90px; float:left; text-align:center; position: relative; padding:0px; margin:1px 5px 1px 1px; border:1px solid #CCC; }
+.mpic_out .pitem { width:124px; height:120px; float:left; text-align:center; position: relative; padding:0px; margin:1px 5px 1px 1px; border:1px solid #CCC; }
+.mpic_out .close { width:25px; height:20px; font-style:normal; position: absolute; padding:1px 3px; word-wrap:normal; bottom:5px; right:5px; border:1px solid #CCC; }
+.mpic_out div { width:100%; }
+.mpic_out select { width:100%; }
+.mpic_out i.seltype select { width:120px; }
+
+.uh-space { width:100%; border:0px solid #CCC; }
+.uh-space td { text-align:center; padding:1px 2px; margin:0px; border:1px dashed #CCC; }
+.favor li{ height:21px; overflow:visible; line-height:100%; padding:3px 0 3px 3px; }
+
+.idShow {
+  width:380px; height:250px;
+  text-align:center;
+  overflow:hidden;
+  line-height:150%;
+  position:absolute;
+  padding:5px;
+  background-color:#FFF;
+  border:5px solid #999;
+}
+
+.idHidden {
+  width:4px; height:0px; overflow:hidden;
+  position:absolute;
+  padding:0px;
+  background-color:#FFF;
+  border:1px solid #CCC;
+}

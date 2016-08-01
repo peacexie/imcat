@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(); } 
+{php glbHtml::page('imp','/plus/ajax/comjs.php?act=jsPlus'); }
+{php $this->pimp('/layer/layer.js','vui'); }
+{php $this->pimp('/skin/a_jscss/multpic.js?b',''); }
+<?php
+$null = "<span class='cCCC'>------</span>";
+?>
+</head><body> 
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+	{inc:"c_pub/mod_side"}
+  </div>
+  <div class="pgf_main">
+  	
+    <!-- Detail Start -->
+    <h1 class="pro_title">{title($title,96,$this->vars)}</h1>
+    <div class="pro_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
+      评论:<i id="cnt_nrem">0</i>条 </div>
+	<div class="news_text"> {html($detail)} </div>
+    
+    <div class="h10">&nbsp;</div>
+    <table class="pro-detail">
+        <tr class='detab'> 
+            <td width="15%">相关图片</td>
+            <td width="15%">相关资讯</td>
+            <td width="15%">商品评论</td>
+            <td width="60%" id="pro-bsharebar">{inc:"c_pub/inc_bshare"}</td>
+        </tr>
+        <tr class='pic'>
+            <td colspan="4">
+<div id="fm_pics_out" class="mpic_out">
+<div><b class="cntout">共<i class="cntall">0</i>个图</b><i class="seltype">select</i></div>
+<div id="fm_pics_show">full|外观图;side|侧面图;inn|内部图;att|附件图;</div>
+<div id="fm_pics_tarea" class="clear">
+<textarea name="fm[pics]" cols="88" rows="8" id="fm_pics_" style="display:none;">
+{= comFiles::revSaveDir($rel_pic);}
+</textarea></div>
+</div>
+            </td>
+        </tr>
+        <tr class='rel_docs'>
+        	<td colspan="4">
+            {tag:hinfs=[List][modid,news][show,1][inids,$rel_doc][limit,100]}
+            <p class="list"><a href="{surl($this->mod.".$t_did")}">{title($t_title,20,$v)}</a> 
+            <i class="atime right">{stime($t_atime,min)}</i> 
+            <i class="atype right"> &nbsp; {sopt($t_catid,news,0,$null)} &nbsp; </i> 
+            </p>
+            {/tag:hinfs}  
+            </td>
+        </tr>
+        <tr class='xxrem'>
+            <td colspan="4" class="news_rem">        
+                <div class="rembar"> 
+                <span class="remadd"><a href="{surl(0)}?mkv=crem&pid={$did}">评论(<i id="jsid_count_crem:{$did}">0<!--,cnt_crem--></i>条)</a> &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
+                <span class="remtitle">评论列表</span> 
+                </div><!--[cache,60]-->
+                {tag:dlist=[jsList][modid,crem][pid,$did][limit,10]}
+                {:row}
+                <dl>
+                  <dt>{title($t_title,48,$v)} </dt>
+                  <dd>
+                  {text($t_detail,2400)}
+                  <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+                  </dd>
+                </dl>
+                {/row}
+                {/tag:dlist}
+             </td>
+        </tr>       
+    </table>
+
+    <div class="clear"></div>
+    <!-- Detail End -->
+
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+</body></html>
+<script>
+mpic_view('fm_pics_',270,200);
+$('.detab td').each(function(i1, e1) {
+    $(e1).click(function(){ 
+		$('.pro-detail tr').each(function(i2, e2) {
+            if(i2==0 || i2==i1+1) $(e2).show();
+			else $(e2).hide();
+        });
+		$('.detab td').removeClass('act');
+		$(e1).addClass('act');		
+	});
+
+});
+
+//显示-初始化vmini
+var cfg,i,a,v,pic,opt,str='';
+cfg = mpic_data('fm_pics_', 1);
+w=50; h=50;
+for(i=0;i<cfg.data.length;i++){
+	a = cfg.data[i].split(',');
+	v = a.length>0 ? a[1] : '';
+	pic = "<img src='"+a[0]+"' width="+w+" height="+h+" data-val='"+v+"' onclick='mpro_vbig(this)' onload='imgShow(this,"+w+","+h+")'>";
+	str += pic;
+}
+$('#picMini').html(str);
+function mpro_vbig(e){
+	var src = $(e).attr('src');
+	$('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+v+"' onload='imgShow(this,400,300)'>");
+}
+
+</script>

@@ -1,0 +1,155 @@
+卷 eData 的文件夹 PATH 列表
+卷序列号为 00000200 C821:C0A2
+E:.
+├─code
+│  ├─adpt
+│  │  ├─cache
+│  │  ├─cron
+│  │  ├─dbdrv
+│  │  ├─ipapi
+│  │  ├─smsapi
+│  │  ├─wechat
+│  │  └─weuser
+│  ├─cfgs
+│  │  ├─boot
+│  │  ├─excfg
+│  │  ├─player
+│  │  ├─scfile
+│  │  ├─stinc
+│  │  └─sycfg
+│  ├─core
+│  │  ├─blib
+│  │  ├─clib
+│  │  ├─dops
+│  │  ├─elib
+│  │  ├─glib
+│  │  ├─sdev
+│  │  ├─uext
+│  │  └─vops
+│  ├─flow
+│  │  ├─admin
+│  │  ├─apis
+│  │  ├─awex
+│  │  ├─binc
+│  │  ├─dops
+│  │  ├─eact
+│  │  ├─eacu
+│  │  ├─emod
+│  │  └─emou
+│  ├─lang
+│  │  ├─admin
+│  │  ├─core
+│  │  ├─user
+│  │  └─vops
+│  └─tpls
+│      ├─adm
+│      │  ├─b_func
+│      │  ├─frame
+│      │  └─_config
+│      ├─chn
+│      │  ├─b_func
+│      │  ├─c_mod
+│      │  ├─c_page
+│      │  ├─c_pub
+│      │  ├─m_about
+│      │  ├─m_ocar
+│      │  └─_config
+│      ├─demodir
+│      │  ├─b_func
+│      │  ├─c_mod
+│      │  ├─c_page
+│      │  ├─c_pub
+│      │  └─_config
+│      ├─dev
+│      │  ├─b_func
+│      │  ├─c_demo
+│      │  ├─c_mod
+│      │  ├─c_page
+│      │  ├─c_pub
+│      │  ├─d_advset
+│      │  ├─d_dev2nd
+│      │  ├─d_start
+│      │  ├─d_tester
+│      │  ├─d_tools
+│      │  ├─d_tpltag
+│      │  ├─d_uplog
+│      │  └─_config
+│      ├─mob
+│      │  ├─b_func
+│      │  ├─c_mod
+│      │  ├─c_page
+│      │  ├─c_pub
+│      │  ├─indoc
+│      │  ├─m_about
+│      │  ├─m_user
+│      │  └─_config
+│      └─umc
+│          ├─b_func
+│          ├─b_lay
+│          ├─faqs
+│          ├─indoc
+│          ├─order
+│          ├─user
+│          └─_config
+├─root
+│  ├─a3rd
+│  │  ├─alipay_dirbank
+│  │  ├─alipay_direct
+│  │  ├─alipay_wapdir
+│  │  ├─alipay_wscow
+│  │  ├─paydemo_dir
+│  │  ├─paypal_ec
+│  │  ├─qqconn
+│  │  │  ├─comm
+│  │  │  └─oauth
+│  │  ├─tenpay_sdk
+│  │  └─weixin_pay
+│  │      ├─cert
+│  │      ├─demo
+│  │      ├─doc
+│  │      └─lib
+│  ├─plus
+│  │  ├─ajax
+│  │  ├─api
+│  │  ├─coms
+│  │  ├─editor
+│  │  ├─file
+│  │  └─map
+│  ├─run
+│  ├─skin
+│  │  ├─adm
+│  │  │  └─b_jscss
+│  │  ├─a_img
+│  │  ├─a_jscss
+│  │  ├─chn
+│  │  │  └─b_jscss
+│  │  ├─demodir
+│  │  │  └─b_jscss
+│  │  ├─dev
+│  │  │  ├─b_img
+│  │  │  └─b_jscss
+│  │  ├─jslib
+│  │  ├─logo
+│  │  ├─mob
+│  │  │  └─b_jscss
+│  │  └─umc
+│  │      └─b_jscss
+│  └─tools
+│      ├─adbug
+│      ├─exdiy
+│      ├─rhome
+│      ├─setup
+│      ├─utest
+│      └─vends
+└─server
+    ├─!plan
+    ├─cbasic
+    ├─cjqjs
+    ├─cplus
+    ├─ctmp
+    ├─devini
+    ├─gblib
+    ├─odbimp
+    ├─remote
+    └─txjia
+        └─run_old

@@ -1,0 +1,55 @@
+{imp:"frame/aimp"}<!--模板继承-->
+
+{block:ainit}{:parent}{php}
+$remsg = usrAdmin::opLogin();  
+$btncls = $user->userFlag=='Error' ? 'class="disc"' : 'class="btn"';
+{/php}{/block:ainit}
+
+{block:abody}
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+{php glbHtml::ieLow_html();}
+<form action="?login" method="post" name="fmadm" id="fmadm">
+  <div class="adl_box">
+	{if !empty($remsg) }
+    <div class="adl_remsg">{$remsg}</div>
+    {/if}
+    <div class="adl_logo">
+      <p><i>用户名: </i>
+        <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="txt w180" reg="key:2-15" tip="字母开头,允许3-16字节<br>允许字母数字下划线" />
+      </p>
+      <p><i>密　码: </i>
+        <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" class="txt w180" reg="str:6-15" autocomplete="off" tip="允许6,15字节" />
+      </p>
+      <p><i>认证码: </i>
+        <script>fsInit('fmadm');</script>
+      </p>
+      <p class="ps50"><i class="right f14"><a href="#">首页&gt;&gt;</a></i>
+        <input name="submit" value="提交" tabindex="19830" type="submit" {$btncls} />
+        <input name="act" type="hidden" value="dologin" />
+        <input name="recbk" type="hidden" value="{$recbk}" />
+      </p>
+    </div>
+
+    <div class="adl_read">
+      <h1>{$_cbase['sys_name']}<!-- --- 管理登陆--></h1>
+      <ul class="h150">
+        <li>推荐浏览器: IE9+, Chrome, Firefox ；</li>
+        <li>第一次使用，请查看 《后台管理帮助文件》>>>；</li>
+        <li>帐号密码区分大小写;帐号>=2位,密码>=5位；</li>
+        <li>认证码不分大小写,如错误,请刷新登陆；</li>
+        <li>技术支持: Peace(www.peace_xys.com)。 </li>
+      </ul>
+      <ul>
+        <li>新闻</li>
+        <li>产品</li>
+        <li>会员</li>
+        <li><a href="?">[刷新]</a></li>
+        <li><a href="{surl(chn:0)}">[首页]</a></li>
+      </ul>
+    </div>
+    <div class="adl_remsg">提示: 点认证码输入框,显示认证码；</div>
+  </div>
+</form>
+{/block:abody}
+
+{block:aend}<script>winAutoMargin('topMargin');</script>{/block:aend}

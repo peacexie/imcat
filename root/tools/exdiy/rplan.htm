@@ -1,0 +1,28 @@
+
+<div>
+  <dd class="tc">
+    <a href="?act=utest">test-plans</a> # <a href="?act=alist" target="_">all-list</a> # <a href="?">reset-normal</a>
+  </dd>
+  <ul>
+    <li>
+        <i>当前时间</i> 
+        <b class="ext"></b>
+        <b class="comm" id="idNow">Loading…</b> 
+    </li>
+    <li>
+        <i>当前状态</i>
+        <b class="ext"></b>
+        <b class="comm" id="idSate">Loading…</b>  
+    </li>
+  </ul>
+  
+  <p> 定时执行工具 --- 计划任务本地辅助程序 </p>
+  <ul id='job_lists'>
+    <?php if($act=='alist') echo "<pre>".exvCron::plistTest()."</pre>"; ?>
+    <!--li id="job_file1">
+        file1
+        <iframe src='/plus/ajax/cron.php' width='100%' height='60'></iframe>
+    </li-->
+  </ul>
+</div>
+

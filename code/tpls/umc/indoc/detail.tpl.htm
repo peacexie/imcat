@@ -1,0 +1,137 @@
+<?php
+vopTpls::pinc('tex_indoc');
+if($res=tex_indoc::noperm($user,$this->vars)){
+    basMsg::show("没有权限查看:[$res]",'die');
+}
+$null = "";
+$toarr = tex_indoc::toshow($this->vars);
+?>
+<!DOCTYPE html><html><head>
+{php $this->pmeta('公文中心-'.$_cbase['sys_name']); }
+<meta name='robots' content='noindex, nofollow'>
+{php glbHtml::page('imadm');}
+{php echo basJscss::imp('/skin/umc/b_jscss/cseal.css'); }
+{php echo basJscss::imp('/skin/umc/b_jscss/cseal.js'); }
+</head><body>
+{php glbHtml::ieLow_html();}
+
+<!--nav1 start-->
+<div class="umc_cprint umc_head">
+  <p class="umc_logo">&nbsp;</p>
+  <div class="umc_indto">
+    <p class="umc_to1">TO: {$toarr['tou']}</p>
+    <p class="umc_to2">部门: {$toarr['tod']}</p>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--nav1 end-->
+
+<div class="umc_cprint">
+
+<?php
+if(empty($sealpos)) $sealpos = 'cseal_br';
+if(in_array($sealpos,array('cseal_tl','cseal_tr'))){
+    echo exaCSeal::show($indep,$author,$sealpos);
+}
+?>
+<h1 class="news_title">{title($title,96,$this->vars)}</h1>
+<div class="news_bar"> 
+  <b class="indoc_tip1">
+  {php echo tex_indoc::isread($user,$did,'(val)',2); } &nbsp; 
+  {sopt($rdtip,indoc.rdtip,0,$null)}</b> &nbsp; 
+  {sopt($indep,indep,0,$null)} &nbsp; 
+  <i class="atime">{stime($atime,min)}</i> &nbsp; 
+  <b class="indoc_print" onclick="javascript:window.print();">打印</b>
+</div>
+<div class="news_text">
+{html($detail)}
+</div>
+<div class="news_rem">
+<?php 
+if(in_array($sealpos,array('cseal_bl','cseal_br'))){
+    echo exaCSeal::show($indep,$author,$sealpos);
+}
+?>
+
+<table width="100%" border="0">
+    <tr>
+        <td width="50%" valign="top">    
+  <div class="rembar"> 
+  <span class="remtitle">阅读记录</span> 
+  </div><!--[cache,60]--> 
+  {tag:dlist=[List][modid,inread][pid,$did][limit,20]}
+  <ul class="readlog">
+  {:row}
+    <li>
+    <i class="right">{stime($t_atime,min)}</i>
+    ({$t_readcnt}次) {title($t_auser,48,$v)}
+    </li>
+  {/row}
+  </lu>
+  {if empty($t_dlist) }
+    <li>
+    <i class="right c666">0000-00-00</i>
+    <span class="c666">-暂无阅读记录-</span>
+    </li>
+  {/if}
+  {/tag:dlist}
+        </td>
+        <td width="50%" valign="top">    
+  <div class="rembar">               
+  <span class="remadd"><a href="{surl(0)}?mkv=indoc&pid={$did}">(<i id="jsid_count_inrem:{$did}">0<!--indoc--></i>条)</a> &nbsp; <a {php vopCell::vOpen('inrem',$did); }>&gt;&gt;发布</a></span> 
+  <span class="remtitle">公文评论</span> 
+  </div><!--[cache,60]--> 
+  {tag:dlist=[List][modid,inrem][pid,$did][limit,20]}
+  <ul class="remlist">
+  {:row}
+    <li>
+    <i class="right">{stime($t_atime,min)}</i>
+    {title($t_title,48,$v)}
+    </li>
+  {/row}
+  {if empty($t_dlist) }
+    <li>
+    <i class="right c666">0000-00-00</i>
+    <span class="c666">-暂无公文评论-</span>
+    </li>
+  {/if}
+  </lu>
+  {/tag:dlist}
+        </td>
+    </tr>
+</table>
+
+</div>
+
+<div class="clear h10">&nbsp;</div>
+</div>
+
+<!--nav2 start-->
+<div class="umc_cprint umc_foot">
+  <p class="indoc_flink">
+  <a href="{surl(chn:0)}" target="_blank">(chn)中文版</a> # 
+  <a href="{surl(user)}">用户首页</a> # 
+  <a href="{surl(indoc)}">公文首页</a> # 
+  <a href="{surl(mob:0)}" target="_blank">手机版(mob) </a>
+  </p>
+</div>
+<div class="clear h10">&nbsp;</div>
+
+</body></html>
+<!--`{php print_r(basDebug::runInfo()); }`-->
+
+{php}
+$jstr = "var cm='$this->mod', ck='".(empty($_cview)?$this->key:$_cview)."', cv='$this->view', ct='$this->type';";
+$jstr .= "\njtagSend();\nsetTimeout('jsactInread(ck)',2300)";
+echo "<script>$jstr</script>"; //print_r($this); print_r($user);
+{/php}
+
+<?php
+//echo "<pre>";
+$re = tex_indoc::isread($user,$did,"<i class='itm-{val}'></i>");
+//var_dump($re);
+//unset($this->vars['detail']);
+//print_r($user);
+//print_r($this->vars);
+?>
+

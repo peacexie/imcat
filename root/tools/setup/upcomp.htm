@@ -1,0 +1,125 @@
+
+<div>
+<?php 
+if($act=='cmpdata'){ 
+	$data = updAdmin::ddData($upc); //echo "<pre>"; print_r($data); echo "</pre>"; 
+	$ntab = basReq::val('ntab');
+	if($ntab){
+		$rec = updAdmin::ddComp($data,$ntab); 
+	}
+?>
+<p>更新程序 - 处理配置数据</p>
+<table border="1" class="cmpfile">
+    <tr>
+        <td colspan="2" class="tnav"><?php echo @$data['tnav']; ?></td>
+    </tr>
+    <?php if(!empty($ntab)){ ?>
+    <tr>
+        <th width="50%" class="ntab tr">当前正在处理的是：</th>
+        <th class="ntab tl">[<?php echo $ntab; ?>] 表</th>
+    </tr>
+    <?php } ?>
+    <?php if(!empty($rec['new'])){ ?>
+    <tr>
+        <th valign="top"><?php echo $ntab; ?> 修改过的配置</th>
+        <td align="right" valign="top">[<?php echo $rec['ne']; ?>] 条记录</td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['new']; ?></ol></td>
+        <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['old']; ?></ol></td>
+    </tr>
+    <tr>
+        <td colspan="2" class="pa10">参考sql（可复制修改部分手动更新）：
+        <div class="esql"><?php echo $data['repsql']; ?>
+        <br> --end-- </div>
+        </td>
+    </tr>
+    <?php }if(!empty($rec['add'])){ ?>
+    <tr>
+        <th>添加的配置</th>
+        <td align="right">[<?php echo $rec['na']; ?>] 条记录</td>
+    </tr>
+    <tr>
+        <td colspan="2"><div class="esql"><?php echo $rec['add']; ?></div></td>
+    </tr>
+    <?php }if(empty($data['tnum'])){ ?>
+    <tr>
+        <td width="50%">所有表已经处理完成</td>
+        <td align="center"><a href='?step=db_data'>[下一步]</a></td>
+    </tr>
+    <?php }elseif(!empty($ntab)){ ?>
+    <?php if(empty($rec['add']) && empty($rec['new'])){ ?>
+    <tr>
+        <td>当前表 无更新项：</td>
+        <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>确认进入下一表</a></td>
+    </tr>
+    <?php }elseif(!empty($rec['add']) && !empty($rec['new'])){ ?>
+    <tr>
+        <td valign="top"><span class='cF00'>添加的配置</span>部分(如果有)，默认会更新到当前系统；</td>
+        <td align="center" valign="top"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>只更新添加的配置</a></td>
+    </tr>
+    <tr>
+        <td valign="top"><span class='c00F'>修改过的配置</span>部分(如果有)，建议根据参考sql，部分手动更新；</td>
+        <td align="center" valign="top"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=rep'>更新添加和修改的配置</a></td>
+    </tr>
+    <?php }elseif(!empty($rec['new'])){ ?>
+    <tr>
+        <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=rep'>(必要先执行sql语句)手动更新确认</a></td>
+        <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>更新所有配置(请谨慎操作！)</a></td>
+    </tr>
+	<?php }elseif(!empty($rec['add'])){ ?>
+    <tr>
+        <td valign="top">更新当前表：</td>
+        <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>确认添加配置</a></td>
+    </tr>
+    <?php } ?>
+	<?php }else{ ?>
+    <tr>
+        <td width="50%">请逐一点击上方各表；</td>
+        <td align="center">选择右下方更新方式确认。</td>
+    </tr>
+    <?php } ?>
+</table>
+<?php }elseif($act=='cmpfile'){ $rec = updAdmin::compFile($upc); ?>
+<p>更新程序 - 配置文件比较</p>
+<table border="1" class="cmpfile">
+    <tr>
+        <td valign="top"><?php echo basReq::val('file','','Html'); ?></td>
+        <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['new']; ?></ol></td>
+        <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['old']; ?></ol></td>
+    </tr>
+    <tr>
+        <td valign="top"><span class='cF00'>左边红色</span>部分,一般是要添加的配置行，请更新到当前系统；</td>
+        <td valign="top"><span class='cF00'>右边红色</span>部分,是你自己添加的配置行；</td>
+    </tr>
+    <tr>
+        <td valign="top"><span class='c00F'>蓝色</span>部分，一般不需要修改，请自行斟酌；</td>
+        <td valign="top">请手动修改，修改后可刷新此页查看效果。</td>
+    </tr>
+
+</table>
+<?php }elseif($act=='cmptable'){ $rec = updAdmin::compTable($upc); ?>
+<p>更新程序 - 数据表结构比较</p>
+<table border="1" class="cmpfile">
+    <tr>
+        <td valign="top"><?php echo basReq::val('tab','','Html'); ?></td>
+        <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top"><ul class="cmpfile"><?php echo @$rec['new']; ?></ul></td>
+        <td width="50%" valign="top"><ul class="cmpfile"><?php echo @$rec['old']; ?></ul></td>
+    </tr>
+    <tr>
+        <td valign="top"><span class='cF00'>左边红色</span>部分,一般是要添加的索引；</td>
+        <td valign="top"><span class='cF00'>右边红色</span>部分,是你自己添加的字段或索引；</td>
+    </tr>
+    <tr>
+        <td valign="top"><span class='c00F'>蓝色</span>部分为改动部分，是修改过的字段配置；</td>
+        <td valign="top">请手动自行判断并更新，修改后可刷新此页查看效果。</td>
+    </tr>
+</table>
+<?php } ?>
+</div>

@@ -1,0 +1,23 @@
+
+tr.tc td { text-align:center; }
+table.tblist td, td { padding: 2px; }
+div { position:relative; border: 1px solid #999; padding: 10px; max-width: 720px; margin: 10px auto; }
+p { font-weight: bold; text-align: center; background: #CCC; border: 1px dashed #999; padding: 3px; margin: 5px 0px; } 
+.notice { font-size:small; color:#F00; background:#FF9; padding:5px; }
+td.tip { font-size:small; color:#F00; background:#FF9; padding:5px; }
+input.r { width:96%; }
+
+/*binfo*/
+section { margin: 5px; }
+.css3 { font-size: larger; color: #009; text-shadow: 0px -3px 0px #FFF, 0px 2px 3px #333; border-radius: 32px; }
+li { border-bottom: 1px solid #CCC; padding: 5px; margin: 1px 0px; }
+i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; padding: 0px 3px; margin: 0px; }
+i.w1 { width: 240px; }
+i.w2 { width: 80px; }
+p.test { font-weight: normal; border: 0px; text-align: left; background: #FFF; padding: 5px; }
+b, strong, .b { font-weight: bolder; }
+div { max-width: 720px; margin: 10px auto; }
+#qritms img{ margin:10px; }
+
+p.txcode_logostart { padding:0px; margin:10px auto; }
+pre { width:680px; margin:5px auto; word-break:break-all; word-wrap:break-word; overflow:hidden; }

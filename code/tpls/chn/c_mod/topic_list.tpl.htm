@@ -1,0 +1,54 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(); }
+<?php
+$null = "所有专题";
+?>
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+    {inc:"c_pub/mod_side"}
+  </div>
+  <div class="pgf_mcon"> 
+    <div class="news-tbar">
+    <i>新闻动态-{sopt($this->key,$this->mod,0,$null)}</i>
+    <i class="right">
+    <a href="{surl($this->mod)}">[所有]</a>
+    {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+    <a href="{surl($this->mod."-$t_kid")}">{title($t_title,32,$u)}</a>
+    {/tag:tp}
+    </i>
+    </div>
+    <!--list_start-->
+	<?php
+    $null = "<span class='cCCC'>------</span>";
+    ?>  
+    {tag:dlist=[Page][modid,$this->mod][join,detail][show,1][stype][hinfo][keywd][limit,10]}
+    <dl class="resume-list"> 
+      {:row}
+      <dt>
+      <a href="{surl($this->mod.".$t_did")}">{title($t_title,60,$v)}</a>
+      {if !empty($t_hinfo)}<b class="uimark-star-icon1a">&nbsp;</b>{/if}
+      <i class="atype">{sopt($t_catid,$this->mod,0,$null)}</i>
+      <i class="atime right">{stime($t_atime,min)}</i>
+      </dt>
+      <dd>
+      &nbsp; &nbsp; &nbsp; &nbsp; {text(array($t_seo_des,$t_detail),150,1)}…… [<a href="{surl($this->mod.".$t_did")}">详情……</a>]
+      </dd>
+      {if (($i_v+1)%5==0) } <div class="h15 cleft">&nbsp;</div> {/if}
+      {/row}
+    </dl>
+    <div class="clear"></div>
+    {php echo $_cbase['page']['bar']; }
+    {/tag:dlist}
+    <!--list_end-->
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+
+</body></html>
+
+
+{php //basDebug::varShow($this); }

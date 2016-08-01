@@ -1,0 +1,120 @@
+{imp:"user/user_layout"}<!--模板继承-->
+
+{block:minit}{:parent}{php}
+$remsg = '';
+$upass = basReq::val('upass');
+if(!empty($upass)){
+  $depass = comConvert::sysRevert($upass, 1, '', 600);
+}elseif($act=='dogetpw'){
+  $fm = $_POST['fm'];
+  $re2 = safComm::formCAll('fmgetpw');
+  if(empty($re2[0])){ 
+    if(!empty($fm['uname']) && !empty($fm['memail'])){
+      $remsg = usrMember::emailGetpw($fm['uname'], $fm['memail']);
+    }
+  }
+}
+{/php}{/block:minit}
+
+{block:action}
+
+<form action="?mkv={$this->mkv}" method="post" name="fmgetpw" id="fmgetpw">
+  {if !empty($remsg) }
+  <div class="pgu_tips">
+    <div class="tipu tc">
+      {$remsg}
+    </div>
+  </div>
+  {elseif $upass && !empty($depass) }
+  <div class="pgu_tips">
+    <div class="tipu tc">
+      您的密码重置为：<b class="cF0F">{$depass}</b>（红色字符部分，注意不含空格）
+    </div>
+  </div>
+  {else}
+  <div id="idx_login" class="pgu_login">
+    <div class="apply">
+      <p> 我不想打字？ <br>
+        <a href="#" onClick="funcGetpw(1)">点一下我&gt;&gt;</a>，用微信扫描找密码！ </p>
+      <div class="h10">&nbsp;</div>
+      <p class="tc"> <a href="{surl(user-login)}">登陆</a> # <a href="{surl(user-apply)}">注册</a> # <a href="{surl(0)}">首页</a> </p>
+    </div>
+    <div class="login">
+      <p> <i>用户名: </i>
+        <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="txt w200" reg="key:2-24" tip="用户名" />
+      </p>
+      <p> <i>邮　箱: </i>
+        <input id="fm[memail]" name="fm[memail]" tabindex="2" type="text" class="txt w200" reg="fix:email" tip="邮箱" />
+      </p>
+      <p> <i>认证码: </i>
+        <script>fsInit('fmgetpw');</script>
+      </p>
+      <p class="button"> <i class="right pt2 f14"><a href="{surl(user-login)}">返回登录</a></i> <i class="item">&nbsp; </i>
+        <input name="submit" value="发送" tabindex="19830" type="submit" class="btn" />
+        <input name="act" type="hidden" value="dogetpw" />
+        <input name="recbk" type="hidden" value="{$recbk}" />
+      </p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div id="idx_lscan" class="pgu_lscan" style="display:none;">
+    <div class="apply">
+      <p> 我不想用微信？ <br>
+        <a href="#" onClick="funcGetpw()">点一下我&gt;&gt;</a>，用账号邮箱找密码！ </p>
+      <div class="h10">&nbsp;</div>
+      <p class="tc"> <a href="{surl(user-login)}">登陆</a> # <a href="{surl(user-apply)}">注册</a> # <a href="{surl(0)}">首页</a> </p>
+    </div>
+    <div class="login">
+      <p class="tc" id="lscan_msg">
+      <img src="{PATH_ROOT}/skin/a_img/loadbig.gif" id="lscan_img" width="180">
+      </p>
+    </div>
+    <div class="clear"></div>
+  </div>
+  {/if}
+</form>
+
+<div class="clear"></div>
+{/block:action}
+
+{block:footer}
+{:parent}
+<script>
+var ubase = '<?php echo PATH_ROOT."/plus/api/wechat.php?"; ?>';
+var iTime = 0;
+function funcGetpw(scan){
+	$('#idx_lscan').toggle();
+	$('#idx_login').toggle();
+	if(scan) fshowQrcode();
+}
+function fshowQrcode(){ // 缓存,更新...
+	if(iTime) return;
+	var extp = Math.random().toString(36).substr(2); 
+	var url = 'actys=getQrcode&qrmod=getpw&extp='+extp+'&varname=data';
+	$.getScript(ubase+url, function(){ //jsLog(data); //调试
+		$('#lscan_img').attr('src',data.url);
+		clearTimeout(iTime);
+		//fcheckGetpw(data.sid,extp,data.stampys,data.signys);
+	});
+}
+function fcheckGetpw(sid,extp,stampys,signys){
+	var url = 'actys=chkXXXXX&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
+	$.getScript(ubase+url, function(){ //jsLog(data);
+		if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
+            alert('服务器返回格式错误。');
+			return '';
+        //}else if(data.user_info.mid=="-1"){
+			//$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
+			//return '';
+        }else if(data.uname){
+			$('#lscan_msg').html("["+data.uname+"]登录成功！");
+			location.reload();
+			return '';
+        } 
+		iTime = setTimeout("fcheckGetpw('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
+	});	
+}
+winAutoMargin('topMargin');
+
+</script>
+{/block:footer}

@@ -1,0 +1,25 @@
+<!--子菜单-->
+<p class="umc_mtip">&gt;{$tipmsg}</p>
+<div class="umc_nav2">
+{if $this->mod=='user' }
+  <i><b class="icons ico-flag"></b>用户信息</i>
+  <a id='ids_uhome' href="{surl(user)}">用户资料</a>
+  <a id='ids_uedit' href="{surl(user-uedit)}">修改资料</a>
+  <a id='ids_uedpw' href="{surl(user-uedpw)}">修改密码</a>
+  <a id='ids_uedpw' href="{surl(user-mbind)}">绑定账号</a>
+{elseif $this->mod=='order' }   
+  <i><b class="icons ico-flag"></b>在线订单</i>
+  <a id='ids_ohome' href="{surl(order)}">历史订单</a>
+  <a id='ids_nodone' href="{surl(order-nodone)}">未完成</a>
+  <a id='ids_isdone' href="{surl(order-isdone)}">已完成</a>
+  <a id='ids_inquiry' href="{surl(order-inquiry)}">订单查询</a>
+{elseif $this->mod=='indoc' }    
+  <i><b class="icons ico-flag"></b>内部公文</i>
+  <a id='ids_imy' href="{surl(0)}?mkv=indoc-iget&part=imy">我的公文</a>
+  <a id='ids_idep' href="{surl(0)}?mkv=indoc-iget&part=idep">部门公文</a>
+  <a id='ids_ipub' href="{surl(0)}?mkv=indoc-iget&part=ipub">公共公文</a>
+  <b>|</b>
+  <a id='ids_iadm' href="{surl(indoc-iadm)}">管理列表</a>
+  <a id='ids_iedit' href="{surl(indoc-iedit)}">公文发布</a>
+{/if}  
+</div>

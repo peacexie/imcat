@@ -1,0 +1,38 @@
+{block:minit}{php}
+//$user = usrBase::userObj('Member'); 
+$key = $this->ucfg['key'];
+$key = empty($key) ? 'login' : $key;
+$act = basReq::val('act');
+$recbk = basReq::val('recbk');
+$recbk=='ref' && $recbk = $_SERVER['HTTP_REFERER'];
+$karr = array('login'=>'会员登录','apply'=>'会员注册','getpw'=>'获取密码');
+$kname = isset($karr[$key]) ? $karr[$key] : "($key)";
+{/php}{/block:minit}
+<!DOCTYPE html><html><head>
+{php $this->pmeta($kname.'-'.$_cbase['sys_name']); }
+{php $this->pimp(); }
+{php $this->pimp('/b_jscss/user.css'); }
+{php $this->pimp('/skin/a_jscss/jstyle.css',''); } 
+{php $this->pimp('/skin/jslib/jq_base.js',''); }
+</head><body>
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+
+{php glbHtml::ieLow_html();}
+<div class="pgu_logo">
+  <div class="logo">
+    <p>&nbsp;  </p>
+  </div>
+  <div class="title">
+    <h3>{show(sys_name)}</h3>
+    <h1>{$kname}</h1>
+  </div>
+  <div class="cleft"></div>
+</div>
+
+{block:action}Body for {$kname}{/block:action}
+
+<p class="tc f12">{php print_r(basDebug::runInfo()); }</p>
+</body></html>
+{block:footer}
+{php $_cbase['tpl']['tplpend']='jstag'; }
+{/block:footer}

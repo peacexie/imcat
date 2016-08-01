@@ -1,0 +1,153 @@
+{imp:"user/user_layout"}<!--模板继承-->
+
+{block:minit}{:parent}{php}
+$_groups = glbConfig::read('groups'); 
+$show = "<a href='?user-apply'>[返回]重新申请</a>";
+if($act=='doapply'){
+	$bsend = 1;
+	$fm = $_POST['fm']; //print_r($fm);
+	$re2 = safComm::formCAll('fmapply');
+	if(empty($re2[0])){ 
+		$mod = basReq::val('mod');
+		$arr = array('company'=>@$fm['company'],); // mod,uname,upass; mname,mtel,memail; company,uid,grade,check
+		$re3 = usrMember::addUser($mod,$fm['uname'],$fm['upass'],$fm['mname'],$fm['mtel'],$fm['memail'],$arr);
+		if(empty($re3['erno'])){
+			$fappok = 1;
+			$msg = "[".$re3['uname']."] 申请成功！";
+			$show = empty($re3['show']) ? '(未审核)' : 'Y-已审';
+		}else{
+			$msg = "[".$re3['erno']."] ".$re3['ermsg'];
+		}
+	}else{
+		$msg = "[".$re2[1]."]".$re2[0];	
+	}
+}
+{/php}{/block:minit}
+
+{block:action}
+{if $user->userFlag=='Login' }
+<div class="pgu_login">
+  <div class="apply">
+    <p> 切换用户？请先【<a href="?mkv=user-login&act=doout">登出</a>】;  </p>
+    <p> 超是时间至：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  </p>
+  </div>
+  <div class="msg">
+  <p> [{$user->usess['uname']}] 已经登录！ </p>
+  </div>
+  <div class="cleft"></div>
+</div>
+{elseif !empty($bsend) }
+<div class="pgu_login">
+  <div class="apply">
+    <p> {$show}  </p>
+  </div>
+  <div class="msg">
+  <p> {$msg} </p>
+  </div>
+  <div class="cleft"></div>
+</div>
+{else}
+<div class="pgu_login">
+  <div class="apply">
+    <p class="tc"> <a href="{surl(user-login)}">登陆</a> # <a href="{surl(user-apply)}">注册</a> # <a href="{surl(0)}">首页</a> </p>
+  </div>
+  <div class="login">
+    <p> 已经有账号？请<a href="{surl(user-login)}">登录会员</a>！ </p>
+  </div>
+  <div class="cleft"></div>
+</div>
+{/if}
+{if !empty($fappok) }
+<div class="pgu_applay">
+  <div class="apform">
+    <p> <i>登陆名: </i>
+        <input value="{$re3['uname']}" style='width:320px'; />
+    </p>
+    <p> <i>密　码: </i>
+        <input value="{$fm['upass']}" style='width:320px'; />
+    </p>
+    <p> <i>审　核: </i>
+        <input value="{$show}" style='width:320px'; />
+    </p>
+    <p> <i>UID: </i>
+        <input value="{$re3['uid']}" style='width:320px'; />
+    </p>
+    <p class="h08">&nbsp;</p>
+  </div>
+  <div class="cleft"></div>
+</div>
+{/if}
+{if empty($bsend) }
+<form action="{surl(user-apply)}" usercheck='uapply' method="post" name="fmapply" id="fmapply">
+<div class="pgu_applay">
+  <div class="apform">
+    <p> <i>类　型: </i>
+        {loop $_groups $k $v}{if $v['pid']=='users'}
+        {php $cfgm = glbConfig::read($k);$cfgs = basElm::text2arr(@$cfgm['cfgs']); }
+        {if !empty($cfgs['defgrade']) }
+        <input name="mod" type="radio" value="{$k}" onclick="setUserMod(this)" {if $k=='company'}checked{/if} />{$v[title]} &nbsp; 
+        {/if}{/if}{/loop}
+    </p>
+    <p> <i>登陆名: </i>
+        <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="txt w140" reg="key:2-15" tip="字母开头,允许3-16字节<br>允许字母数字下划线" style='width:150px'; />
+    </p>
+    <p> <i>密　码: </i>
+      <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" class="txt w140" reg="str:6-15" autocomplete="off" tip="允许6,15字节" style='width:150px'; />
+    <!--br-->
+      <i>确认密码: </i>
+      <input id="fm[upass2]" name="fm[upass2]" tabindex="2" type="password" class="txt w140" reg="str:6-15" autocomplete="off" tip="允许6,15字节" style='width:150px'; />
+    </p>
+    <p id="pflg_company"> <i>单位名: </i>
+        <input id='fm[company]' name='fm[company]' type='text' value='' class='txt'  maxlength='24'  reg='nul:str:2-24'  style='width:420px';  />
+    </p>    
+    <p> <i id="iflg_mname">会员名: </i>
+        <input id='fm[mname]' name='fm[mname]' type='text' value='' class='txt'  maxlength='24'  reg='str:2-24'  tip='2-24字符' style='width:150px';  />
+    <!--br-->
+       <i>联系电话: </i>
+        <input id='fm[mtel]' name='fm[mtel]' type='text' value='' class='txt'  maxlength='24'  reg='fix:tel'  style='width:150px';  />
+    </p>
+    <p> <i>邮　件: </i>
+        <input id='fm[memail]' name='fm[memail]' type='text' value='' class='txt'  maxlength='255'  reg='nul:fix:email'  tip='如:peace@domain.com'  style='width:420px';  />
+    </p>
+    <p> <i>认证码: </i>
+      <script>fsInit('fmapply');</script>
+      <span class="submit">
+      <input name="bsend" value="提交" tabindex="19830" type="submit" class="btn" />
+      <input name="act" type="hidden" value="doapply" />
+      <input name="recbk" type="hidden" value="{$recbk}" />
+      </span>
+    </p>
+    <p class="h08">&nbsp;</p>
+  </div>
+  <div class="cleft"></div>
+</div>
+</form>
+<script>
+function evf_uapply(msgarr,isSubmit){
+	var pw1 = $(jsElm.jeID('fm[upass]'));
+	var pw2 = $(jsElm.jeID('fm[upass2]'));
+	if( $(pw1).val() == $(pw2).val() ){ //匹配成功
+		$(pw2).evf_callback(null,"sucess"); //此次是官方提供的，用来消除以前错误的提示
+	}else{//匹配失败
+		$(pw2).evf_callback("密码不匹配","failed"); //此处是官方提供的API，效果则是当匹配不成功，pwd2表单 显示红色标注，并且TIP显示为“密码不匹配”
+		return false;
+	}
+}  
+</script> 
+{/if} 
+
+<div class="clear"></div>
+<script>
+function setUserMod(e){
+	var v = $(e).val(); 
+	if(v=='person'){
+		$('#iflg_mname').html('会员名');
+		$('#pflg_company').hide();
+	}else{
+		$('#iflg_mname').html('联系人');
+		$('#pflg_company').show();		
+	}
+}
+</script>
+
+{/block:action}

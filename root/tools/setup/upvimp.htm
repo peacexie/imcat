@@ -1,0 +1,52 @@
+
+<h2 class="tc pv5">更新程序 - 对比数据库结构</h2>
+
+<div>
+<p>更新程序 - 操作导航</p>
+<table width="100%" border="1" class="tblist">
+    <?php if($cfg['res']['res']==FLAGNO){ ?>
+    <tr class="tc">
+        <td class="msg">请设置配置文件：{code}/cfgs/excfg/ex_outdb.php (下方的$_cfgs相关配置)<br>提示：可从旧版的{code}/cfgs/boot/cfg_db.php中复制过来</td>
+        <td>提示</td>        
+    </tr>  
+    <tr class="tc">
+        <td class="msg"><?php echo $cfg['res']['info']; ?></td>
+        <td><?php echo $cfg['res']['res']; ?></td>        
+    </tr>    
+    <?php }else{ ?>
+    <tr class="tc">
+        <td>数据库结构对比</td>
+        <td class="tc">
+<a href="?act=cpcfg">初始化缓存</a>
+# <a href="?act=cptables">增减的表</a>
+# <a href="?act=cpfields">修改的字段</a>
+# <a href="?act=cpindexs">增减的索引</a>        
+        </td>
+    </tr>
+    <tr class="tc">
+        <td><a href="?act=sqlins&ano=0">导入SQL(INSERT)</a></td>
+        <td><?php echo str_replace('{a}','sqlins',$nav); ?> #</td>
+    </tr>
+    <tr class="tc">
+        <td><a href="?act=sqlrep&ano=0">导入SQL(REPLACE)</a></td>
+        <td><?php echo str_replace('{a}','sqlrep',$nav); ?> #</td>
+    </tr> 
+    <tr class="tc">
+        <td>连接和数据库工具</td>
+        <td class="tc">
+<a href="<?php echo PATH_ROOT ?>/" target="_blank">[Home]</a>
+# <a href="<?php echo PATH_ROOT ?>/run/adm.php?file=admin/db_act&view=rem&view=Export" target="_blank">数据库结构</a>
+# <a href="<?php echo PATH_ROOT ?>/tools/adbug/dbadm.php?db=<?php echo @$cfg['new']['db_name']; ?>" target="_blank">数据库管理</a>
+# <a href="<?php echo PATH_ROOT ?>/tools/adbug/binfo.php?login">管理工具登录</a>
+# <a href="<?php echo PATH_ROOT ?>/run/adm.php" target="_blank">[Admin]</a>        
+        </td>
+    </tr>
+    <tr class="tc">
+        <td>导入数据说明</td>
+        <td>查看后台：[更新升级说明] 或 官方[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog#s_import" target="_blank">导入数据说明</a>]
+        </td>
+    </tr>
+    
+    <?php } ?>  
+</table>
+</div>

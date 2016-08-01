@@ -1,0 +1,43 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}
+{:parent}
+<?php 
+$tipmsg = '修改资料';
+if(!empty($user->uinfo['uid'])){
+    $mod = $user->uinfo['umods']; 
+    $uid = $user->uinfo['uid'];
+    $_cfg = glbConfig::read($mod); 
+    $dop = new dopUser($_cfg); 
+    $islogin = 1;
+}else{
+	$islogin = 0;
+}
+?>
+{/block:init}
+
+{block:action}
+<div class="umc-mitem">
+<h3><i>edit information</i>修改资料：</h3>
+<?php
+if(empty($bsend) && $islogin){
+	$fmo = $db->table($dop->tbid)->where("uid='$uid'")->find();
+	$dop->fmo = $fmo;
+	glbHtml::fmt_head('fmlist',"?$this->mkv",'tbdata');
+	//$dop->fmAccount();
+	fldView::lists($mod,$fmo);
+	//$dop->fmProp();
+	glbHtml::fmae_send('bsend','提交');
+	glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+	//if(in_array($mod,array('company','govern','organize'))){
+		//fldView::relat("fm[grade]","fm[miuid],$mod,$uid,fm[grade]"); 
+	//}
+}elseif($islogin){
+	$dop->svPrep(); 
+	unset($dop->fmv['grade'],$dop->fmv['show']);
+	$db->table($dop->tbid)->data($dop->fmv)->where("uid='$uid'")->update();
+	echo "<dd class='msg'>修改完成：<a href='?$this->mkv'>点击返回</a></dd>";
+}
+?>
+</div>
+{/block:action}

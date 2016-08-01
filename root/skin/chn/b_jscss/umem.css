@@ -1,0 +1,9 @@
+
+.umem-map { width:800px; height:600px; margin:10px auto; }
+.sd-mpic { height:120px; text-align:center; padding:10px 0px; margin:1px auto 10px auto; }
+
+.sd-minfo { padding: 0px 5px 0px 5px; }
+.sd-minfo li { margin: 1px 0px 0px 0px; padding: 2px 0 2px 10px; background-image: url(../../a_img/nv_02.png); background-position: -45px -95px; }
+.sd-minfo li.act { font-weight: bold; }
+.sd-minfo li:hover a { color:#F00; }
+.sd-minfo li i, .sd-minfo li b,{ font-weight:normal; font-style:normal; }

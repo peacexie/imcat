@@ -1,0 +1,76 @@
+{imp:"c_page/lay_comm"}<!--继承模板-->
+
+{block:init}{php include_once(vopTpls::pinc('m_user/wxlogin')); }{/block:init}
+
+{block:pimp}
+{php $this->pimp('/b_jscss/user.css'); }
+{/block:pimp}
+
+{block:main}
+
+<form name="cmslogin" id="cmslogin" method="post" action="<?php echo wysBasic::fmtUrl(vopUrl::fout('user-wxlogin')); ?>">
+<ul class="mod-user">
+  <li class="type">
+  <b class="right">-</b>
+  新增/绑定 帐号
+  </li>
+
+  <li>
+  <i class="atype">快速新增帐号：<label><input name="actys" id="actys1" type="radio" value="add" onClick="setActType(this)" checked></label></i>
+  <i class="title">绑定已有帐号：<label><input name="actys" id="actys2" type="radio" value="bind"onClick="setActType(this)"></label></i>
+  </li>
+  
+  <li>
+  <i class="atype">会员类型</i>
+  <i class="title"><select name="umod" id="umod">
+{loop $umods $mch $title}<?php if(in_array($mch,array('adminer','inmem'))){continue;} ?><option value="{$mch}">{$title}</option>{/loop}
+</select></i>
+  </li>
+  
+  <li>
+  <i class="atype">用户名</i>
+  <i class="title"><input type="text" autocomplete="off" placeholder="请输入用户名"  id="username" name="username" value="{$mnamed}" rule="text" must="1" min="3" max="15" warn="用户名应为3-15个字节！"/></i>
+  </li>
+  
+  <li>
+  <i class="atype">密码</i>
+  <i class="title"><input type="text" autocomplete="off" placeholder="请输入密码"  id="password" name="password" value="{$mpassd}" rule="text" must="1" warn="密码空或包含非法字符（不能用全0作密码）！" /></i>
+  </li>
+  
+  <li>
+  <i class="atype">操作账号</i>
+  <i class="title"><input type="submit" id="weixin_login" name="weixin_login" value="执行操作"/></i>
+  </li>
+  
+</ul>
+{loop $karr $k}
+<?php if(in_array($k,array('uinfo'))){continue;} ?>
+<input type="hidden" name="{$k}"  value="<?php echo $$k; ?>" />
+{/loop}
+</form>
+
+<div class="clear"></div>
+
+<script>
+function setActType(e){
+	if(!e) e = document.getElementById('actys1');
+	if(e.value=='add'){
+		$('#weixin_login').val('添加账号');
+		$('#username').val('{$mnamed}');
+		$('#password').val('{$mpassd}');
+		$('#setmchid').show();
+	}else{
+		$('#weixin_login').val('绑定账号');
+		$('#username').val('');
+		$('#password').val('');	
+		$('#setmchid').hide();
+	}
+	//console.log(e.value);
+}
+$(document).ready(function(){
+	setActType();
+})
+//setTimeout('',500);
+</script>
+
+{/block:main}

@@ -1,0 +1,25 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}
+{:parent}
+<?php 
+extract(tex_base::tips_init($this), EXTR_OVERWRITE);
+?>
+{/block:init}
+
+{block:action}
+<div class="umc-mitem">
+    <h3><i>{$permOrg}</i>系统提示：</h3>
+    <dl>
+        <dt>访问页：</dt><dd>?{$from}</dd>
+        <dt>需要权限：</dt><dd>{$perm}</dd>
+        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        <dt>运行信息：</dt><dd>{$runinfo}</dd>
+        <dt>系统信息：</dt><dd>ServerTime:{= date('Y-m-d H:i:s'); } IP:{= $_cbase['run']['userip'] ;}</dd>
+        {if ($user->userFlag=='Guest') }
+        <dt>您当前：</dt><dd>未登录；可以<a href="{surl($ulogin)}">点击我登录</a> 或 <a href="{surl($uapply)}">点击我注册</a>……</dd>
+        {else}
+        {/if}
+    </dl>
+</div>
+{/block:action}

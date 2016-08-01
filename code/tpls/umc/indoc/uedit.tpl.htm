@@ -1,0 +1,67 @@
+{imp:"b_lay/a-dops"}<!--模板继承-->
+
+{block:excss}
+<style type="text/css">
+table.tbdata td{ font-size:14px; line-height:120%; padding:5px 3px; }
+table.tbdata label{ font-size:14px; }
+</style>
+{/block:excss}
+
+{block:action}
+
+<?php
+
+vopTpls::pinc('umc:tex_indoc');
+
+if(!empty($bsend)){
+
+    $dop->svPrep();
+    tex_indoc::fixIspub($dop,$isadd); // topub=ispub : 扩展
+    if(!empty($isadd)){ 
+        $dop->svAKey(); $did = $dop->fmu['did'] = $dop->fmv['did'];
+        $db->table($dop->tbid)->data($dop->fmv)->insert(); 
+        $db->table($dop->tbext)->data($dop->fmu)->insert(); 
+        $actm = '增加';
+    }else{ 
+        $did = $dop->svEKey();
+        $db->table($dop->tbid)->data($dop->fmv)->where("did='$did'")->update();
+        $dop->fmu['did'] = $did;
+        $db->table($dop->tbext)->data($dop->fmu)->replace();
+        $actm = '修改';
+    }
+    $dop->svEnd($did); //静态情况等
+    tex_indoc::exNotice($dop,$isadd); // 通知扩展
+    basMsg::show("$actm 成功！",'Redir');
+
+}else{
+
+    if(!empty($did)){
+        $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
+        $fme = $db->table($dop->tbext)->where("did='$did'")->find();
+        $fme && $fmo = $fmo + $fme;
+        $isadd = 0;
+    }else{
+        $fmo = array();
+        $isadd = 1;
+    }
+    //for Tester ------------------ 
+    #$dop->fmv = $dop->fmu = $fmo;
+    #tex_indoc::exNotice($dop,1);
+    //end Tester ------------------ 
+    $dop->fmo = $fmo;
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
+    glbHtml::fmae_row('所在栏目',$dop->fmType('catid').' &nbsp; 显示'.$dop->fmShow());
+    $fmo['sendsms'] = ''; //通知类型:默认不通知,添加删除都一样
+    fldView::lists($mod,$fmo);
+    $dop->fmProp();
+    glbHtml::fmae_send('bsend','提交');
+    glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+
+}
+
+?>
+
+{/block:action}
+
+{block:uend}{:parent}{/block:uend}
+

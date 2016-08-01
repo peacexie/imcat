@@ -1,0 +1,160 @@
+
+
+#link#常用链接 
+
+```
+<a href="{surl(0)}">[首页]</a>
+<a href="{surl(chn:about-alink);}">chn:联系我们</a>
+<a href="{surl(chn:0)}">[chn:首页]</a>
+<a href="{surl(chn:cargo)}">chn:产品中心</a>
+<a href="{surl(start)}">快速开始</a>
+<a href="{surl(tester)}">测试代码</a>
+<a href="{surl(tpltag)}">模板标签</a>
+<a href="{surl(dev2nd)}">二次开发</a>
+<a href="{surl(advset)}">系统参数</a>
+<a href="{surl(demo)}">文档/资讯</a>
+<a href="{surl(type)}">分类/组系</a>
+<a href="{surl(company)}">用户/会员</a>
+<a href="{surl(info-gbook)}">留言问答</a>
+<a href="{surl(info);}">[导航]</a>
+<a href="{surl(umc:user-login)}">[登录]</a>
+<a href="{surl(umc:user-apply)}">[注册]</a>
+{surl(news.2016-12-abcd,0,1)} //完整地址
+{surl(dev:news.2016-12-abcd,0,1)} //完整地址 
+
+```
+
+
+#comshow# 基本显示
+
+* 基本输出
+
+```
+变量：{$this->mod},{$this->key},{$title},{$t_title}
+数组：{$_cbase['server']['valkey']},{$fc['title']} (建议用此加引号的方式)
+  或：{$_cbase[server][valkey]},{$fc[title]} (数组建议不用此方式)
+· {= date('Y-m-d'); } <br>
+· {= 'Hi! '; }{= date('Y-m-d') } 
+· {PATH_ROOT}/skin/a_img/loadbig.gif
+```
+
+
+* 显示类别标题
+
+```
+{php}
+$split='|';
+$tpl="<span class='itm-(k)'>(v)</span>";
+{/php}
+{stime($v['atime'],dm)} -> 12-14 19:47
+栏目：{sopt($t_catid,$this->mod,0,$null)}
+状态1：{sopt($ordstat,corder.ordstat,0,$null)} //默认自动彩色显示
+状态2：{sopt($ordstat,corder.ordstat,1,$null)} //单个>0数字,多个用,好分开,或自定义个分割符变量(如$split)也可
+状态3：{sopt($ordstat,corder.ordstat,tpl,$null)} //默认模版显示,可自行写css.class着色
+状态4：{sopt($ordstat,corder.ordstat,$tpl,$null)} //自定模版显示,可自行写css.class着色
+demo:
+                {php $f='exp_m01'; $fc=$fexts[$f]; $split='|'; $tpl="<span class='exp_s02-(k)'>(v)</span>"; }
+                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
+                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
+                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
+                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
+-=>结果
+				<span style='color:#F00'>灰色</span>
+				<span style='color:#F0F'>黑色</span> </b></p>
+                <p><i>外观颜色:</i><b>白色,灰色,黑色 </b></p>
+                <p><i>外观颜色:</i><b>白色|灰色|黑色 </b></p>
+                <p><i>外观颜色:</i><b><span class='itm-bai'>白色</span><span class='itm-hui'>灰色</span><span class='itm-hei'>黑色</span> </b></p>
+                <p><i>外观颜色:</i><b><span class='exp_s02-bai'>白色</span><span class='exp_s02-hui'>灰色</span><span class='exp_s02-hei'>黑色</span> </b></p>
+
+
+```
+
+
+#tagbase#基本标签
+
+* List:列表标签：
+ - 用于调用  [文档/资讯] | [互动/评论] | [用户/会员] [广告/连接] 列表
+ - 注意：[广告/连接]另有调用方式
+```
+{tag:dhinfo=[List][modid,cargo][show,1][limit,6]}
+<li>{title($t_title,96,$v)}</li>
+{/tag:dhinfo}
+```
+ 
+* Page:分页标签：
+ - 用于调用  [文档/资讯] | [互动/评论] | [用户/会员] [广告/连接] 列表
+ - 注意：[广告/连接]另有调用方式
+```
+{tag:demo2=[Page][modid,demo][limit,3]}
+{:row}
+<li>{$t_title} --- {stime($t_atime)}</li>
+{/row}
+{php echo $_cbase['page']['bar']; }
+{/tag:demo2}
+```
+ 
+* One:单条数据标签：
+ - 用于调用  [文档/资讯] | [互动/评论] | [用户/会员] 列表
+```
+{php $_did = '2006-97-8axx'; }
+{tag:demo1=[One][modid,demo][join,detail][where,"m.did='$_did'"][order,etime]}
+<li><a href="{surl("demo.$t_did")}">{$v['title']} --- {stime($t_atime)} --- {$t_detail}</a></li>
+{/tag:demo1}
+```
+ 
+* Type:类别列表标签：
+ - [分类/组系] 列表
+```
+{tag:flag4=[Type][modid,china][idfix,sun:zx]}
+<li>{$t_kid},{$t_title}</li>
+{/tag:flag4}
+```
+
+* 标签规范：
+
+ - 格式：假设标签名为`mytag_123`，则此标签以`{tag:mytag_2=[类别]`开头；以`{/tag:mytag_2}`结尾
+ - 标签名：2~24个字母数字下划线组成的字符，以字母开头；同一页最好不要有相同的，如有相同，少部分情况下可能有冲突；
+ - 同一页不能有两个分页标签
+ - {:row}循环部分{/row}：指定循环部分，用于分页/列表
+ - 查看demo : `模板标签 : demo-tag`
+
+#tagpara#标签参数
+
+* 标签缓存
+
+ - [cache,30] 缓存30分钟
+ - [cache,3h] 缓存3小时
+ - [cache,2d] 缓存2天
+ - 用户缓存列表结果，减少数据库压力
+ - 默认单位为分钟，可用h,d分别为小时,天为单位
+ - 如果需要，可把参数加在：List/Page/One标签上
+
+* 样例
+```
+[hinfo,pindao+home+zhuanti,in] -=> m.hinfo IN('pindao','home','zhuanti')
+[join,detail,seo_des+detail]
+[keywd,0,title]
+[keywd,0,title+detail]
+[inids,$rel_doc]
+……后续完善
+```
+
+
+#tag-text#text标签
+
+```
+{text($t_detail,120,1)} 无br换行
+{text($t_detail,120)} 有br换行
+```
+
+
+#xxxx#临时
+
+* 暂无
+```
+// {stime($re4['atime']);}	             =>  [?php echo vopCell::cTime($re4['atime']);;?]
+// {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
+// {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
+// {sopt(c0769+c0735,china)}
+```

@@ -1,0 +1,26 @@
+{imp:"faqs/a_layout"}<!--模板继承-->
+
+{block:action}
+<dl class="sct-qa-tags">
+<?php
+$where = tex_faqs::expwhr($this); // [keywd][where,$where] 
+?>
+{tag:qas=[Page][modid,qatag][show,1][order,hotcnt][limit,120]}
+    {:row}
+    <dt><a href="{surl(0)}?mkv=faqs--list&tag={$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}({$t_hotcnt})</a></dt>
+    {/row}
+    <div class="clear pa5"></div> 
+    <?php 
+    if($_cbase['page']['prec']){ echo $_cbase['page']['bar']; }
+    else{ echo "<dt>暂无记录！</dt>"; }
+    ?>
+    </dd>
+{/tag:qas}
+</dl>
+{/block:action}
+
+{block:uend}{:parent}{php}
+$jstr = "var qas_id='_allt', qat_id='tag';";
+echo "<script>$jstr</script>"; //print_r($this); print_r($user);
+{/php}{/block:uend}
+

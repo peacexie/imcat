@@ -1,0 +1,61 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:action}
+<?php
+vopTpls::pinc('tex_indoc');
+$cfgs = array(
+	'my' => '我的公文',
+    'dep' => '部门公文',
+    'pub' => '公共公文',
+);
+$uname = @$user->uinfo['uname'];
+?>
+<!-- // {if ($user->userFlag=='Guest')}{else}{/if} -->
+<div class="umc-mitem">
+    {loop $cfgs $key $vc}
+    <h3><i>{$key}-docu</i>{$vc}：</h3>
+    <dl>
+        <?php 
+            $where = tex_indoc::expwhr($user,"i$key",0,'no'); 
+            if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
+            $recn = 0; 
+        ?>
+        {tag:indocs1=[List][modid,$this->mod][where,$where][show,1][limit,5]}
+        {:row}
+        <dt class="list">
+        {php echo tex_indoc::isread($user,$t_did); } 
+        <a href="{surl($this->mod.".$t_did")}" target="_blank">{title($t_title,32,$v)}</a>
+        </dt>
+        <dd class="list">
+        {sopt($t_rdtip,indoc.rdtip,0,"&nbsp;")}
+        {stime($t_atime,Y-m-d)}
+        {sopt($t_indep,indep,0,"&nbsp;")}
+        </dd>
+        {php $recn=count($t_indocs1); }
+        {/row}
+        {/tag:indocs1}
+        {if $recn<5 }
+        <?php 
+            $where = tex_indoc::expwhr($user,"i$key",0,'in'); 
+            if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
+            $recm=5-$recn; 
+        ?>
+        {tag:indocs2=[List][modid,$this->mod][where,$where][show,1][limit,$recm]}
+        {:row}
+        <dt class="list">
+        {php echo tex_indoc::isread($user,$t_did); } 
+        <a href="{surl($this->mod.".$t_did")}" target="_blank">{title($t_title,32,$v)}</a>
+        </dt>
+        <dd class="list">
+        {sopt($t_rdtip,indoc.rdtip,0,"&nbsp;")}
+        {stime($t_atime,Y-m-d)}
+        {sopt($t_indep,indep,0,"&nbsp;")}
+        </dd>
+        {/row}
+        {/tag:indocs2}
+        {/if}
+    </dl>
+    <div class="h20 clear">&nbsp;</div>
+    {/loop}
+</div>
+{/block:action}

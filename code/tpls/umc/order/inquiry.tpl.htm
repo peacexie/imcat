@@ -1,0 +1,20 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}{:parent}<?php 
+$tipmsg = '订单查询！';
+?>{/block:init}
+
+{block:action}
+<div class="umc-mitem">
+<form action="{surl(chn:0)}?" method="get" target="_blank">
+	<input name="mkv" type="hidden" value="ocar-invoce">
+    <h3><i>order inquiry</i>订单查询：</h3>
+    <dl>
+        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        <dt>订 单 号：</dt><dd><input name="ordid" type="text" value="" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 格式：2015-ch-xxx99</dd>
+		<dt>提交：</dt><dd><input type='submit' class='btn' value='提交' /></dd>
+
+    </dl>
+</form>
+</div>
+{/block:action}

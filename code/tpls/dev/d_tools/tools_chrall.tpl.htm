@@ -1,0 +1,117 @@
+{imp:"d_tools/b_lay"}<!--继承模板-->
+
+{block:extop}{:parent}<?php
+$title = 'FFFF全字符集，0000~FFFF，共65536个全字符集';
+?>{/block:extop}
+
+{block:eximp}
+<style type="text/css">
+body,td,th {
+	font-size:14px;
+}
+#chrtab { width:720px; background:#FFF; margin:10px auto; }
+#chrtab td { line-height:120%; font-size:large; border:1px solid #CCC; padding:5px 1px; }
+#chrtab tr.title td { background:#DDD; }
+
+a:link, a:visited {
+	display:inline-block;
+	padding:2px 5px 2px 5px;
+}
+
+</style>
+{/block:eximp}
+
+{block:exbody}
+
+<table id="chrtab">
+
+  <tr>
+    <td align="right">Page</td>
+    <td nowrap="nowrap"><a href="#" onclick='uTabList(01)' title='0~2047'>01</a> <a href="#" onclick='uTabList(02)' title='2048~4095'>02</a> <a href="#" onclick='uTabList(03)' title='4096~6143'>03</a> <a href="#" onclick='uTabList(04)' title='6144~8191'>04</a> <a href="#" onclick='uTabList(05)' title='8192~10239'>05</a> <a href="#" onclick='uTabList(06)' title='10240~12287'>06</a> <a href="#" onclick='uTabList(07)' title='12288~14335'>07</a> <a href="#" onclick='uTabList(08)' title='14336~16383'>08</a> <a href="#" onclick='uTabList(09)' title='16384~18431'>09</a> <a href="#" onclick='uTabList(10)' title='18432~20479'>10</a> <a href="#" onclick='uTabList(11)' title='20480~22527'>11</a> <a href="#" onclick='uTabList(12)' title='22528~24575'>12</a> <a href="#" onclick='uTabList(13)' title='24576~26623'>13</a> <a href="#" onclick='uTabList(14)' title='26624~28671'>14</a> <a href="#" onclick='uTabList(15)' title='28672~30719'>15</a> <a href="#" onclick='uTabList(16)' title='30720~32767'>16</a></td>
+  </tr>
+  <tr>
+    <td><a href="{surl(tools-chrcom)}" target="_self">Ind</a></td>
+    <td nowrap="nowrap"><a href="#" onclick='uTabList(17)' title='32768~34815'>17</a> <a href="#" onclick='uTabList(18)' title='34816~36863'>18</a> <a href="#" onclick='uTabList(19)' title='36864~38911'>19</a> <a href="#" onclick='uTabList(20)' title='38912~40959'>20</a> <a href="#" onclick='uTabList(21)' title='40960~43007'>21</a> <a href="#" onclick='uTabList(22)' title='43008~45055'>22</a> <a href="#" onclick='uTabList(23)' title='45056~47103'>23</a> <a href="#" onclick='uTabList(24)' title='47104~49151'>24</a> <a href="#" onclick='uTabList(25)' title='49152~51199'>25</a> <a href="#" onclick='uTabList(26)' title='51200~53247'>26</a> <a href="#" onclick='uTabList(27)' title='53248~55295'>27</a> <a href="#" onclick='uTabList(28)' title='55296~57343'>28</a> <a href="#" onclick='uTabList(29)' title='57344~59391'>29</a> <a href="#" onclick='uTabList(30)' title='59392~61439'>30</a> <a href="#" onclick='uTabList(31)' title='61440~63487'>31</a> <a href="#" onclick='uTabList(32)' title='63488~65535'>32</a></td>
+  </tr>
+
+</table>
+
+<span id="UniTable" >UniTable</span>
+
+<script type="text/javascript">
+function GetHex(xi){ 
+  var i,j,s; s = "";
+  while (xi > 0){
+	i = xi%16; 
+	h1 = "0123456789ABCDEF";
+	h2 = h1.substring(i,i+1);
+	j = (xi-i)/16;
+	s = h2 + s;
+	xi = j;
+  }
+ return s;
+}
+
+function uTabShow(xHead,xStart,xEnd){
+  var s = xHead; 
+  for(i=xStart;i<xEnd;i=i+16){
+	i10 = i;
+	i16 = GetHex(i);
+	s += "<tr>";
+	s += "<td align=right>"+i10+"</td><td align=right>"+i16+"</td>";
+    for(j=0;j<16;j++){
+      k = (i+j);
+	  s += "<td class='td'>&#" + k + ";</td>" ;
+    }
+	s += "<td align=right>"+k+"</td><td align=right>"+GetHex(k)+"</td>";
+	s += "</tr>";
+  }
+  UniTable.innerHTML = '<table id="chrtab">'+s+"</table>";
+  //return s;
+}
+
+function uTabList(xPage){
+  s = ""; 
+  xPage   = xPage-1 ;
+  chStart = PagSize*xPage;
+  chEnd   = chStart + PagSize - 1 ;
+  uTabShow("",chStart,chEnd);
+}
+
+function uTabUser(n){
+  s = ""; t = "";
+  if(m<=PagSize){
+	 chStart = p1;
+	 chEnd   = p2 ;
+  }else{
+	 chStart = PagSize*(n-1)+p1;
+	 chEnd   = chStart + PagSize - 1;
+	 mp = Math.ceil(m/PagSize);
+	 for(i=1;i<=mp;i++) t += "<a href='#' onclick='uTabUser("+i+")'>"+i+"</a>";
+	 t = "("+t+")";
+  }
+  //alert(chStart+":"+chEnd); return;
+  if(chEnd>p2) chEnd = p2;
+  s += "<tr>"; 
+  s += "<td align=right>"+p1+"</td><td align=right>"+GetHex(p1)+"</td>";
+  s += "<td colspan=16 align=center>"+m+"个 "+t+"</td>";  
+  s += "<td align=right>"+p2+"</td><td align=right>"+GetHex(p2)+"</td>"; 
+  s += "</tr>"
+  uTabShow(s,chStart,chEnd);
+}
+
+var PagSize = 2048;
+var n = 1;
+
+var p1 = parseInt(urlPara('p1'));
+var p2 = parseInt(urlPara('p2'));
+var m = parseInt(urlPara('m'));
+var act = String(urlPara('act')); //alert(act);
+
+if(act.indexOf('tabShow')<0) uTabList(n);  
+else uTabUser(n); 
+
+</script>
+
+{/block:exbody}
+

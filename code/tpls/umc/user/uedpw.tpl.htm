@@ -1,0 +1,32 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}
+{:parent}
+<?php 
+$tipmsg = '修改密码！';
+$mod = @$user->uinfo['umods']; 
+$uname = @$user->uinfo['uname'];
+if($bsend){
+	$pwmsg = dopUser::editPass($mod,$uname);
+}
+?>
+{/block:init}
+
+{block:action}
+<div class="umc-mitem">
+<form action="?{$this->mkv}" method="post">
+    <h3><i>edit password</i>修改密码：</h3>
+    <dl>
+        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        {if empty($bsend) }
+        <dt>旧密码：</dt><dd><input name="pwold" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 6-24字符</dd>
+        <dt>新密码：</dt><dd><input name="pwnew" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 6-24字符</dd>
+        <dt>再一次：</dt><dd><input name="pwrep" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 再输一次新密码</dd>
+		<dt>提交：</dt><dd><input name='bsend' type='submit' class='btn' value='提交' /></dd>
+        {else}
+        <dd class='msg'>{$pwmsg}：<a href='?{$this->mkv}'>点击返回</a></dd>
+        {/if}
+    </dl>
+</form>
+</div>
+{/block:action}

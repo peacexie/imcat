@@ -1,0 +1,13 @@
+{imp:"c_page/lay_comm"}<!--继承模板-->
+
+{block:pimp}
+{php glbHtml::page('imp','/plus/ajax/comjs.php?act=jsPlus'); }
+{php $this->pimp('/layer/layer.js','vui'); }
+{/block:pimp}
+
+{block:main}
+<div class="pgf_main">
+  	{inc:"c_pub/mnews_detail"}
+    <div class="clear"></div>
+</div>
+{/block:main}

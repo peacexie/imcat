@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head>
+{block:import}
+{php $this->pmeta(); }
+{php $this->pimp(); }
+{php $this->pimp('/b_jscss/about.css'); }
+{/block:import}
+<?php
+$null = "";
+?>
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid2">
+  <div class="pgf_side2">
+    {inc:"m_about/about_aside"}
+  </div>
+  <div class="pgf_mcon2"> 
+    {block:mcont}
+    {/block:mcont}
+    <div class="clear h10">&nbsp;</div>
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+
+</body></html>
+
+
+{php //basDebug::varShow($this); }

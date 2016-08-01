@@ -1,0 +1,8 @@
+<?php
+
+// UFunc 
+class clsUFunc{	
+	
+
+
+}

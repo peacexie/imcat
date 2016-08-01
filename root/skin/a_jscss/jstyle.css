@@ -1,0 +1,45 @@
+
+
+div.msg_1info{ margin:10px auto; }
+div.msg_golist{ width:80%; min-height:120px; margin:auto; }
+div table.tblist td{ line-height:80%; padding:3px; }
+table.tblist th.msg_th{ font-size:14px; padding:5px 12px; }
+
+/*win_webox*/
+.webox_bg { Z-INDEX: 998; POSITION: fixed; WIDTH: 100%; BACKGROUND: rgb(50,50,50); HEIGHT: 100%; TOP: 0px; LEFT: 0px; _position: absolute }
+.webox_out { Z-INDEX: 999; POSITION: fixed; _position: absolute; _background: #777; PADDING: 0px; BORDER:#369 1px solid; }
+.webox_out #webox_in { BACKGROUND-COLOR: #ffffff; HEIGHT: 240px }  
+.webox_out #webox_in H1 { POSITION: relative; LINE-HEIGHT: 30px; PADDING:0 0 0 5px; MARGIN: 0px; DISPLAY: block; FONT-FAMILY: Arial; BACKGROUND: #3A6EA5; HEIGHT: 30px; COLOR: #FFF; FONT-SIZE: 13px; CURSOR: move; FONT-WEIGHT: 800;user-select: none }
+.webox_out #webox_in H1 A { BACKGROUND-IMAGE: url(../a_img/win_webox_close.png); POSITION: absolute; MARGIN-TOP: 6px; WIDTH: 17px; DISPLAY: inline-block; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center bottom; HEIGHT: 17px; FONT-SIZE: 14px; TOP: 0px; CURSOR: pointer; RIGHT: 6px }
+.webox_out #webox_in H1 A:hover { BACKGROUND-POSITION: center top; border:1px solid #FFF; }
+
+#wtips-bg { POSITION: absolute; WIDTH: 100%; DISPLAY: none; BACKGROUND: #000; HEIGHT: 100%; TOP: 0px; LEFT: 0px }
+#wtips-box { BORDER: #3A6EA5 5px solid; POSITION: fixed; TEXT-ALIGN: left; BACKGROUND: #fff; _position: absolute }
+#wtips-title { BORDER: #a6c9e1 1px solid; BORDER-BOTTOM: #3A6EA5 1px solid; POSITION: relative; BACKGROUND: url(../a_img/win_tips_bg.png) repeat-x 0px 0px; HEIGHT: 30px; OVERFLOW: hidden; }
+#wtips-title H2 { POSITION: relative; COLOR: #666; FONT-SIZE: 14px; TOP: 5px; LEFT: 10px }
+#wtips-close { POSITION: absolute; TEXT-INDENT: -10em; WIDTH: 10px; BACKGROUND: url(../a_img/win_tips_bg.png) no-repeat 100% -49px; HEIGHT: 16px; OVERFLOW: hidden; TOP: 8px; CURSOR: pointer; RIGHT: 10px }
+#wtips-content-border { BORDER-BOTTOM: #a6c9e1 1px solid; POSITION: relative; BORDER-LEFT: #a6c9e1 1px solid; PADDING-BOTTOM: 5px; PADDING-LEFT: 5px; PADDING-RIGHT: 0px; BORDER-TOP: #a6c9e1 1px solid; TOP: -1px; BORDER-RIGHT: #a6c9e1 1px solid; PADDING-TOP: 5px }
+#wtips-content IMG { DISPLAY: block }
+#wtips-content IFRAME { DISPLAY: block }
+#wtips-content .loading { POSITION: absolute; MARGIN-TOP: -8px; MARGIN-LEFT: -8px; TOP: 50%; LEFT: 50% }
+.wtips-content-boxCss { overflow-y:hidden; overflow-x:hidden; }
+
+/*easy_validator.css*/
+p#evf_vtip {position: absolute; padding: 10px; left: 5px; font-size: 14px; background-color: white; border: 1px solid #a6c9e2; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 9999;}
+p#evf_vtip #evf_vtipArrow { position: absolute; top: -10px; left: 5px }
+.evf_valid-failed { border: 2px solid #FF0000; color:red;}
+
+/*wordStrength.css*/
+#passwordStrengthDiv{width:138px; height:7px; display:inline-block; margin:3px; }
+.psc_is00{width:138px;height:7px;background:url(../a_img/passwordStrength.png) no-repeat 0 0;}
+.psc_is10{background-position:0 -7px;}
+.psc_is20{background-position:0 -14px;}
+.psc_is30{background-position:0 -21px;}
+.psc_is40{background-position:0 -28px;}
+.psc_is50{background-position:0 -35px;}
+.psc_is60{background-position:0 -42px;}
+.psc_is70{background-position:0 -49px;}
+.psc_is80{background-position:0 -56px;}
+.psc_is90{background-position:0 -63px;}
+.psc_isa0{background-position:0 -70px;}
+

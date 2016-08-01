@@ -1,0 +1,12 @@
+{php}
+$aurl = basReq::getUri(-2); 
+extract(basReq::sysVars()); 
+$db = glbDBObj::dbObj(); 
+if($user->userFlag=='Login'){
+	$uname = $user->uinfo['uname'];
+	$unowstr = $user->uinfo['mname'].'(<span class="c00F">'.$uname.'</span>)'.$user->uperm['title'];
+}else{
+	$unowstr = 'Guest('.$user->sinit['sid'].')游客';	
+}
+if($this->mod=='indoc') $tipmsg = '公文';
+{/php}

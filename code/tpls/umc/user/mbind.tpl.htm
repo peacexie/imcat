@@ -1,0 +1,66 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}
+{:parent}
+<?php 
+$tipmsg = '修改密码！';
+$mod = @$user->uinfo['umods']; 
+$uname = @$user->uinfo['uname'];
+$unenc =comConvert::sysRevert($uname, 0, '', 600);
+?>
+{/block:init}
+
+{block:action}
+<div class="umc-mitem">
+<form action="?{$this->mkv}" method="post">
+    <h3><i>edit password</i>
+    绑定微信
+    #
+    绑定QQ
+    </h3>
+    <dl>
+        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        <dt>扫描绑定：</dt><div>
+          <p id="lscan_msg">
+          <img src="{PATH_ROOT}/skin/a_img/loadbig.gif" id="lscan_img" width="240">
+          </p>
+        </div>
+    </dl>
+</form>
+</div>
+<script>
+var ubase = '<?php echo PATH_ROOT."/plus/api/wechat.php?"; ?>';
+var iTime = 0;
+
+function fshowQrcode(){ // 缓存,更新...
+    if(iTime) return;
+    var extp = '{$unenc}';
+    var url = 'actys=getQrcode&qrmod=mbind&extp='+extp+'&varname=data';
+    $.getScript(ubase+url, function(){ //jsLog(data); //调试
+        $('#lscan_img').attr('src',data.url);
+        clearTimeout(iTime);
+        //fcheckMbind(data.sid,extp,data.stampys,data.signys);
+    });
+}
+fshowQrcode();
+function fcheckMbind(sid,extp,stampys,signys){
+    var url = 'actys=chkXXXXX&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
+    $.getScript(ubase+url, function(){ //jsLog(data);
+        if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
+            alert('服务器返回格式错误。');
+            return '';
+        //}else if(data.user_info.mid=="-1"){
+            //$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
+            //return '';
+        }else if(data.uname){
+            $('#lscan_msg').html("["+data.uname+"]登录成功！");
+            location.reload();
+            return '';
+        } 
+        iTime = setTimeout("fcheckMbind('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
+    }); 
+}
+winAutoMargin('topMargin');
+
+</script>
+{/block:action}

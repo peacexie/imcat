@@ -1,0 +1,77 @@
+<?php
+require(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');
+
+//check, re:cfgs:
+$cfg = updDbcmp::uimpCheck(); //print_r($cfg);
+
+$act = basReq::val('act');
+$ano = basReq::val('ano','0'); 
+$nav = '';
+
+$groups = devBase::_tabGroup();
+foreach($groups as $kg){
+	$igap = $kg=='exd' ? '<br>' : '#';
+	$nav .= "\n $igap <a href='?act={a}&ano=$kg'>$kg</a>";
+}
+
+glbHtml::page("更新程序 - 对比数据库结构 - ".$_cbase['sys_name'],1);
+glbHtml::page('imp');
+echo basJscss::imp("/tools/setup/sfunc.js?".time());
+echo basJscss::imp("/tools/setup/style.css");
+glbHtml::page('body');
+
+require(dirname(__FILE__).'/upvimp.htm');
+
+$cnew = updBase::cacGet('uimp_new');
+$cold = updBase::cacGet('uimp_old');
+
+echo "<div class='upgres'>";
+if($act=='cpcfg'){
+	
+	updDbcmp::uimpInit();
+	echo "初始化缓存:完成！";
+	
+}elseif($act=='cptables'){
+
+	$ctab = updDbcmp::cmpTable($cnew,$cold);
+	echo "<pre>"; print_r($ctab); echo "</pre>"; 
+
+}elseif($act=='cpfields'){
+	
+	$cfields = updDbcmp::cmpField($cnew,$cold,0);
+	echo "<pre>"; print_r($cfields); echo "</pre>"; 
+	updBase::cacSave($cfields,'uimp_fields');
+	
+}elseif($act=='cpindexs'){
+	
+	$cindexs = updDbcmp::cmpIndex($cnew,$cold,1);
+	echo "<pre>"; print_r($cindexs); echo "</pre>"; 
+	updBase::cacSave($cindexs,'cimp_indexs');
+
+}elseif($act=='sqlins' || $act=='sqlrep'){
+	 
+	$pr0 = in_array($ano,$groups) ? "{$ano}_" : '';
+	$sqls = updDbcmp::uimpTabs($cnew,$cold,$pr0);
+    $dbnc = $cfg['new'];
+    $r1 = array("{pre}",            "{ext}",            "dbnew.",             "dbold.",                   "\n");
+    $r2 = array($dbnc['db_prefix'], $dbnc['db_suffix'], $dbnc['db_name'].".", $cfg['old']['db_name'].".", "<br>");
+	foreach($sqls as $sql){
+		if($act=='sqlrep') $sql = str_replace(array("INSERT INTO "),array("REPLACE INTO "),$sql);
+		$sql = str_replace($r1,$r2,$sql); 
+		echo "<br><br>\n$sql";	
+	}
+	echo "<br><br>\n";
+
+}
+echo "</div>";
+
+glbHtml::page('end'); 
+
+/*
+	$pr[1] = array("8:archives","5:commu","7:members",);
+	$pr[2] = array("7:aalbums","7:coclass","9:farchives","4:push",); 
+	$pr[3] = 'currency1,currency2,dbfields,userfiles';
+	$pr[4] = 'arctemp15,housesrecords,weituos';
+*/
+
+?>

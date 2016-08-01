@@ -1,0 +1,134 @@
+{imp:"frame/aimp"}<!--模板继承-->
+
+{block:ahead}<style type='text/css'>
+.abprop{padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
+</style>{/block:ahead}
+
+{block:abody}
+<?php
+$act = basReq::val('act');
+$exinfo = basReq::val('exinfo');
+if($act=='update'){
+	$arr = array('server.htm','client.htm'); //,'modstat.php'
+	foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key"); }
+}elseif($act=='modstat'){
+	@unlink(DIR_DTMP."/dset/_upd_modstat.php");
+}elseif($act=='uspace'){
+	@unlink(DIR_DTMP."/dset/_upd_spaceinfo.php");
+}
+//basDebug::varShow($data)
+?>
+<table border='0' class='tbbar1'><tr>
+<td class='tc'><h4>[{$_cbase['sys_name']}] 管理首页</h4></td>
+<td class='tr pa5'>序列号 : <a href='#' class='cur'>{$_cbase['sys']['sn']}</a></td>
+</tr></table>
+
+<table border='1' class='tblist'>
+<tr>
+<th>官方更新及动态</th><th width="30%">当前管理员信息</th>
+</tr>
+<tr>
+<td class='tl pa10'>
+  <script src="{PATH_ROOT}/plus/api/update.php?act=client"></script>
+</td>
+<td class='tl pa10'>
+  ● 登陆者：{$user->uinfo['mname']} (<span class="c00F">{$user->uinfo['uname']}</span>)<br>
+  ● 所属会员组：{$user->uperm['title']}<br>
+  ● 当前登录Ip：{$_cbase['run']['userip']}<br>
+  ● 系统时间：{stime($_cbase['run']['stamp'],min)}<br>
+</td>
+</table>
+{if !empty($exinfo)}
+<div style=" width:100%; height:240px; overflow-y:scroll; border:1px solid #039; padding:5px;">
+<?php
+echo "\n<div class='h05'>&nbsp;</div>";
+echo "<pre>[!-- $exinfo 信息 <a href='?uhome'>&lt;&lt;返回</a> \n";
+if($exinfo=='cbase'){
+	print_r($_cbase);
+}elseif($exinfo=='admin'){
+	print_r($user);
+}elseif($exinfo=='member'){
+	$umem = usrBase::userObj('Member');
+	print_r($umem);
+}
+echo "--></pre>\n";
+?>
+</div>
+{/if}
+<div class="h05">&nbsp;</div>
+<table border='1' class='tblist'>
+  <tr>
+    <th width="49%">[文档/资讯]统计</th>
+    <th width="49%">[用户/会员]统计</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('docs');?>
+    </td>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('users');?>
+    </td>
+
+  <tr>
+    <th>[互动/评论]统计</th>
+    <th>[广告/连接]统计</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('coms');?>
+    </td>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('advs');?>
+    <br /><br />
+    </td>
+</table>
+<?php
+$stype = 'afadmin'; $actstr = $whrself = '';
+include(DIR_CODE."/flow/eact/adfavor_view.php");
+?>
+<div class="h05">&nbsp;</div>
+<table border='1' class='tblist'>
+  <tr>
+    <th>系统环境信息</th>
+    <th width="50%">空间占用状况</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+	<?php 
+    $a = array('verPHP','verGdlib','runRemote'); 
+    foreach($a as $k){ 
+		$re = devRun::$k();
+		echo "● $re[title] : $re[info]<br>\n";
+	}
+    ?>
+    ● 变量：<a href="?mkv=uhome&exinfo=cbase">cbase</a>, 
+    <a href="?mkv=uhome&exinfo=admin">admin</a>, 
+    <a href="?mkv=uhome&exinfo=member">member</a>, 
+    <a href="{PATH_ROOT}/tools/adbug/binfo.php?cookie" target="_blank">COOKIE</a>, 
+    <a href="{PATH_ROOT}/tools/adbug/binfo.php?server" target="_blank">SERVER</a>, 
+    <a  href='{PATH_ROOT}/tools/adbug/binfo.php?phpinfo255' target='_blank'>phpinfo</a>, 
+    <a  href='{PATH_ROOT}/tools/adbug/check.php?act=define' target='_blank'>Defined</a> <br>
+    ● 更新：<a href="?mkv=uhome&act=update">更新及动态</a>, 
+    <a href="?mkv=uhome&act=modstat">统计数据</a>,
+    <a href="?mkv=uhome&act=uspace">空间占用状况</a>,
+    <a href="?uhome">[不更新重载]</a><br>
+    </td>
+    <td nowrap="nowrap" class='tl pa10'>
+	<table class="uh-space"><?php updInfo::showSpaceInfo(); ?></table>
+    </td>
+
+</table>
+<div class="h05">&nbsp;</div>
+<!--table border='1' class='tblist'>
+  <tr>
+    <th>常用工具</th>
+    <th width="30%">开发团队</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>&nbsp;</td>
+    <td class='tl pa10'>&nbsp;</td>
+</table-->
+
+<?php $_cbase['debug']['err_mode'] && print_r(basDebug::runInfo()); ?>
+
+{/block:abody}
