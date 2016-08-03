@@ -1,0 +1,26 @@
+1.6.0更新日志
+
+01、type:2模式的iframe层可弹出任意个数（目前支持弹出任意个数层的有：type:1/type:2）
+02、新增layer.area(index,options)，用于重定义指定层的宽高、坐标、z-index，该方法仅针对页面层（type:1）和iframe层（type:2）有效;
+03、新增关闭所有层的方法layer.closeAll();
+04、新增page参数中的url和end参数;url即ajax请求的地址，end是ajax请求页面成功后执行的回调
+05、新增dialog中type的-1值，用于控制dialog模式的提示图标是否显示。
+06、新增dialog中的5个图标(11-15)，目前可配置的有0-15
+07、新增layer.index静态属性，用于获取最近一次的索引值
+08、新增拖拽时鼠标按键放下后的回调函数：moveEnd:function(){}
+09、新增layer.zIndex全局属性，用于获取layer容器中的最大z-index值
+10、新增点击当前窗口，当前窗口置顶的方法layer.setTop(layerNow)。一般用在success回调中，layerNow参数即为success回调函数中传过来的参数，即当前layer容器。type:1/type:2多窗口模式时可能非常实用，当需要时，需配置zIndex:layer.zIndex
+
+
+11、修复弹出tips模式层时，影响页面布局的bug
+12、修复ie9，关闭iframe模式层，再重新打开时，iframe页无法获取焦点的bug
+13、修复拖拽存在的小bug
+14、修复layer.msg的第二个参数（关闭时间）设置为0时，依然2秒关闭的bug
+
+15、调整用于控制页面层模式自适应的layer.autoArea(index);
+16、调整用于获取子iframe的layer.getChildFrame(selector, index); index为新增，即对应的iframe层索引，可通过调用的返回值获取。
+17、调整用于当前当前iframe层本身索引的layer.getFrameIndex(window.name)。window.name获取当前iframe页的name
+18、调整用于控制iframe层本身自适应的layer.iframeAuto(index)方法，如果是在iframe层内部，则可通过var index = layer.getFrameIndex(window.name)得到；若在父页面，则可通过调用iframe层的返回值得到，如var index = $.layer();
+
+
+来自： http://sentsin.com/jquery/layer/

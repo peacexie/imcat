@@ -1,0 +1,192 @@
+@charset "gb2312";
+/* CSS Document */
+.ABC, .BJBANK, .BJRCB, .BOC, .CCB, .CDCB, .CEB, .CIB, .CITIC, .CMB, .CMBC, .COMM, .FDB, .GDB, .HZCB, .ICBC, .NBBANK, .PSBC, .SDB, .SHBANK, .SHRCB, .SPABANK, .SPDB, .WZCB { text-indent: -9999px; background-image: url(combo1.png); }
+.CZCCB, .HXBANK, .JINCHB, .JSB, .JZBANK, .YQCCB { text-indent: -9999px; background-image: url(combo2.png); }
+.GZB, .JJBANK, .JXRCU, .NCB, .SRBANK { text-indent: -9999px; background-image: url(combo3.png); }
+.CDRCB, .CGNB, .CQBANK, .CRCBANK, .DYCB, .EGBANK, .GYCB, .HSBC, .KLB, .LSCCB, .PZHCCB, .SCRCU, .YBCCB, .ZGCCB { text-indent: -9999px; background-image: url(combo4.png); }
+.BOCY, .BODD, .BOJZ, .BOYK, .FSCB, .FXCB, .KLB, .SJBANK, {
+text-indent: -9999px;
+background-image: url(combo6.png);
+}
+.AYCB, .BOP, .BOZK, .BZMD, .CBKF, .HNRCU, .NYCB, .SCBBANK, .SCCB, .XCYH, .XXBANK, .XYBANK, .ZZBANK { text-indent: -9999px; background-image: url(combo7.png); }
+.NXRCU, .SZSBK { text-indent: -9999px; background-image: url(combo9.png); }
+.CRCBANK, .YNRCC, .YXCCB { text-indent: -9999px; background-image: url(combo10.png); }
+.HBC, .HKB, .HURCB, .WHRCB { text-indent: -9999px; background-image: url(combo11.png); }
+.CGNB, .CQBANK, .GYCB, .GZRCU, .ZYCBANK { text-indent: -9999px; background-image: url(combo12.png); }
+.BANKWF, .BHB, .DYCCB, .DZBANK, .JNBANK, .LSBANK, .LSBC, .QDCCB, .QLBANK, .RZB, .SDRCU, .TACCB, .WHCCB, .ZRCBANK { text-indent: -9999px; background-image: url(combo13.png); }
+.H3CB, .ORBANK, .WHBANK { text-indent: -9999px; background-image: url(combo14.png); }
+.BHB, .BOCD, .HBRCU, .HDBANK, .HSBK, .XTB, .ZJKCCB { text-indent: -9999px; background-image: url(combo15.png); }
+.BOSZ, .CSRCB, .CZRCB, .GCB, .HSBANK, .JRCB, .KSRB, .LSBANK, .NJCB, .TCRCB, .WJRCB, .WRCB, .ZRCBANK { text-indent: -9999px; background-image: url(combo16.png); }
+.BOD, .DRCBCL, .BSB, .GCB, .GDRCC, .GRCB, .JSBANK, .NHB, .SDEB, .SRCB, .XLBANK { text-indent: -9999px; background-image: url(combo17.png); }
+.FJHXBC, .JHBANK, .JXBANK, .NBYZ, .NDHB, .SXCB, .ZJNX { text-indent: -9999px; background-image: url(combo18.png); }
+.BGB, .DBSCN, .GLBANK, .GXRCU, .SRCB { text-indent: -9999px; background-image: url(combo5.png); }
+.ABC { background-position: 0px -0px; }
+.BJBANK { background-position: 0px -36px; }
+.BJRCB { background-position: 0px -72px; }
+.BOC { background-position: 0px -108px; }
+.CCB { background-position: 0px -144px; }
+.CDCB { background-position: 0px -180px; }
+.CEB { background-position: 0px -216px; }
+.CIB { background-position: 0px -252px; }
+.CITIC { background-position: 0px -288px; }
+.CMB { background-position: 0px -324px; }
+.CMBC { background-position: 0px -360px; }
+.COMM { background-position: 0px -396px; }
+.FDB { background-position: 0px -432px; }
+.GDB { background-position: 0px -468px; }
+.HZCB { background-position: 0px -504px; }
+.ICBC { background-position: 0px -540px; }
+.NBBANK { background-position: 0px -576px; }
+.PSBC { background-position: 0px -612px; }
+.SDB { background-position: 0px -648px; }
+.SHBANK { background-position: 0px -684px; }
+.SHRCB { background-position: 0px -720px; }
+.SPABANK { background-position: 0px -756px; }
+.SPDB { background-position: 0px -792px; }
+.WZCB { background-position: 0px -828px; }
+.CZCCB { background-position: 0px -288px; }
+.HXBANK { background-position: 0px -360px; }
+.JINCHB { background-position: 0px -432px; }
+.JSB { background-position: 0px -468px; }
+.JZBANK { background-position: 0px -504px; }
+.YQCCB { background-position: 0px -648px; }
+.GZB { background-position: 0px -360px; }
+.JXRCU { background-position: 0px -504px; }
+.NCB { background-position: 0px -540px; }
+.SRBANK { background-position: 0px -684px; }
+.CDRCB { background-position: 0px -180px; }
+.CGNB { background-position: 0px -252px; }
+.CQBANK { background-position: 0px -432px; }
+.CRCBANK { background-position: 0px -468px; }
+.DYCB { background-position: 0px -504px; }
+.EGBANK { background-position: 0px -540px; }
+.GYCB { background-position: 0px -612px; }
+.HSBC { background-position: 0px -648px; }
+.KLB { background-position: 0px -756px; }
+.LSCCB { background-position: 0px -792px; }
+.PZHCCB { background-position: 0px -864px; }
+.SCRCU { background-position: 0px -900px; }
+.ZGCCB { background-position: 0px -1080px; }
+.CDRCB { background-position: 0px -180px; }
+.CGNB { background-position: 0px -252px; }
+.CMBC { background-position: 0px -360px; }
+.CQBANK { background-position: 0px -432px; }
+.CRCBANK { background-position: 0px -468px; }
+.DYCB { background-position: 0px -504px; }
+.GYCB { background-position: 0px -612px; }
+.KLB { background-position: 0px -756px; }
+.LSCCB { background-position: 0px -792px; }
+.PZHCCB { background-position: 0px -864px; }
+.SCRCU { background-position: 0px -900px; }
+.YBCCB { background-position: 0px -1044px; }
+.ZGCCB { background-position: 0px -1080px; }
+.BGB { background-position: 0px -36px; }
+.CMBC { background-position: 0px -252px; }
+.GLBANK { background-position: 0px -396px; }
+.GXRCU { background-position: 0px -432px; }
+.LZCCB { background-position: 0px -540px; }
+.SRCB { background-position: 0px -684px; }
+.CMBC { background-position: 0px -252px; }
+.NXRCU { background-position: 0px -432px; }
+.SZSBK { background-position: 0px -576px; }
+.CMBC { background-position: 0px -252px; }
+.CRCBANK { background-position: 0px -324px; }
+.YNRCC { background-position: 0px -648px; }
+.YXCCB { background-position: 0px -684px; }
+.CMBC { background-position: 0px -216px; }
+.HBC { background-position: 0px -324px; }
+.HKB { background-position: 0px -360px; }
+.HURCB { background-position: 0px -432px; }
+.WHRCB { background-position: 0px -648px; }
+.CGNB { background-position: 0px -144px; }
+.CMBC { background-position: 0px -252px; }
+.CQBANK { background-position: 0px -324px; }
+.GYCB { background-position: 0px -396px; }
+.GZRCU { background-position: 0px -432px; }
+.ZYCBANK { background-position: 0px -648px; }
+.BANKWF { background-position: 0px -36px; }
+.BHB { background-position: 0px -72px; }
+.CMBC { background-position: 0px -324px; }
+.DYCCB { background-position: 0px -396px; }
+.DZBANK { background-position: 0px -432px; }
+.JNBANK { background-position: 0px -648px; }
+.LSBANK { background-position: 0px -684px; }
+.LSBC { background-position: 0px -720px; }
+.QDCCB { background-position: 0px -792px; }
+.QLBANK { background-position: 0px -828px; }
+.RZB { background-position: 0px -864px; }
+.SDRCU { background-position: 0px -936px; }
+.TACCB { background-position: 0px -1008px; }
+.WHCCB { background-position: 0px -1044px; }
+.ZRCBANK { background-position: 0px -1080px; }
+.CMBC { background-position: 0px -252px; }
+.H3CB { background-position: 0px -360px; }
+.ORBANK { background-position: 0px -468px; }
+.WHBANK { background-position: 0px -612px; }
+.BHB { background-position: 0px -36px; }
+.BOCD { background-position: 0px -108px; }
+.CMBC { background-position: 0px -288px; }
+.HBRCU { background-position: 0px -396px; }
+.HDBANK { background-position: 0px -432px; }
+.HSBK { background-position: 0px -468px; }
+.XTB { background-position: 0px -684px; }
+.ZJKCCB { background-position: 0px -720px; }
+.BOSZ { background-position: 0px -108px; }
+.CMBC { background-position: 0px -288px; }
+.CSRCB { background-position: 0px -360px; }
+.CZRCB { background-position: 0px -396px; }
+.GCB { background-position: 0px -504px; }
+.HSBANK { background-position: 0px -576px; }
+.JRCB { background-position: 0px -720px; }
+.KSRB { background-position: 0px -792px; }
+.LSBANK { background-position: 0px -828px; }
+.NJCB { background-position: 0px -864px; }
+.TCRCB { background-position: 0px -1044px; }
+.WJRCB { background-position: 0px -1080px; }
+.WRCB { background-position: 0px -1116px; }
+.ZRCBANK { background-position: 0px -1152px; }
+.CMBC { background-position: 0px -288px; }
+.FJHXBC { background-position: 0px -432px; }
+.JHBANK { background-position: 0px -612px; }
+.JXBANK { background-position: 0px -684px; }
+.NBYZ { background-position: 0px -756px; }
+.NDHB { background-position: 0px -792px; }
+.SXCB { background-position: 0px -972px; }
+.ZJNX { background-position: 0px -1044px; }
+.BOD { background-position: 0px -108px; }
+.BSB { background-position: 0px -144px; }
+.CMBC { background-position: 0px -324px; }
+.DBSCN { background-position: 0px -396px; }
+.DRCBCL { background-position: 0px -432px; }
+.GCB { background-position: 0px -468px; }
+.GDRCC { background-position: 0px -540px; }
+.GRCB { background-position: 0px -612px; }
+.JSBANK { background-position: 0px -828px; }
+.NHB { background-position: 0px -864px; }
+.SDEB { background-position: 0px -972px; }
+.XLBANK { background-position: 0px -1116px; }
+.CMBC { background-position: 0px -216px; }
+.CMBC { background-position: 0px -252px; }
+.JJBANK { background-position: 0px -468px; }
+.AYCB { background-position: 0px -36px; }
+.BOP { background-position: 0px -108px; }
+.BOZK { background-position: 0px -144px; }
+.BZMD { background-position: 0px -180px; }
+.CBKF { background-position: 0px -216px; }
+.CMBC { background-position: 0px -396px; }
+.HNRCU { background-position: 0px -504px; }
+.NYCB { background-position: 0px -612px; }
+.SCBBANK { background-position: 0px -684px; }
+.SCCB { background-position: 0px -720px; }
+.XCYH { background-position: 0px -828px; }
+.XXBANK { background-position: 0px -864px; }
+.XYBANK { background-position: 0px -900px; }
+.ZZBANK { background-position: 0px -936px; }
+.BOCY { background-position: 0px -72px; }
+.BODD { background-position: 0px -108px; }
+.BOJZ { background-position: 0px -144px; }
+.BOYK { background-position: 0px -180px; }
+.CMBC { background-position: 0px -360px; }
+.FSCB { background-position: 0px -432px; }
+.FXCB { background-position: 0px -468px; }
+.SJBANK { background-position: 0px -756px; }

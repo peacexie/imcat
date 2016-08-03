@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="GBK" >
+<title>支付宝</title>
+<meta name="description" content="" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link charset="utf-8" rel="stylesheet" href="style.css" media="all" />
+<link charset="utf-8" rel="stylesheet" href="logoico.css" media="all" />
+<meta name="ABTest" content="" />
+<script type="text/javascript">
+function submitForm(obj)
+{
+    for(var i = 0; i < obj.channelToken.length; ++i)
+    {
+        if ( obj.channelToken[i].checked )
+        {
+            opener.document.getElementById('WIDdefaultbank').value = obj.channelToken[i].value;
+            opener.document.getElementById('bankname').innerHTML = '（您选择了：' + obj.channelToken[i].title + '）';
+            opener.document.getElementById('WIDdefaultbank_name').value = obj.channelToken[i].title;
+        }
+    }
+    
+    window.close();
+}
+</script>
+</head>
+<body>
+<div class="long-logo" >
+  <div id="container" class="xbox ui-form" >
+    <form name="bankCardForm" method="POST" id="bankCardForm" action="#" onsubmit="return submitForm(this);">
+      <ul class="ui-list-icons ui-four-icons fn-clear cashier-bank"  id="J-chooseBankList" >
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-icbc105-1" name="channelToken" value="ICBCB2C" checked="checked" title="中国工商银行" />
+          <label for="J-b2c_ebank-icbc105-1" class="icon-box limited-coupon " > <span title="中国工商银行" class="icon ICBC" ></span> <span class="bank-name" >中国工商银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-ccb103-2" name="channelToken" value="CCB" title="中国建设银行"/>
+          <label for="J-b2c_ebank-ccb103-2" class="icon-box limited-coupon"> <span title="中国建设银行" class="icon CCB" ></span> <span class="bank-name" >中国建设银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-abc101-3" name="channelToken" value="ABC" title="中国农业银行"/>
+          <label for="J-b2c_ebank-abc101-3" class="icon-box limited-coupon " > <span title="中国农业银行" class="icon ABC" ></span> <span class="bank-name" >中国农业银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-psbc102-4" name="channelToken" value="POSGC" title="中国邮政储蓄银行"/>
+          <label for="J-b2c_ebank-psbc102-4" class="icon-box limited-coupon " > <span title="中国邮政储蓄银行" class="icon PSBC" ></span> <span class="bank-name" >中国邮政储蓄银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-comm102-5" name="channelToken" value="COMM" title="交通银行"/>
+          <label  for="J-b2c_ebank-comm102-5" class="icon-box limited-coupon " > <span title="交通银行" class="icon COMM" ></span> <span class="bank-name" >交通银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-cmb103-6" name="channelToken" value="CMB" title="招商银行"/>
+          <label  for="J-b2c_ebank-cmb103-6" class="icon-box limited-coupon " > <span title="招商银行" class="icon CMB" ></span> <span class="bank-name" >招商银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-boc102-7" name="channelToken" value="BOCB2C" title="中国银行"/>
+          <label for="J-b2c_ebank-boc102-7" class="icon-box limited-coupon " > <span title="中国银行" class="icon BOC" ></span> <span class="bank-name" >中国银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-ceb102-8" name="channelToken" value="CEBBANK" title="中国光大银行"/>
+          <label  for="J-b2c_ebank-ceb102-8" class="icon-box limited-coupon " > <span title="中国光大银行" class="icon CEB" ></span> <span class="bank-name" >中国光大银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-citic104-9" name="channelToken" value="CITIC" title="中信银行"/>
+          <label data-channel="biz-channelType(B2C_EBANK)-CITIC-中信银行-type(unsave)" for="J-b2c_ebank-citic104-9" class="icon-box limited-coupon " > <span title="中信银行" class="icon CITIC" ></span> <span class="bank-name" >中信银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+            <input id="J-b2c_ebank-sdb102-10" type="radio" value="SDB" name="channelToken" title="深圳发展银行"/>
+            <label class="icon-box limited-coupon " data-channel="biz-channelType(B2C_EBANK)-SDB-深圳发展银行-type(unsave)" for="J-b2c_ebank-sdb102-10" >
+            <span class="icon SDB" title="深圳发展银行" ></span>
+            <span class="bank-name" >深圳发展银行</span>
+            </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-spdb103-11" name="channelToken" value="SPDB" title="上海浦东发展银行"/>
+          <label for="J-b2c_ebank-spdb103-11" class="icon-box limited-coupon " > <span title="上海浦东发展银行" class="icon SPDB" ></span> <span class="bank-name" >上海浦东发展银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-cmbc101-12" name="channelToken" value="CMBC" title="中国民生银行"/>
+          <label for="J-b2c_ebank-cmbc101-12" class="icon-box limited-coupon " > <span title="中国民生银行" class="icon CMBC" ></span> <span class="bank-name" >中国民生银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-cib102-13" name="channelToken" value="CIB" title="兴业银行"/>
+          <label data-channel="biz-channelType(B2C_EBANK)-CIB-兴业银行-type(unsave)" for="J-b2c_ebank-cib102-13" class="icon-box limited-coupon " > <span title="兴业银行" class="icon CIB" ></span> <span class="bank-name" >兴业银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-spabank101-14" name="channelToken" value="SPABANK" title="平安银行"/>
+          <label  for="J-b2c_ebank-spabank101-14" class="icon-box limited-coupon " > <span title="平安银行" class="icon SPABANK" ></span> <span class="bank-name" >平安银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-gdb102-15" name="channelToken" value="GDB" title="广发银行"/>
+          <label  for="J-b2c_ebank-gdb102-15" class="icon-box limited-coupon " > <span title="广发银行" class="icon GDB" ></span> <span class="bank-name" >广发银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" name="channelToken" id="SHRCB-JC-02" value="SHRCB"  title="上海农商银行" />
+          <label class="icon-box limited-coupon "  for="SHRCB-JC-02" > <span class="icon SHRCB" title="上海农商银行" ></span> <span class="bank-name" >上海农商银行</span> <em class="icon-info qiye" >借记</em></label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-shbank102-17" name="channelToken" value="SHBANK" title="上海银行"/>
+          <label  for="J-b2c_ebank-shbank102-17" class="icon-box limited-coupon " > <span title="上海银行" class="icon SHBANK" ></span> <span class="bank-name" >上海银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-nbbank102-18" name="channelToken" value="NBBANK" title="宁波银行"/>
+          <label  for="J-b2c_ebank-nbbank102-18" class="icon-box limited-coupon " > <span title="宁波银行" class="icon NBBANK" ></span> <span class="bank-name" >宁波银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-hzcb102-19" name="channelToken" value="HZCB" title="杭州银行"/>
+          <label  for="J-b2c_ebank-hzcb102-19" class="icon-box limited-coupon " > <span title="杭州银行" class="icon HZCB" ></span> <span class="bank-name" >杭州银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" name="channelToken" id="BJBANK-BA-01" value="BJBANK"  title="北京银行" />
+          <label class="icon-box limited-coupon "  for="BJBANK-BA-01" > <span class="icon BJBANK" title="北京银行" ></span> <span class="bank-name" >北京银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-bjrcb101-21" name="channelToken" value="BJRCB" title="北京农商银行"/>
+          <label  for="J-b2c_ebank-bjrcb101-21" class="icon-box limited-coupon " > <span title="北京农商银行" class="icon BJRCB" ></span> <span class="bank-name" >北京农商银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" id="J-b2c_ebank-fdb101-22" name="channelToken" value="FDB" title="富滇银行"/>
+          <label for="J-b2c_ebank-fdb101-22" class="icon-box limited-coupon " > <span title="富滇银行" class="icon FDB" ></span> <span class="bank-name" >富滇银行</span> </label>
+        </li>
+        
+        <li class="cashier-bank " >
+            <input id="J-b2c_ebank-wzcb101-23" type="radio" value="WZCB" name="channelToken" title="温州银行"/>
+            <label class="icon-box limited-coupon " data-channel="biz-channelType(B2C_EBANK)-WZCB-温州银行-type(unsave)" for="J-b2c_ebank-wzcb101-23" >
+            <span class="icon WZCB" title="温州银行" ></span> <span class="bank-name" >温州银行</span>
+            </label>
+        </li>
+        
+        <li class="cashier-bank " >
+          <input type="radio" name="channelToken" id="CDCB-BA-01" value="CDCB"  title="成都银行" />
+          <label class="icon-box limited-coupon "  for="CDCB-BA-01" > <span class="icon CDCB" title="成都银行" ></span> <span class="bank-name" >成都银行</span> </label>
+        </li>
+        <!------- 企业 ---->
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-icbc102-25" name="channelToken" value="ICBCBTB" title="中国工商银行 - 企业"/>
+          <label data-channel="biz-channelType(B2B_EBANK)-ICBC-中国工商银行-type(unsave)" for="J-b2b_ebank-icbc102-25" class="icon-box limited-coupon " > <span title="中国工商银行" class="icon ICBC" ></span> <span class="bank-name" >中国工商银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-ccb104-26" name="channelToken" value="CCBBTB" title="中国建设银行 - 企业"/>
+          <label for="J-b2b_ebank-ccb104-26" class="icon-box limited-coupon " > <span title="中国建设银行" class="icon CCB" ></span> <span class="bank-name" >中国建设银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-abc102-27" name="channelToken" value="ABCBTB" title="中国农业银行 - 企业"/>
+          <label for="J-b2b_ebank-abc102-27" class="icon-box limited-coupon " > <span title="中国农业银行" class="icon ABC" ></span> <span class="bank-name" >中国农业银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-cmb102-28" name="channelToken" value="CMBBTB" title="招商银行 - 企业"/>
+          <label  for="J-b2b_ebank-cmb102-28" class="icon-box limited-coupon " > <span title="招商银行" class="icon CMB" ></span> <span class="bank-name" >招商银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-boc104-29" name="channelToken" value="BOCBTB" title="中国银行 - 企业"/>
+          <label  for="J-b2b_ebank-boc104-29" class="icon-box limited-coupon " > <span title="中国银行" class="icon BOC" ></span> <span class="bank-name" >中国银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+        
+        <li class="cashier-bank-qy " >
+          <input type="radio" id="J-b2b_ebank-spdb102-30" name="channelToken" value="SPDBB2B" title="上海浦东发展银行 - 企业"/>
+          <label  for="J-b2b_ebank-spdb102-30" class="icon-box limited-coupon " > <span title="上海浦东发展银行" class="icon SPDB" ></span> <span class="bank-name" >上海浦东发展银行</span> <em class="icon-info qiye" >企业</em> </label>
+        </li>
+      </ul>
+      <p class="ui-btn ui-btn-ok" >
+        <input type="submit" class="ui-btn-text" seed="next-step-btn" />
+      </p>
+    </form>
+  </div>
+</div>
+</body>
+</html>

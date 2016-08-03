@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js+flash(as3)实现复制文字内容到剪切板</title>
+<script src='/08tools/yssina/1/root/plus/ajax/comjs.php?'></script>
+<script src='/08tools/yssina/1/root/plus/ajax/comjs.php?act=autoJQ'></script>
+<script src='/08tools/yssina/3/vendui/layer/layer.js'></script>
+<script language="javascript" type="text/javascript">
+var _cbase={}; _cbase.path={};
+_cbase.path.vendui  = '/08tools/yssina/3/vendui';
+</script>
+</head>
+<body>
+<p id="msgID">
+<a href="http://www.zhangxinxu.com/wordpress/?p=1037">张鑫旭-鑫空间-鑫生活</a>
+</p>
+<input type="text" id="zxxTestArea" onchange="copyReset('zxxTestArea','copySwfID',{})" value="复制测试内容，复制测试内容……" size="60" />
+<div><span id="copySwfID"></span></div>
+<div>
+    <div class="mt20 pt20">您可以试着将文字粘贴到下面的文本域中看看是否复制成功:</div>
+    <textarea cols="60" rows="7" class="zxx_test_area"></textarea>
+</div>
+<script src="./copyfuncs.js"></script> 
+<script type="text/javascript">
+function copySuccess(){ //flash回调
+	jsLog('复制成功-1！');
+	//layer.tips('复制成功-1！', '#msgID', {style:['background-color:#134d9d;color:#FFF;','#134d9d'], time:1});
+	//layer.msg('复制成功-1！', '#msgID');
+	layer.alert('复制成功！');
+}
+$(document).ready(function(){
+	loadRun('/swfCopy/swfobject.js?_a=b1',"copyReset('zxxTestArea','copySwfID',{});");
+});
+
+/*
+//console.log("复制成功！");
+//layer.tips('复制成功！', '#copySwfID', { skin: '#134d9d', tips: [1, '#134d9d'], time: 1});
+//alert("复制成功！");
+//layer.alert('复制成功！');
+	
+//var copyMsgID = 'copySwfID';
+//copyReset('zxxTestArea');
+//js_callback('../js/swfobject.js',function(){copyReset('zxxTestArea');})
+//init-DATA
+*/
+ 
+</script>
+</body>
+</html>

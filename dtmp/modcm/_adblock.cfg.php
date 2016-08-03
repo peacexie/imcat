@@ -1,0 +1,198 @@
+<?php
+$_adblock = array (
+  'kid' => 'adblock',
+  'pid' => 'advs',
+  'title' => '文本块',
+  'enable' => '1',
+  'etab' => '3',
+  'deep' => '2',
+  'i' => 
+  array (
+    'abhom' => 
+    array (
+      'pid' => '0',
+      'title' => '首页广告',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'S',
+      'cfgs' => '',
+    ),
+    'abside1' => 
+    array (
+      'pid' => 'abhom',
+      'title' => 'box-left',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'B',
+      'cfgs' => '',
+    ),
+    'abside2' => 
+    array (
+      'pid' => 'abhom',
+      'title' => 'box-right',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'B',
+      'cfgs' => '',
+    ),
+    'abhead0' => 
+    array (
+      'pid' => 'abhom',
+      'title' => 'box-head',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'B',
+      'cfgs' => '',
+    ),
+    'abfoot0' => 
+    array (
+      'pid' => 'abhom',
+      'title' => 'box-foot',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'B',
+      'cfgs' => '',
+    ),
+    'abinn' => 
+    array (
+      'pid' => '0',
+      'title' => '通用内页',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'N',
+      'cfgs' => '',
+    ),
+    'a2012' => 
+    array (
+      'pid' => 'abinn',
+      'title' => '贴心口袋[侧]',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'T',
+      'cfgs' => '',
+    ),
+    'a2014' => 
+    array (
+      'pid' => 'abinn',
+      'title' => '产品推荐[侧]',
+      'deep' => '2',
+      'frame' => '0',
+      'char' => 'C',
+      'cfgs' => '',
+    ),
+    'abdel' => 
+    array (
+      'pid' => '0',
+      'title' => '[回收站]',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'H',
+      'cfgs' => '',
+    ),
+  ),
+  'f' => 
+  array (
+    'title' => 
+    array (
+      'title' => '标题',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'input',
+      'dbtype' => 'varchar',
+      'dblen' => '255',
+      'dbdef' => '',
+      'vreg' => 'tit:2-60',
+      'vtip' => '标题2-60字符',
+      'vmax' => '60',
+      'fmsize' => '360',
+      'fmline' => '1',
+      'fmtitle' => '1',
+    ),
+    'color' => 
+    array (
+      'title' => '标题颜色',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'input',
+      'dbtype' => 'varchar',
+      'dblen' => '12',
+      'dbdef' => '',
+      'vreg' => 'nul:str:4-7',
+      'vtip' => '如:#FF00FF',
+      'vmax' => '8',
+      'fmsize' => '',
+      'fmline' => '0',
+      'fmtitle' => '0',
+      'fmextra' => 'color',
+      'fmexstr' => 'title',
+    ),
+    'ndb_repeat' => 
+    array (
+      'title' => '检查重复',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'hidden',
+      'dbtype' => 'nodb',
+      'dblen' => '255',
+      'dbdef' => '',
+      'vreg' => '',
+      'vtip' => '',
+      'vmax' => '0',
+      'fmsize' => '',
+      'fmline' => '0',
+      'fmtitle' => '0',
+      'fmextra' => 'repeat',
+    ),
+    'detail' => 
+    array (
+      'title' => '内容',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'text',
+      'dbtype' => 'text',
+      'dblen' => '0',
+      'dbdef' => '',
+      'vreg' => '',
+      'vtip' => '',
+      'vmax' => '24012',
+      'fmsize' => '480x8',
+      'fmline' => '1',
+      'fmtitle' => '1',
+      'fmextra' => 'text',
+      'fmexstr' => '',
+    ),
+    'url' => 
+    array (
+      'title' => '替换规则',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'input',
+      'dbtype' => 'varchar',
+      'dblen' => '255',
+      'dbdef' => '',
+      'vreg' => '',
+      'vtip' => '如：{root}[=]http://txjia.com/<br>或：/path/[=]/08tools/yssina/1/root/',
+      'vmax' => '255',
+      'fmsize' => '480',
+      'fmline' => '1',
+      'fmtitle' => '1',
+    ),
+    'click' => 
+    array (
+      'title' => '点击次数',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'input',
+      'dbtype' => 'int',
+      'dblen' => '10',
+      'dbdef' => '0',
+      'vreg' => 'n+i',
+      'vtip' => '如:888',
+      'vmax' => '8',
+      'fmsize' => '',
+      'fmline' => '1',
+      'fmtitle' => '1',
+    ),
+  ),
+);
+?>

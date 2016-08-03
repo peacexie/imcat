@@ -1,0 +1,85 @@
+html { color: #000; background: #fff }
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr { margin: 0; padding: 0 }
+body, button, input, select, textarea { font: 12px/1.5 tahoma, arial, \5b8b\4f53 }
+input, select, textarea { font-size: 100% }
+li { position: relative }
+fieldset, img, a img { border: 0 }
+
+address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500 }
+ul { list-style: none }
+a:hover { text-decoration: underline }
+ins, a { text-decoration: none }
+.fn-clear:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0 }
+.fn-clear { *zoom:1
+}
+.ui-btn { display: -moz-inline-box; display: inline-block; *display:inline;
+vertical-align: middle; line-height: 100%; text-align: left; font-size: 12px; text-decoration: none; cursor: pointer; zoom: 1 }
+.ui-btn, .ui-btn .ui-btn-text { font-family: Tahoma; cursor: pointer; outline: 0 }
+.ui-btn { font-family: SimSun }
+.ui-btn:hover { text-decoration: none }
+.ui-btn .ui-btn-text { border: 0; *border:0;
+*overflow:visible
+}
+body .ui-btn .ui-btn-text { vertical-align: baseline }
+.ui-btn-ok, .ui-btn-text {background: url("h8XP9JDv3.png") no-repeat;}
+.ui-btn-ok-hover .ui-btn-text,.ui-btn-ok:hover .ui-btn-text{background-position:right -131px;background-repeat:repeat-x}
+.ui-btn-text {    
+    color: #FFFFFF;
+    font-weight: bold;
+    height: 31px;
+    line-height: 31px;
+    padding: 0 16px 3px;
+    background-position: right -99px;
+    background-repeat: repeat-x;
+}
+.ui-btn-ok{ font-size: 14px }
+.ui-btn-ok { background-position: 0 0 }
+.ui-btn-ok .ui-btn-text, .ui-btn-ok-hover .ui-btn-text, .ui-btn-cancel .ui-btn-text, .ui-btn-ok-disabled .ui-btn-text { padding: 0 16px; padding-bottom: 3px; *padding-bottom:0;
+height: 31px; line-height: 31px; font-weight: bold; color: #fff }
+.ui-form { margin-top: 30px }
+.ui-list-icons { padding-bottom: 10px }
+.ui-list-icons li { float: left; width: 156px; padding-bottom: 25px; padding-right: 20px }
+.ui-list-icons input { vertical-align: middle }
+.ui-list-icons .icon-box { left: 3px; cursor: pointer }
+.long-logo .ui-list-icons li { width: 218px; padding-right: 10px; display: inline }
+.long-logo .ui-list-icons .icon-box { *left:0
+}
+.long-logo .icon-box, .long-logo .icon-box-commend, .long-logo .icon-box-kj { width: 190px; background-color: #fff!important; line-height: 36px }
+.long-logo .icon-box .icon{ float: left; width: 126px; padding: 0 }
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+.long-logo .icon-right { margin: 0 0 0 1px }
+}
+.long-logo .fenqi { background: url('h8XP9JDv3.png') no-repeat scroll 0 center; text-indent: -9999px }
+.long-logo .back170 { margin-left: -170px }
+.long-logo .xbox .ui-list-icons { margin-left: 20px; *margin-top:10px
+}
+.long-logo .xbox .ui-list-icons li { margin-right: 20px }
+.icon-box{ width: 126px; border: 1px solid #ddd; vertical-align: middle; position: relative; display: inline-block; background-color: #eee }
+.icon-box .icon, .icon-box-commend .icon, .icon-box-kj .icon { display: block; height: 36px; line-height: 30px; background-repeat: no-repeat; padding: 0 10px; color: #07f; font-weight: bold; white-space: nowrap; overflow: hidden; position: relative; z-index: 1 }
+.icon-box .icon-title, .icon-box .icon-title { z-index: 2 }
+.icon-box .bank-name, .icon-box-commend .bank-name, .icon-box-kj .bank-name { position: absolute; left: 5px; z-index: 0; height: 36px; width: 121px; overflow: hidden }
+.ui-btn-ok { background-position: 0 -163px; background-repeat: repeat-x }
+.ui-btn-ok:hover, .ui-btn-ok-hover { background-position: 0 -196px }
+.ui-btn-ok .ui-btn-text { background-position: right -99px; background-repeat: repeat-x }
+#container { width: 950px; margin: 0 auto }
+.long-logo .icon-right { width: 21px }
+.long-logo .icon-box, .long-logo .icon-box-commend, .long-logo .icon-box-kj { width: 190px }
+.long-logo .xbox .ui-list-icons li { margin-right: 10px }
+.long-logo .qiye { left: 173px }
+.loading-main { margin: 100px auto 200px; width: 240px }
+.loading-main img, .loading-main span, .loading-main a { vertical-align: middle }
+.loading-main span { margin: auto 10px }
+.cashier-bank .icon, .cashier-bank-kt .icon, .cashier-credit .icon, .cashier-credit-kt .icon, .cashier-bank-fq .icon, .cashier-bank-qy .icon, .cashier-bank-um .icon, .cashier-bank-kj .icon, .cashier-bank-kj-NO .icon { height: 36px }
+.bank-icon-fix { margin-top: 9px; padding-bottom: 10px }
+.icon-box em { font-weight: normal }
+.cashier-bank-fq .icon-box, .cashier-bank-qy .icon-box { border-right: 0 }
+.cashier-bank-um .icon-box { border: 0 }
+.cashier-bank-desc { color: #999; font-weight: normal; padding: 4px 0 15px 0 }
+.cashier-bank-fq .icon-info, .cashier-bank-qy .icon-info, .cashier-bank-kj .icon-info, .cashier-bank-kj-NO .icon-info, .cashier-bank .icon-info { background-color: #d2eef7; border: 1px solid #DDD; border-left: none; font-weight: normal; height: 100%; left: 123px; padding: 0 3px; position: absolute; top: -1px; line-height: 18px }
+.cashier-bank-fq .icon-info { background-color: #ffdfbd }
+.cashier-bank-kj .icon-info, .cashier-bank-kj-NO .icon-info { background-position: 0 -380px; background-color: #FFF; height: 22px; width: 17px; left: 115px; top: -9px; text-indent: -9999px; border: 0 }
+.long-logo .qiye { left: 170px; border-style: solid solid solid none }
+#container.xbox, #J-chooseBankList.xbox { width: auto; height: auto; padding: 20px }
+html { color: #4d4d4d }
+h1, h2, h3, h4, h5, h6, em, strong { font-weight: bold }
+a { color: #09c }

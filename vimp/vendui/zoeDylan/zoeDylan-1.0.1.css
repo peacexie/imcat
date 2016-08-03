@@ -1,0 +1,84 @@
+﻿/*** Pulg-In  Info
+ * zoeDylan
+ * ImgChange
+ * UpdateTime:2014-04-30
+ * Versions:1.0.1
+ * Quote:none
+ * Info: 精简css代码,由于为处理低版本IE浏览器的兼容性,透明效果会有所损失！
+ * 
+ * Copyright:此插件由zoeDylan纯手工编写,仅供学习和参考使用！
+***/
+
+
+ 
+
+
+.zd-imgChange {
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+}
+.zd-imgChange img{
+    border:none;
+}
+/*图片框架*/
+.zd-imgChange-imgF {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+} 
+    .zd-imgChange-imgF img {
+        position: absolute;
+        z-index: 0;
+        display:block;
+        top:-100%;
+        left:-100%;
+       
+    } 
+
+/*信息框架*/
+.zd-imgChange-infoF{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+.zd-imgChange-infoF span{ 
+    background:rgba(0,0,0,0.4); 
+}
+
+/*控制器框架*/
+.zd-imgChange-controlF {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    /*禁用双击选择文字*/
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+.zd-imgChange-controlF span{
+    cursor:pointer;
+    background:rgba(0,0,0,0.4);
+}
+/*缩略图框架*/
+.zd-imgChange-thumbnailF {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    left: 0;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: normal;
+    word-break: normal;
+}
+.zd-imgChange-thumbnailF img{ 
+    float:left;
+    height:90%;
+    margin-top:1%;
+    margin-left:10px;
+    cursor:pointer;
+}
