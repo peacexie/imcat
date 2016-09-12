@@ -1,5 +1,0 @@
-#
-# ~read_html.txt
-#
-
-Contents
