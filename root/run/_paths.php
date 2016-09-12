@@ -1,6 +1,6 @@
 <?php
 // 项目(project): 访问相对根路径：注意：在根目录设置是空字符串,而不是/，非根目录前面以/开头,后面不要/
-define('PATH_PROJ', '/08tools/txmao/main');
+define('PATH_PROJ', '');
 // 项目(project): 根目录
 define('DIR_PROJ', dirname(dirname(dirname(__FILE__)))); 
 
@@ -8,12 +8,12 @@ define('DIR_PROJ', dirname(dirname(dirname(__FILE__))));
 define('DIR_ROOT', DIR_PROJ.'/root'); define('PATH_ROOT', PATH_PROJ.'/root'); //web_root入口文件根目录,访问相对路径
 define('DIR_CODE', DIR_PROJ.'/code'); //web_code主要流程代码目录,包含模板
 
-define('DIR_VARS', dirname(DIR_PROJ).DIRECTORY_SEPARATOR.'vary'); define('PATH_VARS', '/08tools/txmao/vary'); //variable可变目录
+define('DIR_VARS', DIR_PROJ);         define('PATH_VARS', PATH_PROJ); //variable可变目录
 define('DIR_URES', DIR_VARS.'/ures'); define('PATH_URES', PATH_VARS.'/ures'); //upload_resource上传资源文件目录,访问相对路径
 define('DIR_HTML', DIR_VARS.'/html'); define('PATH_HTML', PATH_VARS.'/html'); //html_doc静态html文档目录,访问根目录
 define('DIR_DTMP', DIR_VARS.'/dtmp'); define('PATH_DTMP', PATH_VARS.'/dtmp'); //dynamic_temp动态临时目录,访问根目录 
 
-define('DIR_IMPS', dirname(DIR_PROJ).DIRECTORY_SEPARATOR.'vimp'); define('PATH_IMPS', '/08tools/txmao/vimp'); //import_root导入目录
+define('DIR_IMPS', DIR_PROJ.DIRECTORY_SEPARATOR.'vimp'); define('PATH_IMPS', PATH_PROJ.'/vimp'); //import_root导入目录
 define('DIR_VENDOR', DIR_IMPS.'/vendor'); define('PATH_VENDOR', PATH_IMPS.'/vendor'); //vendor_package第三方组件目录,访问相对路径
 define('DIR_VENDUI', DIR_IMPS.'/vendui'); define('PATH_VENDUI', PATH_IMPS.'/vendui'); //vendor_ui第三方UI目录,访问相对路径
 define('DIR_STATIC', DIR_IMPS.'/static'); define('PATH_STATIC', PATH_IMPS.'/static'); //static_files静态文件目录,访问相对路径	
