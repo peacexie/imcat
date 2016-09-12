@@ -36,6 +36,8 @@ $pay_uinfo['ali']['key']      = 'keyid-keyid-keyid-keyid-keyid';
 $pay_uinfo['ali']['sandbox']  = false;  
 //设置在沙箱中运行，正式环境请设置为false,true
 
+# 提示：确认或复制文件 'cacert.pem' 到: /vendor/a3rd/alipay_class/
+
 ### tenpay: =======================================================================
 
 $pay_uinfo['ten']['appid']   = "1202397201"; //0000000202,1202397201
