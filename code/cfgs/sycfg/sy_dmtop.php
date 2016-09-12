@@ -16,7 +16,7 @@ $_my_dmtop['keep2'] = ""; //只需要两节 .cn.net
 // www.gdnet.dg.cn 则 part2=dg, part1=cn
 // 2:只需要两节 .cn.net 
 // 3:需要增加第三节 .mex.com 
-$_my_dmtop['part2.part1'] = ""; // 2,3
+$_sy_dmtop['part2.part1'] = ""; // 2,3
 
 /*
 https://www.whois365.com/cn/listtld

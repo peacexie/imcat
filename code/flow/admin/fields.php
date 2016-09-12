@@ -7,17 +7,17 @@ $view = empty($view) ? 'list' : $view;
 $ispara = basReq::val('ispara','0'); //1,0
 $catid = basReq::val('catid','0'); $cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
 $tabid = 'base_fields'; if($ispara) $tabid = 'base_paras'; if($catid) $tabid = 'bext_fields';
-$title = '字段'; if($ispara || $catid) $title = '参数项';
-if(!($gname = @$_groups[$mod]['title'])) glbHtml::end('参数错误:mod@fields.php'); 
+$title = lang('flow.title_field'); if($ispara || $catid) $title = lang('admin.fls_paritem');
+if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@fields.php'); 
 
-if($view=='ftest'){
+if($view=='ftest'){ 
 	
-		$lnkbak = "<a href='?file=$file&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;返回[字段列表]</a>";
-		glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]表单效果",'---',40);
+		$lnkbak = "<a href='?file=$file&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;".lang('flow.fls_backflist')."</a>";
+		glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]".lang('admin.fls_fmres'),'---',40);
 	if(empty($bsend)){ 
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-		fldView::lists($mod,array('title'=>'(test)测试'.date('H:i:s'),'author'=>',a,b,'),$catid);
-		glbHtml::fmae_send('bsend','提交');
+		fldView::lists($mod,array('title'=>'(test)'.lang('flow.fls_test').date('H:i:s'),'author'=>',a,b,'),$catid);
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 		glbHtml::fmt_end();
 	}else{
 		echo "<pre>";
@@ -33,7 +33,7 @@ if($view=='ftest'){
 		$url = $aurl[1]; //basReq::getURep(,'view','form');
 		$fmextra_bak = "\n<select id='fmextra_bak' name='fmextra_bak' style='display:none;' >".basElm::setOption(fldCfgs::viewPlugs(),'')."</select>";
 		$field_from = "\n<input id='fm[from]' name='fm[from]' type='hidden' value='' />"; 
-		$vtip = "字母开头,允许字母数字下划线<br>允许3-12字符,建议4-5字符<br>不能使用sql关键词和mysql函数";
+		$vtip = lang('admin.fad_tip31245'); 
 		$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=".($catid ? 'fieldCatid' : 'fieldExists')."&mod=$mod&catid=$catid' tip='$vtip'";
 		if($catid) $vstr .= " readonly";
 		
@@ -41,15 +41,16 @@ if($view=='ftest'){
 		$picks = $catid ? fldCfgs::addType($mod,$catid) : fldCfgs::addPick($mod);
 		echo "<tr><td colspan='2' class='tl h100'>$picks</td></tr>";
 		$ftypes = fldCfgs::viewTypes(); if(in_array($_groups[$mod]['pid'],array('coms'))||!empty($catid)){ unset($ftypes['file']); } //互动/评论/参数:不要附件, 
-		glbHtml::fmae_row('字段类型',"<select id='fm[type]' name='fm[type]' class='w150' reg='str:1-12' tip='请选择[字段类型]' onChange='gf_setfmType(this)'>".basElm::setOption($ftypes,'')."</select>"); 
-		glbHtml::fmae_row('字段控件',"<select id='fm[fmextra]' name='fm[fmextra]' class='w150'>".basElm::setOption('','')."</select>$fmextra_bak$field_from"); 
+		glbHtml::fmae_row(lang('admin.fls_fieldtype'),"<select id='fm[type]' name='fm[type]' class='w150' reg='str:1-12' tip='".lang('admin.fls_selftype')."' onChange='gf_setfmType(this)'>".basElm::setOption($ftypes,'')."</select>"); 
+		glbHtml::fmae_row(lang('admin.fls_fcontrol'),"<select id='fm[fmextra]' name='fm[fmextra]' class='w150'>".basElm::setOption('','')."</select>$fmextra_bak$field_from"); 
 		if(in_array($_groups[$mod]['pid'],array('docs'))&&$_groups[$mod]['etab']&&empty($catid)){ //,'types'
-			glbHtml::fmae_row('数据表',"<select id='fm[etab]' name='fm[etab]' class='w150' reg='str:1-12' tip='请选择[数据表]'>".basElm::setOption("0|主表\n1|扩展表",'')."</select>");
+			$ops = basElm::setOption("0|".lang('admin.fe_mtab')."\n1|".lang('admin.fe_extab')."",'');
+			glbHtml::fmae_row(lang('admin.fls_dbtab'),"<select id='fm[etab]' name='fm[etab]' class='w150' reg='str:1-12' tip='".lang('admin.fls_seldbtab')."'>$ops</select>");
 		}else{
 			echo "<input name='fm[etab]' type='hidden' value='' />";
 		}
-		glbHtml::fmae_row('Key标识',"<input id='fm[kid]' name='fm[kid]' type='text' value='' class='txt w150' maxlength='12' reg='key:3-12' $vstr />");
-		glbHtml::fmae_send('bsend','提交');
+		glbHtml::fmae_row(lang('flow.fl_kflag'),"<input id='fm[kid]' name='fm[kid]' type='text' value='' class='txt w150' maxlength='12' reg='key:3-12' $vstr />");
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 		glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid),"mod|$mod")); 
 	}else{
 		$paras = "";
@@ -66,14 +67,14 @@ if($view=='ftest'){
 		if($kid=='_isadd_'){
 			$kid = $fm['kid']; 
 			if($db->table($tabid)->where("model='$mod' AND kid='$fm[kid]' $cawhr")->find()){
-				$msg = "该条目[$fm[kid]]已被占用！";
+				$msg = lang('flow.msg_exists',$fm['kid']);
 			}else{
 				$fm['model'] = $mod; if($catid) $fm['catid'] = $catid;
 				$db->table($tabid)->data(basReq::in($fm))->insert();
-				$msg = '添加成功！'; 
+				$msg = lang('flow.msg_add'); 
 			}
 		}else{
-			$msg = '更新成功！'; unset($fm['kid']); 
+			$msg = lang('flow.msg_upd');unset($fm['kid']); 
 			if(@$fm_null=='nul') $fm['vreg'] = 'nul:'.$fm['vreg']; 
 			$db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$kid' $cawhr")->update();
 		} 
@@ -99,7 +100,7 @@ if($view=='ftest'){
 		$fedit->fmViewOpts();
 		$fedit->fmRemCfgs();
 		
-		glbHtml::fmae_send('bsend','提交'); 
+		glbHtml::fmae_send('bsend',lang('flow.dops_send')); 
 		glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid),"mod|$mod"));
 
 	}
@@ -108,11 +109,11 @@ if($view=='ftest'){
 	
 	$msg = '';	
 	if(!empty($bsend)){
-		if(empty($fs_do)) $msg = "请选择操作项目！";
-		if(empty($fs)) $msg = "请勾选操作项！";
+		if(empty($fs_do)) $msg = lang('flow.dops_setop');
+		if(empty($fs)) $msg = lang('flow.msg_pkitem');
 		else{
-			foreach($fs as $id=>$v){ //upd|更新\ndel|删除\nenable|启用\nstop|禁用
-				$msg = "设置成功！";
+			foreach($fs as $id=>$v){
+				$msg = lang('flow.msg_set');
 				if($fs_do=='upd'){ 
 					$db->table($tabid)->data(basReq::in($fm[$id]))->where("model='$mod' AND kid='$id' $cawhr")->update(); 
 				}elseif($fs_do=='del'){ 
@@ -123,10 +124,10 @@ if($view=='ftest'){
 					 }else{
 						 $tmp = array('title','company');
 						 if(isset($tmp[$id])){
-							 $msg = "部分字段为系统字段,不能删除,但您可以禁用它!";
+							 $msg = lang('admin.fls_sysfield');
 						 }else{
 							 if(empty($ispara)&&empty($catid)) glbDBExt::setOneField($mod,$id); //if($fm['dbtype']!='nodb') 
-							 $msg = "删除成功！";
+							 $msg = lang('flow.msg_del');
 						 }
 					 }
 				}elseif($fs_do=='show'){ 
@@ -137,22 +138,22 @@ if($view=='ftest'){
 			}
 		}
 		glbCUpd::upd_model($mod);
-	} 
- 	
-	$lnkbak = "<a href='?file=admin/groups&mod=".$_groups[$mod]['pid']."'>&lt;&lt;返回[模型列表]</a>"; //&view=list&ispara=$ispara
-	$lnkcat = "<a href='?file=admin/catalog&mod=$mod'>&lt;&lt;返回[栏目列表]</a>";
-	$lnkgrd = "<a href='?file=admin/grade&mod=$mod'>&lt;&lt;返回[等级列表]</a>";
+	} 	
+
+	$lnkbak = "<a href='?file=admin/groups&mod=".$_groups[$mod]['pid']."'>&lt;&lt;".lang('admin.fls_backmod')."</a>"; //&view=list&ispara=$ispara
+	$lnkcat = "<a href='?file=admin/catalog&mod=$mod'>&lt;&lt;".lang('admin.fls_backcat')."</a>";
+	$lnkgrd = "<a href='?file=admin/grade&mod=$mod'>&lt;&lt;".lang('admin.fls_backgrade')."</a>";
 	$lnkbak = $catid ? ($_groups[$mod]['pid']=='users'? $lnkgrd : $lnkcat) : $lnkbak;
 	
-	$lnkadd = "<a href='?file=$file&mod=$mod&view=fadd&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"增加字段\")'>增加$title&gt;&gt;</a>";
-	$lnkform = " | <a href='?file=$file&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>表单效果&gt;&gt;</a>";
-	glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]{$title}列表<span class='span ph5'>|</span>$lnkadd",$lnkform,40);
+	$lnkadd = "<a href='?file=$file&mod=$mod&view=fadd&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('admin.fls_addfield')."\")'>".lang('admin.fls_add')." $title&gt;&gt;</a>"; 
+	$lnkform = " | <a href='?file=$file&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>".lang('admin.fls_fmres')."&gt;&gt;</a>";
+	glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]{$title} ".lang('admin.fls_list')."<span class='span ph5'>|</span>$lnkadd",$lnkform,40);
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选择</th><th>Key</th><th>名称</th><th>排序</th>";
-	if(empty($ispara)&&empty($catid)) echo "<th>启用</th><th>分表</th>";
-	echo "<th>类型</th><th>".(empty($ispara) ? '数据库' : '当前值')."</th><th title='输入最大值 | 数据库长度'>字符数</th>";	
-	echo "<th>修改</th><th class='wp15'>备注</th>\n";
-	echo "</tr>\n";
+	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th>";
+	if(empty($ispara)&&empty($catid)) echo "<th>".lang('flow.title_enable')."</th><th>".lang('admin.fls_extab')."</th>";
+	echo "<th>".lang('admin.fls_type')."</th><th>".(empty($ispara) ? lang('admin.fls_db') : lang('admin.fls_nowval'))."</th><th title='".lang('admin.fls_maxlen')."'>".lang('admin.fls_lettes')."</th>";	
+	echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
+	echo "</tr>\n";	
 	if(!empty($catid)){
 		$_dbmfields = $db->fields(glbDBExt::getTable($mod)); //print_r($_dbmfields);
 	}
@@ -170,7 +171,7 @@ if($view=='ftest'){
 		  $dbstr = "$r[dbtype] ".(empty($r['dblen'])?'':"($r[dblen])").(strlen($r['dbdef'])?' ['.$r['dbdef'].']':'');
 	  }
 	  if(!empty($catid)){
-	  	  $exstr = (!empty($catid) && isset($_dbmfields[$kid])) ? '' : "<span class='cF00'>缺少字段,请手动添加</span>"; 
+	  	  $exstr = (!empty($catid) && isset($_dbmfields[$kid])) ? '' : "<span class='cF00'>".lang('admin.fls_nofield')."</span>"; 
 	  }else{
 		  $exstr = '';
 	  }
@@ -184,13 +185,13 @@ if($view=='ftest'){
 	  echo "<td class='tl'>".$types[$r['type']]." $plugstr</td>\n";
 	  echo "<td class='tc'>$dbstr</td>\n";
 	  echo "<td class='tr'>".glbHtml::null_cell($r['vmax'],'')." | ".glbHtml::null_cell($r['dblen'],'')."</td>\n";
-	  echo "<td class='tc'><a href='?file=$file&mod=$mod&view=form&kid=$r[kid]&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"修改$title\")'>修改</a></td>\n";
+	  echo "<td class='tc'><a href='?file=$file&mod=$mod&view=form&kid=$r[kid]&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('flow.title_edit')." $title\")'>".lang('flow.title_edit')."</a></td>\n";
 	  echo "<td class='tl'><input type='text' value='$note' class='txt w150 disc' disabled='disabled' /></td>\n";
 	  echo "</tr>"; 
 	}} 
 	echo "<tr>\n";
 	echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-	echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>批量操作: <select name='fs_do'>".basElm::setOption("upd|更新\ndel|删除\nshow|启用\nstop|禁用")."</select> <input name='bsend' class='btn' type='submit' value='执行操作' /> &nbsp; </td>\n";
+	echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
 	echo "</tr>";
 	glbHtml::fmt_end(array("mod|$mod"));
 
