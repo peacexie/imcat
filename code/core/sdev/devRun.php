@@ -37,15 +37,15 @@ class devRun{
 	// prootMsg
 	static function prootMsg($proot, $fixres){
 		$re = array();
-		$exmsg = empty($proot) ? '注意：根目录设置是空字符串,而不是/' : '注意：前面以/开头,后面不要/';
-		$exupd = "<a href='?' style='color:blue;float:right' target='_top'>刷新</a>";
-		$exok = "注意：刚才自动修正了参数：文件：(/root/run/_paths.php)：<br>define('PATH_PROJ', '$proot');";
-		$exng = "文件：(/root/run/_paths.php)，请设置路径：<br>define('PATH_PROJ', '$proot');";
+		$exmsg = empty($proot) ? lang('devrun_tipr1') : lang('devrun_tipr2');
+		$exupd = "<a href='?' style='color:blue;float:right' target='_top'>".lang('devrun_upd')."</a>";
+		$exok = lang('devrun_fixpararm')."(/root/run/_paths.php): <br>define('PATH_PROJ', '$proot');";
+		$exng = lang('devrun_file')."(/root/run/_paths.php), ".lang('devrun_setpath')."<br>define('PATH_PROJ', '$proot');";
 		if($fixres=='FixPrOkey'){
-			$re['msg'] = "$exok $exupd <br>$exmsg ；点刷新继续操作……";
+			$re['msg'] = "$exok $exupd <br>$exmsg : ".lang('devrun_upding');
 			$re['tip'] = FLAGYES;
 		}else{ // FixPrError
-			$re['msg'] = " $exng $exupd<br>$exmsg";
+			$re['msg'] = "$exng $exupd <br>$exmsg";
 			$re['tip'] = FLAGNO;
 		}
 		return $re;
@@ -56,7 +56,7 @@ class devRun{
 		// php版本
 		$pver = MINPHPVER;
 		if(version_compare(PHP_VERSION,$pver,'<')){
-			$umsg['vphp']['msg'] = "需要服务器环境 PHP V{$pver}+";
+			$umsg['vphp']['msg'] = lang('devrun_needenv')." PHP V{$pver}+";
 			$umsg['vphp']['tip'] = FLAGNO;
 		}
 
@@ -71,12 +71,12 @@ class devRun{
 		// mysql扩展
 		$exlib = array('mysqli'=>'mysqli','mysql'=>'mysql','pdox'=>'pdo_mysql');
 		if(!$dbflag){
-			$umsg['mysql']['msg'] = "需要开启{$exlib[$_cfgs['db_class']]}扩展，或修改文件：(/code/cfgs/boot/cfg_db.php)，<br>设置：\$_cfgs['db_class'] = 'mysqli,mysql,pdox'; //选一个,且开启相应扩展";
+			$umsg['mysql']['msg'] = lang('devrun_my3a',$exlib[$_cfgs['db_class']]).lang('devrun_my3b')."(/code/cfgs/boot/cfg_db.php)，<br>".lang('devrun_my3c')."\$_cfgs['db_class'] = 'mysqli,mysql,pdox'; //".lang('devrun_my3d');
 			$umsg['mysql']['tip'] = FLAGNO; 
 		}
 		// gd2扩展
 		if(!function_exists('gd_info')){
-			$umsg['gd2']['msg'] = "需要开启GD2扩展，请设置php.ini：<br>extension=php_gd2.dll";
+			$umsg['gd2']['msg'] = lang('devrun_gd2')."<br>extension=php_gd2.dll";
 			$umsg['gd2']['tip'] = FLAGNO;
 		}
 		// 重置辅助调试工具账号密码
@@ -91,7 +91,7 @@ class devRun{
 		}
 		return $umsg;
 	}
-	
+
 	static function startDbadd($dbname){ 
 		$_cfgs = glbConfig::read('db','cfg'); 
 		foreach($_cfgs as $k=>$v){
@@ -119,8 +119,8 @@ class devRun{
 	static function verPHP(){ 
 		$info = PHP_VERSION.' (SAPI:'.PHP_SAPI.')';
 		$res = version_compare(PHP_VERSION,MINPHPVER,">") ? FLAGYES : FLAGNO;
-		$tip = 'V5.2+, 建议V5.3+';
-		$status = array('title'=>'PHP版本','info'=>$info,'res'=>$res,'tip'=>$tip);
+		$tip = 'V5.2+, '.lang('devrun_phpvbest').' V5.3+';
+		$status = array('title'=>lang('devrun_phpver'),'info'=>$info,'res'=>$res,'tip'=>$tip);
 		return $status;
 	}
 	
@@ -169,7 +169,7 @@ class devRun{
 			if(in_array($key,array('dtmp','ures','html'))){
 				$fwrite = comFiles::canWrite($dir);
 				if(!$fwrite){
-					$stat = str_replace('<!--isNo-->','不可写',FLAGNO);		
+					$stat = str_replace('<!--isNo-->',lang('devrun_notwrite'),FLAGNO);		
 				} 
 			}
 			$re[] = array('ukey'=>$ukey,'dir'=>str_replace($dhid,"{...}",$dir),'path'=>$path,'res'=>$stat);
@@ -191,7 +191,7 @@ class devRun{
 		}
 		$type = 'pdo'; 
 		if(!class_exists($type)){
-			$a[$type] = array('res'=>FLAGNO,'info'=>" - 不支持{$type}扩展:请检查php.ini - ");
+			$a[$type] = array('res'=>FLAGNO,'info'=>lang('devrun_extendset',$type));
 		}else{
 			$a[$type] = array('res'=>FLAGYES,'info'=>''); //支持pdo扩展
 			try{
@@ -217,7 +217,7 @@ class devRun{
 			$ferrno = "{$type}_errno"; 
 			$ferror = "{$type}_error";
 			if(!function_exists($fconn)){
-				$a[$type] = array('res'=>FLAGNO,'info'=>" - 不支持{$type}扩展:请检查php.ini - ");
+				$a[$type] = array('res'=>FLAGNO,'info'=>lang('devrun_extendset',$type));
 			}else{
 				$a[$type] = array('res'=>FLAGYES,'info'=>""); //支持type
 				$link = @$fconn($_cfgs['db_host'], $_cfgs['db_user'], $_cfgs['db_pass']);
@@ -231,7 +231,7 @@ class devRun{
 						$info = " - [".$ferrno($link)."] ".$ferror($link).' - '; 
 					}
 				}else{
-					$info = " - 未连接服务器 - "; 
+					$info = lang('devrun_linkmysqlerr'); 
 				}
 				if(!strstr($info,'; OK :')){
 					$a[$type]['res'] = $stat = FLAGNO;	
@@ -279,7 +279,7 @@ class devRun{
 			}
 		}
 	}
-
+	
 	static function bomScan($bomroot,$rsub='',$flag=0) {  
 		if(empty($rsub)) return;
 		static $frstr,$bonum; 
@@ -293,15 +293,14 @@ class devRun{
 			//if(!file_exists("$full/$file")) continue;
 			if(in_array($file,array('.','..','.svn',))) continue;
 			//echo "<br>::$full/$file"; //var_dump(is_dir("$full/$file"));
+			$bonum++; if($bonum>1000) die("<p>".lang('devrun_tmfiles')."</p>");
 			if(is_dir("$full/$file")){
-				$bonum++; if($bonum>1000) die("<p> 文件太多,请设置目录缩小范围.</p>");
 				$real = basDebug::hidInfo(realpath("$full/$file"));
 				echo "\n<ul>\n";
 				echo "<li><b>$real:</b></li>\n";
 				self::bomScan($full,$file,$flag+1);
 				echo "</ul>\n";
 			}else{
-				$bonum++; if($bonum>1000) die("<p> 文件太多,请设置目录缩小范围.</p>");
 				$fext = strtolower(strrchr($file,'.'));
 				$fskip = array('.gif','.jpg','.jpeg','.png','.swf','.flv','.avi','.mpg','.doc','.docx','.zip','.rar','.gz');
 				$size = round(filesize("$full/$file")/1024*100)/100 .' KB';

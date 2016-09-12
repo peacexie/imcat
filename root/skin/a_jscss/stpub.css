@@ -36,7 +36,7 @@
 .fs_vimg img { width:160px; height:40px; vertical-align:top; cursor:pointer; }
 /* --- */
 div.edt_bar { }
-div.edt_bar a { width:30px; text-align:center; font-size:12px; background:#E8E8E8; display:inline-block; list-style:none; cursor:pointer; border:1px solid #CCC; border-bottom:0px; padding:1px 2px; margin:1px 2px 0px 0px; }
+div.edt_bar a { min-width:30px; text-align:center; font-size:12px; background:#E8E8E8; display:inline-block; list-style:none; cursor:pointer; border:1px solid #CCC; border-bottom:0px; padding:1px 2px; margin:1px 2px 0px 0px; }
 div.edt_bar a:hover{ border-color:#999; background:#FFF; }
 div.pg_bar { width:100%; }
 div.pg_bar li{ padding:0px 3px; display:inline-block; margin:0px 3px; }

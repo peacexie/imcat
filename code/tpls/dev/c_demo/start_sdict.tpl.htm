@@ -1,9 +1,9 @@
 {if $this->key=='dbtab' }
 <?php 
-$data = comFiles::get(DIR_DTMP."/store/dbdic.cac_htm");
+$data = comFiles::get(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm");
 if(!$data){
 	$data = devBase::dbDict(); 
-	comFiles::put(DIR_DTMP."/store/dbdic.cac_htm",$data);
+	comFiles::put(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm",$data);
 }
 echo $data; 
 $_cbase['tpl']['tplpend'] = '_null_';

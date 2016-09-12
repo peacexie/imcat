@@ -5,7 +5,7 @@ $key = empty($key) ? 'login' : $key;
 $act = basReq::val('act');
 $recbk = basReq::val('recbk');
 $recbk=='ref' && $recbk = $_SERVER['HTTP_REFERER'];
-$karr = array('login'=>'会员登录','apply'=>'会员注册','getpw'=>'获取密码');
+$karr = basLang::ucfg('cfgbase.user_ops');
 $kname = isset($karr[$key]) ? $karr[$key] : "($key)";
 {/php}{/block:minit}
 <!DOCTYPE html><html><head>

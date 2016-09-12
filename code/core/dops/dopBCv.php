@@ -50,7 +50,7 @@ class dopBCv{
 		$val = dopFunc::vgetLink($val,$this->mod,$r[$_key],$url); 
 		if(!empty($r['mpic'])){ 
 			$ticon = comFiles::getTIcon($r['mpic']);
-			$val = "<span class='c33F'>".($ticon['icon']=='pic' ? '[图]' : '[附]')."</span>$val"; 
+			$val = "<span class='c33F'>".($ticon['icon']=='pic' ? lang('core.bcv_pic') : lang('core.bcv_file'))."</span>$val"; 
 		}
 		if(empty($td)) return $val;
 		return "<td class='tl'>$val</td>\n";
@@ -141,7 +141,7 @@ class dopBCv{
 			//$va = explode(',',$val); 
 			$re = "";
 			foreach($arr as $k=>$v){
-				$re .= "\nset_$k|设置($k)$v";
+				$re .= "\nset_$k|".lang('core.bcv_set')."($k)$v";
 			}
 
 		return $re; 
@@ -149,3 +149,4 @@ class dopBCv{
 	}
 
 }
+

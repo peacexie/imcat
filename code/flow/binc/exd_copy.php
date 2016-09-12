@@ -16,7 +16,7 @@ if(!empty($bsend)){
 	
 	$method = $type=='tabid' ? 'cplan' : 'cdata'; 
 	$res = $cp->$method($kid, $fm['kid'], $fm['title']);
-	basMsg::show(" [{$fm['kid']}] - 复制成功！");	
+	basMsg::show(" [{$fm['kid']}] - ".lang('flow.dops_cpok'));	
 	
 }else{ 
 
@@ -32,16 +32,16 @@ if(!empty($bsend)){
 	}
 	$okrow = "<input type='text' value='$kid' class='txt w240 disc' disabled='disabled' />";
 	$nkrow = "<input name='fm[kid]' type='text' value='$kidnew' class='txt w240' />";
-	glbHtml::fmae_row('Key标识',"$okrow");
-	glbHtml::fmae_row('复制-=>',"$nkrow");
+	glbHtml::fmae_row('Key'.lang('flow.dops_kid'),"$okrow");
+	glbHtml::fmae_row(lang('flow.dops_copy').'-=>',"$nkrow");
 
 	$titlenew = "{$title}_copy";
 	$okrow = "<input type='text' value='$title' class='txt w240 disc' disabled='disabled' />";
 	$nkrow = "<input name='fm[title]' type='text' value='$titlenew' class='txt w240' />";
-	glbHtml::fmae_row('条目名称',"$okrow");
-	glbHtml::fmae_row('复制-=>',"$nkrow");
+	glbHtml::fmae_row(lang('flow.dops_itemname'),"$okrow");
+	glbHtml::fmae_row(lang('flow.dops_copy').'-=>',"$nkrow");
 
-	glbHtml::fmae_send('bsend','提交','25');
+	glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 	glbHtml::fmt_end(array("mod|$mod","type|$type","kid|$kid","title|$title"));
 }
 

@@ -10,19 +10,19 @@ if($act=='dologin'){
 	$fm = $_POST['fm'];
 	$re2 = safComm::formCAll('fmlpay');
 	if(empty($re2[0])){ //OK
-		$msg = '登录OK！';
+		$msg = lang('a3rd.payweb_loginok');
 		dmdoSend();
 	}else{
-		$msg = '错误！请复制重新登录';	
+		$msg = lang('a3rd.payweb_erragain');	
 	}
 }else{
-	$msg = '请复制到左边框模拟登录';	
+	$msg = lang('a3rd.payweb_copyto');	
 }
-?>
+?> 
 <!DOCTYPE html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
-<title>支付流程演示</title>
+<title><?php lang('a3rd.demo_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
@@ -45,28 +45,28 @@ if($act=='dologin'){
 <form action="?" method="post" name="fmlpay" id="fmlpay">
 <div id="idx_login" class="pgu_login">
 <p class="title">
-	<span style="float:right">单号：<?php echo $out_trade_no; ?> &nbsp; 金额：<?php echo $total_fee; ?></span>
-    <b>支付流程演示</b>
-</p>
+	<span style="float:right"><?php lang('a3rd.payweb_tradeno',0); ?> <?php echo $out_trade_no; ?> &nbsp; <?php lang('a3rd.payweb_amount',0); ?> <?php echo $total_fee; ?></span>
+    <b><?php lang('a3rd.demo_title',0); ?></b>
+</p>  
 <div class="apply">
-  <p> 模拟账号： <br>
+  <p> <?php lang('a3rd.payweb_demoid',0); ?> <br>
     <a onClick="osetInfo(this,'uname')"><?php echo $rndname; ?></a> <br>
-    模拟密码： <br>
+    <?php lang('a3rd.payweb_demopw',0); ?> <br>
     <a onClick="osetInfo(this,'upass')"><?php echo $rndpass; ?></a></p>
-  <p> <?php echo $msg; ?><br>包含前面的user_,pass_，不含空格。 </p>
+  <p> <?php echo $msg; ?><br><?php lang('a3rd.payweb_idpwtip',0); ?></p>
 </div>
 <div class="login">
-  <p> <i>用户名: </i>
-    <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" value="" class="txt w250" reg="key:2-48" autocomplete="off" tip="字母开头,允许3-16字节<br>允许字母数字下划线" />
+  <p> <i><?php lang('uname',0); ?>: </i>
+    <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" value="" class="txt w250" reg="key:2-48" autocomplete="off" tip="<?php lang('a3rd.payweb_letters316',0); ?>" />
   </p>
-  <p> <i>密　码: </i>
-    <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" value="" class="txt w250" reg="str:6-48" autocomplete="off" tip="允许6,15字节" />
+  <p> <i><?php lang('upass',0); ?>: </i>
+    <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" value="" class="txt w250" reg="str:6-48" autocomplete="off" tip="<?php lang('a3rd.payweb_letters615',0); ?>" />
   </p>
-  <p> <i>认证码: </i>
+  <p> <i><?php lang('vcode',0); ?>: </i>
     <script>fsInit('fmlpay');</script>
   </p>
-  <p class="button"> <i class="right pt2 f14"><a href="index.php">刷新</a></i> 
-    <input name="submit" value="提交" tabindex="19830" type="submit" class="btn" />
+  <p class="button"> <i class="right pt2 f14"><a href="index.php"><?php lang('a3rd.payweb_refresh',0); ?></a></i> 
+    <input name="submit" value="<?php lang('submit',0); ?>" tabindex="19830" type="submit" class="btn" />
     <input name="act" type="hidden" value="dologin" />
   </p>
 </div>

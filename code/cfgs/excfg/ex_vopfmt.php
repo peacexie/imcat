@@ -11,13 +11,44 @@ $_ex_vopfmt['res'] = array(
 	'3' => array('demo'), // yyyy/md/noid
 );	
 
+// 所有语言
+$_ex_vopfmt['langs'] = array(
+    'en' => array(
+		'English',  
+		'En'
+    ),
+	'cn' => array(
+		'中文版',  
+		'中'
+	), 
+);
+
 // 所有模板
 $_ex_vopfmt['tpl'] = array(
-    'adm' => array('管理中心','/root/run/adm.php'),
-	'chn' => array('中文版'  ,'/chn.php'), //keres,corp,user,pic,xmlrss,xmlmap
-	'dev' => array('演示版'  ,'/dev.php'), //tag,tjs,imp,demo,types,tips
-	'mob' => array('手机版'  ,'/mob.php'), //about,news,cargo,order
-	'umc' => array('会员中心','/root/run/umc.php'), //user,indoc,order
+    'adm' => array(
+    	array('cn'=>'管理中心', 'en'=>'Admin'),
+    	'/root/run/adm.php'
+    ),
+	'chn' => array(
+		'中文版',  
+		'/chn.php'
+	), 
+	'dev' => array(
+		'演示版',  
+		'/dev.php'
+	), 
+	'doc' => array(
+		'Guides',  
+		'/doc.php'
+	), 
+	'mob' => array(
+		array('cn'=>'手机版', 'en'=>'Mobile'),  
+		'/mob.php'
+	), 
+	'umc' => array(
+		array('cn'=>'会员中心', 'en'=>'User'),
+		'/root/run/umc.php'
+	), 
 	//'demodir' => array('hello','/root/run/front.php'), 
 );
 

@@ -2,7 +2,7 @@
 
 {block:init}{:parent}<?php 
 extract(tex_base::tips_init($this), EXTR_OVERWRITE);
-$tipmsg = '欢迎使用！';
+$tipmsg = 'Welcome!';
 if($user->userFlag=='Guest'){
 	$unqid = usrPerm::getUniqueid(); 
     $ordwcnt = $db->table('coms_cocar')->where("ordid='$unqid'")->count(); 
@@ -17,24 +17,25 @@ $cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
 
 {block:action}
 <div class="umc-mitem">
-    <h3><i>user info</i>用户资料：</h3>
+    <h3><i>user info</i>{lang('user.pub_uinfo')}: </h3>
     <dl>
-        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        <dt>{lang(user.pub_uinfo)}: </dt><dd>{$unowstr}</dd>
         {if ($user->userFlag=='Guest') }
-        <dt>商品订单：</dt><dd>购物车商品:{$ordwcnt}个，<a href="{surl(chn:ocar)}">点击我查看&gt;&gt;</a>。 (未登录用户，只能查看当前回话购物车)</dd>
-        <dt>您当前：</dt><dd>未登录；可以<a href="{surl($ulogin)}">点击我登录</a> 或 <a href="{surl($uapply)}">点击我注册</a>……</dd>
+        <dt>{lang(user.uif_corder)}: </dt><dd>{lang(user.uif_caritems,"$ordwcnt")}, <a href="{surl(chn:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a>. 
+          ({lang(user.uif_nolontip)})</dd>
+        <dt>{lang(user.uif_unow)}: </dt><dd>{lang(user.uif_notlogin)}<a href="{surl($ulogin)}">{lang(user.uif_clickl)}</a> {lang(user.uif_or)} <a href="{surl($uapply)}">{lang(user.uif_clickr)}</a>......</dd>
         {else}
-        <dt>系统消息：</dt><dd>未读:{$cnt1}篇，<a href="?mkv=indoc-iget&part=ipub">所有消息&gt;&gt;</a></dd>
-        <dt>商品订单：</dt><dd>未完订单:{$ordwcnt}个，<a href="{surl(order)}">所有订单&gt;&gt;</a></dd>
-        <dt>内部公文：</dt><dd>未读:{$cnt2}篇，<a href="?mkv=indoc-iget&part=imy">所有公文&gt;&gt;</a>，<a href="{surl(indoc-iedit)}">发布&gt;&gt;</a></dd>
+        <dt>{lang(user.uif_sysmsg)}: </dt><dd>{lang(user.uif_noreadn,"$cnt1")}, <a href="?mkv=indoc-iget&part=ipub">{lang(user.uif_allmsg)}&gt;&gt;</a></dd>
+        <dt>{lang(user.uif_corder)}: </dt><dd>{lang(user.uif_noendord,"$ordwcnt")}, <a href="{surl(order)}">{lang(user.uif_allord)}&gt;&gt;</a></dd>
+        <dt>{lang(user.pub_indoc)}: </dt><dd>{lang(user.uif_noreadn,"$cnt2")}, <a href="?mkv=indoc-iget&part=imy">{lang(user.uif_alldoc)}&gt;&gt;</a>, <a href="{surl(indoc-iedit)}">{lang(user.uif_pub)}&gt;&gt;</a></dd>
         {/if}
-        <dt>运行信息：</dt><dd>{$runinfo}</dd>
-        <dt>系统信息：</dt><dd>ServerTime:{= date('Y-m-d H:i:s'); } IP:{= $_cbase['run']['userip'] ;}</dd>
-        <dt>测试连接：</dt><dd>
+        <dt>{lang(user.uif_runinfo)}: </dt><dd>{$runinfo}</dd>
+        <dt>{lang(user.uif_sysinfo)}: </dt><dd>ServerTime:{= date('Y-m-d H:i:s'); } IP:{= $_cbase['run']['userip'] ;}</dd>
+        <dt>{lang(user.uif_tlinks)}: </dt><dd>
           <a id='ids_testlogin' href="{surl(user-testlogin)}">(testlogin)</a>
           <a id='ids_testguset' href="{surl(user-testguset)}">(testguset)</a>
           <a id='ids_testset' href="{surl(user-testset)}">(testset)</a>
-          <a id='ids_tips' href="{surl(user-tips)}">(提示)</a>
+          <a id='ids_tips' href="{surl(user-tips)}">(Tips)</a>
         </dd> 
     </dl>
 </div>

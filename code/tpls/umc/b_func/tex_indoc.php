@@ -5,6 +5,7 @@
 class tex_indoc{ //extends tex_base
 	
 	#protected $prop1 = array();
+	static $ncfgs = array();
 	
 	static function expwhr($user,$part,$stype,$read=0,$cnt=0){ 
 		//print_r($user);
@@ -58,6 +59,7 @@ class tex_indoc{ //extends tex_base
 			'wechat' => 'wechat', //微信
 		);
 		if(!isset($ncfg[$stype])) return;
+		self::$ncfgs = basLang::ucfg('cfgbase.indoc_notice');
 		$method = 'exN'.ucfirst($stype); 
 		if(!empty($uarr)){
 			$max = 60; $ids = ''; $cnt = 0; // 随机30~80个帐号
@@ -82,11 +84,12 @@ class tex_indoc{ //extends tex_base
 	}
 	static function exNMobmsg($dop,$tels){ 
 		$info = self::exNInfo($dop); 
-		$detail = "您好！您收到一条公文消息：";
-		$detail .= "公文主题：{$info['title']}；";
-		$detail .= "发布时间：{$info['atime']}；";
-		$detail .= "发布人：{$info['auser']}；";
-		$detail .= "<a href='{$info['url']}'>请点击查看！</a>";
+		$c = self::$ncfgs; // title, xsub, xpub, xuser, xclick
+		$detail = $c['title'];
+		$detail .= $c['xsub']."{$info['title']}；";
+		$detail .= $c['xpub']."{$info['atime']}；";
+		$detail .= $c['xuser']."{$info['auser']}；";
+		$detail .= "<a href='{$info['url']}'>{$c['xclick']}</a>";
 		$detail .= "【{$info['sys_name']}】";
 		$sms = new extSms(); 
 		if($sms->isClosed()) return; 
@@ -101,15 +104,16 @@ class tex_indoc{ //extends tex_base
 	static function exNEmail($dop,$mails){ 
 		$info = self::exNInfo($dop); 
 		$type = 'phpmailer'; //swiftmailer,phpmailer,basReq::val('type');
-		$detail = "您好！您收到一条公文消息：\n";
-		$detail .= "公文主题：{$info['title']}；<br>\n";
-		$detail .= "发布时间：{$info['atime']}；<br>\n";
-		$detail .= "发布人：{$info['auser']}；<br>\n";
-		$detail .= "<a href='{$info['url']}'>请点击查看！</a><br>\n";
+		$c = self::$ncfgs; // title, xsub, xpub, xuser, xclick
+		$detail = $c['title']."\n";
+		$detail .= $c['xsub']."{$info['title']}；<br>\n";
+		$detail .= $c['xpub']."{$info['atime']}；<br>\n";
+		$detail .= $c['xuser']."{$info['auser']}；<br>\n";
+		$detail .= "<a href='{$info['url']}'>{$c['xclick']}</a><br>\n";
 		$detail .= "【{$info['sys_name']}】";
 		//dump($detail);
 		$mail = new extEmail($type);
-		$res = $mail->send($mails,'公文提醒通知',$detail,"{$info['sys_name']}");
+		$res = $mail->send($mails,lang('user.exf_indocmsg'),$detail,"{$info['sys_name']}");
 		if($res!=='SentOK'){
 			$res = strip_tags($res); 
 			self::exNLoger($res,$detail);
@@ -119,11 +123,11 @@ class tex_indoc{ //extends tex_base
 		global $_cbase;
 		defined('WERR_RETURN') || define('WERR_RETURN',1);
 		$info = self::exNInfo($dop); $color = '"color":"#173177"';
-		$detail = '"first":{"value":"您好！您收到一条公文消息：",'.$color.'},';
+		$detail = '"first":{"value":"'.$c['title'].'",'.$color.'},';
         $detail .= '"title":{"value":"'.$info['title'].'",'.$color.'},';
         $detail .= '"time":{"value":"'.$info['atime'].'",'.$color.'},';
         $detail .= '"auser":{"value":"'.$info['auser'].'",'.$color.'},';
-        $detail .= '"remark":{"value":"请点击查看！",'.$color.'}';
+        $detail .= '"remark":{"value":"'.$c['xclick'].'",'.$color.'}';
         //dump($detail);
 		$weixin = new wmpMsgmass(wysBasic::getConfig('admin'));
 		$data = $weixin->sendTpl($opids, $_cbase['weixin']['tplidIndoc'], $detail, $info['url']);
@@ -170,7 +174,7 @@ class tex_indoc{ //extends tex_base
 		$re['tod'] = vopCell::cOpt($vars['todep'],'indep',',','');
 		$usql = self::tousql(array('todep'=>'','topub'=>'','touser'=>$vars['touser'],));
 		$uarr = self::touarr($usql); 
-		$re['tou'] = ''; $null = "<span class='cCCC'>(无)</span>";
+		$re['tou'] = ''; $null = "<span class='cCCC'>".lang('user.exf_null')."</span>";
 		if(empty($uarr)){
 			$re['tou'] = $null;
 		}else{
@@ -179,7 +183,7 @@ class tex_indoc{ //extends tex_base
 			}
 		}
 		if($vars['topub']=='ispub'){
-			$re['tod'] .= "<span class='c33F'>公开</span>";
+			$re['tod'] .= "<span class='c33F'>".lang('user.exf_public')."</span>";
 		}
 		if(empty($re['tod'])) $re['tod'] = $null;
 		return $re;
@@ -240,10 +244,10 @@ class tex_indoc{ //extends tex_base
 	// tpl:<i class='tim-{val}'></i>
 	static function isread($user,$did,$tpl="(val)",$flag=1){ 
 		$cfg = array(
-			'isread1' => '<span style="color: #008000; font-weight : bold;" title="已读">&#10004;</span>',
-			'noread1' => '<span style="color: #ff0000; font-weight : bold;" title="未读">&#10008;</span>',
-			'isread2' => '<span style="color: #008000; font-weight : bold;">&#10004;已读</span>',
-			'noread2' => '<span style="color: #ff0000; font-weight : bold;">&#10008;未读</span>',
+			'isread1' => '<span style="color: #008000; font-weight : bold;" title="'.lang('user.exf_readok').'">&#10004;</span>',
+			'noread1' => '<span style="color: #ff0000; font-weight : bold;" title="'.lang('user.exf_unread').'">&#10008;</span>',
+			'isread2' => '<span style="color: #008000; font-weight : bold;">&#10004;'.lang('user.exf_readok').'</span>',
+			'noread2' => '<span style="color: #ff0000; font-weight : bold;">&#10008;'.lang('user.exf_unread').'</span>',
 		);
 		$data = array();
 		if($user->userFlag!='Login'){

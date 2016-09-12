@@ -21,7 +21,7 @@ class glbCUpd{
 
 	// upd config
 	static function upd_groups(){
-		$_groups = glbConfig::read('groups');
+		//$_groups = glbConfig::read('groups');
 		$db = glbDBObj::dbObj();
 		$grps = $db->table('base_model')->where("enable=1")->order('pid,top,kid')->select(); 
 		$str = '';
@@ -34,7 +34,8 @@ class glbCUpd{
 			}
 		}
 		glbConfig::save($arr,'groups');
-		$_groups = glbConfig::read('groups'); //重载
+		unset(glbConfig::$_CACHES_YS['_groups']);
+		glbConfig::read('groups'); //重载
 	}
 	
 	// upd grade
@@ -99,9 +100,9 @@ class glbCUpd{
 		if($cfg['etab']==2){ unset($f['detail']); }
 		if($cfg['etab']==3){ 
 			unset($f['mpic']); 
-			$f['url']['title'] = '替换规则';
+			$f['url']['title'] = lang('core.cupd_reprule');
 			$f['url']['vreg'] = '';
-			$f['url']['vtip'] = '如：{root}[=]http://txjia.com/<br>或：/path/[=]/08tools/yssina/1/root/';
+			$f['url']['vtip'] = lang('core.msg_eg').'{root}[=]http://txjia.com/<br>'.lang('core.msg_or').'/path/[=]/08tools/yssina/1/root/';
 		}
 		return $f;
 	}		
@@ -286,7 +287,6 @@ class glbCUpd{
 					$s0 .= "</div>";
 				}
 			}
-			echo $s0;	
 			$data = "\nvar admNavTab = '$js1';";
 			$data .= "\nvar admNavName = '$js2';";
 			$data .= "\nvar admHtmTop = '".basJscss::jsShow($s1,0)."';";
@@ -294,7 +294,7 @@ class glbCUpd{
 			$data .= "\ndocument.write(admHtmTop);";
 			glbConfig::save($data,"{$mod}",'dset','.js');
 			glbConfig::save($mperm,"{$mod}_perm",'dset'); 
-			//print_r($mperm);
+			return $s0;
 		}
 		
 	}
@@ -310,7 +310,7 @@ class glbCUpd{
 			if(empty($v3['pid'])){ //顶级
 				$s0 .= "<li id='left_$k3'>";
 				$s0 .= "<a href='?file=dops/a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
-				$s0 .= "<a onclick=\"admJsClick('$k2')\">增加</a></li>";
+				$s0 .= "<a onclick=\"admJsClick('$k2')\">".lang('core.msg_add')."</a></li>";
 			}}
 			$s0 .= "</ul>";
 		}}

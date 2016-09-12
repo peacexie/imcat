@@ -10,17 +10,17 @@ $cronurl = PATH_ROOT."/plus/ajax/cron.php";
 $view = basReq::val('view','list');
 $nmod = basReq::val('nmod','home'); 
 $vcfgs = vopTpls::etr1('tpl'); 
-$stitle = "静态管理:($ntpl){$vcfgs[$ntpl][0]}"; 
+$stitle = lang('admin.st_admin').":($ntpl)".basLang::pick(0,$vcfgs[$ntpl][0]); 
 $msg = ''; //print_r($msg);
 
 $lnks = "# "; $ncfg = array(); 
 foreach($vcfgs as $itpl=>$suit){
-	if(strpos($_cbase['tpl']['no_static'],$itpl)) continue;
 	if($itpl==$ntpl){ // dynamic/static/both/all/
 		$ncfg = vopTpls::entry($itpl,'ehlist','static');  
 	}
-	$ititle = $itpl==$ntpl ? "<span class='cF0F'>$suit[0]<span>" : $suit[0];
-	$lnks .= "<a href='?file=$file&ntpl=$itpl'>$ititle</a> # ";
+	$cname = basLang::pick(0,$suit[0]); //is_array($suit[0]) ? $suit[0]['cn'] : $suit[0];
+	$ititle = $itpl==$ntpl ? "<span class='cF0F'>$cname<span>" : $cname;
+	$lnks .= "<a href='?file=$file&ntpl=$itpl'>{$ititle}</a> # ";
     
 }
 glbHtml::tab_bar("$stitle $msg",$lnks,40); 
@@ -29,10 +29,10 @@ if($view=='list'){
 
 	$mods = array_keys($ncfg);
 	glbHtml::fmt_head('fmlist',"?",'tblist');
-	echo "\n<tr><th class='tc'></th>\n<th>静态管理 --- $ntpl:$nmod --- <a href='?file=$file&ntpl=$ntpl&nmod=all'>全部模块</a></th></tr>\n";
-	echo "\n<tr><td class='tc'>操作模块：</td>\n<td>"; $ti = 0;
+	echo "\n<tr><th class='tc'></th>\n<th>".lang('admin.st_admin')." --- $ntpl:$nmod --- <a href='?file=$file&ntpl=$ntpl&nmod=all'>".lang('admin.st_allmod')."</a></th></tr>\n";
+	echo "\n<tr><td class='tc'>".lang('admin.st_opmode').": </td>\n<td>"; $ti = 0;
 	foreach($mods as $imod){
-		$iname = $imod=='home' ? '首页' : (isset($_groups[$imod]) ? $_groups[$imod]['title'] : "($imod)");
+		$iname = $imod=='home' ? lang('admin.st_home') : (isset($_groups[$imod]) ? $_groups[$imod]['title'] : "($imod)");
 		$ititle = $imod==$nmod ? "<span class='cF0F'>$iname<span>" : "$iname";
         if($ti==0) echo " ";
         else echo ($ti && $ti%6==0) ? "<br>" : " # ";
@@ -42,36 +42,38 @@ if($view=='list'){
 	echo "</td></tr>\n";
     if($nmod=='home'){
 		$sfile = vopStatic::getPath('home','home',0);
-        $exists = file_exists(DIR_HTML."/$sfile") ? date('Y-m-d H:i:s',filemtime(DIR_HTML."/$sfile")) : '不存在';
-        echo "\n<tr><td class='tc'>首页静态</td>\n<td>
-			静态文件：{html}".$sfile." (".$exists.")
+        $exists = file_exists(DIR_HTML."/$sfile") ? date('Y-m-d H:i:s',filemtime(DIR_HTML."/$sfile")) : lang('admin.st_notfound');
+        echo "\n<tr><td class='tc'>".lang('admin.st_hmstatic')."</td>\n<td>
+			".lang('admin.st_stfile').": {html}".$sfile." (".$exists.")
             <p class='tc f18'>
-            <a href='$cronurl?static=home&tpldir=$ntpl&act=add' class='f18 fB' onclick='return winOpen(this);'>生成静态</a> #
-            <a href='$cronurl?static=home&tpldir=$ntpl&act=del' class='f18 fB' onclick='return winOpen(this);'>删除静态</a> # 
-            <a href='".vopUrl::ftpl("$ntpl:0")."' target='_blank' class='f18 fB' target='_blank'>查看效果</a>
+            <a href='$cronurl?static=home&tpldir=$ntpl&act=add' class='f18 fB' onclick='return winOpen(this);'>".lang('admin.st_crpage')."</a> #
+            <a href='$cronurl?static=home&tpldir=$ntpl&act=del' class='f18 fB' onclick='return winOpen(this);'>".lang('admin.st_depage')."</a> # 
+            <a href='".vopUrl::ftpl("$ntpl:0")."' target='_blank' class='f18 fB' target='_blank'>".lang('admin.st_vres')."</a>
             </p>
 		</td></tr>\n";
+
 	}elseif($nmod!=='all'){  
-		$iname = isset($_groups[$nmod]) ? $_groups[$nmod]['title'] : "(自定义)";
+		$iname = isset($_groups[$nmod]) ? $_groups[$nmod]['title'] : lang('admin.st_udefine');
 		$mcfgs = glbConfig::read($nmod); 
         echo "\n<tr><td class='tc'>{$iname}<br>[$ntpl:$nmod]</td>\n<td>";
 		echo "\n<p>
-            &nbsp; ● 栏目列表静态：共约：[".count($ncfg[$nmod])."] 条
+            &nbsp; ● ".lang('admin.st_cstatic').": ".lang('admin.st_allrecs',count($ncfg[$nmod]))."
             </p>
             <p class='tc f14'>
-            <a href='$cronurl?static=mlist&mod=$nmod&tpldir=$ntpl&act=add' class='fB' onclick='return winOpen(this);'>生成静态</a> #
-            <a href='$cronurl?static=mlist&mod=$nmod&tpldir=$ntpl&act=del' class='fB' onclick='return winOpen(this);'>删除静态</a> 
+            <a href='$cronurl?static=mlist&mod=$nmod&tpldir=$ntpl&act=add' class='fB' onclick='return winOpen(this);'>".lang('admin.st_crpage')."</a> #
+            <a href='$cronurl?static=mlist&mod=$nmod&tpldir=$ntpl&act=del' class='fB' onclick='return winOpen(this);'>".lang('admin.st_depage')."</a> 
             </p>";
 		if(!empty($mcfgs['pid']) && in_array($mcfgs['pid'],array('docs','users'))){
-		echo "\n<p class='right ph20'><a href='".vopUrl::ftpl("$ntpl:0")."?$nmod' target='_blank' class='f18 fB'>模块首页（动态）</a></p>
+			$recs = $db->table("{$mcfgs['pid']}_$nmod")->count();
+			echo "\n<p class='right ph20'><a href='".vopUrl::ftpl("$ntpl:0")."?$nmod' target='_blank' class='f18 fB'>".lang('admin.st_dmhome')."</a></p>
 			<p>
-            &nbsp; ● 内容详情静态：共约：[".$db->table("{$mcfgs['pid']}_$nmod")->count()."] 条 <br>
-			<input name='limit' type='text' value='20' class='w40' maxlength='3'>条/批次 &nbsp; 
-			offset/dirfix：<input name='offset' type='text' value='' class='w40' maxlength='4'> &nbsp; 
+            &nbsp; ● ".lang('admin.st_dstatic').": ".lang('admin.st_allrecs',$recs)."
+			<input name='limit' type='text' value='20' class='w40' maxlength='3'>".lang('admin.st_batnum')." &nbsp; 
+			offset/dirfix: <input name='offset' type='text' value='' class='w40' maxlength='4'> &nbsp; 
             </p>
             <p class='tc f14'>
-            <a href='$cronurl?static=mdetail&mod=$nmod&tpldir=$ntpl&act=add' class='fB' onclick='return stsetLink(this);'>生成静态</a> #
-            <a href='$cronurl?static=mdetail&mod=$nmod&tpldir=$ntpl&act=del' class='fB' onclick='return stsetLink(this);'>删除静态</a> 
+            <a href='$cronurl?static=mdetail&mod=$nmod&tpldir=$ntpl&act=add' class='fB' onclick='return stsetLink(this);'>".lang('admin.st_crpage')."</a> #
+            <a href='$cronurl?static=mdetail&mod=$nmod&tpldir=$ntpl&act=del' class='fB' onclick='return stsetLink(this);'>".lang('admin.st_depage')."</a> 
             </p>";
 		}
 		echo "\n</td></tr>\n";

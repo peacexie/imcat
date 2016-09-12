@@ -78,14 +78,6 @@ class vopMedia{
 	}
 	
 	static function cfgTypes(){
-		return array(
-			'iframe'   => 'iframe(内框架)',
-			'map'	  => 'map(地图)',
-			'swf'	  => 'swf(Flash媒体文件)',
-			'audio'	=> 'audio(音频媒体文件)',
-			'ckvdo'	=> 'video(视频媒体文件)',
-		);
-		//'flv'	=> 'flv(Flash媒体文件)', // (合并到ckvdo)
-		//'bgsnd'  => 'bgsnd(背景音乐)', // 需要的化，专门添加字段
+		return basLang::ucfg('cfglibs.dopmedia'); //;
 	}	
 }

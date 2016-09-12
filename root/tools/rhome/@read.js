@@ -2,16 +2,17 @@
 document.write("<script src='../root/skin/jslib/jsbase.js'></script>");
 document.write("<script src='../root/skin/a_jscss/mkdown.js'></script>");
 
+var doc_url = '../code/tpls/dev/d_start/doc_down'+cfg.lang+'.txt';
+window.onload = function (){
+	setTimeout('_readInit()',100);
+} 
+
 function _readInit(){
 	rdfStyle(); 
 	rdfMDown();
 	rdfDShow();
 	//try{}catch(ex){}
 }
-var doc_url = '../code/tpls/dev/d_start/doc_down.txt';
-window.onload = function (){
-	setTimeout('_readInit()',100);
-} 
 
 function rdfDShow(){
     url = doc_url+'?_r='+(new Date).getTime(); 
@@ -26,6 +27,7 @@ function rdfDShow(){
 	} 
 	http.send(null); 
 }
+
 function rdfMDown(){
 	var obody = jsElm.jeTag('body'); 
 	var data = obody.innerHTML; 

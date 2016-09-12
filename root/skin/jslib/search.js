@@ -5,11 +5,11 @@ function schEnc(s){
 }
 function schDec(s){
 	return s.replace(/\\([\\\.\*\[\]\(\)\$\^])/g,"$1").replace(/>/g,">").replace(/</g,"<").replace(/&/g,"&");
-}
+}	
 function schDone(s){
 	var s = s ? s : jsElm.jeID('schVal').value;
 	if (s.length==0){
-		alert('搜索关键词未填写！');
+		alert(lang('jcore.so_keyword'));
 		return false;
 	}
 	s=schEnc(s); 
@@ -21,7 +21,7 @@ function schDone(s){
 	var r=/{searchHL}(({(?!\/searchHL})|[^{])*){\/searchHL}/g
 	t=t.replace(r,"<span class='highlight'>$1</span>");
 	obj.innerHTML=t;
-	alert("搜索到关键词"+cnt+"处")
+	alert(lang('jcore.so_result',cnt));
 }
 function schLoop(s,obj){
 	var cnt=0;

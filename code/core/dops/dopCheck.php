@@ -45,15 +45,15 @@ class dopCheck extends dopBase{
 		$clogin = 1; 
 		if(!is_numeric($ngrades)){
 			if(strpos("(,$ngrades,)",",{$this->ugrade},")<=0){
-				glbHtml::end("操作无权限[$ngrades]！");
+				glbHtml::end(lang('flow.ck_grade',$ngrades));
 			}
 		}else{ 
 			// stop
 			if(strpos($this->ugrade,'stop')>0){
-				glbHtml::end("操作无权限[$this->ugrade]！");
+				glbHtml::end(lang('flow.ck_stop',$this->ugrade));
 			}
 			if($this->user->userFlag!='Login'){
-				glbHtml::end("操作无权限[login]，请先登录！");
+				glbHtml::end(lang('flow.ck_login'));
 			}
 		}
 	}
@@ -69,7 +69,7 @@ class dopCheck extends dopBase{
 		}
 		$cnt = $this->db->table($this->tabid)->where("auser='{$this->uname}'")->count();
 		if($cnt>=$num){
-			glbHtml::end("超过发布限额，发布总量[$num]条！");
+			glbHtml::end(lang('flow.ck_all',$num));
 		}
 	}
 
@@ -83,7 +83,7 @@ class dopCheck extends dopBase{
 		}
 		$cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-86400)."'")->count();
 		if($cnt>=$num){
-			glbHtml::end("超过发布限额，ip日发布量[$num]条！");
+			glbHtml::end(lang('flow.ck_day',$num));
 		}
 	}
 
@@ -98,7 +98,7 @@ class dopCheck extends dopBase{
 		$cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-$num)."'")->count();
 		//dump($cnt); dump($num);
 		if($cnt>0){
-			glbHtml::end("重复发布时间间隔限额，<br>时间间隔需>[$num]秒！");
+			glbHtml::end(lang('flow.ck_rep',$num));
 		}
 	}
 

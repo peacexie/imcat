@@ -10,6 +10,8 @@ td.read{ text-align:left; line-height:180%; }
 .bat_fdiv { position:relative; }
 .bat_delbtn { display:inline-block; position:absolute; float:left; left:480px; top:5px; }
 
+input.uploc { width:320px; display:inline-block; }
+
 .idShow {
   width:240px; height:240px; 
   overflow:hidden;

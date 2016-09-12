@@ -11,7 +11,7 @@ if($act=='doout'){
     $remsg = $res[0]=='OK' ? '' : $res[1];
     $recbk = basReq::val('recbk');
     if($res[0]=='OK' && $recbk){
-      $remsg = "处理跳转：<br>$recbk";
+      $remsg = lang('user.lon_jump').": <br>$recbk";
     }
   }
 }
@@ -29,24 +29,24 @@ if($act=='doout'){
   {if $user->userFlag=='Error' }
   <div class="pgu_login">
     <div class="apply">
-      <p> 错误登录次数：{$user->usess['errno']}次;  </p>
-      <p> 锁定时间至：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  </p>
+      <p> {lang(user.lon_ercnt,$user->usess['errno'])} </p>
+      <p> {lang(user.lon_lockto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  </p>
     </div>
     <div class="msg">
-    <p> 错误登录次数太多！操作锁定中...... </p>
+    <p> {lang(user.lon_erlock)} </p>
     </div>
     <div class="cleft"></div>
   </div>
   {elseif $user->userFlag=='Login' }
   <div class="pgu_login">
     <div class="apply">
-      <p> 切换用户？请先【<a href="?mkv={$this->mkv}&act=doout">登出</a>】;  <br>
-          超是时间至：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  
+      <p> {lang(user.lon_change)}【<a href="?mkv={$this->mkv}&act=doout">{lang(user.lon_logout)}</a>】;  <br>
+          {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  
       </p>
     </div>
     <div class="msg">
-    <p> [{$user->usess['uname']}] 已经登录！ 
-        <a href="{surl(0)}">用户中心</a><!--:user-login-->
+    <p> [{$user->usess['uname']}] {lang(user.lon_logined)}
+        <a href="{surl(0)}">{lang(user.pub_cuser)}</a><!--:user-login-->
     </p>
     </div>
     <div class="cleft"></div>
@@ -54,25 +54,31 @@ if($act=='doout'){
   {else}
   <div id="idx_login" class="pgu_login">
     <div class="apply">
-      <p> 我不想打字？ <br>
-        <a href="#" onClick="funcLogin(1)">点一下我&gt;&gt;</a>，用微信扫描登录！ </p>
-      <p> 还没有账号？ <br>
-        <a href="{surl(user-apply)}">跟我来&gt;&gt;</a>，30秒就申请一个！ </p>
+      <p>
+        <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中文]</a>
+        -
+        <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:en">[English]</a>
+        #
+        <a href="{surl(user-apply)}">-&gt;{lang(user.lon_reg)}</a>
+      </p>
+      <p> {lang(user.lon_type)} <br>
+        <a href="#" onClick="funcLogin(1)">{lang(user.lon_click)}&gt;&gt;</a>, {lang(user.lon_scana)} </p>
+      <p> {lang(user.lon_noidpw)} <br>
+        <a href="{surl(user-apply)}">{lang(user.lon_followme)}&gt;&gt;</a>, {lang(user.lon_app30)} </p>
       <div class="h10">&nbsp;</div>
-      <p class="tc"> <a href="{surl(user-login)}">登陆</a> # <a href="{surl(user-apply)}">注册</a> # <a href="{surl(0)}">首页</a> </p>
     </div>
     <div class="login">
-      <p> <i>用户名: </i>
-        <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="txt w200" reg="key:2-15" tip="字母开头,允许3-16字节<br>允许字母数字下划线" />
+      <p> <i>{lang(uname)}: </i>
+        <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="txt w200" reg="key:2-15" tip="{lang(admin.fad_uid31546)}" />
       </p>
-      <p> <i>密　码: </i>
-        <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" class="txt w200" reg="str:6-15" autocomplete="off" tip="允许6,15字节" />
+      <p> <i>{lang(upass)}: </i>
+        <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" class="txt w200" reg="str:6-25" autocomplete="off" tip="{lang(admin.fad_up624)}" />
       </p>
-      <p> <i>认证码: </i>
+      <p> <i>{lang(vcode)}: </i>
         <script>fsInit('fmlogin');</script>
       </p>
-      <p class="button"> <i class="right pt2 f14"><a href="{surl(user-getpw)}">忘记密码</a></i> <i class="item">&nbsp; </i>
-        <input name="submit" value="提交" tabindex="19830" type="submit" class="btn" />
+      <p class="button"> <i class="right pt2 f14"><a href="{surl(user-getpw)}">{lang(user.lon_fpass)}</a></i> <b class="item">&nbsp; </b>
+        <input name="submit" value="{lang(submit)}" tabindex="19830" type="submit" class="btn" />
         <input name="act" type="hidden" value="dologin" />
         <input name="recbk" type="hidden" value="{$recbk}" />
       </p>
@@ -81,12 +87,18 @@ if($act=='doout'){
   </div>
   <div id="idx_lscan" class="pgu_lscan" style="display:none;">
     <div class="apply">
-      <p> 我不想用微信？ <br>
-        <a href="#" onClick="funcLogin()">点一下我&gt;&gt;</a>，用账号密码登录！ </p>
-      <p> 还没有账号？ <br>
-        微信扫描10秒即可注册一个账号！ </p>
+      <p>
+        <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中文]</a>
+        -
+        <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:en">[English]</a>
+        #
+        <a href="{surl(user-apply)}">-&gt;{lang(user.lon_reg)}</a>
+      </p>
+      <p> {lang(user.lon_nowechat)} <br>
+        <a href="#" onClick="funcLogin()">{lang(user.lon_click)}&gt;&gt;</a>, {lang(user.lon_uidpw)} </p>
+      <p> {lang(user.lon_noidpw)} <br>
+        {lang(user.lon_scanb)} </p>
       <div class="h10">&nbsp;</div>
-      <p class="tc"> <a href="{surl(user-login)}">登陆</a> # <a href="{surl(user-apply)}">注册</a> # <a href="{surl(0)}">首页</a> </p>
     </div>
     <div class="login">
       <p class="tc" id="lscan_msg">
@@ -97,23 +109,18 @@ if($act=='doout'){
   </div>
   {/if}
 </form>
-
 <div class="pgu_tips">
   <div class="tips">
-    <p>• 推荐浏览器: IE9+, Chrome, Firefox ；</p>
-    <p>• 第一次使用，请查看 《会员中心理帮助文件》>>>；</p>
-    <p>• 帐号密码区分大小写;帐号>=2位,密码>=5位；</p>
-    <p>• 认证码不分大小写,如错误,请刷新登陆；</p>
-    <p>• 技术支持: Peace(www.peace_xys.com)。 </p>
+    <?php basLang::inc('admin','loginread'); ?>
   </div>
   <div>
     <p class="tc">
-    <a href="{surl(chn:0)}">[首页]</a> # 
-    <a href="{surl(chn:news)}">新闻</a> # 
-    <a href="{surl(chn:cargo)}">产品</a> # 
-    <a href="{surl(chn:topic)}">专题</a> # 
-    <a href="{surl(chn:keres)}">资源</a> # 
-    <a href="{surl(user-login)}">[会员]</a>
+    <a href="{surl(chn:0)}">[{lang(user.nv2_home)}]</a> # 
+    <a href="{surl(chn:news)}">{lang(user.nv2_news)}</a> # 
+    <a href="{surl(chn:cargo)}">{lang(user.nv2_pro)}</a> # 
+    <a href="{surl(chn:topic)}">{lang(user.nv2_spe)}</a> # 
+    <a href="{surl(chn:keres)}">{lang(user.nv2_res)}</a> # 
+    <a href="{surl(user)}">[{lang(user.nv2_user)}]</a>
     </p>
     <p class="h10">&nbsp;</p>
   </div>
@@ -145,13 +152,13 @@ function fcheckLogin(sid,extp,stampys,signys){
   var url = 'actys=chkLogin&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
   $.getScript(ubase+url, function(){ //jsLog(data);
     if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
-            alert('服务器返回格式错误。');
+            alert('{lang(user.lon_errsvr)}');
       return '';
         //}else if(data.user_info.mid=="-1"){
       //$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
       //return '';
         }else if(data.uname){
-      $('#lscan_msg').html("["+data.uname+"]登录成功！");
+      $('#lscan_msg').html("["+data.uname+"]{lang(user.lon_lonok)}");
       location.reload();
       return '';
         } 

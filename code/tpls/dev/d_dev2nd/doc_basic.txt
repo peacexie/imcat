@@ -26,6 +26,9 @@
 * order-car; //1个数字
  - 格式：oCarItems = 3
 
+* lang; //1个:en/cn等
+ - lang = en
+
 
 #area32bit#32位数大小
 ```

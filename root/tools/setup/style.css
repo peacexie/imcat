@@ -21,3 +21,7 @@ ul.cmpfile { width:340px; overflow-x:scroll; padding:10px 10px 10px 8px; }
 .esql { width:670px; line-height:150%; overflow-x:scroll; white-space:pre; word-break:keep-all; word-wrap:normal; word-spacing:normal;}
 
 .upgres{ width:98%; max-width:98%; margin:10px auto; padding:10px; }
+
+.langbar { max-width: 720px; margin: 10px auto; padding:5px; border-bottom: 1px dashed #999; }
+.langbar a { padding-right:5px; }
+.langbar a:before { content:" ->"; }

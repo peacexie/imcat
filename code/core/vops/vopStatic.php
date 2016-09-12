@@ -66,21 +66,21 @@ class vopStatic{
 		}
 		return $data;
 	}
-	
+
 	// showRes
 	static function showRes($res){
-		$msg = "当前批次执行结果：<br><br>\n";
-		$msg .= $res['msg'] ? $res['msg']."<br>" : "成功执行[{$res['ok']}/{$res['cnt']}]条<br>\n";
+		$msg = lang('core.vops_batres')."<br><br>\n";
+		$msg .= $res['msg'] ? $res['msg']."<br>" : lang('core.vops_dores',"[{$res['ok']}/{$res['cnt']}]")."<br>\n";
 		$msg .= "[".date('Y-m-d H:i:s')."]<br>\n";
 		if($res['next']){ 
-			$msg .= "<br>\n3秒后执行下一批次…<br>\n";
+			$msg .= "<br>\n".lang('core.vops_3secnext')."<br>\n";
 			$js = "setTimeout(\"location.href='{$res['url']}';\",3000);"; 
 			$js = basJscss::jscode($js);
 		}else{
-			$msg .= "<br>\n执行完毕。<br>\n";
+			$msg .= "<br>\n".lang('core.vops_end')."<br>\n";
 			$js = '';	
 		}
-		glbHtml::page('执行结果：');
+		glbHtml::page(lang('core.vops_res'));
 		glbHtml::page('body');
 		echo "\n<p>$msg</p>\n<hr>\n$js";
 		unset($res['msg']); basDebug::varShow($res);
@@ -112,12 +112,12 @@ class vopStatic{
 					$msg .= vopStatic::toFile("$mod.$key")."<br>\n";
 					$re['cnt']++;
 				}else{
-					$msg .= "[$mod.$key][{$row['type']}] 忽略...<br>\n";
+					$msg .= "[$mod.$key][{$row['type']}] Skip...<br>\n";
 				}
 			}
 			$re['next'] = 1; 
 		}else{
-			$re['msg'] = '无数据';
+			$re['msg'] = 'No Data';
 			$re['next'] = 0;	
 		} 
 		$re['msg'] = $msg;
@@ -222,7 +222,7 @@ class vopStatic{
 		ob_start(); 
 		$err = $vop->run($q); 
 		if(empty($vop->ucfg)){ 
-			return $vop->err ? $vop->err : "($q)Error! 未设置模版!"; 
+			return $vop->err ? $vop->err : "($q)Error! Has NO set tpl!"; 
 		}
 		$re = ob_get_contents();
 		$kid = $vop->mod=='home' ? 'home' : $vop->key;

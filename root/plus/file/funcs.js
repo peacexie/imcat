@@ -10,7 +10,7 @@ function batSends(init){
 		$('.bat_delbtn').eq(sendNO).prop('disabled','disabled'); 
 		var id = $(d).prop('id').replace('bidiv_',''); 
 		//msg & 循环
-		$('#res_msg').html('正在提交第['+id+']个项目…');
+		$('#res_msg').html(lang('jfile.now',id));
 		de = 13; if(batSend1(id)) { de=300; }
 		setTimeout("batSends()",de);
 		sendNO++;
@@ -21,18 +21,18 @@ function batSends(init){
 			//msg & 循环
 			if(t.indexOf('[OK!]')>=0) { sendOK++; deelNO++; }
 			if(t.indexOf('[Error]')>=0) { deelNO++; }
-			$('#res_msg').html('共['+sendOK+']个项目提交成功！');
+			$('#res_msg').html(lang('jfile.all',sendOK));
 			setTimeout("batSends()",300);
         });
 	}else{ //总结果
-	  $('#res_msg').html('共['+sendOK+']个项目提交成功！');
+	  $('#res_msg').html(lang('jfile.all',sendOK));
 	}
 }
 
 function batSend1(id){ 
     var sDoc = $(window.frames["biifr_"+id].document); //jsLog(sImg);
 	var upren = $("#upren").val();
-	if($("#file1",sDoc).val().length==0) { $("#bidiv_"+id).html("[Null] 空项目，未提交！"); }
+	if($("#file1",sDoc).val().length==0) { $("#bidiv_"+id).html("[Null] "+lang('jfile.null')); }
 	else { $("#upren",sDoc).val(upren); $("#fup1",sDoc).submit(); sendOK++; }
 	return true;
 }
@@ -40,7 +40,7 @@ function batSend1(id){
 function batDel1(id){
 	csm = $("#tdfiles div").length;
 	if(csm <=1 ){
-		alert('至少要有一个文件!');	
+		alert(lang('jfile.file1'));	
 		return;	
 	}
 	$('#bidiv_'+id).remove();
@@ -52,7 +52,7 @@ function batAdd1(n){
 	var k = '', s = '', csm = $("#tdfiles div").length;
 	for(var i=0;i<n;i++){
 		if(csm+i+1 > 96){
-			alert('最多一次只能上传24个文件!');	
+			alert(lang('jfile.filem'));	
 			break;
 		}
 		var k = addCnt+'_'+(i+1); 
@@ -66,7 +66,7 @@ function batAdd1(n){
 function fviShow(id,url,td){
 	var idImg = jsElm.jeID(id);
 	if(url){
-		idImg.innerHTML = '图片预浏:<br>'+url+'<br><img src="' + url + '" onload="imgShow(this,210,210)" border="0" />'; 
+		idImg.innerHTML = lang('jfile.vpic')+':<br>'+url+'<br><img src="' + url + '" onload="imgShow(this,210,210)" border="0" />'; 
 		idImg.className = "idShow";
 	}else{
 		idImg.innerHTML = ''; 	
@@ -116,18 +116,18 @@ function fviPick(file,type,size){
 
 function mediaChange(){
 	var vtype = otype.value;
-	jsElm.jeID('ext_flag').innerHTML = '扩展属性';
+	jsElm.jeID('ext_flag').innerHTML = lang('jfile.expar');
 	jsElm.jeID('ext').value = '';
 	if(vtype=='iframe'){
 		jsElm.jeID('ext_flag').innerHTML = 'xx';
 		jsElm.jeID('r_ext').style.display = 'none';
 	}else if(vtype=='map'){
-		jsElm.jeID('ext_flag').innerHTML = '标点名称';
+		jsElm.jeID('ext_flag').innerHTML = lang('jfile.pname');
 	}else if(vtype=='bgsnd'){
-		jsElm.jeID('ext_flag').innerHTML = '循环播放';
+		jsElm.jeID('ext_flag').innerHTML = lang('jfile.loop');
 		jsElm.jeID('ext').value = 'true';
 	}else{ //
-		jsElm.jeID('ext_flag').innerHTML = '自动播放';
+		jsElm.jeID('ext_flag').innerHTML = lang('jfile.auto');
 		jsElm.jeID('ext').value = 'true';
 	}
 	if(vtype=='map'){
@@ -142,16 +142,16 @@ function mediaInsert(){
 	var vtype = otype.value;
 	var val = type=='map' ? jsElm.jeID('map').value : jsElm.jeID('url').value;
 	if(vtype==''){ 
-		alert('请选择有效的[媒体类型]');
+		alert(lang('jfile.inpmtype'));
 		return;
 	}
 	if(vtype=='map'){
 	if(val.length==0){
-		alert('请输入有效的[地图坐标]');
+		alert(lang('jfile.inpiont'));
 		return;
 	}}else{
 	if(val.length==0){
-		alert('请输入有效的[媒体地址]');
+		alert(lang('jfile.inpmurl'));
 		return;
 	}}
 	var cfg = {};
@@ -175,7 +175,7 @@ function PreviewImage(fileObj,imgPreviewId,divPreviewId){
                 }    
                 reader.readAsDataURL(fileObj.files[0]);  
             }else if(browserVersion.indexOf("SAFARI")>-1){  
-                alert("不支持Safari6.0以下浏览器的图片预览!");  
+                alert(lang('jfile.saf60'));  
             }  
         }else if (browserVersion.indexOf("MSIE")>-1){  
             if(browserVersion.indexOf("MSIE 6")>-1){//ie6  
@@ -208,7 +208,7 @@ function PreviewImage(fileObj,imgPreviewId,divPreviewId){
             jsElm.jeID(imgPreviewId).setAttribute("src",fileObj.value);  
         }           
     }else{  
-        alert("仅支持"+allowExtention+"为后缀名的文件!");  
+        alert(lang('jfile.fixfile',allowExtention));  
         fileObj.value="";//清空选中文件  
         if(browserVersion.indexOf("MSIE")>-1){                          
             fileObj.select();  

@@ -4,10 +4,7 @@
 if($mod=='adminer') $dop->so->whrstr .= " AND `aip` !='disturb'";
 $dop->sobar($dop->msgBar($msg));
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-echo "<th>选</th><th>账号</th><th>等级</th>"; 
-echo "<th>名称</th><th>电话</th><th>E-Mail</th><th>聊天号</th>";
-echo "<th>注册</th><th>注册IP</th>"; 
-echo "<th>修改</th>\n</tr>\n";
+basLang::inc('aflow', 'users_list');
 $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
 	foreach($rs as $r){ 
@@ -22,11 +19,11 @@ if($rs=$dop->getRecs()){
 	  echo $cv->Field($r['miuid']);
 	  echo $cv->Time($r['atime']);
 	  echo $cv->Field($r['aip']);
-	  echo $cv->Url('修改',1,"$aurl[1]&view=form&uid=$r[uid]&recbk=ref","");
+	  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&uid=$r[uid]&recbk=ref","");
 	  echo "</tr>"; 
 	}
 	$dop->pgbar($idfirst,$idend);
 }else{
-	echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+	echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
 }
 glbHtml::fmt_end(array("mod|$mod"));

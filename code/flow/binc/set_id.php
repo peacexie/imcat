@@ -4,13 +4,13 @@
 if(!empty($bsend)){
 	
 	if(empty($fm['op'])){ 
-		basMsg::show('请选择操作！');
+		basMsg::show(lang('flow.dops_setop'));
 		glbHtml::end();
 	}
 	if($fm['op']=='reid' && $fm['kre']!=$kid){
 		$db->table($tabid)->data(array('pid'=>$fm['kre']))->where("model='$mod' AND pid='$kid'")->update();
 		$db->table($tabid)->data(array('kid'=>$fm['kre']))->where("model='$mod' AND kid='$kid'")->update();
-		$msg = "改ID[{$fm['kre']}]成功"; 
+		$msg = lang('admin.sid_eid')."[{$fm['kre']}]".lang('admin.sid_ok'); 
 	}elseif($fm['op']=='move'){  
 		$deep = empty($fm['pid']) ? '1' : $cfg['i'][$fm['pid']]['deep']+1; 
 		$dorg = $cfg['i'][$kid]['deep'];
@@ -26,7 +26,7 @@ if(!empty($bsend)){
 			$res2 = (intval($dmov)>0 ? '-' : '+').abs($dmov);
 			$kids && $db->query("UPDATE {$db->pre}$tabid{$db->ext} SET deep=deep$res2 WHERE model='$mod' AND kid IN($kids)"); 
 		}
-		$msg = '移动成功'; 
+		$msg = lang('flow.msg_move'); 
 	} 
 	glbCUpd::upd_model($mod);
 	basMsg::show($msg);	
@@ -35,16 +35,16 @@ if(!empty($bsend)){
 
 	echo "<div class='h02'>&nbsp;</div>";
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-	glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />");
-	glbHtml::fmae_row('条目名称',"<input name='fm[title]' type='text' value='".$cfg['i'][$kid]['title']."' class='txt w150 disc' disabled='disabled' />");
-	glbHtml::fmae_row('操作',basElm::setRadio('op',"reid=改ID\nmove=移动"));
+	glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />");
+	glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='".$cfg['i'][$kid]['title']."' class='txt w150 disc' disabled='disabled' />");
+	glbHtml::fmae_row(lang('flow.title_op'),basElm::setRadio('op',"reid=".lang('admin.sid_eid')."\nmove=".lang('admin.sid_move')));
 
-	$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=keyExists&mod=$mod&tab=$tabid&old_val=$kid' tip='字母开头,允许字母数字下划线<br>允许2-12字符,建议4-5字符'";
-	glbHtml::fmae_row('新ID',"<input name='fm[kre]' type='text' value='$kid' class='txt w150' maxlength='12' reg='key:2-12' $vstr />");
+	$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=keyExists&mod=$mod&tab=$tabid&old_val=$kid' tip='".lang('admin.fad_tip21245')."'";
+	glbHtml::fmae_row(lang('flow.title_newid'),"<input name='fm[kre]' type='text' value='$kid' class='txt w150' maxlength='12' reg='key:2-12' $vstr />");
 	
 	$ops = comTypes::getOpt(comTypes::getPars($cfg['i'],$cfg['deep']));
-	$ops = str_replace('-请选择-','-顶级-',$ops); 
-	glbHtml::fmae_row('父条目',"<select name='fm[pid]'>$ops</select> (移动操作生效)");
-	glbHtml::fmae_send('bsend','提交','25');
+	$ops = str_replace(lang('admin.sid_sel'),lang('admin.sid_top'),$ops); 
+	glbHtml::fmae_row(lang('flow.title_pid'),"<select name='fm[pid]'>$ops</select> (".lang('admin.sid_uinmv').")");
+	glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 	glbHtml::fmt_end(array("mod|$mod","pid|$pid","kid|$kid"));
 }

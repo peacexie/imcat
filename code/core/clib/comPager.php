@@ -139,8 +139,8 @@ class comPager{
 	private function links(){
 		$pcnt = ceil($this->prec/$this->psize);
 		$a = array(); //$bar = ''; 
-		$sFirst = '&laquo;||'.basLang::get('page_First');   $sPrev = '&lt;|'.basLang::get('page_Prev');   
-		$sNext = basLang::get('page_Next').'|&gt;';   $sLast = basLang::get('page_Last').'||&raquo;';
+		$sFirst = '&laquo;||'.basLang::show('page_First');   $sPrev = '&lt;|'.basLang::show('page_Prev');   
+		$sNext = basLang::show('page_Next').'|&gt;';   $sLast = basLang::show('page_Last').'||&raquo;';
 		$a['total'] = "<li>$this->prec</li>";
 		$a['pagno'] = "<li>$this->page/$pcnt</li>";
 		if($pcnt<=1){

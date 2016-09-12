@@ -112,17 +112,12 @@ class usrMember extends usrBase{
 			$url = vopUrl::fout('umc:0','',1)."?mkv=user-getpw&act=emshow&upass=$upass";
 			$sys_name = $_cbase['sys_name'];
 			$mail = new extEmail();
-			$subj = "邮件找回密码";
-			$data = "$uname 您好！<br><br>\n\n";
-			$data .= "欢迎使用 {$sys_name} 邮件找回密码功能！<br>\n";
-			$data .= "请点击（或复制）访问如下链接：<br>\n";
-			$data .= "$url<br>\n";
-			$data .= "根据提示，找回密码。<br>\n<br>\n";
-			$data .= "{$sys_name} ".date('Y-m-d H:i:s')."<br>\n";
-			$re = $mail->send($memail,$subj,$data,$_cbase['sys_name']);
-			$re = $re=='SentOK' ? '请登录邮件，根据提示找回密码。' : "发邮件错误！请稍等再试，或联系管理员。";
+			$subj = lang('usrm_emsubj');
+			$data = basLang::inc('uless','userm_empw',array('uname'=>$uname,'sys_name'=>$sys_name,'url'=>$url));
+			$re = $mail->send($memail,$subj,$data,$sys_name);
+			$re = $re=='SentOK' ? lang('usrm_emtip') : lang('usrm_emeror');
 		}else{
-			$re = "账号-邮箱:参数错误！";
+			$re = lang('usrm_eremail');
 		}
 		return $re;
 	}	

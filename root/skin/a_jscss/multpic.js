@@ -24,7 +24,7 @@ function mpic_mshow(fmid,file,val){
 	if(val){ 
 		opt = opt.replace("value='"+val+"'","value='"+val+"' selected");	
 	}
-	sets = "<i class='close' title='删除' onclick=\"mpic_mdel('"+fmid+"',this)\">[X]</i>"+opt;
+	sets = "<i class='close' title='"+lang('jcore.mpic_del')+"' onclick=\"mpic_mdel('"+fmid+"',this)\">[X]</i>"+opt;
 	pic = "<div class='pitem'>"+sets+"<img src='"+file+"' width=120 height=90 onload='imgShow(this,120,90)'></div>";
 	$('#'+fmid+'show').append(pic);
 }
@@ -44,7 +44,7 @@ function mpic_madd(fmid,file){
 		mpic_marea(fmid,val+file+';\n');
 		cfg.data.push(file);
 	}else{	
-		alert('不要重复加入!'); //jsLog('ss:'+file); 
+		alert(lang('jcore.mpic_readd')); //jsLog('ss:'+file); 
 	}
 }
 //删除一个图
@@ -111,7 +111,7 @@ function mpic_view(fmid,w,h){
 		str += pic;
 	}
 	$('#'+fmid+'show').html(str);
-	opt = cfg.opt.replace("-请选择-","-所有项-").replace("mpic_mset(","mpic_vtype(");
+	opt = cfg.opt.replace(lang('jcore.mpic_select'),lang('jcore.mpic_allitems')).replace("mpic_mset(","mpic_vtype(");
 	$('#'+fmid+'out .seltype').html(opt);
 	$('#'+fmid+'out .cntall').html(cfg.data.length);
 }
@@ -130,7 +130,7 @@ function mpic_vtype(fmid,e){
         });
 	}
 	if(!n){
-		if(val){ alert('无相关项,显示所有！'); $(e).val(''); }
+		if(val){ alert(lang('jcore.mpic_norelate')); $(e).val(''); }
 		$('#'+fmid+'show .pview').show();
 		n = $('#'+fmid+'show .pview').length;
 	}
@@ -149,7 +149,7 @@ function mpic_data(fmid, rst){
 	if(rst){
 		cfg = cfg.replace(/\n/g,'').replace(/\r/g,'').replace(/ /g,'').split(';');
 		arr = str.replace(/\n/g,'').replace(/\r/g,'').replace(/ /g,'').split(';'); 
-		opt = "<option value=''>-请选择-</option>"; 
+		opt = "<option value=''>"+lang('jcore.mpic_select')+"</option>"; 
 		for(i=0;i<cfg.length;i++){
 			if(cfg[i].indexOf('|')>0){ 
 				c.push(cfg[i]); a = cfg[i].split('|');

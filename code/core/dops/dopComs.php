@@ -25,16 +25,16 @@ class dopComs extends dopBase{
 	// 翻页条,批量操作
 	function pgbar($idfirst,$idend,$exop=""){ //\ndnow|删除当前
 		$pg = $this->pg->show($idfirst,$idend);
-		$op = "".basElm::setOption("del|删除\nshow|显示\nhidden|隐藏$exop",'','-批量操作-');
+		$op = "".basElm::setOption(lang('flow.op_op3')."\n$exop",'',lang('flow.op0_bacth'));
 		dopFunc::pageBar($pg,$op);
 	}
 	// 搜索条 // check,fields
 	function sobar($msg='',$width=30){ 
 		$mod = $this->mod;
 		$sbar = "\n".$this->so->Type(90,'-pKey-'); 
-		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,'-筛选-');
+		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
 		$sbar .= "\n&nbsp; ".$this->so->Show(60);
-		$sbar .= "\n&nbsp; ".$this->so->Order(array('cid' => 'ID号(降)','cid-a' => 'ID号(升)',));
+		$sbar .= "\n&nbsp; ".$this->so->Order(array('cid' => lang('flow.dops_ordkidd'),'cid-a' => lang('flow.dops_ordkida'),));
 		$this->so->Form($sbar,$msg,$width);
 	}
 
@@ -51,22 +51,22 @@ class dopComs extends dopBase{
 		if($pmod){
 			$pmname = $_groups[$pmod]['title'];
 			$ptitle = $pid ? dopFunc::vgetTitle($pmod,$pid) : '';
-			$item = "<input name='fm[pid]' type='text' id='fm[pid]' value='$pid' reg='fix:xid' readonly tip='10-24字符'> &nbsp; ";
+			$item = "<input name='fm[pid]' type='text' id='fm[pid]' value='$pid' reg='fix:xid' readonly tip='".lang('flow.dc_c1024')."'> &nbsp; ";
 			$item .= "<input type='text' id='fm2[refname]' value='$ptitle' class='txt w240' readonly>";
-			$item .= "<input type='button' value='来源资料' onclick=\"pickOpen('$pmod','','fm[pid]','fm2[refname]',1)\" class='btn'>";
+			$item .= "<input type='button' value='".lang('flow.dops_reldata')."' onclick=\"pickOpen('$pmod','','fm[pid]','fm2[refname]',1)\" class='btn'>";
 		}else{
-			$item = "<input id='fm[pid]' name='fm[pid]' type='text' value='无[关联模块]ID' maxlength=24 class='txt w240 dis' disabled />";
+			$item = "<input id='fm[pid]' name='fm[pid]' type='text' value='".lang('flow.dc_norel')."' maxlength=24 class='txt w240 dis' disabled />";
 		}
-		glbHtml::fmae_row('关联信息',$item,$hrel);
-		glbHtml::fmae_row('显示',$this->fmShow(),$hshow);
-		if($head) echo "<tr><th>详情资料</th><th class='tr'>---</th></tr>\n";
+		glbHtml::fmae_row(lang('flow.dops_reldata'),$item,$hrel);
+		glbHtml::fmae_row(lang('flow.dops_ishow'),$this->fmShow(),$hshow);
+		if($head) echo "<tr><th>".lang('flow.dops_detail')."</th><th class='tr'>---</th></tr>\n";
 	}
 
 	// 属性设置
 	function fmProp($head=1,$hid=0){ 
 		dopFunc::fmSafe();
 		$mod = $this->mod;
-		if($head) echo "<tr><th nowrap>属性设置</th><th class='tr'>---</th></tr>\n";
+		if($head) echo "<tr><th nowrap>".lang('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
 		$this->fmAE3($hid);
 	}
 	// PKey pMod,pKey资料

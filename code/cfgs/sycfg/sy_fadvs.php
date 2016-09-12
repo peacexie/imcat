@@ -1,4 +1,6 @@
 <?php
+(!defined('RUN_MODE')) && die('No Init');
+
 $_sy_fadvs = array (
     'title' => 
     array (
@@ -121,3 +123,11 @@ $_sy_fadvs = array (
     ),
 
 );
+
+// 实现多语言
+$__ucfg = basLang::ucfg('fadvs');
+foreach ($_sy_fadvs as $__key => $__val) {
+  empty($__ucfg[$__key]) || $_sy_fadvs[$__key]['title'] = $__ucfg[$__key];
+}
+unset($__ucfg,$__pval,$__val);
+

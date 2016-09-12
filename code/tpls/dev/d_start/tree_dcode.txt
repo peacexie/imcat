@@ -1,5 +1,4 @@
-卷 eData 的文件夹 PATH 列表
-卷序列号为 00000200 C821:C0A2
+
 E:.
 ├─adpt
 │  ├─cache
@@ -36,10 +35,10 @@ E:.
 │  ├─emod
 │  └─emou
 ├─lang
-│  ├─admin
-│  ├─core
-│  ├─user
-│  └─vops
+│  ├─dbins
+│  ├─kvphp
+│  ├─ptinc
+│  └─ucfgs
 └─tpls
     ├─adm
     │  ├─b_func
@@ -71,6 +70,15 @@ E:.
     │  ├─d_tester
     │  ├─d_tools
     │  ├─d_tpltag
+    │  ├─d_uplog
+    │  └─_config
+    ├─doc
+    │  ├─b_func
+    │  ├─c_demo
+    │  ├─c_mod
+    │  ├─c_page
+    │  ├─c_pub
+    │  ├─d_start
     │  ├─d_uplog
     │  └─_config
     ├─mob

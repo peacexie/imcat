@@ -15,27 +15,7 @@ class comUpload
 	private $fileSize; //文件大小
 	private $fileType; //文件类型
 	private $stateInfo; //上传状态信息,
-	private $stateMap = array(
-		"SUCCESS", //上传成功标记
-		"文件大小超出 upload_max_filesize 限制",
-		"文件大小超出 MAX_FILE_SIZE 限制",
-		"文件未被完整上传",
-		"没有文件被上传",
-		"上传文件为空",
-		"ERROR_TMP_FILE" => "临时文件错误",
-		"ERROR_TMP_FILE_NOT_FOUND" => "找不到临时文件",
-		"ERROR_SIZE_EXCEED" => "文件大小超出网站限制",
-		"ERROR_TYPE_NOT_ALLOWED" => "文件类型不允许",
-		"ERROR_CREATE_DIR" => "目录创建失败",
-		"ERROR_DIR_NOT_WRITEABLE" => "目录没有写权限",
-		"ERROR_FILE_MOVE" => "文件保存时出错",
-		"ERROR_FILE_NOT_FOUND" => "找不到上传文件",
-		"ERROR_WRITE_CONTENT" => "写入文件内容错误",
-		"ERROR_UNKNOWN" => "未知错误",
-		"ERROR_DEAD_LINK" => "链接不可用",
-		"ERROR_HTTP_LINK" => "链接不是http链接",
-		"ERROR_HTTP_CONTENTTYPE" => "链接contentType不正确"
-	);
+	public $stateMap = array();
 
 	/**
 	 * @param string $fileField 表单名称
@@ -44,6 +24,9 @@ class comUpload
 	 */
 	public function __construct($fileField, $config, $type = "upload")
 	{
+		$this->stateMap = basLang::ucfg('cfglibs.upload');
+		//dump($this->config); dump($this->stateMap);
+		$this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $this->stateMap['ERROR_TYPE_NOT_ALLOWED'];
 		$this->fileField = $fileField;
 		$this->config = $config;
 		$this->type = $type;
@@ -54,8 +37,6 @@ class comUpload
 		} else {
 			$this->upFile();
 		}
-
-		$this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $this->stateMap['ERROR_TYPE_NOT_ALLOWED'];
 	}
 
 	/**
@@ -190,8 +171,8 @@ class comUpload
 	// 上传错误检查
 	private function getStateInfo($errCode)
 	{
-		$msg = !$this->stateMap[$errCode] ? $this->stateMap["ERROR_UNKNOWN"] : $this->stateMap[$errCode];
-		if(intval($errCode)) $msg = "$errCode:$msg";
+		$msg = isset($this->stateMap[$errCode]) ? $this->stateMap[$errCode] : $this->stateMap["ERROR_UNKNOWN"];
+		$msg = "$errCode:$msg";
 		return $msg;
 	}
 
@@ -241,7 +222,7 @@ class comUpload
 		return $flag;
 	}
 	// 文件大小检测
-	private function  checkSize()
+	private function checkSize()
 	{
 		$flag = $this->config["maxSize"]==='(supper)' ? true : $this->fileSize <= ($this->config["maxSize"]*1024 );
 		return $flag;

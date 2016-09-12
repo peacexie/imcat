@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__)."/config.php");
 ?>
 <!DOCTYPE html><html><head>
-<title>支付流程演示</title>
+<title><?php lang('a3rd.demo_title',0); ?></title>
 <meta charset="utf-8">
 <style>
 * { margin: 0; padding: 0; }
@@ -37,51 +37,51 @@ ul, ol { list-style: none; }
 <div id="main">
     <div id="head">
         <dl class="alipay_link">
-            <a target="_blank" href="#"><span>演示首页</span></a>| <a target="_blank" href="#"><span>商家服务</span></a>| <a target="_blank" href="#"><span>帮助中心</span></a>
+            <a target="_blank" href="#"><span>Homepage</span></a>| <a target="_blank" href="#"><span>VIP Center</span></a>| <a target="_blank" href="#"><span>Help Center</span></a>
         </dl>
-        <span class="title">支付流程演示交易接口快速通道</span> </div>
+        <span class="title"><?php lang('a3rd.demo_title',0); ?></span> </div>
     <div class="cashier-nav">
         <ol>
-            <li class="current">1、确认信息 →</li>
-            <li>2、点击确认 →</li>
-            <li class="last">3、确认完成</li>
+            <li class="current">1. Step1 →</li>
+            <li>2. Step2 →</li>
+            <li class="last">3. Step3</li>
         </ol>
-    </div>
+    </div>  
+
     <form name='demopayment' action='uapi.php' method='post' target="_blank">
         <div id="body" style="clear:left">
             <dl class="content">
-                <dt>商户订单号：</dt>
+                <dt><?php lang('a3rd.index_notitle',0); ?></dt>
                 <dd> <span class="null-star">*</span>
                     <input name="out_trade_no" value="<?php echo basKeyid::kidTemp('(def)'); ?>" size="30" />
-                    <span>商户网站订单系统中唯一订单号，必填 </span> </dd>
-                <dt>订单名称：</dt>
+                    <span><?php lang('a3rd.index_tipno',0); ?></span> </dd>
+                <dt><?php lang('a3rd.index_ordtitle',0); ?></dt>
                 <dd> <span class="null-star">*</span>
                     <input name="subject" value="testName" size="30" />
-                    <span>必填 </span> </dd>
-                <dt>付款金额：</dt>
+                    <span><?php lang('a3rd.index_tipmust',0); ?> </span> </dd>
+                <dt><?php lang('a3rd.index_ordamount',0); ?></dt>
                 <dd> <span class="null-star">*</span>
                     <input name="total_fee" value="0.01" size="30" />
-                    <span>必填 </span> </dd>
-                <dt>订单描述
-                    ：</dt>
+                    <span><?php lang('a3rd.index_tipmust',0); ?> </span> </dd>
+                <dt><?php lang('a3rd.index_ordrem',0); ?></dt>
                 <dd> <span class="null-star">*</span>
                     <input name="ordbody" value="testDescription" size="30" />
                     <span></span> </dd>
-                <dt>商品展示地址：</dt>
+                <dt><?php lang('a3rd.index_ordurl',0); ?></dt>
                 <dd> <span class="null-star">*</span>
                     <input name="show_url" value="http://www.domain.com/item/1234.php" size="30" />
-                    <span>需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html </span> </dd>
+                    <span>eg. http://www.my_domain.com/myorder.html </span> </dd>
                 <dt></dt>
                 <dd> <span class="new-btn-login-sp">
-                    <button class="new-btn-login" type="submit" style="text-align:center;">确 认</button>
+                    <button class="new-btn-login" type="submit" style="text-align:center;"><?php lang('a3rd.index_confirm',0); ?></button>
                     </span> </dd>
             </dl>
         </div>
     </form>
     <div id="foot">
         <ul class="foot-ul">
-            <li><font class="note-help">如果您点击“确认”按钮，即表示您同意该次的执行操作。 </font></li>
-            <li> 支付流程演示@2011-2015 </li>
+            <li><font class="note-help">Its JUST DEMO Pay Flow!</font></li>
+            <li> Pay Demo Flow@2011-2016 </li>
         </ul>
     </div>
 </div>

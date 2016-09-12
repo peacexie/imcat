@@ -20,7 +20,7 @@ class dopBSo{
 		$this->type = $cfg['pid']; 
 	}
 	// 搜索项-类别
-	function Type($w,$msg='-类别-'){ 
+	function Type($w,$msg='(null)'){ 
 		$stype = basReq::val('stype','','Key');
 		if($stype){
 			$this->urlstr .= "&stype=$stype";
@@ -36,20 +36,23 @@ class dopBSo{
 			$str = "\n<input name='stype' type='text' class='w90' value='$stype'>";
 		}else{
 			$str = "\n<select name='stype' class='w$w'>"; 
+			if($msg=='(null)') $msg=lang('flow.op0_type');
 			$str .= comTypes::getOpt($this->cfg['i'],$stype,$msg,0); 
 			$str .= "</select>";
 		} 
 		return $str;
 	}
 	// 搜索项-Keyword
-	function Word($w1=80,$w2=90,$msg='-筛选-',$soarr=array()){ 
+	function Word($w1=80,$w2=90,$msg='(null)',$soarr=array()){ 
+		if($msg=='(null)') $msg = lang('flow.op0_filt');
 		$sfid = basReq::val('sfid',$this->dskey,'Key');
 		$sfop = basReq::val('sfop','lb','Key');
 		$sfkw = basReq::val('sfkw');
 		if($sfkw && isset($this->cfg['f'][$sfid])){ 
 			$this->urlstr .= "&sfid=$sfid&sfkw=$sfkw&sfop=$sfop";
+			$fcfg = $this->cfg['f'][$sfid];
 			// fmextra=winpop
-			if(in_array($this->cfg['f'][$sfid]['type'],array('select','cbox','radio'))){
+			if(!empty($fcfg['type']) && in_array($fcfg['type'],array('select','cbox','radio'))){
 				$this->whrstr .= basSql::whrScbr($this->cfg['f'],$sfid,$sfkw); //" AND `$sfid` LIKE '$sfkw%'";
 			}else{
 				if($sfop=='ll') $this->whrstr .= " AND `$sfid` LIKE '$sfkw%'";
@@ -132,13 +135,14 @@ class dopBSo{
 	}
 	// 搜索项-Show()
 	function Show($w=70){ 
-		$item = basElm::setOption("s1=显示\ns0=隐藏",@$val,'-显示-'); 
+		$item = basElm::setOption("s1=".lang('flow.op_show')."\ns0=".lang('flow.op_hide')."",@$val,lang('flow.op0_show')); 
 		$str = "\n<select name='show' class='w$w'>$item</select>";
 		return $str;
 	}
 	// 搜索项-排序
-	function Order($ord_now,$w=80,$msg='-排序-',$opubs='-1'){ 
-		$ord_pub = $opubs==='-1' ? array('atime' => '添加时间','etime' => '修改时间') : $opubs;
+	function Order($ord_now,$w=80,$msg='(null)',$opubs='-1'){ 
+		if($msg=='(null)') $msg = lang('flow.op0_order');
+		$ord_pub = $opubs==='-1' ? array('atime' => lang('flow.log_atime'),'etime' => lang('flow.log_etime')) : $opubs;
 		$str = "\n<select name='order' class='w$w'>"; 
 		$ords = array_merge($ord_pub,$ord_now);
 		$str .= basElm::setOption($ords,$this->order,$msg); 
@@ -149,7 +153,7 @@ class dopBSo{
 	function Form($bar,$msg,$w,$khid=array()){
 		global $_cbase;
 		$mod = $this->mod;
-		$bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='搜索'>";
+		$bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".lang('flow.dops_search')."'>";
 		echo "\n<form id='fmid' name='fmid' method='GET' action='?".$this->urlstr."'>";
 		empty($_cbase['run']['sobarnav']) || $bar = $_cbase['run']['sobarnav']."$bar";
 		glbHtml::tab_bar($msg,$bar,$w,'tl');
@@ -169,13 +173,13 @@ class dopBSo{
 	// getOptions(Select)
 	function Options($types='',$def='',$soarr=array()){ 
 		if($types=='char'){
-			$msg = '-字段-';
+			$msg = lang('flow.op0_type');
 			$ft = 'varchar';
 		}elseif($types=='num'){
-			$msg = '-范围-';
+			$msg = lang('flow.op0_area');
 			$ft = 'tinyint,int,float';
 		}else{
-			$msg = '-搜索-';
+			$msg = lang('flow.op0_search');
 			$ft = '';	
 		}
 		if(!empty($soarr)){

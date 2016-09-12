@@ -14,13 +14,13 @@ foreach($groups as $kg){
 	$nav .= "\n $igap <a href='?act={a}&ano=$kg'>$kg</a>";
 }
 
-glbHtml::page("更新程序 - 对比数据库结构 - ".$_cbase['sys_name'],1);
+glbHtml::page(lang('tools.upi_title').' - '.$_cbase['sys_name'],1);
 glbHtml::page('imp');
 echo basJscss::imp("/tools/setup/sfunc.js?".time());
 echo basJscss::imp("/tools/setup/style.css");
 glbHtml::page('body');
 
-require(dirname(__FILE__).'/upvimp.htm');
+include(vopShow::inc('/tools/setup/upvimp.htm',DIR_ROOT));
 
 $cnew = updBase::cacGet('uimp_new');
 $cold = updBase::cacGet('uimp_old');
@@ -29,7 +29,7 @@ echo "<div class='upgres'>";
 if($act=='cpcfg'){
 	
 	updDbcmp::uimpInit();
-	echo "初始化缓存:完成！";
+	echo lang('tools.upi_recache');
 	
 }elseif($act=='cptables'){
 

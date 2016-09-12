@@ -198,16 +198,16 @@ var _tab = '3'; // 3,2,1
       <table width="230" border="0" align="center" cellpadding="0" cellspacing="1" class="brd0" >
         <tr> 
           <td nowrap style="width:30%;line-height:120%;">
-            原色<INPUT id=resOrg value="" />
+            <?php lang('plus.color_org',0); ?><INPUT id=resOrg value="" />
             <br />
-            代码<INPUT id=resCode value="" />
+            <?php lang('plus.color_code',0); ?><INPUT id=resCode value="" />
           </td>
           <td align="center" id=resDemo>
-          <span style="background-color:#CCC;line-height:100%; display:inline-block;">选中<br>色彩</span>
+          <span style="background-color:#CCC;line-height:100%; display:inline-block;"><?php lang('plus.color_now',0); ?></span>
           </td>
           <td align="right">
-          <button TYPE=SUBMIT onClick="btnSEnd('OK')">确定</button><br>
-          <button onClick="btnSEnd('Cancel')">取消</button>
+          <button TYPE=SUBMIT onClick="btnSEnd('OK')"><?php lang('plus.color_setok',0); ?></button><br>
+          <button onClick="btnSEnd('Cancel')"><?php lang('plus.color_cancel',0); ?></button>
           </td>
         </tr>
     </table></td>

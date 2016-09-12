@@ -44,6 +44,7 @@ table.tab2 { background-color: #CCC; margin: 5px; }
 table.tab2 td { background-color: #FFF; line-height: 120%; }
 table.tab2 tr.subj td { background-color: #DDD; }
 </style>
+<script src='<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?_r=1456459912'></script>
 <script src='<?php echo PATH_ROOT; ?>/skin/jslib/search.js?_r=1456459912'></script>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 5px 2px; }
@@ -69,7 +70,7 @@ if(strstr('(View,Light)',$act)){
 ?>
 <table border="1" class="tab1">
     <tr>
-        <td width="18%" align="center"><strong>文件搜索器</strong></td>
+        <td width="18%" align="center"><strong><?php lang('tools.so_title',0); ?></strong></td>
         <td align="right"><a href="?">Refresh</a> &nbsp; </td>
     </tr>
 </table>
@@ -78,7 +79,7 @@ if(strstr('(View,Light)',$act)){
     <form id="fm1" name="fm1" method="post" action="?">
         <tr>
             <td align="right">path.路径：<br />
-                [<a href="<?php echo "?path=$path&key=$key"; ?>">刷新</a>]：</td>
+                [<a href="<?php echo "?path=$path&key=$key"; ?>"><?php lang('tools.so_refresh',0); ?></a>]：</td>
             <td><table border="0" cellpadding="0" cellspacing="1">
                     <tr>
                         <td><a href='?dir=' class='item'>(Root)</a><?php echo fsget_dirs($path); ?></td>
@@ -88,21 +89,22 @@ if(strstr('(View,Light)',$act)){
                     </tr>
                 </table></td>
         </tr>
+
         <tr>
             <td align="right">case.方案：</td>
             <td><span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.php.class.tpl','.htm.html.txt.xml.css.js','code,core,adpt,flow','')" />
-                php文字 </span> <span class='item'>
+                <?php lang('tools.so_ptext',0); ?> </span> <span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.php.class.tpl','.htm.html.txt.xml.css.js','code,core','function ')" />
-                php函数 </span> <span class='item'>
+                <?php lang('tools.so_pfunc',0); ?> </span> <span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.php.class.tpl','.htm.html.txt.xml.css.js','cache,dynamic,pcache','$')" />
-                php变量 </span> <span class='item'>
+                <?php lang('tools.so_pvar',0); ?> </span> <span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.js.htm.html','.txt.xml.css','skin,jslib,a_jscss','')" />
-                js文字 </span> <span class='item'>
+                <?php lang('tools.so_js',0); ?> </span> <span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.htm.html.js.css.xml','.php','skin,jslib,a_jscss','')" />
-                html文字 </span> <span class='item'>
+                <?php lang('tools.so_html',0); ?> </span> <span class='item'>
                 <input type="checkbox" onclick="schCase(this,'.php.tpl.js.css','.xml.txt.log','code,tpls,skin','class ')" />
-                tpl模版 </span></td>
+                <?php lang('tools.so_tpl',0); ?> </span></td>
         </tr>
         <tr>
             <td align="right">dir.目录：</td>
@@ -124,14 +126,15 @@ if(strstr('(View,Light)',$act)){
             <td align="right">key.关键字：</td>
             <td><input name="key" type="text" id="key" value="<?php echo $keyBak; ?>" size="56" /></td>
         </tr>
+
         <tr>
             <td width="18%" align="right"> Option.提交：</td>
             <td align="left"><select name="act" id="act">
                     <option value="Data">Data:内容</option>
                     <option value="File" <?php if($react=='File') echo ' selected="selected"'; ?>>File:文件</option>
                 </select>
-                <input type="submit" name="submit" id="submit" value="提交" />
-                请选择操作,并提交!
+                <input type="submit" name="submit" id="submit" value="<?php lang('tools.so_send',0); ?>" />
+                <?php lang('tools.so_tips',0); ?>
                 <input type="hidden" name="dirs" id="dirs" value=";;" /></td>
         </tr>
     </form>
@@ -148,11 +151,11 @@ if(strstr('(Data,File)',$act)){
   $reex1 = ''; foreach($ex1 as $v) $reex1 .= ",$v";
   $reex2 = ''; foreach($ex2 as $v) $reex2 .= ",$v";
   $reskip = ($skip==SDIR)?'':$skip; 
-?>
+?> 
 <table border="1" class="tab1">
     <tr>
-        <td><strong>搜索结果</strong></td>
-        <td colspan="2" align="center"><a href="?<?php echo "path=$path&skip=$reskip&key=$keyBak&react=$act&redir=$redir&reex1=$reex1&reex2=$reex2"; ?>">返回</a></td>
+        <td><strong><?php lang('tools.so_res',0); ?></strong></td>
+        <td colspan="2" align="center"><a href="?<?php echo "path=$path&skip=$reskip&key=$keyBak&react=$act&redir=$redir&reex1=$reex1&reex2=$reex2"; ?>"><?php lang('tools.so_back',0); ?></a></td>
     </tr>
     <tr>
         <td>Path-File</td>

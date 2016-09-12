@@ -23,8 +23,8 @@ echo "\n<hr>"; print_r($_sy_keepid);
 $_sy_sysids = glbConfig::read('sysids','sy'); 
 echo "\n<hr>"; print_r($_sy_sysids);
 
-$_sy_fsystem = glbConfig::read('fsystem','sy');
-echo "\n<hr>"; print_r($_sy_fsystem); 
+$fsystem = basLang::ucfg('fsystem');
+echo "\n<hr>"; print_r($fsystem); 
 
 //$_demo = glbConfig::read('demo');
 //echo "\n<hr>"; print_r($_demo); 

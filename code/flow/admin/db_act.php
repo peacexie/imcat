@@ -5,7 +5,7 @@ require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
 $tabinfo = $db->tables(1); 
 $tabid = basReq::val("tabid",'base_model'); 
 
-$fixs = '选择:'; $fixa = array('-1'); 
+$fixs = lang('admin.dba_sel').':'; $fixa = array('-1'); 
 $opts = ""; 
 foreach($tabinfo as $r){
 	$itab = $r['Name'];
@@ -16,16 +16,16 @@ foreach($tabinfo as $r){
 	$opts .= "$itab|$itab($r[Rows])\n";
 }
 $sact = "window.location.href='?file=$file&view=$view&tabid='+this.options[selectedIndex].value";
-$opts = "<select onchange=\"$sact\">".basElm::setOption($opts,$tabid,'-请选择表-')."</select>";
-$exp = " &nbsp; <a href='$aurl[1]&view=Export' target='_blank'>[数据库词典]</a>";
-$exp .= " &nbsp; <a href='$aurl[1]&view=Clear' target='_blank'>[清理]</a>";
+$opts = "<select onchange=\"$sact\">".basElm::setOption($opts,$tabid,lang('admin.dba_stab'))."</select>";
+$exp = " &nbsp; <a href='$aurl[1]&view=Export' target='_blank'>".lang('admin.dba_dict')."</a>";
+$exp .= " &nbsp; <a href='$aurl[1]&view=Clear' target='_blank'>".lang('admin.dba_clear')."</a>";
 $sbar = $view=='list' ? $fixs : "$opts $exp";
 
 // dbdict操作
 $syrem = glbDBExt::dbComment(); //print_r($syrem);
 if(!empty($bsend)){
-	if(empty($fs_do)) $msg = "请选择操作项目！";
-	if(empty($fs)) $msg = "请勾选操作记录！";
+	if(empty($fs_do)) $msg = lang('flow.dops_setop');
+	if(empty($fs)) $msg = lang('flow.dops_setitem');
 	$cnt = 0; $cnu=0; $act = '';
 	if(empty($msg)){
 	  foreach($fs as $id=>$v){ 
@@ -49,8 +49,8 @@ if(!empty($bsend)){
 		  }
 	  } 
 	}
-	$cnt && $msg = "$cnt 个表".($fs_do=='opt' ? '优化' : '修复')."成功！";
-	$cnu && $msg = "$cnu 项备注更新成功！";
+	$cnt && $msg = "$cnt ".lang('admin.dba_tabs').($fs_do=='opt' ? lang('admin.dba_opt') : lang('admin.dba_fix')).lang('admin.dba_ok');
+	$cnu && $msg = "$cnu ".lang('admin.dba_dok');
 } 
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
@@ -65,7 +65,7 @@ if($view=='Clear'){
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	$hdex = "<th>Create/Update</th><th>Engine/Collation</th><th>Comment</th></tr>";
-	echo "<th>选择</th><th>Name</th><th>Rows</th><th>Data</th><th>Index</th><th>Free</th><th>AI</th>$hdex\n";
+	echo "<th>".lang('flow.title_select')."</th><th>Name</th><th>Rows</th><th>Data</th><th>Index</th><th>Free</th><th>AI</th>$hdex\n";
 	foreach($tabinfo as $r){ 
 		$kid = $r['Name']; $fix = substr($kid,0,strpos($kid,'_'));
 		//$data = basStr::showNumber($r['Data_length'],1)."/".basStr::showNumber($r['Index_length'],1)."/".basStr::showNumber($r['Data_free'],1);
@@ -82,9 +82,9 @@ if($view=='Clear'){
 		echo "<td class='tc'>$r[Comment]</td>\n";
 		echo "</tr>";
 	} 
-	$op = "".basElm::setOption("opt|优化\nrep|修复",'','-批量操作-');
+	$op = "".basElm::setOption("opt|".lang('admin.dba_opt')."\nrep|".lang('admin.dba_fix')."",'',lang('flow.op0_bacth'));
 	$opbar = "<div class='w180 tc right'><select name='fs_do'>$op</select>";
-	$opbar .= "<input name='bsend' class='btn' type='submit' value='执行' /></div>";
+	$opbar .= "<input name='bsend' class='btn' type='submit' value='".lang('admin.dba_deel')."' /></div>";
 	echo "\n<tr><td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>";
 	echo "<td colspan='15'>$opbar<div class='pg_bar'>Actions</div></td>\n</tr>";
 	glbHtml::fmt_end(array("view|$view"));
@@ -93,14 +93,14 @@ if($view=='Clear'){
 	
 	$fields = glbDBExt::dbComment($tabid); //print_r($fields);
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选择</th><th>Name</th><th>type</th><th>null</th><th>def</th><th>pri/AI</th><th>Comment</th>\n";
+	echo "<th>".lang('flow.title_select')."</th><th>Name</th><th>type</th><th>null</th><th>def</th><th>pri/AI</th><th>Comment</th>\n";
 		$r = @$fields[0];
 		$irem = empty($uprem[0]) ? @$r['_rem'] : $uprem[0];
 		$css = @$r['_flag']=='sys' ? 'disc' : '';
 		$name = @$r['_flag']=='sys' ? 'disabled' : "name='uprem[0]'";
 		echo "<tr>\n".$cv->Select('0');
 		echo "<td class='tc bold' colspan='2'>$tabid</td>\n";
-		echo "<td class='tc' colspan='3'>(数据表)</td>\n";
+		echo "<td class='tc' colspan='3'>(".lang('admin.dba_dbtab').")</td>\n";
 		echo "<td class='tc'><input type='text' $name value='$irem' maxlength='24' class='txt w240 $css'/></td>\n";
 		echo "</tr>"; unset($fields[0]);
 	foreach($fields as $r){ 
@@ -119,18 +119,18 @@ if($view=='Clear'){
 		echo "<td class='tc'><input type='text' $name value='$irem' maxlength='24' class='txt w240 $css'/></td>\n";
 		echo "</tr>";
 	} 
-	$opbar = "<div class='w180 tc right'><input name='bsend' class='btn' type='submit' value='更新' /></div>";
+	$opbar = "<div class='w180 tc right'><input name='bsend' class='btn' type='submit' value='".lang('admin.dba_upd')."' /></div>";
 	echo "\n<tr><td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>";
-	echo "<td colspan='15'>$opbar<div class='pg_bar'>灰色不能编辑</div></td>\n</tr>";
+	echo "<td colspan='15'>$opbar<div class='pg_bar'>".lang('admin.dba_gray')."</div></td>\n</tr>";
 	glbHtml::fmt_end(array("view|$view","tabid|$tabid","fs_do|upd"));
 
 }elseif($view=='Export'){ 
 	$data = devBase::dbDict($tabinfo);
 	//basEnv::obShow($data,0);
-	comFiles::put(DIR_DTMP."/store/dbdic.cac_htm",$data);
-	echo "<p class='tc'><br><a href='$aurl[1]&view=View'>已经生成：查看……</a><br><br><p>";
+	comFiles::put(DIR_DTMP."/store/dbdic-{$_cbase['sys']['lang']}.cac_htm",$data);
+	echo "<p class='tc'><br><a href='$aurl[1]&view=View'>".lang('admin.dba_view')."</a><br><br><p>";
 }elseif($view=='View'){ 
 	basEnv::obClean();
-	include(DIR_DTMP."/store/dbdic.cac_htm");
+	include(DIR_DTMP."/store/dbdic-{$_cbase['sys']['lang']}.cac_htm");
 	die();
 }

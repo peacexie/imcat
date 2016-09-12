@@ -21,3 +21,7 @@ div { max-width: 720px; margin: 10px auto; }
 
 p.txcode_logostart { padding:0px; margin:10px auto; }
 pre { width:680px; margin:5px auto; word-break:break-all; word-wrap:break-word; overflow:hidden; }
+
+.langbar { max-width: 720px; margin: 10px auto; padding:5px; border-bottom: 1px dashed #999; }
+.langbar a { padding-right:5px; }
+.langbar a:before { content:" ->"; }

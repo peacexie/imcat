@@ -10,9 +10,10 @@ $ufix = comFiles::getTmpDir(0);
 $_upPerm = '1';//usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $isbat = basReq::val('isbat','');
 
-glbHtml::page('附件（文件）上传（表单）',1);
+glbHtml::page(lang('plus.fop_uponetitle'),1);
 glbHtml::page('imadm'); //adm
-echo basJscss::imp("/plus/file/funcs.js",'js');
+basLang::jimp("/plus/file/funcs.js");
+//echo basJscss::imp("/plus/file/funcs.js",'js');
 echo basJscss::imp("/plus/file/style.css");
 glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"');
 
@@ -28,7 +29,7 @@ glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"')
         <input name="upren" id="upren" type="hidden" value="auto">
       </td>
       <td nowrap class="tc"><div id="preview_wrapper">
-          <div id="preview_fake"> <img id="preview" alt="预览(id:<?php echo $isbat; ?>)" onload="imgShow(this,120,20)"/> </div>
+          <div id="preview_fake"> <img id="preview" alt="(<?php lang('plus.fop_oview',0); ?>id:<?php echo $isbat; ?>)" onload="imgShow(this,120,20)"/> </div>
         </div></td>
     </tr>
     <?php }else{ ?>
@@ -37,16 +38,16 @@ glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"')
         onChange="PreviewImage(this,'preview','preview_wrapper');">
         <input name="recbk" type="hidden" value="pfield"></td>
       <td rowspan="2" nowrap class="tl"><div id="preview_wrapper" style="height:60px;">
-          <div id="preview_fake"> <img id="preview" alt="图片预览" onload="imgShow(this,120,60)"/> </div>
+          <div id="preview_fake"> <img id="preview" alt="<?php lang('plus.fop_picview',0); ?>" onload="imgShow(this,120,60)"/> </div>
       </div></td>
     </tr>
     <tr>
       <td height="30" nowrap class="tl">
         <select name="upren" id="upren" class="w120">
-          <option value="auto">自动命名</option>
-          <option value="keep">原文件名</option>
+          <option value="auto"><?php lang('plus.fv_atuoname',0); ?></option>
+          <option value="keep"><?php lang('plus.fv_orgname',0); ?></option>
         </select>
-        <input name="btUpload" type=submit id="btUpload" value="上传">
+        <input name="btUpload" type=submit id="btUpload" value="<?php lang('plus.fv_upload',0); ?>">
       </td>
     </tr>
     <?php } ?>

@@ -9,7 +9,7 @@ class tex_base{
 		global $_cbase;
 		$_mumem = glbConfig::read('mumem');
 		$perm = $permOrg = basReq::val('perm');
-		$perm = $perm=='.login' ? '会员登录' : '会员权限»'.comTypes::getLnks(comTypes::getLays($_mumem['i'],$perm),'([k])[v]');
+		$perm = $perm=='.login' ? lang('user.tex_base_ulogin') : lang('user.tex_base_uperm').'»'.comTypes::getLnks(comTypes::getLays($_mumem['i'],$perm),'([k])[v]');
 		$from = basReq::val('from');
 		$from = substr($from,0,2)=='q-' ? comParse::urlBase64(substr($from,2),1,1) : $from;
 		$ulogin = 'user-login';
@@ -17,7 +17,7 @@ class tex_base{
 		$runinfo = '';
 		$runinfo .= "".$_cbase['run']['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
 		$runinfo .= "tpl:".(empty($_cbase['run']['tplname']) ? '(null)' : $_cbase['run']['tplname'])."; "; //tpl 
-		$tipmsg = '访问受限…';
+		$tipmsg =  lang('user.tex_base_vlimit');
 		$re = array();
 		foreach(array('perm','permOrg','from','ulogin','uapply','runinfo','tipmsg') as $k){
 			$re[$k] = $$k;
@@ -40,9 +40,10 @@ class tex_base{
 			$pkey .= $obj->key;	
 		} 
 		$pnow = empty($_micfg[$pkey]['cfgs']) ? '.login' : $_micfg[$pkey]['cfgs']; //1, (empty), .guest
+		if($pnow==1) $pnow = $pkey;
 		$pmarr = empty($user->uperm['pmusr']) ? array() : explode(',',$user->uperm['pmusr']);
-		//echo "\n($pnow)<pre>\n"; print_r($pmarr); die();
-		if($pnow=='.guest' || $obj->tplname=='user/tips' || $obj->tplname=='user/home' || in_array($obj->mod,$_cbase['tpl']['umc_frees'])){ 
+		//dump($pnow); dump($pmarr); dump($_micfg); // die();
+		if($pnow=='.guest' || in_array($obj->tplname,array('user/tips','user/home')) || in_array($obj->mod,$_cbase['tpl']['umc_frees'])){ 
 			//游客可操作 or 提示页本身 or 跳转首页
 		}elseif($pnow=='.login' && $user->userFlag=='Login'){
 			//需要登录 and 已登录

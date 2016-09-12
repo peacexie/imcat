@@ -50,7 +50,7 @@ class wysReply extends wmpMsgresp{
 		global $_cbase;
 		$picUrl = $this->post->PicUrl;
 		$this->saveMsg('image', $picUrl, '-', $this->post->MediaId);
-		//保持回话不过期
+		//保持会话不过期
 		$timeNmin = $_cbase['run']['stamp']-(5*60);
 		$this->_db->table('wex_qrcode')->data(array('atime'=>$_cbase['run']['stamp']))->where("openid='{$this->post->FromUserName}' AND smod='upload' AND atime>'$timeNmin'")->update(); 
 		if($re) return;

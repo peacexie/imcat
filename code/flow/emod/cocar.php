@@ -4,7 +4,7 @@
 $msg = ''; $tabext = '';
 
 if($view=='clear'){
-	$msg = "清理成功！";
+	$msg = lang('flow.dops_clearok');
 	if($mod=='coitem'){
 		$pids = glbDBExt::getKids('corder','title','1=1'); 
 		$db->table($dop->tbid)->where("ordid NOT IN($pids)")->delete(); 
@@ -21,16 +21,13 @@ if($view=='list'){
 	} 
 	
 	$sbar = "\n".$so->Type(90,'-pKey-'); 
-	$sbar .= "\n&nbsp; ".$so->Word(80,80,'-筛选-');
-	$sbar .= "\n&nbsp; ".$so->Order(array('cid' => '账号(降)','cid-a' => '账号(升)',));
+	$sbar .= "\n&nbsp; ".$so->Word(80,80,lang('flow.op0_filt'));
+	$sbar .= "\n&nbsp; ".$so->Order(array('cid' => 'ID(D)','cid-a' => 'ID(A)',));
 	$snav = admPFunc::fileNav($mod,'ordnav'); $msg = $msg ? "<span class='cF00'>$msg</span>" : ' '; 
 	$so->Form($sbar,$dop->msgBar($snav,$msg),40);
 
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选</th><th>货品ID</th><th>订单ID</th>"; 
-	echo "<th>数量</th><th>单价</th>"; 
-	echo "<th>会员名称</th>"; 
-	echo "<th>添加时间</th><th>修改</th>\n</tr>\n";
+	basLang::inc('aflow', 'cocar');
 	$idfirst = ''; $idend = '';
 	if($rs=$dop->getRecs()){ 
 		foreach($rs as $r){ 
@@ -43,14 +40,14 @@ if($view=='list'){
 		  echo $cv->Field($r['ordprice']);
 		  echo $cv->Field($r['auser']);
 		  echo $cv->Time($r['atime']);
-		  echo $cv->Url('修改',1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
+		  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
 		  echo "</tr>"; 
 		}
 		$pg = $dop->pg->show($idfirst,$idend); 
-		$op = "".basElm::setOption("del|删除",'','-批量操作-'); //\nclear|清理
-		dopFunc::pageBar($pg." &nbsp; <a href='$aurl[1]&view=clear'>清理</a>",$op);
+		$op = "".basElm::setOption(lang('flow.dops_del'),'',lang('flow.op0_bacth')); //\nclear|清理
+		dopFunc::pageBar($pg." &nbsp; <a href='$aurl[1]&view=clear'>".lang('flow.dops_clear')."</a>",$op);
 	}else{
-		echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+		echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
 	}
 	glbHtml::fmt_end(array("mod|$mod"));
 

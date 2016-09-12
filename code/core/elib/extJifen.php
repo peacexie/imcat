@@ -24,7 +24,7 @@ class extJifen{
 	
 	static function grade($mark=0,$re='title'){
 		$jfcfg = glbConfig::read('jifen','dset'); 
-		$jftitle = '-无头衔-';
+		$jftitle = lang('core.no_rank');
 		$jfnow = array('kid'=>'-null-','title'=>$jftitle,'icon'=>'-null-'); 
 		foreach($jfcfg as $k=>$v){
 			if($v['numa']>=$mark){

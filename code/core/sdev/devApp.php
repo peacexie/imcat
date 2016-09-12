@@ -1,27 +1,28 @@
 <?php
 
 // ...类
+
 class devApp{	
 	
 	// 创建应用 
 	static function create($dir, $front, $mod){ 
 		if(strlen(basStr::filKey($dir,''))<3 || strlen(basStr::filKey($front,''))<3){
-			return "目录或文件名不规范！";
+			return lang('devapp_dferr');
 		} 
 		if(is_numeric($dir) || is_numeric($front)){
-			return "目录或文件名不能全为数字！";
+			return lang('devapp_dfnum');
 		}
 		$exa = array('demodir','front','home','info');
 		if(in_array($dir,$exa) || in_array($front,$exa)){
-			return "目录或文件名已经使用！";	
+			return lang('devapp_dfues');	
 		}
 		$vopfmt = glbConfig::read('vopfmt','ex'); 
 		$groups = glbConfig::read('groups'); 
 		if(isset($vopfmt['tpl'][$dir]) || is_dir(DIR_CODE."/tpls/$dir")){
-			return "目录或配置已经存在！";
+			return lang('devapp_dfext');
 		}
 		if(empty($groups[$mod]['pid']) || $groups[$mod]['pid']!='docs'){
-			return "数据模型不规范！";
+			return lang('devapp_dataerr');
 		}
 		self::cdir(DIR_CODE."/tpls/demodir", DIR_CODE."/tpls/$dir", $mod);
 		self::cdir(DIR_ROOT."/skin/demodir", DIR_ROOT."/skin/$dir", $mod);

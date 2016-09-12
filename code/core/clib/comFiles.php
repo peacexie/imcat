@@ -86,7 +86,7 @@ class comFiles{
 		return $re;
 	}
 
-	static function listDir($dir){
+	static function listDir($dir,$key=''){
 		if(!is_dir($dir)) return array(); 
 		$re = array('dir'=>array(),'file'=>array());
 		// --- scandir();
@@ -102,6 +102,7 @@ class comFiles{
 			}
 		}
 		closedir($handle);
+		if($key){ return $re[$key]; }
 		return $re;
 	}
 	
@@ -205,15 +206,16 @@ class comFiles{
 	
 	// 复制目录 : $src -> $dst
 	// $skip : 忽略目录
-	static function copyDir($src,$dst,$skip=array()) {  // 原目录，复制到的目录
+	static function copyDir($src,$dst,$skip=array(),$skfile=array()) {  // 原目录，复制到的目录
 		$dir = opendir($src);
 		@mkdir($dst);
 		while(false !== ( $file = readdir($dir)) ) {
 			if (( $file != '.' ) && ( $file != '..' )) {
 				if(is_dir($src.'/'.$file)){
-					if($skip && in_array($file,$skip)) continue;
-					self::copyDir($src.'/'.$file, $dst.'/'.$file);
+					if(!empty($skip) && in_array($file,$skip)) continue;
+					self::copyDir($src.'/'.$file, $dst.'/'.$file,$skip,$skfile);
 				}else{
+					if(!empty($skfile) && in_array($file,$skfile)) continue;
 					copy($src.'/'.$file, $dst.'/'.$file);
 				}
 			}
@@ -384,7 +386,8 @@ class comFiles{
 		
 		foreach($cfg as $ck){
 			$path = self::cfgDirPath($ck,$part);
-			$str = str_replace(array('{'.$ck.'root}','{$'.$ck.'root}'),$path,$str); //self::moveRepRoot($str,$v,$cv[0],$cv[1]);
+			$str = str_replace(array('{'.$ck.'root}','{$'.$ck.'root}'),$path,$str); 
+			//self::moveRepRoot($str,$v,$cv[0],$cv[1]);
 		}
 		return $str;
 	}

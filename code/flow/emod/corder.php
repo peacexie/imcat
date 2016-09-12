@@ -4,7 +4,7 @@
 $msg = ''; $tabext = '';
 
 if($view=='clear'){
-	$msg = "清理成功！";
+	$msg = lang('flow.dops_clearok');
 	/*if($mod=='coitem'){
 		$pids = glbDBExt::getKids('corder','title','1=1'); 
 		$db->table($dop->tbid)->where("ordid NOT IN($pids)")->delete(); 
@@ -19,37 +19,34 @@ if($view=='list'){
 		
 		$fs_do = basReq::val('fs_do');
 		$fs = basReq::arr('fs'); 
-		if(empty($fs_do)) $msg = "请选择操作项目！";
-		if(empty($fs)) $msg = "请勾选操作记录！";
+		if(empty($fs_do)) $msg = lang('flow.dops_setop');
+		if(empty($fs)) $msg = lang('flow.dops_setitem');
 		$cnt = 0; $msgop = '';
 		foreach($fs as $id=>$v){ 
 			if(in_array($fs_do,array('show','hidden'))){ 
 				$cnt += $dop->opShow($id,$fs_do);
-				$msgop = $fs_do=='show' ? '审核' : '隐藏';
+				$msgop = $fs_do=='show' ? lang('flow.dops_checked') : lang('flow.dops_hide');
 			}elseif($fs_do=='del'){ 
 				$cnt += $dop->opDelete($id);
 				$db->table('coms_coitem')->where("title='$id'")->delete(); 
-				$msgop = '删除';
+				$msgop = lang('flow.dops_del');
 			}elseif(strstr($fs_do,'set_')){ 
 				$v = basStr::filKey(str_replace('set_','',$fs_do),'_-.');
 				$cnt += $db->table($dop->tbid)->data(array('ordstat'=>$v))->where("$dop->_kid='$id'")->update();
 			}
 		}
-		$msg = "$cnt 条记录 $msgop 成功！";
+		$msg = "$cnt ".lang('flow.dops_okn',$msgop);
 	} 
 	
 	$sbar = "\n".$so->Type(90,'-pKey-'); 
-	$sbar .= "\n&nbsp; ".$so->Word(80,80,'-筛选-');
+	$sbar .= "\n&nbsp; ".$so->Word(80,80,lang('flow.op0_filt'));
 	$sbar .= "\n&nbsp; ".$so->Field('ordstat',60);
-	$sbar .= "\n&nbsp; ".$so->Order(array('cid' => '账号(降)','cid-a' => '账号(升)',));
+	$sbar .= "\n&nbsp; ".$so->Order(array('cid' => 'ID(Desc)','cid-a' => 'ID(Asc)',));
 	$snav = admPFunc::fileNav($mod,'ordnav'); $msg = $msg ? "<span class='cF00'>$msg</span>" : ' '; 
 	$so->Form($sbar,$dop->msgBar($snav,$msg),40);
 
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选</th><th>订单号</th><th>状态</th><th>总额</th><th>数量</th><th>货品额</th>"; 
-	echo "<th>跟踪号</th>"; 
-	echo "<th>会员名称</th><th>电话</th>"; 
-	echo "<th>添加</th><th>修改</th>\n</tr>\n";
+	basLang::inc('aflow', 'corder');
 	$idfirst = ''; $idend = '';
 	if($rs=$dop->getRecs()){ 
 		foreach($rs as $r){ 
@@ -66,14 +63,14 @@ if($view=='list'){
 		  echo $cv->Field($r['mname']);
 		  echo $cv->Field($r['mtel'],1,16);
 		  echo $cv->Time($r['atime']);
-		  echo $cv->Url('修改',1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
+		  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
 		  echo "</tr>"; 
 		}
 		$pg = $dop->pg->show($idfirst,$idend); 
-		$op = "".basElm::setOption("del|删除".($cv->set_opts('ordstat'))."",'','-批量操作-'); //\ndnow|删除当前
-		dopFunc::pageBar($pg." &nbsp; <a href='$aurl[1]&view=clear'>清理</a>",$op);
+		$op = basElm::setOption("del,".lang('flow.dops_del').";".($cv->set_opts('ordstat'))."",'',lang('flow.op0_bacth')); //\ndnow|删除当前
+		dopFunc::pageBar($pg." &nbsp; <a href='$aurl[1]&view=clear'>".lang('flow.dops_clear')."</a>",$op);
 	}else{
-		echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+		echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
 	}
 	glbHtml::fmt_end(array("mod|$mod"));
 	

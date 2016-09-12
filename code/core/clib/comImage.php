@@ -12,7 +12,7 @@ class comImage{
 	 +----------------------------------------------------------
 	 */
 	static function info($img) {
-		$imageInfo = getimagesize($img);
+		$imageInfo = getimagesize($img); // riff webpvp8 格式，不能获取到信息
 		if( $imageInfo!== false)
 		 {
 			$imageType = strtolower(substr(image_type_to_extension($imageInfo[2]),1));

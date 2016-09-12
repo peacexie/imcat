@@ -3,18 +3,18 @@
 
 $fs_do = basReq::val('fs_do');
 $fs = basReq::arr('fs'); 
-if(empty($fs_do)) $msg = "请选择操作项目！";
-if(empty($fs)) $msg = "请勾选操作记录！";
+if(empty($fs_do)) $msg = lang('flow.dops_setop');
+if(empty($fs)) $msg = lang('flow.dops_setitem');
 $cnt = 0; $msgop = '';
 foreach($fs as $id=>$v){ 
 	if(in_array($fs_do,array('show','hidden'))){ 
 		$cnt += $dop->opShow($id,$fs_do);
-		$msgop = $fs_do=='show' ? '审核' : '隐藏';
+		$msgop = $fs_do=='show' ? lang('flow.dops_checked') : lang('flow.dops_hide');
 	}elseif($fs_do=='del'){ 
 		$cnt += $dop->opDelete($id);
-		$msgop = '删除';
+		$msgop = lang('flow.dops_del');
 	}elseif($fs_do=='(xxx)'){ 
 		;//
 	}
 }
-$msg = "$cnt 条记录 $msgop 成功！";
+$msg = "$cnt ".lang('flow.dops_okn',$msgop);

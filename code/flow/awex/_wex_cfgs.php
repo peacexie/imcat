@@ -12,17 +12,19 @@ $wekid = basReq::val('wekid');
 $wecfg = wysBasic::getConfig($wekid); 
 $weapp = @$wecfg['appid']; 
 
+$cnav = basLang::ucfg('cfgbase.wx_nav');
+
 $_cbase['run']['sobarnav'] = "<p class='tc pv5'>
 
- <a href='?file=awex/wex_menu&wekid=$wekid'>菜单</a>
- # <a href='?file=awex/wex_user&wekid=$wekid'>关注者</a>
- # <a href='?file=awex/wex_msg3&wekid=$wekid'>消息</a>
- # <a href='?file=awex/wex_rkey&wekid=$wekid'>关键字</a>
+ <a href='?file=awex/wex_menu&wekid=$wekid'>$cnav[menu]</a>
+ # <a href='?file=awex/wex_user&wekid=$wekid'>$cnav[user]</a>
+ # <a href='?file=awex/wex_msg3&wekid=$wekid'>$cnav[msg]</a>
+ # <a href='?file=awex/wex_rkey&wekid=$wekid'>$cnav[kw]</a>
  
- # <a href='#?file=awex/wex_vmat&wekid=$wekid' class='c999'>微素材</a>
- # <a href='#?file=awex/wex_vweb&wekid=$wekid' class='c999'>微网站</a>
- # <a href='#?file=awex/wex_vshop&wekid=$wekid' class='c999'>微店铺</a>
- # <a href='#?file=awex/wex_vact&wekid=$wekid' class='c999'>微活动</a>
+ # <a href='#?file=awex/wex_vmat&wekid=$wekid' class='c999'>$cnav[wres]</a>
+ # <a href='#?file=awex/wex_vweb&wekid=$wekid' class='c999'>$cnav[wweb]</a>
+ # <a href='#?file=awex/wex_vshop&wekid=$wekid' class='c999'>$cnav[wshop]</a>
+ # <a href='#?file=awex/wex_vact&wekid=$wekid' class='c999'>$cnav[wact]</a>
  
 </p>";
 

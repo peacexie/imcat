@@ -15,11 +15,10 @@ $dmsg = '';
 if($dir && $front && $mod){
 	$flag = 'done';
 	$dmsg = devApp::create($dir, $front, $mod);
-	$smsg = $dmsg=='OK' ? '创建成功' : '创建失败:'.$dmsg;
-	$fmsg = $dmsg=='OK' ? 'OK' : '错误';
+	$smsg = $dmsg=='OK' ? lang('tools.mktpl_crtok') : lang('tools.mktpl_crtng').$dmsg;
+	$fmsg = $dmsg=='OK' ? 'OK' : lang('tools.mktpl_error');
 }
 
-require(dirname(__FILE__).'/mktpl.htm');
+include(vopShow::inc('/tools/exdiy/mktpl.htm',DIR_ROOT));
 
 glbHtml::page('end');
-

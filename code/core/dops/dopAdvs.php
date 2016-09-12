@@ -22,18 +22,18 @@ class dopAdvs extends dopBase{
 	// 翻页条,批量操作
 	function pgbar($idfirst,$idend){
 		$pg = $this->pg->show($idfirst,$idend);
-		$op = "".basElm::setOption("show|显示\ndel|删除\nhidden|隐藏",'','-批量操作-');
+		$op = "".basElm::setOption("show|".lang('flow.op_show')."\ndel|".lang('flow.op_del')."\nhidden|".lang('flow.op_hide')."",'',lang('flow.op0_bacth'));
 		dopFunc::pageBar($pg,$op);
 	}
 	// 搜索条 // check,fields
 	function sobar($msg='',$width=30){ 
 		$file = basReq::val('file');
 		$mod = $this->mod;
-		$sbar = "\n".$this->so->Type(120,'-栏目-'); 
-		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,'-筛选-');
+		$sbar = "\n".$this->so->Type(120,lang('flow.op0_cat')); 
+		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
 		$sbar .= "\n&nbsp; ".$this->so->Show(60);
-		$sbar .= "\n&nbsp; ".$this->so->Order(array('aid' => '账号(降)','aid-a' => '账号(升)',));
-		$updlink = ($this->cfg['etab']==4) ? '更新' : "<a href='?file=$file&mod=$mod&view=list&umod=upd'>更新</a>";
+		$sbar .= "\n&nbsp; ".$this->so->Order(array('aid' => lang('flow.dops_orduidd'),'aid-a' => lang('flow.dops_orduida'),));
+		$updlink = ($this->cfg['etab']==4) ? lang('flow.op_upd') : "<a href='?file=$file&mod=$mod&view=list&umod=upd'>".lang('flow.op_upd')."</a>";
 		$this->so->Form("[$updlink] | ".$sbar,$msg,$width);
 	}
 	
@@ -59,17 +59,17 @@ class dopAdvs extends dopBase{
 		$sels = "<select id='fm[pmod]' name='fm[pmod]'>".basElm::setOption($arr,$pmod)."</select>";
 		$item = "<input name='fm[pid]' type='text' id='fm[pid]' value='$val'> &nbsp; ";
 		//$item .= "<input type='text' id='fm[refname]' value='' class='txt w240'>";
-		$item .= "$sels<input type='button' value='来源资料' onclick=\"pickOpen('fm[pmod]','','fm[pid]','fm[title]',1)\" class='btn'>";
-		glbHtml::fmae_row('来源资料',$item);
-		glbHtml::fmae_row('所在栏目',$this->fmType('catid').' &nbsp; 显示'.$this->fmShow());
-		//echo "<tr><th>详情资料</th><th class='tr'>---</th></tr>\n";
+		$item .= "$sels<input type='button' value='".lang('flow.dops_fromdata')."' onclick=\"pickOpen('fm[pmod]','','fm[pid]','fm[title]',1)\" class='btn'>";
+		glbHtml::fmae_row(lang('flow.dops_fromdata'),$item);
+		glbHtml::fmae_row(lang('flow.dops_icat'),$this->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$this->fmShow());
+		//echo "<tr><th>".lang('flow.dops_detail')."</th><th class='tr'>---</th></tr>\n";
 	}
 
 	// 属性设置
 	function fmProp(){ 
 		dopFunc::fmSafe();
 		$mod = $this->mod;
-		echo "<tr><th nowrap>属性设置</th><th class='tr'>---</th></tr>\n";
+		echo "<tr><th nowrap>".lang('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
 		$this->fmAE3();
 	}
 	// PKey pMod,pKey资料

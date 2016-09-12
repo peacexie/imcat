@@ -3,9 +3,7 @@
 
 $dop->sobar($dop->msgBar($msg)); 
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-echo "<th>选</th><th>标题</th><th>栏目</th><th>部门</th><th>重要</th><th>显示</th>"; 
-echo "<th>添加时间</th><th>添加账号</th><th>修改时间</th>"; 
-echo "<th>修改</th>\n</tr>\n";
+basLang::inc('aflow', 'indoc_list');
 $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
 	foreach($rs as $r){ 
@@ -21,11 +19,11 @@ if($rs=$dop->getRecs()){
 	  echo $cv->Time($r['atime']);
 	  echo $cv->Field($r['auser']);
 	  echo $cv->Time($r['etime'],'y');
-	  echo $cv->Url('修改',1,"$aurl[1]&view=form&did=$r[did]&recbk=ref","");
+	  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&did=$r[did]&recbk=ref","");
 	  echo "</tr>"; 
 	}
 	$dop->pgbar($idfirst,$idend);
 }else{
-	echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+	echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
 }
 glbHtml::fmt_end(array("mod|$mod"));

@@ -5,7 +5,7 @@ require_once(dirname(__FILE__)."/config.php");
 <html>
 <head>
 <meta charset="utf-8">
-<title>支付流程演示交易接口接口</title>
+<title><?php lang('a3rd.uapi_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
 <style type="text/css">.tc { text-align:center; }</style>
 </head>
@@ -68,7 +68,7 @@ foreach($parameter as $k=>$v){
 	echo "<input name='{$k}' type='hidden' value='{$v}'>"; 
 } 
 ?>
-<p class="tc"><input name="" value="确认" type="submit" /></p>
+<p class="tc"><input name="" value="<?php lang('a3rd.uapi_confirm',0); ?>" type="submit" /></p>
 </form>
 <script>
 function opaysubmit(){

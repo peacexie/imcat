@@ -7,29 +7,27 @@ if(!empty($bsend)){
 
     $fs_do = basReq::val('fs_do');
     $fs = basReq::arr('fs');
-    if(empty($fs_do)) $msg = "请选择操作项目！";
-    if(empty($fs)) $msg = "请勾选操作记录！";
+    if(empty($fs_do)) $msg = lang('flow.dops_setop');
+    if(empty($fs)) $msg = lang('flow.dops_setitem');
     $cnt = 0; $msgop = '';
     foreach($fs as $id=>$v){ 
         if(in_array($fs_do,array('show','hidden'))){ 
             $cnt += $dop->opShow($id,$fs_do);
-            $msgop = $fs_do=='show' ? '审核' : '隐藏';
+            $msgop = $fs_do=='show' ? lang('flow.dops_checked') : lang('flow.dops_hide');
         }elseif($fs_do=='del'){ 
             $cnt += $dop->opDelete($id);
-            $msgop = '删除';
+            $msgop = lang('flow.dops_del');
         }elseif($fs_do=='(xxx)'){ 
             $msgop = '';
         }
     }
-    $msg = "$cnt 条记录 $msgop 成功！";
+    $msg = "$cnt ".lang('flow.dops_okn',$msgop);
 
 }else{
 
-    $dop->sobar("[$gname]管理".(empty($msg)?'':"<br><span class='cF00'>$msg</span>")); 
+    $dop->sobar("[$gname]".(empty($msg)?'':"<br><span class='cF00'>$msg</span>")); 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-    echo "<th>选</th><th>标题</th><th>栏目</th><th>显示</th>"; 
-    echo "<th>添加时间</th><th>添加账号</th><th>修改时间</th>"; 
-    echo "<th>修改</th>\n</tr>\n";
+    basLang::inc('aflow', 'uc_indoc_list');
     $idfirst = ''; $idend = '';
     if($rs=$dop->getRecs()){ 
         foreach($rs as $r){ 
@@ -45,12 +43,12 @@ if(!empty($bsend)){
           echo $cv->Time($r['atime']);
           echo $cv->Field($r['auser']);
           echo $cv->Time($r['etime'],'y');
-          echo $cv->Url('修改',1,"?mkv=indoc-iedit&did=$r[did]&recbk=ref","");
+          echo $cv->Url(lang('flow.dops_edit'),1,"?mkv=indoc-iedit&did=$r[did]&recbk=ref","");
           echo "</tr>"; 
         }
         $dop->pgbar($idfirst,$idend);
     }else{
-        echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+        echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
     }
     glbHtml::fmt_end(array("mod|$mod"));
 }

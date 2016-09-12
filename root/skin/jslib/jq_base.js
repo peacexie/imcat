@@ -129,12 +129,12 @@ function evf_errAlert(msgarr,isSubmit){
 		for(var i=0;i<msgarr.length;i++){
 			msgstr += '\n'+i+'. '+msgarr[i];
 		}
-		alert('请检查表单的规范性与完整性：\n'+msgstr);	
+		alert(lang('jcore.jqbase_checkform')+'\n'+msgstr);	
 	}
-}
+}	
 function evf_errMessage(e){
 	var imsg = $(e).attr("tip");
-	imsg = imsg ? imsg : $(e).attr("name")+'不规范';
+	imsg = imsg ? imsg : $(e).attr("name")+lang('jcore.jqbase_notrule');
 	if(imsg.indexOf('</body>')>0 || imsg.indexOf('</BODY>')>0){
 		imsg = jsText(imsg);
 		imsg = imsg.replace(/\s+/g,"");
@@ -227,6 +227,8 @@ function evf_check_ajax(obj){
 	if(url_str.indexOf("?") != -1){ url_str = url_str+"&"; }
 	else                          { url_str = url_str+"?"; }
 	url_str += obj.prop("name")+"="+obj.prop("value")+"&"+_cbase.safil.url;
+	try{ url_str += '&lang='+_cbase.sys.lang; }
+	catch(ex){ }
 	var feed_back = $.ajax({url: url_str,cache: false,async: false}).responseText;
 	feed_back = feed_back.replace(/(^\s*)|(\s*$)/g, "");
 	if(feed_back == 'success'){

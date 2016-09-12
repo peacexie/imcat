@@ -14,7 +14,7 @@ class tex_faqs{ //extends tex_base
     	}
     	$mod = $rep ? 'qarep' : 'faqs';
     	$link = PATH_ROOT."/plus/coms/mdown.php?mod=$mod&kid=$kid";
-    	$link = "<a href='$link' onclick='return winOpen(this,\"Makedown代码查看\",600,480);'>$mdshow</a>";
+    	$link = "<a href='$link' onclick='return winOpen(this,\"Makedown".lang('user.exf_vcode')."\",600,480);'>$mdshow</a>";
     	return $link;
 	}
 
@@ -101,12 +101,7 @@ class tex_faqs{ //extends tex_base
 	
 	static function navTop($obj,$re='html'){ 
 		$mcfg = glbConfig::read('faqs'); 
-		$cfg = array(
-			'new' => '最新', 
-			'tip' => '精华', 
-			'hot' => '热门', 
-			'tag' => '标签', 
-		);
+		$cfg = basLang::ucfg('cfgbase.ucfaqn4');
 		$tag = basReq::val('tag');
 		$tag && $cfg['tag'] .= ":$tag";
 		$str = '';
@@ -128,8 +123,8 @@ class tex_faqs{ //extends tex_base
 	static function navSide($obj,$re='html'){ 
 		$mcfg = glbConfig::read('faqs'); 
 		$stats = self::statTypes($act='get');
-		$str = "<a href='".vopUrl::fout('faqs')."' id='qas__allt'><i class='right'>".$stats['_allt']."</i>所有分类</a>";
-		$arr = array('_allt'=>'所有分类');
+		$str = "<a href='".vopUrl::fout('faqs')."' id='qas__allt'><i class='right'>".$stats['_allt']."</i>".lang('user.exf_alltype')."</a>";
+		$arr = array('_allt'=>lang('user.exf_alltype'));
 		foreach($mcfg['i'] as $key=>$val){
 			$cnts = "<i class='right'>".(empty($stats[$key]) ? 0 : $stats[$key])."</i>";
 			$str .= "<a href='".vopUrl::fout("faqs-$key")."' id='qas_$key'>$cnts$val[title]</a>";

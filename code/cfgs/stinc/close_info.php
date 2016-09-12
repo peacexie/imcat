@@ -11,7 +11,7 @@ $sname = urlencode($_cbase['sys_name']);
 </head>
 <body style="margin:10px">
 <h1>Site Closed!</h1>
-<p>Hi, 网站升级中，临时关闭!</p>
+<p>Hi, <?php echo lang('core.cfg_close'); ?></p>
 <hr>
 <p>More Infomation you can find:</p>
 <ul>

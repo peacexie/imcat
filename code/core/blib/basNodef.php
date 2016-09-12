@@ -10,8 +10,8 @@ class basNodef{
 		if (function_exists('mysql_real_escape_string')) {
 			return mysql_real_escape_string($str);
 		}
-		$a[0] = array("\x00","\n","\r","\\","'",'"',"\x1a",);
-		$a[1] = array("","\\n","\\r","\\\\","\\'",'\\"',"",);
+		$a[0] = array("\\","\x00","\n","\r","'",'"',"\x1a",);
+		$a[1] = array("\\\\","","\\n","\\r","\\'",'\\"',"",);
 		return str_replace($a[0],$a[$no],$str);
 	}
 

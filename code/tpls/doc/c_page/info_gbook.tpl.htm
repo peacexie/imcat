@@ -1,0 +1,48 @@
+{imp:"c_pub/alay_mcon"}<!--继承模板-->
+
+{block:extop}
+<?php
+$modid = 'gbook';
+$titletop = 'Guestbook';
+$titlesub = 'Guestbook';
+?>
+{/block:extop}
+
+{block:exmain}
+
+    <h1 class="news_title">
+        {$titlesub}
+    </h1>
+    <div class="news_rem">
+      <div class="rembar"> 
+      <span class="remadd">{$titlesub}(<i id="jsid_count_{$modid}:0">0<!--,cnt_{$modid},--></i>) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;Pub</a></span> 
+      <span class="remtitle">{$titlesub}</span> 
+      </div><!--[cache,60]-->
+      {tag:nrlist=[Page][modid,$modid][keywd,0,title+detail][limit,50]}
+      {:row}
+      <dl>
+        <dt>{title($t_title,48,$v)} </dt>
+        <dd>
+        {text($t_detail,2400)}
+        <p>
+        <li class="tr">{$t_mname} &nbsp; Pub:<i class="atime">{stime($t_atime,min)} </i></li>
+        {if !empty($t_reply)}<span class="fB c00F">Reply:{stime($t_etime,min)}</span>{/if}
+        </p>
+        </dd>
+        <dd>
+        {text($t_reply,2400)}
+        </dd>
+      </dl>
+      {/row}
+      <div class="clear"></div>
+      {php echo $_cbase['page']['bar']; }
+      {/tag:nrlist}
+    </div>
+    
+{/block:exmain}
+
+{block:exside}{inc:"c_page/info_side"}{/block:exside}
+
+{block:exfoot}
+<script>_cbase.jsrun.menuid='gbook';</script>
+{/block:exfoot}

@@ -3,13 +3,7 @@
 usrPerm::run('pfile','(auto)');
 
 $parts = empty($parts) ? 'cache' : $parts;
-$cfg = array(
-	'cache'=>'系统缓存',
-	'types'=>'类别数据',
-	'menux'=>'广告菜单',
-	'data'=>'冗余缓存',
-
-);
+$cfg = basLang::ucfg('cfgbase.admupd'); 
 
 $gbar = ''; $ggap = ''; // class='cur,
 foreach($cfg as $k=>$v){ 
@@ -32,34 +26,34 @@ if(empty($bsend)){
             $ti++;
 		}
 	}
-	$stra = "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_cache' value='cache'>系统缓存</label>";
-	$stra .= "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_relat' value='relat'>类别关联</label>";	
-	$stra .= "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_gperm' value='gperm'>等级权限</label>";
+	$stra = "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_cache' value='cache'>{$cfg['cache']}</label>";
+	$stra .= "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_relat' value='relat'>".lang('admin.ud_reltype')."</label>";	
+	$stra .= "<label><input type='checkbox' class='rdcb cbg_cache' name='clr[]' id='clr_gperm' value='gperm'>".lang('admin.ud_gperm')."</label>";
 
-	$strb = "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_data' value='data'>冗余数据</label>";
-	$strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_file' value='file'>冗余文件</label>";
-    $strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_ctpl' value='ctpl'>模板缓存</label>";
-    $strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_ctag' value='ctag'>标签缓存</label>";
-	$strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_cadv' value='cadv'>广告缓存</label>";	
+	$strb = "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_data' value='data'>".lang('admin.ud_exdata')."</label>";
+	$strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_file' value='file'>".lang('admin.ud_exfile')."</label>";
+    $strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_ctpl' value='ctpl'>".lang('admin.ud_tplcache')."</label>";
+    $strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_ctag' value='ctag'>".lang('admin.ud_tagcache')."</label>";
+	$strb .= "<label><input type='checkbox' class='rdcb cbg_data' name='clr[]' id='clr_cadv' value='cadv'>".lang('admin.ud_advcache')."</label>";	
     
-    $strm = "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_menua' value='menua'>后台菜单</label>";
-    $strm .= "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_menum' value='muadm'>会员菜单</label>";	
-	$strm .= "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_madvs' value='madvs'>广告连接</label>";	
+    $strm = "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_menua' value='menua'>".lang('admin.ud_amenu')."</label>";
+    $strm .= "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_menum' value='muadm'>".lang('admin.ud_umenu')."</label>";	
+	$strm .= "<label><input type='checkbox' class='rdcb cbg_menux' name='clr[]' id='clr_madvs' value='madvs'>".lang('admin.ud_adlink')."</label>";	
 	
-	glbHtml::tab_bar("系统缓存：更新清理","快捷选择 : $gbar",35);
+	glbHtml::tab_bar($cfg['cache']." : ".lang('admin.ud_updclr'),lang('admin.ud_quick')." : $gbar",35);
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-	glbHtml::fmae_row('更新:系统缓存',$stra);
-	glbHtml::fmae_row('更新:类别数据',$str1);
-	glbHtml::fmae_row('更新:广告菜单',$strm);
-	glbHtml::fmae_row('清理:冗余缓存',$strb);
-	glbHtml::fmae_send('bsend','提交','25');
+	glbHtml::fmae_row(lang('flow.op_upd').':'.$cfg['cache'],$stra);
+	glbHtml::fmae_row(lang('flow.op_upd').':'.$cfg['types'],$str1);
+	glbHtml::fmae_row(lang('flow.op_upd').':'.$cfg['menux'],$strm);
+	glbHtml::fmae_row(lang('flow.dops_clear').':'.$cfg['data'],$strb);
+	glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 	glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid))); 
 	echo basJscss::jscode("\nfunction clr_group(e,part){fmSelGroup(e,part);$('#navid_'+part).toggleClass('cur');}$('input:first').trigger('click');");
 
 }elseif(!empty($bsend)){
 
 	$clr = basReq::arr('clr'); 
-	if(empty($clr)) basMsg::show("请选择操作！",'Redir',"?file=admin/update&parts=$parts");
+	if(empty($clr)) basMsg::show(lang('admin.ud_pick'),'Redir',"?file=admin/update&parts=$parts");
 	
 	if(in_array('cache',$clr)){
 		glbCUpd::upd_groups();
@@ -88,7 +82,7 @@ if(empty($bsend)){
 	}
 	if(in_array('menua',$clr)){
 		foreach(array('muadm') as $mod){
-			glbCUpd::upd_menus($mod);
+			echo glbCUpd::upd_menus($mod);
 		}
 	} // upd_grade放在upd_menus后面
     if(in_array('menum',$clr)){
@@ -134,7 +128,7 @@ if(empty($bsend)){
 	
 	echo '<br>'.basDebug::runInfo().'<hr>';
 	//print_r($clr);
-	basMsg::show("更新完成！",'Redir',"?file=admin/update&parts=$parts");
+	basMsg::show(lang('admin.ud_end'),'Redir',"?file=admin/update&parts=$parts");
 
 }elseif($view=='set'){
 

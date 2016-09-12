@@ -72,13 +72,13 @@ function mapPick(type,fid,w,h){
 	var point = jsElm.jeID(fid).value; 
 	url = _cbase.run.roots+'/plus/map/index.php?type='+type+'&act=pick&point='+point+'&title='+fid+'';
 	if(!w) w = 720; if(!h) h = 480;
-	popOpen('选择地图坐标',url,w,h);
+	popOpen(lang('jcore.pop_pickmap'),url,w,h);
 }
 // 检查重复 ：id='fm_repeat_' onclick="repCheck('news','title','fid');"
 function repeatCheck(mod,fid,kid){
 	var para = 'act=infoRepeat&mod='+mod+'&fid='+fid+'&kwd='+jsElm.jeID('fm['+fid+']').value+'';
 	jQuery.getScript(_cbase.run.roots+'/plus/ajax/cajax.php?'+para,function(){ 
-		var re = _repeat_res=='success' ? '该资料重复!' : _repeat_res;
+		var re = _repeat_res=='success' ? lang('jcore.pop_repeat') : _repeat_res;
 		layer.tips(re, '#fm_repeat_'+kid, {tips:3});
 	});
 }
@@ -86,14 +86,14 @@ function repeatCheck(mod,fid,kid){
 function pickOpen(modid,retitle,refval,refname,cntre,exparas){
 	var emod = jsElm.jeID(modid); 
 	var mod = emod ? emod.value : modid;
-	if(mod==''){ layer.tips('请选模型！','#'+modid); return; }
+	if(mod==''){ layer.tips(lang('jcore.pop_pickmod'),'#'+modid); return; }
 	var url = _cbase.run.roots+'/plus/ajax/pick.php?';
 	refval = encodeURIComponent(refval);
 	refname = encodeURIComponent(refname);
 	cntre = cntre ? cntre : 1;
 	//exparas: fso,ford,fshow,cntre,cshow ; &vdef='+vdef+'
 	url += 'mod='+mod+'&retitle='+retitle+'&refval='+refval+'&refname='+refname+'&cntre='+cntre+'';
-	popOpen('信息选取',url,640,320);
+	popOpen(lang('jcore.pop_infopick'),url,640,320);
 }
 function pickOne(e){
 	var itm = pickRinfo(e); 
@@ -121,7 +121,7 @@ function pickMul(e,isdel){
 		var has = $("[value='"+itm[0]+"']",window.parent.document); //jsLog(has);
 		if(has && $(has[0]).prop('name')==pfield) return;
 		if(e.checked && parseInt($('#sel_cnt').html())>=pick_max){ 
-			alert("最多个["+pick_max+"个]");
+			alert(lang('jcore.pop_maxn',pick_max));
 			return false; 
 		}
 		var html = "<span><input name='"+pfield+"' type='checkbox' class='rdcb' onClick='pickMul(this,1)' value='"+itm[0]+"' checked />"+itm[1]+"</span>";
@@ -134,7 +134,7 @@ function pickAll(e){
 	var rows = $("#fmlist tr").length-1;
 	var inow = parseInt($('#sel_cnt').html());
 	if(inow+rows>pick_max){
-		alert("最多个["+pick_max+"个],此页不能全选了！");
+		alert(lang('jcore.pop_maxm',pick_max));
 		return false; 
 	}else{ //jsLog(name); //
 		fmSelAll(e);
@@ -201,7 +201,7 @@ function popInit(fid,mod,w,n,def,cstr,cb){
 				g = ', '; k++;
 			}
 		}
-		if(n>1&&k>1){ str = str+' (共'+k+'个项目)';}
+		if(n>1&&k>1){ str = str+lang('jcore.pop_all',k);}
 		jsElm.jeID(fid2+'_name').value = str;
 	}
 }

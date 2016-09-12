@@ -1,7 +1,6 @@
 <?php 
 require(dirname(__FILE__).'/_config.php');
 
-$db = glbDBObj::dbObj();
 $qstr = $_SERVER['QUERY_STRING'];
 // advs:mod.key
 
@@ -22,9 +21,22 @@ if(strpos($mkv,'.')>0){
 	$kid = $mkv;
 } //echo "$act:$mkv; $mod:$kid<hr>";
 
+// lang:cn:&recbl=redir
+if($act=='lang'){ 
+
+	$recbk = basReq::val('recbk',@$_SERVER["HTTP_REFERER"]);
+	$lang = $mkv;
+	$flang = DIR_CODE."/lang/kvphp/core-$lang.php";
+	file_exists($flang) && comCookie::oset('lang',$lang,30*86400); 
+	if($recbk && !strpos($recbk,'plus/ajax/redir.php')){
+		header("Location: $recbk");
+	}else{
+		die("::$flang:$recbk::");
+	}
+
 // /root/plus/ajax/redir.php?news.2015-a1-fhh1
 // /index.php?indoc.1234-56-7890
-if($act=='defdir'){ 
+}elseif($act=='defdir'){ 
 	
 	$mods = array('indoc');
 	if(in_array($mod,$mods)){
@@ -60,6 +72,7 @@ if($act=='defdir'){
 	if(empty($mod) || empty($aid) || empty($url)){
 		exit("Error: [$mod,$aid,$url]");
 	}else{
+		$db = glbDBObj::dbObj();
 		$db->query("UPDATE ".$db->table("advs_$mod",2)." SET click=click+1 WHERE aid='$aid'");
 		header("Location: $url");	
 	}
@@ -69,7 +82,8 @@ if($act=='defdir'){
 }elseif($act=='dir'){
 	
 	//die($mkv);
-	$redir = glbConfig::read('redir','ex');
+	$redir = glbConfig::read('ujump','ex');
+	$redir = $redir['redir'];
 	if(isset($redir[$mkv])){
 		header("Location: ".$redir[$mkv]);
 	}//else{ die('xxx'); }

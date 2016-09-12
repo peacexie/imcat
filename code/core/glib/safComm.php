@@ -18,9 +18,9 @@ class safComm{ // extends safBase
 		$code = basReq::val("{$mod}_{$rest[1]}");
 		$revc = self::formCVimg($mod, $code, 'check', $timeout, 1);
 		if(!empty($rest[0])){ 
-			$re = "认证码错误！[$rest[0]]";
+			$re = lang('safcomm_vcoderr')."[$rest[0]]";
 		}elseif(!empty($revc)){ //认证码 认证
-			$re = "认证码错误！[$revc]";
+			$re = lang('safcomm_vcoderr')."[$revc]";
 		}
 		return array($re,$code); //认证结果
 	}
@@ -74,8 +74,8 @@ class safComm{ // extends safBase
 			$css2 = basReq::val('css2','fs_vimg');
 			$tabi = basReq::val('tabi',19790);
 			$senc = comConvert::sysEncode($sform,$stamp,$len2); 
-			$vgap = '\\"';
-			$vstr = "maxlength='5' reg='vimg:3-5' tip='点击输入框后见图片,<br>不分大小写' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
+			$vgap = '\\"'; 
+			$vstr = "maxlength='5' reg='vimg:3-5' tip='".lang('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
 			$restr .= "<input id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus={$vgap}fsCode('{$fmid}'){$vgap} $vstr />";
 			$restr .= "<samp id='{$fmid}_vBox' class='$css2' style='display:none'></samp>"; //samp,span, style='width:50px;'
 			return $restr;
@@ -103,7 +103,7 @@ class safComm{ // extends safBase
 		$q = urldecode($q);
 		if($q!=str_replace(array('<','>','"',"'","\\","\r","\n"),'',$q)){
 			if($re) return false;
-			$msg = "[QUERY]参数错误!";
+			$msg = "[QUERY]Error!";
 			basMsg::show($msg,'die'); 
 		}
 		return true;

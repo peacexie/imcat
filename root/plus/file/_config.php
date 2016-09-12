@@ -1,8 +1,10 @@
 <?php
+$_cbase['ucfg']['lang'] = '(auto)'; 
 require(dirname(dirname(dirname(__FILE__))).'/run/_paths.php'); 
+$lang = $_cbase['sys']['lang']; 
 
 function pfcfgParts(){
-	$re = glbConfig::read('urparts','sy'); 
+	$re = basLang::ucfg('urparts'); 
 	if(strlen(basReq::val('kid','','Key'))<10){ unset($re['now']); }
 	return $re;
 }
@@ -23,7 +25,8 @@ function pfcfgPars($arr=1){
 function pfileHead($parts,$title=''){
 	glbHtml::page($title,1);
 	glbHtml::page('imadm'); //adm
-	echo basJscss::imp("/plus/file/funcs.js?".time(),'js');
+	basLang::jimp("/plus/file/funcs.js");
+	#echo basJscss::imp("/plus/file/funcs.js?".time(),'js');
 	echo basJscss::imp("/plus/file/style.css");
 	glbHtml::page('body',' style="margin:0px 2px;"');
 	$allpars = pfcfgPars(0);
@@ -46,4 +49,4 @@ function pfileHead($parts,$title=''){
 $groups = glbConfig::read('groups');
 extract(pfcfgPars(), EXTR_OVERWRITE); 
 
-$user = usrBase::userObj();
+$user = usrBase::userObj(array('Admin','Member'));

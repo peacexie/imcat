@@ -3,7 +3,7 @@
 {block:init}
 {:parent}
 <?php 
-$tipmsg = '修改密码！';
+$tipmsg = lang('user.pub_epass');
 $mod = @$user->uinfo['umods']; 
 $uname = @$user->uinfo['uname'];
 $unenc =comConvert::sysRevert($uname, 0, '', 600);
@@ -14,13 +14,13 @@ $unenc =comConvert::sysRevert($uname, 0, '', 600);
 <div class="umc-mitem">
 <form action="?{$this->mkv}" method="post">
     <h3><i>edit password</i>
-    绑定微信
+    {lang(user.uop_webind)}
     #
-    绑定QQ
+    {lang(user.uop_qqbind)}
     </h3>
     <dl>
-        <dt>用户信息：</dt><dd>{$unowstr}</dd>
-        <dt>扫描绑定：</dt><div>
+        <dt>{lang(user.pub_uinfo)}: </dt><dd>{$unowstr}</dd>
+        <dt>{lang(user.uop_scanbind)}: </dt><div>
           <p id="lscan_msg">
           <img src="{PATH_ROOT}/skin/a_img/loadbig.gif" id="lscan_img" width="240">
           </p>
@@ -47,13 +47,13 @@ function fcheckMbind(sid,extp,stampys,signys){
     var url = 'actys=chkXXXXX&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
     $.getScript(ubase+url, function(){ //jsLog(data);
         if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
-            alert('服务器返回格式错误。');
+            alert('{lang(user.lon_errsvr)}');
             return '';
         //}else if(data.user_info.mid=="-1"){
             //$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
             //return '';
         }else if(data.uname){
-            $('#lscan_msg').html("["+data.uname+"]登录成功！");
+            $('#lscan_msg').html("["+data.uname+"]{lang(user.uop_bindok)}".);
             location.reload();
             return '';
         } 

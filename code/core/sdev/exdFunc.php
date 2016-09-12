@@ -70,7 +70,7 @@ class exdFunc extends exdBase{
 			$data = $this->exdPsyn_Data($jcfg,$re['max'],1);
 			$re['next'] = empty($data) ? 0 : 1; 
 		}else{
-			$re['msg'] = '无原始数据';
+			$re['msg'] = lang('core.nul_orgdata');
 			$re['next'] = 0;	
 		} 
 		return $re; 
@@ -120,7 +120,7 @@ class exdFunc extends exdBase{
 			$data = $this->exdOimp_Data($jcfg,$re['max'],1);
 			$re['next'] = empty($data) ? 0 : 1; 
 		}else{
-			$re['msg'] = '无原始数据';
+			$re['msg'] = lang('core.nul_orgdata');
 			$re['next'] = 0;	
 		} 
 		return $re; 
@@ -186,7 +186,7 @@ class exdFunc extends exdBase{
 			$oplog = str_replace(array(",,"),array(","),"$oplog,$pm2[0],");
 			$this->db->table('exd_crawl')->data(array('oplog'=>$oplog))->where("kid='{$jcfg['kid']}'")->update();
 		}else{
-			$re['msg'] = '无原始数据';
+			$re['msg'] = lang('core.nul_orgdata');
 			$re['next'] = 0;
 		}
 		return $re; 

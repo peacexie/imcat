@@ -5,18 +5,18 @@
   </dd>
   <ul>
     <li>
-        <i>当前时间</i> 
+        <i>{lang(tools.rplan_ntime)}</i> 
         <b class="ext"></b>
         <b class="comm" id="idNow">Loading…</b> 
     </li>
     <li>
-        <i>当前状态</i>
+        <i>{lang(tools.rplan_nstat)}</i>
         <b class="ext"></b>
         <b class="comm" id="idSate">Loading…</b>  
     </li>
   </ul>
   
-  <p> 定时执行工具 --- 计划任务本地辅助程序 </p>
+  <p> {lang(tools.rplan_title)} </p>
   <ul id='job_lists'>
     <?php if($act=='alist') echo "<pre>".exvCron::plistTest()."</pre>"; ?>
     <!--li id="job_file1">
@@ -25,4 +25,3 @@
     </li-->
   </ul>
 </div>
-

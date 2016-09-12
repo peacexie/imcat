@@ -47,16 +47,10 @@ class usrBase{
 	
 	function login_msg($key){
 		if(is_numeric($key)){
-			$re = "账号密码错误，错误次数：{$key}次！";
+			$re = lang('usrb_ertimes',$key);
 		}else{
-			$a = array(
-				'Null' => '登录失败，账号密码为空！',
-				'Forbid' => '登录失败，锁定状态禁止登录！',
-				'noChecked' => '登录失败，账号密码错误或未审核！',
-				'isLogin' => '已经登录，不能重复登录！',
-				'OK' => '登录成功！',
-			);
-			$re = isset($a[$key]) ? $a[$key] : "($key)未知错误";
+			$ucfg = basLang::ucfg('cfglibs.usrbase');
+			$re = isset($ucfg[$key]) ? $ucfg[$key] : "($key)".lang('usrb_erunknow');
 		}
 		return $re;
 	}

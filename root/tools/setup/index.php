@@ -1,4 +1,5 @@
 <?php 
+$_cbase['ucfg']['lang'] = '(auto)'; 
 require(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');  
 
 // Check proot
@@ -36,9 +37,10 @@ if($act=='EditDB'){
 	devSetup::$func($tab);
 }
 
-glbHtml::page("安装程序 - ".$_cbase['sys_name'],1);
+glbHtml::page(lang('tools.setup_title')." - ".$_cbase['sys_name'],1);
 glbHtml::page('imp');
 echo basJscss::imp("/tools/setup/sfunc.js");
+echo basJscss::imp("/tools/setup/sfunc-{$_cbase['sys']['lang']}.js");
 echo basJscss::imp("/tools/setup/style.css");
 glbHtml::page('body');
 

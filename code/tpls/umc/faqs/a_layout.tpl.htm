@@ -4,7 +4,7 @@ $tag = basReq::val('tag');
 $keywd = basReq::val('keywd');
 ?>{/block:init}
 <!DOCTYPE html><html><head>
-{block:title}{php $this->pmeta('问答系统-'.$_cbase['sys_name']); }{/block:title}
+{block:title}{php $this->pmeta(lang('user.qa_title').'-'.$_cbase['sys_name']); }{/block:title}
 {php $this->pimp();}
 {php echo basJscss::imp('/skin/umc/b_jscss/faqs.css'); }
 {php glbHtml::page('imp','/plus/ajax/comjs.php?act=jsPlus'); }
@@ -17,19 +17,20 @@ $keywd = basReq::val('keywd');
   <p class="umc_logo">&nbsp;</p>
   <div class="umc_unow tl">
     <p class="umc_msg">
-    &nbsp;问答系统 --- {$_cbase['sys_name']}！ 
+    &nbsp; {lang(user.qa_title)} --- {$_cbase['sys_name']}！ 
+    # <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中</a>|<a href="{PATH_ROOT}/plus/ajax/redir.php?lang:en">En]</a>  
     <i>
-    <a href="{surl(0)}"><b class="icons ico-person"></b>用户中心</a>
-    <a href="{surl(chn:0)}" class="cF0F" target="_blank">[首页]<b class="icons ico-home"></b></a>
+    <a href="{surl(0)}"><b class="icons ico-person"></b>{lang(user.pub_cuser)}</a>
+    <a href="{surl(chn:0)}" class="cF0F" target="_blank">[{lang(user.qa_home)}]<b class="icons ico-home"></b></a>
     </i>
     </p>
   </div>
   <div class="umc_nav1">
   <form action="{surl(0)}" method="get">
-  <a {php vopCell::vOpen('faqs',0,0,620,480); }>发布</a>
+  <a {php vopCell::vOpen('faqs',0,0,620,480); }>{lang(user.qa_pub)}</a>
   <input name="mkv" type="hidden" value="faqs--list">
-  <select onChange="jsqaSearch(this)"><option value="keywd">标题</option><option value="tag" {if !empty($tag) }selected{/if}>标签</option></select><input 
-  name="keywd" id='keywd' type="text" value="{php echo $keywd.$tag; }"> <input type="submit" value="搜索">
+  <select onChange="jsqaSearch(this)"><option value="keywd">{lang(user.qa_subj)}</option><option value="tag" {if !empty($tag) }selected{/if}>{lang(user.qa_tag)}</option></select><input 
+  name="keywd" id='keywd' type="text" value="{php echo $keywd.$tag; }"> <input type="submit" value="{lang(user.qa_so)}">
   </form>
   </div>
 </div>
@@ -37,11 +38,11 @@ $keywd = basReq::val('keywd');
 <table class="cst-out">
     <tr>
         <td height="10" class="cst-title1">
-<i class="right cCCC">更多&gt;&gt;</i><i class="icons ico-calculator sct-qa-icon"></i>按分类查看
+<i class="right cCCC">{lang(user.qa_more)}&gt;&gt;</i><i class="icons ico-calculator sct-qa-icon"></i>Class/分类
         </td>
         <td class="cst-navtop">
         {php echo tex_faqs::navTop($this); }
-        <a class="act" id="qat_detail" style="display:none;">详情</a>
+        <a class="act" id="qat_detail" style="display:none;">{lang(user.qa_detail)}</a>
         </td>
     </tr>
     <tr>
@@ -54,7 +55,7 @@ $keywd = basReq::val('keywd');
     </tr>
     <tr>
         <td height="10" class="cst-title2">
-<i class="right"><a href="{surl(faqs-tag)}">更多&gt;&gt;</a></i><i class="icons ico-flag sct-qa-icon"></i>按标签查看 
+<i class="right"><a href="{surl(faqs-tag)}">{lang(user.qa_more)}&gt;&gt;</a></i><i class="icons ico-flag sct-qa-icon"></i>Tags/标签 
         </td>
     </tr>
     <tr>

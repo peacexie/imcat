@@ -85,23 +85,23 @@ class extSms{
 		// 格式化 $mobiles,$content, 
 		$atel = $this->telFormat($mobiles);
 		$amsg = $this->msgCount($content);
-		if(empty($atel)) return array('-2','号码不正确!');	
-		if(empty($amsg[0])) return array('-2','信息内容为空!');
+		if(empty($atel)) return array('-2',lang('sms_errtel'));	
+		if(empty($amsg[0])) return array('-2',lang('sms_errmsg'));
 		$nmsg = count($atel)*$amsg[1];
 		// 需扣费计算条数,检查余额
 		$balance = $this->smsdo->getBalance(); 
 		if((float)$balance[1]<=0){
 			$mobiles = implode(',',$atel);
 			$this->balanceWarn("--tels:$mobiles\n --cmsg:$content"); //写记录
-			return array('-2','系统余额为0,请联系管理员!');		
+			return array('-2',lang('sms_charge0'));		
 		} //print_r("$limit,$limit<$nmsg");
 		if($limit && $limit<$nmsg){
-			return array('-2','系统余额不足,请联系管理员!');	
+			return array('-2',lang('sms_charged'));	
 		}
 		// 发送及结果
 		if(count($atel)>$this->cfg_mtels){ // 分组发送
 			$groups = array_chunk($atel,$this->cfg_mtels);
-			$res = array('-2','群发失败!');
+			$res = array('-2',lang('sms_msenderr'));
 			$flag = false; //成功标记
 			foreach($groups as $group){ 
 				$res_temp = $this->smsdo->sendSMS($group,$content);

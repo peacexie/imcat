@@ -18,33 +18,13 @@ $_sy_pubcfg['dirs'] = array(
 	'vendor'=>DIR_VENDOR,
 	'vendui'=>DIR_VENDUI,
 );
-//1. 删除
-$_sy_pubcfg['del'] =  array(
-	//array('root','/@test/dirname'),
-	array('root','/a3rd/weixin_pay/wetest.php'), 
-	array('dtmp','/store/_setfix_path.txt'), 
-	array('dtmp','/store/_setup_lock.txt'),
-	array('dtmp','/store/_setup_step.txt'),
-	
-	array('static','/media/fonts/simkai.ttf'),
-	array('static','/media/sample/hello.3gpp'),
-	array('static','/media/sample/movecar.3gp'),
-	array('static','/media/sample/sample.avi'),
-	array('static','/media/sample/sample.flv'),
-	
-	array('static','/media/collect/xbbs_Dance.gif'),
-	array('static','/media/collect/xbbs_Pazz.gif'),
-	array('static','/media/collect/xditu.jpg'),
-	array('static','/media/collect/zuowen_shangxin.jpg'),
-
-	//array('static','/media/sample/filename_ext'),
-);
 
 //2. copy
 $_sy_pubcfg['copy'] = array(
 	'robots.txt',
 	'chn.php',
 	'dev.php',
+	'doc.php',
 	'mob.php',
 	'index.php',
 );
@@ -99,8 +79,38 @@ $_sy_pubcfg['rndata'] =  array(
 	'bext_paras:2' => array("kid='push_site'",'detail',array('detail'=>'www.your_domain.com')),
 );
 
-//7. skip
+//7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
 	'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony'),
+);
+//8. skip-files
+$_sy_pubcfg['skfiles'] =  array(
+	'wetest.php', // a3rd/weixin_pay/
+	'_setfix_path.txt', // dtmp:/store/
+	'_setup_lock.txt',
+	'_setup_step.txt',
+	'simkai.ttf', // static:/media/fonts/
+	'hello.3gpp', // static:/media/sample
+	'movecar.3gp',
+	'sample.avi',
+	'sample.flv',
+	'ZoomImg.rar',
+	'demo-book1.xls',
+	'demo-word.doc',
+	'demo-ppt.pptx',
+	'xbbs_Dance.gif', // static:/media/collect/
+	'xbbs_Pazz.gif',
+	'xditu.jpg',
+	'zuowen_shangxin.jpg',
+	'temp_480x200.jpg',
+	'dbdic-cn.cac_htm', // vary:/dtmp/store/
+	'dbdic-en.cac_htm',
+	'_auto.cfg_php',
+	'_china.cfg_php',
+	'_world.cfg_php',
+	'CN-tab.php', // static:/media/iptabs/
+	'haibao.jpg', // static:/media/cover/
+	'100-gushi.jpg', // static:/file_demo1/
+	'cacert.pem', // vendor:/a3rd/alipay_class/
 );
 

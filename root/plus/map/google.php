@@ -15,7 +15,7 @@ marker = new google.maps.Marker({
 	<?php if($act=='pick'){ ?>
 	draggable : true,
 	<?php }else{ ?>
-	title : "我是文字标注哦",
+	title : "Title",
 	<?php } ?>
 	position : mpoint
 });

@@ -2,13 +2,14 @@
  *** 目录结构：
 
 [SiteProject]
-│  @read.htm
 │  chn.php
 │  dev.php
+│  doc.php
 │  index.php
 │  mob.php
 │  robots.txt
 │  
+├─@read : readme files
 ├─code : 类库,流程代码,配置,模版等; 是网站运行的主要代码
 │  ├─adpt : api/驱动类库
 │  ├─cfgs : 配置

@@ -100,8 +100,8 @@ function fsCode(fmid,reLoad,x,y){
 	if(box.innerHTML.length<24){
 	  x = x ? x : 3; y = y ? y-25 : -20;
 	  var img = '<samp class="fs_vimg_span" style="left:'+x+'px;top:'+y+'px;">';
-	  img += '<img id="'+fmid+'_vimg" src="'+_cbase.run.roots+'/skin/a_img/blank.gif" onclick=\'fsCode("'+fmid+'","reLoad")\' title="点击刷新/换一组" />';
-	  img += '<samp class="fs_vimg_close" onclick=\'fsCHidd("'+fmid+'")\' title="隐藏">[X]</samp></samp>';
+	  img += '<img id="'+fmid+'_vimg" src="'+_cbase.run.roots+'/skin/a_img/blank.gif" onclick=\'fsCode("'+fmid+'","reLoad")\' title="'+lang('jcore.vcode_upd')+'" />';
+	  img += '<samp class="fs_vimg_close" onclick=\'fsCHidd("'+fmid+'")\' title="'+lang('jcore.hide')+'">[X]</samp></samp>';
 	  box.innerHTML = img; 
 	  reLoad = 1;
 	} 
@@ -148,19 +148,6 @@ function fmSelGroup(e,part) {
 	});	
 }
 
-// {lang(core.view_times,$click)}
-// {lang(core.sys_name)}
-function lang(mk, val){
-	/*
-	$arr = explode('.',$mk); 
-	$re = self::get($arr[1], $arr[0]);
-	if(strlen($val)>0){
-		$re = str_replace('{val}',$val,$re);
-	} 
-	return $re;
-	*/
-}
-
 // 前台ajax调用资料使用 ===================================================================================================
 
 function jcronRun(tpldir,mkv,reurl){
@@ -182,7 +169,7 @@ function jtagSend(){
 		if(id.length>12){ // && val.length>3
 			lena = url.length+data.length+base.length;
 			if(lena>2000){ // 2038
-				jtagRep(id,'<i class="cC3C">js标签太多,{'+id+'}无法显示。('+lena+')</i><br>');
+				jtagRep(id,'<i class="cC3C">'+lang('jcore.jstag_toolong',id)+'('+lena+')</i><br>');
 			}else{
 				url += data; last = data.length;
 			} 
@@ -317,7 +304,7 @@ function mselElms(fmid,dkey,no,ops){
 		$('#'+id).remove();
 	}
 	eval("a = window._msel_"+fmid+"_titles.split(',');");
-	op0 = "<option value=''>-"+(a[no] ? a[no] : '请选择')+"-</option>";
+	op0 = "<option value=''>-"+(a[no] ? a[no] : lang('jcore.pleaseselect'))+"-</option>";
 	s = "<select id='"+id+"' onchange=\"mselAct('"+fmid+"','"+dkey+"',"+no+")\">"+op0+ops+"</select>";
 	return s;
 }

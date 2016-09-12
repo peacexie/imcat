@@ -74,7 +74,7 @@ class comTypes{
 			$arr = $imod['i'];  
 		}
 		$a = basArray::opaItems($arr,'',$frame);
-		return basElm::setOption($a,$def,empty($msg) ? '-请选择-' : $msg);
+		return basElm::setOption($a,$def,empty($msg) ? '-<Null>-' : $msg);
 	}
 	
 

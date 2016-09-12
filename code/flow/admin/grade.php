@@ -4,7 +4,7 @@ usrPerm::run('pfile','admin/grade.php');
 
 $mod = empty($mod) ? 'adminer' : $mod;
 $view = empty($view) ? 'glist' : $view;
-if(!($gname = @$_groups[$mod]['title'])) glbHtml::end('参数错误:mod@grade.php'); 
+if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@grade.php'); 
 $gbar = admAFunc::grpNav('users',$mod); 
 $cfg = glbConfig::read($mod); 
 $tabid = "base_grade";
@@ -14,11 +14,11 @@ if($view=='glist'){
 
 	$msg = '';	
 	if(!empty($bsend)){
-		if(empty($fs_do)) $msg = "请选择操作项目！";
-		if(empty($fs)) $msg = "请勾选操作项！";
+		if(empty($fs_do)) $msg = lang('flow.dops_setop');
+		if(empty($fs)) $msg = lang('flow.msg_pkitem');
 		else{
-			foreach($fs as $id=>$v){ //upd|更新\ndel|删除\nenable|启用\nstop|禁用
-				$msg = "设置成功！";
+			foreach($fs as $id=>$v){
+				$msg = lang('flow.msg_set');
 				if($fs_do=='upd'){ 
 					$db->table($tabid)->data(basReq::in($fm[$id]))->where("kid='$id'")->update(); 
 				}elseif($fs_do=='del'){ 
@@ -38,15 +38,15 @@ if($view=='glist'){
 		glbCUpd::upd_model($mod);
 	} 
  	
-	$lnkadd = "<a href='$aurl[1]&view=gform' onclick='return winOpen(this,\"增加条目-在[$gname]\");'>增加条目&gt;&gt;</a>";
-	glbHtml::tab_bar("[等级权限] :: $gname<span class='span ph5'>|</span>$lnkadd",$gbar,35);
+	$lnkadd = "<a href='$aurl[1]&view=gform' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";
+	glbHtml::tab_bar(lang('admin.grd_gperm')." :: $gname<span class='span ph5'>|</span>$lnkadd",$gbar,35);
 	
 	$_ex_paras = glbConfig::read('paras','ex');
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选择</th><th>Key</th><th>名称</th><th>排序</th><th>启用</th>";
-	echo "<th>权限</th><th>修改</th>";
-	if(in_array($mod,$_ex_paras['grade'])) echo "<th>参数</th>";
-	echo "<th class='wp15'>备注</th>\n";
+	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
+	echo "<th>".lang('flow.title_perm')."</th><th>".lang('flow.title_edit')."</th>";
+	if(in_array($mod,$_ex_paras['grade'])) echo "<th>".lang('flow.title_param')."</th>";
+	echo "<th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n";
 	$list = $db->table($tabid)->where("model='$mod'")->order('top,kid')->select();
 	if($list){
@@ -58,15 +58,15 @@ if($view=='glist'){
 	  echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' /></td>\n";
 	  echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
 	  echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";  
-	  echo "<td class='tc'>".($kid=='supper' ? '设置' : "<a href='$aurl[1]&view=set&kid=$r[kid]'>设置</a>")."</td>\n";
-	  echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"修改条目-$r[title]\");'>修改</a></td>\n";
-	  if(in_array($mod,$_ex_paras['grade'])) echo "<td class='tc'>".("<a href='?file=admin/fields&mod=$mod&catid=$r[kid]'>设置</a>")."</td>\n";
+	  echo "<td class='tc'>".($kid=='supper' ? lang('admin.grd_set') : "<a href='$aurl[1]&view=set&kid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
+	  echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.grd_edit')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
+	  if(in_array($mod,$_ex_paras['grade'])) echo "<td class='tc'>".("<a href='?file=admin/fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
 	  echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
 	  echo "</tr>"; 
 	}} 
 	echo "<tr>\n";
 	echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-	echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>批量操作: <select name='fs_do'>".basElm::setOption("upd|更新\ndel|删除\nshow|启用\nstop|禁用")."</select> <input name='bsend' class='btn' type='submit' value='执行操作' /> &nbsp; </td>\n";
+	echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
 	echo "</tr>";
 	glbHtml::fmt_end(array("mod|$mod"));
 	
@@ -75,14 +75,14 @@ if($view=='glist'){
 	if(!empty($bsend)){
 		if($kid=='_isadd_'){
 			if($db->table($tabid)->where("kid='$fm[kid]'")->find()){
-				$msg = "该条目[$fm[kid]]已被占用！";
+				$msg = lang('flow.msg_exists',$fm['kid']);
 			}else{
-				$msg = '添加成功！';  
+				$msg = lang('flow.msg_add');  
 				$db->table($tabid)->data(basReq::in($fm))->insert();
 				$id = $fm['kid'];	
 			}
 		}else{
-			$msg = '更新成功！'; 
+			$msg = lang('flow.msg_upd');
 			unset($fm['kid']); 
 			$db->table($tabid)->data(basReq::in($fm))->where("kid='$kid'")->update();
 		} 
@@ -99,20 +99,20 @@ if($view=='glist'){
 			if(!isset($fm[$k])) $fm[$k] = $v;
 		}
 		$ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
-		$ienable .= "启用<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
-		$itop = " &nbsp; 顺序<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='允许2-5数字' />";
+		$ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
+		$itop = " &nbsp; ".lang('flow.title_top')."<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  />";
 		echo "<div class='h02'>&nbsp;</div>";
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 		if(!empty($kid)){
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
 		}else{
-			$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=keyExists&mod=&tab=$tabid' tip='字母开头,允许字母数字下划线<br>允许4-12字符,建议4-5字符'";
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:4-12' $vstr />$ienable");
+			$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=keyExists&mod=&tab=$tabid' tip='".lang('admin.fad_tip41245')."' ";
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:4-12' $vstr />$ienable");
 		}
-		glbHtml::fmae_row('条目名称',"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='可含字母数字下划线<br>允许2-12字符,建议4-6字符' />$itop");
-		glbHtml::fmae_row('配置数组',"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>格式:键=值,一行一个；");
-		glbHtml::fmae_row('备注',"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
-		glbHtml::fmae_send('bsend','提交','25');
+		glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
+		glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>".lang('flow.fl_cfgtip'));
+		glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 		glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","kid|".(empty($kid) ? '_isadd_' : $kid)));
 	}
 
@@ -122,17 +122,17 @@ if($view=='glist'){
 	if(!empty($bsend)){
 		$v = empty($fm['prmcb']) ? '' : implode(',',array_filter($fm['prmcb']));
 		$db->table($tabid)->data(basReq::in(array($parts=>$v)))->where("kid='$kid'")->update();
-		echo basJscss::Alert('更新成功！','Redir',$aurl[1]);
+		echo basJscss::Alert(lang('flow.msg_upd'),'Redir',$aurl[1]);
 	}else{
 		$row = $db->table($tabid)->where("kid='$kid'")->find(); 
 		$title = $row['title']; //company,govern,apimail
-		$lnkbak = "<a href='?file=$file&mod=$mod'>&lt;&lt;返回[$gname]等级列表</a>";
+		$lnkbak = "<a href='?file=$file&mod=$mod'>&lt;&lt;".lang('admin.grd_back')."[$gname]".lang('admin.grd_glist')."</a>";
 		$lpart1 = " | "; $lpart2 = " | ";
-		$pcfg1 = array('pmod'=>'模块','padd'=>'增加','pdel'=>'删除','pcheck'=>'审核');
+		$pcfg1 = array('pmod'=>lang('admin.grd_mod'),'padd'=>lang('flow.dops_add'),'pdel'=>lang('flow.dops_del'),'pcheck'=>lang('flow.dops_checked'));
 		foreach($pcfg1 as $k=>$v) { $lpart1 .= "<a href='?file=$file&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
-		$pcfg2 = array('pmadm'=>'菜单','pmusr'=>'会员','pfile'=>'脚本','pextra'=>'附加');
+		$pcfg2 = basLang::ucfg('cfglibs.grset_types');  
 		foreach($pcfg2 as $k=>$v) { $lpart2 .= "<a href='?file=$file&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
-		glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$title]权限编辑","$lpart1<br>$lpart2",40); //-
+		glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$title]".lang('admin.grd_pedit')."","$lpart1<br>$lpart2",40); //-
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 		$pmstr = $row[$parts];  
 		if(in_array($parts,array('pmod','padd','pdel','pcheck'))){
@@ -150,7 +150,7 @@ if($view=='glist'){
 			foreach($a0 as $k2=>$v2){
 				if($v2['pid']=='0') $a2[$k2] = $v2['title'];
 			}
-			glbHtml::fmae_row('顶级菜单',basElm::setCBox("prmcb",$a2,$pmstr));
+			glbHtml::fmae_row(lang('admin.grd_tmenu'),basElm::setCBox("prmcb",$a2,$pmstr));
 			$i = 0;
 			foreach($a0 as $k2=>$v2){ 
 			if($v2['deep']=='2'){ $i++; 
@@ -196,7 +196,7 @@ if($view=='glist'){
 				glbHtml::fmae_row("$v2[title]",$s3);
 			}
 		}
-		glbHtml::fmae_send('bsend','提交',in_array($parts,array('pmadm','pmusr')) ? ($parts=='pmusr' ? '20' : 25) : 15);
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'),in_array($parts,array('pmadm','pmusr')) ? ($parts=='pmusr' ? '20' : 25) : 15);
 		glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","","kid|".(empty($kid) ? '_isadd_' : $kid)));
 	}
 }

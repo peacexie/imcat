@@ -15,7 +15,7 @@ glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 $dop->fmAccount();
 fldView::lists($mod,$fmo);
 $dop->fmProp();
-glbHtml::fmae_send('bsend','提交');
+glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
 if(in_array($mod,array('company','govern','organize'))){
 	fldView::relat("fm[grade]","fm[miuid],$mod,$uid,fm[grade]"); 

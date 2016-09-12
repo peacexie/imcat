@@ -246,19 +246,20 @@ class basKeyid{
 		$groups = glbConfig::read('groups');
 		$keepids = glbConfig::read('keepid','sy');
 		if(strlen($key)<$len){
-			return "请输入$len+个字符！";
+			return lang('core.kid_minlen',$len); //"请输入$len+个字符！";
 		}
 		if($chk && strpos($keepids,",$key,")){
-			return "[$key]已被系统保留！";
+			return lang('core.kid_keeped',$key); 
 		}
 		if($fix && strpos($key,"_")){
 			$fix = strpos($key,0,strpos($key,'_'));
-			if(strstr($keepids,",$fix,")) return "前缀[$fix]已被系统保留！";
+			if(strstr($keepids,",$fix,")) return lang('core.kid_preused',$key); 
 		}
 		if($grp && isset($groups[$key])){ 
-			return "[$key]为系统模型（已占用）！";
+			return lang('core.kid_ismodel',$key); 
 		}
 		return '';
 	}
 
 }
+

@@ -20,12 +20,12 @@ if($act){
 
 glbHtml::fmt_head('fmlist',"?",'tblist');
 $mcfg = glbConfig::read('faqs'); 
-$ucfg = array('_allt'=>'所有类别','_tags'=>'所有标签',);
+$ucfg = array('_allt'=>lang('flow.qa_alltype'),'_tags'=>lang('flow.qa_alltag'),);
 $cfgs = tex_faqs::statTypes();
 foreach($cfgs as $key=>$v){
 	$title = isset($ucfg[$key]) ? $ucfg[$key] : $mcfg['i'][$key]['title'];
-	$link = isset($ucfg[$key]) ? " &nbsp; -=> <a href='?file=$file&view=$view&act=$key'>更新/重置</a>" : '';
-	echo "\n<tr><td class='tc w150'>{$title}：</td>\n<td>$cfgs[$key] [$key] $link </td></tr>\n";
+	$link = isset($ucfg[$key]) ? " &nbsp; -=> <a href='?file=$file&view=$view&act=$key'>".lang('flow.qa_reset')."</a>" : '';
+	echo "\n<tr><td class='tc w150'>{$title}: </td>\n<td>$cfgs[$key] [$key] $link </td></tr>\n";
 }
 glbHtml::fmt_end(array("mod|$mod"));
 

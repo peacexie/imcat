@@ -9,6 +9,7 @@ $act = basReq::val('act','sysInit');
 // 初始化js
 if($act=='sysInit'){  	
 	
+	$lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
 	// ***** js配置区 *****
 	$jscfg  = "\n// js Config";
 	$jscfg .= "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
@@ -21,7 +22,7 @@ if($act=='sysInit'){
 	//sys
 	$jscfg .= "\n_cbase.sys.cset = '".$_cbase['sys']['cset']."';";
 	$jscfg .= "\n_cbase.sys.tzone = '".$_cbase['sys']['tmzone']."';"; // 时区+-12
-	$jscfg .= "\n_cbase.sys.lang = '".$_cbase['sys']['lang']."';";
+	$jscfg .= "\n_cbase.sys.lang = '$lang';";
 	$jscfg .= "\n_cbase.run.ref = '".@$_SERVER['HTTP_REFERER']."';"; // 
 	$jscfg .= "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
 	$jscfg .= "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
@@ -89,6 +90,8 @@ if($act=='sysInit'){
 	require(DIR_ROOT.'/skin/jslib/jsbase.js');
 	require(DIR_ROOT.'/skin/jslib/jsbext.js'); 
 	require(DIR_ROOT.'/skin/jslib/jspop.js'); 
+	$flang = DIR_ROOT."/skin/jslib/jcore-$lang.js";
+	if(file_exists($flang)) require($flang); 
 	//print_r(basDebug::runInfo());
 
 }elseif($act=='autoJQ'){

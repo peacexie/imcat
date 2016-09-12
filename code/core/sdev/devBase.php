@@ -59,7 +59,7 @@ class devBase{
 					echo self::docFuncs($fp);
 					echo "</ul>";
 					if(strstr($class,",$file,")){ 
-						$sfile = "<span class='red' title='重复类名'>$file</span>";
+						$sfile = "<span class='red' title='".lang('devbase_clsrepeat')."'>$file</span>";
 					}else{
 						$sfile = "$file";
 						$class .= "$file,";
@@ -117,6 +117,47 @@ class devBase{
 		return $re;
 	}
 
+	static function scanDblang(){
+		$re = array();
+		$path = DIR_DTMP."/dbexp";
+		$lists = comFiles::listScan($path,'');
+		foreach($lists as $file=>$fv){
+			$tbfix = substr($file,5,4);
+			$tbname = str_replace('.dbsql','',substr($file,5)); 
+			if(!in_array(substr($file,5,4),array('base','bext'))) continue;
+			$old = include(DIR_CODE."/lang/dbins/$tbname-cn.php");
+			$data = comFiles::get("$path/$file");
+			$arr = basStr::getMatch($data,'dbstr','c196');
+			$arb = basArray::lenOrder($arr);
+			echo "<br>\n<b>$file:</b><br>\n";
+			for($i=15; $i>=1; $i--) { 
+				if(empty($arb[$i])) continue;
+				echo "&nbsp; &nbsp; // $i: <br>\n";
+				foreach($arb[$i] as $val){
+					if(in_array($val,$old)) continue;
+					echo "&nbsp; &nbsp; '$val',<br>\n";
+				}
+			}
+		}
+	}
+	static function scanCnchr($dir,$sdir=array(),$skip=array()){
+		$re = array();
+		$lists = comFiles::listScan($dir,'',$sdir);
+		foreach($lists as $file=>$fv){
+			if(!( strpos($file,'.php')||strpos($file,'.js')||strpos($file,'.htm') )) continue;
+			if(in_array(str_replace('.php','',basename($file)),$skip)) continue;
+			if(strpos($file,'-cn.')) continue;
+			$data = comFiles::get("$dir/$file");
+			$data = preg_replace('/\/\*(.*?)\*\//is','',$data);
+			$data = preg_replace('/\/\/[^\r\n]+/is','',$data);
+			$data = preg_replace("/<\!--.*?-->/is","",$data);
+			$res = basStr::getMatch($data,'dbstr','c196');
+			if(!empty($res)){
+				echo "<b>$file</b><br>\n";
+				dump($res);
+			}
+		}
+	}
 	static function scanInit($dir,$burl='',$sub=''){
 		$re = array();
 		$lists = comFiles::listScan($dir,'',array('tpls','a3rd','skin'));
@@ -165,7 +206,7 @@ class devBase{
 		$tdoc = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbdoc.htm'); 
 		$ttab = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbtab.htm');
 		$slist = $tlist = ''; 
-		$clist = '<tr><td>数据表</td><td>字段</td></tr>'; 
+		$clist = '<tr><td>'.lang('core.dbdict_table').'</td><td>'.lang('core.dbdict_field').'</td></tr>'; 
 		foreach($tabinfo as $tab=>$r){ 
 			$ra=''; $tabid = $r['Name']; $rows = $r['Rows'];
 			$tblfields = glbDBExt::dbComment($tabid);
@@ -178,7 +219,11 @@ class devBase{
 			$slist .= str_replace(array('{fields}','{tabid}','{tabname}','{rows}'),array($ra,$tabid,$tabrem,$rows),$ttab);
 			$tlist .= "<a href='#$tabid'>".($tabrem ? $tabrem : $tabid)."</a>\n"; 
 		}
-		$data = str_replace(array('{tablists}','{tabmap}','{tabcnt}','{sysname}'),array($slist,$tlist,count($tabinfo),$_cbase['sys_name']),$tdoc);
+		$org = array('{tablists}','{tabmap}','{tabcnt}','{sysname}','{dict-title}');
+		$obj = array($slist,$tlist,count($tabinfo),$_cbase['sys_name'],lang('core.dbdict_title'));
+		$data = str_replace($org,$obj,$tdoc); 
+		$lang = $_cbase['sys']['lang']; 
+		$data = devData::dataImpLang($data,'base_model,base_fields,bext_dbdict');
 		return $data;	
 	}
 

@@ -16,7 +16,7 @@ if($udata && in_array($uptype,array('remote','base64'))){
 	} //array_keys($_FILES);
 	$uptype = 'upload';
 }else{
-	die('错误！');	
+	die(lang('plus.fop_error'));	
 }
 ///echo "<pre>$uptype\n";print_r($uparr); //print_r($_FILES);
 
@@ -44,10 +44,10 @@ if($uparr){
 
     if($recbk=='ref') {
 		if($nok==0){
-			$msg = "文件上传失败：\\n$smsg";
+			$msg = lang('plus.fop_fupfail')."\\n$smsg";
 		}else{
-			$mok = $sum>1 ? ($mok==$sum ? "共{$mok}个" : "共{$mok}/{$sum}个") : ""; $mok = $mok ? "($mok)" : "";
-			$msg = "文件上传成功：$mok \\n$smsg";	
+			$mok = $sum>1 ? ($mok==$sum ? lang('plus.fop_alln',$mok) : lang('plus.fop_alln',"$mok/$sum")) : ""; $mok = $mok ? "($mok)" : "";
+			$msg = lang('plus.fop_fupok')."$mok \\n$smsg";	
 		} 
 		echo basJscss::Alert($msg,'Redir',basReq::getURep($_SERVER["HTTP_REFERER"],'dfile',''));
 	}elseif($recbk=='pfield'){
@@ -55,8 +55,8 @@ if($uparr){
 		echo basJscss::jscode("$cmd;parent.layer.close(parent.layer.getFrameIndex(window.name));"); 
 	}elseif(substr($recbk,0,6)=='isbat_'){ 
         $id = substr($recbk,6);
-		$cmd = $nok>0 ? " [OK!] 上传成功:{$info['original']}" : " [Error] 上传失败: {$info['state']}";
-		echo basJscss::jscode("window.parent.jsElm.jeID('bidiv_$id').innerHTML='[OK!] 上传成功:{$info['original']}';"); 
+		$cmd = $nok>0 ? " [OK!] ".lang('plus.fop_upok').":{$info['original']}" : " [Error] ".lang('plus.fop_upfail').": {$info['state']}";
+		echo basJscss::jscode("window.parent.jsElm.jeID('bidiv_$id').innerHTML='[OK!] ".lang('plus.fop_upok').":{$info['original']}';"); 
     } else {
         echo json_encode($info);
     }

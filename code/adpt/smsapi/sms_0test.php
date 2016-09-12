@@ -33,7 +33,7 @@ class sms_0test{
 			// 扣钱 test_balance.txt
 			return array(1,"OK");
 		}else{
-			return array(-1,'失败!');
+			return array(-1,lang('sms_fail'));
 		}
 	}
 	
@@ -44,7 +44,7 @@ class sms_0test{
 			$cnt = comFiles::get($this->bfile);
 			return array('1',$cnt);
 		}else{
-			return array('-1','失败!');
+			return array('-1',lang('sms_fail'));
 		}	
 	}
 	
@@ -58,7 +58,7 @@ class sms_0test{
 			flock($fp, 2); fwrite($fp, $cnt); fclose($fp);
 			return array('1',$cnt);
 		}else{
-			return array('-1','失败!');
+			return array('-1',lang('sms_fail'));
 		}	
 	}
 	

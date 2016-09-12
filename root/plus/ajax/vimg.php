@@ -38,10 +38,10 @@ if($mod=='(emtel)'){
 	$res = $vqr->$mod();
 	if($mod=='qrVres'){
 		$flag = $res[0];
-		glbHtml::page('验证结果','1'); 
+		glbHtml::page(lang('plus.vimp_res'),'1'); 
 		glbHtml::page('body');
 		echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
-		$msg = '<p>'.($flag=='OK' ? "[OK]认证成功!<br>请放心提交表单！" : "认证错误！<br>$flag").'</p>';
+		$msg = '<p>'.($flag=='OK' ? lang('plus.vimp_ok') : lang('plus.vimp_err')."<br>$flag").'</p>';
 		echo "<p>$msg</p>";
 		foreach($res[1] as $k=>$v){ echo "<br>$k=".@$v; }
 		echo "<pre>"; print_r($_GET); echo "</pre>";
@@ -57,7 +57,7 @@ if($mod=='(emtel)'){
 		'jura',
 		'lconsole',
 	);
-	usleep(200000);#暂停200毫秒，防注册机，发帖机爆力破解...
+	usleep(200000); //暂停200毫秒，防注册机，发帖机爆力破解...
 	$tab = '';
 }
 

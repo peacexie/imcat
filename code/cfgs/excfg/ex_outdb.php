@@ -11,9 +11,9 @@ $_ex_outdb['sign']['skey'] = 'X9040f@txmao-demo.skey'; //签名:skey
 
 // 外部数据库(键值不要用:psyn,sign,list等)
 $_ex_outdb['list'] = array(
-	'demodata' => '(demo)导入演示数据',
-	'dedecms' => '(Mysql)织梦CMS', 
-	'powereasy' => '(Access)动易CMS',
+	'demodata' => '(Demo:Mysql-Import)导入演示数据',
+	'dedecms' => '(Mysql:DedeCMS)织梦CMS', 
+	'powereasy' => '(Access:PowerEasy)动易CMS',
 	'u08house' => '(u08house)08旧房产',
 	'newhouse' => '(newhouse)08新房产',
 );
@@ -40,7 +40,7 @@ $_ex_outdb['powereasy']['db_cset'] = 'gbk';
 
 
 // 旧版数据，（用于[更新升级]#导入旧版数据）
-$_cfgs['db_name']   = 'txmao_v31'; // 数据库名(pdox连接不使用) 
+$_cfgs['db_name']   = 'txmao_v32'; // 数据库名(pdox连接不使用) 
 $_cfgs['db_prefix'] = ''; // 数据库前缀pre_
 $_cfgs['db_suffix'] = '_ys'; // 数据库前缀_suf
 $_cfgs['db_cset']   = 'utf8';// 数据库编码

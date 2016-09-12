@@ -3,6 +3,42 @@
 // Array类
 class basArray{	
 	
+	// 按数组值长度获取部分项
+	static function lenParts($ara,$arb,$nlen,$mlen=15) {
+		if(empty($ara)) return array();
+		$rea = $reb = array();
+		foreach ($ara as $k=>$val) {
+			$len = mb_strlen($val,'UTF8');
+			if($len>=$mlen){
+				$len = $mlen;
+			}
+			if($nlen==$len){
+				$rea[] = $val;
+				$reb[] = $arb[$k];
+			} 
+		} //dump($rea); dump($reb);
+		return array($rea,$reb);
+	}
+
+	// 按数组值长度排序
+	static function lenOrder($arr,$mlen=15,$re='lenkey') {
+		if(empty($arr)) return array();
+		$arb = $arc = array(); // 
+		foreach($arr as $val){
+			$len = mb_strlen($val,'UTF8');
+			if($len>=$mlen) $len = $mlen;
+			$arb[$len][] = $val;
+		}
+		if($re=='lenkey'){
+			return $arb;
+		}
+		for($i=$mlen; $i>=1; $i--) { 
+			if(empty($arb[$i])) continue;
+			$arc = array_merge($arc,$arb[$i]);
+		}
+		return $arc;
+	}
+
 	// 从Object转化为array
 	static function fromObject($obj,$skip='') {
 	    $ref = new ReflectionClass($obj); 

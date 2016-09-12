@@ -8,32 +8,32 @@ $null = '---';
 $bugid || $bugid = '---';
 ?>
 <h1 class="news_title">{title($title,96,$this->vars)}</h1>
-<div class="news_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-  点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
-  回复:<i id="cnt_qarep">0</i>条 </div>
+<div class="news_bar"> {lang(user.qa_pub)}:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+  {lang(user.qa_click)}:<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>{lang(user.qa_times)} &nbsp; 
+  {lang(user.qa_rep)}:<i id="cnt_qarep">0</i>{lang(user.qa_cnt)} </div>
 <div class="news_text">
  <?php echo tex_faqs::showDetail($detail,$mdshow); ?>
 </div>
 <div class="news_bar">
-  <i class="left">状态:{sopt($bugst,faqs.bugst,0,$null)}</i>
+  <i class="left">{lang(user.qa_state)}:{sopt($bugst,faqs.bugst,0,$null)}</i>
   <i class="right"><?php echo tex_faqs::showMdshow($mdshow,$did); ?></i>
   {sopt($hinfo,faqs.hinfo,0,$null)}
   &nbsp; 
-  bug编号: {$bugid}
+  {lang(user.qa_bugid)}: {$bugid}
 </div>
 {if !empty($tags) }
 <div class="cst-tag1">{php echo tex_faqs::navTags($this,$tags); }</div>
 {/if}
 <div class="news_rem">
   <div class="rembar"> 
-  <span class="remadd"><!--a href="{surl(0)}?mkv={$pmod}&pid={$did}"-->回复(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>条)</a> &nbsp; <a {php vopCell::vOpen($pmod,$did); }>&gt;&gt;我来回复</a></span> 
-  <span class="remtitle">回复列表</span> 
+  <span class="remadd"><!--a href="{surl(0)}?mkv={$pmod}&pid={$did}"-->{lang(user.qa_rep)}(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>{lang(user.qa_cnt)})</a> &nbsp; <a {php vopCell::vOpen($pmod,$did); }>&gt;&gt;{lang(user.qa_irep)}</a></span> 
+  <span class="remtitle">{lang(user.qa_relist)}</span> 
   </div><!--[cache,60]--> 
   {tag:dlist=[List][modid,$pmod][pid,$did][limit,20]}
   {:row}
   <dl>
     <dt class="pa5 f16 c069">
-    <span class="right f12 c666">发布于:<i class="atime">{stime($t_atime,min)} </i></span>
+    <span class="right f12 c666">{lang(user.qa_pub)}:<i class="atime">{stime($t_atime,min)} </i></span>
     <?php echo $i_v+1 ?># {title($t_title,48,$v)}
     </dt>
     <dd>
@@ -41,7 +41,7 @@ $bugid || $bugid = '---';
     <p class="tc">
     <span>by: {$t_mname}</span> 
     &nbsp;
-    聊天号: {if empty($t_miuid) } --- {else}{title($t_miuid,48,$v)}{/if} 
+    {lang(user.qa_imid)}: {if empty($t_miuid) } --- {else}{title($t_miuid,48,$v)}{/if} 
     <i class="right">
       <?php echo tex_faqs::showMdshow($t_mdshow,$t_cid,1); ?>
     </i>
