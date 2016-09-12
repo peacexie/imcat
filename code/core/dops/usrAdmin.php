@@ -72,13 +72,13 @@ class usrAdmin extends usrBase{
 				$remsg = $res[0]=='OK' ? '' : $res[1];
 				$remsg || header('Location:'."?");	
 			}else{
-				$remsg = "表单认证错误！";	
+				$remsg = lang('admin.oplogin_vform_err');	
 			} 
 		}elseif($act=='doout'){
 			$user->logout();
-			$remsg = "已经退出 管理员！";	
+			$remsg = lang('admin.oplogin_logout');	
 		}
-		$remsg = empty($remsg) ? '请登录 管理员!' : $remsg; 
+		$remsg = empty($remsg) ? lang('admin.oplogin_please_login') : $remsg; 
 		return $remsg;
 	} // # $remsg = "错误登录次数：{$user->usess['errno']}次；&nbsp; 锁定时间至：".date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut)."。";
 

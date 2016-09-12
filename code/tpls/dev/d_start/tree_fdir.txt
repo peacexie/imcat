@@ -1,6 +1,6 @@
-卷 eData 的文件夹 PATH 列表
-卷序列号为 00000200 C821:C0A2
+
 E:.
+├─@read
 ├─code
 │  ├─adpt
 │  │  ├─cache
@@ -37,10 +37,10 @@ E:.
 │  │  ├─emod
 │  │  └─emou
 │  ├─lang
-│  │  ├─admin
-│  │  ├─core
-│  │  ├─user
-│  │  └─vops
+│  │  ├─dbins
+│  │  ├─kvphp
+│  │  ├─ptinc
+│  │  └─ucfgs
 │  └─tpls
 │      ├─adm
 │      │  ├─b_func
@@ -72,6 +72,15 @@ E:.
 │      │  ├─d_tester
 │      │  ├─d_tools
 │      │  ├─d_tpltag
+│      │  ├─d_uplog
+│      │  └─_config
+│      ├─doc
+│      │  ├─b_func
+│      │  ├─c_demo
+│      │  ├─c_mod
+│      │  ├─c_page
+│      │  ├─c_pub
+│      │  ├─d_start
 │      │  ├─d_uplog
 │      │  └─_config
 │      ├─mob
@@ -114,7 +123,8 @@ E:.
 │  │  ├─coms
 │  │  ├─editor
 │  │  ├─file
-│  │  └─map
+│  │  ├─map
+│  │  └─yscode
 │  ├─run
 │  ├─skin
 │  │  ├─adm
@@ -126,6 +136,9 @@ E:.
 │  │  ├─demodir
 │  │  │  └─b_jscss
 │  │  ├─dev
+│  │  │  ├─b_img
+│  │  │  └─b_jscss
+│  │  ├─doc
 │  │  │  ├─b_img
 │  │  │  └─b_jscss
 │  │  ├─jslib
@@ -152,4 +165,3 @@ E:.
     ├─odbimp
     ├─remote
     └─txjia
-        └─run_old

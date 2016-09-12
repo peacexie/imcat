@@ -16,28 +16,29 @@ class dopExtra extends dopBase{
 		$this->order  = $this->so->order  = basReq::val('order','atime');
 	}
 	// 翻页条,批量操作
-	function pgbar($idfirst,$idend,$ops="dele|删除所选\ndnow|删除当前"){
+	function pgbar($idfirst,$idend,$ops="(null)"){
+		if($ops=='(null)') $ops="dele|".lang('op_delsel')."\ndnow|".lang('op_delnow')."";
 		$pg = $this->pg->show($idfirst,$idend);
-		$op = "".basElm::setOption($ops,'','-批量操作-');
+		$op = "".basElm::setOption($ops,'',lang('flow.op0_bacth'));
 		dopFunc::pageBar($pg,$op);
 	}
 	// 搜索条 // check,fields
 	function sobar($msg='',$width=30,$sor2='-1',$khid=array()){ 
 		$mod = $this->mod; $sbar = ''; 
-		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,'-筛选-',$this->sofields);
+		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'),$this->sofields);
 		if(!empty($this->soarField)){
 			$sbar .= "\n&nbsp; $this->soarMsg:".$this->so->Area(1,50,$this->soarField);
 		}
-		$sbar .= "\n&nbsp; ".$this->so->Order($this->soorders,100,'-排序-',$sor2);
+		$sbar .= "\n&nbsp; ".$this->so->Order($this->soorders,100,lang('flow.op0_order'),$sor2);
 		$this->so->Form($sbar,$msg,$width,$khid);
 	}
 	
 	// opDelnow。
 	function opDelnow($days=0){ 
 		$where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5));
-		if(empty($where)) return '删除失败,请设置条件';
+		if(empty($where)) return lang('msg_delxng');
 		$this->db->table($this->tbid)->where($where)->delete(); 
-		return "当前条件：[".basJscss::jsShow($where)."] 删除成功";
+		return lang('msg_delxok',basJscss::jsShow($where)); 
 	}	
 	// 搜索 init
 	function soset($cfg=array()){ 

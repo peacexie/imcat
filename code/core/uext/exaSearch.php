@@ -19,7 +19,7 @@ function fsget_file($path,$deep=0) {
 	$skip = str_replace(';;',';',$skip);
 	$handle = opendir($now); 
 	while($file=readdir($handle)){
-	  $file = strtolower($file);
+	  //$file = strtolower($file);
 	  if(is_file("$now/$file")){
 		$f1 = 0; $f2 = 0;
 		for($k=0;$k<count($ex1);$k++){

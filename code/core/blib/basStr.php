@@ -7,7 +7,33 @@ class basStr{
 	- cut,show前缀
 	- by Peace(XieYS) 2012-02-18
 	***************************************************************************** */
-	
+
+	// 匹配中文字符串
+	// ($str,'100,ffff','3,5'), ($str,'cnchr','c124'), 
+	public static function getMatch($str,$case='cnchr',$len='c124'){
+		$cfgs = array(
+			'isasc' => array('{20}','{ff}'), // ascii码
+			'noasc' => array('{100}','{ffff}'), //非ascii码
+			'cnchr' => array('{4e00}','{9fbf}'), //中文
+			//'dbstr' => "", //导出的db中文
+		);
+		$lens = array(
+			'c124' => '{1,24}',
+			'c196' => '{1,96}',
+			'c204' => '{1,4}', //姓名
+		);
+		$cfg = isset($cfgs[$case]) ? $cfgs[$case] : explode(',',str_replace(",","},{",'{'.$case.'}'));
+		$len = isset($lens[$len]) ? $lens[$len] : '{'.$len.'}'; "\{$len\}"; 
+		if($case=='dbstr'){ //(is_array($cfg)){
+			//preg_match_all("/[^\'|\"|\>|\<|\r|\n|\?|\\\\]*[\x{4e00}-\x{9fa5}]{1}[^\'|\"|\>|\<|\r|\n|\?|\\\\]*/u",$str,$m);
+			preg_match_all("/[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,48}[\x{4e00}-\x{9fa5}]{1}[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,96}/iu",$str,$m); // (!)
+		}else{
+			preg_match_all("/[\x{$cfg[0]}-\x{$cfg[1]}]{$len}/u",$str,$m);
+		}
+		$res = empty($m[0]) ? array() : array_unique($m[0]);
+		return $res;
+	}
+
 	// 计算字符串字节数，英文算一个字节,不管[GBK/utf-8]编码中文算两个字节
 	public static function chrCount($str){
 		global $_cbase; 
@@ -226,22 +252,11 @@ class basStr{
 			return $flag;
 		}
 	}
-	# 避免重复转utf-8，只转需要转的文档
+	// 避免重复转utf-8，只转需要转的文档
 	static private function isConv($str = ''){
 		if(!$str) return FALSE;
 		if(mb_detect_encoding($str,'UTF-8',TRUE) == 'UTF-8') return FALSE; //本就是UTF8的编码
 		return TRUE;	
-		/*		
-		return preg_match('%(?:
-		[\xC2-\xDF][\x80-\xBF]
-		|\xE0[\xA0-\xBF][\x80-\xBF]
-		|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}
-		|\xED[\x80-\x9F][\x80-\xBF]
-		|\xF0[\x90-\xBF][\x80-\xBF]{2}
-		|[\xF1-\xF3][\x80-\xBF]{3}
-		|\xF4[\x80-\x8F][\x80-\xBF]{2}
-		)+%xs',$str) ? TRUE : FALSE;//没有需要转的字符
-		*/		
 	}
 
 	// 隐藏电话,手机,邮件,qq,ip的中间一部分

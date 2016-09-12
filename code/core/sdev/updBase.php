@@ -19,22 +19,22 @@ class updBase{
 		$data = comFiles::get(DIR_DTMP.self::$prereset);
 		$dcfg = basElm::text2arr($data);
 		if(@$dcfg['done']=='locked'){ 
-			$msg = "已经锁定！重新升级 请找到文件：<br>";
-			$msg .= "[".basDebug::hidInfo(DIR_DTMP)."/store/]下[_upd_reset.txt]<br>";
-			$msg .= "1. 先删除，并重新配置<升级包路径>；<br>";
-			$msg .= "2. 或：修改[done=update]，重新升级";
+			$msg = lang('updbase_lock1')."<br>";
+			$msg .= "[".basDebug::hidInfo(DIR_DTMP)."/store/]:[_upd_reset.txt]<br>";
+			$msg .= lang('updbase_tip1')."<br>";
+			$msg .= lang('updbase_tip2');
 			basMsg::show($msg,'die');
 		}
 		if(empty($dcfg['path']) || empty($dcfg['steps'])) return '';
 		if(!is_dir($dcfg['path'])) return '';
 		return $dcfg;
-	}
+	}	
 	// 检测路径
 	static function preReset($path){
 		$path = str_replace("\\","/",$path);
-		$link = " &gt; <a href='?'>[返回]</a>";
+		$link = " &gt; <a href='?'>".lang('updbase_back')."</a>";
 		if(!$path || !is_dir($path)){ 
-			basMsg::show("设置目录[$path]错误！$link ",'die');
+			basMsg::show(lang('updbase_setdirerr',$path)."$link ",'die');
 		}
 		if(!is_dir(DIR_DTMP.'/update/')) mkdir(DIR_DTMP.'/update/');
 		if(strstr($path,DIR_ROOT) || strstr($path,DIR_CODE)) die("Error Dir [$path]!");
@@ -43,13 +43,13 @@ class updBase{
 		include(DIR_CODE."/cfgs/boot/const.cfg.php"); 
 		$vold = $_cbase['sys']['ver'];
 		if(version_compare($vold,$vnew)>=0){ 
-			basMsg::show("当前版本 高于或等于 升级包版本",'die');
+			basMsg::show(lang('updbase_verbig'),'die');
 		}
 		$br = "\r\n";
 		$data = "path=$path{$br}steps=`{$br}dbdata=`{$br}vnew=$vnew{$br}vold=$vold{$br}done=update";
 		$f = comFiles::put(DIR_DTMP.self::$prereset,$data);
 		if(!$f){ 
-			basMsg::show("可能目录[".DIR_DTMP."/update/]不可写！$link ",'die');
+			basMsg::show(lang('updbase_notwrite',DIR_DTMP."/update/")."$link ",'die');
 		}
 		self::prePsyn($path,0);
 	}
@@ -67,7 +67,7 @@ class updBase{
 				$re['copy'] = @copy($pnew,$pold);
 			}
 		}else{// comp
-			$re['comp'] = '<br>[对比]';  
+			$re['comp'] = '<br>'.lang('updbase_compare');  
 			self::$comps = array(
 				'cfgs/boot/cfg_load.php' => 'code',
 				'cfgs/boot/const.cfg.php' => 'code',

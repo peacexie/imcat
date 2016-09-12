@@ -21,7 +21,7 @@ function jobReset(hm,s){
 		});
 	}
 	num = $('#job_lists li').length;
-	idSate.innerHTML = num ? '最近执行['+num+'个]计划任务' : '最近[无]任务执行'; 
+	idSate.innerHTML = num ? lang('jcore.rplan_nrun',num) : lang('jcore.rplan_nrun',rpaln_null); 
 }
 // 获取现在时间
 function timeNow(){

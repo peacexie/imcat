@@ -162,7 +162,7 @@ class vopTpls{
 			}
 		} //print_r($tplchks);
 		if($die && empty($tplchks[$tpl]['ok'])){
-			vopShow::msg("[excfg/ex_vopfmt.php]/[tpls/$tpl/_config]配置错误!");
+			vopShow::msg("[excfg/ex_vopfmt.php]/[tpls/$tpl/_config] Config Error!");
 		}
 		return $tplchks[$tpl];
 	}

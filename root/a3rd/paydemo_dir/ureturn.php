@@ -22,7 +22,7 @@ if($verify_result) {//验证成功
    		//echo "trade_status=".basReq::val('trade_status');
     }
 		
-	$msg = "验证成功";
+	$msg = lang('a3rd.ureturn_ok');
 
 	//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -30,7 +30,7 @@ if($verify_result) {//验证成功
 else {
     //验证失败
     //如要调试，请看alipay_notify.php页面的verifyReturn函数
-    $msg = "验证失败";
+    $msg = lang('a3rd.ureturn_ng');
 }
 
 $cfg = array(

@@ -6,7 +6,7 @@
  - 发布日期：2015.1225/2016-01-08
  - 发布地点：http://down.chinaz.com/soft/37712.htm
  - 体重：4.64MB
- - 姓名：贴心猫(TiexinCat)
+ - 姓名：贴心猫(Intimate)
  - 血统：PHP5.2~PHP7.0 + Mysql5.x+
  - 展示模板：电脑版/手机版/演示版/管理后台/会员中心
 

@@ -41,8 +41,13 @@ if($view=='ftest'){
 		$picks = $catid ? fldCfgs::addType($mod,$catid) : fldCfgs::addPick($mod);
 		echo "<tr><td colspan='2' class='tl h100'>$picks</td></tr>";
 		$ftypes = fldCfgs::viewTypes(); if(in_array($_groups[$mod]['pid'],array('coms'))||!empty($catid)){ unset($ftypes['file']); } //互动/评论/参数:不要附件, 
+<<<<<<< HEAD
 		glbHtml::fmae_row(lang('admin.fls_fieldtype'),"<select id='fm[type]' name='fm[type]' class='w150' reg='str:1-12' tip='".lang('admin.fls_selftype')."' onChange='gf_setfmType(this)'>".basElm::setOption($ftypes,'')."</select>"); 
 		glbHtml::fmae_row(lang('admin.fls_fcontrol'),"<select id='fm[fmextra]' name='fm[fmextra]' class='w150'>".basElm::setOption('','')."</select>$fmextra_bak$field_from"); 
+=======
+		glbHtml::fmae_row(lang('flow.fls_fieldtype'),"<select id='fm[type]' name='fm[type]' class='w150' reg='str:1-12' tip='".lang('admin.fls_selftype')."' onChange='gf_setfmType(this)'>".basElm::setOption($ftypes,'')."</select>"); 
+		glbHtml::fmae_row(lang('flow.fls_fcontrol'),"<select id='fm[fmextra]' name='fm[fmextra]' class='w150'>".basElm::setOption('','')."</select>$fmextra_bak$field_from"); 
+>>>>>>> 4bba5c05a4192ee008cd1818c14a79ecd2a025ec
 		if(in_array($_groups[$mod]['pid'],array('docs'))&&$_groups[$mod]['etab']&&empty($catid)){ //,'types'
 			$ops = basElm::setOption("0|".lang('admin.fe_mtab')."\n1|".lang('admin.fe_extab')."",'');
 			glbHtml::fmae_row(lang('admin.fls_dbtab'),"<select id='fm[etab]' name='fm[etab]' class='w150' reg='str:1-12' tip='".lang('admin.fls_seldbtab')."'>$ops</select>");

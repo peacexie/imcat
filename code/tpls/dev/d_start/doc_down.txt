@@ -2,15 +2,19 @@
 
 #down#下载程序包
 
-* 整站下载：
- - [yscode] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件  （2016-06-25【新】）
- - [chinaz.站长下载] http://down.chinaz.com/soft/37712.htm （2016-06-25）
+* Github：
+ - https://github.com/peacexie/imcat
+ - 完全开源自由！
 
-* yscode分包(main/vary/vimp)下载(@2016-04-09【新】)：
+* 整站下载：
+ - [yscode] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
+ - [chinaz.站长下载] http://down.chinaz.com/soft/37712.htm
+
+* yscode分包(main/vary/vimp)下载：
  - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 
- - txmao-main.rar [main包-982K]  (包含code/root目录) 类库,流程代码,配置,模版,入口脚本等
- - txmao-vary.rar [vary包-224K]  可变动态文件(缓存,html,上传资源)
- - txmao-vimp.rar [vimp包-2.74M]  导入第三方组件(静态图,第三方组件)
+ - txmao-main.rar [main包]  (包含code/root目录) 类库,流程代码,配置,模版,入口脚本等
+ - txmao-vary.rar [vary包]  可变动态文件(缓存,html,上传资源)
+ - txmao-vimp.rar [vimp包]  导入第三方组件(静态图,第三方组件)
 
 * 提示：
  - 其他下载地址，均为第三方自动收录，更新比较慢；
@@ -24,7 +28,7 @@
  - 推荐：PHP5.3 ~ PHP5.6
  
 * Mysql数据库服务器：
- - mysql5.x
+ - mysql5.x+
  
 * 扩展：
  - MySQLi 或 MySQL 扩展库 (`推荐/默认：MySQLi`)
@@ -56,7 +60,7 @@
  - 后台 >> 工具 >> 系统工具 >> 系统缓存 >> 系统缓存：更新清理 >> 提交 
  - 不执行，少数后台链接可能不可用。
 * 设置目录权限等服务器设置
-* 处理 /dev.php入口(删除或屏蔽或后台设置[关闭dev显示模板])
+* 处理 /dev.php, /doc.php入口(删除或屏蔽或后台设置[关闭dev显示模板])
 * 删除或移开目录 /root/tools/setup/，
 * 可保留文件夹 /root/tools/adbug，以备后续调试。
 * 起始页：/index.php?start 有些链接为常用工具，需要后台登录才可使用
@@ -78,7 +82,7 @@
 * 相关资源
 
  - 在线地址
- ：[演示首页]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php)
+ ：[演示首页]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [英文文档]({svrtxmao}/doc.php)
  - [技术问答(bug反馈)]({svrtxmao}/root/run/umc.php?faqs)
  - [随便吐槽(留言投诉)]({svrtxmao}/dev.php?info-gbook)
  - [捐赠贡献]({svrtxmao}/dev.php?info-help)

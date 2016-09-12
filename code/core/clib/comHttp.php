@@ -37,10 +37,16 @@ class comHttp
 	}
 	
 	//通过 curl get/post数据 ($data: str:xml,str:json,array)
+	// $data:array('_ref'=>'http://down.chinaz.com/soft/37712.htm'); 来路模拟
+	// $header:'X-FORWARDED-FOR:8.8.8.8'.PHP_EOL.'CLIENT-IP:8.8.8.8' //来源IP模拟
 	static function curlCrawl($url, $data=array(), $timeout=5, $header="") {
 		$header = self::_getHeader($header);
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
+		if(isset($data['_ref'])){ //模拟来源地址
+			curl_setopt($ch, CURLOPT_REFERER, $data['_ref']);
+			unset($data['_ref']);
+		}
 		if(!empty($data)){
 			curl_setopt($ch, CURLOPT_POST, true); 
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
@@ -54,7 +60,7 @@ class comHttp
 			curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 			curl_setopt($ch, CURLOPT_SSLVERSION, 1);
 		}
-		$result = curl_exec($ch);
+		$result = curl_exec($ch); 
 		curl_close($ch);
 		return $result;
 	}
@@ -119,7 +125,7 @@ class comHttp
 	}
 	
 	//默认模拟的header头 
-	static private function _getHeader($header="", $restr=1){
+	static function _getHeader($header="", $restr=1){
 		if(!empty($header)) return $header;
 		$defs = array(
 			'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko',

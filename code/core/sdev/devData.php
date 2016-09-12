@@ -70,6 +70,7 @@ class devData{
 		}
 		comFiles::delDir(DIR_DTMP."/tpls/_vinc",0);
 		comFiles::delDir(DIR_DTMP."/tpls/_tagc",0);
+		comFiles::delDir(DIR_DTMP."/tpls/demodir",0);
 	}
 	
 	// rstTabcode()
@@ -92,7 +93,15 @@ class devData{
 		}
 		updBase::cacSave($arr,"tab_proj.php-cdemo",$ptab);
 	}
-	
+	// rstTabmini()
+	static function rstTabmini(){
+		$dir = DIR_DTMP."/dbexp";
+		$files = comFiles::listDir($dir,'file');
+		if(empty($files)) return;
+		foreach ($files as $file => $value) {
+			if(strpos($file,'~coms_')) unlink("$dir/$file");
+		}
+	}
 	// rstRndata();
 	static function rstRndata($path='/dbexp/data~'){
 		$db = glbDBObj::dbObj();
@@ -186,7 +195,7 @@ class devData{
 					mkdir("$pdir/$sdir",0777);
 				}else{
 					$skip = isset($cfgs['skip'][$key]) ? $cfgs['skip'][$key] : array();
-					comFiles::copyDir($path,"$pdir/$sdir",$skip);
+					comFiles::copyDir($path,"$pdir/$sdir",$skip,$cfgs['skfiles']);
 				}
 				if($part=='vary'){ 
 					copy(DIR_CODE.'/index.php',"$pdir/$sdir/index.php");
@@ -200,11 +209,11 @@ class devData{
 			}
 			comFiles::copyDir(DIR_PROJ.'/@read',"$pdir/@read",array());
 		}
-		foreach($cfgs['del'] as $v){ 
+		/*foreach($cfgs['del'] as $v){ 
 			//if($v[0]==$key){
 				comFiles::delDir("$pdir/".$v[0]."$v[1]",1);
 			//}
-		}
+		}*/
 		if($part=='main'){ // ='main' !='vimp'
 			foreach($cfgs['ids'] as $v){
 				self::rstVals("$pdir/".$v[0]."$v[1]",$v[2]);
@@ -366,6 +375,7 @@ class devData{
 		$file = str_replace("\\","/",$path."$tab.dbsql"); 
 		$sqlClean = "DELETE FROM $tabfull";
 		$sqlLoad = "LOAD DATA INFILE '$file' INTO TABLE $tabfull ".devBase::_loadOpt();
+		$sqlLoad = self::dataImpLang($sqlLoad,$tab);
 		try {
 			$db->query($sqlClean,'run');
 			$db->query($sqlLoad,'run');
@@ -387,6 +397,7 @@ class devData{
 		}
 		$sqlClean = "DELETE FROM $tabfull";
 		$sqlLoad = str_replace(array("`{pre}{$tab}{ext}`"),array("`$tabfull`"),$fsql);
+		$sqlLoad = self::dataImpLang($sqlLoad,$tab);
 		try {
 			$db->query($sqlClean,'run');
 			$db->query($sqlLoad,'run');
@@ -394,6 +405,35 @@ class devData{
 		}catch (Exception $e){
 			return false;
 		}	  
+	}
+
+	static function dataImpLang($sql,$tabs){
+		global $_cbase; 
+		$lang = $_cbase['sys']['lang']; 
+		if($lang!=='cn'){ 
+			$taba = explode(',',$tabs);
+			$rcn = $ren = array();
+			foreach ($taba as $tab) {
+				$cnlang = DIR_CODE."/lang/dbins/$tab-cn.php"; 
+				$oblang = DIR_CODE."/lang/dbins/$tab-$lang.php"; 
+				if(file_exists($oblang)){
+					$rcn[$tab] = include($cnlang); 
+					$ren[$tab] = include($oblang); 
+				}else{
+					return $sql;
+				}
+			}
+			for($i=15; $i>=1; $i--) { 
+				foreach ($taba as $tab) {
+					$tmp = basArray::lenParts($rcn[$tab],$ren[$tab],$i);
+					if(!empty($tmp[0])){
+						$sql = str_replace($tmp[0],$tmp[1],$sql); 
+						//dump($tmp);
+					} 
+				}
+			}
+		}
+		return $sql;
 	}
 
 }

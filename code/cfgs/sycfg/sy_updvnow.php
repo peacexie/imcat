@@ -22,7 +22,6 @@ $_sy_updvnow['compcfgs'] = array(
 	
 	'cfgs/sycfg/sy_keepid.php',
 	'cfgs/sycfg/sy_urdirs.php',
-	'cfgs/sycfg/sy_urparts.php',
 	
 	'run/_paths.php', 
 	

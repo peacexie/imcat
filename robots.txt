@@ -1,11 +1,11 @@
 #
 # robots.txt for txmao
-# Version 3.2
+# Version 3.3
 #
 
 User-agent: *
 
-Disallow: /@read.htm
+Disallow: /@read/
 Disallow: /code/
 
 Disallow: /root/a3rd/

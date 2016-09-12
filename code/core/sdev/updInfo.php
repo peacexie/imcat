@@ -23,7 +23,8 @@ class updInfo{
 	// ServerInfo
 	static function getServerInfo(){
 		global $_cbase;
-		$data = self::getCacheData(self::$server_file,'sync');
+		$nf = self::getLangFile(self::$server_file);
+		$data = self::getCacheData($nf,'sync');
 		if(empty($data)){
 			// ● [资讯]2015-0501：微信接口基本完成 [2015-05-05] 
 			$db = glbDBObj::dbObj();
@@ -33,7 +34,7 @@ class updInfo{
 				$a = "<a href='$url' target='_blank'>$r[title]</a>";
 				$data .= "<br>● $a [".date('Y-m-d',$r['atime'])."]\n";
 			}}
-			comFiles::put(DIR_DTMP.self::$server_file,$data);
+			comFiles::put(DIR_DTMP.$nf,$data);
 		}
 		return $data;
 	}	
@@ -41,29 +42,33 @@ class updInfo{
 	// ClientInfo
 	static function getClientInfo(){
 		global $_cbase;
-		$data = self::getCacheData(self::$client_file,'sync','data');
+		$nf = self::getLangFile(self::$client_file);
+		$data = self::getCacheData($nf,'sync','data');
 		if(empty($data)){
 			// ● 当前版本：3.0.2015.1225（官方版本：3.0.2015.1225）
 			$surl = $_cbase['server']['txmao']."/root/plus/api/update.php";
 			$nver = $_cbase['sys']['ver']; //echo ".$surl.";
 			$sver = comHttp::doGet("$surl?act=version",8); 
 			$sdata = comHttp::doGet("$surl?act=server",8);
-			$linkb = "● 当前版本：V{$nver}"; 
-			$linkr = "<a href='".$_cbase['server']['txmao']."/dev.php?start' target='_blank' title='查看官方下载'>V$sver</a>";
+			$linkb = "● ".lang('updinfo_nowver')."V{$nver}"; 
+			$slang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+			$surl = $slang=='zh' ? 'dev' : 'doc';
+			$linkr = "<a href='".$_cbase['server']['txmao']."/$surl.php?start' target='_blank' title='".lang('updinfo_viewdown')."'>V$sver</a>";
 			if(strstr($sdata,'<br>● <a') && strlen($sver)>=3 && strlen($sver)<=18){ 
-				$data = "{$linkb}（官方版本：{$linkr}）\n$sdata";
+				$data = "{$linkb}".lang('updinfo_remver',$linkr)."\n$sdata";
 			}else{
-				$data = "{$linkb}（官方版本：[获取数据错误]）\n";
+				$data = "{$linkb}".lang('updinfo_remerr')."\n";
 			}
-			comFiles::put(DIR_DTMP.self::$client_file,$data);
+			comFiles::put(DIR_DTMP.$nf,$data);
 		}
 		return $data;
 	}	
-	
+
 	// SysInfo sys
 	static function getModStat(){
-		//global $_cbase;
-		$data = self::getCacheData(self::$modstat_file,'stat','array');
+		global $_cbase;
+		$nf = self::getLangFile(self::$modstat_file);
+		$data = self::getCacheData($nf,'stat','array');
 		if(empty($data)){
 			$db = glbDBObj::dbObj();
 			$mcfgs = self::getModConfigs(); // ● [订单] 当天:11，3天:44，总计:99
@@ -76,7 +81,7 @@ class updInfo{
 			}}}
 			$dstr = var_export($data,1);
 			$dstr = "<?php\n\$data = $dstr\n?>";
-			comFiles::put(DIR_DTMP.self::$modstat_file,$dstr);
+			comFiles::put(DIR_DTMP.$nf,$dstr);
 		}
 		return $data;
 	}
@@ -84,7 +89,8 @@ class updInfo{
 	// SpaceInfo
 	static function getSpaceInfo(){
 		global $_cbase;
-		$data = self::getCacheData(self::$space_file,'space','array');
+		$nf = self::getLangFile(self::$space_file);
+		$data = self::getCacheData($nf,'space','array');
 		if(empty($data)){
 			$db = glbDBObj::dbObj();
 			$sum = 0;
@@ -113,7 +119,7 @@ class updInfo{
 			$data['sum'] = basStr::showNumber($sum,'Byte');
 			$dstr = var_export($data,1);
 			$dstr = "<?php\n\$data = $dstr\n?>";
-			comFiles::put(DIR_DTMP.self::$space_file,$dstr);	
+			comFiles::put(DIR_DTMP.$nf,$dstr);	
 		}
 		return $data;
 	}
@@ -122,21 +128,21 @@ class updInfo{
 	static function showSpaceInfo(){
 		$data = self::getSpaceInfo();
 		$s1 = $s2 = ''; 
-		$str = "\n<tr><td>总空间</td><td colspan=6 class='tc'>{$data['total']}M [使用:{$data['sum']}含文件和数据]</td>";
-		$str .= "<td><a href='?mkv=uhome&act=uspace'>更新</a></td></tr>\n";
+		$str = "\n<tr><td>".lang('updinfo_allspace')."</td><td colspan=6 class='tc'>{$data['total']}M ".lang('updinfo_uesspace',$data['sum'])."</td>";
+		$str .= "<td><a href='?mkv=uhome&act=uspace'>".lang('updinfo_upd')."</a></td></tr>\n";
 		foreach($data['dir'] as $key=>$val){
 			$s1 .= "<td>$key</td>";
 			$s2 .= "<td>$val</td>";
 		}
-		$str .= "<tr><td rowspan=2>目录</td>$s1</tr>\n<tr>$s2</tr>\n";
-		$str .= "<tr><td>数据库</td><td></td>";
+		$str .= "<tr><td rowspan=2>".lang('updinfo_dir')."</td>$s1</tr>\n<tr>$s2</tr>\n";
+		$str .= "<tr><td>".lang('updinfo_dbinfo')."</td><td></td>";
 		foreach($data['db'] as $key=>$val){
 			$str .= "<td colspan=2>$key=$val</td>";
 		}
 		$str .= "</tr>";
 		echo $str;
 	}
-	
+
 	// showSysInfo
 	static function showModStat($key){
 		$_groups = glbConfig::read('groups');
@@ -149,7 +155,7 @@ class updInfo{
 			foreach($tcfgs as $tk=>$tv){
 				$v[$tk] = empty($data[$mod."_$tk"]) ? 0 : $data[$mod."_$tk"];
 			}
-			echo "● [$link] 当天:$v[d1]，3天:$v[d3]，7天:$v[d7]，总计:$v[all]\n<br>"; 
+			echo "● [$link] ".lang('updinfo_st1day').":$v[d1], ".lang('updinfo_st3day').":$v[d3], ".lang('updinfo_st7day').":$v[d7], ".lang('updinfo_stall').":$v[all]\n<br>"; 
 		}
 	}
 
@@ -181,6 +187,14 @@ class updInfo{
 		$res = empty($data) ? ($type=='data' ? '' : array()) : $data;
 		return $res;
 	}
+	// getLangFile
+	static function getLangFile($file){
+		global $_cbase;
+		$lang = $_cbase['sys']['lang'];
+		$file = str_replace(array(".htm",".php"),array("-$lang.htm","-$lang.php"),$file);
+		return $file;
+	}
+	
 
 }
 

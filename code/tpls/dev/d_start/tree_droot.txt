@@ -1,5 +1,4 @@
-卷 eData 的文件夹 PATH 列表
-卷序列号为 00000200 C821:C0A2
+
 E:.
 ├─a3rd
 │  ├─alipay_dirbank
@@ -23,7 +22,8 @@ E:.
 │  ├─coms
 │  ├─editor
 │  ├─file
-│  └─map
+│  ├─map
+│  └─yscode
 ├─run
 ├─skin
 │  ├─adm
@@ -35,6 +35,9 @@ E:.
 │  ├─demodir
 │  │  └─b_jscss
 │  ├─dev
+│  │  ├─b_img
+│  │  └─b_jscss
+│  ├─doc
 │  │  ├─b_img
 │  │  └─b_jscss
 │  ├─jslib

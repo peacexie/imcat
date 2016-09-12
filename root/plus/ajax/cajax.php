@@ -10,6 +10,10 @@ $kid = basReq::ark('fm','kid','Key'); //echo $mod.':'.$kid;
 $uid = basReq::ark('fm','uid','Key'); //echo $mod.':'.$uid;
 $_groups = glbConfig::read('groups');
 
+// 处理语言
+$lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
+$lang && $_cbase['sys']['lang'] = $lang;
+
 //测试
 if($act=='_istest_'){
 	
@@ -24,9 +28,9 @@ if($act=='_istest_'){
 	if($re=basKeyid::keepCheck($uname,1,1,1)){ //$key,$chk,$fix,$grp
 		die($re);
 	}elseif($uinfo = $db->table("users_uacc")->where("uname='$uname'")->find()){
-		die("该登陆名[$uname](uacc)已经存在！");
+		die(lang('plus.cajax_userid')."[$uname](uacc)".lang('plus.cajax_exsists'));
 	}elseif($uinfo = $db->table("users_$mod")->where("uname='$uname'")->find()){
-		die("该登陆名[$uname]($mod)已经存在！");
+		die(lang('plus.cajax_userid')."[$uname]($mod)".lang('plus.cajax_exsists'));
 	}else{
 	    die("success");
 	}	
@@ -39,15 +43,15 @@ if($act=='_istest_'){
 	if($re=basKeyid::keepCheck($kid,1,1,0)){ //$key,$chk,$fix,$grp
 		die($re);
 	}elseif($cmod = $db->table('base_fields')->where("model='$mod' AND kid='$kid'")->find()){
-		die("该字段[$kid]已经存在！");
+		die(lang('plus.cajax_field')."[$kid]".lang('plus.cajax_exsists'));
 	}elseif(isset($_groups[$kid]) && $_groups[$kid]['pid']=='types'){ //系统模型
 	    die("success");
 	}elseif(isset($_groups[$kid]) || strstr($sy_kids,",$kid,")){ //系统模型
-	    die("[$kid]已占用或被系统保留！[mod]");
+	    die("[$kid]".lang('plus.cajax_sysuesed')."[mod]");
 	}elseif(isset($_groups[$kid]) && $_groups[$kid]['pid']!='types'){ //系统模型
-		die("该字段[$kid]已被系统保留！[k1])");
+		die(lang('plus.cajax_field')."[$kid]".lang('plus.cajax_syskeep')."[k1])");
 	}elseif(in_array($kid,fldCfgs::setKeeps())){
-		die("[$kid]不能为mysql或系统保留字！");
+		die("[$kid]".lang('plus.cajax_mykeys'));
 	}else{
 	    die("success");
 	}
@@ -61,7 +65,7 @@ if($act=='_istest_'){
 	if($re=basKeyid::keepCheck($kid,1,0,1)){ //$key,$chk,$fix,$grp
 		die($re);
 	}elseif(!empty($mfields) && isset($mfields[$kid])){
-		die("字段[$kid]已经存在！");
+		die(lang('plus.cajax_field')."[$kid]".lang('plus.cajax_exsists'));
 	}else{
 	    die("success");
 	}
@@ -73,7 +77,7 @@ if($act=='_istest_'){
 	$_f1 = in_array($tab,array('base_catalog','base_fields','base_grade','base_menu','base_model','base_paras','types_common'));
 	$_k2 = str_replace('types_','',$tab);
 	$_f2 = isset($_groups[$_k2]); 
-	if(!$_f1 && !$_f2) die("参数错误！");
+	if(!$_f1 && !$_f2) die(lang('plus.cajax_erparam'));
 	$kre = strtolower(basReq::ark('fm','kre','Key')); //@$fm['kre']
 	if(!$kid && $kre) $kid=$kre;
 	$old = basReq::val('old_val'); 
@@ -82,9 +86,9 @@ if($act=='_istest_'){
 	}elseif($kid===$old){
 	    die("success");
 	}elseif(in_array($kid, fldCfgs::setKeeps())){
-		echo "[$kid]不能为mysql保留字！[mysql]";
+		echo "[$kid]".lang('plus.cajax_mykeys')."[mysql]";
 	}elseif($flag=$db->table($tab)->where((empty($mod) ? '' : "model='$mod' AND ")."kid='$kid'")->find()){
-	    echo "[$kid]已被占用！";
+	    echo "[$kid]".lang('plus.cajax_beuesed');
 	}else{
 	    die("success");
 	}
@@ -101,16 +105,17 @@ if($act=='_istest_'){
 	
 	$fid = basReq::val('fid');
 	$kwd = basReq::val('kwd'); // mod,kid(docs,user,coms,advs)
-	if(!isset($_groups[$mod])) die("var _repeat_res = '参数错误';");
+	$msg = lang('plus.cajax_erparam');
+	if(!isset($_groups[$mod])) die("var _repeat_res = '$msg';");
 	$mcfg = glbConfig::read($mod); 
 	$para = "[$mod:$fid=$kwd]";
 	if(empty($mcfg['f'][$fid])){
-		$re = "$para 参数错误!";	
+		$re = "$para $msg!";	
 	}elseif($kwd && $tab=glbDBExt::getTable($mod)){
 		$flag = $db->table($tab)->where("$fid='$kwd'")->find();
-		$re = $flag ? "success" : "该资料无重复";
+		$re = $flag ? "success" : lang('plus.cajax_repeat');
 	}else{
-		$re = "$para 参数错误!";	
+		$re = "$para $msg!";	
 	}
 	echo "var _repeat_res = '$re';";
 
@@ -124,9 +129,9 @@ if($act=='_istest_'){
 	//echo "$mod, $vcode";
 	$re = safComm::formCVimg($mod, $vcode, 'check', 600);
 	if(strstr($re,'-Error')){
-	    echo "认证码错误[1]！";
+	    echo lang('plus.cajax_vcerr');
 	}elseif(strstr($re,'-Timeout')){
-	    echo "认证码超时[2]！";
+	    echo lang('plus.cajax_vctout');
 	}else{
 	    echo "success";
 	}
@@ -139,7 +144,7 @@ if($act=='_istest_'){
 		'docs' =>'did',
 		'users'=>'uid',
 	); //'coms' =>'cid',
-	if(!isset($_tmp[$_pid])) glbHtml::end('参数错误:mod@dop.php');
+	if(!isset($_tmp[$_pid])) glbHtml::end(lang('plus.cajax_erparam').':mod@dop.php');
 	$db = glbDBObj::dbObj();
 	$data = $db->table("{$_pid}_$mod")->where("$_tmp[$_pid]='$kid'")->find(); 
 	fldView::lists($mod,$data,basReq::val('catid'));

@@ -5,6 +5,7 @@ require(dirname(__FILE__).'/_wex_cfgs.php');
 //$types = array('test'=>'测试号','chking'=>'未认证','dingyue'=>'订阅号','fuwu'=>'服务号');
 $tabid = 'wex_menu'; //$weapp
 $mucfg = wysMenu::getMenuData($weapp); 
+$cmop = basLang::ucfg('cfgbase.wx_mop');
 
 if($view=='list'){ 
 	
@@ -13,7 +14,6 @@ if($view=='list'){
 	$flggetmnu = basReq::val('getmnu');
 	$flgdelete = basReq::val('delete');
 	//echo "<pre>"; print_r($fm);
-	
 	if(!empty($flgmusave)){
 		$whr = "`appid`='$weapp'"; //array('appid'=>$wecfg['appid']);
 		foreach($fm as $k=>$v){
@@ -28,13 +28,13 @@ if($view=='list'){
 				$db->table($tabid)->data(basReq::in($v))->insert();
 			}
 		}
-		$msg = "保存菜单配置 成功！";
+		$msg = "$cmop[save] : ".lang('flow.dops_ok');
 		$mucfg = wysMenu::getMenuData($weapp); 
 	}elseif(!empty($flgcreate)){
 		$weixin = new wysMenu($wecfg); 
 		$data = $weixin->create($mucfg); 
-		$msg = $data['errcode'] ? "失败<br>([$data[errcode]]$data[errmsg])" : '成功！';
-		die("<p class='tc'>创建微信菜单 : $msg<br>请关闭窗口<p>");
+		$msg = $data['errcode'] ? lang('awex.fail')."<br>([$data[errcode]]$data[errmsg])" : lang('awex.success');
+		die("<p class='tc'>$cmop[create] : $msg<br>".lang('awex.close')."<p>");
 	}elseif(!empty($flggetmnu)){
 		$weixin = new wysMenu($wecfg); 
 		$data = $weixin->get(); 
@@ -46,23 +46,23 @@ if($view=='list'){
 				$menu .= "\n $tiele";
 			}
 		}
-		$msg = empty($data['errcode']) ? "成功！<pre>$menu</pre>" : "失败<br>([$data[errcode]]$data[errmsg])<br>";
-		die("<p class='tc'>获取微信菜单 : $msg 请关闭窗口<p>");
+		$msg = empty($data['errcode']) ? lang('awex.success')."<pre>$menu</pre>" : lang('awex.fail')."<br>([$data[errcode]]$data[errmsg])<br>";
+		die("<p class='tc'>$cmop[get] : $msg ".lang('awex.close')."<p>");
 	}elseif(!empty($flgdelete)){
 		$weixin = new wysMenu($wecfg); 
 		$data = $weixin->del(); 
-		$msg = $data['errcode'] ? "失败<br>([$data[errcode]]$data[errmsg])" : '成功！';
-		die("<p class='tc'>删除微信菜单 : $msg<br>请关闭窗口<p>");
+		$msg = $data['errcode'] ? lang('awex.fail')."<br>([$data[errcode]]$data[errmsg])" : lang('awex.success');
+		die("<p class='tc'>$cmop[del] : $msg<br>".lang('awex.close')."<p>");
 	}
 	
 	echo basJscss::imp('/skin/a_jscss/weixin.js?v=1');
 	$umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
-	glbHtml::tab_bar("公众号[$wekid] : 菜单配置$umsg",$_cbase['run']['sobarnav'],40,'tl');
+	glbHtml::tab_bar(lang('awex.pids')."[$wekid] : ".lang('awex.mcfg')." $umsg",$_cbase['run']['sobarnav'],40,'tl');
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>序号</th><th>标题</th><th>Key/Url</th>"; 
-	echo "<th>操作</tr>\n";
-	
+	echo "<th>No.</th><th>".lang('awex.title')."</th><th>Key/Url</th>"; 
+	echo "<th>".lang('awex.op')."</tr>\n";
+
 	for($i=1;$i<=3;$i++){ for($j=0;$j<=5;$j++){
 		$itemstr = ''; $mlen = 7; $imuid = "$i{$j}"; ///*[　][＋][－][｜][├][└]  */
 		if($j==0 && $i<=2){
@@ -84,7 +84,7 @@ if($view=='list'){
 		$itemstr .= "<td class='tc'>$imuid</td>\n";
 		$itemstr .= "<td class='tl'>$icon<input name='fm[$imuid][name]' id='fm[$imuid][name]' value='$name' size='25' maxlength='".($j==0 ? 4 : 7)."' type='text'></td>\n";
 		$itemstr .= "<td class='tl'><input name='fm[$imuid][val]' id='fm[$imuid][val]' value='$val' maxlength='240' type='text' class='w320'></td>";
-		$itemstr .= "<td class='tc'><a id='cupick_$imuid' href='javascript:;' onClick=\"wxMenuClear($imuid)\">&lt;&lt;清空</a></td>\n"; //<a id='cupick_$imuid' href='javascript:;' onClick=\"wxMenuPickWin($imuid)\">&lt;&lt; 选取菜单项</a>
+		$itemstr .= "<td class='tc'><a id='cupick_$imuid' href='javascript:;' onClick=\"wxMenuClear($imuid)\">&lt;&lt;".lang('awex.clear')."</a></td>\n"; 
 		$itemstr .= "</tr>";
 		echo $itemstr;
 	} }
@@ -92,13 +92,13 @@ if($view=='list'){
 		<tr>
 		<td>&nbsp;</td>
 		<td colspan='2' class='tc' nowrap>
-		<input name='musave' class='btn' type='submit' value='保存菜单配置' />
+		<input name='musave' class='btn' type='submit' value='$cmop[save]' />
 		&nbsp;
-		<input name='create' class='btn' type='button' value='创建微信菜单' onclick=\"winOpen('$aurl[1]&create=1','创建微信菜单',360,240);\" />
+		<input name='create' class='btn' type='button' value='$cmop[create]' onclick=\"winOpen('$aurl[1]&create=1','$cmop[create]',360,240);\" />
 		&nbsp;
-		<input name='getmnu' class='btn' type='button' value='获取微信菜单' onclick=\"winOpen('$aurl[1]&getmnu=1','获取微信菜单',480,360);\" />
+		<input name='getmnu' class='btn' type='button' value='$cmop[get]' onclick=\"winOpen('$aurl[1]&getmnu=1','$cmop[get]',480,360);\" />
 		&nbsp;
-		<input name='delete' class='btn' type='button' value='删除微信菜单' onclick=\"winOpen('$aurl[1]&delete=1','删除微信菜单',360,240);\" />
+		<input name='delete' class='btn' type='button' value='$cmop[del]' onclick=\"winOpen('$aurl[1]&delete=1','$cmop[del]',360,240);\" />
 		</td>
 		<td>&nbsp;</td>
 		</tr>";

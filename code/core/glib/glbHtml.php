@@ -22,17 +22,15 @@ class glbHtml{
 			echo "<h1>$ext</h1>\n";
 		}elseif($mod=='imp'){
 			self::impub();
-			echo basJscss::imp("/skin/$sdir/b_jscss/comm.css");
+			self::imvop($sdir);	
 		}elseif($mod=='imadm'){  
-			self::impub();
+			self::impub("&lang={$_cbase['sys']['lang']}"); 
 			echo basJscss::imp('/plus/ajax/comjs.php?act=jsPlus');
 			echo basJscss::imp('/skin/a_jscss/jstyle.css'); 
-			echo basJscss::imp("/skin/$sdir/b_jscss/comm.css");
-			echo basJscss::imp("/skin/$sdir/b_jscss/comm.js");			
+			self::imvop($sdir);		
 		}elseif($mod=='imvop'){
 			self::impub("$ext",1);
-			echo basJscss::imp("/skin/$sdir/b_jscss/comm.css");
-			echo basJscss::imp("/skin/$sdir/b_jscss/comm.js");
+			self::imvop($sdir);	
 		}elseif($mod=='imin'){
 			echo basJscss::imp('/plus/ajax/comjs.php?');
 			echo basJscss::imp("/skin/a_jscss/stpub.css");
@@ -61,7 +59,15 @@ class glbHtml{
 		//echo "<!--[if lt IE 9]><script src='".PATH_VENDUI."/jquery/html5shiv.min.js'></script]\n";
 		//echo "<script src='".PATH_VENDUI."/jquery/respond.min.js'></script]<![endif]-->";
 	}
-	
+	// _impub
+	static function imvop($sdir=''){
+		global $_cbase; 
+		echo basJscss::imp("/skin/$sdir/b_jscss/comm.css");
+		echo basJscss::imp("/skin/$sdir/b_jscss/comm.js");
+		$flang = "/skin/$sdir/b_jscss/comm-{$_cbase['sys']['lang']}.js";
+		if(is_file(DIR_ROOT.$flang)) echo basJscss::imp($flang);
+	}
+
 	// header
 	static function head($type='js'){
 		$cset = glbConfig::get('cbase', 'sys.cset');
@@ -154,7 +160,7 @@ class glbHtml{
 		echo "\n$s\n";
 	}
 	static function ieLow_html($mie=8,$nie=9,$css='LowIE',$msg=''){
-		$msg || $msg = "IE浏览器过低！建议你更换浏览器，如Chrome,Firefox,IE$nie+！";
+		$msg || $msg = basLang::show('core.ie_low',$nie); 
 		$s = "<!--[if lt IE $mie]>\n"; //<!--[if lt IE 8]>
 		$s .= "<div class='$css'>$msg</div>\n";
 		$s .= "<![endif]-->";
@@ -162,12 +168,12 @@ class glbHtml{
 	}
 	// 清空缓存 
 	static function clearCache(){
-		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); # 让它在过去就“失效”
-		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); # 永远是改动过的
-		header("Cache-Control: no-store, no-cache , must-revalidate"); //# HTTP/1.1
+		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); // 让它在过去就“失效”
+		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT"); // 永远是改动过的
+		header("Cache-Control: no-store, no-cache , must-revalidate"); // HTTP/1.1
 		header("Cache-Control: post-check=0, pre-check=0", false);
-		header("Pragma: no-cache"); //# HTTP/1.0
-		header("Cache-control: max-age=0"); # IE6
+		header("Pragma: no-cache"); // HTTP/1.0
+		header("Cache-control: max-age=0"); // IE6
 	}
 	
 	// PageEnd()

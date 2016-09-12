@@ -212,7 +212,7 @@ class glbDBExt{
 	static function dbComment($tabid='~return~'){ 
 		static $dbdict,$fmod,$fdemo;
 		$db = glbDBObj::dbObj();
-		$fsystem = glbConfig::read('fsystem','sy');
+		$fsystem = basLang::ucfg('fsystem');
 		if(empty($dbdict)){
 			$dict = $db->table('bext_dbdict')->field("kid,tabid,title")->select();
 			foreach($dict as $v){
@@ -264,12 +264,12 @@ class glbDBExt{
 		$_groups = glbConfig::read('groups');
 		if(isset($_groups[$modid]) && $_groups[$modid]['pid']==$moda[0]){
 			$fields[0]['_flag'] = 'sys'; 
-			$cfg = array('advs'=>'广告','coms'=>'互动','docs'=>'主','types'=>'分类','users'=>'会员');
-			$fields[0]['_rem'] = $_groups[$modid]['title'].('['.$cfg[$moda[0]].']').'表';
+			$cfg = basLang::ucfg('cfglibs.dbext');
+			$fields[0]['_rem'] = $_groups[$modid]['title'].('['.$cfg[$moda[0]].']').lang('dbdict_tab');
 		}
 		if(isset($_groups[$modid]) && $moda[0]=='dext'){
 			$fields[0]['_flag'] = 'sys';
-			$fields[0]['_rem'] = $_groups[$modid]['title'].'[扩展]表';
+			$fields[0]['_rem'] = $_groups[$modid]['title'].lang('dbdict_extab');
 		}
 		if(isset($fsystem['_stabs'][$tabid])){
 			$fields[0]['_flag'] = 'sys';

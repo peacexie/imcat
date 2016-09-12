@@ -1,0 +1,2997 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<title>(CanPHP 2.X for Peace) DB-Dictionary</title>
+<style type="text/css">
+body, td, th { font-size: 12px; }
+a:link, a:visited { text-decoration: none; }
+td.itm { padding-left: 8px; }
+td.itm a { width: 125px; height: 15; font-style: normal; float: left; overflow: hidden; border: 1px solid #CCC; white-space: nowrap; word-break: keep-all; padding: 3px; margin: 3px; }
+a.r { float: right; }
+table.tab { width: 720px; background: #69C; border: 1px solid #069; margin: 12px auto 1px auto; }
+table tr td { background: #FFF; }
+table tr.title td { font-weight: bold; background: #FFF; }
+table tr.head td { font-weight: bold; background: #669; color: #FFF; }
+span.dfCCC { color: #CCC; }
+input.dmod { background-color: #FCC; }
+input.dysy { background-color: #CCC; }
+</style>
+</head>
+<body>
+<table border="0" align="center" cellpadding="5" cellspacing="1" class="tab">
+    <tr class="title">
+        <td colspan="6"><a href="?" class="r">Tables:94 [Refresh]</a>(CanPHP 2.X for Peace) DB-Dictionary</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td colspan="6" class="itm"> <a href='#active_admin'>(admin)session</a>
+<a href='#active_online'>(user)session</a>
+<a href='#active_session'>(Session)session</a>
+<a href='#advs_adblock'>TextBlock[Advs]Tab.</a>
+<a href='#advs_adfavor'>Favor Urls[Advs]Tab.</a>
+<a href='#advs_adpic'>PicLink[Advs]Tab.</a>
+<a href='#advs_adtext'>TextLink[Advs]Tab.</a>
+<a href='#base_catalog'>(sys)Catalog</a>
+<a href='#base_fields'>(sys)Fields set</a>
+<a href='#base_grade'>(sys)User Grade</a>
+<a href='#base_menu'>(sys)Menus</a>
+<a href='#base_model'>(sys)[Groups/Model]</a>
+<a href='#base_paras'>(sys)Params</a>
+<a href='#bext_cron'>(ex)Task Plan</a>
+<a href='#bext_dbdict'>(ex)dbDict</a>
+<a href='#bext_fields'>(ex)Type Fields</a>
+<a href='#bext_paras'>(ex)Params</a>
+<a href='#bext_relat'>(ex)Type Relate</a>
+<a href='#coms_cocar'>ShopCart[Coms]Tab.</a>
+<a href='#coms_coitem'>Order-Detail[Coms]Tab.</a>
+<a href='#coms_corder'>Order[Coms]Tab.</a>
+<a href='#coms_crem'>Pro.Reviews[Coms]Tab.</a>
+<a href='#coms_drem'>DemoReview[Coms]Tab.</a>
+<a href='#coms_gbook'>Guestbook[Coms]Tab.</a>
+<a href='#coms_inread'>ReadRecs[Coms]Tab.</a>
+<a href='#coms_inrem'>Indoc.Review[Coms]Tab.</a>
+<a href='#coms_kerem'>Res.Review[Coms]Tab.</a>
+<a href='#coms_nrem'>NewsReview[Coms]Tab.</a>
+<a href='#coms_qarep'>QA-Reply[Coms]Tab.</a>
+<a href='#coms_qatag'>QA-Label[Coms]Tab.</a>
+<a href='#coms_trem'>Spec.Review[Coms]Tab.</a>
+<a href='#dext_about'>Introduce[Ext]Tab.</a>
+<a href='#dext_cargo'>Product[Ext]Tab.</a>
+<a href='#dext_demo'>DemoDocu.[Ext]Tab.</a>
+<a href='#dext_faqs'>QA-System[Ext]Tab.</a>
+<a href='#dext_indoc'>Inner Docs[Ext]Tab.</a>
+<a href='#dext_keres'>Course-Res.[Ext]Tab.</a>
+<a href='#dext_news'>News[Ext]Tab.</a>
+<a href='#dext_topic'>Topic[Ext]Tab.</a>
+<a href='#docs_about'>Introduce[Main]Tab.</a>
+<a href='#docs_cargo'>Product[Main]Tab.</a>
+<a href='#docs_demo'>DemoDocu.[Main]Tab.</a>
+<a href='#docs_faqs'>QA-System[Main]Tab.</a>
+<a href='#docs_indoc'>Inner Docs[Main]Tab.</a>
+<a href='#docs_keres'>Course-Res.[Main]Tab.</a>
+<a href='#docs_news'>News[Main]Tab.</a>
+<a href='#docs_topic'>Topic[Main]Tab.</a>
+<a href='#exd_crawl'>(data)Crawl</a>
+<a href='#exd_crlog'>(data)Crawl Log</a>
+<a href='#exd_oilog'>(data)Import</a>
+<a href='#exd_oimp'>(data)Import Log</a>
+<a href='#exd_pslog'>(data)SynParent</a>
+<a href='#exd_psyn'>(data)Syn Log</a>
+<a href='#exd_sfield'>(data)Fields set</a>
+<a href='#init_advs'>(init)[Advs]</a>
+<a href='#init_coms'>(init)[Comms]</a>
+<a href='#init_dext'>(init)[Docs]Extra</a>
+<a href='#init_docs'>(init)[Docs]Main</a>
+<a href='#init_types'>(init)[Types]</a>
+<a href='#init_users'>(init)[Users]</a>
+<a href='#logs_dbsql'>(sql)Debug Log</a>
+<a href='#logs_detmp'>(user)Debug Log</a>
+<a href='#logs_jifen'>(piont)op Log</a>
+<a href='#logs_syact'>(sys)Debug Log</a>
+<a href='#plus_emsend'>(mail)Send Log</a>
+<a href='#plus_paylog'>(pay)Pay Log</a>
+<a href='#plus_smcharge'>(sms)Charge  Log</a>
+<a href='#plus_smsend'>(sns)Send Log</a>
+<a href='#types_auto'>Cars[Types]Tab.</a>
+<a href='#types_brand'>Brand[Types]Tab.</a>
+<a href='#types_china'>Prov-City[Types]Tab.</a>
+<a href='#types_common'>(common)Types</a>
+<a href='#types_course'>Course[Types]Tab.</a>
+<a href='#types_indep'>Depart[Types]Tab.</a>
+<a href='#types_local'>Town[Types]Tab.</a>
+<a href='#types_natcn'>Nation[Types]Tab.</a>
+<a href='#types_world'>Country[Types]Tab.</a>
+<a href='#types_ygrade'>Grade[Types]Tab.</a>
+<a href='#users_adminer'>Admin[Users]Tab.</a>
+<a href='#users_company'>Corporate[Users]Tab.</a>
+<a href='#users_govern'>Government[Users]Tab.</a>
+<a href='#users_inmem'>InnerUser[Users]Tab.</a>
+<a href='#users_organize'>Organization[Users]Tab.</a>
+<a href='#users_person'>Personal[Users]Tab.</a>
+<a href='#users_uacc'>(user)Account</a>
+<a href='#users_uppt'>(user)passport</a>
+<a href='#wex_apps'>(Weixin)Appsets</a>
+<a href='#wex_keyword'>(Weixin)Keywords</a>
+<a href='#wex_locate'>(Weixin)Locate</a>
+<a href='#wex_menu'>(Weixin)Menus</a>
+<a href='#wex_msgget'>(Weixin)ReciveLog</a>
+<a href='#wex_msgsend'>(Weixin)SendLog</a>
+<a href='#wex_qrcode'>(Weixin)Qrcode</a>
+<a href='#xtest_keyid'><span class='dfCCC'>xtest_keyid</span></a>
+ </td>
+    </tr>
+</table>
+<a name='active_admin'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>active_admin[(admin)session]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>SessID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>errno</td><td>Errno</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>stime</td><td>SessTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sip</td><td>SessIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='active_online'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>active_online[(user)session]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>SessID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>errno</td><td>Errno</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>stime</td><td>SessTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sip</td><td>SessIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='active_session'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>active_session[(Session)session]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>SessID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp</td><td>Timeout</td><td>int(10) unsigned</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>data</td><td>Data</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adblock'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>advs_adblock[TextBlock[Advs]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>AdvID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>aNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adfavor'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:35 [Top]</a>advs_adfavor[Favor Urls[Advs]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>AdvID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>aNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adpic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:8 [Top]</a>advs_adpic[PicLink[Advs]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>AdvID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>aNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adtext'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>advs_adtext[TextLink[Advs]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>AdvID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>aNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_catalog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:105 [Top]</a>base_catalog[(sys)Catalog]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_fields'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:308 [Top]</a>base_fields[(sys)Fields set]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>exTable</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>dbType</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>dbLen</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>dbDefval</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>Rule</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>Tips</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>Max Value</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>Size</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>Show in line</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>Show Title(use onle fmline=0)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>Form Plus</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>Form Plus set</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_grade'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:22 [Top]</a>base_grade[(sys)User Grade]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmadm</td><td>(Admin)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pmusr</td><td>(Member)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pfile</td><td>(Script)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pmod</td><td>(Plug)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>padd</td><td>(Add)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pdel</td><td>(Del)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pcheck</td><td>(Check)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pextra</td><td>(Additional)ModelPerm</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_menu'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:101 [Top]</a>base_menu[(sys)Menus]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_model'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:67 [Top]</a>base_model[(sys)[Groups/Model]]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>etab</td><td>exTable</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>issys</td><td>isSysModel</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cradd</td><td>Add-Points(Add)</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>crdel</td><td>Sub-Points(Del)</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_paras'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:30 [Top]</a>base_paras[(sys)Params]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>key</td><td>Param-key</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>val</td><td>ParValue</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>issys</td><td>isSysParam</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>exTable</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>dbType</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>dbLen</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>dbDefval</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>Rule</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>Tips</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>Max Value</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>Size</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>Show in line</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>Show Title(use onle fmline=0)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>Form Plus</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>Form Plus set</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_cron'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:4 [Top]</a>bext_cron[(ex)Task Plan]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>excycle</td><td>Run Cycle</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>excunit</td><td>Cycle Unit</td><td>varchar(12)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exlast</td><td>Last Run</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exnext</td><td>Next Run</td><td>int(11)</td><td>1</td><td></td><td>946526400</td></tr>
+<tr><td>extime</td><td>Run Time</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exskip</td><td>Ignore Time</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exsecs</td><td>Busy Time</td><td>varchar(12)</td><td>1</td><td></td><td>30:00</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_dbdict'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:119 [Top]</a>bext_dbdict[(ex)dbDict]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>FieldName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tabid</td><td>Table</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Remark</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_fields'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:28 [Top]</a>bext_fields[(ex)Type Fields]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>exTable</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>dbType</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>dbLen</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>dbDefval</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>Rule</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>Tips</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>Max Value</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>Size</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>Show in line</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>Show Title(use onle fmline=0)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>Form Plus</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>Form Plus set</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_paras'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:36 [Top]</a>bext_paras[(ex)Params]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>numa</td><td>Num-a</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>numb</td><td>Num-b</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_relat'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>bext_relat[(ex)Type Relate]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod1</td><td>Model-1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod2</td><td>Model-2</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_cocar'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_cocar[ShopCart[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Remark</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Param</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>Order.ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordprice</td><td>Price</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>Count</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>Weight</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_coitem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:15 [Top]</a>coms_coitem[Order-Detail[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Remark</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Param</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>Order.ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordprice</td><td>Price</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>Count</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>Weight</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_corder'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>coms_corder[Order[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>OrderNo</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>Remark</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>AllCount</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>AllWeight</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordpay</td><td>PayMode</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordship</td><td>SendMode</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordstat</td><td>State</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>feeamount</td><td>Amount</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feeship</td><td>Freight</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feedis</td><td>Discount</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feetotle</td><td>Total</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>trakeno</td><td>TraceNo</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tradeurl</td><td>Trace Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordshto</td><td>SendArea</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_crem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:3 [Top]</a>coms_crem[Pro.Reviews[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_drem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_drem[DemoReview[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_gbook'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:13 [Top]</a>coms_gbook[Guestbook[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>leixing</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td>t124</td></tr>
+<tr><td>reply</td><td>Reply</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_inread'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:13 [Top]</a>coms_inread[ReadRecs[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>readcnt</td><td>ViewTimes</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_inrem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>coms_inrem[Indoc.Review[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_kerem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>coms_kerem[Res.Review[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_nrem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:8 [Top]</a>coms_nrem[NewsReview[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>MailAddr.</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_qarep'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_qarep[QA-Reply[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>Nick</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_qatag'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:19 [Top]</a>coms_qatag[QA-Label[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>hotcnt</td><td>Hot</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_trem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>coms_trem[Spec.Review[Coms]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='dext_about'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>dext_about[Introduce[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_cargo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>dext_cargo[Product[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>Rel.Pics</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pbat</td><td>BatchPrice</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='dext_demo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:34 [Top]</a>dext_demo[DemoDocu.[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>Rel.Info.</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_user</td><td>Rel.Uers</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>Rel.Pics</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>dstart</td><td>StartTime</td><td>int(11)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_faqs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>dext_faqs[QA-System[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>Rel.Info.</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_indoc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>dext_indoc[Inner Docs[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sealpos</td><td>SealPos.</td><td>varchar(12)</td><td></td><td></td><td>cseal_br</td></tr>
+<tr><td>sendsms</td><td>SMS通知</td><td>varchar(12)</td><td></td><td></td><td>nosend</td></tr>
+
+</table>
+<a name='dext_keres'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>dext_keres[Course-Res.[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufile</td><td>Attach</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>uvdo</td><td>Video</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_news'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>dext_news[News[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>Rel.Info.</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_topic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:7 [Top]</a>dext_topic[Topic[Ext]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_user</td><td>Rel.User</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>Rel.Pics</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>Rel.Info.</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_vdo</td><td>Rel.Video</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='docs_about'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>docs_about[Introduce[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exp_i01</td><td>exPararm-input-1</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t01</td><td>exPararm-text-1</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_cargo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>docs_cargo[Product[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Recom</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>brand</td><td>Brand</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>Click</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>guige</td><td>Speci.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>xinghao</td><td>Model</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>price</td><td>Price</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>ordcnt</td><td>OrderTimes</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t01</td><td>exPararm-text-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t02</td><td>exPararm-text-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m01</td><td>exPararm-checkbox-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m02</td><td>exPararm-checkbox-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m03</td><td>exPararm-checkbox-3</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s01</td><td>exPararm-select-1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s02</td><td>exPararm-select-2</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s03</td><td>exPararm-select-3</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s04</td><td>exPararm-select-4</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s05</td><td>exPararm-select-5</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i01</td><td>exPararm-input-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i02</td><td>exPararm-input-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i03</td><td>exPararm-input-3</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i04</td><td>exPararm-input-4</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>weight</td><td>Weight</td><td>float</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_demo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:34 [Top]</a>docs_demo[DemoDocu.[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>ShowOrder</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Province</td><td>varchar(12)</td><td>1</td><td></td><td>hn</td></tr>
+<tr><td>dend</td><td>EndTime</td><td>int(11)</td><td></td><td></td><td></td></tr>
+<tr><td>demo_pass</td><td>Password</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>Map</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td>tester</td></tr>
+<tr><td>rel_para</td><td>Rel.Param</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>MailAddr.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>Company</td><td>varchar(96)</td><td>1</td><td></td><td>dgnet</td></tr>
+<tr><td>mtitle</td><td>*LinkName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfron</td><td>Wandering</td><td>varchar(255)</td><td>1</td><td></td><td>gd,gx</td></tr>
+<tr><td>morg</td><td>AreaSingle</td><td>varchar(12)</td><td>1</td><td></td><td>c0735</td></tr>
+<tr><td>mwork</td><td>JobAddr</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tphot</td><td>InfoRecom</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tpfields</td><td>Field</td><td>varchar(255)</td><td>1</td><td></td><td>qita</td></tr>
+<tr><td>wdreg</td><td>World</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mche</td><td>Auto</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>set_compc</td><td>CorpColor</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m01</td><td>exPararm-checkbox-1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_faqs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>docs_faqs[QA-System[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Essence</td><td>varchar(12)</td><td></td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>tags</td><td>Tag</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_indoc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>docs_indoc[Inner Docs[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>Depart</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Attach</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>rdtip</td><td>Important-Level</td><td>varchar(12)</td><td>1</td><td></td><td>v36</td></tr>
+<tr><td>todep</td><td>AcceptDept.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>touser</td><td>Receiver</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>topub</td><td>Public</td><td>varchar(12)</td><td>1</td><td></td><td>ispub</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_keres'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>docs_keres[Course-Res.[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>course</td><td>Course</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ygrade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_news'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:24 [Top]</a>docs_news[News[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Recom</td><td>varchar(12)</td><td></td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_topic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:7 [Top]</a>docs_topic[Topic[Main]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Tile</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>TitleColor</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>rel_pset</td><td>PicSet.</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_crawl'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>exd_crawl[(data)Crawl]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>odmp</td><td>DemoDetailPage</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ourl</td><td>BaseListPage</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ocset</td><td>Encoding</td><td>varchar(12)</td><td>1</td><td></td><td>utf-8</td></tr>
+<tr><td>opno</td><td>Page Rule</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>oplog</td><td>CollectedPage</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg1</td><td>crawlFlag</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg2</td><td>crawlFlag</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg3</td><td>crawlFlag</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>ohas</td><td>Url Include</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>oskip</td><td>Url NotInc.</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>oroot</td><td>Url Root</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>orep</td><td>Url Replace</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>mod</td><td>CollectCollect</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>BacthRun-Rows</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fskip</td><td>Ignore Field</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>DefaultValue</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_crlog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_crlog[(data)Crawl Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>Sys.ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outurl</td><td>Outter.ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>omd5</td><td>Outter-URL(md5)</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>done</td><td>DeelMark</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_oilog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_oilog[(data)Import]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>Sys.ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outid</td><td>Outter.ID(str)</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ouint</td><td>Outter.ID(int)</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>done</td><td>DeelMark</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_oimp'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>exd_oimp[(data)Import Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>odb</td><td>Outter Data-Soursce</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>osql</td><td>Outter Data-SQL</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kname</td><td>Primary</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ktype</td><td>PrimaryType</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kval</td><td>LastImpKey(str)</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kint</td><td>LastImpKey(int)</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>ktime</td><td>TimeField</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod</td><td>Import Model</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>BacthRun-Rows</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fskip</td><td>Ignore Field</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>DefaultValue</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_pslog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_pslog[(data)SynParent]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>Sys.ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outid</td><td>Outter.ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>done</td><td>DeelMark</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_psyn'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>exd_psyn[(data)Syn Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>api</td><td>API</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod</td><td>SynModel</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stype</td><td>SynCatalog</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>BacthRun-Rows</td><td>int(11)</td><td>1</td><td></td><td>100</td></tr>
+<tr><td>fskip</td><td>Ignore Field</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>DefaultValue</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_sfield'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>exd_sfield[(data)Fields set]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg1</td><td>crawlFlag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg2</td><td>crawlFlag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg3</td><td>crawlFlag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg4</td><td>crawlFlag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg5</td><td>crawlFlag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfmts</td><td>DeelMark</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealtabs</td><td>Replace</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealconv</td><td>Replace-Tab</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfunc</td><td>DeelFunction</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfunp</td><td>Func-Param</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>defval</td><td>DefValue While Null</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>defover</td><td>OverFlag</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_advs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_advs[(init)[Advs]]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>AdvID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>aNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>pMod</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_coms'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_coms[(init)[Comms]]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>ComID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>cNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>MailAddr.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_dext'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_dext[(init)[Docs]Extra]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>Author</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>From</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>Keyword</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>Desc.</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_docs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_docs[(init)[Docs]Main]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>DocID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>dNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>Column</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>JumpUrl</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>Show颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_types'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_types[(init)[Types]]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_users'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_users[(init)[Users]]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Hometown</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>MailAddr.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_dbsql'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_dbsql[(sql)Debug Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sql</td><td>sql-Statement</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>TimeUsed</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tpl</td><td>Template</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tag</td><td>Tag</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+
+</table>
+<a name='logs_detmp'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_detmp[(user)Debug Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>TimeUsed</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pref</td><td>FromPage</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_jifen'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_jifen[(piont)op Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jifen</td><td>Piont Count</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>jfop</td><td>Piont Opera</td><td>tinyint(4) unsigned</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>jfmod</td><td>Piont Model</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_syact'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_syact[(sys)Debug Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>TimeUsed</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pref</td><td>FromPage</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_emsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_emsend[(mail)Send Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufrom</td><td>From</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_paylog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_paylog[(pay)Pay Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>PayAPI-ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>apino</td><td>API-OrderNo</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>Amount</td><td>decimal(10,2)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>Stat</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufrom</td><td>From</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>expar</td><td>ExtraParam</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_smcharge'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>plus_smcharge[(sms)Charge  Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>Amount</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_smsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_smsend[(sns)Send Log]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tel</td><td>TelNumber</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>msg</td><td>InfoDetail</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>res</td><td>SendResult</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>Amount</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_auto'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:117 [Top]</a>types_auto[Cars[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_brand'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:19 [Top]</a>types_brand[Brand[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>world</td><td>Country</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>bweb</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>bpic</td><td>logo</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_china'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:413 [Top]</a>types_china[Prov-City[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>renkou</td><td>Population</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>mianji</td><td>Area</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>Coordinate</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>quhao</td><td>ZoreNo</td><td>varchar(6)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_common'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:30 [Top]</a>types_common[(common)Types]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_course'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:75 [Top]</a>types_course[Course[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_indep'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>types_indep[Depart[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Profile</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>tel</td><td>Tel</td><td>varchar(15)</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_local'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:32 [Top]</a>types_local[Town[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_natcn'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:57 [Top]</a>types_natcn[Nation[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>renkou</td><td>Population</td><td>int(11)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>Profile</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_world'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:181 [Top]</a>types_world[Country[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_ygrade'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:20 [Top]</a>types_ygrade[Grade[Types]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>ModID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>PID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>MaxLevel</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>Frame</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>FirstChar</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>Setting</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>Notes</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_adminer'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:15 [Top]</a>users_adminer[Admin[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>Depart</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_company'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>users_company[Corporate[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>Company</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Recom</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>LinkName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Hometown</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>map</td><td>Map</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>Called</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>Industry</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_govern'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>users_govern[Government[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>InsName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>LinkName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Hometown</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>Map</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>Called</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Recom</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>Industry</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_inmem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>users_inmem[InnerUser[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>Depart</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_organize'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>users_organize[Organization[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>OrgName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>LinkName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Hometown</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>Thumb</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>Map</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>Called</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>Recom</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>Industry</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_person'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>users_person[Personal[Users]Tab.]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>UserName</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>Grade</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>Hometown</td><td>varchar(12)</td><td>1</td><td></td><td>c0769</td></tr>
+<tr><td>mtel</td><td>Tel</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>E-mail</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>imNum.</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>Address</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>Show</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>ClickTimes</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_uacc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:20 [Top]</a>users_uacc[(user)Account]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>UserID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uno</td><td>uNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>upass</td><td>User Pass</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>umods</td><td>User Model</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ujifen</td><td>UserPiont</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_uppt'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>users_uppt[(user)passport]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uname</td><td>UserName</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pptmod</td><td>API-Model</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pptuid</td><td>API-UserID</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>EditIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>EditTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>EditTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_apps'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>wex_apps[(Weixin)Appsets]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>Stat</td><td>tinyint(1)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>token</td><td>token</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appsecret</td><td>appsecret</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>qrcode</td><td>QRCode</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_keyword'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>wex_keyword[(Weixin)Keywords]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>keyword</td><td>Keyword</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>picurl</td><td>picurl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>top</td><td>Order</td><td>tinyint(4)</td><td></td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_locate'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_locate[(Weixin)Locate]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>latitude</td><td>Latitude</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>longitude</td><td>Longitude</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>extra</td><td>Precision</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_menu'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:33 [Top]</a>wex_menu[(Weixin)Menus]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>key</td><td>Menu-Key</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>name</td><td>MenuName</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>val</td><td>MenuValue</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_msgget'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_msgget[(Weixin)ReciveLog]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>media_id</td><td>media_id</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>restate</td><td>Rep.State</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_msgsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_msgsend[(Weixin)SendLog]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>Type</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>Title</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>Detail</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>media_id</td><td>media_id</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>picurl</td><td>picurl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_qrcode'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_qrcode[(Weixin)Qrcode]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>SessID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>smod</td><td>Model</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>Stat</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>extp</td><td>Extra-cam-Param</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ticket</td><td>ticket</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sflag</td><td>RandomCode</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='xtest_keyid'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>xtest_keyid[<span class='dfCCC'>xtest_keyid</span>]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>KeyID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>kNo</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>content</td><td><span class='dfCCC'>(null)</span></td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>AddIP</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>atime</td><td>AddTime</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>AddTime</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>test_v3x</td><td><span class='dfCCC'>(null)</span></td><td>int(11)</td><td>1</td><td></td><td>20160313</td></tr>
+
+</table>
+
+</body>
+</html>

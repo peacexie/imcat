@@ -105,7 +105,7 @@ class vopShow{
 			$db = glbDBObj::dbObj();
 			$tabid = glbDBExt::getTable($this->mod);
 			$data = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-			if(empty($data)){ return $this->msg("[{$this->key}]信息不存在或未被审核!"); }
+			if(empty($data)){ return $this->msg("[{$this->key}]".lang('core.vshow_uncheck')); }
 			if(in_array($pid,array('docs'))){
 				$tabid = glbDBExt::getTable($this->mod,1);
 				$dext = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
@@ -122,7 +122,7 @@ class vopShow{
 		if(empty($this->pgflag)){
 			$this->pgflag = array('tpl'=>$nowtpl,'tag'=>$tagname,);
 		}else{
-			$msg0 = "<b>每页只允许一个分页标签: 请检查如下模版,标签:</b>";
+			$msg0 = "<b>".lang('core.vshow_1pagetag')."</b>";
 			$msg1 = '<br>tpl:'.$this->pgflag['tpl'].', tag:'.$this->pgflag['tag'];
 			$msg2 = '<br>tpl:'.$nowtpl.', tag:'.$tagname;
 			$this->msg("$msg0$msg1$msg2");

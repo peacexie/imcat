@@ -7,7 +7,7 @@ if(!empty($bsend)){
 	$re2 = safComm::formCAll('fmdocfaqs');
 	if(!empty($re2[0])){ 
 		dopCheck::headComm();
-		basMsg::show("认证码错误，增加失败！",'die');
+		basMsg::show(lang('plug.coms_errvcode'),'die');
 	}
 
 	$dop->svPrep(); 
@@ -15,15 +15,15 @@ if(!empty($bsend)){
 	//$dop->svPKey('add');
 	$db->table($dop->tbid)->data($dop->fmv)->insert(); 
 	dopCheck::headComm();
-	basMsg::show("增加{$_groups[$mod]['title']}成功！",'prClose');
+	basMsg::show(lang('plug.coms_addok',$_groups[$mod]['title']),'prClose');
 	
 }else{
 	
 	dopCheck::headComm();
 	$dop->fmo = $fmo = array();
 	glbHtml::fmt_head('fmdocfaqs',"$aurl[1]",'tbdata'); 
-	glbHtml::fmae_row('所在栏目',$dop->fmType('catid').'');
-	glbHtml::fmae_row('显示',$dop->fmShow(),1);
+	glbHtml::fmae_row(lang('flow.dops_icat'),$dop->fmType('catid').'');
+	glbHtml::fmae_row(lang('flow.dops_ishow'),$dop->fmShow(),1);
 	$vals = array();
 	$skip = array('0','mpic','hinfo','jump','click','author','bugid','bugst');
 	$mfields['detail']['fmsize'] = '480x18';
@@ -35,8 +35,8 @@ if(!empty($bsend)){
 		}
 	}
 	$dop->fmAE3(1);
-	glbHtml::fmae_row('认证码',"<script>fsInit('fmdocfaqs');</script>");
-	glbHtml::fmae_send('bsend','提交',0,'tr');
+	glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmdocfaqs');</script>");
+	glbHtml::fmae_send('bsend',lang('submit'),0,'tr');
 
 }
 

@@ -7,7 +7,7 @@ if(!empty($bsend)){
 	$re2 = safComm::formCAll('fmcaddgbk');
 	if(!empty($re2[0])){ 
 		dopCheck::headComm();
-		basMsg::show("认证码错误，增加失败！",'die');
+		basMsg::show(lang('plug.coms_errvcode'),'die');
 	}
 
 	$dop->svPrep(); 
@@ -15,7 +15,7 @@ if(!empty($bsend)){
 	$dop->svPKey('add');
 	$db->table($dop->tbid)->data($dop->fmv)->insert(); 
 	dopCheck::headComm();
-	basMsg::show("增加{$_groups[$mod]['title']}成功！",'prClose');
+	basMsg::show(lang('plug.coms_addok',$_groups[$mod]['title']),'prClose');
 	
 }else{
 	
@@ -33,8 +33,8 @@ if(!empty($bsend)){
 		}
 	$dop->fmPKey(1,0,1);
 	$dop->fmProp(0,1);
-	glbHtml::fmae_row('认证码',"<script>fsInit('fmcaddgbk');</script>");
-	glbHtml::fmae_send('bsend','提交',0,'tr');
+	glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmcaddgbk');</script>");
+	glbHtml::fmae_send('bsend',lang('submit'),0,'tr');
 
 }
 

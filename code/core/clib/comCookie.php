@@ -34,11 +34,11 @@ class comCookie{
 	
 	// set(k,'v',n),get(k),del(k,''),clear()
 	// set/del
-	static function oset($key='',$value='',$life=0){
+	static function oset($key='',$value='',$life=0,$pre='(def)'){
 		global $_cbase; 
 		$kbak = $key; $fset = 0;
 		$ckpre = isset($_cbase['ck']['pre']) ? $_cbase['ck']['pre'] : 'sysCookie';
-		$key = $ckpre.$key; 
+		$key = ($pre=='(def)'?$ckpre:$pre).$key; 
 		$life && $life = time() + $life + $_cbase['sys']['tmzone']*3600; //,  + 72 * 3600
 		$path = isset($_cbase['ck']['path']) ? $_cbase['ck']['path'] : '/'; 
 		$domain = isset($_cbase['ck']['domain']) ? $_cbase['ck']['domain'] : '';

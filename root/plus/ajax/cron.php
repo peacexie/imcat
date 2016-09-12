@@ -13,6 +13,10 @@ $safix = $_cbase['safe']['safix'];
 $sapp = basReq::ark($safix,'sapp'); 
 $skey = basReq::ark($safix,'skey','Safe4'); 
 
+// 处理语言
+$lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
+$lang && $_cbase['sys']['lang'] = $lang;
+
 /*
 ### dops/dopBase.php :: function svEnd($id,$show=1)
 - $js .= basJscss::jscode(0,PATH_ROOT."/plus/ajax/cron.php?static=updkid&tpldir=$tpl&mkv=$mkv");
@@ -33,7 +37,7 @@ if($static=='updkid'){ // 保存资料时执行
 }elseif($static && $act=='add'){ // home,mlist,mdetail
     if($static=='home'){
         $msg = vopStatic::toFile('home'); 
-        echo "生成结果：$msg"; 
+        echo lang('plus.cron_res')."$msg"; 
     }elseif($static=='mlist'){
         $res = vopStatic::batList($mod,$tpldir); 
 		vopStatic::showRes($res);
@@ -46,7 +50,7 @@ if($static=='updkid'){ // 保存资料时执行
     if($static=='home'){
         $file = vopStatic::getPath('home','home',0);
 		$msg = @unlink(DIR_HTML."/$file"); 
-        echo $msg ? "删除成功: $file!" : "删除失败: $file!"; 
+        echo $msg ? lang('plus.cron_ok')."$file!" : lang('plus.cron_err')."$file!"; 
     }elseif($static=='mlist'){
         $res = vopStatic::delList($mod,$tpldir); 
 		vopStatic::showRes($res);

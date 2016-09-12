@@ -2,7 +2,7 @@
 
 // basJscss类
 class basJscss{	
-	
+
 	// imp css/js
 	static function imp($path,$base='',$mod='auto'){
 		global $_cbase; 

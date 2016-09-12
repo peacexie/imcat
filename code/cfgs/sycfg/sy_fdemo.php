@@ -1,4 +1,6 @@
 <?php
+(!defined('RUN_MODE')) && die('No Init');
+
 $_sy_fdemo = array(
 	  'init_docs' => array(
 		  'title'=>array('title'=>'标题','etab'=>'0','type'=>'input','enable'=>'1','vmax'=>'60',
@@ -86,3 +88,13 @@ $_sy_fdemo = array(
 	  ),
 
 );
+
+// 实现多语言
+$__ucfg = basLang::ucfg('fdemo');
+foreach ($_sy_fdemo as $__pk => $__pval) {
+	foreach ($__pval as $__key => $__val) {
+	  empty($__ucfg[$__key]) || $_sy_fdemo[$__pk][$__key]['title'] = $__ucfg[$__key];
+	}
+}
+unset($__ucfg,$__pval,$__val);
+

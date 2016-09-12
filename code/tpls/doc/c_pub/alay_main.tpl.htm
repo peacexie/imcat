@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head>
+{block:extop}<?php
+$subs = array(
+    'sub1' =>'Section1',
+    'sub2' =>'Section2',
+    'sub3' =>'Section3',
+);
+$sub = basReq::val('sub','down');
+$titletop = 'Main Title';
+$titlesub = 'Sub Title';
+?>{/block:extop}
+{php $this->pmeta($titletop); }
+{php $this->pimp(); }
+{block:eximp}{/block:eximp}
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+    <!--side_start-->
+    {block:exside}side_info{/block:exside}
+    <!--side_end-->
+  </div>
+  <div class="pgf_main"> 
+    <div class="mod-tbar">
+    <i class="title">{$titlesub}</i>
+    <i class="right">{block:exbar}
+	<?php foreach($subs as $k=>$v){ $title = isset($v['title']) ? $v['title'] : $v; ?>
+    <a href="#s_{$k}" {if $sub==$k}class='act'{/if}>{= $title}</a>
+    <?php } ?>
+    {/block:exbar}</i>
+    </div>
+    <!--main_start-->
+    {block:exmain}main_info{/block:exmain}
+    <!--main_end-->
+    <div class="clear"></div>
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+{block:exfoot}{/block:exfoot}
+</body></html>

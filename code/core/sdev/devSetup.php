@@ -8,7 +8,7 @@ class devSetup{
 	static $flagdata = "###Start###\nstep1=Null\nstep2=Null\nstep3=Null\nstep4=Null\nstep5=Null\n###End###"; 
 	static $demo_tabs = array(
 		'dext_demo','docs_demo', 'dext_news','docs_news', 'dext_cargo','docs_cargo', 
-		'dext_keres','docs_keres', 
+		'dext_keres','docs_keres', 'dext_faqs','dext_faqs', 
 	); 
 	
 	// supCfgs
@@ -27,11 +27,11 @@ class devSetup{
 			$jstr .= "$k='$v', ";
 		}
 		if($nstep==5 || self::isSetuped()){
-			basMsg::show("已经安装！重新安装请先删除：<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]下<br>_setup_step.txt 和 _setup_lock.txt文件",'die');
+			basMsg::show(lang('devsetup_deltip')."<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]".lang('devsetup_dt1')."<br>_setup_step.txt ".lang('devsetup_dt2')." _setup_lock.txt".lang('devsetup_dt3')."",'die');
 		}
 		$pvInfo = devRun::verPHP(); //定义了FLAGYES/FLAGNO常量
 		$jstr .= "\nfYES='".FLAGYES."',\nfNO='".FLAGNO."',";
-		$jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? "-已安装完第[$nstep]步-" : '（还未安装）')."',";
+		$jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? lang('devsetup_donen') : lang('devsetup_nosetup'))."',";
 		
 		$files = comFiles::listDir(DIR_DTMP.'/dborg'); 
 		$all_tabs = array_keys($files['file']); 
@@ -54,6 +54,7 @@ class devSetup{
 		$text = comFiles::get($setflag);
 		$text = preg_replace("/step{$step}\=\S+/is", "step{$step}=$val", $text);
 		comFiles::put($setflag,$text);
+		if($step==4){ glbCUpd::upd_groups(); }
 		if($step==5){ comFiles::put(DIR_DTMP.self::$fsetuped,date('Y-m-d H:i:s')); }
 	}
 	
@@ -64,7 +65,7 @@ class devSetup{
 			$re = devRun::$k(); 
 			$re = $re['res']; 
 			if($re!=FLAGYES){ 
-				$re = array('res'=>'','msg'=>'请检查环境');
+				$re = array('res'=>'','msg'=>lang('devsetup_chkenv'));
 				self::ajaxStop($re);
 			}
 		}
@@ -72,7 +73,7 @@ class devSetup{
 		foreach($cfg as $re){ 
 			$re = $re['res'];
 			if($re!=FLAGYES){ 
-				$re = array('res'=>'','msg'=>'请检查目录');
+				$re = array('res'=>'','msg'=>lang('devsetup_chkdir'));
 				self::ajaxStop($re);
 			}
 		}
@@ -82,7 +83,7 @@ class devSetup{
 			if($re==FLAGYES) $n3++;
 		}
 		$re = $n3 ? 'OK' : ''; //print_r($re); 
-		$msg = $n3 ? '' : '请检查Mysql数据库服务器';
+		$msg = $n3 ? '' : lang('devsetup_chkmysql');
 		$re = array('res'=>$re,'msg'=>$msg);
 		self::ajaxStop($re);
 	}
@@ -95,7 +96,7 @@ class devSetup{
 			$msg = implode('<br>',$re[1]);
 			$re = array('res'=>'','msg'=>$msg);
 		}elseif(empty($re[0])){
-			$re = array('res'=>'','msg'=>'无表结构导入！');	
+			$re = array('res'=>'','msg'=>lang('devsetup_noframe'));	
 		}else{
 			$re = array('res'=>'OK','msg'=>'');
 		}
@@ -141,7 +142,7 @@ class devSetup{
 		$_cbase['tout_admin'] = $rcfg['tout_admin'];  
 		$_cbase['tout_member'] = $rcfg['tout_member'];	
 		devData::rstIDPW(basReq::val('uid'),basReq::val('upw'));
-		glbCUpd::upd_paras('score'); 
+		self::updCache();
 		$re = array('res'=>'OK','msg'=>'');
 		self::ajaxStop($re);
 	}
@@ -158,6 +159,29 @@ class devSetup{
 
 	static function isSetuped(){ 
 		return file_exists(DIR_DTMP.self::$fsetuped);
+	}
+
+	// updCache 
+	static function updCache(){ 
+		$db = glbDBObj::dbObj(); 
+		//glbCUpd::upd_groups();
+		$g0 = $db->table('base_model')->where("enable='1'")->order('pid,top,kid')->select();
+		$skip = array('groups','plus');
+		foreach($g0 as $k=>$v){
+			$key = $v['kid'];
+			if(in_array($key,array('score','sadm','smem','suser',))){ 
+				glbCUpd::upd_paras($key);
+			}elseif(in_array($v['pid'],$skip) || in_array($key,$skip)){
+				continue;
+			}else{ // pid in 'docs','coms','users','advs','types'
+				glbCUpd::upd_model($key);
+				//echo "$key, ";
+			}
+		}
+		glbCUpd::upd_relat();
+		glbCUpd::upd_menus('muadm');//menua
+		admAFunc::umcVInit();
+		glbCUpd::upd_grade();
 	}
 
 }

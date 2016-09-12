@@ -1,85 +1,85 @@
 
-<h2 class="tc pv5">更新程序 - 升级当前系统</h2>
+<h2 class="tc pv5">{lang(tools.upn_title)}</h2>
 <form id="fmsupset" name="fmsupset" method="post" action="?">
 <div>
 <?php 
 if($act=='reform'){ 
     $pdef = str_replace("\\","/",DIR_PROJ).'/@down';
-    $msg = "请设置目录：如：<br>{$pdef}<br>或：E:/down/txmao，/home/txmao 等"; 
+    $msg = lang('tools.upl_setdir').": eg: <br>{$pdef}<br>or: E:/down/txmao, /home/txmao etc."; 
 ?>
-<p>更新程序-初始化</p>
+<p>{lang(tools.upl_upinit)}</p>
 <table width="100%" border="1" class="tblist">
     <tr class="tc">
-        <td>有效升级包路径<br>
-            <a href="?">-&gt;刷新&lt;-</a></td>
+        <td>{lang(tools.upl_updir)}<br>
+            <a href="?">-&gt;{lang(tools.upl_refresh)}&lt;-</a></td>
         <td class="msg"><input name="path" type="text" id="path" class="w320" value="<?php echo $pdef; ?>" tip='' />
             <input name="act" type="hidden" id="act" value="reset" />
             <br />
-            不要设置在当前站点的code,root目录内</td>
-        <td class="tc"><input type="submit" name="cfgrst" id="cfgrst" value="初始化" class="btn" /></td>
+            {lang(tools.upl_tipin)}</td>
+        <td class="tc"><input type="submit" name="cfgrst" id="cfgrst" value="{lang(tools.upl_init)}" class="btn" /></td>
     </tr>
 </table>
 <?php }elseif($act=='upmain'){ ?>
-<p><?php echo "[V{$upc['vold']}] -&gt; [V{$upc['vnew']}]"; ?> - 更新步骤</p>
+<p>[V{$upc['vold']}] -&gt; [V{$upc['vnew']}] - {lang(tools.upl_steps)}</p>
 <table width="100%" border="1" class="tblist">
     <tr class="step1">
-        <td>[0]阅读升级说明</td>
+        <td>[0]{lang(tools.upl_read)}</td>
         <td class="msg">
-        查看后台：[更新升级说明] 或 官方[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">发布日志-升级说明</a>]
+        {lang(tools.upi_orview)}[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">{lang(tools.upl_rdlay)}</a>]
         <?php echo $pp['comp']; ?></td>
-        <td class="tc"><a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">-&gt;查看</a></td>
+        <td class="tc"><a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">-&gt;{lang(tools.upl_view)}</a></td>
     </tr>
     <tr id="step1">
-        <td>[1]升级code目录</td>
-        <td class="msg"><input name="code_init" type="button" value="初始化" class="btn" onclick="upDir(this);" id="code_init" />
+        <td>[1]{lang(tools.upl_upcode)}</td>
+        <td class="msg"><input name="code_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="code_init" />
             -
-            <input name="code_add" type="button" value="补全文件" class="btn" onclick="upDir(this);" id="code_add" />
+            <input name="code_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="code_add" />
             -
-            <input name="code_edit" type="button" value="覆盖文件" class="btn" onclick="upDir(this);" id="code_edit" />
+            <input name="code_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="code_edit" />
             -
-            <input name="code_comp" type="button" value="比较文件" class="btn" onclick="upDir(this);" id="code_comp" />
+            <input name="code_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="code_comp" />
             -
-            <input name="code_tpls" type="button" value="处理tpls目录" class="btn" onclick="upTip(this);" id="code_tpls" /></td>
+            <input name="code_tpls" type="button" value="{lang(tools.upl_dltpls)}" class="btn" onclick="upTip(this);" id="code_tpls" /></td>
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step2">
-        <td>[2]升级root目录</td>
-        <td class="msg"><input name="root_init" type="button" value="初始化" class="btn" onclick="upDir(this);" id="root_init" />
+        <td>[2]{lang(tools.upl_uproot)}</td>
+        <td class="msg"><input name="root_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="root_init" />
             -
-            <input name="root_add" type="button" value="补全文件" class="btn" onclick="upDir(this);" id="root_add" />
+            <input name="root_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="root_add" />
             -
-            <input name="root_edit" type="button" value="覆盖文件" class="btn" onclick="upDir(this);" id="root_edit" />
+            <input name="root_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="root_edit" />
             -
-            <input name="root_comp" type="button" value="比较文件" class="btn" onclick="upDir(this);" id="root_comp" />
+            <input name="root_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="root_comp" />
             -
-            <input name="root_skin" type="button" value="处理skin目录" class="btn" onclick="upTip(this);" id="root_skin" /></td>
+            <input name="root_skin" type="button" value="{lang(tools.upl_dlskin)}" class="btn" onclick="upTip(this);" id="root_skin" /></td>
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step3">
-        <td>[3]升级其他目录</td>
-        <td class="msg"><input name="dir_dtmp" type="button" value="补全dtmp目录" class="btn" onclick="upDir(this);" id="dir_dtmp" />
-            <input name="dir_vimp3" type="button" value="处理[static/vendor/vendui]3目录" class="btn" onclick="upTip(this);" id="dir_vimp3" /></td>
+        <td>[3]{lang(tools.upl_upelse)}</td>
+        <td class="msg"><input name="dir_dtmp" type="button" value="{lang(tools.upl_adddtmp)}" class="btn" onclick="upDir(this);" id="dir_dtmp" />
+            <input name="dir_vimp3" type="button" value="{lang(tools.upl_dl3var)}" class="btn" onclick="upTip(this);" id="dir_vimp3" /></td>
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step4">
-        <td>[4]更新数据库</td>
-        <td class="msg"><input name="db_init" type="button" value="备份确认" class="btn" onclick="upTip(this);" id="db_init" />
+        <td>[4]{lang(tools.upl_upddb)}</td>
+        <td class="msg"><input name="db_init" type="button" value="{lang(tools.upl_backup)}" class="btn" onclick="upTip(this);" id="db_init" />
             -
-            <input name="db_table" type="button" value="添加表" class="btn" onclick="upDir(this);" id="db_table" />
+            <input name="db_table" type="button" value="{lang(tools.upl_addtab)}" class="btn" onclick="upDir(this);" id="db_table" />
             -
-            <input name="db_fadd" type="button" value="添加字段" class="btn" onclick="upDir(this);" id="db_fadd" />
+            <input name="db_fadd" type="button" value="{lang(tools.upl_addfield)}" class="btn" onclick="upDir(this);" id="db_fadd" />
             -
-            <input name="db_fcomp" type="button" value="补全字段" class="btn" onclick="upDir(this);" id="db_fcomp" />
+            <input name="db_fcomp" type="button" value="{lang(tools.upl_editfield)}" class="btn" onclick="upDir(this);" id="db_fcomp" />
             -
-            <input name="db_data" type="button" value="配置数据" class="btn" onclick="upTip(this);" id="db_data" /></td>
+            <input name="db_data" type="button" value="{lang(tools.upl_config)}" class="btn" onclick="upTip(this);" id="db_data" /></td>
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step5">
-        <td>[5]完成更新</td>
-        <td class="msg"><input name="end_ver" type="button" value="更新版本号" class="btn" onclick="upDir(this);" id="end_ver" />
+        <td>[5]{lang(tools.upl_endupd)}</td>
+        <td class="msg"><input name="end_ver" type="button" value="{lang(tools.upl_updver)}" class="btn" onclick="upDir(this);" id="end_ver" />
             -
-            <input name="end_flag" type="button" value="完成更新并锁定" class="btn" onclick="upDir(this);" id="end_flag" /></td>
-        <td class="tc"><a href="?">-&gt;刷新</a></td>
+            <input name="end_flag" type="button" value="{lang(tools.upl_endlock)}" class="btn" onclick="upDir(this);" id="end_flag" /></td>
+        <td class="tc"><a href="?">-&gt;{lang(tools.upl_refresh)}</a></td>
     </tr>
 </table>
 <?php } ?>
@@ -87,7 +87,7 @@ if($act=='reform'){
 </form>
 
 <div>
-<p>更新提示/更新结果</p>
+<p>{lang(tools.upl_tipres)}</p>
 <table width="100%" border="1" class="tblist">
     <tr>
         <td><div style="width:96%; min-height:120px; overflow-y:scroll;" id="reinfo"><?php echo "$msg<hr>$res"; ?></div></td>
@@ -96,19 +96,19 @@ if($act=='reform'){
 </div>
 
 <div id="alltips">
-    <div id="tips_code_tpls"> 手动处理/code/tpls/目录：
-        &gt; <a href='?step=code_tpls'>确认[手动处理]完毕</a><br>
-        [提示] 模板目录，一般都修改过，请自行手动处理 </div>
-    <div id="tips_root_skin"> 手动处理/root/skin/目录：
-        &gt; <a href='?step=root_skin'>确认[手动处理]完毕</a><br>
-        [提示] 与处理/code/tpls/目录类似，但注意需要更新jslib子目录的文件（通用js库）； </div>
-    <div id="tips_dir_vimp3"> 手动处理/vimp/[static|vendor|endui]/目录：
-        &gt; <a href='?step=dir_vimp3'>确认[手动处理]完毕</a> <br>
-        [提示] 可直接复制最新包的文件覆盖过来</div>
-    <div id="tips_db_init"> 手动备份数据库：
-        &gt; <a href='?step=db_init'>确认[手动处理]完毕</a> </div>
-    <div id="tips_db_data"> 处理配置数据：
-        &gt; <a href='?act=cmpdata'>开始处理[配置数据]</a> </div>
+    <div id="tips_code_tpls"> {lang(tools.upl_mdxdir,/code/tpls/)}
+        &gt; <a href='?step=code_tpls'>{lang(tools.upl_cfmdok)}</a><br>
+        [{lang(tools.upl_tips)}] {lang(tools.upl_tptpl)} </div>
+    <div id="tips_root_skin"> {lang(tools.upl_mdxdir,/root/skin/)}
+        &gt; <a href='?step=root_skin'>{lang(tools.upl_cfmdok)}</a><br>
+        [{lang(tools.upl_tips)}] {lang(tools.upl_tpskn)} </div>
+    <div id="tips_dir_vimp3"> {lang(tools.upl_mdxdir,/vimp/[static|vendor|endui]/)} 
+        &gt; <a href='?step=dir_vimp3'>{lang(tools.upl_cfmdok)}</a> <br>
+        [{lang(tools.upl_tips)}] {lang(tools.upl_tpcfg)}</div>
+    <div id="tips_db_init"> {lang(tools.upl_mdback)}: 
+        &gt; <a href='?step=db_init'>{lang(tools.upl_cfmdok)}</a> </div>
+    <div id="tips_db_data"> {lang(tools.upl_docfg)}: 
+        &gt; <a href='?act=cmpdata'>{lang(tools.upl_stcfg)}</a> </div>
 </div>
 
 <script>

@@ -67,11 +67,11 @@ ul.adf_mnu2 li { line-height:150%; background-image:url(../../a_img/tree.gif); b
 ul.adf_mnu2 li a { display:inline-block; padding:0px 1px 0px 3px; }
 
 .adl_box { text-align:left; margin:10px auto 0 auto; width:620px; }
-.adl_box i{ font-style:normal; padding:0 3px; }
+.adl_box i{ width:80px; text-align:center; display:inline-block; font-style:normal; }
 .adl_box .adl_logo p{ line-height:250%; }
 .adl_box .adl_logo p.ps50{ padding:0 25px 0 50px; }
-.adl_box .adl_logo { width:260px; height:190px; float:left; background-image:url(../../a_img/logo120x60.jpg); background-position:bottom left; background-repeat:no-repeat; padding:10px 0 0 0; }
-.adl_box .adl_read { width:330px; height:220px; float:right; padding-left:20px; background-image:url(../../a_img/line_h1.jpg); background-position:3px -120px; background-repeat:no-repeat; }
+.adl_box .adl_logo { width:280px; height:190px; float:left; background-image:url(../../a_img/logo120x60.jpg); background-position:bottom left; background-repeat:no-repeat; padding:10px 0 0 0; }
+.adl_box .adl_read { width:340px; height:220px; float:right; padding-left:20px; background-image:url(../../a_img/line_h1.jpg); background-position:3px -120px; background-repeat:no-repeat; }
 .adl_box h1{ font-size:18px; color:#09C; padding:3px 0; margin:5px 0 8px 0; border-bottom: 2px solid #3A6EA5; }
 .adl_box .adl_read li{ display:inline-block; list-style:disc; list-style-position:inside; padding:3px 0; }
 .adl_box .adl_tip { clear:both; height:35px; font-size:12px; color:#F33; padding:8px 5px 1px 8px; margin:1px auto; background-image:url(../../a_img/nv_02.png); background-position:0px -5px; background-repeat:repeat-x; }

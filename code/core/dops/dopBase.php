@@ -27,12 +27,7 @@ class dopBase{
 	public $skey = array('stype'=>'','sfid'=>'','sfop'=>'','sfkw'=>'','sfrng'=>'','srva'=>'','srvb'=>'');
 	public $sopc = array('ll'=>'like%','lb'=>'%like%','lr'=>'%like','eq'=>'=','in'=>'IN');
 	
-	public $fext = array(
-		'aip' => array('title'=>'添加IP','dbtype'=>'varchar',),
-		'eip' => array('title'=>'修改IP','dbtype'=>'varchar',),
-		'atime' => array('title'=>'添加时间','dbtype'=>'int',),
-		'etime' => array('title'=>'修改时间','dbtype'=>'int',),
-	);
+	public $fext = array();
 	public $db = NULL;
 
 	//function __destory(){  }
@@ -42,7 +37,12 @@ class dopBase{
 		$this->cv = new dopBCv($cfg,$tabid);
 		$this->so->skey = $this->cv->skey = $this->skey;
 		$this->so->sopc = $this->cv->sopc = $this->sopc;
-		$this->so->fext = $this->cv->fext = $this->fext;
+		$this->so->fext = $this->cv->fext = $this->fext = array(
+			'aip' => array('title'=>lang('flow.log_aip'),'dbtype'=>'varchar',),
+			'eip' => array('title'=>lang('flow.log_eip'),'dbtype'=>'varchar',),
+			'atime' => array('title'=>lang('flow.log_atime'),'dbtype'=>'int',),
+			'etime' => array('title'=>lang('flow.log_etime'),'dbtype'=>'int',),
+		);
 		$this->cfg = $cfg;
 		$this->mod = empty($cfg['kid']) ? 0 : $cfg['kid'];
 		$this->tbid = $tabid;
@@ -56,11 +56,11 @@ class dopBase{
 		$file = basReq::val('file');
 		$stype = basReq::val('stype');  
 		$gname = $this->cfg['title'];
-		empty($lnkadd) && $lnkadd = $this->cv->Url('增加资料&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
+		empty($lnkadd) && $lnkadd = $this->cv->Url(lang('flow.dops_add2').'&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
 		$lnkadd = str_replace("<a ","<a id='{$mod}_add' ",$lnkadd);
 		if($msg && !strpos($msg,'<')) $msg = "<span class='cF00'>$msg</span>";
 		$msg && $msg = $msg."<br>";
-		$msg = "{$msg}[$gname]管理<span class='span ph5'>|</span>$lnkadd";
+		$msg = "{$msg}[$gname]".lang('flow.dops_adm2')."<span class='span ph5'>|</span>$lnkadd";
 		return $msg;
 	}
 		
@@ -101,7 +101,7 @@ class dopBase{
 			$kno = $this->fmo[$this->_kno];
 			$dis = "class='txt w160 disc' readonly";	
 		} 
-		$item = "<input id='fm[$_key]' name='fm[$_key]' type='text' value='$kid' maxlength=24 $dis tip='供优化与个性化设置使用' />";
+		$item = "<input id='fm[$_key]' name='fm[$_key]' type='text' value='$kid' maxlength=24 $dis tip='".lang('flow.tip_slogs')."' />";
 		$item .= "\n<input name='fm[$this->_kno]' type='hidden' value='$kno' />";
 		return $item;
 	}	
@@ -116,8 +116,8 @@ class dopBase{
 	// def：0/1; 当前资料优先, 再次是模型设置优先, 最后用$def默认值
 	function fmShow($def=1){
 		$val = dopFunc::fmDefval($this,'show',$def);
-		$item = basElm::setOption("1=显示\n0=隐藏",$val,'-显示-'); 
-		$item = "\n<select name='fm[show]' class='w80' reg='n+i:' tip='一定要选择哟'>$item</select>";
+		$item = basElm::setOption("1=".lang('flow.op_show')."\n0=".lang('flow.op_hide')."",$val,lang('flow.op0_show')); 
+		$item = "\n<select name='fm[show]' class='w80' reg='n+i:' tip='".lang('flow.tip_ssel')."'>$item</select>";
 		return $item;
 	}
 	function fmAELogs($type,$key){
@@ -131,17 +131,17 @@ class dopBase{
 			$item = "$iinp<span class='fldicon fdate' onClick=\"WdatePicker({el:'fm[$key]',dateFmt:'yyyy-MM-dd HH:mm:ss'})\" /></span>";
 		}elseif($type=='user'){
 			$val = empty($this->fmo[$key]) ? @$user->uinfo['uname'] : $this->fmo[$key];
-			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=24 tip='供修改操作人设置使用' />";
+			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=24 tip='".lang('flow.tip_suser')."' />";
 		}elseif($type=='uip'){
 			$val = empty($this->fmo[$key]) ? $_cbase['run']['userip'] : $this->fmo[$key];
-			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=255 tip='供修改操作人IP设置使用' />";
+			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=255 tip='".lang('flow.tip_sip')."' />";
 		}
 		return $item;
 	}
 	function fmAE3($hid=0){
-		glbHtml::fmae_row('操作时间','添加:'.$this->fmAELogs('date','atime').' &nbsp; 修改:'.$this->fmAELogs('date','etime'),$hid);
-		glbHtml::fmae_row('操作者',  '添加:'.$this->fmAELogs('user','auser').' &nbsp; 修改:'.$this->fmAELogs('user','euser'),$hid);
-		glbHtml::fmae_row('操作IP',  '添加:'.$this->fmAELogs('uip','aip')   .' &nbsp; 修改:'.$this->fmAELogs('uip','eip'),   $hid);
+		glbHtml::fmae_row(lang('flow.log_optime'),lang('flow.log_opadd').$this->fmAELogs('date','atime').' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('date','etime'),$hid);
+		glbHtml::fmae_row(lang('flow.log_opuser'),  lang('flow.log_opadd').$this->fmAELogs('user','auser').' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('user','euser'),$hid);
+		glbHtml::fmae_row(lang('flow.log_opip'),  lang('flow.log_opadd').$this->fmAELogs('uip','aip')   .' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('uip','eip'),   $hid);
 	}
 
 	// svAKey，

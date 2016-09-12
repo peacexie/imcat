@@ -114,21 +114,32 @@ function bootPerm_ys($key='',$re='0',$exmsg=''){
  * 这里不用判断：(!function_exists('intl_is_failure'))
  * 如果与其它程序一起使用，发现有如下函数冲突，请注释对应函数即可。
  */
-// dump(格式化输出：变量，数组，Object)
-function dump($var){  
-	basDebug::varShow($var);
-}
-// dmap(按类型，键值输出所有变量，数组，Object)
-function dmap($url="?_deTest=peaceTest"){  
-	basDebug::varMain($url);
-}
-// 读取配置
-function cget($file,$dir='modcm',$type='inc'){  
-	return glbConfig::read($file,$dir,$type);
-}
-// 获得get/post参数
-function uget($key,$def='',$type='Title',$len=255){  
-	return basReq::val($key,$def,$type,$len);
+if(empty($_cbase['run']['outer'])){ 
+	// dump(格式化输出：变量，数组，Object)
+	function dump($var){  
+		basDebug::varShow($var);
+	}
+	// dmap(按类型，键值输出所有变量，数组，Object)
+	function dmap($url="?_deTest=peaceTest"){  
+		basDebug::varMain($url);
+	}
+	// 读取配置
+	function cget($file,$dir='modcm',$type='inc'){  
+		return glbConfig::read($file,$dir,$type);
+	}
+	// 获得get/post参数
+	function uget($key,$def='',$type='Title',$len=255){  
+		return basReq::val($key,$def,$type,$len);
+	}
+	// 显示语言标识
+	function lang($mk, $val=''){  
+		if($val===0){ 
+			echo basLang::show($mk, $val===0?'':$val);
+			return;
+		}else{ 
+			return basLang::show($mk, $val);
+		}
+	}
 }
 
 /**

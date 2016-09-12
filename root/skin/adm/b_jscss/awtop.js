@@ -3,7 +3,7 @@ jsElm.jeID('adf_left').innerHTML = admHtmLeft + jsElm.jeID('adf_left').innerHTML
 function admJsClick(id){ 
 	var _add = jsElm.ifID('adf_main').jsElm.jeID(id+'_add'); 
 	if(_add){ _add.click(); }
-	else{ layer.alert('请定位到当前模型列表'); } 
+	else{ layer.alert(lang('adm.open_nowmod_list')); } 
 }
 function admSetTab(id,rst){
 	var a = admNavTab.split(',');

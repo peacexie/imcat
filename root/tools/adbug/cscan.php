@@ -4,23 +4,37 @@ require(dirname(__FILE__).'/_config.php');
 $act = basReq::val('act','');
 $part = $ntpl = basReq::val('part','');
 
-if($act=='scanInit'){
-	$bcfg = array('code'=>DIR_CODE, 'root'=>DIR_ROOT, 'tpls'=>DIR_CODE.'/tpls', 'a3rd'=>DIR_ROOT.'/a3rd'); @$burl = $bcfg[$part]; 
-	$dcfg = array('code'=>'',       'root'=>'',       'tpls'=>'/code',          'a3rd'=>'/root');          @$durl = $dcfg[$part];
-	if(!empty($burl)){
-		$re = devBase::scanInit($burl,$_cbase['run']['rmain']."$durl/$part");
-		echo "<base target='_blank'/>[$durl/$part]<pre>"; print_r($re); 
-		echo "\n</pre>".basDebug::runInfo(); die();
-	}
-}elseif($act=='scanMkvs'){
-	$re = devBase::scanMkvs($part);
-	echo "<base target='_blank'/>[$part]<pre>"; print_r($re); 
-	echo "\n</pre>".basDebug::runInfo(); die();
-}
-
 glbHtml::page("Check/Scan",1);
 glbHtml::page('imp');
+
+if($act=='scanInit'){
+  $bcfg = array('code'=>DIR_CODE, 'root'=>DIR_ROOT, 'tpls'=>DIR_CODE.'/tpls', 'a3rd'=>DIR_ROOT.'/a3rd'); @$burl = $bcfg[$part]; 
+  $dcfg = array('code'=>'',       'root'=>'',       'tpls'=>'/code',          'a3rd'=>'/root');          @$durl = $dcfg[$part];
+  if(!empty($burl)){
+    $re = devBase::scanInit($burl,$_cbase['run']['rmain']."$durl/$part");
+    echo "<base target='_blank'/>[$durl/$part]<pre>"; print_r($re); 
+    echo "\n</pre>".basDebug::runInfo(); die();
+  } 
+}elseif($act=='scanMkvs'){
+  $re = devBase::scanMkvs($part);
+  echo "<base target='_blank'/>[$part]<pre>"; print_r($re); 
+  echo "\n</pre>".basDebug::runInfo(); die();
+}elseif($act=='scanCnchr'){ 
+    $skip = array('ex_sfdata','safData','exvOcar','wmpError','sy_fdemo','sy_fsystem','sy_nava','derun'); 
+    $re = devBase::scanCnchr(DIR_PROJ."/$part",array('yscode','utest'),$skip);
+    echo "\n</pre>".basDebug::runInfo(); die();  
+}elseif($act=='scanDblang'){ 
+    $re = devBase::scanDblang();
+    echo "\n</pre>".basDebug::runInfo(); die();  
+}elseif($act=='curlDown'){  
+    $ref = array('_ref'=>'http://down.chinaz.com/soft/37712.htm');
+    $url = "http://down.chinaz.com/download.asp?id=37712&dp=1&fid=$part&f=yes";
+    $res = comHttp::curlCrawl($url,$ref);
+    echo basStr::filForm($res)." [$part] "; die();
+}
+
 ?>
+
 <link rel='stylesheet' type='text/css' href='./style.css'/>
 </head><body>
 
@@ -51,6 +65,7 @@ $bompath = empty($_GET['bompath']) ? '' : $_GET['bompath'];
 $bomfile = @$_GET['bomfile']; $bommsg = '';
 $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
 ?>
+
 <div>
   <?php
   if(!empty($bomfile)){
@@ -59,16 +74,17 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
   }
   ?>
   <form id="fmbom" name="fmbom" method="get" action="?">
-    <p class="tc tip">BOM检测</p>
+    <p class="tc tip">BOM Check</p>
     <ul>
 	<?php echo $bommsg; ?>
     <li>
-      <i class="w2">根目录: </i><input name="bomroot" type="text" value="<?php echo $bomroot; ?>" size="36"> 
-      <input type="submit" value="设置">
-      <span title="点[BOM]连接,将移除BOM">点击[子目录], [Ctrl+F]搜索[BOM]</span> &nbsp; 
+      <i class="w2"><?php lang('tools.scan_root',0); ?></i><input name="bomroot" type="text" value="<?php echo $bomroot; ?>" size="36"> 
+      <input type="submit" value="<?php lang('tools.scan_set',0); ?>">
+      <br>
+      <span title="<?php lang('tools.scan_tip1',0); ?>"><?php lang('tools.scan_tip2',0); ?></span> &nbsp; 
      </li>
     <li>
-    <i class="w2">子目录：</i>
+    <i class="w2"><?php lang('tools.scan_dirs',0); ?></i>
     <?php 
 	$handle = opendir($bomroot);
 	while($file=readdir($handle)){
@@ -97,7 +113,15 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
 
   <table width="100%" border="1" class="tblist">
     <tr>
-      <td class="tc">Open[hlist]入口</td>
+      <td class="tc">lang,down</td>
+      <td class="tc" colspan="3">
+       # <a href='?act=openDowns&part='>openDowns</a>
+      # <a href='?act=scanDblang&part='>scanDblang</a>
+       #
+      </td>
+    </tr> 
+    <tr>
+      <td class="tc">Open[hlist]Entry</td>
       <td class="tc" colspan="3">
        # <a href='?act=openLinks&part=umc'>open_umc</a>
        | <a href='?act=openLinks&part=mob'>open_mob</a>
@@ -107,7 +131,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
       </td>
     </tr> 
     <tr>
-      <td class="tc">检查[file]入口</td>
+      <td class="tc">Check[file]Entry</td>
       <td class="tc" colspan="3">
        # <a href='?act=scanInit&part=code' target="_blank">init_code</a> 
        | <a href='?act=scanInit&part=root' target="_blank">init_root</a>
@@ -117,7 +141,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
       </td>
     </tr> 
     <tr>
-      <td class="tc">检查[mkv]入口</td>
+      <td class="tc">Check[mkv]Entry</td>
       <td class="tc" colspan="3">
        # <a href='?act=scanMkvs&part=adm' target="_blank">mkv_adm</a> 
        | <a href='?act=scanMkvs&part=umc' target="_blank">mkv_umc</a>
@@ -127,10 +151,25 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
        #
       </td>
     </tr> 
+    <tr>
+      <td class="tc">Check[Cnchr]Char</td>
+      <td class="tc" colspan="3">
+         <a href='?act=scanCnchr&part=code/adpt' target="_blank">adpt</a> 
+       | <a href='?act=scanCnchr&part=code/cfgs' target="_blank">cfgs</a>
+       | <a href='?act=scanCnchr&part=code/core' target="_blank">core</a>
+       | <a href='?act=scanCnchr&part=code/flow' target="_blank">flow</a>
+       # <a href='?act=scanCnchr&part=code/tpls/adm' target="_blank">adm</a>
+       | <a href='?act=scanCnchr&part=code/tpls/umc' target="_blank">umc</a>
+       | <a href='?act=scanCnchr&part=code/tpls/doc' target="_blank">doc</a>
+       # <a href='?act=scanCnchr&part=root/a3rd' target="_blank">a3rd</a> 
+       | <a href='?act=scanCnchr&part=root/plus' target="_blank">plus</a>
+       | <a href='?act=scanCnchr&part=root/skin' target="_blank">skin</a>
+       | <a href='?act=scanCnchr&part=root/tools' target="_blank">tools</a>
+      </td>
+    </tr> 
   </table>
 
 </div>
-
 
 <?php
 if($act=='openLinks'){ 
@@ -163,36 +202,73 @@ if($act=='openLinks'){
 <script>
 var wmax = 6; // 6~12
 function funcOpen(){
-	for(var i=0;i<wmax+1;i++){ window.open('','_w'+i); }
-	$('#idlinks').find('a').each(function(no, ilink) {
+  for(var i=0;i<wmax+1;i++){ window.open('','_w'+i); }
+  $('#idlinks').find('a').each(function(no, ilink) {
         var r = jsRnd(100,400);
         setTimeout("funcOset("+no+");",(no+1)*1500+r);
-		//jsLog(i);
+    //jsLog(i);
     });
 }
 function funcOset(no){
-	var ilink = $('#idlinks').find('a')[no];
-	var url = $(ilink).prop('href');
-	var html = $(ilink).html()+' --- ';
-	if(url.indexOf('close#')<=0){
-		window.open(url,'_w'+(no%wmax));
-		//var wobj = wobj.blur();
-		html += url;
-	}else{
-		html += 'Error!'
-	}
-	$(ilink).html(html.replace(_cbase.run.rsite,''));
+  var ilink = $('#idlinks').find('a')[no];
+  var url = $(ilink).prop('href');
+  var html = $(ilink).html()+' --- ';
+  if(url.indexOf('close#')<=0){
+    window.open(url,'_w'+(no%wmax));
+    //var wobj = wobj.blur();
+    html += url;
+  }else{
+    html += 'Error!'
+  }
+  $(ilink).html(html.replace(_cbase.run.rsite,''));
 }
 funcOpen();
 </script>
-<!--
-var new_window = window.open("hello.html","html_name","width=200,height=200");
-// blur the new window
-new_window.blur();
-<H1>A new window has been opened and moved to the background.</H1> 
-<A onmouseover=new_window.focus(); href="#">Bring it forward</A> 
-<A onmouseover=new_window.blur(); href="#">Put it backward</A> 
--->
+<?php } ?>
+
+<?php
+if($act=='openDowns'){ 
+?>
+<div>
+  <p>[<?php echo "$ntpl"; ?>]openDowns</p>
+  <table width="100%" border="1" class="tblist" id="idlinks">
+    <tr id="res">
+      <td>
+            --- <b>demo</b><br>
+            <a href="http://down.chinaz.com/soft/37712.htm" target="_blank">chinaz/37712</a><br>
+            --- <b>open</b><br>
+            <?php 
+            $dcfg=array(28,7,22,19,10,20,16); 
+            $ref = array('_ref'=>'http://down.chinaz.com/soft/37712.htm');
+            foreach (array(1,2,3,4,5) as $ia) {
+            foreach ($dcfg as $dkey) {
+              echo "<a href='?act=curlDown&part=$dkey' target='_blank'>part=$dkey</a><br>";
+            }}?>
+      </td>
+    </tr> 
+    <tr>
+      <td class="tip">……</td>
+    </tr> 
+  </table>
+</div>
+<script>
+var wmax = 6; // 6~12
+function funcOpen(){
+  for(var i=0;i<wmax+1;i++){ window.open('','_w'+i); }
+  $('#idlinks').find('a').each(function(no, ilink) {
+        var r = jsRnd(1700,4300); //jsLog(i)
+        setTimeout("funcOset("+no+");",(no+1)*2500+r);
+    });
+}
+function funcOset(no){
+  var ilink = $('#idlinks').find('a')[no];
+  var url = $(ilink).prop('href');
+  //var html = $(ilink).html()+' --- ';
+  window.open(url,'_w'+(no%wmax));
+  //$(ilink).html(html.replace(_cbase.run.rsite,''));
+}
+funcOpen();
+</script>
 <?php } ?>
 
 <?php } ?>

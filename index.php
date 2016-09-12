@@ -1,4 +1,5 @@
 <?php 
+$_cbase['ucfg']['lang'] = '(auto)'; 
 require(dirname(__FILE__).'/root/run/_paths.php'); 
 
 $qstr = $_SERVER['QUERY_STRING'];

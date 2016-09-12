@@ -33,7 +33,7 @@ class exdBase{
 			'coms' =>array('dopComs','cid'),
 			'advs' =>array('dopAdvs','aid'),
 		); 
-		if(!isset($_tmp[$this->mpid])) glbHtml::end('参数错误:mod@dop.php');
+		if(!isset($_tmp[$this->mpid])) glbHtml::end(lang('flow.dops_parerr').':mod@dop.php');
 		$this->mkid = $_tmp[$this->mpid][1]; 
 		$this->mkno = substr($this->mkid,0,1).'no'; 
 		$_cls = $_tmp[$this->mpid][0]; 
@@ -205,23 +205,14 @@ class exdBase{
 	// fldForm
 	static function fldForm($fm,$n=5){
 		global $_cbase;
-		$marr = array(
-			'modeVal'=>'Html标签模式',
-			'modePos'=>'Html定点模式',
-			'modeArr'=>'tml标签数组模式',
-			'modePreg'=>'正则取数组模式',
-			'modeAttr'=>'提取Html属性模式',
-		);
-		$mext = array(
-			'url:fatch'=>'提取远程Url数据',
-			'save:image'=>'提取远程图片到本地',
-		);
+		$marr = basLang::ucfg('cfglibs.exdbase_mode');
+		$mext = basLang::ucfg('cfglibs.exdbase_ext');
 		for($i=1;$i<=$n;$i++){ $k = "orgtg$i"; 
 			$a = explode('(:)',$fm[$k].'(:)(:)');
-			$mopt = "<br><select name='fm[$k][mode]' class='w150'>".basElm::setOption($marr,$a[0],'-提取模式-')."</select>";
-			$mopt .= " &nbsp; <select name='fm[$k][ext]' class='w150'>".basElm::setOption($mext,$a[2],'-扩展操作-')."</select>";
-			$mopt .= " &nbsp; <a href='{$_cbase['server']['txmao']}/dev.php?advset-exdata#s_fields' target='_blank'>规则说明</a>";
-			glbHtml::fmae_row("原始内容标记$i","<textarea name='fm[$k][tag]' rows='2' cols='50' wrap='wrap'>{$a[1]}</textarea>$mopt");
+			$mopt = "<br><select name='fm[$k][mode]' class='w150'>".basElm::setOption($marr,$a[0],lang('exdb_mode'))."</select>";
+			$mopt .= " &nbsp; <select name='fm[$k][ext]' class='w150'>".basElm::setOption($mext,$a[2],lang('exdb_exop'))."</select>";
+			$mopt .= " &nbsp; <a href='{$_cbase['server']['txmao']}/dev.php?advset-exdata#s_fields' target='_blank'>".lang('exdb_rnote')."</a>";
+			glbHtml::fmae_row(lang('exdb_orgtag')."$i","<textarea name='fm[$k][tag]' rows='2' cols='50' wrap='wrap'>{$a[1]}</textarea>$mopt");
 		}
 	}
 	// fldSave
@@ -236,18 +227,18 @@ class exdBase{
 	
 	// showRes
 	static function showRes($res){
-		$msg = "当前批次执行结果：";
-		$msg .= $res['msg'] ? $res['msg']."<br>" : "成功执行[{$res['ok']}/{$res['cnt']}]条<br>\n";
+		$msg = lang('exdb_nres');
+		$msg .= $res['msg'] ? $res['msg']."<br>" : lang('exdb_okn',"{$res['ok']}/{$res['cnt']}")."<br>\n";
 		$msg .= "[".date('Y-m-d H:i:s')."]<br>\n";
 		if($res['next']){
-			$msg .= "<br>\n3秒后执行下一批次…<br>\n";
+			$msg .= "<br>\n".lang('exdb_next',3)."<br>\n";
 			$js = "setTimeout('window.location.reload();',3000);"; 
 			$js = basJscss::jscode($js);
 		}else{
-			$msg .= "<br>\n执行完毕。<br>\n";
+			$msg .= "<br>\n".lang('exdb_rok')."<br>\n";
 			$js = '';	
 		}
-		glbHtml::page('执行结果：');
+		glbHtml::page(lang('exdb_bugres'));
 		glbHtml::page('body');
 		echo "\n<p>$msg</p>\n$js";
 		basDebug::varShow($res);
@@ -255,12 +246,12 @@ class exdBase{
 	}
 	// showBug
 	static function showBug($res,$exd,$debug){
-		glbHtml::page('调试结果：');
+		glbHtml::page(lang('exdb_bugres'));
 		@$cfield = $exd->cfields[basReq::val('field')]; 
 		if(strstr($cfield['dealfmts'],'strtotime')){
-			$res .= " \n(原始内容:".@$_cbase['crawl']['strtotime'].")";
+			$res .= " \n(".lang('exdb_orgdata').":".@$_cbase['crawl']['strtotime'].")";
 		}elseif(strstr($cfield['dealfmts'],'strtotime')){
-			$res .= " \n(原始内容:".@$_cbase['crawl']['dealfunc'].")";	
+			$res .= " \n(".lang('exdb_orgdata').":".@$_cbase['crawl']['dealfunc'].")";	
 		}
 		echo "\n<base target='_blank' />";
 		glbHtml::page('body');

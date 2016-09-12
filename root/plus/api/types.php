@@ -4,18 +4,18 @@ require(dirname(__FILE__).'/_config.php');
 glbHtml::page('Types Pick',1);
 glbHtml::page('imadm'); //adm
 echo basJscss::imp('/skin/jslib/search.js');
+//echo basJscss::imp('/skin/jslib/search.js');
 ?>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 0px 8px; }
 .table { }
 </style>
 <script>
-
 // id(s)对应的项目名称(s),多选-已择项目
 function popNames(){
 	var val=jsElm.pdID(fid).value; 
 	eval("var obj=_wp."+fid2+"_obj;"); 
-	var str='', cbs='<span class="c999">已择:</span>', gap=''; cnt=0;
+	var str='', cbs='<span class="c999">'+lang('adm.types_nowsels')+'</span>', gap=''; cnt=0;
 	val = val.replace(new RegExp(';',"gm"),',');
 	val = '(,'+val+','; // bj;bjxiaqu
 	for(var i=0;i<obj.i.length;i++){
@@ -30,7 +30,7 @@ function popNames(){
 			cnt++; 
 		}
 	}
-	if(obj.n>1&&cnt>1){ str = str+' (共'+cnt+'个项目)';}
+	if(obj.n>1&&cnt>1){ str = str+' ('+lang('adm.types_nowsels',cnt)+')';}
 	jsElm.pdID(fid2+'_name').value = str;
 	jsElm.jeID('xid2_now').innerHTML = cbs; 
 	var cbnow = jsElm.jeID('xid2_now').getElementsByTagName('label'); 
@@ -64,7 +64,7 @@ function popSetp(pid,type){ // type:init,add,del
 		val = dataLays(obj.i,val); 
 		var a = val.split(';'), flag = false;
 		var aopen = " onClick=\"popList('"+pid+"','del')\" "; 
-		str = '<label id="'+fid2+'_nstp_'+pid+'" class="wpop_step" '+aopen+'>&laquo;顶级</label>';	
+		str = '<label id="'+fid2+'_nstp_'+pid+'" class="wpop_step" '+aopen+'>&laquo;'+lang('adm.types_top')+'</label>';	
 		for(var i=0;i<a.length-2;i++){
 			var kid = a[i];
 			aopen = " onClick=\"popList('"+kid+"','del')\" "; 
@@ -145,7 +145,7 @@ function popItem(itm,n,flag,deep){ // flag:def,step,tree
 	var vcmp = '(,'+val.replace(';',',')+',';
 	if(vcmp.indexOf(','+itm[0]+',')>=0){ 
 		css = 'c00F';
-		chk = ' title="此项目已选中"';
+		chk = ' title="'+lang('adm.types_selected')+'"';
 	} //flag='tree';
 	if(itm[4]==1) css = 'c666'; // 结构分类灰色
 	str = '<span id="'+idin+'" class="'+css+'">'+itm[2]+'</span>';//chk
@@ -184,7 +184,7 @@ function popItmCheck(kid,e){
 	if(chked){ // Add --- 从:未选-=>选 
 		var cbnow = jsElm.jeID('xid2_now').getElementsByTagName('label'); 
 		if(cbnow.length>obj.n-1){
-			alert('提示:最多只能选['+obj.n+']个');
+			alert(lang('adm.types_tipmaxn',obj.n)); // '提示:最多只能选['+obj.n+']个'
 			jsElm.jeID(idcb).checked = false;
 			return;
 		}
@@ -236,12 +236,12 @@ var _wp = window.parent, _pd = parent.document;
 var fid = urlPara('fid'), fid2 = jsKey(fid); 
 str = '<table width="100%" border="0" cellpadding="3" cellspacing="3" class="table">';
 str += '<tr><td><div class="w100 cF00 hand right tr" style="padding-top:3px;">'; 
-str += '<span id="xid2_clear" class="ph2" onClick="popSetValue(\'clear\')" title="Clear/清除">[清除]</span>';
-str += '<span id="xid2_close" class="ph2" onClick="popClose()" title="确定/关闭">[确定]</span></div>';
+str += '<span id="xid2_clear" class="ph2" onClick="popSetValue(\'clear\')" title="'+lang('adm.types_cltip')+'">'+lang('adm.types_clear')+'</span>';
+str += '<span id="xid2_close" class="ph2" onClick="popClose()" title="'+lang('adm.types_cftip')+'">'+lang('adm.types_confirm')+'</span></div>';
 str += '<span id="xid2_title" class="inblock"><input name="schVal" id="schVal" type="text"></span>';
-str += '<input name="bsend" type="submit" class="btn" value="搜索" onclick="schDone()" /></td></tr>';
+str += '<input name="bsend" type="submit" class="btn" value="'+lang('adm.types_search')+'" onclick="schDone()" /></td></tr>';
 str += '<tr><td id="xid2_now" class="h180"></td></tr>';
-str += '<tr><td id="xid2_step" class="h180 tr"><span class="c999">当前:</span></td></tr>';
+str += '<tr><td id="xid2_step" class="h180 tr"><span class="c999">'+lang('adm.types_new')+'</span></td></tr>';
 str += '<tr><td id="xid2_list" class="h180" style="padding:5px 0 0 0;border-top:1px solid #CCC;">-list-</td></tr>';
 str += '</table>';
 document.write(str); // Table 初始化

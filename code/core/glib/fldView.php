@@ -40,8 +40,7 @@ class fldView{
 		$val = comFiles::revSaveDir($val,1);
 		$item = '';	$smk = self::mkpar();
 		$eid = empty($_cbase['sys_editor']) ? 'kind' : $_cbase['sys_editor'];
-		$epr = "eid=$eid$smk&r=".$_cbase['run']['stamp']."&";
-		echo basJscss::imp("/plus/editor/api_$eid.php?{$epr}lang=",'','js');
+		echo basJscss::imp("/plus/editor/api_$eid.php?eid=$eid$smk",'','js'); //&lang=
 		$size = str_replace('x',',',$cfg['fmsize']); if(empty($size)) $size = '480x120';
 		$bsbar = strstr(@$cfg['fmexstr'],'full') ? 'full' : 'base';
 		$item = strstr(@$cfg['fmexstr'],'exbar') ? "<div id='fm_{$k}_bar' class='edt_bar'></div>" : '';
@@ -91,9 +90,9 @@ class fldView{
 			$simg = "<br><span class='idHidden' id='$id'><img src='$val' onload='imgShow(this,360,240)' border='0' /></span>";
 		}
 		$item .= "<input id='fm_{$k}_' name='fm[{$k}]' type='text' value='$val' class='file' $vstr $jsAct>";
-		$item .= "<input type='button' value='上传' onclick=\"winOpen('".PATH_ROOT."/plus/file/upone.php?fid=fm_{$k}_$smk','上传附件',360,120)\">";
-		$item .= "<input type='button' value='浏览' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','浏览附件',720,480)\">";
-		$item .= "<input type='button' value='清空' onclick=\"$('#fm_{$k}_').val('');\">$simg";
+		$item .= "<input type='button' value='".lang('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upone.php?fid=fm_{$k}_$smk','".lang('admin.fv_upfiles')."',360,120)\">";
+		$item .= "<input type='button' value='".lang('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".lang('admin.fv_vfiles')."',720,480)\">";
+		$item .= "<input type='button' value='".lang('admin.fv_clear')."' onclick=\"$('#fm_{$k}_').val('');\">$simg";
 		return $item;
 	}
 	// pics
@@ -104,9 +103,9 @@ class fldView{
 		$item .= "<div id='fm_{$k}_out' class='mpic_out'>"; 
 		$item .= "<div id='fm_{$k}_show'>{$cfg['cfgs']}</div>"; 
 		$item .= "<div id='fm_{$k}_tarea' class='clear'><textarea name='fm[$k]' id='fm_{$k}_' style='display:none;'>$val</textarea></div>"; 
-		$item .= "<input type='button' value='上传' onclick=\"winOpen('".PATH_ROOT."/plus/file/upbat.php?fid=fm_{$k}_$smk','上传附件',720,560)\">"; 
-		$item .= "<input type='button' value='浏览' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','浏览附件',720,560)\">"; 
-		$item .= "<input type='button' value='清空' onClick=\"mpic_clear('fm_{$k}_');\">";
+		$item .= "<input type='button' value='".lang('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upbat.php?fid=fm_{$k}_$smk','".lang('admin.fv_upfiles')."',720,560)\">"; 
+		$item .= "<input type='button' value='".lang('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".lang('admin.fv_vfiles')."',720,560)\">"; 
+		$item .= "<input type='button' value='".lang('admin.fv_clear')."' onClick=\"mpic_clear('fm_{$k}_');\">";
 		$item .= "</div>"; 
 		$jpath = PATH_ROOT."/skin/a_jscss/multpic.js";
 		$item .= basJscss::jscode("jQuery.getScript('$jpath',function(){ mpic_minit('fm_{$k}_'); })"); 
@@ -124,7 +123,7 @@ class fldView{
 			}
 		}
 		$item = "<div id='fm_{$k}_refname'>$item</div><input name='fm_{$k}_modpicks' id='fm_{$k}_modpicks' type='hidden' value='$pmod'>";
-		$item .= "<input type='button' value='资料选取' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  
+		$item .= "<input type='button' value='".lang('admin.fv_pick')."' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  
 		// pmod,cnt, $ptitle = dopFunc::vgetTitle($pmod,$val); 
 		return $item;
 	}
@@ -156,7 +155,7 @@ class fldView{
 			$item = "$iinp<span class='fldicon fmap' onClick=\"mapPick('$mpid','fm[$k]');\">&nbsp;</span>";
 		}elseif($extra=='repeat'){ //检查重名 
 			$act = "onclick=\"repeatCheck('".str_replace(',',"','",@$cfg['cfgs'])."','$k');\""; ;
-			$item = "$ihid <input type='button' value='检查重名' id='fm_repeat_$k' $act class='btn'> ";
+			$item = "$ihid <input type='button' value='".lang('admin.fv_chkrep')."' id='fm_repeat_$k' $act class='btn'> ";
 		}elseif($extra=='winpop'){ //winpop
 			$item = self::iwinpop($k,$cfg,$val,$size,@$cfg['vreg']);
 		}elseif($extra=='pics'){ //pics

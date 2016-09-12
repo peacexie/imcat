@@ -243,6 +243,18 @@ function jsText(str){
 	str=str.replace(/&nbsp;/ig,'');//去掉&nbsp;
 	return str;
 }
+// lang('jcore.jstag_toolong',id)
+// {lang(jcore.sys_name)}
+function lang(mk, val){
+	if(mk.indexOf('.')<=0) mk = "jcore."+mk;
+	try{ 
+		vre = eval("Lang."+mk); 
+	}catch (ex1){ return '{'+mk+'}'; }
+	// jsLog(vre);
+	if(typeof(val)=="undefined") return vre;
+	vre = vre.replace('{val}',val); 
+	return vre;
+}
 // 动态导入Js/CSS文件 使用 命名空间方式 
 function jsImp(sFile,basePath,callback){     
 	if(_cbase.run.jsimp.indexOf(sFile)<=0) _cbase.run.jsimp += ','+sFile;
@@ -325,5 +337,7 @@ function jsRnd(flag,iMax){
 	if(!flag) flag = '_r';
 	var r = new Date().getTime(); //Math.random();
 	var s = flag+'='+r;
+	try{ s += '&lang='+_cbase.sys.lang; }
+	catch(ex){ }
 	return s;
 }

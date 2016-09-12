@@ -79,7 +79,7 @@ class updAdmin extends updBase{
 		$res = self::fileComp($new,$old,$pnew,$pold);
 		$str = ""; 
 		foreach($res as $file=>$val){
-			$str .= "$file -&gt; $val -&gt; <a href='?act=cmpfile&file=$file&part=$part' target='x'>[对比]</a><br>";
+			$str .= "$file -&gt; $val -&gt; <a href='?act=cmpfile&file=$file&part=$part' target='x'>[".lang('core.upd_comp')."]</a><br>";
 		}
 		return $str;
 	}
@@ -148,7 +148,7 @@ class updAdmin extends updBase{
 			if(!empty($vals['sql'])){
 				$istr .= "{$vals['sql']}\n";
 			}
-			$istr && $str .= "<li> ● {$tab} <a href='?act=cmptable&tab=$tab' target='x'>[对比]</a>●<pre>{$istr}</pre></li>";	
+			$istr && $str .= "<li> ● {$tab} <a href='?act=cmptable&tab=$tab' target='x'>[".lang('core.upd_comp')."]</a>●<pre>{$istr}</pre></li>";	
 		}
 		return $str;
 	}

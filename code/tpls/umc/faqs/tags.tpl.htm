@@ -12,7 +12,7 @@ $where = tex_faqs::expwhr($this); // [keywd][where,$where]
     <div class="clear pa5"></div> 
     <?php 
     if($_cbase['page']['prec']){ echo $_cbase['page']['bar']; }
-    else{ echo "<dt>暂无记录！</dt>"; }
+    else{ echo "<dt>{lang(user.qa_nodata)}</dt>"; }
     ?>
     </dd>
 {/tag:qas}

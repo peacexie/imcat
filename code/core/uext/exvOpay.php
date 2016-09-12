@@ -51,7 +51,7 @@ class exvOpay{
 		global $_cbase;
 		$arr = array();
 		$arr['out_trade_no'] = $order['cid'];
-		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")订单";
+		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
 		$arr['total_fee'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';
@@ -63,7 +63,7 @@ class exvOpay{
 		global $_cbase;
 		$arr = array();
 		$arr['ordid'] = $order['cid'];
-		$arr['title'] = "Web(".$_cbase['tpl']['tpl_dir'].")订单";
+		$arr['title'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
 		$arr['feetotle'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';
@@ -97,7 +97,7 @@ class exvOpay{
 		global $_cbase;
 		$arr = array();
 		$arr['out_trade_no'] = $order['cid'];
-		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")订单";
+		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
 		$arr['total_fee'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';

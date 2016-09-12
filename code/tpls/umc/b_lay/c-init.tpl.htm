@@ -6,7 +6,7 @@ if($user->userFlag=='Login'){
 	$uname = $user->uinfo['uname'];
 	$unowstr = $user->uinfo['mname'].'(<span class="c00F">'.$uname.'</span>)'.$user->uperm['title'];
 }else{
-	$unowstr = 'Guest('.$user->sinit['sid'].')游客';	
+	$unowstr = 'Guest('.$user->sinit['sid'].')'.lang('user.pub_guest');	
 }
-if($this->mod=='indoc') $tipmsg = '公文';
+if($this->mod=='indoc') $tipmsg = lang('user.pub_idoc');
 {/php}

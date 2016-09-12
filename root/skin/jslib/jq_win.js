@@ -25,7 +25,7 @@ function tipsWindown(title,content,width,height,drag,time,showbg,cssName,backcal
 		var simpleWindown_html = new String;
 			simpleWindown_html = "<div id=\"wtips-bg\" style=\"height:"+$(document).height()+"px;filter:alpha(opacity=0);opacity:0;z-index: 999901\"></div>";
 			simpleWindown_html += "<div id=\"wtips-box\">";
-			simpleWindown_html += "<div id=\"wtips-title\"><h2></h2><span id=\"wtips-close\">关闭</span></div>";
+			simpleWindown_html += "<div id=\"wtips-title\"><h2></h2><span id=\"wtips-close\">[X]</span></div>";
 			simpleWindown_html += "<div id=\"wtips-content-border\"><div id=\"wtips-content\"></div></div>"; 
 			simpleWindown_html += "</div>";
 			$("body").append(simpleWindown_html);
@@ -46,7 +46,7 @@ function tipsWindown(title,content,width,height,drag,time,showbg,cssName,backcal
 		});
 		$.ajax({
 			error:function(){
-				$("#wtips-content").html("<p class='wtips-error'>加载数据出错...</p>");
+				$("#wtips-content").html("<p class='wtips-error'>Load Data Error...</p>");
 			},
 			success:function(html){
 				$("#wtips-content").html("<img src="+content+" alt='' />");
@@ -63,7 +63,7 @@ function tipsWindown(title,content,width,height,drag,time,showbg,cssName,backcal
 			url:content_array[1],
 			data:content_array[2],
 			error:function(){
-				$("#wtips-content").html("<p class='wtips-error'>加载数据出错...</p>");
+				$("#wtips-content").html("<p class='wtips-error'>Load Data Error...</p>");
 			},
 			success:function(html){
 				$("#wtips-content").html(html);
@@ -78,7 +78,7 @@ function tipsWindown(title,content,width,height,drag,time,showbg,cssName,backcal
 		});
 		$.ajax({
 			error:function(){
-				$("#wtips-content").html("<p class='wtips-error'>加载数据出错...</p>");
+				$("#wtips-content").html("<p class='wtips-error'>Load Data Error...</p>");
 			},
 			success:function(html){
 				$("#wtips-content").html("<iframe src=\""+content+"\" width=\"100%\" height=\""+parseInt(height)+"px"+"\" frameborder=\"0\" marginheight=\"0\" marginwidth=\"0\" style='overflow-y:hidden;overflow-x:hidden;'></iframe>");

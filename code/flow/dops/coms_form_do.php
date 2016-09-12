@@ -6,11 +6,11 @@ if(!empty($isadd)){
 	$dop->svAKey();
 	$dop->svPKey('add');
 	$db->table($dop->tbid)->data($dop->fmv)->insert(); 
-	$actm = '增加';
+	$actm = lang('flow.dops_add');
 }else{ 
 	$cid = $dop->svEKey();
 	$dop->svPKey('edit');
 	$db->table($dop->tbid)->data($dop->fmv)->where("cid='$cid'")->update();
-	$actm = '修改';
+	$actm = lang('flow.dops_edit');
 }
-basMsg::show("$actm 成功！");	
+basMsg::show("$actm".lang('flow.dops_ok'));	

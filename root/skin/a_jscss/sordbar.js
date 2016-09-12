@@ -91,7 +91,7 @@ function sordb_fexts(barid,tpl,act,clear,tpl2){
 // sordb_area(linktpl,'price:10,100,200,300,500,800,1000:元','act','>=[Clear]');
 function sordb_area(tpl,keyc,act,clear){
 	var a, key, unt, dval, data;
-	a = keyc.split(':'); key = a[0]; unt = a.length>1 ? a[2] : '元';
+	a = keyc.split(':'); key = a[0]; unt = a.length>1 ? a[2] : lang('jcore.sobar_curunit');
 	dval = urlPara(key,''); 
 	data = sordb_darea(a[1],unt); //jsLog(data);
 	return sordb_links(tpl,key,act,clear,data,dval);
@@ -111,7 +111,7 @@ function sordb_links(tpl,key,act,clear,data,vals){
 		itmp = tpl.replace('(url)',iurl).replace('(title)',icfg[1]).replace('(act)',sact);
 		re += itmp+"\n";
 	}
-	clear = clear ? (clear=='-' ? '' : clear) : '>=[全部]';
+	clear = clear ? (clear=='-' ? '' : clear) : '>='+lang('jcore.sobar_all');
 	if(re && clear){ 
 		icfg = clear.split('='); //jsLog(icfg);
 		sact = vals.replace('(null)','').length==4 ? act : ''; //jsLog(sact+':'+vals);

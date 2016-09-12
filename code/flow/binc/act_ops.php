@@ -1,8 +1,8 @@
 <?php
 (!defined('RUN_MODE')) && die('No Init');
 
-if(empty($fs_do)) $msg = "请选择操作项目！";
-if(empty($fs)) $msg = "请勾选操作记录！";
+if(empty($fs_do)) $msg = lang('flow.dops_setop');
+if(empty($fs)) $msg = lang('flow.dops_setitem');
 $cnt = 0; 
 if(empty($msg)){
   foreach($fs as $id=>$v){ 
@@ -14,4 +14,4 @@ if(empty($msg)){
   } 
 }
 
-$cnt && $msg = "$cnt 条记录 删除成功！";
+$cnt && $msg = "$cnt ".lang('flow.dops_delok');

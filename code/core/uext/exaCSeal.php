@@ -33,7 +33,7 @@ class exaCSeal {
  
     //构造方法
     public function __construct($str ='', $rad = 75, $strad = 24, $fsize = 16, $inrad =0){
-        $this->sealString    = empty($str) ? '印章测试字符串' : $str;
+        $this->sealString    = empty($str) ? lang('core.seal_defstr') : $str;
         $this->sealRadius    = $rad;
         $this->startRadius   = $strad;
         $this->fontSize      = $fsize;
@@ -125,8 +125,8 @@ class exaCSeal {
 	}
 	
 	static function show($indep,$name='',$pos='',$tpl='',$eid='sceal_out'){ 
-		 $tpl = empty($tpl) ? "<p class='cseal_out' title='点击移开位置'><i onclick='sealMove(this)' class='cseal_in {pos}' style='background-image:url({dept})'><b class='cseal_text'>{name}</b></i></p>" : $tpl;
-		 $name = empty($name) ? '专用章' : $name;
+		 $tpl = empty($tpl) ? "<p class='cseal_out' title='".lang('core.seal_move')."'><i onclick='sealMove(this)' class='cseal_in {pos}' style='background-image:url({dept})'><b class='cseal_text'>{name}</b></i></p>" : $tpl;
+		 $name = empty($name) ? lang('core.seal_mark') : $name;
 		 if(file_exists(DIR_STATIC."/icons/indep/seal-$indep.png")){
 			 $file = "seal-$indep.png";
 		 }else{
@@ -138,3 +138,4 @@ class exaCSeal {
 	}
 	
 }
+

@@ -73,19 +73,19 @@ class admAFunc{
 				if($mod=='docs' || $mod=='advs') $db->table('base_catalog')->where("model='$cid'")->delete();
 				if($mod=='users') $db->table('base_grade')->where("model='$cid'")->delete();
 			}
-			return $dcnt ? '删除成功!' : '错误,可能是系统模型被保留!';
+			return $dcnt ? lang('admin.aaf_delok') : lang('admin.aaf_errkeep');
 		}elseif(is_string($fm) && isset($_groups[$fm]) && is_string($cid) && isset($_groups[$cid])){
 			$fm_org = $db->table($tabid)->where("kid='$fm'")->find(); 
 			$fm_now = $db->table($tabid)->where("kid='$cid'")->find();
 			self::modCopy($mod, $tabid, 'is_del', $cid); //del
 			self::modCopy($mod, $tabid, $fm_now, $fm); //copy
-			return '重设字段成功!';
+			return lang('admin.aaf_resetok');
 		}elseif(is_array($fm) && $cid && empty($fm['org_tab'])){ //copy
 			$fm_org = $db->table($tabid)->where("kid='$cid'")->find();
 			$fm['etab'] = $fm_org['etab'];
 			$fm['org_tab'] = "{$mod}_$cid";
 			self::modCopy($mod, $tabid, $fm, $cid); //add
-			return '复制成功!';
+			return lang('admin.aaf_copyok');
 		}elseif(is_array($fm)){ //add
 			$id = basReq::in(@$fm['kid']);
 			$org_tab = @$fm['org_tab']; unset($fm['org_tab']);
@@ -97,15 +97,14 @@ class admAFunc{
 					glbDBExt::setfieldDemo($id, "dext_$id", str_replace('docs_','dext_',$org_tab)); 	
 				}
 			}
-			return '增加成功!';
+			return lang('admin.aaf_addok');
 		}else{
-			return '错误！';	
+			return lang('admin.aaf_error');	
 		}
 		return $msg;
 		
 	}
 		
-	
 	// upd config
 	static function grpNav($pid,$mod){
 		$_groups = glbConfig::read('groups');
@@ -127,9 +126,9 @@ class admAFunc{
 	// types,catalog,menus使用
 	static function typLay($cfg,$aurl,$pid){ 
 		if(empty($pid)){
-			return '顶级类别';
+			return lang('admin.aaf_ttype');
 		}else{
-			$str = "<a href='".basReq::getURep($aurl[1],'pid','0')."'>顶级</a>»";
+			$str = "<a href='".basReq::getURep($aurl[1],'pid','0')."'>".lang('admin.aaf_top')."</a>»";
 			$lnk = "<a href='".basReq::getURep($aurl[1],'pid','[k]')."'>[v]</a>";
 			$str .= comTypes::getLnks(comTypes::getLays($cfg['i'],$pid),$lnk);
 		}

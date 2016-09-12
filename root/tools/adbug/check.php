@@ -8,7 +8,7 @@ $rem_url = empty($_GET['rem_url']) ? 'http://www.baidu.com/' : $_GET['rem_url'];
 $rem_type = empty($_GET['rem_type']) ? '' : $_GET['rem_type'];
 
 $cfg = array(
-	'check'=>'基本环境',
+	'check'=>lang('tools.chk_envbaisc'),
 	'memory'=>'Memory',
 	'upload'=>'Upload',
 	'bomcheck'=>'BOMCheck',
@@ -31,7 +31,7 @@ if($act=='image'){
 	die();	
 }
 
-glbHtml::page("环境检测-$title",1);
+glbHtml::page(lang('tools.chk_envcheck')."-$title",1);
 glbHtml::page('imp');
 
 $iniPath = get_cfg_var('cfg_file_path');
@@ -61,14 +61,14 @@ if($act=='check'){
 ?>
 
 <div>
-<p class="tip">环境检测 --- 基本环境</p>
+<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_envbaisc',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
     <tr>
-      <th class="tc">名称</th>
-      <th class="tc">结果</th>
-      <th>状态</th>
-      <th>备注</th>
+      <th class="tc"><?php lang('tools.chk_envname',0); ?></th>
+      <th class="tc"><?php lang('tools.chk_envres',0); ?></th>
+      <th><?php lang('tools.chk_envstat',0); ?></th>
+      <th><?php lang('tools.chk_envrem',0); ?></th>
     </tr>
 	<?php 
     $a = array('upfile','reset'); 
@@ -76,9 +76,9 @@ if($act=='check'){
     ?>
     <tr>
       <td class="tc"><?php echo $key; ?></td>
-      <td class="tc"><span style="color: #<?php echo $$key ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $$key ? "危险" : "安全"; ?></span></td>
-      <td><?php echo $key; ?>=<?php echo $$key; ?> (code/cfgs/boot/cfg_adbug.php页参数)</td>
-      <td>正式使用请设置为0</td>
+      <td class="tc"><span style="color: #<?php echo $$key ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $$key ? lang('tools.chk_risk') : lang('tools.chk_safe'); ?></span></td>
+      <td><?php echo $key; ?>=<?php echo $$key; ?> (@code/cfgs/boot/cfg_adbug.php)</td>
+      <td><?php lang('tools.chk_set0',0); ?></td>
     </tr>
     <?php }?>
     
@@ -90,7 +90,7 @@ if($act=='check'){
       <td class="tc"><?php echo $re['title']; ?></td>
       <td class="tc"><?php echo $re['res']; ?></td>
       <td><?php echo $re['info']; ?></td>
-      <td><?php echo $re['tip'].(empty($re['demo']) ? '' : " &nbsp; -=&gt;<a href='{$re['demo']}'>示例</a>"); ?></td>
+      <td><?php echo $re['tip'].(empty($re['demo']) ? '' : " &nbsp; -=&gt;<a href='{$re['demo']}'>".lang('tools.chk_demo')."</a>"); ?></td>
     </tr>
     <?php }?>
 
@@ -107,13 +107,13 @@ if($act=='check'){
     <?php }?>
     <form id="fmb" name="fmb2" method="get" action="?">
     <tr>
-      <td class="tc">超级测试</td>
+      <td class="tc"><?php lang('tools.chk_usptest',0); ?></td>
       <td class="tc">-</td>
       <td colspan="2">
     <select name="inptype" onChange="setInpval(this)" style="width:200px;">
-      <option value="">---选一个操作---</option>
-      <option value="memory">内存(填数字,出错表示不支持)</option>
-      <option value="funcs">函数(填字符,Support表示支持)</option>
+      <option value="">---<?php lang('tools.chk_pick1',0); ?>---</option>
+      <option value="memory"><?php lang('tools.chk_cmemory',0); ?></option>
+      <option value="funcs"><?php lang('tools.chk_cfunc',0); ?></option>
     </select>
     <input name="inpval" type="text" id="inpval" value="<?php echo $inpval; ?>" style="width:100px;"/>
     <input type="submit" name="submit" id="submit" value="Submit" class="btn" />   
@@ -149,12 +149,12 @@ function setInpval(e){
 </div>
 
 <div>
-<p class="tip">环境检测 --- 系统目录</p>
+<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_sysdirs',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
     <tr>
-      <th class="tc">名称</th>
-      <th class="tc">结果</th>
+      <th class="tc"><?php lang('tools.chk_envname',0); ?></th>
+      <th class="tc"><?php lang('tools.chk_envres',0); ?></th>
       <th width="30%">Dir</th>
       <th width="40%">Path</th>
     </tr>
@@ -173,20 +173,20 @@ function setInpval(e){
     } if(strstr($rea,FLAGNO)){
     ?>
     <tr>
-      <td class="tip" colspan="4">请对照文件[/root/run/_paths.php],设置相关路径！</td>
+      <td class="tip" colspan="4"><?php lang('tools.chk_dirset',0); ?></td>
     </tr> 
     <?php } //} ?>
   </table>
 </div>
 
 <div>
-<p class="tip">环境检测 --- 数据库连接</p>
+<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_dblink',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
     <tr>
-      <th class="tc">名称</th>
-      <th class="tc">结果</th>
-      <th width="70%">(连接)状态/结果</th>
+      <th class="tc"><?php lang('tools.chk_envname',0); ?></th>
+      <th class="tc"><?php lang('tools.chk_envres',0); ?></th>
+      <th width="70%"><?php lang('tools.chk_dbstatus',0); ?></th>
     </tr>
     
 	<?php 
@@ -194,13 +194,13 @@ function setInpval(e){
     foreach($a3 as $k=>$re){ $nocnt += $re['res']==FLAGNO ? 1 : 0;
     ?>
     <tr>
-      <td class="tc">[<?php echo $k; ?>]扩展</td>
+      <td class="tc">[<?php echo $k; ?>] <?php lang('tools.chk_dbextra',0); ?></td>
       <td class="tc"><?php echo $re['res']; ?></td>
       <td><?php echo $re['info']; ?></td>
     </tr>
     <?php } if($nocnt){ ?>
     <tr>
-      <td class="tip" colspan="4">请检查[/code/cfgs/boot/cfg_db.php]配置</td>
+      <td class="tip" colspan="4"><?php lang('tools.chk_dbset',0); ?></td>
     </tr> 
     <?php } ?>
     
@@ -212,7 +212,7 @@ function setInpval(e){
 ?>
 
 <div style="height:500px; overflow-y:scroll;">
-<p class="tip">环境检测 --- define</p>
+<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- define</p>
   <table width="100%" border="1" class="tblist">
 	<?php 
     $df = get_defined_constants(true);
@@ -241,7 +241,7 @@ function setInpval(e){
 ?>
 <div>
   <form id="fmup" name="fmup" method="post" action="?act=upload" enctype="multipart/form-data">
-    <p class="tc tip">文件上传</p>
+    <p class="tc tip"><?php lang('tools.cf_fupload',0); ?></p>
     <ul>
 	<?php
     if(!empty($_POST['upLoad'])){	// LINKOK,FAILED
@@ -252,14 +252,14 @@ function setInpval(e){
                 $fp = $uppath.$f['name']; 
                 $r = move_uploaded_file($f['tmp_name'],$fp); 
                 chmod($fp, 0755);//设定上传的文件的属性 
-                echo "<li><i class='w2'>结果:</i>$fp 上传OK</li>"; 
+                echo "<li><i class='w2'>res:</i>$fp ".lang('tools.cf_upok')."</li>"; 
         }	}
     }
     ?>
-	<li><i class="w2">文件：</i><input type="file" name="fileup1" id="fileup1"></li>
+	<li><i class="w2"><?php lang('tools.cf_file',0); ?></i><input type="file" name="fileup1" id="fileup1"></li>
     <li>
-    <i class="w2">路径：</i><input name="uppath" type="text" id="uppath" value="./" size="18"/>
-    <input type="submit" name="upLoad" id="upLoad" value="上传" />
+    <i class="w2"><?php lang('tools.cf_path',0); ?></i><input name="uppath" type="text" id="uppath" value="./" size="18"/>
+    <input type="submit" name="upLoad" id="upLoad" value="<?php lang('tools.cf_upbtn',0); ?>" />
     </li>
     </ul>
   </form>
@@ -271,7 +271,7 @@ if($act=='remote'){
 ?>
 <div>
   <form id="fmremote" name="fmremote" method="get" action="?" target="_blank">
-    <p class="tc tip">Remote抓取</p>
+    <p class="tc tip"><?php lang('tools.cf_remote',0); ?></p>
     <ul>
     <li>
       <i class="w2">Url: </i>
@@ -280,28 +280,27 @@ if($act=='remote'){
       https://api.weixin.qq.com/cgi-bin/token<br>
       http://www.baidu.com/<br>
       https://www.baidu.com/    </li>
-    <li><i class="w2">扩展:</i>
+    <li><i class="w2"><?php lang('tools.cf_remext',0); ?></i>
         <select name="rem_type" style="width:360px;">
-          <!--option value="">---选一个操作---</option-->
-          <option value="curl_init">函数(curl:curl_init,curl_setopt)</option>
-          <option value="file_get_contents">函数(file_get_contents)</option>
-          <option value="fsockopen">函数(fsockopen)</option>
+          <option value="curl_init">(curl:curl_init,curl_setopt)</option>
+          <option value="file_get_contents">(file_get_contents)</option>
+          <option value="fsockopen">(fsockopen)</option>
         </select>
     </li>
-    <li><i class="w2">显示:</i>
+    <li><i class="w2"><?php lang('tools.cf_show',0); ?></i>
         <select name="rem_show" style="width:150px;">
-          <option value="">---显示方式---</option>
-          <option value="script_style">去script,style(默认)</option>
-          <option value="script_style_tags">文本(包含默认)</option>
-          <option value="_null_">原文(原本html)</option>
+          <option value="">---<?php lang('tools.cf_shmode',0); ?>---</option>
+          <option value="script_style"><?php lang('tools.cf_tdef',0); ?></option>
+          <option value="script_style_tags"><?php lang('tools.cf_text',0); ?></option>
+          <option value="_null_"><?php lang('tools.cf_torg',0); ?></option>
         </select>
         <select name="rem_cset" style="width:150px;">
-          <option value="">---(默认utf-8)---</option>
-          <option value="gbk">gbk编码</option>
-          <option value="gb2312">gb2312编码</option>
-          <option value="big5">big5编码</option>
+          <option value="">---(default:utf-8)---</option>
+          <option value="gbk"><?php lang('tools.cf_gbk',0); ?></option>
+          <option value="gb2312"><?php lang('tools.cf_gb2312',0); ?></option>
+          <option value="big5"><?php lang('tools.cf_big5',0); ?></option>
         </select>
-        <input type="submit" name="submit" id="submit" value="提交" />
+        <input type="submit" name="submit" id="submit" value="<?php lang('tools.cf_send',0); ?>" />
     </li>
     </ul>
     <input name="remote" type="hidden" value="1">

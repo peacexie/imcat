@@ -4,7 +4,7 @@
 //$_cbase['run']['outer'] = 1;
 //$_cbase['skip']['_sess_'] = true;
 if(!session_id()) session_start();
-
+$_cbase['ucfg']['lang'] = '(auto)'; 
 include(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');
 include(DIR_CODE.'/cfgs/boot/cfg_adbug.php');
 $sess_id = 'pmSessid_'.preg_replace("/[^\w]/", '', @$_cbase['safe']['safil']);
@@ -29,19 +29,19 @@ if(strstr($_selfname,'start.php')){
 function tadbugNave($path=''){
 	if(empty($path)){
 	echo "<tr class='tc'>
-      <td class='tip'><a href='start.php'>&lt;&lt;首页</a></td>
-      <th colspan='2'>调试/工具</th>
-      <td class='tip'><a href='../setup/'>安装&gt;&gt;</a></td>";
+      <td class='tip'><a href='start.php'>&lt;&lt;".lang('tools.adcfg_start')."</a></td>
+      <th colspan='2'>".lang('tools.bug_tools')."</th>
+      <td class='tip'><a href='../setup/'>".lang('tools.adcfg_setup')."&gt;&gt;</a></td>";
 	}
     echo "</tr><tr class='tc'>
-      <td width='25%'><a href='binfo.php'>基础环境</a></td>
-      <td width='25%'><a href='check.php'>环境检测</a></td>
+      <td width='25%'><a href='binfo.php'>".lang('tools.adcfg_binfo')."</a></td>
+      <td width='25%'><a href='check.php'>".lang('tools.adcfg_chkenv')."</a></td>
 	  <td width='25%'><a href='cscan.php'>Check/Scan</a></td>
-      <td width='25%'><a href='reset.php'>系统重置</a></td>
+      <td width='25%'><a href='reset.php'>".lang('tools.adcfg_reset')."</a></td>
     </tr>";
 }
 
-function fchkFuncs($name) { return function_exists($name)?FLAGYES.' - Support(支持) ':FLAGNO.' --- (X) ';}
+function fchkFuncs($name) { return function_exists($name)?FLAGYES.' - Support('.lang('tools.adcfg_yes').') ':FLAGNO.' --- (X) ';}
 
 function dfmtRemote($str,$method=''){
 	$rem_cset = empty($_GET['rem_cset']) ? '' : $_GET['rem_cset'];

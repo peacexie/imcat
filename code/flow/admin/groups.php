@@ -5,19 +5,19 @@ usrPerm::run('pfile','admin/groups.php');
 $mod = empty($mod) ? 'groups' : $mod;
 $view = empty($view) ? 'glist' : $view;
 $tabid = 'base_model';
-if(!($gname = @$_groups[$mod]['title'])) glbHtml::end('参数错误:mod@groups.php'); 
+if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@groups.php'); 
 $gbar = admAFunc::grpNav('groups',$mod);
-$advetabs = array(1=>'文字连接',2=>'图片连接',3=>'信息区块',4=>'网址收藏',);
+$advetabs = basLang::ucfg('cfglibs.advs_type'); 
 
 if($view=='glist'){
 
 	$msg = '';	
 	if(!empty($bsend)){
-		if(empty($fs_do)) $msg = "请选择操作项目！";
-		if(empty($fs)) $msg = "请勾选操作项！";
+		if(empty($fs_do)) $msg = lang('flow.dops_setop');
+		if(empty($fs)) $msg = lang('flow.msg_pkitem');
 		else{
-			foreach($fs as $id=>$v){ //upd|更新\ndel|删除\nenable|启用\nstop|禁用
-				$msg = "设置成功！";
+			foreach($fs as $id=>$v){
+				$msg = lang('flow.msg_set');
 				if($fs_do=='upd'){ 
 					$db->table($tabid)->data(basReq::in($fm[$id]))->where("kid='$id'")->update(); 
 				}elseif($fs_do=='del'){ 
@@ -39,40 +39,40 @@ if($view=='glist'){
 
 	$list = $db->table($tabid)->where("pid='$mod'")->order('top')->select(); 
 	
-	$lnkadd = "<a href='$aurl[1]&view=gform' onclick='return winOpen(this,\"增加条目-在[$gname]\");'>增加条目&gt;&gt;</a>";
-	glbHtml::tab_bar("[{$gname}]架设<span class='span ph5'>|</span>$lnkadd",$gbar,30);
+	$lnkadd = "<a href='$aurl[1]&view=gform' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";
+	glbHtml::tab_bar("[{$gname}]".lang('admin.fad_adset')."<span class='span ph5'>|</span>$lnkadd",$gbar,30);
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选择</th><th>Key</th><th>名称".(in_array($mod,array('docs','coms','users')) ? '/关联模型' : '')."</th><th>排序</th><th>启用</th>";
-	$fhd3 = "<th>字段</th><th>设置</th><th>复制</th>";
+	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name').(in_array($mod,array('docs','coms','users')) ? '/'.lang('admin.fad_rmod') : '')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
+	$fhd3 = "<th>".lang('flow.title_fields')."</th><th>".lang('flow.title_set')."</th><th>".lang('flow.title_copy')."</th>";
 	if($mod=='docs'){ 
-		echo "<th>栏目</th>";
+		echo "<th>".lang('flow.title_cata')."</th>";
 		echo $fhd3;
 	}elseif($mod=='coms'){ 
 		echo $fhd3;
 	}elseif($mod=='users'){
-		echo "<th>等级</th>";
+		echo "<th>".lang('flow.title_grade')."</th>";
 		echo $fhd3;
 	}elseif($mod=='advs'){
-		echo "<th>栏目</th>";
-		echo "<th>模式</th>";
-		echo "<th>-备用-</th>";
+		echo "<th>".lang('flow.title_cata')."</th>";
+		echo "<th>".lang('flow.title_mode')."</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
 	}elseif($mod=='types'){ 
-		echo "<th>管理</th>";
-		echo "<th>-备用-</th>";
+		echo "<th>".lang('flow.title_admin')."</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
 	}elseif($mod=='menus'){ 
-		echo "<th>管理</th>";
-		echo "<th>-备用-</th>";
+		echo "<th>".lang('flow.title_admin')."</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
 	}elseif(in_array($mod,array('score','sadm','smem','suser'))){ 
-		echo "<th>管理</th>";
-		echo "<th>参数设置</th>";
+		echo "<th>".lang('flow.title_admin')."</th>";
+		echo "<th>".lang('flow.title_parset')."</th>";
 	}elseif($mod=='plus'){
-		echo "<th>-备用-</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
 	}else{ 
-		echo "<th>-备用-</th>";
-		echo "<th>-备用-</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
+		echo "<th>-".lang('flow.title_bei')."-</th>";
 	}
-	echo "<th>修改</th><th class='wp15'>备注</th>\n";
+	echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n"; 
 	if($list){
 	foreach($list as $r){
@@ -89,46 +89,46 @@ if($view=='glist'){
 	  echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' />$pstr</td>\n";
 	  echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
 	  echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
-	  $ftd3 = $cv->Url('字段',1,"?file=admin/fields&mod=$r[kid]")."<td class='tc'>设置</td>\n";
-	  $ftd3 .= $cv->Url('复制',1,"$aurl[1]&view=gform&cid=$r[kid]","复制条目 - $r[title]");
+	  $ftd3 = $cv->Url(lang('flow.title_fields'),1,"?file=admin/fields&mod=$r[kid]")."<td class='tc'>".lang('flow.title_set')."</td>\n";
+	  $ftd3 .= $cv->Url(lang('flow.title_copy'),1,"$aurl[1]&view=gform&cid=$r[kid]",lang('admin.grp_copyitem')." - $r[title]");
 	  if($mod=='docs'){ 
-		  echo $cv->Url('栏目&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
+		  echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
 		  echo $ftd3;
 	  }elseif($mod=='coms'){ 
 		  echo $ftd3;
 	  }elseif($mod=='users'){
-		  echo $cv->Url('等级&gt;&gt;',1,"?file=admin/grade&mod=$r[kid]&frame=1",'frame');
+		  echo $cv->Url(lang('flow.title_grade').'&gt;&gt;',1,"?file=admin/grade&mod=$r[kid]&frame=1",'frame');
 		  echo $ftd3;
 	  }elseif($mod=='advs'){
-		  echo $cv->Url('栏目&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
+		  echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
 		  echo "<td class='tc'>".$advetabs[$r['etab']]."</td>\n";
-		  echo "<td class='tc'>-备用-</td>\n";  
+		  echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
 	  }elseif($mod=='types'){ 
 		  if(strstr(@$rmcfg['cfgs'],'exdoc=1') && @$rmcfg['etab']){
-			  echo $cv->Url('字段',1,"?file=admin/fields&mod=$r[kid]");  
+			  echo $cv->Url(lang('flow.title_fields'),1,"?file=admin/fields&mod=$r[kid]");  
 		  }else{
-		      echo "<td class='tc'>字段</td>\n"; 
+		      echo "<td class='tc'>".lang('flow.title_fields')."</td>\n"; 
 		  }
-		  echo $cv->Url('管理',1,"?file=admin/types&mod=$r[kid]",'frame');
+		  echo $cv->Url(lang('flow.title_admin'),1,"?file=admin/types&mod=$r[kid]",'frame');
 	  }elseif($mod=='menus'){ 
-		  echo $cv->Url('管理',1,"?file=admin/menus&mod=$r[kid]",'frame');
-		  echo "<td class='tc'>-备用-</td>\n"; 
+		  echo $cv->Url(lang('flow.title_admin'),1,"?file=admin/menus&mod=$r[kid]",'frame');
+		  echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n"; 
 	  }elseif(in_array($mod,array('score','sadm','smem','suser'))){ 
-		  echo $cv->Url('参数项',1,"?file=admin/fields&mod=$r[kid]&ispara=1");
-		  echo $cv->Url('参数设置',1,"?file=admin/paras&mod=$r[kid]");
+		  echo $cv->Url(lang('admin.fls_paritem'),1,"?file=admin/fields&mod=$r[kid]&ispara=1");
+		  echo $cv->Url(lang('flow.title_parset'),1,"?file=admin/paras&mod=$r[kid]");
 	  }elseif($mod=='plus'){
-		  echo "<td class='tc'>-备用-</td>\n";  
+		  echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
 	  }else{ 
-		  echo "<td class='tc'>-备用-</td>\n";
-		  echo "<td class='tc'>-备用-</td>\n";  
+		  echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";
+		  echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
 	  }
-	  echo $cv->Url('修改',1,"$aurl[1]&view=gform&kid=$r[kid]&recbk=ref","");
+	  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=gform&kid=$r[kid]&recbk=ref","");
 	  echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
 	  echo "</tr>"; 
 	}} 
 	echo "<tr>\n";
 	echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-	echo "<td class='tr' colspan='18'><span class='cF00 left'>$msg</span>批量操作: <select name='fs_do'>".basElm::setOption("upd|更新\ndel|删除\nshow|启用\nstop|禁用")."</select> <input name='bsend' class='btn' type='submit' value='执行操作' /> &nbsp; </td>\n";
+	echo "<td class='tr' colspan='18'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
 	echo "</tr>";
 	glbHtml::fmt_end(array("mod|$mod"));
 	
@@ -139,7 +139,7 @@ if($view=='glist'){
 			$msg = admAFunc::modCopy($mod, $tabid, $fm, $cid);
 			$kid = $fm['kid'];
 		}else{
-			$msg = '更新成功！'; 
+			$msg = lang('flow.msg_upd');
 			unset($fm['kid']);
 			$db->table($tabid)->data(basReq::in($fm))->where("kid='$kid'")->update();
 		} 
@@ -158,7 +158,7 @@ if($view=='glist'){
 		if(!empty($cid)){ //copy
 			$kid = ''; $did = glbDBExt::dbNxtID($tabid,$mod,@$pid);
 			$fm = $db->table($tabid)->where("kid='$cid'")->find();
-			$fm['title'] .= "_复制";
+			$fm['title'] .= "_".lang('flow.title_copy');
 			$fm['pmod'] = '';
 		}elseif(!empty($kid)){
 			$fm = $db->table($tabid)->where("kid='$kid'")->find();
@@ -173,46 +173,47 @@ if($view=='glist'){
 			if(!isset($fm[$k])) $fm[$k] = $v;
 		}
 		$ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
-		$ienable .= "启用<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
-		$itop = " &nbsp; 顺序<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='允许2-5数字' />";
+		$ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
+		$itop = " &nbsp; ".lang('flow.title_top')."<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  />";
 		echo "<div class='h02'>&nbsp;</div>";
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 		if(!empty($kid)){
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
 		}else{
-			$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=modExists' tip='字母开头,允许字母数字下划线<br>允许3-12字符,建议4-5字符'";
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:3-12' $vstr />$ienable");
+			$vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=modExists' tip='".lang('admin.fad_tip31245')."'";
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:3-12' $vstr />$ienable");
 		}
-		glbHtml::fmae_row('条目名称',"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='可含字母数字下划线<br>允许2-12字符,建议4-6字符' />$itop");
+		glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
 		if($mod=='advs'){ //'advs'=>'栏目级数',
-			$ietab = " &nbsp; 内容模式<select id='fm[etab]' name='fm[etab]' type='text' xxx=''>";
+			$ietab = " &nbsp; ".lang('admin.grp_dmode')."<select id='fm[etab]' name='fm[etab]' type='text' xxx=''>";
 			$ietab .= basElm::setOption($advetabs,$fm['etab'])."</select>"; 
-			glbHtml::fmae_row('栏目级数',"<input name='fm[deep]' type='text' value='$fm[deep]' class='txt w80' maxlength='1' reg='n+i' tip='数字' />(最大)$ietab");
+			glbHtml::fmae_row(lang('admin.grp_catlevel'),"<input name='fm[deep]' type='text' value='$fm[deep]' class='txt w80' maxlength='1' reg='n+i' tip='".lang('admin.fad_num')."' />(".lang('admin.grp_max').")$ietab");
 			
 		}elseif(in_array($mod,array('docs','types','menus'))){
-			$_cfg = array('docs'=>'栏目级数','types'=>'类别级数','menus'=>'菜单深度');
+			$_cfg = basLang::ucfg('cfglibs.model_deep'); 
 			$ctitle = $_cfg[$mod];
+			$ietab = " &nbsp; ".lang('admin.grp_extab');
 			if(empty($kid)){
-				$ietab = " &nbsp; 启用扩展表<input name='fm[etab]' type='hidden' value='0' /><input name='fm[etab]' type='checkbox' class='rdcb' value='1' ".($fm['etab']=='1' ? 'checked' : '')." />";
+				$ietab .= " <input name='fm[etab]' type='hidden' value='0' /><input name='fm[etab]' type='checkbox' class='rdcb' value='1' ".($fm['etab']=='1' ? 'checked' : '')." />";
 			}else{
-				$ietab = " &nbsp; 启用扩展表<input name='fm_etab' type='checkbox' disabled='disabled' class='rdcb' value='1' ".($fm['etab']=='1' ? 'checked' : '')." />";
+				$ietab .= " <input name='fm_etab' type='checkbox' disabled='disabled' class='rdcb' value='1' ".($fm['etab']=='1' ? 'checked' : '')." />";
 			}
-			glbHtml::fmae_row($ctitle,"<input name='fm[deep]' type='text' value='$fm[deep]' class='txt w80' maxlength='1' reg='n+i' tip='数字' />(最大)$ietab");
+			glbHtml::fmae_row($ctitle,"<input name='fm[deep]' type='text' value='$fm[deep]' class='txt w80' maxlength='1' reg='n+i' tip='".lang('admin.fad_num')."' />(".lang('admin.grp_max').")$ietab");
 		}
-		glbHtml::fmae_row('配置数组',"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>格式:键=值,一行一个；");
-		glbHtml::fmae_row('备注',"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
+		glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>".lang('flow.fl_cfgtip'));
+		glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
 		
 		if(in_array($mod,array('docs','coms','users'))){
 			if($mod=='coms'){
 				$arr = admPFunc::modList(array('docs','users','coms',),'relmod'); 
 				$pmstr = basElm::setOption($arr,$fm['pmod']);
 				$oldPid = "<input name='oldPid' type='hidden' value='{$fm['pmod']}' />";
-				glbHtml::fmae_row('关联模型',"<select name='fm[pmod]'>$pmstr</select><br>此模型在[关联模型]下展示才有意义；如[新闻评论]关联模型为[新闻动态];");
+				glbHtml::fmae_row(lang('admin.fad_rmod'),"<select name='fm[pmod]'>$pmstr</select><br>".lang('admin.grp_rmod')."");
 			}
-			$jifen = " &nbsp; 删除(-分)<input name='fm[crdel]' type='text' value='$fm[crdel]' class='txt w80' maxlength='3' reg='n+i' tip='数字' />";
-			glbHtml::fmae_row('积分设置',"添加(+分)<input name='fm[cradd]' type='text' value='$fm[cradd]' class='txt w80' maxlength='3' reg='n+i' tip='数字' />$jifen");
+			$jifen = " &nbsp; ".lang('admin.grp_pdel')."<input name='fm[crdel]' type='text' value='$fm[crdel]' class='txt w80' maxlength='3' reg='n+i' tip='".lang('admin.fad_num')."' />";
+			glbHtml::fmae_row(lang('admin.grp_pset'),lang('admin.grp_padd')."<input name='fm[cradd]' type='text' value='$fm[cradd]' class='txt w80' maxlength='3' reg='n+i' tip='".lang('admin.fad_num')."' />$jifen");
 		}
-		glbHtml::fmae_send('bsend','提交','25');
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 		glbHtml::fmt_end(array("mod|$mod","fm[pid]|$mod","kid|".(empty($kid) ? 'is__add' : $kid),"cid|$cid"));
 	}
 	

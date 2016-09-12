@@ -1,0 +1,2997 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<title>(CanPHP 2.X for Peace) 数据库词典</title>
+<style type="text/css">
+body, td, th { font-size: 12px; }
+a:link, a:visited { text-decoration: none; }
+td.itm { padding-left: 8px; }
+td.itm a { width: 125px; height: 15; font-style: normal; float: left; overflow: hidden; border: 1px solid #CCC; white-space: nowrap; word-break: keep-all; padding: 3px; margin: 3px; }
+a.r { float: right; }
+table.tab { width: 720px; background: #69C; border: 1px solid #069; margin: 12px auto 1px auto; }
+table tr td { background: #FFF; }
+table tr.title td { font-weight: bold; background: #FFF; }
+table tr.head td { font-weight: bold; background: #669; color: #FFF; }
+span.dfCCC { color: #CCC; }
+input.dmod { background-color: #FCC; }
+input.dysy { background-color: #CCC; }
+</style>
+</head>
+<body>
+<table border="0" align="center" cellpadding="5" cellspacing="1" class="tab">
+    <tr class="title">
+        <td colspan="6"><a href="?" class="r">Tables:94 [Refresh]</a>(CanPHP 2.X for Peace) 数据库词典</td>
+    </tr>
+    <tr bgcolor="#FFFFFF">
+        <td colspan="6" class="itm"> <a href='#active_admin'>(管理员)会话表</a>
+<a href='#active_online'>(会员)会话表</a>
+<a href='#active_session'>(Session)会话表</a>
+<a href='#advs_adblock'>文本块[广告]表</a>
+<a href='#advs_adfavor'>网址收藏[广告]表</a>
+<a href='#advs_adpic'>图片连接[广告]表</a>
+<a href='#advs_adtext'>文字连接[广告]表</a>
+<a href='#base_catalog'>(系统)栏目表</a>
+<a href='#base_fields'>(系统)字段配置表</a>
+<a href='#base_grade'>(系统)用户等级表</a>
+<a href='#base_menu'>(系统)菜单表</a>
+<a href='#base_model'>(系统)[群组/模块]表</a>
+<a href='#base_paras'>(系统)参数表</a>
+<a href='#bext_cron'>(扩展)计划任务表</a>
+<a href='#bext_dbdict'>(扩展)数据库词典表</a>
+<a href='#bext_fields'>(扩展)类别字段表</a>
+<a href='#bext_paras'>(扩展)参数表</a>
+<a href='#bext_relat'>(扩展)类别关联表</a>
+<a href='#coms_cocar'>购物车[互动]表</a>
+<a href='#coms_coitem'>订单明细[互动]表</a>
+<a href='#coms_corder'>订单[互动]表</a>
+<a href='#coms_crem'>产品评论[互动]表</a>
+<a href='#coms_drem'>演示评论[互动]表</a>
+<a href='#coms_gbook'>网站留言[互动]表</a>
+<a href='#coms_inread'>阅读记录[互动]表</a>
+<a href='#coms_inrem'>公文评论[互动]表</a>
+<a href='#coms_kerem'>资源评论[互动]表</a>
+<a href='#coms_nrem'>新闻评论[互动]表</a>
+<a href='#coms_qarep'>问答回复[互动]表</a>
+<a href='#coms_qatag'>问答标签[互动]表</a>
+<a href='#coms_trem'>专题评论[互动]表</a>
+<a href='#dext_about'>网站介绍[扩展]表</a>
+<a href='#dext_cargo'>商品展销[扩展]表</a>
+<a href='#dext_demo'>样例文档[扩展]表</a>
+<a href='#dext_faqs'>问答系统[扩展]表</a>
+<a href='#dext_indoc'>内部公文[扩展]表</a>
+<a href='#dext_keres'>课程资源[扩展]表</a>
+<a href='#dext_news'>新闻动态[扩展]表</a>
+<a href='#dext_topic'>专题新闻[扩展]表</a>
+<a href='#docs_about'>网站介绍[主]表</a>
+<a href='#docs_cargo'>商品展销[主]表</a>
+<a href='#docs_demo'>样例文档[主]表</a>
+<a href='#docs_faqs'>问答系统[主]表</a>
+<a href='#docs_indoc'>内部公文[主]表</a>
+<a href='#docs_keres'>课程资源[主]表</a>
+<a href='#docs_news'>新闻动态[主]表</a>
+<a href='#docs_topic'>专题新闻[主]表</a>
+<a href='#exd_crawl'>(数据)采集表</a>
+<a href='#exd_crlog'>(数据)采集记录</a>
+<a href='#exd_oilog'>(数据)导入表</a>
+<a href='#exd_oimp'>(数据)导入记录</a>
+<a href='#exd_pslog'>(数据)同步表</a>
+<a href='#exd_psyn'>(数据)同步记录</a>
+<a href='#exd_sfield'>(数据)字段配置</a>
+<a href='#init_advs'>(初始)[广告]表</a>
+<a href='#init_coms'>(初始)[互动]表</a>
+<a href='#init_dext'>(初始)[文档]扩展表</a>
+<a href='#init_docs'>(初始)[文档]主表</a>
+<a href='#init_types'>(初始)[分类]表</a>
+<a href='#init_users'>(初始)[会员]表</a>
+<a href='#logs_dbsql'>(sql)调试记录表</a>
+<a href='#logs_detmp'>(用户)调试记录表</a>
+<a href='#logs_jifen'>(积分)操作记录</a>
+<a href='#logs_syact'>(系统)调试记录表</a>
+<a href='#plus_emsend'>(邮件)发送记录</a>
+<a href='#plus_paylog'>(支付)历史记录</a>
+<a href='#plus_smcharge'>(短信)充值记录</a>
+<a href='#plus_smsend'>(短信)发送记录</a>
+<a href='#types_auto'>车型[分类]表</a>
+<a href='#types_brand'>品牌[分类]表</a>
+<a href='#types_china'>省市[分类]表</a>
+<a href='#types_common'>(常规)分类表</a>
+<a href='#types_course'>课程[分类]表</a>
+<a href='#types_indep'>部门[分类]表</a>
+<a href='#types_local'>镇区[分类]表</a>
+<a href='#types_natcn'>民族[分类]表</a>
+<a href='#types_world'>国家[分类]表</a>
+<a href='#types_ygrade'>年级[分类]表</a>
+<a href='#users_adminer'>管理员[会员]表</a>
+<a href='#users_company'>企业会员[会员]表</a>
+<a href='#users_govern'>政府机构[会员]表</a>
+<a href='#users_inmem'>公文会员[会员]表</a>
+<a href='#users_organize'>非盈利组织[会员]表</a>
+<a href='#users_person'>个人会员[会员]表</a>
+<a href='#users_uacc'>(会员)账户表</a>
+<a href='#users_uppt'>(会员)通行证表</a>
+<a href='#wex_apps'>(微信)配置表</a>
+<a href='#wex_keyword'>(微信)关键字表</a>
+<a href='#wex_locate'>(微信)地理位置表</a>
+<a href='#wex_menu'>(微信)菜单表</a>
+<a href='#wex_msgget'>(微信)接收信息</a>
+<a href='#wex_msgsend'>(微信)发送信息</a>
+<a href='#wex_qrcode'>(微信)二维码表</a>
+<a href='#xtest_keyid'><span class='dfCCC'>xtest_keyid</span></a>
+ </td>
+    </tr>
+</table>
+<a name='active_admin'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>active_admin[(管理员)会话表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>会话ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>errno</td><td>Errno</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>stime</td><td>会话时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sip</td><td>会话IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='active_online'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>active_online[(会员)会话表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>会话ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>errno</td><td>Errno</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>stime</td><td>会话时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sip</td><td>会话IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='active_session'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>active_session[(Session)会话表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>会话ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp</td><td>超时时间</td><td>int(10) unsigned</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>data</td><td>数据</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adblock'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>advs_adblock[文本块[广告]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>广告ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adfavor'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:35 [Top]</a>advs_adfavor[网址收藏[广告]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>广告ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adpic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:8 [Top]</a>advs_adpic[图片连接[广告]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>广告ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='advs_adtext'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>advs_adtext[文字连接[广告]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>广告ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_catalog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:105 [Top]</a>base_catalog[(系统)栏目表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_fields'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:308 [Top]</a>base_fields[(系统)字段配置表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>扩展表</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>db类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>db长度</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>db默认值</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>认证规则</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>认证提示</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>认证最大值</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>表单元素大小</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>表单元素是否独立行显示</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>表单元素是否显示标题(fmline=0有效)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>表单元素插件</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>表单插件参数</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_grade'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:22 [Top]</a>base_grade[(系统)用户等级表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmadm</td><td>(管理员)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pmusr</td><td>(会员)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pfile</td><td>(脚本)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pmod</td><td>(插件)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>padd</td><td>(添加)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pdel</td><td>(删除)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pcheck</td><td>(审核)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pextra</td><td>(附加)模块权限</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_menu'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:101 [Top]</a>base_menu[(系统)菜单表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_model'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:67 [Top]</a>base_model[(系统)[群组/模块]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>etab</td><td>扩展表</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>issys</td><td>是否系统内置模型</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cradd</td><td>添加资料加分</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>crdel</td><td>删除资料减分</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='base_paras'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:30 [Top]</a>base_paras[(系统)参数表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>key</td><td>参数key</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>val</td><td>参数值</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>issys</td><td>是否系统内置参数</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>扩展表</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>db类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>db长度</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>db默认值</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>认证规则</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>认证提示</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>认证最大值</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>表单元素大小</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>表单元素是否独立行显示</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>表单元素是否显示标题(fmline=0有效)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>表单元素插件</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>表单插件参数</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_cron'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:4 [Top]</a>bext_cron[(扩展)计划任务表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>excycle</td><td>执行周期</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>excunit</td><td>周期单位</td><td>varchar(12)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exlast</td><td>最后执行</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exnext</td><td>下次执行</td><td>int(11)</td><td>1</td><td></td><td>946526400</td></tr>
+<tr><td>extime</td><td>执行耗时</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exskip</td><td>忽略时段</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exsecs</td><td>错峰时刻</td><td>varchar(12)</td><td>1</td><td></td><td>30:00</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_dbdict'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:119 [Top]</a>bext_dbdict[(扩展)数据库词典表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>字段名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tabid</td><td>表名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>备注</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_fields'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:28 [Top]</a>bext_fields[(扩展)类别字段表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>etab</td><td>扩展表</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbtype</td><td>db类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dblen</td><td>db长度</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dbdef</td><td>db默认值</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vreg</td><td>认证规则</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vtip</td><td>认证提示</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>vmax</td><td>认证最大值</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fmsize</td><td>表单元素大小</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmline</td><td>表单元素是否独立行显示</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmtitle</td><td>表单元素是否显示标题(fmline=0有效)</td><td>varchar(12)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>fmextra</td><td>表单元素插件</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fmexstr</td><td>表单插件参数</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_paras'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:36 [Top]</a>bext_paras[(扩展)参数表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>numa</td><td>数字a</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>numb</td><td>数字b</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='bext_relat'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>bext_relat[(扩展)类别关联表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod1</td><td>模块1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod2</td><td>模块2</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_cocar'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_cocar[购物车[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>参数</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>订单ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordprice</td><td>价格</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>数量</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>重量</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_coitem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:15 [Top]</a>coms_coitem[订单明细[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>参数</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>订单ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordprice</td><td>价格</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>数量</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>重量</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_corder'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>coms_corder[订单[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>订单号</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>备注</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordcnt</td><td>总数量</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordweight</td><td>总重量</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordpay</td><td>支付方式</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordship</td><td>运输方式</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordstat</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>feeamount</td><td>货品金额</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feeship</td><td>运费</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feedis</td><td>折扣</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>feetotle</td><td>总额</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>trakeno</td><td>跟踪号码</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tradeurl</td><td>跟踪Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordshto</td><td>发货地区</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_crem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:3 [Top]</a>coms_crem[产品评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_drem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_drem[演示评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_gbook'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:13 [Top]</a>coms_gbook[网站留言[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮箱</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>leixing</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td>t124</td></tr>
+<tr><td>reply</td><td>回复</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_inread'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:13 [Top]</a>coms_inread[阅读记录[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>readcnt</td><td>浏览次数</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_inrem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>coms_inrem[公文评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_kerem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>coms_kerem[资源评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_nrem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:8 [Top]</a>coms_nrem[新闻评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件地址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_qarep'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>coms_qarep[问答回复[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>昵称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_qatag'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:19 [Top]</a>coms_qatag[问答标签[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>hotcnt</td><td>热度</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='coms_trem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>coms_trem[专题评论[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='dext_about'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>dext_about[网站介绍[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_cargo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>dext_cargo[商品展销[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>相关图片</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pbat</td><td>批量价</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='dext_demo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:34 [Top]</a>dext_demo[样例文档[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>相关信息</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_user</td><td>相关用户</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>相关图片</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>dstart</td><td>开始时间</td><td>int(11)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_faqs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>dext_faqs[问答系统[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>相关信息</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_indoc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>dext_indoc[内部公文[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sealpos</td><td>印章位置</td><td>varchar(12)</td><td></td><td></td><td>cseal_br</td></tr>
+<tr><td>sendsms</td><td>短信通知</td><td>varchar(12)</td><td></td><td></td><td>nosend</td></tr>
+
+</table>
+<a name='dext_keres'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>dext_keres[课程资源[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufile</td><td>附件</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>uvdo</td><td>视频</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_news'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:46 [Top]</a>dext_news[新闻动态[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>相关信息</td><td>text</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='dext_topic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:7 [Top]</a>dext_topic[专题新闻[扩展]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>rel_user</td><td>相关会员</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_pic</td><td>相关图片</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_doc</td><td>相关信息</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>rel_vdo</td><td>相关视频</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+
+</table>
+<a name='docs_about'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>docs_about[网站介绍[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>exp_i01</td><td>扩展参数-input-1</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t01</td><td>扩展参数-text-1</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_cargo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>docs_cargo[商品展销[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>推荐</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>brand</td><td>品牌</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>guige</td><td>规格</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>xinghao</td><td>型号</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>price</td><td>价格</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>ordcnt</td><td>订购次数</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t01</td><td>扩展参数-text-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_t02</td><td>扩展参数-text-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m01</td><td>扩展参数-checkbox-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m02</td><td>扩展参数-checkbox-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m03</td><td>扩展参数-checkbox-3</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s01</td><td>扩展参数-select-1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s02</td><td>扩展参数-select-2</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s03</td><td>扩展参数-select-3</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s04</td><td>扩展参数-select-4</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_s05</td><td>扩展参数-select-5</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i01</td><td>扩展参数-input-1</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i02</td><td>扩展参数-input-2</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i03</td><td>扩展参数-input-3</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_i04</td><td>扩展参数-input-4</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>weight</td><td>重量</td><td>float</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_demo'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:34 [Top]</a>docs_demo[样例文档[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>选择省份</td><td>varchar(12)</td><td>1</td><td></td><td>hn</td></tr>
+<tr><td>dend</td><td>结束时间</td><td>int(11)</td><td></td><td></td><td></td></tr>
+<tr><td>demo_pass</td><td>密码</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>地图</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td>tester</td></tr>
+<tr><td>rel_para</td><td>相关参数</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>公司名称</td><td>varchar(96)</td><td>1</td><td></td><td>dgnet</td></tr>
+<tr><td>mtitle</td><td>*联系人</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfron</td><td>流浪省份</td><td>varchar(255)</td><td>1</td><td></td><td>gd,gx</td></tr>
+<tr><td>morg</td><td>地区单选</td><td>varchar(12)</td><td>1</td><td></td><td>c0735</td></tr>
+<tr><td>mwork</td><td>工作地</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tphot</td><td>信息推荐</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tpfields</td><td>行业类别</td><td>varchar(255)</td><td>1</td><td></td><td>qita</td></tr>
+<tr><td>wdreg</td><td>世界地区</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mche</td><td>汽车品牌</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>set_compc</td><td>公司颜色</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>exp_m01</td><td>扩展参数-checkbox-1</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_faqs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>docs_faqs[问答系统[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>精华</td><td>varchar(12)</td><td></td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>tags</td><td>标签</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_indoc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>docs_indoc[内部公文[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>部门</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>附件</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>rdtip</td><td>重要等级</td><td>varchar(12)</td><td>1</td><td></td><td>v36</td></tr>
+<tr><td>todep</td><td>接收部门</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>touser</td><td>接收人员</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>topub</td><td>是否公开</td><td>varchar(12)</td><td>1</td><td></td><td>ispub</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_keres'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:25 [Top]</a>docs_keres[课程资源[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>course</td><td>课程</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ygrade</td><td>年级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_news'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:45 [Top]</a>docs_news[新闻动态[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>推荐</td><td>varchar(12)</td><td></td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='docs_topic'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:7 [Top]</a>docs_topic[专题新闻[主]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>标题颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>rel_pset</td><td>图片设置</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_crawl'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>exd_crawl[(数据)采集表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>odmp</td><td>样例详情页</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ourl</td><td>基础列表页</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ocset</td><td>字符编码</td><td>varchar(12)</td><td>1</td><td></td><td>utf-8</td></tr>
+<tr><td>opno</td><td>翻页规则</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>oplog</td><td>已采页记录</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg1</td><td>采集标记</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg2</td><td>采集标记</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>orgtg3</td><td>采集标记</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>ohas</td><td>网址含有</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>oskip</td><td>网址不含</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>oroot</td><td>网址根目录</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>orep</td><td>网址替换</td><td>varchar(48)</td><td></td><td></td><td></td></tr>
+<tr><td>mod</td><td>采集采集</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>批次运行条数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fskip</td><td>忽略字段</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>字段默认值</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_crlog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_crlog[(数据)采集记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>系统ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outurl</td><td>外部ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>omd5</td><td>外部URL(md5)</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>done</td><td>处理标记</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_oilog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_oilog[(数据)导入表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>系统ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outid</td><td>外部ID(str)</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ouint</td><td>外部ID(int)</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>done</td><td>处理标记</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_oimp'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>exd_oimp[(数据)导入记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>odb</td><td>外部数据源ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>osql</td><td>外部数据SQL</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kname</td><td>主键名</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ktype</td><td>主键类型</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kval</td><td>最后导入键值(str)</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kint</td><td>最后导入键值(int)</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>ktime</td><td>对应时间字段</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod</td><td>导入的模型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>批次运行条数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>fskip</td><td>忽略字段</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>字段默认值</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_pslog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>exd_pslog[(数据)同步表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>sysid</td><td>系统ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>outid</td><td>外部ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>done</td><td>处理标记</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_psyn'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>exd_psyn[(数据)同步记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>api</td><td>API</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mod</td><td>同步模型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stype</td><td>同步栏目</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>limit</td><td>批次运行条数</td><td>int(11)</td><td>1</td><td></td><td>100</td></tr>
+<tr><td>fskip</td><td>忽略字段</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>fdefs</td><td>字段默认值</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='exd_sfield'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:17 [Top]</a>exd_sfield[(数据)字段配置]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg1</td><td>采集标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg2</td><td>采集标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg3</td><td>采集标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg4</td><td>采集标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>orgtg5</td><td>采集标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfmts</td><td>综合处理标记</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealtabs</td><td>替换原始内容</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealconv</td><td>内容替换表</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfunc</td><td>结果处理函数</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dealfunp</td><td>处理函数参数</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>defval</td><td>为空时默认值</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>defover</td><td>覆盖标记</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_advs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_advs[(初始)[广告]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>aid</td><td>广告ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ano</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pmod</td><td>父模型ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_coms'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_coms[(初始)[互动]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>cid</td><td>交互ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td></td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_dext'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_dext[(初始)[文档]扩展表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>mediumtext</td><td></td><td></td><td></td></tr>
+<tr><td>author</td><td>作者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>source</td><td>来源</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_key</td><td>关键字</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_des</td><td>描述</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>seo_tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_docs'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_docs[(初始)[文档]主表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>did</td><td>文档ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>dno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>catid</td><td>栏目</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jump</td><td>跳转地址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>color</td><td>显示颜色</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_types'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_types[(初始)[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='init_users'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>init_users[(初始)[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>籍贯</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_dbsql'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_dbsql[(sql)调试记录表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sql</td><td>sql语句</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>耗时</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tpl</td><td>模版</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tag</td><td>标签</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+
+</table>
+<a name='logs_detmp'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_detmp[(用户)调试记录表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>耗时</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pref</td><td>来源页</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_jifen'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_jifen[(积分)操作记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>jifen</td><td>积分数量</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>jfop</td><td>积分操作</td><td>tinyint(4) unsigned</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>jfmod</td><td>积分模块</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='logs_syact'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>logs_syact[(系统)调试记录表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>act</td><td>Action</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>used</td><td>耗时</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>page</td><td>Page</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pref</td><td>来源页</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aua</td><td>UserAgent</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_emsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_emsend[(邮件)发送记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufrom</td><td>From</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_paylog'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_paylog[(支付)历史记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ordid</td><td>支付接口ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>apino</td><td>接口定单号</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>金额</td><td>decimal(10,2)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>状态</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ufrom</td><td>From</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>expar</td><td>附加参数</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_smcharge'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>plus_smcharge[(短信)充值记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uto</td><td>To</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>金额</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='plus_smsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>plus_smsend[(短信)发送记录]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>tel</td><td>电话号码</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>msg</td><td>信息内容</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>res</td><td>发送结果</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>api</td><td>API</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>amount</td><td>金额</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_auto'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:117 [Top]</a>types_auto[车型[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_brand'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:19 [Top]</a>types_brand[品牌[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>world</td><td>国别</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>bweb</td><td>网址</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>bpic</td><td>logo</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_china'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:413 [Top]</a>types_china[省市[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>renkou</td><td>人口</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>mianji</td><td>面积</td><td>float</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>坐标</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>quhao</td><td>区号</td><td>varchar(6)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_common'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:30 [Top]</a>types_common[(常规)分类表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_course'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:75 [Top]</a>types_course[课程[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_indep'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>types_indep[部门[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>简介</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>tel</td><td>电话</td><td>varchar(15)</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_local'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:32 [Top]</a>types_local[镇区[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_natcn'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:57 [Top]</a>types_natcn[民族[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>renkou</td><td>人口</td><td>int(11)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>简介</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_world'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:181 [Top]</a>types_world[国家[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='types_ygrade'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:20 [Top]</a>types_ygrade[年级[分类]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>model</td><td>模块ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pid</td><td>父ID</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>int(11)</td><td>1</td><td></td><td>888</td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(4)</td><td>1</td><td></td><td></td></tr>
+<tr><td>deep</td><td>最大级别数</td><td>tinyint(4)</td><td>1</td><td></td><td>1</td></tr>
+<tr><td>frame</td><td>结构性</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>char</td><td>头字母</td><td>varchar(1)</td><td>1</td><td></td><td></td></tr>
+<tr><td>cfgs</td><td>配置数组</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>note</td><td>备注</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_adminer'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:15 [Top]</a>users_adminer[管理员[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>部门</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_company'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:2 [Top]</a>users_company[企业会员[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>公司名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>推荐</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>联系人</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>籍贯</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td></td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>map</td><td>地图</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>称呼</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>行业</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_govern'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>users_govern[政府机构[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>机构名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>联系人</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>籍贯</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>地图</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>称呼</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>推荐</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>行业</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_inmem'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>users_inmem[公文会员[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>indep</td><td>部门</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_organize'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:1 [Top]</a>users_organize[非盈利组织[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>company</td><td>组织名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>联系人</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>籍贯</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>mpic</td><td>缩略图</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>map</td><td>地图</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t400</td><td>400电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>t800</td><td>800电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mtitle</td><td>称呼</td><td>varchar(24)</td><td></td><td></td><td></td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mweb</td><td>网址</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>hinfo</td><td>推荐</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ftype</td><td>行业</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_person'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>users_person[个人会员[会员]表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mname</td><td>会员名称</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>grade</td><td>会员等级</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>mfrom</td><td>籍贯</td><td>varchar(12)</td><td>1</td><td></td><td>c0769</td></tr>
+<tr><td>mtel</td><td>电话</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>memail</td><td>邮件</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>miuid</td><td>聊天号</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>maddr</td><td>地址</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>show</td><td>显示</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>click</td><td>点击次数</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_uacc'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:20 [Top]</a>users_uacc[(会员)账户表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uid</td><td>会员ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>uno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>upass</td><td>用户密码</td><td>varchar(120)</td><td>1</td><td></td><td></td></tr>
+<tr><td>umods</td><td>用户模型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ujifen</td><td>用户积分</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='users_uppt'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:10 [Top]</a>users_uppt[(会员)通行证表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>uname</td><td>用户名</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pptmod</td><td>API模块</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>pptuid</td><td>API用户名</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>eip</td><td>修改IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>etime</td><td>修改时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>euser</td><td>修改者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_apps'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:5 [Top]</a>wex_apps[(微信)配置表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>enable</td><td>状态</td><td>tinyint(1)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>token</td><td>token</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appsecret</td><td>appsecret</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>qrcode</td><td>二维码</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_keyword'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:6 [Top]</a>wex_keyword[(微信)关键字表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>keyword</td><td>关键字</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>picurl</td><td>picurl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>top</td><td>显示顺序</td><td>tinyint(4)</td><td></td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_locate'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_locate[(微信)地理位置表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>latitude</td><td>纬度</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>longitude</td><td>经度</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>extra</td><td>精度</td><td>float</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_menu'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:33 [Top]</a>wex_menu[(微信)菜单表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>key</td><td>菜单Key</td><td>tinyint(4)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>name</td><td>菜单名称</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>val</td><td>菜单值</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_msgget'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_msgget[(微信)接收信息]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>media_id</td><td>media_id</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>restate</td><td>回复状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_msgsend'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_msgsend[(微信)发送信息]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>type</td><td>类型</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>title</td><td>标题</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>detail</td><td>内容</td><td>text</td><td>1</td><td></td><td></td></tr>
+<tr><td>media_id</td><td>media_id</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>picurl</td><td>picurl</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>url</td><td>Url</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>appid</td><td>appid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='wex_qrcode'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>wex_qrcode[(微信)二维码表]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>sid</td><td>会话ID</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>openid</td><td>openid</td><td>varchar(48)</td><td>1</td><td></td><td></td></tr>
+<tr><td>smod</td><td>模块</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>stat</td><td>状态</td><td>varchar(12)</td><td>1</td><td></td><td></td></tr>
+<tr><td>extp</td><td>附加cam参数</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>ticket</td><td>ticket</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>sflag</td><td>随机码</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(96)</td><td>1</td><td></td><td></td></tr>
+
+</table>
+<a name='xtest_keyid'></a>
+<table border='0' align='center' cellpadding='5' cellspacing='1' class='tab'>
+    <tr class='title'>
+        <td colspan='6'><a href='#' class='r'>Rows:0 [Top]</a>xtest_keyid[<span class='dfCCC'>xtest_keyid</span>]</td>
+    </tr>
+    <tr class='head'>
+        <td width='20%'>Field</td>
+        <td width='25%'>Memo</td>
+        <td>Type</td>
+        <td width='10%'>Null</td>
+        <td width='10%'>Key</td>
+        <td width='10%'>Default</td>
+    </tr>
+    <tr><td>kid</td><td>标识ID</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>kno</td><td>序列ID</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>content</td><td><span class='dfCCC'>(null)</span></td><td>varchar(255)</td><td>1</td><td></td><td></td></tr>
+<tr><td>aip</td><td>添加IP</td><td>varchar(255)</td><td></td><td></td><td></td></tr>
+<tr><td>atime</td><td>添加时间</td><td>int(11)</td><td>1</td><td></td><td>0</td></tr>
+<tr><td>auser</td><td>添加者</td><td>varchar(24)</td><td>1</td><td></td><td></td></tr>
+<tr><td>test_v3x</td><td><span class='dfCCC'>(null)</span></td><td>int(11)</td><td>1</td><td></td><td>20160313</td></tr>
+
+</table>
+
+</body>
+</html>

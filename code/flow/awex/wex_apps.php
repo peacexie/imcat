@@ -3,10 +3,12 @@
 require(dirname(__FILE__).'/_wex_cfgs.php');
 $_cbase['run']['sobarnav'] = '';
 
-$types = array('test'=>'测试号','chking'=>'未认证','dingyue'=>'订阅号','fuwu'=>'服务号');
+$types = basLang::ucfg('cfgbase.wx_type');
+$cnav = basLang::ucfg('cfgbase.wx_nav');
+
 $cfg = array(
 	'sofields'=>array('kid','type','appid','api'),
-	'soorders'=>array('kid' => 'kid(降)','kid-a' => 'kid(升)'),
+	'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)'),
 	//'soarea'=>array('amount','数量'),
 );
 $tabid = 'wex_apps';
@@ -16,8 +18,8 @@ if($view=='list'){
 	$dop = new dopExtra($tabid,$cfg); 
 	$dop->order = $dop->so->order = basReq::val('order','kid-a'); 
 	if(!empty($bsend)){
-		if(empty($fs_do)) $msg = "请选择操作项目！"; 
-		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = "请勾选操作记录！";
+		if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
+		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
 		$cnt = 0; 
 		if(empty($msg)){
 		  if($fs_do=='delete'){ 
@@ -38,16 +40,16 @@ if($view=='list'){
 		  } 
 		  
 		}
-		$cnt && $msg = ($cnt>0) ? "$cnt 条记录 删除成功！" : "操作成功！";
+		$cnt && $msg = ($cnt>0) ? "$cnt ".lang('flow.dops_delok') : lang('flow.dops_opok');
 	}
 	
 	$umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
-	$links = $cv->Url(' | 添加&gt;&gt;',0,"$aurl[1]&view=form","添加配置",480,360); //$links = admPFunc::fileNav('logs','sms');
-	$dop->sobar("公众号管理 $links {$umsg}",50,array());
-	
+	$links = $cv->Url(' | '.lang('awex.add').'&gt;&gt;',0,"$aurl[1]&view=form",lang('awex.addcfg'),480,360); //$links = admPFunc::fileNav('logs','sms');
+	$dop->sobar(lang('awex.pids')." $links {$umsg}",50,array());
+
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-	echo "<th>选择</th><th>ID</th><th>类型</th><th>状态</th><th>appid:配置</th>"; //<th>活动时间</th>
-	echo "<th>菜单</th><th>关注者</th><th>消息</th><th>关键字</th><th>调试</tr>\n"; //
+	echo "<th>".lang('flow.title_select')."</th><th>ID</th><th>".lang('flow.title_type')."</th><th>".lang('awex.state')."</th><th>appid:".lang('awex.cfgs')."</th>"; //<th>活动时间</th>
+	echo "<th>$cnav[menu]</th><th>$cnav[user]</th><th>$cnav[msg]</th><th>$cnav[kw]</th><th>$cnav[debug]</tr>\n"; //
 	$idfirst = ''; $idend = '';
 	if($rs=$dop->getRecs()){ 
 		foreach($rs as $r){ 
@@ -60,18 +62,17 @@ if($view=='list'){
 		  echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
 		  #echo "<td class='tc'>".date('Y-m-d H:i',$r['acexp'])."</td>\n";
 		  //echo ;配置
-		  echo $cv->Url($r['appid'],1,"$aurl[1]&view=form&kid=$kid","修改配置",480,360);
-		  echo "<td class='tc'><a href='?file=awex/wex_menu&wekid=$r[kid]' target='_blank'>菜单</a></td>\n";
-		  echo "<td class='tc'><a href='?file=awex/wex_user&wekid=$r[kid]' target='_blank'>关注者</a></td>\n";
-		  echo "<td class='tc'><a href='?file=awex/wex_msg3&wekid=$r[kid]' target='_blank'>消息</a></td>\n";
-		  echo "<td class='tc'><a href='?file=awex/wex_rkey&wekid=$r[kid]' target='_blank'>关键字</a></td>\n";
-		  echo "<td class='tc'><a href='".PATH_ROOT."/a3rd/weixin_pay/wedebug.php?kid=$kid' target='_blank'>调试</a></td>\n";
+		  echo $cv->Url($r['appid'],1,"$aurl[1]&view=form&kid=$kid",lang('awex.ecfg'),480,360);
+		  echo "<td class='tc'><a href='?file=awex/wex_menu&wekid=$r[kid]' target='_blank'>$cnav[menu]</a></td>\n";
+		  echo "<td class='tc'><a href='?file=awex/wex_user&wekid=$r[kid]' target='_blank'>$cnav[user]</a></td>\n";
+		  echo "<td class='tc'><a href='?file=awex/wex_msg3&wekid=$r[kid]' target='_blank'>$cnav[msg]</a></td>\n";
+		  echo "<td class='tc'><a href='?file=awex/wex_rkey&wekid=$r[kid]' target='_blank'>$cnav[kw]</a></td>\n";
+		  echo "<td class='tc'><a href='".PATH_ROOT."/a3rd/weixin_pay/wedebug.php?kid=$kid' target='_blank'>$cnav[debug]</a></td>\n";
 		  echo "</tr>";
 		}
-		$exops = "\nlocate|清理地理位置\nmsgget|清理接收信息\nmsgsend|清理发送信息";
-		$dop->pgbar($idfirst,$idend,$ops="clearact|清除act凭据\nclrqrtik|清除qrcode缓存$exops\ndelete|*删除appid配置");
+		$dop->pgbar($idfirst,$idend,lang('awex.ops_appid'));
 	}else{
-		echo "\n<tr><td class='tc' colspan='15'>无资料！</td></tr>\n";
+		echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
 	}
 	glbHtml::fmt_end(array("mod|$mod"));
 		
@@ -83,15 +84,15 @@ if($view=='list'){
 		if($kid=='is__add'){
 			$kid = $fm['kid'];
 			if($db->table($tabid)->where("appid='$appid' OR kid='$kid'")->find()){
-				$msg = "该条目[$appid/$fmkid]已被占用！";
+				$msg = lang('awex.uesed',"$appid/$fmkid");
 			}else{
-				$msg = '添加成功！'; //$fm['type'] = 'test';
+				$msg = lang('flow.msg_add'); //$fm['type'] = 'test';
 				$db->table($tabid)->data(basReq::in($fm))->insert();
 			}
 		}else{
 			unset($fm['kid']);
 			$db->table($tabid)->data(basReq::in($fm))->where("kid='$kid'")->update();
-			$msg = '更新成功！';
+			$msg = lang('flow.msg_upd');
 		} 
 		basMsg::show($msg);	//,'Redir'?file=$file&mod=$mod
 	}else{
@@ -103,25 +104,24 @@ if($view=='list'){
 			foreach($def as $k=>$v){ if(!isset($fm[$k])) $fm[$k] = $v; }		
 		}
 		$ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
-		$ienable .= "启用<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
-		$ienable .= " &nbsp; 类型<select id='fm[type]' name='fm[type]' type='text'>";
-		$ienable .= basElm::setOption($types,$fm['type'])."</select>";
+		$ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
 		echo "<div class='h02'>&nbsp;</div>";
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 		if(!empty($kid)){
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
 		}else{
-			$vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=kidExists' tip='字母开头,允许字母数字下划线<br>允许3-12字符,建议4-5字符'";
-			glbHtml::fmae_row('Key标识',"<input name='fm[kid]' type='text' value='$kid' class='txt w150' maxlength='12' reg='key:3-12' $vstr />$ienable");
+			$vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=kidExists' tip='".lang('flow.fad_tip31245')."'";
+			glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150' maxlength='12' reg='key:3-12' $vstr />$ienable");
 		}
 		
-		glbHtml::fmae_row('token',"<input name='fm[token]' type='text' value='$fm[token]' class='txt w320' maxlength='96' reg='str:3-96' tip='与公众平台一致' />");
-		$vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=appidExists&oldval=".@$fm['appid']."' tip='wx开头,与公众平台一致'";
+		glbHtml::fmae_row(lang('flow.title_type'),"<select id='fm[type]' name='fm[type]' type='text'>".basElm::setOption($types,$fm['type'])."</select>");
+		glbHtml::fmae_row('token',"<input name='fm[token]' type='text' value='$fm[token]' class='txt w320' maxlength='96' reg='str:3-96' tip='".lang('awex.seewepf')."' />");
+		$vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=appidExists&oldval=".@$fm['appid']."' tip='eg:wx???,".lang('awex.seewepf')."'";
 		glbHtml::fmae_row('appid',"<input name='fm[appid]' type='text' value='$fm[appid]' class='txt w320' maxlength='96' reg='str:3-96' $vstr/>");
-		glbHtml::fmae_row('appsecret',"<input name='fm[appsecret]' type='text' value='$fm[appsecret]' class='txt w320' maxlength='96' reg='str:3-96' tip='与公众平台一致' />");
-		glbHtml::fmae_row('二维码',"<input name='fm[qrcode]' type='text' value='$fm[qrcode]' class='txt w320' maxlength='96' />");
+		glbHtml::fmae_row('appsecret',"<input name='fm[appsecret]' type='text' value='$fm[appsecret]' class='txt w320' maxlength='96' reg='str:3-96' tip='".lang('awex.seewepf')."' />");
+		glbHtml::fmae_row(lang('awex.qrcode'),"<input name='fm[qrcode]' type='text' value='$fm[qrcode]' class='txt w320' maxlength='96' />");
 
-		glbHtml::fmae_send('bsend','提交','25');
+		glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
 		glbHtml::fmt_end(array("kid|".(empty($kid) ? 'is__add' : $kid)));
 	}
 	

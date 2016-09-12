@@ -12,8 +12,6 @@ $mods = array(
   'advset' => '系统参数',
   'tester' => '测试代码',
 );
-$modt = array('tools'=>'贴心工具', 'uplog'=>'版本发布');
-$t = tex_devs::getKeyTitle('tpltag','tagbase'); 
 ?>
 {/block:extop}
 
@@ -44,16 +42,22 @@ $t = tex_devs::getKeyTitle('tpltag','tagbase');
     <li><a href="{surl(info-coder)}">coder:源代码器</a></li>
     <li><a href="{surl(demo)}">demo:演示文档</a></li>
     </ul>
-        
-    {loop $modt $mod $mv}
+
     {code:"dev:d_tools/a_cfgs"}
     <ul class="info-nav">
-      <li class="type"><a href="{surl($mod,-);}">{$mod}:{$mv}</a></li>
+      <li class="type"><a href="{surl(tools)}">贴心工具</a></li>
       <?php foreach($cfgs as $key=>$val){ ?>
-      <li><a href="{surl("$mod-$key")}">{$key} : {$val['mt']}</a></li>
+      <li><a href="{surl("tools-$key")}">{$key} : {$val['mt']}</a></li>
       <?php } ?>
     </ul>
-    {/loop}
+
+    {code:"dev:d_uplog/a_cfgs"}
+    <ul class="info-nav">
+      <li class="type"><a href="{surl(uplog)}">版本发布</a></li>
+      <?php foreach($cfgs as $key=>$val){ ?>
+      <li><a href="{surl("uplog-$key")}">{$val[0]} : {$val[1]}</a></li>
+      <?php } ?>
+    </ul>
 
 {/block:exmain}
 

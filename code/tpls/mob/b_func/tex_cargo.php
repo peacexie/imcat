@@ -9,7 +9,7 @@ class tex_cargo{ //extends tex_base
 	static function expwhr($flag=0){ 
 		$re = '';
 		// exp_xxx
-		$flist = glbConfig::read('fsystem','sy'); 
+		$flist = basLang::ucfg('fsystem'); 
 		foreach($flist as $k=>$v){
 			if(strstr($k,'exp_')){
 				$val = basReq::val($k);

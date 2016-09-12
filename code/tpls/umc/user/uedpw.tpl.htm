@@ -3,7 +3,7 @@
 {block:init}
 {:parent}
 <?php 
-$tipmsg = '修改密码！';
+$tipmsg = lang('user.pub_epass');
 $mod = @$user->uinfo['umods']; 
 $uname = @$user->uinfo['uname'];
 if($bsend){
@@ -15,18 +15,17 @@ if($bsend){
 {block:action}
 <div class="umc-mitem">
 <form action="?{$this->mkv}" method="post">
-    <h3><i>edit password</i>修改密码：</h3>
+    <h3><i>edit password</i>{lang(user.pub_epass)}: </h3>
     <dl>
-        <dt>用户信息：</dt><dd>{$unowstr}</dd>
+        <dt>{lang(user.pub_uinfo)}: </dt><dd>{$unowstr}</dd>
         {if empty($bsend) }
-        <dt>旧密码：</dt><dd><input name="pwold" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 6-24字符</dd>
-        <dt>新密码：</dt><dd><input name="pwnew" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 6-24字符</dd>
-        <dt>再一次：</dt><dd><input name="pwrep" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='6-24字符'/> 再输一次新密码</dd>
-		<dt>提交：</dt><dd><input name='bsend' type='submit' class='btn' value='提交' /></dd>
+        <dt>{lang(user.uop_oldpw)}: </dt><dd><input name="pwold" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(admin.fad_up624)}</dd>
+        <dt>{lang(user.uop_newpw)}: </dt><dd><input name="pwnew" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(admin.fad_up624)}</dd>
+        <dt>{lang(user.uop_reppw)}: </dt><dd><input name="pwrep" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(user.uop_rptip)}</dd>
+		<dt>{lang(submit)}: </dt><dd><input name='bsend' type='submit' class='btn' value='{lang(submit)}' /></dd>
         {else}
-        <dd class='msg'>{$pwmsg}：<a href='?{$this->mkv}'>点击返回</a></dd>
+        <dd class='msg'>{$pwmsg}: <a href='?{$this->mkv}'>{lang(user.uop_goback)}</a></dd>
         {/if}
     </dl>
 </form>
 </div>
-{/block:action}

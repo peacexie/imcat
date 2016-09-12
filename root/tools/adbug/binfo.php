@@ -29,7 +29,7 @@ function userInfo($type='local'){
 
 function pageFrame($key,$ext=''){
   $s = '<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>{text}</body></html>';
-  return str_replace('{text}',"[$key] Support(支持)! $ext ",$s);
+  return str_replace('{text}',"[$key] Support(".lang('tools.adcfg_yes').")! $ext ",$s);
 }
 
 if($qstr=='iframe') die(pageFrame('Iframe'));
@@ -52,7 +52,7 @@ if($qstr=='fset'){
 </frameset>
 <noframes>
 <body>
-<p>你的浏览器版本过低！！！不支持框架集[frameset]。</p>
+<p><?php lang('tools.binf_lowbrowser',0);?></p>
 </body>
 </noframes>	
 HTML;
@@ -61,7 +61,7 @@ HTML;
 ?>
 <!DOCTYPE html><html><head>
 <meta charset="utf-8">
-<title>用户环境-(COOKIE,SERVER,phpinfo(4,8),Login,Logout)</title>
+<title><?php lang('tools.binf_userenv',0);?>-(COOKIE,SERVER,phpinfo(4,8),Login,Logout)</title>
 <meta name='robots' content='noindex, nofollow'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../../skin/jslib/jsbase.js"></script>
@@ -82,10 +82,11 @@ HTML;
             <a href="?login" target="_self">Login</a> | <a href="?logout" target="_self">Logout</a></td>
         </tr>
     </table>
-</div>
+</div>  
+
 <?php
 if($qstr=='testError'){
-	echo "<div>测试是否看到[Warning/Notice]提示和最后的[-End-]标记；<br> --- 开发化境如不能看到,请设置环境以便于调试? <br>\n";
+	echo "<div>".lang('tools.binf_showerror')."<br> --- ".lang('tools.binf_sererror')."<br>\n";
 	$er1 = 234/0;
 	$er2 = $er3;
 	die('<p>-End-</p></div>');
@@ -122,7 +123,7 @@ if($qstr=='cookie'){
     <?php }else{ ?>
     <p>Login OK!</p>
     <?php } ?>
-    <p class="notice">Peace提示：请用于合法用途；使用前前改密码，使用后请删除本文件或移动到网站目录之外！</p>
+    <p class="notice"><?php lang('tools.binf_usenotes',0);?></p>
 </div>
 <?php } ?>
 <?php if($qstr=='binfo'){ ?>
@@ -130,27 +131,28 @@ if($qstr=='cookie'){
     <p>(PHP)User Info # <a href="#" onClick="show('plugs')">(js)Plugs</a></p>
     <ul>
         <?php echo userInfo(); ?> <?php echo '<li><i>Server Time:</i>'.date('r').'</li>'; ?>
-        <li><i>(js)USER_AGENT:</i><span id="jsua">JS NOT Support(不支持JavaScript)!</span></li>
+        <li><i>(js)USER_AGENT:</i><span id="jsua">JS NOT Support(<?php lang('tools.binf_nosupport',0);?>JavaScript)!</span></li>
         <li id="jsnow"></li>
         <li id="jscook"></li>
         <li id="jsplat"></li>
     </ul>
     <p class="test" id="plugs" style="display:none"></p>
 </div>
+
 <div>
-    <p>Iframe/Frameset (框架) &gt;&gt; <a href='?fset' target='_blank'>Open</a></p>
+    <p>Iframe/Frameset (<?php lang('tools.binf_frames',0);?>) &gt;&gt; <a href='?fset' target='_blank'>Open</a></p>
     <iframe src="?fset" height="60" style="width:48%;"></iframe>
     <iframe src="?iframe" height="60" style="width:48%;"></iframe>
 </div>
 <div>
-    <p title="svg,canvas,audio,localStorage,contenteditable">Html5 (基本特性)</p>
-    <span id="lsSection"> &nbsp; [localStorage]不支持本地存储。</span>
+    <p title="svg,canvas,audio,localStorage,contenteditable">Html5 (<?php lang('tools.binf_html5base',0);?>)</p>
+    <span id="lsSection"> &nbsp; [localStorage]<?php lang('tools.binf_nosuplocal',0);?></span>
     <section style="width:120px; float:right;"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="100">
         <polygon points="50,10 20,90 100,30 10,30 80,90"
     style="fill:rgb(120,120,120);stroke:rgb(60,60,60);stroke-width:2;fill-rule:evenodd;" />
         </svg> </section>
-    <section contenteditable="true" title="[contenteditable]">这是一段可编辑的段落,请试着编辑该文本。</section>
-    <canvas id="h5Canvas" width="180" height="24">不支持HTML5[canvas]。</canvas>
+    <section contenteditable="true" title="[contenteditable]"><?php lang('tools.binf_editp',0);?></section>
+    <canvas id="h5Canvas" width="180" height="24"><?php lang('tools.binf_nosupport',0);?> HTML5[canvas]。</canvas>
     <section> Datalist:
         <input type="url" list="url_list" name="link" />
         <datalist id="url_list">
@@ -160,7 +162,7 @@ if($qstr=='cookie'){
         </datalist>
         <br>
         Placeholder:
-        <input type="text" id="fmdata[keywords]" name="fmdata[keywords]" placeholder="请以半角逗号隔开"  value="" />
+        <input type="text" id="fmdata[keywords]" name="fmdata[keywords]" placeholder="placeholder"  value="" />
     </section>
     <section style="clear:left">
         <ruby>中文 - 漢字 - 拼音
@@ -168,27 +170,27 @@ if($qstr=='cookie'){
         </ruby>
     </section>
     <details>
-        <summary>summary & details</summary>
-        测试是否支持details：标签用于描述文档或文档某个部分的细节。与 summary标签 配合使用可以为 details 定义标题。标题是可见的，用户点击标题时，会显示出 details。 </details>
+        <summary>summary & details</summary><?php lang('tools.binf_details',0);?></details>
 </div>
 <div class="css3">
-    <p>CSS3 (圆角样式)</p>
-    <section> 看到[圆角/阴影]效果了吗？没有看到，表示不支持CSS3。 </section>
+    <p>CSS3 (<?php lang('tools.binf_css3r',0);?>)</p>
+    <section> 看到[圆角/阴影]效果了吗？没有看到，表示不支持CSS3。</section>
     <section></section>
 </div>
 <div>
-    <p>字体样式:span:bold # <a href="#" onClick="show('fonts')">详情</a></p>
-    <p class="test" id="fonts" style="display:none"> 字体样式：默认-Default；<br>
+    <p>字体样式:span:bold # <a href="#" onClick="show('fonts')"><?php lang('tools.binf_detail',0);?></a></p>
+    <p class="test" id="fonts" style="display:none"> 字体样式：默认-Default:<br>
         <strong>字体样式：Tag-strong；</strong><br>
         <b>字体样式：Tag-b；</b><br>
-        <span style="font-weight:bold">字体样式：span:bold；</span><br>
-        <span style="font-weight:bolder">字体样式：span:bolder；</span><br>
-        <span style="font-weight:100">字体样式：span:100；</span><br>
-        <span style="font-weight:300">字体样式：span:300；</span><br>
-        <span style="font-weight:500">字体样式：span:500；</span><br>
-        <span style="font-weight:700">字体样式：span:700；</span><br>
-        <span style="font-weight:900">字体样式：span:900；</span></p>
+        <span style="font-weight:bold">字体样式：span:bold:</span><br>
+        <span style="font-weight:bolder">字体样式：span:bolder:</span><br>
+        <span style="font-weight:100">字体样式：span:100:</span><br>
+        <span style="font-weight:300">字体样式：span:300:</span><br>
+        <span style="font-weight:500">字体样式：span:500:</span><br>
+        <span style="font-weight:700">字体样式：span:700:</span><br>
+        <span style="font-weight:900">字体样式：span:900:</span></p>
 </div>
+
 <script>
 function plugs(){ //获取插件所有的名称
    var info = "";
@@ -210,7 +212,7 @@ jsElm.jeID('jsnow').innerHTML = '<i>Client Time(js):</i>'+new Date().toLocaleStr
 jsElm.jeID('jscook').innerHTML = '<i class="w1">navigator.cookieEnabled:</i>'+navigator.cookieEnabled;
 jsElm.jeID('jsplat').innerHTML = '<i class="w1">navigator.platform:</i>'+navigator.platform;
 var lsSupport = (('localStorage' in window) && (window['localStorage'] !== null));
-if(lsSupport) jsElm.jeID('lsSection').innerHTML = '&nbsp;支持本地存储[localStorage]。';
+if(lsSupport) jsElm.jeID('lsSection').innerHTML = '&nbsp;<?php lang('tools.binf_suplocal',0);?>[localStorage]。';
 var h5cnv = jsElm.jeID("h5Canvas");
 var h5cxt = h5cnv.getContext("2d");
 h5cxt.moveTo(10,1);

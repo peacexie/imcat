@@ -68,7 +68,7 @@ class vopUrl{
 				if(isset($mcfg['i'][$key])){
 					$cfg = $vcfg['t'];
 				}else{
-					vopShow::msg("[$key][type]参数错误!");	
+					vopShow::msg("[$key][type]".lang('core.vop_parerr'));	
 				}
 			}
 		}elseif($type=='detail'){
@@ -84,29 +84,37 @@ class vopUrl{
 			$tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; // (?home-imcfg)
 			//about.2015-9d-d501.list2
 			if($type=='detail' && $view && !isset($cfg[$view])){
-				vopShow::msg($re['mkv']."[$view]参数错误!");
+				vopShow::msg($re['mkv']."[$view]".lang('core.vop_parerr'));
 			}
 			//indoc-get-my 接收列表
 			if($type=='mtype' && $view && (empty($vcfg['v']) || !strstr($vcfg['v'],$view))){ 
-				vopShow::msg($re['mkv']."[$view]参数错误!");
+				vopShow::msg($re['mkv']."[$view]".lang('core.vop_parerr'));
 			}	
 		}
 		if(empty($tpl)){
-			vopShow::msg($re['mkv']."[tpl]参数错误!");
+			vopShow::msg($re['mkv']."[tpl]".lang('core.vop_parerr'));
 		}elseif($tpl=='close'){
-			vopShow::msg($re['mkv']."[close]本栏目关闭!");
+			vopShow::msg($re['mkv']."[close]".lang('core.vop_closecat'));
 		} // first
+		// 处理{mod}, 
 		$re['tplname'] = str_replace('{mod}',$mod,$tpl);
+		/*/ 处理设置的模板,暂不用...
+		if($re['type']=='detail'){ 
+			$cache = glbConfig::read($mod,'dset');
+			if(!empty($cache[$re['key']])){
+				$re['tplname'] = $cache[$re['key']];
+			}
+		}//*/
 		return $re;
 	}
-	
+
 	static function ifirst($mod,$re=''){
 		$minfo = glbConfig::read($mod);
 		$key = empty($minfo['i']) ? '' : key($minfo['i']); 
 		if($re=='key'){
 			return $key;
 		}elseif(defined('RUN_STATIC')){
-			return "[$mod]-[$mod-$key]301跳转未生成静态";
+			return "[$mod]-[$mod-$key]".lang('core.vop_st301dir');
 		}else{
 			header("Location:?$mod-$key");
 		}
@@ -133,7 +141,7 @@ class vopUrl{
 		$_groups = glbConfig::read('groups'); 
 		$ukeyh = array_merge($hcfg['extra'],array('home'));
 		if(!in_array($mod,$ukeyh) && !isset($_groups[$mod])){
-			vopShow::msg("[{$mod}][mod]参数错误!");
+			vopShow::msg("[{$mod}][mod]".lang('core.vop_parerr'));
 		}elseif(!empty($_cbase["close_$tpldir"])){ //close
 			include(DIR_CODE."/cfgs/stinc/close_info.php");	
 		}
@@ -149,9 +157,9 @@ class vopUrl{
 		}else{ // mod-close
 			$vcfg = glbConfig::vcfg($mod);
 			if(!$vcfg){
-				vopShow::msg("[{$mod}][vcfg]参数错误!");
+				vopShow::msg("[{$mod}][vcfg]".lang('core.vop_parerr'));
 			}elseif($vcfg['c']['vmode']=='close'){
-				vopShow::msg("[{$mod}][close]本模块关闭!");	
+				vopShow::msg("[{$mod}][close]".lang('core.vop_closemod'));	
 			}
 		}
 		return $vcfg;
@@ -275,3 +283,18 @@ class vopUrl{
 	}
 
 }
+
+/*
+	### 特色模板(主题)设置
+
+	* 配置：
+	 - 添加字段：模板主题选择：`c_mcom|常规;s_gray|灰色;s_blue|蓝色`
+	 - 制作常规模板，配置如：'d' => 'c_mcom/xmod_detail',
+	 - s_gray|灰色模板，对应：s_gray/xmod_detail 模板文件,
+	 - 设置了模板，就保存到缓存：xxx/xmod.cac_php,
+	 - 内容类似为：'2013-cj-db02' => 's_gray/xmod_detail',
+
+	* 代码：
+	 - 完善方法：itpl
+*/
+

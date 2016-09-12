@@ -8,7 +8,7 @@ defined('PATH_ROOT') || define('PATH_ROOT','../../');
 <!DOCTYPE html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
-<title>支付结果提示</title>
+<title><?php lang('a3rd.xresult_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
@@ -34,28 +34,28 @@ p.detail{ width:100%; height:180px; overflow-y:scroll; }
 <div class="pay_info">
 
 <p class="title">
-	<span style="float:right">单号：<?php echo $res['ordid']; ?></span>
-    <b>支付结果提示</b>
+	<span style="float:right"><?php lang('a3rd.xresult_ordno',0); ?> <?php echo $res['ordid']; ?></span>
+    <b><?php lang('a3rd.xresult_title',0); ?></b>
 </p>
 
 <div class="main">
-  <p><span class="right">@<?php echo @$res['api']; ?></span> <i>系统单号: </i>
+  <p><span class="right">@<?php echo @$res['api']; ?></span> <i><?php lang('a3rd.xresult_sysno',0); ?> </i>
   <?php echo $res['ordid']; ?>
   </p>
-  <p><span class="right"><?php echo @$res['stamp']; ?></span> <i>金额: </i>
+  <p><span class="right"><?php echo @$res['stamp']; ?></span> <i><?php lang('a3rd.xresult_amount',0); ?> </i>
   <?php echo $res['feeamount']; ?>
   </p>
-  <p> <i>交易号: </i>
+  <p> <i><?php lang('a3rd.xresult_tradeno',0); ?> </i>
   <?php echo $res['apino']; ?>
   </p>
-  <p> <i>状态码: </i>
+  <p> <i><?php lang('a3rd.xresult_state',0); ?> </i>
   <?php echo $res['status'].'('.$res['msg'].')'; ?>
   </p>
 </div>
 <div class="clear"></div>
 
 <div class="depost">
-  <p class="fB"> POST数据：</p>
+  <p class="fB"> POST DATA：</p>
   <p class="detail"> 
   <?php
   foreach($_POST as $key=>$val){
@@ -64,7 +64,7 @@ p.detail{ width:100%; height:180px; overflow-y:scroll; }
   </p>
 </div>
 <div class="deget">
-  <p class="fB"> GET数据：</p>
+  <p class="fB"> GET DATA：</p>
   <p class="detail"> 
   <?php
   foreach($_GET as $key=>$val){

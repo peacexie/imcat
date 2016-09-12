@@ -10,20 +10,22 @@ $userstr = "<span title='".@$user->uperm['title']."(".@$user->uperm['grade'].")'
 $ainurl = basReq::getUri(-2); $ainurl = str_replace('&frame=1','',$ainurl[1]);
 $mainurl = empty($file) ? vopUrl::fout('uhome') : $ainurl; //vopUrl::fout()."?file=$file"; 
 {/php}
-<div id="adf_title"> (当前) </div>
+<div id="adf_title"> ({lang(admin.top_now)}) </div>
 <div id="adf_nav1">
   <p class="inblock right">
-  <a href="?" class="cF0F">后台</a>
-  <a href="{surl(chn:0)}" class="c00F" target="_blank">前台</a>
-  <a href="?mkv=login&act=doout" class="cF00">退出</a> 
+  <a href="?" class="cF0F">{lang(admin.top_admin)}</a>
+  <a href="{surl(chn:0)}" class="c00F" target="_blank">{lang(admin.top_front)}</a>
+  <a href="?mkv=login&act=doout" class="cF00">{lang(admin.top_exit)}</a> 
+  <a class="c999">-</a> 
+  <?php echo basLang::links("<a href='{url}' class='c666' title='{title}'>{mini}</a>"); ?>
   </p> 
   <script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script> 
 </div>
 <div id="adf_left">
   <ul id='adf_copy'>
     <li>{$userstr}</li>
-    <li><a href="?" class="cF0F">管理中心</a> - <a href="?mkv=login&act=doout" target="_parent" class="cF00">安全退出</a></li>
-    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {$_cbase['server']['txjia']}/)">贴心猫</li>
+    <li><a href="?" class="cF0F">{lang(admin.adm_side)}</a> - <a href="?mkv=login&act=doout" target="_parent" class="cF00">{lang(admin.exit_side)}</a></li>
+    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {$_cbase['server']['txjia']}/)" title="Intimate">{lang(admin.pro_name)}</li>
     <li>Copyright&copy;Peace</li>
   </ul>
 </div>
@@ -32,3 +34,4 @@ $mainurl = empty($file) ? vopUrl::fout('uhome') : $ainurl; //vopUrl::fout()."?fi
 </div>
 {php $this->pimp('/b_jscss/awtop.js'); }
 {/block:abody}
+

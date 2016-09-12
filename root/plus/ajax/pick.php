@@ -14,7 +14,7 @@ $_key = substr($mcfg['pid'],0,1).'id'; if($_key=='uid') $_key='uname';
 $mfso = dopFunc::vgetFields($mcfg['f']); 
 if($_key=='uname'){
 	$mcfg['f']['uname'] = $mcfg['f']['mname'];	
-	$mcfg['f']['uname']['title'] = '会员账号';
+	$mcfg['f']['uname']['title'] = lang('plus.pick_uname');
 }
 
 $fso = basReq::val('fso','title,company,uname,mname,mtel,memail','Title'); 
@@ -44,17 +44,17 @@ $dop = new dopExtra(glbDBExt::getTable($mod),$cfg);
 $so = $dop->so; 
 $cv = $dop->cv; 
 
-$sbar = $_key=='cid' ? '' : "\n".$so->Type(90,$_key=='uname' ? '-等级-' : '-栏目-');
-$sbar .= "\n&nbsp; ".$so->Word(80,80,'-筛选-',$dop->sofields);
+$sbar = $_key=='cid' ? '' : "\n".$so->Type(90,$_key=='uname' ? lang('plus.pick_xgrd') : lang('plus.pick_xcat'));
+$sbar .= "\n&nbsp; ".$so->Word(80,80,lang('plus.pick_xso'),$dop->sofields);
 if(!empty($dop->soarField)){
 	$sbar .= "\n&nbsp; $dop->soarMsg:".$so->Area(1,50,$dop->soarField);
 }
-$sbar .= "\n&nbsp; ".$so->Order($dop->soorders,100,'-排序-','-1');
+$sbar .= "\n&nbsp; ".$so->Order($dop->soorders,100,lang('plus.pick_xord'),'-1');
 $dop->so->Form($sbar,$msg,5);
 	
 glbHtml::fmt_head('fmlist',"?",'tblist');
-echo "<th nowrap>选择</th>";
-$tname = $_key=='cid' ? '' : ($_key=='uname' ? '等级' : '栏目');
+echo "<th nowrap>".lang('plus.pick_select')."</th>";
+$tname = $_key=='cid' ? '' : ($_key=='uname' ? lang('plus.pick_grade') : lang('plus.pick_catalog'));
 $colspan = $_key=='cid' ? 1 : 2;
 if($tname) echo "<th nowrap>$tname</th>";
 foreach($fshow as $k=>$v){ echo "<th nowrap>$v</th>"; }
@@ -86,12 +86,13 @@ if($rs=$dop->getRecs('',$_cbase['show']['ppsize'])){
 	  echo "</tr>";
 	}
 	$pg = $dop->pg->show($idfirst,$idend);
-	$now = $cntre==1 ? '' : "已选【<span id='sel_cnt'>0</span>】个";
-	dopFunc::pageBar($pg,"$now &nbsp; <span id='sel_msg' onClick='popClose();'>【关闭】</span>",0,$cntre==1 ? '' : 'pickAll');
+	$now = $cntre==1 ? '' : lang('plus.pick_selected')."【<span id='sel_cnt'>0</span>】".lang('plus.pick_selunit');
+	dopFunc::pageBar($pg,"$now &nbsp; <span id='sel_msg' onClick='popClose();'>【".lang('plus.pick_close')."】</span>",'0',$cntre==1 ? '' : 'pickAll');
 }else{
-	echo "\n<tr><td class='tc' colspan='".(count($fshow)+$colspan)."'>无资料！</td></tr>\n";
+	echo "\n<tr><td class='tc' colspan='".(count($fshow)+$colspan)."'>".lang('plus.pick_nodata')."</td></tr>\n";
 }
 glbHtml::fmt_end(array("mod|$mod"));
 
 echo basJscss::jscode("var pick_retitle='$retitle', pick_refval='$refval', pick_refname='$refname', pick_max=$cntre; pickInit($cntre); ");
-glbHtml::page('end');
+glbHtml::page('end'); 
+

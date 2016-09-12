@@ -11,7 +11,7 @@ $_tmp = array(
 	'coms' =>array('dopComs','cid'),
 	'advs' =>array('dopAdvs','aid'),
 ); 
-if(!isset($_tmp[$_pid])) glbHtml::end('参数错误:mod@dop.php');
+if(!isset($_tmp[$_pid])) glbHtml::end(lang('flow.dops_parerr').':mod@dop.php');
 $gname = $_groups[$mod]['title']; //print_r($cv);
 usrPerm::run('pmod',$mod);
 

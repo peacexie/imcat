@@ -2,7 +2,20 @@
 
 // Environment基本环境处理类
 class basEnv{	
-	
+
+	// 处理_pbase
+	static function runPbase($_pbase){
+		global $_cbase;
+		// 加载runskip
+		if(isset($_cbase['skip'])){
+			include(DIR_CODE.'/cfgs/boot/bootskip.php'); 
+		}
+		// 全局系统配置
+		if(!empty($_pbase)){ 
+			if(!empty($_pbase)) $_cbase = basArray::Merge($_cbase, $_pbase);
+		}
+	}
+
 	// 系统信息,魔术变量,时区
 	static function runVersion(){
 		global $_cbase;
@@ -31,7 +44,7 @@ class basEnv{
 		define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');	
 
 	}
-	
+
 	// 前置处理,运行时常用变量
 	static function runCbase(){
 		global $_cbase;
@@ -60,6 +73,23 @@ class basEnv{
 		self::sysHome(); //,topDomain,IP过滤
 	}
 	
+	// 处理skips
+	static function runSkips(){
+		global $_cbase;
+		// 错误处理类 
+		if(!isset($_cbase['skip']['error'])){
+			self::runError();
+		}
+		// *** robot
+		if(isset($_cbase['skip']['robot'])){
+			safBase::robotStop(); 
+		}
+		// 处理session
+		if(!isset($_cbase['skip']['session'])){ 
+			if(!session_id()) @session_start();
+		}
+	}
+
 	// 加载错误处理类 
 	static function runError(){
 		global $_cbase;

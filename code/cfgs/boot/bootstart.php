@@ -16,40 +16,18 @@ require(DIR_DTMP.'/dset/_score.cfg.php'); //后台设置_score: 其次,可被页
 //以下会处理[页面设置_pbase];         //页面设置_pbase: 最优先
 
 // 加载启动文件
-if(empty($_cbase['run']['outer'])){
-	// 加载runskip
-	if(isset($_cbase['skip'])){
-		include(DIR_CODE.'/cfgs/boot/bootskip.php'); 
-	}
+if(empty($_cbase['run']['outer'])){ 
 	// 加载autoload
 	autoLoad_ys::init();
-	// 全局系统配置
-	if(!empty($_pbase)){ 
-		if(!empty($_pbase)) $_cbase = basArray::Merge($_cbase, $_pbase);
-		unset($_pbase);
-	}
-	// 系统信息,魔术变量,时区
-	basEnv::runVersion();
-	// const,
-	basEnv::runConst();
-	// 前置处理,运行时常用变量
-	basEnv::runCbase();
-	// QUERY-7参数检测
-	safComm::urlQstr7(); 
-	// 错误处理类 
-	# empty($phpviewerror) || @ini_set('display_errors', 'On');
-	if(!isset($_cbase['skip']['error'])){
-		basEnv::runError();
-	}
-	// *** robot
-	if(isset($_cbase['skip']['robot'])){
-		safBase::robotStop(); 
-	}
-	// 处理session
-	if(!isset($_cbase['skip']['session'])){ 
-		if(!session_id()) @session_start();
-	}
-	// 扩展
+	// run常规处理
+	basEnv::runPbase($_pbase); unset($_pbase); //处理_pbase 
+	basEnv::runVersion(); // 系统信息,魔术变量,时区
+	basEnv::runConst(); // const,
+	basEnv::runCbase(); // 前置处理,运行时常用变量
+	basEnv::runSkips(); // 处理skips
+	safComm::urlQstr7(); // QUERY-7参数检测 
+	basLang::auto(); // Lang
+	// run扩展
 }
 
 /// 其它处理参考 ///////////////////////////////////

@@ -14,7 +14,7 @@ $dkey = basReq::val('dkey','tpls');
 $dsub = basReq::val('dsub',''); 
 
 $links = admPFunc::fileNav($part,'envdiy');
-if(!in_array($part,array('edit','restore'))) glbHtml::tab_bar("附加工具[$part]","$links",50); 
+if(!in_array($part,array('edit','restore'))) glbHtml::tab_bar(lang('admin.ediy_extool')."[$part]","$links",50); 
 $msg = ''; //print_r($msg);
 
 $view = basReq::val('view');
@@ -29,20 +29,20 @@ if(in_array($part,array('edit','restore'))){
 	
 	if($part=='restore'){
 		unlink($fp); copy("$fp.maobak",$fp);
-		basMsg::show('还原成功！');
+		basMsg::show(lang('admin.ediy_rebok'));
 	}elseif(!empty($bsend)){
 		$ndata = $_POST['ndata']; //basReq::val('ndata','','Html',102400);
 		@unlink("$fp.maobak"); copy($fp,"$fp.maobak");
 		comFiles::put($fp,$ndata);
-		basMsg::show('修改成功！');
+		basMsg::show(lang('admin.ediy_editok'));
 	}else{
 		$ndata = basStr::filForm(comFiles::get($fp)); //str_replace(array('<','>'),array('&lt;','&gt;')
 		glbHtml::fmt_head('fmlist',"?file=$file&part=edit&dkey=$dkey&dsub=$dsub&efile=$efile",'tblist');
-		echo "\n<tr>\n<th colspan=2>正在编辑：$nfile</th></tr>\n"; 
-		echo "\n<tr>\n<td style='width:50%'>大小：".basStr::showNumber(filesize($fp),'Byte')."</td>
-		        <td class='tr'>修改时间：".date("Y-m-d H:i:s",filemtime($fp))."</td></tr>\n";
+		echo "\n<tr>\n<th colspan=2>".lang('admin.ediy_doing').": $nfile</th></tr>\n"; 
+		echo "\n<tr>\n<td style='width:50%'>".lang('admin.ediy_size').": ".basStr::showNumber(filesize($fp),'Byte')."</td>
+		        <td class='tr'>".lang('admin.ediy_etime').": ".date("Y-m-d H:i:s",filemtime($fp))."</td></tr>\n";
 		echo "\n<tr>\n<td colspan=2><textarea name='ndata' rows='18' wrap='off' style='width:100%'>$ndata</textarea></td></tr>\n";
-		echo "\n<tr>\n<td style='width:50%'>保留备份.bak</td><th><input name='bsend' type='submit' value='保存修改' /></th></tr>\n";
+		echo "\n<tr>\n<td style='width:50%'>".lang('admin.ediy_sbak').".bak</td><th><input name='bsend' type='submit' value='".lang('admin.ediy_sedit')."' /></th></tr>\n";
 		glbHtml::fmt_end(array("nmod|nmod","ntpl|ntpl"));		
 	}
 
@@ -57,7 +57,7 @@ if(in_array($part,array('edit','restore'))){
 	$lnkdk = admPFunc::fileNav($dkey,'exdiys');
 	
 	if($dkey=='runs'){
-		$lnkds = " -- 无下层目录 -- ";
+		$lnkds = " -- ".lang('admin.ediy_nosdir')." -- ";
 		$listu = comFiles::listDir(DIR_PROJ); $listu = $listu['file'];
 		$lists = comFiles::listDir(DIR_PROJ."/root/run");  
 		$edir = '';
@@ -65,7 +65,7 @@ if(in_array($part,array('edit','restore'))){
 			$listu["root/run/$ifile"] = $fv; 
 		}
 	}elseif($dkey=='cfgs'){
-		$lnkds = " -- 无下层目录 -- ";
+		$lnkds = " -- ".lang('admin.ediy_nosdir')." -- ";
 		$edir = $_sy_nava['exdiys'][$dkey];
 		$listu = comFiles::listScan(DIR_PROJ.$edir);
 	}else{ //tpls,skin
@@ -81,12 +81,12 @@ if(in_array($part,array('edit','restore'))){
 		$edir = $edir."/$dsub";
 	} 
 	glbHtml::tab_bar("$lnkdk",$lnkds,50); 
-	
+
 	//echo $edir; echo "<pre>"; print_r($listu);
 	glbHtml::fmt_head('fmlist',"?",'tblist');
 	
-	echo "<tr><th>".(empty($edir)?'[/]':$edir)."</th><th>文件</th><th>大小</th>"; 
-	echo "<th>更新时间</th><th>创建时间</th><th colspan=2>操作</th></tr>\n"; //<th>创建</th>
+	echo "<tr><th>".(empty($edir)?'[/]':$edir)."</th><th>".lang('admin.ediy_file')."</th><th>".lang('admin.ediy_size')."</th>"; 
+	echo "<th>".lang('admin.ediy_etime')."</th><th>".lang('admin.ediy_atime')."</th><th colspan=2>".lang('admin.ediy_op')."</th></tr>\n"; //<th>创建</th>
 	$idir = $odir = '|';
 	foreach($listu as $ifile=>$fv){ 
 	  $ext = strtolower(strrchr($ifile,".")); 
@@ -113,11 +113,11 @@ if(in_array($part,array('edit','restore'))){
 	  echo "<td class='tc'>".date("Y-m-d H:i",$fv[0])."</td>\n"; //$title,$td=1,$url,$twin='',$w=780,$h=560
 	  echo "<td class='tc'>$atstr</td>\n";
 	  if(file_exists(DIR_PROJ.$edir."/$bkfile.maobak")){
-		  echo $cv->Url('还原','1',"?file=$file&part=restore&dkey=$dkey&dsub=$dsub&efile=$bkfile");
+		  echo $cv->Url(lang('admin.ediy_rebak'),'1',"?file=$file&part=restore&dkey=$dkey&dsub=$dsub&efile=$bkfile");
 	  }else{
-		  echo "<td class='tc cCCC'>还原</td>\n";
+		  echo "<td class='tc cCCC'>".lang('admin.ediy_rebak')."</td>\n";
 	  }
-	  echo $cv->Url('修改','1',"?file=$file&part=edit&dkey=$dkey&dsub=$dsub&efile=$bkfile","DIY修改:{$bkfile}");
+	  echo $cv->Url(lang('flow.dops_edit'),'1',"?file=$file&part=edit&dkey=$dkey&dsub=$dsub&efile=$bkfile",lang('admin.ediy_edit').":{$bkfile}");
 	  echo "</tr>"; 
 	}
 	

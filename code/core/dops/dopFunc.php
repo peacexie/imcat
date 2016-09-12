@@ -82,9 +82,9 @@ class dopFunc{
 	static function vordFields($obj){
 		//$obj 
 		foreach($obj as $k=>$v){
-			$obj["$k-a"] = "$v(升)";	
+			$obj["$k-a"] = "$v".lang('flow.dops_ordasc');	
 		}
-		return array_merge($obj,array('atime'=>'添加时间(降)','atime-a'=>'添加时间(升)'));
+		return array_merge($obj,array('atime'=>lang('flow.dops_ordtimd'),'atime-a'=>lang('flow.dops_ordtima')));
 	}
 	
 	// 表单默认值 showdef=1/0
@@ -111,9 +111,10 @@ class dopFunc{
 	}	
 
 	// 翻页条
-	static function pageBar($pgbar,$opbar,$opname='执行',$jsFunc='fmSelAll'){
+	static function pageBar($pgbar,$opbar,$opname='(null)',$jsFunc='fmSelAll'){
+		$opname = $opname=='(null)' ? lang('flow.dops_exeu') : $opname;
 		$pgbar = "<div class='pg_bar'>$pgbar</div>";
-		$opstr = strpos($opbar,'</option>') ? "<select name='fs_do'>$opbar</select>" : $opbar;
+		$opstr = strpos($opbar,'</option>') ? "<select name='fs_do' class='w100'>$opbar</select>" : $opbar;
 		$opbar = "<div class='w180 tc right'>$opstr";
 		$opbar .= ($opname ? "<input name='bsend' class='btn' type='submit' value='$opname' />" : '')."</div>";
 		echo "\n<tr><td class='tc' nowrap>\n";

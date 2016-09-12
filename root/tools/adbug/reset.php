@@ -6,19 +6,10 @@ $part = basReq::val('part','');
 $inptype = @$_GET['inptype']; 
 $inpval = @$_GET['inpval'];
 
-$cfg = array(
-	'check'=>'基本环境',
-	'image'=>'Image',
-	'memory'=>'Memory',
-	'upload'=>'Upload',
-	'bomcheck'=>'BOMCheck',
-	'remote'=>'Remote',
-);
-$title = isset($cfg[$act]) ? $cfg[$act] : '？'.$act;
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
-glbHtml::page("系统重置-$title",1);
+glbHtml::page(lang('tools.rst_title'),1);
 glbHtml::page('imp');
 ?>
 <link rel='stylesheet' type='text/css' href='./style.css'/>
@@ -31,48 +22,52 @@ glbHtml::page('imp');
 </div>
 
 <div>
-<p class="tip">系统重置 / DB操作</p>
+<p class="tip"><?php lang('tools.rst_title',0); ?> / <?php lang('tools.rst_dbops',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
     <tr>
-      <td class="tc" colspan="4">(code/cfgs/boot/cfg_adbug.php页参数)
+      <td class="tc" colspan="4">(@code/cfgs/boot/cfg_adbug.php)
       &nbsp; [can_reset=<?php echo $can_reset; ?>] &nbsp; 
-      <span style="color: #<?php echo $can_reset ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $can_reset ? "危险" : "安全"; ?></span>
-      正式使用请设置为0
+      <span style="color: #<?php echo $can_reset ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $can_reset ? lang('tools.chk_risk') : lang('tools.chk_safe'); ?></span>
+      <?php lang('tools.chk_set0',0); ?>
       </td>
     </tr>
     <tr class="tc">
-      <td width="25%" class="tip">清理</td>
-      <td width="25%"><a href="?act=clrTmps">清理临时文件</a></td>
-      <td width="25%"><a href="?act=clrLogs">清理DB日志</a></td>
-      <td width="25%"><a href="?act=clrCTpl">清理模板缓存</a></td>
+      <td width="25%" class="tip"><?php lang('tools.rst_clear',0); ?></td>
+      <td width="25%"><a href="?act=clrTmps"><?php lang('tools.rst_clrtmpfiles',0); ?></a></td>
+      <td width="25%"><a href="?act=clrLogs"><?php lang('tools.rst_clrdblogs',0); ?></a></td>
+      <td width="25%"><a href="?act=clrCTpl"><?php lang('tools.rst_clrtplcache',0); ?></a></td>
     </tr>     
     <tr class="tc">
-      <td class="tip">DB检测</td>
-      <!--td class="c999">重置DB数据</td-->
-      <td><a href="?act=cdbPKey">无主索引数据表</a></td>
-      <td><a href="?act=cdbV255">varchar(>255)字段</a></td>
-      <td><a href="?act=cdbMKey">组合索引数据表</a></td>
+      <td class="tip"><?php lang('tools.rst_dbcheck',0); ?></td>
+      <td><a href="?act=cdbPKey"><?php lang('tools.rst_dbnopk',0); ?></a></td>
+      <td><a href="?act=cdbV255"><?php lang('tools.rst_dbvar255',0); ?></a></td>
+      <td><a href="?act=cdbMKey"><?php lang('tools.rst_dbcindex',0); ?></a></td>
     </tr>
     <tr class="tc">
-      <td class="tip">DB导出</td>
-      <td><a href="?act=expStru">导出结构</a></td>
-      <td><a href="?act=expData">导出所有</a></td>
-      <td><a href="?act=expBack">导出备份</a></td>
+      <td class="tip"><?php lang('tools.rst_export',0); ?></td>
+      <td><a href="?act=expStru"><?php lang('tools.rst_expframe',0); ?></a></td>
+      <td><a href="?act=expData"><?php lang('tools.rst_expall',0); ?></a></td>
+      <td><a href="?act=expBack"><?php lang('tools.rst_exback',0); ?></a></td>
       </td>
     </tr> 
+
     <tr class="tc">
-      <td class="tip">重置</td>
-      <td><a href="?act=rstRndata">重置数据</a> , <a href="?act=rstTabcode">重建对比</a></td>
-      <td><a href="?act=rstPub&part=main">重发布</a>:(<a href="?act=rstPub&part=vary">vary</a>,<a href="?act=rstPub&part=vimp">vimp</a>)</td>
-      <td><a href="?act=rstCache">重置缓存</a></td>
+      <td class="tip"><?php lang('tools.rst_reset',0); ?></td>
+      <td><a href="?act=rstRndata"><?php lang('tools.rst_rstdata',0); ?></a> , 
+      <a href="?act=rstTabcode"><?php lang('tools.rst_rstcomp',0); ?></a> , 
+      <a href="?act=rstTabmini"><?php lang('tools.rst_rstmini',0); ?></a></td>
+      <td><a href="?act=rstPub&part=main"><?php lang('tools.rst_rstpub',0); ?></a> : 
+      (<a href="?act=rstPub&part=vary">vary</a> , 
+      <a href="?act=rstPub&part=vimp">vimp</a>)</td>
+      <td><a href="?act=rstCache"><?php lang('tools.rst_rstcache',0); ?></a></td>
     </tr>
     <form action="?" method="get">
     <tr class="tc">
-      <td class="tip">帐号密码</td>
+      <td class="tip"><?php lang('tools.rst_rstidpw',0); ?></td>
       <td><input name="uname" value="<?php echo $orguser; ?>" type="text" onBlur="chkIdpass(this,0,3)" maxlength="12"></td>
       <td><input name="upass" value="<?php echo $orgpass; ?>" type="text" onBlur="chkIdpass(this,1,6)" maxlength="18"></td>
-      <td><input name="" value="重置" type="submit"><input name="act" type="hidden" value="rstIDPW"></td>
+      <td><input name="" value="<?php lang('tools.rst_reset',0); ?>" type="submit"><input name="act" type="hidden" value="rstIDPW"></td>
     </tr> 
     </form>
   </table>
@@ -84,20 +79,20 @@ $re = '-';
 
 $names = array(
 
-	'clrTmps'=>'清理临时文件',
-	'clrLogs'=>'清理DB日志',
-	'clrCTpl'=>'清理模板缓存',
+	'clrTmps'=>lang('tools.rst_clrtmpfiles'),
+	'clrLogs'=>lang('tools.rst_clrdblogs'),
+	'clrCTpl'=>lang('tools.rst_clrtplcache'),
 	
-	'rstCache'=>'重置缓存',
-	'rstIDPW'=>'重置帐号密码',
-	'rstPub'=>'重发布', 
+	'rstCache'=>lang('tools.rst_rstcache'),
+	'rstIDPW'=>lang('tools.rst_setidpw'),
+	'rstPub'=>lang('tools.rst_rstpub'), 
 	
-	'cdbPKey'=>'无主索引数据表',
-	'cdbV255'=>'varchar(>255)字段',
-	'cdbMKey'=>'组合索引数据表',
+	'cdbPKey'=>lang('tools.rst_dbnopk'),
+	'cdbV255'=>lang('tools.rst_dbvar255'),
+	'cdbMKey'=>lang('tools.rst_dbcindex'),
 	
-	'expStru'=>'导出数据表结构',
-	'expData'=>'DB导出',
+	'expStru'=>lang('tools.rst_expframe'),
+	'expData'=>lang('tools.rst_export'),
 
 );
 
@@ -109,16 +104,16 @@ if(in_array($act,array('expData','expBack'))){
 	devData::struExp('/dbexp/');
 }elseif($act=='rstIDPW'){
 	if(empty($can_reset)){
-		$exmsg = "<br>当前设置不允许重置密码：请设置 <span class='cF03'>[ \$can_reset = '1' ]</span>";
+		$exmsg = "<br>".lang('tools.rst_idpw_set',0)."<span class='cF03'>[ \$can_reset = '1' ]</span>";
 		$_res = 'Error';
 	}else{
 		$uname = basReq::val('uname');
 		$upass = basReq::val('upass');
 		if($uname && $upass){ 
 			devData::rstIDPW($uname,$upass);
-			$exmsg = "<br>帐号:[<span class='cF03'>$uname</span>] 密码:[<span class='cF03'>$upass</span>] 请牢记！";
+			$exmsg = "<br>".lang('tools.rst_idpw_id')."[<span class='cF03'>$uname</span>] ".lang('tools.rst_idpw_pw')."[<span class='cF03'>$upass</span>] ".lang('tools.rst_idpw_memory')."";
 		}else{
-			$exmsg = '设置错误！';	
+			$exmsg = lang('tools.rst_idpw_error');	
 		}
 	}
 //}elseif($act=='xxx'){
@@ -129,19 +124,19 @@ if(in_array($act,array('expData','expBack'))){
 }elseif($act){
 	echo "Error:$act";	
 }
-@$re = $act ? $names[$act].' ['."$act:".$part.'] - '.(empty($_res) ? '完成' : $_res) : '';
+@$re = $act ? $names[$act].' ['."$act:".$part.'] - '.(empty($_res) ? lang('tools.rst_end') : $_res) : '';
 $re .= '<br> @ '.date('Y-m-d H:i:s');
 
 ?>
 
 <div>
-  <p>处理结果</p>
+  <p><?php lang('tools.rst_res',0); ?></p>
   <table width="100%" border="1" class="tblist">
     <tr id="res" class="tc">
       <td><?php echo $re.@$exmsg; ?></td>
     </tr> 
     <tr>
-      <td class="tip">提示:未安装状态,不能执行DB相关操作。</td>
+      <td class="tip"><?php lang('tools.rst_idpw_tip1',0); ?></td>
     </tr> 
   </table>
 </div>
@@ -153,7 +148,7 @@ function chkIdpass(e,no,len){
 	var tmp = $(e).val().replace(/\W/g, ""); //jsLog(tmp);
 	if(simpass.indexOf(tmp)>0 || tmp.length<len){
 		tmp = orgcfgs[no];
-		alert('帐号密码不规范：\n字母/数字/下划线组成, 且字母开头\n帐号:3~15个字符, 密码:6~24个字符\n且不能是如下简单字串:\n'+simpass);
+		alert('<?php lang('tools.rst_idpw_tip2',0); ?>'+simpass);
 	}
 	$(e).val(tmp);
 }

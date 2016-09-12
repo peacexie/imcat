@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(); } 
+{php glbHtml::page('imp','/plus/ajax/comjs.php?act=jsPlus'); }
+{php $this->pimp('/layer/layer.js','vui'); }
+
+</head><body> 
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+	{inc:"c_pub/mod_side"}
+  </div>
+  <div class="pgf_mcon">
+  	{inc:"c_pub/mnews_detail"}
+    <div class="clear"></div>
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+</body></html>

@@ -23,7 +23,7 @@ class admPFunc{
 	// fileNav
 	static function fileNav($now,$cfg=array()){
 		$gap = "<span class='span ph5'>|</span>";
-		$_cfg = glbConfig::read('nava','sy'); 
+		$_cfg = basLang::ucfg('nava'); 
 		if(is_string($cfg) && isset($_cfg[$cfg])) $cfg = $_cfg[$cfg];
 		$str = ''; 
 		foreach($cfg as $file=>$title){
@@ -40,7 +40,7 @@ class admPFunc{
 	
 	// fileNav
 	static function fileNavTitle($now,$cfg=array()){
-		$_cfg = glbConfig::read('nava','sy'); 
+		$_cfg = basLang::ucfg('nava'); 
 		if(is_string($cfg) && isset($_cfg[$cfg])) $cfg = $_cfg[$cfg];
 		foreach($cfg as $file=>$title){
 			if(strstr($file,$now)){ 

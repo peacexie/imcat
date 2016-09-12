@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."/config.php");
 <!DOCTYPE html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
-<title>支付调试页</title>
+<title><?php lang('a3rd.xsend_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
@@ -54,7 +54,7 @@ echo "<p class='nav'>$stabs</p>";
 <?php } ?>
 </p>
 <p class="nav">
-<input type="submit" value="提交">
+<input type="submit" value="<?php lang('a3rd.xsend_send',0); ?>">
 </p>
 <?php foreach($opay as $k=>$v){ ?>
 <input name="<?php echo $k; ?>" type="hidden" value="<?php echo $v; ?>">

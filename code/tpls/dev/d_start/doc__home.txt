@@ -1,5 +1,4 @@
 
-不适合：多商户商城…你可请马云样的人物组建阿里巴巴类似团队！
 tmp...
 
 #resume#系统简介
@@ -7,7 +6,7 @@ tmp...
 * 安全、高效、轻量、免费、共享：通用PHP网站应用系统！
 * 责权申明：无版权，共享于各种合法用途！
 * 适用于：网店，医院，学校，企业站，个人网站，企业内部Intranet，各种行业门户站点等……
-* 拒绝用于：任何非法活动…建议你到日美尽情发挥！
+* 拒绝用于：任何非法活动…
 
 
 #func#功能模块
@@ -18,17 +17,18 @@ tmp...
 * 其它 : 计划任务/积分/模板继承/tag缓存/js标签/
 * 文档/资讯(默认) : 商品展销/新闻/专题/课程资源/样例文档/内部公文/问答系统
 * 用户/会员(默认) : 企业/政府机构/非盈利组织/个人/管理员
-* 展示版本(默认) : 电脑版/手机版/演示版/管理后台/会员中心
+* 展示版本(默认) : 电脑版/手机版/开发演示版/Guides(英文)/管理后台/会员中心
+* 多语言：自定义添加语言包（自v3.3推出中英文两个语言包）
 
 
-#tiexincat#名字由来
+#IntimateCat#名字由来
 
 * 猫：平凡，温顺，实而无华；正是本系统追求的目标---“轻量-免费-共享”！
 * 猫：为捉老鼠，洞口守候数时；正是本系统对待“安全-高效-细节”需要的执着！
 * 猫：捉老鼠不在乎黑白；本“贴心猫”：
  - 不在乎任何设计架构模式，不在乎任何高深理论
  - 只用最精最简的架构，最少最易的维护量，为您提供实用的Web应用系统！
-* 大家抢注域名：TiexinCat, IntimateCat, txmao, txcat…
+* 大家抢注域名：Intimate, IntimateCat, txmao, txcat, imcat, …
 * peace,2015-12-17 05:00 失眠所得
 
 
@@ -43,15 +43,14 @@ tmp...
  - 筹划下一版本：ver3.4
  - 下一版本：将不再支持php5.2
  - 拟：更换一点发布方式（可能会发布一些可单独安装的模块）
- - 拟：制作英文版翻译包，代码部署到git上去，面向世界！
- - 完善完善已知bug
+ - 完善已知bug
 
 
 #declare#理念申明
 
 * 开源理念：尊重版权，共享技术，努力打造安全高效和谐的web应用系统！
 * 演示数据：仅演示功能，不构成任何交易凭证,也不承担相关风险和责任！
-* 文档手册：为您指点迷津；二次开发DIY！
+* 文档手册/Guides：中文文档/英文文档；为您指点迷津；二次开发DIY！
 * 维护升级：每年2~4次升级；周末或节假日发布；欢迎合作：<a href="tencent://message/?uin=80893510&Site=贴心猫&Menu=yes">QQ</a> # <a href="mailto:xpigeon#163.com">E-mail</a>
 
 
@@ -60,4 +59,4 @@ tmp...
 * 感谢：我家人和亲友的理解和支持
 * 感谢：我之前和现在所在的公司的磨练及同事的帮助
 * 感谢：开放的互联网 —— （包含但不限于）以下提及的开源项目或免费接口或免费服务（排名部分先后）
- - （CanPHP, layer[layui], KindEditor, UEditor, UMEditor, CKEditor, dg.gd.cn, ckplayer, Sina, Ip138, S1616, DatePicker, passwordStrength, EasyValidator, phpMailer, PHPQRCode, baiduMap, googleMap）
+ - （CanPHP, github.com, duapp.com, layer[layui], KindEditor, UEditor, UMEditor, CKEditor, dg.gd.cn, ckplayer, Sina, Ip138, S1616, DatePicker, passwordStrength, EasyValidator, phpMailer, PHPQRCode, baiduMap, googleMap）

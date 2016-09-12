@@ -5,7 +5,8 @@ class basElm{
 
 	// option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号,|=分开键值
 	//		"upd,更新;del|删除\nshow=启用"
-	static function setOption($cfgs,$val='',$title='-请选择-'){
+	static function setOption($cfgs,$val='',$title='-<Null>-'){
+		$title = $title=='-<Null>-' ? lang('core.opt_first') : $title;
 		$cfgs = self::text2arr($cfgs); //print_r($cfgs);
 		if($title) $cfgs = array(''=>$title) + $cfgs; 
 		$str = '';
@@ -77,12 +78,17 @@ class basElm{
 			$mcfg = glbConfig::read($t[0]); 
 			$re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
 		}else{
+			/*
+			$text = str_replace(array(' ','|',','),array('','=','='),$text);
+			$text = str_replace(array("\r\n","\n\r","\n","\r",";"),'&',$text);
+			parse_str($text, $re);*/
+			//*
 			$a = self::line2arr($text,1,';'); $re = array();
 			foreach($a as $v){ //fmadm=1234567890,abcdefg
 				$v = str_replace(array(' '),'',$v);
 				$t = explode("=",str_replace(array('|',','),'=',$v)); 
 				$len0 = strlen($t[0]); $t[1] = isset($t[1]) ? $t[1] : $t[0]; //无=则[val=text],兼容[array('0'=>'')]，
-				if($len0 && isset($t[1])) $re[$t[0]] = substr($v,$len0+1); 
+				if($len0 && isset($t[1])) $re[$t[0]] = substr($v,$len0+1); 	
 			}
 		} // 不用array()-eval[]了*/
 		return $re;

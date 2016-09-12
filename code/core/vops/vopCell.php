@@ -63,7 +63,7 @@ class vopCell{
 	static function vOpen($mod,$pid='',$title='',$w=0,$h=0){
 		if(!$title){
 			$mcfg = glbConfig::read($mod);
-			$title = '发布-'.$mcfg['title'];
+			$title = lang('core.pub_title').'-'.$mcfg['title'];
 		}
 		$w || $w = 500; $h || $h = 400;
 		$scfile = file_exists(DIR_ROOT."/plus/coms/$mod.php") ? $mod : 'add_coms';

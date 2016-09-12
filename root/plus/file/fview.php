@@ -43,9 +43,9 @@ $_upPath = in_array($parts,array('temp',));
 if($dfile && $_admPerm && $_delPath){
 	if(strstr($dfile,'./')) glbError::show('Error Path.');
 	@$dre = unlink($rdir.$dfile); //var_dump($dre);
-	$dmsg = $dre ? ' 删除成功！' : ' 删除失败!';
+	$dmsg = $dre ? lang('plus.fv_delok') : lang('plus.fv_delng');
 }
-pfileHead($parts,'媒体（视频，音频，Flash，iFrame，地图）插入');
+pfileHead($parts,lang('plus.fv_ftitle'));
 ?>
 
 <table border='1' class='tbdata'>
@@ -58,10 +58,10 @@ pfileHead($parts,'媒体（视频，音频，Flash，iFrame，地图）插入');
 			$str .= (empty($str) ? '' : ' # ')."\n<a href='fview.php?".basReq::getURep($allpars,'dir',$k)."'>$k</a>";
 		}
 	}
-	echo $str ? $str : '(无子目录)';
+	echo $str ? $str : lang('plus.fv_nusub');
 	?>
     </th>
-    <th colspan="2" title="击文件即选择并返回">附件选择管理</th>
+    <th colspan="2" title="<?php lang('plus.fv_click',0); ?>"><?php lang('plus.fv_flist',0); ?></th>
   </tr>
   <tr>
     <td colspan="6">&nbsp;<?php echo "$rpath/$ufix/"; ?><span id="fsName" style="color:#00F;"><?php echo $dmsg; ?></span></td>
@@ -74,12 +74,12 @@ $sFile = 0;
 $i = 0;
 ?>
   <tr>
-    <th nowrap>文件选择/目录列表</th>
-    <th width="15%" align='center' nowrap>预览</th>
-    <th width="8%" align='center' nowrap>选择</th>
-    <th width="10%" align='center' nowrap>大小[B]</th>
-    <th width="18%" align="center" nowrap>创建时间</th>
-    <th width="10%" align="center" nowrap>删除</th>
+    <th nowrap><?php lang('plus.fv_tfiles',0); ?></th>
+    <th width="15%" align='center' nowrap><?php lang('plus.fv_tview',0); ?></th>
+    <th width="8%" align='center' nowrap><?php lang('plus.fv_tpick',0); ?></th>
+    <th width="10%" align='center' nowrap><?php lang('plus.fv_tsize',0); ?></th>
+    <th width="18%" align="center" nowrap><?php lang('plus.fv_tadd',0); ?></th>
+    <th width="10%" align="center" nowrap><?php lang('plus.fv_tdel',0); ?></th>
   </tr>
 <?php 
 $re = comFiles::listDir("$rdir/$ufix");
@@ -114,25 +114,25 @@ foreach($re['file'] as $file=>$v){
 	if($ticon['icon']=='pic'){
 	  $id = str_replace('.','___',str_replace('-','_',$file));
 	  $jsAct = " onmouseover=\"fviShow('$id','$fPName',this)\" onmouseout=\"fviShow('$id')\" ";
-	  $fSubj = "预览"; 
+	  $fSubj = lang('plus.fv_tview'); 
 	  $tdAct = $jsAct;
 	}else{
-	  $fSubj = "打开查看";
+	  $fSubj = lang('plus.fv_open');
 	} 	
 ?>
   <tr>
-    <td onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);" title="选择文件" nowrap>
+    <td onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);" title="<?php lang('plus.fv_pfile',0); ?>" nowrap>
     <img src="<?php echo PATH_STATIC."/icons/file18/{$ticon['icon']}.gif"; ?>" width="18" height="18" border="0" align="absmiddle"> <?php echo $file ?></td>
     <td align='center' nowrap><a href="<?php echo $fPName ?>" target="_blank"><?php echo $fSubj ?></a></td>
-    <td align="center" nowrap style="cursor:hand;color:#0000FF; " title="选择文件" <?php echo $tdAct ?> onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);">
-    选择<span class="idHidden" id='<?php echo $id ?>'></span></td>
+    <td align="center" nowrap style="cursor:hand;color:#0000FF; " title="<?php lang('plus.fv_pfile',0); ?>" <?php echo $tdAct ?> onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);">
+    <?php lang('plus.fv_tpick',0); ?><span class="idHidden" id='<?php echo $id ?>'></span></td>
     <td align='right' nowrap><?php echo $iSize ?></td>
     <td align="center" nowrap class="txtSC"><?php echo $iTime ?></td>
     <td align="center" nowrap class="txtSC">
       <?php if($_admPerm && $_delPath){ ?> 
-      <a href="#" onClick="urlConfirm('?<?php echo "$allpars&dfile=/$ufix/$file" ?>','确认删除[<?php echo $file; ?>]? \n请小心操作哦！')">删除</a>
+      <a href="#" onClick="urlConfirm('?<?php echo "$allpars&dfile=/$ufix/$file" ?>','<?php echo lang('plus.fv_delq',$file); ?>')"><?php lang('plus.fv_tdel',0); ?></a>
       <?php }else{ ?>
-      <span style="color:#999">删除</span>
+      <span style="color:#999"><?php lang('plus.fv_tdel',0); ?></span>
       <?php } ?></td>
   </tr>
 <?php
@@ -141,13 +141,13 @@ foreach($re['file'] as $file=>$v){
   <?php if($i>0){ ?>
   <tr>
     <td colspan='7' nowrap>&nbsp;
-    文件:<font color="#FF0000"><?php echo $nFile ?></font> &nbsp;
-    目录:<font color="#FF0000"><?php echo $nDir ?> [<?php echo basStr::showNumber($sFile) ?>]</font> &nbsp;
+    <?php lang('plus.fv_file',0); ?>:<font color="#FF0000"><?php echo $nFile ?></font> &nbsp;
+    <?php lang('plus.fv_dir',0); ?>:<font color="#FF0000"><?php echo $nDir ?> [<?php echo basStr::showNumber($sFile) ?>]</font> &nbsp;
   </td>
   </tr>
   <?php }else{ ?>
   <tr>
-    <td colspan='7' nowrap> 暂时无 文件/目录列表...请上传!</td>
+    <td colspan='7' nowrap> <?php lang('plus.fv_nofiles',0); ?> </td>
   </tr>
   <?php } ?>
 </table>
@@ -157,9 +157,9 @@ foreach($re['file'] as $file=>$v){
   <?php if(2==1){ ?>
   <form name="ffimg2" id="ffimg2" action="?" method="post">
     <tr>
-      <td nowrap>目录:
+      <td nowrap><?php lang('plus.fv_dir',0); ?>:
         <input name="Dir" type="text" id="Dir" value="<?php echo $dDir ?>" size="24" maxlength="12" Xreadonly>
-        <input name=Button type=submit id="Button2" value="建立目录" <?php echo $sDis ?>disabled>
+        <input name=Button type=submit id="Button2" value="<?php lang('plus.fv_adddir',0); ?>" <?php echo $sDis ?>disabled>
         <input name="Act" type="hidden" id="Act" value="Dir">
         <input name="yPath" type="hidden" id="yPath" value="<?php echo $yPath ?>"> </td>
       <td align="left" nowrap>&nbsp;</td>
@@ -168,29 +168,25 @@ foreach($re['file'] as $file=>$v){
   <?php } if($_upPerm && $_upPath){ ?>
   <form name="fup1" id="fup1" action="updeel.php?<?php echo $allpars; ?>" enctype="multipart/form-data" method="post">
     <tr>
-      <td nowrap>本地上传:
-        <input name='local' type='file' id="local" style="width:360px; "> 或</td>
+      <td nowrap><?php lang('plus.fv_uplocal',0); ?>:
+        <input name='local' type='file' id="local" class='uploc'> <?php lang('plus.fv_or',0); ?> </td>
       <td rowspan="2" valign="top" nowrap class="tl pv20"><select name="upren" id="upren">
-        <option value="auto">自动命名</option>
-        <option value="keep">原文件名</option>
+        <option value="auto"><?php lang('plus.fv_atuoname',0); ?></option>
+        <option value="keep"><?php lang('plus.fv_orgname',0); ?></option>
       </select>
       <!--input name="recbk" type="hidden" value="refview"-->
-      <input name="btUpload" type=submit id="btUpload" value="上传"></td>
+      <input name="btUpload" type=submit id="btUpload" value="<?php lang('plus.fv_upload',0); ?>"></td>
     </tr>
     <tr>
-      <td nowrap><select name="uptype" class="w80"><option value="remote">远程图片</option><option value="base64">Base64图片</option></select>
+      <td nowrap><select name="uptype" class="w80"><option value="remote"><?php lang('plus.fv_rempic',0); ?></option><option value="base64"><?php lang('plus.fv_b64pic',0); ?></option></select>
         <input name='udata' type='text' id="udata" style="width:340px; "></td>
     </tr>
   </form>
   <?php } ?>
   <tr>
-    <td colspan='2' class="read">注意：<br>
-        1. 大文件请用FTP上传，可参考[管理帮助] 或 [<a href="#readme.txt" target="_blank">文件目录规划</a>] 相关文件；<br>
-        2. 可用[预览&gt;&gt;复制链接地址]得到相关附件地址；<br>
-        3. [临时] 新上传文档,都放在这里,添加后会自动移动到相关文件夹； <br>
-        4. [当前] 编辑资料时显示此项,此文件夹下的附件关联当前资料；<br>
-        5. [上传] 可批量上传到文件；<br>
-        6. [插入] 可插入：iframe(内框架),map(地图),swf(Flash媒体),audio(音频媒体),video(视频媒体)；</td>
+    <td colspan='2' class="read">
+        <?php basLang::inc('uless','plus_fview'); ?>
+    </td>
   </tr>
 </table>
 <div style='line-height:10px;'>&nbsp;</div>

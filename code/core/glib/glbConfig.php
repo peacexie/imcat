@@ -53,6 +53,10 @@ class glbConfig{
 		$file = "$base$file"; //echo "$dir,<br>";
 		if($type=='inc'){ //返回数组(php用)
 			if(!isset(self::$_CACHES_YS[$key])){
+				/*if(in_array($dir,array('sy','ex'))){
+					$flang = str_replace('.php','-'.$_cbase['sys']['lang'].'.php',$file);
+					$file = file_exists($flang) ? $flang : $file;
+				}*/
 				if(file_exists($file)){ // inc大文件，其实很占时间
 					require($file); 
 				}else{ 

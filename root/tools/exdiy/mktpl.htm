@@ -1,26 +1,26 @@
 
 
 <div>
-  <p> 模板套件工具 --- Idea from Symfony <!--(“app/console generate:bundle”)--></p>
+  <p> {lang(tools.mktpl_suit)} --- Idea from Symfony <!--(“app/console generate:bundle”)--></p>
   <form name="form1" method="post" action="?">
   <ul>
     <li>
-        <i>模板目录</i> 
+        <i>{lang(tools.mktpl_tpldir)}</i> 
         <b class="ext">&nbsp;</b>
         <b class="comm">
-        {code目录}/tpls/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="3~12个数字或英文字符">
+        {code{lang(tools.mktpl_dir)}}/tpls/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="{lang(tools.mktpl_312)}">
         </b> 
     </li>
     <li>
-        <i>入口文件</i> 
+        <i>{lang(tools.mktpl_enfile)}</i> 
         <b class="ext">.php</b>
         <b class="comm">
-        {proj目录}/<input name="front" type="text" maxlength="12" id="front" value="<?php echo $front; ?>" placeholder="3~12个数字或英文字符">
+        {proj{lang(tools.mktpl_dir)}}/<input name="front" type="text" maxlength="12" id="front" value="<?php echo $front; ?>" placeholder="{lang(tools.mktpl_312)}">
         </b>  
     </li>
 
     <li>
-        <i>数据模型</i> 
+        <i>{lang(tools.mktpl_datamode)}</i> 
         <b class="ext">&nbsp;</b>
         <b class="comm">
         Hello + <select name="mod" id="mod"><?php echo devApp::modOpt($mod); ?></select>
@@ -28,30 +28,30 @@
     </li>
     <?php if(!comFiles::canWrite(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php')){ ?>
     <li>
-        <i class="c999">不可用提示</i> 
+        <i class="c999">{lang(tools.mktpl_nowrite)}</i> 
         <b class="ext">&nbsp;</b>
         <b class="comm">
-            文件/cfgs/excfg/ex_vopfmt.php不可写。
+            {lang(tools.mktpl_fnwrite,/cfgs/excfg/ex_vopfmt.php)}
         </b> 
     </li>
     <?php }elseif($dmsg){ ?>
     <li>
-        <i class="c999">创建结果</i> 
+        <i class="c999">{lang(tools.mktpl_crtres)}</i> 
         <b class="view">
         	<?php echo $fmsg; ?>
         </b>
         <b class="comm">
             <a class="cF00"><?php echo $smsg; ?></a> &nbsp; 
-            <a href="../../../<?php echo $front; ?>.php" target="_blank">预览</a> # 
-            <a href="?">返回</a>
+            <a href="../../../<?php echo $front; ?>.php" target="_blank">{lang(tools.mktpl_view)}</a> # 
+            <a href="?">{lang(tools.mktpl_back)}</a>
         </b> 
     </li>
     <?php }else{ ?>
     <li>
-        <i class="c999">创建模板套件</i> 
-        <b class="ext"><input name="act" type="submit" value="创建" class="btn w40" id="act"></b>
+        <i class="c999">{lang(tools.mktpl_crtsuit)}</i> 
+        <b class="ext"><input name="act" type="submit" value="{lang(tools.mktpl_create)}" class="btn w40" id="act"></b>
         <b class="comm">
-        模板名称:<input name="title" type="text" maxlength="12" id="title" value="<?php echo basReq::val('title'); ?>" placeholder="可不填写默认为:xxxApp">
+        {lang(tools.mktpl_tplname)}:<input name="title" type="text" maxlength="12" id="title" value="<?php echo basReq::val('title'); ?>" placeholder="{lang(tools.mktpl_def)}:xxxApp">
         
         </b> 
     </li>
@@ -59,6 +59,6 @@
 
   </ul>
   </form>
-  <span class="notice">更多说明/手动配置 见：<a href="<?php echo vopUrl::fout('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00">模板标签 >> 整套模版</a></span>
+  <span class="notice">{lang(tools.mktpl_more)}<a href="<?php echo vopUrl::fout('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00">{lang(tools.mktpl_nvtpl)}</a></span>
 </div>
 

@@ -98,9 +98,9 @@ class extSeo{
 				// 注意更新时间为生成文件的时间。
 				comFiles::put($file,''); //清空旧资料
 			}
-			$msg = '成功推送:'.$rslog;
+			$msg = lang('push_ok').$rslog;
 		}else{
-			$msg = '推送失败'.$rslog;
+			$msg = lang('push_ng').$rslog;
 		}
 		basDebug::bugLogs('bpushRun',$msg,'detmp','db');
 		$nok = empty($res->success) ? 0 : $res->success;

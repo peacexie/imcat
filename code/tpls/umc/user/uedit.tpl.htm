@@ -3,7 +3,7 @@
 {block:init}
 {:parent}
 <?php 
-$tipmsg = '修改资料';
+$tipmsg = lang('user.pub_einfo');
 if(!empty($user->uinfo['uid'])){
     $mod = $user->uinfo['umods']; 
     $uid = $user->uinfo['uid'];
@@ -18,7 +18,7 @@ if(!empty($user->uinfo['uid'])){
 
 {block:action}
 <div class="umc-mitem">
-<h3><i>edit information</i>修改资料：</h3>
+<h3><i>edit information</i>{lang(user.pub_einfo)}: </h3>
 <?php
 if(empty($bsend) && $islogin){
 	$fmo = $db->table($dop->tbid)->where("uid='$uid'")->find();
@@ -27,7 +27,7 @@ if(empty($bsend) && $islogin){
 	//$dop->fmAccount();
 	fldView::lists($mod,$fmo);
 	//$dop->fmProp();
-	glbHtml::fmae_send('bsend','提交');
+	glbHtml::fmae_send('bsend',lang('submit'));
 	glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
 	//if(in_array($mod,array('company','govern','organize'))){
 		//fldView::relat("fm[grade]","fm[miuid],$mod,$uid,fm[grade]"); 
@@ -36,8 +36,7 @@ if(empty($bsend) && $islogin){
 	$dop->svPrep(); 
 	unset($dop->fmv['grade'],$dop->fmv['show']);
 	$db->table($dop->tbid)->data($dop->fmv)->where("uid='$uid'")->update();
-	echo "<dd class='msg'>修改完成：<a href='?$this->mkv'>点击返回</a></dd>";
+	echo "<dd class='msg'>".lang('user.uop_editok').": <a href='?$this->mkv'>".lang('user.uop_goback')."</a></dd>";
 }
 ?>
 </div>
-{/block:action}

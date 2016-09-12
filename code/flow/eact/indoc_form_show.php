@@ -18,8 +18,8 @@ if(empty($fmo['indep'])){
 }
 $dop->fmo = $fmo;
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-glbHtml::fmae_row('所在栏目',$dop->fmType('catid').' &nbsp; 显示'.$dop->fmShow());
+glbHtml::fmae_row(lang('flow.dops_icat'),$dop->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$dop->fmShow());
 fldView::lists($mod,$fmo);
 $dop->fmProp();
-glbHtml::fmae_send('bsend','提交');
+glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
