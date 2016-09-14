@@ -1,9 +1,4 @@
 
-
-* Coming soon!
-* Release: 016-09-17, Weight: 3.30 MB
-
-
 ### What is IntimateCat(贴心猫)?
 
 * IntimateCat(贴心猫) is a set of Light weight, free, sharing general PHP web application system!
