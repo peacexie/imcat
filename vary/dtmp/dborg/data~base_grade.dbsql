@@ -1,0 +1,25 @@
+
+-- base_grade@2016-09-14 20:17:46 -- 
+INSERT INTO `{pre}base_grade{ext}` VALUES 
+('supper','adminer','超级管理员','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('auser','adminer','会员管理员','148','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('ainfo','adminer','信息管理员','132','1','m1inf,m1app,m1adm,m2fav,m2adm,m3012,m2016,m2020','order-isdone,indoc-get,indoc-d,indoc-adm','admin/paras.php,admin/api400.php','person,lnkpic,apisms,apipay,apimail,apijihua','about,gbook','news,snote','about,snote','pstools,psdev','upsize1=200\r\nupsizes=960000','','','0','','','0',''),
+('aframe','adminer','系统架构员','180','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('advers','adminer','广告管理员','160','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('pcom','person','普通个人','124','1','','order-m,order-inquiry,order-nodone,order-isdone,order-d','','','','','','','','','','0','','','0',''),
+('pvip','person','VIP个人','128','1','','order-m,order-inquiry,order-nodone,order-isdone,order-d','','','','','','','','','','0','','','0',''),
+('ccom','company','普通企业','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','demo,about','','','','edtlist,edtup,edtadm,pstools,psdev,image,flash,media,docus','upsize1=200\r\nupsizes=960000','','','0','','','0',''),
+('cvip','company','VIP企业','128','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','edtlist,edtup,edtadm','','','','0','','','0',''),
+('gcom','govern','一般机构','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('gvip','govern','VIP机构','128','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('zcom','organize','一般组织','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','upsize1=200\r\nupsizes=960000','','','0','','','0',''),
+('zvip','organize','VIP组织','128','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('astop','adminer','过期管理员','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('pstop','person','过期个人','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('cstop','company','过期企业','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('gstop','govern','禁用机构','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('zstop','organize','过期组织','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('aperm','adminer','权限测试员','666','1','m1edu,m1inf','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','admin/menus.php,admin/apisms.php','demo,nrem','about,gbook','news,snote','pro','edtlist,edtup,edtadm','','','','0','','','0',''),
+('inadm','inmem','超级会员','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),
+('incom','inmem','普通会员','128','1','','order-m,order-inquiry,order-nodone,order-isdone,order-d','','corder,coitem','','','','edtlist,edtup,edtadm,image,flash,media','','','','0','','','0',''),
+('instop','inmem','过期会员','888','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0','');

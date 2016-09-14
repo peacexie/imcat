@@ -1,0 +1,12 @@
+
+-- users_uppt@2016-09-14 20:17:46 -- 
+INSERT INTO `{pre}users_uppt{ext}` VALUES 
+('admin','system','','','0','','','0',''),
+('master','system','','','0','','','0',''),
+('test333','weixin','test_openid','','0','','','0',''),
+('standard:system','(standard)','3-15;2-96','ys','0','','long_full_username','0',''),
+('standard:tel','(standard)','7-15','5880401','0','','0769-12345678','0',''),
+('standard:qq','(standard)','5-18','94083','0','','123456789012345678','0',''),
+('standard:sweibo','(standard)','3-96','xpigeon@163.com','0','','','0',''),
+('ahong','weixin','12-96','123DK8vjjcn2','0','','','0',''),
+('standard:email','(standard)','8-96','ys@1.com','0','','long_full_name@long-domain.com','0','');

@@ -1,0 +1,8 @@
+
+-- wex_apps@2016-09-14 20:17:46 -- 
+INSERT INTO `{pre}wex_apps{ext}` VALUES 
+('admin','test','1','aesce_aeeaes_65535465','wx20b06b3c8d4e2a46','226622b262222v2r26b262br2rabbb2r','wx_tys_test.jpg'),
+('y08_test','fuwu','1','51fwn15353133521155UYwfjf','wx77827302390ce603','q0z003ngn140g20000a3qqg3n30zn04n',''),
+('zhanghua','test','1','porrrrzrr0060066090','wx3b915d8db305b742','oo336ord3o66d36666636d636r6oz33d',''),
+('zhanhl','test','1','Hz8_zns_e8n_oovyn_zzy','wxb864010c7215b0b1','l5755s77n7157l7l55lsf4751cf7557l','wx_zhl_test.jpg'),
+('peays','chking','1','A8MAFDaLBiA1aaaaAayM','wxce96c26e3d9b8799','0f19099119999v9k9f1191k0k9v10990','');
