@@ -1,6 +1,6 @@
 <?php
 // 项目(project): 访问相对根路径：注意：在根目录设置是空字符串,而不是/，非根目录前面以/开头,后面不要/
-define('PATH_PROJ', '/txmao'); 
+define('PATH_PROJ', ''); 
 // 项目(project): 根目录
 define('DIR_PROJ', dirname(dirname(dirname(__FILE__))));
 

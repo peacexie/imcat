@@ -78,6 +78,13 @@ $_mumem = array (
       'deep' => '2',
       'cfgs' => '.guest',
     ),
+    'user-mbind' => 
+    array (
+      'pid' => 'user-m',
+      'title' => '',
+      'deep' => '2',
+      'cfgs' => '',
+    ),
     'order-m' => 
     array (
       'pid' => '0',
@@ -139,61 +146,61 @@ $_mumem = array (
       'pid' => 'indoc-m',
       'title' => '公文发布',
       'deep' => '2',
-      'cfgs' => '.guest',
+      'cfgs' => '',
     ),
     'indoc-iadm' => 
     array (
       'pid' => 'indoc-m',
       'title' => '公文管理',
       'deep' => '2',
-      'cfgs' => '.guest',
+      'cfgs' => '',
     ),
     'faqs-m' => 
     array (
       'pid' => '0',
-      'title' => '',
+      'title' => '问答系统',
       'deep' => '1',
       'cfgs' => '',
     ),
     'faqs-d' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '详情',
       'deep' => '2',
       'cfgs' => '',
     ),
     'faqs-t' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '类别',
       'deep' => '2',
       'cfgs' => '',
     ),
     'faqs-new' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '最新',
       'deep' => '2',
       'cfgs' => '',
     ),
     'faqs-tip' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '精华',
       'deep' => '2',
       'cfgs' => '',
     ),
     'faqs-hot' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '热门',
       'deep' => '2',
       'cfgs' => '',
     ),
     'faqs-tag' => 
     array (
       'pid' => 'faqs-m',
-      'title' => '',
+      'title' => '标签',
       'deep' => '2',
       'cfgs' => '',
     ),

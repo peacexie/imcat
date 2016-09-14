@@ -21,6 +21,7 @@ $_muadm_perm = array (
   'm3qadmin' => 'dops/a',
   'm3qrtag' => 'dops/a',
   'm3qaset' => 'apis/exp_qaset',
+  'm3gbook' => 'dops/a',
   'm3catch' => 'admin/update,admin/static',
   'm3self' => 'admin/uinfo',
   'm3env' => 'admin/ediy',

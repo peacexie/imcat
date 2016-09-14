@@ -6,11 +6,14 @@ $_faqs = array (
   'enable' => '1',
   'etab' => '1',
   'deep' => '1',
+  'cfgs' => 'showdef=0
+ippub=3
+iprep=60',
   'f' => 
   array (
     'title' => 
     array (
-      'title' => '标题',
+      'title' => 'Title/标题',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -18,7 +21,7 @@ $_faqs = array (
       'dblen' => '255',
       'dbdef' => '',
       'vreg' => 'tit:2-60',
-      'vtip' => '标题2-60字符',
+      'vtip' => 'Title 2-60 characters<br>标题2-60字符',
       'vmax' => '60',
       'fmsize' => '360',
       'fmline' => '1',
@@ -75,32 +78,31 @@ $_faqs = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'cfgs' => 'tip24=精华
+      'cfgs' => '0=(无)
+tip24=精华
 tip36=推荐
 tip48=有用
 tip56=收藏',
     ),
     'detail' => 
     array (
-      'title' => '内容',
+      'title' => 'Detail/内容',
       'enable' => '1',
       'etab' => '1',
       'type' => 'text',
-      'dbtype' => 'mediumtext',
+      'dbtype' => 'text',
       'dblen' => '0',
       'dbdef' => '',
       'vreg' => 'nul:str:10+',
-      'vtip' => '内容10字符以上',
+      'vtip' => 'At least 10 characters, support makedown<br>内容10字符以上,支持makedown语法',
       'vmax' => '0',
-      'fmsize' => '640x320',
+      'fmsize' => '560x18',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => 'editor',
-      'fmexstr' => 'full,exbar',
     ),
     'tags' => 
     array (
-      'title' => '标签',
+      'title' => 'Tags/标签',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -148,7 +150,7 @@ tip56=收藏',
     ),
     'source' => 
     array (
-      'title' => '来源',
+      'title' => 'From/来源',
       'enable' => '1',
       'etab' => '1',
       'type' => 'input',
@@ -174,7 +176,7 @@ tip56=收藏',
       'vreg' => 'n+i',
       'vtip' => '如:888',
       'vmax' => '8',
-      'fmsize' => '',
+      'fmsize' => '240',
       'fmline' => '1',
       'fmtitle' => '1',
     ),
@@ -194,52 +196,123 @@ tip56=收藏',
       'fmline' => '0',
       'fmtitle' => '1',
     ),
+    'bugid' => 
+    array (
+      'title' => 'bug编号',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'input',
+      'dbtype' => 'varchar',
+      'dblen' => '24',
+      'dbdef' => '',
+      'vreg' => 'nul:',
+      'vtip' => '2016-0720:11234567',
+      'vmax' => '24',
+      'fmsize' => '150',
+      'fmline' => '1',
+      'fmtitle' => '1',
+    ),
+    'bugst' => 
+    array (
+      'title' => '状态',
+      'enable' => '1',
+      'etab' => '0',
+      'type' => 'select',
+      'dbtype' => 'varchar',
+      'dblen' => '12',
+      'dbdef' => 'open',
+      'vreg' => 'nul:',
+      'vtip' => '',
+      'vmax' => '12',
+      'fmsize' => '',
+      'fmline' => '0',
+      'fmtitle' => '1',
+      'cfgs' => 'open=开放
+noedit=关闭编辑
+close=关闭回复',
+    ),
+    'mdshow' => 
+    array (
+      'title' => 'md显示',
+      'enable' => '1',
+      'etab' => '1',
+      'type' => 'select',
+      'dbtype' => 'varchar',
+      'dblen' => '12',
+      'dbdef' => '',
+      'vreg' => '',
+      'vtip' => '',
+      'vmax' => '12',
+      'fmsize' => '',
+      'fmline' => '0',
+      'fmtitle' => '1',
+      'cfgs' => 'text=Text(文本)
+md=Makedown',
+    ),
   ),
   'i' => 
   array (
+    'qapub' => 
+    array (
+      'pid' => '0',
+      'title' => 'Fixed/修复',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'F',
+      'cfgs' => '',
+    ),
+    'qabug' => 
+    array (
+      'pid' => '0',
+      'title' => 'Bug/反馈',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'B',
+      'cfgs' => '',
+    ),
     'qapro' => 
     array (
       'pid' => '0',
-      'title' => '产品质量',
+      'title' => 'Improve/改进',
       'deep' => '1',
       'frame' => '0',
-      'char' => 'C',
+      'char' => 'I',
       'cfgs' => '',
     ),
-    'qatech' => 
+    'qacom' => 
     array (
       'pid' => '0',
-      'title' => '行业技术',
-      'deep' => '1',
-      'frame' => '0',
-      'char' => 'X',
-      'cfgs' => '',
-    ),
-    'qaserv' => 
-    array (
-      'pid' => '0',
-      'title' => '售后服务',
+      'title' => 'Share/交流',
       'deep' => '1',
       'frame' => '0',
       'char' => 'S',
       'cfgs' => '',
     ),
-    'qacorp' => 
+    'qatra' => 
     array (
       'pid' => '0',
-      'title' => '关于公司',
+      'title' => 'Trans/翻译',
       'deep' => '1',
       'frame' => '0',
-      'char' => 'G',
+      'char' => 'T',
       'cfgs' => '',
     ),
-    'qaweb' => 
+    'qahlp' => 
     array (
       'pid' => '0',
-      'title' => '网站功能',
+      'title' => 'Help/捐助',
       'deep' => '1',
       'frame' => '0',
-      'char' => 'W',
+      'char' => 'H',
+      'cfgs' => '',
+    ),
+    'qareg' => 
+    array (
+      'pid' => '0',
+      'title' => 'Speci/规范',
+      'deep' => '1',
+      'frame' => '0',
+      'char' => 'S',
       'cfgs' => '',
     ),
   ),

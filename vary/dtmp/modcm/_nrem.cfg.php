@@ -6,12 +6,12 @@ $_nrem = array (
   'enable' => '1',
   'etab' => '0',
   'deep' => '1',
-  'cfgs' => 'ippub=5
-repub=3
-daypub=10
+  'cfgs' => 'showdef=1
+login=1
+ap_cvip=500
 allpub=100
-r_cvip=5
-showdef=1',
+ippub=5
+iprep=60',
   'pmod' => 'news',
   'cradd' => '10',
   'crdel' => '40',

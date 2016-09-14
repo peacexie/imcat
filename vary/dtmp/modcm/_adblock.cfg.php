@@ -171,7 +171,7 @@ $_adblock = array (
       'dblen' => '255',
       'dbdef' => '',
       'vreg' => '',
-      'vtip' => '如：{root}[=]http://txjia.com/<br>或：/path/[=]/08tools/yssina/1/root/',
+      'vtip' => '如:{root}[=]http://txjia.com/<br>或/path/[=]/08tools/yssina/1/root/',
       'vmax' => '255',
       'fmsize' => '480',
       'fmline' => '1',

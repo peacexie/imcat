@@ -1,10 +1,9 @@
 <?php
 $_faqs_types = array (
-  '_tags' => '19',
-  '_allt' => '6',
-  'qacorp' => '2',
-  'qapro' => '1',
-  'qaserv' => '1',
-  'qaweb' => '2',
+  '_tags' => '8',
+  '_allt' => '4',
+  'qacom' => '1',
+  'qapub' => '1',
+  'qareg' => '2',
 );
 ?>

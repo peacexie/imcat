@@ -164,9 +164,8 @@ class devSetup{
 	// updCache 
 	static function updCache(){ 
 		$db = glbDBObj::dbObj(); 
-		//glbCUpd::upd_groups();
-		$g0 = $db->table('base_model')->where("enable='1'")->order('pid,top,kid')->select();
-		$skip = array('groups','plus');
+		$g0 = $db->table('base_model')->where("enable='1'")->order('kid')->select();
+		$skip = array('groups','plus','docs','coms','users','advs',);
 		foreach($g0 as $k=>$v){
 			$key = $v['kid'];
 			if(in_array($key,array('score','sadm','smem','suser',))){ 

@@ -28,6 +28,18 @@
     $kid = basReq::ark('fm','kid','Key'); //获取post,get的fm数组下的kid键值
 ```
 
+#mlang#Lang-多语言调用
+
+* php 
+ - basLang::show('core.page_First')
+ - lang('admin.adm_center') 
+ - <?php lang('tools.start_setup',0) ?>
+* tpl
+ - {lang(core.view_times,$click)} 
+ - {lang(core.sys_name)}
+* js
+ - lang('jcore.sub_key')
+
 #varobj#常用变量，对象
 
 ```

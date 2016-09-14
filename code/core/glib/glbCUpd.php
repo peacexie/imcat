@@ -34,8 +34,8 @@ class glbCUpd{
 			}
 		}
 		glbConfig::save($arr,'groups');
-		unset(glbConfig::$_CACHES_YS['_groups']);
-		glbConfig::read('groups'); //重载
+		//unset(glbConfig::$_CACHES_YS['_groups']);
+		//glbConfig::read('groups'); //重载
 	}
 	
 	// upd grade

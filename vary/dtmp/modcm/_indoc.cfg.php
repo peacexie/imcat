@@ -171,15 +171,15 @@ v60=非常重要！',
       'type' => 'radio',
       'dbtype' => 'varchar',
       'dblen' => '12',
-      'dbdef' => 'ispub',
+      'dbdef' => 'isset',
       'vreg' => 'str:1-12',
       'vtip' => '设置[公开]后不用设置接收部门或人员',
       'vmax' => '12',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'cfgs' => 'ispub=公开
-isset=按设置',
+      'cfgs' => 'isset=按设置
+ispub=公开',
     ),
     'todep' => 
     array (
@@ -239,7 +239,7 @@ cseal_tl=左上
     ),
     'sendsms' => 
     array (
-      'title' => '短信通知',
+      'title' => '通知类型',
       'enable' => '1',
       'etab' => '1',
       'type' => 'select',

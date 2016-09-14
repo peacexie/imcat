@@ -255,6 +255,20 @@ $_muadm = array (
       'cfgs' => '<a href="?file=apis/exp_qaset">问答统计</a> 
 - <a href="?file=apis/exp_qaset&view=uset">更新</a>',
     ),
+    'm2else' => 
+    array (
+      'pid' => 'm1coms',
+      'title' => '其他互动',
+      'deep' => '2',
+      'cfgs' => '',
+    ),
+    'm3gbook' => 
+    array (
+      'pid' => 'm2else',
+      'title' => '网站留言管理',
+      'deep' => '3',
+      'cfgs' => '?file=dops/a&mod=gbook',
+    ),
     'm1adv' => 
     array (
       'pid' => '0',
@@ -305,7 +319,7 @@ $_muadm = array (
       'pid' => 'm2sys',
       'title' => '配置搜索',
       'deep' => '3',
-      'cfgs' => '<a href="?file=admin/ediy&part=exdiy">DIR配置</a> 
+      'cfgs' => '<a href="?file=admin/ediy&part=exdiy">DIY配置</a> 
 - <a href="?file=admin/ediy&part=search">搜索</a>',
     ),
     'm2data' => 
@@ -482,7 +496,7 @@ $_muadm = array (
       'pid' => 'm2adt',
       'title' => '数据库管理',
       'deep' => '3',
-      'cfgs' => '数据库(!){$root}/tools/adbug/dbadm.php(!)blank
+      'cfgs' => '数据库(!){$root}/root/tools/adbug/dbadm.php(!)blank
 管理(!)?file=admin/db_act',
     ),
     'm3safes' => 

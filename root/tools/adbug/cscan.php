@@ -116,7 +116,8 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
       <td class="tc">lang,down</td>
       <td class="tc" colspan="3">
        # <a href='?act=openDowns&part='>openDowns</a>
-      # <a href='?act=scanDblang&part='>scanDblang</a>
+       # <a href='?act=scanDblang&part='>scanDblang</a>
+       # <a href='../../../server/remote/bscan.php'>scanBaidu</a>
        #
       </td>
     </tr> 
@@ -127,6 +128,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
        | <a href='?act=openLinks&part=mob'>open_mob</a>
        | <a href='?act=openLinks&part=chn'>open_chn</a>
        | <a href='?act=openLinks&part=dev'>open_dev</a>
+       | <a href='?act=openLinks&part=doc'>open_doc</a>
        #
       </td>
     </tr> 

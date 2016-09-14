@@ -5,7 +5,7 @@ $_cbase['sys_open'] = "4";
 $_cbase['sys_pop'] = "3";
 $_cbase['msg_timea'] = "1500";
 $_cbase['sys_map'] = "baidu";
-$_cbase['sys_name'] = "贴心猫(TiexinCat)";
+$_cbase['sys_name'] = "贴心猫(IntimateCat)";
 
 $_cbase['adm_mode'] = "expert";
 $_cbase['debug']['err_mode'] = "1";

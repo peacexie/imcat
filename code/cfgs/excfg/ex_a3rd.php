@@ -1,21 +1,5 @@
 <?php
 
-/*
-
-'合作身份者ID，以2088开头的16位纯数字
-partner         = "2088802931044344"
-
-'安全检验码，以数字和字母组成的32位字符
-key   			= "gunm2vfn3wtr7hhb66mm5easwguj5y8t"
-
-dianyuanyuan0109@163.com
-13790321373@163.com
-
-sid_AliPay 58722687@qq.com
-sid_PayPal elifebike@hotmail.com
-
-*/
-
 ### alipay: =======================================================================
 
 $pay_uinfo['demo']['partner']  = '2088012340123401234';
