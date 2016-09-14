@@ -4,6 +4,10 @@
  
 class extSeo{
 
+	function bdLinks($data=''){
+		https://www.baidu.com/s?wd=site%3Atxjia.com&pn=10
+	}
+
 	public $db = NULL;
 	public $tabid = 'bext_paras';
 	
