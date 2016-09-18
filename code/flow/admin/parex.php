@@ -4,7 +4,7 @@ require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
 
 $tabid = 'bext_paras'; 
 $pid = empty($pid) ? 'ext_nav' : $pid;
-$lnav = $db->table($tabid)->where("pid='ext_nav'")->order('top')->select();
+$lnav = $db->table($tabid)->where("pid='ext_nav'")->order('top')->select(); 
 
 if(empty($dialog)){
 	$navs = array();  $gname = '';
@@ -15,16 +15,34 @@ if(empty($dialog)){
 	$lnkupd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('flow.jf_updcfg')."\");'>&lt;&lt;".lang('flow.jf_upd')."</a>";
 	$lnkupd .= "<span class='span ph5'>|</span>"; 
 	$lnkadd = "<a href='$aurl[1]&view=form' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('flow.jf_add')."&gt;&gt;</a>";
-	$lnkadd = in_array($pid,array('ext_nav')) ? "<span class='span ph5'>|</span>$lnkadd" : ''; 
+	$lnkadd = "<span class='span ph5'>|</span>$lnkadd"; //in_array($pid,array('ext_nav')) ?  : ''; 
 	$navs = admPFunc::fileNav($pid,$navs);
-	glbHtml::tab_bar("{$lnkupd}[$gname]$lnkadd","$navs",50);	
+	glbHtml::tab_bar("{$lnkupd}[$gname]$lnkadd","$navs",50);
 }
 if($view=='upd'){
 	
-	extJifen::update(); 
-	echo "\n<hr>End! ".basDebug::runInfo();
+	$keys = array('pid','title','detail','numa','numb','cfgs','note','cfgs');
+	foreach ($lnav as $row) {
+		$pid = $row['kid']; $arr = array();
+		$list = $db->table($tabid)->where("pid='$pid' AND enable='1'")->order('top')->select(); 
+		foreach($list as $v){ 
+			$kid = str_replace('-','_',$v['kid']);
+			foreach($keys as $k){
+				$arr[$kid][$k] = $v[$k];
+			}
+		}
+		if(!empty($arr)) glbConfig::save($arr,"parex_$pid",'dset');
+	}
+	$arr = array();
+	foreach($lnav as $v){ 
+		$kid = str_replace('-','_',$v['kid']);
+		foreach($keys as $k){
+			$arr[$kid][$k] = $v[$k];
+		}
+	}
+	glbConfig::save($arr,"parex_ext_nav",'dset');
 	
-}elseif($pid=='ext_nav' && $view=='list'){
+}elseif($pid && $view=='list'){
 
 	$msg = '';	
 	if(!empty($bsend)){
@@ -44,30 +62,36 @@ if($view=='upd'){
 				}
 			}
 		}
-		basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+		basMsg::show($msg,'Redir',"?file=$file&pid=$pid&flag=v1");
 	}
 	
 	$list = $pid=='ext_nav' ? $lnav : $db->table($tabid)->where("pid='$pid'")->order('top')->select();
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.jf_jfcnt')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th><th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	if($list){
-	foreach($list as $r){
-	  $kid = $r['kid']; 
-	  echo "<tr>\n".$cv->Select($kid);
-	  echo "<td class='tc'>$r[kid]</td>\n";
-	  echo "<td class='tc'>$r[title]</td>\n";
-	  echo "<td class='tc'>$r[numa]</td>\n";
-	  echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
-	  echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
-	  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref","");
-	  echo "<td class='tl'><input type='text' value='$r[note]' class='txt w300' /></td>\n";
-	  echo "</tr>"; 
-	}}
-	echo "<tr>\n";
-	echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-	echo "<td class='tr' colspan='7'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
-	echo "</tr>";
-	glbHtml::fmt_end(array("mod|$mod"));
+		foreach($list as $r){
+		  $kid = $r['kid']; 
+		  echo "<tr>\n".$cv->Select($kid);
+		  echo "<td class='tc'>$r[kid]</td>\n";
+		  echo "<td class='tc'>$r[title]</td>\n";
+		  echo "<td class='tc'>$r[numa]</td>\n";
+		  echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
+		  echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
+		  echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref","");
+		  echo "<td class='tl'><input type='text' value='$r[note]' class='txt w300' /></td>\n";
+		  echo "</tr>"; 
+		}
+		echo "<tr>\n";
+		echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
+		echo "<td class='tr' colspan='7'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+		echo "</tr>";
+	}else{
+		echo "<tr>\n";
+		echo "<td class='tc' colspan='8'>NO-Data, Please Add</td>\n";
+		echo "</tr>"; 
+	}
+	glbHtml::fmt_end(array("mod|$mod","pid|$pid"));
+
 
 }elseif($view=='form'){
 	

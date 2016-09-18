@@ -13,7 +13,7 @@ class exmCrawl{
 
     //构造方法
     function __construct($site,$kw='',$pn=73){
-    	$kw = $kw ? urlencode($kw)."20%" : '';
+    	$kw = $kw ? urlencode($kw)."%20" : '';
     	$url = "https://www.baidu.com/s?wd={$kw}site%3A$site&pn={$pn}0";
     	$this->initPage($url);
     }
@@ -32,11 +32,8 @@ class exmCrawl{
         	//dump($val);
         }
         $pages = basElm::getArr($pages,'<span class="pc">(*)</span>');
-        $this->data = array('links'=>$links,'pages'=>$pages);
+        $this->data = array('links'=>$links,'pages'=>$pages,'url'=>$url);
         return;
-        dump($links);
-        dump($pages);
-        dump(end($pages));
     }
 
 

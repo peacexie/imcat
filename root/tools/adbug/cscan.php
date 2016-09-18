@@ -117,7 +117,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
       <td class="tc" colspan="3">
        # <a href='?act=openDowns&part='>openDowns</a>
        # <a href='?act=scanDblang&part='>scanDblang</a>
-       # <a href='../../../server/remote/bscan.php'>scanBaidu</a>
+       # <a href='cbaidu.php'>scanBaidu</a>
        #
       </td>
     </tr> 

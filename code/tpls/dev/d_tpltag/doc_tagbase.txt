@@ -49,25 +49,23 @@ $tpl="<span class='itm-(k)'>(v)</span>";
 {stime($v['atime'],dm)} -> 12-14 19:47
 栏目：{sopt($t_catid,$this->mod,0,$null)}
 状态1：{sopt($ordstat,corder.ordstat,0,$null)} //默认自动彩色显示
-状态2：{sopt($ordstat,corder.ordstat,1,$null)} //单个>0数字,多个用,好分开,或自定义个分割符变量(如$split)也可
+状态2：{sopt($ordstat,corder.ordstat,1,$null)} //单个>0数字,多个用,号分开,或自定义个分割符变量(如$split)也可
 状态3：{sopt($ordstat,corder.ordstat,tpl,$null)} //默认模版显示,可自行写css.class着色
 状态4：{sopt($ordstat,corder.ordstat,$tpl,$null)} //自定模版显示,可自行写css.class着色
 demo:
-                {php $f='exp_m01'; $fc=$fexts[$f]; $split='|'; $tpl="<span class='exp_s02-(k)'>(v)</span>"; }
-                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
-                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
-                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
-                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
-                <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
+    {php $f='exp_m01'; $fc=$fexts[$f]; $split='|'; $tpl="<span class='exp_s02-(k)'>(v)</span>"; }
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
 -=>结果
-				<span style='color:#F00'>灰色</span>
-				<span style='color:#F0F'>黑色</span> </b></p>
-                <p><i>外观颜色:</i><b>白色,灰色,黑色 </b></p>
-                <p><i>外观颜色:</i><b>白色|灰色|黑色 </b></p>
-                <p><i>外观颜色:</i><b><span class='itm-bai'>白色</span><span class='itm-hui'>灰色</span><span class='itm-hei'>黑色</span> </b></p>
-                <p><i>外观颜色:</i><b><span class='exp_s02-bai'>白色</span><span class='exp_s02-hui'>灰色</span><span class='exp_s02-hei'>黑色</span> </b></p>
-
-
+	<span style='color:#F00'>灰色</span>
+	<span style='color:#F0F'>黑色</span> </b></p>
+    <p><i>外观颜色:</i><b>白色,灰色,黑色 </b></p>
+    <p><i>外观颜色:</i><b>白色|灰色|黑色 </b></p>
+    <p><i>外观颜色:</i><b><span class='itm-bai'>白色</span><span class='itm-hui'>灰色</span><span class='itm-hei'>黑色</span> </b></p>
+    <p><i>外观颜色:</i><b><span class='exp_s02-bai'>白色</span><span class='exp_s02-hui'>灰色</span><span class='exp_s02-hei'>黑色</span> </b></p>
 ```
 
 
@@ -95,7 +93,7 @@ demo:
 ```
  
 * One:单条数据标签：
- - 用于调用  [文档/资讯] | [互动/评论] | [用户/会员] 列表
+ - 用于调用  [文档/资讯] | [互动/评论] | [用户/会员] 一行数据
 ```
 {php $_did = '2006-97-8axx'; }
 {tag:demo1=[One][modid,demo][join,detail][where,"m.did='$_did'"][order,etime]}

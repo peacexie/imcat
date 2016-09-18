@@ -32,7 +32,7 @@ $_va_home = array(
 	//扩展模块
 	'extra' => array(
 		'home','info',
-		'start','uplog' // 'tester','tpltag','dev2nd','advset',
+		'start','uplog','tpltag','dev2nd','advset' // 'tester',
 	), 
 
 );

@@ -65,7 +65,12 @@ submit: 19830
 * 本系统最长url限制(js标签) 大约2000个字符左右即截断，行业标准中为2048个字符左右
 
 #urlframe#URL长度
-  
+
+* Url 应该要多长？
+ - 文章 : [`前端要给力之：URL应该有多长？`](http://blog.csdn.net/aimingoo/article/details/6081964)
+ - 本系统url样例 : http://txmao.txjia.com/chn.php?news.2015-9g-mvp1
+ - 本系统静态url : http://www.my_domain.com/html/news/yyyy/md-6789.html
+
 * 前端要给力之：URL应该有多长？
  - http://blog.csdn.net/aimingoo/article/details/6081964
 
@@ -87,7 +92,7 @@ submit: 19830
  - tech.qq.com/a/20121211/000014.htm
  - tech.qq.com/peace/2012/98/1234
 
-* 段url
+* 短url
  - http://w.url.cn/s/AvCo6Ih
  - http://txjia.com/?AGCEESE
  - http://t.cn/RyNNUx6

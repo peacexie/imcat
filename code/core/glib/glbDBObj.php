@@ -251,14 +251,17 @@ class glbDBObj{
 		//global $_cbase;
 		$this->connect();
 		$a = $info ? $this->db->tabinfo() : $this->db->tables();
-		$this->runTimer('tables');
+		$this->runTimer('tables'); //dump($a);
 		$tab = array();
 		foreach($a as $v){ 
 			if($info){
 				$v['Name'] = str_replace(array("($this->pre","$this->ext)"),'',"({$v['Name']})");
+				if(($this->pre && strstr($v['Name'],'(')) || ($this->ext && strpos($v['Name'],')'))) continue;
 				$tab[] = $v;
 			}else{
-				$tab[] = str_replace(array("($this->pre","$this->ext)"),'',"($v)");
+				$table = str_replace(array("($this->pre","$this->ext)"),'',"($v)");
+				if(($this->pre && strstr($table,'(')) || ($this->ext && strpos($table,')'))) continue;
+				$tab[] = $table;
 			}
 		}
 		return $tab;
@@ -399,13 +402,13 @@ class glbDBObj{
 		}
 	}
 	//读取缓存
-	function _dcGet($cache_prefix){
+	function _dcGet($cpre){
 		$expire=isset($this->options['cache'])?$this->options['cache']:$this->config['dc_tmout'];
 		//缓存时间为0，不读取缓存
 		if($expire==0) return false;
 		$data = "";	
 		if($this->_dcInit()){
-			 $data=$this->cache->get($cache_prefix.$this->sql);
+			 $data=$this->cache->get(md5($cpre.$this->sql));
 		}
 		if(!empty($data)){
 			unset($this->options['cache']);
@@ -416,13 +419,13 @@ class glbDBObj{
 
 	}
 	//写入缓存
-	private function _dcPut($data,$cache_prefix){	
+	private function _dcPut($data,$cpre){	
 		$expire=isset($this->options['cache'])?$this->options['cache']:$this->config['dc_tmout'];
 		unset($this->options['cache']);
 		//缓存时间为0，不读取缓存
 		if($expire==0) return false;
-		if($this->_dcInit()){				
-			return $this->cache->set($cache_prefix.$this->sql,$data,$expire);	
+		if($this->_dcInit()){	
+			return $this->cache->set(md5($cpre.$this->sql),$data,$expire);	
 		}
 		return false;	
 	}

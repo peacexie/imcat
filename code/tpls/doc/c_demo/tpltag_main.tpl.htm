@@ -1,0 +1,30 @@
+{imp:"c_pub/alay_main"}<!--继承模板-->
+
+{block:extop}<?php
+$key = empty($this->key) ? 'tplbase' : $this->key;
+$kar = array(
+	'tplbase' => 'Tpl Base',
+	'tplsuit' => 'Suit Ptl',
+	'tagbase' => 'Tag Base',
+	'tagjs'   => 'js-Tag',
+);
+$subs = tex_base::docer("d_tpltag/doc_$key"); 
+$sub = basReq::val('sub',''); //include
+$titletop = $kar[$key].'- Tpl/Tag';
+$titlesub = $kar[$key]; 
+?>{/block:extop}
+
+{block:exbar}{/block:exbar}
+
+{block:exmain}
+    
+	<?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="mod-section">
+      <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {$v[detail]}
+    </ul>
+    <?php } ?>
+    
+{/block:exmain}
+
+{block:exside}{inc:"c_demo/tpltag_aside"}{/block:exside}

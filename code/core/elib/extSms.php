@@ -115,7 +115,7 @@ class extSms{
 		// 写记录-db
 		$stel = implode(',',$atel); 
 		if(strlen($stel)>255) $stel = substr($stel,0,240).'...'.substr($stel,strlen($stel)-5,255);
-		$data = array( //$kid = glbDBExt::dbAutID('xtest_keyid','yyyy-md-','5.6'); 
+		$data = array( 
 			'kid'=>basKeyid::kidTemp(),
 			'tel'=>$stel,'msg'=>basReq::in($amsg[0]),
 			'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,

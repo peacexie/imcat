@@ -1,0 +1,40 @@
+{imp:"c_pub/alay_main"}<!--继承模板-->
+
+{block:extop}<?php
+$key = empty($this->key) ? 'basic' : $this->key;
+$kar = array(
+	'basic'   => 'Structure/Specification',
+	'ucode' => 'Code-Unit',
+	'ucodb' => 'DB-Act',
+	//'jqjs'    => '文档/资讯',
+	//'plus'    => 'plus插件',
+	//'exlib'   => 'exlib扩展类库',
+	//'vendor'   => 'vendor第三方组件',
+	//'api3rd'   => 'api3rd第三方接口',
+	
+	'suit'     => 'Suit-Demo',
+	
+	'editor'   => 'editor',
+	'i18n'     => 'Internationalization',
+	'sms'      => 'SMS-API',
+);
+$subs = tex_base::docer("d_dev2nd/doc_$key");
+$sub = basReq::val('sub',''); //include
+$titletop = (empty($kar[$key]) ? $key : $kar[$key]).'- 2nd-Development';
+$titlesub = empty($kar[$key]) ? $key : $kar[$key]; //print_r($subs);
+
+?>{/block:extop}
+
+{block:exmain}
+    
+	<?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="mod-section">
+      <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {$v[detail]}
+    </ul>
+    <?php } ?>
+    
+{/block:exmain}
+
+{block:exside}{inc:"c_demo/dev2nd_aside"}{/block:exside}
+

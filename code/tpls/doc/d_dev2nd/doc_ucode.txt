@@ -1,0 +1,64 @@
+
+#define#Constants
+
+- Constants in _paths.php
+
+```
+    RUN_MODE, DIR_PROJ, PATH_PROJ
+    DIR_CODE, DIR_ROOT/PATH_ROOT
+    DIR_VARS/PATH_VARS: *_URES, *_HTML, *_DTMP
+    DIR_IMPS/PATH_IMPS: *_VENDOR, *_VENDUI, *_STATIC
+```
+
+- Constants in [root]/run/
+
+```
+    define('RUN_ADMIN,RUN_UMC', 1);
+    define('FRONT,MOB,APP,DEV', 1)
+    define('RUN_STATIC', 1);
+    define('RUN_JSHOW', 1);
+    define('RUN_COMSADD', 1);
+```
+
+#getpost#post/get values
+
+```
+    $mod = basReq::val('mod','','Key'); //Get value(mod) from post/get
+    $fm = basReq::ark('fm'); //Get value(fm-array) from post/get
+    $kid = basReq::ark('fm','kid','Key'); //Get a key(in fm-array) from post/get
+```
+
+#mlang#Multi-language
+
+* php 
+ - basLang::show('core.page_First')
+ - lang('admin.adm_center') 
+ - <?php lang('tools.start_setup',0) ?>
+* tpl
+ - {lang(core.view_times,$click)} 
+ - {lang(core.sys_name)}
+* js
+ - lang('jcore.sub_key')
+
+#varobj#Variable/object
+
+```
+    global $_cbase,
+    $_groups = glbConfig::read('groups');
+    $db = glbDBObj::dbObj();
+    $user = usrBase::userObj('Member'); //Member,Admin
+    $user = usrBase::userObj(); 
+    basDebug::bugLogs('test1',"msg");
+```
+
+#endcode#Exit operation
+
+```
+    die('No Init'); 
+    vopShow::msg("[$key][type]Param Error!");	
+    basMsg::show('Plesse select an operation!','die');
+    glbHtml::page('end,$msg);
+
+    echo basDebug::runInfo(); 
+```
+

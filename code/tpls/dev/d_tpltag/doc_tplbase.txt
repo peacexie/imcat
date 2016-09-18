@@ -6,7 +6,6 @@
  - 如：{inc:"d_tpltag/tpltag_aside"}。
  - 注意：sub_path位当前整套模板的子目录，tpl_name是模板文件名，不含后缀。
  - 示例：点本页最后一行：类似[tpl:d_tpltag/tpltag_basic;]链接查看模板源代码（当前整套模板所有页类似都可看模板源代码）。
- - 如果包含其他模板的区块，则加上`dir:`标记如：{inc:"chn:c_pub/inc_blinks"}
 
 * 加载页面代码区块（不需要编译）可以按如下加载：
  - 示例：{code:"d_tools/a_cfgs"}  -=> inc文件：{当前模板}/d_tools/a_cfgs.php 

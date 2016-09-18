@@ -1,0 +1,160 @@
+
+
+#link# Common-Links
+
+```
+<a href="{surl(0)}">[Homepage]</a>
+<a href="{surl(chn:about-alink);}">chn:About-Us</a>
+<a href="{surl(chn:0)}">[chn:Home]</a>
+<a href="{surl(chn:cargo)}">chn:Porduct</a>
+<a href="{surl(start)}">Start-Page</a>
+<a href="{surl(tester)}">Test-Code</a>
+<a href="{surl(tpltag)}">Tpl/Tag</a>
+<a href="{surl(dev2nd)}">2nd-Dev</a>
+<a href="{surl(advset)}">Sys.Pararm</a>
+<a href="{surl(demo)}">Docs/News</a>
+<a href="{surl(type)}">Types/Classic</a>
+<a href="{surl(company)}">User/Member</a>
+<a href="{surl(info-gbook)}">Guestbook</a>
+<a href="{surl(info);}">[Navigation]</a>
+<a href="{surl(umc:user-login)}">[Lgoin]</a>
+<a href="{surl(umc:user-apply)}">[Register]</a>
+{surl(news.2016-12-abcd,0,1)} //Full-Url
+{surl(dev:news.2016-12-abcd,0,1)} //Full-Url
+
+```
+
+
+#comshow# Basic-Show
+
+* echo
+
+```
+Variable: {$this->mod},{$this->key},{$title},{$t_title}
+Array: {$_cbase['server']['valkey']},{$fc['title']} (Recommended add quotes)
+  or {$_cbase[server][valkey]},{$fc[title]} (Not recommend)
+· {= date('Y-m-d'); } <br>
+· {= 'Hi! '; }{= date('Y-m-d') } 
+· {PATH_ROOT}/skin/a_img/loadbig.gif
+```
+
+
+* title(select)
+
+```
+{php}
+$split='|';
+$tpl="<span class='itm-(k)'>(v)</span>";
+{/php}
+{stime($v['atime'],dm)} -> 12-14 19:47
+Catalog: {sopt($t_catid,$this->mod,0,$null)}
+State1: {sopt($ordstat,corder.ordstat,0,$null)} //默认自动彩色显示
+State2: {sopt($ordstat,corder.ordstat,1,$null)} //单个>0数字,多个用,号分开,或自定义个分割符变量(如$split)也可
+State3: {sopt($ordstat,corder.ordstat,tpl,$null)} //默认模版显示,可自行写css.class着色
+State4: {sopt($ordstat,corder.ordstat,$tpl,$null)} //自定模版显示,可自行写css.class着色
+demo:
+    {php $f='exp_m01'; $fc=$fexts[$f]; $split='|'; $tpl="<span class='exp_s02-(k)'>(v)</span>"; }
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
+-=>Result
+	<span style='color:#F00'>Gray</span>
+	<span style='color:#F0F'>Black</span> </b></p>
+    <p><i>Color:</i><b>White,Gray,Black </b></p>
+    <p><i>Color:</i><b>White|Gray|Black </b></p>
+    <p><i>Color:</i><b><span class='itm-bai'>White</span><span class='itm-hui'>Gray</span><span class='itm-hei'>Black</span> </b></p>
+    <p><i>Color:</i><b><span class='exp_s02-bai'>White</span><span class='exp_s02-hui'>Gray</span><span class='exp_s02-hei'>Black</span> </b></p>
+```
+
+
+#tagbase# Basic-Tag
+
+* List: List-Tag: 
+ - Show list for [Docs/News] | [Coms/Remarks] | [User/Member] [Advs/Links]
+ - Notice: There are another call mode for [Advs/Links]
+```
+{tag:dhinfo=[List][modid,cargo][show,1][limit,6]}
+<li>{title($t_title,96,$v)}</li>
+{/tag:dhinfo}
+```
+ 
+* Page: Pager-Tag: 
+ - Show list for [Docs/News] | [Coms/Remarks] | [User/Member] [Advs/Links]
+ - Notice: There are another call mode for [Advs/Links]
+```
+{tag:demo2=[Page][modid,demo][limit,3]}
+{:row}
+<li>{$t_title} --- {stime($t_atime)}</li>
+{/row}
+{php echo $_cbase['page']['bar']; }
+{/tag:demo2}
+```
+ 
+* One: Single-Tag(1 row data): 
+ - Show a row data for [Docs/News] | [Coms/Remarks] | [User/Member]
+```
+{php $_did = '2006-97-8axx'; }
+{tag:demo1=[One][modid,demo][join,detail][where,"m.did='$_did'"][order,etime]}
+<li><a href="{surl("demo.$t_did")}">{$v['title']} --- {stime($t_atime)} --- {$t_detail}</a></li>
+{/tag:demo1}
+```
+ 
+* Type: Type-Tag: 
+ - List for [Types/Class]
+```
+{tag:flag4=[Type][modid,china][idfix,sun:zx]}
+<li>{$t_kid},{$t_title}</li>
+{/tag:flag4}
+```
+
+* Tag-Specification: 
+
+ - Format: Suppose tag name is `mytag_123`, the full tag will begin with `{tag:mytag_2=[Type]`; end with `{/tag:mytag_2}`
+ - Tag name: consisting of 2~24 letters/numbers/underlines, begin with the letter;
+ - In the same page, is best not to have the same tag name, a small part of the case may have conflict;
+ - Can NOT use 2 or more page-tag in the same page
+ - {:row}Loop-Parts{/row}: Set the loop parts, Used in these tags : List/Page
+ - View demo : `Tpl/Tag : demo-tag`
+
+
+#tagpara# Tag-Pararm
+
+* Tag-Cache
+
+ - [cache,30] Cache 30 min
+ - [cache,3h] Cache 3 hours
+ - [cache,2d] Cache 2 days
+ - Use cache can Reduce database pressure
+ - The unit of the cache: defalut-min, h-hours, d-days
+ - Used in these tags : List/Page/One
+
+* Samples
+```
+[hinfo,pindao+home+zhuanti,in] -=> m.hinfo IN('pindao','home','zhuanti')
+[join,detail,seo_des+detail]
+[keywd,0,title]
+[keywd,0,title+detail]
+[inids,$rel_doc]
+... Follow-up improvement
+```
+
+
+#tag-text#text-Tag
+
+```
+{text($t_detail,120,1)} NO `br` for new line
+{text($t_detail,120)} HAS `br` for new line
+```
+
+
+#xxxx#Temp...
+
+* (Null)
+```
+// {stime($re4['atime']);}	             =>  [?php echo vopCell::cTime($re4['atime']);;?]
+// {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
+// {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
+// {sopt(c0769+c0735,china)}
+```
