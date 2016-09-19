@@ -76,7 +76,7 @@
 
 * 想法来源：
  - Symfony 使用“app/console generate:bundle”命令创建Bundle；
- - 它为什么不用命令弄得那么高深，而不直接做个php网页界面来实现？
+ - 它为什么用命令弄得那么高深，而不直接做个php网页界面来实现？
  - 本系统，仿照Symfony创建Bundle，实现diy做一套前台显示的样例模板；
  - 本系统，并命名为“模板套件工具”，感觉不是很合适，后续改名吧……
 
@@ -94,7 +94,7 @@
 // 如：<!--{$this->tplname}-->
 // -=>解析成：<?php echo @$this->tplname; ?>
 // -=>应当为：<!--<?php echo @$this->tplname; ?>-->
-//  解决：再前后加个如空格等特殊符号如：<!--/{$this->tplname}/-->  
+//  解决：在前后加个如空格等特殊符号如：<!--/{$this->tplname}/-->  
 // 或 评论(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>条) (变量需要`符号分开)
 ```
 
@@ -121,14 +121,15 @@
  - 入口文件：增加申明语言包：$_cbase['sys']['lang'] = 'en'; // 切换语言
 
 * 多语言模版调用
- - 稍微修改模版，配置多语言包，多套模版可公用很多模版区块；
- - 模版调用示例
- 
-```
-{php} $click=333; {/php}
-// {lang(core.view_times,$click)}
-// {lang(core.view_times,999)}
-// {lang(core.test_name)}
-// 参数.前面是语言包目录名，右面是key值，后面可以带个参数，但语言包里需要留一个{val}位置替换
-```
 
+```
+* php 
+ - basLang::show('core.page_First')
+ - lang('admin.adm_center') 
+ - <?php lang('tools.start_setup',0) ?>
+* tpl
+ - {lang(core.view_times,$click)} 
+ - {lang(core.sys_name)}
+* js
+ - lang('jcore.sub_key')
+```
