@@ -28,8 +28,7 @@ class exmCrawl{
         foreach ($tmp as $val) {
         	$val = substr($val,0,strpos($val,'"'));
         	if(!strpos($val,'link?url=')) continue;
-        	$links[] = $val;
-        	//dump($val);
+        	$links[] = $val; //dump($val);
         }
         $pages = basElm::getArr($pages,'<span class="pc">(*)</span>');
         $this->data = array('links'=>$links,'pages'=>$pages,'url'=>$url);
