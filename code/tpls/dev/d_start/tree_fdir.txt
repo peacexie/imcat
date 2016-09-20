@@ -80,7 +80,10 @@ E:.
 ©¦      ©¦  ©À©¤c_mod
 ©¦      ©¦  ©À©¤c_page
 ©¦      ©¦  ©À©¤c_pub
+©¦      ©¦  ©À©¤d_advset
+©¦      ©¦  ©À©¤d_dev2nd
 ©¦      ©¦  ©À©¤d_start
+©¦      ©¦  ©À©¤d_tpltag
 ©¦      ©¦  ©À©¤d_uplog
 ©¦      ©¦  ©¸©¤_config
 ©¦      ©À©¤mob
