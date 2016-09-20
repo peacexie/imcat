@@ -12,7 +12,7 @@ class tex_base{
 	
 	static function init($obj){
 		$user = usrBase::userObj('Admin');
-		if($obj->mkv!='login'){
+		if(!in_array($obj->mod,array('login','help'))){
 			if($user->userFlag=='Guest') header('Location:'."?login");
 			$user->setSess();
 		}

@@ -36,33 +36,33 @@
 
 #tplenmodel#Model-Config
 
-* 复制首页配置：
- - va_home.php，从/code/tpls/chn/_config 到/code/tpls/ven/_config目录
-* 复制英文版介绍配置：
- - vc_about.php，从/code/tpls/chn/_config 到/code/tpls/ven/_config目录
- - 并改名为：vc_enabt.php，(enabt为模型标识)
-* 复制英文版新闻配置：
- - vc_news.php，从/code/tpls/chn/_config 到/code/tpls/ven/_config目录
- - 并改名为：vc_enews.php，(enews为模型标识)
-* 模版/资源等：
- - 复制相关模版：从/code/tpls/chn/ 到/code/tpls/ven/目录
- - 复制静态资源：从/root/skin/chn 到/root/skin/ven目录
- - 根据需要，修改配置，模版，资源……
+* Copy homepage Config: 
+ - va_home.php, from: /code/tpls/chn/_config to: /code/tpls/ven/_config
+* Copy about Config: 
+ - vc_about.php, from: /code/tpls/chn/_config to: /code/tpls/ven/_config
+ - Modiy the filename as: vc_enabt.php, (enabt is the model ID)
+* Copy news Config: 
+ - vc_news.php, from: /code/tpls/chn/_config to: /code/tpls/ven/_config
+ - Modiy the filename as: vc_enews.php, (enews is the model ID)
+* Tpl/Resources: 
+ - Copy the tpls, from: /code/tpls/chn/ to: /code/tpls/ven/
+ - Copy the resources, from: /root/skin/chn to: /root/skin/ven/
+ - If you need, Modiy the configs,tpls,resources...
 
 
 #vx_modfmt#Config-Speci.
 
-* va_home:首页配置
- - c:基本配置
- - m:模块首页模板
- - u:(自定义)配置用户登录注册链接  
-    见/code/tpls/umc/_config/va_home.php
+* va_home: homepage config
+ - c: basic config
+ - m: model homepage config
+ - u: (custom) config
+    see: /code/tpls/umc/_config/va_home.php
 
-* vc_model:系统模型
- - model为模型ID，一个模型一个文件
+* vc_model: system model
+ - model is the model ID, one model a file
 
-* ve_extra:扩展模型
- - extra为模型ID，一个扩展模型一个文件
+* ve_extra: extra model
+ - extra is the model ID, one model a file
 
 
 #app_diy#Suit-Tools
@@ -72,7 +72,7 @@
 * Notice:
  - Diy Url: {proj}/root/tools/exdiy/mktpl.php, for the safe, It ONLY opend in localhost url
  - In default, Only show one model[Docs/News] and an hellow extra-page
- - To rich template, show more model data, you will DIY...
+ - To rich template, show more model info, you will DIY...
 
 * Idea from:
  - In Symfony, Use `app/console generate:bundle` to create Bundles;
@@ -85,10 +85,10 @@
 
 * This is a bug in the Tpl(while Tpl Compiled):
 
- - These 2 problems as below, I want`nt to solve it while compile tpl(替换来替换去)
- - Please expression a methed to avoid them(其实很好避开)
+ - These 2 problems as below, I want`nt to solve it while compile tpl(Multiple replacement/替换来替换去)
+ - Please expression a methed to avoid them(In fact, It is very easy to avoid this)
 
-* 【1】 tpl的html注释中用花括号({})输出变量：
+* [1] Use curly braces({}) show variables in the HTML remark:
 
 ```
 // eg: <!--{$this->tplname}-->
@@ -98,7 +98,8 @@
 // or Remark(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>) (Use ` split them)
 ```
 
-* 【2】 tpl的php块中输出变量，不能在双引号("")里面用花括号({})把变量包起来：
+* [2] The variables in the double quotation marks(""):
+ - While these code in the tpl pages, It will conflict
 
 ```
 eg: {php echo "userip={$_cbase['run']['userip']};"; }

@@ -68,9 +68,9 @@ function funcOpen(){
     for(var i=0;i<wmax+1;i++){ window.open('','_w'+i); }
     $('#idlinks').find('a').each(function(no, ilink) {
         var xr = jsRnd(1000,2000);
-        if(mpages>60 && xr>1000&&xr<1500) return true;
-        if(mpages>45 && xr>1000&&xr<1400) return true;
-        if(mpages>30 && xr>1000&&xr<1300) return true;
+        if(mpages>60 && xr>1000&&xr<1380) return true;
+        if(mpages>45 && xr>1000&&xr<1320) return true;
+        if(mpages>30 && xr>1000&&xr<1260) return true;
         if(mpages>15 && xr>1000&&xr<1200) return true;
         var ra = jsRnd(1700,4300); //jsLog(i)
         setTimeout("funcOset("+no+");",(no+1)*2500+ra);
