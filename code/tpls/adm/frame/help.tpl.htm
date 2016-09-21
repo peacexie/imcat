@@ -1,0 +1,26 @@
+{imp:"frame/aimp"}<!--模板继承-->
+
+{block:ainit}{:parent}{php}{/php}{/block:ainit}
+
+{block:abody}
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+{php glbHtml::ieLow_html();}
+<form action="?login" method="post" name="fmadm" id="fmadm">
+  <div class="adl_box">
+    <div class="adl_remsg">Welcome to `Help` page!</div>
+    <div class="adl_logo">
+      Help page
+    </div>
+
+    <div class="adl_read">
+      <h1>{$_cbase['sys_name']}<!-- --- 管理登陆--></h1>
+      <ul class="h150">
+        Help page
+      </ul>
+    </div>
+    <div class="adl_remsg">------</div>
+  </div>
+</form>
+{/block:abody}
+
+{block:aend}<script>winAutoMargin('topMargin');</script>{/block:aend}

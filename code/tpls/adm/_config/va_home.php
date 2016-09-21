@@ -22,6 +22,6 @@ $_va_home = array(
 	),
 	
 	//扩展模块
-	'extra' => array('awtop','amain','login','uhome'), 
+	'extra' => array('awtop','amain','login','uhome','help'), 
 	
 );
