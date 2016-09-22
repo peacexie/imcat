@@ -1,6 +1,6 @@
 
 
-#prboot#boot-Parmam
+#prboot#boot-Param
 
 * Dir : /code/cfgs/boot/
 * const.cfg.php : Cookie prefix, custom config, debug log config
@@ -11,7 +11,7 @@
   -> Some tools links, need to login or uesed by the admin
 
 
-#prexcfg#excfg-Parmam
+#prexcfg#excfg-Param
 
 * Dir : /code/cfgs/excfg/
 * ex_mail.php : for Email
@@ -21,7 +21,7 @@
 * ex_a3rd.php : 3rd [Pay/Login]Config
 
 
-#prsycfg#sycfg-Parmam
+#prsycfg#sycfg-Param
 
 * Dir : /code/cfgs/sycfg/
 * sy_keepid.php System keeped id configs
@@ -29,7 +29,7 @@
 * System parameters, according to the need to be modified
 
 
-#prelse#else-Parmam
+#prelse#else-Param
 
 * Wechat config : Admin >> Frame >> Plus/API >> WechatAPI (Support more then ONE public number)
 
