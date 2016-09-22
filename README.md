@@ -41,4 +41,4 @@
 * Add: Copy Product, Copy Data-Tools plans   
 * Improve: Inner douc, Wechat
 * Other Fixed/Optiming
-* Release: 016-09-17, Weight: 3.30 MB
+* Release: 2016-09-17, Weight: 3.30 MB
