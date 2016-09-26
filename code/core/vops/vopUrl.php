@@ -98,13 +98,6 @@ class vopUrl{
 		} // first
 		// 处理{mod}, 
 		$re['tplname'] = str_replace('{mod}',$mod,$tpl);
-		/*/ 处理设置的模板,暂不用...
-		if($re['type']=='detail'){ 
-			$cache = glbConfig::read($mod,'dset');
-			if(!empty($cache[$re['key']])){
-				$re['tplname'] = $cache[$re['key']];
-			}
-		}//*/
 		return $re;
 	}
 
@@ -180,8 +173,9 @@ class vopUrl{
 		$vmode = @$mcfg['c']['vmode']; $url = '';
 		//close,static
 		if($vmode=='close') return '#close#'.$mkv;
-		if($vmode=='static' && empty($view)){ 
-			$ust = '/'.vopStatic::getPath($mod,$key,0);
+		if($vmode=='static'){ // && empty($view)
+			$vext = empty($view) ? '' : ".$view";
+			$ust = '/'.vopStatic::getPath($mod,$key.$vext,0);
 			$url = file_exists(DIR_HTML.$ust) ? PATH_HTML.$ust : '';
 			//$url = PATH_HTML.$ust; // is_file,file_exists
 		}

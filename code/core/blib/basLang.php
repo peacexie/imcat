@@ -25,7 +25,10 @@ class basLang{
 		$re = self::getCfgs($arr[1], $arr[0], $dir);
 		if(strlen($val)>0){
 			$re = str_replace('{val}',$val,$re);
-		} 
+		}
+		if(strpos($re,'{val}')){
+			$re = str_replace('{val}','',$re);
+		}
 		return $re;
 	}
 	

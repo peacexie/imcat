@@ -30,6 +30,7 @@ $cfgs['envdiy'] = array(
 $cfgs['upd_vers'] = array( 
 	'admin/upgrade&mod=upvnow' => 'Update Now System',
 	'admin/upgrade&mod=import' => 'Import Old Data',
+	'admin/upgrade&mod=install' => 'Install/Update Model',
 );
 
 $cfgs['cron_plan'] = array(

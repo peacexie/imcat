@@ -10,21 +10,23 @@ if($user->userFlag=='Guest'){
     $ordwcnt = $db->table('coms_corder')->where("auser='$uname'")->count(); 	
 }
 
-?>{/block:init}
+?>
+<style type="text/css">
+  #help_cont{ width: 830px; margin: 10px auto 10px auto; }
+  h3{ text-align: center; }
+  #help_cont h4 { display: block; padding: 10px 10px 1px 10px; margin: 10px 10px 1px 10px; border-top: 1px solid #CCC; }
+  h4:before { display: inline-block; content:"◎◎"; color:#036; }
+</style>
+{/block:init}
 
 {block:action}
-<div class="umc-mitem">
-    <h3><i>help info</i>Help: </h3>
-    <dl>
-        <dt>{lang(user.pub_uinfo)}: </dt><dd>Welcome to `Help` page!</dd>
-        <dt>{lang(user.uif_runinfo)}: </dt><dd>{$runinfo}</dd>
-        <dt>{lang(user.uif_sysinfo)}: </dt><dd>ServerTime:{= date('Y-m-d H:i:s'); } IP:{= $_cbase['run']['userip'] ;}</dd>
-        <dt>{lang(user.uif_tlinks)}: </dt><dd>
-          <a id='ids_testlogin' href="{surl(user-testlogin)}">(testlogin)</a>
-          <a id='ids_testguset' href="{surl(user-testguset)}">(testguset)</a>
-          <a id='ids_testset' href="{surl(user-testset)}">(testset)</a>
-          <a id='ids_tips' href="{surl(user-tips)}">(Tips)</a>
-        </dd> 
-    </dl>
+<div id="help_cont">
+
+  <?php 
+  $text = comFiles::get(DIR_CODE."/tpls/umc/user/help.txt"); 
+  $text = extMkdown::pdext($text);
+  echo $text; 
+  ?>
+
 </div>
 {/block:action}

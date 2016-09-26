@@ -115,8 +115,6 @@ return array(
 	'grp_padd' => '添加(+分)',
 
 	// admin/upgrade.php
-	'upg_upnow' => '升级当前系统',
-	'upg_impold' => '导入旧版数据',
 	'upg_upgrade' => '[更新升级]',
 	'upg_bkdb' => '备份数据库',
 	'upg_tipdb' => '[建议/注意]先停止掉服务再备份；可复制数据库目录；',

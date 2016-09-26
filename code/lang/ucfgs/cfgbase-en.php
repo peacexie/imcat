@@ -3,10 +3,10 @@
 // 语言包:cn
 
 $cfgs['wx_mop'] = array(
-  'save' => 'Save-Menu',
-  'create' => 'Create-Menu',
-  'get' => 'Get-Menu',
-  'del' => 'Del-Menu',
+	'save' => 'Save-Menu',
+	'create' => 'Create-Menu',
+	'get' => 'Get-Menu',
+	'del' => 'Del-Menu',
 );
 
 $cfgs['wx_nav'] = array(

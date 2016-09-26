@@ -2,7 +2,7 @@
 
 // ...类
 class devSetup{	
-	
+
 	static $fsetuped = '/store/_setup_lock.txt'; 
 	static $flagfile = '/store/_setup_step.txt'; 
 	static $flagdata = "###Start###\nstep1=Null\nstep2=Null\nstep3=Null\nstep4=Null\nstep5=Null\n###End###"; 
@@ -10,7 +10,120 @@ class devSetup{
 		'dext_demo','docs_demo', 'dext_news','docs_news', 'dext_cargo','docs_cargo', 
 		'dext_keres','docs_keres', 'dext_faqs','dext_faqs', 
 	); 
-	
+
+	// 导入一个模型数据
+	static function ins1Mod($mod,$data=array(),$type=''){
+		if(empty($mod)) return array();
+		// config
+		$cfgs = array('model','fields','catalog','grade','fldext');
+		foreach ($cfgs as $key) { //$data['model_'.$mod] = ...; 
+			$idata = $data["{$key}_$mod"]; 
+			$flag = devData::run1Sql($idata,$type);
+		}
+		if($type=='Update') return 'OK!';
+		// stru_
+		$tabm = glbDBExt::getTable($mod,0);
+		$tabe = glbDBExt::getTable($mod,1);
+		$tabs = $tabm==$tabe ? $tabm : "$tabm,$tabe";
+		$tarr = explode(',',$tabs);
+		foreach ($tarr as $tab) { // $data['stru_'.$tab] = ...
+			$idata = $data["stru_$tab"]; 
+			$flag = devData::run1Sql($idata);
+		}
+		return 'OK!';
+	}
+
+	// 导入一个菜单数据
+	static function ins1Menu($menu,$data=array(),$type='',$pid=0){
+		if(empty($menu)) return array();
+		$idata = $data["menu_$menu"]; //print_r($idata);
+		$mpid = basReq::val($menu); if(empty($mpid)) $mpid = $pid;
+		$idata = str_replace(",'(pid-$menu)',",",'$mpid',",$idata);
+		$flag = devData::run1Sql($idata);
+		//echo "\n\n::(pid-$menu):".basReq::val($menu);
+		return 'OK!';
+	}
+
+	static function insDeel($fnow=''){
+		$_groups = glbConfig::read('groups'); 
+		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
+		$re = array('abtn'=>array(),'slist'=>'',);
+		$icfg = include(DIR_DTMP.'/update/'.$fnow); 
+		$idata = include(DIR_DTMP.'/update/'.str_replace('.php','.dbsql',$fnow)); 
+		if(!empty($icfg['mods'])){
+		foreach ($icfg['mods'] as $mod => $mcfg) {
+			$pid = $mcfg['pid'];
+			$type = isset($_groups[$mod]) ? 'Update' : 'Install';
+			$res = self::ins1Mod($mod,$idata,$type);
+			$re['abtn'][$mod] = "$type - $res";
+			$re['slist'] .= "<br>\n --- 模型: [$mod]{$mcfg['title']}, 执行结果如右...";
+		}}
+		if(!empty($icfg['menus'])){
+    	$arm = comTypes::getSubs($_muadm,'0','1');
+		foreach ($icfg['menus'] as $menu => $mcfg) {
+			$pid = $mcfg['pid'];
+			$type = isset($_muadm[$menu]) ? 'Update' : 'Install';
+			$res = self::ins1Menu($menu,$idata,$type,$pid);
+			$re['abtn'][$menu] = "$type - $res";
+			@$re['slist'] .= "<br>\n --- 菜单: [$menu]{$mcfg['title']}, 执行结果如右...";
+		}}
+		return $re;
+	} 
+
+	static function insList($fnow='',$mop=0){
+		$_groups = glbConfig::read('groups'); 
+		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
+		$re = array('abtn'=>array(),'slist'=>'',);
+		$icfg = include(DIR_DTMP.'/update/'.$fnow); 
+		if(!empty($icfg['mods'])){
+		foreach ($icfg['mods'] as $mod => $mcfg) {
+			$pid = $mcfg['pid'];
+			$re['abtn'][$mod] = isset($_groups[$mod]) ? 'Update' : 'Install';
+			$re['slist'] .= "<br>\n --- 模型: [$mod]{$mcfg['title']}, 父级: [$pid]{$_groups[$pid]['title']}";
+		}}
+		if(!empty($icfg['menus'])){
+    	$arm = comTypes::getSubs($_muadm,'0','1');
+		foreach ($icfg['menus'] as $menu => $mcfg) {
+			$pid = $mcfg['pid'];
+			$opbar = $mop ? "<select name='$menu'>".basElm::setOption($arm,$pid)."</select>" : '';
+			$re['abtn'][$menu] = isset($_muadm[$menu]) ? 'Update' : 'Install';
+			@$re['slist'] .= "<br>\n --- 菜单: [$menu]{$mcfg['title']}, 父级: [$pid]{$_muadm[$pid]['title']} @$opbar ";
+		}}
+		return $re;
+	}
+
+	// 导出安装模组 模型/菜单
+	static function expGroup($mods,$menus='',$xxx=''){
+		if(empty("$mods$menus")) return '';
+		$data = $mids = $ares = array(); 
+		$_groups = glbConfig::read('groups'); 
+		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
+		// menu
+		$marr = explode(',',$menus);
+		foreach ($marr as $menu) {
+			if(empty($menu) || empty($_muadm[$menu])) continue;
+			$mpid = $_muadm[$menu]['pid']; 
+			$mdata = devData::exp1Tab('base_menu',"kid='$menu' OR pid='$menu'"); 
+			$mpid && $data['menu_'.$menu] = str_replace(",'$mpid',",",'(pid-$menu)',",$mdata);
+			$ares['menus'][$menu] = $_muadm[$menu];
+		}
+		// model
+		$marr = explode(',',$mods);
+		foreach ($marr as $mod) {
+			if(empty($mod) || empty($_groups[$mod])) continue;
+			$imod = devData::exp1Mod($mod,0);
+			$data = array_merge($data,$imod);
+			$ares['mods'][$mod] = $_groups[$mod];
+		}
+		// save
+		$fp = "/dbexp/ins-$mods-$menus";
+		$ares = "<?php\nreturn ".var_export($ares,1).";\n?>"; 
+		$dres = "<?php\nreturn ".var_export($data,1).";\n?>"; 
+		comFiles::put(DIR_DTMP."$fp.php",$ares);
+		comFiles::put(DIR_DTMP."$fp.dbsql",$dres);
+		return $fp;
+	}
+
 	// supCfgs
 	static function supCfgs(){ 
 		$setflag = DIR_DTMP.self::$flagfile;

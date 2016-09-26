@@ -2,7 +2,71 @@
 
 // ...类
 class devData{	
-	
+
+	static $spsql = "\n\n---<split>---\n\n";
+
+	// runSql
+	static function run1Sql($sql,$rep=''){
+		if(empty($sql)) return true;
+		$db = glbDBObj::dbObj(); 
+		//if($rep=='Update'){
+			$sql = str_replace("INSERT INTO `{pre}","REPLACE INTO `{pre}",$sql); 
+		//}
+		$sql = str_replace(array("`{pre}","{ext}`"),array("`$db->pre","$db->ext`"),$sql);
+		$arr = strpos($sql,self::$spsql)>0 ? explode(self::$spsql,$sql) : array($sql);
+		try {
+			//echo "$sql,xxxx1,";
+			foreach ($arr as $key => $sql) {
+				$db->query($sql,'run'); 
+			}
+			return true;
+		}catch (Exception $e){ 
+			//echo "$sql,xxxx2,";
+			return false;
+		}
+	}
+
+	// 导出一个模型数据
+	static function exp1Mod($mod,$expdt=1){
+		if(empty($mod)) return array();
+		$data['model_'.$mod] = self::exp1Tab('base_model',"kid='$mod'"); 
+		$data['fields_'.$mod] = self::exp1Tab('base_fields',"model='$mod'"); 
+		$data['catalog_'.$mod] = self::exp1Tab('base_catalog',"model='$mod'"); 
+		$data['grade_'.$mod] = self::exp1Tab('base_grade',"model='$mod'"); 
+		$data['fldext_'.$mod] = self::exp1Tab('bext_fields',"model='$mod'"); 
+		$tabm = glbDBExt::getTable($mod,0);
+		$tabe = glbDBExt::getTable($mod,1);
+		$tabs = $tabm==$tabe ? $tabm : "$tabm,$tabe";
+		$tarr = explode(',',$tabs);
+		foreach ($tarr as $k=>$tab) {
+			$data['stru_'.$tab] = self::exp1Tab($tab,'_stru_');
+			$expdt && $data['data_'.$tab] = self::exp1Tab($tab);
+		}
+		return $data;
+	}
+
+	// 导出一个表数据:部分数据+表结构
+	static function exp1Tab($tab,$whr=''){
+		if(empty($tab)) return '';
+		$db = glbDBObj::dbObj();
+		if($whr=='_stru_'){
+			$flag2 = "CREATE TABLE `";
+			$ctmp = self::stru1Exp($tab);
+			$ctmp = str_replace("$flag2",self::$spsql."$flag2",$ctmp); 
+			return $ctmp;
+		}
+		$shead = $sins = "";
+		$list = $db->table($tab)->where($whr)->select(); 
+		if($list){ //分块未考虑... 
+			$shead = devBase::_tabHead($tab); $i = 0; 
+			foreach($list as $row){
+				$i++; $end = $i==count($list) ? ';' : ',';
+				$sins .= devBase::_dinsRow($row)."$end\n";
+			}
+		}
+		return $shead.$sins;
+	}
+
 	// cdbStrus(); // 无主索引数据表, varchar(>255)字段, 组合索引数据表 检测
 	static function cdbStrus($part){
 		$db = glbDBObj::dbObj();

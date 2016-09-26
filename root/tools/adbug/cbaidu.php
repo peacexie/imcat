@@ -46,7 +46,7 @@ kw=<input type="text" name="kw" id="kw" value="<?php echo $kw; ?>" size="8">
 
 <?php
 if($act=='do'){
-    $bar = "<h4>pn=$pn; d=$d # <a href='?d=$d&pn=$pn&kw=$kw&act=debug'>@debug</a> - <a href='{$crw->data['url']}'>@baidu</a></h4>";
+    $bar = "<h4>pn=$mpage; d=$d # <a href='?d=$d&pn=$pn&kw=$kw&act=debug'>@debug</a> - <a href='{$crw->data['url']}'>@baidu</a></h4>";
     echo "<hr>$bar<div id='idlinks'>\n"; 
     for($i=0;$i<$mpage+1;$i++) {
         $pnstr = $i ? "pn={$i}0" : "pn=0";

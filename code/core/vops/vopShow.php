@@ -66,19 +66,13 @@ class vopShow{
 	//run
 	function run($q=''){ 
 		global $_cbase;
-		vopTpls::check($_cbase['tpl']['tpl_dir']);
 		//初始化
 		$this->vars = array(); //重新清空,连续生成静态需要
 		$this->ucfg = $_cbase['mkv'] = vopUrl::init($q); 
 		if(empty($this->ucfg)) { return; }
-		$_cbase['run']['tplname'] = $tplname = $this->ucfg['tplname']; 
 		foreach(array('mkv','mod','key','view','type','tplname',) as $k){
 			$this->$k = $this->ucfg[$k];
 		}
-		//编译+判断
-		if(!empty($_cbase['tpl']['tpc_on']) || !file_exists(vopTpls::path('tpc')."/$tplname")){
-			vopComp::main($tplname);
-		} 
 		//读取数据,赋值 $this->set('name', 'test_Name');
 		$vars = $this->getVars();
 		if(is_string($vars)){ //考虑生成静态,不要die,返回给生产静态的处理
@@ -88,11 +82,44 @@ class vopShow{
 		}else{
 			extract($vars, EXTR_OVERWRITE); 
 		}
-		//显示模板
-		$_groups = glbConfig::read('groups');
-		include(vopTpls::path('tpc')."/$tplname".$this->tplCfg['tpc_ext']);//加载编译后的模板缓存
+		//模板:判断+编译+显示
+		$this->getTpl($vars);
+		$_groups = glbConfig::read('groups'); //显示
+		include(vopTpls::path('tpc')."/$this->tplname".$this->tplCfg['tpc_ext']);//加载编译后的模板缓存
 	}
 	
+	//getTpl
+	function getTpl($vars=array()) { 
+		global $_cbase; 
+		$tplname = &$this->tplname; 
+		// check-tpldir
+		vopTpls::check($_cbase['tpl']['tpl_dir']);
+		// 处理:detail 设置的模板 
+		if(!empty($vars['tplname'.$this->view])){ 
+			$tplname = $vars['tplname'.$this->view];
+		}elseif($this->type=='detail'){ 
+			$cfgs = '';
+			if(isset($vars['grade'])){
+				$mcfgs = glbConfig::read('grade','dset');
+				$cfgs = $mcfgs[$vars['grade']];
+			}elseif(isset($vars['catid'])){
+				$mcfgs = glbConfig::read($this->mod);
+				$cfgs = $mcfgs['i'][$vars['catid']];
+			}
+			$cfgs = empty($cfgs['cfgs']) ? array() : basElm::text2arr($cfgs['cfgs']); 
+			if(!empty($cfgs['tplname'.$this->view])){
+				$tplname = $cfgs['tplname'.$this->view];
+			} //dump($tplname); dump($this->type); dump($this->view);
+		} // dump($vars);
+		// 编译
+		// $tplname = 'c_page/_home'; // for Test
+		if(!empty($_cbase['tpl']['tpc_on']) || !file_exists(vopTpls::path('tpc')."/$tplname")){
+			vopComp::main($tplname);
+		}
+		// save
+		$_cbase['run']['tplname'] = $tplname;
+	}
+
 	//GetVars
 	function getVars() { 
 		global $_cbase; 

@@ -226,7 +226,8 @@ class vopStatic{
 		}
 		$re = ob_get_contents();
 		$kid = $vop->mod=='home' ? 'home' : $vop->key;
-		$file = self::getPath($vop->mod,$kid,0); 
+		$vext = empty($vop->view) ? '' : ".$vop->view";
+		$file = self::getPath($vop->mod,$kid.$vext,0); dump($file);
 		$msg = $file.' : '.basStr::showNumber(strlen($re),'Byte').'';
 		comFiles::chkDirs($file,'htm');
 		comFiles::put(DIR_HTML.'/'.$file,"$re\n<!--$msg-->");
@@ -275,10 +276,11 @@ class vopStatic{
 	//是否需要生成静态
 	static function chkNeed($mkv=''){ 
 		$moda = vopUrl::imkv(array('mkv'=>$mkv),'a');
-		$kid = $moda[0]=='home' ? 'home' : $moda[1];
+		$kid = $moda[0]=='home' ? 'home' : $moda[1]; 
 		$vcfg = glbConfig::vcfg($moda[0]); 
 		if(@$vcfg['c']['vmode']!='static') return 0;
-		$file = self::getPath($moda[0],$kid,0);
+		$vext = empty($moda[2]) ? '' : ".$moda[2]";
+		$file = self::getPath($moda[0],$kid.$vext,0);
 		$flag = !tagCache::chkUpd("/$file",$vcfg['c']['stexp'],'htm');
 		return $flag;	
 	}

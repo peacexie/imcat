@@ -41,7 +41,7 @@ if($act=='doout'){
   <div class="pgu_login">
     <div class="apply">
       <p> {lang(user.lon_change)}【<a href="?mkv={$this->mkv}&act=doout">{lang(user.lon_logout)}</a>】;  <br>
-          {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  
+          {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
       </p>
     </div>
     <div class="msg">

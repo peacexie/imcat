@@ -115,8 +115,6 @@ return array(
 	'grp_padd' => 'Add(+Piont)',
 
 	// admin/upgrade.php
-	'upg_upnow' => 'Upgrade the current system',
-	'upg_impold' => 'Import old version data',
 	'upg_upgrade' => '[Upgrade]',
 	'upg_bkdb' => 'Backup database',
 	'upg_tipdb' => '[advice/attention] First stop service before backup; or copy database directory;',

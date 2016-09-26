@@ -1,0 +1,15 @@
+
+
+#bg#Release Forecast
+
+* Forecast for Functions
+ - Continue Surport PHP5.2~PHP7.X
+ - Continue to improve the English language package
+ - Add: public free parameter settings
+ - Improve: Improve Upgrade function, It can be installed modules online
+ - Add: the modules can be installed separately
+ - Subsequent release, as far as possible to v3.4 compatible.
+
+* Release Time and ect.
+ - (Unknow)
+

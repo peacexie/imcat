@@ -6,6 +6,9 @@ $part = basReq::val('part','');
 $inptype = @$_GET['inptype']; 
 $inpval = @$_GET['inpval'];
 
+$exmod = basReq::val('exmod','');
+$exmenu = basReq::val('exmenu','');
+
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
@@ -33,19 +36,19 @@ glbHtml::page('imp');
       </td>
     </tr>
     <tr class="tc">
-      <td width="25%" class="tip"><?php lang('tools.rst_clear',0); ?></td>
+      <td width="25%"><?php lang('tools.rst_clear',0); ?></td>
       <td width="25%"><a href="?act=clrTmps"><?php lang('tools.rst_clrtmpfiles',0); ?></a></td>
       <td width="25%"><a href="?act=clrLogs"><?php lang('tools.rst_clrdblogs',0); ?></a></td>
       <td width="25%"><a href="?act=clrCTpl"><?php lang('tools.rst_clrtplcache',0); ?></a></td>
     </tr>     
     <tr class="tc">
-      <td class="tip"><?php lang('tools.rst_dbcheck',0); ?></td>
+      <td><?php lang('tools.rst_dbcheck',0); ?></td>
       <td><a href="?act=cdbPKey"><?php lang('tools.rst_dbnopk',0); ?></a></td>
       <td><a href="?act=cdbV255"><?php lang('tools.rst_dbvar255',0); ?></a></td>
       <td><a href="?act=cdbMKey"><?php lang('tools.rst_dbcindex',0); ?></a></td>
     </tr>
     <tr class="tc">
-      <td class="tip"><?php lang('tools.rst_export',0); ?></td>
+      <td><?php lang('tools.rst_export',0); ?></td>
       <td><a href="?act=expStru"><?php lang('tools.rst_expframe',0); ?></a></td>
       <td><a href="?act=expData"><?php lang('tools.rst_expall',0); ?></a></td>
       <td><a href="?act=expBack"><?php lang('tools.rst_exback',0); ?></a></td>
@@ -53,7 +56,7 @@ glbHtml::page('imp');
     </tr> 
 
     <tr class="tc">
-      <td class="tip"><?php lang('tools.rst_reset',0); ?></td>
+      <td><?php lang('tools.rst_reset',0); ?></td>
       <td><a href="?act=rstRndata"><?php lang('tools.rst_rstdata',0); ?></a> , 
       <a href="?act=rstTabcode"><?php lang('tools.rst_rstcomp',0); ?></a> , 
       <a href="?act=rstTabmini"><?php lang('tools.rst_rstmini',0); ?></a></td>
@@ -62,14 +65,40 @@ glbHtml::page('imp');
       <a href="?act=rstPub&part=vimp">vimp</a>)</td>
       <td><a href="?act=rstCache"><?php lang('tools.rst_rstcache',0); ?></a></td>
     </tr>
-    <form action="?" method="get">
+
+    <form name="reidpw" action="?" method="get">
     <tr class="tc">
-      <td class="tip"><?php lang('tools.rst_rstidpw',0); ?></td>
-      <td><input name="uname" value="<?php echo $orguser; ?>" type="text" onBlur="chkIdpass(this,0,3)" maxlength="12"></td>
-      <td><input name="upass" value="<?php echo $orgpass; ?>" type="text" onBlur="chkIdpass(this,1,6)" maxlength="18"></td>
-      <td><input name="" value="<?php lang('tools.rst_reset',0); ?>" type="submit"><input name="act" type="hidden" value="rstIDPW"></td>
+      <td><?php lang('tools.rst_rstidpw',0); ?></td>
+      <td><input name="uname" value="<?php echo $orguser; ?>" type="text" onBlur="chkIdpass(this,0,3)" maxlength="12" class='w150'></td>
+      <td><input name="upass" value="<?php echo $orgpass; ?>" type="text" onBlur="chkIdpass(this,1,6)" maxlength="18" class='w150'></td>
+      <td><input name="" value="<?php lang('tools.rst_reset',0); ?>" class="btn" type="submit"><input name="act" type="hidden" value="rstIDPW"></td>
     </tr> 
     </form>
+
+    <?php
+      $arr = admPFunc::modList(array('docs','users','coms','type','advs'),0); 
+      $muadm = glbConfig::read('muadm'); $muadm = $muadm['i'];
+      $arm = array(); $pid = '';
+      foreach($muadm as $k=>$v){
+          if($v['deep']>2) continue;
+          if(empty($pid)){
+            if(empty($muadm[$v['pid']])) continue;
+            $arm["^group^[$k]"] = "[$k]-{$muadm[$v['pid']]['title']}";
+          }else{
+            $arm[$k] = "  &nbsp; [$k]$v[title]";
+          }
+          $pid = $v['pid'];
+      }
+    ?>
+    <form name="reins" action="?" method="get">
+    <tr class="tc">
+      <td>Export</td>
+      <td><select id='exmod' name='exmod' class='w150'><?php echo basElm::setOption($arr,$exmod); ?></select></td>
+      <td><select id='exmenu' name='exmenu' class='w150'><?php echo basElm::setOption($arm,$exmenu); ?></select></td>
+      <td><input name="" value="Export" class="btn" type="submit"><input name="act" type="hidden" value="expMod"></td>
+    </tr> 
+    </form>
+
   </table>
 
 </div>
@@ -94,6 +123,8 @@ $names = array(
 	'expStru'=>lang('tools.rst_expframe'),
 	'expData'=>lang('tools.rst_export'),
 
+  'expMod'=>'Export',
+
 );
 
 if(in_array($act,array('expData','expBack'))){
@@ -116,6 +147,8 @@ if(in_array($act,array('expData','expBack'))){
 			$exmsg = lang('tools.rst_idpw_error');	
 		}
 	}
+}elseif($act=='expMod'){
+  $exmsg = "<br>Export file to: ".devSetup::expGroup($exmod,$exmenu).".(php|dbsql)";
 //}elseif($act=='xxx'){
 }elseif(in_array($act,array('cdbPKey','cdbV255','cdbMKey'))){
 	$_res = devData::cdbStrus($act);

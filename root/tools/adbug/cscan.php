@@ -115,7 +115,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
     <tr>
       <td class="tc">lang,down</td>
       <td class="tc" colspan="3">
-       # <a href='?act=openDowns&part='>openDowns</a>
+       # <a href='?act=openDowns&part=10'>openDowns</a>
        # <a href='?act=scanDblang&part='>scanDblang</a>
        # <a href='cbaidu.php'>scanBaidu</a>
        #
@@ -242,7 +242,7 @@ if($act=='openDowns'){
             <?php 
             $dcfg=array(28,7,22,19,10,20,16); 
             $ref = array('_ref'=>'http://down.chinaz.com/soft/37712.htm');
-            foreach (array(1,2,3,4,5) as $ia) {
+            for ($ia=0;$ia<$part;$ia++) {
             foreach ($dcfg as $dkey) {
               echo "<a href='?act=curlDown&part=$dkey' target='_blank'>part=$dkey</a><br>";
             }}?>
@@ -263,11 +263,13 @@ function funcOpen(){
     });
 }
 function funcOset(no){
+  var xr = jsRnd(1000,2000);
+  if(xr>1000&&xr<1200) return true;
   var ilink = $('#idlinks').find('a')[no];
   var url = $(ilink).prop('href');
-  //var html = $(ilink).html()+' --- ';
+  var html = $(ilink).html()+' --- opoend ';
   window.open(url,'_w'+(no%wmax));
-  //$(ilink).html(html.replace(_cbase.run.rsite,''));
+  $(ilink).html(html);
 }
 funcOpen();
 </script>
