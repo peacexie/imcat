@@ -94,7 +94,8 @@ class devSetup{
 
 	// 导出安装模组 模型/菜单
 	static function expGroup($mods,$menus='',$xxx=''){
-		if(empty("$mods$menus")) return '';
+		$tmp = "$mods$menus";
+		if(empty($tmp)) return '';
 		$data = $mids = $ares = array(); 
 		$_groups = glbConfig::read('groups'); 
 		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
