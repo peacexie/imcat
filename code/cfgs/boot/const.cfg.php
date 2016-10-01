@@ -7,7 +7,7 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 
 // 系统参数
 $_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
-$_cbase['sys']['ver']     = '3.3'; // 版本号
+$_cbase['sys']['ver']     = '3.3.1'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
