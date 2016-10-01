@@ -20,6 +20,10 @@
 
 #detail#ChangeLog
 
+* v3.3.1 ChangeLog: (2016-10-01)
+ - Improve: (English) Guides and Manual;
+ - Fixed: Some small bugs and js compatibles in v3.3.
+
 * Add: 
  - Add: (Copy)Product
  - Add: Copy[Data-Tools]plans
