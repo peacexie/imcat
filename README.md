@@ -10,6 +10,7 @@
 * Support: PHP5.2~PHP7.0/ custom module / custom field / custom parameter / custom classification
 * Data&share / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
+* Demo Website: [IntimateCat(贴心猫)](http://txmao.txjia.com/)
 
 
 ### 【Setup】
