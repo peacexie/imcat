@@ -1,8 +1,10 @@
 <?php // dops
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
+define('RUN_DOPA',1);
+
 $mod = empty($mod) ? 'demo' : $mod;
 $view = empty($view) ? 'list' : $view;
-$_cfg = glbConfig::read($mod); 
+$_cfg = read($mod); 
 
 $_pid = @$_cfg['pid']; 
 $_tmp = array(
@@ -12,7 +14,7 @@ $_tmp = array(
 	'advs' =>array('dopAdvs','aid'),
 ); 
 if(!isset($_tmp[$_pid])) glbHtml::end(lang('flow.dops_parerr').':mod@dop.php');
-$gname = $_groups[$mod]['title']; //print_r($cv);
+if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@a.php'); 
 usrPerm::run('pmod',$mod);
 
 $_cls = $_tmp[$_pid][0]; 

@@ -7,15 +7,17 @@ if(!empty($bsend)){
 	$re2 = safComm::formCAll('fmdocfaqs');
 	if(!empty($re2[0])){ 
 		dopCheck::headComm();
-		basMsg::show(lang('plug.coms_errvcode'),'die');
+		basMsg::show(lang('plus.coms_errvcode'),'die');
 	}
 
 	$dop->svPrep(); 
 	$dop->svAKey();
 	//$dop->svPKey('add');
+	$dop->fmv['show'] = 0;
 	$db->table($dop->tbid)->data($dop->fmv)->insert(); 
+	$db->table($dop->tbext)->data($dop->fmu)->insert(0);
 	dopCheck::headComm();
-	basMsg::show(lang('plug.coms_addok',$_groups[$mod]['title']),'prClose');
+	basMsg::show(lang('plus.coms_addok',$_groups[$mod]['title']),'prClose');
 	
 }else{
 	

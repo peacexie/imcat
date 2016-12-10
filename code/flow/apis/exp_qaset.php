@@ -1,7 +1,7 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
-require(DIR_CODE.'/tpls/umc/b_func/tex_faqs.php');
+require(DIR_SKIN.'/umc/b_func/tex_faqs.php');
 
 $tabid = 'bext_paras';
 $view = empty($view) ? 'uset' : $view;
@@ -19,7 +19,7 @@ if($act){
 }
 
 glbHtml::fmt_head('fmlist',"?",'tblist');
-$mcfg = glbConfig::read('faqs'); 
+$mcfg = read('faqs'); 
 $ucfg = array('_allt'=>lang('flow.qa_alltype'),'_tags'=>lang('flow.qa_alltag'),);
 $cfgs = tex_faqs::statTypes();
 foreach($cfgs as $key=>$v){

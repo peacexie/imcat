@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // ...类exdCrawl
 class exdCrawl{	
@@ -78,7 +78,6 @@ class exdCrawl{
 	}
 	
 	static function orgAll($data,$cfg=array(),$recomp=1){ 
-		//global $_cbase;
 		$dold = $data;
 		foreach($cfg as $key=>$val){ 
 			if(substr($key,0,5)=='orgtg'){
@@ -155,8 +154,8 @@ class exdCrawl{
 		$up = new comUpload($url, $config, 'remote');
 		$info = $up->getFileInfo(); 
 		if($info['state']=='SUCCESS'){
-			$mod = basReq::val('mod'); $mod || $mod='crawl';
-			$ure = comFiles::moveTmpDir($info['url'],$mod,basKeyid::kidTemp('hms'),0);
+			$mod = req('mod'); $mod || $mod='crawl';
+			$ure = comStore::moveTmpDir($info['url'],$mod,basKeyid::kidTemp('hms'),0);
 		}else{
 			$ure = '';	
 		} //print_r($ure);

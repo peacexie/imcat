@@ -96,6 +96,7 @@ return array(
 	'devsetup_chkdir' => '请检查目录',
 	'devsetup_chkmysql' => '请检查Mysql数据库服务器',
 	'devsetup_noframe' => '无表结构导入',
+	'devsetup_runasright' => '执行结果如右...',
 
 	// sdev/updInfo.php
 	'updinfo_nowver' => '当前版本：',

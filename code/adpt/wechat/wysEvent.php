@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 事件响应操作
 // 如果本系统修改,就改这个文件，不用改wmp*文件
 // 各扩展系统需求变化很大,re开头的方法都加Base,扩展类里面不加Base,先检测执行无Base的方法,在找含有Base的方法
@@ -21,7 +21,7 @@ class wysEvent extends wmpMsgresp{
 	function __construct($post,$wecfg){ 
 		parent::__construct($post,$wecfg); 
 		$method = $this->getMethod('Event'); 
-		$this->_db = glbDBObj::dbObj();
+		$this->_db = db();
 		$this->init(); //echo $method;
 		//setQrtable
 		return $this->$method();
@@ -43,11 +43,10 @@ class wysEvent extends wmpMsgresp{
     
     // 响应关注/扫描带参数二维码事件
     function reSubscribeBase(){ 
-		global $_cbase;
 		//查找关键字...
 		$weres = new wysReply($this->post,$this->cfg,1); 
 		$reauto = $weres->getKeyList('','follow_autoreply_info'); 
-		$this->subScanmsg = empty($reauto) ? "您好，欢迎您关注 ".$_cbase['sys_name']."。\n" : "$reauto\n";
+		$this->subScanmsg = empty($reauto) ? "您好，欢迎您关注 ".cfg('sys_name')."。\n" : "$reauto\n";
 		if(!empty($this->eventKey)){ //未关注用户，扫描带参数二维码事件
 			$this->eventKey = str_replace('qrscene_','',$this->eventKey);
 			return $this->reScan();
@@ -114,8 +113,7 @@ class wysEvent extends wmpMsgresp{
 	
 	//获取场景二维码数据
     function getQrinfo($sid){
-		global $_cbase;
-		$timeNmin = $_cbase['run']['stamp']-($this->qrexpired*60*2); //10分钟 //saveState
+		$timeNmin = time()-($this->qrexpired*60*2); //10分钟 //saveState
 		$row = $this->_db->table('wex_qrcode')->where("sid='$sid' AND atime>'$timeNmin'")->find();
 		$this->sflag = basKeyid::kidRand(24,8);
 		$this->_db->table('wex_qrcode')->data(array('sflag'=>$this->sflag,'openid'=>$this->fromName,))->where("sid='$sid'")->update();

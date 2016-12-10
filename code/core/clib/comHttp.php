@@ -1,7 +1,10 @@
 <?php
+@include_once(DIR_VENDOR.'/phpQuery/phpQuery.php');
+
 //数据采集，doGET,doPOST,文件下载，
 class comHttp
 {
+
 	public static $way = 0;
 	public static $ways = array(
 		'1' => array('curl_init','curlCrawl'),
@@ -152,9 +155,9 @@ class comHttp
 
 	// 下载web中的(或URL)文件
 	static function downLoad($url, $showname='', $expire=1800){
-		self::downCheck($url, $showname, 1);
+		$size = self::downCheck($url, $showname, 1);
 		basEnv::obClean();
-		$type = basNodef::mime_content_type($url);
+		$type = basNodef::mimeType($url);
 		//发送Http Header信息 开始下载
 		header("Pragma: public");
 		header("Cache-control: max-age=".$expire);
@@ -162,7 +165,7 @@ class comHttp
 		header("Expires: " . gmdate("D, d M Y H:i:s",time()+$expire) . "GMT");
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s",time()) . "GMT");
 		header("Content-Disposition: attachment; filename=".$showname);
-		header("Content-Length: ".$length);
+		header("Content-Length: $size"); 
 		header("Content-type: ".$type);
 		header('Content-Encoding: none');
 		header("Content-Transfer-Encoding: binary" );
@@ -185,17 +188,21 @@ class comHttp
     }
     // downCheck
     static function downCheck(&$url, &$showname, $chkexists=0){
+		$fsize = 0;
 		if(preg_match('/^http:\/\//',$url)){
 			ini_set('allow_url_fopen', 'On');
 		}
 		if(empty($url) || ($chkexists && !file_exists($url))) {
-			throw new \InvalidArgumentException("[$url]Not Exists!");
+			throw new InvalidArgumentException("[$url]Not Exists!");
+		}else{
+			$fsize = filesize($url);
 		}
         if(empty($showname)){
             $info = parse_url($url);
             $_path = explode("/",$info['path']);
             $showname = end($_path);
         }
+        return $fsize;
     }
 	
     // 格式化返回数据

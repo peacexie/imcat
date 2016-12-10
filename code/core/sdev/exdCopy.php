@@ -17,7 +17,7 @@ class exdCopy{
 
 	//function __destory(){  }
 	function __construct($mtab='', $type='mdata'){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		if($type=='tabid' && in_array($mtab,$this->exd_tabs)){
 			$this->setTable($mtab);
 		}elseif(isset($_groups[$mtab])){
@@ -28,7 +28,7 @@ class exdCopy{
 		}else{
 			die(__CLASS__.'::'.__FUNCTION__);
 		}
-		$this->db = glbDBObj::dbObj();
+		$this->db = db();
 	}
 	function setTable($tab=''){ 
 		if(empty($tab)){

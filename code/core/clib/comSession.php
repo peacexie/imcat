@@ -38,9 +38,8 @@ class comSession {
 	
 	// cookie
 	static function getCook($nsp=''){
-		global $_cbase; //echo " ########## $nsp)";
 		if(!empty(self::$guid_ck[$nsp])) return self::$guid_ck[$nsp];
-		$ua = md5($_cbase['run']['userag'].$nsp);
+		$ua = md5(cfg('run.userag').$nsp);
 		$ckey = "{$nsp}_".substr($ua,0,12);
 		$cval = comCookie::oget($ckey);
 		if(strlen($cval)<32){

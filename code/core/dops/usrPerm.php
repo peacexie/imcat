@@ -5,7 +5,7 @@ class usrPerm{
 	
 	// 
 	static function issup(){
-		$user = usrBase::userObj('Admin');
+		$user = user('Admin');
 		return @$user->uperm['grade']=='supper';
 	}	
 	
@@ -35,7 +35,7 @@ class usrPerm{
 	
 	// re : str, ''
 	static function check($key,$val=''){
-		$user = usrBase::userObj();
+		$user = user();
 		if($key=='usess'){ 
 			$str = comSession::get(self::getSessid()); 
 			$re = strstr($str,$val) ? '' : "$key:$val";
@@ -52,7 +52,7 @@ class usrPerm{
 	// utype,login,model,grade,p*,usess,
 	// re: str, ''
 	static function pmStr($key){
-		$user = usrBase::userObj();
+		$user = user();
 		$re = '';
 		if(in_array($key,array('utype','uflag'))){
 			$key = str_replace(array('utype','uflag'),array('usertType','userFlag'),$key);
@@ -108,7 +108,7 @@ class usrPerm{
 	// 取得Upload权限key(s)
 	static function pmUpload($uobj=''){
 		if(empty($uobj)){
-			$uobj = usrBase::userObj();
+			$uobj = user();
 		}
 		if(@$uobj->uperm['grade']=='supper'){ 
 			return array('upsize1'=>'(supper)','uptypes'=>'(supper)',);
@@ -117,7 +117,7 @@ class usrPerm{
 		$rcfg['uptypes'] = array();
 		$upex = empty($uobj->uperm['pextra']) ? array() : explode(',',$uobj->uperm['pextra']);
 		if(!empty($upex)){
-			$tcfg = glbConfig::read('filetype','ex');
+			$tcfg = read('filetype','sy');
 			foreach($upex as $k){
 				if(isset($tcfg[$k])){
 					$rcfg['uptypes'] = array_merge($rcfg['uptypes'],$tcfg[$k]);
@@ -140,8 +140,7 @@ class usrPerm{
 	
 	// re : str,
 	static function getSessid(){
-		global $_cbase; 
-		$tid = preg_replace("/[^\w]/", '', $_cbase['safe']['safil']);
+		$tid = preg_replace("/[^\w]/", '', cfg('safe.safil'));
 		return 'pmSessid_'.$tid;
 	}
 	

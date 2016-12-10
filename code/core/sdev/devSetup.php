@@ -11,94 +11,69 @@ class devSetup{
 		'dext_keres','docs_keres', 'dext_faqs','dext_faqs', 
 	); 
 
+	// 安装/更新一个模块
+	static function ins1Item($act,$mod,$type,$kid,$pid){
+		if($act=='Install'){
+			$fun = $type=='mods' ? 'ins1Mod' : 'ins1Menu'; 
+			$idata = comFiles::get(DIR_DTMP.'/update/'."ins~$kid.dbsql"); 
+			$res = self::$fun($mod,$idata,$pid); 
+		}else{ // &act=Close&acg=mods&mod=inrem
+			$tab = $type=='mods' ? 'base_model' : 'base_menu';
+			$data = array('enable'=>$act=='Close'?0:1);
+			db()->table($tab)->data($data)->where("kid='$mod'")->update();
+		}
+		if($type=='mods'){
+			glbCUpd::upd_groups(); 
+			glbCUpd::upd_paras($mod);
+		}else{
+			glbCUpd::upd_model('muadm');
+			glbCUpd::upd_menus('muadm'); 
+		}
+	}
+
+	// 导入一项数据
+	static function ins1Data($data,$key=''){
+		if(is_array($data) && isset($data[$key])){ return $data[$key]; }
+		return comConvert::impData($data,$key,'sql');
+	}
+
 	// 导入一个模型数据
-	static function ins1Mod($mod,$data=array(),$type=''){
+	static function ins1Mod($mod,$data=array(),$pid=0){
 		if(empty($mod)) return array();
 		// config
 		$cfgs = array('model','fields','catalog','grade','fldext');
-		foreach ($cfgs as $key) { //$data['model_'.$mod] = ...; 
-			$idata = $data["{$key}_$mod"]; 
-			$flag = devData::run1Sql($idata,$type);
+		foreach ($cfgs as $key) { 
+			$idata = self::ins1Data($data,"{$key}_$mod"); 
+			$flag = devData::run1Sql($idata);
 		}
-		if($type=='Update') return 'OK!';
-		// stru_
-		$tabm = glbDBExt::getTable($mod,0);
-		$tabe = glbDBExt::getTable($mod,1);
-		$tabs = $tabm==$tabe ? $tabm : "$tabm,$tabe";
+		#if($type=='Update') return 'OK!';
+		$tabm = "{$pid}_$mod";
+		$tabs = $pid=='docs' ? "$tabm,dext_$mod" : $tabm; 
 		$tarr = explode(',',$tabs);
-		foreach ($tarr as $tab) { // $data['stru_'.$tab] = ...
-			$idata = $data["stru_$tab"]; 
+		foreach ($tarr as $tab) {
+			$idata = self::ins1Data($data,"stru_$tab"); 
 			$flag = devData::run1Sql($idata);
 		}
 		return 'OK!';
 	}
 
 	// 导入一个菜单数据
-	static function ins1Menu($menu,$data=array(),$type='',$pid=0){
+	static function ins1Menu($menu,$data=array(),$pid=0){
 		if(empty($menu)) return array();
-		$idata = $data["menu_$menu"]; //print_r($idata);
-		$mpid = basReq::val($menu); if(empty($mpid)) $mpid = $pid;
+		$idata = self::ins1Data($data,"menu_$menu");
+		$mpid = req($menu); if(empty($mpid)) $mpid = $pid;
 		$idata = str_replace(",'(pid-$menu)',",",'$mpid',",$idata);
 		$flag = devData::run1Sql($idata);
-		//echo "\n\n::(pid-$menu):".basReq::val($menu);
+		//echo "\n\n::(pid-$menu):".req($menu);
 		return 'OK!';
-	}
-
-	static function insDeel($fnow=''){
-		$_groups = glbConfig::read('groups'); 
-		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
-		$re = array('abtn'=>array(),'slist'=>'',);
-		$icfg = include(DIR_DTMP.'/update/'.$fnow); 
-		$idata = include(DIR_DTMP.'/update/'.str_replace('.php','.dbsql',$fnow)); 
-		if(!empty($icfg['mods'])){
-		foreach ($icfg['mods'] as $mod => $mcfg) {
-			$pid = $mcfg['pid'];
-			$type = isset($_groups[$mod]) ? 'Update' : 'Install';
-			$res = self::ins1Mod($mod,$idata,$type);
-			$re['abtn'][$mod] = "$type - $res";
-			$re['slist'] .= "<br>\n --- 模型: [$mod]{$mcfg['title']}, 执行结果如右...";
-		}}
-		if(!empty($icfg['menus'])){
-    	$arm = comTypes::getSubs($_muadm,'0','1');
-		foreach ($icfg['menus'] as $menu => $mcfg) {
-			$pid = $mcfg['pid'];
-			$type = isset($_muadm[$menu]) ? 'Update' : 'Install';
-			$res = self::ins1Menu($menu,$idata,$type,$pid);
-			$re['abtn'][$menu] = "$type - $res";
-			@$re['slist'] .= "<br>\n --- 菜单: [$menu]{$mcfg['title']}, 执行结果如右...";
-		}}
-		return $re;
-	} 
-
-	static function insList($fnow='',$mop=0){
-		$_groups = glbConfig::read('groups'); 
-		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
-		$re = array('abtn'=>array(),'slist'=>'',);
-		$icfg = include(DIR_DTMP.'/update/'.$fnow); 
-		if(!empty($icfg['mods'])){
-		foreach ($icfg['mods'] as $mod => $mcfg) {
-			$pid = $mcfg['pid'];
-			$re['abtn'][$mod] = isset($_groups[$mod]) ? 'Update' : 'Install';
-			$re['slist'] .= "<br>\n --- 模型: [$mod]{$mcfg['title']}, 父级: [$pid]{$_groups[$pid]['title']}";
-		}}
-		if(!empty($icfg['menus'])){
-    	$arm = comTypes::getSubs($_muadm,'0','1');
-		foreach ($icfg['menus'] as $menu => $mcfg) {
-			$pid = $mcfg['pid'];
-			$opbar = $mop ? "<select name='$menu'>".basElm::setOption($arm,$pid)."</select>" : '';
-			$re['abtn'][$menu] = isset($_muadm[$menu]) ? 'Update' : 'Install';
-			@$re['slist'] .= "<br>\n --- 菜单: [$menu]{$mcfg['title']}, 父级: [$pid]{$_muadm[$pid]['title']} @$opbar ";
-		}}
-		return $re;
 	}
 
 	// 导出安装模组 模型/菜单
 	static function expGroup($mods,$menus='',$xxx=''){
-		$tmp = "$mods$menus";
-		if(empty($tmp)) return '';
+		if(strlen("$mods$menus")==0) return '';
 		$data = $mids = $ares = array(); 
-		$_groups = glbConfig::read('groups'); 
-		$_muadm = glbConfig::read('muadm'); $_muadm = $_muadm['i'];
+		$_groups = read('groups'); 
+		$_muadm = read('muadm.i'); 
 		// menu
 		$marr = explode(',',$menus);
 		foreach ($marr as $menu) {
@@ -117,11 +92,20 @@ class devSetup{
 			$ares['mods'][$mod] = $_groups[$mod];
 		}
 		// save
-		$fp = "/dbexp/ins-$mods-$menus";
-		$ares = "<?php\nreturn ".var_export($ares,1).";\n?>"; 
-		$dres = "<?php\nreturn ".var_export($data,1).";\n?>"; 
-		comFiles::put(DIR_DTMP."$fp.php",$ares);
+		$fp = "/dbexp/ins~$mods-$menus";
+		$dstr = "\nstart(!@~)\n";
+		foreach ($data as $key => $val) {
+			if(empty($val)) continue;
+			$dstr .= "\n\n".str_repeat('#',32)."\n[$key]\n$val\n[/$key]\n";
+			$ares['keys'][] = $key;
+		}
+		$dstr .= "\n(!@~)isend\n";
+		$dres = "\n$dstr\n"; 
 		comFiles::put(DIR_DTMP."$fp.dbsql",$dres);
+		$ares['keys'] = implode(',',$ares['keys']);
+		$ares['notes'] = '';
+		$ares = "<?php\nreturn ".var_export($ares,1).";\n?>";
+		comFiles::put(DIR_DTMP."$fp.php",$ares);
 		return $fp;
 	}
 
@@ -169,7 +153,12 @@ class devSetup{
 		$text = preg_replace("/step{$step}\=\S+/is", "step{$step}=$val", $text);
 		comFiles::put($setflag,$text);
 		if($step==4){ glbCUpd::upd_groups(); }
-		if($step==5){ comFiles::put(DIR_DTMP.self::$fsetuped,date('Y-m-d H:i:s')); }
+		if($step==5){ 
+			comFiles::put(DIR_DTMP.self::$fsetuped,date('Y-m-d H:i:s'));
+			vopStatic::advMod('adtext',"(all)");
+			vopStatic::advMod('adpic',"(all)");
+			vopStatic::advMod('adblock',"(all)");
+		}
 	}
 	
 	// supCheck
@@ -229,8 +218,7 @@ class devSetup{
 	static function supIdpw(){ 
 		if(self::isSetuped()){ die('isRunning...'); }
 		// Rnd_Keys
-		$db = glbDBObj::dbObj(); 
-		$rcfg['sys_name']   = basReq::val('name');
+		$rcfg['sys_name']   = req('name');
 		$rcfg['safe_site']  = 'name';  for($i=0;$i<5;$i++) $rcfg['safe_site']  .= '-'.basKeyid::kidRand('f',5);
 		$rcfg['safe_pass']  = 'pass';  for($i=0;$i<5;$i++) $rcfg['safe_pass']  .= '-'.basKeyid::kidRand('fs3',5);
 		$rcfg['safe_api']   = 'api';   for($i=0;$i<5;$i++) $rcfg['safe_api']   .= '-'.basKeyid::kidRand('f',5);
@@ -244,7 +232,7 @@ class devSetup{
 		$rcfg['tout_admin']  = 1;
 		$rcfg['tout_member']  = 4;
 		foreach($rcfg as $k=>$v){
-			$db->table('base_paras')->data(array('val'=>$v))->where("kid='$k'")->update();
+			db()->table('base_paras')->data(array('val'=>$v))->where("kid='$k'")->update();
 		}
 		global $_cbase;
 		$_cbase['safe']['site']  = $rcfg['safe_site'];
@@ -255,16 +243,25 @@ class devSetup{
 		$_cbase['safe']['rndtab'] = $rcfg['safe_rndtab'];
 		$_cbase['tout_admin'] = $rcfg['tout_admin'];  
 		$_cbase['tout_member'] = $rcfg['tout_member'];	
-		devData::rstIDPW(basReq::val('uid'),basReq::val('upw'));
+		devScan::rstIDPW(req('uid'),req('upw'));
 		self::updCache();
 		$re = array('res'=>'OK','msg'=>'');
 		self::ajaxStop($re);
 	}
 	
+	static function setDbname(){
+		$tm = time(); $h = date('H');
+		if($h<6) $tm = $tm+8*3600; if($h>18) $tm = $tm-8*3600;
+		$md = substr(basKeyid::kidTemp('0'),0,7);
+		$dbname = "catv".cfg('sys.ver')."_".$md;
+		$dbname = str_replace(array('.','-'),array('',''),$dbname);
+		return $dbname;
+	}
+
 	// ajaxStop 
 	static function ajaxStop($re){ 
-		$act = basReq::val('act');
-		$step = basReq::val('step'); 
+		$act = req('act');
+		$step = req('step'); 
 		$re['with'] = "act=$act;step=$step";
 		$re = comParse::jsonEncode($re);
 		//glbHtml::head('json');
@@ -277,8 +274,7 @@ class devSetup{
 
 	// updCache 
 	static function updCache(){ 
-		$db = glbDBObj::dbObj(); 
-		$g0 = $db->table('base_model')->where("enable='1'")->order('kid')->select();
+		$g0 = db()->table('base_model')->where("enable='1'")->order('kid')->select();
 		$skip = array('groups','plus','docs','coms','users','advs',);
 		foreach($g0 as $k=>$v){
 			$key = $v['kid'];

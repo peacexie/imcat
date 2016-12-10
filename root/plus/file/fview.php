@@ -2,15 +2,15 @@
 require('_config.php');
 
 $user || basMsg::show('Not Login.','die'); //未登录
-$dfile = basReq::val('dfile',''); 
-$cfg_dirs = glbConfig::read('urdirs','sy');
+$dfile = req('dfile',''); 
+$cfg_dirs = read('urdirs','sy');
 //print_r($user); die();
 
 if($parts=='temp'){
 	
 	$rdir = DIR_DTMP;
 	$rpath = PATH_DTMP;
-	$ufix = comFiles::getTmpDir(0);
+	$ufix = comStore::getTmpDir(0);
 	
 }elseif($parts=='now'){
 	
@@ -19,7 +19,7 @@ if($parts=='temp'){
 	if(!isset($groups[$mod]) || strlen($kid)<10){
 		glbError::show('Error mod Or kid.');	
 	}
-	$ufix = comFiles::getResDir($mod,$kid,0);
+	$ufix = comStore::getResDir($mod,$kid,0);
 	
 }elseif(isset($cfg_dirs[$dir])){ //
 	$cfg = $cfg_dirs[$dir]; 
@@ -84,14 +84,14 @@ $i = 0;
 <?php 
 $re = comFiles::listDir("$rdir/$ufix");
 if(!empty($re['dir'])){
-foreach($re['dir'] as $file=>$v){
+foreach($re['dir'] as $fnm=>$v){
   $i++; //if($i>=120) { break; }
   $iSize = 0; 
   $iTime = date("Y-m-d H:i:s",$v);
   $nDir++;
 ?>
   <tr>
-    <td nowrap><img src="<?php echo PATH_STATIC; ?>/icons/file18/folder.gif" width="18" height="18" border="0" align="absmiddle"><?php echo $file ?>/</td>
+    <td nowrap><img src="<?php echo PATH_STATIC; ?>/icons/file18/folder.gif" width="18" height="18" border="0" align="absmiddle"><?php echo $fnm ?>/</td>
     <td align='right' nowrap>&nbsp;</td>
     <td align='right' nowrap>&nbsp;</td>
     <td align='right' nowrap><?php echo $iSize ?></td>
@@ -101,18 +101,18 @@ foreach($re['dir'] as $file=>$v){
 <?php 
 } }
 if(!empty($re['file'])){
-foreach($re['file'] as $file=>$v){
+foreach($re['file'] as $fnm=>$v){
   $i++; //if($i>=120) { break; }
   $iSize = basStr::showNumber($v[1]);
   $iTime = date("Y-m-d H:i:s",$v[0]);
   $nFile++;
   $sFile += $iSize;
-  $fPName = "$rpath/$ufix/$file";
-  $ticon = comFiles::getTIcon($file);
+  $fPName = "$rpath/$ufix/$fnm";
+  $ticon = comFiles::getTIcon($fnm);
   $id = $tdAct = '';
   if(strstr(".db.php.xx.xx2.xx3",$ticon['icon'])) continue;
 	if($ticon['icon']=='pic'){
-	  $id = str_replace('.','___',str_replace('-','_',$file));
+	  $id = str_replace('.','___',str_replace('-','_',$fnm));
 	  $jsAct = " onmouseover=\"fviShow('$id','$fPName',this)\" onmouseout=\"fviShow('$id')\" ";
 	  $fSubj = lang('plus.fv_tview'); 
 	  $tdAct = $jsAct;
@@ -122,7 +122,7 @@ foreach($re['file'] as $file=>$v){
 ?>
   <tr>
     <td onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);" title="<?php lang('plus.fv_pfile',0); ?>" nowrap>
-    <img src="<?php echo PATH_STATIC."/icons/file18/{$ticon['icon']}.gif"; ?>" width="18" height="18" border="0" align="absmiddle"> <?php echo $file ?></td>
+    <img src="<?php echo PATH_STATIC."/icons/file18/{$ticon['icon']}.gif"; ?>" width="18" height="18" border="0" align="absmiddle"> <?php echo $fnm ?></td>
     <td align='center' nowrap><a href="<?php echo $fPName ?>" target="_blank"><?php echo $fSubj ?></a></td>
     <td align="center" nowrap style="cursor:hand;color:#0000FF; " title="<?php lang('plus.fv_pfile',0); ?>" <?php echo $tdAct ?> onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);">
     <?php lang('plus.fv_tpick',0); ?><span class="idHidden" id='<?php echo $id ?>'></span></td>
@@ -130,7 +130,7 @@ foreach($re['file'] as $file=>$v){
     <td align="center" nowrap class="txtSC"><?php echo $iTime ?></td>
     <td align="center" nowrap class="txtSC">
       <?php if($_admPerm && $_delPath){ ?> 
-      <a href="#" onClick="urlConfirm('?<?php echo "$allpars&dfile=/$ufix/$file" ?>','<?php echo lang('plus.fv_delq',$file); ?>')"><?php lang('plus.fv_tdel',0); ?></a>
+      <a href="#" onClick="urlConfirm('?<?php echo "$allpars&dfile=/$ufix/$fnm" ?>','<?php echo lang('plus.fv_delq',$fnm); ?>')"><?php lang('plus.fv_tdel',0); ?></a>
       <?php }else{ ?>
       <span style="color:#999"><?php lang('plus.fv_tdel',0); ?></span>
       <?php } ?></td>

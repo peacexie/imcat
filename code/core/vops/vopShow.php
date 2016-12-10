@@ -16,8 +16,7 @@ class vopShow{
 	public $mod,$key,$view,$type; 
 	
 	function __construct($start=1){
-		global $_cbase; 
-		$this->tplCfg = $_cbase['tpl'];
+		$this->tplCfg = cfg('tpl');
 		$start && $this->run();
 	}
 	
@@ -26,24 +25,24 @@ class vopShow{
 	// include(vopShow::inc('/tools/rhome/home.htm',DIR_ROOT));
 	static function inc($file,$part='',$inc=0){
 		global $_cbase;
-		$cac = '/tpls/_vinc/'.substr($file,strpos($file,'/')+1);
-		if(!file_exists(DIR_DTMP.$cac) || !$_cbase['tpl']['tpc_on']){
+		$cac = '/_vinc/'.substr($file,strpos($file,'/')+1);
+		if(!file_exists(DIR_CTPL.$cac) || !$_cbase['tpl']['tpc_on']){
 			$template = comFiles::get($part.$file);
 			$btpl = new vopComp();
 			$template = $btpl->bcore($template);
-			comFiles::chkDirs($cac,'tmp'); 
-			comFiles::put(DIR_DTMP.$cac, $template); //写入缓存
+			comFiles::chkDirs($cac,'tpc'); 
+			comFiles::put(DIR_CTPL.$cac, $template); //写入缓存
 		}
 		if($inc){
-			include(DIR_DTMP.$cac);
+			include(DIR_CTPL.$cac);
 		}else{
-			return DIR_DTMP.$cac;
+			return DIR_CTPL.$cac;
 		}
 	}
 	//init-js
 	function rjs($data=''){
 		global $_cbase;
-		$data || $data = basReq::val($data,'','');
+		$data || $data = req($data,'','');
 		$temp = vopCTag::tagParas($data,'arr'); 
 		$tagfile = @$temp[0]; 
 		$tagname = @$temp[1]; $varid = 't_'.$tagname;
@@ -59,13 +58,13 @@ class vopShow{
 		$unv = in_array($tagtype,array('One')) ? $tagre : $varid;
 		$$unv = $this->tagParse($tagname,$tagtype,$temp);
 		//显示模板 
-		//$user = usrBase::userObj(); 
-		$_groups = glbConfig::read('groups'); 
+		//$user = user(); 
+		$_groups = read('groups'); 
 		require(vopTpls::path('tpc').$tagpath);
 	}
 	//run
 	function run($q=''){ 
-		global $_cbase;
+		global $_cbase; 
 		//初始化
 		$this->vars = array(); //重新清空,连续生成静态需要
 		$this->ucfg = $_cbase['mkv'] = vopUrl::init($q); 
@@ -83,8 +82,8 @@ class vopShow{
 			extract($vars, EXTR_OVERWRITE); 
 		}
 		//模板:判断+编译+显示
-		$this->getTpl($vars);
-		$_groups = glbConfig::read('groups'); //显示
+		$this->getTpl($vars); 
+		$_groups = read('groups'); //显示
 		include(vopTpls::path('tpc')."/$this->tplname".$this->tplCfg['tpc_ext']);//加载编译后的模板缓存
 	}
 	
@@ -100,10 +99,10 @@ class vopShow{
 		}elseif($this->type=='detail'){ 
 			$cfgs = '';
 			if(isset($vars['grade'])){
-				$mcfgs = glbConfig::read('grade','dset');
+				$mcfgs = read('grade','dset');
 				$cfgs = $mcfgs[$vars['grade']];
 			}elseif(isset($vars['catid'])){
-				$mcfgs = glbConfig::read($this->mod);
+				$mcfgs = read($this->mod);
 				$cfgs = $mcfgs['i'][$vars['catid']];
 			}
 			$cfgs = empty($cfgs['cfgs']) ? array() : basElm::text2arr($cfgs['cfgs']); 
@@ -122,14 +121,13 @@ class vopShow{
 
 	//GetVars
 	function getVars() { 
-		global $_cbase; 
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		if(!($this->type=='detail')) return array();
 		$pid = @$_groups[$this->mod]['pid'];
 		$key = in_array($pid,array('types')) ? "kid" : substr($pid,0,1).'id';
 		$data = $dext = array();
 		if(in_array($pid,array('docs','users','coms','advs','types'))){
-			$db = glbDBObj::dbObj();
+			$db = db();
 			$tabid = glbDBExt::getTable($this->mod);
 			$data = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
 			if(empty($data)){ return $this->msg("[{$this->key}]".lang('core.vshow_uncheck')); }
@@ -144,8 +142,7 @@ class vopShow{
 	
 	//分页标签
 	function chkPage($tagname) {
-		global $_cbase;
-		$nowtpl = $_cbase['run']['tplnow'];
+		$nowtpl = cfg('run.tplnow'); 
 		if(empty($this->pgflag)){
 			$this->pgflag = array('tpl'=>$nowtpl,'tag'=>$tagname,);
 		}else{
@@ -210,7 +207,7 @@ class vopShow{
 	// page-meta
 	function pmeta($title='',$keywd='',$desc=''){
 		global $_cbase; 
-		$mcfg = glbConfig::cread($this->mod);
+		$mcfg = read($this->mod);
 		if($this->type=='detail'){
 			if(empty($title) && !empty($this->vars['title'])) $title = $this->vars['title'];
 			if(empty($keywd) && !empty($this->vars['seo_key'])) $keywd = $this->vars['seo_key'];
@@ -235,7 +232,7 @@ class vopShow{
 			$title = str_replace('(sys_name)',$_cbase['sys_name'],$title);
 			if(!strstr($title,$_cbase['sys_name'])) $title .= " - ".$_cbase['sys_name'];
 		}
-		$ua = $this->ucfg['ua']; $up = @$ua['page']; //??? 
+		$ua = $this->ucfg['ua']; $up = empty($ua['page']) ? 1 : $ua['page']; //??? 
 		echo "<meta charset='{$_cbase['sys']['cset']}'>\n";
 		if($title) echo "<title>".basStr::filTitle($title)."</title>\n";
 		if(count($ua)>5 | $up>5){
@@ -247,19 +244,31 @@ class vopShow{
 	}
 	
 	// page-import
-	function pimp($imp='',$base='tpl',$mod=''){
-		global $_cbase;
+	// {php $this->pimp(); }
+	// {php $this->pimp(array('css'=>'~tpl/b_jscss/home.css','js'=>'/jquery/jq_imgChange.js:vendui')); } 
+	// {php $this->pimp('/b_jscss/home.css'); }
+	// {php $this->pimp('/jquery/jq_imgChange.js','vendui'); }
+	// {php $this->pimp('act=1&exjs=/_pub/jslib/jsmove.js;~tpl/b_jscss/shapan.js','comjs.php','js'); }
+	function pimp($imp='',$base='tpl'){
+		global $_cbase; 
 		$sdir = vopTpls::def(); //可能没有定义
-		if(empty($imp)){
-			$ext = "user=1&mkv={$this->mkv}&tpldir=$sdir&lang={$_cbase['sys']['lang']}";
-			glbHtml::page('imvop',$ext);
-		}else{ 
+		$eimp = $imp ? str_replace('~tpl',"/skin/$sdir",$imp) : '';
+		if(empty($imp)||is_array($imp)){
+			$extp = "user=1&mkv={$this->mkv}&tpldir=$sdir&lang={$_cbase['sys']['lang']}";
+			glbHtml::page('imvop',$eimp,$extp);
+		}elseif($base && $base=='comjs.php'){
+			$type = strpos($eimp,'&excss') ? 'css' : 'js';
+			echo basJscss::imp("/plus/ajax/comjs.php?$eimp",'',$type);
+		}else{
+			// tpl(tpl,'',0),skin,root,vendor,vendui,static
+			$base = empty($base) ? '' : $base;
 			if($base=='tpl'){ 
 				$base = '';
-				$imp = "/skin/".$_cbase['tpl']['tpl_dir']."$imp";
-			}
-			echo basJscss::imp($imp,$base,$mod);
+				$imp = "/skin/$sdir$imp";
+			} 
+			echo basJscss::imp($imp,$base);
 		}
 	}
 
 }
+

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)');
 
 $view = empty($view) ? 'list' : $view;
@@ -132,8 +132,8 @@ if($view=='upd'){
 	glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$cfg[title]]".lang('admin.rel_set')."<span class='span ph5'>|</span>",$gbar,25);
 	echo "<div class='h02'>&nbsp;</div>";
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-	$cfg1 = glbConfig::read($cfg['mod1']); 
-	$cfg2 = glbConfig::read($cfg['mod2']); 
+	$cfg1 = read($cfg['mod1']); 
+	$cfg2 = read($cfg['mod2']); 
 	$mod1 = ''; $restr = $cfg['cfgs']; $rearr = basElm::text2arr($restr);
 	echo "<th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('admin.rel_ritems')."</th><th>".lang('flow.title_set')."</th></tr>\n";
 	foreach($cfg1['i'] as $k=>$v){
@@ -159,7 +159,7 @@ if($view=='upd'){
 		$db->table($tabid)->data(basReq::in(array('cfgs'=>$restr)))->where("kid='$parts'")->update();
 		basMsg::show(lang('flow.msg_upd'));	
 	}else{ 
-		$cfg2 = glbConfig::read($cfg['mod2']); 
+		$cfg2 = read($cfg['mod2']); 
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
 		$istr = @$rearr[$kid]; $wcell = 15;
 		/*if($cfg2['deep']<2 && count($cfg2['i'])<12){

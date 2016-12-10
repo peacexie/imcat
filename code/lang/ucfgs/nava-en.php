@@ -13,8 +13,8 @@ $cfgs['indoc'] = array(
 );
 
 $cfgs['exdiys'] = array(
-	'admin/ediy&part=exdiy&dkey=tpls' => 'Tpl Set',
-	'admin/ediy&part=exdiy&dkey=skin' => 'Tpl Style',
+	//'admin/ediy&part=exdiy&dkey=tpls' => 'Tpl Set',
+	'admin/ediy&part=exdiy&dkey=skin' => 'Tpl Set',
 	'admin/ediy&part=exdiy&dkey=cfgs' => 'Sys Parms',
 	'admin/ediy&part=exdiy&dkey=runs' => 'Entry Set',
 ); 
@@ -81,13 +81,15 @@ $cfgs['sms'] = array(
 $cfgs['logs'] = array(
 	'admin/rlogs&mod=syact' => 'Sys Logs',
 	'admin/rlogs&mod=detmp' => 'Debug Logs',
+	//'admin/rlogs&part=dtmp' => 'Sys Files',
 	'admin/rlogs&part=dbsql' => 'SQL Optimizing',
 );
 
 $cfgs['dba'] = array( 
-	'admin/db_act&view=list' => 'db Table',
-	'admin/db_act&view=rem' => 'db Remarks',
-	'admin/rlogs&part=dbsql' => 'SQL Optimizing',
+	'admin/db_act&view=list' => 'Table',
+	'admin/db_act&view=rem' => 'Remarks',
+	'admin/db_act&view=runsql' => 'Run-SQL',
+	'admin/rlogs&part=dbsql' => 'Optimizing',
 );
 
 $cfgs['ordcn'] = array(

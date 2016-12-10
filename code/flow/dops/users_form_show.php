@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_DOPA')) && die('No DopA'); 
 
 if(!empty($uid)){
 	$fmo = $db->table($dop->tbid)->where("uid='$uid'")->find(); 

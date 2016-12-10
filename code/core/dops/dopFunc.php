@@ -3,20 +3,18 @@
 class dopFunc{	
 
 	static function getMinfo($mod,$kid='',$fid=''){
-		$db = glbDBObj::dbObj();
 		$fid || $fid = glbDBExt::getKeyid($mod);
-		$info = $db->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
+		$info = db()->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
 		return $info; 
 	}
 
 	static function joinDext(&$re,$mod){
-		$db = glbDBObj::dbObj();
 		$ids = '';
 		foreach($re as $k=>$v){
 			$ids .= (empty($ids) ? '' : ',')."'".$v['did']."'";
 		} //echo "$ids"; print_r($re);
 		if(empty($ids)) return;
-		$re1 = $db->table(glbDBExt::getTable($mod,1))->where("did IN($ids)")->select(); 
+		$re1 = db()->table(glbDBExt::getTable($mod,1))->where("did IN($ids)")->select(); 
 		$re2 = array();
 		foreach($re1 as $k1=>$v1){ 
 			$re2[$v1['did']] = $v1;
@@ -44,13 +42,13 @@ class dopFunc{
 
 	// 获取字段值(标题,公司名,会员名)
 	static function vgetTitle($mod,$val='',$field=''){
-		$db = glbDBObj::dbObj(); $mcfg = glbConfig::read($mod); 
+		$mcfg = read($mod); 
 		$field || $field ="title,company,uid,uname,mname,mtel,memail"; 
 		$field = self::vchkFields($field,self::vgetFields($mcfg['f'],'all','all'));
 		$field = implode(',',array_keys($field)); 
 		$field = explode(',',$field); $field = $field[0];
 		$kid = substr($mcfg['pid'],0,1).'id'; if($kid=='uid') $kid='uname';
-		$r = $db->table(glbDBExt::getTable($mod))->field($field)->where("$kid='$val'")->find(); 
+		$r = db()->table(glbDBExt::getTable($mod))->field($field)->where("$kid='$val'")->find(); 
 		return empty($r[$field]) ? '' : $r[$field] ; 
 	}
 	
@@ -125,17 +123,14 @@ class dopFunc{
 
 	// svFmtval。
 	static function svFmtval($f,$mod,$k,$val){
-		global $_cbase;
 		$fext = @$f[$k]['fmextra']; //参考fldView::fitem()
 		if(is_array($val)) $val = implode(',',$val); //array
 		if($fext=='editor'){
 			$val = basReq::fmt($val,'','Html',2000123); //2000123=2M,  MEDIUMTEXT最大长度为16,777,215。
 			$val = basReq::in($val);
-			//$val = comFiles::moveTmpDir($val,$mod,'',1);
-		}elseif($fext=='datetm'){ 
-			$stamp = $_cbase['run']['stamp']; 
+		}elseif($fext=='datetm'){  
 			$totime = strtotime(basReq::fmt($val,'1979-09-13'));
-			$val = empty($val) ? $stamp : (is_numeric($val) ? $val : $totime); 
+			$val = empty($val) ? time() : (is_numeric($val) ? $val : $totime); 
 		}elseif($fext=='color'){
 			$val = preg_replace('/[^0-9A-Fa-f]/','',$val);
 		}elseif($fext=='map'){
@@ -144,7 +139,6 @@ class dopFunc{
 			$val = preg_replace('/[^0-9A-Za-z,]/','',$val);	
 		}elseif($fext=='pics'){
 			$val = basStr::filSafe4($val); 	
-			//$val = comFiles::moveTmpDir($val,$mod,'',0);
 		}elseif($fext=='pick'){
 			$val = is_array($val) ? implode(',',$val) : $val;
 			$val = basStr::filTitle($val); 	
@@ -153,7 +147,6 @@ class dopFunc{
 			$val = basStr::filTitle($val); 
 		}elseif(in_array($f[$k]['type'],array('file'))){
 			$val = str_replace(array('<','>','"',"'","\\","\r","\n",'*','|','?'),'',$val); 
-			//$val = comFiles::moveTmpDir($val,$mod,'',0);
 		}elseif(in_array($f[$k]['dbtype'],array('int','float'))){
 			$val = basReq::fmt($val,'0','N');
 		}elseif($f[$k]['dbtype']=='text'){ 

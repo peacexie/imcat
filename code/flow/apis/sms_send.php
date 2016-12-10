@@ -1,16 +1,16 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
 $sms = new extSms(); $sc = $sms->isClosed(); 
 
-$stel = basReq::val('stel','','Safe4');
-$smsg = basReq::val('smsg','','Safe4'); 
-$act = basReq::val('act',''); 
+$stel = req('stel','','Safe4');
+$smsg = req('smsg','','Safe4'); 
+$act = req('act',''); 
 
 // 发送操作
 if($act=='chargeUp'){ //act=chargeUp&charge=
-	$charge = basReq::val('charge'); 
+	$charge = req('charge'); 
 	echo $charge;
 }elseif(!empty($bsend)){
 	$re = $sms->sendSMS($stel,$smsg,5);

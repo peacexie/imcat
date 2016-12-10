@@ -12,7 +12,7 @@ class extIPAddr{
 	
 	// 配置接口
 	function __construct($api='') { 
-		$defapi = glbConfig::get('cbase', 'ucfg.ipapi', $this->api);
+		$defapi = cfg('ucfg.ipapi', 'cbase', $this->api);
 		$this->api = $api ? $api : $defapi; 
 		$this->class = 'ip'.ucfirst($this->api);
 		$file = DIR_CODE.'/adpt/ipapi/'.$this->class.'.php';
@@ -26,7 +26,7 @@ class extIPAddr{
 	}
 	
 	// 获取数据
-	function addr($ip, $text=1){
+	function addr($ip, $text=1){ 
 		//if(empty($ip)) return '';
 		//if(is_numeric($ip)) $ip = extIPAddr::long2ip($ip);
 		//检查IP地址
@@ -65,7 +65,7 @@ class extIPAddr{
 		if(empty($ip)) return '';
 		$addr = comHttp::doGet($url.$ip); //获取原始数据
 		if(empty($addr)) return ''; 
-		$addr = comConvert::autoCSet($addr,$cset,glbConfig::get('cbase', 'sys.cset'));
+		$addr = comConvert::autoCSet($addr,$cset,cfg('sys.cset'));
 		return $addr;
 	}
 

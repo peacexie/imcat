@@ -3,7 +3,8 @@
 // glbCUpd
 class glbCUpd{	
 
-	public static $_MAX_ITEMS = 72;//最大Item个数,超过用josn
+	public static $_mitems = 72;//最大Item个数,超过用josn
+	public static $_fields = 'kid,title,etab,type,dbtype,dblen,dbdef,vreg,vtip,vmax,fmsize,fmline,fmtitle,fmextra,fmexstr,cfgs';
 
 	// upd rebuld
 	static function upd_rebuld(){
@@ -21,9 +22,7 @@ class glbCUpd{
 
 	// upd config
 	static function upd_groups(){
-		//$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
-		$grps = $db->table('base_model')->where("enable=1")->order('pid,top,kid')->select(); 
+		$grps = db()->table('base_model')->where("enable=1")->order('pid,top,kid')->select(); 
 		$str = '';
 		foreach($grps as $k=>$v){
 			$arr[$v['kid']] = array('pid'=>$v['pid'],'title'=>$v['title'],'top'=>$v['top'],); 
@@ -34,15 +33,12 @@ class glbCUpd{
 			}
 		}
 		glbConfig::save($arr,'groups');
-		//unset(glbConfig::$_CACHES_YS['_groups']);
-		//glbConfig::read('groups'); //重载
 	}
 	
 	// upd grade
 	static function upd_grade(){
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
-		$list = $db->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
+		$_groups = read('groups');
+		$list = db()->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
 		$arr = array();
 		foreach($list as $k=>$v){ //print_r($v);
 			$v['modname'] = $_groups[$v['model']]['title'];
@@ -60,32 +56,31 @@ class glbCUpd{
 	
 	// upd model
 	static function upd_model($mod=0){ 
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
 		if(empty($mod)) return;
-		$v = $db->table('base_model')->where("kid='$mod'")->find(); 
+		$v = db()->table('base_model')->where("kid='$mod'")->find(); 
 		$arr = array('kid'=>$v['kid'],'pid'=>$v['pid'],'title'=>$v['title'],'enable'=>$v['enable']); 
 		$arr['etab'] = $v['etab']; //'docs','types'
 		$arr['deep'] = $v['deep']; //'docs','types','menus','advs'
 		foreach(array('cfgs','pmod','cradd','crdel') as $k){
 			if(!empty($v[$k])) $arr[$k] = $v[$k];
 		} 
-		if(in_array($v['pid'],array('docs','users','coms','types','score','sadm','smem','suser',))){ //'types',
+		if(in_array($v['pid'],array('docs','users','coms','types','score','sadm','smem','suser',))){ 
 			$arr['f'] = self::upd_fields($mod);
 		}
 		if(in_array($v['pid'],array('docs','users'))){ 
 			$ccfg = self::upd_cfield($mod);
 			if(!empty($ccfg)) glbConfig::save($ccfg,"c_$mod",'modex');
 		}
-		if(in_array($v['pid'],array('advs','docs','users','types','menus',))){ 
-			$_cfg = array('advs'=>'itype','docs'=>'itype','users'=>'iuser','types'=>'itype','menus'=>'imenu');
+		$_cfg = array('advs'=>'itype','docs'=>'itype','users'=>'iuser','types'=>'itype','menus'=>'imenu');
+		if(isset($_cfg[$v['pid']])){
 			$func = 'upd_'.$_cfg[$v['pid']]; 
-			$itms = self::$func($mod,$v); 
-			if(count($itms)>self::$_MAX_ITEMS){
+			$itms = self::$func($mod,$v);
+			if(is_array($itms)){
+				$arr['i'] = $itms; 
+			}else{
 				glbConfig::tmpItems($mod,$itms);
 				$arr['i'] = "$mod"; 
-			}else{
-				$arr['i'] = $itms; 
 			}
 			if($v['pid']=='advs'){
 				$arr['f'] = self::upd_afield($v);
@@ -95,29 +90,27 @@ class glbCUpd{
 		glbConfig::save($arr,$mod);
 	}
 	static function upd_afield($cfg){ 	
-		$f = glbConfig::read('fadvs','sy');
+		$f = read('fadvs','sy');
 		if($cfg['etab']==1){ unset($f['detail'],$f['mpic']); }
 		if($cfg['etab']==2){ unset($f['detail']); }
 		if($cfg['etab']==3){ 
 			unset($f['mpic']); 
 			$f['url']['title'] = lang('core.cupd_reprule');
 			$f['url']['vreg'] = '';
-			$f['url']['vtip'] = lang('core.msg_eg').'{root}[=]http://txjia.com/<br>'.lang('core.msg_or').'/path/[=]/08tools/yssina/1/root/';
+			$f['url']['vtip'] = lang('core.msg_eg').'{root}[=]http://txjia.com/<br>'.lang('core.msg_or').'/path/[=]/peace/dev/imcat/root/';
 		}
 		return $f;
 	}		
 	// upd fields（考虑继承父级参数?）
 	static function upd_cfield($mod=0){
-		$db = glbDBObj::dbObj(); $f = array();
-		$list = $db->table('bext_fields')->where("model='$mod'")->order('catid,enable DESC,top')->select(); 
+		$f = array();
+		$list = db()->table('bext_fields')->where("model='$mod'")->order('catid,top')->select(); 
 		foreach($list as $k=>$v){
 		if($v['enable']){
 			$cid = $v['kid']; $catid = $v['catid']; 
 			foreach($v as $i=>$u){ //kid,top,cfgs
-				if(strstr(",title,enable,etab,type,dbtype,dblen,dbdef,vreg,vtip,vmax,fmsize,fmline,fmtitle,",",$i,"))
 				$f[$catid][$cid][$i] = $u;
 			} 
-			if(!empty($v['key'])) $f[$catid][$cid]['key'] = $v['key'];
 			if(!empty($v['cfgs'])) $f[$catid][$cid]['cfgs'] = $v['cfgs'];
 			if(!empty($v['fmextra'])) $f[$catid][$cid]['fmextra'] = $v['fmextra'];
 			if(!empty($v['fmexstr'])) $f[$catid][$cid]['fmexstr'] = $v['fmexstr'];
@@ -127,23 +120,20 @@ class glbCUpd{
 	
 	// upd fields
 	static function upd_fields($mod=0){
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
 		if(isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','users','coms','types'))){ 
 			$tabid = 'base_fields';
 		}else{
 			$tabid = 'base_paras';
 		}
 		$f = array();
-		$list = $db->table($tabid)->where("model='$mod'")->order('enable DESC,top')->select(); 
+		$list = db()->table($tabid)->where("model='$mod'")->order('top')->select(); 
 		foreach($list as $k=>$v){
 		if($v['enable']){
 			$cid = $v['kid'];
 			foreach($v as $i=>$u){ //kid,top,cfgs
-				if(strstr(",title,enable,etab,type,dbtype,dblen,dbdef,vreg,vtip,vmax,fmsize,fmline,fmtitle,",",$i,"))
 				$f[$cid][$i] = $u;
 			} 
-			if(!empty($v['key'])) $f[$cid]['key'] = $v['key'];
 			if(!empty($v['cfgs'])) $f[$cid]['cfgs'] = $v['cfgs'];
 			if(!empty($v['fmextra'])) $f[$cid]['fmextra'] = $v['fmextra'];
 			if(!empty($v['fmexstr'])) $f[$cid]['fmexstr'] = $v['fmexstr'];
@@ -153,81 +143,44 @@ class glbCUpd{
 	
 	// upd itype,icatalog
 	static function upd_itype($mod,$cfg,$pid=0){
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$db = db();
 		if(in_array($cfg['pid'],array('docs','advs'))){
 			$tabid = 'base_catalog';
 		}else{
 			$tabid = (empty($cfg['etab']) ? 'types_common' : 'types_'.$mod);
 		}
-		$arr = array(); 
-		$list = $db->table($tabid)->where("model='$mod' AND pid='$pid'")->order('top')->select();
-		if($list){
-		foreach($list as $v){
-		  $k = $v['kid']; 
-		  if(empty($v['enable'])) continue;
-		  foreach($v as $k2=>$v2){
-			if(!strstr(',pid,title,deep,frame,char,cfgs,',",$k2,")){
-			  unset($v[$k2]); 
-			}
-		  }
-		  if(!empty($v['cfgs'])) $v['cfgs'] = str_replace(array("\n","\r",";;"),array(";",";",";"),$v['cfgs']);
-		  $arr[$k] = $v;
-		  $find = $db->table($tabid)->where("model='$mod' AND pid='$k'")->find();
-		  if($find) $arr += self::upd_itype($mod,$cfg,$k);
-		}}
-		return $arr;
+		$fileds = 'kid,pid,title,deep,frame,`char`,cfgs';
+	    $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
+	    $res = comTypes::arrLays($arr,self::$_mitems);
+	    return $res;
 	}
 	// upd iuser
 	static function upd_iuser($mod,$cfg,$pid=0){
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
-		$tabid = 'base_grade'; //$cfg['pid']=='docs' ? 'base_catalog' : (empty($cfg['etab']) ? 'types_common' : 'types_'.$mod);
+		$db = db();
+		$tabid = 'base_grade'; 
 		$arr = array(); 
-		$list = $db->table($tabid)->where("model='$mod'")->order('top')->select();
+		$list = $db->field('kid,title')->table($tabid)->where("model='$mod' AND enable='1' ")->order('top')->select();
 		if($list){
 		foreach($list as $v){
 		  $k = $v['kid']; 
-		  if(empty($v['enable'])) continue;
-		  foreach($v as $k2=>$v2){
-			if(!strstr(',pid,title,',",$k2,")){ //deep,frame,char,
-			  unset($v[$k2]); 
-			}
-		  }
 		  if(!empty($v['cfgs'])) $arr[$k]['cfgs'] = $v['cfgs'];
-		  $arr[$k] = $v;  
-		  //$find = $db->table($tabid)->where("model='$mod' AND pid='$k'")->find();
-		  //if($find) $arr += self::upd_itype($mod,$cfg,$k);
+		  $arr[$k] = $v;
 		}}
 		return $arr;
 	}
 	// upd imenu
 	static function upd_imenu($mod,$cfg,$pid=0){
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$tabid = 'base_menu';
-		$arr = array(); 
-		$list = $db->table($tabid)->where("model='$mod' AND pid='$pid'")->order('top')->select();
-		if($list){
-		foreach($list as $v){
-		  $k = $v['kid']; 
-		  if(empty($v['enable'])) continue;
-		  foreach($v as $k2=>$v2){
-			if(!strstr(',pid,title,deep,cfgs,',",$k2,")){
-			  unset($v[$k2]); 
-			}
-		  }
-		  $arr[$k] = $v;  
-		  $find = $db->table($tabid)->where("model='$mod' AND pid='$k'")->find();
-		  if($find) $arr += self::upd_imenu($mod,$cfg,$k);
-		}}
-		return $arr;
+		$fileds = 'kid,pid,title,deep,cfgs';
+	    $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
+	    $res = comTypes::arrLays($arr,self::$_mitems);
+	    return $res;
 	}
 	
 	// upd relat
 	static function upd_relat(){ 
-		$db = glbDBObj::dbObj();
-		$list = $db->table('bext_relat')->order('top,kid')->select(); 
+		$list = db()->table('bext_relat')->order('top,kid')->select(); 
 		$re = array();
 		foreach($list as $r){
 			$kid = $r['kid'];
@@ -244,16 +197,15 @@ class glbCUpd{
 	}
 	
 	static function upd_paras($pid, $re='save'){ 
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
 		$str = ''; $arr = array();
 		foreach($_groups as $k=>$v){ 
 			if($v['pid']==$pid){ 
-				$cfg = glbConfig::read($k);
+				$cfg = read($k);
 				if(empty($cfg['f'])) continue;
 				foreach($cfg['f'] as $k2=>$v2){
 					$k3 = strstr($v2['key'],'[') ? str_replace(array('[',']'),array("['","']"),$v2['key']) : "['".$v2['key']."']";
-					$res = $db->table('base_paras')->where("kid='$k2'")->find();
+					$res = db()->table('base_paras')->where("kid='$k2'")->find();
 					$val = str_replace(array('"',"\\"),array("\\\"","\\\\"),$res['val']);
 					$str .= "\n\$_cbase$k3 = \"$val\";";
 					$arr[$k2] = $res['val'];
@@ -268,7 +220,7 @@ class glbCUpd{
 		}
 	}
 	static function upd_menus($mod,$cfg=array()){ 
-		$cfg = glbConfig::read($mod);
+		if(empty($cfg)) $cfg = read($mod);
 		if($mod=='muadm'){ 
 			$s0 = ''; $s1 = ''; $js1 = ''; $js2 = '';
 			$mperm = array();
@@ -300,10 +252,10 @@ class glbCUpd{
 	}
 	
 	static function upd_madvs(&$s0){ //按栏目显示菜单项
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		foreach($_groups as $k2=>$v2){ 
 		if($v2['pid']=='advs'){
-			$cfg = glbConfig::read($k2);
+			$cfg = read($k2);
 			$s0 .= "<ul class='adf_mnu2' id='left_$k2'>";
 			$s0 .= "<li class='adf_dir'><a href='?file=dops/a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
 			foreach($cfg['i'] as $k3=>$v3){ 
@@ -365,7 +317,7 @@ class glbCUpd{
 	static function upd_ipfile(&$icfg){
 		static $_mpm;
 		if(empty($_mpm)){
-			$_mpm = glbConfig::read('muadm_perm','dset'); 
+			$_mpm = read('muadm_perm','dset'); 
 		}
 		$pmadm =  $icfg['pmadm']; 
 		$pfile = ",{$icfg['pfile']}";

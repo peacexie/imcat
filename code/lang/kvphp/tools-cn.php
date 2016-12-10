@@ -106,7 +106,7 @@ return array(
 	'upl_cfmdok' => '确认[手动处理]完毕',
 	'upl_tips' => '提示',
 	'upl_tptpl' => '模板目录, 一般都修改过, 请自行手动处理',
-	'upl_tpskn' => '与处理/code/tpls/目录类似, 但注意需要更新jslib子目录的文件（通用js库）；',
+	'upl_tpskn' => '与处理/skin/目录类似, 但注意需要更新jslib子目录的文件（通用js库）；',
 	'upl_tpcfg' => '可直接复制最新包的文件覆盖过来',
 	'upl_mdback' => '手动备份数据库:',
 	'upl_docfg' => '处理配置数据:',
@@ -200,7 +200,7 @@ return array(
 	'chk_cfunc' => '函数(填字符,Support表示支持)',
 
 	'chk_sysdirs' => '系统目录',
-	'chk_dirset' => '请对照文件[/root/run/_paths.php],设置相关路径！',
+	'chk_dirset' => '请对照文件[/root/run/_init.php],设置相关路径！',
 	'chk_dblink' => '数据库连接',
 	'chk_dbstatus' => '(连接)状态/结果',
 	'chk_dbextra' => '扩展',

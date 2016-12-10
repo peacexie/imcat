@@ -1,8 +1,10 @@
-<?php if($part=='_test1_'){ ?>
+<?php (!defined('RUN_INIT')) && die('No Init');?>
+
+<?php switch($part){ case '_test1_': ?>
 
 En: Less use of the large section of the text:<?php echo $uarr['hname'] ?>
 
-<?php }elseif($part=='fldedit_note'){ 
+<?php break;case 'fldedit_note': 
 
 $note  = "Fmt1:val=title,each item a line;\n";
 $note .= "Fmt2:ModId(Catalog/Types);\n";
@@ -13,17 +15,17 @@ $note .= "*. [Select][Checkbox][Radio]Fmt1/2/3:\n";
 $note .= "*. [WinPick][WinPick-Multi]Fmt3:";
 $reinc[$part] = $note;
 
-}elseif($part=='userm_empw'){ ?>   
+break;case 'userm_empw': 
 
 $data = "Hi,{$uarr['uname']}! <br><br>\n\n";
 $data .= "Welcome use get-password by Email!<br>\n"; //  {$uarr['sys_name']}
 $data .= "Please click(or copy) the url, and view the page:<br>\n";
-$data .= "$uarr['url']<br>\n";
+$data .= "{$uarr['url']}<br>\n";
 $data .= "Get passowrd by these tips.<br>\n<br>\n";
 $data .= "{$uarr['sys_name']} ".date('Y-m-d H:i:s')."<br>\n";
 $reinc[$part] = $note;
 
-<?php }elseif($part=='plus_upbat'){ ?> 
+break;case 'plus_upbat': ?>
 	
 Notice: <br>
 ***1. This idea from <a href="http://www.babytree.com/">Babytree</a>, 
@@ -36,7 +38,7 @@ Notice: <br>
       <br>Can not use spaces, such as quotation marks, and other special characters in the file name;
       <br>The picture name can be used in Chinese, the directory do NOT use chinese.
 
-<?php }elseif($part=='plus_fview'){ ?>   
+<?php break;case 'plus_fview': ?>   
 
 Notice: <br>
 1. BIG files please upload by FTP, Can view [Admin-HELP] or [<a href="#readme.txt" target="_blank">File/Directory Structure</a>]; <br>
@@ -46,11 +48,11 @@ Notice: <br>
 5. [Upload] Batch/Single upload file(s); <br>
 6. [Insert] will insert: iframe, map, swf, audio, video;
 
-<?php }elseif($part=='wex_user'){ ?>  
+<?php break;case 'wex_user': ?>  
 
 <tr><th>Nick</th><th>OpenId</th><th>Group-ID</th><th>City</th><th>Pic</th><th>Sex</th><th>Add-Time</th><th>Send-Message</th></tr>
 
-<?php }elseif($part=='--end--'){ ?>  
+<?php break;case '--end--': ?>  
 
 -end-
 

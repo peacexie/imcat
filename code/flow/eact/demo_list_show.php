@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 // 参考: dops/docs_list_show.php
 
 $sbar = "\n".$so->Type(90,lang('flow.op0_cat')); // for:demo

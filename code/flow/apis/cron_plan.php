@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
 $tabid = 'bext_cron';
@@ -24,7 +24,7 @@ if($view=='list'){
 					$db->table($tabid)->data(array('enable'=>'0'))->where("kid='$id'")->update(); 
 				}elseif(in_array($fs_do,array('runp','rinc'))){ 
 					$upd = $fs_do=='runp' ? 1 : 0;
-					$cron = new extCron($id);
+					$cron = new comCron($id);
 				}
 			}
 		}
@@ -109,7 +109,7 @@ if($view=='list'){
 		$excunit = " &nbsp; ".lang('flow.cr_unit')."<select name='fm[excunit]' class='w90'>$excunit</select>";
 		glbHtml::fmae_row(lang('flow.cr_cycle'),"<input name='fm[excycle]' type='text' value='$fm[excycle]' class='txt w90' maxlength='3' reg='n+i' tip='".lang('flow.cr_tip2')."' />$excunit");
 
-		echo basJscss::imp('/My97DatePicker/WdatePicker.js','vui'); 
+		echo basJscss::imp('/My97DatePicker/WdatePicker.js','vendui'); 
 		$slast = empty($fm['exlast']) ? '-' : date('Y-m-d H:i',$fm['exlast']);
 		$slast = " &nbsp; ".lang('flow.cr_last').": $slast";
 		$iinp = "<input id='fm[exnext]' name='fm[exnext]' type='text' value='".date('Y-m-d H:i',$fm['exnext'])."' class='txt w130' />";

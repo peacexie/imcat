@@ -9,8 +9,8 @@ $larr = array(
 	'fr'=>'fr',
 	'ru'=>'ru',
 );
-echo basJscss::write(basJscss::imp('/edt_ck/ckeditor.js','vui'))."\n"; 
-echo basJscss::write(basJscss::imp("/edt_ck/lang/$larr[$lang].js",'vui'))."\n";
+echo basJscss::write(basJscss::imp('/edt_ck/ckeditor.js','vendui'))."\n"; 
+echo basJscss::write(basJscss::imp("/edt_ck/lang/$larr[$lang].js",'vendui'))."\n";
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [

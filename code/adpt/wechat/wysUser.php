@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 用户相关操作
 // 如果本系统修改,就改这个文件，不用改wmp*文件
 
@@ -9,7 +9,7 @@ class wysUser extends wmpUser{
 
 	function __construct($cfg=array()){
 		parent::__construct($cfg);
-		$this->_db = glbDBObj::dbObj();
+		$this->_db = db();
 	}
 	
 	//得到一个可用的本系统用户名
@@ -29,15 +29,13 @@ class wysUser extends wmpUser{
 		return $username;
 	}
     static function fmtUserCheck($username=''){ 
-		$db = glbDBObj::dbObj();
-		$row = $db->table('users_uacc')->where("uname='$username'")->find();
+		$row = db()->table('users_uacc')->where("uname='$username'")->find();
 		return empty($row) ? 0 : 1;
 	}
 
 	// 设置录登录状态
     static function setLoginLogger($openid=''){ 
-		$db = glbDBObj::dbObj();
-		$row = $db->table('users_uppt')->where("pptmod='weixin' AND pptuid='$openid'")->find();
+		$row = db()->table('users_uppt')->where("pptmod='weixin' AND pptuid='$openid'")->find();
 		if($row){ //cls_message::show(" .... 完善跳转 ... 绑定了直接登录");	
 			usrBase::setLogin('m',$row['uname']);
 		}
@@ -46,9 +44,8 @@ class wysUser extends wmpUser{
 	}
 	// 设置扫描登录完成
     static function setScanLogin($scene,$openid='',$username=0){ 
-		$db = glbDBObj::dbObj();
 		self::setLoginLogger($openid); //,'sflag'=>$username
-		$db->table("wex_qrcode")->data(array('stat'=>'LoginOK','openid'=>"$openid"))->where("sid='$scene'")->update();
+		db()->table("wex_qrcode")->data(array('stat'=>'LoginOK','openid'=>"$openid"))->where("sid='$scene'")->update();
 	}
 	
 	// 添加用户
@@ -70,8 +67,7 @@ class wysUser extends wmpUser{
 	//绑定用户
     static function bindUser($openid,$uname,$password){  
 		if(empty($uname)) die('错误:'.__FUNCTION__); //原则上没有这个情况
-		$db = glbDBObj::dbObj();
-		$ubase = $db->table('users_uacc')->where("uname='$uname'")->find();
+		$ubase = db()->table('users_uacc')->where("uname='$uname'")->find();
 		$umod = $ubase['umods']; $dbpass = $ubase['upass'];
 		$upass = comConvert::sysPass($uname,$password,$umod);
 		if($dbpass!=$upass){  
@@ -91,7 +87,7 @@ class wysUser extends wmpUser{
 	// 扫描过来 : setPwd
     static function resetPwd($openid,$scene,$uname){ 
 		if(empty($openid)) die('错误:'.__FUNCTION__); //原则上没有这个情况
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$uppt = $db->table('users_uppt')->where("pptmod='weixin' AND pptuid='$openid'")->find();
 		if(empty($uppt)) return "重置失败，未绑定帐号(a)！";
 		$ubase = $db->table('users_uacc')->where("uname='{$uppt['uname']}'")->find();

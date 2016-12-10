@@ -144,5 +144,11 @@ $cfgs['ucfaqn4'] = array(
 	'tag' => '标签', 
 );
 
+$cfgs['uinfstate'] = array(
+	'insok' => '已安装', 
+	'close' => '已关闭', 
+	'noins' => '未安装', 
+);
+
 return $cfgs;
 

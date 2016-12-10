@@ -1,13 +1,21 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)');
 
-$mod = basReq::val('mod','upvnow'); 
+$mod = req('mod','upvnow'); 
 $nava = basLang::ucfg('nava.upd_vers'); 
 $mtitle = $nava["admin/upgrade&mod=$mod"];
-$step = basReq::val('step','init'); // init,set,deel
-$fact = basReq::val('fact',''); 
-$burl = "?file=$file&mod=$mod&fact=";
+$step = req('step','init'); // init,set,deel
+$kid = req('kid'); 
+$act = req('act'); $acg = req('acg'); $acm = req('acm');
+$burl = "?file=$file&mod=$mod&kid=";
+
+if($act&&$acg&&$acm){
+	devSetup::ins1Item($act,$acm,$acg,$kid,req('pid'));
+	$msg = "[$acm] $act - OK!";
+	basMsg::show($msg,'Redir',"$burl$kid");
+	die();
+}
 
 $links = admPFunc::fileNav($mod,'upd_vers');
 glbHtml::tab_bar(lang('admin.upg_upgrade')."<span class='span ph5'>#</span>$mtitle","$links",50);
@@ -22,8 +30,7 @@ $tiprows = "
 $tpl = $_cbase['sys']['lang']=='zh' ? 'dev' : 'doc'; 
 $link = "<a href='{$_cbase['server']['txmao']}/$tpl.php?uplog' target='_blank'>".lang('admin.upg_off')."</a>";
 
-glbHtml::fmt_head('fmlist',"$burl$fact&step=deel",'tblist');
-
+glbHtml::fmt_head('fmlist',"$burl$kid&step=deel",'tblist');
 
 if($mod=='upvnow'){
 	
@@ -50,54 +57,53 @@ if($mod=='upvnow'){
 }elseif($mod=='install'){
 
 	$list = comFiles::listDir(DIR_DTMP.'/update/','file');
-	$msg = '(null)';
-	echo "\n<tr><th class='tc'>$mtitle: </th>\n<th>Actions</th></tr>\n";
+	$msg = '(null)'; 
+	$oflink = "<a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>$link</a>";
+
 	if($step=='set'){
-		$icfg = devSetup::insList($fact,1); $iu2 = implode('<br>',$icfg['abtn']); 
-		$iu2 = str_replace('Update',"<i class='cF0F'>Update</i>",$iu2);  
-		echo "\n<tr><td><b>$fact</b>$icfg[slist]</td>\n<td class='tc'>Will...<br>$iu2</td></tr>\n";
-	    #echo $btnrows;
-	    $deel = "<input name='bsend' class='btn' type='submit' value='Install/Update' /></a>";
-		echo "\n<tr><td class='tc'>$deel</td>\n<td class='tc'>
-			<a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>$link</a>
-		</td></tr>\n";
-	}elseif($step=='deel'){
-		$icfg = devSetup::insDeel($fact,1); $iu2 = implode('<br>',$icfg['abtn']); 
-		$iu2 = str_replace('Update',"<i class='cF0F'>Update</i>",$iu2);  
-		echo "\n<tr><td><b>$fact</b>$icfg[slist]</td>\n<td class='tc'>Done...<br>$iu2</td></tr>\n";
-		# next ... (后续...)
-	    #echo $btnrows;
-		$bak = "<a href='$burl'>GoBack</a>";
-		$del = "<a href='$burl".str_replace('.php','',$fact)."&step=del' class='cF00'>Delete</a>";
-		echo "\n<tr><td class='tc'>$bak # $del</td>\n<td class='tc'>
-			<a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>$link</a>
-		</td></tr>\n";
+		echo "\n<tr><th class='tc'>$mtitle: </th>\n<th>Actions</th></tr>\n";
+		$icfg = updInfo::minsList($kid); 
+		$iu2 = implode('<br>',$icfg['abtn']); 
+		$notes = strlen($icfg['notes'])>12 ? $icfg['notes'] : '-';
+		echo "\n<tr><td><b>ins~$kid.php</b>$icfg[slist]</td>\n<td class='tc'>Will...<br>$iu2</td></tr>\n";
+	    $bak = "$notes <a href='$burl' class='right'>GoBack</a>";
+		echo "\n<tr><td class='tl'>$bak</td>\n<td class='tc'>$oflink</td></tr>\n";
 	}else{ //init
-		foreach ($list as $fnow => $v) {
-			if($step=='del'&&strstr($fnow,"$fact.")){
-				unlink(DIR_DTMP.'/update/'.$fnow);
-				$msg = 'Delete OK!';
-				continue;
+		$list = updInfo::minsTable();
+		echo "\n<tr class='tc'><th>ID</th>";
+		echo "<th>Title</th>";
+		echo "<th>Files</th>"; 
+		echo "<th>Api</th>"; 
+		echo "<th>Action</th>";
+		foreach ($list as $kid => $v) {
+			if(file_exists(DIR_DTMP."/update/ins~$kid.php")){
+				$ins = "<a href='$burl$kid&step=set'>Install/Update</a>";
+			}else{
+				$url = PATH_ROOT."/plus/api/update.php?act=fatch&kid=$kid";
+				$ins = "<a class='cF0F' href='$url' ".vopCell::vOpen(0).">Fatch Files...</a>";
 			}
-			if(substr($fnow,0,4)!='ins-' || strpos($fnow,'.php')<=0) continue;
-			$icfg = devSetup::insList($fnow); $iu2 = implode('<br>',$icfg['abtn']); 
-			$iu2 = str_replace('Update',"<i class='cF0F'>Update</i>",$iu2);  
-			$upd = "<a href='$burl$fnow&step=set'>Ins/Upd</a>";
-			$del = "<a href='$burl".str_replace('.php','',$fnow)."&step=del' class='cF00'>Delete</a>";
-			echo "\n<tr><td>[".date('Y-m-d H:i',$v[0])."] <b>$fnow</b>$icfg[slist]</td>\n<td class='tc'>$upd # $del<br>$iu2</td></tr>\n";
-		} //dump($v);
-	    #echo $tiprows;
-		echo "\n<tr><td class='tc'>Message: $msg</td>\n<td class='tc'>
-			<a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>$link</a>
-		</td></tr>\n";
+			$files = updInfo::minsDUrls($v['api'],$kid,$v['files']);
+			$itmes = updInfo::minsSMods($v['mods']);
+			$ires = '';
+			foreach ($itmes as $k=>$itme) {
+				$ires .= "[$k] ".implode('; ',$itme)."<br>\n";
+			}
+			echo "\n<tr class='tc'><td rowspan=2>$kid</td>";
+			echo "<td>$v[title]</td>";
+			echo "<td>$files</td>"; 
+			echo "<td>$v[api]</td>"; 
+			echo "<td>$ins</td>";
+			echo "</tr>\n<tr><td colspan=4 class='h100' style='line-height:120%;background:#EEE;'>$ires</td></tr>";
+		} 
+		$init = "<a href='".PATH_ROOT."/plus/api/update.php?act=fatch' ".vopCell::vOpen().">Update-Init</a>";
+		echo "\n<tr class='tc'><th>Message</th><th colspan=2>$msg</th><th>$init</th><th>$oflink</th></tr>\n";
 	}
-		
 }
 
 if(in_array($mod,array('upvnow','import'))){
 
 	echo "\n<tr><th class='tc'></th>\n<th>".lang('admin.upg_tip1').": </th></tr>\n";
-	$text = comFiles::get(DIR_CODE."/tpls/$tpl/d_uplog/upd_readme.txt"); 
+	$text = comFiles::get(DIR_SKIN."/$tpl/d_uplog/upd_readme.txt"); 
 	//$text = extMkdown::pdext($text);
 	echo "\n<tr><td class='tc w180'>".lang('admin.upg_tip2')."<br>$link</td>\n<td>
 		<textarea cols='' rows='18' style='width:100%'>$text</textarea>
@@ -107,5 +113,3 @@ if(in_array($mod,array('upvnow','import'))){
 
 glbHtml::fmt_end(array(""));
 
-
-?>

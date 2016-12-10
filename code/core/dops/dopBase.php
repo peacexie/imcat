@@ -32,7 +32,7 @@ class dopBase{
 
 	//function __destory(){  }
 	function __construct($cfg,$tabid=''){ 
-		$this->db = glbDBObj::dbObj(); 
+		$this->db = db(); 
 		$this->so = new dopBSo($cfg,$tabid);
 		$this->cv = new dopBCv($cfg,$tabid);
 		$this->so->skey = $this->cv->skey = $this->skey;
@@ -53,8 +53,8 @@ class dopBase{
 	// 左上信息条
 	function msgBar($msg='',$lnkadd=''){
 		$mod = $this->mod;
-		$file = basReq::val('file');
-		$stype = basReq::val('stype');  
+		$file = req('file');
+		$stype = req('stype');  
 		$gname = $this->cfg['title'];
 		empty($lnkadd) && $lnkadd = $this->cv->Url(lang('flow.dops_add2').'&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
 		$lnkadd = str_replace("<a ","<a id='{$mod}_add' ",$lnkadd);
@@ -66,8 +66,7 @@ class dopBase{
 		
 	// 列表-记录集
 	function getRecs($key='',$psize=0){
-		global $_cbase;
-		$psize || $psize = $_cbase['show']['apsize'];
+		$psize || $psize = cfg('show.apsize');
 		$key = $key ? $key : $this->_kid; 
 		$sfrom = "* FROM `".$this->db->pre.$this->tbid.$this->db->ext."` ";  
 		$where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5)); //echo $where;
@@ -78,7 +77,7 @@ class dopBase{
 		}else{
 			$order = $this->order;
 			$odesc = 1;
-		} //echo "$sfrom,$where,($opkey),$odesc";
+		} //echo "$sfrom,$where,($opkey),$odesc,$order";
 		$pg = new comPager($sfrom,$where,$psize,$order); 
 		$pg->set('odesc',$odesc); // odesc/opkey
 		$pg->set('opkey',$opkey);
@@ -107,7 +106,7 @@ class dopBase{
 	}	
 	// 表单-类别
 	function fmType($key='catid',$w=150){ 
-		$dval = empty($this->fmo[$key]) ? basReq::val('stype') : $this->fmo[$key];
+		$dval = empty($this->fmo[$key]) ? req('stype') : $this->fmo[$key];
 		$str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' reg='tit:2-12'>"; 
 		$str .= comTypes::getOpt($this->cfg['i'],$dval); 
 		$str .= "</select>";
@@ -121,19 +120,19 @@ class dopBase{
 		return $item;
 	}
 	function fmAELogs($type,$key){
-		global $_cbase;
-		$user = usrBase::userObj();
+		$run = cfg('run');
+		$user = user();
 		if($type=='date'){
-			$val = empty($this->fmo[$key]) ? $_cbase['run']['stamp'] : $this->fmo[$key];
+			$val = empty($this->fmo[$key]) ? $run['stamp'] : $this->fmo[$key];
 			$val = date('Y-m-d H:i:s',$val); 
-			echo basJscss::imp('/My97DatePicker/WdatePicker.js','vui'); 
+			echo basJscss::imp('/My97DatePicker/WdatePicker.js','vendui'); 
 			$iinp = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' class='txt w140' />";
 			$item = "$iinp<span class='fldicon fdate' onClick=\"WdatePicker({el:'fm[$key]',dateFmt:'yyyy-MM-dd HH:mm:ss'})\" /></span>";
 		}elseif($type=='user'){
 			$val = empty($this->fmo[$key]) ? @$user->uinfo['uname'] : $this->fmo[$key];
 			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=24 tip='".lang('flow.tip_suser')."' />";
 		}elseif($type=='uip'){
-			$val = empty($this->fmo[$key]) ? $_cbase['run']['userip'] : $this->fmo[$key];
+			$val = empty($this->fmo[$key]) ? $run['userip'] : $this->fmo[$key];
 			$item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=255 tip='".lang('flow.tip_sip')."' />";
 		}
 		return $item;
@@ -162,14 +161,14 @@ class dopBase{
 		$this->fmv[$_key] = $kid;	
 		$this->fmv[$this->_kno] = $kno;
 		$this->svMoveFiles($kid);
-		extJifen::main(array_merge($this->cfg,$this->fme),'add','');
+		comJifen::main(array_merge($this->cfg,$this->fme),'add','');
 		return $this->fmv[$_key];
 	}
 	function svTypes(){
 		$field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
 		if(isset($this->fme[$field])){
 			$type = $this->fmv[$field] = preg_replace('/[^0-9A-Za-z\.\-]/','',$this->fme[$field]);
-			$ccfg = glbConfig::read($this->mod,'_c'); //类别扩展属性 
+			$ccfg = read($this->mod,'_c'); //类别扩展属性 
 			if(empty($ccfg[$type])) return;
 			$cfield = $ccfg[$type];
 			foreach($cfield as $k=>$v){
@@ -181,11 +180,10 @@ class dopBase{
 	}
 	// Fields。
 	function svFields(){
-		global $_cbase; 
 		if(empty($_POST['fm'])) glbHtml::end('svFields@'.__CLASS__);
 		$f = $this->cfg['f'];
 		if(in_array($this->cfg['pid'],array('users','docs'))){
-			$fc = glbConfig::read($this->mod,'_c'); 
+			$fc = read($this->mod,'_c'); 
 			$fk = $this->cfg['pid']=='users' ? 'grade' : 'catid';
 			$fv = @$_POST['fm'][$fk];
 			if(isset($fc[$fv])){
@@ -212,7 +210,7 @@ class dopBase{
 				if(($ext=='editor' || $ext=='pics' || $cfg['type']=='file')){
 					$tmp = &$this->$k; 
 					if(!empty($tmp[$f])){ 
-						$tmp[$f] = comFiles::moveTmpDir($tmp[$f], $this->mod, $kid, $ext=='editor'?1:0); 
+						$tmp[$f] = comStore::moveTmpDir($tmp[$f], $this->mod, $kid, $ext=='editor'?1:0); 
 						break;
 					}
 				}
@@ -271,7 +269,7 @@ class dopBase{
 	function opDelPubpre($id){ 
 		if(!in_array($this->cfg['pid'],array('docs','users','coms'))) return;
 		$fme = $this->db->field('aip,auser,atime')->table($this->tbid)->where("$this->_kid='$id'")->find();
-		if(!empty($fme)) extJifen::main(array_merge($this->cfg,$fme),'del'); 
+		if(!empty($fme)) comJifen::main(array_merge($this->cfg,$fme),'del'); 
 	}
 	// opDelPublic。
 	function opDelPublic($id){

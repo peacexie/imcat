@@ -1,7 +1,7 @@
 <?php
 require(dirname(__FILE__).'/_config.php'); 
 glbHtml::page('Types Pick',1);
-glbHtml::page('imin'); //adm 
+glbHtml::page('imadm'); //adm 
 ?>
 <style TYPE="text/css">
 body, td { background:#FFF; font-size:13px;}

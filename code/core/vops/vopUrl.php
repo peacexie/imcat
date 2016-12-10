@@ -12,7 +12,7 @@ class vopUrl{
 	// get/url初始数据
 	static function iget($q=''){
 		$re = array(); 
-		$q = strlen($q)==0 ? $_SERVER['QUERY_STRING'] : $q; //可能为0
+		$q = strlen($q)==0 ? (empty($_SERVER['QUERY_STRING'])?'':$_SERVER['QUERY_STRING']) : $q; //可能为0
 		if(empty($q) || $q=='home'){
 			$ua = array();
 			$mkv = 'home';
@@ -64,7 +64,7 @@ class vopUrl{
 			if(isset($vcfg[$key])){
 				$cfg = $vcfg[$key];
 			}else{ //echo "::cc"; 
-				$mcfg = glbConfig::read($mod);
+				$mcfg = read($mod);
 				if(isset($mcfg['i'][$key])){
 					$cfg = $vcfg['t'];
 				}else{
@@ -102,7 +102,7 @@ class vopUrl{
 	}
 
 	static function ifirst($mod,$re=''){
-		$minfo = glbConfig::read($mod);
+		$minfo = read($mod);
 		$key = empty($minfo['i']) ? '' : key($minfo['i']); 
 		if($re=='key'){
 			return $key;
@@ -131,7 +131,7 @@ class vopUrl{
 	static function mcheck($hcfg,$mod){
 		global $_cbase; 
 		$tpldir = $_cbase['tpl']['tpl_dir'];
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups');
 		$ukeyh = array_merge($hcfg['extra'],array('home'));
 		if(!in_array($mod,$ukeyh) && !isset($_groups[$mod])){
 			vopShow::msg("[{$mod}][mod]".lang('core.vop_parerr'));
@@ -162,7 +162,7 @@ class vopUrl{
 	// paras: array, string 
 	static function fout($mkv='',$type='',$host=0){ //,$ext=array()
 		if(strpos($mkv,':')) return self::ftpl($mkv,$type,$host);
-		$burl = self::burl($host);
+		$burl = self::burl($host); 
 		//mkv分析
 		if(strlen($mkv)<3) return self::bind($burl); //首页
 		$type || $type = strpos($mkv,'.') ? '.' : '-';
@@ -192,24 +192,18 @@ class vopUrl{
 	
 	//base-url
 	static function burl($host=0){ 
-		global $_cbase;
-		$burl = vopTpls::etr1($host,$_cbase['tpl']['tpl_dir']);
+		$dir = cfg('tpl.tpl_dir');
+		$burl = vopTpls::etr1($host,$dir);
 		return $burl;
 	}
 	
 	//还原root路径
 	static function root($val){ 
-		$cfg = array('tmp','res','htm', 'stc','vui','vnd', 'web');
-		foreach($cfg as $cv){
-			$path = comFiles::cfgDirPath($cv,'path');
-			$val = str_replace(array('{' .$cv.'root}','{$'.$cv.'root}'),$path,$val);
-		}
-		return $val;
+		return comStore::revSaveDir($val);
 	}
 	//format指定tpl下的url
 	static function ftpl($str,$type='',$host=0){
-		global $_cbase; 
-		$tplold = @$_cbase['tpl']['tpl_dir'];
+		$tplold = cfg('tpl.tpl_dir'); 
 		$a = explode(':',$str);
 		$ck = vopTpls::check($a[0],0);
 		if(empty($ck['ok'])) return "#close#{$a[1]}";
@@ -228,9 +222,9 @@ class vopUrl{
 
 	// 绑定域名
 	static function bind($url){
-		global $_cbase; 
-		if(empty($_cbase['ucfg']['dbind'])) return $url;
-		$na = glbConfig::read('dmbind','ex');
+		$binds = cfg('ucfg.dbind'); 
+		if(empty($binds)) return $url;
+		$na = read('dmbind','ex');
 		if(empty($na)) return $url;
 		foreach($na as $v){
 			$vbak = $v[0];
@@ -256,7 +250,7 @@ class vopUrl{
 		$org['self'] = $_SERVER['PHP_SELF']; // path/file.php/routdir/routpart
 		$org['script'] = $_SERVER['SCRIPT_NAME']; // /path/file.php
 		// PATH_INFO = /routdir/routpart, 可能不支持提示(cgi.fix_pathinfo=0)：No input file specified.
-		$org['route'] = empty($_SERVER['PATH_INFO']) ? '' : $_SERVER['PATH_INFO']; // str_replace($org['script'],'',$org['self'])
+		$org['route'] = empty($_SERVER['PATH_INFO']) ? '' : $_SERVER['PATH_INFO']; 
 		$org['query'] = $_SERVER['QUERY_STRING']; // act=test&key1=myval2
 		parse_str($org['query'],$par); //parse_str() 函数把查询字符串解析到变量中。
 		/*if(!safComm::urlQstr7()){
@@ -267,28 +261,14 @@ class vopUrl{
 	
 	// umkv：获取mkv: $_GET > $_cbase > 
 	static function umkv($key,$ukey=''){
-		global $_cbase;
 		$ukey || $ukey = $key;
-		$val = basReq::val($ukey,'','Key',24);
-		if(empty($val) && !empty($_cbase['mkv'][$key])){
-			$val = $_cbase['mkv'][$key]; 
+		$val = req($ukey,'','Key',24);
+		$cmk = cfg("mkv.$key");
+		if(empty($val) && !empty($cmk)){
+			$val = $cmk; 
 		}
 		return $val;
 	}
 
 }
-
-/*
-	### 特色模板(主题)设置
-
-	* 配置：
-	 - 添加字段：模板主题选择：`c_mcom|常规;s_gray|灰色;s_blue|蓝色`
-	 - 制作常规模板，配置如：'d' => 'c_mcom/xmod_detail',
-	 - s_gray|灰色模板，对应：s_gray/xmod_detail 模板文件,
-	 - 设置了模板，就保存到缓存：xxx/xmod.cac_php,
-	 - 内容类似为：'2013-cj-db02' => 's_gray/xmod_detail',
-
-	* 代码：
-	 - 完善方法：itpl
-*/
 

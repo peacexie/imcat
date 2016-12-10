@@ -144,5 +144,11 @@ $cfgs['ucfaqn4'] = array(
 	'tag' => 'Tags', 
 );
 
+$cfgs['uinfstate'] = array(
+	'insok' => 'Installed', 
+	'close' => 'Closed', 
+	'noins' => 'NoInstall', 
+);
+
 return $cfgs;
 

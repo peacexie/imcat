@@ -96,6 +96,7 @@ return array(
 	'devsetup_chkdir' => 'Please Check Dirs.',
 	'devsetup_chkmysql' => 'Please Check Mysql',
 	'devsetup_noframe' => 'No DB-Frame Data for import',
+	'devsetup_runasright' => 'Run result as right...',
 
 	// sdev/updInfo.php
 	'updinfo_nowver' => 'Now Version: ',

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 素材管理接口
 // 如果本系统修改,就改这个文件，不用改wmp*文件
 

@@ -1,12 +1,12 @@
 <?php
 $_cbase['skip']['.none.'] = true;
 require(dirname(__FILE__).'/_config.php');
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 
 $safix = $_cbase['safe']['safix']; 
 $sapp = basReq::ark($safix,'sapp'); 
 $skey = basReq::ark($safix,'skey','Safe4');
-$act = basReq::val('act','pull'); //pull,show,psyn,crawl,oimp,
+$act = req('act','pull'); //pull,show,psyn,crawl,oimp,
 $method = 'exd'.ucfirst($act);
 
 if(!empty($sapp) && !empty($skey)){
@@ -17,10 +17,10 @@ if(!empty($sapp) && !empty($skey)){
 	$chk = safComm::urlStamp('flag',90);
 }
 $chk && die("$chk"); //error
-$mod = basReq::val('mod');
-$debug = basReq::val('debug'); //links,field
-$sysid = basReq::val('sysid');
-$job = basReq::val('job');
+$mod = req('mod');
+$debug = req('debug'); //links,field
+$sysid = req('sysid');
+$job = req('job');
 
 
 /*

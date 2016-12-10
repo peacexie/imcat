@@ -1,6 +1,6 @@
 <?php 
 $_cbase['ucfg']['lang'] = '(auto)'; 
-require(dirname(__FILE__).'/root/run/_paths.php'); 
+require(dirname(__FILE__).'/root/run/_init.php'); 
 
 $qstr = $_SERVER['QUERY_STRING'];
 $proot = devRun::prootGet();

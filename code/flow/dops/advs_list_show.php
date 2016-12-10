@@ -1,7 +1,7 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_DOPA')) && die('No DopA');
 
-if(basReq::val('umod')=='upd'){
+if(req('umod')=='upd'){
 	echo vopStatic::advMod($mod,"(all)");
     echo "<p class='tc'><a href='?file=$file&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
 }

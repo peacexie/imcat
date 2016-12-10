@@ -5,10 +5,10 @@ class fldView{
 
 	// 认证str
 	static function mkpar($mod='',$kid=''){
-		$mod = $mod ? $mod : basReq::val('mod');
-		$pid = glbConfig::get('groups', "$mod.pid");
+		$mod = $mod ? $mod : req('mod');
+		$pid = cfg("$mod.pid", 'groups');
 		$smod = $mod ? "&mod=$mod" : "&mod=$mod"; 
-		$skid = $kid ? "&kid=$kid" : "&kid=".basReq::val(substr($pid,0,1).'id')."";
+		$skid = $kid ? "&kid=$kid" : "&kid=".req(substr($pid,0,1).'id')."";
 		return "$smod$skid";
 	}
 	
@@ -27,7 +27,7 @@ class fldView{
 	}
 	// 编辑器-格式化(um不要格式化的)
 	static function iedifmt($val){
-		$eid = glbConfig::get('cbase', 'sys_editor', 'kind');
+		$eid = cfg('sys_editor', 'cbase', 'kind');
 		if($eid=='um'){
 			return $val;
 		}else{
@@ -35,17 +35,17 @@ class fldView{
 		}
 	}
 	// 编辑器
-	static function ieditor($k,$cfg,$val,$size,$vstr){
-		global $_cbase; 
-		$val = comFiles::revSaveDir($val,1);
+	static function ieditor($k,$cfg,$val,$size,$vstr){ 
+		$val = comStore::revSaveDir($val,1);
 		$item = '';	$smk = self::mkpar();
-		$eid = empty($_cbase['sys_editor']) ? 'kind' : $_cbase['sys_editor'];
+		$sys_editor = cfg('sys_editor');
+		$eid = empty($sys_editor) ? 'kind' : $sys_editor;
 		echo basJscss::imp("/plus/editor/api_$eid.php?eid=$eid$smk",'','js'); //&lang=
 		$size = str_replace('x',',',$cfg['fmsize']); if(empty($size)) $size = '480x120';
 		$bsbar = strstr(@$cfg['fmexstr'],'full') ? 'full' : 'base';
 		$item = strstr(@$cfg['fmexstr'],'exbar') ? "<div id='fm_{$k}_bar' class='edt_bar'></div>" : '';
 		if($eid=='um'){
-			$item .= basJscss::imp('/edt_um/themes/default/css/umeditor.css','vui');
+			$item .= basJscss::imp('/edt_um/themes/default/css/umeditor.css','vendui');
 			$item .= "<textarea id='fm[$k]' name='fm[$k]' style='display:none;'></textarea>";
 			$item .= "<script type='text/plain' id='fm_{$k}_' name='fm[$k]' style='width:{$cfg['fmsize'][0]}px;height:{$cfg['fmsize'][1]}px;'>".@$val."</script>";
 		}else{
@@ -57,7 +57,7 @@ class fldView{
 	// 日期时间
 	static function idatetm($k,$cfg,$val,$size,$vstr,$iinp){
 		$item = '';	
-		echo basJscss::imp('/My97DatePicker/WdatePicker.js','vui'); 
+		echo basJscss::imp('/My97DatePicker/WdatePicker.js','vendui'); 
 		$fmt1 = empty($cfg['fmexstr']) ? 'Y-m-d' : $cfg['fmexstr'];
 		$fmt2 = empty($fmt1) ? '' : ",dateFmt:'".str_replace(array('Y','m','d','H','i','s',),array('yyyy','MM','dd','HH','mm','ss',),$fmt1)."'"; 
 		$val = empty($val) ? '' : date($fmt1,$val); 
@@ -80,7 +80,7 @@ class fldView{
 	}
 	// file
 	static function ifile($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){
-		$val = comFiles::revSaveDir($val);
+		$val = comStore::revSaveDir($val);
 		$item = '';	$smk = self::mkpar($mod,$kid);
 		$ticon = comFiles::getTIcon($val);
 		$id = $jsAct = $simg = '';
@@ -97,7 +97,7 @@ class fldView{
 	}
 	// pics
 	static function ipics($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){
-		$val = comFiles::revSaveDir($val);
+		$val = comStore::revSaveDir($val);
 		$cfg['cfgs'] = empty($cfg['cfgs']) ? '' : basElm::arr2text($cfg['cfgs'],';','|');
 		$item = '';	$smk = self::mkpar($mod,$kid);
 		$item .= "<div id='fm_{$k}_out' class='mpic_out'>"; 
@@ -107,7 +107,7 @@ class fldView{
 		$item .= "<input type='button' value='".lang('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".lang('admin.fv_vfiles')."',720,560)\">"; 
 		$item .= "<input type='button' value='".lang('admin.fv_clear')."' onClick=\"mpic_clear('fm_{$k}_');\">";
 		$item .= "</div>"; 
-		$jpath = PATH_ROOT."/skin/a_jscss/multpic.js";
+		$jpath = PATH_SKIN."/_pub/a_jscss/multpic.js";
 		$item .= basJscss::jscode("jQuery.getScript('$jpath',function(){ mpic_minit('fm_{$k}_'); })"); 
 		return $item;
 	}
@@ -131,8 +131,7 @@ class fldView{
 	// fields-公共函数
 	// form: item，一项的内容。
 	static function fitem($k,$cfg,$vals=array()){
-		global $_cbase; 
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$size = fldCfgs::getSizeArray($cfg);
 		$tmp = self::vstr($cfg,$size); 
 		$vstr = $tmp[0]; $vmsg = $tmp[1]; $item = '';
@@ -151,7 +150,8 @@ class fldView{
 			$item .= "<span id='fm[$k]_pop' class='color_out' style='display:none'></span>";
 			if(strlen($val)>2) { $item .= basJscss::jscode("colorSet('$val','$_fid')"); } 
 		}elseif($extra=='map'){ //地图
-			$mpid = empty($_cbase['sys_map']) ? 'baidu' : $_cbase['sys_map'];
+			$sys_map = cfg('sys_map');
+			$mpid = empty($sys_map) ? 'baidu' : $sys_map;
 			$item = "$iinp<span class='fldicon fmap' onClick=\"mapPick('$mpid','fm[$k]');\">&nbsp;</span>";
 		}elseif($extra=='repeat'){ //检查重名 
 			$act = "onclick=\"repeatCheck('".str_replace(',',"','",@$cfg['cfgs'])."','$k');\""; ;
@@ -177,8 +177,8 @@ class fldView{
 		}elseif($cfg['type']=='radio'){
 			$item = basElm::setRadio($k,$cfg['cfgs'],$val);  
 		}elseif($cfg['type']=='text'){
-			$rows = empty($size[1]) ? '5' : $size[1];
-			$item = "<textarea id='fm[$k]' name='fm[$k]' rows='$rows' class='txt' wrap='off' $vstr/>".$val."</textarea>"; 
+			$rows = empty($size[1]) ? '5' : $size[1]; //wrap='off' 
+			$item = "<textarea id='fm[$k]' name='fm[$k]' rows='$rows' class='txt' $vstr/>".$val."</textarea>"; 
 		}elseif($cfg['type']=='file'){	
 			$item = self::ifile($k,$cfg,$val,$size,$vstr);
 		}else{
@@ -193,11 +193,11 @@ class fldView{
 	static function lists($mod,$vals=array(),$catid=''){
 		global $_cbase;
 		if($catid){ 
-			$ccfg = glbConfig::read($mod,'_c'); 
+			$ccfg = read($mod,'_c'); 
 			if(empty($ccfg[$catid])) return;
 			$mfields = $ccfg[$catid]; 
 		}else{
-			${"_$mod"} = glbConfig::read($mod); 
+			${"_$mod"} = read($mod); 
 			$mfields = ${"_$mod"}['f']; 
 		}
 		$skip = array('0');
@@ -222,7 +222,7 @@ class fldView{
 	static function fnext($mfields,$k,$vals,$item,&$skip){
 		$nkey = basArray::nextKey($mfields,$k);
 		if($nkey && (empty($mfields[$nkey]['fmline']) || $mfields[$nkey]['type']=='hidden')){ 
-			$item .= "\n".self::fitem($nkey,$mfields[$nkey],$vals);
+			$item .= "\n &nbsp; ".self::fitem($nkey,$mfields[$nkey],$vals);
 			$skip[] = $nkey;
 			return self::fnext($mfields,$nkey,$vals,$item,$skip);
 		}else{

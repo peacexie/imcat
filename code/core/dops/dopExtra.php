@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopExtra(data OP for Extra)
 class dopExtra extends dopBase{	
@@ -13,7 +13,7 @@ class dopExtra extends dopBase{
 		parent::__construct($cfg,$tab);
 		if(isset($cfg['typfid'])) $this->typfid = $this->so->typfid = 'catid';
 		$this->soset($cfg);
-		$this->order  = $this->so->order  = basReq::val('order','atime');
+		$this->order  = $this->so->order  = req('order','atime');
 	}
 	// 翻页条,批量操作
 	function pgbar($idfirst,$idend,$ops="(null)"){

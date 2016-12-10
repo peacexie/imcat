@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_wex_cfgs.php');
 
 $tabid = 'wex_menu'; //$weapp
@@ -7,7 +7,7 @@ $mucfg = wysMenu::getMenuData($weapp);
 
 if($view=='list'){ 
 
-	echo basJscss::imp('/skin/a_jscss/weixin.js?v=1');
+	echo basJscss::imp('/skin/_pub/a_jscss/weixin.js?v=1');
 	$umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 	glbHtml::tab_bar(lang('awex.appid')."[$wekid] : ".lang('awex.follows')."$umsg",$_cbase['run']['sobarnav'],40,'tl');
 	

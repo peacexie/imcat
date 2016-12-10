@@ -19,13 +19,13 @@ class exdBase{
 	
 	//function __destory(){  }
 	function __construct($mod){ 
-		$this->db = glbDBObj::dbObj();	
+		$this->db = db();	
 		$this->minit($mod);
 	}
 	
 	function minit($mod=''){
 		$this->mod = $mod;
-		$this->mcfg = glbConfig::read($this->mod); 
+		$this->mcfg = read($this->mod); 
 		$this->mpid = @$this->mcfg['pid']; 
 		$_tmp = array(
 			'docs' =>array('dopDocs','did'),
@@ -43,18 +43,18 @@ class exdBase{
 
 	// OutputData // mod,stype,limit(1-500),order(did:ASC),offset
 	function odata($cfg=array(),$exJoin=1,$whrsub=''){
-		$stype = (!empty($cfg['stype'])) ? $cfg['stype'] : basReq::val('stype'); $whrstr = '';
+		$stype = (!empty($cfg['stype'])) ? $cfg['stype'] : req('stype'); $whrstr = '';
 		if($stype && in_array($this->mpid,array('docs','advs'))){ 
 			$whrstr .= basSql::whrTree($this->mcfg['i'],'catid',$stype);
 		}elseif($stype && in_array($this->mpid,array('users'))){
 			$whrstr .= " AND grade='$stype'";
 		}
-		$limit = (!empty($cfg['limit'])) ? $cfg['limit'] : basReq::val('limit',10,'N');
+		$limit = (!empty($cfg['limit'])) ? $cfg['limit'] : req('limit',10,'N');
 		if($limit<1) $limit = 10;
-		$order = (!empty($cfg['order'])) ? $cfg['order'] : explode(':',basReq::val('order').":");
+		$order = (!empty($cfg['order'])) ? $cfg['order'] : explode(':',req('order').":");
 		$okey = ($order[0]==$this->mkid || isset($this->mcfg['f'][$order[0]])) ? $order[0] : $this->mkid;
 		$omod = in_array(strtoupper($order[1]),array('ASC','DESC','EQ')) ? strtoupper($order[1]) : 'DESC';
-		$offset = (!empty($cfg['offset'])) ? $cfg['offset'] : basReq::val('offset');
+		$offset = (!empty($cfg['offset'])) ? $cfg['offset'] : req('offset');
 		if($offset){
 			if(strstr($omod,'DESC')){
 				$op = '<';
@@ -121,7 +121,7 @@ class exdBase{
 		$fma['uname'] = isset($this->fmv['uname']) ? $this->fmv['uname'] : addUname($uname,$this->mod); 
 		$fma['umods'] = $this->mod; 
 		$fma['upass'] = comConvert::sysPass($fma['uname'],basKeyid::kidRand('24',12),$this->mod);
-		$fma['aip'] = '('.basReq::val('act').':'.basReq::val('job').')';
+		$fma['aip'] = '('.req('act').':'.req('job').')';
 		$this->db->table($this->tbext)->data(basReq::in($fma))->insert();
 	}
 	function svDocsext(){ 
@@ -187,9 +187,8 @@ class exdBase{
 	// getSign
 	// $key : 单独设置(暂未使用...)
 	static function getJSign($key=''){
-		global $_cbase; 
-		$ocfgs = glbConfig::read('outdb','ex');
-		$safix = $_cbase['safe']['safix'];
+		$ocfgs = read('outdb','ex');
+		$safix = cfg('safe.safix'); 
 		$sign = $ocfgs['sign']; // (empty($key)||empty($ocfgs["sign_$key"])) ? $ocfgs['sign'] : $ocfgs["sign_$key"];
 		$usign = "{$safix}[sapp]={$sign['sapp']}&{$safix}[skey]={$sign['skey']}";
 		return $usign;
@@ -197,21 +196,20 @@ class exdBase{
 	
 	// getCfg
 	static function getJCfgs($act,$job){
-		$db = glbDBObj::dbObj();
-		$jcfg = $db->table("exd_$act")->where("kid='$job'")->find(); 
+		$jcfg = db()->table("exd_$act")->where("kid='$job'")->find(); 
 		return $jcfg;
 	}
 
 	// fldForm
 	static function fldForm($fm,$n=5){
-		global $_cbase;
+		$stxmao = cfg('server.txmao');
 		$marr = basLang::ucfg('cfglibs.exdbase_mode');
 		$mext = basLang::ucfg('cfglibs.exdbase_ext');
 		for($i=1;$i<=$n;$i++){ $k = "orgtg$i"; 
 			$a = explode('(:)',$fm[$k].'(:)(:)');
 			$mopt = "<br><select name='fm[$k][mode]' class='w150'>".basElm::setOption($marr,$a[0],lang('exdb_mode'))."</select>";
 			$mopt .= " &nbsp; <select name='fm[$k][ext]' class='w150'>".basElm::setOption($mext,$a[2],lang('exdb_exop'))."</select>";
-			$mopt .= " &nbsp; <a href='{$_cbase['server']['txmao']}/dev.php?advset-exdata#s_fields' target='_blank'>".lang('exdb_rnote')."</a>";
+			$mopt .= " &nbsp; <a href='{$stxmao}/dev.php?advset-exdata#s_fields' target='_blank'>".lang('exdb_rnote')."</a>";
 			glbHtml::fmae_row(lang('exdb_orgtag')."$i","<textarea name='fm[$k][tag]' rows='2' cols='50' wrap='wrap'>{$a[1]}</textarea>$mopt");
 		}
 	}
@@ -247,7 +245,7 @@ class exdBase{
 	// showBug
 	static function showBug($res,$exd,$debug){
 		glbHtml::page(lang('exdb_bugres'));
-		@$cfield = $exd->cfields[basReq::val('field')]; 
+		@$cfield = $exd->cfields[req('field')]; 
 		if(strstr($cfield['dealfmts'],'strtotime')){
 			$res .= " \n(".lang('exdb_orgdata').":".@$_cbase['crawl']['strtotime'].")";
 		}elseif(strstr($cfield['dealfmts'],'strtotime')){

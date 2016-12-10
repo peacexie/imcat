@@ -1,5 +1,5 @@
 <?php
-$_mod = 'inread';
+$_mod = basename(__FILE__,'.php');
 require(dirname(__FILE__).'/_cfgcom.php'); 
 
 # setting
@@ -8,12 +8,12 @@ $mod = 'inread'; $pmod = 'indoc';
 $tbid = "coms_$mod";
 
 # check
-$pid = basReq::val('pid');
+$pid = req('pid');
 if(!$pid) die();
 $chk = safComm::urlStamp('flag',90);
 $chk && die("//$chk");
 
-$user = usrBase::userObj('Member'); 
+$user = user('Member'); 
 if($user->userFlag!='Login') die();
 
 

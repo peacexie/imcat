@@ -1,6 +1,6 @@
 <?php
 if(empty($_cbase['skip']['_paths'])){
-	include(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');
+	include(dirname(dirname(dirname(__FILE__))).'/run/_init.php');
 }
 
 // idea From : Symfony : config.php

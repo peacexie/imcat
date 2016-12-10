@@ -35,7 +35,7 @@ class fldCfgs{
 	static function setKeeps($key=''){
 		$arr_0 = array('info','cfgs','fields','items','catalog','files');
 		$arr_n = array_keys(basLang::ucfg('fsystem'));
-		$arr_f = glbConfig::read('fkeywd','sy'); 
+		$arr_f = read('fkeywd','sy'); 
 		return array_merge($arr_0,$arr_n,$arr_f);
 	}
 	
@@ -45,11 +45,10 @@ class fldCfgs{
 		   'vreg'=>'str:2-60','vtip'=>'标题2-60字符','dbtype'=>'varchar','dblen'=>'96','dbdef'=>NULL,),
 	// mymap|map|地图^varchar|255|-|str:|2|255 // nul:fix:image // tit:2-60 */
 	static function addPick($mod,$re='str'){
-		$_groups = glbConfig::read('groups'); 
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups'); 
 		$mpid = $_groups[$mod]['pid']; //echo $mpid;
 		$ademo = self::addDemo('init_docs')+self::addDemo('init_dext')+self::addDemo('init_coms')+self::addDemo('init_users'); 
-		$list = $db->table('base_fields')->where("model='$mod'")->select();
+		$list = db()->table('base_fields')->where("model='$mod'")->select();
 		$amods = array(-1); $b = array(); $s = ' &nbsp; '.lang('flow.fc_rftype'); $a = array();
 		if($list) foreach($list as $r) $amods[] = $r['kid'];
 		foreach($_groups as $k=>$v){ 
@@ -72,7 +71,7 @@ class fldCfgs{
 	}
 	// 'exp_t01'=>'扩展参数-text-1', //<a href='#' onclick="gf_setDemoField('t400|input||0')" class='span'>XXXX</a>
 	static function addType($mod,$catid){
-		$ccfg = glbConfig::read($mod,'_c');
+		$ccfg = read($mod,'_c');
 		$flist = basLang::ucfg('fsystem'); 
 		$s = ' &nbsp; '.lang('flow.fc_rffield');
 		foreach($flist as $k=>$v){
@@ -90,7 +89,7 @@ class fldCfgs{
 		return $s;
 	}
 	static function addDemo($mod){
-		$tmp = glbConfig::read('fdemo','sy');
+		$tmp = read('fdemo','sy');
 		return $tmp[$mod];
 	
 	}

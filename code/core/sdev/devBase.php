@@ -200,9 +200,7 @@ class devBase{
 	}
 
 	static function dbDict($tabinfo=array()){
-		global $_cbase; 
-		$db = glbDBObj::dbObj();
-		if(empty($tabinfo)) $tabinfo = $db->tables(1); 
+		if(empty($tabinfo)) $tabinfo = db()->tables(1); 
 		$tdoc = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbdoc.htm'); 
 		$ttab = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbtab.htm');
 		$slist = $tlist = ''; 
@@ -220,9 +218,9 @@ class devBase{
 			$tlist .= "<a href='#$tabid'>".($tabrem ? $tabrem : $tabid)."</a>\n"; 
 		}
 		$org = array('{tablists}','{tabmap}','{tabcnt}','{sysname}','{dict-title}');
-		$obj = array($slist,$tlist,count($tabinfo),$_cbase['sys_name'],lang('core.dbdict_title'));
+		$obj = array($slist,$tlist,count($tabinfo),cfg('sys_name'),lang('core.dbdict_title'));
 		$data = str_replace($org,$obj,$tdoc); 
-		$lang = $_cbase['sys']['lang']; 
+		//$lang = $_cbase['sys']['lang']; 
 		$data = devData::dataImpLang($data,'base_model,base_fields,bext_dbdict');
 		return $data;	
 	}
@@ -236,10 +234,12 @@ class devBase{
 		return "FIELDS TERMINATED BY ','OPTIONALLY ENCLOSED BY '''' LINES TERMINATED BY '\n' ";
 	}
 	static function _dinsRow($row){
+		static $alldf;
+		empty($alldf) && $alldf = get_defined_constants(0);
 		$sql = "(";
 		$values = array();
-		foreach ($row as $value) {
-			$values[] = "'" . basNodef::mysql_real_escape_string($value) . "'";
+		foreach ($row as $key=>$value) {
+			$values[] = basNodef::quoteSql($value);
 		}
 		$sql .= implode(',',$values).")";
 		return $sql;
@@ -276,8 +276,7 @@ class devBase{
 	
 	static function _tabGroup($tabinfo=''){
 		if(!$tabinfo){
-			$db = glbDBObj::dbObj();
-			$tabinfo = $db->tables(); 
+			$tabinfo = db()->tables(); 
 		}
 		$re = array(); $fixa = array('-1'); 
 		foreach($tabinfo as $row){
@@ -291,7 +290,7 @@ class devBase{
 	}
 
 	static function typChkall(){
-		$groups = glbConfig::read('groups');
+		$groups = read('groups');
 		$res = array();
 		foreach($groups as $key=>$val){
 			if($val['pid']=='types'){
@@ -302,7 +301,7 @@ class devBase{
 		return $res;
 	}
 	static function typCheck($key){
-		$mcfg = glbConfig::read($key); 
+		$mcfg = read($key); 
 		$done = array('-1'); $re = '';
 		foreach($mcfg['i'] as $k1=>$v1){
 			$rs = '';
@@ -322,7 +321,7 @@ class devBase{
 	}
 
 	static function xx(){
-		$sy_sids = glbConfig::read('sysids','sy');
+		$sy_sids = read('sysids','sy');
 		return $re;
 	}
 	

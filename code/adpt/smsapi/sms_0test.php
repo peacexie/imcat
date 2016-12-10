@@ -16,7 +16,7 @@ class sms_0test{
 		$this->userpw = $cfgs['pass'];
 		// 余额 
 		$file = "store/0test_balance.txt"; 
-		comFiles::chkDirs($file,'tmp');
+		comFiles::chkDirs($file,'dtmp');
 		$file = DIR_DTMP."/$file"; 
 		if(!file_exists($file)){
 			$fp = fopen($file, 'wb');

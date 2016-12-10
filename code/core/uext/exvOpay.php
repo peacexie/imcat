@@ -48,10 +48,9 @@ class exvOpay{
 	}
 
 	static function fmarrDemopay($order,$cfg){ 
-		global $_cbase;
 		$arr = array();
 		$arr['out_trade_no'] = $order['cid'];
-		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
+		$arr['subject'] = "Web(".cfg('tpl.tpl_dir').")".lang('core.opay_order');
 		$arr['total_fee'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';
@@ -60,10 +59,9 @@ class exvOpay{
 	}
 	
 	static function fmarrAliDirect($order,$cfg){ 
-		global $_cbase;
 		$arr = array();
 		$arr['ordid'] = $order['cid'];
-		$arr['title'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
+		$arr['title'] = "Web(".cfg('tpl.tpl_dir').")".lang('core.opay_order');
 		$arr['feetotle'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';
@@ -94,10 +92,9 @@ class exvOpay{
 		*/
 	}
 	static function fmarrTenpay($order,$cfg){ 
-		global $_cbase;
 		$arr = array();
 		$arr['out_trade_no'] = $order['cid'];
-		$arr['subject'] = "Web(".$_cbase['tpl']['tpl_dir'].")".lang('core.opay_order');
+		$arr['subject'] = "Web(".cfg('tpl.tpl_dir').")".lang('core.opay_order');
 		$arr['total_fee'] = $order['feetotle'];
 		$arr['ordbody'] = '-';
 		$arr['showurl'] = '-';
@@ -107,27 +104,27 @@ class exvOpay{
 	
 	static function notifyDemopay($flag,$expar=''){ 
 		$data = array();
-		$data['ordid'] = basReq::val('out_trade_no');
-		$data['apino'] = basReq::val('trade_no');
+		$data['ordid'] = req('out_trade_no');
+		$data['apino'] = req('trade_no');
 		$data['ufrom'] = '-';
 		$data['uto'] = '-';
-		$data['amount'] = basReq::val('total_fee','0');
+		$data['amount'] = req('total_fee','0');
 		$data['api'] = 'demopay';
 		$data['stat'] = $flag;
-		$data['auser'] = basReq::val('buyer_email');
+		$data['auser'] = req('buyer_email');
 		self::saveLoger($data,$expar);
 	}
 	
 	static function notifyAliDirect($flag,$expar='',$api='alidirect'){ 
 		$data = array();
-		$data['ordid'] = basReq::val('out_trade_no');
-		$data['apino'] = basReq::val('trade_no');
+		$data['ordid'] = req('out_trade_no');
+		$data['apino'] = req('trade_no');
 		$data['ufrom'] = '-';
 		$data['uto'] = '-';
-		$data['amount'] = basReq::val('total_fee','0');
+		$data['amount'] = req('total_fee','0');
 		$data['api'] = $api;
 		$data['stat'] = $flag;
-		$data['auser'] = basReq::val('buyer_email');
+		$data['auser'] = req('buyer_email');
 		self::saveLoger($data,$expar);
 	}
 	static function notifyAliWscow($flag,$expar=''){ 
@@ -138,28 +135,24 @@ class exvOpay{
 	}
 	static function notifyTenpay($flag,$expar=''){ 
 		$data = array();
-		$data['ordid'] = basReq::val('out_trade_no');
-		$data['apino'] = basReq::val('trade_no');
+		$data['ordid'] = req('out_trade_no');
+		$data['apino'] = req('trade_no');
 		$data['ufrom'] = '-';
 		$data['uto'] = '-';
-		$data['amount'] = basReq::val('total_fee','0');
+		$data['amount'] = req('total_fee','0');
 		$data['api'] = 'tenpay';
 		$data['stat'] = $flag;
-		$data['auser'] = basReq::val('buyer_email');
+		$data['auser'] = req('buyer_email');
 		self::saveLoger($data,$expar);
 	}
 	
 	static function saveLoger($data,$expar=''){ 
-		global $_cbase;
-		if(empty($_cbase['debug']['pay_log']) && $data['stat']=='fail') return; //失败记录只在调试模式下记录
-		$db = glbDBObj::dbObj();
+		$plog = cfg('debug.pay_log');
+		if(empty($plog) && $data['stat']=='fail') return; //失败记录只在调试模式下记录
 		//check 1.ordid在corder表? 2.from接口
 		$data['kid'] = basKeyid::kidTemp('(def)');
 		$expar && $data['expar'] = $expar;
-		$data['atime'] = $_cbase['run']['stamp'];
-		//$data['auser'] = '';
-		$data['aip'] = $_cbase['run']['userip'];
-		$db->table('plus_paylog')->data(basReq::in($data))->insert();
+		db()->table('plus_paylog')->data(basReq::in($data))->insert();
 		basDebug::bugLogs('opay',$data,'detmp','db');
 	}
 

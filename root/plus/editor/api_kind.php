@@ -3,14 +3,14 @@ require('api_cfg.php');
 $larr = array(
 	'en'=>'en',
 	'gb'=>'en',
-	'cn'=>'zh_CN',
-	'tw'=>'zh_TW',
+	'cn'=>'zh-CN',
+	'tw'=>'zh-TW',
 	'de'=>'en',
 	'fr'=>'en',
-	'ru'=>'en',
+	'ru'=>'ru',
 );
-echo basJscss::write(basJscss::imp('/KindEditor/kindeditor-min.js','vui'))."\n";
-echo basJscss::write(basJscss::imp("/KindEditor/lang/$larr[$lang].js",'vui'))."\n";
+echo basJscss::write(basJscss::imp('/KindEditor/kindeditor-min.js','vendui'))."\n";
+echo basJscss::write(basJscss::imp("/KindEditor/lang/$larr[$lang].js",'vendui'))."\n";
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [

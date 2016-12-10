@@ -13,7 +13,7 @@ class basReq{
 	// Request Vars
 	// Demo : extract(basReq::sysVars());
 	static function sysVars(){
-		$sy_sids = glbConfig::read('sysids','sy');
+		$sy_sids = read('sysids','sy');
 		$re = array();
 		foreach($sy_sids['GET'] as $k){
 			if(isset($_POST[$k])){

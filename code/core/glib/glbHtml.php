@@ -3,7 +3,7 @@
 class glbHtml{	
 
 	// 页面结构
-	static function page($mod='',$ext=''){
+	static function page($mod='',$ext='',$iex=''){
 		global $_cbase; 
 		$sdir = vopTpls::def(); //可能没有定义
 		if($mod=='body'){
@@ -20,26 +20,34 @@ class glbHtml{
 			echo "<meta name='$mod' content='$ext'>\n"; 
 		}elseif($mod=='h1'){
 			echo "<h1>$ext</h1>\n";
-		}elseif($mod=='imp'){
-			self::impub();
-			self::imvop($sdir);	
-		}elseif($mod=='imadm'){  
-			self::impub("&lang={$_cbase['sys']['lang']}"); 
-			echo basJscss::imp('/plus/ajax/comjs.php?act=jsPlus');
-			echo basJscss::imp('/skin/a_jscss/jstyle.css'); 
-			self::imvop($sdir);		
-		}elseif($mod=='imvop'){
-			self::impub("$ext",1);
-			self::imvop($sdir);	
-		}elseif($mod=='imin'){
-			echo basJscss::imp('/plus/ajax/comjs.php?');
-			echo basJscss::imp("/skin/a_jscss/stpub.css");
+		}elseif(in_array($mod,array('imp','imadm','imvop','imin'))){
+			$exjs = "exjs=/$sdir/b_jscss/comm.js".(empty($ext['js'])?'':';'.$ext['js']);
+			$excss = "excss=/$sdir/b_jscss/comm.css".(empty($ext['css'])?'':';'.$ext['css']);
+			if($mod=='imp'){
+				$ips = self::impub();
+				$ips['js'] .= "&$exjs";
+				$ips['css'] .= "&$excss";	
+			}elseif($mod=='imadm'){
+				$ips = self::impub(); 
+				$ips['js'] .= "&$exjs&lang=".$_cbase['sys']['lang'];
+				$ips['css'] .= "&$excss";	
+			}elseif($mod=='imvop'){
+				$ips = self::impub(1);
+				$ips['js'] .= "&$exjs&$iex";
+				$ips['css'] .= "&$excss";
+			}elseif($mod=='imin'){
+				$ips['js'] = "";
+				$ips['css'] = "act=cssInit";
+			}
+			foreach (array('css','js') as $key) {
+				echo basJscss::imp("/plus/ajax/comjs.php?".$ips[$key],'',$key);
+			}
 		}else{ //head
 			$_cbase['run']['headed'] = 1;
 			$mod || $mod = $_cbase['sys_name'];
 			$mod = str_replace('(sys_name)',$_cbase['sys_name'],$mod);
 			echo "<!DOCTYPE html><html><head>\n";
-			echo "<meta charset='".glbConfig::get('cbase', 'sys.cset')."'>\n";
+			echo "<meta charset='".cfg('sys.cset')."'>\n";
 			echo "<title>$mod</title>\n";
 			if($ext) echo "<meta name='robots' content='noindex, nofollow'>\n";
 			if(defined('RUN_MOB')){ 
@@ -49,40 +57,31 @@ class glbHtml{
 	}
 
 	// _impub
-	static function impub($jsrun='',$nolayer='',$nohick=''){
-		echo basJscss::imp("/plus/ajax/comjs.php?$jsrun"); 
+	static function impub($nolayer='',$nohick=''){
+		echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/a_img/favicon.ico' />\n";
 		echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-		echo basJscss::imp("/skin/a_jscss/stpub.css");
-		echo basJscss::imp("/common/stuipub.css",'vui');
-		if(!$nolayer) echo basJscss::imp('/layer/layer.js','vui');
-		echo "<link rel='shortcut icon' href='".PATH_ROOT."/skin/a_img/favicon.ico' />\n";
-		//echo "<!--[if lt IE 9]><script src='".PATH_VENDUI."/jquery/html5shiv.min.js'></script]\n";
-		//echo "<script src='".PATH_VENDUI."/jquery/respond.min.js'></script]<![endif]-->";
-	}
-	// _impub
-	static function imvop($sdir=''){
-		global $_cbase; 
-		echo basJscss::imp("/skin/$sdir/b_jscss/comm.css");
-		echo basJscss::imp("/skin/$sdir/b_jscss/comm.js");
-		$flang = "/skin/$sdir/b_jscss/comm-{$_cbase['sys']['lang']}.js";
-		if(is_file(DIR_ROOT.$flang)) echo basJscss::imp($flang);
+		echo basJscss::imp('/bootstrap-3.x/css/bootstrap.min.css','vendui','css');
+		echo basJscss::imp('/bootstrap-3.x/js/bootstrap.min.js','vendui','js');
+		if(!$nolayer) echo basJscss::imp('/layer/layer.js','vendui');
+		return array('js'=>"act=sysInit",'css'=>"act=cssInit");
 	}
 
 	// header
-	static function head($type='js'){
-		$cset = glbConfig::get('cbase', 'sys.cset');
+	static function head($type='js',$cset=''){
+		$cset = $cset ? $cset : cfg('sys.cset');
 		$a = array(
 			'js'=>'text/javascript',
 			'html'=>'text/html',
 			'json'=>'application/json',
 			'down'=>'application/octet-stream',
+			'css'=>'text/css',
 		);
 		header("Content-Type:$a[$type]; charset=$cset");
 	}
 	
 	// domain_allow跨域允许
 	static function dallow($domain=''){
-		$allow = glbConfig::read('dmacc','ex');
+		$allow = read('domain.dmacc','sy'); 
 		if(empty($domain)){
 			@$aurl = parse_url($_SERVER["HTTP_REFERER"]);
 			@$domain = $aurl['host'];
@@ -108,7 +107,7 @@ class glbHtml{
 	// form+table:头
 	static function fmt_head($fmid,$fmact,$tbcss='',$win='',$tbbrd=1){
 		echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
-		$recbk = basReq::val('recbk','');
+		$recbk = req('recbk','');
 		$recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
 		echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
 		echo "<table border='$tbbrd' class='$tbcss'>\n"; // echo "\n";
@@ -178,8 +177,8 @@ class glbHtml{
 	
 	// PageEnd()
 	static function end($msg='',$end=''){
-		global $_cbase; 
-		if(empty($_cbase['run']['headed'])){
+		$headed = cfg('run.headed');
+		if(empty($headed)){
 			self::page('');
 		}
 		if($end) echo "$end\n";

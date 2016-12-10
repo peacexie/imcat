@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 usrPerm::run('pfile','admin/catalog.php');
 
 $mod = empty($mod) ? 'demo' : $mod;
@@ -7,7 +7,7 @@ $view = empty($view) ? 'glist' : $view;
 $pid = empty($pid) ? '0' : $pid;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod1@catalog.php');
 
-$cfg = glbConfig::read($mod); 
+$cfg = read($mod); 
 $tabid = "base_catalog";
 $gbar = admAFunc::grpNav($cfg['pid'],$mod); 
 if(!in_array($cfg['pid'],array('docs','advs'))) glbHtml::end(lang('flow.dops_parerr').':mod2@catalog.php');
@@ -52,10 +52,10 @@ if($view=='glist'){
 	if($pid && !isset($cfg['i'][$pid])) $lnkadd = "<i title='".lang('admin.cat_close')."'>".lang('flow.fl_addtitle')."&gt;&gt;</i>";
 	glbHtml::tab_bar("[$lnkbak]".lang('flow.title_cata')." :: $gname<span class='span ph5'>|</span>$lnkadd<br>$lnklay",$gbar,35);
 	
-	$_ex_paras = glbConfig::read('paras','ex');
+	$_ex_paras = read('frame.expars','sy'); 
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
-	echo "<th>".lang('flow.title_char')."</th><th>".lang('flow.title_level')."</th><th>".lang('flow.title_frame')."</th><th>".lang('flow.title_note')."</th>";
+	echo "<th>".lang('flow.title_char')."</th><th>".lang('flow.title_level')."</th><th>".lang('flow.title_frame')."</th><th>".lang('flow.title_subtype')."</th>";
 	if(in_array($mod,$_ex_paras['catid'])) echo "<th>".lang('flow.title_param')."</th>";
 	echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n";

@@ -5,11 +5,11 @@
 //$_cbase['skip']['_sess_'] = true;
 if(!session_id()) session_start();
 $_cbase['ucfg']['lang'] = '(auto)'; 
-include(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');
+include(dirname(dirname(dirname(__FILE__))).'/run/_init.php');
 include(DIR_CODE.'/cfgs/boot/cfg_adbug.php');
 $sess_id = 'pmSessid_'.preg_replace("/[^\w]/", '', @$_cbase['safe']['safil']);
 
-$qstr = $_SERVER['QUERY_STRING'];
+$qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo'; 
 $_selfname = $_SERVER['PHP_SELF']; 
 $allowb = array('binfo','phpinfo1','cookie','login','dologin','iframe','frame','fset');

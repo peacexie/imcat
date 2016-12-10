@@ -21,7 +21,7 @@ class usrBase{
 	public $db = NULL;
 	
 	function __construct($userType=''){
-		$this->db = glbDBObj::dbObj(); 
+		$this->db = db(); 
 		$this->sess_tout($userType);
 		$this->sess_init();
 		$this->check_cuser();
@@ -29,8 +29,7 @@ class usrBase{
 	
 	// re : Null, isLogin, Forbid, Info, array()
 	function check_logout(){
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		if($this->userFlag=='Error') return 'Forbid';
 		if($this->userFlag!='Login') return 'notLogin'; 
 		$this->userFlag = 'Guest';
@@ -57,7 +56,7 @@ class usrBase{
 	
 	//
 	static function setLogin($type='m', $uname=''){
-		$db = glbDBObj::dbObj();
+		$db = db();
 		if(empty($uname)) return;
 		$user = self::userObj($type=='m' ? 'Member' : 'Admin');
 		$user->uinfo = $user->uget_minfo($uname); 
@@ -78,10 +77,9 @@ class usrBase{
 	
 	// re : Null, isLogin, Forbid, Info, array()
 	function check_login($uname='',$upass=''){
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		if(empty($uname) || empty($upass)) return 'Null'; 
-		$simpass = glbConfig::read('simpass','ex');
+		$simpass = read('simpass','sy');
 		if(in_array($upass,$simpass)) return 'SimPass'; 
 		if($this->userFlag=='Error') return 'Forbid';
 		if($this->userFlag=='Login') return 'isLogin'; 
@@ -116,12 +114,12 @@ class usrBase{
 	
 	//$re //Login/Guest,Error
 	function check_cuser(){
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
+		$stamp = time();
+		$_groups = read('groups');
 		$sid = $this->sinit['sid'];
 		$this->usess = $this->uget_online($sid,'*'); 
 		if(!empty($this->usess)){ // 判断: stime,errno,uid,grade,
-			if($_cbase['run']['stamp']-$this->usess['stime']>$this->utmOut){ //超时
+			if($stamp-$this->usess['stime']>$this->utmOut){ //超时
 				$this->userFlag = 'Guest';
 			}elseif($this->usess['errno']>=$this->errno){ //错误
 				$this->userFlag = 'Error';
@@ -129,8 +127,8 @@ class usrBase{
 				$this->uperm = $this->uget_perms($this->usess['grade']);
 				if($this->uperm){
 					$this->userFlag = 'Login';
-					if($_cbase['run']['stamp']-$this->usess['stime']>$this->udbUpd){ //更新会话表
-						$data = array('stime'=>$_cbase['run']['stamp']);
+					if($stamp-$this->usess['stime']>$this->udbUpd){ //更新会话表
+						$data = array('stime'=>$stamp);
 						$this->db->table($this->usTable)->data(basReq::in($data))->where("sid='$sid'")->update();
 					}
 				}
@@ -141,7 +139,7 @@ class usrBase{
 
 	//...???
 	function uget_online($sid,$field=''){
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$field || $field = '*';
 		$res = $this->db->table($this->usTable)->field($field)->where("sid='$sid'")->find();
 		return $res;	
@@ -149,7 +147,7 @@ class usrBase{
 
 	//...
 	static function uget_perms($grade){
-		$grades = glbConfig::read('grade','dset');
+		$grades = read('grade','dset');
 		//print_r($grades);
 		if(isset($grades[$grade])){
 			$res = $grades[$grade];
@@ -172,8 +170,8 @@ class usrBase{
 
 	//..., model,grade,checked
 	static function uget_minfo($uname,$upass='',$unset=array('upass')){
-		$db = glbDBObj::dbObj(); 
-		$_groups = glbConfig::read('groups');
+		$db = db(); 
+		$_groups = read('groups');
 		$ubase = $db->table('users_uacc')->where("uname='$uname'")->find(); 
 		$umod = $ubase['umods']; $dbpass = $ubase['upass'];
 		if(!isset($_groups[$umod])) return array(); 
@@ -221,13 +219,15 @@ class usrBase{
 			$uclass = defined('RUN_ADMIN') ? 'Admin' : array('Member','Admin');	
 		}
 		if(is_array($uclass)){
+			$utmp = NULL;
 			foreach($uclass as $flag){
 				$iuser = self::userObj($flag);
+				if($flag=='Member') $utmp = $iuser;
 				if(!empty($iuser->uperm)){ 
 					return $iuser;
 				}
 			}
-			return NULL;
+			return $utmp;
 		}
 		$uclass = $uclass=='Admin' ? 'usrAdmin' : 'usrMember';
 		if(empty(self::$uobjs[$uclass])){ 

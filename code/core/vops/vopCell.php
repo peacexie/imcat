@@ -10,7 +10,7 @@ class vopCell{
 	// Array ( [exp_s01] => Array ( [title] => 手机类型 [val] => 3G [org] => net3g ) ...
 	static function exFields($mod,$catid,$vars=''){ //
 		$re = array();
-		$ccfg = glbConfig::read($mod,'_c'); 
+		$ccfg = read($mod,'_c'); 
 		if(empty($ccfg[$catid])) return array();
 		$mfields = $ccfg[$catid]; 
 		if(empty($vars)) return $mfields;
@@ -37,8 +37,7 @@ class vopCell{
 	// fc : modid=brand,china / 字段配置 / mod.field 
 	// hn,gd -=> array('hn'=>'湖南','gd'=>'广东');
 	static function optArray($fc,$val='',$color=1){
-		global $_cbase;
-		$sc = '333,'.$_cbase['ucfg']['ctab'].',999'; $ac = explode(',',$sc); 
+		$sc = '333,'.cfg('ucfg.ctab').',999'; $ac = explode(',',$sc); 
 		if(empty($val)) return array(); 
 		$arr = basElm::text2arr($fc); //print_r($arr);
 		$va = explode(',',str_replace('+',',',$val)); 
@@ -60,16 +59,26 @@ class vopCell{
 	}
 	
 	// <a {php vOpen('nrem',$did); }>发布评论</a>
-	static function vOpen($mod,$pid='',$title='',$w=0,$h=0){
-		if(!$title){
-			$mcfg = glbConfig::read($mod);
-			$title = lang('core.pub_title').'-'.$mcfg['title'];
-		}
+	// "<a href='/url' ".xxx::vOpen().">Update-Init</a>"
+	static function vOpen($mod=0,$pid='',$title='',$w=0,$h=0){
 		$w || $w = 500; $h || $h = 400;
-		$scfile = file_exists(DIR_ROOT."/plus/coms/$mod.php") ? $mod : 'add_coms';
-		$url = PATH_ROOT."/plus/coms/$scfile.php?mod=$mod&pid=$pid";
-		$str = "onclick=\"return winOpen('$url','$title',$w,$h);\"";
-		echo $str;
+		$return = 1;
+		if(empty($mod)){
+			$url = 'this';
+		}elseif(substr($mod,0,1)=='/'){
+			$url = "'$mod'";
+		}else{
+			$return = 0;
+			if(!$title){
+				$mcfg = read($mod);
+				$title = lang('core.pub_title').'-'.$mcfg['title'];
+			}
+			$scfile = file_exists(DIR_ROOT."/plus/coms/$mod.php") ? $mod : 'add_coms';
+			$url = "'".PATH_ROOT."/plus/coms/$scfile.php?mod=$mod&pid=$pid"."'";
+		}
+		$str = "onclick=\"return winOpen($url,'$title',$w,$h);\"";
+		if($return) return $str;
+		else echo $str;
 	}
 	
 	// $len: 24
@@ -89,7 +98,7 @@ class vopCell{
 	//还原cPic路径
 	static function cPic($val,$def=''){ 
 		if(empty($val) && $def){
-			$val = strstr($def,'/') ? $def : "{stcroot}/icons/basic/$def";
+			$val = strstr($def,'/') ? $def : "{staticroot}/icons/basic/$def";
 		}
 		$re = vopUrl::root($val);
 		return $re;
@@ -172,18 +181,17 @@ class vopCell{
 	
 	// show
 	static function cShow($val,$vop=NULL){
-		global $_cbase;
-		$re = empty($vop->$val) ? '' : $vop->$val; //NULL; $this->vars
-		$re || $re = basArray::get($_cbase, $val);
+		$re = empty($vop->$val) ? '' : $vop->$val;
+		$re || $re = cfg($val); 
 		$re || $re = "{\$$val}";
 		return $re;
 	}
 	
 	// js动态显示字段
 	static function jsFields($a){
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
+		$db = db();
+		$stamp = time();
 		//[demo:2013-cm-a201:click] => 535,add1,uclick1
 		//[demo:2013-cm-a201:etime] => 1387418573
 		//[demo:2013-cm-abcd:etime] => 1387418573
@@ -200,22 +208,23 @@ class vopCell{
 		//[demo:2013-cm-abcd] => Array
 				//[etime] => 1387418573
 		$re = ''; $ext = '';
+		$cfgc = read('coms.click','ex'); 
 		foreach($b as $k2=>$v2){
 			$t = explode(':',$k2);
 			$tab = glbDBExt::getTable($t[0]);
 			$kid = glbDBExt::getKeyid($t[0]);
 			$key = basStr::filKey($t[1],'-_.');
-			$cols = ''; $cola = array(); $gap = ''; 
+			$cola = array(); 
 			foreach($v2 as $k3=>$v3){
 				$k3 = basStr::filKey($k3);
-				$cols .= "$gap$k3";
 				$cola[] = $k3;
-				$gap = ',';
 			} 
-			$r = $db->field($cols)->table($tab)->where("$kid='$key'")->find(); //print_r($r);
+			$r = $db->table($tab)->where("$kid='$key'")->find();
+			if(empty($r)) continue;
 			//[click] => 232
 			//[etime] => 1387358621
 			foreach($cola as $field){
+				if(!isset($r[$field])) continue; // 无此字段退出
 				$ps = $a[$t[0].':'.$key.':'.$field];
 				$pa = explode(',',$ps);
 				if(empty($r[$field]) && is_numeric($pa[0])){
@@ -223,12 +232,17 @@ class vopCell{
 				}
 				//$r[$field] || $r[$field] = 0;
 				if(empty($r[$field])) $r[$field] = 0; 
-				if(strstr($ps,'add1')){ 
+				if(strstr($ps,'add1')){
+					if(!empty($cfgc[$tab])){
+						if(!in_array($field,$cfgc[$tab])) continue;
+					}else{
+						if(!in_array($field,$cfgc['fields'])) continue;
+					}
 					$ck = comCookie::mget('clicks',"$t[0]_$key"); // cookie;
-					if(empty($ck) || ($_cbase['run']['stamp']-$ck)>60){
-						comCookie::mset('clicks',0,"$t[0]_$key",$_cbase['run']['stamp']);
+					if(empty($ck) || ($stamp-$ck)>60){
+						comCookie::mset('clicks',0,"$t[0]_$key",$stamp);
 						$r[$field] = $r[$field] + 1; 
-						$db->table($tab)->data(array($field=>$r[$field]))->where("$kid='$key'")->update(); 	
+						$db->table($tab)->data(array($field=>$r[$field]))->where("$kid='$key'")->update(0); 	
 					}
 				}
 				$re .= "jsElm.jeID('jsid_field_{$t[0]}:{$key}:$field').innerHTML='{$r[$field]}';\n";
@@ -247,9 +261,7 @@ class vopCell{
 	
 	// js动态统计数量
 	static function jsCounts($a){
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
 		$re = ''; $ext = ''; 
 		//[drem:2013-cm-a201] => ucount1
 		foreach($a as $k1=>$v1){
@@ -257,7 +269,7 @@ class vopCell{
 			if(!isset($_groups[$t[0]])) continue; // || empty($t[1])
 			$tab = glbDBExt::getTable($t[0]); 
 			$key = basStr::filKey($t[1],'-_.'); 
-			$r = $db->table($tab)->where(empty($t[1]) ? "1=1" : "pid='$key'")->count(); 
+			$r = db()->table($tab)->where(empty($t[1]) ? "1=1" : "pid='$key'")->count(); 
 			$r || $r = 0;
 			$pa = explode(',',$v1);
 			if(empty($r) && is_numeric($pa[0])){

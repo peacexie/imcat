@@ -6,25 +6,25 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
-$_cbase['sys']['ver']     = '3.3.1'; // 版本号
+$_cbase['sys']['sn']      = '81f7778b-aa1b-czyx-xmao-2016-capasajr'; //序列号
+$_cbase['sys']['ver']     = '3.4'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'en'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = '00v30_'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = 'wHM9l'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
 //调试日志配置
 $_cbase['debug']['err_mode']  = '0'; //后台设置,是否开启调试模式，1,0(run=0)
-//$_cbase['debug']['err_mkey']  = E_ALL^E_WARNING^E_NOTICE;
 $_cbase['debug']['err_save']  = 'file'; //记录方式: file, db, 
 $_cbase['debug']['err_path']  = ''; //出错信息存放的目录，出错信息以天为单位存放，一般不需要修改 /erlog  
 $_cbase['debug']['err_file']  = 'Y-md'; //文件格式: Y-md:1979-0913, Y-m-d: 1979-09-13
 $_cbase['debug']['err_hand']  = true; //是否启动CP内置的错误处理，如果开启了xdebug，建议设置为false 
+$_cbase['debug']['err_hkey']  = '(def)'; //E_ALL^E_WARNING^E_NOTICE;
 
 $_cbase['debug']['log_save']  = ''; //记录方式: 空:不记录, Y-mdH, Y-md-H, db, 
 $_cbase['debug']['pay_log'] = 1; //支付记录-调试标记
@@ -48,7 +48,7 @@ $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 
 //用户自定义配置
 $_cbase['ucfg']['vimg']  = 'K'; // 0,H,K
-$_cbase['ucfg']['ipapi'] = 'Taobao'; // 默认IP地址接口, sina,taobao,pcoln,s1616
+$_cbase['ucfg']['ipapi'] = 'ip138'; // 默认IP地址接口, sina,taobao,pcoln,s1616
 #$_cbase['ucfg']['czip']  = '0'; // zlib,gzip,0(不用了)
 $_cbase['ucfg']['guid'] = 'Cook'; // UIP,Sess,Cook
 $_cbase['ucfg']['city'] = '东莞'; //本地城市,订单算运费用

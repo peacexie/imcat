@@ -3,6 +3,43 @@
 // basJscss类
 class basJscss{	
 
+	static function imFiles($exfiles,$lang=''){
+		$arr = explode(';',$exfiles); 
+		foreach ($arr as $val) { 
+			$itm = explode(':',$val);
+			if(!empty($itm[1]) || in_array(substr($itm[0],0,6),array('/plus/','/skin/','/_pub/','/tools'))){
+				$ipath = self::imPath($itm[0],(empty($itm[1])?'':$itm[1]),'dir');
+			}else{
+				$ipath = DIR_SKIN.$val;
+			} 
+			if(file_exists($ipath)) include($ipath); 
+			if($lang){
+				$flang = str_replace(".js","-{$lang}.js",$ipath); 
+				if(file_exists($flang)) include($flang); 
+			}	
+		} 
+	}
+
+
+	static function imPath($path,$base='',$pflg='path'){
+		if(strpos($path,'://')||strpos($path,'../')){
+			$base = '';
+		}elseif(in_array(substr($path,0,6),array('/plus/','/tools'))){
+			$base = $pflg=='path' ? PATH_ROOT : DIR_ROOT;
+		}elseif(in_array(substr($path,0,5),array('/skin','/_pub'))){
+			$base = $pflg=='path' ? PATH_SKIN : DIR_SKIN;
+			if(strstr($path,'/_pub/')) $path = "/skin$path";
+			if(strstr($path,'/skin/')){
+				$path = str_replace('/skin/','/',$path);
+			}
+		}elseif($pcfg = comStore::cfgDirPath($base,$pflg)){
+			$base = $pcfg;	
+		}else{
+			$base = $base=='null' ? '' : (empty($base) ? ($pflg=='path' ? PATH_ROOT : DIR_ROOT) : $base);	
+		}
+		return $base.$path;
+	}
+
 	// imp css/js
 	static function imp($path,$base='',$mod='auto'){
 		global $_cbase; 
@@ -11,24 +48,15 @@ class basJscss{
 		}else{
 			return;	
 		}
-		if(strpos($path,'://')||strpos($path,'../')){
-			$base = '';
-		}elseif(in_array(substr($path,0,5),array('/plus','/skin'))){
-			$base = PATH_ROOT;
-			if(strpos($path,'/comjs.php')) $mod = 'js';
-		}elseif($pcfg = comFiles::cfgDirPath($base,'path')){
-			$base = $pcfg;	
-		}else{
-			$base = $base=='null' ? '' : (empty($base) ? PATH_ROOT : $base);	
-		}
-		$path = "$base$path";
+		if(strpos($path,'/comjs.php')&&$mod=='auto') $mod = 'js';
+		$path = self::imPath($path,$base); //"$base$path";
 		if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js'; 
-		if(!empty($_cbase['tpl']['tpc_on'])){
+		if(empty($_cbase['tpl']['tpc_on'])){
 			$_r = '_r='.time();
 			$path .= strpos($path,'?') ? "&$_r" : "?$_r";
-		}
+		} //echo "\n$mod:$path";
 		if($mod=='js') return self::jscode('',$path)."\n";
-		else return "<link rel='stylesheet' type='text/css' href='$path'/>\n";
+		else return "<link href='$path' type='text/css' rel='stylesheet'/>\n";
 	}
 	
 	/*《"&<>》HTML

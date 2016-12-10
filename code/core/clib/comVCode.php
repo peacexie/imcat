@@ -131,8 +131,8 @@ class comVCode {
 	
 	// *** 随机码
 	static function strRand(){
-		global $_cbase;
-		$type = in_array($_cbase['ucfg']['vimg'],array('0','H','K')) ? $_cbase['ucfg']['vimg'] : 'K';
+		$vimg = cfg('ucfg.vimg');
+		$type = in_array($vimg,array('0','H','K')) ? $vimg : 'K';
 		$str = basKeyid::kidRand($type,rand(3,5));
 		return $str;
 	}

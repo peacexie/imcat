@@ -13,7 +13,7 @@ class extSeo{
 	
 	//function __destory(){  }
 	function __construct(){ 
-		$this->db = glbDBObj::dbObj();
+		$this->db = db();
 		//$this->bpushCfg();
 	}
 	
@@ -36,7 +36,7 @@ class extSeo{
 			$cfg = array('limit'=>$b[1],'order'=>$exd->mkid.':DESC'); //stype,limit(1-500),order(did:ASC),offset
 			$data = $exd->odata($cfg,0,''); //print_r($data);
 			foreach($data as $row){
-				$url = vopUrl::fout("{$b[2]}:{$b[0]}.{$row[$exd->mkid]}",0,1); 
+				$url = surl("{$b[2]}:{$b[0]}.{$row[$exd->mkid]}",0,1); 
 				$title = empty($row['title']) ? (empty($row['company']) ? @$row['mname'] : $row['company']) : $row['title'];
 				$istr = $jcfg['cfgs']."\n";
 				$istr = str_replace(array("(url)","(title)"),array($url,$title),$istr);
@@ -73,7 +73,6 @@ class extSeo{
 	
 	// 
 	function bpushRun($job='baidu_push.txt',$text=''){
-		global $_cbase;
 		if(empty($text)){
 			$file = DIR_HTML."/map/$job";
 			$data = comFiles::get($file);
@@ -97,8 +96,7 @@ class extSeo{
 			$msg = 'Error:push-Empty';
 		}elseif(!empty($res->success)){
 			if(empty($text)){
-				$stamp = $_cbase['run']['stamp'];
-				$this->db->table($this->tabid)->data(array('detail'=>$stamp))->where("kid='push_time'")->update();
+				$this->db->table($this->tabid)->data(array('detail'=>time()))->where("kid='push_time'")->update();
 				// 注意更新时间为生成文件的时间。
 				comFiles::put($file,''); //清空旧资料
 			}
@@ -112,9 +110,8 @@ class extSeo{
 	}
 	// 
 	function bpushSql(){
-		global $_cbase;
 		$ptime = empty($this->pcfg['push_time']['detail']) ? 0 : $this->pcfg['push_time']['detail'];
-		$stamp = $_cbase['run']['stamp']; //当前时刻
+		$stamp = time(); //当前时刻
 		$sbase = strtotime('2005-12-31'); //更新一个含早的时间:2000年,肯定还没有这些功能...
 		if(empty($ptime)){
 			$sql = " AND atime<='$stamp'"; 

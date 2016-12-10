@@ -1,10 +1,10 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
 
 $tabid = 'bext_paras'; 
-$pid = empty($pid) ? 'ext_nav' : $pid;
-$lnav = $db->table($tabid)->where("pid='ext_nav'")->order('top')->select(); 
+$pid = empty($pid) ? 'parnav' : $pid;
+$lnav = $db->table($tabid)->where("pid='parnav'")->order('top')->select(); 
 
 if(empty($dialog)){
 	$navs = array();  $gname = '';
@@ -15,7 +15,7 @@ if(empty($dialog)){
 	$lnkupd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('flow.jf_updcfg')."\");'>&lt;&lt;".lang('flow.jf_upd')."</a>";
 	$lnkupd .= "<span class='span ph5'>|</span>"; 
 	$lnkadd = "<a href='$aurl[1]&view=form' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('flow.jf_add')."&gt;&gt;</a>";
-	$lnkadd = "<span class='span ph5'>|</span>$lnkadd"; //in_array($pid,array('ext_nav')) ?  : ''; 
+	$lnkadd = "<span class='span ph5'>|</span>$lnkadd"; //in_array($pid,array('parnav')) ?  : ''; 
 	$navs = admPFunc::fileNav($pid,$navs);
 	glbHtml::tab_bar("{$lnkupd}[$gname]$lnkadd","$navs",50);
 }
@@ -40,7 +40,7 @@ if($view=='upd'){
 			$arr[$kid][$k] = $v[$k];
 		}
 	}
-	glbConfig::save($arr,"parex_ext_nav",'dset');
+	glbConfig::save($arr,"parex_parnav",'dset');
 	
 }elseif($pid && $view=='list'){
 
@@ -65,7 +65,7 @@ if($view=='upd'){
 		basMsg::show($msg,'Redir',"?file=$file&pid=$pid&flag=v1");
 	}
 	
-	$list = $pid=='ext_nav' ? $lnav : $db->table($tabid)->where("pid='$pid'")->order('top')->select();
+	$list = $pid=='parnav' ? $lnav : $db->table($tabid)->where("pid='$pid'")->order('top')->select();
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.jf_jfcnt')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th><th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	if($list){

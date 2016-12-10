@@ -146,6 +146,24 @@ $_groups = array (
     'etab' => '0',
     'deep' => '1',
   ),
+  'votei' => 
+  array (
+    'pid' => 'coms',
+    'title' => '投票选项',
+    'top' => '490',
+    'etab' => '0',
+    'deep' => '1',
+    'pmod' => 'votes',
+  ),
+  'votep' => 
+  array (
+    'pid' => 'coms',
+    'title' => '投票记录',
+    'top' => '491',
+    'etab' => '0',
+    'deep' => '1',
+    'pmod' => 'votes',
+  ),
   'demo' => 
   array (
     'pid' => 'docs',
@@ -199,6 +217,14 @@ $_groups = array (
     'pid' => 'docs',
     'title' => '内部公文',
     'top' => '260',
+    'etab' => '1',
+    'deep' => '1',
+  ),
+  'votes' => 
+  array (
+    'pid' => 'docs',
+    'title' => '投票系统',
+    'top' => '270',
     'etab' => '1',
     'deep' => '1',
   ),

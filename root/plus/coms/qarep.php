@@ -1,5 +1,5 @@
 <?php
-$_mod = 'qarep';
+$_mod = basename(__FILE__,'.php');
 require(dirname(__FILE__).'/_cfgcom.php'); 
 
 $pinfo = dopFunc::getMinfo('faqs',$pid); //dump($pinfo);
@@ -12,7 +12,7 @@ if(!empty($bsend)){
 	$re2 = safComm::formCAll('fmqarep');
 	if(!empty($re2[0])){ 
 		dopCheck::headComm();
-		basMsg::show(lang('plug.coms_errvcode'),'die');
+		basMsg::show(lang('plus.coms_errvcode'),'die');
 	}
 
 	$dop->svPrep(); 
@@ -20,7 +20,7 @@ if(!empty($bsend)){
 	$dop->svPKey('add');
 	$db->table($dop->tbid)->data($dop->fmv)->insert(); 
 	dopCheck::headComm();
-	basMsg::show(lang('plug.coms_addok',$_groups[$mod]['title']),'prClose');
+	basMsg::show(lang('plus.coms_addok',$_groups[$mod]['title']),'prClose');
 	
 }else{
 

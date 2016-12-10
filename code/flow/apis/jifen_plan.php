@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
 $tabid = 'bext_paras'; //$tabid = 'bext_jifen'; die('coming soon!');
@@ -18,7 +18,7 @@ if(empty($dialog)){
 }
 if($view=='upd'){
 	
-	extJifen::update(); 
+	comJifen::update(); 
 	echo "\n<hr>End! ".basDebug::runInfo();
 	
 }elseif($pid=='jifen_grade' && $view=='list'){
@@ -74,7 +74,7 @@ if($view=='upd'){
 	foreach($gma as $gm){ 
 	foreach($_groups as $mod=>$gv){
 	  $kid = "$mod"; if($gv['pid']!==$gm) continue;
-	  $mcfg = glbConfig::read($mod); 
+	  $mcfg = read($mod); 
 	  $numa = empty($mcfg['cradd']) ? 0 : $mcfg['cradd'];
 	  $numb = empty($mcfg['crdel']) ? 0 : $mcfg['crdel'];
 	  if($gmold!=$gv['pid']){

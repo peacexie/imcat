@@ -1,5 +1,5 @@
 
--- exd_sfield@2016-09-14 20:17:46 -- 
+-- exd_sfield@2016-12-10 21:34:42 -- 
 INSERT INTO `{pre}exd_sfield{ext}` VALUES 
 ('title','demo_dede','subject','','','','','','','','','','','0','','0','','','0',''),
 ('seo_tag','demo_txtip','modeVal(:)<i class=\"view-tag\">(*)</i>(^)','','','','','','','','','','','0','','0','','','0',''),

@@ -29,7 +29,7 @@ class sms_emhttp{
 	// 发送短信；(utf-8编码)
 	function sendSMS($mobiles,$content){
 		if(is_array($mobiles)) $mobiles = implode(',',$mobiles);
-		$content = comConvert::autoCSet($content,glbConfig::get('cbase','sys.cset'),"utf-8");
+		$content = comConvert::autoCSet($content,cfg('sys.cset'),"utf-8");
 		$arr = $this->arr;
 		$arr['phone'] = $mobiles;
 		$arr['message'] = $content;

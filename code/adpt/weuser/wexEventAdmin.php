@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 事件响应操作
 
 class wexEventAdmin extends wysEvent{
@@ -153,19 +153,19 @@ class wexEventAdmin extends wysEvent{
 			array('title'=>'[英语]迪斯尼神奇英语','desc'=>'','url'=>'{svrtxcode}/learn/disney.htm?','picurl'=>'',),
 			array('title'=>'[数字数学]算24游戏','desc'=>'','url'=>'{svrtxcode}/learn/ms-suan24.htm?','picurl'=>'',),
 			//array('title'=>'','desc'=>'','url'=>'?','picurl'=>'',),
-			array('title'=>'[智力]称鸡蛋','desc'=>'','url'=>'{svrtxcode}/about/egg.htm?','picurl'=>'{svrtxcode}/uimgs/logo/gezi1-40x.jpg',),
+			array('title'=>'[智力]称鸡蛋','desc'=>'','url'=>'{svrtxcode}/about/egg.htm?','picurl'=>'{svrtxcode}/uimgs/_pub/logo/gezi1-40x.jpg',),
 			array('title'=>'[健康保健]保护视力-眼保健操','desc'=>'','url'=>'{svrtxcode}/health/cmshili.htm?','picurl'=>'',),
 			array('title'=>'[健康保健]食物相克查询','desc'=>'','url'=>'{svrtxcode}/health/cmxke.htm?','picurl'=>'',),
-			array('title'=>'[应用]全国城市-天气预报','desc'=>'','url'=>'{svrtxcode}/about/tianqi.htm?','picurl'=>'{svrtxcode}/uimgs/logo/gezi-fly.gif',),
+			array('title'=>'[应用]全国城市-天气预报','desc'=>'','url'=>'{svrtxcode}/about/tianqi.htm?','picurl'=>'{svrtxcode}/uimgs/_pub/logo/gezi-fly.gif',),
 		); 
 		die($this->remNews($news));
 	}
 	
 	// 点击自定义菜单:Cnarea
 	function clickCnarea(){
-		$arr = glbConfig::read('china');
+		$arr = read('china.i');
 		$str = "回复下面括号里的两个字母获取详细信息：\n";
-		foreach($arr['i'] as $k=>$v){
+		foreach($arr as $k=>$v){
 			if(empty($v['pid'])){
 				$key = substr($k,2);
 				$str .= "[$key]".$v['title']."\n";
@@ -176,14 +176,14 @@ class wexEventAdmin extends wysEvent{
 
 	// 点击自定义菜单:Haibao
 	function clickHaibao(){
-		global $_cbase; 
-		die($this->remImage($_cbase['weixin']['haibaoMediaid']));
+		$hb = cfg('weixin.haibaoMediaid');
+		die($this->remImage($hb));
 	}
 	
 	# (文档/会员)的信息(仅数据)
 	function getSendInfo($mod,$kid){ 
-		$_groups = glbConfig::read('groups');
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups');
+		$db = db();
 		$pid = @$_groups[$mod]['pid'];
 		$fid = substr($pid,0,1).'id';
 		$data = $dext = array();
@@ -200,11 +200,11 @@ class wexEventAdmin extends wysEvent{
 	}
 	function getSendText($key,$fields,$tplink=''){ 
 		$i = 0; $s = '';
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		foreach($fields as $k=>$v){
 			$val = $this->sendInfo[$k];
 			if(isset($_groups[$k]) && $_groups[$k]['pid']=='types'){
-				$vmcfg = glbConfig::read($k); 
+				$vmcfg = read($k); 
 				$vname = comTypes::getLnks(comTypes::getLays($vmcfg['i'],$val),'[v]');
 				$val = empty($vname) ? $val : $vname;
 			}
@@ -218,7 +218,7 @@ class wexEventAdmin extends wysEvent{
 		if(strpos($tplink,'{kid}')){
 			$link = str_replace(array('{kid}'),$key,wysBasic::fmtUrl($tplink));
 		}elseif($tplink){
-			$link = wysBasic::fmtUrl(vopUrl::fout("$tplink:$key"));
+			$link = wysBasic::fmtUrl(surl("$tplink:$key"));
 		}
 		$s .= "\n<a href='$link'>详情：>> </a>\n";
 		return $s;

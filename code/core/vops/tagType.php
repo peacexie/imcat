@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 /*
 {tag:flag4=[listType,re1][modid,china][idfix,top]}

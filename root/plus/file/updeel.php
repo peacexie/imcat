@@ -2,9 +2,9 @@
 require('_config.php'); 
 usrPerm::run('pextra','edtup'); //上传权限 
 
-$recbk = basReq::val('recbk','ref'); 
-$udata = basReq::val('udata',''); 
-$uptype = basReq::val('uptype','');
+$recbk = req('recbk','ref'); 
+$udata = req('udata',''); 
+$uptype = req('uptype','');
 $uparr = array(); 
 if($udata && in_array($uptype,array('remote','base64'))){
 	$uparr[] = $uptype=='remote' ? $udata : 'udata';

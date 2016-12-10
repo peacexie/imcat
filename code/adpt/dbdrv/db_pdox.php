@@ -18,8 +18,8 @@ class db_pdox{
     }
     // 连接数据库
     function connect($config='') { 
+		$this->dbType = empty($config['db_type']) ? 'mysql' : $config['db_type'];
 		if(empty($config['db_dsn'])){
-			$this->dbType = empty($config['db_type']) ? 'mysql' : $config['db_type'];
 			$config['db_dsn'] = $this->dbType.':host='.$config['db_host'].';dbname='.$config['db_name'].';port='.$config['db_port'].'';
 		} 
 		// $this->dbName = $config['db_name'];
@@ -38,7 +38,7 @@ class db_pdox{
 		if(!$this->pdo) {
 			$e = new PDOException;
 			$this->error($e->getMessage());
-		}*/
+		}//*/
 		
     }
 
@@ -58,6 +58,7 @@ class db_pdox{
 		return $this->query($sql, 'all');
 	}
 	function row($sql) { // row
+		//dump($sql);
 		return $this->query($sql)->fetch();
 	}
 	function val($sql) { // val
@@ -91,11 +92,11 @@ class db_pdox{
 	// 取得创建表sql
 	function create($tab){ 
 		$res = $this->query("SHOW CREATE TABLE $tab")->fetch();
-		return $res[1];
+		return $res['Create Table'];
 	}
     // 取得数据表的字段信息
-    function fields($tableName) {
-		switch($this->dbType) {
+    function fields($tableName) { 
+		switch(strtoupper($this->dbType)) {
 			case 'MSSQL':
 			case 'SQLSRV':
 				$sql   = "SELECT   column_name as 'Name',   data_type as 'Type',   column_default as 'Default',   is_nullable as 'Null'
@@ -124,7 +125,7 @@ class db_pdox{
 			case 'MYSQL':
 			default:
 				$sql   = 'DESCRIBE '.$tableName;//备注: 驱动类不只针对mysql，不能加``
-		}
+		}dump($sql);
         $result = $this->query($sql);
         $info   =   array();
         if($result) {
@@ -189,19 +190,24 @@ class db_pdox{
         return $result;
 	}
 
+	//返回quoteSql语句
+	function quoteSql($sql){
+		return $this->pdo->quote($sql);
+	}
+
 	// 数据库错误信息
     function error($msg='', $sql=''){ 
 		$sql = basDebug::hidInfo($sql,1);
-		$func = @$this->config['efunc'];
-		if($func) return $func($message);
+		//$func = empty($this->config['efunc']) ? '' $this->config['efunc']: ;
+		if(!$func = empty($this->config['efunc'])) return $func($message);
         if(empty($msg)){
-			if($this->PDOStatement) {
+			if(!empty($this->PDOStatement)) {
 				$error = $this->PDOStatement->errorInfo();
 				$this->error = '<i>Info</i>: '.$error[1].':'.$error[2].'<br>';
 			}else{
 				$this->error = '';
 			}
-			if('' != @$this->queryStr){
+			if(!empty($this->queryStr)){
 				$this->error .= "<i>SQL</i>: ".$this->queryStr.'<br>';
 			}else{
 				$this->error .= "<i>SQL</i>: ".$this->sql.'<br>';

@@ -2,12 +2,12 @@
 define('RUN_JSHOW', 1);
 $_cbase['skip']['.none.'] = true;
 require(dirname(__FILE__).'/_config.php');
-vopTpls::set(basReq::val('tpldir'));
+vopTpls::set(req('tpldir'));
 glbHtml::head();
 
 $q = $_SERVER['QUERY_STRING'];
 parse_str($q,$a);
-$_cbase['run']['mkv'] = basReq::val('mkv');
+$_cbase['run']['mkv'] = req('mkv');
 
 $sfie = array(); $scnt = array();
 $stag = '';  $sadv = ''; 

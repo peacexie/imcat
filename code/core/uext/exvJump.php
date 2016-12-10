@@ -7,51 +7,52 @@ class exvJump{
 
 	// 获得多语言-跳转地址
 	static function getLang(){
-	    $jcfg = self::getCfgs();
-	    $nkey = $jcfg['deflang']; //未找到地区时的默认网站
+	    $langs = self::getCfgs('langs');
+	    $_def = self::getCfgs('_defs');
+	    $nkey = $_def['lang']; //未找到地区时的默认网站
 		$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
-		//$_cbase['sys']['lang'] = $lang=='zh' ? 'cn' : 'en';
-	    foreach($jcfg['langs'] as $key=>$kname){
+		$lang = 'en'; // zh,cn,en
+	    foreach($langs as $key=>$kname){
 	        if($lang==$key){
 	            $nkey = $kname;
 	            break;        
 	        }
 	    }
-	    $nurl = vopUrl::fout("$kname:0"); 
+	    $nurl = surl("$kname:0"); 
 	    return $nurl;
 	}
 
+	// 获取ip对应地址
+	static function getAddr($userip){
+        $_def = self::getCfgs('_defs');
+        $api = $_def['api']; 
+		$ipObj = new extIPAddr($api);
+		$addr = $ipObj->addr($userip);
+		#echo "$api,$userip,$addr";
+        return $addr;
+	}
+
 	// 获得分站-跳转地址
-	static function getDir($uaddr){
+	static function getDurl($uaddr){
 	    $jcfg = self::getCfgs();
-	    $nkey = $jcfg['defsite']; //未找到地区时的默认网站
+	    $nkey = $jcfg['_defs']['site']; //未找到地区时的默认网站
 	    foreach($jcfg['sites'] as $key=>$kname){
 	        if(strstr($uaddr,$kname)){
 	            $nkey = $key;
 	            break;        
 	        }
 	    }
-	    $nurl = "http://$nkey.{$jcfg['domain']}/"; // 组装完整url
+	    $nurl = "http://$nkey.{$jcfg['_defs']['domain']}/"; // 组装完整url
 	    return $nurl;
 	}
 
-	// 获得分站数据，供各分站调用
-	static function getSites(){
-	    $data = array();
-	    foreach($sub_sites as $key=>$kname){
-	        $data[$key] = array('name'=>$kname, 'url'=>"http://$key.{$jcfg['domain']}/");
-	    }
-	    $data = comParse::jsonEncode($data);
-	    return $data;
-	}
 
 	// 获得ujump配置
 	static function getCfgs($key=''){
 		if(empty(self::$jcfg)){
-			self::$jcfg = glbConfig::read('ujump','ex');
+			self::$jcfg = read('vjump','ex');
 		}
 		return $key && isset(self::$jcfg[$key]) ? self::$jcfg[$key] : self::$jcfg;
 	}
-
 
 }

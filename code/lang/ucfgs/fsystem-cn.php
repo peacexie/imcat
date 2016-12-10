@@ -45,7 +45,7 @@ return array(
 		'base_catalog'=>'(系统)栏目表', 'base_fields'=>'(系统)字段配置表', 'base_grade'=>'(系统)用户等级表', 
 		'base_menu'=>'(系统)菜单表', 'base_model'=>'(系统)[群组/模块]表', 'base_paras'=>'(系统)参数表', 
 		'bext_dbdict'=>'(扩展)数据库词典表', 'bext_relat'=>'(扩展)类别关联表', 'bext_fields'=>'(扩展)类别字段表', 
-		'bext_paras'=>'(扩展)参数表', 'bext_cron'=>'(扩展)计划任务表', 
+		'bext_paras'=>'(扩展)参数表', 'bext_cron'=>'(扩展)计划任务表', 'bext_mins'=>'(扩展)模块安装表', 
 		
 		'exd_crawl'=>'(数据)采集表', 'exd_crlog'=>'(数据)采集记录', 
 		'exd_oilog'=>'(数据)导入表', 'exd_oimp'=>'(数据)导入记录', 

@@ -7,9 +7,7 @@ glbHtml::page(" (sys_name) - ".lang('tools.home_extitle'));
 glbHtml::page('viewport'); //robots
 glbHtml::page('keywords',$_cbase['sys_name'].':'.lang('tools.home_exkwd'));
 glbHtml::page('robots',$_cbase['sys_name'].lang('tools.home_exdes')); 
-glbHtml::page('imvop'); 
-echo basJscss::imp('/tools/rhome/hfunc.js?v12');
-echo basJscss::imp('/tools/rhome/hstyle.css?v12');
+glbHtml::page('imvop',array('js'=>'/tools/rhome/hfunc.js','css'=>'/tools/rhome/hstyle.css')); 
 {/php}
 <style type="text/css">
 div.outer { 
@@ -35,7 +33,7 @@ glbHtml::ieLow_html();
       <a href="{PATH_PROJ}{$v[1]}" class="qrcode_tip">{if $v}({$k})<?php echo basLang::pick(0,$v[0]); ?>{/if}<i class="qrcode_pic" id="qrcode_pic{$k}" style="display:none;"></i></a>
       {/loop}
     </nav>
-    <p class="logo"><img src="{PATH_ROOT}/skin/a_img/logo120x60.jpg" width="120" height="60" ></p>
+    <p class="logo"><img src="{PATH_SKIN}/_pub/a_img/logo120x60.jpg" width="120" height="60" ></p>
     <h1 class="title"><b>{$_cbase['sys_name']} V{$_cbase['sys']['ver']}</b></h1>
     
     <div class="vnote"{if $isMobile} style="display:none;"{/if}>

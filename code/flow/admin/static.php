@@ -1,14 +1,13 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)'); 
 
-//global $_cbase;
-$ntpl = basReq::val('ntpl',$_cbase['tpl']['def_static']);
+$ntpl = req('ntpl',$_cbase['tpl']['def_static']);
 $_cbase['tpl']['tpl_dir'] = $ntpl;
 $cronurl = PATH_ROOT."/plus/ajax/cron.php";
 
-$view = basReq::val('view','list');
-$nmod = basReq::val('nmod','home'); 
+$view = req('view','list');
+$nmod = req('nmod','home'); 
 $vcfgs = vopTpls::etr1('tpl'); 
 $stitle = lang('admin.st_admin').":($ntpl)".basLang::pick(0,$vcfgs[$ntpl][0]); 
 $msg = ''; //print_r($msg);
@@ -54,7 +53,7 @@ if($view=='list'){
 
 	}elseif($nmod!=='all'){  
 		$iname = isset($_groups[$nmod]) ? $_groups[$nmod]['title'] : lang('admin.st_udefine');
-		$mcfgs = glbConfig::read($nmod); 
+		$mcfgs = read($nmod); 
         echo "\n<tr><td class='tc'>{$iname}<br>[$ntpl:$nmod]</td>\n<td>";
 		echo "\n<p>
             &nbsp; ● ".lang('admin.st_cstatic').": ".lang('admin.st_allrecs',count($ncfg[$nmod]))."
@@ -92,7 +91,7 @@ if($view=='list'){
 			}
 			echo "\n<td><iframe src='$cronurl?$url' width='100%'></iframe></td>";
 			if($i%3==0){ echo "</tr><tr>"; }
-			$mcfgs = glbConfig::read($imod); 
+			$mcfgs = read($imod); 
 			if(!empty($mcfgs['pid']) && in_array($mcfgs['pid'],array('docs','users'))){
 				$url = "static=mdetail&mod=$imod&tpldir=$ntpl&act=add";
 				echo "\n<td><iframe src='$cronurl?$url' width='100%'></iframe></td>";

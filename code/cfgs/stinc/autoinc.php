@@ -1,5 +1,5 @@
 <?php 
-//$aincfile = '/root/run/_paths.php';
+//$aincfile = '/root/run/_init.php';
 //$aincfile = '/cfgs/stinc/err404.php';
 
 function autoInc_ys($file=''){

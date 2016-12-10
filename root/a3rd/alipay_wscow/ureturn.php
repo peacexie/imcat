@@ -50,9 +50,9 @@ $cfg = array(
 	'status'=>'trade_status',
 );
 foreach($cfg as $k1=>$k2){ 
-	$res[$k1] = basReq::val($k2);  
+	$res[$k1] = req($k2);  
 }
 $res['msg'] = $msg;
 $res['api'] = 'AliWscow';
-$res['stamp'] = basReq::val('notify_time');
+$res['stamp'] = req('notify_time');
 require_once(dirname(dirname(__FILE__))."/paydemo_dir/xresult.php");

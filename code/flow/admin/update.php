@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 usrPerm::run('pfile','(auto)');
 
 $parts = empty($parts) ? 'cache' : $parts;
@@ -92,10 +92,10 @@ if(empty($bsend)){
 		glbCUpd::upd_grade(); 
 	}
 	if(in_array('data',$clr)){
-		devData::clrLogs();
+		devScan::clrLogs();
 	}
 	if(in_array('file',$clr)){
-		devData::clrTmps();
+		devScan::clrTmps();
 		$p0 = DIR_DTMP.'/modcm/';
 		$a0 = comFiles::listDir($p0);
 		$af = $a0['file'];
@@ -114,7 +114,7 @@ if(empty($bsend)){
 	$arr = array('ctpl'=>'','ctag'=>'tagc','cadv'=>'advs',);
 	foreach($arr as $k=>$v){
 		if(in_array($k,$clr)){
-			devData::clrCTpl($v);	
+			devScan::clrCTpl($v);	
 		}
 	}
 

@@ -119,7 +119,7 @@ return array(
 	'upg_bkdb' => '备份数据库',
 	'upg_tipdb' => '[建议/注意]先停止掉服务再备份；可复制数据库目录；',
 	'upg_blfile' => '备份程序文件',
-	'upg_tipfile' => '主要备份：/code 和 /root目录。<br>重要文件（夹）：/code/cfgs/目录，/root/run/_paths.php文件。',
+	'upg_tipfile' => '主要备份：/code 和 /root目录。<br>重要文件（夹）：/code/cfgs/目录，/root/run/_init.php文件。',
 	'upg_use' => '使用情景',
 	'upg_tipup' => '目前是较旧版本，下载最新版本包(不用安装)，在现有较旧版本上，把新版本增加更新的文件，数据库结构更新过来；',
 	'upg_upstart' => '开始升级',

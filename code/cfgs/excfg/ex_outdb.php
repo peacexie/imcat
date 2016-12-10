@@ -1,10 +1,10 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // 同步服务器 'http://master.domain.com/root';
 $_ex_outdb['psyn']['server'] = 'http://master.domain.com/root'; //同步服务器
-$_ex_outdb['sign']['sapp'] = 'th7hye6yhtxd2dr999tj5bwf'; //签名:sapp
-$_ex_outdb['sign']['skey'] = 'KtrsinqyfkfFRtG92g2AG8lwbvUXwsvb2Rgb'; //签名:skey
+$_ex_outdb['sign']['sapp'] = 'ndu3uq3024ctk6aw780j6xd0'; //签名:sapp
+$_ex_outdb['sign']['skey'] = '1snSTzC2K8yJqHgjcmAlq0DviCfzwHJHMAPl'; //签名:skey
 // 单独设置(暂未使用...)
 #$_ex_outdb['sign_(jobid)']['sapp'] = ''; //签名:sapp
 #$_ex_outdb['sign_(jobid)']['skey'] = ''; //签名:skey

@@ -1,8 +1,8 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
-$part = basReq::val('part','slogs'); //logs,charge
+$part = req('part','slogs'); //logs,charge
 
 $cfg = array(
 	'sofields'=>($part=='charge' ? array('uto','amount','note') : array('msg','tel','res','api')),

@@ -3,7 +3,7 @@ $_cbase['skip']['error'] = true;
 require(dirname(__FILE__).'/_config.php'); 
 
 safComm::urlFrom();
-$mod = basReq::val('mod');
+$mod = req('mod');
 if(in_array($mod,array('(istest)','(emtel)','qrShow','qrVstr','qrVauto','qrVres'))){
 	//;
 }else{
@@ -21,15 +21,15 @@ if($mod=='(emtel)'){
 		'jura',
 		'lconsole',
 	);
-	$tab = basReq::val('code'); //empty($_cbase['ucfg']['vimg']) ? 'k' : $_cbase['ucfg']['vimg']; // 0,h,H,k
+	$tab = req('code'); //empty($_cbase['ucfg']['vimg']) ? 'k' : $_cbase['ucfg']['vimg']; // 0,h,H,k
 	$tab = comConvert::sysRevert($tab,1);
 	//$tab = urldecode($tab); //'peace_xie@08-CMS.com';
 // 显示表单qr码
 }elseif($mod=='qrShow'){
-	$size = basReq::val('size','5');
-	$data = basReq::val('data','','Safe4',255); //echo "$data, $size";
-	$level = basReq::val('level','2');
-	$margin = basReq::val('margin','1');
+	$size = req('size','5');
+	$data = req('data','','Safe4',255); //echo "$data, $size";
+	$level = req('level','2');
+	$margin = req('margin','1');
 	extQRcode::show($data, $size, $level, $margin);
 	die();
 	

@@ -1,8 +1,8 @@
 
-document.write("<script src='../root/skin/jslib/jsbase.js'></script>");
-document.write("<script src='../root/skin/a_jscss/mkdown.js'></script>");
+document.write("<script src='../skin/_pub/jslib/jsbase.js'></script>");
+document.write("<script src='../skin/_pub/a_jscss/mkdown.js'></script>");
 
-var doc_url = '../code/tpls/dev/d_start/doc_down'+cfg.lang+'.txt';
+var doc_url = '../skin/'+cfg.tpl+'/d_start/doc_down.txt';
 window.onload = function (){
 	setTimeout('_readInit()',100);
 } 

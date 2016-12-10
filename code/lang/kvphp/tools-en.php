@@ -106,7 +106,7 @@ return array(
 	'upl_cfmdok' => 'Confirm [Manual-Deal] OK ',
 	'upl_tips' => 'Tips',
 	'upl_tptpl' => 'Template directory, are generally modified, please manually processing',
-	'upl_tpskn' => 'Like as dir:/code/tpls/, sub dir jslib is js libs, must update;',
+	'upl_tpskn' => 'Like as dir:/skin/, sub dir jslib is js libs, must update;',
 	'upl_tpcfg' => 'Can copy then from Latest package',
 	'upl_mdback' => '(Manual)Backup DB:',
 	'upl_docfg' => 'Deal Configs:',
@@ -200,7 +200,7 @@ return array(
 	'chk_cfunc' => 'Function(letters, If get [Support] shows CAN use this function)',
 
 	'chk_sysdirs' => 'Sys.Dirs',
-	'chk_dirset' => 'Check File:[/root/run/_paths.php]',
+	'chk_dirset' => 'Check File:[/root/run/_init.php]',
 	'chk_dblink' => 'DB Link',
 	'chk_dbstatus' => 'contact status/result',
 	'chk_dbextra' => ' Extend',

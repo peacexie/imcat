@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
 $tabid = 'bext_paras'; 
@@ -18,7 +18,7 @@ if(empty($dialog)){
 
 if($pid=='create'){
 	
-	$job = basReq::val('job');
+	$job = req('job');
 	$res = $seo->createSmap($job);
 	$file = PATH_HTML."/map/$job";
 	$str = $res ? "<a href='$file' target='_'>".lang('flow.pu_cfok')."</a>" : lang('flow.pu_cfng');
@@ -26,8 +26,8 @@ if($pid=='create'){
 
 }elseif($pid=='push'){
 	
-	$pfile = basReq::val('pfile');
-	$plink = basReq::val('plink');
+	$pfile = req('pfile');
+	$plink = req('plink');
 	if($pfile){ //echo "$pfile";
 		$res = $seo->bpushRun($pfile);
 	}elseif($plink){ //echo "$plink";

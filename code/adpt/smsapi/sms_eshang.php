@@ -18,7 +18,6 @@ class sms_eshan{
 	 * 信息内容(GBK编码)，包含中文的短信长度小于等于70个字符，纯英文的短信长度小于等于150个字符
 	 */
 	function sendSMS($mobiles,$content){
-		global $_cbase; 
 		if(is_array($mobiles)) $mobiles = implode(',',$mobiles);
 		if($mcharset=='utf-8') $content = iconv($mcharset,'gbk',$content); 
 		//$content = str_replace(array(' ','　',"\r","\n"),'',$content); // 短信内容不支持空格???

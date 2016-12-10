@@ -1,8 +1,8 @@
 <?php
 require(dirname(__FILE__).'/we_cfgs.php');
 
-$act = basReq::val('act','main'); 
-$kid = basReq::val('kid','admin');
+$act = req('act','main'); 
+$kid = req('kid','admin');
 $debug = basReq::arr('debug','Html');
 
 $dcfg = array('api','appid','token','appsecret','orgid','openid');
@@ -14,11 +14,12 @@ if(@$debug['type']=='qrGet'){ //cookie-header问题,放在echo输出前
 
 glbHtml::page("微信接口调试");
 glbHtml::page('imadm');
-echo basJscss::imp("/skin/a_jscss/weixin.js"); //glbHtml::page('imps');
+echo basJscss::imp("/_pub/a_jscss/weixin.js"); 
+echo "<style type='text/css'>.radio{display:inline-block;}</style>";
 glbHtml::page('body',' style="margin:20px;"');
 wxDebugNavbar();
 
-//$u = usrBase::userObj(); print_r($u);
+//$u = user(); print_r($u);
 
 foreach($dcfg as $k){
 	$$k = empty($debug[$k]) ? (empty($wecfg[$k]) ? '' : $wecfg[$k]) : $debug[$k];
@@ -174,7 +175,7 @@ if($act=='main'){
 	$res = wysUser::fmtUserName($user);
 	echo ("<br>".$res);
 	
-	#$unow = usrBase::userObj(); 
+	#$unow = user(); 
 	$res = usrMember::addUser('person',$res.date('Hms'),'ssss232333232',$user['nickname']);
 	echo "<pre>"; print_r($res);
 	

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
 
 $cfg = array(
@@ -20,7 +20,7 @@ $dop->sobar("$links$umsg",40,array());
 
 if($view=='vcfgs'){
 	
-	$cfgs = glbConfig::read('mail','ex');
+	$cfgs = read('mail','ex');
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	if(empty($cfgs)){
 		echo "\n<tr><td class='tc w180'>".lang('flow.cfg_tips').": </td>\n<td>

@@ -1,28 +1,28 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)'); 
 
 $_sy_nava['exdiys'] = array(
-	'tpls' => '/code/tpls',
-	'skin' => '/root/skin',
+	'skin' => '/skin',
 	'cfgs' => '/code/cfgs',
 	'runs' => 'vopfmt',
 ); 
 
-$part = basReq::val('part','binfo'); 
-$dkey = basReq::val('dkey','tpls'); 
-$dsub = basReq::val('dsub',''); 
+$part = req('part','binfo'); 
+$dkey = req('dkey','cfgs'); 
+$dsub = req('dsub',''); 
 
+$lfile = "<a href='?file=admin/files'>SysFiles</a> # ";
 $links = admPFunc::fileNav($part,'envdiy');
-if(!in_array($part,array('edit','restore'))) glbHtml::tab_bar(lang('admin.ediy_extool')."[$part]","$links",50); 
+if(!in_array($part,array('edit','restore'))) glbHtml::tab_bar("$lfile ".lang('admin.ediy_extool')."[$part]","$links",50); 
 $msg = ''; //print_r($msg);
 
-$view = basReq::val('view');
-$efile = basReq::val('efile','');
+$view = req('view');
+$efile = req('efile','');
 
 if(in_array($part,array('edit','restore'))){
 
-	$edir = $_sy_nava['exdiys'][$dkey];
+	$edir = $_sy_nava['exdiys'][$dkey]; 
 	$edir = $edir=='vopfmt' ? '' : (empty($dsub) ? $edir : "$edir/$dsub");
 	$nfile = str_replace('//','/',"/$edir/$efile");
 	$fp = DIR_PROJ.$nfile;
@@ -31,7 +31,7 @@ if(in_array($part,array('edit','restore'))){
 		unlink($fp); copy("$fp.maobak",$fp);
 		basMsg::show(lang('admin.ediy_rebok'));
 	}elseif(!empty($bsend)){
-		$ndata = $_POST['ndata']; //basReq::val('ndata','','Html',102400);
+		$ndata = $_POST['ndata']; //req('ndata','','Html',102400);
 		@unlink("$fp.maobak"); copy($fp,"$fp.maobak");
 		comFiles::put($fp,$ndata);
 		basMsg::show(lang('admin.ediy_editok'));
@@ -68,15 +68,15 @@ if(in_array($part,array('edit','restore'))){
 		$lnkds = " -- ".lang('admin.ediy_nosdir')." -- ";
 		$edir = $_sy_nava['exdiys'][$dkey];
 		$listu = comFiles::listScan(DIR_PROJ.$edir);
-	}else{ //tpls,skin
-		$edir = $_sy_nava['exdiys'][$dkey];
-		$lists = comFiles::listDir(DIR_PROJ.$edir);
+	}else{ //skin
+		$edir = $_sy_nava['exdiys'][$dkey]; 
+		$lists = comFiles::listDir(DIR_SKIN);
 		$lnkds = ""; $dsub || $dsub = $_cbase['tpl']['def_static']; 
 		foreach($lists['dir'] as $sdir=>$etime){
 			if(in_array($sdir,array('a_img','b_img','logo'))) continue;
 			$ititle = $sdir==$dsub ? "<span class='cF0F'>$sdir<span>" : $sdir;
 			$lnkds .= (empty($lnkds)?'':' # ')."<a href='?file=$file&part=$part&dkey=$dkey&dsub=$sdir'>$ititle</a>";
-			$listu = comFiles::listScan(DIR_PROJ.$edir."/$dsub");
+			$listu = comFiles::listScan(DIR_SKIN."/$dsub");
 		}
 		$edir = $edir."/$dsub";
 	} 
@@ -90,7 +90,7 @@ if(in_array($part,array('edit','restore'))){
 	$idir = $odir = '|';
 	foreach($listu as $ifile=>$fv){ 
 	  $ext = strtolower(strrchr($ifile,".")); 
-	  if(!in_array($ext,array('.php','.htm','.html','.css','.js'))) { continue; } //echo "$ifile, "; 
+	  if(!in_array($ext,array('.php','.htm','.html','.css','.js','.txt'))) { continue; } //echo "$ifile, "; 
 	  $tmp = explode('/',$ifile); $bkfile = $ifile;
 	  if(count($tmp)==1){
 		  $idir = '[/]';

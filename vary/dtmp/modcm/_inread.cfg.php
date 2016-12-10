@@ -11,7 +11,10 @@ $_inread = array (
   array (
     'readcnt' => 
     array (
+      'kid' => 'readcnt',
+      'model' => 'inread',
       'title' => '浏览次数',
+      'top' => '888',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -24,6 +27,16 @@ $_inread = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
+      'note' => '',
+      'aip' => '',
+      'atime' => '0',
+      'auser' => '',
+      'eip' => '',
+      'etime' => '0',
+      'euser' => '',
     ),
   ),
 );

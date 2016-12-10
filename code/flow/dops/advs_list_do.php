@@ -1,7 +1,7 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_DOPA')) && die('No DopA');
 
-$fs_do = basReq::val('fs_do');
+$fs_do = req('fs_do');
 $fs = basReq::arr('fs'); 
 if(empty($fs_do)) $msg = lang('flow.dops_setop');
 if(empty($fs)) $msg = lang('flow.dops_setitem');

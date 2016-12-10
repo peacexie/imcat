@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // usrMember
 class usrMember extends usrBase{
@@ -35,9 +35,9 @@ class usrMember extends usrBase{
 	static function addUser($mod,$uname,$upass,$mname='',$mtel='',$memail='',$excfg=array()){ 
 		$arr = array('uname','mname','mtel','memail'); foreach($arr as $k){ $$k = basStr::filTitle($$k); }
 		if(isset($excfg['company'])) { $excfg['company'] = basStr::filTitle($excfg['company']); }
-		$db = glbDBObj::dbObj(); 
+		$db = db(); 
 		$re = array('erno'=>'','ermsg'=>'');
-		$md = glbConfig::read($mod);
+		$md = read($mod);
 		if($md['pid']!='users'){
 			$re['erno'] = "model:$mod:Error£¡";
 			$re['ermsg'] = "model[$mod]´íÎó£¡";
@@ -62,17 +62,16 @@ class usrMember extends usrBase{
 		if(isset($md['f']['company']) && isset($excfg['company'])) $umd['company'] = $excfg['company']; 
 		$db->table("users_$mod")->data($umd+$dataex)->insert();
 		$re = array('uid'=>$uid,'grade'=>$grade,'check'=>$show,'uname'=>$uname,);
-		extJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname)),'add','×¢²á¼Ó·Ö');
+		comJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname)),'add','×¢²á¼Ó·Ö');
 		return $re;
 	}
 	
 	static function addUname($uname='',$mod=''){ 
-		$db = glbDBObj::dbObj(); 
 		$tabid = 'users_uacc'; $key = "uname";
 		if(empty($uname)){
 			$uname = substr($mod,0,1).str_replace('-','',basKeyid::kidTemp('5'));
 		}
-		$r = $db->table($tabid)->field($key)->where("$key='$uname'")->find(); //print_r($r);
+		$r = db()->table($tabid)->field($key)->where("$key='$uname'")->find(); //print_r($r);
 		if(!empty($r[$key])){ 
 			return self::addUname('',$mod);
 		}
@@ -80,7 +79,6 @@ class usrMember extends usrBase{
 	}
 	
 	static function addUid($uid=''){ 
-		$db = glbDBObj::dbObj(); 
 		$tabid = 'users_uacc'; $key = "uid";
 		if(empty($uid)){
 			$kar = glbDBExt::dbAutID($tabid,'yyyy-md-','31');
@@ -88,7 +86,7 @@ class usrMember extends usrBase{
 		}else{
 			$uno = '1';	
 		}
-		$r = $db->table($tabid)->field($key)->where("$key='$uid'")->find(); //print_r($r);
+		$r = db()->table($tabid)->field($key)->where("$key='$uid'")->find(); //print_r($r);
 		if(!empty($r[$key])){ 
 			return self::addUid();
 		}
@@ -96,21 +94,18 @@ class usrMember extends usrBase{
 	}
 	
 	static function bindUser($mname,$pptmod,$pptuid){ 
-		$db = glbDBObj::dbObj();
-		$db->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
+		db()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
 	}
 	
 	static function emailGetpw($uname, $memail){ 
-		global $_cbase;
-		$db = glbDBObj::dbObj(); 
 		$uinfo = self::uget_minfo($uname);
 		if(!empty($uinfo['memail']) && $uinfo['memail']==$memail){
 			$upass = basKeyid::kidRand('24',8);
 			$dbpass = comConvert::sysPass($uname,$upass,$uinfo['umods']); 
-			$db->table("users_uacc")->data(array('upass'=>$dbpass))->where("uname='$uname'")->update();
+			db()->table("users_uacc")->data(array('upass'=>$dbpass))->where("uname='$uname'")->update();
 			$upass = comConvert::sysRevert($upass, 0, '', 3600);
-			$url = vopUrl::fout('umc:0','',1)."?mkv=user-getpw&act=emshow&upass=$upass";
-			$sys_name = $_cbase['sys_name'];
+			$url = surl('umc:0','',1)."?mkv=user-getpw&act=emshow&upass=$upass";
+			$sys_name = cfg('sys_name'); 
 			$mail = new extEmail();
 			$subj = lang('usrm_emsubj');
 			$data = basLang::inc('uless','userm_empw',array('uname'=>$uname,'sys_name'=>$sys_name,'url'=>$url));

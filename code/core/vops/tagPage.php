@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 /*
 	funcs: pPgbar,getData
@@ -18,7 +18,6 @@ class tagPage extends tagList{
 	
 	function pPgbar(){ 
 		global $_cbase; 
-		$db = glbDBObj::dbObj();
 		$sfrom = "m.* FROM `".$this->sqlArr['prefix'].$this->sqlArr['tabid'].$this->sqlArr['suffix']."` m ";
 		$where = $this->whrStr; 
 		$pg = new comPager($sfrom,$where,$this->sqlArr['limit'],"m.".$this->sqlArr['order']); 
@@ -35,12 +34,12 @@ class tagPage extends tagList{
 		}
 		$scname = $_SERVER["SCRIPT_NAME"]; //REQUEST_URI
 		$mkv = vopUrl::umkv('mkv');
-		/*$mkv = basReq::val('mkv','','Key',24);
+		/*$mkv = req('mkv','','Key',24);
 		if(empty($mkv) && !empty($_cbase['mkv']['mkv'])){
 			$mkv = $_cbase['mkv']['mkv']; 
 		}*/
 		if(strpos($scname,'plus/ajax/cron.php') || strpos($scname,'plus/ajax/jshow.php')){
-			$burl = vopUrl::fout(0)."?mkv=$mkv";	
+			$burl = surl(0)."?mkv=$mkv";	
 		}else{
 			$burl = basReq::getUri(-1,'','page|prec|ptype|pkey');
 			$burl = strstr($burl,'mkv=') ? $burl : str_replace('.php?','.php?mkv=',$burl); 	

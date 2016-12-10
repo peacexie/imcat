@@ -1,9 +1,9 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)'); 
 
-$view = basReq::val('view','uinfo'); //echo $view;
-$bspw = basReq::val('bspw');
+$view = req('view','uinfo'); //echo $view;
+$bspw = req('bspw');
 $mod = $user->uinfo['umods']; //$user->uperm['model'];
 $tabid = "users_$mod";
 $uid = $user->uinfo['uid'];

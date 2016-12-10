@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopAdvs(data OP for Advs)
 class dopAdvs extends dopBase{	
@@ -16,7 +16,7 @@ class dopAdvs extends dopBase{
 		parent::__construct($cfg,$cfg['pid']."_$mod");
 		$this->typfid = $this->so->typfid = 'catid';
 		$this->dskey  = $this->so->dskey  = 'title'; 
-		$this->order  = $this->so->order  = basReq::val('order','atime');
+		$this->order  = $this->so->order  = req('order','atime');
 		//$this->tbuacc  = 'users_uacc';
 	}
 	// 翻页条,批量操作
@@ -27,7 +27,7 @@ class dopAdvs extends dopBase{
 	}
 	// 搜索条 // check,fields
 	function sobar($msg='',$width=30){ 
-		$file = basReq::val('file');
+		$file = req('file');
 		$mod = $this->mod;
 		$sbar = "\n".$this->so->Type(120,lang('flow.op0_cat')); 
 		$sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
@@ -50,10 +50,9 @@ class dopAdvs extends dopBase{
 
 	// PKey pMod,pKey资料
 	function fmPKey(){ 
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$mod = $this->mod;
-		$val = @$this->fmo['pid']; $val || $val = basReq::val('pid');
+		$val = @$this->fmo['pid']; $val || $val = req('pid');
 		$pmod = @$this->fmo['pmod'];
 		$arr = admPFunc::modList(array('docs','users'),$pmod); //'coms',
 		$sels = "<select id='fm[pmod]' name='fm[pmod]'>".basElm::setOption($arr,$pmod)."</select>";
@@ -80,7 +79,7 @@ class dopAdvs extends dopBase{
 	}
 	// svEKey，
 	function svEKey(){
-		$aid = basReq::val('aid');
+		$aid = req('aid');
 		$this->svMoveFiles($aid);
 		return preg_replace('/[^0-9A-Za-z\.\-]/','',$aid);
 	}

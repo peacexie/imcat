@@ -149,6 +149,6 @@ var steps = new Array('','Check','Stru','Base','Demo','Idpw');
 var nowStep = 0;
 setState(); //jsLog(steps[1]);
 var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-var simpass = ',<?php echo implode(',',glbConfig::read('simpass','ex')); ?>,';
+var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
 var otimer = null;
 </script>

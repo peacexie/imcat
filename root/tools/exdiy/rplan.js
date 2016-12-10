@@ -5,8 +5,8 @@ function jobRun(hm,i){
 	//jsLog('do:'+jid);
 	var jid = pLists[i][0];
 	if(!jsElm.jeID('job_'+jid)){
-		//var url = _cbase.run.roots + jcronRun(0,0,1) + '&file=' + jid;
-		var url = _cbase.run.roots + '/plus/ajax/cron.php?file='+jid+'&'+urlp+'&'+jsRnd();
+		//var url = _cbase.run.roots + jcronRun(0,0,1) + '&fjob=' + jid;
+		var url = _cbase.run.roots + '/plus/ajax/cron.php?fjob='+jid+'&'+urlp+'&'+jsRnd();
 		var title = jid + ' @ <b>' + hm + '</b><input class="url" value="'+url+'">';
 		var str = '<li id="job_'+jid+'">'+title+'<iframe src="'+url+'"" width="100%" height="40"></iframe></li>';
     	$('#job_lists').append(str);

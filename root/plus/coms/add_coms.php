@@ -5,13 +5,13 @@ $adeel = dirname(__FILE__)."/{$mod}.php";
 if(file_exists($adeel)){ die("It must deel with [{$mod}.php]." ); }
 $aform = dirname(__FILE__)."/{$mod}_form.php";
 $asave = dirname(__FILE__)."/{$mod}_save.php";
- 
+
 if(!empty($bsend)){
 	
 	$re2 = safComm::formCAll('fmcomadd');
 	if(!empty($re2[0])){ 
 		dopCheck::headComm();
-		basMsg::show(lang('plug.coms_errvcode'),'die');
+		basMsg::show(lang('plus.coms_errvcode'),'die');
 	}
 	
 	if(file_exists($asave)){
@@ -22,7 +22,7 @@ if(!empty($bsend)){
 		$dop->svPKey('add');
 		$db->table($dop->tbid)->data($dop->fmv)->insert(); 
 		dopCheck::headComm();
-		basMsg::show(lang('plug.coms_addok',$_groups[$mod]['title']),'prClose');
+		basMsg::show(lang('plus.coms_addok',$_groups[$mod]['title']),'prClose');
 	}
 	
 }else{

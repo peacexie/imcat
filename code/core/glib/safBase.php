@@ -12,7 +12,7 @@ class safBase{
 	static function ipStop($ip='',$tab=''){
 		$ip || $ip = self::userIP();
 		//$tab || $tab = xxx(); 
-		$tab = glbConfig::read('ipstop','ex');
+		$tab = read('ipstop','ex');
 		if(empty($ip) || empty($tab)) return;
 		if($tab){
 			if(preg_match("/^($tab)$/",$ip)) self::Stop('ipStop');
@@ -49,11 +49,11 @@ class safBase{
 		[4&] => '9637',
 		[5~] => '973f',);*/
 	static function RndA($timer,$encode){  
-		global $_cbase;
+		$safe = cfg('safe');
 		$stim = str_replace('.','',$timer);
 		$stim = strrev($stim); $a = array(); 
-		$rnum = $_cbase['safe']['rnum'];
-		$rspe = $_cbase['safe']['rspe'];  
+		$rnum = $safe['rnum'];
+		$rspe = $safe['rspe'];  
 		$spla = strlen($rspe);
 		for($i=0;$i<strlen($stim);$i++){
 			$t = substr($stim,$i,1)+substr($rnum,$i,1);

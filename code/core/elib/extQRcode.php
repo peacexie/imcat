@@ -1,6 +1,6 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
-require(DIR_STATIC.'/ilibs/QRcodeBase.cls_php'); 
+(!defined('RUN_INIT')) && die('No Init');
+include_once(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php'); 
 
 /*
  * PHP QR Code encoder, Version: 1.1.4, Build: 2010100721

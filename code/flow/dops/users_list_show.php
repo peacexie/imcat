@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_DOPA')) && die('No DopA');
 
 if($mod=='adminer') $dop->so->whrstr .= " AND `aip` !='disturb'";
 $dop->sobar($dop->msgBar($msg));
@@ -14,6 +14,7 @@ if($rs=$dop->getRecs()){
 	  echo $cv->Url($r['uname'],1,PATH_ROOT."/plus/ajax/cajax.php?act=uLogin&uname={$r['uname']}","blank"); 
 	  echo $cv->Types($r['grade']);
 	  echo $cv->Field($r['mname']);
+	  echo $cv->Show($r['show']);
 	  echo $cv->Field($r['mtel']);
 	  echo $cv->Field($r['memail']);
 	  echo $cv->Field($r['miuid']);

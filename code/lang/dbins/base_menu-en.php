@@ -127,6 +127,10 @@ return array(
   'State/Update',
   'States',
   'Others',
+  'Votes',
+  'V-Items',
+  'Modules',
+  'Upgrade',
   // 3: 
   'Adminer',
   'DB',
@@ -175,4 +179,5 @@ return array(
   'Latest',
   'Essence',
   'Hot',
+  'Ins.',
 );

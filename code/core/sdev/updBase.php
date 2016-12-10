@@ -9,7 +9,7 @@ class updBase{
 	static $comps = array(
 		'cfgs/boot/cfg_load.php' => 'code',
 		'cfgs/boot/const.cfg.php' => 'code',
-		'run/_paths.php' => 'root',
+		'run/_init.php' => 'root',
 	);
 	static $skipdirs = array('tpls','skin');
 	static $prereset = '/store/_upd_reset.txt'; 
@@ -71,7 +71,7 @@ class updBase{
 			self::$comps = array(
 				'cfgs/boot/cfg_load.php' => 'code',
 				'cfgs/boot/const.cfg.php' => 'code',
-				'run/_paths.php' => 'root',
+				'cfgs/boot/_paths.php' => 'code',
 			);
 			foreach(self::$comps as $k=>$part){
 				$re['comp'] .= " : <a href='?act=cmpfile&file=$k&part=$part' target=x>".basename($k)."</a>";
@@ -104,7 +104,7 @@ class updBase{
 	}
 	static function fileEdit($new,$old,$pnew,$pold){
 		$re = array();
-		$upcfgs = glbConfig::read('updvnow','sy');
+		$upcfgs = read('updvnow','sy');
 		$compcfgs = $upcfgs['compcfgs'] + $upcfgs['dellist']; 
 		foreach($new as $k=>$v){
 			if(in_array($k,$compcfgs)) continue;
@@ -117,7 +117,7 @@ class updBase{
 	}
 	static function fileComp($new,$old,$pnew,$pold){
 		$re = array();
-		$upcfgs = glbConfig::read('updvnow','sy');
+		$upcfgs = read('updvnow','sy');
 		$compcfgs = $upcfgs['compcfgs'];
 		foreach($compcfgs as $k){
 			if(!empty($old[$k]) && $old[$k]!=$new[$k]){
@@ -165,7 +165,7 @@ class updBase{
 	}
 	
 	static function dbCreate($tab,$v){
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$i = 0;
 		$sql = "CREATE TABLE `{$db->pre}$tab{$db->ext}` (\n"; 
 		foreach($v as $k2=>$v2){
@@ -176,7 +176,7 @@ class updBase{
 		return $sql;
 	}
 	static function dbTable($new,$old,$cfg){
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$add = array();
 		foreach($new as $tab=>$v){
 			if(!isset($old[$tab])){

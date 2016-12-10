@@ -1,9 +1,9 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 $tabid = 'exd_psyn'; 
-$job = basReq::val("job"); 
+$job = req("job"); 
 $jcfg = exdBase::getJCfgs('psyn',$job); //print_r($jcfg); 
 
 if($view=='list'){
@@ -110,7 +110,7 @@ if($view=='list'){
 		$slimit = " &nbsp; limit<input name='fm[limit]' type='text' value='$fm[limit]' class='txt w60' maxlength='5' reg='n+i' tip='".lang('flow.sy_limit')."' />";
 		glbHtml::fmae_row(lang('flow.title_model'),"<select name='fm[mod]' class='w150'>$mopt</select>$slimit");
 		if(!empty($kid)){ 
-			$mcfg = glbConfig::read($fm['mod']); 
+			$mcfg = read($fm['mod']); 
 			$topt = comTypes::getOpt($mcfg['i'],$fm['stype'],'',0); 
 			glbHtml::fmae_row(lang('flow.sy_type'),"<select name='fm[stype]' class='w150'>$topt</select> ".lang('flow.sy_tipnul'));
 		}

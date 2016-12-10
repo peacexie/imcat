@@ -9,6 +9,7 @@ class devRun{
 	
 	static $sfixpath = '/store/_setfix_path.txt'; 
 	static $sfixidpw = '/store/_setrnd_idpw.txt'; 
+	static $fp_paths = '/cfgs/boot/_paths.php'; 
 
 	// prootGet
 	static function prootGet(){
@@ -22,10 +23,10 @@ class devRun{
 	static function prootFix($proot){
 			$fpath = DIR_DTMP.self::$sfixpath;
 			if(file_exists($fpath)) return false; //只修正一次
-			$data = comFiles::get(DIR_ROOT."/run/_paths.php");
+			$data = comFiles::get(DIR_CODE.self::$fp_paths);
 			$fix = "define('PATH_PROJ'"; 
 			$data = str_replace("$fix,","$fix, '$proot'); #Old: ",$data);
-			$fres = comFiles::put(DIR_ROOT."/run/_paths.php",$data);
+			$fres = comFiles::put(DIR_CODE.self::$fp_paths,$data);
 			if($fres && !empty($data)){
 				$re = 1;
 				comFiles::put($fpath,date('Y-m-d H:i:s')); 
@@ -37,10 +38,11 @@ class devRun{
 	// prootMsg
 	static function prootMsg($proot, $fixres){
 		$re = array();
+		$fps = self::$fp_paths;
 		$exmsg = empty($proot) ? lang('devrun_tipr1') : lang('devrun_tipr2');
 		$exupd = "<a href='?' style='color:blue;float:right' target='_top'>".lang('devrun_upd')."</a>";
-		$exok = lang('devrun_fixpararm')."(/root/run/_paths.php): <br>define('PATH_PROJ', '$proot');";
-		$exng = lang('devrun_file')."(/root/run/_paths.php), ".lang('devrun_setpath')."<br>define('PATH_PROJ', '$proot');";
+		$exok = lang('devrun_fixpararm')."(/code$fps): <br>define('PATH_PROJ', '$proot');";
+		$exng = lang('devrun_file')."(/code$fps), ".lang('devrun_setpath')."<br>define('PATH_PROJ', '$proot');";
 		if($fixres=='FixPrOkey'){
 			$re['msg'] = "$exok $exupd <br>$exmsg : ".lang('devrun_upding');
 			$re['tip'] = FLAGYES;
@@ -61,7 +63,7 @@ class devRun{
 		}
 
 		// db配置
-		$_cfgs = glbConfig::read('db','cfg'); 
+		$_cfgs = read('db','cfg'); 
 		$dbcls = $_cfgs['db_class'];
 		if($dbcls=='pdox'){
 			$dbflag = class_exists('PDO');
@@ -81,7 +83,7 @@ class devRun{
 		}
 		// 重置辅助调试工具账号密码
 		if(!file_exists($fpath=DIR_DTMP.self::$sfixidpw)){
-			$cfgs = glbConfig::read('pubcfg','sy');
+			$cfgs = read('pubcfg','sy');
 			$key = 'cfgs/boot/cfg_adbug.php';
 			$rep = $cfgs['cdemo']["code/$key"];
 			$data = comFiles::get(DIR_CODE."/$key-cdemo");
@@ -93,7 +95,7 @@ class devRun{
 	}
 
 	static function startDbadd($dbname){ 
-		$_cfgs = glbConfig::read('db','cfg'); 
+		$_cfgs = read('db','cfg'); 
 		foreach($_cfgs as $k=>$v){
 			if(!empty($_POST[$k])) $_cfgs[] = $_POST[$k];
 		}
@@ -149,11 +151,11 @@ class devRun{
 	
 	// runPath测试, 
 	static function runPath($key){ 
-		$cfgs = glbConfig::read('pubcfg','sy');
+		$cfgs = read('pubcfg','sy');
 		$dhid = dirname(DIR_PROJ);
 		$re = array();
 		foreach($cfgs['dirs'] as $key=>$dir){
-			if(in_array($key,array('code','root'))) continue;
+			if(in_array($key,array('code','root','skin','ctpl'))) continue;
 			$ukey = strtoupper($key);
 			$file = "/@setup_flag.txt"; 
 			$dconst = get_defined_constants(1);
@@ -166,7 +168,7 @@ class devRun{
 			}else{
 				$stat = FLAGNO;	
 			} 
-			if(in_array($key,array('dtmp','ures','html'))){
+			if(in_array($key,array('dtmp','ures','html','ctpl'))){
 				$fwrite = comFiles::canWrite($dir);
 				if(!$fwrite){
 					$stat = str_replace('<!--isNo-->',lang('devrun_notwrite'),FLAGNO);		
@@ -182,7 +184,7 @@ class devRun{
 	static function runMydb3($dbcfgs=array()){ 
 		$a = array('mysqli'=>array(),'mysql'=>array(),'pdo'=>array());
 		if(empty($dbcfgs)){
-			$_cfgs = glbConfig::read('db','cfg'); 
+			$_cfgs = read('db','cfg'); 
 		}else{
 			$_cfgs = $dbcfgs; 
 		}
@@ -290,9 +292,7 @@ class devRun{
 		$full = "$bomroot/$rsub";
 		$handle = opendir($full);
 		while($file=readdir($handle)){ //echo "<br>aa:$file";
-			//if(!file_exists("$full/$file")) continue;
 			if(in_array($file,array('.','..','.svn',))) continue;
-			//echo "<br>::$full/$file"; //var_dump(is_dir("$full/$file"));
 			$bonum++; if($bonum>1000) die("<p>".lang('devrun_tmfiles')."</p>");
 			if(is_dir("$full/$file")){
 				$real = basDebug::hidInfo(realpath("$full/$file"));

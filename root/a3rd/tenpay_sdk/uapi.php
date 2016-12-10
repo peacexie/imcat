@@ -10,7 +10,7 @@ $notify_url = $_cbase['run']['roots']."/a3rd/tenpay_sdk/unotify.php";
 $return_url = $_cbase['run']['roots']."/a3rd/tenpay_sdk/ureturn.php";
 
   /* 商家的定单号 */
-$out_trade_no = basReq::val('out_trade_no');
+$out_trade_no = req('out_trade_no');
 
 /* 创建支付请求对象 */
 $reqHandler = new PayRequest($key); 
@@ -28,7 +28,7 @@ $reqHandler->setAppid($appid);
 $reqHandler->setParameter("out_trade_no", $out_trade_no);           
 
 // 设置订单总金额，单位为分
-$reqHandler->setParameter("total_fee", basReq::val('total_fee'));					
+$reqHandler->setParameter("total_fee", req('total_fee'));					
 
 // 设置通知url：接收财付通后台通知的URL，用户在财付通完成支付后，财付通会回调此URL，向财付通APP反馈支付结果。
 // 此URL可能会被多次回调，请正确处理，避免业务逻辑被多次触发。需给绝对路径，例如：http://wap.isv.com/notify.asp
@@ -40,7 +40,7 @@ $reqHandler->setParameter("notify_url", $notify_url);
 $reqHandler->setParameter("return_url", $return_url);				
 
 // 设置商品名称:商品描述，会显示在财付通支付页面上
-$reqHandler->setParameter("body", basReq::val('subject')); //basReq::val('subject')           
+$reqHandler->setParameter("body", req('subject')); //req('subject')           
 
 // 设置用户客户端ip:用户IP，指用户浏览器端IP，不是财付通APP服务器IP
 $reqHandler->setParameter("spbill_create_ip", $_SERVER['REMOTE_ADDR']);

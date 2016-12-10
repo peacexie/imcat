@@ -3,7 +3,7 @@
 array (
   'title' => '标题',
   'title-vtip' => '标题2-60字符',
-  'color' => '标题颜色',
+  'color' => '颜色',
   'color-vtip' => '如:#FF00FF',
   'ndb_repeat' => '检查重复',
   'detail' => '内容',

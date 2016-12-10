@@ -13,8 +13,8 @@ $cfgs['indoc'] = array(
 );
 
 $cfgs['exdiys'] = array(
-	'admin/ediy&part=exdiy&dkey=tpls' => '模板配置',
-	'admin/ediy&part=exdiy&dkey=skin' => '模板样式',
+	//'admin/ediy&part=exdiy&dkey=tpls' => '模板配置',
+	'admin/ediy&part=exdiy&dkey=skin' => '模板配置',
 	'admin/ediy&part=exdiy&dkey=cfgs' => '系统参数',
 	'admin/ediy&part=exdiy&dkey=runs' => '入口配置',
 ); 
@@ -81,12 +81,14 @@ $cfgs['sms'] = array(
 $cfgs['logs'] = array(
 	'admin/rlogs&mod=syact' => '系统日志',
 	'admin/rlogs&mod=detmp' => '调试记录',
+	//'admin/rlogs&part=dtmp' => '系统文件',
 	'admin/rlogs&part=dbsql' => 'SQL优化',
 );
 
 $cfgs['dba'] = array( 
 	'admin/db_act&view=list' => '数据表操作',
 	'admin/db_act&view=rem' => '数据表备注',
+	'admin/db_act&view=runsql' => '运行SQL',
 	'admin/rlogs&part=dbsql' => 'SQL优化',
 );
 

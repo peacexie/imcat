@@ -53,7 +53,7 @@ class comFiles{
 	}
 
 	static function getTIcon($file){ 
-		$cfg = glbConfig::read('filetype','ex');
+		$cfg = read('filetype','sy');
 		$type = $icon = 'unknow';
 		$ext = strtolower(strrchr($file,"."));
 		$ext = substr($ext,1);
@@ -68,18 +68,20 @@ class comFiles{
 	}
 
 	static function listScan($dir,$sub='',$skips=array()){
-		$re = array();
+		$re = array(); $mCount = 1200;
 		$handle = opendir($dir);
 		while ($file = readdir($handle)) {
 			if($file=='.'||$file=='..') continue;
 			$key = "{$sub}$file";
 			$fp = "$dir/$file"; 
-			if(is_dir($fp)){ //不用:file_exists
+			if(count($re)<$mCount && is_dir($fp)){ //不用:file_exists
 				if(empty($sub) && !empty($skips) && in_array($file,$skips)) continue; 
 				$re = array_merge($re,self::listScan($fp,"$sub$file/"));
-			}else{
+			}else{ 
 				$mtime = filemtime($fp);
-				$re[$key] = array($mtime,filesize($fp));
+				if(count($re)<$mCount){
+					$re[$key] = array($mtime,filesize($fp));
+				}
 			}
 		}
 		closedir($handle);
@@ -143,7 +145,7 @@ class comFiles{
 		}
 		$check = basStr::filKey($subs,'!()-@_~/'); //.+,;^`
 		if($check!=$subs) return;
-		$path = self::cfgDirPath($flag,'dir');
+		$path = comStore::cfgDirPath($flag,'dir');
 		$path || $path = DIR_DTMP;
 		$a = explode('/',$subs); 
 		$i = 0; $tmp = '';
@@ -221,175 +223,6 @@ class comFiles{
 			}
 		}
 		closedir($dir);
-	}
-	
-	/**
-	 * 上传到的临时目录，后续再移动到正式目录
-	 * @return string
-	 */
-	static function getTmpDir($isfull=1){
-		global $_cbase; 
-		$user = usrBase::userObj();
-		$sid = empty($user->sinit['sid']) ? usrPerm::getUniqueid('Cook','sip') : $user->sinit['sid'];
-		$path = "@udoc/$sid"; //$modFix-
-		self::chkDirs($path,'tmp',0);
-		return ($isfull ? DIR_DTMP.'/' : '')."$path"; //PATH_ROOT
-	}
-	
-	static function fixTmpDir($path){
-		$pos = strpos($path,"/@udoc/");
-		$path = PATH_DTMP.substr($path,$pos);
-		return $path;
-	}
-	
-	/**
-	 * 上传资源目录
-	 * @return string
-	 */
-	static function getResDir($mod,$kid='',$isfull=1,$chkdir=0){
-		global $_cbase; 
-		$user = usrBase::userObj();
-		if(empty($kid)){
-			$kid = basReq::val('did');
-			$kid || $kid = basReq::val('uid');
-			$kid || $kid = basReq::val('cid');
-			$kid || $kid = basReq::val('kid');
-		}
-		$kpath = $kid; 
-		$fmts = vopTpls::etr1('res'); $fmt = 1; //yyyy/md-noid默认
-		foreach($fmts as $k=>$v){
-			if(in_array($mod,$v)){ $fmt = $k; }
-		}
-		if(strpos($kid,'-')){
-			$ka = explode('-',$kid);
-			if($fmt==1) $kpath = $ka[0].'/'.$ka[1].'-'.$ka[2];
-			if($fmt==2) $kpath = $ka[0].'-'.$ka[1].'/'.$ka[2];
-			if($fmt==3) $kpath = $ka[0].'/'.$ka[1].'/'.$ka[2];	
-		}else{ // 加了一层目录,有些人不喜欢...
-			$groups = glbConfig::read('groups');
-			if(isset($groups[$mod]) && in_array($groups[$mod]['pid'],array('docs','users'))){
-				$kpath = (empty($fmt) ? '' : "home/")."$kid";
-			}elseif(isset($groups[$mod]) && in_array($groups[$mod]['pid'],array('types'))){
-				$kpath = '';
-			}else{ // coms 
-				$kpath = $kid;
-			}
-		}
-		$repath = empty($kpath) ? $mod : "$mod/$kpath";
-		$chkdir && self::chkDirs($repath,'res',0);
-		return ($isfull ? DIR_URES.'/' : '').$repath;
-	}
-	
-	//移动临时文件夹中的文件
-	static function moveTmpDir($str,$mod='',$kid='',$ishtml=0){
-		global $_cbase;
-		if($ishtml){ //a,img,embed,value?,
-			preg_match_all("/\s+(src|href|value)=(\S+)[\s|>]+/i",$str,$arr); //3
-			$ar2 = empty($arr[2]) ? array() : str_replace(array("\\",'"',"'"),array(),$arr[2]); 
-			//echo "<pre>"; print_r($arr); die();
-		}else{
-			if(strpos($str,';')){ //pics
-				$ar2 = explode(';',$str);
-				foreach($ar2 as $k=>$v){
-					$art = explode(',',$v);
-					if(empty($art[0])) unset($ar2[$k]);
-					else $ar2[$k] = str_replace(array("\r","\n",' '),array('','',''),$ar2[$k]);
-				}
-			}else{
-				$ar2 = array($str);
-			}
-		} 
-		$ar2 = array_unique(array_filter($ar2));
-		if(empty($ar2)) return $str;
-		$fix = PATH_DTMP."/@udoc/";
-		foreach($ar2 as $v){
-			if($org=strstr($v,$fix)){
-				$orgfile = DIR_DTMP.substr($org,strlen(PATH_DTMP));
-				$obj = self::getResDir($mod,$kid,0,1)."/".basename($org);
-				if(in_array($org,$_cbase['run']['tmpFile'])){
-					$str = str_replace($v,'{resroot}/'.$obj,$str);
-					continue;
-				}elseif(is_file($orgfile)){ 
-					if($re=rename($orgfile,DIR_URES.'/'.$obj)){
-						$str = str_replace($v,'{resroot}/'.$obj,$str);
-						$_cbase['run']['tmpFile'][] = $org;
-						continue;
-					}
-				}
-			}
-			$cfg = array(
-				array('tmp','/@udoc/'), 
-				array('res',"/$mod/"), 
-				array('htm',"/$mod/"),
-				array('stc',"/"), 
-				array('vui',"/"), 
-				array('vnd',"/"), 
-				array('web',"/"),
-			);
-			foreach($cfg as $cv){
-				$str = self::moveRepRoot($str,$v,$cv[0],$cv[1]);
-			}
-		} //die();
-		return $str;
-	}
-	
-	//替换root路径
-	static function moveRepRoot($str,$v,$key,$fix=''){
-		global $_cbase; 
-		$cfg = self::cfgDirPath($key,'arr');
-		$res = $v;
-		if(strpos($res,'://')>0){ //完整路径
-			if(strpos($res,$_cbase['run']['rsite'])===0){ //本地
-				$res = str_replace($_cbase['run']['rsite'],"",$res); 
-			}else{ //外网(可处理远程图...)
-				return $str;	
-			}
-		}
-		if(strpos($res,$cfg[1].$fix)===0 && !empty($cfg[1])){
-			$res = '{'.$key.'root}'.substr($res,strlen($cfg[1]));
-			$str = str_replace($v,$res,$str);
-		}
-		return $str;
-	}
-	
-	//part:dir,arr,else
-	static function cfgDirPath($key,$part='dir'){
-		@$cfg = array(
-			'tmp'=>array(DIR_DTMP,	PATH_DTMP),
-			'res'=>array(DIR_URES,	PATH_URES),
-			'htm'=>array(DIR_HTML,	PATH_HTML),
-			'stc'=>array(DIR_STATIC,  PATH_STATIC),
-			'vui'=>array(DIR_VENDUI,  PATH_VENDUI),
-			'vnd'=>array(DIR_VENDOR,  PATH_VENDOR),
-			'tpl'=>array(vopTpls::path('tpl'),''), //可能没有定义
-			'tpc'=>array(vopTpls::path('tpc'),''),
-			'cod'=>array(DIR_CODE,	PATH_CODE),
-			'web'=>array(DIR_ROOT,	PATH_ROOT),
-		);
-		$re = isset($cfg[$key]) ? $cfg[$key] : array('','');
-		if($part=='arr') return $re;
-		$id = $part=='dir' ? 0 : 1;
-		return empty($re[$id]) ? $key : $re[$id];
-	}
-	
-	//还原保存的文件夹
-	static function revSaveDir($str,$part=''){
-		$cfg = array(
-			'tmp',
-			'res',
-			'htm',
-			'stc',
-			'vui',
-			'vnd',
-			'web',
-		);
-		
-		foreach($cfg as $ck){
-			$path = self::cfgDirPath($ck,$part);
-			$str = str_replace(array('{'.$ck.'root}','{$'.$ck.'root}'),$path,$str); 
-			//self::moveRepRoot($str,$v,$cv[0],$cv[1]);
-		}
-		return $str;
 	}
 	
 }

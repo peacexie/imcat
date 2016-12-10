@@ -1,7 +1,7 @@
 <?php
 require_once dirname(dirname(__FILE__))."/lib/WxPay.Config.php";
 error_reporting(E_ERROR); 
-require(DIR_STATIC.'/ilibs/QRcodeBase.cls_php');
+require(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php');
 $data = $_GET["data"];
 $url = urldecode($data);
 QRcode::png($url);

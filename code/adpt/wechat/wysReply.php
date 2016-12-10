@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 消息回复（被动回复）
 // 如果本系统修改,就改这个文件，不用改wmp*文件
 // 各扩展系统需求变化很大,re开头的方法都加Base,扩展类里面不加Base,先检测执行无Base的方法,在找含有Base的方法
@@ -13,7 +13,7 @@ class wysReply extends wmpMsgresp{
 	
 	function __construct($post,$cfg,$re=0){ 
 		parent::__construct($post,$cfg); 
-		$this->_db = glbDBObj::dbObj(); 
+		$this->_db = db(); 
 		if($re) return;
 		$method = $this->getMethod('MsgType');
 		return $this->$method();
@@ -47,12 +47,12 @@ class wysReply extends wmpMsgresp{
 
 	// 图片消息
     function reImageBase($re=0){ 
-		global $_cbase;
+		$stamp = time();
 		$picUrl = $this->post->PicUrl;
 		$this->saveMsg('image', $picUrl, '-', $this->post->MediaId);
 		//保持会话不过期
-		$timeNmin = $_cbase['run']['stamp']-(5*60);
-		$this->_db->table('wex_qrcode')->data(array('atime'=>$_cbase['run']['stamp']))->where("openid='{$this->post->FromUserName}' AND smod='upload' AND atime>'$timeNmin'")->update(); 
+		$timeNmin = $stamp-(5*60);
+		$this->_db->table('wex_qrcode')->data(array('atime'=>$stamp))->where("openid='{$this->post->FromUserName}' AND smod='upload' AND atime>'$timeNmin'")->update(); 
 		if($re) return;
 		die('');
     }
@@ -120,13 +120,12 @@ class wysReply extends wmpMsgresp{
 	
 	//保存信息
     function saveMsg($retype, $detail, $restat='Auto', $media_id=''){ //已Auto自动回复
-		global $_cbase;
 		$data = array(
 			'kid' => basKeyid::kidTemp(),
 			'type' => $retype,
 			'detail' => basReq::in($detail),
 			'restate' => $restat,
-			'atime' => $_cbase['run']['stamp'],
+			'atime' => time(),
 			'appid' => $this->cfg['appid'],
 			'openid' => $this->post->FromUserName,
 		);
@@ -136,12 +135,11 @@ class wysReply extends wmpMsgresp{
 	
 	//保存回复消息
     function saveReply($reauto){ 
-		global $_cbase;
 		$data = array(
 			'kid' => basKeyid::kidTemp(),
 			'type' => $reauto['type'],
 			'detail' => basReq::in($reauto['remsg']),
-			'atime' => $_cbase['run']['stamp'],
+			'atime' => time(),
 			'appid' => $this->cfg['appid'],
 			'openid' => $this->post->FromUserName,
 		); 

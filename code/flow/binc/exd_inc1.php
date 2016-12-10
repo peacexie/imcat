@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 if(in_array($view,array('list','fields','urlset','urlist','loglist'))){ //'fdefs',
 	$jname = $tabid=='exd_crawl' ? lang('flow.ei_cwraldata') : lang('flow.ei_impdata');

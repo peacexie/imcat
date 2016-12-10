@@ -7,48 +7,52 @@ class glbError extends Exception {
 	private $erLine = 0;
 	private $erCode = 0;
 	private $erLevel = 0;
- 	private $trace = '';
-	//static $die = 0; //,$die=1
+ 	private $trace = array();
+ 	private $trMsgs = '';
 
 	//抛出错误信息，用于外部调用
 	static function show($msg="",$code=0) {
-		 //self::$die = $die;
-		 new self($msg,$code); 
+		 new self($code,$msg); 
 	}
 
-	function __construct($erMsg='',$erCode=0,$erFile='',$erLine=0) { 
-		//echo "[$erCode,$erMsg]";
-		parent::__construct($erMsg,$erCode);
-		$msgmy = $msgphp = ''; //echo "$erMsg='',$erCode=0,$erFile='',$erLine=0";
-		if(empty($erCode)){ //0:自动找错误
-			/*if(mysqli_errno()){
-				$msgmy .= "<i>MySql Error</i>: ".basDebug::hidInfo(mysqli_error(),1)." (".mysqli_errno().")<br>";
-				$this->erCode = mysqli_errno();
-			}*/
-			if(empty($this->erCode)){
-				$errs = error_get_last(); 
-				if(!empty($errs)){
-					$msgphp .= "<i>Message</i>: ".$errs['message']."<br>";
-					$this->erFile = basDebug::hidInfo($errs['file']);
-					$this->erLine = $errs['line'];
-					$this->erCode = $errs['type'];
-				}
+	function __construct($erCode=0,$erMsg='',$erFile='',$erLine=0) { 
+		parent::__construct(); //$erMsg,$erCode
+		$this->detail($erCode,$erMsg,$erFile,$erLine);
+		$this->erOutput(); 
+	}
+
+	//detail
+	protected function detail($erCode=0,$erMsg='',$erFile='',$erLine=0) {
+		$msgmy = $msgphp = ''; 
+		if(is_object($erCode)){ 
+			$this->erMsg = $erCode->getMessage();
+			$this->erFile = basDebug::hidInfo($erCode->getFile());
+			$this->erLine = $erCode->getLine();
+			$this->trace = $erCode;
+			$this->erCode = -24;
+		}elseif(!empty($erFile)){
+			$this->erMsg = $erMsg;
+			$this->erCode = $erCode;
+			$this->erFile = basDebug::hidInfo($erFile);
+			$this->erLine = $erLine;
+		}elseif(!empty($erMsg)){
+			$this->erMsg = $erMsg;
+			$this->erCode = $erCode;
+		}else{ 
+			$errs = error_get_last(); 
+			if(!empty($errs)){
+				$this->erMsg = $erMsg ? $erMsg : "<i>Message</i>: ".$errs['message']."<br>";
+				$this->erFile = basDebug::hidInfo($errs['file']);
+				$this->erLine = $errs['line'];
+				$this->erCode = $errs['type'];
 			}
-		}elseif($erCode>0){ //>0
-			$this->erCode = $this->getCode();
-			$this->erFile = basDebug::hidInfo($this->getFile());
-			$this->erLine = $this->getLine();			
 		}
-		if(empty($erMsg)){
-			$erMsg = $msgmy.$msgphp;
-		} //echo $msg;	
- 		$this->trace = $this->trace();
-		$this->erOutput($erMsg); 
+ 		$this->dtrace();
 	}
 	
 	//获取trace信息
-	protected function trace() {
-		$trace = $this->getTrace();
+	protected function dtrace() { 
+		$trace = empty($this->trace) ? $this->getTrace() : $this->trace;
 		$tInfo = '';
 		foreach($trace as $t) {
 			$class = isset($t['class']) ? $t['class'] : '';
@@ -57,7 +61,7 @@ class glbError extends Exception {
 			$tInfo .= @$t['file'] . ' (' . @$t['line'] . ') ';
 			$tInfo .= $class . $type . $function . "() @ <br />\r\n";
 		}
-		return $tInfo ;
+		$this->trMsgs = $tInfo ;
 	}
 	
 	//错误等级
@@ -75,26 +79,27 @@ class glbError extends Exception {
 			512 => '(E_USER_WARNING)', 
 			1024 => '(E_USER_NOTICE)',  
 			2047 => 'E_ALL', 
-			2048 => 'E_STRICT'
+			2048 => 'E_STRICT',
+			'-24' => 'EXCEPT_HANDLER',
 		);
-		return isset( $arr[$this->erCode] ) ? $arr[$this->erCode] : $this->erCode;
+		return isset($arr[$this->erCode]) ? $arr[$this->erCode] : $this->erCode;
 	}
 	
 	//输出错误信息
 	 protected function erOutput($message=''){
-		global $_cbase; 
 		//if(defined('DEBUG') && false == DEBUG){ exit; } 
+		$message = empty($message) ? $this->erMsg : $message;
 		@header("HTTP/1.1 404 Not Found");
 		$sCode = empty($this->erCode) ? '[RUN]' : $this->erCode;
 		$sLevel = $this->getLevel();
 		$sLevel = empty($sLevel) ? '[RUN]' : $this->getLevel();
-		basMsg::init("Error-$sCode",1);
+		basMsg::init("Error : $sCode",1);
 		$html = '';
 		if($this->erFile){
 			$html .= "\n<strong> ------ File</strong>: ".$this->erFile.' (Line:'.$this->erLine.')<br>';
 		} 
 		$html .= "\n<strong> ------ Info</strong>: (Level:$sLevel)<br>".basDebug::hidInfo($message).'<br>';
-		$html .= "\n<strong> ------ Trace</strong>: (Time:".date("Y-m-d H:i:s",$_cbase['run']['stamp']).")<br>".basDebug::hidInfo($this->trace).'<br>';
+		$html .= "\n<strong> ------ Trace</strong>: (Time:".date("Y-m-d H:i:s").")<br>".basDebug::hidInfo($this->trMsgs).'<br>';
 		$html .= "\n<strong> ------ Debug Info</strong>: ".basDebug::runInfo().'<br>';
 		$html .= "\n<strong> ------ Now you can</strong>: <a href='{$_SERVER['PHP_SELF']}'>Retry</a> , <a href='javascript:history.back()'>Return</a> OR <a href='".PATH_ROOT."'>Go Homepage</a><br>";
 		if(defined('RUN_AJAX')){ $html = strip_tags($html); } 

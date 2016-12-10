@@ -3,6 +3,50 @@
 // Types类
 class comTypes{	
 	
+	// $arr 从db取得,ordby:deep,top
+	// $re json-字串, arr-数组, N>个数-json字串, N<个数-数组
+	static function arrLays($arr,$re='json'){ 
+		$res = ''; $cnt = count($arr);
+		foreach($arr as $k=>$row){
+			$kid = $row['kid'];
+			$pid = $row['pid']; 
+			$itm = "\"$kid\":".comParse::jsonEncode($row).",\n(i_{$kid})\n";
+			if(empty($pid)){
+				$res .= $itm;
+			}else{
+				$res = str_replace("\n(i_{$pid})\n","\n$itm(i_{$pid})\n",$res);
+			}
+			unset($arr[$k]);
+		}
+		$res = preg_replace("/\(i_[\w]{2,12}\)[\n]{1}/",'',$res);
+		$res = "{\n".substr($res,0,strlen($res)-2)."\n}";
+		if(is_int($re)) $re = $cnt>=$re ? 'json' : 'arr';
+		return $re=='arr' ? comParse::jsonDecode($res) : $res;
+	}
+	// $arr 从db取得,ordby:deep,top
+	static function arrSubs($arr){ 
+		$res = array(); 
+		foreach($arr as $k=>$v){
+			$kid = $v['kid'];
+			$pid = $v['pid'];
+			$v['subids'] = ',';
+			$v['subnum'] = 0;
+			$v['subarr'] = array();
+			if(empty($pid)){
+				$res[$kid] = $v;
+			}else{
+				$res[$pid]['subarr'][$kid] = $v;
+				while(!empty($pid)){
+					$res[$pid]['subids'] .= "$kid,"; //小递归到所有pid
+					$res[$pid]['subnum']++; //小递归到所有pid
+					$pid = $res[$pid]['pid'];
+				}
+			}
+			unset($arr[$k]);
+		}
+		return $res;
+	}
+
 	// xxx
 	static function getChars($arr,$deep='12345'){ 
 		$a = array(); 
@@ -68,9 +112,9 @@ class comTypes{
 	
 	// getOptions(Select)
 	static function getOpt($arr,$def='',$msg='',$frame=1){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		if(is_string($arr) && isset($_groups[$arr])){
-			$imod = glbConfig::read($arr);
+			$imod = read($arr);
 			$arr = $imod['i'];  
 		}
 		$a = basArray::opaItems($arr,'',$frame);

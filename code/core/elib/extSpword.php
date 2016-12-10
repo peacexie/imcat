@@ -1,6 +1,6 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
-require(DIR_STATIC.'/ilibs/Splitword.cls_php'); 
+(!defined('RUN_INIT')) && die('No Init');
+include_once(DIR_STATIC.'/ximp/class/Splitword.cls_php'); 
 
 /* Demo *************************************************************************************
 	$str = ''; //保证gbk/gb2312编码，不是请先转化，结果请还原。

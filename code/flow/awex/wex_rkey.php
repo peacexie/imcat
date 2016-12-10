@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_wex_cfgs.php');
 
 $types = basLang::ucfg('cfgbase.wx_type');
@@ -14,7 +14,7 @@ if($view=='list'){
 
 	$dop = new dopExtra($tabid,$cfg); 
 	$dop->so->whrstr .= " AND `appid`='$weapp'";
-	$dop->order = $dop->so->order = basReq::val('order','top-a'); 
+	$dop->order = $dop->so->order = req('order','top-a'); 
 	if(!empty($bsend)){
 		if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
 		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
@@ -78,7 +78,7 @@ if($view=='list'){
 		basMsg::show($msg);	//,'Redir'?file=$file&mod=$mod
 	}else{
 
-		echo basJscss::imp('/skin/a_jscss/weixin.js');
+		echo basJscss::imp('/skin/_pub/a_jscss/weixin.js');
 		if(!empty($kid)){
 			$fm = $db->table($tabid)->where("kid='$kid'")->find();
 		}else{

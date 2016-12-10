@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 if(empty($fs_do)) $msg = lang('flow.dops_setop');
 if(empty($fs)) $msg = lang('flow.dops_setitem');

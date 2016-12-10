@@ -45,7 +45,7 @@ table.tab2 td { background-color: #FFF; line-height: 120%; }
 table.tab2 tr.subj td { background-color: #DDD; }
 </style>
 <script src='<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?_r=1456459912'></script>
-<script src='<?php echo PATH_ROOT; ?>/skin/jslib/search.js?_r=1456459912'></script>
+<script src='<?php echo PATH_SKIN; ?>/_pub/jslib/search.js?_r=1456459912'></script>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 5px 2px; }
 </style>

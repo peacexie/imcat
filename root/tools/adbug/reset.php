@@ -1,21 +1,22 @@
 <?php 
 require(dirname(__FILE__).'/_config.php'); 
 
-$act = basReq::val('act','');
-$part = basReq::val('part','');
+$act = req('act','');
+$part = req('part','');
 $inptype = @$_GET['inptype']; 
 $inpval = @$_GET['inpval'];
 
-$exmod = basReq::val('exmod','');
-$exmenu = basReq::val('exmenu','');
+$exmod = basReq::arr('exmod'); 
+$exmenu = basReq::arr('exmenu');
+$exmod = empty($exmod) ? '' : implode(',',$exmod); 
+$exmenu = empty($exmenu) ? '' : implode(',',$exmenu);
 
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-glbHtml::page('imp');
+glbHtml::page('imp',array('css'=>'/tools/adbug/style.css'));
 ?>
-<link rel='stylesheet' type='text/css' href='./style.css'/>
 </head><body>
 
 <div>
@@ -76,25 +77,26 @@ glbHtml::page('imp');
     </form>
 
     <?php
-      $arr = admPFunc::modList(array('docs','users','coms','type','advs'),0); 
-      $muadm = glbConfig::read('muadm'); $muadm = $muadm['i'];
-      $arm = array(); $pid = '';
+      $arr = admPFunc::modList(array('docs','users','coms','type'),0); //,'advs'
+      $muadm = read('muadm'); $muadm = $muadm['i'];
+      $arm = array(); 
       foreach($muadm as $k=>$v){
           if($v['deep']>2) continue;
-          if(empty($pid)){
-            if(empty($muadm[$v['pid']])) continue;
-            $arm["^group^[$k]"] = "[$k]-{$muadm[$v['pid']]['title']}";
+          if($v['deep']==1){
+            $nkey = basArray::nextKey($muadm,$k);
+            if($muadm[$nkey]['pid']==$k){
+              $arm["^group^[$k]"] = "[$k]-$v[title]"; 
+            }
           }else{
             $arm[$k] = "  &nbsp; [$k]$v[title]";
           }
-          $pid = $v['pid'];
       }
     ?>
     <form name="reins" action="?" method="get">
     <tr class="tc">
       <td>Export</td>
-      <td><select id='exmod' name='exmod' class='w150'><?php echo basElm::setOption($arr,$exmod); ?></select></td>
-      <td><select id='exmenu' name='exmenu' class='w150'><?php echo basElm::setOption($arm,$exmenu); ?></select></td>
+      <td><select id='exmod' name='exmod[]' class='msel' size="8" multiple="multiple"><?php echo basElm::setOption($arr,$exmod); ?></select></td>
+      <td><select id='exmenu' name='exmenu[]' class='msel' size="8" multiple="multiple"><?php echo basElm::setOption($arm,$exmenu); ?></select></td>
       <td><input name="" value="Export" class="btn" type="submit"><input name="act" type="hidden" value="expMod"></td>
     </tr> 
     </form>
@@ -128,9 +130,11 @@ $names = array(
 );
 
 if(in_array($act,array('expData','expBack'))){
-	$method = $act=='expBack' ?  "dataExpGroup" : 'dataExp';
-	$dpre = $act=='expBack' ?  "gbak" : 'data';
-	devData::$method("/dbexp/$dpre~",$part); 
+  $method = $act=='expBack' ?  "dataExpGroup" : 'dataExp';
+  $dpre = $act=='expBack' ?  "gbak" : 'data';
+  define('MINI_CUT_DETAIL',',dext_demo,dext_indoc,dext_keres,dext_news,dext_topic,');
+  define('MINI_DEL_TABLES',',coms_cocar,coms_coitem,coms_corder,coms_inread,coms_nrem,coms_votep,');
+  devData::$method("/dbexp/$dpre~",$part); 
 }elseif(in_array($act,array('expStru'))){
 	devData::struExp('/dbexp/');
 }elseif($act=='rstIDPW'){
@@ -138,10 +142,10 @@ if(in_array($act,array('expData','expBack'))){
 		$exmsg = "<br>".lang('tools.rst_idpw_set',0)."<span class='cF03'>[ \$can_reset = '1' ]</span>";
 		$_res = 'Error';
 	}else{
-		$uname = basReq::val('uname');
-		$upass = basReq::val('upass');
+		$uname = req('uname');
+		$upass = req('upass');
 		if($uname && $upass){ 
-			devData::rstIDPW($uname,$upass);
+			devScan::rstIDPW($uname,$upass);
 			$exmsg = "<br>".lang('tools.rst_idpw_id')."[<span class='cF03'>$uname</span>] ".lang('tools.rst_idpw_pw')."[<span class='cF03'>$upass</span>] ".lang('tools.rst_idpw_memory')."";
 		}else{
 			$exmsg = lang('tools.rst_idpw_error');	
@@ -151,9 +155,11 @@ if(in_array($act,array('expData','expBack'))){
   $exmsg = "<br>Export file to: ".devSetup::expGroup($exmod,$exmenu).".(php|dbsql)";
 //}elseif($act=='xxx'){
 }elseif(in_array($act,array('cdbPKey','cdbV255','cdbMKey'))){
-	$_res = devData::cdbStrus($act);
+	$_res = devScan::cdbStrus($act);
 }elseif(method_exists('devData',$act)){
-	devData::$act();
+	devData::$act(); 
+}elseif(method_exists('devScan',$act)){
+  devScan::$act(); 
 }elseif($act){
 	echo "Error:$act";	
 }
@@ -177,7 +183,7 @@ $re .= '<br> @ '.date('Y-m-d H:i:s');
 <script>
 function chkIdpass(e,no,len){
 	var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-	var simpass = ',<?php echo implode(',',glbConfig::read('simpass','ex')); ?>,';
+	var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
 	var tmp = $(e).val().replace(/\W/g, ""); //jsLog(tmp);
 	if(simpass.indexOf(tmp)>0 || tmp.length<len){
 		tmp = orgcfgs[no];

@@ -3,7 +3,7 @@
 <?php 
 if($act=='cmpdata'){ 
 	$data = updAdmin::ddData($upc); //echo "<pre>"; print_r($data); echo "</pre>"; 
-	$ntab = basReq::val('ntab');
+	$ntab = req('ntab');
 	if($ntab){
 		$rec = updAdmin::ddComp($data,$ntab); 
 	}
@@ -84,7 +84,7 @@ if($act=='cmpdata'){
 <p>{lang(tools.upc_tupd_comp)}</p>
 <table border="1" class="cmpfile">
     <tr>
-        <td valign="top"><?php echo basReq::val('file','','Html'); ?></td>
+        <td valign="top"><?php echo req('file','','Html'); ?></td>
         <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
     </tr>
     <tr>
@@ -104,7 +104,7 @@ if($act=='cmpdata'){
 <p>{lang(tools.upc_tupd_cdb)}</p>
 <table border="1" class="cmpfile">
     <tr>
-        <td valign="top"><?php echo basReq::val('tab','','Html'); ?></td>
+        <td valign="top"><?php echo req('tab','','Html'); ?></td>
         <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
     </tr>
     <tr>

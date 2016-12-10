@@ -38,8 +38,8 @@ if($act=='reform'){
             <input name="code_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="code_edit" />
             -
             <input name="code_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="code_comp" />
-            -
-            <input name="code_tpls" type="button" value="{lang(tools.upl_dltpls)}" class="btn" onclick="upTip(this);" id="code_tpls" /></td>
+            <!---
+            <input name="code_tpls" type="button" value="{lang(tools.upl_dltpls)}" class="btn" onclick="upTip(this);" id="code_tpls" /></td-->
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step2">
@@ -51,8 +51,8 @@ if($act=='reform'){
             <input name="root_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="root_edit" />
             -
             <input name="root_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="root_comp" />
-            -
-            <input name="root_skin" type="button" value="{lang(tools.upl_dlskin)}" class="btn" onclick="upTip(this);" id="root_skin" /></td>
+            <!---
+            <input name="root_skin" type="button" value="{lang(tools.upl_dlskin)}" class="btn" onclick="upTip(this);" id="root_skin" /></td-->
         <td class="tc">&nbsp;</td>
     </tr>
     <tr id="step3">
@@ -96,12 +96,14 @@ if($act=='reform'){
 </div>
 
 <div id="alltips">
-    <div id="tips_code_tpls"> {lang(tools.upl_mdxdir,/code/tpls/)}
+    <!--
+    <div id="tips_code_tpls"> {lang(tools.upl_mdxdir,/skin/)}
         &gt; <a href='?step=code_tpls'>{lang(tools.upl_cfmdok)}</a><br>
         [{lang(tools.upl_tips)}] {lang(tools.upl_tptpl)} </div>
     <div id="tips_root_skin"> {lang(tools.upl_mdxdir,/root/skin/)}
         &gt; <a href='?step=root_skin'>{lang(tools.upl_cfmdok)}</a><br>
         [{lang(tools.upl_tips)}] {lang(tools.upl_tpskn)} </div>
+    -->
     <div id="tips_dir_vimp3"> {lang(tools.upl_mdxdir,/vimp/[static|vendor|endui]/)} 
         &gt; <a href='?step=dir_vimp3'>{lang(tools.upl_cfmdok)}</a> <br>
         [{lang(tools.upl_tips)}] {lang(tools.upl_tpcfg)}</div>

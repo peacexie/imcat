@@ -21,11 +21,11 @@ class tagBase{
 	
 	function __construct($paras=array()) {
 		$this->paras = $paras;
-		$this->db = glbDBObj::dbObj(); 
+		$this->db = db(); 
 		$this->setModid();
 		$this->setFrom();
 		$this->pJoin();
-		$this->mcfg = glbConfig::read($this->modid);
+		$this->mcfg = read($this->modid);
 	}
 	
 	// 所有公用: [idfix,top] -=> array('idfix','top')
@@ -47,7 +47,7 @@ class tagBase{
 			if(isset($para[2])){
 				$ext = $para[2];
 				if(strstr($ext,'get')){
-					$mod2 = basReq::val($modid,'','Key');
+					$mod2 = req($modid,'','Key');
 					global $_cbase;
 					if($mod2 && isset($_cbase[$mod2])) $modid = $mod2; 
 				}
@@ -57,8 +57,7 @@ class tagBase{
 	}
 	// List, Page, One: 
 	function setFrom(){ 
-		$db = glbDBObj::dbObj(); 
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$mod = $this->modid;
 		if($_groups[$mod]['pid']=='docs'){
 			$tabid = 'docs_'.$mod;
@@ -93,8 +92,7 @@ class tagBase{
 	// [join,mod,field,val]  -=>  INNER JOIN users_person u ON u.uname=d.auser  (有pid关系)
 	// [join,detail]	  -=>  INNER JOIN dext_news	d ON d.did=m.did 
 	function pJoin(){ 
-		//global $_cbase; 
-		//$_groups = glbConfig::read('groups');
+		//$_groups = read('groups');
 		//$mod = $this->modid;
 		//$pid = $_groups[$mod]['pid'];
 		$cfg = $this->p1Cfg('join');
@@ -135,7 +133,7 @@ class tagBase{
 		}elseif(!empty($cfg[1])){
 			$order = $cfg[1]; //认证?
 		}elseif(empty($cfg[1]) && !empty($cfg[2])){
-			$order = basReq::val('order','','Key',24); 
+			$order = req('order','','Key',24); 
 			$a = explode('+',$cfg[2]);
 			if($order && !in_array($order,$a)){ //认证?
 				$order = '';	
@@ -144,7 +142,7 @@ class tagBase{
 			$order = '';	
 		}
 		$order || $order = $this->sqlArr['ordef'];
-		$odesc = basReq::val('odesc','1','N');
+		$odesc = req('odesc','1','N');
 		$this->sqlArr['order'] = $order;
 		$this->sqlArr['odesc'] = $odesc;
 		$this->sqlArr['ofull'] = 'm.'.$order.($odesc ? ' DESC' : '');
@@ -157,7 +155,7 @@ class tagBase{
 		//优先取标签属性,再去url的stype
 		$stype = empty($cfg[1]) ? vopUrl::umkv('key','stype') : $cfg[1]; 
 		if(empty($stype)) return;
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		$pid = $_groups[$this->modid]['pid'];
 		if($stype && in_array($pid,array('docs','advs'))){
 			$sql = basSql::whrTree($this->mcfg['i'],'m.catid',$stype); 
@@ -168,7 +166,7 @@ class tagBase{
 			
 		} 
 		/*
-		$ccfg = glbConfig::read($this->modid,'_c');
+		$ccfg = read($this->modid,'_c');
 		if($fix && !empty($ccfg)){ 
 			if(!empty($ccfg[$fix])){
 				$exFlds = array_keys($ccfg[$fix]);
@@ -195,7 +193,7 @@ class tagBase{
 	
 	function getJoin($re){ 
 		if(empty($re)) return $re;
-		$minfo = glbConfig::read($this->modid); 
+		$minfo = read($this->modid); 
 		if(!empty($this->jonArr[1]) && $this->jonArr[1]=='detail'){
 			if($minfo['pid']=='types'){
 				$this->getJoinTypes($re);
@@ -215,7 +213,7 @@ class tagBase{
 		} //echo "$ids"; print_r($re);
 		if(empty($ids)) return;
 		$re1 = $this->db->table(glbDBExt::getTable($this->modid,1))->where("kid IN($ids)")->select(); 
-		$minfo = glbConfig::read($this->modid); 
+		$minfo = read($this->modid); 
 		$re2 = array();
 		foreach($re1 as $k1=>$v1){ 
 			foreach($v1 as $k2=>$v2){

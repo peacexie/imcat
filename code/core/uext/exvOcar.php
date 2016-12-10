@@ -50,10 +50,10 @@ class exvOcar{
 	}
 	
 	static function whruser(){ 
-		global $_cbase;
-		$user = usrBase::userObj('Member'); //print_r($user);
-		$uadm = usrBase::userObj('Admin'); //print_r($uadm);
-		$enc = basReq::val('enc');
+		$stamp = time();
+		$user = user('Member'); //print_r($user);
+		$uadm = user('Admin'); //print_r($uadm);
+		$enc = req('enc');
 		if($uadm->userFlag=='Login'){
 			$re['flag'] = 'Admin';
 			$re['sql'] = '1=1';
@@ -61,25 +61,24 @@ class exvOcar{
 			//uinfo
 		}elseif($uadm->userFlag=='Login'){
 			$re['flag'] = 'Member';
-			$re['sql'] = "auser='{$uadm->uinfo['uname']}' AND ordstat='new' AND atime>'".($_cbase['run']['stamp']-30*60)."'";
+			$re['sql'] = "auser='{$uadm->uinfo['uname']}' AND ordstat='new' AND atime>'".($stamp-30*60)."'";
 			$re['uname'] = @$uadm->uinfo['uname'];
 		}else{
 			$re['flag'] = 'Guest';
-			$re['sql'] = "eip='$enc' AND ordstat='new' AND atime>'".($_cbase['run']['stamp']-30*60)."'";
+			$re['sql'] = "eip='$enc' AND ordstat='new' AND atime>'".($stamp-30*60)."'";
 			$re['uname'] = @$uadm->uinfo['uname'];	
 		}
 		return $re;
 	}
 	
 	static function ostat($ouser,$order){
-		global $_cbase;
 		$cfg1 = array('feeship','feedis','feetotle','trakeno','tradeurl',);
 		$cfg2 = array('ordstat','ordpay','ordship',);
 		$cfg3 = array('btndel','btnedit','btnpay',);
 		$res = array();
 		$flag = $ouser['flag'];
 		$ordstat = $order['ordstat'];
-		$stamp = $_cbase['run']['stamp']-$order['atime']; //<($flag=='Admin' ? 5*86400 : 30*60);
+		$stamp = time()-$order['atime']; //<($flag=='Admin' ? 5*86400 : 30*60);
 		//$flag = 'xxMember'; 
 		//$stamp = 6666666;
 		if($flag=='Admin'){
@@ -121,17 +120,14 @@ class exvOcar{
 	}
 	
 	static function oadd($unqid,$user){ 
-		global $_cbase;
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$fm = basReq::arr('fm');
 		$kar = glbDBExt::dbAutID('coms_corder','yyyy-md-','32');
 		$fm['cid'] = $fm['title'] = $kar[0]; 
 		$fm['cno'] = $kar[1];
 		$fm['ordstat'] = 'new';
-		$fm['atime'] = $_cbase['run']['stamp'];
 		$fm['auser'] = @$user->uinfo['uname'];
-		$fm['aip'] = $_cbase['run']['userip'];
-		$fm['eip'] = comConvert::sysEncode($fm['atime'].$unqid);
+		$fm['eip'] = comConvert::sysEncode(@$fm['atime'].$unqid);
 		// 加数据
 		$db->table('coms_corder')->data(basReq::in($fm))->insert();
 		// 转数据
@@ -144,7 +140,7 @@ class exvOcar{
 	}
 	
 	static function odel($ordid){ 
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$ouser = self::whruser();
 		$where = $ouser['sql'];
 		$erow = $db->table('coms_corder')->where("cid='$ordid' AND $where")->delete();
@@ -152,31 +148,26 @@ class exvOcar{
 		return $erow;
 	}
 	static function oedit($ordid){ 
-		global $_cbase;
-		$db = glbDBObj::dbObj();
 		$ouser = self::whruser();
 		$where = $ouser['sql'];
 		$fm = basReq::arr('fm');
-		$erow = $db->table('coms_corder')->data(basReq::in($fm))->where("cid='$ordid' AND $where")->update();
+		$erow = db()->table('coms_corder')->data(basReq::in($fm))->where("cid='$ordid' AND $where")->update();
 		return $erow;
 	}
 	
 	static function iadd($unqid,$user){ 
-		global $_cbase;
-		$db = glbDBObj::dbObj();
-		$fm['cid'] = basReq::val('cid');
-		$fm['pid'] = basReq::val('pid');
+		$db = db();
+		$fm['cid'] = req('cid');
+		$fm['pid'] = req('pid');
 		$fm['ordid'] = $unqid;
-		$fm['ordcnt'] = basReq::val('ordcnt','0','N');
-		$fm['ordprice'] = basReq::val('ordprice','0','N');
-		$fm['title'] = basReq::val('title','');
-		$fm['ordweight'] = basReq::val('ordweight','0','N');
+		$fm['ordcnt'] = req('ordcnt','0','N');
+		$fm['ordprice'] = req('ordprice','0','N');
+		$fm['title'] = req('title','');
+		$fm['ordweight'] = req('ordweight','0','N');
 		$kar = glbDBExt::dbAutID('coms_cocar','yyyy-md-','32');
 		$fm['cid'] = $kar[0]; 
 		$fm['cno'] = $kar[1];
-		$fm['atime'] = $_cbase['run']['stamp'];
 		$fm['auser'] = @$user->uinfo['uname'];
-		$fm['aip'] = $_cbase['run']['userip'];
 		if($db->table('coms_cocar')->where("ordid='$unqid' AND pid='$fm[pid]'")->find()){
 			$msg = "该商品已经在购物车！";
 		}else{
@@ -187,8 +178,7 @@ class exvOcar{
 	}
 	
 	static function ilist($tabid,$where,$limit=99){ 
-		$db = glbDBObj::dbObj();
-		$list = $db->table($tabid)->where($where)->limit($limit)->select();
+		$list = db()->table($tabid)->where($where)->limit($limit)->select();
 		$data = array(); $afee = 0.00; $aweight = 0.00; $acnt = 0;
 		if($list){ foreach($list as $i=>$r){ 
 			$r['i'] = $i+1;

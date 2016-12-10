@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init');
 
 if(!empty($cid)){
 	$fmo = $db->table($dop->tbid)->where("cid='$cid'")->find(); 

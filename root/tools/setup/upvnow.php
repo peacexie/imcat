@@ -1,9 +1,5 @@
 <?php 
-require(dirname(dirname(dirname(__FILE__))).'/run/_paths.php'); 
-
-$act = basReq::val('act');
-$step = basReq::val('step');
-$flag = basReq::val('flag'); 
+require(dirname(__FILE__).'/_config.php'); 
 
 bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login" target="x">login</a></p>');
 $upc = updBase::preCheck(); //print_r($upc);
@@ -31,8 +27,8 @@ if($step=='null'){
 	$msg .= " &gt; <a href='?step=$step&flag=1'>".lang('tools.upn_cnfm')."</a>";
 }elseif(in_array($step,array('code_comp','root_comp')) && $flag){
 	updAdmin::setStep($upc,$step,1);
-}elseif(in_array($step,array('code_tpls','root_skin'))){
-	updAdmin::setStep($upc,$step,1);
+//}elseif(in_array($step,array('code_tpls','root_skin'))){
+	//updAdmin::setStep($upc,$step,1);
 }elseif(in_array($step,array('dir_dtmp'))){
 	$res = updAdmin::doDirDtmp($upc);
 	$msg = lang('tools.upn_dtmp');
@@ -73,7 +69,7 @@ $carrs = array('cmpfile','cmptable','cmpdata');
 if(in_array($act,$carrs)){ 
 	//
 }elseif($act=='reset'){ 
-	$f = updBase::preReset(basReq::val('path','','Html'));
+	$f = updBase::preReset(req('path','','Html'));
 	header('Location:?');
 }else{
 	$act = 'upmain';
@@ -85,9 +81,7 @@ if(empty($upc['path'])){
 } // $act = 'upmain';
 
 glbHtml::page(lang('tools.upn_title').' - '.$_cbase['sys_name'],1);
-glbHtml::page('imp');
-echo basJscss::imp("/tools/setup/sfunc.js?".time());
-echo basJscss::imp("/tools/setup/style.css");
+glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
 glbHtml::page('body');
 
 if(in_array($act,$carrs)){ 

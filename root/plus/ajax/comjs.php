@@ -1,15 +1,17 @@
 <?php 
 require(dirname(__FILE__).'/_config.php'); 
-#safComm::urlFrom();
-glbHtml::head(); 
+#safComm::urlFrom(); 
 extract(basReq::sysVars());
-$act = basReq::val('act','sysInit'); 
-//echo basDebug::runInfo();
+$act = req('act','sysInit'); 
+$lang = req('lang'); 
+$exjs = req('exjs'); 
+$excss = req('excss'); 
+glbHtml::head($excss ? 'css' : 'js');
+//echo "$act<br>\n$exjs\n$excss\n";
 
 // 初始化js
-if($act=='sysInit'){  	
-	
-	$lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
+if(strstr($act,'sysInit')){
+	$lang = $lang ? $lang : $_cbase['sys']['lang'];
 	// ***** js配置区 *****
 	$jscfg  = "\n// js Config";
 	$jscfg .= "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
@@ -27,14 +29,15 @@ if($act=='sysInit'){
 	$jscfg .= "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
 	$jscfg .= "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
 	$jscfg .= "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
+	$jscfg .= "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_SKIN."';";
 	$jscfg .= "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
 	//tpl
-	if($tpldir=basReq::val('tpldir')){
+	if($tpldir=req('tpldir')){
 		$tpldir = vopTpls::set($tpldir);
-		if(!empty($_cbase["close_$tpldir"])){ //close
+		if(!empty($_cbase["close_$tpldir"])){ //close-for-static-files
 			die("location.href='".PATH_PROJ."?close&tpldir=$tpldir';");
 		}
-		$jscfg .= "\n_cbase.run.mkv = '".basReq::val('mkv')."';";
+		$jscfg .= "\n_cbase.run.mkv = '".req('mkv')."';";
 		$jscfg .= "\n_cbase.run.csname = '".vopUrl::burl()."';";
 		$jscfg .= "\n_cbase.run.tpldir = '$tpldir';";
 	}
@@ -43,6 +46,7 @@ if($act=='sysInit'){
 	$jscfg .= "\n_cbase.path.vendor  = '".PATH_VENDOR."';"; 
 	$jscfg .= "\n_cbase.path.vendui  = '".PATH_VENDUI."';"; 
 	$jscfg .= "\n_cbase.path.static  = '".PATH_STATIC."';"; 
+	$jscfg .= "\n_cbase.path.skin    = '".PATH_SKIN."';"; 
 	$jscfg .= "\n_cbase.path.editor  = _cbase.path.vendui + '/edt_".@$_cbase['sys_editor']."/';"; 
 	// Cookie
 	$jscfg .= "\n_cbase.ck.ckpre = '".$_cbase['ck']['pre']."';";
@@ -69,14 +73,14 @@ if($act=='sysInit'){
 	if(!empty($_GET['user'])){
 		$jscfg .= "\n// js Member/Admin"; 
 		$jscfg .= "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
-		$user = usrBase::userObj('Member');
+		$user = user('Member');
 		if(!empty($user)){
 			$jscfg .= "\n_minfo.userType = '".$user->userType."';";
 			$jscfg .= "\n_minfo.userFlag = '".$user->userFlag."';";
 			$jscfg .= "\n_minfo.uname = '".$user->usess['uname']."';";
 			$jscfg .= "\n_mperm.title = '".@$user->uperm['title']."';";
 		}
-		$user = usrBase::userObj('Admin');
+		$user = user('Admin');
 		if(!empty($user)){
 			$jscfg .= "\n_miadm.userType = '".$user->userType."';";
 			$jscfg .= "\n_miadm.userFlag = '".$user->userFlag."';";
@@ -87,40 +91,54 @@ if($act=='sysInit'){
 	echo "$jscfg\n";
 	
 	// ***** 加载Base.js *****
-	require(DIR_ROOT.'/skin/jslib/jsbase.js');
-	require(DIR_ROOT.'/skin/jslib/jsbext.js'); 
-	require(DIR_ROOT.'/skin/jslib/jspop.js'); 
-	$flang = DIR_ROOT."/skin/jslib/jcore-$lang.js";
+	require(DIR_SKIN.'/_pub/jslib/jsbase.js');
+	require(DIR_SKIN.'/_pub/jslib/jsbext.js'); 
+	require(DIR_SKIN.'/_pub/jslib/jspop.js'); 
+	$flang = DIR_SKIN."/_pub/jslib/jcore-$lang.js";
 	if(file_exists($flang)) require($flang); 
-	//print_r(basDebug::runInfo());
 
-}elseif($act=='autoJQ'){
-	
+	// ***** 加载jsPlus *****
+	require(DIR_SKIN.'/_pub/jslib/jq_base.js'); 
+	//require(DIR_SKIN.'/_pub/jslib/jq_play.js'); 
+	require(DIR_SKIN.'/_pub/jslib/jq_win.js');
+	//require(DIR_VENDUI.'/jquery/jq-qrcode.js');
+
+	//print_r(basDebug::runInfo());
+}
+
+if(strstr($act,'autoJQ')){
 	if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
 		require(DIR_VENDUI.'/jquery/jquery-1.x.imp_js'); 
 		require(DIR_VENDUI.'/jquery/html5.imp_js'); 
 	}else{
 		require(DIR_VENDUI.'/jquery/jquery-2.x.imp_js');
 	}
-	
-}elseif($act=='jsPlus'){
+}
 
-	require(DIR_ROOT.'/skin/jslib/jq_base.js'); 
-	//require(DIR_ROOT.'/skin/jslib/jq_play.js'); 
-	require(DIR_ROOT.'/skin/jslib/jq_win.js');
-	//require(DIR_VENDUI.'/jquery/jq-qrcode.js');
-	
+if(strstr($act,'cssInit')){
+	echo "/*stpub*/";
+	include(DIR_SKIN."/_pub/a_jscss/stpub.css"); 
+	echo "/*jstyle*/";
+	include(DIR_SKIN."/_pub/a_jscss/jstyle.css"); 
+}
+
+if(!empty($exjs)){ // /chn/b_jscss/comm.css;/b_jscss/home.css
+	basJscss::imFiles($exjs,$lang);
+}
+if(!empty($excss)){ // /chn/b_jscss/comm.js;/jquery/jq_imgChange.js:vendui
+	basJscss::imFiles($excss,0);
+}
+
 // test
-}elseif($act=='testInfo'){
+if(strstr($act,'testInfo')){
 	$pprev = isset($_SERVER["HTTP_REFERER"]) ? $_SERVER["HTTP_REFERER"] : '';
 	echo "var testInfo = '$pprev';";
 	echo "document.write(\"$pprev\")";
+}
 // test
-}elseif($act=='testSleep'){	
+if(strstr($act,'testSleep')){	
 	usleep(1200*1000); //usleep(200000);#暂停200毫秒，防注册机，发帖机爆力破解...
 	echo "var testSleep$r = 'ts1_$r'; ";	
-}elseif(empty($act)){
-	exit('Empty action!');	
 }
 
 // 一次一个if()关闭,是因为可能出现类似[?act=jsTypes:cargo,brand;jsRelat:relpb;jsFields:cargo ]参数，同时执行几段代码
@@ -145,7 +163,7 @@ if(strstr($act,'jsTypes')){
 	foreach($moda as $mod){
 		if(empty($mod)) continue;
 		if(strstr($done,",$mod,")) continue;
-		$mcfg = glbConfig::read($mod);
+		$mcfg = read($mod);
 		$s0 = "\nvar _{$mod}_data = ["; $gap = '';
 		if(!empty($mcfg['i'])){
 		foreach($mcfg['i'] as $k=>$v){
@@ -168,9 +186,9 @@ if(strstr($act,'jsRelat')){
 	foreach($moda as $mod){ 
 		if(empty($mod)) continue;
 		//if(strstr($done,",$mod,")) continue;
-		$file = DIR_DTMP."/modex/_$mod.cfg_php";
-		if(is_file($file)){
-			$data = file_get_contents($file);
+		$fnm = DIR_DTMP."/modex/_$mod.cfg_php";
+		if(is_file($fnm)){
+			$data = file_get_contents($fnm);
 			//$itms = comParse::jsonDecode($data); 
 			echo "\nvar _{$mod}_data = $data;\n";
 		}
@@ -184,19 +202,19 @@ if(strstr($act,'jsType2')){
 	foreach($moda as $m1){
 		if(empty($m1)) continue;
 		if(strstr($done,",$m1,")) continue;
-		echo glbConfig::read($m1,'modcm','json')."\n";
+		echo read($m1,'modcm','json')."\n";
 		$done .= "$m1,";
 	}
 }
 if(strstr($act,'jsFields')){
 	//扩展字段
 	$mods = exvFunc::actMods($act,'jsFields'); 
-	$ccfg = glbConfig::read($mods,'_c');
+	$ccfg = read($mods,'_c');
 	//常规字段
-	$cmod = basReq::val('cmod');
+	$cmod = req('cmod');
 	$amod = array();
 	if($cmod){
-		${"_$mods"} = glbConfig::read($mods); 
+		${"_$mods"} = read($mods); 
 		if($mfields = @${"_$mods"}['f']){
 			foreach($mfields as $k1=>$v1){
 				if(($cmod=='(a)'&&in_array($v1['type'],array('select','cbox','radio'))) || strstr($cmod,$k1)){
@@ -226,3 +244,5 @@ if(strstr($act,'jsFields')){
 	$ccfg = str_replace(array("\\/","\"}},\"",),array("/","\"}}\n,\"",),$ccfg);
 	echo "\nvar _{$mods}_fields = $ccfg;\n"; //"\",\"cfgs\":\""
 }
+
+//echo basDebug::runInfo();

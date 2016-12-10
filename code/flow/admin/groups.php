@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','admin/groups.php');
 
 $mod = empty($mod) ? 'groups' : $mod;
@@ -77,8 +77,8 @@ if($view=='glist'){
 	if($list){
 	foreach($list as $r){
 	  $kid = $r['kid']; $pstr = ''; 
-	  if($_groups[ $kid]['pid'] && in_array($mod,array('types'))){
-	      $rmcfg = glbConfig::read($kid);
+	  if(!empty($_groups[$kid]['pid']) && in_array($mod,array('types'))){
+	      $rmcfg = read($kid);
 	  }
 	  if($r['pmod'] && in_array($mod,array('docs','coms','users'))){
 		  $pname = @$_groups[$r['pmod']]['title'];

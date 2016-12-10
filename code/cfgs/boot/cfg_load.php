@@ -39,7 +39,7 @@ $_cfgs['acnsp'] =  array(
 $_cfgs['acmap'] =  array(
     //'basArray' => '~/core/blib/basArray.php',
     //'mTest1' => '/Vdemo/dir1/mapTest1.php',
-    'Pimple' => '/pimple/lib/Pimple.php',
+    //'Pimple' => '/pimple/lib/Pimple.php',
     //'dir\\Name' => '/dir/Name.php',
 );
 

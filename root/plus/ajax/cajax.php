@@ -3,27 +3,33 @@ require(dirname(__FILE__).'/_config.php');
 //safComm::urlFrom();
 glbHtml::head('html');
 
-$db = glbDBObj::dbObj();
-$act = basReq::val('act','chkVImg'); 
-$mod = basReq::val('mod','','Key'); //basStr::filKey('');
+$db = db();
+$act = req('act','chkVImg'); 
+$mod = req('mod','','Key'); //basStr::filKey('');
 $kid = basReq::ark('fm','kid','Key'); //echo $mod.':'.$kid;
 $uid = basReq::ark('fm','uid','Key'); //echo $mod.':'.$uid;
-$_groups = glbConfig::read('groups');
+$_groups = read('groups');
 
 // 处理语言
 $lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
 $lang && $_cbase['sys']['lang'] = $lang;
 
+switch($act){
+
 //测试
-if($act=='_istest_'){
-	
-}elseif($act=='fsInit'){
+case '_istest_':
+
+	//test
+
+break;
+case 'fsInit':
 	
 	safComm::urlStamp('check',30);
 	$restr = safComm::formCInit();
 	echo "document.write(\"$restr\");";
 	
-}elseif($act=='userExists'){ 
+break;
+case 'userExists':
 
 	if($re=basKeyid::keepCheck($uname,1,1,1)){ //$key,$chk,$fix,$grp
 		die($re);
@@ -35,11 +41,10 @@ if($act=='_istest_'){
 	    die("success");
 	}	
 
+break;
+case 'fieldExists':
 	
-}elseif($act=='fieldExists'){ 
-	
-	$db = glbDBObj::dbObj();
-	$sy_kids = glbConfig::read('keepid','sy');
+	$sy_kids = read('keepid','sy');
 	if($re=basKeyid::keepCheck($kid,1,1,0)){ //$key,$chk,$fix,$grp
 		die($re);
 	}elseif($cmod = $db->table('base_fields')->where("model='$mod' AND kid='$kid'")->find()){
@@ -56,10 +61,11 @@ if($act=='_istest_'){
 	    die("success");
 	}
 	
-}elseif($act=='fieldCatid'){ 
+break;
+case 'fieldCatid':
 	
-	$catid = basReq::val('catid',''); 
-	$ccfg = glbConfig::read($mod,'_c'); 
+	$catid = req('catid',''); 
+	$ccfg = read($mod,'_c'); 
 	$mfields = @$ccfg[$catid]; //var_dump($mfields); 
 	
 	if($re=basKeyid::keepCheck($kid,1,0,1)){ //$key,$chk,$fix,$grp
@@ -70,17 +76,17 @@ if($act=='_istest_'){
 	    die("success");
 	}
 
-}elseif($act=='keyExists'){
+break;
+case 'keyExists':
 	
-	$db = glbDBObj::dbObj();
-	$tab = basReq::val('tab'); 
+	$tab = req('tab'); 
 	$_f1 = in_array($tab,array('base_catalog','base_fields','base_grade','base_menu','base_model','base_paras','types_common'));
 	$_k2 = str_replace('types_','',$tab);
 	$_f2 = isset($_groups[$_k2]); 
 	if(!$_f1 && !$_f2) die(lang('plus.cajax_erparam'));
 	$kre = strtolower(basReq::ark('fm','kre','Key')); //@$fm['kre']
 	if(!$kid && $kre) $kid=$kre;
-	$old = basReq::val('old_val'); 
+	$old = req('old_val'); 
 	if($re=basKeyid::keepCheck($kid,1,0,1,($_k2?2:3))){ //$key,$chk,$fix,$grp
 		die($re);
 	}elseif($kid===$old){
@@ -93,7 +99,8 @@ if($act=='_istest_'){
 	    die("success");
 	}
 	
-}elseif($act=='modExists'){
+break;
+case 'modExists':
 	
 	if($re=basKeyid::keepCheck($kid,1,1,1)){ //$key,$chk,$fix,$grp
 		die($re);
@@ -101,31 +108,33 @@ if($act=='_istest_'){
 		die("success");	
 	}
 
-}elseif($act=='infoRepeat'){
+break;
+case 'infoRepeat':
 	
-	$fid = basReq::val('fid');
-	$kwd = basReq::val('kwd'); // mod,kid(docs,user,coms,advs)
+	$fid = req('fid');
+	$kwd = req('kwd'); // mod,kid(docs,user,coms,advs)
 	$msg = lang('plus.cajax_erparam');
 	if(!isset($_groups[$mod])) die("var _repeat_res = '$msg';");
-	$mcfg = glbConfig::read($mod); 
+	$mcfg = read($mod); 
 	$para = "[$mod:$fid=$kwd]";
 	if(empty($mcfg['f'][$fid])){
 		$re = "$para $msg!";	
 	}elseif($kwd && $tab=glbDBExt::getTable($mod)){
 		$flag = $db->table($tab)->where("$fid='$kwd'")->find();
-		$re = $flag ? "success" : lang('plus.cajax_repeat');
+		$re = $flag ? lang('plus.cajax_repeat') : "success";
 	}else{
 		$re = "$para $msg!";	
 	}
 	echo "var _repeat_res = '$re';";
 
 // VImg
-}elseif($act=='chkVImg'){
+break;
+case 'chkVImg':
 	
 	safComm::urlStamp('check');
-	$mod = basReq::val('mod'); $key = basReq::val('key'); 
+	$mod = req('mod'); $key = req('key'); 
 	$key = "{$mod}_{$key}";
-	$vcode = basReq::val($key);
+	$vcode = req($key);
 	//echo "$mod, $vcode";
 	$re = safComm::formCVimg($mod, $vcode, 'check', 600);
 	if(strstr($re,'-Error')){
@@ -136,34 +145,36 @@ if($act=='_istest_'){
 	    echo "success";
 	}
 
-}elseif($act=='cfield'){ 
+break;
+case 'cfield':
 
-	$_cfg = glbConfig::read($mod);
+	$_cfg = read($mod);
 	$_pid = $_cfg['pid']; 
 	$_tmp = array(
 		'docs' =>'did',
 		'users'=>'uid',
 	); //'coms' =>'cid',
 	if(!isset($_tmp[$_pid])) glbHtml::end(lang('plus.cajax_erparam').':mod@dop.php');
-	$db = glbDBObj::dbObj();
 	$data = $db->table("{$_pid}_$mod")->where("$_tmp[$_pid]='$kid'")->find(); 
-	fldView::lists($mod,$data,basReq::val('catid'));
+	fldView::lists($mod,$data,req('catid'));
 
-}elseif($act=='uLogin'){ 
+break;
+case 'uLogin':
 	
-	$uname = basReq::val('uname');
-	$uadm = usrBase::userObj('Admin');
+	$uname = req('uname');
+	$uadm = user('Admin');
 	if($uadm->userFlag=='Login'){
 		usrBase::setLogin('m',$uname);
-		header("Location:".vopUrl::fout("umc:0"));
+		header("Location:".surl("umc:0"));
 	}else{
 		echo "(uname=$uname)";	
 	}
 	
-}else{
+break;
+default:
 	
 	exit('Empty action!');	
 	
-}
+}//end switch
 
 

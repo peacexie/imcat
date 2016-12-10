@@ -1,10 +1,10 @@
 <?php
 require('_config.php');
 
-$act = basReq::val('act');
-$d = basReq::val('d','txjia.com');
-$kw = basReq::val('kw'); 
-$pn = basReq::val('pn','74','N'); 
+$act = req('act');
+$d = req('d','txjia.com');
+$kw = req('kw'); 
+$pn = req('pn','74','N'); 
 
 $mpage = 0;
 if(!empty($act)){

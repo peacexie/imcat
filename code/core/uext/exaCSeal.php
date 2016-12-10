@@ -115,7 +115,7 @@ class exaCSeal {
 	}
  
 	//对外生成
-	public function doImg(){
+	function doImg(){
 		$this->createImg();
 		$this->drawRim();
 		$this->drawInnerCircle();

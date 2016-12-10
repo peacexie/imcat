@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopDocs(data OP for Docs)
 class dopDocs extends dopBase{	
@@ -19,7 +19,7 @@ class dopDocs extends dopBase{
 		}
 		$this->typfid = $this->so->typfid = 'catid';
 		$this->dskey  = $this->so->dskey  = 'title'; 
-		$this->order  = $this->so->order  = basReq::val('order','did'); 
+		$this->order  = $this->so->order  = req('order','did'); 
 		$this->tbext  = "dext_$mod";
 	}
 	// 翻页条,批量操作

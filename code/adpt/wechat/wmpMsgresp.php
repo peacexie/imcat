@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 被动回复信息(这里只组消息结构,不能直接die，因为可能下发消息后，还有继续其它操作)
 // 随微信规则更新
 
@@ -117,7 +117,6 @@ class wmpMsgresp extends wmpBasic{
 	//保存地理位置(发送位置/自动上报)共用(本来放这有点不合适,但为了共用一段代码...)
 	//type=0, 返回地址信息
     function savePos($type='auto'){ 
-		global $_cbase;
 		$row = $this->_db->table('wex_locate')->where("openid='{$this->post->FromUserName}' AND appid='{$this->cfg['appid']}'")->find();
 		if(!$type) return $row;
 		$data = array(
@@ -125,7 +124,7 @@ class wmpMsgresp extends wmpBasic{
 			'latitude' => $type=='auto' ? $this->post->Latitude : $this->post->Location_X,
 			'longitude' => $type=='auto' ? $this->post->Longitude : $this->post->Location_Y,
 			'extra' => $type=='auto' ? $this->post->Precision : $this->post->Scale, //Label
-			'atime' => $_cbase['run']['stamp'],
+			'atime' => time(),
 		); 
 		if($row){
 			$this->_db->table('wex_locate')->data($data)->where("openid='{$this->post->FromUserName}' AND appid='{$this->cfg['appid']}'")->update();  

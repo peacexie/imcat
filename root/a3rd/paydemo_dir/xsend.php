@@ -7,7 +7,7 @@ require_once(dirname(__FILE__)."/config.php");
 <title><?php lang('a3rd.xsend_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
 <style type="text/css">
 
 p.nav{ margin:auto auto 10px auto; text-align:center; }
@@ -38,11 +38,11 @@ $order['atime'] = $_cbase['run']['stamp'];
 $order['auser'] = 'uname';
 $order['aip'] = $_cbase['run']['userip'];
 $order['eip'] = comConvert::sysEncode($order['atime'].@$unqid);
-$order['ordpay'] = basReq::val('paymode','paydemo');
+$order['ordpay'] = req('paymode','paydemo');
 $order['feetotle'] = 0.01;
 
 $opay = exvOpay::getParas($order,'Webchn');
-$opay['showurl'] = vopUrl::fout(0,'',1)."?"; 
+$opay['showurl'] = surl(0,'',1)."?"; 
 $oadm = @$opay['a']; unset($opay['a']);
 
 echo "<p class='nav'>$stabs</p>";

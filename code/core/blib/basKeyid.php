@@ -243,8 +243,8 @@ class basKeyid{
 	}
 	
 	static function keepCheck($key,$chk=1,$fix=1,$grp=0,$len=3){
-		$groups = glbConfig::read('groups');
-		$keepids = glbConfig::read('keepid','sy');
+		$groups = read('groups');
+		$keepids = read('keepid','sy');
 		if(strlen($key)<$len){
 			return lang('core.kid_minlen',$len); //"请输入$len+个字符！";
 		}

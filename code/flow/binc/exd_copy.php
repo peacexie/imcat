@@ -1,22 +1,20 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init');
+usrPerm::run('pfile','admin/groups.php');
 
-#$_groups = glbConfig::read('groups');
-#$view = empty($view) ? 'list' : $view;
-
-$mod = empty($mod) ? 'demo' : $mod;
-$type = basReq::val('type','mdata'); // mod, tabid
+$mod = empty($mod) ? '' : $mod;
+$type = req('type','mdata'); // mod, tabid
 $kid = empty($kid) ? '' : $kid;
-$title = basReq::val('title','');
+$title = req('title','');
 
-$_cfg = glbConfig::read($mod); 
+$_cfg = read($mod); 
 $cp = new exdCopy($mod, $type);
 
 if(!empty($bsend)){
 	
 	$method = $type=='tabid' ? 'cplan' : 'cdata'; 
 	$res = $cp->$method($kid, $fm['kid'], $fm['title']);
-	basMsg::show(" [{$fm['kid']}] - ".lang('flow.dops_cpok'));	
+	basMsg::show(" [{$fm['kid']}] - ".lang('flow.dops_cpok'));
 	
 }else{ 
 

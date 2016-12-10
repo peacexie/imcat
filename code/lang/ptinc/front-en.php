@@ -1,8 +1,10 @@
-<?php if($part=='_test1_'){ ?>
+<?php (!defined('RUN_INIT')) && die('No Init');?>
+
+<?php switch($part){ case '_test1_': ?> 
 
 En
 
-<?php }elseif($part=='homevn'){ ?>
+<?php break;case 'homevn': ?>
 
 ● Admin
  --- Your website just for your!<br> 

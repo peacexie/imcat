@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__)."/config.php");
 $cfg = array('ordid','feeamount','apino','status','msg');
 foreach($cfg as $key){ 
 	empty($res[$key]) && $res[$key] = '';  
@@ -11,7 +12,7 @@ defined('PATH_ROOT') || define('PATH_ROOT','../../');
 <title><?php lang('a3rd.xresult_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
 <style type="text/css">
 .pay_info{ width:640px; border:1px solid #CCC; padding:10px; margin:10px auto; font-size:14px; }
 

@@ -1,15 +1,23 @@
 <?php 
 require(dirname(__FILE__).'/_config.php'); 
+set_time_limit(300); 
 
-$act = basReq::val('act','');
-$part = $ntpl = basReq::val('part','');
+$act = req('act','');
+$part = $ntpl = req('part','');
 
 glbHtml::page("Check/Scan",1);
 glbHtml::page('imp');
 
+$dcfgs = array(
+	'curlDown' => 37712,
+	'curlDasp' => 38283,
+	'curlJava' => 38304,
+	'curlCode' => 38305,
+);
+
 if($act=='scanInit'){
-  $bcfg = array('code'=>DIR_CODE, 'root'=>DIR_ROOT, 'tpls'=>DIR_CODE.'/tpls', 'a3rd'=>DIR_ROOT.'/a3rd'); @$burl = $bcfg[$part]; 
-  $dcfg = array('code'=>'',       'root'=>'',       'tpls'=>'/code',          'a3rd'=>'/root');          @$durl = $dcfg[$part];
+  $bcfg = array('code'=>DIR_CODE, 'root'=>DIR_ROOT, 'tpls'=>DIR_SKIN,   'a3rd'=>DIR_ROOT.'/a3rd'); @$burl = $bcfg[$part]; 
+  $dcfg = array('code'=>'',       'root'=>'',       'tpls'=>'/code',    'a3rd'=>'/root');          @$durl = $dcfg[$part];
   if(!empty($burl)){
     $re = devBase::scanInit($burl,$_cbase['run']['rmain']."$durl/$part");
     echo "<base target='_blank'/>[$durl/$part]<pre>"; print_r($re); 
@@ -26,11 +34,14 @@ if($act=='scanInit'){
 }elseif($act=='scanDblang'){ 
     $re = devBase::scanDblang();
     echo "\n</pre>".basDebug::runInfo(); die();  
-}elseif($act=='curlDown'){  
-    $ref = array('_ref'=>'http://down.chinaz.com/soft/37712.htm');
-    $url = "http://down.chinaz.com/download.asp?id=37712&dp=1&fid=$part&f=yes";
+}elseif(isset($dcfgs[$act])){  
+    /*
+    $did = $dcfgs[$act];
+    $ref = array('_ref'=>"http://down.chinaz.com/soft/$did.htm");
+    $url = "http://down.chinaz.com/download.asp?id=$did&dp=1&fid=$part&f=yes";
     $res = comHttp::curlCrawl($url,$ref);
     echo basStr::filForm($res)." [$part] "; die();
+    */
 }
 
 ?>
@@ -115,7 +126,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
     <tr>
       <td class="tc">lang,down</td>
       <td class="tc" colspan="3">
-       # <a href='?act=openDowns&part=10'>openDowns</a>
+       <!--# <a href='?act=openDowns&part=1'>openDowns</a>-->
        # <a href='?act=scanDblang&part='>scanDblang</a>
        # <a href='cbaidu.php'>scanBaidu</a>
        #
@@ -160,12 +171,11 @@ $bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
        | <a href='?act=scanCnchr&part=code/cfgs' target="_blank">cfgs</a>
        | <a href='?act=scanCnchr&part=code/core' target="_blank">core</a>
        | <a href='?act=scanCnchr&part=code/flow' target="_blank">flow</a>
-       # <a href='?act=scanCnchr&part=code/tpls/adm' target="_blank">adm</a>
-       | <a href='?act=scanCnchr&part=code/tpls/umc' target="_blank">umc</a>
-       | <a href='?act=scanCnchr&part=code/tpls/doc' target="_blank">doc</a>
+       # <a href='?act=scanCnchr&part=skin/adm' target="_blank">adm</a>
+       | <a href='?act=scanCnchr&part=skin/umc' target="_blank">umc</a>
+       | <a href='?act=scanCnchr&part=skin/doc' target="_blank">doc</a>
        # <a href='?act=scanCnchr&part=root/a3rd' target="_blank">a3rd</a> 
        | <a href='?act=scanCnchr&part=root/plus' target="_blank">plus</a>
-       | <a href='?act=scanCnchr&part=root/skin' target="_blank">skin</a>
        | <a href='?act=scanCnchr&part=root/tools' target="_blank">tools</a>
       </td>
     </tr> 
@@ -189,7 +199,7 @@ if($act=='openLinks'){
 	  	if(is_array($val)) continue; 
 		if(!strpos($val,'/')) continue; 
 		$mkv = $key=='m' ? $mod : "$mod-$key";
-		$url = vopUrl::fout($mod=='home' ? '' : "$mkv");
+		$url = surl($mod=='home' ? '' : "$mkv");
 	  ?>
       <a href="<?php echo "$url"; ?>" target="_blank"><?php echo "$val"; ?></a><br>
       <?php } ?>
@@ -237,14 +247,17 @@ if($act=='openDowns'){
     <tr id="res">
       <td>
             --- <b>demo</b><br>
-            <a href="http://down.chinaz.com/soft/37712.htm" target="_blank">chinaz/37712</a><br>
+            <?php foreach ($dcfgs as $dkey=>$did) { ?>
+            <a href="http://down.chinaz.com/soft/<?php echo $did; ?>.htm" target="_blank">chinaz/<?php echo "$dkey:$did"; ?></a><br>
+            <?php } ?>
             --- <b>open</b><br>
             <?php 
-            $dcfg=array(28,7,22,19,10,20,16); 
-            $ref = array('_ref'=>'http://down.chinaz.com/soft/37712.htm');
+            $xcfg=array(28,7,22,19,10,20,16); 
             for ($ia=0;$ia<$part;$ia++) {
-            foreach ($dcfg as $dkey) {
-              echo "<a href='?act=curlDown&part=$dkey' target='_blank'>part=$dkey</a><br>";
+            foreach ($xcfg as $pt) {
+              foreach ($dcfgs as $dkey=>$did) {
+              	echo "<a href='?act=$dkey&part=$pt' target='_blank'>part=$pt : $dkey</a><br>";
+              }
             }}?>
       </td>
     </tr> 
@@ -267,11 +280,11 @@ function funcOset(no){
   if(xr>1000&&xr<1200) return true;
   var ilink = $('#idlinks').find('a')[no];
   var url = $(ilink).prop('href');
-  var html = $(ilink).html()+' --- opoend ';
+  var html = $(ilink).html()+' --- opened ';
   window.open(url,'_w'+(no%wmax));
   $(ilink).html(html);
 }
-funcOpen();
+//funcOpen();
 </script>
 <?php } ?>
 

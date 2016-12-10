@@ -99,7 +99,7 @@ class comImage{
 		$image_w = $imageInfo['width']; //取得水印图片的宽
 		$image_h = $imageInfo['height']; //取得水印图片的高
 		//读取水印文字配置
-		$waterInfo = glbConfig::read('wmark','ex');
+		$waterInfo = read('wmark','ex');
 		$w = $waterInfo['width']; //取得水印图片的宽
 		$h = $waterInfo['height']; //取得水印图片的高ctext
 		if($image_w<=$w || $image_h<=$h){
@@ -174,12 +174,12 @@ class comImage{
 		if(!file_exists($image)){ //检查图片是否存在
 			return 'file NOT exists!';
 		}
-		$wcfgs = glbConfig::read('wmark','ex');
+		$wcfgs = read('wmark','ex');
 		if(empty($waterPos)) $waterPos = $wcfgs['pos'];
 		if(empty($type) || in_array($type,array('pic','text'))){
 			if(empty($type)) $type = $wcfgs['type'];
-			if($type=='pic' && file_exists(DIR_ROOT.$wcfgs['plogo'])){
-				return self::wmpic($image, DIR_ROOT.$wcfgs['plogo'], $waterPos);
+			if($type=='pic' && file_exists(DIR_SKIN.$wcfgs['plogo'])){
+				return self::wmpic($image, DIR_SKIN.$wcfgs['plogo'], $waterPos);
 			}else{
 				return self::wmtext($image, $wcfgs['stext'], $waterPos);
 			}

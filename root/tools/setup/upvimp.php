@@ -1,11 +1,8 @@
 <?php
-require(dirname(dirname(dirname(__FILE__))).'/run/_paths.php');
+require(dirname(__FILE__).'/_config.php');
 
 //check, re:cfgs:
 $cfg = updDbcmp::uimpCheck(); //print_r($cfg);
-
-$act = basReq::val('act');
-$ano = basReq::val('ano','0'); 
 $nav = '';
 
 $groups = devBase::_tabGroup();
@@ -15,9 +12,7 @@ foreach($groups as $kg){
 }
 
 glbHtml::page(lang('tools.upi_title').' - '.$_cbase['sys_name'],1);
-glbHtml::page('imp');
-echo basJscss::imp("/tools/setup/sfunc.js?".time());
-echo basJscss::imp("/tools/setup/style.css");
+glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
 glbHtml::page('body');
 
 include(vopShow::inc('/tools/setup/upvimp.htm',DIR_ROOT));

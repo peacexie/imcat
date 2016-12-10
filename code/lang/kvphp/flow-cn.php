@@ -311,7 +311,7 @@ return array(
 	'title_char' => '字母',
 	'title_level' => '级别',
 	'title_frame' => '结构',
-	'title_subtype' => '子类',
+	'title_subtype' => '子项目',
 	'title_param' => '参数',
 	'title_edit' => '修改',
 	'title_note' => '备注',

@@ -2,21 +2,22 @@
 $data = array (
   'db' => 
   array (
-    'data' => '353.98 (KB) ',
-    'index' => '292.00 (KB) ',
-    'free' => '1.19 (KB) ',
+    'data' => '362.46 (KB) ',
+    'idx' => '302.00 (KB) ',
+    'free' => '1.11 (KB) ',
   ),
   'dir' => 
   array (
-    'main' => '2.57 (MB) ',
-    'dtmp' => '771.90 (KB) ',
-    'html' => '466.14 (KB) ',
-    'ures' => '0 (B) ',
-    'static' => '6.88 (MB) ',
-    'vendor' => '797.53 (KB) ',
-    'vendui' => '1.13 (MB) ',
+    'main' => '2.66 (MB) ',
+    'ctpl' => '132.04 (KB) ',
+    'dtmp' => '885.91 (KB) ',
+    'ures' => '1.53 (MB) ',
+    'html' => '0 (B) ',
+    'vendor' => '1.31 (MB) ',
+    'vendui' => '1.60 (MB) ',
+    'static' => '7.00 (MB) ',
   ),
   'total' => 30,
-  'sum' => '12.91 (MB) ',
+  'sum' => '15.45 (MB) ',
 )
 ?>

@@ -5,7 +5,7 @@ class fldEdit{
 	//public $cfg = array();
 	
 	static function fmOrgData($tabid,$mod,$kid,$fm=array(),$catid=''){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		if(empty($kid)){
 			if(!empty($fm['from'])){
 				$ademo = fldCfgs::addDemo('init_docs')+fldCfgs::addDemo('init_dext')+fldCfgs::addDemo('init_coms')+fldCfgs::addDemo('init_users');
@@ -17,18 +17,17 @@ class fldEdit{
 			} //如果键名为字符，且键名相同，数组相加会将最先出现的值作为结果
 			$fm = $fm + $from + $def;
 		}else{
-			$db = glbDBObj::dbObj();
 			$cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
-			$fm = $db->table($tabid)->where("model='$mod' AND kid='$kid' $cawhr")->find(); 
+			$fm = db()->table($tabid)->where("model='$mod' AND kid='$kid' $cawhr")->find(); 
 		} 
 		return $fm;
 	}
 	
 	function __construct($mod,$cfg=array()){ 
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$this->mod = $mod;
 		$this->pmod = $_groups[$mod]['pid'];
-		$this->ispara = basReq::val('ispara','0');
+		$this->ispara = req('ispara','0');
 		$this->cfg = $cfg; 
 		$this->type = $cfg['type'];
 		$this->fmextra = $cfg['fmextra'];
@@ -47,7 +46,7 @@ class fldEdit{
 	
 	// iPlusPara
 	function fmPlusPara(){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		$oldval = empty($this->cfg['fmexstr']) ? '' : $this->cfg['fmexstr'];
 		if($this->fmextra=='winpop'){
 			if(empty($oldval) && isset($_groups[$this->cfg['from']])){
@@ -61,7 +60,7 @@ class fldEdit{
 			$row = "<select name='fm[fmexstr]' class='w150'>".basElm::setOption($arr,$oldval,lang('admin.fe_wdfrom'))."</select>";
 			
 		}elseif(in_array($this->fmextra,array('datetm','editor','color'))){ //,'map'
-			$msgs = array('datetm'=>lang('admin.fe_tmfmt').':yyyy-M-d H:i:s','editor'=>lang('admin.fe_edtool').':full,exbar','color'=>lang('admin.fe_colorto').':title');
+			$msgs = array('datetm'=>lang('admin.fe_tmfmt').':Y-m-d H:i:s','editor'=>lang('admin.fe_edtool').':full,exbar','color'=>lang('admin.fe_colorto').':title');
 			$row = "<input name='fm[fmexstr]' type='text' value='{$oldval}' class='txt w120' maxlength='120' /> {$msgs[$this->fmextra]}";			
 		}else{ // in_array($this->type,array('input','text','hidden'))
 			echo "<input name='fm[fmexstr]' type='hidden' value='' />";

@@ -1,14 +1,14 @@
 <?php
 require(dirname(__FILE__).'/_config.php');
 //safComm::urlFrom();
-$_groups = glbConfig::read('groups');
+$_groups = read('groups');
 
 glbHtml::page("Pick Data");
 glbHtml::page('imadm');
 glbHtml::page('body');
 
-$mod = basReq::val('mod','','Key');
-$mcfg = glbConfig::read($mod); 
+$mod = req('mod','','Key');
+$mcfg = read($mod); 
 if(empty($mcfg['f'])) { die("Error1 [$mod]!"); }
 $_key = substr($mcfg['pid'],0,1).'id'; if($_key=='uid') $_key='uname';
 $mfso = dopFunc::vgetFields($mcfg['f']); 
@@ -17,19 +17,19 @@ if($_key=='uname'){
 	$mcfg['f']['uname']['title'] = lang('plus.pick_uname');
 }
 
-$fso = basReq::val('fso','title,company,uname,mname,mtel,memail','Title'); 
-$ford = basReq::val('ford','click','Title'); 
-$fshow = basReq::val('fshow','title,company,mname,uname,click,mtel,memail','Title'); 
+$fso = req('fso','title,company,uname,mname,mtel,memail','Title'); 
+$ford = req('ford','click','Title'); 
+$fshow = req('fshow','title,company,mname,uname,click,mtel,memail','Title'); 
 $fso = dopFunc::vchkFields($fso,dopFunc::vgetFields($mcfg['f'],'input,select','varchar'));
 $ford = dopFunc::vchkFields($ford,dopFunc::vgetFields($mcfg['f'],'input,select','int,float'));
 $fshow = dopFunc::vchkFields($fshow,dopFunc::vgetFields($mcfg['f'],'all','all'));
-if(count($fshow)>4) $fshow = array_slice($fshow,0,4); //$cshow = basReq::val('cshow','5','N');
+if(count($fshow)>4) $fshow = array_slice($fshow,0,4); //$cshow = req('cshow','5','N');
 $ford = dopFunc::vordFields($ford);
 
-$cntre = basReq::val('cntre','1','N'); if($cntre<1) $cntre = 1;
-$retitle = basReq::val('retitle','','Title'); if(empty($retitle)) $retitle = key($fshow); 
-$refval = basReq::val('refval','','Title');
-$refname = basReq::val('refname','','Title');
+$cntre = req('cntre','1','N'); if($cntre<1) $cntre = 1;
+$retitle = req('retitle','','Title'); if(empty($retitle)) $retitle = key($fshow); 
+$refval = req('refval','','Title');
+$refname = req('refname','','Title');
 
 $msg = ''; //echo "$retitle,$refval,$refname ;"; //print_r($mcfg);
 //print_r($fso); print_r($ford); print_r($fshow);

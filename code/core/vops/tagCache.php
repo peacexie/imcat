@@ -7,6 +7,7 @@ class tagCache{
 	
 	static function showAdv($mkey){ 
 		$mk = explode(':',$mkey);
+		if(empty($mk[1])) return '';
 		$file = tagCache::caPath($mk[0],$mk[1],1);
 		$data = file_exists($file) ? comFiles::get($file) : "$mkey";
 		$re = basJscss::jsShow($data, 0);
@@ -17,7 +18,7 @@ class tagCache{
 		preg_match("/\[cache\,([a-z0-9]+)\]/", $para, $m);  
 		if(!empty($m[0]) && !empty($m[1])){ // && intval($m[1])>0
 			$pkey = str_replace(array("[List]","[Page]","[One]"),'',$para);
-			$path = self::ctPath($pkey,basReq::val('tpldir')); 
+			$path = self::ctPath($pkey,req('tpldir')); 
 			$fpath = self::chkUpd($path,$m[1]); 
 			$data = $path ? comFiles::get($fpath) : ''; 
 			$para = str_replace($m[0],'',$para); 	
@@ -58,7 +59,7 @@ class tagCache{
 			$nowtpl = $_cbase['run']['tplnow']; 
 			$tpl_dir = $_cbase['tpl']['tpl_dir']; 
 			$path = self::ctPath("[{$nowtpl}][$type]{$cex}",$tpl_dir);
-			$cfile = self::chkUpd($path,$cac); 
+			$cfile = self::chkUpd($path,$cac,'ctpl'); 
 			$data = $cfile ? unserialize(comFiles::get($cfile)) : ''; 
 		}else{
 			$data = ''; //无数据
@@ -68,31 +69,29 @@ class tagCache{
 	
 	static function ctPath($para,$tpldir){ 
 		$fext = str_replace(array('/','+','*','|','?',':'),array('~','-','.','!','$',';'),$para); 
-		$fext = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[','[n','[c','[s'),$fext); 
+		$fext = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[m','[n','[c','[s'),$fext); 
 		$fext = basStr::filTitle($fext); //del:&,#
 		if(strlen($fext)>150) $fext = substr($fext,0,20).'~'.md5($fext);
-		$path = "/tpls/_tagc/$tpldir$fext.cac_htm"; //".(substr($fmd5,0,1))."/
+		$path = "/_tagc/$tpldir$fext.cac_htm"; //".(substr($fmd5,0,1))."/
 		return $path;
 	}
 	static function caPath($mod,$type,$full=0){ 
-		$path = "tpls/_advs/$mod/$type.cfg_htm"; 
-		$full && $path = DIR_DTMP."/$path";
+		$path = "/_advs/$mod/$type.cfg_htm"; 
+		$full && $path = DIR_CTPL.$path;
 		return $path;
 	}
 	
 	static function setCache($file,$data,$isa=0){
-		global $_cbase; 
 		if($isa){
-			$data['page_bar'] = @$_cbase['page']['bar'];
+			$data['page_bar'] = cfg('page.bar');
 			$data = serialize($data); //var_export
 		}
-		comFiles::chkDirs($file,'tmp');
-		comFiles::put(DIR_DTMP.$file,$data);
+		comFiles::chkDirs($file,'ctpl');
+		comFiles::put(DIR_CTPL.$file,$data);
 	}
 	
 	// $ctime : //30s,60m,3h,6h,12h,24h,7d; 默认单位m
-	static function chkUpd($file,$ctime=30,$bdir='tmp'){
-		global $_cbase; 
+	static function chkUpd($file,$ctime=30,$bdir='dtmp'){ 
 		if(is_numeric($ctime) || strpos($ctime,'m')){
 			$ctime = intval($ctime)*60; 
 		}elseif(strpos($ctime,'h')){
@@ -103,11 +102,12 @@ class tagCache{
 			$ctime = intval($ctime);
 		}
 		$ctime<=0 && $ctime = 1800; 
-		$stamp = $_cbase['run']['stamp'];
+		$stamp = time();
 		$cfg = array(
-			'tmp'=>DIR_DTMP,
-			'res'=>DIR_URES,
-			'htm'=>DIR_HTML,
+			'dtmp'=>DIR_DTMP,
+			'ures'=>DIR_URES,
+			'html'=>DIR_HTML,
+			'ctpl'=>DIR_CTPL,
 		);
 		$bdir = empty($bdir) ? '' : (isset($cfg[$bdir]) ? $cfg[$bdir] : $bdir); 
 		if(file_exists($bdir.$file)){ 

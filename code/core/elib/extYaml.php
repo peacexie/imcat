@@ -1,6 +1,6 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
-require(DIR_VENDOR.'/Spyc/Spyc.php'); 
+(!defined('RUN_INIT')) && die('No Init');
+include_once(DIR_VENDOR.'/Spyc/Spyc.cls_php'); 
 
 
 class extYaml extends Spyc{

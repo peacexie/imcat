@@ -5,8 +5,7 @@ class vopStatic{
 
 	//生成一个广告类别的缓存
 	static function advType($mod,$type=''){
-		$db = glbDBObj::dbObj();
-		$cfg = glbConfig::read($mod);
+		$cfg = read($mod);
 		$dtpl = array(
 			'1'=> "<a href='{url}' target='_blank'>{title}</a>",
 			'2'=> "<a href='{url}' target='_blank'><img src='{mpic}' name='{title}' alt='{title}' /></a>",
@@ -14,7 +13,7 @@ class vopStatic{
 		);
 		$tpl = empty($cfg['i'][$type]['cfgs']) ? $dtpl[$cfg['etab']] : $cfg['i'][$type]['cfgs']; 
 		$data = ''; $rep = array('title','url','mpic','detail');
-		$list = $db->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
+		$list = db()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
 		if($list){
 			foreach($list as $r){
 				$istr = $tpl;
@@ -32,17 +31,16 @@ class vopStatic{
 				$data .= "$istr\r\n";
 			}
 		}
-		$data = comFiles::revSaveDir($data);
+		$data = comStore::revSaveDir($data);
 		$file = tagCache::caPath($mod,$type,0);
-		comFiles::chkDirs($file,'tmp'); 
-		comFiles::put(DIR_DTMP."/$file",$data);
+		comFiles::chkDirs($file,'ctpl'); 
+		comFiles::put(DIR_CTPL."/$file",$data);
 		return $data;
 	}
 
 	//广告Static(按类别)
 	static function advMod($mod,$aids=array()){
-		$db = glbDBObj::dbObj();
-		$cfg = glbConfig::read($mod);
+		$cfg = read($mod);
 		if($cfg['etab']==4) return;
 		$ids = '';
 		if(is_array($aids)){
@@ -56,7 +54,7 @@ class vopStatic{
 		if(!$ids) return;
 		$whr = $ids=="'(all)'" ? '1=1' : "aid IN($ids)";
 		$types = array(); $data = '';
-		$list = $db->field('DISTINCT catid')->table("advs_$mod")->where($whr)->select(); //frame=0 AND 
+		$list = db()->field('DISTINCT catid')->table("advs_$mod")->where($whr)->select(); //frame=0 AND 
 		if($list){
 			foreach($list as $r){
 				$caid = $r['catid'];
@@ -122,18 +120,17 @@ class vopStatic{
 		} 
 		$re['msg'] = $msg;
 		if($re['next']){
-			$offset = basReq::val('order')=='ASC' ? $re['max'] : $re['min'];
+			$offset = req('order')=='ASC' ? $re['max'] : $re['min'];
 			$re['url'] = basReq::getURep(0,'offset',$offset);
 		}
 		return $re; 
 	}
 	// mod,limit(1-500),order(did:ASC),stype,offset
 	static function batKids($mod){
-		$db = glbDBObj::dbObj();
-		$mcfg = glbConfig::read($mod); $whrstr = '';
-		$stype = basReq::val('stype'); $offset = basReq::val('offset');
-		$limit = basReq::val('limit',10,'N'); if($limit<1) $limit = 10;
-		$order = basReq::val('order','DESC');
+		$mcfg = read($mod); $whrstr = '';
+		$stype = req('stype'); $offset = req('offset');
+		$limit = req('limit',10,'N'); if($limit<1) $limit = 10;
+		$order = req('order','DESC');
 		if(in_array($mcfg['pid'],array('docs','advs'))){ 
 			$stype && $whrstr .= basSql::whrTree($mcfg['i'],'catid',$stype);
 			$ftype = ',catid';	
@@ -147,7 +144,7 @@ class vopStatic{
 		}
 		$kname = substr($mcfg['pid'],0,1).'id';
 		$omod = in_array(strtoupper($order),array('ASC','DESC','EQ')) ? strtoupper($order) : 'DESC';
-		$offset = basReq::val('offset');
+		$offset = req('offset');
 		if($offset){
 			if(strstr($omod,'DESC')){
 				$op = '<';
@@ -159,7 +156,7 @@ class vopStatic{
 			$whrstr .= " AND $kname$op'$offset'";
 		} 
 		$whrstr = $whrstr ? substr($whrstr,5) : '1=1'; 
-		$data = $db->field("$kname$ftype,`show`")->table($tabid)->where($whrstr)->order("$kname $omod")->limit($limit)->select(); 
+		$data = db()->field("$kname$ftype,`show`")->table($tabid)->where($whrstr)->order("$kname $omod")->limit($limit)->select(); 
 		$re = array();
 		if(!empty($data)){
 			foreach($data as $row){ 
@@ -190,7 +187,7 @@ class vopStatic{
 			$fext = $mcfg['c']['stext'];
 			$msg = '';
 		} //echo "($fext)";
-		$dfix = basReq::val('offset');
+		$dfix = req('offset');
 		$elen = strlen($fext);
 		$ndir = DIR_HTML."/$mod$sub";
 		if(!is_dir("$ndir")){ return false; };
@@ -227,9 +224,9 @@ class vopStatic{
 		$re = ob_get_contents();
 		$kid = $vop->mod=='home' ? 'home' : $vop->key;
 		$vext = empty($vop->view) ? '' : ".$vop->view";
-		$file = self::getPath($vop->mod,$kid.$vext,0); dump($file);
+		$file = self::getPath($vop->mod,$kid.$vext,0); 
 		$msg = $file.' : '.basStr::showNumber(strlen($re),'Byte').'';
-		comFiles::chkDirs($file,'htm');
+		comFiles::chkDirs($file,'html');
 		comFiles::put(DIR_HTML.'/'.$file,"$re\n<!--$msg-->");
 		ob_end_clean(); 
 		return $msg;
@@ -237,9 +234,8 @@ class vopStatic{
 	
 	//获得Static文件路径(当前模板):
 	static function getPath($mod,$kid,$isfull=1){
-		//global $_cbase;
 		$kid || $kid = 'home'; 
-		$dir = comFiles::getResDir($mod,$kid,$isfull);
+		$dir = comStore::getResDir($mod,$kid,$isfull);
 		if($isfull){
 			$dir = DIR_HTML.substr($dir,strlen(DIR_URES)); 	
 		}
@@ -255,7 +251,7 @@ class vopStatic{
 		$re = array();
 		foreach($vcfg as $tpl=>$suit){
 			if(strpos($_cbase['tpl']['no_static'],$tpl)) continue;
-			$file = DIR_CODE."/tpls/$tpl/_config/vc_$mod.php";
+			$file = DIR_SKIN."/$tpl/_config/vc_$mod.php";
 			if(file_exists($file)){
 				include($file); 
 				$kc = "_vc_$mod"; $cfg = $$kc;
@@ -287,7 +283,7 @@ class vopStatic{
 	
 	//
 	static function clrFile($mod,$kid){
-		$dir = comFiles::getResDir($mod,$kid);
+		$dir = comStore::getResDir($mod,$kid);
 		comFiles::delDir($dir,1);
 		$files = array(); 
 		foreach($files as $files){

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 $_cbase['tpl']['tpl_dir'] = 'chn';
 $isMobile = basEnv::isMobile();
 $vcfg = vopTpls::etr1('tpl'); 
@@ -37,7 +37,7 @@ p.logo, h1.title { left:auto; top:auto; position:relative; display:block; clear:
       <a href="<?php echo PATH_PROJ.$v[1]; ?>" class="qrcode_tip"><?php echo $v ? "($k)$v[0]" : ''; ?><i class="qrcode_pic" id="qrcode_pic<?php echo $k; ?>" style="display:none;"></i></a>
       <?php } ?>
     </nav>
-    <p class="logo"><img src="<?php echo PATH_ROOT; ?>/skin/a_img/logo120x60.jpg" width="120" height="60" ></p>
+    <p class="logo"><img src="<?php echo PATH_SKIN; ?>/_pub/a_img/logo120x60.jpg" width="120" height="60" ></p>
     <h1 class="title"><b><?php echo $_cbase['sys_name']; ?></b></h1>
     
     <div class="vnote">

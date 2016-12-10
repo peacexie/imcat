@@ -22,7 +22,7 @@ class sms_bucp{
 	// 发送短信；(gb2312编码)
 	function sendSMS($mobiles,$content){
 		if(is_array($mobiles)) $mobiles = implode(',',$mobiles);
-		$content = comConvert::autoCSet($content,glbConfig::get('cbase','sys.cset'),"gb2312");
+		$content = comConvert::autoCSet($content,cfg('sys.cset'),"gb2312");
 		$arr = $this->arr;
 		$arr['mobile'] = $mobiles;
 		$arr['content'] = $content;

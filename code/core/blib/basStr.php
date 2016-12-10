@@ -1,16 +1,22 @@
 <?php
 
-// String类
+// String类 - by Peace(XieYS) 2012-02-18
+
 class basStr{	
-	/* *****************************************************************************
-	  *** String通用代码 
-	- cut,show前缀
-	- by Peace(XieYS) 2012-02-18
-	***************************************************************************** */
+
+	// 把字符串转化为数组，支持中文
+	static function strArr($str, $cset='utf-8'){
+	    $len = mb_strlen($str, $cset);
+	    $arr = array();
+	    for($i=0; $i<$len; $i++){
+	        $arr[] = mb_substr($str, $i, 1, $cset);
+	    }   
+	    return $arr;
+	}
 
 	// 匹配中文字符串
 	// ($str,'100,ffff','3,5'), ($str,'cnchr','c124'), 
-	public static function getMatch($str,$case='cnchr',$len='c124'){
+	static function getMatch($str,$case='cnchr',$len='c124'){
 		$cfgs = array(
 			'isasc' => array('{20}','{ff}'), // ascii码
 			'noasc' => array('{100}','{ffff}'), //非ascii码
@@ -25,8 +31,7 @@ class basStr{
 		$cfg = isset($cfgs[$case]) ? $cfgs[$case] : explode(',',str_replace(",","},{",'{'.$case.'}'));
 		$len = isset($lens[$len]) ? $lens[$len] : '{'.$len.'}'; "\{$len\}"; 
 		if($case=='dbstr'){ //(is_array($cfg)){
-			//preg_match_all("/[^\'|\"|\>|\<|\r|\n|\?|\\\\]*[\x{4e00}-\x{9fa5}]{1}[^\'|\"|\>|\<|\r|\n|\?|\\\\]*/u",$str,$m);
-			preg_match_all("/[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,48}[\x{4e00}-\x{9fa5}]{1}[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,96}/iu",$str,$m); // (!)
+			preg_match_all("/[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,48}[\x{4e00}-\x{9fa5}]{1}[\x{2000}-\x{9fa5}a-z0-9\/\:\,\.\_\-\[\]]{0,96}/iu",$str,$m); 
 		}else{
 			preg_match_all("/[\x{$cfg[0]}-\x{$cfg[1]}]{$len}/u",$str,$m);
 		}
@@ -35,9 +40,8 @@ class basStr{
 	}
 
 	// 计算字符串字节数，英文算一个字节,不管[GBK/utf-8]编码中文算两个字节
-	public static function chrCount($str){
-		global $_cbase; 
-		$ch = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
+	static function chrCount($str){
+		$ch = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
 		$length = strlen(preg_replace('/[\x00-\x7F]/', '', $str)); 
 		if($length){
 			return strlen($str) - $length + intval($length / $ch) * 2;
@@ -48,9 +52,8 @@ class basStr{
 	}
 	
 	// *** 截取字符串，英文算一个,中文算一个 
-	static function cutCount($str,$len=255){
-		global $_cbase; 
-		$ch = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
+	static function cutCount($str,$len=255){ 
+		$ch = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
 		$n = strlen($str); //php函数原始长度
 		$p = 0; //指针
 		$cnt = 0; // 计数,英文算一个字符
@@ -69,10 +72,9 @@ class basStr{
 	}
 	
 	// *** 截取字符串，得到等宽字符串
-	static function cutWidth($string, $length=24, $etc='...') { 
-		global $_cbase; 
+	static function cutWidth($string, $length=24, $etc='...') {  
 		if(!$string) return ""; 
-		$clen = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
+		$clen = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
 		$sLen=0; $width=0; $strcut=''; $length=$length*2; //中文宽计算
 		if(strlen($string) > $length) {
 			//将$length换算成实际UTF8格式编码下字符串的长度
@@ -91,6 +93,7 @@ class basStr{
 		$b = 0; $bfix = ''; // Byte
 		if(is_numeric($num)){ $b = $num; }
 		if($type==='Byte'){
+			// TB,PB,EB,ZB,YB,NB,DB
 			if($b>pow(1024,4)){
 				$b = number_format($b/(pow(1024,4)),2)." (TB) ";
 			}else if($b>pow(1024,3)) {
@@ -111,9 +114,8 @@ class basStr{
 	// *** 显示状态
 	// "Y;N;X;-","已审;未审;未过;未知",$SetShow);
 	static function showState($xState,$xMsg,$val){
-		global $_cbase;
 		if($xMsg==""){ $xMsg=$xState; }
-		$sc = '333,'.$_cbase['ucfg']['ctab'].',999'; $ac = explode(',',$sc); 
+		$sc = '333,'.cfg('ucfg.ctab').',999'; $ac = explode(',',$sc); 
 		$ak = explode(';',$xState); $am = explode(';',$xMsg);
 		$j=0; $r="<span style='color:#CCC'>-</span>";
 		for($i=0;$i<sizeof($ak);$i++) { 
@@ -137,12 +139,8 @@ class basStr{
 		return $Text;
 	}
 	
-	/* *****************************************************************************
-	  *** Filter转义/还原
-	- fil前缀
-	- by Peace(XieYS) 2012-02-21
-	***************************************************************************** */
-	
+	// Filter转义/还原
+
 	// *** 文本文件
 	static function filText($xStr,$cbr=1){  
 		if(is_array($xStr)) {
@@ -200,7 +198,7 @@ class basStr{
 	}
 	// *** Title过滤标题
 	static function filTitle($xStr){
-		$xStr = str_replace(array('<','>','"',"'","\\","\r","\n",'&','#'),'',$xStr); // ,'/','*','|','?',NULL
+		$xStr = str_replace(array('<','>','"',"'","\\","\r","\n",'&','#'),'',$xStr); 
 		return $xStr;
 	}
 	// *** 过滤空行和注释
@@ -228,11 +226,7 @@ class basStr{
 		return $str;
 	}
 
-	/* *****************************************************************************
-	  *** Check字符处理
-	- chk前缀
-	- by Peace(XieYS) 2012-02-24
-	***************************************************************************** */
+	// Check字符处理
 
 	static function isKey($str,$m1=3,$m2=12,$type='') {
 		$new = self::filKey($str,$type);

@@ -8,18 +8,18 @@ if($verify_result) {//验证成功
 	//请在这里加上商户的业务逻辑程序代码
 
 	//商户订单号
-	$out_trade_no = basReq::val('out_trade_no');
+	$out_trade_no = req('out_trade_no');
 
 	//演示交易号
-	$trade_no = basReq::val('trade_no');
+	$trade_no = req('trade_no');
 
 	//交易状态
-	$trade_status = basReq::val('trade_status');
+	$trade_status = req('trade_status');
 
     if($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
 		//判断该笔订单是否在商户网站中已经做过处理
     }else{
-   		//echo "trade_status=".basReq::val('trade_status');
+   		//echo "trade_status=".req('trade_status');
     }
 		
 	$msg = lang('a3rd.ureturn_ok');
@@ -40,9 +40,9 @@ $cfg = array(
 	'status'=>'trade_status',
 );
 foreach($cfg as $k1=>$k2){ 
-	$res[$k1] = basReq::val($k2);  
+	$res[$k1] = req($k2);  
 }
 $res['msg'] = $msg;
 $res['api'] = 'Demopay';
-$res['stamp'] = date('Y-m-d H:i:s',basReq::val('notify_time','0'));
+$res['stamp'] = date('Y-m-d H:i:s',req('notify_time','0'));
 require_once(dirname(dirname(__FILE__))."/paydemo_dir/xresult.php");

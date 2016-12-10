@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 /**
 safBase : 常规-安全过滤(Safil=Safety Filter)
@@ -10,12 +10,11 @@ class safComm{ // extends safBase
 	
 	// 综合认证：
 	static function formCAll($mod,$path='',$timeout=3600){
-		global $_cbase; 
 		$re = '';
 		//fromUrl 认证
 		self::urlFrom($path);
 		$rest = self::formCInit('x', $timeout);
-		$code = basReq::val("{$mod}_{$rest[1]}");
+		$code = req("{$mod}_{$rest[1]}");
 		$revc = self::formCVimg($mod, $code, 'check', $timeout, 1);
 		if(!empty($rest[0])){ 
 			$re = lang('safcomm_vcoderr')."[$rest[0]]";
@@ -69,10 +68,10 @@ class safComm{ // extends safBase
 			$restr = "<input type='hidden' name='{$safix}[dt]' value='$dval' />";
 			$restr .= "<input type='hidden' name='{$safix}[tm]' value='$stamp' />";
 			$restr .= "<input type='hidden' name='{$safix}[enc]' value='$encode' />";
-			$fmid = basReq::val('fmid','');
-			$css1 = basReq::val('css1','txt w60');
-			$css2 = basReq::val('css2','fs_vimg');
-			$tabi = basReq::val('tabi',19790);
+			$fmid = req('fmid','');
+			$css1 = req('css1','txt w60');
+			$css2 = req('css2','fs_vimg');
+			$tabi = req('tabi',19790);
 			$senc = comConvert::sysEncode($sform,$stamp,$len2); 
 			$vgap = '\\"'; 
 			$vstr = "maxlength='5' reg='vimg:3-5' tip='".lang('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
@@ -222,13 +221,13 @@ class safComm{ // extends safBase
 		}
 	}
 	/*
-	$act = basReq::val('act','sign');
+	$act = req('act','sign');
 	if($act=='sign'){
 		$arr = array('act'=>'check','aa'=>'aa1','bb'=>'bb1',);
 		$str = safComm::signVeryfy($arr,'act,aa');
 		echo ":<a href='?$str' target='_blank'>$str</a>:";
 	}elseif($act=='check'){
-		$timeout = basReq::val('timeout','5');
+		$timeout = req('timeout','5');
 		$res = safComm::signVeryfy($timeout,'act,aa');
 		echo $res;
 	}*/

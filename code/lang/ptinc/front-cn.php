@@ -1,8 +1,10 @@
-<?php if($part=='_test1_'){ ?> 
+<?php (!defined('RUN_INIT')) && die('No Init');?>
+
+<?php switch($part){ case '_test1_': ?> 
 
 中
 
-<?php }elseif($part=='homevn'){ ?>
+<?php break;case 'homevn': ?>
 
 ● 管理中心
  --- 您的网站您做主！<br> 

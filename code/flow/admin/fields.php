@@ -1,22 +1,22 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','admin/fields.php'); 
 
 $mod = empty($mod) ? 'docs' : $mod;
 $view = empty($view) ? 'list' : $view;
-$ispara = basReq::val('ispara','0'); //1,0
-$catid = basReq::val('catid','0'); $cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
+$ispara = req('ispara','0'); //1,0
+$catid = req('catid','0'); $cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
 $tabid = 'base_fields'; if($ispara) $tabid = 'base_paras'; if($catid) $tabid = 'bext_fields';
 $title = lang('flow.title_field'); if($ispara || $catid) $title = lang('admin.fls_paritem');
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@fields.php'); 
 
 if($view=='ftest'){ 
 	
-		$lnkbak = "<a href='?file=$file&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;".lang('flow.fls_backflist')."</a>";
+		$lnkbak = "<a href='?file=$file&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;".lang('admin.fls_backflist')."</a>";
 		glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]".lang('admin.fls_fmres'),'---',40);
 	if(empty($bsend)){ 
 		glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-		fldView::lists($mod,array('title'=>'(test)'.lang('flow.fls_test').date('H:i:s'),'author'=>',a,b,'),$catid);
+		fldView::lists($mod,array('title'=>'(test)'.lang('admin.fls_test').date('H:i:s'),'author'=>',a,b,'),$catid);
 		glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 		glbHtml::fmt_end();
 	}else{
@@ -29,7 +29,7 @@ if($view=='ftest'){
 }elseif($view=='fadd'){
 	
 	if(empty($bsend)){ 
-		echo basJscss::imp('/skin/a_jscss/fields.js');
+		echo basJscss::imp('/_pub/a_jscss/fields.js');
 		$url = $aurl[1]; //basReq::getURep(,'view','form');
 		$fmextra_bak = "\n<select id='fmextra_bak' name='fmextra_bak' style='display:none;' >".basElm::setOption(fldCfgs::viewPlugs(),'')."</select>";
 		$field_from = "\n<input id='fm[from]' name='fm[from]' type='hidden' value='' />"; 
@@ -86,7 +86,7 @@ if($view=='ftest'){
 		
 	}else{
 		
-		echo basJscss::imp('/skin/a_jscss/fields.js'); 
+		echo basJscss::imp('/skin/_pub/a_jscss/fields.js'); 
 		$fm = fldEdit::fmOrgData($tabid,$mod,$kid,$fm,$catid);
 		
 		$fedit = new fldEdit($mod,$fm);

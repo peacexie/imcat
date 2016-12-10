@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // usrAdmin
 class usrAdmin extends usrBase{	
@@ -46,11 +46,11 @@ class usrAdmin extends usrBase{
 	}
 	
 	static function getMkv($re='mkv'){
-		$file = basReq::val('file'); 
+		$file = req('file'); 
 		if(in_array(substr($file,0,1),array('.','/'))){
 			return 'amain'; // 不能是 .和/ 开头; 
 		}
-		$frame = basReq::val('frame');
+		$frame = req('frame');
 		if($frame && $file){
 			$re = 'awtop';
 		}elseif($file){
@@ -62,8 +62,8 @@ class usrAdmin extends usrBase{
 	}
 
 	static function opLogin(){	
-		$user = usrBase::userObj('Admin');
-		$act = basReq::val('act');
+		$user = user('Admin');
+		$act = req('act');
 		if($act=='dologin'){ 
 			$re2 = safComm::formCAll('fmadm'); 
 			if(empty($re2[0])){ 

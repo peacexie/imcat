@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','admin/types.php');
 
 $mod = empty($mod) ? 'china' : $mod;
@@ -8,7 +8,7 @@ $pid = empty($pid) ? '0' : $pid;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@types.php'); 
 $gbar = admAFunc::grpNav('types',$mod); 
 
-$cfg = glbConfig::read($mod); //print_r($cfg);
+$cfg = read($mod); //print_r($cfg);
 $tabid = empty($cfg['etab']) ? 'types_common' : "types_$mod";
 
 if($view=='glist'){
@@ -66,7 +66,7 @@ if($view=='glist'){
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
-	echo "<th>".lang('flow.title_char')."</th><th>".lang('flow.title_level')."</th><th>".lang('flow.title_frame')."</th><th>".lang('flow.title_note')."</th>";
+	echo "<th>".lang('flow.title_char')."</th><th>".lang('flow.title_level')."</th><th>".lang('flow.title_frame')."</th><th>".lang('flow.title_subtype')."</th>";
 	echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n";
 	$list = $db->table($tabid)->where("model='$mod' AND pid='$pid'")->order('top,kid')->select();
@@ -115,13 +115,13 @@ if($view=='glist'){
 			$msg = lang('flow.msg_upd');
 			unset($fm['kid']);
 			$f = $cfg['f'];
-			$mcfg = glbConfig::read($mod); 
+			$mcfg = read($mod); 
 			foreach($_POST['fm'] as $k=>$v){
 			if(isset($f[$k])){ 
 				$fm[$k] = dopFunc::svFmtval($f,$mod,$k,$v);
 				if(isset($mcfg['f'][$k]) && in_array($mcfg['f'][$k]['type'],array('file','text'))){
 					$ishtml = $mcfg['f'][$k]['type']=='text';
-					$fm[$k] = comFiles::moveTmpDir($fm[$k],$mod,'',$ishtml);
+					$fm[$k] = comStore::moveTmpDir($fm[$k],$mod,$kid,$ishtml);
 				}
 			} }
 			$db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$kid'")->update();

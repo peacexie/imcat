@@ -311,7 +311,7 @@ return array(
 	'title_char' => 'Char',
 	'title_level' => 'Level',
 	'title_frame' => 'Frame',
-	'title_subtype' => 'Sub.',
+	'title_subtype' => 'Items',
 	'title_param' => 'Param',
 	'title_edit' => 'Edit',
 	'title_note' => 'Note',

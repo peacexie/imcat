@@ -41,12 +41,12 @@ class comPager{
 		$a = array('page','prec','pjump','ptype','pkey',); //'odesc','opkey',
 		foreach($a as $k){
 			if(!empty($_GET[$k])){ 
-				$__v = basReq::val($k,'Key',24); //req($k); 
+				$__v = req($k,'Key',24); //req($k); 
 				if(in_array($k,array('page','prec','pjump',))) $__v = max(0,intval($__v));
 				$this->$k = $__v;
 			}
 		}
-		if(''!==$om=basReq::val('odesc','N',1)){ $this->odesc = $om; }
+		if(''!==$om=req('odesc','N',1)){ $this->odesc = $om; }
 	}
 	
 	function set($key,$value=0){
@@ -105,7 +105,7 @@ class comPager{
 		}
 	}
 	function exe(){
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$rs = $db->query($this->sql());
 		if(!$this->prec){ 
 			$rec = $db->query($this->sql('_rc_recs_'));

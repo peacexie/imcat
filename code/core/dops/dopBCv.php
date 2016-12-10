@@ -88,7 +88,7 @@ class dopBCv{
 		if($fmt=='d') $fmt='y-m-d';
 		$val = empty($val) ? "<span class='cCCC'>---</span>" : date($fmt,$val);
 		if(!empty($end)){
-			$vc = date('Y-m-d',glbConfig::get('cbase', 'run.stamp'));
+			$vc = date('Y-m-d',cfg('run.stamp'));
 			$vd = substr($val,0,10); 
 			if($vc===$vd){
 				$val = "<span class='c00F'>$val</span>";

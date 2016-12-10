@@ -17,19 +17,19 @@ class vopMedia{
 				$cstr = str_replace($itm,$sres,$cstr); //echo "\n b--- $cstr";
 			}
 		}
-		$cstr = comFiles::revSaveDir($cstr);
+		$cstr = comStore::revSaveDir($cstr);
 		return $cstr;
 	}	
 
 	static function _repItem($porg,$mtype){
-		$mapi = glbConfig::get('cbase', 'sys_map');
+		$mapi = cfg('sys_map');
 		$pw = self::onePara($porg,'w'); $pw = $pw>80 ? $pw : '480'; //100%;
 		$ph = self::onePara($porg,'h'); $ph = $ph>60 ? $ph : '360';
 		$val = self::_itmUri($porg);
 		if(in_array($mtype,array('iframe','map'))){
 			if($mtype=='map'){
 				$title = self::onePara($porg,'ext'); $point = $val; 
-				$val = PATH_ROOT."/plus/map/index.php?type=$mapi&point=$point&title=$title";
+				$val = PATH_ROOT."/plus/map/index.php?api=$mapi&point=$point&title=$title";
 			}
 			$sres = "<iframe src='$val' width='$pw' height='$ph'></iframe>";
 		}else{ //if(in_array($mtype,array('swf','audio','ckvdo'))){ //'flv',
@@ -62,7 +62,7 @@ class vopMedia{
 	
 	static function _itmRep($org,$val,$pw,$ph){
 		$re = str_replace(array('{$url}','{$w}','{$h}'),array($val,$pw,$ph),$org);
-		$re = str_replace(array('{uiroot}','{$uiroot}'),array(PATH_VENDUI),$re);
+		$re = str_replace(array('{uiroot}','{$uiroot}'),PATH_VENDUI,$re);
 		return $re; 
 	}
 	

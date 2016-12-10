@@ -15,13 +15,13 @@ class wexControl{
 
 	function __construct(){
 		
-		#die(basReq::val('echostr',''));
+		#die(req('echostr',''));
 
-		$actys = basReq::val('actys',''); 
-		$this->kid = basReq::val('kid','admin');
+		$actys = req('actys',''); 
+		$this->kid = req('kid','admin');
 		$this->cfg = wysBasic::getConfig($this->kid); 
 		
-		if($echostr=basReq::val('echostr','')){
+		if($echostr=req('echostr','')){
 			$this->checkSign($echostr);
 		}
 		
@@ -96,11 +96,11 @@ class wexControl{
 	function chkLogin(){
 		global $_cbase;
 		$uniqueid = usrPerm::getUniqueid();
-		$db = glbDBObj::dbObj(); 
-		$scene = basReq::val('scene',''); 
-		$extp = basReq::val('extp',''); 
-		$stampys = basReq::val('stampys',''); 
-		$signys = basReq::val('signys',''); 
+		$db = db(); 
+		$scene = req('scene',''); 
+		$extp = req('extp',''); 
+		$stampys = req('stampys',''); 
+		$signys = req('signys',''); 
 		$signenc = md5($_cbase['safe']['api'].$stampys.$extp); 
 		if(empty($extp) || (($_cbase['run']['stamp']-$stampys)>5*60) || $signenc!=$signys){
 			$res['error'] = '登录失败';
@@ -128,11 +128,11 @@ class wexControl{
 	function chkUpload(){
 		global $_cbase;
 		$uniqueid = usrPerm::getUniqueid();
-		$db = glbDBObj::dbObj(); 
-		$scene = basReq::val('scene',''); 
-		$extp = basReq::val('extp',''); 
-		$stampys = basReq::val('stampys',''); 
-		$signys = basReq::val('signys',''); 
+		$db = db(); 
+		$scene = req('scene',''); 
+		$extp = req('extp',''); 
+		$stampys = req('stampys',''); 
+		$signys = req('signys',''); 
 		$signenc = md5($_cbase['safe']['api'].$stampys.$extp); 
 		if(empty($extp) || (($_cbase['run']['stamp']-$stampys)>60*60) || $signenc!=$signys){
 			$res['error'] = 'errorCheck';
@@ -158,7 +158,7 @@ class wexControl{
 	}
 	
     function loadFile(){ 
-		$mediaid = basReq::val('mediaid','',255);
+		$mediaid = req('mediaid','',255);
 		$wmat = new wmpMaterial($this->cfg);
 		$data = $wmat->loadMedia($mediaid);
 		if(strstr($data,'"errmsg"')){
@@ -173,9 +173,9 @@ class wexControl{
 	
     function getQrcode(){ //注意:用总站的wecfg
 		global $_cbase;
-		$qrmod = basReq::val('qrmod','login'); 
+		$qrmod = req('qrmod','login'); 
 		#$this->chkQropen($qrmod);
-		$extp = basReq::val('extp',''); 
+		$extp = req('extp',''); 
 		//if(strlen($extp)<6){  }
 		$wxqr = new wysQrcode($this->cfg); 
 		$qrcode = $wxqr->getQrcode($qrmod, 'limit', $extp); 
@@ -188,7 +188,7 @@ class wexControl{
     function getUinfo(){
 		//权限?!
 		#if($re0==3) die("没有权限"); 
-		$ustr = basReq::val('ustr','',2048); 
+		$ustr = req('ustr','',2048); 
 		$weixin = new wmpUser($this->cfg);
 		$data = $weixin->getUserBatch($ustr,1);
 		$re = "var data = $data;";
@@ -196,28 +196,26 @@ class wexControl{
 	}
 	
     function kidExists(){
-		$db = glbDBObj::dbObj();
 		$kid = basReq::ark('fm','kid','Key'); 
-		$oldval = basReq::val('oldval'); 
+		$oldval = req('oldval'); 
 		if(strlen($kid)<3){
 			echo "[kid]错误！";
 		}elseif($kid===$oldval){
 			die("success");
-		}elseif($flag=$db->table('wex_apps')->where("kid='$kid'")->find()){
+		}elseif($flag=db()->table('wex_apps')->where("kid='$kid'")->find()){
 			echo "[$kid]已被占用！";
 		}else{
 			die("success");
 		}
     }
     function appidExists(){
-		$db = glbDBObj::dbObj();
 		$appid = basReq::ark('fm','appid','Key');
-		$oldval = basReq::val('oldval'); 
+		$oldval = req('oldval'); 
 		if(strlen($appid)<6){
 			echo "[appid]错误！";
 		}elseif($appid===$oldval){
 			die("success");
-		}elseif($flag=$db->table('wex_apps')->where("appid='$appid'")->find()){
+		}elseif($flag=db()->table('wex_apps')->where("appid='$appid'")->find()){
 			echo "[$appid]已被占用！";
 		}else{
 			die("success");

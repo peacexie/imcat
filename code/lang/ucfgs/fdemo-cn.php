@@ -13,7 +13,7 @@ array (
   'show-vtip' => '一定要选',
   'top' => '显示顺序',
   'top-vtip' => '如:888',
-  'color' => '显示颜色',
+  'color' => '标题颜色',
   'color-vtip' => '如:#FF00FF',
   'click' => '点击次数',
   'click-vtip' => '如:888',

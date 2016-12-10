@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 $_sy_fdemo = array(
 	  'init_docs' => array(
@@ -15,7 +15,7 @@ $_sy_fdemo = array(
 			   'vreg'=>'str:1-1','vtip'=>'一定要选','dbtype'=>'int','dblen'=>'1','dbdef'=>'1',),
 		  'top'=>array('title'=>'显示顺序','etab'=>'0','type'=>'input','enable'=>'1','vmax'=>'6',
 			   'vreg'=>'n-i','vtip'=>'如:888','dbtype'=>'int','dblen'=>'10','dbdef'=>'888',),
-		  'color'=>array('title'=>'显示颜色','etab'=>'0','type'=>'input','enable'=>'1','vmax'=>'8',
+		  'color'=>array('title'=>'标题颜色','etab'=>'0','type'=>'input','enable'=>'1','vmax'=>'8',
 			   'vreg'=>'nul:str:4-7','vtip'=>'如:#FF00FF','dbtype'=>'varchar','dblen'=>'12','dbdef'=>'',),
 		  'click'=>array('title'=>'点击次数','etab'=>'0','type'=>'input','enable'=>'1','vmax'=>'8',
 			   'vreg'=>'n+i','vtip'=>'如:888','dbtype'=>'int','dblen'=>'10','dbdef'=>'0',),

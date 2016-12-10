@@ -9,12 +9,12 @@ echo basJscss::imp("/tools/exdiy/style.css");
 echo basJscss::imp("/tools/exdiy/rplan.js");
 glbHtml::page('body');
 
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 $safix = $_cbase['safe']['safix'];
 $sapp = $ocfgs['sign']['sapp'];
 $skey = $ocfgs['sign']['skey'];
 
-$act = basReq::val('act','');
+$act = req('act','');
 include(vopShow::inc('/tools/exdiy/rplan.htm',DIR_ROOT));
 glbHtml::page('end');
 ?>

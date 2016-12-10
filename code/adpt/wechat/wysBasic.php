@@ -32,7 +32,6 @@ class wysBasic{
 	}
 
 	static function debugError($msg='',$arr=array(),$url='',$die=0){
-		global $_cbase; 
 		if(is_array($arr) && !empty($arr['errcode'])){
 			$msg = wmpError::errGet($arr['errcode']);
 			if(strpos($msg,'(unKnow)') && !empty($arr['errmsg'])){
@@ -45,7 +44,7 @@ class wysBasic{
 			$msg .= "$url<br>".$arr;
 		} 
 		$msg && $msg = "$msg<br>";
-		$debug = $_cbase['weixin']['debug'];
+		$debug = cfg('weixin.debug');
 		if(defined('WERR_RETURN') && empty($die)){ 
 			$arr['message'] = $msg;
 			$arr['url'] = $url;
@@ -87,14 +86,13 @@ class wysBasic{
 		if(isset(self::$cfgs[$ckey])){ 
 			return self::$cfgs[$ckey]; 
 		}
-		$db = glbDBObj::dbObj();
-		$recfg = $db->table('wex_apps')->where("$key='$val'")->find();
+		$recfg = db()->table('wex_apps')->where("$key='$val'")->find();
 		return empty($recfg) ? array() : $recfg;
 	}
 	
 	// 返回缓存文件路径
     static function getCfpath($key, $type='actik'){
-		//comFiles::chkDirs('weixin','tmp',0);
+		//comFiles::chkDirs('weixin','dtmp',0);
 		$cfile = DIR_DTMP.str_replace('(appid)',$key,self::$cache_path[$type]);
 		return $cfile;
 	}

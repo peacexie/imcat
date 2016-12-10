@@ -1,16 +1,16 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 $_pbase = empty($_cbase) ? array() : $_cbase; //把前置_cbase备份
 //$_cbase = array(); run.outer, skip.*, tpl.tpl_dir, 
 
 // 运行时常用变量,越是最先运行越准确
 $_cbase['run']['timer']  = microtime(1); 
-$_cbase['run']['memory'] = memory_get_usage(); 
+$_cbase['run']['memory'] = memory_get_usage();
 $_cbase['run']['aclass'] = array(); //
 
-// 加载系统函数,配置
-require(DIR_CODE.'/core/blib/system.php'); 
+// 加载:自动加载类,别名函数,配置
+require(DIR_CODE.'/core/blib/loader.php'); //自动加载类,别名函数
 require(DIR_CODE.'/cfgs/boot/const.cfg.php'); //基本设置const: 可被后台设置,页面设置覆盖
 require(DIR_DTMP.'/dset/_score.cfg.php'); //后台设置_score: 其次,可被页面设置覆盖
 //以下会处理[页面设置_pbase];         //页面设置_pbase: 最优先

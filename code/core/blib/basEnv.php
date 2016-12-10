@@ -18,15 +18,13 @@ class basEnv{
 
 	// 系统信息,魔术变量,时区
 	static function runVersion(){
-		global $_cbase;
 		if(version_compare(PHP_VERSION,'5.4.0','<')) {
 			ini_set('magic_quotes_runtime',0);
 		}
-		date_default_timezone_set($_cbase['sys']['tzcode']);		
+		date_default_timezone_set(cfg('sys.tzcode'));		
 	}
 	// const,
 	static function runConst(){
-		global $_cbase;
 		/*
 		define('IS_CGI',	 substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
 		define('IS_WIN',	 strstr(PHP_OS, 'WIN') ? 1 : 0 );
@@ -75,17 +73,17 @@ class basEnv{
 	
 	// 处理skips
 	static function runSkips(){
-		global $_cbase;
+		$skip = cfg('skip');
 		// 错误处理类 
-		if(!isset($_cbase['skip']['error'])){
+		if(!isset($skip['error'])){
 			self::runError();
 		}
 		// *** robot
-		if(isset($_cbase['skip']['robot'])){
+		if(isset($skip['robot'])){
 			safBase::robotStop(); 
 		}
 		// 处理session
-		if(!isset($_cbase['skip']['session'])){ 
+		if(!isset($skip['session'])){ 
 			if(!session_id()) @session_start();
 		}
 	}
@@ -101,13 +99,11 @@ class basEnv{
 			}else{
 				error_reporting(0); 
 			}
-			set_exception_handler('except_handler_ys'); //注册默认异常处理函数
-			set_error_handler('error_handler_ys',E_ALL^E_WARNING^E_NOTICE); //注册默认错误处理函数
+			$hkey = $_cbase['debug']['err_hkey'];
+			$hkey = ($hkey=='(def)' || intval($hkey)<=0) ? E_ALL^E_WARNING^E_NOTICE : $_cbase['debug']['err_hkey']; 
+			set_exception_handler('except_handler_ys'); //注册异常处理函数
+			set_error_handler('error_handler_ys',$hkey); //注册错误处理函数
 		}
-		/*
-		if(!empty($_cbase['handler']['shutdown'])){
-			register_shutdown_function('shutdown_handler_ys');
-		}*/
 	}
 
 	// 获取客户端软件信息
@@ -120,8 +116,8 @@ class basEnv{
 	
 	// 获取客户端IP地址('::1','123.234.123.234, 127.0.0.1')(.:[ ])
 	static function userIP($flag=0){
-		$a = array('f'=>'HTTP_X_FORWARDED_FOR','a'=>'REMOTE_ADDR','c'=>'HTTP_CLIENT_IP'); //'r'=>'HTTP_X_REAL_FORWARDED_FOR',
-		$ip = '';
+		$a = array('f'=>'HTTP_X_FORWARDED_FOR','a'=>'REMOTE_ADDR','c'=>'HTTP_CLIENT_IP');
+		$ip = ''; //'r'=>'HTTP_X_REAL_FORWARDED_FOR',
 		foreach($a as $k=>$v){
 			$v = str_replace(' ','',$v);
 			if(!empty($_SERVER[$v]) && !strstr($ip,$_SERVER[$v])){
@@ -137,7 +133,7 @@ class basEnv{
 	
 	// 是否搜索引擎来访
 	static function isRobot($user_agent=''){
-		$rbt = glbConfig::read('uachk','sy');
+		$rbt = read('uachk','sy');
 		$kw_spiders = $rbt['spname'];
 		$kw_browsers = $rbt['browsers'];
 		$user_agent || $user_agent = self::userAG();
@@ -167,7 +163,7 @@ class basEnv{
 		if(isset($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'],"wap")){
 			return true;
 		}
-		$rbt = glbConfig::read('uachk','sy');
+		$rbt = read('uachk','sy');
 		$kw_spkeywd = $rbt['spkeywd'];
 		if(preg_match("/($kw_spkeywd)/i", $_SERVER['HTTP_USER_AGENT'])){
 			return true;
@@ -198,7 +194,7 @@ class basEnv{
 			$part1 = $arr[$cnt-1]; $part2 = $arr[$cnt-2];
 			$re = "$part2.$part1"; //默认
 			if($cnt>=3){
-				$tcfg = glbConfig::read('dmtop','sy');
+				$tcfg = read('domain.dmtop','sy'); 
 				$t3p = '.com.net.org.edu.gov.int.mil.';
 				$re3 = $arr[$cnt-3].".$re";
 				if(!empty($tcfg[$re])){
@@ -219,6 +215,15 @@ class basEnv{
 		global $_cbase;
 		$host = $_SERVER["HTTP_HOST"]; 
 		$http = (@$_SERVER['HTTPS']==='on') ? 'https' : 'http';
+		$sdirs = read('domain.subDirs','sy'); 
+		// dir-跳转:
+		if(isset($sdirs[$host])){
+			$host = $sdirs[$host];
+			$uri = $_SERVER['REQUEST_URI'];
+			$dir = "$http://$host$uri";
+			#$ref = empty($_SERVER["HTTP_REFERER"]) ? '' : $_SERVER["HTTP_REFERER"];
+			header("Location:$dir");
+		}
 		$_cbase['run']['rsite'] = "$http://$host"; 
 		$_cbase['run']['rmain'] = "$http://$host".PATH_PROJ; 
 		$_cbase['run']['roots'] = "$http://$host".PATH_ROOT; 

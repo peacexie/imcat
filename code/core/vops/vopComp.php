@@ -11,8 +11,7 @@ class vopComp{
 	}
 	
 	function __construct($tpl='') {
-		global $_cbase; 
-		self::$tplCfg = $_cbase['tpl']; 
+		self::$tplCfg = cfg('tpl'); 
 		if($tpl) return $this->build($tpl);
 	}
 	
@@ -23,7 +22,7 @@ class vopComp{
 		$_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
 		$content = comFiles::get($re[0]);
 		$content = $this->bcore($content); //获取经编译后的内容
-		$shead = "(!defined('RUN_MODE')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
+		$shead = "(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
 		$shead .= "\nif(file_exists(\$tebp=vopTpls::pinc('tex_base'))){ include_once(\$tebp); }";
 		$shead .= "\nif(method_exists('tex_base','init')){ \$user = tex_base::init(\$this); }";
 		#if(file_exists($path=vopTpls::pinc(basename($this->ucfg['tplname'])))){
@@ -173,12 +172,11 @@ class vopComp{
 	
 	// retpl : 直接返回模版文件路径
 	static function checkTpls($tpl,$retpl=0){ 
-		global $_cbase;
 		$tplFile = vopTpls::path('tpl').'/'.$tpl.self::$tplCfg['tpl_ext'];
 		if($retpl) return $tplFile;
-		$cacheFile = vopTpls::path('tpc').'/'.$tpl.self::$tplCfg['tpc_ext']; //echo "$cacheFile,<br>$tplFile,<br>";
+		$cacheFile = vopTpls::path('tpc').'/'.$tpl.self::$tplCfg['tpc_ext']; 
 		if(!file_exists($tplFile)) glbError::show("$tplFile NOT Exists!"); 
-		comFiles::chkDirs('tpls/'.$_cbase['tpl']['tpl_dir'].'/'.$tpl,'tmp'); 
+		comFiles::chkDirs(cfg('tpl.tpl_dir').'/'.$tpl,'ctpl'); 
 		return array($tplFile, $cacheFile);
 	}
 	

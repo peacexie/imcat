@@ -2,12 +2,12 @@
 $_cbase['skip']['.none.'] = true;
 require(dirname(__FILE__).'/_config.php');
 
-$tpldir = $_cbase['tpl']['tpl_dir'] = basReq::val('tpldir');
-$file = basReq::val('file'); 
-$static = basReq::val('static'); // 后台静态管理/保存资料
-$mkv = basReq::val('mkv');
-$act = basReq::val('act');
-$mod = basReq::val('mod');
+$tpldir = $_cbase['tpl']['tpl_dir'] = req('tpldir');
+$fjob = req('fjob'); 
+$static = req('static'); // 后台静态管理/保存资料
+$mkv = req('mkv');
+$act = req('act');
+$mod = req('mod');
 //$q = $_SERVER['QUERY_STRING'];
 $safix = $_cbase['safe']['safix'];
 $sapp = basReq::ark($safix,'sapp'); 
@@ -27,7 +27,7 @@ $lang && $_cbase['sys']['lang'] = $lang;
 */
 
 if($static){
-	$user = usrBase::userObj();
+	$user = user();
 	if($user->userFlag!='Login') die('// NOT Login!');
 }
 
@@ -48,9 +48,9 @@ if($static=='updkid'){ // 保存资料时执行
     die();
 }elseif($static && $act=='del'){
     if($static=='home'){
-        $file = vopStatic::getPath('home','home',0);
-		$msg = @unlink(DIR_HTML."/$file"); 
-        echo $msg ? lang('plus.cron_ok')."$file!" : lang('plus.cron_err')."$file!"; 
+        $sfp = vopStatic::getPath('home','home',0);
+		$msg = @unlink(DIR_HTML."/$sfp"); 
+        echo $msg ? lang('plus.cron_ok')."$sfp!" : lang('plus.cron_err')."$sfp!"; 
     }elseif($static=='mlist'){
         $res = vopStatic::delList($mod,$tpldir); 
 		vopStatic::showRes($res);
@@ -59,18 +59,18 @@ if($static=='updkid'){ // 保存资料时执行
 		vopStatic::showRes($res);
     }
     die();
-}elseif(!empty($sapp) && !empty($skey) && !empty($file)){ // 指定计划任务
-	$ocfgs = glbConfig::read('outdb','ex');
+}elseif(!empty($sapp) && !empty($skey) && !empty($fjob)){ // 指定计划任务
+	$ocfgs = read('outdb','ex');
     $f1 = $sapp==$ocfgs['sign']['sapp'];
 	$f2 = $skey==$ocfgs['sign']['skey'];
 	$chk = ($f1 && $f2) ? '' : 'error'; 
 }else{ // jcronRun-执行
 	$chk = safComm::urlStamp('flag',90);
-	$file = ''; //避免恶意执行
+	$fjob = ''; //避免恶意执行
 }
 
 $chk && die("$chk"); //error
-$cron = new extCron($file); 
+$cron = new comCron($fjob); 
 
 if($mkv){
     if(vopStatic::chkNeed($mkv)){

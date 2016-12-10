@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // ...类exdFunc
 class exdFunc extends exdBase{	
@@ -15,22 +15,21 @@ class exdFunc extends exdBase{
 	// 拉取
 	function exdPull(){
 		$data = $this->odata();
-		//$ret = basReq::val('ret','json');
+		//$ret = req('ret','json');
 		$data = comParse::jsonEncode($data);
 		return $data;
 	}
 	
 	// 分享
 	function exdShow(){ //tpl,cut,clen,ret(html/js),
-		global $_cbase;
 		$data = $this->odata(); 
-		$tpl = basReq::val('tpl','','');
+		$tpl = req('tpl','','');
 		$burl = vopTpls::etr1('chn',0).'?'; 
 		$tpl = $tpl ? comParse::urlBase64($tpl,1) : "<li><a href='{rhome}$burl?$this->mod.{kid}'>{title}</a></li>";
-		$tpl = str_replace('{rhome}',$_cbase['run']['rsite'],$tpl);
-		$cut = ','.basReq::val('cut',"title,company").',';
-		$clen = basReq::val('clen',"255",'N');
-		$ret = basReq::val('ret','js'); 
+		$tpl = str_replace('{rhome}',cfg('run.rsite'),$tpl);
+		$cut = ','.req('cut',"title,company").',';
+		$clen = req('clen',"255",'N');
+		$ret = req('ret','js'); 
 		$str = ''; 
 		foreach($data as $nv){ 
 			$istr = $tpl;
@@ -130,7 +129,7 @@ class exdFunc extends exdBase{
 		$oukey = $jcfg['ktype']=='int' ? 'ouint' : 'outid';
 		if(empty($offset)) $offset = $this->getJFm2('exd_oilog',$jcfg['kid'],$oukey,'MAX'); 
 		if(empty($this->odb)){
-			$ocfgs = glbConfig::read('outdb','ex');
+			$ocfgs = read('outdb','ex');
 			require_once(DIR_CODE."/adpt/dbdrv/db_pdox.php");
 			$this->odb = new db_pdox(); 
 			$this->odb->connect($ocfgs[$jcfg['odb']]); 
@@ -197,11 +196,11 @@ class exdFunc extends exdBase{
 		if($debug=='links'){ 
 			return exdCrawl::ugetLinks($jcfg);
 		}elseif($debug=='field'){
-			$url = basReq::val('url');
+			$url = req('url');
 			$url || $url = $jcfg['odmp'];
 			$data = comHttp::doGet($url,5); 
 			$data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); // echo $data;
-			$field = basReq::val('field');
+			$field = req('field');
 			return exdCrawl::orgAll($data,$cfields[$field]);
 		}
 	}

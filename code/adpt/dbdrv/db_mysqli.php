@@ -116,6 +116,11 @@ class db_mysqli {
 		return $r[1];
 	}
 	
+	//返回quoteSql语句
+	function quoteSql($sql){
+		return mysqli_real_escape_string($this->link,$sql);
+	}
+
 	//输出错误信息
 	function error($message='', $sql='') { 
 		$sql = basDebug::hidInfo($sql,1);

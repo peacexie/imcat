@@ -1,11 +1,11 @@
 <?php
 require_once(dirname(__FILE__)."/config.php");
 safComm::urlFrom();
-$act = basReq::val('act');
+$act = req('act');
 $rndname = 'user_'.basKeyid::kidRand('24',8).'@domain.com';
 $rndpass = 'pass_'.basKeyid::kidRand('fs3',18); 
-$out_trade_no = basReq::val('out_trade_no');
-$total_fee = basReq::val('total_fee');
+$out_trade_no = req('out_trade_no');
+$total_fee = req('total_fee');
 if($act=='dologin'){
 	$fm = $_POST['fm'];
 	$re2 = safComm::formCAll('fmlpay');
@@ -25,7 +25,7 @@ if($act=='dologin'){
 <title><?php lang('a3rd.demo_title',0); ?></title>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
 <style type="text/css">
 .pgu_login{ width:640px; border:1px solid #CCC; padding:2px; margin:10px auto; font-size:14px; }
 .pgu_login p{ padding:5px; line-height:150%; }
@@ -37,7 +37,7 @@ if($act=='dologin'){
 .pgu_login .login{ width:350px; padding:10px 1px; float:left; }
 .login i { font-style:normal; display:inline-block; width:65px; padding-left:10px; }
 </style>
-<link rel="shortcut icon" href="<?php echo PATH_ROOT; ?>/skin/a_img/favicon.ico" />
+<link rel="shortcut icon" href="<?php echo PATH_SKIN; ?>/_pub/a_img/favicon.ico" />
 </head>
 <body>
 <div id="topMargin" style="display:none; border:0px solid #999;"></div>

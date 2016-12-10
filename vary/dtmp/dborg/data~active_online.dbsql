@@ -1,4 +1,4 @@
 
--- active_online@2016-09-14 20:17:46 -- 
+-- active_online@2016-12-10 21:34:41 -- 
 INSERT INTO `{pre}active_online{ext}` VALUES 
 ('3bc_is_demo_4a55241b7c55fea7069','xpigeon@163.com','cvip','0','test_cfgs','1','2147483647','192.168.1.11','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36');

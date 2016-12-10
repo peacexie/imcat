@@ -3,13 +3,22 @@
 // basSql类
 class basSql{	
 	
+	// *** 过滤注释
+	static function filNotes($str){
+		$str = str_replace('---<split>---','###<split>###',$str);
+		$str = preg_replace('/\/\*(.*?)\*\//is','',$str);
+		$str = preg_replace('/\-\-([^\'\r\n]{0,}(\'[^\'\r\n]{0,}\'){0,1}[^\'\r\n]{0,}){0,}/is','',$str);
+		$str = str_replace('###<split>###','---<split>---',$str);
+		return $str; 
+	}
+
 	// type=a/e; $re='arr/str'; ip=''
-	static function logData($type='a',$ip='',$time=0,$user=''){ //,$re='arr'
-		global $_cbase;
-		$unow = usrBase::userObj();
+	static function logData($type='a',$ip='',$time=0,$user=''){ 
+		$run = cfg('run');
+		$unow = user();
 		$cfg = array(
-			'ip' => $ip ? $ip : $_cbase['run']['userip'],
-			'time' => $time ? $time : $_cbase['run']['stamp'],
+			'ip' => $ip ? $ip : $run['userip'],
+			'time' => $time ? $time : $run['stamp'],
 			'user' => $user ? $user : @$unow->uinfo['uname'],
 		);
 		$re = array();
@@ -22,11 +31,10 @@ class basSql{
 	// 2013-12-31; 5(天)
 	static function whrDate($key,$val,$op,$cfg='isdate'){
 		//'fmextra' => 'datetm'
-		global $_cbase;
 		$val = preg_replace('/[^0-9A-Za-z,\.\-\ \:]/','',$val);
 		if( in_array($key,array('atime','etime')) || @$cfg=='isdate' || @$cfg['f'][$key]['mfextra']=='datetm' ){
 			if(is_numeric($val)){
-				$valbase = strtotime(date('Y-m-d',$_cbase['run']['timer']));
+				$valbase = strtotime(date('Y-m-d',time()));
 				$val = $valbase - $val*86400;
 			}else{ 
 				$val = strtotime($val); 
@@ -45,7 +53,7 @@ class basSql{
 	 * @param string $fname		查询的字段名（包含表别名前缀）
 	 * m.didu_0>=22.456 AND m.didu_0<=52.456 AND m.didu_1>=50.33 AND m.didu_1<=150.33
 	 */
-	public static function whrMap($x,$y,$diff,$mode,$fname){		
+	static function whrMap($x,$y,$diff,$mode,$fname){		
 		if(!$diff) return '';
 		$mode = empty($mode) ? 0 : 1;
 		$x = floatval($x);
@@ -110,7 +118,7 @@ class basSql{
 			foreach($arr as $v) $sql = str_replace($v,"\n$v",$sql);	
 			$sql = str_replace(") AND",") \n AND",$sql); 
 		}else{
-			require_once(DIR_VENDOR.'/sql-formatter/lib/SqlFormatter.php');
+			require_once(DIR_VENDOR.'/sql-formatter/SqlFormatter.php');
 			$sql = SqlFormatter::format($sql, $hlight);			
 		}
 		return $sql;
@@ -133,4 +141,52 @@ class basSql{
 		return " LIKE '%$keyword%' ";
 	}
 	
+
+	/**
+	 * mysql(ctreate_table)转sqlite语句
+	 * @author anrip[mail@anrip.com]
+	 * @version 2.1, 2013-01-18 17:02
+	 * @link http://www.anrip.com/?arkplus
+	 */
+	static function sqlite_tabcreate($sql) {
+		$expr = array(
+			'/`(\w+)`\s/' => '[$1] ',
+			'/\s+UNSIGNED/i' => '',
+			'/\s+[A-Z]*INT(\([0-9]+\))/i' => ' INTEGER$1',
+			'/\s+INTEGER\(\d+\)(.+AUTO_INCREMENT)/i' => ' INTEGER$1',
+			'/\s+AUTO_INCREMENT(?!=)/i' => ' PRIMARY KEY AUTOINCREMENT',
+			'/\s+ENUM\([^)]+\)/i' => ' VARCHAR(255)',
+			'/\s+ON\s+UPDATE\s+[^,]*/i' => ' ',
+			'/\s+COMMENT\s+(["\']).+\1/iU' => ' ',
+			'/[\r\n]+\s+PRIMARY\s+KEY\s+[^\r\n]+/i' => '',
+			'/[\r\n]+\s+UNIQUE\s+KEY\s+[^\r\n]+/i' => '',
+			'/[\r\n]+\s+KEY\s+[^\r\n]+/i' => '',
+			'/,([\s\r\n])+\)/i' => '$1)',
+			'/\s+ENGINE\s*=\s*\w+/i' => ' ',
+			'/\s+CHARSET\s*=\s*\w+/i' => ' ',
+			'/\s+AUTO_INCREMENT\s*=\s*\d+/i' => ' ',
+			'/\s+DEFAULT\s+;/i' => ';',
+			'/\)([\s\r\n])+;/i' => ');',
+		);
+		$sql = preg_replace(array_keys($expr), array_values($expr), $sql);
+		return $sql === null ? '{table_mysql2sqlite_error}' : $sql;
+	}
+
+	static function sqlite_insbatch($data) {
+		$data = basElm::line2arr($data,1); 
+		$re = $head = ""; 
+		foreach ($data as $val) {
+			if(strlen($val)<12) continue;
+			if(strstr($val,'INSERT INTO `')){
+				$head = $val;
+			}elseif(strstr($val,"','") && (strpos($val,'),') || strpos($val,');'))>0){
+				$val = substr($val,0,strlen($val)-1);
+				$re .= "$head $val;\n";
+			}
+		}
+		return $re;
+	}
+
+
+
 }

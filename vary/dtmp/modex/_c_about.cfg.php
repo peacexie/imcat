@@ -4,7 +4,11 @@ $_c_about = array (
   array (
     'exp_i01' => 
     array (
+      'kid' => 'exp_i01',
+      'model' => 'about',
+      'catid' => 'alink',
       'title' => '地图',
+      'top' => '888',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -18,13 +22,26 @@ $_c_about = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'map',
+      'fmexstr' => '',
+      'cfgs' => '',
+      'note' => '',
+      'aip' => '',
+      'atime' => '0',
+      'auser' => '',
+      'eip' => '',
+      'etime' => '0',
+      'euser' => '',
     ),
   ),
   'apics' => 
   array (
     'exp_t01' => 
     array (
+      'kid' => 'exp_t01',
+      'model' => 'about',
+      'catid' => 'apics',
       'title' => '图片集',
+      'top' => '888',
       'enable' => '1',
       'etab' => '0',
       'type' => 'text',
@@ -38,6 +55,15 @@ $_c_about = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'pics',
+      'fmexstr' => '',
+      'cfgs' => '',
+      'note' => '',
+      'aip' => '',
+      'atime' => '0',
+      'auser' => '',
+      'eip' => '',
+      'etime' => '0',
+      'euser' => '',
     ),
   ),
 );

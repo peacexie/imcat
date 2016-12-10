@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init');
 
 $dop->sobar($dop->msgBar($msg)); 
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');

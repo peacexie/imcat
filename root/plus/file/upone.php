@@ -4,17 +4,14 @@ $user || basMsg::show('Not Login.','die'); //未登录
 
 $rdir = DIR_DTMP;
 $rpath = PATH_DTMP;
-$ufix = comFiles::getTmpDir(0);
+$ufix = comStore::getTmpDir(0);
 	
 //$dmsg = ''; //处理删除
 $_upPerm = '1';//usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
-$isbat = basReq::val('isbat','');
+$isbat = req('isbat','');
 
 glbHtml::page(lang('plus.fop_uponetitle'),1);
-glbHtml::page('imadm'); //adm
-basLang::jimp("/plus/file/funcs.js");
-//echo basJscss::imp("/plus/file/funcs.js",'js');
-echo basJscss::imp("/plus/file/style.css");
+glbHtml::page('imadm',array('js'=>'/plus/file/funcs.js','css'=>'/plus/file/style.css'));
 glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"');
 
 ?>

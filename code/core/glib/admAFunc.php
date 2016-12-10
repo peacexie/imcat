@@ -4,8 +4,7 @@
 class admAFunc{	
 	
 	static function umcVInit(){
-		global $_cbase; 
-		$db = glbDBObj::dbObj();
+		$db = db();
 		$tabid = 'base_menu'; 
 		$mlist = vopTpls::entry('umc');
 		$dbcfg = $db->table($tabid)->where("model='mumem'")->order('pid,top,kid')->select();
@@ -35,7 +34,7 @@ class admAFunc{
 	
 	// 所有[关联模型]为$mod的模型
 	static function pmodSuns($mod='',$re='a'){
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		$a = array(); if(!$mod) return $a;
 		foreach($_groups as $k=>$v){
 			if($mod==$v['pmod']){
@@ -46,7 +45,7 @@ class admAFunc{
 	}
 	// [关联模型]保存
 	static function pmodSave($omod,$pmod=''){
-		$oldPid = basReq::val('oldPid');
+		$oldPid = req('oldPid');
 		if($oldPid && $oldPid===$pmod) return;
 		if(empty($pmod)){ //取消
 			glbDBExt::setOneField($omod,'pid','del');	
@@ -60,8 +59,8 @@ class admAFunc{
 	// $fm:is_del,mod_id,
 	// $cid:modid(pro),'',reset
 	static function modCopy($mod, $tabid, $fm, $cid=''){
-		$_groups = glbConfig::read('groups'); 
-		$db = glbDBObj::dbObj();
+		$_groups = read('groups'); 
+		$db = db();
 		$org_arr = array('coms'=>'nrem','docs'=>'news','users'=>'person','types'=>'common','advs'=>'adpic');
 		if($fm=='is_del'){
 			$fm = $db->table($tabid)->where("kid='$cid'")->find();
@@ -107,8 +106,8 @@ class admAFunc{
 		
 	// upd config
 	static function grpNav($pid,$mod){
-		$_groups = glbConfig::read('groups');
-		$file = basReq::val('file'); 
+		$_groups = read('groups');
+		$file = req('file'); 
 		$str = ''; 
 		$ggap = ''; $top0 = '1';
 		foreach($_groups as $k=>$v){

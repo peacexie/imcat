@@ -16,7 +16,7 @@ $_ex_dmbind = array(
 // /vary/html/cargo/2015-9c/h3h1.html
 // /pro1/2015-9c/h3h1.html
 array(
-	'{html}/cargo/', //{html}=PATH_HTML：/run/_paths.php中定义，html文档的相对目录
+	'{html}/cargo/', //{html}=PATH_HTML：/run/_init.php中定义，html文档的相对目录
 	'/pro1/',
 	'0', //0-不用正则
 ),

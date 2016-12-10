@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 事件响应操作
 // 如果本系统修改,就改这个文件，不用改wmp*文件
 
@@ -13,7 +13,7 @@ class wysQrcode extends wmpQrcode{
 	function __construct($wecfg){ 
 		parent::__construct($wecfg); 
 		$this->uniqueid = usrPerm::getUniqueid();
-		$this->_db = glbDBObj::dbObj();
+		$this->_db = db();
 	}
 
     function getQrcode($smod, $type='temp', $extp=''){
@@ -38,11 +38,11 @@ class wysQrcode extends wmpQrcode{
 	// 正式使用(临时二维码) [100-428]+[9,999,999] : 
 	// 同类sid,5分钟内获取一个相同的ID,10分中后失效,(设置给微信的为最大值：7天（即604800秒）), 定时清理1天内的数据
     function getQTemp($smod, $extp=''){
-		global $_cbase;
-		$timeNmin = $_cbase['run']['stamp']-($this->qrexpired*60); //5分钟
+		$stamp = time();
+		$timeNmin = $stamp-($this->qrexpired*60); //5分钟
 		$row = $this->_db->table('wex_qrcode')->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->find();
 		if($row){ 
-			$this->_db->table('wex_qrcode')->data(array('atime'=>$_cbase['run']['stamp'],'extp'=>$extp,))->where("auser='$this->uniqueid' AND smod='$smod'")->update();
+			$this->_db->table('wex_qrcode')->data(array('atime'=>$stamp,'extp'=>$extp,))->where("auser='$this->uniqueid' AND smod='$smod'")->update();
 			$sid = $row['sid']; 
 			$ticket = $row['ticket']; 
 		}else{
@@ -57,7 +57,7 @@ class wysQrcode extends wmpQrcode{
 				'smod' => $smod,
 				'extp' => $extp, //Label
 				'ticket' => $ticket,
-				'atime' => $_cbase['run']['stamp'],
+				'atime' => $stamp,
 				'auser' => $this->uniqueid,
 			); 
 			$this->_db->table('wex_qrcode')->data(basReq::in($data))->insert();
@@ -69,11 +69,11 @@ class wysQrcode extends wmpQrcode{
 	// 正式使用(固定二维码) [10012,99987] :
 	// 同类sid,5分钟内获取一个相同的ID,10分中后失效, (不用清理)
     function getQLimit($smod, $extp=''){
-		global $_cbase;
-		$timeNmin = $_cbase['run']['stamp']-($this->qrexpired*60); //5分钟
+		$stamp = time();
+		$timeNmin = $stamp-($this->qrexpired*60); //5分钟
 		$row = $this->_db->table('wex_qrcode')->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->find();
 		if($row){ 
-			$this->_db->table('wex_qrcode')->data(array('atime'=>$_cbase['run']['stamp'],'extp'=>$extp,))->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->update();
+			$this->_db->table('wex_qrcode')->data(array('atime'=>$stamp,'extp'=>$extp,))->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->update();
 			$sid = $row['sid']; 
 			$ticket = $row['ticket'];
 		}else{
@@ -85,7 +85,7 @@ class wysQrcode extends wmpQrcode{
 			$data = array(
 				'smod' => $smod,
 				'extp' => $extp, //Label
-				'atime' => $_cbase['run']['stamp'],
+				'atime' => $stamp,
 				'auser' => $this->uniqueid,
 			); //print_r($row);
 			if(empty($row['ticket'])){

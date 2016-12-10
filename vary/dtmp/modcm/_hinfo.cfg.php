@@ -13,6 +13,7 @@ $_hinfo = array (
   array (
     'home' => 
     array (
+      'kid' => 'home',
       'pid' => '0',
       'title' => '首页推荐',
       'deep' => '1',
@@ -22,6 +23,7 @@ $_hinfo = array (
     ),
     'pindao' => 
     array (
+      'kid' => 'pindao',
       'pid' => '0',
       'title' => '频道推荐',
       'deep' => '1',
@@ -31,6 +33,7 @@ $_hinfo = array (
     ),
     'zhuanti' => 
     array (
+      'kid' => 'zhuanti',
       'pid' => '0',
       'title' => '专题推荐',
       'deep' => '1',
@@ -40,6 +43,7 @@ $_hinfo = array (
     ),
     'hmob' => 
     array (
+      'kid' => 'hmob',
       'pid' => '0',
       'title' => '手机首页',
       'deep' => '1',

@@ -11,10 +11,10 @@ class CLogFileHandler implements ILogHandler
 {
 	private $handle = null;
 	
-	public function __construct($file = '')
+	public function __construct($fp = '')
 	{
-		$file = DIR_DTMP.'/debug/'.str_replace(array('../','./','/',),array('','','_',),$file); // ../logs/2016-04-19.log
-		$this->handle = fopen($file,'a');
+		$fp = DIR_DTMP.'/debug/'.str_replace(array('../','./','/',),array('','','_',),$fp); // ../logs/2016-04-19.log
+		$this->handle = fopen($fp,'a');
 	}
 	
 	public function write($msg)

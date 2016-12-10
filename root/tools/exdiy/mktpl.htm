@@ -8,7 +8,7 @@
         <i>{lang(tools.mktpl_tpldir)}</i> 
         <b class="ext">&nbsp;</b>
         <b class="comm">
-        {code{lang(tools.mktpl_dir)}}/tpls/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="{lang(tools.mktpl_312)}">
+        {proj{lang(tools.mktpl_dir)}}/skin/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="{lang(tools.mktpl_312)}">
         </b> 
     </li>
     <li>
@@ -51,7 +51,7 @@
         <i class="c999">{lang(tools.mktpl_crtsuit)}</i> 
         <b class="ext"><input name="act" type="submit" value="{lang(tools.mktpl_create)}" class="btn w40" id="act"></b>
         <b class="comm">
-        {lang(tools.mktpl_tplname)}:<input name="title" type="text" maxlength="12" id="title" value="<?php echo basReq::val('title'); ?>" placeholder="{lang(tools.mktpl_def)}:xxxApp">
+        {lang(tools.mktpl_tplname)}:<input name="title" type="text" maxlength="12" id="title" value="<?php echo req('title'); ?>" placeholder="{lang(tools.mktpl_def)}:xxxApp">
         
         </b> 
     </li>
@@ -59,6 +59,6 @@
 
   </ul>
   </form>
-  <span class="notice">{lang(tools.mktpl_more)}<a href="<?php echo vopUrl::fout('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00">{lang(tools.mktpl_nvtpl)}</a></span>
+  <span class="notice">{lang(tools.mktpl_more)}<a href="<?php echo surl('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00">{lang(tools.mktpl_nvtpl)}</a></span>
 </div>
 

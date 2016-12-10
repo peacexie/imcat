@@ -8,8 +8,8 @@ if(isset($_REQUEST["bill_date"]) && $_REQUEST["bill_date"] != ""){
 	$input = new WxPayDownloadBill();
 	$input->SetBill_date($bill_date);
 	$input->SetBill_type($bill_type);
-	$file = WxPayApi::downloadBill($input);
-	echo $file;
+	$fnm = WxPayApi::downloadBill($input);
+	echo $fnm;
 	//TODO 对账单文件处理
     exit(0);
 }

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_wex_cfgs.php');
 
 //$types = array('test'=>'测试号','chking'=>'未认证','dingyue'=>'订阅号','fuwu'=>'服务号');
@@ -9,10 +9,10 @@ $cmop = basLang::ucfg('cfgbase.wx_mop');
 
 if($view=='list'){ 
 	
-	$flgmusave = basReq::val('musave');
-	$flgcreate = basReq::val('create');
-	$flggetmnu = basReq::val('getmnu');
-	$flgdelete = basReq::val('delete');
+	$flgmusave = req('musave');
+	$flgcreate = req('create');
+	$flggetmnu = req('getmnu');
+	$flgdelete = req('delete');
 	//echo "<pre>"; print_r($fm);
 	if(!empty($flgmusave)){
 		$whr = "`appid`='$weapp'"; //array('appid'=>$wecfg['appid']);
@@ -55,7 +55,7 @@ if($view=='list'){
 		die("<p class='tc'>$cmop[del] : $msg<br>".lang('awex.close')."<p>");
 	}
 	
-	echo basJscss::imp('/skin/a_jscss/weixin.js?v=1');
+	echo basJscss::imp('/skin/_pub/a_jscss/weixin.js?v=1');
 	$umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 	glbHtml::tab_bar(lang('awex.pids')."[$wekid] : ".lang('awex.mcfg')." $umsg",$_cbase['run']['sobarnav'],40,'tl');
 	

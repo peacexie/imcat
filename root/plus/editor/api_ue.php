@@ -9,8 +9,8 @@ $larr = array(
 	'fr'=>'en',
 	'ru'=>'en',
 );
-echo basJscss::write(basJscss::imp('/edt_ue/ueditor.config.js','vui'))."\n";
-echo basJscss::write(basJscss::imp('/edt_ue/ueditor.all.min.js','vui'))."\n";
+echo basJscss::write(basJscss::imp('/edt_ue/ueditor.config.js','vendui'))."\n";
+echo basJscss::write(basJscss::imp('/edt_ue/ueditor.all.min.js','vendui'))."\n";
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [[

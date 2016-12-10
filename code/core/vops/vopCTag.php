@@ -81,12 +81,11 @@ class vopCTag{
 			$unv = in_array($type,array('One','jsOne')) ? '$'.$re : $varid;
 			$dstr = self::tagRows($dstr, $_m, $tag2, $varid, $re, $type);
 			if(substr($type,0,2)=='js'){ //js标签
-				global $_cbase; 
 				//$dstr = str_replace('$this->show(', '$vop->show(', $dstr);
-				$tplnow = $_cbase['run']['comp'];
+				$tplnow = cfg('run.comp'); 
 				$jsfile = vopTpls::path('tpc')."/$tplnow.$tag0.comjs.php";
 				$dstr = str_replace($_m[0], '<!-- start('.$unv.'); -->', $dstr);
-				$conhead = "(!defined('RUN_MODE')) && die('No Init'); "; 
+				$conhead = "(!defined('RUN_INIT')) && die('No Init'); "; 
 				comFiles::put($jsfile, "<?php $conhead ?>".$dstr); //写入缓存
 				$ps = self::_1Pjs($_m[1]);
 				$dstr = "<div id='jsid_tags_".str_replace('/','_',$tplnow)."_$tag0'><!--".str_replace('[js','['.$tplnow.','.$tag0.'][',$ps)."--></div>";

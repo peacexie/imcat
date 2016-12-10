@@ -1,7 +1,7 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 
 if(in_array($view,array('list','set'))){
 	$lnkadd = admPFunc::fileNav($view,'exd_share');
@@ -25,7 +25,7 @@ if($view=='set'){
 	foreach($gma as $gm){ 
 	foreach($_groups as $mod=>$gv){
 	  $kid = "$mod"; if($gv['pid']!==$gm) continue;
-	  $mcfg = glbConfig::read($mod); 
+	  $mcfg = read($mod); 
 	  if($gmold!=$gv['pid']){
 	  	echo "<tr><td class='tc fB' colspan='3'>{$_groups[$gv['pid']]['title']}</td></tr>";
 	  }
@@ -48,20 +48,20 @@ if($view=='set'){
 	
 	$msg1 = $view=='json' ? lang('flow.sh_tip1') : lang('flow.sh_tip2');
 	if(in_array($_groups[$mod]['pid'],array('docs','users'))){
-		$dop = new dopBase(glbConfig::read($mod)); 
+		$dop = new dopBase(read($mod)); 
 		$ops = $dop->fmType('stype',150); $ops = str_replace(array("fm[stype]","reg='"),array("stype","'"),$ops); //
 		$s_type = ($_groups[$mod]['pid']=='docs' ? lang('flow.title_cata') : lang('flow.title_grade')).": $ops";
 	}else{
 		$s_type = lang('flow.sh_cg').": ---";
 	}
-	$stype = basReq::val('stype');
-	$limit = basReq::val('limit',10);
-	$order = basReq::val('order',substr($_groups[$mod]['pid'],0,1)."id:".($view=='json' ? 'ASC' : 'DESC'));
-	$offset = basReq::val('offset');
-	$cut = basReq::val('cut','title,compony');
-	$clen = basReq::val('clen',48);
-	$ret = basReq::val('ret','html');
-	$tpl = basReq::val('tpl','','');
+	$stype = req('stype');
+	$limit = req('limit',10);
+	$order = req('order',substr($_groups[$mod]['pid'],0,1)."id:".($view=='json' ? 'ASC' : 'DESC'));
+	$offset = req('offset');
+	$cut = req('cut','title,compony');
+	$clen = req('clen',48);
+	$ret = req('ret','html');
+	$tpl = req('tpl','','');
 	$tpldef = $tpl ? $tpl : "<li><a href='{rhome}/run/chn.php?$mod.{kid}'>{title}</a></li>";
 	$dis = $view=='json' ? 'disabled' : '';
 

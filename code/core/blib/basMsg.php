@@ -12,7 +12,6 @@ class basMsg{
 		}
 		if(strlen($_cbase['run']['jsimp'])<6){
 			glbHtml::page(strip_tags($xMsg),1);
-			 //glbHtml::page('imp'); 
 			glbHtml::page('body');
 		}
 	}
@@ -24,9 +23,8 @@ class basMsg{
 
 	// show
 	static function show($xMsg,$xAct='Redir',$xAddr=array(),$head=0){
-		global $_cbase; 
-		$dialog = basReq::val('dialog','','');
-		$recbk = basReq::val('recbk','','Html'); 
+		$dialog = req('dialog','','');
+		$recbk = req('recbk','','Html'); 
 		if(empty($xAddr) && $recbk) $xAddr = $recbk; 
 		if($xAct=='die'){
 			@header("HTTP/1.1 404 Not Found");

@@ -34,8 +34,7 @@ class basLang{
 	
 	// 多语言...
 	static function getCfgs($key, $mod='core', $dir='kvphp'){
-		global $_cbase; 
-		$lang = $_cbase['sys']['lang']; 
+		$lang = cfg('sys.lang'); 
 		if(isset(self::$_CACHES_LG[$mod])){
 			$cfgs = self::$_CACHES_LG[$mod];
 		}else{
@@ -48,8 +47,7 @@ class basLang{
 
 	// {linc(file.part)} <大段文本>
 	static function inc($file, $part='', $uarr=array()){
-		global $_cbase;
-		$lang = $_cbase['sys']['lang']; 
+		$lang = cfg('sys.lang'); 
 		$flang = DIR_CODE."/lang/ptinc/$file-$lang.php";
 		include($flang); 
 		if(isset($reinc[$part])){
@@ -59,11 +57,10 @@ class basLang{
 
 	// 字段从数组中选个语言键值
 	static function pick($key, $vals=array()){
-		global $_cbase;
 		if(!is_array($vals)){
 			return $vals;
 		}
-		$lang = $_cbase['sys']['lang']; 
+		$lang = cfg('sys.lang'); 
 		if($key && isset($vals[$key])){
 			return $vals[$key];
 		}elseif(isset($vals[$lang])){
@@ -79,7 +76,7 @@ class basLang{
 		global $_cbase; 
 		if(empty($_cbase['ucfg']['lang'])) return;
 		if($_cbase['ucfg']['lang']=='(auto)'){
-			$ulang = basReq::val('lang');
+			$ulang = req('lang');
 			if(!empty($ulang)){
 				$_cbase['sys']['lang'] = $ulang;
 				return;
@@ -96,8 +93,7 @@ class basLang{
 
 	// links
 	static function links($dir=''){
-		global $_cbase;
-		$vopfmt = glbConfig::read('vopfmt','ex');
+		$vopfmt = read('vopfmt','ex');
 		$url = PATH_ROOT."/plus/ajax/redir.php?lang:{key}";
 		if(empty($dir)){
 			$tpl = "<a href='$url' title='{title}'>{mini}</a>";
@@ -116,17 +112,19 @@ class basLang{
 	}	
 
 	// jimp
-	static function jimp($path,$base='',$lang='(auto)',$injs=0){
-		global $_cbase; //basLang::auto();
-		if($lang=='(auto)') $lang = $_cbase['sys']['lang']; 
-		$js1 = basJscss::imp($path,$base,'js')."\n";
-		$pajs = str_replace('.js',"-$lang.js",$path);
-		$js2 = basJscss::imp($pajs,$base,'js')."\n";
-		$res = "$js1$js2";
+	static function jimp($path,$base='root',$lang='(auto)',$injs=0){
+		if($lang=='(auto)') $lang = cfg('sys.lang'); 
 		if($injs){
-			$res = basJscss::write($res);
+			$pcfg = comStore::cfgDirPath($base,'dir');
+			$p1 = $path;
+			$p2 = str_replace('.js',"-$lang.js",$path);
+			$d1 = comFiles::get($pcfg.$p1);
+			$d2 = comFiles::get($pcfg.$p2);
+			echo "$d1\n\n//($lang)\n$d2";
+		}else{
+			$url = "/plus/ajax/comjs.php?act=1&exjs=$path&lang=$lang";
+			echo basJscss::imp($url);
 		}
-		echo $res;
 	}
 
 }

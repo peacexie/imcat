@@ -1,9 +1,9 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
 
 $tabinfo = $db->tables(1); 
-$tabid = basReq::val("tabid",'base_model'); 
+$tabid = req("tabid",'base_model'); 
 
 $fixs = lang('admin.dba_sel').':'; $fixa = array('-1'); 
 $opts = ""; 
@@ -55,12 +55,60 @@ if(!empty($bsend)){
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 $links = admPFunc::fileNav($view,'dba');
-if(!in_array($view,array('Export','View'))) glbHtml::tab_bar("$links $umsg",$sbar,25,'tc');
+if($view=='runsql'){
+	$a1 = "<a href='?file=$file&view=$view&part=data'>data~*</a>";
+	$a2 = "<a href='?file=$file&view=$view&part=gbak'>gbak~*</a>";
+	$a3 = "<a href='?file=$file&view=$view&part=ins'>ins~*</a>";
+	$sbar = "Run-SQL : $a1 # $a2 # $a3";
+} 
+if(!in_array($view,array('Export','View'))) glbHtml::tab_bar("$links $umsg",$sbar,35,'tc');
 
 if($view=='Clear'){
 	
-	devData::clrLogs();
+	devScan::clrLogs();
+
+}elseif($view=='runsql'){
+
+	$sqldata = req("sqldata",'','html'); 
+	$list = comFiles::listDir(DIR_DTMP.'/update/','file');
+	$list += comFiles::listDir(DIR_DTMP.'/dbexp/','file');
+	$part = req("part"); //dump($part); dump($list); 
+	if(!empty($sqldata)){ 
+		$res = devData::run1Sql($sqldata);
+		$msg = is_numeric($res) ? "($res) Run OK!" : $res;
+	}else{
+		$msg = 'Use `---&lt;split&gt;---` Split SQL Statement.';
+	}
+	$istr = "<textarea name='sqldata' cols='' wrap='off' rows='24' style='width:100%'></textarea>";
+	if(strpos($part,'.dbsql')>0){
+		if(strstr($part,'ins')){
+			$arr = include(DIR_DTMP."/update/$part"); 
+			$data = implode(devData::$spsql,$arr);
+		}else{
+			$data = comFiles::get(DIR_DTMP."/dbexp/$part"); 
+			$data = str_replace("><",">$data<",$data);
+		}
+		$istr = str_replace("><",">$data<",$istr);
+	}elseif(!empty($part)){ //if($part=='data~'){
+		$istr = "<pre>\n";
+		foreach ($list as $fp=>$v) {
+			if(!strstr($fp,$part)||strpos($fp,'.dbsql')<=0) continue;
+			$fp = str_pad($fp,30," ");
+			$tm = date('Y-m-d H:i',$v[0]);
+			$sz = basStr::showNumber($v[1], 'Byte');
+			$sz = str_pad($sz,15," ");
+			$istr .= "<a href='?file=$file&view=$view&part=$fp'>$fp</a>-$sz $tm\n";
+		}
+		$istr .= "</pre>";
+	}
 	
+	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
+	echo "\n<tr><td class='tc w120'>Run-SQL</td>\n<td>$istr</td></tr>\n";
+	$opbar = "<div class='w180 tc right'><input name='btnrun' class='btn' type='submit' value='SQL' /></div>";
+	echo "\n<tr><td class='tc'>Run</td>";
+	echo "<td colspan='15'>$opbar<div class='pg_bar'>msg: $msg</div></td>\n</tr>";
+	glbHtml::fmt_end(array("view|$view","tabid|tabid","fs_do|upd"));
+
 }elseif($view=='list'){
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');

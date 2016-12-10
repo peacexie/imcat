@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 // 消息回复（被动回复）
 
 class wexReplyAdmin extends wysReply{
@@ -15,10 +15,10 @@ class wexReplyAdmin extends wysReply{
 		$detail = $this->post->Content; 
 		if(strlen($detail)==2){ // && basStr::isKey($detail,2)
 			$detail = "cn$detail";
-			$arr = glbConfig::read('china'); 
-			if(isset($arr['i']["$detail"])){
+			$arr = read('china.i'); 
+			if(isset($arr["$detail"])){
 				$str = '';
-				foreach($arr['i'] as $k=>$v){
+				foreach($arr as $k=>$v){
 					if($k==$detail){
 						$str .= "[$k]".$v['title']." (".$v['cfgs'].") 详情如下：";	
 					} //

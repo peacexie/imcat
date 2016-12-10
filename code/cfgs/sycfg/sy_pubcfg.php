@@ -1,23 +1,19 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
+global $_cbase;
 
 //发布配置
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 
 //main,vary,vimp
 $_sy_pubcfg = array();
 
 //1. dirs
-$_sy_pubcfg['dirs'] = array(
-	'code'=>DIR_CODE,
-	'root'=>DIR_ROOT,
-	'dtmp'=>DIR_DTMP,
-	'html'=>DIR_HTML,
-	'ures'=>DIR_URES,
-	'static'=>DIR_STATIC,
-	'vendor'=>DIR_VENDOR,
-	'vendui'=>DIR_VENDUI,
-);
+$paths = comStore::cfgDirPath(0,'arr');
+foreach($paths as $ck=>$itm){
+	if(in_array($ck,array('tpl','tpc'))) continue;
+	$_sy_pubcfg['dirs'][$ck] = $itm[0];
+}
 
 //2. copy
 $_sy_pubcfg['copy'] = array(
@@ -36,8 +32,8 @@ $_sy_pubcfg['ids'] =  array(
 
 //4. parts
 $_sy_pubcfg['parts'] =  array(
-	'main' => array('code','root'),
-	'vary' => array('dtmp','html','ures'),
+	'main' => array('code','root','skin'), //'@read',
+	'vary' => array('dtmp','html','ures','ctpl'),
 	'vimp' => array('static','vendor','vendui'),
 );
 
@@ -48,13 +44,13 @@ $_sy_pubcfg['cdemo'] =  array(
 	'code/cfgs/excfg/ex_mail.php' =>'',
 	'code/cfgs/excfg/ex_sms.php' =>'',
 	'code/cfgs/excfg/ex_a3rd.php' =>'',
-	'root/run/_paths.php' => array(
-		array("'/txmao'",),
+	'code/cfgs/boot/_paths.php' => array(
+		array("'".PATH_PROJ."'",),
 		array("''",),
 	), 
 	'code/cfgs/boot/cfg_db.php' => array(
-		array("'".glbDBObj::getCfg('db_name')."';",                       "'".glbDBObj::getCfg('dc_prefix')."';", ),
-		array("'txmao_".str_replace('-','',basKeyid::kidTemp('hm'))."';", "'".basKeyid::kidRand('f',5)."';",),
+		array("'".glbDBObj::getCfg('db_name')."';", "'".glbDBObj::getCfg('dc_prefix')."';", ),
+		array("'".devSetup::setDbname()."';",       "'".basKeyid::kidRand('f',5)."';",),
 	),
 	'code/cfgs/boot/cfg_adbug.php' => array(
 		array("'ut.<rnd8>';",                       "'up.<rnd12>';",),
@@ -81,7 +77,8 @@ $_sy_pubcfg['rndata'] =  array(
 
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
-	'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony'),
+	'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony','Zend'), //,'Spyc'
+	'dtmp' => array('@test','@udoc','debug','update','updsvr','weixin','08exp'),
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(
@@ -112,5 +109,20 @@ $_sy_pubcfg['skfiles'] =  array(
 	'haibao.jpg', // static:/media/cover/
 	'100-gushi.jpg', // static:/file_demo1/
 	'cacert.pem', // vendor:/a3rd/alipay_class/
+	'bootstrap.css', // vendui:/bootstrap-3.x
+	'bootstrap-theme.css',
+	'bootstrap.js',
+	//'jquery-3.x.imp_js',
+
+	//ext-*
+	//'extYaml.php',
+	'extMedoo.php',
+	'DbManage.cls_php',
+	'DedeFtp.cls_php',
+	'Medoo.cls_php',
+	'Pimple.cls_php',
+	'sphinxapi.cls_php',
+	//'glbDBCache.php',
+
 );
 

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 $cmsg = 'Site Closed!';
 $sname = urlencode($_cbase['sys_name']);
 ?>

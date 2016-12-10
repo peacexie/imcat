@@ -1,7 +1,7 @@
 <?php
 //$_cbase['skip']['_all_'] = true;
 define('RUN_A3RD', 1);
-require_once(dirname(dirname(__FILE__)).'/run/_paths.php'); 
+require_once(dirname(dirname(__FILE__)).'/run/_init.php'); 
 require_once(DIR_CODE.'/cfgs/excfg/ex_a3rd.php');
 
 if($_cbase['debug']['err_mode']){

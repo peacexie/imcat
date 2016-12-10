@@ -45,7 +45,7 @@ return array(
 		'base_catalog'=>'(sys)Catalog', 'base_fields'=>'(sys)Fields set', 'base_grade'=>'(sys)User Grade', 
 		'base_menu'=>'(sys)Menus', 'base_model'=>'(sys)[Groups/Model]', 'base_paras'=>'(sys)Params', 
 		'bext_dbdict'=>'(ex)dbDict', 'bext_relat'=>'(ex)Type Relate', 'bext_fields'=>'(ex)Type Fields', 
-		'bext_paras'=>'(ex)Params', 'bext_cron'=>'(ex)Task Plan', 
+		'bext_paras'=>'(ex)Params', 'bext_cron'=>'(ex)Task Plan', 'bext_mins'=>'(ex)Model Installs',  
 		
 		'exd_crawl'=>'(data)Crawl', 'exd_crlog'=>'(data)Crawl Log', 
 		'exd_oilog'=>'(data)Import', 'exd_oimp'=>'(data)Import Log', 

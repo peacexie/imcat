@@ -59,14 +59,14 @@ class basElm{
 	}
 	// form: text2arr
 	static function text2arr($text){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		if(is_array($text)){
 			if(isset($text['title']) && !empty($text['cfgs'])) return self::text2arr($text['cfgs']);
 			return $text;
 		}elseif(empty($text)){ 
 			return array();
 		}elseif(isset($_groups[$text])){ 
-			$cfg = glbConfig::read($text); 
+			$cfg = read($text); 
 			$rei = $cfg['i']; 
 			foreach($rei as $k=>$v){ 
 				$re[$k] = $v['title'];
@@ -75,7 +75,7 @@ class basElm{
 			$re = glbDBExt::getExtp(substr($text,11));
 		}elseif(strpos($text,'.') && !(strpos($text,"\n")||strpos($text,"\r"))){ //corder.ordstat
 			$t = explode('.',$text);
-			$mcfg = glbConfig::read($t[0]); 
+			$mcfg = read($t[0]); 
 			$re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
 		}else{
 			/*
@@ -195,6 +195,17 @@ class basElm{
 		$re = ($no==-1 || strlen($no)==0) ? $ra : (isset($ra[$no]) ? $ra[$no] : ''); 
 		return $re;
 	}
+
+	static function getLinks($html,$re=0){
+		preg_match_all("/<a(.*?)href=\"(.*?)\"(.*?)>(.*?)<\/a>/i",$html,$urls);
+		$re = array();
+		foreach($urls[2] as $key=>$val) {
+			$re[$key] = array($val,$urls[4][$key]);
+		}
+		return $re;
+	}
+
+
 
 }
 

@@ -14,7 +14,7 @@ class extEmail{
 	public $re = '';
 	
 	function __construct($type='',$cfg=array()){
-		$this->cfg  = empty($cfg) ? glbConfig::read('mail','ex') : $cfg;
+		$this->cfg  = empty($cfg) ? read('mail','ex') : $cfg;
 		$this->type = empty($type) ? $this->cfg['type'] : $type;
 		$this->setServer($cfg);		
 	}

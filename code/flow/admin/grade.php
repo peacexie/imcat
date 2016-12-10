@@ -1,12 +1,12 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','admin/grade.php');
 
 $mod = empty($mod) ? 'adminer' : $mod;
 $view = empty($view) ? 'glist' : $view;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@grade.php'); 
 $gbar = admAFunc::grpNav('users',$mod); 
-$cfg = glbConfig::read($mod); 
+$cfg = read($mod); 
 $tabid = "base_grade";
 //print_r(comTypes::getSubs($cfg['i'],'hn','3'));
 
@@ -41,7 +41,7 @@ if($view=='glist'){
 	$lnkadd = "<a href='$aurl[1]&view=gform' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";
 	glbHtml::tab_bar(lang('admin.grd_gperm')." :: $gname<span class='span ph5'>|</span>$lnkadd",$gbar,35);
 	
-	$_ex_paras = glbConfig::read('paras','ex');
+	$_ex_paras = read('frame.expars','sy'); 
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
 	echo "<th>".lang('flow.title_perm')."</th><th>".lang('flow.title_edit')."</th>";
@@ -118,7 +118,7 @@ if($view=='glist'){
 
 }elseif($view=='set'){
 
-	$parts = basReq::val('parts','pmod'); 
+	$parts = req('parts','pmod'); 
 	if(!empty($bsend)){
 		$v = empty($fm['prmcb']) ? '' : implode(',',array_filter($fm['prmcb']));
 		$db->table($tabid)->data(basReq::in(array($parts=>$v)))->where("kid='$kid'")->update();
@@ -145,8 +145,8 @@ if($view=='glist'){
 				glbHtml::fmae_row($_groups[$k]['title'],basElm::setCBox("prmcb",$a2,$pmstr,5));
 			}
 		}elseif(in_array($parts,array('pmadm'))){
-			$_muadm = glbConfig::read('muadm'); 
-			$a0 = $_muadm['i']; $a2 = array();
+			$a0 = read('muadm.i'); 
+			$a2 = array();
 			foreach($a0 as $k2=>$v2){
 				if($v2['pid']=='0') $a2[$k2] = $v2['title'];
 			}
@@ -166,8 +166,8 @@ if($view=='glist'){
 				glbHtml::fmae_row($s2,$s3);
 			}}
 		}elseif(in_array($parts,array('pmusr'))){
-			$_mumem = glbConfig::read('mumem'); 
-			$a0 = $_mumem['i']; $i = 0;
+			$a0 = read('mumem.i'); 
+			$i = 0;
 			foreach($a0 as $k2=>$v2){ 
 			if($v2['deep']=='1'){ $i++; 
 				$def = strstr(",$pmstr,",",$k2,") ? " checked='checked' " : '';
@@ -183,7 +183,7 @@ if($view=='glist'){
 			}}
 		}elseif(in_array($parts,array('pfile','pextra'))){
 			$_key = $parts=='pfile' ? '_mupfile' : '_mupext';
-			$_kmd = glbConfig::read(str_replace('_','',$_key)); 
+			$_kmd = read(str_replace('_','',$_key)); 
 			$a0 = $_kmd['i']; $i = 0;
 			foreach($a0 as $k2=>$v2){ 
 				$s3 = ''; $i++; $j = 0;

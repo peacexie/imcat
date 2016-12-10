@@ -4,14 +4,12 @@
 * IntimateCat(贴心猫) is a set of Light weight, free, sharing general PHP web application system!
 * Apply to: online shop, hospital, school, enterprise, personal website, enterprise intranet, profession portal site, etc.......
 
-
 ### 【Functions】
 
-* Support: PHP5.2~PHP7.0/ custom module / custom field / custom parameter / custom classification
+* Support: PHP5.2~PHP7.0 / custom module / custom field / custom parameter / custom classification
 * Data&share / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [IntimateCat(贴心猫)](http://txmao.txjia.com/)
-
 
 ### 【Setup】
 
@@ -22,7 +20,7 @@
 
 * Set the relative path of the site: 
   - all files will be placed on the site of any directory; 
-  - In file: /root/run/_paths.php Param: PATH_PROJ; 
+  - In file: /code/cfgs/boot/_paths.php Set Param: PATH_PROJ; 
   - The value of PATH_PROJ is the relative path of the site, eg:['/txmao'] or root [''](empty string)
   - For the first time, It will automatically correct the project path, so you can omit the operation
 
@@ -34,12 +32,14 @@
   - View Start Page: `/index.php?start` to Check and Config
   - View Url: `/root/tools/setup/` to Setup.
 
+### 【v3.4 ChangeLog】 (2016.1225)
 
-### 【v3.3 ChangeLog】
-
-* Add: English Language pack, Setup/AdminCenter/UserCenter, Add Enlish version(can change) 
-* Add: Enlish Guides
-* Add: Copy Product, Copy Data-Tools plans   
-* Improve: Inner douc, Wechat
-* Other Fixed/Optiming
-* Release: 2016-09-17, Weight: 3.30 MB
+* Add: Votes system / Set Different templates for grade,category
+* Add: Area sites jumping (solutions) / Subsidiary domain jump to the main domain (configuration)
+* Add: digg Extend / Public-Free Parameter Setting 
+* Add: bootstrap Frame / phpQuery / Snoopy Crawl Tools
+* Fixed: security bugs 
+* Improve: load css,js
+* Merge: (move)tpls/skin dirs
+* Update: Use NEW IntimateCat Icon 
+* Update: layer / KindEditor / PHPMailer

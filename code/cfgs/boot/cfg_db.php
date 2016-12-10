@@ -4,7 +4,7 @@
 
 $_cfgs['db_class']   = 'mysqli'; // 数据库类(class),mysqli(推荐),pdox(用于PDO扩展),mysql(PHP5.5+不能使用)
 $_cfgs['db_host']    = 'localhost'; // 数据库主机(pdox连接不使用)
-$_cfgs['db_name']    = 'txmao_2016a1am'; // 数据库名(pdox连接不使用) 
+$_cfgs['db_name']    = 'catv34_2016ca'; // 数据库名(pdox连接不使用) 
 $_cfgs['db_port']    = '3306'; // 数据库端口，mysql默认是3306，一般不需要修改
 $_cfgs['db_user']    = 'root'; // 数据库用户名
 $_cfgs['db_pass']    = ''; // 数据库密码	
@@ -20,15 +20,9 @@ $_cfgs['db_cset']   = 'utf8';// 数据库编码
 // 数据库缓存
 $_cfgs['dc_on']      = 0; //
 $_cfgs['dc_type']    = ''; // cacheMemd,cacheMemc,cacheSaem
-$_cfgs['dc_prefix']  = '9r4V6'; 
+$_cfgs['dc_prefix']  = '3D7RV'; 
 $_cfgs['dc_server']  = '127.0.0.1';
 $_cfgs['dc_port']    = '11211';
 $_cfgs['dc_pconn']   = '1';
 $_cfgs['dc_tmout']   = '600';
 $_cfgs['dc_size']    = '15'; //M
-
-/*
-$_cfgs['db_name'] = 'xpeace_v304'; // 数据库名(pdox连接不使用) peace_v30,test_v30
-$_cfgs['db_prefix'] = 'pre_'; // 数据库前缀pre_
-$_cfgs['db_suffix'] = '_suf'; // 数据库前缀_suf
-//*/

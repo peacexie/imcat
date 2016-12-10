@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init'); 
 
 $msg = ''; $tabext = '';
 
@@ -17,7 +17,7 @@ if($view=='clear'){
 if($view=='list'){
 	if(!empty($bsend)){
 		
-		$fs_do = basReq::val('fs_do');
+		$fs_do = req('fs_do');
 		$fs = basReq::arr('fs'); 
 		if(empty($fs_do)) $msg = lang('flow.dops_setop');
 		if(empty($fs)) $msg = lang('flow.dops_setitem');
@@ -54,7 +54,7 @@ if($view=='list'){
 		  if(empty($idfirst)) $idfirst = $cid;
 		  echo $cv->Select($cid);
 		  //echo $cv->Field($r['title'],1,64);  
-		  echo $cv->Url($r['title'],1,vopUrl::fout("chn:0",'')."?mkv=ocar-invoce&ordid=$cid","blank");
+		  echo $cv->Url($r['title'],1,surl("chn:0",'')."?mkv=ocar-invoce&ordid=$cid","blank");
 		  echo $cv->TKeys($r,1,'ordstat',12,'-');
 		  echo $cv->Field($r['feetotle']);
 		  echo $cv->Field($r['ordcnt']);

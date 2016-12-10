@@ -22,7 +22,7 @@ class comUpload
 	 * @param array $config 配置项
 	 * @param type upload/remote/base64
 	 */
-	public function __construct($fileField, $config, $type = "upload")
+	function __construct($fileField, $config, $type = "upload")
 	{
 		$this->stateMap = basLang::ucfg('cfglibs.upload');
 		//dump($this->config); dump($this->stateMap);
@@ -189,7 +189,7 @@ class comUpload
 	// 重命名文件
 	private function getFullName()
 	{
-		$folder = comFiles::getTmpDir();
+		$folder = comStore::getTmpDir();
 		return $folder . '/' . $this->getFileName();
 
 	}
@@ -198,7 +198,7 @@ class comUpload
 	private function getFileName () {
 		
 		$ext = $this->getFileExt();
-		$upren = basReq::val('upren','auto');
+		$upren = req('upren','auto');
 		if($upren=='auto'){ // || in_array($this->type,array('remote','base64'))
 			$name = basKeyid::kidTemp().$ext;
 		}else{
@@ -232,11 +232,11 @@ class comUpload
 	 * 获取当前上传成功文件的各项信息
 	 * @return array
 	 */
-	public function getFileInfo()
+	function getFileInfo()
 	{
 		return array(
 			"state" => $this->stateInfo,
-			"url" => comFiles::fixTmpDir($this->fullName),
+			"url" => comStore::fixTmpDir($this->fullName),
 			"title" => $this->fileName,
 			"original" => $this->oriName,
 			"type" => $this->fileType,

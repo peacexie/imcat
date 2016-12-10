@@ -25,22 +25,22 @@ $return_url = $_cbase['run']['roots']."/a3rd/paydemo_dir/ureturn.php";
 //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 //商户订单号
-$out_trade_no = basReq::val('out_trade_no');
+$out_trade_no = req('out_trade_no');
 //商户网站订单系统中唯一订单号，必填
 
 //订单名称
-$subject = basReq::val('subject');
+$subject = req('subject');
 //必填
 
 //付款金额
-$total_fee = basReq::val('total_fee');
+$total_fee = req('total_fee');
 //必填
 
 //订单描述
-$body = basReq::val('ordbody');
+$body = req('ordbody');
 
 //商品展示地址
-$show_url = basReq::val('showurl','','Safe4');
+$show_url = req('showurl','','Safe4');
 //需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html
 
 /************************************************************/

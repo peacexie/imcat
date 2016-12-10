@@ -22,7 +22,7 @@ class sms_winic{
 	 */
 	function sendSMS($mobiles,$content){
 		if(is_array($mobiles)) $mobiles = implode(',',$mobiles);
-		$content = comConvert::autoCSet($content,glbConfig::get('cbase','sys.cset'),"gb2312");
+		$content = comConvert::autoCSet($content,cfg('sys.cset'),"gb2312");
 		$content = str_replace(array(' ','　',"\r","\n"),'',$content); // 短信内容不支持空格???
 		$arr = $this->arr;
 		$arr['to'] = $mobiles;

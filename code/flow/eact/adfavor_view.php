@@ -1,10 +1,10 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init');
 
-$mcfg = glbConfig::read('adfavor');
+$mcfg = read('adfavor');
 $mtab = 'advs_adfavor';
 
-$stype = empty($stype) ? basReq::val('stype','afadmin') : $stype;
+$stype = empty($stype) ? req('stype','afadmin') : $stype;
 $actstr = empty($actstr) ? @$mcfg['i'][$stype]['title'] : $actstr;
  
 $stsub = array(); $stids = "'0'";

@@ -1,6 +1,6 @@
 <?php 
 require('tpl_cfg.php'); 
-require(DIR_STATIC.'/ilibs/spchars.imp_htm'); 
+require(DIR_STATIC.'/ximp/utabs/spchars.imp_htm'); 
 ?>
 
 <script>

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','admin/menus.php');
 
 $mod = empty($mod) ? 'muadm' : $mod;
@@ -7,7 +7,7 @@ $view = empty($view) ? 'glist' : $view;
 $pid = empty($pid) ? '0' : $pid;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@menus.php'); 
 $gbar = admAFunc::grpNav('menus',$mod); 
-$cfg = glbConfig::read($mod); 
+$cfg = read($mod); 
 $tabid = 'base_menu';
 
 if($mod=='mumem' && $view=='glist'){
@@ -38,7 +38,7 @@ if($mod=='mumem' && $view=='glist'){
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
-	echo "<th>".lang('flow.title_level')."</th><th>".lang('flow.title_note')."</th>";
+	echo "<th>".lang('flow.title_level')."</th><th>".lang('flow.title_subtype')."</th>";
 	echo "<th>".lang('flow.title_perm')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n";
 	$pcfg = array('1'=>lang('admin.mu_setpm'),'.guest'=>lang('admin.mu_guestpm'),); // '0'=>'登录权限',
@@ -109,7 +109,7 @@ if($mod=='mumem' && $view=='glist'){
 	
 	glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 	echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";
-	echo "<th>".lang('flow.title_level')."</th><th>".lang('flow.title_note')."</th>";
+	echo "<th>".lang('flow.title_level')."</th><th>".lang('flow.title_subtype')."</th>";
 	echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
 	echo "</tr>\n";
 	$list = $db->table($tabid)->where("model='$mod' AND pid='$pid'")->order('top,kid')->select();
@@ -191,7 +191,7 @@ if($mod=='mumem' && $view=='glist'){
 }elseif($view=='upd'){
 	
 	glbCUpd::upd_menus($mod,$cfg); 
-	echo "\n<hr>".lang('admin.end')."<br>";
+	echo "\n<hr>".lang('admin.mu_end')."<br>";
 
 }elseif($view=='set'){
 	

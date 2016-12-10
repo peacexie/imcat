@@ -1,9 +1,9 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_pub_cfgs.php');
-$ocfgs = glbConfig::read('outdb','ex');
+$ocfgs = read('outdb','ex');
 $tabid = 'exd_crawl';
-$job = basReq::val("job"); 
+$job = req("job"); 
 $jcfg = exdBase::getJCfgs('crawl',$job); //print_r($jcfg);
 
 if($view=='list'){

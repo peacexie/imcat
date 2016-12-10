@@ -33,7 +33,7 @@ class sms_cr6868{
 		if(is_array($mobiles)) $mobiles = implode(',',$mobiles);
 		$content = str_replace(array(' ','　',"\r","\n","&","#"),'',$content); // 短信内容不支持空格???
         //$content = str_replace(array('[',']'),array('【','】'),$content); // 具体咨询短信供应商
-		$content = comConvert::autoCSet($content,glbConfig::get('cbase','sys.cset'),"utf-8");
+		$content = comConvert::autoCSet($content,cfg('sys.cset'),"utf-8");
 		$arr = $this->arr;
 		$arr['type'] = 'pt';
 		$arr['content'] = $content; //urlencode($content); 

@@ -28,8 +28,8 @@ $vcfg = vopTpls::etr1('tpl');
 <title><?php echo $_cbase['sys_name'].' - '.lang('tools.start_title'); ?></title>
 <meta name='robots' content='noindex, nofollow'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/a_jscss/stpub.css'/>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/skin/adm/b_jscss/comm.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/adm/b_jscss/comm.css'/>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/tools/adbug/style.css'/>
 <base target="_blank"/>
 </head><body>
@@ -58,7 +58,7 @@ $vcfg = vopTpls::etr1('tpl');
 
 <?php
 if(!empty($fmsg)){ die('</body></html>'); }
-$mapurl = PATH_ROOT.'/plus/map/index.php?type=';
+$mapurl = PATH_ROOT.'/plus/map/index.php?api=';
 ?>
 <div>
   <p><?php lang('tools.bug_tools',0); ?></p>
@@ -79,8 +79,8 @@ $mapurl = PATH_ROOT.'/plus/map/index.php?type=';
     </tr> 
     <tr class="tc">
       <td><a href="binfo.php?login"><?php lang('tools.start_login',0) ?></a></td>
-      <td><a href="../utest/index.php?dir=exdiy">exdiy</a>-<a href="../exdiy/mktpl.php">mktpl</a></td>
-      <td><a href="../utest/index.php?dir=utest">utest</a>-<a href="../exdiy/derun.php">derun</a></td>
+      <td><a href="../exdiy/rplan.php">rplan</a>-<a href="../exdiy/mktpl.php">mktpl</a></td>
+      <td><a href="../exdiy/index.php">tools</a>-<a href="../exdiy/derun.php">derun</a></td>
       <td><a href="dbadm.php"><?php lang('tools.start_dbadmin',0) ?></a></td>
     </tr> 
   </table>

@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_DOPA')) && die('No DopA'); 
 
 //$dop->dskey  = $dop->so->dskey  = 'mtel'; //改变默认搜索字段
 $dop->sobar($dop->msgBar($msg));

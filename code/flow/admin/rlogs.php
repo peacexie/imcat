@@ -1,8 +1,8 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
 
-$part = basReq::val('part','delog'); 
+$part = req('part','delog'); 
 $ord4 = basLang::ucfg('cfgbase.admord4a');
 
 if($part=='dbsql'){

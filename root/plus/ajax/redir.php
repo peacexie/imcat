@@ -21,10 +21,12 @@ if(strpos($mkv,'.')>0){
 	$kid = $mkv;
 } //echo "$act:$mkv; $mod:$kid<hr>";
 
-// lang:cn:&recbl=redir
-if($act=='lang'){ 
+switch($act){
 
-	$recbk = basReq::val('recbk',@$_SERVER["HTTP_REFERER"]);
+// lang:cn:&recbl=redir
+case 'lang':
+
+	$recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
 	$lang = $mkv;
 	$flang = DIR_CODE."/lang/kvphp/core-$lang.php";
 	file_exists($flang) && comCookie::oset('lang',$lang,30*86400); 
@@ -36,7 +38,8 @@ if($act=='lang'){
 
 // /root/plus/ajax/redir.php?news.2015-a1-fhh1
 // /index.php?indoc.1234-56-7890
-}elseif($act=='defdir'){ 
+break;
+case 'defdir': 
 	
 	$mods = array('indoc');
 	if(in_array($mod,$mods)){
@@ -57,14 +60,15 @@ if($act=='lang'){
 			}
 		} 
 	} 
-	$url = vopUrl::fout("$tpl:$mod.$kid"); 
+	$url = surl("$tpl:$mod.$kid"); 
 	if(strpos($url,'close#')) basMsg::show("$mod,$kid,$tpl<br>$url",'die');
 	header("Location: $url"); 
 	
 // /root/plus/ajax/redir.php?advs:iaw7EyA9Qyo3q9mrqzwsSvaCEfXGEQe3KVaBiO67KvpHEt6riyXREyJH0du
-}elseif($act=='advs'){
+break;
+case 'advs':
 	
-	//$mkv = basReq::val('mkv');
+	//$mkv = req('mkv');
 	$mkv = explode(',',comConvert::sysBase64($mkv,'de'));
 	$mod = $mkv[0];
 	$aid = @$mkv[1];
@@ -72,24 +76,24 @@ if($act=='lang'){
 	if(empty($mod) || empty($aid) || empty($url)){
 		exit("Error: [$mod,$aid,$url]");
 	}else{
-		$db = glbDBObj::dbObj();
-		$db->query("UPDATE ".$db->table("advs_$mod",2)." SET click=click+1 WHERE aid='$aid'");
+		db()->query("UPDATE ".$db->table("advs_$mod",2)." SET click=click+1 WHERE aid='$aid'");
 		header("Location: $url");	
 	}
 	//check,click,dir
 
 // /index.php?dir.yscode
-}elseif($act=='dir'){
+break;
+case 'dir':
 	
 	//die($mkv);
-	$redir = glbConfig::read('ujump','ex');
-	$redir = $redir['redir'];
+	$redir = read('vjump.redir','ex');
 	if(isset($redir[$mkv])){
 		header("Location: ".$redir[$mkv]);
 	}//else{ die('xxx'); }
 	//header("Location: $url");
 
-}else{ //其实无这种情况
+break;
+default: //其实无这种情况
 	
 	exit('Empty action!');
 	
@@ -101,11 +105,10 @@ die();
 //safComm::urlFrom();
 //glbHtml::head('html');
 
-$db = glbDBObj::dbObj();
-$act = basReq::val('act','chkVImg'); 
-$mod = basReq::val('mod','','Key'); //basStr::filKey('');
+$act = req('act','chkVImg'); 
+$mod = req('mod','','Key'); //basStr::filKey('');
 $kid = basReq::ark('fm','kid','Key'); //echo $mod.':'.$kid;
 $uid = basReq::ark('fm','uid','Key'); //echo $mod.':'.$uid;
-$_groups = glbConfig::read('groups');
+$_groups = read('groups');
 
 */

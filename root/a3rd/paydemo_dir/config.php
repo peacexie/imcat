@@ -14,7 +14,6 @@ function dmgetPost(){
 	return $post;
 }
 function dmdoSend(){
-	global $_cbase;
 	$data = dmgetPost();
 	$dobj = array();
 	$cfgorg = array('payment_type','out_trade_no','subject','total_fee','body');
@@ -31,7 +30,7 @@ function dmdoSend(){
 	}
 	$dobj['buyer_email'] = $dobj['buyer_id'] = basReq::ark('fm','uname');
 	$dobj['trade_no'] =  basKeyid::kidTemp('(def)').'-'.basKeyid::kidRand('24',8);
-	$dobj['notify_time'] = $_cbase['run']['stamp'];
+	$dobj['notify_time'] = time();
 	$dobj['notify_id'] = "{$dobj['notify_time']}.{$dobj['trade_no']}";
 	$dobj['sign'] = comConvert::sysEncode($dobj['notify_id']);
 	//通过curl post数据 ($data: str:xml,str:json,array)
@@ -49,11 +48,10 @@ function dmdoSend(){
 	header('Location:'.$return);
 }
 function dmdoCheck(){
-	global $_cbase;
-	$stamp = $_cbase['run']['stamp'];
-	$notify_time = basReq::val('notify_time');
-	$trade_no = basReq::val('trade_no');
-	$sign = basReq::val('sign');
+	$stamp = time();
+	$notify_time = req('notify_time');
+	$trade_no = req('trade_no');
+	$sign = req('sign');
 	$enc = comConvert::sysEncode("$notify_time.$trade_no");
 	$flag = ($enc==$sign) && ($stamp-$notify_time<60); //var_dump($flag);
 	return $flag;

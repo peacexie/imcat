@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // 1. ¿ÉÓÃ:db,stamp
 // 2. ·µ»Ø:$rdo = pass/fail

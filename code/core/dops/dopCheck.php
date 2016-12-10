@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopCheck(data OP for Extra)
 class dopCheck extends dopBase{	
@@ -8,6 +8,40 @@ class dopCheck extends dopBase{
 	public $user = NULL;
 	public $uname = '';
 	public $ugrade = '';
+
+	// login=1(登录发布)
+	// login=cvip,ccom(会员cvip,ccom等级:登录发布)
+	static function dchkLogin($ngrades=0){ 
+		if(usrPerm::issup()) return; //超管
+		$user = user(); 
+		$ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
+		if(!is_numeric($ngrades)){
+			if(strpos("(,$ngrades,)",",{$ugrade},")<=0){
+				die(lang('flow.ck_grade',$ngrades));
+			}
+		}else{ 
+			// stop
+			if(strpos($ugrade,'stop')>0){
+				die(lang('flow.ck_stop',$ugrade));
+			}
+			if($user->userFlag!='Login'){
+				die(lang('flow.ck_login'));
+			}
+		}
+	}
+
+	// iprep=3(ip重复发布时间间隔)
+	static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
+		$ckey = "$mod.$kid";
+		$stamp = time();
+		$glife = intval($num)*60;
+		$ck = comCookie::mget('diggs',$ckey); // cookie;
+		if(empty($ck) || ($stamp-intval($ck))>$glife){
+			comCookie::mset('diggs',$glife,$ckey,$stamp,20);
+		}else{
+			die(lang('flow.ck_rep',$glife));
+		}
+	}
 
 	static function addInit($cfg=array(),$percheck=array()){ 
 		$chk = new self($cfg);
@@ -31,7 +65,7 @@ class dopCheck extends dopBase{
 	function __construct($cfg=array()){ 
 		parent::__construct($cfg);
 		$this->excfg = basElm::text2arr($this->cfg['cfgs']);
-		$this->user = usrBase::userObj('Member'); 
+		$this->user = user('Member'); 
 		$this->uname = empty($user->uinfo['uname']) ? '(null)' : $user->uinfo['uname'];
 		$this->ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
 		$this->tabid = glbDBExt::getTable($this->cfg['kid']); 
@@ -103,9 +137,8 @@ class dopCheck extends dopBase{
 	}
 
 	static function headComm(){
-		global $_cbase;
-		glbHtml::page($_cbase['sys_name'],1);
-		glbHtml::page('imadm','sadm.css');
+		glbHtml::page(cfg('sys_name'),1);
+		glbHtml::page('imadm');
 		glbHtml::page('body',' style="padding:8px 5px 5px 5px;overflow-y:scroll;overflow-x:hidden;"'); 
 	}
 

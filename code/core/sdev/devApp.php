@@ -16,16 +16,15 @@ class devApp{
 		if(in_array($dir,$exa) || in_array($front,$exa)){
 			return lang('devapp_dfues');	
 		}
-		$vopfmt = glbConfig::read('vopfmt','ex'); 
-		$groups = glbConfig::read('groups'); 
-		if(isset($vopfmt['tpl'][$dir]) || is_dir(DIR_CODE."/tpls/$dir")){
+		$vopfmt = read('vopfmt','ex'); 
+		$groups = read('groups'); 
+		if(isset($vopfmt['tpl'][$dir]) || is_dir(DIR_SKIN."/$dir")){
 			return lang('devapp_dfext');
 		}
 		if(empty($groups[$mod]['pid']) || $groups[$mod]['pid']!='docs'){
 			return lang('devapp_dataerr');
 		}
-		self::cdir(DIR_CODE."/tpls/demodir", DIR_CODE."/tpls/$dir", $mod);
-		self::cdir(DIR_ROOT."/skin/demodir", DIR_ROOT."/skin/$dir", $mod);
+		self::cdir(DIR_SKIN."/demodir", DIR_SKIN."/$dir", $mod);
 		self::cfiles($dir, $front, $mod);
 		return 'OK'; //"<input type='text' value='dir=$dir,front=$front,mod=$mod' class='disc'>";
 	}
@@ -53,10 +52,10 @@ class devApp{
 
 	// 修改文件
 	static function cfiles($dir, $front, $mod){ 
-		$title = basReq::val('title',"{$dir}App");
+		$title = req('title',"{$dir}App");
 		// front
 		$data = comFiles::get(DIR_ROOT.'/run/front.php');
-		$data = str_replace(array("'demodir'","'./_paths.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_paths.php'"),$data);
+		$data = str_replace(array("'demodir'","dirname(__FILE__).'/_init.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_init.php'"),$data);
 		comFiles::put(DIR_PROJ."/$front.php", $data);
 		// vopfmt
 		$data = comFiles::get(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php');
@@ -69,7 +68,7 @@ class devApp{
 
 	// modOpt
 	static function modOpt($mod){ 
-		$_groups = glbConfig::read('groups'); 
+		$_groups = read('groups'); 
 		$ops = '';
 		foreach($_groups as $km=>$kv){
 			if($kv['pid']=='docs'){

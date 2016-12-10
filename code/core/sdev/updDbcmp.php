@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // ...类updDbcmp
 class updDbcmp{	
@@ -9,8 +9,8 @@ class updDbcmp{
 	static function uimpCheck(){
 		bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login">login</a></p>');
 		if(empty(self::$cpcfgs)){
-			$db = glbDBObj::dbObj();
-			$ocfgs = glbConfig::read('outdb','ex');
+			$db = db();
+			$ocfgs = read('outdb','ex');
 			$ocfgs = $ocfgs['psyn']['odbcfgs'];
 			$ocfgs = array_merge($db->config,$ocfgs); 
 			$res = devRun::runMydb3($ocfgs); 

@@ -2,9 +2,7 @@
 require(dirname(__FILE__).'/_config.php'); 
 
 glbHtml::page('Types Pick',1);
-glbHtml::page('imadm'); //adm
-echo basJscss::imp('/skin/jslib/search.js');
-//echo basJscss::imp('/skin/jslib/search.js');
+glbHtml::page('imadm',array('js'=>'/_pub/jslib/search.js'));
 ?>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 0px 8px; }
@@ -227,7 +225,7 @@ function popSetValue(type,kval){
 		jsElm.pdID(fid2+'_name').value = dataNams(obj.i,kval);
 		$('#xid2_close').trigger("click");
 	}
-	<?php $cb=basReq::val('cb'); echo $cb ? "window.parent.$cb(kval,jsElm.pdID(fid2+'_name').value);\n" : "\n"; ?>
+	<?php $cb=req('cb'); echo $cb ? "window.parent.$cb(kval,jsElm.pdID(fid2+'_name').value);\n" : "\n"; ?>
 }
 </script>
 <?php glbHtml::page('body',' style="padding:3px"'); ?>

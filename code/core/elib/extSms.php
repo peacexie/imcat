@@ -18,7 +18,7 @@ class extSms{
 	//function __destory(){  }
 	function __construct(){ 
 		require(DIR_CODE."/adpt/smsapi/api_cfgs.php"); // 加载
-		$_cfgs = glbConfig::read('sms','ex');
+		$_cfgs = read('sms','ex');
 		$api = @$_cfgs['cfg_api'];
 		if($api && isset($_apis[$api])){ 
 			$this->api = $api;
@@ -80,8 +80,6 @@ class extSms{
 	 * @return	array	---		结果数组,如：array(1,'操作成功'): 
 	 **/
 	function sendSMS($mobiles,$content,$limit=1){
-		global $_cbase; 
-		$db = glbDBObj::dbObj();
 		// 格式化 $mobiles,$content, 
 		$atel = $this->telFormat($mobiles);
 		$amsg = $this->msgCount($content);
@@ -119,9 +117,8 @@ class extSms{
 			'kid'=>basKeyid::kidTemp(),
 			'tel'=>$stel,'msg'=>basReq::in($amsg[0]),
 			'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
-			'aip'=>$_cbase['run']['userip'],'atime'=>$_cbase['run']['timer'],'auser'=>'peace',
 		);
-		$db->table('plus_smsend')->data($data)->insert();
+		db()->table('plus_smsend')->data($data)->insert();
 		// 扣钱 for 0test_balance.txt
 		if($this->api=='0test' && $res[0]=='1'){
 			$this->smsdo->deductingCharge($nmsg);
@@ -138,11 +135,11 @@ class extSms{
 	 **/
 	function balanceWarn($flag){
 		$file = "debug/balance_apiwarn.wlog"; 
-		comFiles::chkDirs($file,'tmp');
+		comFiles::chkDirs($file,'dtmp');
 		if(is_numeric($flag)){ //检查文件,多少时间(day)内修改过
 			return tagCache::chkUpd("/$file",'24h');
 		}else{ 
-			$onlineip = glbConfig::get('cbase', 'run.userip'); $data = ''; 
+			$onlineip = cfg('run.userip'); $data = ''; 
 			if(file_exists($file)){
 				$data = comFiles::get($file);
 			}
@@ -176,7 +173,7 @@ class extSms{
 	// param	int		$slen 	最多截取多少文字
 	// return	array	$re		返回array(文字,信息条数,文字个数)
 	function msgCount($msg,$slen=255){
-		$cset = glbConfig::get('cbase', 'sys.cset');
+		$cset = cfg('sys.cset');
 		$cnt = mb_strlen($msg, $cset);
 		if($cnt>255){
 			$msg = mb_substr($str, 0, 250, $cset); 

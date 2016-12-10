@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopUser(data OP for User)
 class dopUser extends dopBase{	
@@ -16,7 +16,7 @@ class dopUser extends dopBase{
 		parent::__construct($cfg,$cfg['pid']."_$mod");
 		$this->typfid = $this->so->typfid = 'grade';
 		$this->dskey  = $this->so->dskey  = 'mname'; 
-		$this->order  = $this->so->order  = basReq::val('order','uid');
+		$this->order  = $this->so->order  = req('order','uid');
 		$this->tbuacc  = 'users_uacc';
 	}
 	// 翻页条,批量操作
@@ -173,9 +173,9 @@ class dopUser extends dopBase{
 	
 	// edit-pass。
 	static function editPass($mod,$uname){ //docs,users
-		$pwold = basReq::val('pwold');
-		$pwnew = basReq::val('pwnew');
-		$pwrep = basReq::val('pwrep'); 
+		$pwold = req('pwold');
+		$pwnew = req('pwnew');
+		$pwrep = req('pwrep'); 
 		$oldpass = comConvert::sysPass($uname,$pwold,$mod);
 		$newpass = comConvert::sysPass($uname,$pwnew,$mod);
 		if(empty($pwnew) || $pwnew!==$pwrep){

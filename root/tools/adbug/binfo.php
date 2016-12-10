@@ -64,11 +64,11 @@ HTML;
 <title><?php lang('tools.binf_userenv',0);?>-(COOKIE,SERVER,phpinfo(4,8),Login,Logout)</title>
 <meta name='robots' content='noindex, nofollow'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="../../skin/jslib/jsbase.js"></script>
-<link rel='stylesheet' type='text/css' href='../../skin/a_jscss/stpub.css'/>
-<link rel='stylesheet' type='text/css' href='../../skin/adm/b_jscss/comm.css'/>
+<link rel='shortcut icon' href='../../../skin/_pub/a_img/favicon.ico' />
+<script src="../../../skin/_pub/jslib/jsbase.js"></script>
+<link rel='stylesheet' type='text/css' href='../../../skin/_pub/a_jscss/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='../../../skin/adm/b_jscss/comm.css'/>
 <link rel='stylesheet' type='text/css' href='./style.css'/>
-<link rel='shortcut icon' href='../../skin/a_img/favicon.ico' />
 </head>
 <body>
 <div>

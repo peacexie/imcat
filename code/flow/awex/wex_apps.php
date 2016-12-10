@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_wex_cfgs.php');
 $_cbase['run']['sobarnav'] = '';
 
@@ -16,7 +16,7 @@ $tabid = 'wex_apps';
 if($view=='list'){ 
 
 	$dop = new dopExtra($tabid,$cfg); 
-	$dop->order = $dop->so->order = basReq::val('order','kid-a'); 
+	$dop->order = $dop->so->order = req('order','kid-a'); 
 	if(!empty($bsend)){
 		if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
 		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');

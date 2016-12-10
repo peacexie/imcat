@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 
 // dopComs(data OP for Coms)
 class dopComs extends dopBase{	
@@ -19,7 +19,7 @@ class dopComs extends dopBase{
 		}
 		$this->typfid = $this->so->typfid = 'pid';
 		$this->dskey  = $this->so->dskey  = 'title'; 
-		$this->order  = $this->so->order  = basReq::val('order','atime');
+		$this->order  = $this->so->order  = req('order','atime');
 		//$this->tbuacc  = 'users_uacc';
 	}
 	// 翻页条,批量操作
@@ -42,11 +42,10 @@ class dopComs extends dopBase{
 	// hshow : 隐藏 显示开关
 	// hrel ：隐藏 关联信息
 	function fmPKey($hshow=0,$head=1,$hrel=0){ 
-		global $_cbase;
-		$_groups = glbConfig::read('groups');
+		$_groups = read('groups');
 		$mod = $this->mod;
 		$pid = @$this->fmo['pid']; 
-		$pid || $pid = basReq::val('pid');
+		$pid || $pid = req('pid');
 		$pmod = @$_groups[$mod]['pmod'];
 		if($pmod){
 			$pmname = $_groups[$pmod]['title'];
@@ -76,7 +75,7 @@ class dopComs extends dopBase{
 	}
 	// svEKey，
 	function svEKey(){
-		$cid = basReq::val('cid');
+		$cid = req('cid');
 		$this->svMoveFiles($cid);
 		return preg_replace('/[^0-9A-Za-z\.\-]/','',$cid);
 	}

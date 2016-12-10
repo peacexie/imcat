@@ -58,9 +58,9 @@ class basDebug{
 	// 运行统计信息
 	// tq : tpl, qstr, auto
 	static function runInfo($tq='auto'){ 
-		global $_cbase;
-		$qtime = $_cbase['run']['qtime'];
-		$rtime = microtime(1) - $_cbase['run']['timer'];
+		$run = cfg('run');
+		$qtime = $run['qtime'];
+		$rtime = microtime(1) - $run['timer'];
 		if($rtime>1){
 			$unit = 's'; 
 			$qtime = number_format($qtime,4);
@@ -71,19 +71,19 @@ class basDebug{
 			$rtime = number_format($rtime*1000,3);
 		} // Done in 0.253444 sec(s), 12 queries .
 		$info = "Done:$qtime/$rtime($unit); ";
-		$info .= "".$_cbase['run']['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
+		$info .= "".$run['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
 		$route = empty($_SERVER['PATH_INFO']) ? '' : "Route:".$_SERVER['PATH_INFO']."; ";
-		$tpl = "Tpl:".(empty($_cbase['run']['tplname']) ? '(null)' : $_cbase['run']['tplname'])."; "; //tpl 
+		$tpl = "Tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname'])."; "; //tpl 
 		$qstr = "[".(empty($_SERVER['QUERY_STRING']) ? '(null)' : $_SERVER['QUERY_STRING'])."] "; //qstr
-		$auto = empty($route) ? (empty($_cbase['run']['tplname']) ? $qstr : $tpl) : $route;
+		$auto = empty($route) ? (empty($run['tplname']) ? $qstr : $tpl) : $route;
 		$info .= $$tq."Upd:".date('Y-m-d H:i:s')." "; // str_replace('T',' ',date(DATE_ATOM))
 		return $info;
 	}
 	// 运行Load
-	static function runLoad($pre=0){ 
-		global $_cbase; 
+	static function runLoad($pre=0){  
+		$aclass = cfg('run.aclass');
 		$fix = $pre ? 'pre' : '!--';
-		$tmp = self::hidInfo($_cbase['run']['aclass']);
+		$tmp = self::hidInfo($aclass);
 		echo "\n".($pre ? '<pre>' : '<!--'); 
 		print_r($tmp); 
 		echo "</".($pre ? '</pre>' : '-->'); 
@@ -148,7 +148,7 @@ class basDebug{
 			$dcss = "border:1px solid #F00; background-color:#FFFFCC; padding:8px; margin:5px; clear:both; display:block;";	
 			print_r("\n\n<div style=\"$dcss\">$data</div>\n\n");
 		}elseif($mod=='db'){
-			$db = glbDBObj::dbObj();
+			$db = db();
 			$kid = basKeyid::kidTemp();
 			$vals = "'$kid','$act','$info[run]','$info[vp]','$info[rp]','".basReq::in($msg)."','$info[ip]','{$_cbase['run']['stamp']}','$info[ua]'";
 			$db->db->run("INSERT INTO ".$db->table("logs_$path",2)."(kid,`act`,used,page,pref,note,aip,atime,aua)VALUES($vals)"); 	
@@ -163,7 +163,7 @@ class basDebug{
 			} 
 			if(!strstr($file,'debug/')) $ftmp = "debug/$file";
 			else $ftmp = "$file"; 
-			comFiles::chkDirs(str_replace("//","/",$ftmp),'tmp');
+			comFiles::chkDirs(str_replace("//","/",$ftmp),'dtmp');
 			$file = str_replace("//","/",DIR_DTMP."/$ftmp"); 
 			$fh = fopen($file, "a+");
 			fwrite($fh, "\n$data");
@@ -176,7 +176,7 @@ class basDebug{
 		if(!$db){ // DIR_IMPS, DIR_VARS ,dirname(DIR_PROJ)
 			$str = str_replace(array(DIR_PROJ,DIR_IMPS,DIR_VARS),'~',$str); 
 		}else{
-			$cdb = glbConfig::read('db','cfg');
+			$cdb = read('db','cfg');
 			foreach(array('pre','suf') as $key){
 				$fix = $cdb["db_{$key}fix"];
 				if(!empty($fix)){

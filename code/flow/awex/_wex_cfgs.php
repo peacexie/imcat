@@ -1,14 +1,14 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pmod','apiweixin');
 
 $view = empty($view) ? 'list' : $view;
-$fs_do = basReq::val('fs_do');
+$fs_do = req('fs_do');
 $fs = basReq::arr('fs'); 
 
 $msg = ''; $cnt = 0; 
 
-$wekid = basReq::val('wekid'); 
+$wekid = req('wekid'); 
 $wecfg = wysBasic::getConfig($wekid); 
 $weapp = @$wecfg['appid']; 
 

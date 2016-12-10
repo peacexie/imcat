@@ -1,8 +1,8 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init');
+(!defined('RUN_INIT')) && die('No Init');
 require(dirname(__FILE__).'/_wex_cfgs.php');
 
-//$mtab = basReq::val('mtab','get'); //get,send,form
+//$mtab = req('mtab','get'); //get,send,form
 $mtab = $view=='list' ? 'get' : $view; 
 $tabid = "wex_msg$mtab"; //$weapp
 
@@ -25,7 +25,7 @@ if($view=='list'){
 	);
 	$dop = new dopExtra($tabid,$cfg); 
 	$dop->so->whrstr .= " AND `appid`='$weapp'";
-	$dop->order = $dop->so->order = basReq::val('order','kid'); //echo $dop->so->whrstr;
+	$dop->order = $dop->so->order = req('order','kid'); //echo $dop->so->whrstr;
 	if(!empty($bsend)){
 		if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
 		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
@@ -83,7 +83,7 @@ if($view=='list'){
 	);
 	$dop = new dopExtra($tabid,$cfg); 
 	$dop->so->whrstr .= " AND `appid`='$weapp'";
-	$dop->order = $dop->so->order = basReq::val('order','kid'); //echo $dop->so->whrstr;
+	$dop->order = $dop->so->order = req('order','kid'); //echo $dop->so->whrstr;
 	if(!empty($bsend)){
 		if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
 		if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
@@ -140,11 +140,11 @@ if($view=='list'){
 		
 }elseif($view=='form'){
 
-	$kid = basReq::val('kid',''); 
-	$openid = basReq::val('openid','');
-	$msgtype = basReq::val('msgtype',''); //print_r($fm);
-	$groupid = basReq::val('groupid','');
-	$doend = basReq::val('doend','');
+	$kid = req('kid',''); 
+	$openid = req('openid','');
+	$msgtype = req('msgtype',''); //print_r($fm);
+	$groupid = req('groupid','');
+	$doend = req('doend','');
 	//echo "$kid,$openid";
 	if(!empty($bsend)){	
 		$detail = $fm['detail']; 

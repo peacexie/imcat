@@ -1,5 +1,6 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
+usrPerm::run('pfile','admin/groups.php');
 
 if(!empty($bsend)){
 	

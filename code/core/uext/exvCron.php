@@ -8,9 +8,8 @@ class exvCron{
 	}
 
 	static function plistAll(){ 
-		$db = glbDBObj::dbObj();
 		$list = "\n";
-		$larr = $db->table('bext_cron')->where("1=1")->select(); 
+		$larr = db()->table('bext_cron')->where("1=1")->select(); 
 		foreach($larr as $val){
 			$list .= "\tnew Array('{$val['kid']}','{$val['exsecs']}'), // {$val['title']}\n";
 		}

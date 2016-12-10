@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_MODE')) && die('No Init'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 usrPerm::run('pfile','admin/paras.php');
 
 $mod = empty($mod) ? 'prcore' : $mod;

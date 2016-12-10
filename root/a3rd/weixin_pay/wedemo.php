@@ -2,18 +2,18 @@
 $_cbase['run']['wedemo'] = 1;
 require(dirname(__FILE__).'/we_cfgs.php');
 
-$act = basReq::val('act','main'); 
-$kid = basReq::val('kid','admin');
+$act = req('act','main'); 
+$kid = req('kid','admin');
 $debug = basReq::arr('debug','Html');
 
 $ubase = PATH_ROOT."/plus/api/wechat.php?";
 $dcfg = array('api','appid','token','appsecret','orgid','openid');
 $wecfg = wysBasic::getConfig($kid); 
-$db = glbDBObj::dbObj(); 
+$db = db(); 
 
 glbHtml::page("微信接口调试");
-glbHtml::impub();
-echo basJscss::imp("/skin/a_jscss/weixin.js"); //glbHtml::page('imps');
+glbHtml::page('imp');
+echo basJscss::imp("/_pub/a_jscss/weixin.js"); 
 echo '<style type="text/css">
 #tester { left:620px; top10px; position:fixed; background:#FFF; padding:10px; border:1px solid #CCC; }
 .ngray { color:#F3F; }
@@ -65,7 +65,7 @@ wxDebugNavbar();
 
 <p>4. 登出重新调试：<br>
 &nbsp; * a. 因已经是登录状态就无需登录；所以请另开浏览器窗口，在未登录情况下测试；<br>
-&nbsp; * b. 如果是登录状态：<a href="<?php echo vopUrl::fout('umc:'); ?>?mkv=user-login&act=doout">登出重新调试</a>
+&nbsp; * b. 如果是登录状态：<a href="<?php echo surl('umc:'); ?>?mkv=user-login&act=doout">登出重新调试</a>
 </p>
 
 <hr>
