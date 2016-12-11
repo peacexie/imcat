@@ -1,0 +1,37 @@
+
+
+#ueadm#Modify the admin entry
+
+* Purpose: To secure and customize features!
+
+* Move file:
+ - Create a sub dir in /root/, like as:`usecret`(Arbitrary modification),
+ - Copy file /root/run/adm.php to THIS sub dir, and modify the filename, like as `cat.php`(Arbitrary modification),
+ - Edit the path(_paths.php) in this file: `require(dirname(dirname(__FILE__)).'/run/_init.php');`
+
+* Edit config: 
+ - File: /code/cfgs/excfg/ex_vopfmt.php
+ - Edit item: $_ex_vopfmt['tpl'], 
+ - like as: `'adm' => '/usecret/cat.php',`// the path and the filename modify according to your set
+
+* Visit the url, Enjoy! : 
+ - /root/usecret/cat.php
+
+
+#vdirs#Optimize directories
+
+* dirs: html,ures
+ - For optimize: you can move dirs `/vary/html`, `/vary/ures` out from `vary`, 
+ - Or set virtual directory: 
+ - Attention to modify the configs in file【/root/run/_init.php】.
+ 
+
+#uevimp#Deal with dir:vimp
+
+* Background
+ - If more then one THIS system(IntimateCat) in the same server, and with the some version, they can share the dir:`vimp`
+
+* Handling items
+ - Specific processing matters, can refer to the above, all of the sites are config virtual dirs, use the same `vimp` directory...
+
+ 

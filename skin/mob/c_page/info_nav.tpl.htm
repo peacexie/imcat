@@ -1,0 +1,73 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta('连接导航'); }
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{php $this->pimp(array('css'=>'~tpl/b_jscss/info.css')); }
+<base target="_blank">
+
+</head><body>
+
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="pgf_mid">
+  <div class="pgf_side">
+    {inc:"c_test/sadv-080"}
+    <ul class="snav">
+      <li><a href="{surl(0)}">(Home)首页</a> &nbsp; | &nbsp; <a href="{surl(info-nav)}">站点导航</a></li>
+      <li><a href="{surl(info-tag)}">标签演示</a> &nbsp; | &nbsp; <a href="{surl(info-tjs)}">(js)标签</a></li>
+      <li><a href="tools/base/exlib.php">系统类库</a> &nbsp; | &nbsp; <a href="tools/run/crawl.php">单页抓取</a></li>
+      <li><a href="plus/api/uinfo.php">用户信息</a> &nbsp; | &nbsp; <a href="plus/api/color.php">颜色选取</a></li>
+      <li><a href="{PATH_ROOT}/admin.php?file=admin">admin</a> &nbsp; | &nbsp; <a href="{PATH_ROOT}/apis/dbadm.php">dbadm</a></li>
+    </ul>
+    {inc:"c_test/sadv-080"}
+    <ul class="snav">
+      <li><a href='?'>(Home)</a> &nbsp; | &nbsp; <a href="?mkv=abc&abc=ddd'22">QUERY</a></li>
+      <li><a href='?abc=ddd(22'>mkv</a> # <a href='?about-'>about-</a> # <a href='?about.apic.'>apic.</a></li>
+      <li><a href='?about-0'>about-0</a> # <a href='?about.99'>about.99</a></li>
+      <li><a href='?nomodely'>nomodely</a> # <a href='?about-istest'>about.istest</a></li>
+      <li><a href='?adpic'>adpic</a> # <a href='?indoc'>indoc</a> # <a href='?info'>info</a></li>
+      <li><a href='?info-xxxx'>xxxx</a> # <a href='?about-istest'>istest</a> # <a href='?about-iutest'>iutest</a></li>
+      <li><a href='?about-xxapic'>apic</a> # <a href='?about'>about</a> # <a href='?about-apic'>about-apic</a></li>
+    </ul>
+
+  </div>
+  <div class="pgf_main"> 
+   
+    <h1 class="detail_title">站点导航</h1>
+   
+    <ul class="info-nav">
+      <li class="title">china:[分类/组系]显示</li>
+      <li><a href="{surl(china)}">china-(null)</a></li>
+      <li><a href="{surl(china-city)}">china-city</a></li>
+      <li><a href="{surl(china-world)}">china-world</a></li>
+      <li><a href="{surl(type-world)}">type-world</a></li>
+      <li><a href="{surl(type-auto)}">type-auto</a></li>
+    </ul>
+
+    <ul class="info-nav">
+      <li class="title">user:会员操作</li>
+      <li><a href="{surl(umc:user-login)}">user-login</a></li>
+      <li><a href="{surl(umc:user-apply)}">user-apply</a></li>
+      <li><a href="{surl(umc:user-appdo)}">user-appdo</a></li>
+      <li><a href="{surl(umc:user-getpw)}">user-getpw</a></li>
+      <li><a href="{surl(umc:user-getdo)}">user-getdo</a></li>
+    </ul>
+
+    {loop array('demo','about','news','cargo','topic') $mod}
+    <ul class="info-nav">
+      <li class="title"><a href="{surl($mod,-);}">{$mod}:{$_groups[$mod]['title']}</a></li>
+      {tag:about=[Type][modid,$mod][idfix,top]}
+      <li><a href="{surl("$mod-$t_kid")}">{$t_kid},{$t_title}</a></li>
+      {/tag:about}
+    </ul>
+    {/loop}
+
+    <div class="clear"></div>
+    
+  </div>
+</div>
+
+{inc:"c_pub/afoot"}
+
+</body></html>
+

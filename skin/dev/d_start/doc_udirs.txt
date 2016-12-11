@@ -1,0 +1,37 @@
+
+
+#ueadm#修改后台入口
+
+* 目的：为安全和自定义特色！
+
+* 移动文件：
+ - /root/下创建usecret目录（自定义），
+ - 复制/root/run/adm.php到此目录，并改名cat.php（自定义）
+ - 修改文件中_paths.php路径：`require(dirname(dirname(__FILE__)).'/run/_init.php');`
+
+* 修改配置：
+ - 文件：/code/cfgs/excfg/ex_vopfmt.php
+ - 修改项：$_ex_vopfmt['tpl']，
+ - 修改为：`'adm' => '/usecret/cat.php',`//目录和路径与上述修改的一致
+
+* 访问Enjoy！：
+ - /root/usecret/cat.php
+
+
+#vdirs#优化目录
+
+* html,ures目录
+ - 为优化；可把/vary/html，/vary/ures目录移出vary，
+ - 也可设置虚拟目录；
+ - 注意修改文件【/root/run/_init.php】相应配置
+ 
+
+#uevimp#处理vimp目录
+
+* 背景
+ - 如果有两个以上的本系统站点，在同一服务器，且版本相同，可设置vimp共用；
+
+* 处理事项
+ - 具体处理事项，可参考上面，多个站点都设置虚拟目录，指向同一个vimp目录
+
+ 

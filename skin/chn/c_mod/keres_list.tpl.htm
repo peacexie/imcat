@@ -1,0 +1,62 @@
+{php vopTpls::pinc('tex_keres');}
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(); }
+<?php
+$null1 = "所有类别";
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+?>
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+    {inc:"c_pub/mod_side"}
+  </div>
+  <div class="pgf_mcon"> 
+    <div class="news-tbar">
+    <i>新闻动态-{sopt($this->key,$this->mod,0,$null1)}</i>
+    <i class="right">
+    <a href="{surl($this->mod)}">[所有]</a>
+    {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+    <a href="{surl($this->mod."-$t_kid")}">{title($t_title,32,$u)}</a>
+    {/tag:tp}
+    </i>
+    </div>
+    
+      <table border="0" width="100%" class="keres-table">
+        {tag:dlist=[Page][modid,$this->mod][join,detail][show,1][stype][ygrade][course][hinfo][keywd][limit,10]}
+        {:row}
+        <tr>
+          <td rowspan="2" width="160" height="120" class="tc uimark-pos-rel">
+          <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+          {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
+          </td>
+          <td class="title">
+          <a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a>
+          <i class="right">{sopt($t_catid,$this->mod,0,$null2)} &nbsp; </i>
+          </td>
+        </tr>
+        <tr class="resume">
+          <td>
+		  &nbsp; &nbsp; 
+          {if !empty($t_ygrade)}<i>[{sopt($t_ygrade,ygrade,0,$null3)}]</i>{/if}
+          {if !empty($t_course)}<i>[{sopt($t_course,course,0,$null3)}]</i>{/if}
+          &nbsp; &nbsp; {text(array($t_seo_des,$t_detail),120,1)} …… [<a href="{surl($this->mod.".$t_did")}">详情</a>]
+          </td>
+        </tr>
+        {/row}
+        <tr>
+          <td colspan="2" class="pa5">
+          {php echo $_cbase['page']['bar']; }
+          </td>
+        </tr>
+        {/tag:dlist}
+      </table> 
+      
+    <div class="clear"></div>
+  </div>
+</div>
+{inc:"c_pub/afoot"} 
+</body></html>

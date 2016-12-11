@@ -1,0 +1,22 @@
+<?php
+$null = "<span class='cCCC'>------</span>";
+?>
+    <div class="about-tbar">
+    <i>
+    {php $data = array(); }
+    {tag:alist=[List][modid,$this->mod][join,detail][show,1][stype][limit,10]}
+	<?php
+	$data[$t_did] = $v;
+    ?>
+    <a href="{surl(0)}?{$this->mod}-{$this->key}-{$t_did}">{title($t_title,32,$u)}</a>
+    {/tag:alist}
+    </i>
+    <i class="right">
+    {sopt($this->key,$this->mod,0,$null)} &gt;&gt;
+    </i>
+    </div>
+    
+    {php reset($data); $now = $this->view ? $data[$this->view] : current($data); $detail = $now['detail']; }
+    <div class="news_text"> {html($detail)} </div>
+
+

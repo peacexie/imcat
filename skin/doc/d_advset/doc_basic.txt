@@ -1,0 +1,35 @@
+
+
+#prboot#boot-Param
+
+* Dir : /code/cfgs/boot/
+* const.cfg.php : Cookie prefix, custom config, debug log config
+* cfg_load.php : Class prefix and autoload path config
+* cfg_db.php : Database config, change database please config this
+* cfg_adbug.php : The id/pw for auxiliary debugging tools
+  -> StartPage : /root/index.php?start 
+  -> Some tools links, need to login or uesed by the admin
+
+
+#prexcfg#excfg-Param
+
+* Dir : /code/cfgs/excfg/
+* ex_mail.php : for Email
+* ex_sms.php : for SMS
+* ex_vopfmt.php : Tpl-Show
+* ex_outdb.php : Data-Share/Syn, Out-DB
+* ex_a3rd.php : 3rd [Pay/Login]Config
+
+
+#prsycfg#sycfg-Param
+
+* Dir : /code/cfgs/sycfg/
+* sy_keepid.php System keeped id configs
+* sy_uachk.php Search-Engine, Browser, UserAgent Keywords
+* System parameters, according to the need to be modified
+
+
+#prelse#else-Param
+
+* Wechat config : Admin >> Frame >> Plus/API >> WechatAPI (Support more then ONE public number)
+

@@ -1,0 +1,175 @@
+
+------------------------------------------------------------------------------
+#KindEditor#KindEditor
+------------------------------------------------------------------------------
+
+```
+-1. From
+https://github.com/kindsoft/kindeditor
+http://kindeditor.net/down.php
+
+-2. Dir
+/vendui/KindEditor/
+
+-3. Mini
+= lang/
+= plugins/
+= themes/
+= kindeditor.js
+-------------------------------
+* plugins/emoticons
+* plugins/filemanager
+* plugins/flash
+* plugins/insertfile
+* plugins/media
+* plugins/multiimage
+* plugins/pagebreak
+* plugins/template
+* themes/qq
+
+```
+
+------------------------------------------------------------------------------
+#UEditor#UEditor
+------------------------------------------------------------------------------
+
+```
+-1. From
+http://ueditor.baidu.com/website/
+
+-2. Dir
+/vendui/edt_ue/
+
+-3. Mini
+= dialogs/
+= lang/
+= themes/
+= third-party/
+= index.html
+= umeditor.config.js
+= umeditor.min.js
+= third-party/zeroclipboard/
+-------------------------------
+* plugins/attachment
+* plugins/charts
+* plugins/insertframe
+* plugins/music
+* plugins/scrawl
+* plugins/template
+* plugins/video
+* plugins/webapp
+* plugins/wordimage
+* third-party/mathquill/font
+
+-4. Modify
+ -a. umeditor.config.js
+//, serverUrl: URL + "php/controller.php"
+ -b. 
+```
+
+
+------------------------------------------------------------------------------
+#UMEditor#UMEditor
+------------------------------------------------------------------------------
+
+```
+-1. From
+http://ueditor.baidu.com/website/
+
+-2. Dir
+/vendui/edt_um/
+
+-3. Mini
+= dialogs/
+= lang/
+= themes/
+= third-party/
+= index.html
+= umeditor.config.js
+= umeditor.min.js
+-------------------------------
+* third-party/mathquill/font
+
+-4. Modify
+a. See: _umeditor*
+b. 
+```
+
+
+------------------------------------------------------------------------------
+#CKEditor#CKEditor
+------------------------------------------------------------------------------
+
+```
+-1. From
+http://ckeditor.com/download
+
+-2. Dir
+/vendui/edt_ck/
+
+-3. Mini
+= lang/
+= plugins/
+= skins/
+= ckeditor.js
+= config.js
+= contents.css
+-------------------------------
+= styles.js
+* plugins/specialchar
+= lang/de.js
+= lang/en.js
+= lang/en-gb.js
+= lang/fr.js
+= lang/ru.js
+= lang/zh.js
+= lang/zh-cn.js
+
+```
+
+
+------------------------------------------------------------------------------
+#ckplayer#ckplayer
+------------------------------------------------------------------------------
+
+```
+-1. From
+http://www.ckplayer.com/
+
+-2. Dir
+/vendui/ckplayer/
+
+-3. Mini
+= ckplayer/
+= js/
+= crossdomain.xml
+= index.htm
+= demo3.htm
+-------------------------------
+* ckplayer/share
+
+```
+
+
+
+
+------------------------------------------------------------------------------
+#Jingle#
+------------------------------------------------------------------------------
+
+```
+-1. From
+http://vycool.com/Jingle/
+
+-2. Dir
+/vendui/Jingle/
+
+-3. Mini
+* demo/
+* demo-muti/
+* doc/
+* src/
+-------------------------------
+* 
+```
+

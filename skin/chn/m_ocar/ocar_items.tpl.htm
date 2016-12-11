@@ -1,0 +1,82 @@
+{imp:"m_ocar/ocar_alay"}<!--模板继承-->
+
+{block:minit}{:parent}<?php 
+$tabid = 'coms_cocar';
+$title = '购物车明细';
+$entit = 'Shopping Car';
+
+if($act=='iadd'){ //添加物品
+	$msg = exvOcar::iadd($unqid,$user);
+}elseif($act=='iedit'){ //修改数量
+	$ordcnt = req('ordcnt',1,'N');
+	$db->table($tabid)->data(array('ordcnt'=>$ordcnt))->where("$where AND cid='$cid'")->update(); 
+	die(basMsg::show("修改成功！",'Redir',surl($this->mkv),1));	
+}elseif($act=='idel'){ //删除物品
+	$db->table($tabid)->where("$where AND cid='$cid'")->delete();
+	die(basMsg::show("删除成功！",'Redir',surl($this->mkv),1));
+}
+$msg || $msg = "<b class='c999'>$entit</b>";
+
+?>{/block:minit}
+
+{block:mact}
+<table border="1" class="ocar_items">
+    <tr>
+        <td class="tr">No.</td>
+        <td>商品名称</td>
+        <td class="tr">价格</td>
+        <td class="tr">数量</td>
+        <td class="tr">重量</td>
+        <td class="tr">金额</td>
+        <td class="tc">添加时间</td>
+        <td class="tc">操作</td>
+    </tr>
+    <?php $list=exvOcar::ilist($tabid,$where); foreach($list['data'] as $v){ ?>
+    <tr>
+        <td class="tr">{$v[i]}</td>
+        <td><a href="{surl("cargo.$v[pid]")}" target="detail">{$v[title]}</a></td>
+        <td class="tr">{$v[ordprice]}</td>
+        <td class="tr"><input id="ordcnt_{$v[i]}" type="text" value="{$v[ordcnt]}" class="w60 tr" reg="n+i:" tip="格式: 888"></td>
+        <td class="tr">{$v[ordweight]}</td>
+        <td class="tr">{$v[ifee]}</td>
+        <td class="tc">{stime($v['atime'],min)}</td>
+        <td class="tc">
+        <a href="#" onClick="urlConedit('?mkv={$this->mkv}&cid={$v[cid]}&act=iedit&ordcnt=','{$v[i]}')">修改</a>
+        -
+        <a href="#" onClick="urlConfirm('?mkv={$this->mkv}&cid={$v[cid]}&act=idel','确认删除?')">删除</a></td>
+    </tr>
+    <?php } $v=$list['sum']; $ocar_items=count($list['data']); ?>
+    <tr>
+        <td class="tr">-</td>
+        <td>（合计）</td>
+        <td class="tr"></td>
+        <td class="tr">{$v[acnt]}</td>
+        <td class="tr">{$v[aweight]}</td>
+        <td class="tr">{$v[afee]}</td>
+        <td class="tc"></td>
+        <td class="tc"></td>
+    </tr>
+    <tr>
+        <td colspan="8" class="tc">
+        <table width="80%" border="0" align="center">
+            <form id='fmocar' name='fmocar' method="post" action="{surl(ocar-checkout)}">
+            <tr>
+                <td width="33%"><input type="button" value="+ 再找商品" onclick="urlConfirm('{surl(cargo)}','go_url')"></td>
+                <td width="32%"><input type="button" value="* 登录会员" onclick="urlConfirm('{surl(user)}','go_url')"></td>
+                <td width="33%"><input type="submit" value="¥ 去收银台" <?php if(empty($v['acnt'])) echo "disabled"; ?>></td>
+            </tr>
+            </form>
+        </table>
+        </td>
+    </tr>
+</table>
+<script>
+function urlConedit(url,id){
+	var val = jsElm.jeID('ordcnt_'+id).value; 
+	val = parseInt(val);
+	if(isNaN(val) || val<1){ alert('请填写正整数！'); return; } 
+	else{ location.href = url+val; }
+}
+</script>
+
+{/block:mact}

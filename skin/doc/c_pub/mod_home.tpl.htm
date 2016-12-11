@@ -1,0 +1,16 @@
+
+{tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+<ul class="mod-home">
+  <li class="type">
+  <a href="{surl($this->mod."-$t_kid")}">{$t_kid}:{title($t_title,32,$u)}</a> 
+  </li>
+  {tag:dl=[List][modid,$this->mod][stype,$t_kid][limit,5]}
+  <li>
+  <i class="title">
+  <a href="{surl($this->mod.".$t_did")}" title="{stime($t_atime,0)}">{title($t_title,40,$v)}</a>
+  {if !empty($t_hinfo)}<b class="uimark-star-icon1a">&nbsp;</b>{/if}
+  </i>
+  </li>
+  {/tag:dl}
+</ul>
+{/tag:tp}

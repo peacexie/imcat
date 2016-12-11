@@ -1,0 +1,80 @@
+{php vopTpls::pinc('tex_cargo');}
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(array('js'=>'/_pub/a_jscss/sordbar.js')); }
+<script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+    {inc:"c_mod/cargo_side"}
+  </div>
+  <div class="pgf_mcon"> 
+    <div class="sobar" id="sobar">
+      <p><b>价格</b> <span id="soprice"></span></p>
+      <p><b>品牌</b> <span id="sobrand"></span></p>
+      <p><b>推荐</b> <span id="sohinfo"></span></p>
+   	</div>
+    <div class="sobar soline"> 
+      <p class="order">
+       <i id="so_def"></i>
+       <i id="so_click"></i>
+       <i id="so_salse"></i>
+      </p>
+      <p class="sokeys" id="sokeys">
+      找到 <i class="js_allrec">000</i> 条纪录　<a href="{surl(cargo)}" class="soclear" id="soclear">清除条件</a>
+      </p>
+    </div>
+    <div class="h10">&nbsp;</div>
+    <!--list_start-->
+	<?php $col=4; ?>
+    <table border="1" width="100%" class="pro-table">
+      {tag:dlist=[Page][modid,$this->mod][show,1][stype][brand][hinfo][keywd][where,tex_cargo::expwhr()][order,0,click+price][limit,12]}
+      {:row}
+      {php if($i_v%$col==0) echo "\n<tr>"; }
+      <td width="25%" valign="top">
+        <p class="tc picbox uimark-pos-rel">
+        <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+        {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
+        <p class="detail"><i class="price">&yen;{$t_price}元</i><i class="click">浏览{$t_click}次</i>
+        </p>
+        <p class="title clear"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
+      </td> 
+      {php if($i_v%$col==$col-1) echo "\n</tr>"; }
+      {/row}
+      <tr>
+        <td colspan="{$col}" class="pa5">
+        {php echo $_cbase['page']['bar']; }
+        </td>
+      </tr>
+      {/tag:dlist}
+    </table>  
+    <!--list_end-->
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+
+</body></html>
+
+{php //basDebug::varShow($this); }
+
+<script>
+
+var s,linktpl = "<a href='(url)' class='(act)'>(title)</a>"; 
+sordb_init('{$this->mod}','{$this->key}',0,'stype:brand,exp_*',linktpl);
+var atype = sordb_cfgs.slay.split(','), amtype = atype.length>=0 ? atype[0] : '(null)'; 
+
+s = sordb_relat(0,'brand-relpb-'+atype[atype.length-1],'act'); sordb_setLinks('sobrand',s);
+s = sordb_area(0,'price:10,100,200,300,500,800,1000:元','act'); $('#soprice').html(s);
+s = sordb_extype(0,'hinfo-0','act'); $('#sohinfo').html(s);
+sordb_fexts('sobar',0,'act');
+
+s = sordb_ordby(0,'默认','','def-act,def,(def)'); $('#so_def').html(s);
+s = sordb_ordby(0,'点击','click','oasc,odesc,ondesc,'); $('#so_click').html(s);
+s = sordb_ordby(0,'价格','price','oasc,odesc,onasc,1'); $('#so_salse').html(s); 
+
+$('.js_allrec').html($('.pg_total').html());
+sordb_hideClear('soclear');
+
+</script>

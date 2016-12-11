@@ -1,0 +1,42 @@
+
+
+--------------------------------------------------------------------------------
+
+
+#setcatalog#栏目扩展参数
+
+* 说明
+
+ - 该设置(按栏目/等级)的扩展参数，选择栏目或等级时，出现额外参数项目；
+ - 如不同类别的产品有不同参数；
+ 
+* 步骤1：设置参数
+
+ - 文件：\code\cfgs\excfg\ex_paras.php
+ - 参数：$_ex_paras，把模型加进去...
+
+* 步骤2：扩展脚本
+
+ - 扩展脚本 users_form_show.php / docs_form_show.php 让参数生效
+ - （另，自行添加主表数据库相关字段。）
+
+```
+if($mod=='cargo'){
+	fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
+}
+if($mod=='keres'){
+	fldView::relat("relyc,fm[ygrade],fm[course]");
+}
+if(in_array($mod,array('about','demo'))){
+	fldView::relat("fm[catid]","fm[catid],$mod,$did");
+}
+if(in_array($mod,array('company','govern','organize'))){
+	fldView::relat("fm[grade]","fm[miuid],$mod,$uname,fm[grade]"); 
+}
+```
+
+
+* 步骤3：前端显示
+
+ - 前端根据模板，自由显示，可参考产品展销。
+

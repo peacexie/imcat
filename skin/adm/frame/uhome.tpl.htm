@@ -1,0 +1,126 @@
+{imp:"frame/aimp"}<!--模板继承-->
+
+{block:ahead}<style type='text/css'>
+.abprop{padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
+</style>{/block:ahead}
+
+{block:abody}
+<?php
+$act = req('act');
+$exinfo = req('exinfo');
+if($act=='update'){
+	$arr = array('server.htm','client.htm'); //,'modstat.php'
+	foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key"); }
+}elseif($act=='modstat'){
+	@unlink(DIR_DTMP."/dset/_upd_modstat.php");
+}elseif($act=='uspace'){
+	@unlink(DIR_DTMP."/dset/_upd_spaceinfo.php");
+}
+//basDebug::varShow($data)
+?>
+<table border='0' class='tbbar1'><tr>
+<td class='tc'><h4>[{$_cbase['sys_name']}] {lang(admin.home_index)}</h4></td>
+<td class='tr pa5'>{lang(admin.home_sn)} : <a href='#' class='cur'>{$_cbase['sys']['sn']}</a></td>
+</tr></table>
+
+<table border='1' class='tblist'>
+<tr>
+<th>{lang(admin.home_srvnews)}</th><th width="30%">{lang(admin.home_now_user)}</th>
+</tr>
+<tr>
+<td class='tl pa10'>
+  <script src="{PATH_ROOT}/plus/api/update.php?act=client"></script>
+</td>
+<td class='tl pa10'>
+  ● {lang(admin.home_user)}: {$user->uinfo['mname']} (<span class="c00F">{$user->uinfo['uname']}</span>)<br>
+  ● {lang(admin.home_ugroup)}: {$user->uperm['title']}<br>
+  ● {lang(admin.home_logip)}: {$_cbase['run']['userip']}<br>
+  ● {lang(admin.home_systime)}: {stime($_cbase['run']['stamp'],min)}<br>
+</td>
+</table>
+{if !empty($exinfo)}
+<div style=" width:100%; height:240px; overflow-y:scroll; border:1px solid #039; padding:5px;">
+<?php
+echo "\n<div class='h05'>&nbsp;</div>";
+echo "<pre>[!-- $exinfo ".lang('admin.home_exinfo')." <a href='?uhome'>&lt;&lt;".lang('admin.home_exback')."</a> \n";
+if($exinfo=='cbase'){
+	print_r($_cbase);
+}elseif($exinfo=='admin'){
+	print_r($user);
+}elseif($exinfo=='member'){
+	$umem = user('Member');
+	print_r($umem);
+}
+echo "--></pre>\n";
+?> 
+</div>
+{/if}
+<div class="h05">&nbsp;</div>
+<table border='1' class='tblist'>
+  <tr>
+    <th width="49%">{lang(admin.home_stdocs)}</th>
+    <th width="49%">{lang(admin.home_stuser)}</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('docs');?>
+    </td>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('users');?>
+    </td>
+
+  <tr>
+    <th>{lang(admin.home_stcoms)}</th>
+    <th>{lang(admin.home_stadvs)}</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('coms');?>
+    </td>
+    <td class='tl pa10'>
+    <?php updInfo::showModStat('advs');?>
+    <br /><br />
+    </td>
+</table>
+<?php
+$stype = 'afadmin'; $actstr = $whrself = '';
+include(DIR_CODE."/flow/eact/adfavor_view.php");
+?>
+<div class="h05">&nbsp;</div>
+<table border='1' class='tblist'>
+  <tr>
+    <th>{lang(admin.home_sysinfo)}</th>
+    <th width="50%">{lang(admin.home_sysspace)}</th>
+  </tr>
+  <tr>
+    <td class='tl pa10'>
+	<?php 
+    $a = array('verPHP','verGdlib','runRemote'); 
+    foreach($a as $k){ 
+		$re = devRun::$k();
+		echo "● $re[title] : $re[info]<br>\n";
+	}
+    ?>
+    ● {lang(admin.home_sysvars)}: <a href="?mkv=uhome&exinfo=cbase">cbase</a>, 
+    <a href="?mkv=uhome&exinfo=admin">admin</a>, 
+    <a href="?mkv=uhome&exinfo=member">member</a>, 
+    <a href="{PATH_ROOT}/tools/adbug/binfo.php?cookie" target="_blank">COOKIE</a>, 
+    <a href="{PATH_ROOT}/tools/adbug/binfo.php?server" target="_blank">SERVER</a>, 
+    <a  href='{PATH_ROOT}/tools/adbug/binfo.php?phpinfo255' target='_blank'>phpinfo</a>, 
+    <a  href='{PATH_ROOT}/tools/adbug/check.php?act=define' target='_blank'>Defined</a> <br>
+    ● {lang(admin.home_update)}: <a href="?mkv=uhome&act=update">{lang(admin.home_upsver)}</a>, 
+    <a href="?mkv=uhome&act=modstat">{lang(admin.home_upstat)}</a>,
+    <a href="?mkv=uhome&act=uspace">{lang(admin.home_upspace)}</a>,
+    [<a href="?uhome">{lang(admin.home_refresh)}</a>-<a href="{PATH_ROOT}/plus/api/update.php?act=nav">nav</a>]<br>
+    </td>
+    <td nowrap="nowrap" class='tl pa10'>
+	<table class="uh-space"><?php updInfo::showSpaceInfo(); ?></table>
+    </td>
+
+</table>
+<div class="h05">&nbsp;</div>
+
+<?php $_cbase['debug']['err_mode'] && print_r(basDebug::runInfo()); ?>
+
+{/block:abody}
+

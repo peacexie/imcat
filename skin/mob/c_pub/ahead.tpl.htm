@@ -1,0 +1,39 @@
+<?php
+$mdtitle = @$_groups[$this->mod]['title'];
+if($this->type=='detail'){
+	$sbtitle = $mdtitle."详情";
+}elseif($this->type=='mtype'){
+	$sbtitle = vopCell::cOpt($this->key,$this->mod);
+}else{
+	$sbtitle = $mdtitle;
+}
+?>
+<nav class="divOuter header">
+    <p class="menu right" onclick="jsActNav('main')">
+    <a class="phx right"><i class="glyphicon glyphicon-resize-full ph1 main"></i></a>
+    </p>
+    <ul class="main right" style="display:none;">
+        <li><a href="{surl(0)}">Home-首页</a></li>
+        <li><a href="{surl(cargo)}">Cargo-商品展销</a></li>
+        <li><a href="{surl(news)}">News-新闻动态</a></li>
+        <li><a href="{surl(keres)}">Keres-课程资源</a></li>
+        <li><a href="{surl(votes)}">Votes-投票系统</a></li>
+        <!--li><a href="{surl(about-first)}">About-关于我们</a></li-->
+    </ul>
+    <p class="logo">
+        <a href="javascript:void(0)" onclick="history.back(-1)"><img src="{PATH_SKIN}/_pub/logo/imcat-40x.png" width="40" height="40"></a>
+        {if $this->mod!='user'}
+        <b onclick="jsActNav('subs')">{$sbtitle} <i class="glyphicon glyphicon-import"></i></b>
+        {/if}
+        <ul class="subs" style="display:none;">
+            <?php if(in_array($this->mod,array('news','topic','keres','cargo','about','votes'))){ ?>
+            {if $this->mod!='about' }<li><a href="{surl($this->mod)}--list">[所有]{$mdtitle}</a></li>{/if}
+            {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+            <li><a href="{surl($this->mod."-$t_kid")}">{title($t_title,32,$u)}</a></li>
+            {/tag:tp}
+            <?php } ?>
+        </ul>
+    </p>
+</nav>
+
+<div class="divOuter clearfix">

@@ -1,0 +1,23 @@
+
+<div class="sd-adv60"> 
+	<span id='jsid_advs_adpic_250x60'><!--adpic:a2020--></span>
+</div>
+<div id="tree01" class="layTree1 sd-stype">
+</div>
+
+<div class="sd-so01">
+<form method="get" action="{surl(0:0)}">
+<input name="mkv" type="hidden" value="{$this->mod}">
+<input name="keywd" type="text" id="keywd" class="w150" />
+<input type="submit" id="sobtn" value="搜产品" />
+</form>
+</div>
+
+<?php
+$urltm = vopUrl::f1st('cargo');
+?>
+<script>
+var tpl2 = "<p class='tree_(level) p_(pid) k_(key) (css)'>(lay)<a href='{$urltm}'>(title)</a></p>"; 
+var trees1 = sotree_init(tpl2,'cargo',0); $('#tree01').html(trees1); 
+sotree_open('tree01','{$this->key}'+urlPara('stype','')); //p2012
+</script>

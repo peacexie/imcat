@@ -1,0 +1,26 @@
+{imp:"frame/aimp"}<!--模板继承-->
+
+{block:ahead}<style type='text/css'>
+.abprop{padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
+</style>{/block:ahead}
+
+{block:abody}
+<?php 
+$aurl = basReq::getUri(-2); 
+extract(basReq::sysVars());
+echo "\n<!--inc:/$file.php-->\n"; 
+$full = DIR_CODE."/flow/$file.php";
+if(in_array(substr($file,0,2),array('ea','em'))){
+	glbHtml::page('h1',"Error DopA: $file.php");
+}elseif(!file_exists($full)){
+	glbHtml::page('h1',"File Not Found: $file.php");
+}else{
+	$dop = new dopBase(@$_groups[$mod],'base_model');
+	$cv = $dop->cv;
+	require($full);
+}
+echo "\n<!--inc:end-->\n<p>"; 
+$_cbase['debug']['err_mode'] && print_r(basDebug::runInfo('qstr'));
+echo "</p>";
+?>
+{/block:abody}

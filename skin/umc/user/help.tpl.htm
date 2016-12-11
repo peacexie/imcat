@@ -1,0 +1,32 @@
+{imp:"b_lay/a-frame"}<!--模板继承-->
+
+{block:init}{:parent}<?php 
+extract(tex_base::tips_init($this), EXTR_OVERWRITE);
+$tipmsg = 'Welcome!';
+if($user->userFlag=='Guest'){
+	$unqid = usrPerm::getUniqueid(); 
+    $ordwcnt = $db->table('coms_cocar')->where("ordid='$unqid'")->count(); 
+}else{
+    $ordwcnt = $db->table('coms_corder')->where("auser='$uname'")->count(); 	
+}
+
+?>
+{/block:init}
+
+{block:action}
+<style type="text/css">
+  #help_cont{ width: 830px; margin: 10px auto 10px auto; }
+  h3{ text-align: center; }
+  #help_cont h4 { display: block; padding: 10px 10px 1px 10px; margin: 10px 10px 1px 10px; border-top: 1px solid #CCC; }
+  h4:before { display: inline-block; content:"◎◎"; color:#036; }
+</style>
+<div id="help_cont">
+
+  <?php 
+  $text = comFiles::get(DIR_SKIN."/umc/user/help.txt"); 
+  $text = extMkdown::pdext($text);
+  echo $text; 
+  ?>
+
+</div>
+{/block:action}

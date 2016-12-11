@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta('开发文档/演示版 - '.$_cbase['sys_name']); }
+{php $this->pimp(array('css'=>'~tpl/b_jscss/home.css')); }
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<?php
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+$col = 2; $i_v = 0;
+$subs = tex_base::docer('d_start/doc__home'); 
+?>
+<table class="home-tipn" width="1200">
+  <tr>
+    <td valign="top" class="bar1">
+    <div class="right">
+    <i><a href="{surl(tools)}" target="_blank">贴心工具</a></i>
+    <i><a href="{surl(umc:faqs)}" target="_blank">技术问答</a></i>
+    </div>
+    
+    <i class="act">贴心猫概况</i>
+
+    </td>
+    <td valign="top" class="bar2">
+    <i class="right"><a href="{surl(uplog)}">发布记录&gt;&gt;</a></i>
+    <i class="act">贴心猫发布</i>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" class="tipn">
+    <!--main_start-->
+	<?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="{php if($i_v%$col==$col-1) echo "right";}">
+      <li class="title">{$_cbase['sys_name']}：{$v[title]}</li>
+      <?php echo str_replace(array("<ul>","</ul>"),array('',''),$v['detail']); ?>
+    </ul>
+    <?php $i_v++; } ?>
+    <!--main_end-->  
+    </td>
+    <td valign="top" class="topic">
+    
+    {code:"d_uplog/a_cfgs"}
+    <?php foreach($cfgs as $k=>$v){ if(in_array($k,array('readme','2_x'))) continue; $iver=str_replace('_','.',$k); ?>
+    <p>
+      <i class="right">Ver:{$iver}</i>{if is_numeric($v[0])}发布日期:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+    </p>
+    <?php } ?>
+    
+    <p class="title">系统资讯</p>
+    
+    <!`--{surl(news-nsystem)}`-->
+    {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
+    <p>
+      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+    </p>
+    {/tag:tlist3}
+    
+    {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
+    <p>
+      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
+    </p>
+    {/tag:tlist2}
+    {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
+    <p>
+      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
+    </p>
+    {/tag:tlist1} 
+    <p class="tc">
+      <a href="{surl(start)}" target="_blank">=== 快速开始 : 基本文档 ===</a>
+    </p>
+    </td>
+  </tr>
+</table>
+
+{inc:"chn:c_pub/inc_blinks"}
+
+{inc:"c_pub/afoot"}
+
+</body></html>

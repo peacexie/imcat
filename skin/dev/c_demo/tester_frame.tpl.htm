@@ -1,0 +1,25 @@
+<?php
+$code = req('code','');
+$path = vopTpls::path('tpl',1);
+//$file = dirname($this->tplname).'/'.$code.'.php'; 
+$full = "$path/d_tester/$code.php"; //echo $file;
+
+$tfile = $code ? $full : 'list...';
+glbHtml::page("/d_tester/$code.php(Test Code)");
+glbHtml::page('body',' style="margin:10px;"');
+if(file_exists($full)){
+	include($full);
+}else{
+	$subs = tex_base::lister('');
+	$fix = '';
+	foreach($subs as $v){ 
+		$a = explode('_',$v);
+		if($a[0]!=$fix) echo "\n<br>".$a[0]." ::: ";
+		echo " <a href='?mkv=$this->mkv&code=$v'>$v</a> # ";
+		$fix = $a[0];
+	}
+}
+
+?>
+</body></html>
+

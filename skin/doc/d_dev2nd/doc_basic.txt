@@ -1,0 +1,99 @@
+
+
+#autoload#Autoloader
+
+- Class prefix and autoload path see config : code/cfgs/boot/cfg_load.php
+- If you 2nd-Dev, Please use this `Autoload` Specification
+
+
+#cookie#Cookie
+
+* Speci: Max 20 Items, all- Under 4K : 
+
+* vcodes max = 3; //100B, Max40 Items,
+ - Format: vcode1=1399958681,encode1;vcode2=1399958682,encode2;
+  
+* clicks max = 5; //050B, Max80 Items,
+ - Format: keyid1=time1;keyid2=time2;
+  
+* ocnums max = 1; //order car numbers
+ - Format: 5 (5items)
+
+* session,uniqueid; //(2+)*60B
+ - Format: Uniqueid_9eb131bb0613 = 2015-bj-mh0agwr-79dbw7xaa-2aa6d631d
+ - Format: sessid_21662c8752aa  = 2015-bj-mh18s9j-bayj6h7bb-613bfd3d2
+
+* order-car; //1 Number
+ - Format: oCarItems = 3
+
+* lang; //1个:en/cn etc.
+ - lang = en
+
+
+#area32bit#32-bit Number
+```
+       2^32 = 4,294,967,296	
+       2^31 = 2,147,483,648
+ 2147483647 = 2038-01-19 11:14:07 >> date('Y-m-d H:i:s', 2147483647);
+          0 = 1970-01-01 08:00:00 >> date('Y-m-d H:i:s',          0);
+-2147483648 = 1901-12-14 04:45:52 >> date('Y-m-d H:i:s',-2147483648);
+``` 
+
+#zIndex#zIndex
+``` 
+Safe:Min-Max: 0 - 2147012012
+layer.js --- zIndex:19891014+
+pop --- 
+map --- 
+map-point --- 
+dom --- 
+```
+
+#tabindex#tabindex
+```
+Safe:Min-Max: 0 - 32767 (Specification in W3C)
+Auth code: 19790
+submit: 19830
+```	
+
+#sysurl#System-Url
+
+* Url Special characters `:/?=&#%./`  
+* This System uesed Special characters `.-_:,;~[]` 
+* This System keeped Special characters `{^|}`
+* This System filter Special characters `<>'"\`
+* This System max url length(js-Tag) About 2000 characters.
+
+#urlframe#URL-Length
+  
+* How long about the Url 
+ - Aticle : [`前端要给力之：URL应该有多长？`](http://blog.csdn.net/aimingoo/article/details/6081964)
+ - This System like this : http://txmao.txjia.com/chn.php?news.2015-9g-mvp1
+ - The static url : http://www.my_domain.com/html/news/yyyy/md-6789.html
+
+* txjia.peace 
+ - txjia.com/peace/?did=modle-2012-98-1234
+ - txjia.com/peace/?cid=modle-c123
+
+* public (78)
+ - 123456789-123456789-123456789-123456789-123456789-123456789-
+
+* baidu (39)
+ - auto.txmao.com/chexin/geshitu/tuku.html
+
+* google(50,60)
+ - www.txjia.com/peace/tip/p900/Eng900desk.htm
+ - txjia.com/jia/trade/supply.asp?ID=0BA5E132A261YFG832T2K2N8
+
+* Demo `2012大盘点第二期：十大"世界末日"谣言`
+ - tech.qq.com/a/20121211/000014.htm
+ - tech.qq.com/peace/2012/98/1234
+
+* Short url
+ - http://w.url.cn/s/AvCo6Ih
+ - http://txjia.com/?AGCEESE
+ - http://t.cn/RyNNUx6
+ - 123456789-123456789-123456789-12
+ - http://txjia.com/?2015-9x-q39cu6x
+
+

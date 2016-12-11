@@ -1,0 +1,184 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php $this->pimp(array('js'=>'/_pub/a_jscss/multpic.js;/_pub/a_jscss/sordbar.js')); }
+{php $this->pimp('/layer/layer.js','vendui'); }
+<script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
+<?php
+$fexts = vopCell::exFields($this->mod,$catid); //,$this->vars
+$null = "<span class='cCCC'>------</span>";
+?>
+</head><body> 
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+<div class="pgf_mid">
+  <div class="pgf_side">
+	{inc:"c_mod/cargo_side"}
+  </div>
+  <div class="pgf_main">
+  	
+    <!-- Detail Start -->
+    <h1 class="pro_title">{title($title,96,$this->vars)}</h1>
+    <div class="pro_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
+      评论:<i id="cnt_nrem">0</i>条 </div>
+
+   <form id='fmocar' name='fmocar' method="post" action="{surl(ocar)}">
+    <table class="pro-resume">
+        <tr>
+            <td align="center" class="pro-picBig" id="picBig"><img src="{spic($mpic,demo_nop300x200.jpg)}" width='400' height='300' onload='imgShow(this,400,300)' /></td>
+            <td width="50%" class="pro-paras" rowspan="2" valign="top">
+            	<p><i>品牌:</i><b class="uimark-pos-rel">{sopt($brand,brand,0,$null)}{if !empty($hinfo)}<span>{sopt($hinfo,hinfo)}</span><span class="uimark-star-icon1a"></span>{/if}</b></p>
+                <p><i>型号:</i><b class='itm-text'>{$xinghao} </b></p>
+                <p><i>规格:</i><b class='itm-text'>{$guige} </b></p>
+                {if !empty($fexts)}
+                {loop $fexts $f $fc}
+                	<p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+                {/loop}
+                {/if}
+                <p><i>价格:</i><b class='itm-text'>{$price}(元) 批量价</b></p>
+            </td>
+        </tr>
+        <tr>
+            <td valign="top" id="picMini">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="pa10">
+            <span class="right" id='diggs2'>
+            <a id="jsid_field_{$this->mod}:{$did}:diggtop" class="glyphicon glyphicon-thumbs-up c6F6 f24 hand">{$diggtop}</a>
+            &nbsp;
+            <a id="jsid_field_{$this->mod}:{$did}:diggdown" class="glyphicon glyphicon-thumbs-down cF33 f16 hand">{$diggdown}</a>
+            &nbsp;
+            <!--//-->
+            <input name="actname" type="submit" value="+ 购物车">
+            </span>
+            价格：<input name="ordprice" type="text" value="{$price}" class="w60" readonly> 　
+            订购数量：<input name="ordcnt" type="text" value="1" class="w60" reg="n+i:" tip="格式: 888"> 　
+            认证码：<script>fsInit('fmocar');</script>
+            </td>
+        </tr>
+        <input name="pid" type="hidden" value="{$did}">
+        <input name="title" type="hidden" value="{$title}">
+        <input name="ordweight" type="hidden" value="{$weight}">
+        <input name="act" type="hidden" value="iadd">
+    </table>
+    </form>
+    <div class="h10">&nbsp;</div>
+    <table class="pro-resume">
+        <tr> 
+            <td id="pro-bsharebar">{inc:"c_pub/inc_bshare"}</td>
+            <td class="pro-bsharebar tr">
+            <b class="qrcode_tip" onMouseOver="qrcargo_act(3,1,'{surl("mob:cargo.$did")}')" onMouseOut="qrcargo_act(3,0)">扫描进手机版
+            <i class="qrcode_pic" id="qrcode_pic3" style="display:none;">
+            <img src="{PATH_SKIN}/_pub/a_img/loadbig.gif" width="180" height="180" />
+            </i></b>
+            <b class="qrcode_tip" onMouseOver="qrcargo_act(4,1,'cargo.{$did}')" onMouseOut="qrcargo_act(4,0)">扫描发到微信
+            <i class="qrcode_pic" id="qrcode_pic4" style="display:none;">
+            <img src="{PATH_SKIN}/_pub/a_img/loadbig.gif" width="180" height="180" />
+            </i></b>
+            </td>
+        </tr>
+    </table>
+    <div class="h10">&nbsp;</div>
+    <table class="pro-detail">
+        <tr class='detab'> 
+            <td width="15%">商品详情</td>
+            <td width="15%">商品相册</td>
+            <td width="15%">商品评论</td>
+            <td width="50%"></td>
+        </tr>
+        <tr class='detail'>
+            <td colspan="4">{html($detail)}</td>
+        </tr>
+        <tr class='pic'>
+            <td colspan="4">
+<div id="fm_pics_out" class="mpic_out">
+<div><b class="cntout">共<i class="cntall">0</i>个图</b><i class="seltype">select</i></div>
+<div id="fm_pics_show">full|外观图;side|侧面图;inn|内部图;att|附件图;</div>
+<div id="fm_pics_tarea" class="clear">
+<textarea name="fm[pics]" cols="88" rows="8" id="fm_pics_" style="display:none;">
+{= comStore::revSaveDir($rel_pic);}
+</textarea></div>
+</div>
+            </td>
+        </tr>
+        <tr class='xxrem'>
+            <td colspan="4" class="news_rem">        
+                <div class="rembar"> 
+                <span class="remadd"><a href="{surl(0)}?mkv=crem&pid={$did}">评论(<i id="jsid_count_crem:{$did}">0<!--,cnt_crem--></i>条)</a> &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
+                <span class="remtitle">评论列表</span> 
+                </div><!--[cache,60]-->
+                {tag:dlist=[jsList][modid,crem][pid,$did][limit,10]}
+                {:row}
+                <dl>
+                  <dt>{title($t_title,48,$v)} </dt>
+                  <dd>
+                  {text($t_detail,2400)}
+                  <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+                  </dd>
+                </dl>
+                {/row}
+                {/tag:dlist}
+             </td>
+        </tr>       
+    </table>
+
+    <div class="clear"></div>
+    <!-- Detail End -->
+
+  </div>
+</div>
+{inc:"c_pub/afoot"}
+</body></html>
+<script>
+var diggurl = '{PATH_PROJ}/root/plus/coms/digg.php?mod={$this->mod}&kid={$did}&opfid=';
+$(document).ready(function(){
+$('#diggs2 a').each(function(i1, e1) {
+    $(e1).click(function(){ 
+        var eid = $(e1).prop('id').split(':');
+        var ajurl = _cbase.run.rsite+diggurl+eid[2];
+        $.ajax({     
+            url:ajurl, type:'get', async : false, //默认为true 异步     
+            error:function(){     
+                layer.tips('Error-A:'+data, '#diggs2', {tips: [4, '#3278BA']}); 
+            },
+            success:function(data){     
+                if(data=='success'){
+                    data = eid[2]=='diggtop' ? '点赞成功！' : '吐槽成功！';
+                    $(e1).html(parseInt($(e1).html())+1); 
+                }
+                layer.tips(data, e1, {tips: [4, '#3278BA']});
+            }  
+        });   
+    });
+});
+});
+
+mpic_view('fm_pics_',270,200);
+$('.detab td').each(function(i1, e1) {
+    $(e1).click(function(){ 
+		$('.pro-detail tr').each(function(i2, e2) {
+            if(i2==0 || i2==i1+1) $(e2).show();
+			else $(e2).hide();
+        });
+		$('.detab td').removeClass('act');
+		$(e1).addClass('act');		
+	});
+});
+
+//显示-初始化vmini
+var cfg,i,a,v,pic,opt,str='';
+cfg = mpic_data('fm_pics_', 1);
+w=50; h=50;
+for(i=0;i<cfg.data.length;i++){
+	a = cfg.data[i].split(',');
+	v = a.length>0 ? a[1] : '';
+	pic = "<img src='"+a[0]+"' width="+w+" height="+h+" data-val='"+v+"' onclick='mpro_vbig(this)' onload='imgShow(this,"+w+","+h+")'>";
+	str += pic;
+}
+$('#picMini').html(str);
+function mpro_vbig(e){
+	var src = $(e).attr('src');
+	$('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+v+"' onload='imgShow(this,400,300)'>");
+}
+
+</script>

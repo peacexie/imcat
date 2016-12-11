@@ -1,0 +1,68 @@
+{imp:"b_lay/a-dops"}<!--模板继承-->
+
+{block:excss}
+<style type="text/css">
+table.tbdata td{ font-size:14px; line-height:120%; padding:5px 3px; }
+table.tbdata label{ font-size:14px; }
+</style>
+{/block:excss}
+
+{block:action}
+
+<?php
+
+vopTpls::pinc('umc:tex_indoc');
+
+if(!empty($bsend)){
+
+    $dop->svPrep();
+    tex_indoc::fixIspub($dop,$isadd); // topub=ispub : 扩展
+    if(!empty($isadd)){ 
+        $dop->svAKey(); $did = $dop->fmu['did'] = $dop->fmv['did'];
+        $dop->fmv['show'] = 0;
+        $db->table($dop->tbid)->data($dop->fmv)->insert(); 
+        $db->table($dop->tbext)->data($dop->fmu)->insert(0); 
+        $actm = lang('flow.dops_add');
+    }else{ 
+        $did = $dop->svEKey();
+        $db->table($dop->tbid)->data($dop->fmv)->where("did='$did'")->update();
+        $dop->fmu['did'] = $did;
+        $db->table($dop->tbext)->data($dop->fmu)->replace(0);
+        $actm = lang('flow.dops_edit');
+    }
+    $dop->svEnd($did); //静态情况等
+    tex_indoc::exNotice($dop,$isadd); // 通知扩展
+    basMsg::show("$actm".lang('flow.dops_ok'),'Redir');
+
+}else{
+
+    if(!empty($did)){
+        $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
+        $fme = $db->table($dop->tbext)->where("did='$did'")->find();
+        $fme && $fmo = $fmo + $fme;
+        $isadd = 0;
+    }else{
+        $fmo = array();
+        $isadd = 1;
+    }
+    //for Tester ------------------ 
+    #$dop->fmv = $dop->fmu = $fmo;
+    #tex_indoc::exNotice($dop,1);
+    //end Tester ------------------ 
+    $dop->fmo = $fmo;
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
+    glbHtml::fmae_row(lang('flow.dops_icat'),$dop->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$dop->fmShow());
+    $fmo['sendsms'] = ''; //通知类型:默认不通知,添加删除都一样
+    fldView::lists($mod,$fmo);
+    $dop->fmProp();
+    glbHtml::fmae_send('bsend',lang('flow.dops_send'));
+    glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+
+}
+
+?>
+
+{/block:action}
+
+{block:uend}{:parent}{/block:uend}
+

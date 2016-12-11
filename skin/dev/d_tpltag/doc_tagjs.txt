@@ -1,0 +1,57 @@
+
+
+#jsbase#js标签基础
+
+* 参考 `标签基础`，除分页Page标签外，都有对应的js标签；
+ - 在原有类别前加小写js即可
+ - 其他属性，参考`标签基础`，或查看demo : 模板标签 > demo-tjs
+ - demo:
+```
+$_did = 'yyyy-md-xxxx';
+{php $_did = '2006-97-8axx'; }
+{tag:demo3=[jsList][modid,demo][order,etime][limit,3]}
+<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+{/tag:demo3}
+```
+
+
+#jscount# js动态统计
+
+```
+点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次
+评论:<i id="cnt_nrem">0</i>条 
+评论(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>条) (变量需要`符号分开)
+评论(<i id="jsid_count_{$pmod}:{$did}">0<!--news,cnt_nrem--></i>条)
+评论(<i id="jsid_count_nrem:2013-ck-jc01">0<!--`news,cnt_nrem`--></i>条)
+网站留言(<i id="jsid_count_{$modid}:0">0</i>条) //所有留言条数
+```
+
+
+#jsadv# js调用广告
+
+* demo
+
+```
+{php $did = '2013-ck-jc01'; $etime = '321123'; }
+<br><div id='jsid_advs_ab'><!--cd--> ----------- 不会替换,不会替换...(jsid_advs_ab=cd)</div>
+<br><div id='jsid_advs_adv1'><!--adpic:aphom--></div>
+<br><span id='jsid_advs_adv2'><!--adpic:apinn--></span>
+<br><div id='jsid_advs_advx'><!--adxxx:yyhom--></div>
+```
+
+* 规范：
+ - div或其他元素包含，建议用div，特殊需要，用其他元素，请准守html规范和写好css
+ - div元素，命名一个jsid_advs_开头的id，同一页不要重复
+ - div里面，广告模型:广告栏目，用`<!--model:catid-->`包起来，是避免广告加载前显示这些字符。
+ - 多个js广告标签，统计标签，js常规标签，会合并，减少http请求；
+ - 但因为url地址长度有限，目前同一页js标签太多，参数超过2000会截断；
+
+* js调用广告说明：
+
+ - 广告标可用通用标签调用，但推荐用此方式调用；
+ - 在一个大系统中，可能生成非常多的静态html文件，广告标签用js单独调用，便于单独更新广告，不用更新整个html文件；
+
+#xxxx#临时
+
+* 暂无
+

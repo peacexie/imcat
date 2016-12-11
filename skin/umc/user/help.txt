@@ -1,0 +1,17 @@
+
+
+### 会员帮助(User Help)
+
+
+#### 会员帮助
+
+* 修改提示
+ - 编辑文档：\code\tpls\umc\user\help.txt 
+ - 或 模板：\code\tpls\umc\user\help.tpl.htm
+
+
+#### User Help 
+
+* Edit Tips
+ - Edit file: \code\tpls\umc\user\help.txt 
+ - or Template: \code\tpls\umc\user\help.tpl.htm

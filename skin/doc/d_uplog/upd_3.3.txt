@@ -1,0 +1,90 @@
+
+
+#bg#Background
+
+* Original plan
+ - Add: copy product, copy plans
+ - Strengthen the mobile terminal
+ - Add: survey/vote (see the situation) 
+ - It is the LAST version supports php5.2
+
+* Basic information:
+ - Release date：2016.0919/(2016-09-17)
+ - Weight: 3.30 MB
+
+* The accidental release:
+ - This release, comes from a little `accident`
+ - Demo website shows [Server unavailable], It forced me to change it into Baidu cloud......
+ - A series of effects(changes) force me pub the release of V3.3, thanks to the change, and adapt to the change!
+
+
+#detail#ChangeLog
+
+* v3.3.1 ChangeLog: (2016-10-01)
+ - Improve: (English) Guides and Manual;
+ - Fixed: Some small bugs and js compatibles in v3.3.
+
+* Add: 
+ - Add: (Copy)Product
+ - Add: Copy[Data-Tools]plans
+ - Add: Inner Douc show in Mobile
+ - Add: rplan.php + Outer Run Plan Tools
+ - Add: Share the code to github.com, share in world!
+ - Add: Create English Language pack
+ - Add: Setup/AdminCenter/UserCenter, Add Enlish version(can change)
+ - Add: Enlish Guides
+
+* Wechat:                                           
+ - Add: User Center can bind/unbind Wechat
+ - Add: Inner douc Notice can sent to Wehcat,Email,Sms
+ - Add: Get password by Wechat Scan
+
+* Fixed/Optiming
+ - Improve: Get password
+ - Improve: Guestbook
+ - Improve: Publish Perm configs 
+ - Change the demo website into baidu cloud
+ - Faq System used for Technical communication
+
+
+#up31#Guidelines
+
+* Upgrade method-A. Install the new system, import the old data
+ - First install the new system, then import the old data;
+
+* Upgrade method-B. Upgrade ON Old system
+ - Because of add English language pack, Do NOT use the method!
+
+* General guidelines
+
+ - Installation directory: the directory name can not have Chinese characters, spaces and special characters
+ - After upgdate you should refresh the cache: AdminCenter >> Tools > Sys.Tools >> Sys.Cache >> Sys.Cache: refresh cleanup >> submit
+ - More details see: <a href="?uplog">[General] Update Notes</a> : 
+ - Notice: Preparation &gt; Cover files
+
+
+#mlang#MultiLanguage
+
+* Concept multi language
+ - In v3.2, just the concept for multi language;
+ - in fact, It's just simplified Chinese, there is no actual multi language package;
+
+* World needs
+ - In v3.3, we put the code on github.com, feeling only the Chinese version is not for internationalization, so increase the English language package;
+ - On one hand, a full English version of the display is so urgent needs for `non Chinese language users`;
+ - On the other hand, increase multi language package is time-consuming and laborious, bloated complicated a lot, It's contrary to the system ` simple / lightweight ` 's philosophy;
+ - One side is worried, and one side is to encourage myself(meanwhile i yearning for the English version), do it go on......
+
+* Basic target:
+ - Admin Center / Member Center / setup: can be switched in English and chinese;
+ - Pages in chn.php : Demo the function in Chinese;  
+  　　 Pages in dev.php : Chinese documents;  
+  　　 Pages in mob.php : Demo the function in Mobile;
+ - Add: doc.php, used as an English document;
+ - Data in DB, with the installation, the choice of language, Chinese or English, can not be converted after insralled
+
+* Please provide translation help:
+ - The current English language package, some of the information is not thorough, or not very appropriate, need to improve or fix them;
+ - If you are convenient, you can: provide translation help, see: Help >> Translation Notes;
+ - If you know other languages, you can also: provide more other language package, thank you first!
+

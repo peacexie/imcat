@@ -1,0 +1,118 @@
+
+#sm#接口使用 申明
+
+```
+http://apistore.baidu.com/astore/classificationservicelist/39.html?sortBy=commentCount&sortOrder=desc
+短信平台（13个）
+
+============================================================================
+
+本系统，仅提供短信接口，与各短信提供商，无任何商业合作！
+如接口改变，本系统将按本公司计划进行升级接口或做相关处理；
+如接口有改变导致的问题或损失，本系统不负任何责任！
+请自行与短信提供商，联系并购买短信接口相关帐号！
+```
+
+#set#设置/管理 
+===========================================================================
+
+```
+* 设置入口：其他内容->短信接口管理->接口设置->
+* 管理入口：其他内容->短信接口管理->
+      功能：发送记录/充值与余额/短信发送/接口设置
+```
+
+#send#发送/使用 
+===========================================================================
+
+```
+$sms = new extSms();
+
+* 发送函数：$sms->sendSMS($mobiles,$content,$type='scom')
+    $sms->sendSMS($mobiles,$content); //默认,普通会员发送,检测会员余额;
+	$sms->sendSMS($mobiles,$content,'sadm'); //管理员后台发送,(不检测余额);
+	$sms->sendSMS($mobiles,$content,'ctel'); //手机认证(不检测登陆,自行设置权限,每次一个号码,内容70字以内);
+	$sms->sendSMS($mobiles,$content,'1234'); //peace=会员id,以$uid的用户发送并扣余额,(!!!)调用发送的地方请控制好权限,否则,会扣完$uid的余额
+* 参数说明：
+    mobiles: 手机号码,array/string(英文逗号分开)
+    content: 255个字符以内
+    type: 发送方式 
+* 返回：array($flag,$msg);
+    $flag: 标记, 1为成功；
+	$msg: 提示信息
+```
+
+#file#文件目录和接口 说明 
+============================================================================
+
+```
+* 目录结构 ---------------------
+
+smsapi/api_0test.php  [流程测试] 接口
+smsapi/api_dxqun.php  [短信群]   接口
+smsapi/api_emay.php   [亿美软通] 接口(webservice发送)
+smsapi/api_emhttp.php [亿美软通] 接口(http发送)
+smsapi/api_winic.php  [移动商务] 接口 
+smsapi/api_***.php    其它扩展的 接口
+smsapi/basic_cfg.php  配置文件
+smsapi/cer_code.js    ajax调用发认证码的js
+smsapi/extra_act.php  某些接口 的扩展操作
+smsapi/readme.txt     说明文件
+elib/extSms.php       手机短信接口 主控类
+```
+
+#api#接口api说明
+
+```
+ -------------------
+
+ ------ sms_0test.php  [流程测试] 
+测试接口,用于测试系统其它流程,
+具体操作不会发短信,仅写一个文件记录表示发短信 
+
+ ------ sms_emay.php   [亿美软通] 北京市朝阳区 
+调用方式 (Web Services + soap) 
+http://www.emay.cn/
+
+ ------ sms_emhttp.php   [亿美软通] 北京市朝阳区 
+调用方式 (Http + Post) 
+http://www.emay.cn/
+
+ ------ sms_winic.php  [移动商务] 深圳总部 [php168(qibosoft)v7使用] 
+调用方式 (Http + Post) 
+http://www.winic.org/index.asp
+
+ ------ sms_dxqun.php 短信群 - 浙江乐清市 [php168(qibosoft)v7使用]
+调用方式 (Http + Post) 
+http://www.dxqun.com/
+
+ ------ sms_bucp.php 博星科技
+http://www.bucp.net/
+
+ ------ 商脉无限
+www.41186.com
+
+ ------ 广州国宇
+sms.gysoft.cn
+
+ ------ 东时方
+www.xhsms.com
+```
+
+#frame#扩展接口/开发规范 
+
+```
+============================================================================
+
+1. 选用接口及调用方式：考虑系统要适合win/linux平台，所以要选支持跨平台调用方式(如http(POST)，Web Services)的接口；
+   [2013-08-13]，为调试方便，二此开发时，笔者推荐http+Post调用为首选。
+2. 上述“接口api说明”中，选取了几种典型的调用方式，增加的接口可以参考；
+3. 现在，拟增加一个接口，在ex_sms.php中设置相关配置；
+4. 增加一个类sms_myapi，放在文件/code/adpt/smsapi/sms_myapi.php中，
+   实现发短信sendSMS($mobiles,$content)，查余额getBalance()方法；
+5. 统一返回值：array($flag,$msg)格式; $flag为标记, 1为成功，-1为失败；$msg: 为提示信息；查余额$msg为具体余额；
+
+=== End End  =====================================================================================
+
+```
+

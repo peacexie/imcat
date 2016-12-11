@@ -1,0 +1,58 @@
+
+
+#object#Demo-Target
+
+* Target : - Add English Introduce/Dynamic
+ - Add `enabt` : AboutUs
+ - Add `enews` : Dynamic
+ - Add remarks for Dynamic 
+
+
+#addmodel#Add(Copy)Model
+
+* Copy [Docs/News] Model：
+ - Frame > Root-Model > `Docs/News` :
+ - Copy about to enabt: AboutUs; 
+ - Copy news to enews: Dynamic; 
+ - Else : Copy an item in [Coms/Remark] 
+ - You can add models instead of copy...
+
+
+#addfields#Catalog/Fields
+
+- [Docs/News] Set-Entry: Frame > Root-Model > Docs/News > [Catalog/Fields]
+- [Coms/Remark] Set-Entry: Frame > Root-Model > Coms/Remark > [Fields]
+
+
+#addadmin#Admin-Entry
+
+* Set-Entry: Frame > Menus Config > 
+* Plan:
+ - Set a Top-Menu
+ - Or put in one of the existing menu
+* Specification: as below, Can refer to the existing configs
+
+```
+// There is only one menu link in a line: set the link direct
+?file=admin/groups
+// There is more then one menu, format1: set the html code direct:
+<a href="?file=admin/catalog" title="Docs-Catalog">Catalog</a> - 
+<a href="?file=admin/catalog&mod=adpic" title="Advs-Catalog">Advs</a>
+// There is more then one menu, format2: 
+AboutUs(!)?file=dops/a&mod=about
+Add(!)about(!)jsadd
+// There is more then one menu, format3: 
+Remark(!)?file=dops/a&mod=nrem(!)
+Catalog(!)?file=admin/catalog&mod=news(!)frame
+// There is more then one menu, format3: 
+Types(!)?file=admin/catalog&mod=cargo(!)frame
+Set(!)?file=apis/exp_order
+
+```
+
+
+#setshow#Show-Set
+
+- Show in front : Reference : Tpl/Tag > Suit-Tpl
+- Supper setting : see : [Setting]
+
