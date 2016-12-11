@@ -1,1 +1,0 @@
-<?php require(dirname(dirname(dirname(__FILE__))).'/cfgs/sinc/inc_err404.php'); ?>

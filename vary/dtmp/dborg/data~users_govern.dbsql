@@ -1,4 +1,0 @@
-
--- users_govern@2016-12-10 21:34:42 -- 
-INSERT INTO `{pre}users_govern{ext}` VALUES 
-('2015-6x-f401','yongxing','gvip','永兴','4343','','','{skinroot}/_pub/logo/gezi1-40x.jpg','116.272344,39.949524,12','','','工程师','13537432147','xpigeon@163.com','233232','http://192.168.1.521/','Nancheng','zhuanti','riyong','1','9','192.168.1.11','1435558111','peace','192.168.1.11','1435558111','peace');

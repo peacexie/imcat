@@ -1,9 +1,0 @@
-<?php
-return array (
-  'robots.txt' => 'f4fa234efcd40dccad5127267e5d5375',
-  'chn.php' => '42ae3dc78b5e2251dd3d7a20dd70f3ef',
-  'dev.php' => '931123392c232ceccdd7f42e8f05207a',
-  'doc.php' => '308958bc9d91ff86e0ace63f96949572',
-  'mob.php' => 'efb60e9cb70065c771e66c1bd3d1580b',
-  'index.php' => '0d5c614e0d0ecfed544d601542f3db85',
-); 

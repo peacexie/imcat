@@ -1,8 +1,0 @@
-/* CSS Document */
-
-.mod-user { width: 100%; line-height: 150%; border: 1px solid #CCC; padding: 10px; margin: 0px 10px 10px 0px; }
-.mod-user .type { list-style:none; font-style: normal; font-weight:bold; padding-top:0px; margin-top:0px; border-bottom: 1px solid #CCC; }
-.mod-user b, .mod-user i { font-weight:normal; font-style:normal; }
-.mod-user li { list-style-position:inside; padding:8px; margin:5px 0px; border-bottom:1px dashed #CCC; }
-.mod-user li .atype{ color:#666; font-style: normal; }
-.mod-user li .title{ float:right; }
