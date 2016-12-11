@@ -10,7 +10,6 @@ $_mupfile = array (
   array (
     'mp012' => 
     array (
-      'kid' => 'mp012',
       'pid' => '0',
       'title' => '核心架构',
       'deep' => '1',
@@ -25,7 +24,6 @@ admin/types=类别管理
     ),
     'mp016' => 
     array (
-      'kid' => 'mp016',
       'pid' => '0',
       'title' => '插件接口',
       'deep' => '1',
@@ -33,7 +31,6 @@ admin/types=类别管理
     ),
     'mp020' => 
     array (
-      'kid' => 'mp020',
       'pid' => '0',
       'title' => '信息中心',
       'deep' => '1',
@@ -41,7 +38,6 @@ admin/types=类别管理
     ),
     'mp024' => 
     array (
-      'kid' => 'mp024',
       'pid' => '0',
       'title' => '会员相关',
       'deep' => '1',
@@ -49,7 +45,6 @@ admin/types=类别管理
     ),
     'mp028' => 
     array (
-      'kid' => 'mp028',
       'pid' => '0',
       'title' => '工具应用',
       'deep' => '1',

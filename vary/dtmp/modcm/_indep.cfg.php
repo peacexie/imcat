@@ -11,10 +11,7 @@ $_indep = array (
   array (
     'tel' => 
     array (
-      'kid' => 'tel',
-      'model' => 'indep',
       'title' => '电话',
-      'top' => '120',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -27,23 +24,10 @@ $_indep = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'detail' => 
     array (
-      'kid' => 'detail',
-      'model' => 'indep',
       'title' => '简介',
-      'top' => '888',
       'enable' => '1',
       'etab' => '0',
       'type' => 'text',
@@ -56,23 +40,12 @@ $_indep = array (
       'fmsize' => '360x6',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
   ),
   'i' => 
   array (
     'inadm' => 
     array (
-      'kid' => 'inadm',
       'pid' => '0',
       'title' => '管理部',
       'deep' => '1',
@@ -82,7 +55,6 @@ $_indep = array (
     ),
     'intech' => 
     array (
-      'kid' => 'intech',
       'pid' => '0',
       'title' => '技术部',
       'deep' => '1',
@@ -92,7 +64,6 @@ $_indep = array (
     ),
     'incai' => 
     array (
-      'kid' => 'incai',
       'pid' => '0',
       'title' => '财务部',
       'deep' => '1',
@@ -102,7 +73,6 @@ $_indep = array (
     ),
     'inbus' => 
     array (
-      'kid' => 'inbus',
       'pid' => '0',
       'title' => '业务部',
       'deep' => '1',
@@ -112,7 +82,6 @@ $_indep = array (
     ),
     'inpro' => 
     array (
-      'kid' => 'inpro',
       'pid' => '0',
       'title' => '生产部',
       'deep' => '1',
@@ -122,7 +91,6 @@ $_indep = array (
     ),
     'inren' => 
     array (
-      'kid' => 'inren',
       'pid' => '0',
       'title' => '人力部',
       'deep' => '1',

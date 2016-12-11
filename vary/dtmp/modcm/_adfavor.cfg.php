@@ -10,7 +10,6 @@ $_adfavor = array (
   array (
     'afadmin' => 
     array (
-      'kid' => 'afadmin',
       'pid' => '0',
       'title' => '后台公用',
       'deep' => '1',
@@ -20,7 +19,6 @@ $_adfavor = array (
     ),
     'af2012' => 
     array (
-      'kid' => 'af2012',
       'pid' => 'afadmin',
       'title' => '公司站群',
       'deep' => '2',
@@ -30,7 +28,6 @@ $_adfavor = array (
     ),
     'af2016' => 
     array (
-      'kid' => 'af2016',
       'pid' => 'afadmin',
       'title' => '行业门户',
       'deep' => '2',
@@ -40,7 +37,6 @@ $_adfavor = array (
     ),
     'af2020' => 
     array (
-      'kid' => 'af2020',
       'pid' => 'afadmin',
       'title' => '本地网站',
       'deep' => '2',
@@ -50,7 +46,6 @@ $_adfavor = array (
     ),
     'af2024' => 
     array (
-      'kid' => 'af2024',
       'pid' => 'afadmin',
       'title' => '常用工具',
       'deep' => '2',
@@ -60,7 +55,6 @@ $_adfavor = array (
     ),
     'af2032' => 
     array (
-      'kid' => 'af2032',
       'pid' => 'afadmin',
       'title' => '临时收藏',
       'deep' => '2',
@@ -70,7 +64,6 @@ $_adfavor = array (
     ),
     'afauser' => 
     array (
-      'kid' => 'afauser',
       'pid' => '0',
       'title' => '管理员用',
       'deep' => '1',
@@ -80,7 +73,6 @@ $_adfavor = array (
     ),
     'af4012' => 
     array (
-      'kid' => 'af4012',
       'pid' => 'afauser',
       'title' => '学习类',
       'deep' => '2',
@@ -90,7 +82,6 @@ $_adfavor = array (
     ),
     'af4016' => 
     array (
-      'kid' => 'af4016',
       'pid' => 'afauser',
       'title' => '工作类',
       'deep' => '2',
@@ -100,7 +91,6 @@ $_adfavor = array (
     ),
     'af4020' => 
     array (
-      'kid' => 'af4020',
       'pid' => 'afauser',
       'title' => '生活类',
       'deep' => '2',
@@ -110,7 +100,6 @@ $_adfavor = array (
     ),
     'af4024' => 
     array (
-      'kid' => 'af4024',
       'pid' => 'afauser',
       'title' => '工具类',
       'deep' => '2',
@@ -120,7 +109,6 @@ $_adfavor = array (
     ),
     'af4032' => 
     array (
-      'kid' => 'af4032',
       'pid' => 'afauser',
       'title' => '-临时-',
       'deep' => '2',
@@ -130,7 +118,6 @@ $_adfavor = array (
     ),
     'afmemc' => 
     array (
-      'kid' => 'afmemc',
       'pid' => '0',
       'title' => '会员中心',
       'deep' => '1',
@@ -140,7 +127,6 @@ $_adfavor = array (
     ),
     'af6012' => 
     array (
-      'kid' => 'af6012',
       'pid' => 'afmemc',
       'title' => '学习类',
       'deep' => '2',
@@ -150,7 +136,6 @@ $_adfavor = array (
     ),
     'af6016' => 
     array (
-      'kid' => 'af6016',
       'pid' => 'afmemc',
       'title' => '工作类',
       'deep' => '2',
@@ -160,7 +145,6 @@ $_adfavor = array (
     ),
     'af6020' => 
     array (
-      'kid' => 'af6020',
       'pid' => 'afmemc',
       'title' => '生活类',
       'deep' => '2',
@@ -170,7 +154,6 @@ $_adfavor = array (
     ),
     'af6024' => 
     array (
-      'kid' => 'af6024',
       'pid' => 'afmemc',
       'title' => '工具类',
       'deep' => '2',
@@ -180,7 +163,6 @@ $_adfavor = array (
     ),
     'af6032' => 
     array (
-      'kid' => 'af6032',
       'pid' => 'afmemc',
       'title' => '-临时-',
       'deep' => '2',

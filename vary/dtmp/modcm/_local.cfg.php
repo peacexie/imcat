@@ -13,7 +13,6 @@ $_local = array (
   array (
     'gcq' => 
     array (
-      'kid' => 'gcq',
       'pid' => '0',
       'title' => '莞城区',
       'deep' => '1',
@@ -23,7 +22,6 @@ $_local = array (
     ),
     'dcq' => 
     array (
-      'kid' => 'dcq',
       'pid' => '0',
       'title' => '东城区',
       'deep' => '1',
@@ -33,7 +31,6 @@ $_local = array (
     ),
     'ncq' => 
     array (
-      'kid' => 'ncq',
       'pid' => '0',
       'title' => '南城区',
       'deep' => '1',
@@ -43,7 +40,6 @@ $_local = array (
     ),
     'wjq' => 
     array (
-      'kid' => 'wjq',
       'pid' => '0',
       'title' => '万江区',
       'deep' => '1',
@@ -53,7 +49,6 @@ $_local = array (
     ),
     'hum' => 
     array (
-      'kid' => 'hum',
       'pid' => '0',
       'title' => '虎门镇',
       'deep' => '1',
@@ -63,7 +58,6 @@ $_local = array (
     ),
     'caz' => 
     array (
-      'kid' => 'caz',
       'pid' => '0',
       'title' => '长安镇',
       'deep' => '1',
@@ -73,7 +67,6 @@ $_local = array (
     ),
     'cpz' => 
     array (
-      'kid' => 'cpz',
       'pid' => '0',
       'title' => '常平镇',
       'deep' => '1',
@@ -83,7 +76,6 @@ $_local = array (
     ),
     'zmt' => 
     array (
-      'kid' => 'zmt',
       'pid' => '0',
       'title' => '樟木头',
       'deep' => '1',
@@ -93,7 +85,6 @@ $_local = array (
     ),
     'slz' => 
     array (
-      'kid' => 'slz',
       'pid' => '0',
       'title' => '石龙镇',
       'deep' => '1',
@@ -103,7 +94,6 @@ $_local = array (
     ),
     'sjz' => 
     array (
-      'kid' => 'sjz',
       'pid' => '0',
       'title' => '石碣镇',
       'deep' => '1',
@@ -113,7 +103,6 @@ $_local = array (
     ),
     'spz' => 
     array (
-      'kid' => 'spz',
       'pid' => '0',
       'title' => '石排镇',
       'deep' => '1',
@@ -123,7 +112,6 @@ $_local = array (
     ),
     'qsz' => 
     array (
-      'kid' => 'qsz',
       'pid' => '0',
       'title' => '企石镇',
       'deep' => '1',
@@ -133,7 +121,6 @@ $_local = array (
     ),
     'myz' => 
     array (
-      'kid' => 'myz',
       'pid' => '0',
       'title' => '麻涌镇',
       'deep' => '1',
@@ -143,7 +130,6 @@ $_local = array (
     ),
     'gzv' => 
     array (
-      'kid' => 'gzv',
       'pid' => '0',
       'title' => '高埗镇',
       'deep' => '1',
@@ -153,7 +139,6 @@ $_local = array (
     ),
     'ztz' => 
     array (
-      'kid' => 'ztz',
       'pid' => '0',
       'title' => '中堂镇',
       'deep' => '1',
@@ -163,7 +148,6 @@ $_local = array (
     ),
     'wnd' => 
     array (
-      'kid' => 'wnd',
       'pid' => '0',
       'title' => '望牛墩',
       'deep' => '1',
@@ -173,7 +157,6 @@ $_local = array (
     ),
     'dzv' => 
     array (
-      'kid' => 'dzv',
       'pid' => '0',
       'title' => '道滘镇',
       'deep' => '1',
@@ -183,7 +166,6 @@ $_local = array (
     ),
     'hmz' => 
     array (
-      'kid' => 'hmz',
       'pid' => '0',
       'title' => '洪梅镇',
       'deep' => '1',
@@ -193,7 +175,6 @@ $_local = array (
     ),
     'stz' => 
     array (
-      'kid' => 'stz',
       'pid' => '0',
       'title' => '沙田镇',
       'deep' => '1',
@@ -203,7 +184,6 @@ $_local = array (
     ),
     'hou' => 
     array (
-      'kid' => 'hou',
       'pid' => '0',
       'title' => '厚街镇',
       'deep' => '1',
@@ -213,7 +193,6 @@ $_local = array (
     ),
     'lbz' => 
     array (
-      'kid' => 'lbz',
       'pid' => '0',
       'title' => '寮步镇',
       'deep' => '1',
@@ -223,7 +202,6 @@ $_local = array (
     ),
     'dls' => 
     array (
-      'kid' => 'dls',
       'pid' => '0',
       'title' => '大岭山',
       'deep' => '1',
@@ -233,7 +211,6 @@ $_local = array (
     ),
     'dlz' => 
     array (
-      'kid' => 'dlz',
       'pid' => '0',
       'title' => '大朗镇',
       'deep' => '1',
@@ -243,7 +220,6 @@ $_local = array (
     ),
     'hjz' => 
     array (
-      'kid' => 'hjz',
       'pid' => '0',
       'title' => '黄江镇',
       'deep' => '1',
@@ -253,7 +229,6 @@ $_local = array (
     ),
     'fgz' => 
     array (
-      'kid' => 'fgz',
       'pid' => '0',
       'title' => '凤岗镇',
       'deep' => '1',
@@ -263,7 +238,6 @@ $_local = array (
     ),
     'xgz' => 
     array (
-      'kid' => 'xgz',
       'pid' => '0',
       'title' => '谢岗镇',
       'deep' => '1',
@@ -273,7 +247,6 @@ $_local = array (
     ),
     'qxz' => 
     array (
-      'kid' => 'qxz',
       'pid' => '0',
       'title' => '清溪镇',
       'deep' => '1',
@@ -283,7 +256,6 @@ $_local = array (
     ),
     'txz' => 
     array (
-      'kid' => 'txz',
       'pid' => '0',
       'title' => '塘厦镇',
       'deep' => '1',
@@ -293,7 +265,6 @@ $_local = array (
     ),
     'csz' => 
     array (
-      'kid' => 'csz',
       'pid' => '0',
       'title' => '茶山镇',
       'deep' => '1',
@@ -303,7 +274,6 @@ $_local = array (
     ),
     'dkz' => 
     array (
-      'kid' => 'dkz',
       'pid' => '0',
       'title' => '东坑镇',
       'deep' => '1',
@@ -313,7 +283,6 @@ $_local = array (
     ),
     'hlz' => 
     array (
-      'kid' => 'hlz',
       'pid' => '0',
       'title' => '横沥镇',
       'deep' => '1',
@@ -323,7 +292,6 @@ $_local = array (
     ),
     'qtz' => 
     array (
-      'kid' => 'qtz',
       'pid' => '0',
       'title' => '桥头镇',
       'deep' => '1',

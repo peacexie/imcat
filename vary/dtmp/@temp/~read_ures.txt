@@ -1,0 +1,5 @@
+#
+# ~read_ures.txt
+#
+
+Contents

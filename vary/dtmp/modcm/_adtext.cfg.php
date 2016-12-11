@@ -11,7 +11,6 @@ $_adtext = array (
   array (
     'athom' => 
     array (
-      'kid' => 'athom',
       'pid' => '0',
       'title' => '首页广告',
       'deep' => '1',
@@ -21,7 +20,6 @@ $_adtext = array (
     ),
     'a2012' => 
     array (
-      'kid' => 'a2012',
       'pid' => 'athom',
       'title' => '环图文字[上]',
       'deep' => '2',
@@ -31,7 +29,6 @@ $_adtext = array (
     ),
     'a2014' => 
     array (
-      'kid' => 'a2014',
       'pid' => 'athom',
       'title' => '环图文字[左]',
       'deep' => '2',
@@ -41,7 +38,6 @@ $_adtext = array (
     ),
     'a2016' => 
     array (
-      'kid' => 'a2016',
       'pid' => 'athom',
       'title' => '环图文字[下]',
       'deep' => '2',
@@ -51,7 +47,6 @@ $_adtext = array (
     ),
     'a2018' => 
     array (
-      'kid' => 'a2018',
       'pid' => 'athom',
       'title' => '环图文字[右]',
       'deep' => '2',
@@ -61,7 +56,6 @@ $_adtext = array (
     ),
     'a2020' => 
     array (
-      'kid' => 'a2020',
       'pid' => 'athom',
       'title' => '友情链接[下]',
       'deep' => '2',
@@ -71,7 +65,6 @@ $_adtext = array (
     ),
     'atinn' => 
     array (
-      'kid' => 'atinn',
       'pid' => '0',
       'title' => '通用内页',
       'deep' => '1',
@@ -81,7 +74,6 @@ $_adtext = array (
     ),
     'a2022' => 
     array (
-      'kid' => 'a2022',
       'pid' => 'atinn',
       'title' => '测试AB01',
       'deep' => '2',
@@ -91,7 +83,6 @@ $_adtext = array (
     ),
     'a2024' => 
     array (
-      'kid' => 'a2024',
       'pid' => 'atinn',
       'title' => '测试CD23',
       'deep' => '2',
@@ -101,7 +92,6 @@ $_adtext = array (
     ),
     'atdel' => 
     array (
-      'kid' => 'atdel',
       'pid' => '0',
       'title' => '[回收站]',
       'deep' => '1',

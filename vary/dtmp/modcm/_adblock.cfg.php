@@ -10,7 +10,6 @@ $_adblock = array (
   array (
     'abhom' => 
     array (
-      'kid' => 'abhom',
       'pid' => '0',
       'title' => '首页广告',
       'deep' => '1',
@@ -20,7 +19,6 @@ $_adblock = array (
     ),
     'abside1' => 
     array (
-      'kid' => 'abside1',
       'pid' => 'abhom',
       'title' => 'box-left',
       'deep' => '2',
@@ -30,7 +28,6 @@ $_adblock = array (
     ),
     'abside2' => 
     array (
-      'kid' => 'abside2',
       'pid' => 'abhom',
       'title' => 'box-right',
       'deep' => '2',
@@ -40,7 +37,6 @@ $_adblock = array (
     ),
     'abhead0' => 
     array (
-      'kid' => 'abhead0',
       'pid' => 'abhom',
       'title' => 'box-head',
       'deep' => '2',
@@ -50,7 +46,6 @@ $_adblock = array (
     ),
     'abfoot0' => 
     array (
-      'kid' => 'abfoot0',
       'pid' => 'abhom',
       'title' => 'box-foot',
       'deep' => '2',
@@ -60,7 +55,6 @@ $_adblock = array (
     ),
     'abinn' => 
     array (
-      'kid' => 'abinn',
       'pid' => '0',
       'title' => '通用内页',
       'deep' => '1',
@@ -70,7 +64,6 @@ $_adblock = array (
     ),
     'a2012' => 
     array (
-      'kid' => 'a2012',
       'pid' => 'abinn',
       'title' => '贴心口袋[侧]',
       'deep' => '2',
@@ -80,7 +73,6 @@ $_adblock = array (
     ),
     'a2014' => 
     array (
-      'kid' => 'a2014',
       'pid' => 'abinn',
       'title' => '产品推荐[侧]',
       'deep' => '2',
@@ -90,7 +82,6 @@ $_adblock = array (
     ),
     'abdel' => 
     array (
-      'kid' => 'abdel',
       'pid' => '0',
       'title' => '[回收站]',
       'deep' => '1',

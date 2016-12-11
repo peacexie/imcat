@@ -12,10 +12,7 @@ $_votep = array (
   array (
     'detail' => 
     array (
-      'kid' => 'detail',
-      'model' => 'votep',
       'title' => '投票内容',
-      'top' => '124',
       'enable' => '1',
       'etab' => '0',
       'type' => 'text',
@@ -28,16 +25,6 @@ $_votep = array (
       'fmsize' => '360x5',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '127.0.0.1',
-      'atime' => '1479791688',
-      'auser' => 'peace',
-      'eip' => '127.0.0.1',
-      'etime' => '1479791768',
-      'euser' => 'peace',
     ),
   ),
 );

@@ -11,10 +11,7 @@ $_brand = array (
   array (
     'world' => 
     array (
-      'kid' => 'world',
-      'model' => 'brand',
       'title' => '国别',
-      'top' => '120',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -29,21 +26,10 @@ $_brand = array (
       'fmtitle' => '0',
       'fmextra' => 'winpop',
       'fmexstr' => 'world',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'bpic' => 
     array (
-      'kid' => 'bpic',
-      'model' => 'brand',
       'title' => 'logo',
-      'top' => '124',
       'enable' => '1',
       'etab' => '0',
       'type' => 'file',
@@ -56,23 +42,10 @@ $_brand = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'bweb' => 
     array (
-      'kid' => 'bweb',
-      'model' => 'brand',
       'title' => '网址',
-      'top' => '136',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -85,23 +58,10 @@ $_brand = array (
       'fmsize' => '420',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'detail' => 
     array (
-      'kid' => 'detail',
-      'model' => 'brand',
       'title' => '内容',
-      'top' => '888',
       'enable' => '1',
       'etab' => '0',
       'type' => 'text',
@@ -115,22 +75,12 @@ $_brand = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'editor',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
   ),
   'i' => 
   array (
     'gree' => 
     array (
-      'kid' => 'gree',
       'pid' => '0',
       'title' => '格力',
       'deep' => '1',
@@ -140,7 +90,6 @@ $_brand = array (
     ),
     'haier' => 
     array (
-      'kid' => 'haier',
       'pid' => '0',
       'title' => '海尔',
       'deep' => '1',
@@ -150,7 +99,6 @@ $_brand = array (
     ),
     'midea' => 
     array (
-      'kid' => 'midea',
       'pid' => '0',
       'title' => '美的',
       'deep' => '1',
@@ -160,7 +108,6 @@ $_brand = array (
     ),
     'kelon' => 
     array (
-      'kid' => 'kelon',
       'pid' => '0',
       'title' => '科龙',
       'deep' => '1',
@@ -170,7 +117,6 @@ $_brand = array (
     ),
     'tcl' => 
     array (
-      'kid' => 'tcl',
       'pid' => '0',
       'title' => 'TCL',
       'deep' => '1',
@@ -180,7 +126,6 @@ $_brand = array (
     ),
     'konka' => 
     array (
-      'kid' => 'konka',
       'pid' => '0',
       'title' => '康佳',
       'deep' => '1',
@@ -190,7 +135,6 @@ $_brand = array (
     ),
     'supor' => 
     array (
-      'kid' => 'supor',
       'pid' => '0',
       'title' => '苏泊尔',
       'deep' => '1',
@@ -200,7 +144,6 @@ $_brand = array (
     ),
     'chong' => 
     array (
-      'kid' => 'chong',
       'pid' => '0',
       'title' => '长虹',
       'deep' => '1',
@@ -210,7 +153,6 @@ $_brand = array (
     ),
     'trchi' => 
     array (
-      'kid' => 'trchi',
       'pid' => '0',
       'title' => '传祺',
       'deep' => '1',
@@ -220,7 +162,6 @@ $_brand = array (
     ),
     'dfpv' => 
     array (
-      'kid' => 'dfpv',
       'pid' => '0',
       'title' => '东风风神',
       'deep' => '1',
@@ -230,7 +171,6 @@ $_brand = array (
     ),
     'hongqi' => 
     array (
-      'kid' => 'hongqi',
       'pid' => '0',
       'title' => '红旗',
       'deep' => '1',
@@ -240,7 +180,6 @@ $_brand = array (
     ),
     'roewe' => 
     array (
-      'kid' => 'roewe',
       'pid' => '0',
       'title' => '荣威',
       'deep' => '1',
@@ -250,7 +189,6 @@ $_brand = array (
     ),
     'ymj' => 
     array (
-      'kid' => 'ymj',
       'pid' => '0',
       'title' => '郁美净',
       'deep' => '1',
@@ -260,7 +198,6 @@ $_brand = array (
     ),
     'dabao' => 
     array (
-      'kid' => 'dabao',
       'pid' => '0',
       'title' => '大宝',
       'deep' => '1',
@@ -270,7 +207,6 @@ $_brand = array (
     ),
     'huawei' => 
     array (
-      'kid' => 'huawei',
       'pid' => '0',
       'title' => '华为',
       'deep' => '1',
@@ -280,7 +216,6 @@ $_brand = array (
     ),
     'zhongxing' => 
     array (
-      'kid' => 'zhongxing',
       'pid' => '0',
       'title' => '中兴',
       'deep' => '1',
@@ -290,7 +225,6 @@ $_brand = array (
     ),
     'xiaomi' => 
     array (
-      'kid' => 'xiaomi',
       'pid' => '0',
       'title' => '小米',
       'deep' => '1',
@@ -300,7 +234,6 @@ $_brand = array (
     ),
     'aimo' => 
     array (
-      'kid' => 'aimo',
       'pid' => '0',
       'title' => '爱慕',
       'deep' => '1',
@@ -310,7 +243,6 @@ $_brand = array (
     ),
     'bailian' => 
     array (
-      'kid' => 'bailian',
       'pid' => '0',
       'title' => '百利安',
       'deep' => '1',

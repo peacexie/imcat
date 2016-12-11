@@ -1,0 +1,126 @@
+﻿
++ .gitkeep
+- ~setup_flag.txt
+
+git-trunk, git-page,
+pan-down, 3+1
+admin5
+chinaz
+
+
+setup
+vopStatic::advMod($mod,"(all)");
+
+Notice: Undefined index: QUERY_STRING
+db-user : imcat . 123456
+
+http://jingyan.baidu.com/article/455a9950a096a4a166277896.html
+win10无法使用内置管理员账户打开应用怎么办
+
+http://docs.apicloud.com/APICloud/junior-develop-guide
+xp...@163.com
+123...
+HiApp 
+ID: A6935879706961
+
+http://www.thinkphp.cn/extend/207.html
+peace23
+123321
+
+------------------------------
+
+http://fuber.fzg360.com/Admin/System/index.html
+
+https://docs.jiguang.cn/jpush/guideline/intro/#
+http://www.dgdajy.com/dazt/nview.asp?KeyID=0BB1D64B8178MP7VSF9PH0R9
+
+6212262010002726310
+
+/index.php?_08CACHE[btags-0][hometpl]=../../tv/test.html&sid=1
+/index.php?_08CACHE[btags-0][hometpl]=../../news/201611/test.html&sid=1
+
+-------------
+
+http://choosealicense.com/licenses/mit/
+
+随着网站制作技术的飞速发展，cms系统也是百家齐放，各种cms产品不下百余种，不过真正能占据用户主流市场的就那么几个，
+其中织梦，帝国，PHPCMS，PageAdmin这几个程序在国内用户众多。
+同样，这几个程序自己都一直在折腾过，这其中的各个优缺点自己也还是有点体会的。
+
+Python: 必选参数、默认参数、可变参数、关键字参数和命名关键字参数
+这是一个多元多变的时代……就像Python参数！
+
+http://www.66ip.cn/index.html
+免费代理ip
+
+jquery-2.x.imp_js/jquery-3.x.imp_js
+
+公文权限
+发布审核
+
+http://www.mobanbus.cn/
+http://demo.mobanbus.cn/jmwv1/portal.php
+
+2016级5班 电子印章
+http://txmao.txjia.com/dev.php?mkv=tools-seal&dept=c105&name=2016%E7%BA%A75%E7%8F%AD&spos=cseal_tr&act=ShowSeal
+
+http://www.kancloud.cn/manual/thinkphp/1696
+ThinkPHP3.2.3完全开发手册
+
+如：
+
+国内目前用的比较多的是TP、CI、YII、ZF，YAF就大公司用的比较多，小公司无非就是那些比较上手快的MVC架子。
+
+php
+python
+aardio
+sublime_text
+thinkPHP
+
+thinkphp
+yaf
+fleaphp
+workerman
+initphp
+eaglephp
+speedphp
+...
+其中
+thinkphp 应该用的比较多
+yaf性能应该最高
+workerman是个另类的框架，专门搞socket服务器的
+
+http://jingyan.baidu.com/article/046a7b3ef9585ff9c27fa9df.html
+
+http://www.kancloud.cn/manual/thinkphp/1685
+
+---------------------------------------- 
+
+常用字符集
+http://txmao.txjia.com/dev.php?tools-chrcom
+
+共65536个全字符集
+http://txmao.txjia.com/dev.php?tools-chrall
+
+google七甲乡
+http://map.51240.com/qijiaxiang_pe__map/
+
+---------------------------------------- 
+
+### PHP5.6: 可以使用表达式定义常量
+### PHP5.5: empty()支持传入一个任意表达式,而不仅是一个变量
+### PHP5.4: 新增 Traits, 新增短数组语法
+### PHP5.3: 增加goto操作符, 三元运算符可以简写省略中间的部分
+
+ a ā á ǎ à
+ o ō ó ŏ ò
+ e ē é ě è
+ i ī í ĭ ì
+ u ū ú ŭ ù
+ ü ǖ ǘ ǚ ǜ
+
+日历(日梭)
+科技馆
+进制 -
+
+---------------------------------------- 

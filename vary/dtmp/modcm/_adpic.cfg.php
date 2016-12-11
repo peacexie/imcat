@@ -10,7 +10,6 @@ $_adpic = array (
   array (
     'aphom' => 
     array (
-      'kid' => 'aphom',
       'pid' => '0',
       'title' => '首页广告',
       'deep' => '1',
@@ -20,7 +19,6 @@ $_adpic = array (
     ),
     'a2012' => 
     array (
-      'kid' => 'a2012',
       'pid' => 'aphom',
       'title' => '[顶]620x60',
       'deep' => '2',
@@ -30,7 +28,6 @@ $_adpic = array (
     ),
     'a2014' => 
     array (
-      'kid' => 'a2014',
       'pid' => 'aphom',
       'title' => '[上]850x80',
       'deep' => '2',
@@ -40,7 +37,6 @@ $_adpic = array (
     ),
     'apinn' => 
     array (
-      'kid' => 'apinn',
       'pid' => '0',
       'title' => '通用内页',
       'deep' => '1',
@@ -50,7 +46,6 @@ $_adpic = array (
     ),
     'a2016' => 
     array (
-      'kid' => 'a2016',
       'pid' => 'apinn',
       'title' => '推荐资源[侧]',
       'deep' => '2',
@@ -60,7 +55,6 @@ $_adpic = array (
     ),
     'a2018' => 
     array (
-      'kid' => 'a2018',
       'pid' => 'apinn',
       'title' => '广告[侧边]A',
       'deep' => '2',
@@ -70,7 +64,6 @@ $_adpic = array (
     ),
     'a2020' => 
     array (
-      'kid' => 'a2020',
       'pid' => 'apinn',
       'title' => '广告[侧边]B',
       'deep' => '2',
@@ -80,7 +73,6 @@ $_adpic = array (
     ),
     'apdel' => 
     array (
-      'kid' => 'apdel',
       'pid' => '0',
       'title' => '[回收站]',
       'deep' => '1',

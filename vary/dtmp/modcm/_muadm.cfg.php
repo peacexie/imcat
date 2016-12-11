@@ -10,7 +10,6 @@ $_muadm = array (
   array (
     'm1012' => 
     array (
-      'kid' => 'm1012',
       'pid' => '0',
       'title' => '演示',
       'deep' => '1',
@@ -18,7 +17,6 @@ $_muadm = array (
     ),
     'm1main' => 
     array (
-      'kid' => 'm1main',
       'pid' => '0',
       'title' => '主营',
       'deep' => '1',
@@ -26,7 +24,6 @@ $_muadm = array (
     ),
     'm2pro' => 
     array (
-      'kid' => 'm2pro',
       'pid' => 'm1main',
       'title' => '产品订单',
       'deep' => '2',
@@ -34,7 +31,6 @@ $_muadm = array (
     ),
     'm3order' => 
     array (
-      'kid' => 'm3order',
       'pid' => 'm2pro',
       'title' => '产品订单',
       'deep' => '3',
@@ -43,7 +39,6 @@ $_muadm = array (
     ),
     'm3pro' => 
     array (
-      'kid' => 'm3pro',
       'pid' => 'm2pro',
       'title' => '产品管理',
       'deep' => '3',
@@ -52,7 +47,6 @@ $_muadm = array (
     ),
     'm3cset' => 
     array (
-      'kid' => 'm3cset',
       'pid' => 'm2pro',
       'title' => '分类设置',
       'deep' => '3',
@@ -61,7 +55,6 @@ $_muadm = array (
     ),
     'm2res' => 
     array (
-      'kid' => 'm2res',
       'pid' => 'm1main',
       'title' => '课程资源',
       'deep' => '2',
@@ -69,7 +62,6 @@ $_muadm = array (
     ),
     'm3kres' => 
     array (
-      'kid' => 'm3kres',
       'pid' => 'm2res',
       'title' => '课程资源',
       'deep' => '3',
@@ -78,7 +70,6 @@ $_muadm = array (
     ),
     'm3keres' => 
     array (
-      'kid' => 'm3keres',
       'pid' => 'm2res',
       'title' => '评论设置',
       'deep' => '3',
@@ -87,7 +78,6 @@ $_muadm = array (
     ),
     'm2user' => 
     array (
-      'kid' => 'm2user',
       'pid' => 'm1main',
       'title' => '会员管理',
       'deep' => '2',
@@ -95,7 +85,6 @@ $_muadm = array (
     ),
     'm3058' => 
     array (
-      'kid' => 'm3058',
       'pid' => 'm2user',
       'title' => '个人会员',
       'deep' => '3',
@@ -104,7 +93,6 @@ $_muadm = array (
     ),
     'm3060' => 
     array (
-      'kid' => 'm3060',
       'pid' => 'm2user',
       'title' => '企业会员',
       'deep' => '3',
@@ -113,7 +101,6 @@ $_muadm = array (
     ),
     'm3062' => 
     array (
-      'kid' => 'm3062',
       'pid' => 'm2user',
       'title' => '政府机构',
       'deep' => '3',
@@ -122,7 +109,6 @@ $_muadm = array (
     ),
     'm3064' => 
     array (
-      'kid' => 'm3064',
       'pid' => 'm2user',
       'title' => '非盈利组织',
       'deep' => '3',
@@ -131,7 +117,6 @@ $_muadm = array (
     ),
     'm1info' => 
     array (
-      'kid' => 'm1info',
       'pid' => '0',
       'title' => '资讯',
       'deep' => '1',
@@ -139,7 +124,6 @@ $_muadm = array (
     ),
     'm2info' => 
     array (
-      'kid' => 'm2info',
       'pid' => 'm1info',
       'title' => '新闻介绍',
       'deep' => '2',
@@ -147,7 +131,6 @@ $_muadm = array (
     ),
     'm3news' => 
     array (
-      'kid' => 'm3news',
       'pid' => 'm2info',
       'title' => '新闻动态',
       'deep' => '3',
@@ -156,7 +139,6 @@ $_muadm = array (
     ),
     'm3nrem' => 
     array (
-      'kid' => 'm3nrem',
       'pid' => 'm2info',
       'title' => '新闻评论',
       'deep' => '3',
@@ -165,7 +147,6 @@ $_muadm = array (
     ),
     'm3about' => 
     array (
-      'kid' => 'm3about',
       'pid' => 'm2info',
       'title' => '站点介绍',
       'deep' => '3',
@@ -174,7 +155,6 @@ $_muadm = array (
     ),
     'm2topic' => 
     array (
-      'kid' => 'm2topic',
       'pid' => 'm1info',
       'title' => '专题新闻',
       'deep' => '2',
@@ -182,7 +162,6 @@ $_muadm = array (
     ),
     'm3topic' => 
     array (
-      'kid' => 'm3topic',
       'pid' => 'm2topic',
       'title' => '专题新闻',
       'deep' => '3',
@@ -191,7 +170,6 @@ $_muadm = array (
     ),
     'm3torem' => 
     array (
-      'kid' => 'm3torem',
       'pid' => 'm2topic',
       'title' => '评论栏目',
       'deep' => '3',
@@ -200,7 +178,6 @@ $_muadm = array (
     ),
     'm1coms' => 
     array (
-      'kid' => 'm1coms',
       'pid' => '0',
       'title' => '互动',
       'deep' => '1',
@@ -208,7 +185,6 @@ $_muadm = array (
     ),
     'm2indoc' => 
     array (
-      'kid' => 'm2indoc',
       'pid' => 'm1coms',
       'title' => '内部公文',
       'deep' => '2',
@@ -216,7 +192,6 @@ $_muadm = array (
     ),
     'm3indoc' => 
     array (
-      'kid' => 'm3indoc',
       'pid' => 'm2indoc',
       'title' => '公文管理',
       'deep' => '3',
@@ -225,7 +200,6 @@ $_muadm = array (
     ),
     'm3inread' => 
     array (
-      'kid' => 'm3inread',
       'pid' => 'm2indoc',
       'title' => '阅读记录',
       'deep' => '3',
@@ -234,7 +208,6 @@ $_muadm = array (
     ),
     'm3inrem' => 
     array (
-      'kid' => 'm3inrem',
       'pid' => 'm2indoc',
       'title' => '评论设置',
       'deep' => '3',
@@ -244,7 +217,6 @@ $_muadm = array (
     ),
     'm3inmem' => 
     array (
-      'kid' => 'm3inmem',
       'pid' => 'm2indoc',
       'title' => '公文会员',
       'deep' => '3',
@@ -253,7 +225,6 @@ $_muadm = array (
     ),
     'm2faqs' => 
     array (
-      'kid' => 'm2faqs',
       'pid' => 'm1coms',
       'title' => '问答系统',
       'deep' => '2',
@@ -261,7 +232,6 @@ $_muadm = array (
     ),
     'm3qadmin' => 
     array (
-      'kid' => 'm3qadmin',
       'pid' => 'm2faqs',
       'title' => '管理发布',
       'deep' => '3',
@@ -270,7 +240,6 @@ $_muadm = array (
     ),
     'm3qrtag' => 
     array (
-      'kid' => 'm3qrtag',
       'pid' => 'm2faqs',
       'title' => '回复标签',
       'deep' => '3',
@@ -280,7 +249,6 @@ $_muadm = array (
     ),
     'm3qaset' => 
     array (
-      'kid' => 'm3qaset',
       'pid' => 'm2faqs',
       'title' => '统计更新',
       'deep' => '3',
@@ -289,7 +257,6 @@ $_muadm = array (
     ),
     'm2vote' => 
     array (
-      'kid' => 'm2vote',
       'pid' => 'm1coms',
       'title' => '投票管理',
       'deep' => '2',
@@ -297,7 +264,6 @@ $_muadm = array (
     ),
     'm3vtadm' => 
     array (
-      'kid' => 'm3vtadm',
       'pid' => 'm2vote',
       'title' => '管理发布',
       'deep' => '3',
@@ -306,7 +272,6 @@ $_muadm = array (
     ),
     'm3voip' => 
     array (
-      'kid' => 'm3voip',
       'pid' => 'm2vote',
       'title' => '选项记录',
       'deep' => '3',
@@ -315,7 +280,6 @@ $_muadm = array (
     ),
     'm2else' => 
     array (
-      'kid' => 'm2else',
       'pid' => 'm1coms',
       'title' => '其他互动',
       'deep' => '2',
@@ -323,7 +287,6 @@ $_muadm = array (
     ),
     'm3gbook' => 
     array (
-      'kid' => 'm3gbook',
       'pid' => 'm2else',
       'title' => '网站留言管理',
       'deep' => '3',
@@ -331,7 +294,6 @@ $_muadm = array (
     ),
     'm1adv' => 
     array (
-      'kid' => 'm1adv',
       'pid' => '0',
       'title' => '广告',
       'deep' => '1',
@@ -339,7 +301,6 @@ $_muadm = array (
     ),
     'm1tool' => 
     array (
-      'kid' => 'm1tool',
       'pid' => '0',
       'title' => '工具',
       'deep' => '1',
@@ -347,7 +308,6 @@ $_muadm = array (
     ),
     'm2sys' => 
     array (
-      'kid' => 'm2sys',
       'pid' => 'm1tool',
       'title' => '系统工具',
       'deep' => '2',
@@ -355,7 +315,6 @@ $_muadm = array (
     ),
     'm3catch' => 
     array (
-      'kid' => 'm3catch',
       'pid' => 'm2sys',
       'title' => '缓存静态',
       'deep' => '3',
@@ -364,7 +323,6 @@ $_muadm = array (
     ),
     'm3self' => 
     array (
-      'kid' => 'm3self',
       'pid' => 'm2sys',
       'title' => '个人资料',
       'deep' => '3',
@@ -373,7 +331,6 @@ $_muadm = array (
     ),
     'm3env' => 
     array (
-      'kid' => 'm3env',
       'pid' => 'm2sys',
       'title' => '环境检测',
       'deep' => '3',
@@ -382,7 +339,6 @@ $_muadm = array (
     ),
     'm3ediy' => 
     array (
-      'kid' => 'm3ediy',
       'pid' => 'm2sys',
       'title' => '配置搜索',
       'deep' => '3',
@@ -391,7 +347,6 @@ $_muadm = array (
     ),
     'm2data' => 
     array (
-      'kid' => 'm2data',
       'pid' => 'm1tool',
       'title' => '数据工具',
       'deep' => '2',
@@ -399,7 +354,6 @@ $_muadm = array (
     ),
     'm3plan' => 
     array (
-      'kid' => 'm3plan',
       'pid' => 'm2data',
       'title' => '计划任务',
       'deep' => '3',
@@ -408,7 +362,6 @@ $_muadm = array (
     ),
     'm3share' => 
     array (
-      'kid' => 'm3share',
       'pid' => 'm2data',
       'title' => '分享同步',
       'deep' => '3',
@@ -417,7 +370,6 @@ $_muadm = array (
     ),
     'm3data' => 
     array (
-      'kid' => 'm3data',
       'pid' => 'm2data',
       'title' => '采集导入',
       'deep' => '3',
@@ -426,7 +378,6 @@ $_muadm = array (
     ),
     'm3seo' => 
     array (
-      'kid' => 'm3seo',
       'pid' => 'm2data',
       'title' => '优化推送',
       'deep' => '3',
@@ -435,7 +386,6 @@ $_muadm = array (
     ),
     'm2fav' => 
     array (
-      'kid' => 'm2fav',
       'pid' => 'm1tool',
       'title' => '我的收藏',
       'deep' => '2',
@@ -443,7 +393,6 @@ $_muadm = array (
     ),
     'm3favor' => 
     array (
-      'kid' => 'm3favor',
       'pid' => 'm2fav',
       'title' => '收藏帮助',
       'deep' => '3',
@@ -452,7 +401,6 @@ $_muadm = array (
     ),
     'm1adm' => 
     array (
-      'kid' => 'm1adm',
       'pid' => '0',
       'title' => '架设',
       'deep' => '1',
@@ -460,7 +408,6 @@ $_muadm = array (
     ),
     'm2stru' => 
     array (
-      'kid' => 'm2stru',
       'pid' => 'm1adm',
       'title' => '超管架构',
       'deep' => '2',
@@ -468,7 +415,6 @@ $_muadm = array (
     ),
     'm3model' => 
     array (
-      'kid' => 'm3model',
       'pid' => 'm2stru',
       'title' => '模块架设',
       'deep' => '3',
@@ -477,7 +423,6 @@ $_muadm = array (
     ),
     'm3auser' => 
     array (
-      'kid' => 'm3auser',
       'pid' => 'm2stru',
       'title' => '管理员:设置/添加',
       'deep' => '3',
@@ -486,7 +431,6 @@ $_muadm = array (
     ),
     'm3catalog' => 
     array (
-      'kid' => 'm3catalog',
       'pid' => 'm2stru',
       'title' => '栏目管理:文档/广告',
       'deep' => '3',
@@ -496,7 +440,6 @@ $_muadm = array (
     ),
     'm3relat' => 
     array (
-      'kid' => 'm3relat',
       'pid' => 'm2stru',
       'title' => '类别:管理/关联',
       'deep' => '3',
@@ -505,7 +448,6 @@ $_muadm = array (
     ),
     'm3amenu' => 
     array (
-      'kid' => 'm3amenu',
       'pid' => 'm2stru',
       'title' => '菜单导航配置',
       'deep' => '3',
@@ -513,7 +455,6 @@ $_muadm = array (
     ),
     'm3grade' => 
     array (
-      'kid' => 'm3grade',
       'pid' => 'm2stru',
       'title' => '等级权限设置',
       'deep' => '3',
@@ -521,7 +462,6 @@ $_muadm = array (
     ),
     'm2api' => 
     array (
-      'kid' => 'm2api',
       'pid' => 'm1adm',
       'title' => '插件/接口',
       'deep' => '2',
@@ -529,7 +469,6 @@ $_muadm = array (
     ),
     'm3apisms' => 
     array (
-      'kid' => 'm3apisms',
       'pid' => 'm2api',
       'title' => '短信接口',
       'deep' => '3',
@@ -538,7 +477,6 @@ $_muadm = array (
     ),
     'm3apipay' => 
     array (
-      'kid' => 'm3apipay',
       'pid' => 'm2api',
       'title' => '支付记录',
       'deep' => '3',
@@ -547,7 +485,6 @@ $_muadm = array (
     ),
     'm3apimail' => 
     array (
-      'kid' => 'm3apimail',
       'pid' => 'm2api',
       'title' => '邮件接口',
       'deep' => '3',
@@ -556,7 +493,6 @@ $_muadm = array (
     ),
     'm3apiwexin' => 
     array (
-      'kid' => 'm3apiwexin',
       'pid' => 'm2api',
       'title' => '微信接口',
       'deep' => '3',
@@ -566,7 +502,6 @@ $_muadm = array (
     ),
     'm2adt' => 
     array (
-      'kid' => 'm2adt',
       'pid' => 'm1adm',
       'title' => '超管工具',
       'deep' => '2',
@@ -574,7 +509,6 @@ $_muadm = array (
     ),
     'm3paras' => 
     array (
-      'kid' => 'm3paras',
       'pid' => 'm2adt',
       'title' => '参数设置',
       'deep' => '3',
@@ -583,7 +517,6 @@ $_muadm = array (
     ),
     'm3dbs' => 
     array (
-      'kid' => 'm3dbs',
       'pid' => 'm2adt',
       'title' => '数据库管理',
       'deep' => '3',
@@ -592,7 +525,6 @@ $_muadm = array (
     ),
     'm3safes' => 
     array (
-      'kid' => 'm3safes',
       'pid' => 'm2adt',
       'title' => '安全日志',
       'deep' => '3',
@@ -601,7 +533,6 @@ $_muadm = array (
     ),
     'm3upver' => 
     array (
-      'kid' => 'm3upver',
       'pid' => 'm2adt',
       'title' => '更新升级',
       'deep' => '3',

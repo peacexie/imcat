@@ -10,10 +10,7 @@ $_about = array (
   array (
     'title' => 
     array (
-      'kid' => 'title',
-      'model' => 'about',
       'title' => '标题',
-      'top' => '120',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -26,23 +23,10 @@ $_about = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'color' => 
     array (
-      'kid' => 'color',
-      'model' => 'about',
       'title' => '标题颜色',
-      'top' => '124',
       'enable' => '1',
       'etab' => '0',
       'type' => 'input',
@@ -57,21 +41,10 @@ $_about = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'ndb_repeat' => 
     array (
-      'kid' => 'ndb_repeat',
-      'model' => 'about',
       'title' => '检查重复',
-      'top' => '128',
       'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
@@ -84,23 +57,12 @@ $_about = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'fmextra' => 'repeat',
-      'fmexstr' => '',
       'cfgs' => 'about,title',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
+      'fmextra' => 'repeat',
     ),
     'detail' => 
     array (
-      'kid' => 'detail',
-      'model' => 'about',
       'title' => '内容',
-      'top' => '132',
       'enable' => '1',
       'etab' => '1',
       'type' => 'text',
@@ -115,21 +77,10 @@ $_about = array (
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'seo_key' => 
     array (
-      'kid' => 'seo_key',
-      'model' => 'about',
       'title' => '关键字',
-      'top' => '136',
       'enable' => '1',
       'etab' => '1',
       'type' => 'input',
@@ -142,23 +93,10 @@ $_about = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'seo_des' => 
     array (
-      'kid' => 'seo_des',
-      'model' => 'about',
       'title' => '描述',
-      'top' => '140',
       'enable' => '1',
       'etab' => '1',
       'type' => 'input',
@@ -171,23 +109,10 @@ $_about = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'seo_tag' => 
     array (
-      'kid' => 'seo_tag',
-      'model' => 'about',
       'title' => '标签',
-      'top' => '144',
       'enable' => '1',
       'etab' => '1',
       'type' => 'input',
@@ -200,23 +125,10 @@ $_about = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
     'mpic' => 
     array (
-      'kid' => 'mpic',
-      'model' => 'about',
       'title' => '缩略图',
-      'top' => '148',
       'enable' => '1',
       'etab' => '0',
       'type' => 'file',
@@ -229,23 +141,12 @@ $_about = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
-      'note' => '',
-      'aip' => '',
-      'atime' => '0',
-      'auser' => '',
-      'eip' => '',
-      'etime' => '0',
-      'euser' => '',
     ),
   ),
   'i' => 
   array (
     'profile' => 
     array (
-      'kid' => 'profile',
       'pid' => '0',
       'title' => '公司简介',
       'deep' => '1',
@@ -255,7 +156,6 @@ $_about = array (
     ),
     'awhua' => 
     array (
-      'kid' => 'awhua',
       'pid' => '0',
       'title' => '企业文化',
       'deep' => '1',
@@ -265,7 +165,6 @@ $_about = array (
     ),
     'aserv' => 
     array (
-      'kid' => 'aserv',
       'pid' => '0',
       'title' => '服务内容',
       'deep' => '1',
@@ -275,7 +174,6 @@ $_about = array (
     ),
     'anews' => 
     array (
-      'kid' => 'anews',
       'pid' => '0',
       'title' => '公司新闻',
       'deep' => '1',
@@ -285,7 +183,6 @@ $_about = array (
     ),
     'apics' => 
     array (
-      'kid' => 'apics',
       'pid' => '0',
       'title' => '公司图片',
       'deep' => '1',
@@ -295,7 +192,6 @@ $_about = array (
     ),
     'afqas' => 
     array (
-      'kid' => 'afqas',
       'pid' => '0',
       'title' => '常见问题',
       'deep' => '1',
@@ -305,7 +201,6 @@ $_about = array (
     ),
     'alink' => 
     array (
-      'kid' => 'alink',
       'pid' => '0',
       'title' => '联系我们',
       'deep' => '1',
@@ -315,7 +210,6 @@ $_about = array (
     ),
     'aduty' => 
     array (
-      'kid' => 'aduty',
       'pid' => '0',
       'title' => '责权申明',
       'deep' => '1',
