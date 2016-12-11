@@ -122,11 +122,13 @@ class glbCUpd{
 		$_groups = read('groups');
 		if(isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','users','coms','types'))){ 
 			$tabid = 'base_fields';
+			$fields = self::$_fields;
 		}else{
 			$tabid = 'base_paras';
+			$fields = self::$_fields.",`key`,val";
 		}
 		$f = array();
-		$list = db()->field(self::$_fields)->table($tabid)->where("model='$mod' AND enable='1'")->order('top')->select(); 
+		$list = db()->field($fields)->table($tabid)->where("model='$mod' AND enable='1'")->order('top')->select(); 
 		foreach($list as $k=>$v){
 			$cid = $v['kid'];
 			foreach($v as $i=>$u){ //kid,top,cfgs
