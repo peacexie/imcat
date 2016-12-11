@@ -9,12 +9,14 @@
 $act = req('act');
 $exinfo = req('exinfo');
 if($act=='update'){
-	$arr = array('server.htm','client.htm'); //,'modstat.php'
-	foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key"); }
+	$arr = array('client-cn','client-en','server-cn','server-en'); 
+	foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }elseif($act=='modstat'){
-	@unlink(DIR_DTMP."/dset/_upd_modstat.php");
+  $arr = array('modstat-cn','modstat-en'); 
+  foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }elseif($act=='uspace'){
-	@unlink(DIR_DTMP."/dset/_upd_spaceinfo.php");
+  $arr = array('spaceinfo-cn','spaceinfo-en'); 
+  foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }
 //basDebug::varShow($data)
 ?>

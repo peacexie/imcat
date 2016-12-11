@@ -104,9 +104,8 @@ class glbCUpd{
 	// upd fields（考虑继承父级参数?）
 	static function upd_cfield($mod=0){
 		$f = array();
-		$list = db()->table('bext_fields')->where("model='$mod'")->order('catid,top')->select(); 
+		$list = db()->field(self::$_fields.",catid")->table('bext_fields')->where("model='$mod' AND enable='1'")->order('catid,top')->select(); 
 		foreach($list as $k=>$v){
-		if($v['enable']){
 			$cid = $v['kid']; $catid = $v['catid']; 
 			foreach($v as $i=>$u){ //kid,top,cfgs
 				$f[$catid][$cid][$i] = $u;
@@ -114,7 +113,7 @@ class glbCUpd{
 			if(!empty($v['cfgs'])) $f[$catid][$cid]['cfgs'] = $v['cfgs'];
 			if(!empty($v['fmextra'])) $f[$catid][$cid]['fmextra'] = $v['fmextra'];
 			if(!empty($v['fmexstr'])) $f[$catid][$cid]['fmexstr'] = $v['fmexstr'];
-		}}
+		}
 		return $f;
 	}
 	
@@ -127,9 +126,8 @@ class glbCUpd{
 			$tabid = 'base_paras';
 		}
 		$f = array();
-		$list = db()->table($tabid)->where("model='$mod'")->order('top')->select(); 
+		$list = db()->field(self::$_fields)->table($tabid)->where("model='$mod' AND enable='1'")->order('top')->select(); 
 		foreach($list as $k=>$v){
-		if($v['enable']){
 			$cid = $v['kid'];
 			foreach($v as $i=>$u){ //kid,top,cfgs
 				$f[$cid][$i] = $u;
@@ -137,7 +135,7 @@ class glbCUpd{
 			if(!empty($v['cfgs'])) $f[$cid]['cfgs'] = $v['cfgs'];
 			if(!empty($v['fmextra'])) $f[$cid]['fmextra'] = $v['fmextra'];
 			if(!empty($v['fmexstr'])) $f[$cid]['fmexstr'] = $v['fmexstr'];
-		}}
+		}
 		return $f;
 	}
 	

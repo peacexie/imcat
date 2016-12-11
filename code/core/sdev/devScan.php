@@ -201,6 +201,7 @@ class devScan{
 					foreach($skip as $dir){
 						if(in_array($dir,array('updsvr','08exp'))) continue;
 						mkdir("$pdir/$sdir/$dir");
+						comFiles::put("$pdir/$sdir/$dir/.gitkeep.txt",'');
 					}
 				}
 			}

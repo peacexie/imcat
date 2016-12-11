@@ -10,16 +10,15 @@ Disallow: /code/
 
 Disallow: /root/a3rd/
 Disallow: /root/plus/
-Disallow: /root/run/
+Disallow: /root/run/adm.php
 Disallow: /root/tools/
 
 Disallow: /dtmp/
-Disallow: /vary/dtmp/
-
 Disallow: /vendor/
-Disallow: /vimp/vendor/
-
 Disallow: /vendui/
+
+Disallow: /vary/dtmp/
+Disallow: /vimp/vendor/
 Disallow: /vimp/vendui/
 
 Allow: /vimp/static/
