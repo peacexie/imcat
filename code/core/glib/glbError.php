@@ -59,7 +59,7 @@ class glbError extends Exception {
 			$type = isset($t['type']) ? $t['type'] : '';
 			$function = isset($t['function']) ? $t['function'] : '';
 			$tInfo .= @$t['file'] . ' (' . @$t['line'] . ') ';
-			$tInfo .= $class . $type . $function . "() @ <br />\r\n";
+			$tInfo .= $class . $type . $function . "<br />\r\n";
 		}
 		$this->trMsgs = $tInfo ;
 	}

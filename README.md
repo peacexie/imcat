@@ -1,13 +1,4 @@
 
----
-
-* During 2006-12-10 ~ 2006-12-25 
-V3.4 Upgrading...
-
-* 2006-12-10 ~ 2006-12-25 期间 
-V3.4升级中……
-
---- --- --- --- --- --- --- --- --- 
 
 ### What is IntimateCat(贴心猫)?
 
@@ -42,7 +33,7 @@ V3.4升级中……
   - View Start Page: `/index.php?start` to Check and Config
   - View Url: `/root/tools/setup/` to Setup.
 
-### 【v3.4 ChangeLog】 (2016.1225)
+### 【v3.4 ChangeLog】 (2016.12)
 
 * Add: Votes system / Set Different templates for grade,category
 * Add: Area sites jumping (solutions) / Subsidiary domain jump to the main domain (configuration)
@@ -79,7 +70,7 @@ V3.4升级中……
  - 访问起始页：/index.php?start 检查配置；
  - 访问地址：/root/tools/setup/ 安装程序。
 
-### 【更新日志】(2016.1225)
+### 【更新日志】(2016.12)
 
 * 增加: 投票系统/按等级,栏目设置不同模板
 * 增加: 分站跳转/多域名跳转到主域名
