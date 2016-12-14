@@ -8,7 +8,7 @@
 
 * 整站下载：
  - [yscode] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
- - [chinaz.站长下载] http://down.chinaz.com/soft/37712.htm
+ - [chinaz.站长下载] http://down.chinaz.com/soft/38424.htm
  - [admin5.站长下载] http://down.admin5.com/php/130751.html
 
 * yscode分包(main/vary/vimp)下载：
@@ -78,7 +78,7 @@
  - 文件结构   
  　 [目录结构示图]({static}/file_image/txmao-tree.png) ，
    [分包下载示图]({static}/file_image/txmao-parts.png) ，
-   [文件结构]({pathpro}/skin/d_start/tree_brem.txt) ；
+   [文件结构]({pathpro}/skin/dev/d_start/tree_brem.txt) ；
 
 * 相关资源
 

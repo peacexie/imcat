@@ -8,7 +8,7 @@
 
 * Down at out sites: 
  - [yscode] http://pan.baidu.com/share/home?uk=3191979020 Down File: txmao-all.rar
- - [chinaz.com] http://down.chinaz.com/soft/37712.htm
+ - [chinaz.com] http://down.chinaz.com/soft/38424.htm
  - [admin5.com] http://down.admin5.com/php/130751.html
 
 * Down split .rar parts(main/vary/vimp):
@@ -80,7 +80,7 @@
  - File frame
  　 [Dir Frames]({static}/file_image/txmao-tree.png) ,
     [Down parts]({static}/file_image/txmao-parts.png) ,
-    [File Frames]({pathpro}/root/skin/doc/d_start/tree_brem.txt) ;
+    [File Frames]({pathpro}/skin/doc/d_start/tree_brem.txt) ;
 
 * Resources
 

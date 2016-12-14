@@ -90,9 +90,9 @@ class tex_base{
 			'{static}','{pathpro}',
 		);
 		$a2 = array(
-			$svr['txmao'],$svr['txcode'],
+			$svr['txmao'],$svr['txcode'],$svr['txjia'],
 			PATH_STATIC,PATH_PROJ,
-		);
+		); 
 		$str = str_replace($a1,$a2,$str);
 		return $str;
 	}
