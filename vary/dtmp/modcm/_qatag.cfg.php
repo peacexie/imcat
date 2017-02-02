@@ -10,8 +10,8 @@ $_qatag = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标签',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_qatag = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'hotcnt' => 
     array (
+      'kid' => 'hotcnt',
       'title' => '热度',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -39,6 +42,9 @@ $_qatag = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
 );

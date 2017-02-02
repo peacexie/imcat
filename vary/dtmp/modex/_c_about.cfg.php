@@ -4,8 +4,8 @@ $_c_about = array (
   array (
     'exp_i01' => 
     array (
+      'kid' => 'exp_i01',
       'title' => '地图',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -18,14 +18,17 @@ $_c_about = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'map',
+      'fmexstr' => '',
+      'cfgs' => '',
+      'catid' => 'alink',
     ),
   ),
   'apics' => 
   array (
     'exp_t01' => 
     array (
+      'kid' => 'exp_t01',
       'title' => '图片集',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -38,6 +41,9 @@ $_c_about = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'pics',
+      'fmexstr' => '',
+      'cfgs' => '',
+      'catid' => 'apics',
     ),
   ),
 );

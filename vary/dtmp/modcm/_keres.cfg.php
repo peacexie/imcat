@@ -10,8 +10,8 @@ $_keres = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_keres = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'color' => 
     array (
+      'kid' => 'color',
       'title' => '标题颜色',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -41,11 +44,12 @@ $_keres = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
+      'cfgs' => '',
     ),
     'ndb_repeat' => 
     array (
+      'kid' => 'ndb_repeat',
       'title' => '检查重复',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
       'dbtype' => 'nodb',
@@ -57,13 +61,14 @@ $_keres = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'cfgs' => 'news,title',
       'fmextra' => 'repeat',
+      'fmexstr' => '',
+      'cfgs' => 'news,title',
     ),
     'ygrade' => 
     array (
+      'kid' => 'ygrade',
       'title' => '年级',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -75,12 +80,14 @@ $_keres = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'ygrade',
     ),
     'course' => 
     array (
+      'kid' => 'course',
       'title' => '课程',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -92,12 +99,14 @@ $_keres = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'course',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'mediumtext',
@@ -111,11 +120,12 @@ $_keres = array (
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
+      'cfgs' => '',
     ),
     'seo_key' => 
     array (
+      'kid' => 'seo_key',
       'title' => '关键字',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -127,11 +137,14 @@ $_keres = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_des' => 
     array (
+      'kid' => 'seo_des',
       'title' => '描述',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -143,11 +156,14 @@ $_keres = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_tag' => 
     array (
+      'kid' => 'seo_tag',
       'title' => '标签',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -159,11 +175,14 @@ $_keres = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'ufile' => 
     array (
+      'kid' => 'ufile',
       'title' => '附件',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -175,11 +194,14 @@ $_keres = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'uvdo' => 
     array (
+      'kid' => 'uvdo',
       'title' => '视频',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -191,11 +213,14 @@ $_keres = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mpic' => 
     array (
+      'kid' => 'mpic',
       'title' => '缩略图',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -207,11 +232,14 @@ $_keres = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'jump' => 
     array (
+      'kid' => 'jump',
       'title' => '跳转地址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -223,11 +251,14 @@ $_keres = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'source' => 
     array (
+      'kid' => 'source',
       'title' => '来源',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -239,11 +270,14 @@ $_keres = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'click' => 
     array (
+      'kid' => 'click',
       'title' => '点击次数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -255,11 +289,14 @@ $_keres = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'author' => 
     array (
+      'kid' => 'author',
       'title' => '作者',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -271,12 +308,16 @@ $_keres = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'k1012' => 
     array (
+      'kid' => 'k1012',
       'pid' => '0',
       'title' => '教育教学',
       'deep' => '1',
@@ -286,6 +327,7 @@ $_keres = array (
     ),
     'k1020' => 
     array (
+      'kid' => 'k1020',
       'pid' => '0',
       'title' => '课外活动',
       'deep' => '1',
@@ -295,6 +337,7 @@ $_keres = array (
     ),
     'k1014' => 
     array (
+      'kid' => 'k1014',
       'pid' => '0',
       'title' => '家庭教育',
       'deep' => '1',
@@ -304,6 +347,7 @@ $_keres = array (
     ),
     'k1018' => 
     array (
+      'kid' => 'k1018',
       'pid' => '0',
       'title' => '素材资源',
       'deep' => '1',
@@ -313,6 +357,7 @@ $_keres = array (
     ),
     'k1016' => 
     array (
+      'kid' => 'k1016',
       'pid' => '0',
       'title' => '社会自然',
       'deep' => '1',

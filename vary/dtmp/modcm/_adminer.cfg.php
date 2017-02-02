@@ -10,8 +10,8 @@ $_adminer = array (
   array (
     'mname' => 
     array (
+      'kid' => 'mname',
       'title' => '会员名称',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_adminer = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'indep' => 
     array (
+      'kid' => 'indep',
       'title' => '部门',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -39,12 +42,14 @@ $_adminer = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'indep',
     ),
     'miuid' => 
     array (
+      'kid' => 'miuid',
       'title' => '聊天号',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -56,11 +61,14 @@ $_adminer = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mtel' => 
     array (
+      'kid' => 'mtel',
       'title' => '电话',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -72,11 +80,14 @@ $_adminer = array (
       'fmsize' => '150',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'memail' => 
     array (
+      'kid' => 'memail',
       'title' => '邮件',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -88,11 +99,14 @@ $_adminer = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'maddr' => 
     array (
+      'kid' => 'maddr',
       'title' => '地址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -104,36 +118,46 @@ $_adminer = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'supper' => 
     array (
+      'kid' => 'supper',
       'title' => '超级管理员',
     ),
     'ainfo' => 
     array (
+      'kid' => 'ainfo',
       'title' => '信息管理员',
     ),
     'auser' => 
     array (
+      'kid' => 'auser',
       'title' => '会员管理员',
     ),
     'advers' => 
     array (
+      'kid' => 'advers',
       'title' => '广告管理员',
     ),
     'aframe' => 
     array (
+      'kid' => 'aframe',
       'title' => '系统架构员',
     ),
     'aperm' => 
     array (
+      'kid' => 'aperm',
       'title' => '权限测试员',
     ),
     'astop' => 
     array (
+      'kid' => 'astop',
       'title' => '过期管理员',
     ),
   ),

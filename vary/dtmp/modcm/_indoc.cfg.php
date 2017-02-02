@@ -10,8 +10,8 @@ $_indoc = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_indoc = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'color' => 
     array (
+      'kid' => 'color',
       'title' => '标题颜色',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -41,11 +44,12 @@ $_indoc = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
+      'cfgs' => '',
     ),
     'ndb_repeat' => 
     array (
+      'kid' => 'ndb_repeat',
       'title' => '检查重复',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
       'dbtype' => 'nodb',
@@ -57,13 +61,14 @@ $_indoc = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'cfgs' => 'indoc,title',
       'fmextra' => 'repeat',
+      'fmexstr' => '',
+      'cfgs' => 'indoc,title',
     ),
     'indep' => 
     array (
+      'kid' => 'indep',
       'title' => '部门',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -75,12 +80,14 @@ $_indoc = array (
       'fmsize' => '120',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'indep',
     ),
     'rdtip' => 
     array (
+      'kid' => 'rdtip',
       'title' => '重要等级',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -92,6 +99,8 @@ $_indoc = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'v24=不重要
 v36=【普通】
 v48=重要！
@@ -99,8 +108,8 @@ v60=非常重要！',
     ),
     'author' => 
     array (
+      'kid' => 'author',
       'title' => '作者',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -112,11 +121,14 @@ v60=非常重要！',
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'mediumtext',
@@ -130,11 +142,12 @@ v60=非常重要！',
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
+      'cfgs' => '',
     ),
     'seo_key' => 
     array (
+      'kid' => 'seo_key',
       'title' => '关键字',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -146,11 +159,14 @@ v60=非常重要！',
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mpic' => 
     array (
+      'kid' => 'mpic',
       'title' => '附件',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -162,11 +178,14 @@ v60=非常重要！',
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'topub' => 
     array (
+      'kid' => 'topub',
       'title' => '是否公开',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -178,13 +197,15 @@ v60=非常重要！',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'isset=按设置
 ispub=公开',
     ),
     'todep' => 
     array (
+      'kid' => 'todep',
       'title' => '接收部门',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'cbox',
       'dbtype' => 'varchar',
@@ -196,12 +217,14 @@ ispub=公开',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'indep',
     ),
     'touser' => 
     array (
+      'kid' => 'touser',
       'title' => '接收人员',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -214,11 +237,13 @@ ispub=公开',
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'pick',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'sealpos' => 
     array (
+      'kid' => 'sealpos',
       'title' => '印章位置',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -230,6 +255,8 @@ ispub=公开',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'csnull=[无印章]
 cseal_br=右下
 cseal_bl=左下
@@ -239,8 +266,8 @@ cseal_tl=左上
     ),
     'sendsms' => 
     array (
+      'kid' => 'sendsms',
       'title' => '通知类型',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -252,6 +279,8 @@ cseal_tl=左上
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'nosend=不通知
 mobmsg=短信
 email=邮件
@@ -262,6 +291,7 @@ wechat=微信',
   array (
     'i1012' => 
     array (
+      'kid' => 'i1012',
       'pid' => '0',
       'title' => '公司公告',
       'deep' => '1',
@@ -271,6 +301,7 @@ wechat=微信',
     ),
     'i1014' => 
     array (
+      'kid' => 'i1014',
       'pid' => '0',
       'title' => '公司制度',
       'deep' => '1',
@@ -280,6 +311,7 @@ wechat=微信',
     ),
     'i1016' => 
     array (
+      'kid' => 'i1016',
       'pid' => '0',
       'title' => 'KPI月报',
       'deep' => '1',
@@ -289,6 +321,7 @@ wechat=微信',
     ),
     'i1018' => 
     array (
+      'kid' => 'i1018',
       'pid' => '0',
       'title' => '高层动向',
       'deep' => '1',

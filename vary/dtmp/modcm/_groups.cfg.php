@@ -24,6 +24,14 @@ $_groups = array (
     'etab' => '3',
     'deep' => '2',
   ),
+  'adpush' => 
+  array (
+    'pid' => 'advs',
+    'title' => '手动推送',
+    'top' => '150',
+    'etab' => '3',
+    'deep' => '1',
+  ),
   'adfavor' => 
   array (
     'pid' => 'advs',

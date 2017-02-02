@@ -10,8 +10,8 @@ $_news = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_news = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'color' => 
     array (
+      'kid' => 'color',
       'title' => '标题颜色',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -41,11 +44,12 @@ $_news = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
+      'cfgs' => '',
     ),
     'ndb_repeat' => 
     array (
+      'kid' => 'ndb_repeat',
       'title' => '检查重复',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
       'dbtype' => 'nodb',
@@ -57,13 +61,14 @@ $_news = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'cfgs' => 'news,title',
       'fmextra' => 'repeat',
+      'fmexstr' => '',
+      'cfgs' => 'news,title',
     ),
     'hinfo' => 
     array (
+      'kid' => 'hinfo',
       'title' => '推荐',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -75,12 +80,14 @@ $_news = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'hinfo',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'mediumtext',
@@ -94,11 +101,12 @@ $_news = array (
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
+      'cfgs' => '',
     ),
     'seo_key' => 
     array (
+      'kid' => 'seo_key',
       'title' => '关键字',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -110,11 +118,14 @@ $_news = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_des' => 
     array (
+      'kid' => 'seo_des',
       'title' => '描述',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -126,11 +137,14 @@ $_news = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_tag' => 
     array (
+      'kid' => 'seo_tag',
       'title' => '标签',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -142,11 +156,14 @@ $_news = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mpic' => 
     array (
+      'kid' => 'mpic',
       'title' => '缩略图',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -158,11 +175,14 @@ $_news = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'jump' => 
     array (
+      'kid' => 'jump',
       'title' => '跳转地址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -174,11 +194,14 @@ $_news = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'source' => 
     array (
+      'kid' => 'source',
       'title' => '来源',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -190,11 +213,14 @@ $_news = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'click' => 
     array (
+      'kid' => 'click',
       'title' => '点击次数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -206,11 +232,14 @@ $_news = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'author' => 
     array (
+      'kid' => 'author',
       'title' => '作者',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -222,11 +251,14 @@ $_news = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'rel_doc' => 
     array (
+      'kid' => 'rel_doc',
       'title' => '相关信息',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'text',
@@ -239,12 +271,15 @@ $_news = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'pick',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'n1012' => 
     array (
+      'kid' => 'n1012',
       'pid' => '0',
       'title' => '公司新闻',
       'deep' => '1',
@@ -254,6 +289,7 @@ $_news = array (
     ),
     'n1014' => 
     array (
+      'kid' => 'n1014',
       'pid' => '0',
       'title' => '客户新闻',
       'deep' => '1',
@@ -263,6 +299,7 @@ $_news = array (
     ),
     'n1016' => 
     array (
+      'kid' => 'n1016',
       'pid' => '0',
       'title' => '行业新闻',
       'deep' => '1',
@@ -272,6 +309,7 @@ $_news = array (
     ),
     'n1018' => 
     array (
+      'kid' => 'n1018',
       'pid' => '0',
       'title' => '本地新闻',
       'deep' => '1',
@@ -281,6 +319,7 @@ $_news = array (
     ),
     'nsystem' => 
     array (
+      'kid' => 'nsystem',
       'pid' => '0',
       'title' => '系统新闻',
       'deep' => '1',

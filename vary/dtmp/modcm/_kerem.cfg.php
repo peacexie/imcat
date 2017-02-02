@@ -13,8 +13,8 @@ $_kerem = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -26,11 +26,14 @@ $_kerem = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -42,11 +45,14 @@ $_kerem = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mname' => 
     array (
+      'kid' => 'mname',
       'title' => '会员名称',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -58,11 +64,14 @@ $_kerem = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mtel' => 
     array (
+      'kid' => 'mtel',
       'title' => '电话',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -74,11 +83,14 @@ $_kerem = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'miuid' => 
     array (
+      'kid' => 'miuid',
       'title' => '聊天号',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -90,11 +102,14 @@ $_kerem = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'memail' => 
     array (
+      'kid' => 'memail',
       'title' => '邮件',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -106,11 +121,14 @@ $_kerem = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mweb' => 
     array (
+      'kid' => 'mweb',
       'title' => '网址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -122,11 +140,14 @@ $_kerem = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'maddr' => 
     array (
+      'kid' => 'maddr',
       'title' => '地址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -138,6 +159,9 @@ $_kerem = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
 );

@@ -12,8 +12,8 @@ $_votep = array (
   array (
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '投票内容',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -25,6 +25,9 @@ $_votep = array (
       'fmsize' => '360x5',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
 );

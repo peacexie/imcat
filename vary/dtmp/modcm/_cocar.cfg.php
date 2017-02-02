@@ -11,8 +11,8 @@ $_cocar = array (
   array (
     'ordprice' => 
     array (
+      'kid' => 'ordprice',
       'title' => '价格',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -24,11 +24,14 @@ $_cocar = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'ordcnt' => 
     array (
+      'kid' => 'ordcnt',
       'title' => '数量',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -40,11 +43,14 @@ $_cocar = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'ordweight' => 
     array (
+      'kid' => 'ordweight',
       'title' => '重量',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -56,11 +62,14 @@ $_cocar = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '备注',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -72,11 +81,14 @@ $_cocar = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '参数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -88,6 +100,9 @@ $_cocar = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
 );

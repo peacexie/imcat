@@ -11,8 +11,8 @@ $_inread = array (
   array (
     'readcnt' => 
     array (
+      'kid' => 'readcnt',
       'title' => '浏览次数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -24,6 +24,9 @@ $_inread = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
 );

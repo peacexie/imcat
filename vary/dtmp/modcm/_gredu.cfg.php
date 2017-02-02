@@ -13,6 +13,7 @@ $_gredu = array (
   array (
     'chu' => 
     array (
+      'kid' => 'chu',
       'pid' => '0',
       'title' => '初中及以下',
       'deep' => '1',
@@ -22,6 +23,7 @@ $_gredu = array (
     ),
     'gao' => 
     array (
+      'kid' => 'gao',
       'pid' => '0',
       'title' => '高中',
       'deep' => '1',
@@ -31,6 +33,7 @@ $_gredu = array (
     ),
     'zhong' => 
     array (
+      'kid' => 'zhong',
       'pid' => '0',
       'title' => '中专',
       'deep' => '1',
@@ -40,6 +43,7 @@ $_gredu = array (
     ),
     'zhuan' => 
     array (
+      'kid' => 'zhuan',
       'pid' => '0',
       'title' => '大专',
       'deep' => '1',
@@ -49,6 +53,7 @@ $_gredu = array (
     ),
     'ben' => 
     array (
+      'kid' => 'ben',
       'pid' => '0',
       'title' => '本科',
       'deep' => '1',
@@ -58,6 +63,7 @@ $_gredu = array (
     ),
     'shuo' => 
     array (
+      'kid' => 'shuo',
       'pid' => '0',
       'title' => '硕士',
       'deep' => '1',
@@ -67,6 +73,7 @@ $_gredu = array (
     ),
     'boshi' => 
     array (
+      'kid' => 'boshi',
       'pid' => '0',
       'title' => '博士',
       'deep' => '1',
@@ -76,6 +83,7 @@ $_gredu = array (
     ),
     'pei' => 
     array (
+      'kid' => 'pei',
       'pid' => '0',
       'title' => '培训',
       'deep' => '1',

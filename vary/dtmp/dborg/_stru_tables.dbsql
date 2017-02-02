@@ -107,6 +107,30 @@ CREATE TABLE `{pre}advs_adpic{ext}` (
   PRIMARY KEY (`aid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}advs_adpush{ext}`;
+CREATE TABLE `{pre}advs_adpush{ext}` (
+  `aid` varchar(24) NOT NULL,
+  `ano` int(11) NOT NULL DEFAULT '0',
+  `catid` varchar(255) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `pmod` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `mpic` text NOT NULL,
+  `detail` text,
+  `show` tinyint(4) NOT NULL DEFAULT '1',
+  `top` int(11) NOT NULL DEFAULT '888',
+  `color` varchar(12) NOT NULL DEFAULT '',
+  `click` int(11) NOT NULL DEFAULT '0',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`aid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}advs_adtext{ext}`;
 CREATE TABLE `{pre}advs_adtext{ext}` (
   `aid` varchar(24) NOT NULL,
@@ -302,9 +326,12 @@ CREATE TABLE `{pre}bext_cron{ext}` (
   `excunit` varchar(12) NOT NULL DEFAULT '0' COMMENT 'w,d,h',
   `exlast` int(11) NOT NULL DEFAULT '0',
   `exnext` int(11) NOT NULL DEFAULT '946526400' COMMENT '1999-12-30 12:00:00',
-  `extime` varchar(255) NOT NULL DEFAULT '' COMMENT '???',
+  `extime` float NOT NULL DEFAULT '0' COMMENT '123.456',
   `exskip` varchar(255) NOT NULL DEFAULT '' COMMENT 'demo:8,9,10',
   `exsecs` varchar(12) NOT NULL DEFAULT '30:00' COMMENT '00:00~59:59',
+  `hkflag` tinyint(4) NOT NULL DEFAULT '0',
+  `hkmkv` varchar(48) NOT NULL DEFAULT '' COMMENT 'mkv/key',
+  `hktpl` varchar(48) NOT NULL DEFAULT '' COMMENT 'tpl/user',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
   `cfgs` varchar(255) NOT NULL DEFAULT '',
@@ -972,14 +999,16 @@ CREATE TABLE `{pre}docs_demo{ext}` (
   `mche` varchar(255) NOT NULL,
   `set_compc` varchar(255) NOT NULL DEFAULT '',
   `exp_m01` varchar(12) NOT NULL DEFAULT '',
+  `spid` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`did`),
+  UNIQUE KEY `spid` (`spid`)
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}docs_faqs{ext}`;
 CREATE TABLE `{pre}docs_faqs{ext}` (
@@ -1159,6 +1188,7 @@ CREATE TABLE `{pre}exd_crlog{ext}` (
   `outurl` varchar(255) NOT NULL DEFAULT '',
   `omd5` varchar(48) NOT NULL DEFAULT '',
   `done` tinyint(4) NOT NULL DEFAULT '0',
+  `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
@@ -1177,6 +1207,7 @@ CREATE TABLE `{pre}exd_oilog{ext}` (
   `outid` varchar(255) NOT NULL DEFAULT '',
   `ouint` int(11) NOT NULL DEFAULT '0',
   `done` tinyint(4) NOT NULL DEFAULT '0',
+  `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
@@ -1221,6 +1252,7 @@ CREATE TABLE `{pre}exd_pslog{ext}` (
   `sysid` varchar(24) NOT NULL DEFAULT '',
   `outid` varchar(24) NOT NULL DEFAULT '',
   `done` tinyint(4) NOT NULL DEFAULT '0',
+  `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
@@ -1528,6 +1560,13 @@ CREATE TABLE `{pre}plus_smsend{ext}` (
   `auser` varchar(24) NOT NULL DEFAULT '',
   PRIMARY KEY (`kid`),
   KEY `auser` (`auser`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}plus_sphinx{ext}`;
+CREATE TABLE `{pre}plus_sphinx{ext}` (
+  `modid` varchar(12) NOT NULL,
+  `maxid` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}types_auto{ext}`;

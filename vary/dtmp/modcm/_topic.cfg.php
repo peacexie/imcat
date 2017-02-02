@@ -10,8 +10,8 @@ $_topic = array (
   array (
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_topic = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'color' => 
     array (
+      'kid' => 'color',
       'title' => '标题颜色',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -41,11 +44,12 @@ $_topic = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
+      'cfgs' => '',
     ),
     'ndb_repeat' => 
     array (
+      'kid' => 'ndb_repeat',
       'title' => '检查重复',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
       'dbtype' => 'nodb',
@@ -57,13 +61,14 @@ $_topic = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'cfgs' => 'topic,title',
       'fmextra' => 'repeat',
+      'fmexstr' => '',
+      'cfgs' => 'topic,title',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'mediumtext',
@@ -77,11 +82,12 @@ $_topic = array (
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
+      'cfgs' => '',
     ),
     'seo_key' => 
     array (
+      'kid' => 'seo_key',
       'title' => '关键字',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -93,11 +99,14 @@ $_topic = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_des' => 
     array (
+      'kid' => 'seo_des',
       'title' => '描述',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -109,11 +118,14 @@ $_topic = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_tag' => 
     array (
+      'kid' => 'seo_tag',
       'title' => '标签',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -125,11 +137,14 @@ $_topic = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mpic' => 
     array (
+      'kid' => 'mpic',
       'title' => '缩略图',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -141,11 +156,14 @@ $_topic = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'source' => 
     array (
+      'kid' => 'source',
       'title' => '来源',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -157,11 +175,14 @@ $_topic = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'click' => 
     array (
+      'kid' => 'click',
       'title' => '点击次数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -173,11 +194,14 @@ $_topic = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'author' => 
     array (
+      'kid' => 'author',
       'title' => '作者',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -189,11 +213,14 @@ $_topic = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'rel_pic' => 
     array (
+      'kid' => 'rel_pic',
       'title' => '相关图片',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'text',
@@ -205,17 +232,18 @@ $_topic = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => 'pics',
+      'fmexstr' => '',
       'cfgs' => 'pic1=pic1
 pic2=pic2
 pic3=pic3
 pic4=pic4
 pic5=pic5',
-      'fmextra' => 'pics',
     ),
     'rel_pset' => 
     array (
+      'kid' => 'rel_pset',
       'title' => '图片设置',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -227,11 +255,14 @@ pic5=pic5',
       'fmsize' => '500x3',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'rel_doc' => 
     array (
+      'kid' => 'rel_doc',
       'title' => '相关信息',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'text',
@@ -244,11 +275,13 @@ pic5=pic5',
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'pick',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'rel_vdo' => 
     array (
+      'kid' => 'rel_vdo',
       'title' => '相关视频',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -260,12 +293,16 @@ pic5=pic5',
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     't1012' => 
     array (
+      'kid' => 't1012',
       'pid' => '0',
       'title' => '公益专题',
       'deep' => '1',
@@ -275,6 +312,7 @@ pic5=pic5',
     ),
     't1014' => 
     array (
+      'kid' => 't1014',
       'pid' => '0',
       'title' => '促销专题',
       'deep' => '1',
@@ -284,6 +322,7 @@ pic5=pic5',
     ),
     't1016' => 
     array (
+      'kid' => 't1016',
       'pid' => '0',
       'title' => '节日专题',
       'deep' => '1',
@@ -293,6 +332,7 @@ pic5=pic5',
     ),
     't1018' => 
     array (
+      'kid' => 't1018',
       'pid' => '0',
       'title' => '其它专题',
       'deep' => '1',

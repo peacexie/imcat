@@ -13,6 +13,7 @@ $_ygrade = array (
   array (
     'bb1' => 
     array (
+      'kid' => 'bb1',
       'pid' => '0',
       'title' => '小班',
       'deep' => '1',
@@ -22,6 +23,7 @@ $_ygrade = array (
     ),
     'bb2' => 
     array (
+      'kid' => 'bb2',
       'pid' => '0',
       'title' => '中版',
       'deep' => '1',
@@ -31,6 +33,7 @@ $_ygrade = array (
     ),
     'bb3' => 
     array (
+      'kid' => 'bb3',
       'pid' => '0',
       'title' => '大班',
       'deep' => '1',
@@ -40,6 +43,7 @@ $_ygrade = array (
     ),
     'nj1' => 
     array (
+      'kid' => 'nj1',
       'pid' => '0',
       'title' => '一年级',
       'deep' => '1',
@@ -49,6 +53,7 @@ $_ygrade = array (
     ),
     'nj2' => 
     array (
+      'kid' => 'nj2',
       'pid' => '0',
       'title' => '二年级',
       'deep' => '1',
@@ -58,6 +63,7 @@ $_ygrade = array (
     ),
     'nj3' => 
     array (
+      'kid' => 'nj3',
       'pid' => '0',
       'title' => '三年级',
       'deep' => '1',
@@ -67,6 +73,7 @@ $_ygrade = array (
     ),
     'nj4' => 
     array (
+      'kid' => 'nj4',
       'pid' => '0',
       'title' => '四年级',
       'deep' => '1',
@@ -76,6 +83,7 @@ $_ygrade = array (
     ),
     'nj5' => 
     array (
+      'kid' => 'nj5',
       'pid' => '0',
       'title' => '五年级',
       'deep' => '1',
@@ -85,6 +93,7 @@ $_ygrade = array (
     ),
     'nj6' => 
     array (
+      'kid' => 'nj6',
       'pid' => '0',
       'title' => '六年级',
       'deep' => '1',
@@ -94,6 +103,7 @@ $_ygrade = array (
     ),
     'nj7' => 
     array (
+      'kid' => 'nj7',
       'pid' => '0',
       'title' => '七年级',
       'deep' => '1',
@@ -103,6 +113,7 @@ $_ygrade = array (
     ),
     'nj8' => 
     array (
+      'kid' => 'nj8',
       'pid' => '0',
       'title' => '八年级',
       'deep' => '1',
@@ -112,6 +123,7 @@ $_ygrade = array (
     ),
     'nj9' => 
     array (
+      'kid' => 'nj9',
       'pid' => '0',
       'title' => '九年级',
       'deep' => '1',
@@ -121,6 +133,7 @@ $_ygrade = array (
     ),
     'gao1' => 
     array (
+      'kid' => 'gao1',
       'pid' => '0',
       'title' => '高一',
       'deep' => '1',
@@ -130,6 +143,7 @@ $_ygrade = array (
     ),
     'gao2' => 
     array (
+      'kid' => 'gao2',
       'pid' => '0',
       'title' => '高二',
       'deep' => '1',
@@ -139,6 +153,7 @@ $_ygrade = array (
     ),
     'gao3' => 
     array (
+      'kid' => 'gao3',
       'pid' => '0',
       'title' => '高三',
       'deep' => '1',
@@ -148,6 +163,7 @@ $_ygrade = array (
     ),
     'zkjsj' => 
     array (
+      'kid' => 'zkjsj',
       'pid' => '0',
       'title' => '计算机及应用(自考专业)',
       'deep' => '1',
@@ -157,6 +173,7 @@ $_ygrade = array (
     ),
     'zkwuliu' => 
     array (
+      'kid' => 'zkwuliu',
       'pid' => '0',
       'title' => '物流管理(自考专业)',
       'deep' => '1',
@@ -166,6 +183,7 @@ $_ygrade = array (
     ),
     'zkxinli' => 
     array (
+      'kid' => 'zkxinli',
       'pid' => '0',
       'title' => '心理学(自考专业)',
       'deep' => '1',
@@ -175,6 +193,7 @@ $_ygrade = array (
     ),
     'zkjzh' => 
     array (
+      'kid' => 'zkjzh',
       'pid' => '0',
       'title' => '建筑设计(自考专业)',
       'deep' => '1',
@@ -184,6 +203,7 @@ $_ygrade = array (
     ),
     'zkxinwen' => 
     array (
+      'kid' => 'zkxinwen',
       'pid' => '0',
       'title' => '新闻学(自考专业)',
       'deep' => '1',

@@ -11,8 +11,8 @@ $_indep = array (
   array (
     'tel' => 
     array (
+      'kid' => 'tel',
       'title' => '电话',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -24,11 +24,14 @@ $_indep = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '简介',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'text',
       'dbtype' => 'text',
@@ -40,12 +43,16 @@ $_indep = array (
       'fmsize' => '360x6',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'inadm' => 
     array (
+      'kid' => 'inadm',
       'pid' => '0',
       'title' => '管理部',
       'deep' => '1',
@@ -55,6 +62,7 @@ $_indep = array (
     ),
     'intech' => 
     array (
+      'kid' => 'intech',
       'pid' => '0',
       'title' => '技术部',
       'deep' => '1',
@@ -64,6 +72,7 @@ $_indep = array (
     ),
     'incai' => 
     array (
+      'kid' => 'incai',
       'pid' => '0',
       'title' => '财务部',
       'deep' => '1',
@@ -73,6 +82,7 @@ $_indep = array (
     ),
     'inbus' => 
     array (
+      'kid' => 'inbus',
       'pid' => '0',
       'title' => '业务部',
       'deep' => '1',
@@ -82,6 +92,7 @@ $_indep = array (
     ),
     'inpro' => 
     array (
+      'kid' => 'inpro',
       'pid' => '0',
       'title' => '生产部',
       'deep' => '1',
@@ -91,6 +102,7 @@ $_indep = array (
     ),
     'inren' => 
     array (
+      'kid' => 'inren',
       'pid' => '0',
       'title' => '人力部',
       'deep' => '1',

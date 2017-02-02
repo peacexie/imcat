@@ -10,8 +10,8 @@ $_inmem = array (
   array (
     'mname' => 
     array (
+      'kid' => 'mname',
       'title' => '会员名称',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,11 +23,14 @@ $_inmem = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'indep' => 
     array (
+      'kid' => 'indep',
       'title' => '部门',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -39,12 +42,14 @@ $_inmem = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'indep',
     ),
     'miuid' => 
     array (
+      'kid' => 'miuid',
       'title' => '聊天号',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -56,11 +61,14 @@ $_inmem = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mtel' => 
     array (
+      'kid' => 'mtel',
       'title' => '电话',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -72,11 +80,14 @@ $_inmem = array (
       'fmsize' => '150',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'memail' => 
     array (
+      'kid' => 'memail',
       'title' => '邮件',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -88,11 +99,14 @@ $_inmem = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'maddr' => 
     array (
+      'kid' => 'maddr',
       'title' => '地址',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -104,20 +118,26 @@ $_inmem = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'inadm' => 
     array (
+      'kid' => 'inadm',
       'title' => '超级会员',
     ),
     'incom' => 
     array (
+      'kid' => 'incom',
       'title' => '普通会员',
     ),
     'instop' => 
     array (
+      'kid' => 'instop',
       'title' => '过期会员',
     ),
   ),

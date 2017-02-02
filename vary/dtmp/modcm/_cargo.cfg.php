@@ -10,8 +10,8 @@ $_cargo = array (
   array (
     'brand' => 
     array (
+      'kid' => 'brand',
       'title' => '品牌',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -23,12 +23,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'brand',
     ),
     'hinfo' => 
     array (
+      'kid' => 'hinfo',
       'title' => '推荐',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -40,12 +42,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'hinfo',
     ),
     'title' => 
     array (
+      'kid' => 'title',
       'title' => '标题',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -57,11 +61,14 @@ $_cargo = array (
       'fmsize' => '360',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'color' => 
     array (
+      'kid' => 'color',
       'title' => '标题颜色',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -75,11 +82,12 @@ $_cargo = array (
       'fmtitle' => '0',
       'fmextra' => 'color',
       'fmexstr' => 'title',
+      'cfgs' => '',
     ),
     'ndb_repeat' => 
     array (
+      'kid' => 'ndb_repeat',
       'title' => '检查重复',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'repeat',
       'dbtype' => 'nodb',
@@ -91,13 +99,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '0',
-      'cfgs' => 'pro,title',
       'fmextra' => 'repeat',
+      'fmexstr' => '',
+      'cfgs' => 'pro,title',
     ),
     'xinghao' => 
     array (
+      'kid' => 'xinghao',
       'title' => '型号',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -109,11 +118,14 @@ $_cargo = array (
       'fmsize' => '180',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'guige' => 
     array (
+      'kid' => 'guige',
       'title' => '规格',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -125,11 +137,14 @@ $_cargo = array (
       'fmsize' => '180',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'price' => 
     array (
+      'kid' => 'price',
       'title' => '价格',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -141,11 +156,14 @@ $_cargo = array (
       'fmsize' => '80',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'pbat' => 
     array (
+      'kid' => 'pbat',
       'title' => '批量价',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -157,11 +175,14 @@ $_cargo = array (
       'fmsize' => '240',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'weight' => 
     array (
+      'kid' => 'weight',
       'title' => '重量',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -173,11 +194,14 @@ $_cargo = array (
       'fmsize' => '60',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
+      'kid' => 'detail',
       'title' => '内容',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'mediumtext',
@@ -191,11 +215,12 @@ $_cargo = array (
       'fmtitle' => '1',
       'fmextra' => 'editor',
       'fmexstr' => 'full,exbar',
+      'cfgs' => '',
     ),
     'seo_key' => 
     array (
+      'kid' => 'seo_key',
       'title' => '关键字',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -207,11 +232,14 @@ $_cargo = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_des' => 
     array (
+      'kid' => 'seo_des',
       'title' => '描述',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -223,11 +251,14 @@ $_cargo = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'seo_tag' => 
     array (
+      'kid' => 'seo_tag',
       'title' => '标签',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -239,11 +270,14 @@ $_cargo = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mpic' => 
     array (
+      'kid' => 'mpic',
       'title' => '缩略图',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'file',
       'dbtype' => 'varchar',
@@ -255,11 +289,14 @@ $_cargo = array (
       'fmsize' => '320',
       'fmline' => '1',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'source' => 
     array (
+      'kid' => 'source',
       'title' => '来源',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -271,11 +308,14 @@ $_cargo = array (
       'fmsize' => '480',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'ordcnt' => 
     array (
+      'kid' => 'ordcnt',
       'title' => '订购次数',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -287,11 +327,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'click' => 
     array (
+      'kid' => 'click',
       'title' => '点击',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -303,11 +346,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'author' => 
     array (
+      'kid' => 'author',
       'title' => '作者',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -319,11 +365,14 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'rel_pic' => 
     array (
+      'kid' => 'rel_pic',
       'title' => '相关图片',
-      'enable' => '1',
       'etab' => '1',
       'type' => 'text',
       'dbtype' => 'text',
@@ -335,16 +384,17 @@ $_cargo = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => 'pics',
+      'fmexstr' => '',
       'cfgs' => 'full=外观图
 side=侧面图
 inn=内部图
 att=附件图',
-      'fmextra' => 'pics',
     ),
     'diggtop' => 
     array (
+      'kid' => 'diggtop',
       'title' => 'diggtop',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -356,11 +406,14 @@ att=附件图',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'diggdown' => 
     array (
+      'kid' => 'diggdown',
       'title' => 'diggdown',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -372,12 +425,16 @@ att=附件图',
       'fmsize' => '',
       'fmline' => '0',
       'fmtitle' => '1',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 
   array (
     'p1012' => 
     array (
+      'kid' => 'p1012',
       'pid' => '0',
       'title' => '手机配件',
       'deep' => '1',
@@ -387,6 +444,7 @@ att=附件图',
     ),
     'p2012' => 
     array (
+      'kid' => 'p2012',
       'pid' => 'p1012',
       'title' => '手机主机',
       'deep' => '2',
@@ -396,6 +454,7 @@ att=附件图',
     ),
     'p2014' => 
     array (
+      'kid' => 'p2014',
       'pid' => 'p1012',
       'title' => '手机配件',
       'deep' => '2',
@@ -405,6 +464,7 @@ att=附件图',
     ),
     'p2016' => 
     array (
+      'kid' => 'p2016',
       'pid' => 'p1012',
       'title' => '手机套卡',
       'deep' => '2',
@@ -414,6 +474,7 @@ att=附件图',
     ),
     'p1014' => 
     array (
+      'kid' => 'p1014',
       'pid' => '0',
       'title' => '书籍音像',
       'deep' => '1',
@@ -423,6 +484,7 @@ att=附件图',
     ),
     'p2018' => 
     array (
+      'kid' => 'p2018',
       'pid' => 'p1014',
       'title' => '普通书',
       'deep' => '2',
@@ -432,6 +494,7 @@ att=附件图',
     ),
     'p2020' => 
     array (
+      'kid' => 'p2020',
       'pid' => 'p1014',
       'title' => '电子书',
       'deep' => '2',
@@ -441,6 +504,7 @@ att=附件图',
     ),
     'c2014' => 
     array (
+      'kid' => 'c2014',
       'pid' => 'p1014',
       'title' => '益智玩具',
       'deep' => '2',
@@ -450,6 +514,7 @@ att=附件图',
     ),
     'c2012' => 
     array (
+      'kid' => 'c2012',
       'pid' => 'p1014',
       'title' => '教具仪器',
       'deep' => '2',
@@ -459,6 +524,7 @@ att=附件图',
     ),
     'p1016' => 
     array (
+      'kid' => 'p1016',
       'pid' => '0',
       'title' => '服装饰品',
       'deep' => '1',
@@ -468,6 +534,7 @@ att=附件图',
     ),
     'p2022' => 
     array (
+      'kid' => 'p2022',
       'pid' => 'p1016',
       'title' => '外衣',
       'deep' => '2',
@@ -477,6 +544,7 @@ att=附件图',
     ),
     'c2016' => 
     array (
+      'kid' => 'c2016',
       'pid' => 'p1016',
       'title' => '外裤',
       'deep' => '2',
@@ -486,6 +554,7 @@ att=附件图',
     ),
     'c2020' => 
     array (
+      'kid' => 'c2020',
       'pid' => 'p1016',
       'title' => '内裤',
       'deep' => '2',
@@ -495,6 +564,7 @@ att=附件图',
     ),
     'c2018' => 
     array (
+      'kid' => 'c2018',
       'pid' => 'p1016',
       'title' => '女内衣',
       'deep' => '2',
@@ -504,6 +574,7 @@ att=附件图',
     ),
     'c2022' => 
     array (
+      'kid' => 'c2022',
       'pid' => 'p1016',
       'title' => '孕妇装',
       'deep' => '2',
@@ -513,6 +584,7 @@ att=附件图',
     ),
     'c2024' => 
     array (
+      'kid' => 'c2024',
       'pid' => 'p1016',
       'title' => '童装',
       'deep' => '2',
@@ -522,6 +594,7 @@ att=附件图',
     ),
     'p1018' => 
     array (
+      'kid' => 'p1018',
       'pid' => '0',
       'title' => '家电家具',
       'deep' => '1',
@@ -531,6 +604,7 @@ att=附件图',
     ),
     'p2024' => 
     array (
+      'kid' => 'p2024',
       'pid' => 'p1018',
       'title' => '电视机',
       'deep' => '2',
@@ -540,6 +614,7 @@ att=附件图',
     ),
     'p2026' => 
     array (
+      'kid' => 'p2026',
       'pid' => 'p1018',
       'title' => '冰箱',
       'deep' => '2',
@@ -549,6 +624,7 @@ att=附件图',
     ),
     'c2026' => 
     array (
+      'kid' => 'c2026',
       'pid' => 'p1018',
       'title' => '空调',
       'deep' => '2',

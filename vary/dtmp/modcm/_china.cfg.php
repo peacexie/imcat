@@ -11,8 +11,8 @@ $_china = array (
   array (
     'renkou' => 
     array (
+      'kid' => 'renkou',
       'title' => '人口',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -24,11 +24,14 @@ $_china = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'mianji' => 
     array (
+      'kid' => 'mianji',
       'title' => '面积',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'float',
@@ -40,11 +43,14 @@ $_china = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'quhao' => 
     array (
+      'kid' => 'quhao',
       'title' => '区号',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -56,11 +62,14 @@ $_china = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'map' => 
     array (
+      'kid' => 'map',
       'title' => '坐标',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -73,6 +82,8 @@ $_china = array (
       'fmline' => '1',
       'fmtitle' => '0',
       'fmextra' => 'map',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
   ),
   'i' => 'china',

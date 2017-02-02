@@ -10,6 +10,7 @@ $_mupext = array (
   array (
     'mpeditor' => 
     array (
+      'kid' => 'mpeditor',
       'pid' => '0',
       'title' => '编辑器权限',
       'deep' => '1',
@@ -19,6 +20,7 @@ edtadm=附件管理',
     ),
     'mpsession' => 
     array (
+      'kid' => 'mpsession',
       'pid' => '0',
       'title' => 'Session权限',
       'deep' => '1',
@@ -27,6 +29,7 @@ psdev=开发工具',
     ),
     'mpuptypes' => 
     array (
+      'kid' => 'mpuptypes',
       'pid' => '0',
       'title' => '上传类型',
       'deep' => '1',
@@ -37,6 +40,7 @@ file=文档上传',
     ),
     'mguest' => 
     array (
+      'kid' => 'mguest',
       'pid' => '0',
       'title' => '游客权限',
       'deep' => '1',
