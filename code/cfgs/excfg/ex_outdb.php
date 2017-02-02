@@ -2,20 +2,20 @@
 (!defined('RUN_INIT')) && die('No Init');
 
 // 同步服务器 'http://master.domain.com/root';
-$_ex_outdb['psyn']['server'] = 'http://master.domain.com/root'; //同步服务器
-$_ex_outdb['sign']['sapp'] = 'ndu3uq3024ctk6aw780j6xd0'; //签名:sapp
-$_ex_outdb['sign']['skey'] = '1snSTzC2K8yJqHgjcmAlq0DviCfzwHJHMAPl'; //签名:skey
+$_ex_outdb['psyn']['server'] = 'http://127.0.0.1/txmao'; //同步服务器
+$_ex_outdb['sign']['sapp'] = 'y7xqrfjq100j08mntcnedjfn'; //签名:sapp
+$_ex_outdb['sign']['skey'] = 'JZDAK5NhGYocVKUt9wkbd7uqHJDVhbIqdceB'; //签名:skey
 // 单独设置(暂未使用...)
 #$_ex_outdb['sign_(jobid)']['sapp'] = ''; //签名:sapp
 #$_ex_outdb['sign_(jobid)']['skey'] = ''; //签名:skey
 
 // 外部数据库(键值不要用:psyn,sign,list等)
 $_ex_outdb['list'] = array(
-	'demodata' => '(Demo:Mysql-Import)导入演示数据',
-	'dedecms' => '(Mysql:DedeCMS)织梦CMS', 
-	'powereasy' => '(Access:PowerEasy)动易CMS',
-	'u08house' => '(u08house)08旧房产',
-	'newhouse' => '(newhouse)08新房产',
+    'demodata' => '(Demo:Mysql-Import)导入演示数据',
+    'dedecms' => '(Mysql:DedeCMS)织梦CMS', 
+    'powereasy' => '(Access:PowerEasy)动易CMS',
+    'u08house' => '(u08house)08旧房产',
+    'newhouse' => '(newhouse)08新房产',
 );
 
 $_ex_outdb['demodata']['db_type'] = 'mysql';

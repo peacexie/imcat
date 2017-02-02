@@ -4,18 +4,18 @@ include_once(DIR_VENDOR.'/Spyc/Spyc.cls_php');
 
 
 class extYaml extends Spyc{
-	// Dumps array to YAML.
-	static function adump($array, $indent = false, $wordwrap = false, $no_opening_dashes = false){
-		return self::YAMLDump($array, false, false, false);
-	}
-	// Parses YAML file to array.
-	static function fload($file){
-		return self::YAMLLoad($file);
-	}
-	// Parses YAML str to array.
-	static function sload($str){
-		return self::YAMLLoadString($str);
-	}
+    // Dumps array to YAML.
+    static function adump($array, $indent = false, $wordwrap = false, $no_opening_dashes = false){
+        return self::YAMLDump($array, false, false, false);
+    }
+    // Parses YAML file to array.
+    static function fload($file){
+        return self::YAMLLoad($file);
+    }
+    // Parses YAML str to array.
+    static function sload($str){
+        return self::YAMLLoadString($str);
+    }
 }
 
 

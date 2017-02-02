@@ -4,7 +4,7 @@
 
 $pay_uinfo['demo']['partner']  = '2088012340123401234';
 //合作身份者id，以2088开头的16位纯数字
-$pay_uinfo['demo']['email']	  = 'demo@domain.com';
+$pay_uinfo['demo']['email']      = 'demo@domain.com';
 //收款支付宝账号
 $pay_uinfo['demo']['key']      = '0123401234012340123401234';
 //安全检验码，以数字和字母组成的32位字符
@@ -13,7 +13,7 @@ $pay_uinfo['demo']['sandbox']  = false;
 
 $pay_uinfo['ali']['partner']  = '2088xxxxxxxxxxxx';
 //合作身份者id，以2088开头的16位纯数字
-$pay_uinfo['ali']['email']	  = 'email-userid@aliyun.com';
+$pay_uinfo['ali']['email']      = 'email-userid@aliyun.com';
 //收款支付宝账号
 $pay_uinfo['ali']['key']      = 'keyid-keyid-keyid-keyid-keyid';
 //安全检验码，以数字和字母组成的32位字符

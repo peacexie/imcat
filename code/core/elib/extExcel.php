@@ -5,11 +5,11 @@
     $data1 = array(array('1a','1ba'),array('1c','1d'));
     $head2 = array('AA2','BB2');
     $data2 = array(array('2a','2bb'),array('2c','2d'));
-	$xls = new extExcel($charset); //默认UTF-8编码
-	$xls->generateXMLHeader('ExcelName_'.date('Y-md-His',$timestamp));  //excel文件名
+    $xls = new extExcel($charset); //默认UTF-8编码
+    $xls->generateXMLHeader('ExcelName_'.date('Y-md-His',$timestamp));  //excel文件名
     $xls->setTable($head1,$data1);
     $xls->setTable($head2,$data2);
-	$xls->generateXMLFoot();
+    $xls->generateXMLFoot();
 */
 
 /**

@@ -4,8 +4,8 @@
 
 class wexEventPeays extends wexEventAdmin{
 
-	function construct($post,$wecfg){ 
-		parent::__construct($post,$wecfg); 
-	}
+    function construct($post,$wecfg){ 
+        parent::__construct($post,$wecfg); 
+    }
 
 }

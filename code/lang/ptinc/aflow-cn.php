@@ -24,6 +24,11 @@
 <th>Url</th><th><?php echo ($uarr==4 ? '用户' : '点击'); ?></th>
 <th>添加</th><th>修改</th></tr>
 
+<?php break;case 'adpush_list': ?> 
+
+<th>选</th><th>aid</th><th>推送位标题</th><th>栏目</th><th>显示</th>
+<th>Max</th><th>添加</th><th>修改</th><th>推送</th><th>Page</th><th>cfg/data</th></tr>
+
 <?php break;case 'coms_list': ?> 
 
 <th>选</th><th>标题</th><th>显示</th><th>会员名称</th>
@@ -87,7 +92,7 @@
 
 <th>选</th><th>货品ID</th><th>订单ID</th>
 <th>数量</th><th>单价</th>
-echo "<th>会员名称</th>
+<th>会员名称</th>
 <th>添加时间</th><th>修改</th></tr>
 
 <?php break;case 'corder': ?> 

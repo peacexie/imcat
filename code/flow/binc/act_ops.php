@@ -6,11 +6,11 @@ if(empty($fs)) $msg = lang('flow.dops_setitem');
 $cnt = 0; 
 if(empty($msg)){
   foreach($fs as $id=>$v){ 
-	  if($fs_do=='dele'){ 
-		  $cnt += $dop->opDelete($id);
-	  }elseif($fs_do=='dnow'){ 
-		  //$cnt += $dop->opDelnow();
-	  }
+      if($fs_do=='dele'){ 
+          $cnt += $dop->opDelete($id);
+      }elseif($fs_do=='dnow'){ 
+          //$cnt += $dop->opDelnow();
+      }
   } 
 }
 

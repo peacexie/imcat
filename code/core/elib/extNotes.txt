@@ -1,10 +1,25 @@
 
-* glib
 
-admUFunc.php
+* 存储 /code/adpt/store/ 
+ - rsLocal.php
+ - rsFtp.php
+ - rsSina.php
+ - rsBaidu.php
 
-* elib
+* 增加 + add
+ - extPimple.ph,
+ - extZip.php
+ - [vops]Router.php
+ - [clib]Hooks.php
+ - [clib]comSphinx.php
 
-'extFtp.php',
-'extZip.php',
-'extPimple.php',
+* 精简 - del
+ - extMedoo.php,
+
+* 可有可无
+ - glib/glbDBCache.php
+ - glib/safData.php
+ - uext/ex1Test.php
+ - uext/exaSearch.php
+
+ 

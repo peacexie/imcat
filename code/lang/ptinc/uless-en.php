@@ -26,7 +26,7 @@ $data .= "{$uarr['sys_name']} ".date('Y-m-d H:i:s')."<br>\n";
 $reinc[$part] = $note;
 
 break;case 'plus_upbat': ?>
-	
+    
 Notice: <br>
 ***1. This idea from <a href="http://www.babytree.com/">Babytree</a>, 
       First is asp version, then the two php versions; <br>

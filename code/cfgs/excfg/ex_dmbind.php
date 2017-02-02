@@ -3,11 +3,12 @@ $_ex_dmbind = array(
 
 	// /vary/html/cargo/2015-9c/h3h1.html
 	// http://pro.my_domain.com/2015-9c/h3h1.html
+	/*
 	array(
 		'{html}/xxx_cargo/`d#`', //用`d#`,`w#` 分别代表正则的 (\d+)(\w+)
 		'http://pro.my_domain.com/\\1-', //使用\1的形式来实现反向引用
 		'1', //1-用正则-自动格式化
-	),
+	),*/
 	
 );
 

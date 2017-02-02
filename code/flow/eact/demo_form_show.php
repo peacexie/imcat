@@ -2,13 +2,13 @@
 (!defined('RUN_INIT')) && die('No Init'); 
  
 if(!empty($did)){
-	$fmo = $db->table($dop->tbid)->where("did='$did'")->find();
-	$fme = $db->table($dop->tbext)->where("did='$did'")->find();
-	$fme && $fmo = $fmo + $fme;
-	$isadd = 0;
+    $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
+    $fme = $db->table($dop->tbext)->where("did='$did'")->find();
+    $fme && $fmo = $fmo + $fme;
+    $isadd = 0;
 }else{
-	$fmo = array();
-	$isadd = 1;
+    $fmo = array();
+    $isadd = 1;
 }
 $dop->fmo = $fmo;
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
@@ -22,4 +22,4 @@ glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
 //fldView::relat("relyc,fm[ygrade],fm[course]");
 fldView::relat("fm[catid]","fm[catid],$mod,$did");
 //fldView::relat("fm[grade]","fm[ftype],$mod,$uname,fm[grade]"); 
-//fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 	
+//fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did");     

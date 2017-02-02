@@ -7,7 +7,7 @@ $_cfgs['db_host']    = 'localhost'; // 数据库主机(pdox连接不使用)
 $_cfgs['db_name']    = 'txmao_main'; // 数据库名(pdox连接不使用) 
 $_cfgs['db_port']    = '3306'; // 数据库端口，mysql默认是3306，一般不需要修改
 $_cfgs['db_user']    = 'root'; // 数据库用户名
-$_cfgs['db_pass']    = ''; // 数据库密码	
+$_cfgs['db_pass']    = ''; // 数据库密码    
 
 // 数据库 - 高级配置
 #$_cfgs['db_dsn']  = 'mysql:host=localhost;dbname=peace_v30'; //pdox连接access使用

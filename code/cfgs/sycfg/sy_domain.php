@@ -13,8 +13,8 @@ $_sy_domain['subDirs'] = array(
 
 ### 跨域子域名设置
 $_sy_domain['dmacc'] = array(
-	$_SERVER['HTTP_HOST'],
-	//'yscode.txjia.com',
+    $_SERVER['HTTP_HOST'],
+    //'yscode.txjia.com',
 );
 
 

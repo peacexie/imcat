@@ -2,24 +2,24 @@
 (!defined('RUN_INIT')) && die('No Init');
 
 /**
-	// re=stop,mark
+    // re=stop,mark
 
 data,tab,rule,plan
 plan:subject,content
 rule:单词至少N个,无中文字，有特殊字符N个,常用词少于N个，含非法字1，含非法字2，含非法字3
-	 words,	  nochr,	spen,		 topn,		  keyn
+     words,      nochr,    spen,         topn,          keyn
 tab:特殊字符1，特殊字符2，特殊字符3，
-	常用词表en,常用词表cn,常用词表u1,
-	常用词表en,常用词表cn,常用词表u1,
-	广告,色情,暴力,反动,
-	自定义1,自定义2,自定义3,
+    常用词表en,常用词表cn,常用词表u1,
+    常用词表en,常用词表cn,常用词表u1,
+    广告,色情,暴力,反动,
+    自定义1,自定义2,自定义3,
 type:关键字类别
 标记,N个处理
 
 tab:特殊字符1，特殊字符2，特殊字符3，
-	常用词表en,常用词表cn,常用词表u1,
-	广告,色情,暴力,反动,
-	自定义1,自定义2,自定义3,
+    常用词表en,常用词表cn,常用词表u1,
+    广告,色情,暴力,反动,
+    自定义1,自定义2,自定义3,
 
 ----------------------------------------------------------------------------
 safBase : 数据-安全过滤(Safil=Safety Filter)
@@ -48,157 +48,157 @@ class safData{ // extends safBase
   
   // plan: xxx -------------------------- 
   static function planMain($str,$plan='',$nmax=0){ 
-	  $_safil = read('sfdata','ex');
-	  if(empty($str) || empty($_safil['plan'][$plan])) return;
-	  $plan = $_safil['plan'][$plan];
-	  $n = 0; //Words,4,mark
-	  foreach($plan as $rule){
-		  $t = explode(',',"$rule,,,,");
-		  $func = "rule$t[0]";
-		  $n += self::$func($t[1],$t[2],$t[3],$t[4]); 
-	  }
-	  if($nmax && $n>$nmax){
-		  safBase::Stop('dataPlan');	
-	  }
-	  return $n;
+      $_safil = read('sfdata','ex');
+      if(empty($str) || empty($_safil['plan'][$plan])) return;
+      $plan = $_safil['plan'][$plan];
+      $n = 0; //Words,4,mark
+      foreach($plan as $rule){
+          $t = explode(',',"$rule,,,,");
+          $func = "rule$t[0]";
+          $n += self::$func($t[1],$t[2],$t[3],$t[4]); 
+      }
+      if($nmax && $n>$nmax){
+          safBase::Stop('dataPlan');    
+      }
+      return $n;
   }
-	
-	// === rules ==================================================================================
+    
+    // === rules ==================================================================================
 
-	// rules: 单词>=N个 -------------------------- 
-	static function ruleWords($str,$n=1,$re='mark'){ 
-		$str = strip_tags($str); //$str = htmlspecialchars($str);
-		$str = trim($str); //去掉开始和结束的空白 
-		if(empty($str)) return $re=='stop' ? safBase::Stop('dataWords') : 0;
-		$str = preg_replace('/\s(?=\s)/', '', $str); //去掉根随别的挤在一块的空白 
-		$str = preg_replace('/[\n\r\t]/', ' ', $str); //最后，去掉非space 的空白，用一个空格代替 
-		if(empty($str)) return $re=='stop' ? safBase::Stop('dataWords') : 0;
-		$cnt = count(explode(' ',$str));
-		if($cnt<$n && $re=='stop'){
-			 safBase::Stop('dataWords');
-		}else{
-			return $cnt<$n ? 0 : 1;
-		}
-	}
-	
-	// rules: 中文字>=N个 -------------------------- 
-	static function ruleCNChr($str,$n=1,$re='mark'){ 
-		$cset = $_cbase['sys']['cset'];
-		$str = strip_tags($str);
-		$str = trim($str);
-		//preg_match_all("/[\x{4e00}-\x{9fa5}]/u",$str,$m); 
-		//$cnt = count($m[0]);
-		$n0 = strlen($str);
-		$str = preg_replace('/[\x{4e00}-\x{9fa5}]/u',"",$str);
-		$cnt = ($n0 - strlen($str))/($cset=='utf-8' ? 3 : 2); 
-		if($cnt<$n && $re=='stop'){
-			 safBase::Stop('dataCNChr');
-		}else{
-			return $cnt<$n ? 0 : 1;
-		} //preg_replace 比 preg_match_all 快
-	}
-	
-	// rules: 常用词>N个 -------------------------- 
-	static function ruleNCom($str,$n=1,$re='mark',$tab='cn'){ 
-		$_safil = read('sfdata','ex');
-		$str = strip_tags($str);
-		$str = trim($str);
-		if($tab=='cn'){
-			$tab = self::$top_cn0;
-		}else{
-			$tab = self::$top_en0;
-			$flag = '[^a-zA-Z]{1,2}';
-			$tab = str_replace(';',"$flag;$flag",$tab); 
-			$tab = "$flag$tab$flag";
-		}
-		$tab = $tab.";".$_safil['tab_sys'];
-		$tab = str_replace(';','|',$tab);
-		preg_match_all("/$tab/i",$str,$m); echo '<br>'; print_r($m);
-		$cnt = count($m[0]);
-		if($cnt<$n && $re=='stop'){
-			 safBase::Stop('dataNCom');
-		}else{
-			return $cnt<$n ? 0 : 1;
-		} 
-	}
-	
-	// rules: 含有特殊字符 -------------------------- 
-	static function ruleNSpe($str,$re='mark',$tab='(all)'){ 
-		$str = strip_tags($str); 
-		$str = trim($str); 
-		$rk = self::_ruleTab('spe',$tab); 
-		if(empty($rk)) return 0;
-		$rk = str_replace(';','|',$rk);
-		preg_match("/$rk/i",$str,$m); echo '<br>'; 
-		if($m && $re=='stop'){
-			 safBase::Stop('dataNSpe');
-		}else{
-			return $m ? 1 : 0;
-		} 
-	}
-	
-	// rules: 含有非法字 -------------------------- 
-	static function ruleNKey($str,$re='stop',$tab='(all)'){ 
-		$str = trim($str); 
-		$rk = self::_ruleTab('key',$tab); 
-		if(empty($rk)) return 0;
-		$rk = str_replace(';;',';',$rk); 
-		$rk = str_replace(array("?"),array("[^\1]{0,3}"),$rk); 
-		$rk = str_replace(';','|',$rk);
-		preg_match("/$rk/i",$str,$m); echo '<br>'; 
-		if($m && $re=='stop'){
-			 safBase::Stop('dataNKey');
-		}else{
-			return $m ? 1 : 0;
-		} 
-	}
-	
-	// rules: 含有广告连接 -------------------------- 
-	static function ruleNAdv($str,$re='stop',$tab='(all)'){ 
-		$str = trim($str); 
-		$rk = self::_ruleTab('adv',$tab); 
-		if(empty($rk)) return 0;
-		$rk = str_replace(';;',';',$rk); // ?,+ <a*</a>;[url]*[/url];[link]*[script];
-		$rk = str_replace(array("[","]","<",">","/"),array("\\[","\\]","\\<","\\>","\\/"),$rk); 
-		$rk = str_replace(array("*"),array("[^\1]{8,255}"),$rk); 
-		$rk = str_replace(';','|',$rk);
-		preg_match("/$rk/i",$str,$m); echo '<br>'; 
-		if($m && $re=='stop'){
-			 safBase::Stop('dataNAdv');
-		}else{
-			return $m ? 1 : 0;
-		} 
-	}
-	
-	// rules-tab: 得到关键字表 -------------------------- 
-	static function _ruleTab($key='key',$tab='(all)'){ 
-		$_safil = read('sfdata','ex');
-		$rk = '';
-		if($tab=='(all)'){
-			$t = $_safil["tab_$key"];
-			foreach($t as $k=>$v) $rk .= ";$v[1]";
-		}else{
-			$rk = $_safil["tab_$key"][$tab][1];	
-		}
-		return empty($rk) ? '' : substr($rk,1);	
-	}
-	
-	// === ... ======================================================================================
-	
-	
+    // rules: 单词>=N个 -------------------------- 
+    static function ruleWords($str,$n=1,$re='mark'){ 
+        $str = strip_tags($str); //$str = htmlspecialchars($str);
+        $str = trim($str); //去掉开始和结束的空白 
+        if(empty($str)) return $re=='stop' ? safBase::Stop('dataWords') : 0;
+        $str = preg_replace('/\s(?=\s)/', '', $str); //去掉根随别的挤在一块的空白 
+        $str = preg_replace('/[\n\r\t]/', ' ', $str); //最后，去掉非space 的空白，用一个空格代替 
+        if(empty($str)) return $re=='stop' ? safBase::Stop('dataWords') : 0;
+        $cnt = count(explode(' ',$str));
+        if($cnt<$n && $re=='stop'){
+             safBase::Stop('dataWords');
+        }else{
+            return $cnt<$n ? 0 : 1;
+        }
+    }
+    
+    // rules: 中文字>=N个 -------------------------- 
+    static function ruleCNChr($str,$n=1,$re='mark'){ 
+        $cset = $_cbase['sys']['cset'];
+        $str = strip_tags($str);
+        $str = trim($str);
+        //preg_match_all("/[\x{4e00}-\x{9fa5}]/u",$str,$m); 
+        //$cnt = count($m[0]);
+        $n0 = strlen($str);
+        $str = preg_replace('/[\x{4e00}-\x{9fa5}]/u',"",$str);
+        $cnt = ($n0 - strlen($str))/($cset=='utf-8' ? 3 : 2); 
+        if($cnt<$n && $re=='stop'){
+             safBase::Stop('dataCNChr');
+        }else{
+            return $cnt<$n ? 0 : 1;
+        } //preg_replace 比 preg_match_all 快
+    }
+    
+    // rules: 常用词>N个 -------------------------- 
+    static function ruleNCom($str,$n=1,$re='mark',$tab='cn'){ 
+        $_safil = read('sfdata','ex');
+        $str = strip_tags($str);
+        $str = trim($str);
+        if($tab=='cn'){
+            $tab = self::$top_cn0;
+        }else{
+            $tab = self::$top_en0;
+            $flag = '[^a-zA-Z]{1,2}';
+            $tab = str_replace(';',"$flag;$flag",$tab); 
+            $tab = "$flag$tab$flag";
+        }
+        $tab = $tab.";".$_safil['tab_sys'];
+        $tab = str_replace(';','|',$tab);
+        preg_match_all("/$tab/i",$str,$m); echo '<br>'; print_r($m);
+        $cnt = count($m[0]);
+        if($cnt<$n && $re=='stop'){
+             safBase::Stop('dataNCom');
+        }else{
+            return $cnt<$n ? 0 : 1;
+        } 
+    }
+    
+    // rules: 含有特殊字符 -------------------------- 
+    static function ruleNSpe($str,$re='mark',$tab='(all)'){ 
+        $str = strip_tags($str); 
+        $str = trim($str); 
+        $rk = self::_ruleTab('spe',$tab); 
+        if(empty($rk)) return 0;
+        $rk = str_replace(';','|',$rk);
+        preg_match("/$rk/i",$str,$m); echo '<br>'; 
+        if($m && $re=='stop'){
+             safBase::Stop('dataNSpe');
+        }else{
+            return $m ? 1 : 0;
+        } 
+    }
+    
+    // rules: 含有非法字 -------------------------- 
+    static function ruleNKey($str,$re='stop',$tab='(all)'){ 
+        $str = trim($str); 
+        $rk = self::_ruleTab('key',$tab); 
+        if(empty($rk)) return 0;
+        $rk = str_replace(';;',';',$rk); 
+        $rk = str_replace(array("?"),array("[^\1]{0,3}"),$rk); 
+        $rk = str_replace(';','|',$rk);
+        preg_match("/$rk/i",$str,$m); echo '<br>'; 
+        if($m && $re=='stop'){
+             safBase::Stop('dataNKey');
+        }else{
+            return $m ? 1 : 0;
+        } 
+    }
+    
+    // rules: 含有广告连接 -------------------------- 
+    static function ruleNAdv($str,$re='stop',$tab='(all)'){ 
+        $str = trim($str); 
+        $rk = self::_ruleTab('adv',$tab); 
+        if(empty($rk)) return 0;
+        $rk = str_replace(';;',';',$rk); // ?,+ <a*</a>;[url]*[/url];[link]*[script];
+        $rk = str_replace(array("[","]","<",">","/"),array("\\[","\\]","\\<","\\>","\\/"),$rk); 
+        $rk = str_replace(array("*"),array("[^\1]{8,255}"),$rk); 
+        $rk = str_replace(';','|',$rk);
+        preg_match("/$rk/i",$str,$m); echo '<br>'; 
+        if($m && $re=='stop'){
+             safBase::Stop('dataNAdv');
+        }else{
+            return $m ? 1 : 0;
+        } 
+    }
+    
+    // rules-tab: 得到关键字表 -------------------------- 
+    static function _ruleTab($key='key',$tab='(all)'){ 
+        $_safil = read('sfdata','ex');
+        $rk = '';
+        if($tab=='(all)'){
+            $t = $_safil["tab_$key"];
+            foreach($t as $k=>$v) $rk .= ";$v[1]";
+        }else{
+            $rk = $_safil["tab_$key"][$tab][1];    
+        }
+        return empty($rk) ? '' : substr($rk,1);    
+    }
+    
+    // === ... ======================================================================================
+    
+    
 
-	// XXX
-	static function XXXXXX($act='init'){  
-		$safix = cfg('safe.safix');
-		if($act=='init'){
+    // XXX
+    static function XXXXXX($act='init'){  
+        $safix = cfg('safe.safix');
+        if($act=='init'){
 
-		}else{
-			;//
-		}
-		//echo self::$top_cn0;
-	}
-		
-	// === End ====================================================================================
-	
+        }else{
+            ;//
+        }
+        //echo self::$top_cn0;
+    }
+        
+    // === End ====================================================================================
+    
 }
 

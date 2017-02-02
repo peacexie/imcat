@@ -10,11 +10,11 @@ $act = req('act','');
 
 // 发送操作
 if($act=='chargeUp'){ //act=chargeUp&charge=
-	$charge = req('charge'); 
-	echo $charge;
+    $charge = req('charge'); 
+    echo $charge;
 }elseif(!empty($bsend)){
-	$re = $sms->sendSMS($stel,$smsg,5);
-	$msg = $re[1];
+    $re = $sms->sendSMS($stel,$smsg,5);
+    $msg = $re[1];
 } 
 $sb = $sc ? array(-3,0) : $sms->getBalance(); //print_r($sms->cnow);
 
@@ -42,11 +42,11 @@ echo "<script>
 var otel = jsElm.jeID('stel'); 
 var omsg = jsElm.jeID('smsg'); 
 function sms_set() {
-	otel.value = '135-3743-2147';
-	omsg.value = '【{$_cbase['sys_name']}】".lang('flow.ss_balance')." $sb[1]({$sms->cnow['unit']}), [{$sms->cnow['name']}]';
-	omsg.onblur();
+    otel.value = '135-3743-2147';
+    omsg.value = '【{$_cbase['sys_name']}】".lang('flow.ss_balance')." $sb[1]({$sms->cnow['unit']}), [{$sms->cnow['name']}]';
+    omsg.onblur();
 }
-omsg.onblur = function(){ jsElm.jeID('jscnt').innerHTML = omsg.value.length; }
+omsg.onblur = function(){ jsElm.jeID('#jscnt').html(omsg.value.length); }
 </script>";
 
 ?>

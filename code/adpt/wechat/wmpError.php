@@ -3,7 +3,7 @@
 // 随微信规则更新
 
 class wmpError{
-	
+    
     static $errTab = array(
         '-1' => '系统繁忙，此时请开发者稍候再试',
         '0' => '请求成功',
@@ -131,8 +131,8 @@ class wmpError{
         '9001034' => '设备备注信息过长',
         '9001035' => '设备申请参数不合法',
         '9001036' => '查询起始值begin不合法',
-		//'remote' => '查询起始值begin不合法',
-		//'40125' => 'invalid appsecret',
+        //'remote' => '查询起始值begin不合法',
+        //'40125' => 'invalid appsecret',
     );
     
     static function errGet( $code ){

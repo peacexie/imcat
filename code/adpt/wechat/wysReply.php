@@ -8,142 +8,142 @@
 // -      3.地理位置消息(是否保存??? 供需要时调用)
 
 class wysReply extends wmpMsgresp{
-	
-	public $_db = NULL;
-	
-	function __construct($post,$cfg,$re=0){ 
-		parent::__construct($post,$cfg); 
-		$this->_db = db(); 
-		if($re) return;
-		$method = $this->getMethod('MsgType');
-		return $this->$method();
-	}
-	
-	// 文本消息
+    
+    public $_db = NULL;
+    
+    function __construct($post,$cfg,$re=0){ 
+        parent::__construct($post,$cfg); 
+        $this->_db = db(); 
+        if($re) return;
+        $method = $this->getMethod('MsgType');
+        return $this->$method();
+    }
+    
+    // 文本消息
     function reTextBase($re=0){  
-		$detail = $this->post->Content;
-		//获取关键字
-		$reauto = $this->getKeyList($detail); 
-		//保存收到的消息... (开关???)
-		$retype = empty($reauto['rexml']) ? '-' : 'Auto'; 
-		$this->saveMsg('text', $detail, $retype);
-		if(empty($reauto['rexml'])){ 
-			if($re) return '';
-			die('');
-		}
-		$rexml = $reauto['rexml']; 
-		//保存回复消息... 
-		$this->saveReply($reauto); 
-		//回复消息给微信服务器... 
-		if($re) return $rexml;
-		die($rexml); 
+        $detail = $this->post->Content;
+        //获取关键字
+        $reauto = $this->getKeyList($detail); 
+        //保存收到的消息... (开关???)
+        $retype = empty($reauto['rexml']) ? '-' : 'Auto'; 
+        $this->saveMsg('text', $detail, $retype);
+        if(empty($reauto['rexml'])){ 
+            if($re) return '';
+            die('');
+        }
+        $rexml = $reauto['rexml']; 
+        //保存回复消息... 
+        $this->saveReply($reauto); 
+        //回复消息给微信服务器... 
+        if($re) return $rexml;
+        die($rexml); 
     }
 
-	// 地理位置消息
+    // 地理位置消息
     function reLocationBase(){ 
-		$this->savePos('send');
-		die('');    
+        $this->savePos('send');
+        die('');    
     }
 
-	// 图片消息
+    // 图片消息
     function reImageBase($re=0){ 
-		$stamp = time();
-		$picUrl = $this->post->PicUrl;
-		$this->saveMsg('image', $picUrl, '-', $this->post->MediaId);
-		//保持会话不过期
-		$timeNmin = $stamp-(5*60);
-		$this->_db->table('wex_qrcode')->data(array('atime'=>$stamp))->where("openid='{$this->post->FromUserName}' AND smod='upload' AND atime>'$timeNmin'")->update(); 
-		if($re) return;
-		die('');
+        $stamp = time();
+        $picUrl = $this->post->PicUrl;
+        $this->saveMsg('image', $picUrl, '-', $this->post->MediaId);
+        //保持会话不过期
+        $timeNmin = $stamp-(5*60);
+        $this->_db->table('wex_qrcode')->data(array('atime'=>$stamp))->where("openid='{$this->post->FromUserName}' AND smod='upload' AND atime>'$timeNmin'")->update(); 
+        if($re) return;
+        die('');
     }
-	
-	// 语音消息
+    
+    // 语音消息
     function reVoiceBase(){ 
-		//return $this->remText("remVoice:xxx");  
-		die('');   
-    }	
+        //return $this->remText("remVoice:xxx");  
+        die('');   
+    }    
 
-	// 视频消息
+    // 视频消息
     function reVideoBase(){ 
-		//return $this->remText("remVideo:xxx");  
-		die(''); 
+        //return $this->remText("remVideo:xxx");  
+        die(''); 
     }
 
-	// 小视频消息
+    // 小视频消息
     function reShortvideo(){ 
-		//return $this->remText("remShortvideo:xxx"); 
-		die(''); 
+        //return $this->remText("remShortvideo:xxx"); 
+        die(''); 
     }
-	
-	// 链接消息
+    
+    // 链接消息
     function reLinkBase(){ 
-		//return $this->remText("remLink:xxx");  
-		die('');   
-    }	
+        //return $this->remText("remLink:xxx");  
+        die('');   
+    }    
 
-	//获取关键字列表(本系统的)
+    //获取关键字列表(本系统的)
     function getKeyList($detail,$relist='0'){ 
-		$klist = array(); 
-		$list = $this->_db->table('wex_keyword')->where("appid='{$this->cfg['appid']}'")->select(); 
-		if($list){ foreach($list as $row){
-			$key = $row['keyword']=='follow_autoreply_info' ? $row['keyword'] : $row['kid'];
-			$klist[$key] = $row;
-		} } //print_r($this->cfg);
-		if($relist=='follow_autoreply_info' && isset($klist['follow_autoreply_info'])){
-			return $klist['follow_autoreply_info']['detail'];
-		}else{
-			unset($klist['follow_autoreply_info']);	
-		}
-		if($relist) return $klist;
-		$retype = ''; $rexml = ''; $remsg = '';
-		//查找关键字,获取自动回复内容
-		foreach($klist as $v){
-			if(empty($v['keyword'])) continue;
-			preg_match("/".str_replace(',','|',$v['keyword'])."/i",$detail,$rea);
-			if(!empty($rea)){ //考虑回复其它类型的消息？//strstr($detail,$v['keyword'])
-				$remsg .= $v['detail'];
-				if(!empty($v['picurl'])){
-					$remsg .= "\n<img src='".wysBasic::fmtUrl($v['picurl'])."'>\n";
-				}
-				if(!empty($v['url'])){
-					$remsg .= "\n<a href='".wysBasic::fmtUrl($v['url'])."'>详情 >> </a>";
-				}
-				$retype = $v['type']; 
-				$retype || $retype = 'text';
-				$method = 'rem'.ucfirst($retype);
-				$rexml = method_exists($this,$method) ? $this->$method($remsg) : '';
-				break;
-			}
-		}
-		return array('type'=>$retype, 'rexml'=>$rexml, 'remsg'=>$remsg);
-	}
-	
-	//保存信息
+        $klist = array(); 
+        $list = $this->_db->table('wex_keyword')->where("appid='{$this->cfg['appid']}'")->select(); 
+        if($list){ foreach($list as $row){
+            $key = $row['keyword']=='follow_autoreply_info' ? $row['keyword'] : $row['kid'];
+            $klist[$key] = $row;
+        } } //print_r($this->cfg);
+        if($relist=='follow_autoreply_info' && isset($klist['follow_autoreply_info'])){
+            return $klist['follow_autoreply_info']['detail'];
+        }else{
+            unset($klist['follow_autoreply_info']);    
+        }
+        if($relist) return $klist;
+        $retype = ''; $rexml = ''; $remsg = '';
+        //查找关键字,获取自动回复内容
+        foreach($klist as $v){
+            if(empty($v['keyword'])) continue;
+            preg_match("/".str_replace(',','|',$v['keyword'])."/i",$detail,$rea);
+            if(!empty($rea)){ //考虑回复其它类型的消息？//strstr($detail,$v['keyword'])
+                $remsg .= $v['detail'];
+                if(!empty($v['picurl'])){
+                    $remsg .= "\n<img src='".wysBasic::fmtUrl($v['picurl'])."'>\n";
+                }
+                if(!empty($v['url'])){
+                    $remsg .= "\n<a href='".wysBasic::fmtUrl($v['url'])."'>详情 >> </a>";
+                }
+                $retype = $v['type']; 
+                $retype || $retype = 'text';
+                $method = 'rem'.ucfirst($retype);
+                $rexml = method_exists($this,$method) ? $this->$method($remsg) : '';
+                break;
+            }
+        }
+        return array('type'=>$retype, 'rexml'=>$rexml, 'remsg'=>$remsg);
+    }
+    
+    //保存信息
     function saveMsg($retype, $detail, $restat='Auto', $media_id=''){ //已Auto自动回复
-		$data = array(
-			'kid' => basKeyid::kidTemp(),
-			'type' => $retype,
-			'detail' => basReq::in($detail),
-			'restate' => $restat,
-			'atime' => time(),
-			'appid' => $this->cfg['appid'],
-			'openid' => $this->post->FromUserName,
-		);
-		$media_id && $data['media_id'] = $media_id;
-		$this->_db->table('wex_msgget')->data($data)->insert();
-	}
-	
-	//保存回复消息
+        $data = array(
+            'kid' => basKeyid::kidTemp(),
+            'type' => $retype,
+            'detail' => basReq::in($detail),
+            'restate' => $restat,
+            'atime' => time(),
+            'appid' => $this->cfg['appid'],
+            'openid' => $this->post->FromUserName,
+        );
+        $media_id && $data['media_id'] = $media_id;
+        $this->_db->table('wex_msgget')->data($data)->insert();
+    }
+    
+    //保存回复消息
     function saveReply($reauto){ 
-		$data = array(
-			'kid' => basKeyid::kidTemp(),
-			'type' => $reauto['type'],
-			'detail' => basReq::in($reauto['remsg']),
-			'atime' => time(),
-			'appid' => $this->cfg['appid'],
-			'openid' => $this->post->FromUserName,
-		); 
-		$this->_db->table('wex_msgsend')->data($data)->insert();
-	}
+        $data = array(
+            'kid' => basKeyid::kidTemp(),
+            'type' => $reauto['type'],
+            'detail' => basReq::in($reauto['remsg']),
+            'atime' => time(),
+            'appid' => $this->cfg['appid'],
+            'openid' => $this->post->FromUserName,
+        ); 
+        $this->_db->table('wex_msgsend')->data($data)->insert();
+    }
 
 }

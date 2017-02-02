@@ -2,19 +2,19 @@
 (!defined('RUN_INIT')) && die('No Init'); 
  
 if(!empty($did)){
-	$fmo = $db->table($dop->tbid)->where("did='$did'")->find();
-	$fme = $db->table($dop->tbext)->where("did='$did'")->find();
-	$fme && $fmo = $fmo + $fme;
-	$isadd = 0;
+    $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
+    $fme = $db->table($dop->tbext)->where("did='$did'")->find();
+    $fme && $fmo = $fmo + $fme;
+    $isadd = 0;
 }else{
-	$fmo = array();
-	$isadd = 1;
+    $fmo = array();
+    $isadd = 1;
 }
 if(empty($fmo['author'])){
-	$fmo['author'] = $user->uinfo['mname'];
+    $fmo['author'] = $user->uinfo['mname'];
 }
 if(empty($fmo['indep'])){
-	$fmo['indep'] = @$user->uinfo['intech'];	
+    $fmo['indep'] = @$user->uinfo['intech'];    
 }
 $dop->fmo = $fmo;
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');

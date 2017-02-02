@@ -2,145 +2,145 @@
 (!defined('RUN_INIT')) && die('No Init');
 
 // dopCheck(data OP for Extra)
-class dopCheck extends dopBase{	
+class dopCheck extends dopBase{    
 
-	public $excfg = array();
-	public $user = NULL;
-	public $uname = '';
-	public $ugrade = '';
+    public $excfg = array();
+    public $user = NULL;
+    public $uname = '';
+    public $ugrade = '';
 
-	// login=1(登录发布)
-	// login=cvip,ccom(会员cvip,ccom等级:登录发布)
-	static function dchkLogin($ngrades=0){ 
-		if(usrPerm::issup()) return; //超管
-		$user = user(); 
-		$ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
-		if(!is_numeric($ngrades)){
-			if(strpos("(,$ngrades,)",",{$ugrade},")<=0){
-				die(lang('flow.ck_grade',$ngrades));
-			}
-		}else{ 
-			// stop
-			if(strpos($ugrade,'stop')>0){
-				die(lang('flow.ck_stop',$ugrade));
-			}
-			if($user->userFlag!='Login'){
-				die(lang('flow.ck_login'));
-			}
-		}
-	}
+    // login=1(登录发布)
+    // login=cvip,ccom(会员cvip,ccom等级:登录发布)
+    static function dchkLogin($ngrades=0){ 
+        if(usrPerm::issup()) return; //超管
+        $user = user(); 
+        $ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
+        if(!is_numeric($ngrades)){
+            if(strpos("(,$ngrades,)",",{$ugrade},")<=0){
+                die(lang('flow.ck_grade',$ngrades));
+            }
+        }else{ 
+            // stop
+            if(strpos($ugrade,'stop')>0){
+                die(lang('flow.ck_stop',$ugrade));
+            }
+            if($user->userFlag!='Login'){
+                die(lang('flow.ck_login'));
+            }
+        }
+    }
 
-	// iprep=3(ip重复发布时间间隔)
-	static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
-		$ckey = "$mod.$kid";
-		$stamp = time();
-		$glife = intval($num)*60;
-		$ck = comCookie::mget('diggs',$ckey); // cookie;
-		if(empty($ck) || ($stamp-intval($ck))>$glife){
-			comCookie::mset('diggs',$glife,$ckey,$stamp,20);
-		}else{
-			die(lang('flow.ck_rep',$glife));
-		}
-	}
+    // iprep=3(ip重复发布时间间隔)
+    static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
+        $ckey = "$mod.$kid";
+        $stamp = time();
+        $glife = intval($num)*60;
+        $ck = comCookie::mget('diggs',$ckey); // cookie;
+        if(empty($ck) || ($stamp-intval($ck))>$glife){
+            comCookie::mset('diggs',$glife,$ckey,$stamp,20);
+        }else{
+            die(lang('flow.ck_rep',$glife));
+        }
+    }
 
-	static function addInit($cfg=array(),$percheck=array()){ 
-		$chk = new self($cfg);
-		if(empty($chk->excfg)) return;
-		foreach ($chk->excfg as $key => $val) {
-			if(empty($val)) continue;
-			$method = 'chk'.ucfirst(strtolower($key));
-			if(substr($key,0,3)=='ap_'){
-				$ngrade = substr($key,2);
-				if($chk->ugrade==$ngrade){
-					$chk->chkAllpub($val);
-					unset($chk->excfg['allpub']);
-				}
-			}elseif(method_exists($chk,$method)){
-				$chk->$method($val);
-			}
-		}
-		#dump($chk->excfg);
-	}
+    static function addInit($cfg=array(),$percheck=array()){ 
+        $chk = new self($cfg);
+        if(empty($chk->excfg)) return;
+        foreach ($chk->excfg as $key => $val) {
+            if(empty($val)) continue;
+            $method = 'chk'.ucfirst(strtolower($key));
+            if(substr($key,0,3)=='ap_'){
+                $ngrade = substr($key,2);
+                if($chk->ugrade==$ngrade){
+                    $chk->chkAllpub($val);
+                    unset($chk->excfg['allpub']);
+                }
+            }elseif(method_exists($chk,$method)){
+                $chk->$method($val);
+            }
+        }
+        #dump($chk->excfg);
+    }
 
-	function __construct($cfg=array()){ 
-		parent::__construct($cfg);
-		$this->excfg = basElm::text2arr($this->cfg['cfgs']);
-		$this->user = user('Member'); 
-		$this->uname = empty($user->uinfo['uname']) ? '(null)' : $user->uinfo['uname'];
-		$this->ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
-		$this->tabid = glbDBExt::getTable($this->cfg['kid']); 
-	}
+    function __construct($cfg=array()){ 
+        parent::__construct($cfg);
+        $this->excfg = basElm::text2arr($this->cfg['cfgs']);
+        $this->user = user('Member'); 
+        $this->uname = empty($user->uinfo['uname']) ? '(null)' : $user->uinfo['uname'];
+        $this->ugrade = empty($user->uperm['grade']) ? '(null)' : $user->uperm['grade'];
+        $this->tabid = glbDBExt::getTable($this->cfg['kid']); 
+    }
 
-	// showdef=1
+    // showdef=1
 
-	// login=1(登录发布)
-	// login=cvip,ccom(会员cvip,ccom等级:登录发布)
-	function chkLogin($ngrades=0){ 
-		$clogin = 1; 
-		if(!is_numeric($ngrades)){
-			if(strpos("(,$ngrades,)",",{$this->ugrade},")<=0){
-				glbHtml::end(lang('flow.ck_grade',$ngrades));
-			}
-		}else{ 
-			// stop
-			if(strpos($this->ugrade,'stop')>0){
-				glbHtml::end(lang('flow.ck_stop',$this->ugrade));
-			}
-			if($this->user->userFlag!='Login'){
-				glbHtml::end(lang('flow.ck_login'));
-			}
-		}
-	}
-	
-	// ap_ccom=500(会员ccom等级:发布总量) -> (500,'ccom')
-	// allpub=100(会员发布总量)
-	// skip_allpub=cvip,ovip(cvip,ovip不检测)
-	function chkAllpub($num=0){ 
-		if(!empty($this->excfg['skip_allpub'])){
-			if(strpos("(,{$this->excfg['skip_allpub']},)",",{$this->ugrade},")>0){
-				return;
-			}
-		}
-		$cnt = $this->db->table($this->tabid)->where("auser='{$this->uname}'")->count();
-		if($cnt>=$num){
-			glbHtml::end(lang('flow.ck_all',$num));
-		}
-	}
+    // login=1(登录发布)
+    // login=cvip,ccom(会员cvip,ccom等级:登录发布)
+    function chkLogin($ngrades=0){ 
+        $clogin = 1; 
+        if(!is_numeric($ngrades)){
+            if(strpos("(,$ngrades,)",",{$this->ugrade},")<=0){
+                glbHtml::end(lang('flow.ck_grade',$ngrades));
+            }
+        }else{ 
+            // stop
+            if(strpos($this->ugrade,'stop')>0){
+                glbHtml::end(lang('flow.ck_stop',$this->ugrade));
+            }
+            if($this->user->userFlag!='Login'){
+                glbHtml::end(lang('flow.ck_login'));
+            }
+        }
+    }
+    
+    // ap_ccom=500(会员ccom等级:发布总量) -> (500,'ccom')
+    // allpub=100(会员发布总量)
+    // skip_allpub=cvip,ovip(cvip,ovip不检测)
+    function chkAllpub($num=0){ 
+        if(!empty($this->excfg['skip_allpub'])){
+            if(strpos("(,{$this->excfg['skip_allpub']},)",",{$this->ugrade},")>0){
+                return;
+            }
+        }
+        $cnt = $this->db->table($this->tabid)->where("auser='{$this->uname}'")->count();
+        if($cnt>=$num){
+            glbHtml::end(lang('flow.ck_all',$num));
+        }
+    }
 
-	// ippub=5(ip日发布量)
-	// skip_ippub=cvip,ovip(cvip,ovip不检测)
-	function chkIppub($num=0){ 
-		if(!empty($this->excfg['skip_ippub'])){
-			if(strpos("(,{$this->excfg['skip_ippub']},)",",{$this->ugrade},")>0){
-				return;
-			}
-		}
-		$cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-86400)."'")->count();
-		if($cnt>=$num){
-			glbHtml::end(lang('flow.ck_day',$num));
-		}
-	}
+    // ippub=5(ip日发布量)
+    // skip_ippub=cvip,ovip(cvip,ovip不检测)
+    function chkIppub($num=0){ 
+        if(!empty($this->excfg['skip_ippub'])){
+            if(strpos("(,{$this->excfg['skip_ippub']},)",",{$this->ugrade},")>0){
+                return;
+            }
+        }
+        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-86400)."'")->count();
+        if($cnt>=$num){
+            glbHtml::end(lang('flow.ck_day',$num));
+        }
+    }
 
-	// iprep=3(ip重复发布时间间隔)
-	// skip_iprep=cvip,ovip(cvip,ovip不检测)
-	function chkIprep($num=0){ 
-		if(!empty($this->excfg['skip_iprep'])){
-			if(strpos("(,{$this->excfg['skip_iprep']},)",",{$this->ugrade},")>0){
-				return;
-			}
-		}
-		$cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-$num)."'")->count();
-		//dump($cnt); dump($num);
-		if($cnt>0){
-			glbHtml::end(lang('flow.ck_rep',$num));
-		}
-	}
+    // iprep=3(ip重复发布时间间隔)
+    // skip_iprep=cvip,ovip(cvip,ovip不检测)
+    function chkIprep($num=0){ 
+        if(!empty($this->excfg['skip_iprep'])){
+            if(strpos("(,{$this->excfg['skip_iprep']},)",",{$this->ugrade},")>0){
+                return;
+            }
+        }
+        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-$num)."'")->count();
+        //dump($cnt); dump($num);
+        if($cnt>0){
+            glbHtml::end(lang('flow.ck_rep',$num));
+        }
+    }
 
-	static function headComm(){
-		glbHtml::page(cfg('sys_name'),1);
-		glbHtml::page('imadm');
-		glbHtml::page('body',' style="padding:8px 5px 5px 5px;overflow-y:scroll;overflow-x:hidden;"'); 
-	}
+    static function headComm(){
+        glbHtml::page(cfg('sys_name'),1);
+        glbHtml::page('imadm');
+        glbHtml::page('body',' style="padding:8px 5px 5px 5px;overflow-y:scroll;overflow-x:hidden;"'); 
+    }
 
 }
 

@@ -2,11 +2,11 @@
 (!defined('RUN_DOPA')) && die('No DopA');
 
 if(!empty($aid)){
-	$fmo = $db->table($dop->tbid)->where("aid='$aid'")->find(); 
-	$isadd = 0;
+    $fmo = $db->table($dop->tbid)->where("aid='$aid'")->find(); 
+    $isadd = 0;
 }else{
-	$fmo = array();
-	$isadd = 1;
+    $fmo = array();
+    $isadd = 1;
 }
 $dop->fmo = $fmo; 
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');

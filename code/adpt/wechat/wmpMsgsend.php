@@ -8,12 +8,12 @@
  */
 
 class wmpMsgsend extends wmpBasic{
-	
-	protected $msgSend = "https://api.weixin.qq.com/cgi-bin/message/custom/send";
-	
-	function __construct($cfg=array()){
-		parent::__construct($cfg); 
-	}	
+    
+    protected $msgSend = "https://api.weixin.qq.com/cgi-bin/message/custom/send";
+    
+    function __construct($cfg=array()){
+        parent::__construct($cfg); 
+    }    
 
     /**发送文本客服消息
      *
@@ -23,14 +23,14 @@ class wmpMsgsend extends wmpBasic{
      * @return bool|mixed
      */
     function sendText($openid, $content){
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
-		$message['touser'] = $openid;
-		$message['msgtype'] = "text";
-		$message['text']['content'] = $content;
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3);
-		return wysBasic::jsonDecode($data,$this->msgSend);
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
+        $message['touser'] = $openid;
+        $message['msgtype'] = "text";
+        $message['text']['content'] = $content;
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3);
+        return wysBasic::jsonDecode($data,$this->msgSend);
     }
 
     /**
@@ -42,14 +42,14 @@ class wmpMsgsend extends wmpBasic{
      * @return bool|mixed
      */
     function sendImage($openid, $mediaid) {
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
         $message['touser'] = $openid;
         $message['msgtype'] = "image";
         $message['image']['media_id'] = $mediaid;
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3);
-		return wysBasic::jsonDecode($data,$this->msgSend);
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3);
+        return wysBasic::jsonDecode($data,$this->msgSend);
     }
 
     /**
@@ -61,15 +61,15 @@ class wmpMsgsend extends wmpBasic{
      * @return bool|mixed
      */
     function sendVoice($openid, $media_id) {
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
-		$message['touser'] = $openid;
-		$message['msgtype'] = "voice";
-		$message['voice']['media_id'] = $media_id;
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3);
-		return wysBasic::jsonDecode($data,$this->msgSend);
-		
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
+        $message['touser'] = $openid;
+        $message['msgtype'] = "voice";
+        $message['voice']['media_id'] = $media_id;
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3);
+        return wysBasic::jsonDecode($data,$this->msgSend);
+        
     }
 
     /**
@@ -83,17 +83,17 @@ class wmpMsgsend extends wmpBasic{
      * @return bool|mixed
      */
     function sendVideo($openid, $media_id, $title = "", $description = "") {
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
-		$message['touser'] = $openid;
-		$message['msgtype'] = "video";
-		$message['video']['media_id'] = $media_id;
-		$message['video']['title'] = $title;
-		$message['video']['description'] = $description;
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3); 
-		return wysBasic::jsonDecode($data,$this->msgSend);
-		
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
+        $message['touser'] = $openid;
+        $message['msgtype'] = "video";
+        $message['video']['media_id'] = $media_id;
+        $message['video']['title'] = $title;
+        $message['video']['description'] = $description;
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3); 
+        return wysBasic::jsonDecode($data,$this->msgSend);
+        
     }
 
     /**
@@ -109,19 +109,19 @@ class wmpMsgsend extends wmpBasic{
      * @return bool|mixed
      */
     function sendMusic($openid, $url, $hq_url, $media_id, $title = "", $description = "") {
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
-		$message['touser'] = $openid;
-		$message['msgtype'] = "music";
-		$message['music']['title'] = $title;
-		$message['music']['description'] = $description;
-		$message['music']['musicurl'] = $url;
-		$message['music']['hqmusicurl'] = $hq_url;
-		$message['music']['thumb_media_id'] = $media_id;
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3); 
-		return wysBasic::jsonDecode($data,$this->msgSend);
-		
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
+        $message['touser'] = $openid;
+        $message['msgtype'] = "music";
+        $message['music']['title'] = $title;
+        $message['music']['description'] = $description;
+        $message['music']['musicurl'] = $url;
+        $message['music']['hqmusicurl'] = $hq_url;
+        $message['music']['thumb_media_id'] = $media_id;
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3); 
+        return wysBasic::jsonDecode($data,$this->msgSend);
+        
     }
 
     /**
@@ -134,26 +134,26 @@ class wmpMsgsend extends wmpBasic{
      * @throws Exception
      */
     function sendNews($openid, $items) {
-		$url = $this->msgSend."?access_token={$this->actoken}";
-		$message = array();
-		$message['touser'] = $openid;
-		$message['msgtype'] = "news";
-		if ($items && is_array($items)){
-			foreach ($items as $item){
-				if (is_array($item) && (isset($item['title']) || isset($item['description']) || isset($item['picurl']) || isset($item['url']))){
-					$it['title'] = isset($item['title']) ? $item['title'] : "";
-					$it['description'] = isset($item['description']) ? $item['description'] : "";
-					$it['url'] = isset($item['url']) ? $item['url'] : "";
-					$it['picurl'] = isset($item['picurl']) ? $item['picurl'] : "";
-					if ($it['title'] && $it['description'] && $it['url'] && $it['picurl'])
-						$message['news']['articles'][] = $it;
-				}
-			}
-		}
-		$paras = wysBasic::jsonEncode($message);
-		$data = comHttp::doPost($url, $paras, 3); 
-		return wysBasic::jsonDecode($data,$this->msgSend);
-		
+        $url = $this->msgSend."?access_token={$this->actoken}";
+        $message = array();
+        $message['touser'] = $openid;
+        $message['msgtype'] = "news";
+        if ($items && is_array($items)){
+            foreach ($items as $item){
+                if (is_array($item) && (isset($item['title']) || isset($item['description']) || isset($item['picurl']) || isset($item['url']))){
+                    $it['title'] = isset($item['title']) ? $item['title'] : "";
+                    $it['description'] = isset($item['description']) ? $item['description'] : "";
+                    $it['url'] = isset($item['url']) ? $item['url'] : "";
+                    $it['picurl'] = isset($item['picurl']) ? $item['picurl'] : "";
+                    if ($it['title'] && $it['description'] && $it['url'] && $it['picurl'])
+                        $message['news']['articles'][] = $it;
+                }
+            }
+        }
+        $paras = wysBasic::jsonEncode($message);
+        $data = comHttp::doPost($url, $paras, 3); 
+        return wysBasic::jsonDecode($data,$this->msgSend);
+        
     }
 
 }

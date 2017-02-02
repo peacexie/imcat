@@ -3,11 +3,11 @@
 include_once(DIR_STATIC.'/ximp/class/Snoopy.cls_php'); 
 
 class extSnoopy extends Snoopy{
-	
-	static function xx_($text){
-		//return xxx;
-	}
-	
+    
+    static function xx_($text){
+        //return xxx;
+    }
+    
 }
 
 /*

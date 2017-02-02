@@ -12,12 +12,12 @@
 
 // _all_方案:所有
 if(isset($_cbase['skip']['_all_'])){
-	$_cbase['skip']['error'] = true;
-	$_cbase['skip']['session'] = true;
+    $_cbase['skip']['error'] = true;
+    $_cbase['skip']['session'] = true;
 }
 
 // _session_方案:除[session]所有
 if(isset($_cbase['skip']['_sess_'])){
-	$_cbase['skip']['error'] = true;
-	//$_cbase['skip']['session'] = true;
+    $_cbase['skip']['error'] = true;
+    //$_cbase['skip']['session'] = true;
 }

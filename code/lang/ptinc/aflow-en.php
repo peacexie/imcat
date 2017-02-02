@@ -24,6 +24,11 @@ Without the use of multi language, these codes can be written directly into the 
 <th>Url</th><th><?php echo ($uarr==4 ? 'uName' : 'Click'); ?></th>
 <th>Add</th><th>Edit</th></tr>
 
+<?php break;case 'adpush_list': ?> 
+
+<th>Sel.</th><th>aid</th><th>Push Title</th><th>Catalog</th><th>Show</th>
+<th>Max</th><th>Add</th><th>Edit</th><th>Push</th><th>Page</th><th>cfg/data</th></tr>
+
 <?php break;case 'coms_list': ?> 
 
 <th>Sel.</th><th>Title</th><th>Show</th><th>uName</th>
@@ -87,7 +92,7 @@ Without the use of multi language, these codes can be written directly into the 
 
 <th>Sel.</th><th>CargoID</th><th>OrderID</th>
 <th>Count</th><th>uPrice</th>
-echo "<th>UserName</th>
+<th>UserName</th>
 <th>Add-Time</th><th>Edit</th></tr>
 
 <?php break;case 'corder': ?> 
