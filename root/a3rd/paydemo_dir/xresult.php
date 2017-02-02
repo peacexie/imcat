@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__)."/config.php");
 $cfg = array('ordid','feeamount','apino','status','msg');
 foreach($cfg as $key){ 
-	empty($res[$key]) && $res[$key] = '';  
+    empty($res[$key]) && $res[$key] = '';  
 }
 defined('PATH_ROOT') || define('PATH_ROOT','../../');
 ?>
@@ -35,7 +35,7 @@ p.detail{ width:100%; height:180px; overflow-y:scroll; }
 <div class="pay_info">
 
 <p class="title">
-	<span style="float:right"><?php lang('a3rd.xresult_ordno',0); ?> <?php echo $res['ordid']; ?></span>
+    <span style="float:right"><?php lang('a3rd.xresult_ordno',0); ?> <?php echo $res['ordid']; ?></span>
     <b><?php lang('a3rd.xresult_title',0); ?></b>
 </p>
 
@@ -60,7 +60,7 @@ p.detail{ width:100%; height:180px; overflow-y:scroll; }
   <p class="detail"> 
   <?php
   foreach($_POST as $key=>$val){
-	 echo "• $key = $val<br>";
+     echo "• $key = $val<br>";
   }?>
   </p>
 </div>
@@ -69,7 +69,7 @@ p.detail{ width:100%; height:180px; overflow-y:scroll; }
   <p class="detail"> 
   <?php
   foreach($_GET as $key=>$val){
-	 echo "• $key = $val<br>";
+     echo "• $key = $val<br>";
   }?>
   </p>
 </div>

@@ -4,18 +4,18 @@
 require(dirname(dirname(dirname(dirname(__FILE__)))).'/root/run/_init.php'); 
 
 if(empty($_cbase['run']['wedemo'])){
-	//usrPerm::run('pmod','apiweixin');
+    //usrPerm::run('pmod','apiweixin');
 }
 extract(basReq::sysVars());
 
 function wxDebugNavbar(){
-	$s = "\n<p class='tc'>";
-	$s .= "Nav : \n<a href='wedebug.php'>wedebug</a>";
-	$s .= " # \n<a href='wedemo.php'>wedemo</a>";
-	$s .= " # \n<a href='wejsdk.php'>wejsdk</a>";
-	$s .= " # \n<a href='wetest.php'>wetest</a>";
-	$s .= "</p><hr>\n";
-	echo $s;
+    $s = "\n<p class='tc'>";
+    $s .= "Nav : \n<a href='wedebug.php'>wedebug</a>";
+    $s .= " # \n<a href='wedemo.php'>wedemo</a>";
+    $s .= " # \n<a href='wejsdk.php'>wejsdk</a>";
+    $s .= " # \n<a href='wetest.php'>wetest</a>";
+    $s .= "</p><hr>\n";
+    echo $s;
 }
 
 /*

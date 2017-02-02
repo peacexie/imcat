@@ -5,7 +5,7 @@ $user || basMsg::show('Not Login.','die'); //未登录
 $rdir = DIR_DTMP;
 $rpath = PATH_DTMP;
 $ufix = comStore::getTmpDir(0);
-	
+    
 //$dmsg = ''; //处理删除
 $_upPerm = '1';//usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $isbat = req('isbat','');
@@ -55,9 +55,9 @@ glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"')
 
 function xx(id)
 {
-	var idImg = jsElm.jeID(id);
-	idImg.innerHTML = ''; 	
-	idImg.className="idHidden";
+    var idImg = jsElm.jeID(id);
+    idImg.innerHTML = '';     
+    idImg.className="idHidden";
 }
 
 </script>

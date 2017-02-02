@@ -5,12 +5,12 @@ ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%
 li{ list-style:none; }
 
 body,td,th {
-	font-size: 12px; color:#333;
+    font-size: 12px; color:#333;
 }
 
 fieldset.temp{
-	padding:5px; 
-	border:1px solid #6CF;
+    padding:5px; 
+    border:1px solid #6CF;
 }
 
 table.file_bar { width:100%; margin:1px auto 3px auto;  }
@@ -23,35 +23,35 @@ table.file_bar td:hover a{ color:#F00; }
 
 
 table.Sym_Content {
-	background-color:#888888;
-	width:100%;
+    background-color:#888888;
+    width:100%;
 }
 table.Sym_Content td {
-	background-color:#ffffff;
-	width:24px;
-	height:24px;
-	text-align:center;
-	vertical-align:middle;
-	cursor:hand;
-	cursor:pointer;
-	padding:1px;
-	margin:0px;
+    background-color:#ffffff;
+    width:24px;
+    height:24px;
+    text-align:center;
+    vertical-align:middle;
+    cursor:hand;
+    cursor:pointer;
+    padding:1px;
+    margin:0px;
 }
 .Sym_Tabs {
-	cursor:hand;
-	cursor:pointer;
-	background-color:#3A6EA5;
-	text-align:center;
+    cursor:hand;
+    cursor:pointer;
+    background-color:#3A6EA5;
+    text-align:center;
 }
 .Sym_Tab1 {
-	background-color:#3A6EA5;
-	color:#FFFFFF;
+    background-color:#3A6EA5;
+    color:#FFFFFF;
 }
 .Sym_Tab2 {
-	background-color:#FFFFFF;
-	color:#3A6EA5;
+    background-color:#FFFFFF;
+    color:#3A6EA5;
 }
 #SymTop {
-	margin:3px;
-	border:1px solid #033;
+    margin:3px;
+    border:1px solid #033;
 }

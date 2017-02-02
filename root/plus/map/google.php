@@ -6,27 +6,27 @@ http://sunflowers.iteye.com/blog/743086
 <script>
 var mpoint = new google.maps.LatLng(<?php echo "$pa[1],$pa[0]";?>);
 var map = new google.maps.Map(jsElm.jeID("map"),{
-	zoom:13, center:mpoint, scaleControl:true,
-	navigationControlOptions:{style: google.maps.NavigationControlStyle.ZOOM_PAN},
-	mapTypeId:google.maps.MapTypeId.ROADMAP
+    zoom:13, center:mpoint, scaleControl:true,
+    navigationControlOptions:{style: google.maps.NavigationControlStyle.ZOOM_PAN},
+    mapTypeId:google.maps.MapTypeId.ROADMAP
 });
 marker = new google.maps.Marker({
-	map :  map,
-	<?php if($act=='pick'){ ?>
-	draggable : true,
-	<?php }else{ ?>
-	title : "Title",
-	<?php } ?>
-	position : mpoint
+    map :  map,
+    <?php if($act=='pick'){ ?>
+    draggable : true,
+    <?php }else{ ?>
+    title : "Title",
+    <?php } ?>
+    position : mpoint
 });
 <?php if($act=='pick'){ ?>
 google.maps.event.addListener(marker, "dragend", function(){
-	var pstr = this.getPosition().toString();
-	pstr = pstr.replace(' ','').replace('(','').replace(')','');
-	var parr = pstr.split(',');
-	var num1 = new Number(parr[1]);
-	var num2 = new Number(parr[0]);
-	jsElm.jeID('point').value = num1.toFixed(6)+','+num2.toFixed(6)+','+map.zoom; 
+    var pstr = this.getPosition().toString();
+    pstr = pstr.replace(' ','').replace('(','').replace(')','');
+    var parr = pstr.split(',');
+    var num1 = new Number(parr[1]);
+    var num2 = new Number(parr[0]);
+    jsElm.jeID('point').value = num1.toFixed(6)+','+num2.toFixed(6)+','+map.zoom; 
 });
 function setPoint(){
     parent.document.getElementById('<?php echo $title;?>').value =jsElm.jeID('point').value; 

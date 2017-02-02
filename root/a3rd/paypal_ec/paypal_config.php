@@ -20,9 +20,9 @@ define("USERACTION_FLAG", false);
 
 //Based on the USERACTION_FLAG assign the page
 if(USERACTION_FLAG){
-	$page = 'return.php';
-} else {	
-	$page = 'review.php';
+    $page = 'return.php';
+} else {    
+    $page = 'review.php';
 } 
 
 //The URL in your application where Paypal returns control to -after success (RETURN_URL) using Express Checkout Mark Flow
@@ -36,12 +36,12 @@ define("CANCEL_URL",'http://'.$_SERVER['HTTP_HOST'].preg_replace('/paypal_ec_red
 define("SANDBOX_FLAG", true);
 
 if(SANDBOX_FLAG){
-	$merchantID=PP_USER_SANDBOX;  /* Use Sandbox merchant id when testing in Sandbox */
-	$env= 'sandbox';
+    $merchantID=PP_USER_SANDBOX;  /* Use Sandbox merchant id when testing in Sandbox */
+    $env= 'sandbox';
 }
 else {
-	$merchantID=PP_USER;  /* Use Live merchant ID for production environment */
-	$env='production';
+    $merchantID=PP_USER;  /* Use Live merchant ID for production environment */
+    $env='production';
 }
 
 //Proxy Config

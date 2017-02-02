@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>支付宝即时到账交易接口接口</title>
+    <meta charset="utf-8">
+    <title>支付宝即时到账交易接口接口</title>
     <style type="text/css">.tc { text-align:center; }</style>
 </head>
 <?php
@@ -15,7 +15,7 @@ require_once(LIBS_PAYRUN."/alipay_submit.class.php");
         //支付类型
         $payment_type = "1"; 
         //必填，不能修改
-		
+        
         //服务器异步通知页面路径
         $notify_url = $_cbase['run']['roots']."/a3rd/alipay_direct/unotify.php";
         //需http://格式的完整路径，不能加?id=123这类自定义参数
@@ -37,14 +37,14 @@ require_once(LIBS_PAYRUN."/alipay_submit.class.php");
 
         //订单描述
         $body = $_POST['ordbody'];
-		
+        
         //默认支付方式
         $paymethod = "bankPay";
         //必填
         //默认网银
         $defaultbank = $_POST['WIDdefaultbank'];
         //必填，银行简码请参考接口技术文档
-		
+        
         //商品展示地址
         $show_url = $_POST['showurl'];
         //需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html
@@ -62,22 +62,22 @@ require_once(LIBS_PAYRUN."/alipay_submit.class.php");
 
 //构造要请求的参数数组，无需改动
 $parameter = array(
-		"service" => "create_direct_pay_by_user",
-		"partner" => trim($alipay_config['partner']),
-		"seller_email" => trim($alipay_config['seller_email']),
-		"payment_type"	=> $payment_type,
-		"notify_url"	=> $notify_url,
-		"return_url"	=> $return_url,
-		"out_trade_no"	=> $out_trade_no,
-		"subject"	=> $subject,
-		"total_fee"	=> $total_fee,
-		"body"	=> $body,
-		"paymethod"	=> $paymethod,
-		"defaultbank"	=> $defaultbank,
-		"show_url"	=> $show_url,
-		"anti_phishing_key"	=> $anti_phishing_key,
-		"exter_invoke_ip"	=> $exter_invoke_ip,
-		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+        "service" => "create_direct_pay_by_user",
+        "partner" => trim($alipay_config['partner']),
+        "seller_email" => trim($alipay_config['seller_email']),
+        "payment_type"    => $payment_type,
+        "notify_url"    => $notify_url,
+        "return_url"    => $return_url,
+        "out_trade_no"    => $out_trade_no,
+        "subject"    => $subject,
+        "total_fee"    => $total_fee,
+        "body"    => $body,
+        "paymethod"    => $paymethod,
+        "defaultbank"    => $defaultbank,
+        "show_url"    => $show_url,
+        "anti_phishing_key"    => $anti_phishing_key,
+        "exter_invoke_ip"    => $exter_invoke_ip,
+        "_input_charset"    => trim(strtolower($alipay_config['input_charset']))
 );
 
 //建立请求

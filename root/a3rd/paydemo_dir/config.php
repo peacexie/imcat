@@ -5,67 +5,67 @@ define('PATH_PAYRUN', PATH_ROOT.'/a3rd/paydemo_dir');
 define('LIBS_PAYRUN', DIR_PAYRUN);
 
 function dmgetPost(){
-	$post = array();
-	foreach($_POST as $k=>$v){
-		if(!strstr($k,'_post_')) continue;
-		$key = str_replace('_post_','',$k);
-		$post[$key]	= $v;
-	}
-	return $post;
+    $post = array();
+    foreach($_POST as $k=>$v){
+        if(!strstr($k,'_post_')) continue;
+        $key = str_replace('_post_','',$k);
+        $post[$key]    = $v;
+    }
+    return $post;
 }
 function dmdoSend(){
-	$data = dmgetPost();
-	$dobj = array();
-	$cfgorg = array('payment_type','out_trade_no','subject','total_fee','body');
-	$cfgconv = array('service'=>'exterface','partner'=>'seller_id','seller_email'=>'seller_email');
-	$cfgadd = array('is_success'=>'T','sign_type'=>'TRADE_SUCCESS','sign_type'=>'MD5','notify_type'=>'trade_status');
-	foreach($cfgorg as $key){
-		$dobj[$key] = $data[$key];
-	}
-	foreach($cfgconv as $key=>$val){
-		$dobj[$val] = $data[$key];
-	}
-	foreach($cfgadd as $key=>$val){
-		$dobj[$key] = $val;
-	}
-	$dobj['buyer_email'] = $dobj['buyer_id'] = basReq::ark('fm','uname');
-	$dobj['trade_no'] =  basKeyid::kidTemp('(def)').'-'.basKeyid::kidRand('24',8);
-	$dobj['notify_time'] = time();
-	$dobj['notify_id'] = "{$dobj['notify_time']}.{$dobj['trade_no']}";
-	$dobj['sign'] = comConvert::sysEncode($dobj['notify_id']);
-	//通过curl post数据 ($data: str:xml,str:json,array)
-	$sobj = '';
-	foreach($dobj as $key=>$val){
-		$sobj .= ($sobj ? '&' : '')."$key=$val";	
-	}
-	$urls = array('notify','return');
-	foreach($urls as $key){
-		$url = $data["{$key}_url"];
-		$$key = $url.(strpos($url,'?') ? '&' : '?').$sobj;
-	}
-	$notice = comHttp::doGet($notify, $data, 3);
-	//echo $return;
-	header('Location:'.$return);
+    $data = dmgetPost();
+    $dobj = array();
+    $cfgorg = array('payment_type','out_trade_no','subject','total_fee','body');
+    $cfgconv = array('service'=>'exterface','partner'=>'seller_id','seller_email'=>'seller_email');
+    $cfgadd = array('is_success'=>'T','sign_type'=>'TRADE_SUCCESS','sign_type'=>'MD5','notify_type'=>'trade_status');
+    foreach($cfgorg as $key){
+        $dobj[$key] = $data[$key];
+    }
+    foreach($cfgconv as $key=>$val){
+        $dobj[$val] = $data[$key];
+    }
+    foreach($cfgadd as $key=>$val){
+        $dobj[$key] = $val;
+    }
+    $dobj['buyer_email'] = $dobj['buyer_id'] = basReq::ark('fm','uname');
+    $dobj['trade_no'] =  basKeyid::kidTemp('(def)').'-'.basKeyid::kidRand('24',8);
+    $dobj['notify_time'] = time();
+    $dobj['notify_id'] = "{$dobj['notify_time']}.{$dobj['trade_no']}";
+    $dobj['sign'] = comConvert::sysEncode($dobj['notify_id']);
+    //通过curl post数据 ($data: str:xml,str:json,array)
+    $sobj = '';
+    foreach($dobj as $key=>$val){
+        $sobj .= ($sobj ? '&' : '')."$key=$val";    
+    }
+    $urls = array('notify','return');
+    foreach($urls as $key){
+        $url = $data["{$key}_url"];
+        $$key = $url.(strpos($url,'?') ? '&' : '?').$sobj;
+    }
+    $notice = comHttp::doGet($notify, $data, 3);
+    //echo $return;
+    header('Location:'.$return);
 }
 function dmdoCheck(){
-	$stamp = time();
-	$notify_time = req('notify_time');
-	$trade_no = req('trade_no');
-	$sign = req('sign');
-	$enc = comConvert::sysEncode("$notify_time.$trade_no");
-	$flag = ($enc==$sign) && ($stamp-$notify_time<60); //var_dump($flag);
-	return $flag;
+    $stamp = time();
+    $notify_time = req('notify_time');
+    $trade_no = req('trade_no');
+    $sign = req('sign');
+    $enc = comConvert::sysEncode("$notify_time.$trade_no");
+    $flag = ($enc==$sign) && ($stamp-$notify_time<60); //var_dump($flag);
+    return $flag;
 }
 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //合作身份者id，以2088开头的16位纯数字
-$demopay_config['partner']		= $pay_uinfo['demo']['partner'];
+$demopay_config['partner']        = $pay_uinfo['demo']['partner'];
 
 //收款演示账号
-$demopay_config['seller_email']	= $pay_uinfo['demo']['email'];
+$demopay_config['seller_email']    = $pay_uinfo['demo']['email'];
 
 //安全检验码，以数字和字母组成的32位字符
-$demopay_config['key']			= $pay_uinfo['demo']['key'];
+$demopay_config['key']            = $pay_uinfo['demo']['key'];
 
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 

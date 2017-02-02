@@ -1,60 +1,59 @@
 p.ptop { padding:0px; margin:0px; border:0px solid #FF0; }
 
 div.outer { position:relative; border: 1px solid #999; width:960px; height:540px; padding: 0px; margin: 10px auto;
-	background-position:center; 
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
+  background-position:center; 
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
 }
 
 p.logo, h1.title { text-align: center; display:inline-block; position:absolute; z-index:300; }
-p.logo { left:25px; top:60px; border-radius:3px; margin:0px; }  
+p.logo { left:25px; top:60px; border-radius:3px; margin:0px; } 
 h1.title{ left:155px; top:92px; font-size:large; line-height:160%; padding:0px; margin:0px; }
 
 h1.title b{ padding:3px 10px; }
 
 p.logo img, h1.title b { 
-	border: 1px solid #FFF; border-radius: 3px;
-	-webkit-box-shadow: 3px 3px 10px #999;
-	box-shadow: 5px 3px 10px #999;  
+  border: 1px solid #FFF; border-radius: 3px;
+  -webkit-box-shadow: 3px 3px 10px #999;
+  box-shadow: 5px 3px 10px #999; 
 }
 
 nav { padding:10px; margin:10px 1px 1px 10px; }
 nav a { display:inline-block; padding:3px 5px; margin:0px 0px 5px 5px;
-	border: 1px solid #FFF; text-align: center; color:#036;
-	-webkit-box-shadow: 3px 3px 10px #999;
-	box-shadow: 3px 3px 10px #999; 
-	border-radius:3px; position:relative; cursor:pointer;
+  border: 1px solid #FFF; text-align: center; color:#036;
+  -webkit-box-shadow: 3px 3px 10px #999;
+  box-shadow: 3px 3px 10px #999; 
+  border-radius:3px; position:relative; cursor:pointer;
 }
 nav i { z-index:500; }
 
 div.vnote { left:15px; bottom:80px; position:absolute; color:#FFF; text-align:left; line-height:150%; 
-	text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	-webkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	-moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	*filter: Glow(color=#000, strength=1); 
+  text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  -webkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  -moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  *filter: Glow(color=#000, strength=1); 
 }
 
 p.foot { clear:both; width:100%; position:absolute; color:#FFF; text-align:center; line-height:120%; 
-	text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	-webkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	-moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
-	*filter: Glow(color=#000, strength=1); 
+  text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  -webkit-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  -moz-text-shadow:#000 1px 0 0,#000 0 1px 0,#000 -1px 0 0,#000 0 -1px 0;
+  *filter: Glow(color=#000, strength=1); 
 }
 
 .qrcode_tip, .qrcode_pic { display:inline-block; font-style:normal; font-weight:normal; }
 .qrcode_pic {
-	position: absolute; background:#FFF; 
-	top: 23px; left: 0px; text-align:center;
-	padding:5px; border:1px solid #CCC;
+  position: absolute; background:#FFF; 
+  top: 23px; left: 0px; text-align:center;
+  padding:5px; border:1px solid #CCC;
 }
 
 p.foot a { color:#FFF; }
 a.qrcode_home { position:relative; }
 .qrcode_home, .qrcode_hpic { display:inline-block; font-style:normal; font-weight:normal; }
 .qrcode_hpic {
-	position: absolute; background:#FFF;
-	bottom:10px; left: -105px; text-align:center;
-	padding:5px; border:1px solid #CCC;
+  position: absolute; background:#FFF;
+  bottom:10px; left: -105px; text-align:center;
+  padding:5px; border:1px solid #CCC;
 }
-

@@ -27,33 +27,33 @@
         }
         a {
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-        	text-decoration:none;
+            text-decoration:none;
             color:#fff;
         }
         a:link{
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-        	text-decoration:none;
+            text-decoration:none;
             color:#fff;
         }
         a:visited{
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-        	text-decoration:none;
+            text-decoration:none;
             color:#fff;
         }
         a:hover{
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-        	text-decoration:none;
+            text-decoration:none;
             color:#fff;
         }
         a:active{
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-        	text-decoration:none;
+            text-decoration:none;
             color:#fff;
         }
     </style>
 </head>
 <body>
-	<div align="center">
+    <div align="center">
         <ul>
             <li style="background-color:#FF7F24"><a href="./demo/jsapi.php">JSAPI支付</a></li>
             <li style="background-color:#698B22"><a href="./demo/micropay.php">刷卡支付</a></li>
@@ -63,6 +63,6 @@
             <li style="background-color:#848484"><a href="./demo/refundquery.php">退款查询</a></li>
             <li style="background-color:#8EE5EE"><a href="./demo/download.php">下载订单</a></li>
         </ul>
-	</div>
+    </div>
 </body>
 </html>

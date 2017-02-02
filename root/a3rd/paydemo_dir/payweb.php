@@ -7,16 +7,16 @@ $rndpass = 'pass_'.basKeyid::kidRand('fs3',18);
 $out_trade_no = req('out_trade_no');
 $total_fee = req('total_fee');
 if($act=='dologin'){
-	$fm = $_POST['fm'];
-	$re2 = safComm::formCAll('fmlpay');
-	if(empty($re2[0])){ //OK
-		$msg = lang('a3rd.payweb_loginok');
-		dmdoSend();
-	}else{
-		$msg = lang('a3rd.payweb_erragain');	
-	}
+    $fm = $_POST['fm'];
+    $re2 = safComm::formCAll('fmlpay');
+    if(empty($re2[0])){ //OK
+        $msg = lang('a3rd.payweb_loginok');
+        dmdoSend();
+    }else{
+        $msg = lang('a3rd.payweb_erragain');    
+    }
 }else{
-	$msg = lang('a3rd.payweb_copyto');	
+    $msg = lang('a3rd.payweb_copyto');    
 }
 ?> 
 <!DOCTYPE html><html><head>
@@ -45,7 +45,7 @@ if($act=='dologin'){
 <form action="?" method="post" name="fmlpay" id="fmlpay">
 <div id="idx_login" class="pgu_login">
 <p class="title">
-	<span style="float:right"><?php lang('a3rd.payweb_tradeno',0); ?> <?php echo $out_trade_no; ?> &nbsp; <?php lang('a3rd.payweb_amount',0); ?> <?php echo $total_fee; ?></span>
+    <span style="float:right"><?php lang('a3rd.payweb_tradeno',0); ?> <?php echo $out_trade_no; ?> &nbsp; <?php lang('a3rd.payweb_amount',0); ?> <?php echo $total_fee; ?></span>
     <b><?php lang('a3rd.demo_title',0); ?></b>
 </p>  
 <div class="apply">
@@ -74,23 +74,23 @@ if($act=='dologin'){
 </div>
 <?php 
 foreach($_POST as $k=>$v){ 
-	if(is_array($v)) continue;
-	$v = basReq::fmt($v,'','Safe4');
-	echo "<input name='_post_{$k}' type='hidden' value='{$v}'>\n"; 
-	if(in_array($k,array('out_trade_no','total_fee'))){
-		echo "<input name='{$k}' type='hidden' value='{$v}'>\n";
-	}
+    if(is_array($v)) continue;
+    $v = basReq::fmt($v,'','Safe4');
+    echo "<input name='_post_{$k}' type='hidden' value='{$v}'>\n"; 
+    if(in_array($k,array('out_trade_no','total_fee'))){
+        echo "<input name='{$k}' type='hidden' value='{$v}'>\n";
+    }
 } 
 ?>
 </form>
 <script>
 function ologinreset(){
-	$("[name='fm[uname]']").val('');
-	$("[name='fm[upass]']").val('0');
-	$("[name='fm[upass]']").val('');
+    $("[name='fm[uname]']").val('');
+    $("[name='fm[upass]']").val('0');
+    $("[name='fm[upass]']").val('');
 }
 function osetInfo(e,key){
-	$("[name='fm["+key+"]']").val($(e).html());
+    $("[name='fm["+key+"]']").val($(e).html());
 }
 setTimeout('ologinreset()',300);
 </script>

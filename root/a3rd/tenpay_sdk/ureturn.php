@@ -14,13 +14,13 @@ $resHandler = new PayResponse($key);
 //echo "<br/>" . "本次支付的通知ID：" . $resHandler->getNotifyId() . "<br/>";
 
 $cfg = array(
-	'ordid'=>'out_trade_no',
-	'feeamount'=>'total_fee',
-	'apino'=>'trade_no',
-	'status'=>'trade_status',
+    'ordid'=>'out_trade_no',
+    'feeamount'=>'total_fee',
+    'apino'=>'trade_no',
+    'status'=>'trade_status',
 );
 foreach($cfg as $k1=>$k2){ 
-	$res[$k1] = req($k2);  
+    $res[$k1] = req($k2);  
 }
 $res['msg'] = "通知ID：" . $resHandler->getNotifyId() . "";
 $res['api'] = 'Tenpay';

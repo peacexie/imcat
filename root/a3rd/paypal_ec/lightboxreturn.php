@@ -2,7 +2,7 @@
 $url = 'review.php?';
 foreach($_GET as $key => $value)
 {
-	$url .= $key . '=' . $value . '&';
+    $url .= $key . '=' . $value . '&';
 }
 ?>
 <html>

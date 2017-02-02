@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>支付宝即时到账交易接口接口</title>
+    <meta charset="utf-8">
+    <title>支付宝即时到账交易接口接口</title>
     <style type="text/css">.tc { text-align:center; }</style>
 </head>
 <?php
@@ -54,20 +54,20 @@ $exter_invoke_ip = "";
 
 //构造要请求的参数数组，无需改动
 $parameter = array(
-		"service" => "create_direct_pay_by_user",
-		"partner" => trim($alipay_config['partner']),
-		"seller_email" => trim($alipay_config['seller_email']),
-		"payment_type"	=> $payment_type,
-		"notify_url"	=> $notify_url,
-		"return_url"	=> $return_url,
-		"out_trade_no"	=> $out_trade_no,
-		"subject"	=> $subject,
-		"total_fee"	=> $total_fee,
-		"body"	=> $body,
-		"show_url"	=> $show_url,
-		"anti_phishing_key"	=> $anti_phishing_key,
-		"exter_invoke_ip"	=> $exter_invoke_ip,
-		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+        "service" => "create_direct_pay_by_user",
+        "partner" => trim($alipay_config['partner']),
+        "seller_email" => trim($alipay_config['seller_email']),
+        "payment_type"    => $payment_type,
+        "notify_url"    => $notify_url,
+        "return_url"    => $return_url,
+        "out_trade_no"    => $out_trade_no,
+        "subject"    => $subject,
+        "total_fee"    => $total_fee,
+        "body"    => $body,
+        "show_url"    => $show_url,
+        "anti_phishing_key"    => $anti_phishing_key,
+        "exter_invoke_ip"    => $exter_invoke_ip,
+        "_input_charset"    => trim(strtolower($alipay_config['input_charset']))
 );
 
 //建立请求

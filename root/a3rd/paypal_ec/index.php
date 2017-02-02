@@ -30,26 +30,26 @@
                         <tr><td>Total Amount:</td><td><input type="text" name="PAYMENTREQUEST_0_AMT" value="17" readonly></input></td></tr>
                         <tr><td><input type="hidden" name="LOGOIMG" value=<?php echo('http://'.$_SERVER['HTTP_HOST'].preg_replace('/index.php/','img/logo.jpg',$_SERVER['SCRIPT_NAME'])); ?>></input></td></tr>
                         <tr><td>Currency Code:</td><td><select name="currencyCodeType">
-						<option value="AUD">AUD</option>
-						<option value="BRL">BRL</option>
-						<option value="CAD">CAD</option>
-						<option value="CZK">CZK</option>
-						<option value="DKK">DKK</option>
-						<option value="EUR">EUR</option>
-						<option value="HKD">HKD</option>
-						<option value="MYR">MYR</option>
-						<option value="MXN">MXN</option>
-						<option value="NOK">NOK</option>
-						<option value="NZD">NZD</option>
-						<option value="PHP">PHP</option>
-						<option value="PLN">PLN</option>
-						<option value="GBP">GBP</option>
-						<option value="RUB">RUB</option>
-						<option value="SGD">SGD</option>
-						<option value="SEK">SEK</option>
-						<option value="CHF">CHF</option>
-						<option value="THB">THB</option>
-						<option value="USD" selected>USD</option></select><br></td></tr>
+                        <option value="AUD">AUD</option>
+                        <option value="BRL">BRL</option>
+                        <option value="CAD">CAD</option>
+                        <option value="CZK">CZK</option>
+                        <option value="DKK">DKK</option>
+                        <option value="EUR">EUR</option>
+                        <option value="HKD">HKD</option>
+                        <option value="MYR">MYR</option>
+                        <option value="MXN">MXN</option>
+                        <option value="NOK">NOK</option>
+                        <option value="NZD">NZD</option>
+                        <option value="PHP">PHP</option>
+                        <option value="PLN">PLN</option>
+                        <option value="GBP">GBP</option>
+                        <option value="RUB">RUB</option>
+                        <option value="SGD">SGD</option>
+                        <option value="SEK">SEK</option>
+                        <option value="CHF">CHF</option>
+                        <option value="THB">THB</option>
+                        <option value="USD" selected>USD</option></select><br></td></tr>
                         <tr><td>Payment Type: </td><td><select>
                                                            <option value="Sale">Sale</option>
                                                            <option value="Authorization">Authorization</option>
@@ -57,8 +57,8 @@
                                                          </select><br></td></tr>
 
                         <tr><td colspan="2"><br/><br/><div id="myContainer"></div></td></tr>
-						<tr><td> -- OR -- </td></tr>
-						<tr><td ><input type="Submit" alt="Proceed to Checkout" class="btn btn-primary btn-large" value="Proceed to Checkout" name="checkout"/></td></tr>
+                        <tr><td> -- OR -- </td></tr>
+                        <tr><td ><input type="Submit" alt="Proceed to Checkout" class="btn btn-primary btn-large" value="Proceed to Checkout" name="checkout"/></td></tr>
                         </table>
                   </div>
                </div>

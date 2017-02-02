@@ -38,11 +38,11 @@ $Response = $noqHandler->send();
 
 // ********************以下返回业务参数名称参考开放平台sdk文档-PHP*************************
 if( $Response->isPayed()){    
-	 $status = 'success';
-	 exvOpay::notifyTenpay('success');
+     $status = 'success';
+     exvOpay::notifyTenpay('success');
 }else{
-	$status = 'fail';
-	exvOpay::notifyTenpay('fail');
+    $status = 'fail';
+    exvOpay::notifyTenpay('fail');
 }
 
 exit($status);

@@ -7,32 +7,32 @@ $cfg_dirs = read('urdirs','sy');
 //print_r($user); die();
 
 if($parts=='temp'){
-	
-	$rdir = DIR_DTMP;
-	$rpath = PATH_DTMP;
-	$ufix = comStore::getTmpDir(0);
-	
+    
+    $rdir = DIR_DTMP;
+    $rpath = PATH_DTMP;
+    $ufix = comStore::getTmpDir(0);
+    
 }elseif($parts=='now'){
-	
-	$rdir = DIR_URES;
-	$rpath = PATH_URES; 
-	if(!isset($groups[$mod]) || strlen($kid)<10){
-		glbError::show('Error mod Or kid.');	
-	}
-	$ufix = comStore::getResDir($mod,$kid,0);
-	
+    
+    $rdir = DIR_URES;
+    $rpath = PATH_URES; 
+    if(!isset($groups[$mod]) || strlen($kid)<10){
+        glbError::show('Error mod Or kid.');    
+    }
+    $ufix = comStore::getResDir($mod,$kid,0);
+    
 }elseif(isset($cfg_dirs[$dir])){ //
-	$cfg = $cfg_dirs[$dir]; 
-	$rcfgs = array(
-		'wrskin' => array(DIR_ROOT,PATH_ROOT),
-		'static' => array(DIR_STATIC,PATH_STATIC),
-	);
-	$_r = $rcfgs[$cfg[1]];
-	$rdir = $_r[0];
-	$rpath =$_r[1]; 
-	$ufix = $cfg[2];
+    $cfg = $cfg_dirs[$dir]; 
+    $rcfgs = array(
+        'wrskin' => array(DIR_ROOT,PATH_ROOT),
+        'static' => array(DIR_STATIC,PATH_STATIC),
+    );
+    $_r = $rcfgs[$cfg[1]];
+    $rdir = $_r[0];
+    $rpath =$_r[1]; 
+    $ufix = $cfg[2];
 }else{
-	glbError::show('Error Path.');
+    glbError::show('Error Path.');
 }
 
 $dmsg = ''; //处理删除
@@ -41,9 +41,9 @@ $_upPerm = usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $_delPath = in_array($parts,array('temp','now',));
 $_upPath = in_array($parts,array('temp',));
 if($dfile && $_admPerm && $_delPath){
-	if(strstr($dfile,'./')) glbError::show('Error Path.');
-	@$dre = unlink($rdir.$dfile); //var_dump($dre);
-	$dmsg = $dre ? lang('plus.fv_delok') : lang('plus.fv_delng');
+    if(strstr($dfile,'./')) glbError::show('Error Path.');
+    @$dre = unlink($rdir.$dfile); //var_dump($dre);
+    $dmsg = $dre ? lang('plus.fv_delok') : lang('plus.fv_delng');
 }
 pfileHead($parts,lang('plus.fv_ftitle'));
 ?>
@@ -51,15 +51,15 @@ pfileHead($parts,lang('plus.fv_ftitle'));
 <table border='1' class='tbdata'>
   <tr>
     <td colspan="4">&nbsp;
-	<?php
-	$str = "";
-	foreach($cfg_dirs as $k=>$v){
-		if($parts==$v[0]){
-			$str .= (empty($str) ? '' : ' # ')."\n<a href='fview.php?".basReq::getURep($allpars,'dir',$k)."'>$k</a>";
-		}
-	}
-	echo $str ? $str : lang('plus.fv_nusub');
-	?>
+    <?php
+    $str = "";
+    foreach($cfg_dirs as $k=>$v){
+        if($parts==$v[0]){
+            $str .= (empty($str) ? '' : ' # ')."\n<a href='fview.php?".basReq::getURep($allpars,'dir',$k)."'>$k</a>";
+        }
+    }
+    echo $str ? $str : lang('plus.fv_nusub');
+    ?>
     </th>
     <th colspan="2" title="<?php lang('plus.fv_click',0); ?>"><?php lang('plus.fv_flist',0); ?></th>
   </tr>
@@ -111,14 +111,14 @@ foreach($re['file'] as $fnm=>$v){
   $ticon = comFiles::getTIcon($fnm);
   $id = $tdAct = '';
   if(strstr(".db.php.xx.xx2.xx3",$ticon['icon'])) continue;
-	if($ticon['icon']=='pic'){
-	  $id = str_replace('.','___',str_replace('-','_',$fnm));
-	  $jsAct = " onmouseover=\"fviShow('$id','$fPName',this)\" onmouseout=\"fviShow('$id')\" ";
-	  $fSubj = lang('plus.fv_tview'); 
-	  $tdAct = $jsAct;
-	}else{
-	  $fSubj = lang('plus.fv_open');
-	} 	
+    if($ticon['icon']=='pic'){
+      $id = str_replace('.','___',str_replace('-','_',$fnm));
+      $jsAct = " onmouseover=\"fviShow('$id','$fPName',this)\" onmouseout=\"fviShow('$id')\" ";
+      $fSubj = lang('plus.fv_tview'); 
+      $tdAct = $jsAct;
+    }else{
+      $fSubj = lang('plus.fv_open');
+    }     
 ?>
   <tr>
     <td onClick="fviPick(<?php echo "'$fPName','{$ticon['type']}','$iSize'"; ?>);" title="<?php lang('plus.fv_pfile',0); ?>" nowrap>

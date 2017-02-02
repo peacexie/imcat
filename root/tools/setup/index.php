@@ -1,36 +1,36 @@
-<?php 
+<?php    
 $_cbase['ucfg']['lang'] = '(auto)';
 require(dirname(__FILE__).'/_config.php');
 
 // Check proot
 $proot = devRun::prootGet();
-if($proot!=PATH_PROJ){ 
-	header("Location:../adbug/start.php?FixProot"); 
-	die();
+if($proot!=PATH_PROJ){    
+    header("Location:../adbug/start.php?FixProot");    
+    die();
 }
 // Check start
-$csmsg = devRun::startCheck(); 
-if(!empty($csmsg)){ 
-	header('Location:../adbug/start.php'); 
-	die(); 
+$csmsg = devRun::startCheck();    
+if(!empty($csmsg)){    
+    header('Location:../adbug/start.php');    
+    die();    
 }
 
 $setCfgs = devSetup::supCfgs();
 $func = "sup$act"; //print_r(devSetup::$func($tab)); //echo $func;
 
-if($act=='EditDB'){ 
-	$dbname = req('dbname'); 
-	$dbnold = req('dbnold');
-	if($dbname!==$dbnold){
-		devData::rstVals(DIR_CODE."/cfgs/boot/cfg_db.php",array('db_name'=>$dbname),0);
-	}else{
-		devRun::startDbadd($dbname);
-	}
-	header('Location:?');
+if($act=='EditDB'){    
+    $dbname = req('dbname');    
+    $dbnold = req('dbnold');
+    if($dbname!==$dbnold){
+        devData::rstVals(DIR_CODE."/cfgs/boot/cfg_db.php",array('db_name'=>$dbname),0);
+    }else{
+        devRun::startDbadd($dbname);
+    }
+    header('Location:?');
 }elseif($act=='Mark'){
-	@die(devSetup::$func($step));
+    @die(devSetup::$func($step));
 }elseif(method_exists('devSetup',$func)){
-	devSetup::$func($tab);
+    devSetup::$func($tab);
 }
 
 glbHtml::page(lang('tools.setup_title')." - ".$_cbase['sys_name'],1);

@@ -12,20 +12,24 @@ $_cbase['run']['mkv'] = req('mkv');
 $sfie = array(); $scnt = array();
 $stag = '';  $sadv = ''; 
 foreach($a as $k=>$v){
-	//$k = basStr::filKey($k,"-._@:");
-	//echo "\n<hr>$k:$v<hr>\n\n";
-	if(strstr($k,'jsid_tags_')){ 
-		$re = tagCache::jsTag($k,$_cbase['run']['mkv'],$v);
-		$stag .= "jtagRep('$k','$re');\n"; 
-	}elseif(strstr($k,'jsid_advs_')){
-		$sadv .= "jsElm.jeID('$k').innerHTML='".tagCache::showAdv($v)."';\n";
-	}elseif(strstr($k,'jsid_field_')){ 
-		$sfie[substr($k,11)] = $v;	
-	}elseif(strstr($k,'jsid_count_')){
-		$scnt[substr($k,11)] = $v;
-	}else{ // _cbase.run.mkv,_cbase.run.csname,_rnd
-		//;
-	}
+    //$k = basStr::filKey($k,"-._@:");
+    //echo "\n<hr>$k:$v<hr>\n\n";
+    if(strstr($k,'jsid_tags_')){
+        $re = tagCache::jsTag($k,$_cbase['run']['mkv'],$v);
+        $stag .= "jtagRep('$k','$re');\n";
+    }elseif(strstr($k,'jsid_advs_')){
+        $adres = tagCache::showAdv($v);
+        $sadv .= "jqHtml('$k','$adres');\n";
+        if(strpos($adres,"class=\\'advFlag")){
+            $sadv .= "jqPcpr('$k');\n";
+        }
+    }elseif(strstr($k,'jsid_field_')){
+        $sfie[substr($k,11)] = $v;
+    }elseif(strstr($k,'jsid_count_')){
+        $scnt[substr($k,11)] = $v;
+    }else{ // _cbase.run.mkv,_cbase.run.csname,_rnd
+        //;
+    }
 }
 
 $rfie = vopCell::jsFields($sfie);

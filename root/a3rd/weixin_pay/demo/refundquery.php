@@ -23,39 +23,39 @@ function printf_info($data)
 }
 
 if(isset($_REQUEST["transaction_id"]) && $_REQUEST["transaction_id"] != ""){
-	$transaction_id = $_REQUEST["transaction_id"];
-	$input = new WxPayRefundQuery();
-	$input->SetTransaction_id($transaction_id);
-	printf_info(WxPayApi::refundQuery($input));
+    $transaction_id = $_REQUEST["transaction_id"];
+    $input = new WxPayRefundQuery();
+    $input->SetTransaction_id($transaction_id);
+    printf_info(WxPayApi::refundQuery($input));
 }
 
 if(isset($_REQUEST["out_trade_no"]) && $_REQUEST["out_trade_no"] != ""){
-	$out_trade_no = $_REQUEST["out_trade_no"];
-	$input = new WxPayRefundQuery();
-	$input->SetOut_trade_no($out_trade_no);
-	printf_info(WxPayApi::refundQuery($input));
-	exit();
+    $out_trade_no = $_REQUEST["out_trade_no"];
+    $input = new WxPayRefundQuery();
+    $input->SetOut_trade_no($out_trade_no);
+    printf_info(WxPayApi::refundQuery($input));
+    exit();
 }
 
 if(isset($_REQUEST["out_refund_no"]) && $_REQUEST["out_refund_no"] != ""){
-	$out_refund_no = $_REQUEST["out_refund_no"];
-	$input = new WxPayRefundQuery();
-	$input->SetOut_refund_no($out_refund_no);
-	printf_info(WxPayApi::refundQuery($input));
-	exit();
+    $out_refund_no = $_REQUEST["out_refund_no"];
+    $input = new WxPayRefundQuery();
+    $input->SetOut_refund_no($out_refund_no);
+    printf_info(WxPayApi::refundQuery($input));
+    exit();
 }
 
 if(isset($_REQUEST["refund_id"]) && $_REQUEST["refund_id"] != ""){
-	$refund_id = $_REQUEST["refund_id"];
-	$input = new WxPayRefundQuery();
-	$input->SetRefund_id($refund_id);
-	printf_info(WxPayApi::refundQuery($input));
-	exit();
+    $refund_id = $_REQUEST["refund_id"];
+    $input = new WxPayRefundQuery();
+    $input->SetRefund_id($refund_id);
+    printf_info(WxPayApi::refundQuery($input));
+    exit();
 }
-	
+    
 ?>
 <body>  
-	<form action="#" method="post">
+    <form action="#" method="post">
         <div style="margin-left:2%;color:#f00">微信订单号、商户订单号、微信订单号、微信退款单号选填至少一个，微信退款单号优先：</div><br/>
         <div style="margin-left:2%;">微信订单号：</div><br/>
         <input type="text" style="width:96%;height:35px;margin-left:2%;" name="transaction_id" /><br /><br />
@@ -65,9 +65,9 @@ if(isset($_REQUEST["refund_id"]) && $_REQUEST["refund_id"] != ""){
         <input type="text" style="width:96%;height:35px;margin-left:2%;" name="out_refund_no" /><br /><br />
         <div style="margin-left:2%;">微信退款单号：</div><br/>
         <input type="text" style="width:96%;height:35px;margin-left:2%;" name="refund_id" /><br /><br />
-		<div align="center">
-			<input value="查询" style="width:210px; height:50px; border-radius: 15px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" onclick="callpay()" />
-		</div>
-	</form>
+        <div align="center">
+            <input value="查询" style="width:210px; height:50px; border-radius: 15px;background-color:#FE6714; border:0px #FE6714 solid; cursor: pointer;  color:white;  font-size:16px;" type="button" onclick="callpay()" />
+        </div>
+    </form>
 </body>
 </html>

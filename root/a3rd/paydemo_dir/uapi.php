@@ -47,32 +47,32 @@ $show_url = req('showurl','','Safe4');
 
 //构造要请求的参数数组，无需改动
 $parameter = array(
-		"service" => "create_direct_pay_by_user",
-		"partner" => trim($demopay_config['partner']),
-		"seller_email" => trim($demopay_config['seller_email']),
-		"payment_type"	=> $payment_type,
-		"notify_url"	=> $notify_url,
-		"return_url"	=> $return_url,
-		"out_trade_no"	=> $out_trade_no,
-		"subject"	=> $subject,
-		"total_fee"	=> $total_fee,
-		"body"	=> $body,
-		"show_url"	=> $show_url,
-		"_input_charset"	=> trim(strtolower($demopay_config['input_charset']))
+        "service" => "create_direct_pay_by_user",
+        "partner" => trim($demopay_config['partner']),
+        "seller_email" => trim($demopay_config['seller_email']),
+        "payment_type"    => $payment_type,
+        "notify_url"    => $notify_url,
+        "return_url"    => $return_url,
+        "out_trade_no"    => $out_trade_no,
+        "subject"    => $subject,
+        "total_fee"    => $total_fee,
+        "body"    => $body,
+        "show_url"    => $show_url,
+        "_input_charset"    => trim(strtolower($demopay_config['input_charset']))
 );
 
 ?>
 <form id='fmopay' name='fmopay' method="post" action="<?php echo PATH_ROOT; ?>/a3rd/paydemo_dir/payweb.php" target="_self">
 <?php 
 foreach($parameter as $k=>$v){ 
-	echo "<input name='{$k}' type='hidden' value='{$v}'>"; 
+    echo "<input name='{$k}' type='hidden' value='{$v}'>"; 
 } 
 ?>
 <p class="tc"><input name="" value="<?php lang('a3rd.uapi_confirm',0); ?>" type="submit" /></p>
 </form>
 <script>
 function opaysubmit(){
-	$('#fmopay').submit();
+    $('#fmopay').submit();
 }
 setTimeout('opaysubmit()',500);
 </script>

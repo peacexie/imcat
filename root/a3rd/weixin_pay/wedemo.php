@@ -100,7 +100,7 @@ weixin_msgget - 发送记录：atime=0<br>
 //$list = $db->table('base_model')->field('kid,title')->limit(3)->select(); if($list)foreach($list as $r){}}
 $list = $db->table('docs_cargo')->order('did DESC')->select();
 foreach($list as $row){
-	echo "<option value='cargo.{$row['did']}'>[商品]{$row['did']}:{$row['title']}</option>";
+    echo "<option value='cargo.{$row['did']}'>[商品]{$row['did']}:{$row['title']}</option>";
 }
 ?>
 </select>
@@ -109,10 +109,10 @@ foreach($list as $row){
 <option value="">---请选会员（新商家）---</option>
 <?php
 foreach(array('company'=>'公司','organize'=>'组织','govern'=>'单位') as $umod=>$title){
-	$list = $db->table("users_$umod")->order('uid DESC')->select();
-	foreach($list as $row){
-		echo "<option value='{$umod}.{$row['uid']}'>[$title]{$row['uid']}:{$row['company']}</option>";
-	}
+    $list = $db->table("users_$umod")->order('uid DESC')->select();
+    foreach($list as $row){
+        echo "<option value='{$umod}.{$row['uid']}'>[$title]{$row['uid']}:{$row['company']}</option>";
+    }
 }
 ?>
 </select>
@@ -125,98 +125,98 @@ foreach(array('company'=>'公司','organize'=>'组织','govern'=>'单位') as $u
 <script type="text/javascript">
 var ubase = '<?php echo $ubase; ?>';
 function clearQrcode(){
-	$('#scanimg').attr('src','');
+    $('#scanimg').attr('src','');
 }
 function getQrscan(obj){
-	$('#scanimg').attr('src','');
-	var kid = $(obj).val();
-	if(!kid){ alert('请选一个会员或文档！'); return; }
-	var extp = Math.random().toString(36).substr(2); 
-	extp = kid+','+extp;
-	var url = 'actys=getQrcode&qrmod=send&extp='+extp+'&datatype=js&varname=data';
-	$.getScript(ubase+url, function(){ 
-		$('#scanimg').attr('src',data.url);
-		$('#qr_sid').html('qr_sid='+data.sid);
-		$('#qr_stampys').html('qr_stampys='+data.stampys);
-		$('#qr_signys').html('qr_signys='+data.signys);
-		jsLog('getQrcode:'+extp); //调试
-	});
+    $('#scanimg').attr('src','');
+    var kid = $(obj).val();
+    if(!kid){ alert('请选一个会员或文档！'); return; }
+    var extp = Math.random().toString(36).substr(2); 
+    extp = kid+','+extp;
+    var url = 'actys=getQrcode&qrmod=send&extp='+extp+'&datatype=js&varname=data';
+    $.getScript(ubase+url, function(){ 
+        $('#scanimg').attr('src',data.url);
+        $('#qr_sid').html('qr_sid='+data.sid);
+        $('#qr_stampys').html('qr_stampys='+data.stampys);
+        $('#qr_signys').html('qr_signys='+data.signys);
+        jsLog('getQrcode:'+extp); //调试
+    });
 }
 
 function getQrcode(qrmod){
-	clearQrcode();
-	var extp = Math.random().toString(36).substr(2); 
-	if(qrmod=='mbind'){ extp = '<?php echo comConvert::sysRevert('yufish', 0, '', 600); ?>'; }
-	var url = 'actys=getQrcode&qrmod='+qrmod+'&extp='+extp+'&varname=data';
-	$.getScript(ubase+url, function(){
-		$('#scanimg').attr('src',data.url);
-		$('#qr_sid').html('qr_sid='+data.sid);
-		$('#qr_stampys').html('qr_stampys='+data.stampys);
-		$('#qr_signys').html('qr_signys='+data.signys);
-		if(qrmod=='login'){
-			checkLogin(data.sid,extp,data.stampys,data.signys);
-		}else if(qrmod=='mbind'){
-			extp = 'yufish'; 
-			//checkMbind(data.sid,extp,data.stampys,data.signys);
-		}else if(qrmod=='getpw'){
-			extp = ''; 
-		}else if(qrmod=='upload'){
-			//$('#pic_res').html('检测图片中…');
-			checkUpload(data.sid,extp,data.stampys,data.signys);
-		}
-		jsLog('getQrcode:'+extp); //调试
-	});
+    clearQrcode();
+    var extp = Math.random().toString(36).substr(2); 
+    if(qrmod=='mbind'){ extp = '<?php echo comConvert::sysRevert('yufish', 0, '', 600); ?>'; }
+    var url = 'actys=getQrcode&qrmod='+qrmod+'&extp='+extp+'&varname=data';
+    $.getScript(ubase+url, function(){
+        $('#scanimg').attr('src',data.url);
+        $('#qr_sid').html('qr_sid='+data.sid);
+        $('#qr_stampys').html('qr_stampys='+data.stampys);
+        $('#qr_signys').html('qr_signys='+data.signys);
+        if(qrmod=='login'){
+            checkLogin(data.sid,extp,data.stampys,data.signys);
+        }else if(qrmod=='mbind'){
+            extp = 'yufish'; 
+            //checkMbind(data.sid,extp,data.stampys,data.signys);
+        }else if(qrmod=='getpw'){
+            extp = ''; 
+        }else if(qrmod=='upload'){
+            //$('#pic_res').html('检测图片中…');
+            checkUpload(data.sid,extp,data.stampys,data.signys);
+        }
+        jsLog('getQrcode:'+extp); //调试
+    });
 }
 
 function checkLogin(sid,extp,stampys,signys){
-	var url = 'actys=chkLogin&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
-	$.getScript(ubase+url, function(){
-		jsLog(data);
-		if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
+    var url = 'actys=chkLogin&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
+    $.getScript(ubase+url, function(){
+        jsLog(data);
+        if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
             alert('服务器返回格式错误。');
-			return '';
+            return '';
         //}else if(data.user_info.mid=="-1"){
-			//$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
-			//return '';
+            //$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
+            //return '';
         }else if(data.uname){
-			$('#msg_res').html("登录成功！<br>mname="+data.uname+"");
-			return '';
+            $('#msg_res').html("登录成功！<br>mname="+data.uname+"");
+            return '';
         } 
-		setTimeout("checkLogin('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
-	});	
+        setTimeout("checkLogin('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
+    });    
 }
 
 var pstr = ','; //用这个判断，已经显示了的，就不再显示
 function checkUpload(sid,extp,stampys,signys){ //xxx
-	var url = 'actys=chkUpload&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
-	$.getScript(ubase+url, function(){
-		//jsLog(data);
-		if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
+    var url = 'actys=chkUpload&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
+    $.getScript(ubase+url, function(){
+        //jsLog(data);
+        if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
             alert('服务器返回格式错误。');
-			return '';
+            return '';
         }else if(data.error=='noScan'){
-			$('#pic_res').html('['+data.error+']'+data.error);
-			//不能return
-		}else if(data.error){
-			$('#pic_res').html(data.error);
-			return '';
+            $('#pic_res').html('['+data.error+']'+data.error);
+            //不能return
+        }else if(data.error){
+            $('#pic_res').html(data.error);
+            return '';
         }else if(data.res){
-			var nstr = ''; 
-			for (var i = 0; i < data.res.length; i++) { 
-				var medid = data.res[i].media_id; 
-				var imgmid = ubase+'actys=loadFile&mediaid='+medid+'&kid=<?php echo $kid; ?>'; 
-				var imgurl = data.res[i].detail; //jsLog(imgurl.indexOf('weixin.qq'));
-				var img = imgurl.indexOf('mmbiz.qpic')>0 ? imgmid : imgurl;
-				if(pstr.indexOf(medid)<=0){
-					nstr += '<a href="'+img+'"><img src="'+img+'" height="60"></a>';
-					pstr += medid+','; 
-				}
-				//jsLog(data.res[i].detail);
-			};
-			nstr && $('#pic_res').append(nstr);
+            var nstr = ''; 
+            for (var i = 0; i < data.res.length; i++) { 
+                var medid = data.res[i].media_id; 
+                var imgmid = ubase+'actys=loadFile&mediaid='+medid+'&kid=<?php echo $kid; ?>'; 
+                var imgurl = data.res[i].detail; //jsLog(imgurl.indexOf('weixin.qq'));
+                var img = imgurl.indexOf('mmbiz.qpic')>0 ? imgmid : imgurl;
+                if(pstr.indexOf(medid)<=0){
+                    nstr += '<a href="'+img+'"><img src="'+img+'" height="60"></a>';
+                    pstr += medid+','; 
+                }
+                //jsLog(data.res[i].detail);
+            };
+            nstr && $('#pic_res').append(nstr);
         } 
-		setTimeout("checkUpload('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
-	});	
+        setTimeout("checkUpload('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
+    });    
 }
 
 </script>

@@ -24,9 +24,9 @@ div.out{ width:480px; margin:auto; }
 $ptabs = exvOpay::getCfgs();
 $stabs = " # \n"; $i=0;
 foreach($ptabs as $k=>$v){
-	if($i && !($i%3)) $stabs .= " <br># \n";
-	$stabs .= "<a href='?paymode=$k'>$v[method]</a> # \n";
-	$i++;
+    if($i && !($i%3)) $stabs .= " <br># \n";
+    $stabs .= "<a href='?paymode=$k'>$v[method]</a> # \n";
+    $i++;
 }
 
 $_cbase['tpl']['tpl_dir'] = 'chn';

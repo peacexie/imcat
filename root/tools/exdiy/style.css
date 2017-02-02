@@ -20,3 +20,8 @@ input, select { padding: 2px; }
 .notice { font-size:small; color:#F00; background:#FF9; display:block; padding:5px; }
 input.url { width:420px; }
 
+.langbar { max-width: 620px; text-align:center; margin: 10px auto; padding:5px; border-bottom: 1px dashed #999; }
+.langbar a { padding-right:5px; }
+.langbar a:before { content:""; }
+
+.w120 { width:120px; }

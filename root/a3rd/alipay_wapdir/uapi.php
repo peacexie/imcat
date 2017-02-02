@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>支付宝即时到账交易接口接口</title>
+    <meta charset="utf-8">
+    <title>支付宝即时到账交易接口接口</title>
     <style type="text/css">.tc { text-align:center; }</style>
 </head>
 <?php
@@ -11,7 +11,7 @@ require_once(dirname(__FILE__)."/alipay.config.php");
 require_once(LIBS_PAYRUN."/alipay_smob.class.php");
 
 /**************************调用授权接口alipay.wap.trade.create.direct获取授权码token**************************/
-	
+    
 //返回格式
 $format = "xml";
 //必填，不需要修改
@@ -58,14 +58,14 @@ $req_data = '<direct_trade_create_req><notify_url>' . $notify_url . '</notify_ur
 
 //构造要请求的参数数组，无需改动
 $para_token = array(
-		"service" => "alipay.wap.trade.create.direct",
-		"partner" => trim($alipay_config['partner']),
-		"sec_id" => trim($alipay_config['sign_type']),
-		"format"	=> $format,
-		"v"	=> $v,
-		"req_id"	=> $req_id,
-		"req_data"	=> $req_data,
-		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+        "service" => "alipay.wap.trade.create.direct",
+        "partner" => trim($alipay_config['partner']),
+        "sec_id" => trim($alipay_config['sign_type']),
+        "format"    => $format,
+        "v"    => $v,
+        "req_id"    => $req_id,
+        "req_data"    => $req_data,
+        "_input_charset"    => trim(strtolower($alipay_config['input_charset']))
 );
 
 //建立请求
@@ -89,14 +89,14 @@ $req_data = '<auth_and_execute_req><request_token>' . $request_token . '</reques
 
 //构造要请求的参数数组，无需改动
 $parameter = array(
-		"service" => "alipay.wap.auth.authAndExecute",
-		"partner" => trim($alipay_config['partner']),
-		"sec_id" => trim($alipay_config['sign_type']),
-		"format"	=> $format,
-		"v"	=> $v,
-		"req_id"	=> $req_id,
-		"req_data"	=> $req_data,
-		"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+        "service" => "alipay.wap.auth.authAndExecute",
+        "partner" => trim($alipay_config['partner']),
+        "sec_id" => trim($alipay_config['sign_type']),
+        "format"    => $format,
+        "v"    => $v,
+        "req_id"    => $req_id,
+        "req_data"    => $req_data,
+        "_input_charset"    => trim(strtolower($alipay_config['input_charset']))
 );
 
 //建立请求

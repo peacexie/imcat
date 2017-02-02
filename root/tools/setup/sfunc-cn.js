@@ -16,8 +16,8 @@ Lang.setup = {
     'error' : '错误',
     'done' : '已处理:',
     'start' : '-开始-',
-    'impres' : '表{val}导入结果: ',
-    'result' : '处理结果: ',
+    'impres' : '表{val}导入结果:    ',
+    'result' : '处理结果:    ',
 
     'xx' : 'xx'
 

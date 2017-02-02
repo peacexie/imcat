@@ -4,83 +4,83 @@
 <div>
 <?php 
 if($act=='reform'){ 
-    $pdef = str_replace("\\","/",DIR_PROJ).'/@down';
-    $msg = lang('tools.upl_setdir').": eg: <br>{$pdef}<br>or: E:/down/txmao, /home/txmao etc."; 
+  $pdef = str_replace("\\","/",DIR_PROJ).'/@down';
+  $msg = lang('tools.upl_setdir').": eg: <br>{$pdef}<br>or: E:/down/txmao, /home/txmao etc."; 
 ?>
 <p>{lang(tools.upl_upinit)}</p>
 <table width="100%" border="1" class="tblist">
-    <tr class="tc">
-        <td>{lang(tools.upl_updir)}<br>
-            <a href="?">-&gt;{lang(tools.upl_refresh)}&lt;-</a></td>
-        <td class="msg"><input name="path" type="text" id="path" class="w320" value="<?php echo $pdef; ?>" tip='' />
-            <input name="act" type="hidden" id="act" value="reset" />
-            <br />
-            {lang(tools.upl_tipin)}</td>
-        <td class="tc"><input type="submit" name="cfgrst" id="cfgrst" value="{lang(tools.upl_init)}" class="btn" /></td>
-    </tr>
+  <tr class="tc">
+    <td>{lang(tools.upl_updir)}<br>
+      <a href="?">-&gt;{lang(tools.upl_refresh)}&lt;-</a></td>
+    <td class="msg"><input name="path" type="text" id="path" class="w320" value="<?php echo $pdef; ?>" tip='' />
+      <input name="act" type="hidden" id="act" value="reset" />
+      <br />
+      {lang(tools.upl_tipin)}</td>
+    <td class="tc"><input type="submit" name="cfgrst" id="cfgrst" value="{lang(tools.upl_init)}" class="btn" /></td>
+  </tr>
 </table>
 <?php }elseif($act=='upmain'){ ?>
 <p>[V{$upc['vold']}] -&gt; [V{$upc['vnew']}] - {lang(tools.upl_steps)}</p>
 <table width="100%" border="1" class="tblist">
-    <tr class="step1">
-        <td>[0]{lang(tools.upl_read)}</td>
-        <td class="msg">
-        {lang(tools.upi_orview)}[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">{lang(tools.upl_rdlay)}</a>]
-        <?php echo $pp['comp']; ?></td>
-        <td class="tc"><a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">-&gt;{lang(tools.upl_view)}</a></td>
-    </tr>
-    <tr id="step1">
-        <td>[1]{lang(tools.upl_upcode)}</td>
-        <td class="msg"><input name="code_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="code_init" />
-            -
-            <input name="code_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="code_add" />
-            -
-            <input name="code_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="code_edit" />
-            -
-            <input name="code_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="code_comp" />
-            <!---
-            <input name="code_tpls" type="button" value="{lang(tools.upl_dltpls)}" class="btn" onclick="upTip(this);" id="code_tpls" /></td-->
-        <td class="tc">&nbsp;</td>
-    </tr>
-    <tr id="step2">
-        <td>[2]{lang(tools.upl_uproot)}</td>
-        <td class="msg"><input name="root_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="root_init" />
-            -
-            <input name="root_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="root_add" />
-            -
-            <input name="root_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="root_edit" />
-            -
-            <input name="root_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="root_comp" />
-            <!---
-            <input name="root_skin" type="button" value="{lang(tools.upl_dlskin)}" class="btn" onclick="upTip(this);" id="root_skin" /></td-->
-        <td class="tc">&nbsp;</td>
-    </tr>
-    <tr id="step3">
-        <td>[3]{lang(tools.upl_upelse)}</td>
-        <td class="msg"><input name="dir_dtmp" type="button" value="{lang(tools.upl_adddtmp)}" class="btn" onclick="upDir(this);" id="dir_dtmp" />
-            <input name="dir_vimp3" type="button" value="{lang(tools.upl_dl3var)}" class="btn" onclick="upTip(this);" id="dir_vimp3" /></td>
-        <td class="tc">&nbsp;</td>
-    </tr>
-    <tr id="step4">
-        <td>[4]{lang(tools.upl_upddb)}</td>
-        <td class="msg"><input name="db_init" type="button" value="{lang(tools.upl_backup)}" class="btn" onclick="upTip(this);" id="db_init" />
-            -
-            <input name="db_table" type="button" value="{lang(tools.upl_addtab)}" class="btn" onclick="upDir(this);" id="db_table" />
-            -
-            <input name="db_fadd" type="button" value="{lang(tools.upl_addfield)}" class="btn" onclick="upDir(this);" id="db_fadd" />
-            -
-            <input name="db_fcomp" type="button" value="{lang(tools.upl_editfield)}" class="btn" onclick="upDir(this);" id="db_fcomp" />
-            -
-            <input name="db_data" type="button" value="{lang(tools.upl_config)}" class="btn" onclick="upTip(this);" id="db_data" /></td>
-        <td class="tc">&nbsp;</td>
-    </tr>
-    <tr id="step5">
-        <td>[5]{lang(tools.upl_endupd)}</td>
-        <td class="msg"><input name="end_ver" type="button" value="{lang(tools.upl_updver)}" class="btn" onclick="upDir(this);" id="end_ver" />
-            -
-            <input name="end_flag" type="button" value="{lang(tools.upl_endlock)}" class="btn" onclick="upDir(this);" id="end_flag" /></td>
-        <td class="tc"><a href="?">-&gt;{lang(tools.upl_refresh)}</a></td>
-    </tr>
+  <tr class="step1">
+    <td>[0]{lang(tools.upl_read)}</td>
+    <td class="msg">
+    {lang(tools.upi_orview)}[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">{lang(tools.upl_rdlay)}</a>]
+    <?php echo $pp['comp']; ?></td>
+    <td class="tc"><a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog" target="_blank">-&gt;{lang(tools.upl_view)}</a></td>
+  </tr>
+  <tr id="step1">
+    <td>[1]{lang(tools.upl_upcode)}</td>
+    <td class="msg"><input name="code_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="code_init" />
+      -
+      <input name="code_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="code_add" />
+      -
+      <input name="code_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="code_edit" />
+      -
+      <input name="code_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="code_comp" />
+      <!---
+      <input name="code_tpls" type="button" value="{lang(tools.upl_dltpls)}" class="btn" onclick="upTip(this);" id="code_tpls" /></td-->
+    <td class="tc">&nbsp;</td>
+  </tr>
+  <tr id="step2">
+    <td>[2]{lang(tools.upl_uproot)}</td>
+    <td class="msg"><input name="root_init" type="button" value="{lang(tools.upl_init)}" class="btn" onclick="upDir(this);" id="root_init" />
+      -
+      <input name="root_add" type="button" value="{lang(tools.upl_addfile)}" class="btn" onclick="upDir(this);" id="root_add" />
+      -
+      <input name="root_edit" type="button" value="{lang(tools.upl_editfile)}" class="btn" onclick="upDir(this);" id="root_edit" />
+      -
+      <input name="root_comp" type="button" value="{lang(tools.upl_cmpfile)}" class="btn" onclick="upDir(this);" id="root_comp" />
+      <!---
+      <input name="root_skin" type="button" value="{lang(tools.upl_dlskin)}" class="btn" onclick="upTip(this);" id="root_skin" /></td-->
+    <td class="tc">&nbsp;</td>
+  </tr>
+  <tr id="step3">
+    <td>[3]{lang(tools.upl_upelse)}</td>
+    <td class="msg"><input name="dir_dtmp" type="button" value="{lang(tools.upl_adddtmp)}" class="btn" onclick="upDir(this);" id="dir_dtmp" />
+      <input name="dir_vimp3" type="button" value="{lang(tools.upl_dl3var)}" class="btn" onclick="upTip(this);" id="dir_vimp3" /></td>
+    <td class="tc">&nbsp;</td>
+  </tr>
+  <tr id="step4">
+    <td>[4]{lang(tools.upl_upddb)}</td>
+    <td class="msg"><input name="db_init" type="button" value="{lang(tools.upl_backup)}" class="btn" onclick="upTip(this);" id="db_init" />
+      -
+      <input name="db_table" type="button" value="{lang(tools.upl_addtab)}" class="btn" onclick="upDir(this);" id="db_table" />
+      -
+      <input name="db_fadd" type="button" value="{lang(tools.upl_addfield)}" class="btn" onclick="upDir(this);" id="db_fadd" />
+      -
+      <input name="db_fcomp" type="button" value="{lang(tools.upl_editfield)}" class="btn" onclick="upDir(this);" id="db_fcomp" />
+      -
+      <input name="db_data" type="button" value="{lang(tools.upl_config)}" class="btn" onclick="upTip(this);" id="db_data" /></td>
+    <td class="tc">&nbsp;</td>
+  </tr>
+  <tr id="step5">
+    <td>[5]{lang(tools.upl_endupd)}</td>
+    <td class="msg"><input name="end_ver" type="button" value="{lang(tools.upl_updver)}" class="btn" onclick="upDir(this);" id="end_ver" />
+      -
+      <input name="end_flag" type="button" value="{lang(tools.upl_endlock)}" class="btn" onclick="upDir(this);" id="end_flag" /></td>
+    <td class="tc"><a href="?">-&gt;{lang(tools.upl_refresh)}</a></td>
+  </tr>
 </table>
 <?php } ?>
 </div>
@@ -89,28 +89,28 @@ if($act=='reform'){
 <div>
 <p>{lang(tools.upl_tipres)}</p>
 <table width="100%" border="1" class="tblist">
-    <tr>
-        <td><div style="width:96%; min-height:120px; overflow-y:scroll;" id="reinfo"><?php echo "$msg<hr>$res"; ?></div></td>
-    </tr>
+  <tr>
+    <td><div style="width:96%; min-height:120px; overflow-y:scroll;" id="reinfo"><?php echo "$msg<hr>$res"; ?></div></td>
+  </tr>
 </table>
 </div>
 
 <div id="alltips">
-    <!--
-    <div id="tips_code_tpls"> {lang(tools.upl_mdxdir,/skin/)}
-        &gt; <a href='?step=code_tpls'>{lang(tools.upl_cfmdok)}</a><br>
-        [{lang(tools.upl_tips)}] {lang(tools.upl_tptpl)} </div>
-    <div id="tips_root_skin"> {lang(tools.upl_mdxdir,/root/skin/)}
-        &gt; <a href='?step=root_skin'>{lang(tools.upl_cfmdok)}</a><br>
-        [{lang(tools.upl_tips)}] {lang(tools.upl_tpskn)} </div>
-    -->
-    <div id="tips_dir_vimp3"> {lang(tools.upl_mdxdir,/vimp/[static|vendor|endui]/)} 
-        &gt; <a href='?step=dir_vimp3'>{lang(tools.upl_cfmdok)}</a> <br>
-        [{lang(tools.upl_tips)}] {lang(tools.upl_tpcfg)}</div>
-    <div id="tips_db_init"> {lang(tools.upl_mdback)}: 
-        &gt; <a href='?step=db_init'>{lang(tools.upl_cfmdok)}</a> </div>
-    <div id="tips_db_data"> {lang(tools.upl_docfg)}: 
-        &gt; <a href='?act=cmpdata'>{lang(tools.upl_stcfg)}</a> </div>
+  <!--
+  <div id="tips_code_tpls"> {lang(tools.upl_mdxdir,/skin/)}
+    &gt; <a href='?step=code_tpls'>{lang(tools.upl_cfmdok)}</a><br>
+    [{lang(tools.upl_tips)}] {lang(tools.upl_tptpl)} </div>
+  <div id="tips_root_skin"> {lang(tools.upl_mdxdir,/root/skin/)}
+    &gt; <a href='?step=root_skin'>{lang(tools.upl_cfmdok)}</a><br>
+    [{lang(tools.upl_tips)}] {lang(tools.upl_tpskn)} </div>
+  -->
+  <div id="tips_dir_vimp3"> {lang(tools.upl_mdxdir,/vimp/[static|vendor|endui]/)} 
+    &gt; <a href='?step=dir_vimp3'>{lang(tools.upl_cfmdok)}</a> <br>
+    [{lang(tools.upl_tips)}] {lang(tools.upl_tpcfg)}</div>
+  <div id="tips_db_init"> {lang(tools.upl_mdback)}: 
+    &gt; <a href='?step=db_init'>{lang(tools.upl_cfmdok)}</a> </div>
+  <div id="tips_db_data"> {lang(tools.upl_docfg)}: 
+    &gt; <a href='?act=cmpdata'>{lang(tools.upl_stcfg)}</a> </div>
 </div>
 
 <script>

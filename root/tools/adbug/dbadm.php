@@ -1,5 +1,5 @@
-<?php 
-$_cbase['run']['outer'] = 1; 
-require(dirname(__FILE__).'/_config.php'); 
+<?php    
+$_cbase['run']['outer'] = 1;    
+require(dirname(__FILE__).'/_config.php');    
 
 require(DIR_STATIC.'/ximp/files/adminer.imp_php');

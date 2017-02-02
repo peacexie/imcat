@@ -4,8 +4,9 @@ $_cbase['ucfg']['lang'] = '(auto)';
 require(dirname(dirname(dirname(__FILE__))).'/run/_init.php'); 
 
 $urls = array(
-	'baidu' => 'http://api.map.baidu.com/api?v=1.4',
-	'google' => 'http://www.google.cn/maps/api/js?sensor=false',
+    'baidu' => 'http://api.map.baidu.com/api?v=1.4',
+    'google' => 'http://www.google.cn/maps/api/js?sensor=false',
+    //http://ditu.google.cn/maps/api/js?key=AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g&sensor=false&v=3.5
 );
 $api = req('api','baidu');
 

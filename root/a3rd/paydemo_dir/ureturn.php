@@ -4,28 +4,28 @@ require_once(dirname(__FILE__)."/config.php");
 //计算得出通知验证结果
 $verify_result = dmdoCheck();
 if($verify_result) {//验证成功
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//请在这里加上商户的业务逻辑程序代码
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //请在这里加上商户的业务逻辑程序代码
 
-	//商户订单号
-	$out_trade_no = req('out_trade_no');
+    //商户订单号
+    $out_trade_no = req('out_trade_no');
 
-	//演示交易号
-	$trade_no = req('trade_no');
+    //演示交易号
+    $trade_no = req('trade_no');
 
-	//交易状态
-	$trade_status = req('trade_status');
+    //交易状态
+    $trade_status = req('trade_status');
 
     if($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
-		//判断该笔订单是否在商户网站中已经做过处理
+        //判断该笔订单是否在商户网站中已经做过处理
     }else{
-   		//echo "trade_status=".req('trade_status');
+           //echo "trade_status=".req('trade_status');
     }
-		
-	$msg = lang('a3rd.ureturn_ok');
+        
+    $msg = lang('a3rd.ureturn_ok');
 
-	//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——	
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 else {
     //验证失败
@@ -34,13 +34,13 @@ else {
 }
 
 $cfg = array(
-	'ordid'=>'out_trade_no',
-	'feeamount'=>'total_fee',
-	'apino'=>'trade_no',
-	'status'=>'trade_status',
+    'ordid'=>'out_trade_no',
+    'feeamount'=>'total_fee',
+    'apino'=>'trade_no',
+    'status'=>'trade_status',
 );
 foreach($cfg as $k1=>$k2){ 
-	$res[$k1] = req($k2);  
+    $res[$k1] = req($k2);  
 }
 $res['msg'] = $msg;
 $res['api'] = 'Demopay';

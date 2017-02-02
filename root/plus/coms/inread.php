@@ -23,26 +23,26 @@ $pwhr = "pid='$pid' AND auser='$uname'";
 
 $fmc = $db->table($tbid)->where($pwhr)->find(); 
 if($fmc){
-	if($_cbase['run']['stamp']-$fmc['etime']<$gap*60) die();
-	$data = array(
-		'eip' => $_cbase['run']['userip'],
-		'etime' => $_cbase['run']['stamp'],
-		'euser' => $uname,
-		'readcnt' => $fmc['readcnt']+1,
-	);
-	$db->table($tbid)->data($data)->where($pwhr)->update(); 
+    if($_cbase['run']['stamp']-$fmc['etime']<$gap*60) die();
+    $data = array(
+        'eip' => $_cbase['run']['userip'],
+        'etime' => $_cbase['run']['stamp'],
+        'euser' => $uname,
+        'readcnt' => $fmc['readcnt']+1,
+    );
+    $db->table($tbid)->data($data)->where($pwhr)->update(); 
 }else{
-	$kar = glbDBExt::dbAutID($tbid,'yyyy-md-','31');
-	$data = array(
-		'aip' => $_cbase['run']['userip'],
-		'atime' => $_cbase['run']['stamp'],
-		'auser' => $uname,
-		'cid' => $kar[0],
-		'cno' => $kar[1],
-		'show'=> '1',
-		'pid' => $pid,
-		'readcnt' => '1',
-	);	
-	$db->table($tbid)->data($data)->insert(); 
+    $kar = glbDBExt::dbAutID($tbid,'yyyy-md-','31');
+    $data = array(
+        'aip' => $_cbase['run']['userip'],
+        'atime' => $_cbase['run']['stamp'],
+        'auser' => $uname,
+        'cid' => $kar[0],
+        'cno' => $kar[1],
+        'show'=> '1',
+        'pid' => $pid,
+        'readcnt' => '1',
+    );    
+    $db->table($tbid)->data($data)->insert(); 
 }
 

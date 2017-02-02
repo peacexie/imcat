@@ -28,16 +28,16 @@ $reqHandler->setAppid($appid);
 $reqHandler->setParameter("out_trade_no", $out_trade_no);           
 
 // 设置订单总金额，单位为分
-$reqHandler->setParameter("total_fee", req('total_fee'));					
+$reqHandler->setParameter("total_fee", req('total_fee'));                    
 
 // 设置通知url：接收财付通后台通知的URL，用户在财付通完成支付后，财付通会回调此URL，向财付通APP反馈支付结果。
 // 此URL可能会被多次回调，请正确处理，避免业务逻辑被多次触发。需给绝对路径，例如：http://wap.isv.com/notify.asp
-$reqHandler->setParameter("notify_url", $notify_url);				
+$reqHandler->setParameter("notify_url", $notify_url);                
 
 // 设置返回url：用户完成支付后跳转的URL，财付通APP应在此页面上给出提示信息，引导用户完成支付后的操作。
 // 财付通APP不应在此页面内做发货等业务操作，避免用户反复刷新页面导致多次触发业务逻辑造成不必要的损失。
 // 需给绝对路径，例如：http://wap.isv.com/after_pay.asp，通过该路径直接将支付结果以Get的方式返回
-$reqHandler->setParameter("return_url", $return_url);				
+$reqHandler->setParameter("return_url", $return_url);                
 
 // 设置商品名称:商品描述，会显示在财付通支付页面上
 $reqHandler->setParameter("body", req('subject')); //req('subject')           

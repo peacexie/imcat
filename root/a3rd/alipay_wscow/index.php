@@ -9,16 +9,16 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-	<head>
-	<title>支付宝纯担保交易接口接口</title>
-	<meta charset="utf-8">
+    <head>
+    <title>支付宝纯担保交易接口接口</title>
+    <meta charset="utf-8">
 <style>
 *{
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 ul,ol{
-	list-style:none;
+    list-style:none;
 }
 .title{
     color: #ADADAD;
@@ -27,83 +27,83 @@ ul,ol{
     padding: 8px 16px 5px 10px;
 }
 .hidden{
-	display:none;
+    display:none;
 }
 
 .new-btn-login-sp{
-	border:1px solid #D74C00;
-	padding:1px;
-	display:inline-block;
+    border:1px solid #D74C00;
+    padding:1px;
+    display:inline-block;
 }
 
 .new-btn-login{
     background-color: #ff8c00;
-	color: #FFFFFF;
+    color: #FFFFFF;
     font-weight: bold;
-	border: medium none;
-	width:82px;
-	height:28px;
+    border: medium none;
+    width:82px;
+    height:28px;
 }
 .new-btn-login:hover{
     background-color: #ffa300;
-	width: 82px;
-	color: #FFFFFF;
+    width: 82px;
+    color: #FFFFFF;
     font-weight: bold;
     height: 28px;
 }
 .bank-list{
-	overflow:hidden;
-	margin-top:5px;
+    overflow:hidden;
+    margin-top:5px;
 }
 .bank-list li{
-	float:left;
-	width:153px;
-	margin-bottom:5px;
+    float:left;
+    width:153px;
+    margin-bottom:5px;
 }
 
 #main{
-	width:750px;
-	margin:0 auto;
-	font-size:14px;
-	font-family:'宋体';
+    width:750px;
+    margin:0 auto;
+    font-size:14px;
+    font-family:'宋体';
 }
 #logo{
-	background-color: transparent;
+    background-color: transparent;
     background-image: url("images/new-btn-fixed.png");
     border: medium none;
-	background-position:0 0;
-	width:166px;
-	height:35px;
+    background-position:0 0;
+    width:166px;
+    height:35px;
     float:left;
 }
 .red-star{
-	color:#f00;
-	width:10px;
-	display:inline-block;
+    color:#f00;
+    width:10px;
+    display:inline-block;
 }
 .null-star{
-	color:#fff;
+    color:#fff;
 }
 .content{
-	margin-top:5px;
+    margin-top:5px;
 }
 
 .content dt{
-	width:160px;
-	display:inline-block;
-	text-align:right;
-	float:left;
-	
+    width:160px;
+    display:inline-block;
+    text-align:right;
+    float:left;
+    
 }
 .content dd{
-	margin-left:100px;
-	margin-bottom:5px;
+    margin-left:100px;
+    margin-bottom:5px;
 }
 #foot{
-	margin-top:10px;
+    margin-top:10px;
 }
 .foot-ul li {
-	text-align:center;
+    text-align:center;
 }
 .note-help {
     color: #999999;
@@ -143,20 +143,20 @@ ul,ol{
 </style>
 </head>
 <body text=#000000 bgColor=#ffffff leftMargin=0 topMargin=4>
-	<div id="main">
-		<div id="head">
+    <div id="main">
+        <div id="head">
             <dl class="alipay_link">
                 <a target="_blank" href="http://www.alipay.com/"><span>支付宝首页</span></a>|
                 <a target="_blank" href="https://b.alipay.com/home.htm"><span>商家服务</span></a>|
                 <a target="_blank" href="http://help.alipay.com/support/index_sh.htm"><span>帮助中心</span></a>
             </dl>
             <span class="title">支付宝纯担保交易接口快速通道</span>
-		</div>
+        </div>
         <div class="cashier-nav">
             <ol>
-				<li class="current">1、确认信息 →</li>
-				<li>2、点击确认 →</li>
-				<li class="last">3、确认完成</li>
+                <li class="current">1、确认信息 →</li>
+                <li>2、点击确认 →</li>
+                <li class="last">3、确认完成</li>
             </ol>
         </div>
         <form name=alipayment action=uapi.php method=post target="_blank">
@@ -231,7 +231,7 @@ ul,ol{
                         <input name="receive_mobile" value="13012345678" size="30" />
                         <span>如：13312341234</span>
                     </dd>
-					<dt></dt>
+                    <dt></dt>
                     <dd>
                         <span class="new-btn-login-sp">
                             <button class="new-btn-login" type="submit" style="text-align:center;">确 认</button>
@@ -239,15 +239,15 @@ ul,ol{
                     </dd>
                 </dl>
             </div>
-		</form>
+        </form>
         <div id="foot">
-			<ul class="foot-ul">
-				<li><font class="note-help">如果您点击“确认”按钮，即表示您同意该次的执行操作。 </font></li>
-				<li>
-					支付宝版权所有 2011-2015 ALIPAY.COM 
-				</li>
-			</ul>
-		</div>
-	</div>
+            <ul class="foot-ul">
+                <li><font class="note-help">如果您点击“确认”按钮，即表示您同意该次的执行操作。 </font></li>
+                <li>
+                    支付宝版权所有 2011-2015 ALIPAY.COM 
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
