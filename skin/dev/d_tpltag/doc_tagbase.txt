@@ -59,8 +59,8 @@ demo:
     <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
     <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
 -=>结果
-	<span style='color:#F00'>灰色</span>
-	<span style='color:#F0F'>黑色</span> </b></p>
+    <span style='color:#F00'>灰色</span>
+    <span style='color:#F0F'>黑色</span> </b></p>
     <p><i>外观颜色:</i><b>白色,灰色,黑色 </b></p>
     <p><i>外观颜色:</i><b>白色|灰色|黑色 </b></p>
     <p><i>外观颜色:</i><b><span class='itm-bai'>白色</span><span class='itm-hui'>灰色</span><span class='itm-hei'>黑色</span> </b></p>
@@ -150,7 +150,7 @@ demo:
 
 * 暂无
 ```
-// {stime($re4['atime']);}	             =>  [?php echo vopCell::cTime($re4['atime']);;?]
+// {stime($re4['atime']);}                 =>  [?php echo vopCell::cTime($re4['atime']);;?]
 // {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
 // {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
 // {sopt(c0769+c0735,china)}

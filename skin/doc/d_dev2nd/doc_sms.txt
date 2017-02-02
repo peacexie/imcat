@@ -30,16 +30,16 @@ $sms = new extSms();
 
 * 发送函数：$sms->sendSMS($mobiles,$content,$type='scom')
     $sms->sendSMS($mobiles,$content); //默认,普通会员发送,检测会员余额;
-	$sms->sendSMS($mobiles,$content,'sadm'); //管理员后台发送,(不检测余额);
-	$sms->sendSMS($mobiles,$content,'ctel'); //手机认证(不检测登陆,自行设置权限,每次一个号码,内容70字以内);
-	$sms->sendSMS($mobiles,$content,'1234'); //peace=会员id,以$uid的用户发送并扣余额,(!!!)调用发送的地方请控制好权限,否则,会扣完$uid的余额
+    $sms->sendSMS($mobiles,$content,'sadm'); //管理员后台发送,(不检测余额);
+    $sms->sendSMS($mobiles,$content,'ctel'); //手机认证(不检测登陆,自行设置权限,每次一个号码,内容70字以内);
+    $sms->sendSMS($mobiles,$content,'1234'); //peace=会员id,以$uid的用户发送并扣余额,(!!!)调用发送的地方请控制好权限,否则,会扣完$uid的余额
 * 参数说明：
     mobiles: 手机号码,array/string(英文逗号分开)
     content: 255个字符以内
     type: 发送方式 
 * 返回：array($flag,$msg);
     $flag: 标记, 1为成功；
-	$msg: 提示信息
+    $msg: 提示信息
 ```
 
 #file#文件目录和接口 说明 

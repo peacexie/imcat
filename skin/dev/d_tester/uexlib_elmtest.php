@@ -39,7 +39,7 @@ $arr = basElm::getAttr($data,'href','url'); echo "\n\n<hr>getArr-urls:\n"; print
 扩展操作：获取网址内容[url:fatch]，获取远程图片[save:image]
 
 
-内容来源页面 	
+内容来源页面     
 字段内容采集模印
 
 清除Html
@@ -53,16 +53,16 @@ exd_psyn : fskip
 fskip 从字段配置中剔除的字段
 fdefs 内置字段或配置字段
 
-orgtag1	varchar(255) []	 
-orgtag2	varchar(255) []	 
-orgtag3	varchar(255) []	 
+orgtag1    varchar(255) []     
+orgtag2    varchar(255) []     
+orgtag3    varchar(255) []     
 
-dealfmts	varchar(255) []	 note,blank,html,strtotime,
+dealfmts    varchar(255) []     note,blank,html,strtotime,
 dealtabs    varchar(255)     替换来源内容=空
-dealconv	varchar(24) []	 a=b
-dealfunc	varchar(48) []	 结果处理函数 
-defval	varchar(255) []	 
-defover	tinyint(4) [0]	
+dealconv    varchar(24) []     a=b
+dealfunc    varchar(48) []     结果处理函数 
+defval    varchar(255) []     
+defover    tinyint(4) [0]    
 
 http://127.0.0.1/08tools/yssina/1/root/run/dev.php?mkv=tester-frame&code=uexlib_elmtest
 view-source:http://127.0.0.1/08tools/yssina/1/root/run/dev.php?mkv=info-coder&tpls=d_tester/ubasic_baselm.php

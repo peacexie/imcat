@@ -16,8 +16,8 @@ $timer = (microtime(1)-$timer)*1000;
 //$ipObj = new extIPAddr($api);
 //$pclass = DIR_CODE.'/core/uext/exaCSeal.php';
 if(strstr($act,'down')){
-	$path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
-	comHttp::downLoad($path, basename($path)); 
+    $path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
+    comHttp::downLoad($path, basename($path)); 
 }
 ?>{/block:extop}
 

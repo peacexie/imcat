@@ -41,61 +41,61 @@ var N = 5, M = N*N-1;
 var ing = 0, stamp = 0;
 
 function init(){
-	var row = '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
-	var str = '<table border="0" cellpadding="0" cellspacing="0">';
-	for(var i=0;i<5;i++){
-		str += row;
-	}
-	str += '</table>';
-	$(str).insertBefore("#note");
-	$('td').each(function(i, e){
+    var row = '<tr><td></td><td></td><td></td><td></td><td></td></tr>';
+    var str = '<table border="0" cellpadding="0" cellspacing="0">';
+    for(var i=0;i<5;i++){
+        str += row;
+    }
+    str += '</table>';
+    $(str).insertBefore("#note");
+    $('td').each(function(i, e){
         $(e).html(i+1);
     });
 }
 function rndCell(i, e){
-	var tds = $('td');
-	if(!e) e = otd=tds[i];
-	var r = jsRnd(0,24);
-	if(i!==r){
-		var otd=tds[r];
-		var t = $(e).html();
-		$(e).html($(otd).html());
-		$(otd).html(t);
-	}
+    var tds = $('td');
+    if(!e) e = otd=tds[i];
+    var r = jsRnd(0,24);
+    if(i!==r){
+        var otd=tds[r];
+        var t = $(e).html();
+        $(e).html($(otd).html());
+        $(otd).html(t);
+    }
 }
 function rndAll(){
-	$('td').each(function(i, e){
+    $('td').each(function(i, e){
         rndCell(i, e);
     });
 }
 function sReset(delay){
-	ing = 0;
-	rndAll();
-	$('#stime').html("00<b class='mh'>:</b>00<b class='mh'>.</b>00");
-	if(delay){
-		setTimeout('sReset()',149);
-	}
+    ing = 0;
+    rndAll();
+    $('#stime').html("00<b class='mh'>:</b>00<b class='mh'>.</b>00");
+    if(delay){
+        setTimeout('sReset()',149);
+    }
 }
 function sStart(){
-	sReset();
-	ing = 1;
-	stamp = new Date().getTime();
-	timeOut();
+    sReset();
+    ing = 1;
+    stamp = new Date().getTime();
+    timeOut();
 }
 function sStop(){
-	ing = 0;
+    ing = 0;
 }
 function timeOut(){
-	nstamp = new Date().getTime();
-	run = (nstamp-stamp)/1000; 
-	p1 = parseInt(run/60); 
-	p2 = (run-p1*60).toFixed(2);
-	$('#stime').html(p1+"<b class='mh'>:</b>"+p2.replace('.',"<b class='mh'>.</b>"));
-	if(ing) setTimeout('timeOut()',137);
+    nstamp = new Date().getTime();
+    run = (nstamp-stamp)/1000; 
+    p1 = parseInt(run/60); 
+    p2 = (run-p1*60).toFixed(2);
+    $('#stime').html(p1+"<b class='mh'>:</b>"+p2.replace('.',"<b class='mh'>.</b>"));
+    if(ing) setTimeout('timeOut()',137);
 }
 jQuery(document).ready(function(){
-	init();
-	sReset();
+    init();
+    sReset();
 });
 
 </script>

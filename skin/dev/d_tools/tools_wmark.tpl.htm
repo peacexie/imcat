@@ -7,14 +7,14 @@ $act = req('act','Index');
 $org = "/file_image/qijia-nanwan.png";
 $img = DIR_DTMP."/@test/wmark-demo.png";
 if($act=='copy'){
-	@unlink($img);
-	copy(DIR_STATIC.$org,$img);
+    @unlink($img);
+    copy(DIR_STATIC.$org,$img);
 }elseif($act=='wm-pic'){
-	comImage::wmark($img, DIR_ROOT."/skin/_pub/a_img/star-icon.gif");	
+    comImage::wmark($img, DIR_ROOT."/skin/_pub/a_img/star-icon.gif");    
 }elseif($act=='wm-text'){
-	comImage::wmark($img, "Test:文字:End");	
+    comImage::wmark($img, "Test:文字:End");    
 }elseif($act=='wm-def'){
-	comImage::wmark($img);	
+    comImage::wmark($img);    
 }
 $imgurl = str_replace(DIR_DTMP,PATH_DTMP,$img)."?".time();
 $fonttip = '';

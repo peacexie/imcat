@@ -74,18 +74,18 @@ img { border:1px solid #36F; }
 var movingNow,mapPos,dotMoved=0;
 setTimeout('var movingNow = new moveMain()',200);
 var dots_data = [
-	'1224^南湾牧场:548,68',
-	'1228^烟煤矿:698,298',
-	'1232^银矿山:248,79',
-	'1236^南湾村委:387,180',
-	'1256^南湾山泉:610,284', 
-	'1248^南湾标志:158,391',
-	'1828^自定义点3:727,539'
+    '1224^南湾牧场:548,68',
+    '1228^烟煤矿:698,298',
+    '1232^银矿山:248,79',
+    '1236^南湾村委:387,180',
+    '1256^南湾山泉:610,284', 
+    '1248^南湾标志:158,391',
+    '1828^自定义点3:727,539'
 ];
 if(document.all){ 
-	document.onreadystatechange=function(){ 
-		if(document.readyState=='loaded'||document.readyState=='complete'){ sha_init(); }
-	}; 
+    document.onreadystatechange=function(){ 
+        if(document.readyState=='loaded'||document.readyState=='complete'){ sha_init(); }
+    }; 
 }else{ document.addEventListener('DOMContentLoaded',sha_init(),false); } 
 </script>
 

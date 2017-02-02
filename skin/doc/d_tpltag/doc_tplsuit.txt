@@ -119,14 +119,14 @@ or: {code:"dev:d_tools/a_cfgs"}
 
 * How to use
 ```
-	* php
-	 - basLang::show('core.page_First')
-	 - lang('admin.adm_center') 
-	 - <?php lang('tools.start_setup',0) ?>
-	* tpl
-	 - {lang(core.view_times,$click)} 
-	 - {lang(core.sys_name)}
-	* js
-	 - lang('jcore.sub_key')
+    * php
+     - basLang::show('core.page_First')
+     - lang('admin.adm_center') 
+     - <?php lang('tools.start_setup',0) ?>
+    * tpl
+     - {lang(core.view_times,$click)} 
+     - {lang(core.sys_name)}
+    * js
+     - lang('jcore.sub_key')
 ```
 

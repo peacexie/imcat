@@ -162,7 +162,7 @@ div.pg_bar input{ width:40px; }
 .color_in{ display:inline-block; position:absolute;width:280px;height:225px;left:-256px;top:8px;background:#FFF;border:1px solid #CCC;padding:1px; }
 /*.divcss5{height: expression_r(this.height> 500 ? 500 :true);  max-height:500px;} */
 .wpop_step { width:expression_r(this.height>60?60:true);max-width:60px; height:16px; line-height:16px; vertical-align:middle; overflow:hidden; display:inline-block; padding:0px 5px 0px 0px; margin:0px; }
-
+/* wpop */
 input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; cursor:pointer; }
 .wpop_in2{ background:#FFF; border:1px solid #CCC; padding:3px; }
 .wpop_out{ display:inline-block; }
@@ -172,7 +172,15 @@ input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image
   display:inline-block; cursor:pointer; vertical-align:middle; margin:1px 1px; border:0px solid #999; }
 .wpop_chrdiv{ padding:3px 3px 5px 3px; } 
 .wpop_chrspan{ display:inline-block; color:#00C;font-weight:bold; padding:0px 5px 0px 0px; } 
- 
+/* advFlag */
+.advFlag{ position:absolute; display:block; width:40px; padding:1px 1px; z-index:790913; 
+  font-size:12px; text-align:center; font-style:normal; font-weight:normal; border:0px solid #CCC; }
+.advTopR{ top:2px; right: 0px; }
+.advTopL{ top:2px; left: 0px; }
+.advBotR{ bottom:5px; right: 0px; }
+.advBotL{ bottom:5px; left: 0px; }
+.advShadow{ text-shadow:1px 1px #FFF; }
+/* else */
 .demo_max_height:{max-height:240px;_height:expression((document.documentElement.clientHeight||document.body.clientHeight)<240?"240px":"");overflow:hidden;}
 .LowIE { width:640px; text-align:center; color:#FFF; padding:3px 10px 6px 10px; margin:10px auto; background-image:url(../../../skin/_pub/a_img/nv_11.png); background-position:0px -5px; background-repeat:repeat-x; }
 /* only FF */

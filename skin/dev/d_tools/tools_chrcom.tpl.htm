@@ -7,7 +7,7 @@ $title = '常用字符集，按类别，整理收集常用字符集';
 {block:eximp}
 <style type="text/css">
 body,td,th {
-	font-size:14px;
+    font-size:14px;
 }
 #chrtab { width:580px; background:#FFF; margin:10px auto; }
 #chrtab td { line-height:120%; border:1px solid #CCC; padding:5px 2px; }
@@ -1359,9 +1359,9 @@ function tabLink(Num,Sort) {
   var a = new Array();
   var td,t,m=0,s=""; var i,j,k;
   for(i=1; i<nRow; i++){ 
-	td = rs[i].getElementsByTagName('td');
-	var t = td[5].innerHTML;
-	td[5].innerHTML = t.replace('href="','href="{surl(tools-chrall)}#p1='+td[0].innerHTML+'&p2='+td[1].innerHTML+'&m='+td[4].innerHTML+'&act=tabShow');
+    td = rs[i].getElementsByTagName('td');
+    var t = td[5].innerHTML;
+    td[5].innerHTML = t.replace('href="','href="{surl(tools-chrall)}#p1='+td[0].innerHTML+'&p2='+td[1].innerHTML+'&m='+td[4].innerHTML+'&act=tabShow');
   }
 }
 tabLink();

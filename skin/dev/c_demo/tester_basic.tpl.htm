@@ -3,13 +3,13 @@
 {block:extop}<?php
 $key = empty($this->key) ? 'basic' : $this->key;
 $kar = array(
-	'basic'   => 'basic基本类库',
-	'exlib'   => 'exlib扩展类库',
-	'vendor'   => 'vendor第三方组件',
-	'api3rd'   => 'api3rd第三方接口',
-	'jqjs'    => 'jQuery &amp; js',
-	'effect'  => 'effect 效果',
-	'cssview'    => 'css显示样式',
+    'basic'   => 'basic基本类库',
+    'exlib'   => 'exlib扩展类库',
+    'vendor'   => 'vendor第三方组件',
+    'api3rd'   => 'api3rd第三方接口',
+    'jqjs'    => 'jQuery &amp; js',
+    'effect'  => 'effect 效果',
+    'cssview'    => 'css显示样式',
 );
 $subs = tex_base::lister($key); //print_r($subs);
 $code = req('code',current($subs)); //current($subs)
@@ -19,7 +19,7 @@ $titlesub = $kar[$key]; //print_r($key);
 ?>{/block:extop}
 
 {block:exbar}
-	<?php foreach($subs as $v){ $vs=count($subs)>5 ? str_replace('u'.$key.'_','',$v) : $v; ?>
+    <?php foreach($subs as $v){ $vs=count($subs)>5 ? str_replace('u'.$key.'_','',$v) : $v; ?>
     <a href="?mkv={$this->mkv}&code={$v}" {if $code==$v}class='act'{/if}>{= $vs}</a>
     <?php } ?>
 {/block:exbar}

@@ -83,36 +83,36 @@ if(!empty($upass)){
 var ubase = '<?php echo PATH_ROOT."/plus/api/wechat.php?"; ?>';
 var iTime = 0;
 function funcGetpw(scan){
-	$('#idx_lscan').toggle();
-	$('#idx_login').toggle();
-	if(scan) fshowQrcode();
+    $('#idx_lscan').toggle();
+    $('#idx_login').toggle();
+    if(scan) fshowQrcode();
 }
 function fshowQrcode(){ // 缓存,更新...
-	if(iTime) return;
-	var extp = Math.random().toString(36).substr(2); 
-	var url = 'actys=getQrcode&qrmod=getpw&extp='+extp+'&varname=data';
-	$.getScript(ubase+url, function(){ //jsLog(data); //调试
-		$('#lscan_img').attr('src',data.url);
-		clearTimeout(iTime);
-		//fcheckGetpw(data.sid,extp,data.stampys,data.signys);
-	});
+    if(iTime) return;
+    var extp = Math.random().toString(36).substr(2); 
+    var url = 'actys=getQrcode&qrmod=getpw&extp='+extp+'&varname=data';
+    $.getScript(ubase+url, function(){ //jsLog(data); //调试
+        $('#lscan_img').attr('src',data.url);
+        clearTimeout(iTime);
+        //fcheckGetpw(data.sid,extp,data.stampys,data.signys);
+    });
 }
 function fcheckGetpw(sid,extp,stampys,signys){
-	var url = 'actys=chkXXXXX&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
-	$.getScript(ubase+url, function(){ //jsLog(data);
-		if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
+    var url = 'actys=chkXXXXX&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
+    $.getScript(ubase+url, function(){ //jsLog(data);
+        if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
             alert('{lang(user.lon_errsvr)}');
-			return '';
+            return '';
         //}else if(data.user_info.mid=="-1"){
-			//$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
-			//return '';
+            //$('#msg_res').html("已经是登录状态，请先登出！<br>mid="+data.user_ibak.mid+"<br>mname="+data.user_ibak.mname+"");
+            //return '';
         }else if(data.uname){
-			$('#lscan_msg').html("["+data.uname+"]{surl(user-gtp_getok)}");
-			location.reload();
-			return '';
+            $('#lscan_msg').html("["+data.uname+"]{surl(user-gtp_getok)}");
+            location.reload();
+            return '';
         } 
-		iTime = setTimeout("fcheckGetpw('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
-	});	
+        iTime = setTimeout("fcheckGetpw('"+sid+"','"+extp+"','"+stampys+"','"+signys+"')",2000);
+    });    
 }
 winAutoMargin('topMargin');
 

@@ -13,33 +13,33 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 .LowIE { width:99%; max-width:480px; text-align:center; color:#FFF; padding:10px; margin:10px auto; }
 
 .divOuter {
-	margin-left: auto;
-	margin-right: auto;
-	width: 100%;
-	padding-left: 0px;
-	padding-right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 #divDemo {
-	clear: both;
-	float: left;
-	margin-left: 0;
-	width: 100%;
-	display: block;
+    clear: both;
+    float: left;
+    margin-left: 0;
+    width: 100%;
+    display: block;
 }
 
 /* 平板电脑布局: 481px 至 768px。样式继承自: 移动设备布局。 */
 @media only screen and (min-width: 481px) {
 .divOuter {
-	width: 480px;
-	padding-left: 1px;
-	padding-right: 1px;
+    width: 480px;
+    padding-left: 1px;
+    padding-right: 1px;
 }
 #divDemo {
-	clear: both;
-	float: left;
-	margin-left: 0;
-	width: 100%;
-	display: block;
+    clear: both;
+    float: left;
+    margin-left: 0;
+    width: 100%;
+    display: block;
 }
 }
 
@@ -60,16 +60,16 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 }
 
 .header{ position:relative; padding:0px 5px 0px 0px; margin:0px auto 10px auto; 
-	background:-webkit-linear-gradient(top, #fff, #c4e2f6);
-	background: -ms-linear-gradient(top, #fff, #c4e2f6);
-	background:linear-gradient(top, #fff, #c4e2f6);
+    background:-webkit-linear-gradient(top, #fff, #c4e2f6);
+    background: -ms-linear-gradient(top, #fff, #c4e2f6);
+    background:linear-gradient(top, #fff, #c4e2f6);
 }
 .header ul, .header li{ min-width:120px; padding:10px; margin:0px; list-style:inside; }
 .header ul.main{ position:absolute; right:5px; top:36px; background:#FFF; border:1px solid #CCC; 
-	border-top-left-radius:5px;
-	border-top-right-radius:0px;
-	border-bottom-right-radius:0px;
-	border-bottom-left-radius:5px; 
+    border-top-left-radius:5px;
+    border-top-right-radius:0px;
+    border-bottom-right-radius:0px;
+    border-bottom-left-radius:5px; 
 }
 .header li{ padding:10px 0px 10px 0px; margin:0px 0px 0px 0px; border-bottom:1px dashed #CCCCCC; }
 .header .menu { cursor:pointer; padding:5px; margin:8px 0px 0px 0px; border:1px dashed #69F; border-radius:2px; border-top-left-radius:12px; }
@@ -77,10 +77,10 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 
 .header .logo { padding:5px; margin:0px; border-bottom:1px dashed #CCCCCC; }
 .header .subs { min-width:120px; position:absolute; left:54px; top:36px; background:#FFF; border:1px solid #CCC; 
-	border-top-left-radius:0px;
-	border-top-right-radius:5px;
-	border-bottom-right-radius:5px;
-	border-bottom-left-radius:0px; 
+    border-top-left-radius:0px;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius:0px; 
 }
 .header .logo i, .header .logo b{ font-style:normal; font-weight:normal;  }
 .header .logo b{ cursor:pointer; padding:8px 5px; margin:8px 0px 0px 5px; border:1px dashed #69F; border-radius:2px; border-top-right-radius:12px; }
@@ -88,9 +88,9 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 .header .logo img { border-radius:3px; }
 
 .footer{ padding:5px; margin:10px auto 0 auto; border-top:1px solid #CCC; 
-	background:-webkit-linear-gradient(top, #DDD, #fff);
-	background:-ms-linear-gradient(top, #DDD, #fff);
-	background:linear-gradient(top, #DDD, #fff);
+    background:-webkit-linear-gradient(top, #DDD, #fff);
+    background:-ms-linear-gradient(top, #DDD, #fff);
+    background:linear-gradient(top, #DDD, #fff);
 }
 .footer p{ padding:5px; margin:0px; }
 .footer p.links a{ display:inline-block; padding:0px 5px; margin:0px 10px; }

@@ -12,8 +12,8 @@
  
 * 步骤1：设置参数
 
- - 文件：\code\cfgs\excfg\ex_paras.php
- - 参数：$_ex_paras，把模型加进去...
+ - 文件：\code\cfgs\sycfg\sy_frame.php
+ - 参数：$resfmt, 把模型加进去...
 
 * 步骤2：扩展脚本
 
@@ -22,16 +22,16 @@
 
 ```
 if($mod=='cargo'){
-	fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
+    fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
 }
 if($mod=='keres'){
-	fldView::relat("relyc,fm[ygrade],fm[course]");
+    fldView::relat("relyc,fm[ygrade],fm[course]");
 }
 if(in_array($mod,array('about','demo'))){
-	fldView::relat("fm[catid]","fm[catid],$mod,$did");
+    fldView::relat("fm[catid]","fm[catid],$mod,$did");
 }
 if(in_array($mod,array('company','govern','organize'))){
-	fldView::relat("fm[grade]","fm[miuid],$mod,$uname,fm[grade]"); 
+    fldView::relat("fm[grade]","fm[miuid],$mod,$uname,fm[grade]"); 
 }
 ```
 

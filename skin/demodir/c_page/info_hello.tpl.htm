@@ -5,7 +5,7 @@
 $uname = req('uname','Default Name');
 $nav = 'Set Name : ';
 for($i=0;$i<5;$i++){
-	$rnd = basKeyid::kidRand('24',6);
+    $rnd = basKeyid::kidRand('24',6);
     $nav .= "\n # <a href='".surl(0)."?mkv=hello&uname=$rnd'>$rnd</a>";
 }
 {/php}
@@ -20,7 +20,7 @@ for($i=0;$i<5;$i++){
 
     </ul>
     </div>
-  	<p>{$nav}</p>
+      <p>{$nav}</p>
     <h3>Hello：{$uname}！</h3>
 
 </div>

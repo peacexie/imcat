@@ -56,14 +56,14 @@ $_cbase['tpl']['tplpend'] = "/*no js*/\n";
 <script>
 var burl = '<?php echo PATH_ROOT; ?>/plus/ajax/vimg.php?mod=qrShow&data=';
 function shwQrcode(id){ 
-	var vsize = jsElm.jeID('size').value; var asize = vsize.split(','); 
-	var paras = '&level='+jsElm.jeID('level').value+'&margin='+jsElm.jeID('margin').value+'&size=';
-	var url = burl+urlEncode(jsElm.jeID('data').value)+paras;
-	var str = '';
-	for(var i=0;i<asize.length;i++){
-		str += '<img src="'+url+asize[i]+'">';
-	} //alert(asize);
-	jsElm.jeID('qritms').innerHTML = str;
+    var vsize = jsElm.jeID('size').value; var asize = vsize.split(','); 
+    var paras = '&level='+jsElm.jeID('level').value+'&margin='+jsElm.jeID('margin').value+'&size=';
+    var url = burl+urlEncode(jsElm.jeID('data').value)+paras;
+    var str = '';
+    for(var i=0;i<asize.length;i++){
+        str += '<img src="'+url+asize[i]+'">';
+    } //alert(asize);
+    jsElm.jeID('qritms').innerHTML = str;
 }
 </script>
 

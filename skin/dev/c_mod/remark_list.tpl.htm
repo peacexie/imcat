@@ -7,8 +7,8 @@ $minfo = read($this->mod);
 $pid = req('pid');
 $pmod = $minfo['pmod'];
 if(!empty($pmod)){
-	$pinfo = $db->table(glbDBExt::getTable($pmod))->where("did='$pid'")->find();
-	$ptitle = $pinfo['title'];
+    $pinfo = $db->table(glbDBExt::getTable($pmod))->where("did='$pid'")->find();
+    $ptitle = $pinfo['title'];
 }
 $modid = 'gbook';
 $titletop = '评论';

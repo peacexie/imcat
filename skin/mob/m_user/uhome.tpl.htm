@@ -3,11 +3,11 @@
 {block:init}<?php
 extract(basReq::sysVars()); 
 if($user->userFlag=='Login'){
-	$unowstr = $user->uinfo['mname'].'(<span class="c00F">'.$user->uinfo['uname'].'</span>)';
-	$unowtype = $user->uperm['title'];	
+    $unowstr = $user->uinfo['mname'].'(<span class="c00F">'.$user->uinfo['uname'].'</span>)';
+    $unowtype = $user->uperm['title'];    
 }else{
-	$unowstr = 'Guest('.$user->sinit['sid'].')';
-	$unowtype = '游客';	
+    $unowstr = 'Guest('.$user->sinit['sid'].')';
+    $unowtype = '游客';    
 }
 $runinfo = $_cbase['run']['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
 $runua = $_cbase['run']['userag'];

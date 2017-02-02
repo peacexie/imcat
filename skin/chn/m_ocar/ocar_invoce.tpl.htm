@@ -6,27 +6,27 @@ $title = '订单查询';
 $entit = 'Invoce';
 
 if($act=='oadd'){ //提交订单
-	$readd = exvOcar::oadd($unqid,$user);
-	$ordid = $readd['ordid']; $enc = $readd['enc'];
-	die(basMsg::show("添加成功！",'Redir',surl(0)."?mkv=$this->mkv&ordid=$ordid&enc=$enc",1));
+    $readd = exvOcar::oadd($unqid,$user);
+    $ordid = $readd['ordid']; $enc = $readd['enc'];
+    die(basMsg::show("添加成功！",'Redir',surl(0)."?mkv=$this->mkv&ordid=$ordid&enc=$enc",1));
 }elseif($act=='odel'){ //取消订单
-	$erow = exvOcar::odel($ordid);
-	$msg = "删除".($erow ? '成功！' : '失败！');
-	$url = surl(0).($erow ? surl('cargo') : "?mkv=$this->mkv&ordid=$ordid&enc=$enc");
-	die(basMsg::show("$msg",'Redir',$url,1));
+    $erow = exvOcar::odel($ordid);
+    $msg = "删除".($erow ? '成功！' : '失败！');
+    $url = surl(0).($erow ? surl('cargo') : "?mkv=$this->mkv&ordid=$ordid&enc=$enc");
+    die(basMsg::show("$msg",'Redir',$url,1));
 }elseif($act=='oedit'){ //edit订单
-	$erow = exvOcar::oedit($ordid);
-	$msg = "编辑".($erow ? '成功！' : '失败！');
-	die(basMsg::show("$msg",'Redir',surl(0)."?mkv=$this->mkv&ordid=$ordid&enc=$enc",1));
+    $erow = exvOcar::oedit($ordid);
+    $msg = "编辑".($erow ? '成功！' : '失败！');
+    die(basMsg::show("$msg",'Redir',surl(0)."?mkv=$this->mkv&ordid=$ordid&enc=$enc",1));
 }elseif($this->key=='invoce'){
-	$ouser = exvOcar::whruser();
-	$where = "ordid='$ordid'"; 
+    $ouser = exvOcar::whruser();
+    $where = "ordid='$ordid'"; 
 }
 $msg || $msg = "<b class='c999'>$entit</b>";
 
 $list = exvOcar::ilist($tabid,$where); 
 if($list['sum']['acnt']==0){
-	die(basMsg::show("订单项为空，返回[商品展销]！",'Redir',surl('cargo'),1));
+    die(basMsg::show("订单项为空，返回[商品展销]！",'Redir',surl('cargo'),1));
 }
 $order = $db->table('coms_corder')->where("cid='$ordid'")->find();
 $null = '---';
@@ -222,24 +222,24 @@ $oadm = @$opay['a']; unset($opay['a']);
 </form>
 <script>
 function ocar_pay(){
-	checkPaied();
-	$('#fmopay').submit();
+    checkPaied();
+    $('#fmopay').submit();
 }
 function checkPaied(){ 
-	var url = '{PATH_ROOT}/plus/api/ocar.php?act=ordstat&ordid={$ordid}';
-	$.getScript(url, function(){
-		//jsLog(data);
-		if(typeof(data)=='undefined'){
+    var url = '{PATH_ROOT}/plus/api/ocar.php?act=ordstat&ordid={$ordid}';
+    $.getScript(url, function(){
+        //jsLog(data);
+        if(typeof(data)=='undefined'){
             alert('服务器返回格式错误。');
-			return '';
+            return '';
         }else if(data=='YES'){
-			window.location.reload();
-			/*$('#st_ordpay').html('已支付');
-			$('#fm_ordstat').val('paid');*/
-			return '';
-		}
-		setTimeout("checkPaied()",2000);
-	});	
+            window.location.reload();
+            /*$('#st_ordpay').html('已支付');
+            $('#fm_ordstat').val('paid');*/
+            return '';
+        }
+        setTimeout("checkPaied()",2000);
+    });    
 }
 
 </script>

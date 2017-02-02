@@ -53,22 +53,22 @@
 
 <script>
 function setActType(e){
-	if(!e) e = document.getElementById('actys1');
-	if(e.value=='add'){
-		$('#weixin_login').val('添加账号');
-		$('#username').val('{$mnamed}');
-		$('#password').val('{$mpassd}');
-		$('#setmchid').show();
-	}else{
-		$('#weixin_login').val('绑定账号');
-		$('#username').val('');
-		$('#password').val('');	
-		$('#setmchid').hide();
-	}
-	//console.log(e.value);
+    if(!e) e = document.getElementById('actys1');
+    if(e.value=='add'){
+        $('#weixin_login').val('添加账号');
+        $('#username').val('{$mnamed}');
+        $('#password').val('{$mpassd}');
+        $('#setmchid').show();
+    }else{
+        $('#weixin_login').val('绑定账号');
+        $('#username').val('');
+        $('#password').val('');    
+        $('#setmchid').hide();
+    }
+    //console.log(e.value);
 }
 $(document).ready(function(){
-	setActType();
+    setActType();
 })
 //setTimeout('',500);
 </script>

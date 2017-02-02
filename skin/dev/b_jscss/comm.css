@@ -120,13 +120,13 @@ div.sobar p.order{ text-align:right; float: right; display: inline-block; }
 .uimark-pos-abs { position: absolute; }
 .uimark-star-icon1a, .uimark-star-icon2a, .uimark-star-icon3a, .uimark-star-icon4a, .uimark-star-icon5a,
 .uimark-star-icon1b, .uimark-star-icon2b, .uimark-star-icon3b, .uimark-star-icon4b, .uimark-star-icon5b {
-	display:inline-block;
-	background-image: url(../../../skin/_pub/a_img/star-icon.gif);
-	width: 17px; height: 16px; top: 1px; right: 1px;
-	background-position: 0px 00px;	
+    display:inline-block;
+    background-image: url(../../../skin/_pub/a_img/star-icon.gif);
+    width: 17px; height: 16px; top: 1px; right: 1px;
+    background-position: 0px 00px;    
 }
 .uimark-star-icon1b, .uimark-star-icon2b, .uimark-star-icon3b, .uimark-star-icon4b, .uimark-star-icon5b {
-	position: absolute; 	
+    position: absolute;     
 }
 .uimark-star-icon2a, .uimark-star-icon2b { width: 34px; }
 .uimark-star-icon3a, .uimark-star-icon2b { width: 51px; }
@@ -134,10 +134,10 @@ div.sobar p.order{ text-align:right; float: right; display: inline-block; }
 .uimark-star-icon5a, .uimark-star-icon2b { width: 85px; }
 
 .uimark-star-zhuan1, .uimark-star-zhuan2, .uimark-star-zhuan3, .uimark-star-zhuan4, .uimark-star-zhuan5 {
-	position: absolute; display:inline-block;
-	background-image: url(../../../skin/_pub/a_img/star-zhuan.gif);
-	width: 16px; height: 16px; top: 1px; right: 1px;
-	background-position: 0px 00px;	
+    position: absolute; display:inline-block;
+    background-image: url(../../../skin/_pub/a_img/star-zhuan.gif);
+    width: 16px; height: 16px; top: 1px; right: 1px;
+    background-position: 0px 00px;    
 }
 .uimark-star-zhuan2 { width: 32px; }
 .uimark-star-zhuan3 { width: 48px; }
@@ -147,10 +147,10 @@ div.sobar p.order{ text-align:right; float: right; display: inline-block; }
 .qrcode_tip, .qrcode_pic { display:inline-block; font-style:normal; font-weight:normal; }
 .qrcode_tip { position:relative; cursor:pointer; padding:2px 5px; margin:0px 10px 0px 0px; border-radius:5px; border:1px solid #99F;  }
 .qrcode_pic {
-	position: absolute; background:#FFF; 
-	top: 23px; left: 0px; text-align:center;
-	padding:5px; border:1px solid #CCC;
-	z-index: 1024;
+    position: absolute; background:#FFF; 
+    top: 23px; left: 0px; text-align:center;
+    padding:5px; border:1px solid #CCC;
+    z-index: 1024;
 }
 
 /* layTree */

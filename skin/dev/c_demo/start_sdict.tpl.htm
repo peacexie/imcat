@@ -2,8 +2,8 @@
 <?php 
 $data = comFiles::get(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm");
 if(!$data){
-	$data = devBase::dbDict(); 
-	comFiles::put(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm",$data);
+    $data = devBase::dbDict(); 
+    comFiles::put(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm",$data);
 }
 echo $data; 
 $_cbase['tpl']['tplpend'] = '_null_';
@@ -12,23 +12,23 @@ $_cbase['tpl']['tplpend'] = '_null_';
 <?php
 $act = req('act','root'); 
 if($act=='imps'){
-	$root = DIR_CODE.'/adpt';
-	$dirs = comFiles::listDir($root); 
-	$subs = array_keys($dirs['dir']); 
+    $root = DIR_CODE.'/adpt';
+    $dirs = comFiles::listDir($root); 
+    $subs = array_keys($dirs['dir']); 
 }elseif($act=='jslib'){
-	$root = DIR_SKIN;
-	$subs = array(
-		'jslib','a_jscss',
-		'adm/b_jscss',
-		'chn/b_jscss',
-		'dev/b_jscss',
-		'mob/b_jscss',
-		'umc/b_jscss',
-	); 
+    $root = DIR_SKIN;
+    $subs = array(
+        'jslib','a_jscss',
+        'adm/b_jscss',
+        'chn/b_jscss',
+        'dev/b_jscss',
+        'mob/b_jscss',
+        'umc/b_jscss',
+    ); 
 }else{
-	$root = DIR_CODE.'/core';
-	$dirs = comFiles::listDir($root); 
-	$subs = array_keys($dirs['dir']);
+    $root = DIR_CODE.'/core';
+    $dirs = comFiles::listDir($root); 
+    $subs = array_keys($dirs['dir']);
 }
 
 glbHtml::page("类库函数");
@@ -55,7 +55,7 @@ Nav:
 <?php
 
 if($act=='autonsp'){
-	echo devBase::nspList();
+    echo devBase::nspList();
 }elseif($act=='showfunc'){
     $file = req('file');
     $func = req('func');
@@ -63,8 +63,8 @@ if($act=='autonsp'){
     $code = highlight_string("<?php\n".$code."\n?>",1);
     echo $code;
 }else{
-	$nav = devBase::docClass($root,$subs);
-	echo "<div id='navx'>$nav</div>";	
+    $nav = devBase::docClass($root,$subs);
+    echo "<div id='navx'>$nav</div>";    
 }
 echo "\n<p>".basDebug::runInfo()."</p>";
 basDebug::runLoad(1);

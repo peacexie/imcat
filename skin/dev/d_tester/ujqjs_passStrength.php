@@ -23,7 +23,7 @@ $this->pimp('/jquery/jquery.passwordStrength.js','vendui');
 </p>
 <script>
 $(function(){
-	$('#pass').passwordStrength();
+    $('#pass').passwordStrength();
 });
 </script>
 <div>

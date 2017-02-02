@@ -12,8 +12,8 @@
  
 * Setp-1: Set Param
 
- - File: \code\cfgs\excfg\ex_paras.php
- - Param: $_ex_paras, added some model ...
+ - File: \code\cfgs\sycfg\sy_frame.php
+ - Param: $resfmt, added some model ...
 
 * Setp-2: Extra Script
 
@@ -22,16 +22,16 @@
 
 ```
 if($mod=='cargo'){
-	fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
+    fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
 }
 if($mod=='keres'){
-	fldView::relat("relyc,fm[ygrade],fm[course]");
+    fldView::relat("relyc,fm[ygrade],fm[course]");
 }
 if(in_array($mod,array('about','demo'))){
-	fldView::relat("fm[catid]","fm[catid],$mod,$did");
+    fldView::relat("fm[catid]","fm[catid],$mod,$did");
 }
 if(in_array($mod,array('company','govern','organize'))){
-	fldView::relat("fm[grade]","fm[miuid],$mod,$uname,fm[grade]"); 
+    fldView::relat("fm[grade]","fm[miuid],$mod,$uname,fm[grade]"); 
 }
 ```
 

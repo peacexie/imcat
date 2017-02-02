@@ -54,29 +54,29 @@ echo '<br>'.basKeyid::kidTemp('hms','2012-09-14 23:59:59');
 echo '<br>';
 
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(hms): ".basKeyid::kidTemp('hms');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(hms): ".basKeyid::kidTemp('hms');    
 echo '<br>'.microtime(1);
 
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(3.4): ".basKeyid::kidTemp('3.4');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(3.4): ".basKeyid::kidTemp('3.4');    
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(4.5): ".basKeyid::kidTemp('4.5');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(4.5): ".basKeyid::kidTemp('4.5');    
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(5.6): ".basKeyid::kidTemp('5.6');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(5.6): ".basKeyid::kidTemp('5.6');    
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(3): ".basKeyid::kidTemp('3');	
-echo '<br>'.microtime(1);
-echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(4): ".basKeyid::kidTemp('4');	
-echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(5): ".basKeyid::kidTemp('5');	
-echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(6): ".basKeyid::kidTemp('6');	
-echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(7): ".basKeyid::kidTemp('7');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(3): ".basKeyid::kidTemp('3');    
 echo '<br>'.microtime(1);
 echo '<br>'.microtime(1);
-for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(-): ".basKeyid::kidTemp('-');	
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(4): ".basKeyid::kidTemp('4');    
+echo '<br>'.microtime(1);
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(5): ".basKeyid::kidTemp('5');    
+echo '<br>'.microtime(1);
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(6): ".basKeyid::kidTemp('6');    
+echo '<br>'.microtime(1);
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(7): ".basKeyid::kidTemp('7');    
+echo '<br>'.microtime(1);
+echo '<br>'.microtime(1);
+for($i=0;$i<5;$i++) echo "<br>--- run - basKeyid::kidTemp(-): ".basKeyid::kidTemp('-');    
 echo '<br>'.microtime(1);
 
 $ktab32 = str_replace(array('0','E'),'',KEY_TAB32);
@@ -98,7 +98,7 @@ echo '<br>'.basKeyid::kidNext('','ZZZ', '001',1,4);
 echo '<br>';
 
 echo '<br>'.microtime(1);
-for($i=0;$i<3;$i++) echo "<br>--- run - kidTemp: ".basKeyid::kidTemp();	
+for($i=0;$i<3;$i++) echo "<br>--- run - kidTemp: ".basKeyid::kidTemp();    
 echo '<br>'.microtime(1);
 
 echo '<br>';

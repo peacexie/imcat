@@ -1,11 +1,11 @@
 
 function jsactMenu(menuid){
-	if(!menuid){
-		var a = _cbase.run.mkv.replace('.','-').split('-');
-		menuid = a[0];
-	}
-	var e = jsElm.jeID('idf_'+menuid); 
-	if(e) e.className = 'act';
+    if(!menuid){
+        var a = _cbase.run.mkv.replace('.','-').split('-');
+        menuid = a[0];
+    }
+    var e = jsElm.jeID('idf_'+menuid); 
+    if(e) e.className = 'act';
 }
 
 function setEdit(disfms,hdrows,fmfix){
@@ -28,12 +28,12 @@ function setEdit(disfms,hdrows,fmfix){
 }
 
 function stsetLink(e){
-	var url = $(e).prop('href'); 
-	//var type = $("input[name='mtype']:checked").val();
-	var limit = $("input[name='limit']").val();
-	var offset = $("input[name='offset']").val();
-	//offset = offset.length==0 ? 0 : offset;
-	url = url+'&limit='+limit+'&offset='+offset+'';
-	//jsLog(type+':'+url);
-	return winOpen(url,e.innerHTML);
+    var url = $(e).prop('href'); 
+    //var type = $("input[name='mtype']:checked").val();
+    var limit = $("input[name='limit']").val();
+    var offset = $("input[name='offset']").val();
+    //offset = offset.length==0 ? 0 : offset;
+    url = url+'&limit='+limit+'&offset='+offset+'';
+    //jsLog(type+':'+url);
+    return winOpen(url,e.innerHTML);
 }

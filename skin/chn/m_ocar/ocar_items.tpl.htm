@@ -6,14 +6,14 @@ $title = '购物车明细';
 $entit = 'Shopping Car';
 
 if($act=='iadd'){ //添加物品
-	$msg = exvOcar::iadd($unqid,$user);
+    $msg = exvOcar::iadd($unqid,$user);
 }elseif($act=='iedit'){ //修改数量
-	$ordcnt = req('ordcnt',1,'N');
-	$db->table($tabid)->data(array('ordcnt'=>$ordcnt))->where("$where AND cid='$cid'")->update(); 
-	die(basMsg::show("修改成功！",'Redir',surl($this->mkv),1));	
+    $ordcnt = req('ordcnt',1,'N');
+    $db->table($tabid)->data(array('ordcnt'=>$ordcnt))->where("$where AND cid='$cid'")->update(); 
+    die(basMsg::show("修改成功！",'Redir',surl($this->mkv),1));    
 }elseif($act=='idel'){ //删除物品
-	$db->table($tabid)->where("$where AND cid='$cid'")->delete();
-	die(basMsg::show("删除成功！",'Redir',surl($this->mkv),1));
+    $db->table($tabid)->where("$where AND cid='$cid'")->delete();
+    die(basMsg::show("删除成功！",'Redir',surl($this->mkv),1));
 }
 $msg || $msg = "<b class='c999'>$entit</b>";
 
@@ -72,10 +72,10 @@ $msg || $msg = "<b class='c999'>$entit</b>";
 </table>
 <script>
 function urlConedit(url,id){
-	var val = jsElm.jeID('ordcnt_'+id).value; 
-	val = parseInt(val);
-	if(isNaN(val) || val<1){ alert('请填写正整数！'); return; } 
-	else{ location.href = url+val; }
+    var val = jsElm.jeID('ordcnt_'+id).value; 
+    val = parseInt(val);
+    if(isNaN(val) || val<1){ alert('请填写正整数！'); return; } 
+    else{ location.href = url+val; }
 }
 </script>
 

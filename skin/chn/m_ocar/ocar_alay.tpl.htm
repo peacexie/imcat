@@ -8,10 +8,10 @@ $enc = req('enc');
 $unqid = usrPerm::getUniqueid(); 
 $where = "ordid='$unqid'";
 if($act=='iadd' || $act=='oadd'){
-	$res = safComm::formCAll('fmocar');
-	if(!empty($res[0])){ 
-		die(basMsg::show($res[0],'Redir',surl($this->mkv),1));
-	}
+    $res = safComm::formCAll('fmocar');
+    if(!empty($res[0])){ 
+        die(basMsg::show($res[0],'Redir',surl($this->mkv),1));
+    }
 }
 ?>{/block:minit}
 <!DOCTYPE html><html><head>
@@ -28,7 +28,7 @@ if($act=='iadd' || $act=='oadd'){
 <div class="pgf_mid">
   <div class="pgf_side">
     <!--side_start-->
-	{inc:"c_mod/cargo_side"}
+    {inc:"c_mod/cargo_side"}
     <!--side_end-->
   </div>
   <div class="pgf_main"> 

@@ -5,8 +5,8 @@ $null = "<span class='cCCC'>------</span>";
     <i>
     {php $data = array(); }
     {tag:alist=[List][modid,$this->mod][join,detail][show,1][stype][limit,10]}
-	<?php
-	$data[$t_did] = $v;
+    <?php
+    $data[$t_did] = $v;
     ?>
     <a href="{surl(0)}?{$this->mod}-{$this->key}-{$t_did}">{title($t_title,32,$u)}</a>
     {/tag:alist}

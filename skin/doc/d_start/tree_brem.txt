@@ -1,43 +1,44 @@
-
+ï»¿
  *** Dirs Frame
 
 [Site-Project]
-©¦  chn.php
-©¦  dev.php
-©¦  doc.php
-©¦  index.php
-©¦  mob.php
-©¦  robots.txt
-©¦  
-©À©¤@read : Readme Files
-©À©¤code : Libs,Cfgs,Tpls(the core code of the system)
-©¦  ©À©¤adpt : api/Dirves
-©¦  ©À©¤cfgs : Configs
-©¦  ©À©¤core : Core Libs
-©¦  ©À©¤flow : Admin flow scripts
-©¦  ©¸©¤lang : Language package 
-©À©¤root : Entrys files(include js,css) 
-©¦  ©À©¤a3rd : 3nd [Login/Pay] Api
-©¦  ©À©¤plus : Api/ajax Entrys
-©¦  ©À©¤run : Startup path and Admin Entrys
-©¦  ©¸©¤tools : DIY Tools and Setup Entrys 
-©À©¤skin : tpls(Eache set of tpl has a sub dir) include js,css 
-©¦  ©À©¤adm : Admin Center
-©¦  ©À©¤chn : ÖĞÎÄ°æ
-©¦  ©À©¤demodir : Demo dir
-©¦  ©À©¤dev : ¿ª·¢ÎÄµµ
-©¦  ©À©¤doc : Guides
-©¦  ©À©¤mob : Mobile
-©¦  ©À©¤umc : User Center
-©¦  ©¸©¤_pub : Public css,js,logo
-©À©¤vary : Variable Files (cathe,html,upload)
-©¦  ©À©¤dtmp : Temp/Cache Files
-©¦  ©À©¤html : Static Html Files
-©¦  ©¸©¤ures : Upload Files
-©¸©¤vimp : Static, 3nd Component
-    ©À©¤static : Static Pic,Icon,Logo,Fonts; 
-    ©À©¤vendor : the 3nd Libs/Component
-    ©¸©¤vendui : the 3nd js/Front Component 
+â”‚  chn.php
+â”‚  dev.php
+â”‚  doc.php
+â”‚  index.php
+â”‚  mob.php
+â”‚  robots.txt
+â”‚  
+â”œâ”€@read : Readme Files
+â”œâ”€code : Libs,Cfgs,Tpls(the core code of the system)
+â”‚  â”œâ”€adpt : api/Dirves
+â”‚  â”œâ”€cfgs : Configs
+â”‚  â”œâ”€core : Core Libs
+â”‚  â”œâ”€flow : Admin flow scripts
+â”‚  â””â”€lang : Language package 
+â”œâ”€html : Static Html Files
+â”œâ”€root : Entrys files(include js,css) 
+â”‚  â”œâ”€a3rd : 3nd [Login/Pay] Api
+â”‚  â”œâ”€plus : Api/ajax Entrys
+â”‚  â”œâ”€run : Startup path and Admin Entrys
+â”‚  â””â”€tools : DIY Tools and Setup Entrys 
+â”œâ”€skin : tpls(Eache set of tpl has a sub dir) include js,css 
+â”‚  â”œâ”€adm : Admin Center
+â”‚  â”œâ”€chn : ä¸­æ–‡ç‰ˆ
+â”‚  â”œâ”€demodir : Demo dir
+â”‚  â”œâ”€dev : å¼€å‘æ–‡æ¡£
+â”‚  â”œâ”€doc : Guides
+â”‚  â”œâ”€mob : Mobile
+â”‚  â”œâ”€umc : User Center
+â”‚  â””â”€_pub : Public css,js,logo
+â”œâ”€ures : Upload Files
+â”œâ”€vary : Variable Files (cathe/Temp Files)
+â”‚  â”œâ”€ctpl : Tpl-Cache Files
+â”‚  â””â”€dtmp : Temp/Cache Files
+â””â”€vimp : Static, 3nd Component
+    â”œâ”€static : Static Pic,Icon,Logo,Fonts; 
+    â”œâ”€vendor : the 3nd Libs/Component
+    â””â”€vendui : the 3nd js/Front Component 
 	
 * How to Arrange the dirs and files is the BEST?:  
  - /code/adpt/wechat/ Common Wechat Libs
@@ -48,20 +49,17 @@
 ### (Attach)Start Flow:
 
 * Entry (Demo): /doc.php
- - Setting
- - require(...'/root/run/_init.php'); // Init File
+ - Entry Setting, common const
+ - Load Init File require(...'/root/run/_init.php');
 
 * Init File: _init.php
- - //Include path
- - include(RUN_INIT.'/code/cfgs/boot/_paths.php');
- - //Boot file
- - include(RUN_INIT.'/code/cfgs/boot/bootstart.php');
-
-* Boot file: bootstart.php
- - $_cbase Init
- - Load configs, system functions
- - (judge outer scope) `basEnv` reset Environmental 
+ - Init $_cbase
+ - Load Paths ('/code/cfgs/boot/_paths.php');
+ - Load Common configs ('/cfgs/boot/const.cfg.php')
+ - Load Admin _score '/dset/_score.cfg.php')
+ - Include loader ('/core/blib/loader.php')
+ - Deal outer Run mode, Load alias functions, Run autoloads
 
 * Back to Entry file:
  - Run code like this: `$vop = new vopShow();`
- - Show pages
+ - Show pages by vopShow

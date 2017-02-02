@@ -4,23 +4,23 @@
 $_groups = read('groups'); 
 $show = "<a href='?user-apply'>".lang('user.uap_reapp')."</a>";
 if($act=='doapply'){
-	$bsend = 1;
-	$fm = $_POST['fm']; //print_r($fm);
-	$re2 = safComm::formCAll('fmapply');
-	if(empty($re2[0])){ 
-		$mod = req('mod');
-		$arr = array('company'=>@$fm['company'],); 
-		$re3 = usrMember::addUser($mod,$fm['uname'],$fm['upass'],$fm['mname'],$fm['mtel'],$fm['memail'],$arr);
-		if(empty($re3['erno'])){
-			$fappok = 1;
-			$msg = "[".$re3['uname']."] ".lang('user.uap_appok');
-			$show = empty($re3['show']) ? '('.lang('user.uap_nochk').')' : lang('user.uap_chkok');
-		}else{
-			$msg = "[".$re3['erno']."] ".$re3['ermsg'];
-		}
-	}else{
-		$msg = "[".$re2[1]."]".$re2[0];	
-	}
+    $bsend = 1;
+    $fm = $_POST['fm']; //print_r($fm);
+    $re2 = safComm::formCAll('fmapply');
+    if(empty($re2[0])){ 
+        $mod = req('mod');
+        $arr = array('company'=>@$fm['company'],); 
+        $re3 = usrMember::addUser($mod,$fm['uname'],$fm['upass'],$fm['mname'],$fm['mtel'],$fm['memail'],$arr);
+        if(empty($re3['erno'])){
+            $fappok = 1;
+            $msg = "[".$re3['uname']."] ".lang('user.uap_appok');
+            $show = empty($re3['show']) ? '('.lang('user.uap_nochk').')' : lang('user.uap_chkok');
+        }else{
+            $msg = "[".$re3['erno']."] ".$re3['ermsg'];
+        }
+    }else{
+        $msg = "[".$re2[1]."]".$re2[0];    
+    }
 }
 {/php}{/block:minit}
 
@@ -83,7 +83,7 @@ if($act=='doapply'){
   <div class="apform">
     <p> <i>{lang(user.uap_type)}: </i>
         {loop $_groups $k $v}{if $v['pid']=='users'}
-        {php $cfgm = read($k);$cfgs = basElm::text2arr(@$cfgm['cfgs']); }
+        {php $cfgm = read($k); $cfgs = basElm::text2arr(@$cfgm['cfgs']); }
         {if !empty($cfgs['defgrade']) }
         <input name="mod" type="radio" value="{$k}" onclick="setUserMod(this)" {if $k=='company'}checked{/if} />{$v[title]} &nbsp; 
         {/if}{/if}{/loop}
@@ -124,14 +124,14 @@ if($act=='doapply'){
 </form>
 <script>
 function evf_uapply(msgarr,isSubmit){
-	var pw1 = $(jsElm.jeID('fm[upass]'));
-	var pw2 = $(jsElm.jeID('fm[upass2]'));
-	if( $(pw1).val() == $(pw2).val() ){ //匹配成功
-		$(pw2).evf_callback(null,"sucess"); //此次是官方提供的，用来消除以前错误的提示
-	}else{//匹配失败
-		$(pw2).evf_callback("{lang(user.uap_pwxeq)}","failed"); //此处是官方提供的API，效果则是当匹配不成功，pwd2表单 显示红色标注，并且TIP显示为“密码不匹配”
-		return false;
-	}
+    var pw1 = $(jsElm.jeID('fm[upass]'));
+    var pw2 = $(jsElm.jeID('fm[upass2]'));
+    if( $(pw1).val() == $(pw2).val() ){ //匹配成功
+        $(pw2).evf_callback(null,"sucess"); //此次是官方提供的，用来消除以前错误的提示
+    }else{//匹配失败
+        $(pw2).evf_callback("{lang(user.uap_pwxeq)}","failed"); //此处是官方提供的API，效果则是当匹配不成功，pwd2表单 显示红色标注，并且TIP显示为“密码不匹配”
+        return false;
+    }
 }  
 </script> 
 {/if} 
@@ -139,14 +139,14 @@ function evf_uapply(msgarr,isSubmit){
 <div class="clear"></div>
 <script>
 function setUserMod(e){
-	var v = $(e).val(); 
-	if(v=='person'){
-		$('#iflg_mname').html('{lang(user.uap_name)}');
-		$('#pflg_company').hide();
-	}else{
-		$('#iflg_mname').html('{lang(user.uap_link)}');
-		$('#pflg_company').show();		
-	}
+    var v = $(e).val(); 
+    if(v=='person'){
+        $('#iflg_mname').html('{lang(user.uap_name)}');
+        $('#pflg_company').hide();
+    }else{
+        $('#iflg_mname').html('{lang(user.uap_link)}');
+        $('#pflg_company').show();        
+    }
 }
 </script>
 

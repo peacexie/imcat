@@ -1,11 +1,11 @@
 <?php
 $mdtitle = @$_groups[$this->mod]['title'];
 if($this->type=='detail'){
-	$sbtitle = $mdtitle."详情";
+    $sbtitle = $mdtitle."详情";
 }elseif($this->type=='mtype'){
-	$sbtitle = vopCell::cOpt($this->key,$this->mod);
+    $sbtitle = vopCell::cOpt($this->key,$this->mod);
 }else{
-	$sbtitle = $mdtitle;
+    $sbtitle = $mdtitle;
 }
 ?>
 <nav class="divOuter header">

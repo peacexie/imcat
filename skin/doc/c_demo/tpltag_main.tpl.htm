@@ -3,10 +3,10 @@
 {block:extop}<?php
 $key = empty($this->key) ? 'tplbase' : $this->key;
 $kar = array(
-	'tplbase' => 'Tpl Base',
-	'tplsuit' => 'Suit Ptl',
-	'tagbase' => 'Tag Base',
-	'tagjs'   => 'js-Tag',
+    'tplbase' => 'Tpl Base',
+    'tplsuit' => 'Suit Ptl',
+    'tagbase' => 'Tag Base',
+    'tagjs'   => 'js-Tag',
 );
 $subs = tex_base::docer("d_tpltag/doc_$key"); 
 $sub = req('sub',''); //include
@@ -18,11 +18,11 @@ $titlesub = $kar[$key];
 
 {block:exmain}
     
-	{if $key=='tplbase' }
-	<p class="pa10">Notice: We use `Tpl` or `tpl` as the word `Template` in this system!</p>
-	{/if}
+    {if $key=='tplbase' }
+    <p class="pa10">Notice: We use `Tpl` or `tpl` as the word `Template` in this system!</p>
+    {/if}
 
-	<?php foreach($subs as $k=>$v){ ?>
+    <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{$k}" class="mod-section">
       <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
       {$v[detail]}

@@ -38,9 +38,9 @@ echo '<br>';
 
 $str = "尽test可能将定制内容集中存储到同一个目录";
 for($i=3;$i<30;$i++){ 
-	echo "\n<br> $i-a: "; print_r(basStr::cutCount($str,$i)); 
-	echo "\n<br> $i-c: "; print_r(basStr::cutWidth($str,$i,'')); 
-	//echo "\n<br> $i-b: ".basStr::cutWidth($str,$i,''); 
+    echo "\n<br> $i-a: "; print_r(basStr::cutCount($str,$i)); 
+    echo "\n<br> $i-c: "; print_r(basStr::cutWidth($str,$i,'')); 
+    //echo "\n<br> $i-b: ".basStr::cutWidth($str,$i,''); 
 }
 
 $sunit = "尽test可能将定制内容集中存储到同一个目录";

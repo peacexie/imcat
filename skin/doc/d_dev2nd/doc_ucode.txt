@@ -91,7 +91,7 @@
 
 ```
     die('No Init'); 
-    vopShow::msg("[$key][type]Param Error!");	
+    vopShow::msg("[$key][type]Param Error!");    
     basMsg::show('Plesse select an operation!','die');
     glbHtml::page('end,$msg);
 

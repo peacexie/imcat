@@ -9,8 +9,8 @@
 $act = req('act');
 $exinfo = req('exinfo');
 if($act=='update'){
-	$arr = array('client-cn','client-en','server-cn','server-en'); 
-	foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
+    $arr = array('client-cn','client-en','server-cn','server-en'); 
+    foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }elseif($act=='modstat'){
   $arr = array('modstat-cn','modstat-en'); 
   foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
@@ -46,12 +46,12 @@ if($act=='update'){
 echo "\n<div class='h05'>&nbsp;</div>";
 echo "<pre>[!-- $exinfo ".lang('admin.home_exinfo')." <a href='?uhome'>&lt;&lt;".lang('admin.home_exback')."</a> \n";
 if($exinfo=='cbase'){
-	print_r($_cbase);
+    print_r($_cbase);
 }elseif($exinfo=='admin'){
-	print_r($user);
+    print_r($user);
 }elseif($exinfo=='member'){
-	$umem = user('Member');
-	print_r($umem);
+    $umem = user('Member');
+    print_r($umem);
 }
 echo "--></pre>\n";
 ?> 
@@ -96,12 +96,12 @@ include(DIR_CODE."/flow/eact/adfavor_view.php");
   </tr>
   <tr>
     <td class='tl pa10'>
-	<?php 
+    <?php 
     $a = array('verPHP','verGdlib','runRemote'); 
     foreach($a as $k){ 
-		$re = devRun::$k();
-		echo "● $re[title] : $re[info]<br>\n";
-	}
+        $re = devRun::$k();
+        echo "● $re[title] : $re[info]<br>\n";
+    }
     ?>
     ● {lang(admin.home_sysvars)}: <a href="?mkv=uhome&exinfo=cbase">cbase</a>, 
     <a href="?mkv=uhome&exinfo=admin">admin</a>, 
@@ -116,7 +116,7 @@ include(DIR_CODE."/flow/eact/adfavor_view.php");
     [<a href="?uhome">{lang(admin.home_refresh)}</a>-<a href="{PATH_ROOT}/plus/api/update.php?act=nav">nav</a>]<br>
     </td>
     <td nowrap="nowrap" class='tl pa10'>
-	<table class="uh-space"><?php updInfo::showSpaceInfo(); ?></table>
+    <table class="uh-space"><?php updInfo::showSpaceInfo(); ?></table>
     </td>
 
 </table>

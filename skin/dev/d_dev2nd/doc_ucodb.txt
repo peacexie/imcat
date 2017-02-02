@@ -136,10 +136,11 @@ $db->table('users_uacc')->data($acc+$dataex)->insert();
 ```
 
 * 系统设计`缺陷`
- - 系统设计：大量使用【show】字段，用于控制资料显示如否；
- - 【show】为mysql关键字，容易引起错误：如语句会报错：
- - $list = $db->table('users_inmem')->field('uid,uname,grade,mname,show')->where($usql)->select(); 
- - 子句修改为：->field('uid,uname,grade,mname,\`show\`')即可；<!--源码的\为转义符号-->
+ - 原则上,避免使用mysql关键字 作为数据表的字段；本系统使用了【show/key/char】等字段：
+ - 【show】用于控制资料显示如否，【key(wex_menu/base_paras中使用)】, 【char(init_types/types_*中使用)】；
+ - 这算是一些小`缺陷`，容易引起错误；出问题时，请按如下解决：
+ - $list = $db->table('users_inmem')->field('uid,grade,show')->where($usql)->select(); 
+ - 子句修改为：->field('uid,grade,\`show\`')即可；<!--源码的\为转义符号-->
 
 
 * 常用sql

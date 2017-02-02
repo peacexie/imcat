@@ -43,11 +43,11 @@
 * File Frames
 ```
    [code]
-		├─lang
-		│  ├─dbins DB-DATA Language packs
-		│  ├─kvphp Core Script Language packs
-		│  ├─ptinc TextBlock Language packs
-		│  └─ucfgs Configs Language packs
+        ├─lang
+        │  ├─dbins DB-DATA Language packs
+        │  ├─kvphp Core Script Language packs
+        │  ├─ptinc TextBlock Language packs
+        │  └─ucfgs Configs Language packs
 ```
 
 * Multi language packs

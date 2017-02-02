@@ -15,17 +15,6 @@ $title = '标签演示';
 · {= 'Hi! '; }{= date('Y-m-d') } <br>
 · {php echo date('Y-m-d'); } <br>
 
-
-<hr>
-
-// [hinfo,pindao+home+zhuanti,in] -=> m.hinfo IN('pindao','home','zhuanti')
-// [keywd,电视,title]
-{tag:dhinfo=[List][modid,cargo][hinfo,pindao+home+zhuanti,in][show,1][cache,1h][limit,6]}
-<li>
-<p><a href="{surl("cargo.$t_did")}">{title($t_title,96,$v)}</a></p>
-</li>
-{/tag:dhinfo}
-        
 <hr>
 
 <p>=== List:调用广告 ===</p>

@@ -11,7 +11,7 @@ if(!empty($user->uinfo['uid'])){
     $dop = new dopUser($_cfg); 
     $islogin = 1;
 }else{
-	$islogin = 0;
+    $islogin = 0;
 }
 ?>
 {/block:init}
@@ -21,22 +21,22 @@ if(!empty($user->uinfo['uid'])){
 <h3><i>edit information</i>{lang(user.pub_einfo)}: </h3>
 <?php 
 if(empty($bsend) && $islogin){
-	$fmo = $db->table($dop->tbid)->where("uid='$uid'")->find();
-	$dop->fmo = $fmo;
-	glbHtml::fmt_head('fmlist',"?$this->mkv",'tbdata');
-	//$dop->fmAccount();
-	fldView::lists($mod,$fmo);
-	//$dop->fmProp();
-	glbHtml::fmae_send('bsend',lang('submit'));
-	glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
-	//if(in_array($mod,array('company','govern','organize'))){
-		//fldView::relat("fm[grade]","fm[miuid],$mod,$uid,fm[grade]"); 
-	//}
+    $fmo = $db->table($dop->tbid)->where("uid='$uid'")->find();
+    $dop->fmo = $fmo;
+    glbHtml::fmt_head('fmlist',"?$this->mkv",'tbdata');
+    //$dop->fmAccount();
+    fldView::lists($mod,$fmo);
+    //$dop->fmProp();
+    glbHtml::fmae_send('bsend',lang('submit'));
+    glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+    //if(in_array($mod,array('company','govern','organize'))){
+        //fldView::relat("fm[grade]","fm[miuid],$mod,$uid,fm[grade]"); 
+    //}
 }elseif($islogin){
-	$dop->svPrep(); 
-	unset($dop->fmv['grade'],$dop->fmv['show']);
-	$db->table($dop->tbid)->data($dop->fmv)->where("uid='$uid'")->update();
-	echo "<dd class='msg'>".lang('user.uop_editok').": <a href='?$this->mkv'>".lang('user.uop_goback')."</a></dd>";
+    $dop->svPrep(); 
+    unset($dop->fmv['grade'],$dop->fmv['show']);
+    $db->table($dop->tbid)->data($dop->fmv)->where("uid='$uid'")->update();
+    echo "<dd class='msg'>".lang('user.uop_editok').": <a href='?$this->mkv'>".lang('user.uop_goback')."</a></dd>";
 }
 ?>
 </div>

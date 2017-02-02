@@ -59,8 +59,8 @@ demo:
     <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
     <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
 -=>Result
-	<span style='color:#F00'>Gray</span>
-	<span style='color:#F0F'>Black</span> </b></p>
+    <span style='color:#F00'>Gray</span>
+    <span style='color:#F0F'>Black</span> </b></p>
     <p><i>Color:</i><b>White,Gray,Black </b></p>
     <p><i>Color:</i><b>White|Gray|Black </b></p>
     <p><i>Color:</i><b><span class='itm-bai'>White</span><span class='itm-hui'>Gray</span><span class='itm-hei'>Black</span> </b></p>
@@ -152,7 +152,7 @@ demo:
 
 * (Null)
 ```
-// {stime($re4['atime']);}	             =>  [?php echo vopCell::cTime($re4['atime']);;?]
+// {stime($re4['atime']);}                 =>  [?php echo vopCell::cTime($re4['atime']);;?]
 // {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
 // {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
 // {sopt(c0769+c0735,china)}

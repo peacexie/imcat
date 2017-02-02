@@ -32,7 +32,7 @@
 
 #area32bit#32-bit Number
 ```
-       2^32 = 4,294,967,296	
+       2^32 = 4,294,967,296    
        2^31 = 2,147,483,648
  2147483647 = 2038-01-19 11:14:07 >> date('Y-m-d H:i:s', 2147483647);
           0 = 1970-01-01 08:00:00 >> date('Y-m-d H:i:s',          0);
@@ -54,7 +54,7 @@ dom ---
 Safe:Min-Max: 0 - 32767 (Specification in W3C)
 Auth code: 19790
 submit: 19830
-```	
+```    
 
 #sysurl#System-Url
 

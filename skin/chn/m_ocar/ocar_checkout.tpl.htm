@@ -7,7 +7,7 @@ $entit = 'Chechout';
 
 $list = exvOcar::ilist($tabid,$where); 
 if($list['sum']['acnt']==0){
-	die(basMsg::show("购物车为空，返回[商品展销]！",'Redir',surl('cargo'),1));
+    die(basMsg::show("购物车为空，返回[商品展销]！",'Redir',surl('cargo'),1));
 }
 $mname = @$user->uinfo['mname']; $mname || $mname = 'Guest';
 $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
@@ -139,37 +139,37 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
 </form>
 <script>
 jQuery.getScript('{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes&mod=,china,',function(){
-	var fm_ordshto__obj; popInit('fm[ordshto]','china',240,1,'',{},'ocar_setship');
+    var fm_ordshto__obj; popInit('fm[ordshto]','china',240,1,'',{},'ocar_setship');
 });
 function ocar_setdetail(val){ 
-	$("#fm_detail").val(val);
-	$("#fm_detail").html(val);
+    $("#fm_detail").val(val);
+    $("#fm_detail").html(val);
 }
 function ocar_setship(kval,kname){ //c0598,福建»三明
-	var arr = kname.split('»'); //jsLog(kval+kname); 
-	$("#feeship").html('---');
-	$("#feetotle").html('---');
-	$("[name='fm[ordship]']").attr("checked",false);
-	$("[name='fm[ordship]']").attr("disabled",true);
-	$("[id^='shipfee_']").html('---'); //[href$='.jpg']
-	$("[id^='shipmsg_']").html('---');
-	jQuery.getScript('{PATH_ROOT}/plus/api/ocar.php?act=shipfee&from={$_cbase[ucfg][city]}&to='+arr[1]+'&weight={$list[sum][aweight]}',function(){
-		for(var k in data){ 
-			var itm = data[k];
-			if($('#shipfee_'+itm.kid) && itm.ufee){
-				$('#shipfee_'+itm.kid).html(itm.ufee);
-				$('#shipmsg_'+itm.kid).html(itm.uday);
-				$('#ordship_'+itm.kid).attr("disabled",false);
-			}
-		}	
-	});
+    var arr = kname.split('»'); //jsLog(kval+kname); 
+    $("#feeship").html('---');
+    $("#feetotle").html('---');
+    $("[name='fm[ordship]']").attr("checked",false);
+    $("[name='fm[ordship]']").attr("disabled",true);
+    $("[id^='shipfee_']").html('---'); //[href$='.jpg']
+    $("[id^='shipmsg_']").html('---');
+    jQuery.getScript('{PATH_ROOT}/plus/api/ocar.php?act=shipfee&from={$_cbase[ucfg][city]}&to='+arr[1]+'&weight={$list[sum][aweight]}',function(){
+        for(var k in data){ 
+            var itm = data[k];
+            if($('#shipfee_'+itm.kid) && itm.ufee){
+                $('#shipfee_'+itm.kid).html(itm.ufee);
+                $('#shipmsg_'+itm.kid).html(itm.uday);
+                $('#ordship_'+itm.kid).attr("disabled",false);
+            }
+        }    
+    });
 }
 function ocar_pickship(e){ 
-	var sfee = $("#shipfee_"+e.value).html();
-	sfee = sfee.replace('元','');
-	$("#feeship").val(sfee);
-	var afee = $("#feeamount").val()*1.0+sfee*1.0-$("#feedis").val()*1.0;
-	$("#feetotle").val(afee.toFixed(2));
+    var sfee = $("#shipfee_"+e.value).html();
+    sfee = sfee.replace('元','');
+    $("#feeship").val(sfee);
+    var afee = $("#feeamount").val()*1.0+sfee*1.0-$("#feedis").val()*1.0;
+    $("#feetotle").val(afee.toFixed(2));
 }
 
 </script>

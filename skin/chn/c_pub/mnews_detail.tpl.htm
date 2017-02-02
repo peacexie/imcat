@@ -1,10 +1,10 @@
 <?php 
 $remarr = array(
-	'news' =>'nrem',
-	'cargo' =>'crem',
-	'topic' =>'trem',
-	'keres' =>'kerem',
-	'demo' =>'drem',
+    'news' =>'nrem',
+    'cargo' =>'crem',
+    'topic' =>'trem',
+    'keres' =>'kerem',
+    'demo' =>'drem',
 );
 $pmod = $remarr[$this->mod];
 ?>
@@ -25,7 +25,7 @@ $pmod = $remarr[$this->mod];
     <dt>{title($t_title,48,$v)}</dt>
     <dd>
     {text($t_detail,2400)}
-    <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+    <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p> 
     </dd>
   </dl>
   {/row}

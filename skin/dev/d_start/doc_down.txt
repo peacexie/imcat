@@ -7,7 +7,7 @@
  - 遵循`MIT License`开源协议
 
 * 整站下载：
- - [yscode] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
+ - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
  - [chinaz.站长下载] http://down.chinaz.com/soft/38424.htm
  - [admin5.站长下载] http://down.admin5.com/php/130751.html
 
@@ -87,4 +87,5 @@
  - [技术问答(bug反馈)]({svrtxmao}/root/run/umc.php?faqs)
  - [随便吐槽(留言投诉)]({svrtxmao}/dev.php?info-gbook)
  - [捐赠贡献]({svrtxmao}/dev.php?info-help)
+ - 贴心猫(imcat)技术交流QQ群：607070548
  - [QQ/Mail] QQ：8089-3510，Email：xpigeon#163.com （去掉-，把#改为@）

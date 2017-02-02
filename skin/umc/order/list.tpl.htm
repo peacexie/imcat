@@ -3,13 +3,13 @@
 {block:init}{:parent}<?php
 $whr = "auser='$uname'";
 if(empty($this->key)){
-	$title = lang('user.pub_hisord');
+    $title = lang('user.pub_hisord');
 }elseif($this->key=='nodone'){ 
-	$title = lang('user.ord_noend');
-	$whr .= " AND ordstat='new'";
+    $title = lang('user.ord_noend');
+    $whr .= " AND ordstat='new'";
 }elseif($this->key=='isdone'){
-	$title = lang('user.ord_isend');
-	$whr .= " AND ordstat='done'";
+    $title = lang('user.ord_isend');
+    $whr .= " AND ordstat='done'";
 }
 $tipmsg = $title;
 $ordcnt = 0;
@@ -36,7 +36,7 @@ $ordcnt = 0;
         <td class="tl"><a href="{surl("cargo.$v[pid]")}" target="detail">{$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">{lang(user.ord_more)}</i>{/if}</td>
         <td class="tc">{stime($t_atime,min)}</td>
         </tr>
-		{/tag:ordlist}
+        {/tag:ordlist}
         {if count($ordcnt)==0}
         <tr>
         <td> {lang(flow.dops_nodata)} </td>

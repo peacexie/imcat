@@ -54,13 +54,13 @@ var point = new BMap.Point(<?php echo $maps[0]; ?>);
 var geoc = new BMap.Geocoder();  
 var pt = point;
 geoc.getLocation(pt, function(rs){
-	var addComp = rs.addressComponents;
-	var address = addComp.province + ", " + addComp.city + ", " + addComp.district;
-	if(addComp.street){ address += ", " + addComp.street; }
-	if(addComp.streetNumber){ address += ", " + addComp.streetNumber; }
-	address += '(附近)';
-	document.getElementById('map_address').value = address;
-	//alert(address);
+    var addComp = rs.addressComponents;
+    var address = addComp.province + ", " + addComp.city + ", " + addComp.district;
+    if(addComp.street){ address += ", " + addComp.street; }
+    if(addComp.streetNumber){ address += ", " + addComp.streetNumber; }
+    address += '(附近)';
+    document.getElementById('map_address').value = address;
+    //alert(address);
 });
 // 显示地图(不显示地图,就不要一下代码)
 var map = new BMap.Map('mapObj');

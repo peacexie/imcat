@@ -136,10 +136,11 @@ $db->table('users_uacc')->data($acc+$dataex)->insert();
 ```
 
 * System design `defect`
- - In this system, the use of a large number of [show] field, for control the data display or Enabled;
- - But the word `show` is the keyword of mysql, Easy to cause error:
- - $list = $db->table('users_inmem')->field('uid,uname,grade,mname,show')->where($usql)->select(); 
- - You must Edit it as : ->field('uid,uname,grade,mname,\`show\`'); <!-- the char \ in the source, it is the escape symbol for makedown -->
+ - In principle, avoid using the MySQL keyword as a data table field; In this system, we used [show/key/char] words for the fields name of the db-table:
+ - [show] for control the info show or hide, [key(in wex_menu/base_paras)], [char(in init_types/types_*)]; 
+ - This are some small `defects` for the system, please according to the following address:
+ - $list = $db->table('users_inmem')->field('uid,grade,show')->where($usql)->select(); 
+ - You must Edit it as : ->field('uid,grade,\`show\`'); <!-- the char \ in the source, it is the escape symbol for makedown -->
 
 
 * General sql

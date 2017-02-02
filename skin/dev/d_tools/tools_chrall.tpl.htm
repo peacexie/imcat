@@ -7,15 +7,15 @@ $title = 'FFFF全字符集，0000~FFFF，共65536个全字符集';
 {block:eximp}
 <style type="text/css">
 body,td,th {
-	font-size:14px;
+    font-size:14px;
 }
 #chrtab { width:720px; background:#FFF; margin:10px auto; }
 #chrtab td { line-height:120%; font-size:large; border:1px solid #CCC; padding:5px 1px; }
 #chrtab tr.title td { background:#DDD; }
 
 a:link, a:visited {
-	display:inline-block;
-	padding:2px 5px 2px 5px;
+    display:inline-block;
+    padding:2px 5px 2px 5px;
 }
 
 </style>
@@ -42,12 +42,12 @@ a:link, a:visited {
 function GetHex(xi){ 
   var i,j,s; s = "";
   while (xi > 0){
-	i = xi%16; 
-	h1 = "0123456789ABCDEF";
-	h2 = h1.substring(i,i+1);
-	j = (xi-i)/16;
-	s = h2 + s;
-	xi = j;
+    i = xi%16; 
+    h1 = "0123456789ABCDEF";
+    h2 = h1.substring(i,i+1);
+    j = (xi-i)/16;
+    s = h2 + s;
+    xi = j;
   }
  return s;
 }
@@ -55,16 +55,16 @@ function GetHex(xi){
 function uTabShow(xHead,xStart,xEnd){
   var s = xHead; 
   for(i=xStart;i<xEnd;i=i+16){
-	i10 = i;
-	i16 = GetHex(i);
-	s += "<tr>";
-	s += "<td align=right>"+i10+"</td><td align=right>"+i16+"</td>";
+    i10 = i;
+    i16 = GetHex(i);
+    s += "<tr>";
+    s += "<td align=right>"+i10+"</td><td align=right>"+i16+"</td>";
     for(j=0;j<16;j++){
       k = (i+j);
-	  s += "<td class='td'>&#" + k + ";</td>" ;
+      s += "<td class='td'>&#" + k + ";</td>" ;
     }
-	s += "<td align=right>"+k+"</td><td align=right>"+GetHex(k)+"</td>";
-	s += "</tr>";
+    s += "<td align=right>"+k+"</td><td align=right>"+GetHex(k)+"</td>";
+    s += "</tr>";
   }
   UniTable.innerHTML = '<table id="chrtab">'+s+"</table>";
   //return s;
@@ -81,14 +81,14 @@ function uTabList(xPage){
 function uTabUser(n){
   s = ""; t = "";
   if(m<=PagSize){
-	 chStart = p1;
-	 chEnd   = p2 ;
+     chStart = p1;
+     chEnd   = p2 ;
   }else{
-	 chStart = PagSize*(n-1)+p1;
-	 chEnd   = chStart + PagSize - 1;
-	 mp = Math.ceil(m/PagSize);
-	 for(i=1;i<=mp;i++) t += "<a href='#' onclick='uTabUser("+i+")'>"+i+"</a>";
-	 t = "("+t+")";
+     chStart = PagSize*(n-1)+p1;
+     chEnd   = chStart + PagSize - 1;
+     mp = Math.ceil(m/PagSize);
+     for(i=1;i<=mp;i++) t += "<a href='#' onclick='uTabUser("+i+")'>"+i+"</a>";
+     t = "("+t+")";
   }
   //alert(chStart+":"+chEnd); return;
   if(chEnd>p2) chEnd = p2;

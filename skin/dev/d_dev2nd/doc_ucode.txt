@@ -91,7 +91,7 @@
 
 ```
     die('No Init'); 
-    vopShow::msg("[$key][type]参数错误!");	
+    vopShow::msg("[$key][type]参数错误!");    
     basMsg::show('请选择操作！','die');
     glbHtml::page('end,$msg);
 

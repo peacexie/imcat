@@ -7,7 +7,7 @@ $tipmsg = lang('user.pub_epass');
 $mod = @$user->uinfo['umods']; 
 $uname = @$user->uinfo['uname'];
 if($bsend){
-	$pwmsg = dopUser::editPass($mod,$uname);
+    $pwmsg = dopUser::editPass($mod,$uname);
 }
 ?>
 {/block:init}
@@ -22,7 +22,7 @@ if($bsend){
         <dt>{lang(user.uop_oldpw)}: </dt><dd><input name="pwold" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(admin.fad_up624)}</dd>
         <dt>{lang(user.uop_newpw)}: </dt><dd><input name="pwnew" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(admin.fad_up624)}</dd>
         <dt>{lang(user.uop_reppw)}: </dt><dd><input name="pwrep" type="password" value="" autocomplete="off" class="w240" maxlength='24' reg='str:6-24' tip='{lang(admin.fad_up624)}'/> {lang(user.uop_rptip)}</dd>
-		<dt>{lang(submit)}: </dt><dd><input name='bsend' type='submit' class='btn' value='{lang(submit)}' /></dd>
+        <dt>{lang(submit)}: </dt><dd><input name='bsend' type='submit' class='btn' value='{lang(submit)}' /></dd>
         {else}
         <dd class='msg'>{$pwmsg}: <a href='?{$this->mkv}'>{lang(user.uop_goback)}</a></dd>
         {/if}

@@ -10,8 +10,8 @@ $vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
 $ipObj = new extIPAddr($api);
 $pclass = DIR_CODE.'/core/uext/extIPAddr.php';
 if(strstr($act,'down')){
-	$path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
-	comHttp::downLoad($path, basename($path)); 
+    $path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
+    comHttp::downLoad($path, basename($path)); 
 }
 ?>{/block:extop}
 
@@ -39,25 +39,25 @@ echo " # <a href='$ufix&api=Ip138'>Ip138</a>\n";
 echo " # <a href='$ufix&api=S1616'>S1616</a>\n";
 echo " # <a href='$ufix&api=Baidu'>Baidu</a>\n";
 if($uip){
-	$addr = $ipObj->addr($uip);
-	echo "<br>\n您的查询为： ($api) : $uip -=> $addr";
+    $addr = $ipObj->addr($uip);
+    echo "<br>\n您的查询为： ($api) : $uip -=> $addr";
 }
 ?></p>
 
 <h4 class="tl">### 随机IPs 演示：</h4>
 <p><?php
 for($i=0;$i<5;$i++){
-	$ipx = tex_tools::rndIP();
-	$addr = $ipObj->addr($ipx);
-	echo "$ipx : $addr<br>\n"; 
+    $ipx = tex_tools::rndIP();
+    $addr = $ipObj->addr($ipx);
+    echo "$ipx : $addr<br>\n"; 
 }
 ?></p>
 
 <h4 class="tl">### 测试IPs：------ 点击IP测试，或url中输入ip测试 </h4>
 <p><?php
 for($i=0;$i<5;$i++){
-	$ipx = tex_tools::rndIP();
-	echo " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\n"; 
+    $ipx = tex_tools::rndIP();
+    echo " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\n"; 
 }
 ?></p>
 

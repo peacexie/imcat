@@ -16,7 +16,7 @@ div { margin:10px; border:1px solid #CCF; }
 <p><img src='<?php echo PATH_SKIN; ?>/_pub/logo/_pub/logo-2009.jpg' width="120" height="60" />logo-2009.jpg</p>
 <p><img src='<?php echo PATH_SKIN; ?>/_pub/logo/_pub/logo-2010.jpg' width="120" height="60" />logo-2010.jpg</p>
 <p><img src='<?php echo PATH_SKIN; ?>/_pub/logo/_pub/logo-2011.jpg' width="120" height="60" />logo-2011.jpg</p>
-</div>	
+</div>    
 
 <div id="test22" style="width:150px; height:80px; overflow:hidden">
 <p><img src='<?php echo PATH_SKIN; ?>/_pub/logo/_pub/logo-2008.jpg' width="120" height="60" alt="08" />logo-2008.jpg</p>
@@ -52,7 +52,7 @@ $('#test23 p').imgChange({effect:'wfScroll',steps:2,changeTime:50,vertical:0,wra
 $('#test24 p').imgChange({effect:'wfScroll',steps:2,changeTime:50,vertical:1});
 //,afterEnd:function(){jsLog('');}
 function aftFunc(e){
-	jsLog(e);
+    jsLog(e);
 }
 /*
 $('#test22 li').imgChange({botPrev:'#prev1',botNext:'#next1',effect:'scroll',vertical:0});
@@ -82,7 +82,7 @@ $('#tab-con .tj').imgChange({thumbObj:'#tab-tit li',speed:0,autoChange:0})
  * beforeStart:function(){$('.txt').hide},效果执行前的函数
  * afterEnd:null,效果完成后的函数
  *})
-	
+    
 */
 
 </script>

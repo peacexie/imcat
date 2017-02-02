@@ -25,7 +25,7 @@ $titlesub = 'Sub Title';
     <div class="mod-tbar">
     <i class="title">{$titlesub}</i>
     <i class="right">{block:exbar}
-	<?php foreach($subs as $k=>$v){ $title = isset($v['title']) ? $v['title'] : $v; ?>
+    <?php foreach($subs as $k=>$v){ $title = isset($v['title']) ? $v['title'] : $v; ?>
     <a href="#s_{$k}" {if $sub==$k}class='act'{/if}>{= $title}</a>
     <?php } ?>
     {/block:exbar}</i>

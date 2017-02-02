@@ -20,11 +20,11 @@ $pclass = DIR_CODE.'/core/uext/exaCSeal.php';
 $pfont = exaCSeal::$fpath;
 
 if($act=='CreatSeal'){
-	$seal = new exaCSeal($text,75,18,16,40);
-	$seal->doImg();	
+    $seal = new exaCSeal($text,75,18,16,40);
+    $seal->doImg();    
 }elseif(strstr($act,'down')){
-	$path = strpos($act,'Class') ? $pclass : DIR_STATIC.$pfont;
-	comHttp::downLoad($path, basename($path)); 
+    $path = strpos($act,'Class') ? $pclass : DIR_STATIC.$pfont;
+    comHttp::downLoad($path, basename($path)); 
 }
 ?>{/block:extop}
 

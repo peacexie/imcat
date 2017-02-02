@@ -15,10 +15,10 @@ i { font-style:normal; }
 
 .umc-mitem dl{ height:auto; }
 .umc-mitem h3 { color:#06F; font-size:larger; text-align:left;
-	padding:5px 0 5px 80px; clear:both;
-	background-image:url(../../../skin/_pub/a_img/line-blue.png);
-	background-repeat:repeat-x;
-	border-bottom:1px solid #a1dbff;
+    padding:5px 0 5px 80px; clear:both;
+    background-image:url(../../../skin/_pub/a_img/line-blue.png);
+    background-repeat:repeat-x;
+    border-bottom:1px solid #a1dbff;
 }
 .umc-mitem h3 i{ color:#999; font-style:normal; float:right; font-size:x-small; padding-right:10px; }
 .umc-mitem dt, .umc-mitem dd { line-height:150%; height:32px; display:inline-block; padding:3px; 0px; margin:3px 0px; border-bottom:1px dashed #CCC; }
@@ -31,8 +31,8 @@ i { font-style:normal; }
 .umc_cprint { width:770px; margin:0px auto; font-size:medium; }
 .umc_cont { width:960px; margin:0px auto; font-size:medium; }
 .umc_logo { width:120px; height:60px; float:right; display:inline-block; margin:5px 10px 0px 10px; 
-	background: url(../../../skin/_pub/a_img/logo120x60.jpg); 
-	border:0px solid #3A6EA5; border-radius: 3px; 
+    background: url(../../../skin/_pub/a_img/logo120x60.jpg); 
+    border:0px solid #3A6EA5; border-radius: 3px; 
 }
 .umc_msg { margin: 5px; }
 .umc_msg a{ display:inline-block; padding:0px 5px; }
@@ -42,10 +42,10 @@ i { font-style:normal; }
 .umc_nav1 a.act { color:#F00; background:#FFF; }
 .umc_mtip { float:right; display:inline-block; color:#134D9D; margin:10px 10px auto 10px; }
 .umc_nav2 { padding:10px 10px 10px 1px; margin-bottom:10px; 
-	background-image:url(../../../skin/_pub/a_img/line-blue.png);
-	background-position:0px -40px;
-	border-top:1px dashed #CCC; 
-	border-bottom:1px solid #99F; 
+    background-image:url(../../../skin/_pub/a_img/line-blue.png);
+    background-position:0px -40px;
+    border-top:1px dashed #CCC; 
+    border-bottom:1px solid #99F; 
 }
 .umc_nav2 a { display:inline-block; padding:1px 5px; } 
 .umc_nav2 a.act { font-weight:normal; border:1px solid #03C; }
@@ -59,13 +59,13 @@ i { font-style:normal; }
 .umc_finfo { text-align:center; font-size:smaller; padding:0px 0 0px 0; }
 
 .umc_head{
-	background-image:url(../../../skin/_pub/a_img/line-blue.png);
-	background-position:0px -80px;
-	padding:5px 0px 5px 0px;
+    background-image:url(../../../skin/_pub/a_img/line-blue.png);
+    background-position:0px -80px;
+    padding:5px 0px 5px 0px;
 }
 .umc_foot{
-	background: #DDD;
-	padding:0px 0px 10px 0px;
+    background: #DDD;
+    padding:0px 0px 10px 0px;
 }
 
 .tblist td{ padding:2px 1px; font-size:14px; }

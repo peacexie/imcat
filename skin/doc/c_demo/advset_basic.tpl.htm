@@ -3,15 +3,15 @@
 {block:extop}<?php
 $key = empty($this->key) ? 'basic' : $this->key;
 $kar = array(
-	'basic'   => 'Core Param',
-	'expara'    => 'Extra Param',
-	'fields'    => 'Fileds Param',
-	'docs'   => 'Docs/News',
-	'user'   => 'User/Member',
-	'else'   => 'Else',
-	
-	'exdata' => 'Share-Data',
-	'explan' => 'Task-Plan',
+    'basic'   => 'Core Param',
+    'expara'    => 'Extra Param',
+    'fields'    => 'Fileds Param',
+    'docs'   => 'Docs/News',
+    'user'   => 'User/Member',
+    'else'   => 'Else',
+    
+    'exdata' => 'Share-Data',
+    'explan' => 'Task-Plan',
 
 );
 $subs = tex_base::docer("d_advset/doc_$key");
@@ -23,7 +23,7 @@ $titlesub = empty($kar[$key]) ? $key : $kar[$key]; //print_r($subs);
 
 {block:exmain}
     
-	<?php foreach($subs as $k=>$v){ ?>
+    <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{$k}" class="mod-section">
       <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
       {$v[detail]}
