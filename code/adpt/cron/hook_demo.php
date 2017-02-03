@@ -6,6 +6,14 @@
 
 $rdo = 'fail';
 
+// code1: ex-dosth-1
+// code2: ex-dosth-2
+// code3: ...
 basDebug::bugLogs('hook_demo','do-sth','detmp','db');
 
 $rdo = 'pass';
+
+/*
+http://www.thinkphp.cn/extend/876.html
+自动注册Hook机制钩子
+*/

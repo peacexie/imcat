@@ -72,9 +72,8 @@ class devBuild{
         // vopfmt
         $data = comFiles::get(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php');
         $flag = "\$_ex_vopfmt['tpl'] = array(".PHP_EOL;
-        $icfg = "    '$dir' => array('$title','/$front.php'),".PHP_EOL.'    ';
+        $icfg = "    '$dir' => array(".PHP_EOL."        '$title',".PHP_EOL."        '/$front.php'".PHP_EOL."    ),".PHP_EOL.'    ';
         $data = preg_replace("/[$]_ex_vopfmt\[\'tpl\'\]\s{0,4}\=\s{0,4}array\(\s{0,4}/is", $flag.$icfg, $data);
-        $data = str_replace(array("      '", ),array("    '", ),$data);
         comFiles::put(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php', $data);
     }
 

@@ -232,7 +232,27 @@ class safComm{ // extends safBase
         echo $res;
     }*/
     
-    
+    // --- act=init,stop,flag
+    static function signApi($act='init',$time=3600){  
+        global $_cbase;
+        $stamp = $_cbase['run']['stamp']; 
+        $safix = $_cbase['safe']['safix'];
+        $keyapi = $_cbase['safe']['api'];
+        if($act=='init'){
+            $encode = md5("$keyapi.$stamp");
+            return "{$safix}[tm]=$stamp&{$safix}[enc]=$encode";
+        }else{
+            $flag = 0;
+            $re_stamp = basReq::ark($safix,'tm');
+            $re_encode = basReq::ark($safix,'enc'); 
+            if(empty($re_stamp) || empty($re_encode)) $flag = 'empty';
+            if($stamp-$re_stamp>$time) $flag = 'timeout';
+            if(!($re_encode==md5("$keyapi.$re_stamp"))) $flag = 'encode';
+            if($flag){
+                return ($act=='flag') ? $flag : safBase::Stop('urlStamp');
+            }
+        }
+    }
     
         
     // --- End ----------------------------------------

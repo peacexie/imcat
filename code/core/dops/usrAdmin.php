@@ -45,7 +45,7 @@ class usrAdmin extends usrBase{
         comSession::set($this->sessid,$str); 
     }
     
-    static function getMkv($re='mkv'){
+    static function getMkv(){
         $file = req('file'); 
         if(in_array(substr($file,0,1),array('.','/'))){
             return 'amain'; // 不能是 .和/ 开头; 
