@@ -17,6 +17,7 @@ $_ex_vopfmt['langs'] = array(
 
 // 所有模板
 $_ex_vopfmt['tpl'] = array(
+    //'app' => array('AppServer', '/app.php'), // 不要在这里配置
     'adm' => array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
         '/root/run/adm.php'

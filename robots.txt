@@ -12,6 +12,7 @@ Disallow: /skin/
 Disallow: /root/a3rd/
 Disallow: /root/plus/
 Disallow: /root/run/adm.php
+Disallow: /root/run/app.php
 Disallow: /root/tools/
 
 Allow: /html/

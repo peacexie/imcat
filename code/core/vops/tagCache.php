@@ -5,6 +5,7 @@
 // 标签缓存类
 class tagCache{
     
+    // adblock:abfoot0,2cF0F
     static function showAdv($mkey){ 
         $mk = explode(':',$mkey);
         if(empty($mk[1])) return '';

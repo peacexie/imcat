@@ -15,7 +15,7 @@
 
 * Basic information:
  - (plan)Release: 2017.02.11~(2017-02-18)
- - Weight: 3.45 MB
+ - Weight: 3.42 MB
 
 
 
@@ -32,7 +32,7 @@
  - Impove thumb, support Ftp store
  - Impove documentation
  - Add `[广告]` Flag on the advertise   
- - Impove: batch static create, support mod-kid-view params
+ - Impove: Impove batch static create
 
 * Fixed/Optiming:
  - Fixed: English language pack
