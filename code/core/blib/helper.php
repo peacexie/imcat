@@ -3,7 +3,6 @@
  * 一组别名函数（使用Symfony的dump后添加的,有的叫助手函数）
  * 如果与其它程序一起使用，发现有如下函数冲突，请设置[run.outer]参数即可
  * 设置[run.outer]后，如需要用本系统方法，请用autoLoad_ys::init()加载即可
- * 输出:xml,json,jsonp
  */
 
 // dump(格式化输出：变量，数组，Object)
@@ -26,7 +25,7 @@ function lang($mk, $val=''){
         echo basLang::show($mk, $val===0?'':$val);
     }else{
         return basLang::show($mk, $val);
-    } // ??? basLang::ucfg('cfgbase.uinfstate'); 
+    } 
 }
 // read(读取缓存)
 function read($file,$dir='modcm'){
@@ -42,6 +41,19 @@ function read($file,$dir='modcm'){
 function req($key,$def='',$type='Title',$len=255){
     return basReq::val($key,$def,$type,$len);
 }
+// 输入 : addslashes 反斜杠
+function in($data){
+    return basReq::in($data);
+}
+// 输出 : 格式: str,json,jsonp,xml
+function out($data,$type='json'){
+    if($type=='str'){ // 删除(addslashes添加的)反斜杠
+        $data = basReq::out($data,$type);
+    }else{ // fmt: json,jsonp,xml
+        $data = basOut::fmt($data,$type);
+    }
+    return $data;
+}
 // db(获得db对象)
 function db($config=array()){
     return glbDBObj::dbObj($config);
@@ -53,10 +65,6 @@ function user($uclass=''){
 // 格式化url输出
 function surl($mkv='',$type='',$host=0){
     return vopUrl::fout($mkv,$type,$host);
-}
-//
-function output($data,$type='json'){
-    return basOut::fmt($data,$type);
 }
 // cmod模块关闭
 function cmod($key=''){

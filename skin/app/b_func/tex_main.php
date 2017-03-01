@@ -6,16 +6,7 @@ class tex_main{
     
     public $mod = '';
     public $act = '';
-
-    protected $vars = array(); //存放变量信息
-    
-    public $tplCfg = array(); //模板配置
-    public $ucfg = array(); //url-Configs
-    public $err = ''; 
-    
-    public $pgflag = array();
-    public $pgbar = array(); //分页信息
-    //public $mod,$key,$view,$type; 
+    public $vars = array(); //存放变量信息
     
     function __construct() {
         $this->init();
@@ -25,73 +16,61 @@ class tex_main{
     }
     
     function init(){
-        // 
         $qs = empty($_SERVER['QUERY_STRING'])?'':$_SERVER['QUERY_STRING']; //可能为0
         $this->qs = $qs;
         parse_str($qs,$ua); unset($ua['_r'],$ua['_'],$ua[cfg('safe.safix')]);
         $this->ua = $ua;
         $this->hcfgs = read('home','va'); 
+        if(!empty($this->hcfgs['c']['close'])){
+            $this->vars = $this->error('closed-all(init)');
+            $this->view('~');
+        }
+        $domain = req('domain','');
+        if($domain && in_array($domain, $this->hcfgs['c']['dmacc'])){ 
+            header("Access-Control-Allow-Origin:*"); // 指定允许其他域名访问  
+            header('Access-Control-Allow-Methods:POST'); // 响应类型  
+            header('Access-Control-Allow-Headers:x-requested-with,content-type'); // 响应头设置
+            header('Access-Control-Allow-Credentials:true'); // 允许携带 用户认证凭据（也就是请求携带Cookie）
+            cls_HttpStatus::trace(array('X-Frame-Options' => 'ALLOWALL'));    //ALLOWALL，ALLOW-FROM
+        } 
+        vopTpls::pinc('tex_func');
     }
-    // 
-    function perm(){
-        // close, from-domain
-    }
+
     // mod, ua
     function check(){
         if(empty($this->qs) || $this->qs=='home'){
-            $this->view('home');
+            $this->view('home',0);
         }
         $flag = safComm::signApi('flag'); 
         if($flag){
-            $this->view($this->error('signApi'));
+            $this->vars = $this->error('signApi(check)');
+            $this->view('~');
         }
         if(empty($this->ua['mod'])){
-            $this->view($this->error('empty-mod'));
+            $this->vars = $this->error('empty-mod(check)');
+            $this->view('~');
         }
         $this->mod = $this->ua['mod'];
         $this->act = empty($this->ua['act']) ? '' : $this->ua['act'];
-        // close, imp...
+        $this->id = req('id','');
+        if(in_array($this->mod,$this->hcfgs['close'])){
+            $this->vars = $this->error("closed-{$this->mod}(init)");
+            $this->view('~');
+        }
     }
     
     function vars(){
-        //dump($this);
+        $_groups = read('groups');
         if(in_array($this->mod,$this->hcfgs['extra'])){
             $this->view($this->mod);
         }
-        global $_cbase; 
-        //初始化
-        //die();
-
-        $this->vars = array(); //重新清空,连续生成静态需要
-        $this->ucfg = $_cbase['mkv'] = vopUrl::init($q); 
-        if(empty($this->ucfg)) { return; }
-        foreach(array('mkv','mod','key','view','type','tplname',) as $k){
-            $this->$k = $this->ucfg[$k];
+        if(isset($_groups[$this->mod])){
+            $file = $this->id ? 'vdetail' : 'vlist';
+            $this->view($file);
+        }else{
+            $this->vars = $this->error("Error-mod(vars):{$this->mod}");
+            $this->view('~');
         }
-        //读取数据,赋值 $this->set('name', 'test_Name');
-
-        $_groups = read('groups');
-        if(!($this->type=='detail')) return array();
-        $pid = @$_groups[$this->mod]['pid'];
-        $key = in_array($pid,array('types')) ? "kid" : substr($pid,0,1).'id';
-        $data = $dext = array();
-        if(in_array($pid,array('docs','users','coms','advs','types'))){
-            $db = db();
-            $tabid = glbDBExt::getTable($this->mod);
-            $data = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-            if(empty($data)){ return $this->msg("[{$this->key}]".lang('core.vshow_uncheck')); }
-            if(in_array($pid,array('docs'))){
-                $tabid = glbDBExt::getTable($this->mod,1);
-                $dext = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-                $dext && $data += $dext; 
-            }
-        }
-        return $this->vars = $data;
-
-        //模板:判断+编译+显示
-        $this->getTpl($vars); 
-        $_groups = read('groups'); //显示
-        include(vopTpls::path('tpc')."/$this->tplname".$this->tplCfg['tpc_ext']);//加载编译后的模板缓存
     }
 
     function error($msg='',$state='',$no=0){
@@ -99,27 +78,31 @@ class tex_main{
             'errno' => $no ? $no : 1,
             'state' => $state ? $state : 'error',
             'msg' => $msg,
-            'data' => $this->ua,
+            'ua' => $this->ua,
         );
         return $res;
     }
 
-    function view($vars=array(),$stop=1){
-            global $_cbase;
-            $_groups = read('groups');
-        if(!empty($vars)){
-            if(is_array($vars)){
-                $type = req('retype','json');
-                echo basOut::fmt($vars,$type );
-            }else{ // if(is_string($vars))
-                include(vopTpls::pinc("b_files/v{$vars}"));
-            }
-        }else{
-
-            echo vopTpls::pinc("b_files/v{$this->mod}");
-            include(vopTpls::pinc("b_files/v{$this->mod}"));
+    function view($file='info',$vout=1,$die=1){
+        global $_cbase;
+        $_groups = read('groups');
+        $db = db();
+        $vars = $this->vars;
+        $fp = vopTpls::pinc("b_files/$file");
+        if(file_exists($fp)){
+            include($fp); 
         }
-        if($stop) die();
+        $type = req('retype','json');
+        if($vout){ 
+            if(req('debug')){
+                glbHtml::head('html'); 
+                dump($vars);
+            }else{
+                glbHtml::head($type); 
+                echo basOut::fmt($vars,$type);
+            }
+        }
+        if($die) die();
     }
 
 }

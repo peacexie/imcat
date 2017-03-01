@@ -1,16 +1,24 @@
 <?php
 /*
- * 文档通用模板配置
+ * list:列表条件配置
+ * detail:暂未用
 /*/
 $_vc_demo = array(
     
     //list-条件
-    'l' => array(
-        'a' => 'a',
+    'list' => array(
+        /*
+        'skip' => array('aa','bb','cc'), // pid,stype
+        'leixing' => "(leixing=0 OR leixing={val})", //1,2
+        'leix2' => array(
+            "1[=](leix2=0 OR leix2=1)",
+            "2[=](leix2=0 OR leix2=2)",
+        ),
+        //*/
     ),
 
     //详情页-条件
-    'd' => array(
+    'detail' => array(
         'a' => 'a',
     ),
 

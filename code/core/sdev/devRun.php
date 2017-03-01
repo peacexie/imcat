@@ -13,10 +13,14 @@ class devRun{
 
     // prootGet
     static function prootGet(){
-        $path = substr(__FILE__,strlen($_SERVER['DOCUMENT_ROOT'])); 
-        //DOCUMENT_ROOT = E:\webs 或 /home/bae/app/
-        $file = 'code/core/sdev/devRun.php'; 
-        $path = str_replace(array("\\","/$file","$file"),array("/",'',''),$path);
+        // 虚拟目录: E:\truedir\index.php -> /imcat/index.php
+        $path = $_SERVER['SCRIPT_NAME'];
+        $files = array(
+            "/root/tools/setup/index.php",
+            "/root/tools/adbug/start.php",
+            "/index.php",
+        );
+        $path = str_replace($files,'',$path);
         return $path;
     } 
     // prootFix

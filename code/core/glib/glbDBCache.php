@@ -37,15 +37,14 @@ class glbDBCache extends glbDBObj{
         $field='count(*)';//查询的字段
         $where=$this->_parseCond();//条件
         $this->sql="SELECT $field FROM $table $where";
-        $data="";
         //读取缓存
-        $data=$this->_dcGet('count');
-        if(!empty($data)){ return $data; }
+        $re = $this->_dcGet('count');
+        if(!empty($re)){ return $re; }
         $this->connect();            
-        $data['count(*)'] = $this->db->val($this->sql);
+        $re = $this->db->val($this->sql);
         $this->runTimer('count');
-        $this->_dcPut($data['count(*)'],'count');//写入缓存
-        return $data['count(*)'];
+        $this->_dcPut($re,'count');//写入缓存
+        return $re;
     }
 
     //只查询一条信息，返回一维数组    
@@ -56,7 +55,6 @@ class glbDBCache extends glbDBObj{
         $where=$this->_parseCond();//条件
         $this->options['field']='*';//设置下一次查询时，字段的默认值
         $this->sql="SELECT $field FROM $table $where";
-        $data="";
         //读取缓存
         $data=$this->_dcGet('find');
         if(!empty($data)){ return $data; }

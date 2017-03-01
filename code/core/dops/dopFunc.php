@@ -151,6 +151,7 @@ class dopFunc{
             $val = basReq::fmt($val,'0','N');
         }elseif($f[$k]['dbtype']=='text'){ 
             $val = basReq::fmt($val,'','Html',24123); //24K
+            $val = basReq::in($val);
         }elseif($f[$k]['dbtype']=='varchar'){
             $val = basStr::filTitle($val);
         }else{

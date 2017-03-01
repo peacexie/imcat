@@ -3,33 +3,93 @@
 #prboot#boot-Param
 
 * Dir : /code/cfgs/boot/
-* const.cfg.php : Cookie prefix, custom config, debug log config
-* cfg_load.php : Class prefix and autoload path config
-* cfg_db.php : Database config, change database please config this
+
+* _paths.php : sys-paths config
+ - Can change the sys-dirs as : html/ures, code/root/skin, vary/vimp
+
 * cfg_adbug.php : The id/pw for auxiliary debugging tools
   -> StartPage : /root/index.php?start 
   -> Some tools links, need to login or uesed by the admin
+
+* cfg_db.php : Database config, change database please config this
+
+* cfg_load.php : Class prefix and autoload path config
+
+* const.cfg.php : Cookie prefix, custom config, debug log config
 
 
 #prexcfg#excfg-Param
 
 * Dir : /code/cfgs/excfg/
-* ex_mail.php : for Email
-* ex_sms.php : for SMS
-* ex_vopfmt.php : Tpl-Show
-* ex_outdb.php : Data-Share/Syn, Out-DB
+
 * ex_a3rd.php : 3rd [Pay/Login]Config
+
+* ex_coms.php : clicks,digg fields-config
+
+* ex_dmbind.php : domain-bind config
+ - (Demo) org url : /html/cargo/2015-9c/h3h1.html
+ - -=>want disply url
+ - http://pro.my_domain.com/2015-9c/h3h1.html
+ - Detail config see the notice in the file
+ - Your will deal with these things OUT of the system(sub-domain DNS, pseudo-static rule)
+
+* ex_ipstop.php : for forbid-ip config
+
+* ex_mail.php : for Email
+
+* ex_outdb.php : Data-Share/Syn, Out-DB
+
+* ex_sms.php : for SMS
+
+* ex_sphinx.php : for Sphinx-Search
+
+* ex_store.php : for Store config(FTP-Store/Cloud-Store)
+
+* ex_vjump.php : for sub-site jump
+
+* ex_vopfmt.php : Tpl-Show
+
+* ex_wmark.php : for water-mark
 
 
 #prsycfg#sycfg-Param
 
 * Dir : /code/cfgs/sycfg/
-* sy_keepid.php System keeped id configs
-* sy_uachk.php Search-Engine, Browser, UserAgent Keywords
-* System parameters, according to the need to be modified
+
+* sy_domain.php : sub-domain jump,xss,top-domain config
+
+* sy_fadvs.php : fileds for advs
+
+* sy_fdemo.php : common-pick fileds
+
+* sy_filetyep.php : file-types config
+
+* sy_fkeywd.php : keyword for fileds
+
+* sy_frame.php : model-frame config(store-format, extra-params)
+
+* sy_keepid.php : sys-keep-ids config
+
+* sy_modstat.php : model-stat(used in adm-homepage) config
+
+* sy_pubcfg.php : publish config
+
+* sy_simpass.php : simple id/pass config(these id/pass will forbid in this system)
+
+* sy_sysids.php : sys-url-params(it can use direct the params somewhere)
+
+* sy_uachk.php : Search-Engine, Browser, UserAgent Keywords
+
+* sy_updvnow.php : for update-now config
+
+* sy_urdir.php : attach file list dirs
 
 
 #prelse#else-Param
+
+* Dir : /code/cfgs/player/ for Player
+
+* Dir : /code/cfgs/scfile/ for script extra
 
 * Wechat config : Admin >> Frame >> Plus/API >> WechatAPI (Support more then ONE public number)
 

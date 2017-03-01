@@ -216,7 +216,18 @@ class basArray{
         return $array1;  
     } 
     
-    // array next元素key
+    // array prev元素key(不考虑0键值)
+    static function prevKey($a,$key){
+        $pk = '';
+        foreach($a as $k=>$v){
+            if($k==$key){
+                return $pk;
+            }
+            $pk = $k; // 记录上一个key
+        }
+        return '';
+    }
+    // array next元素key(不考虑0键值)
     static function nextKey($a,$key){
         $flag = 0; $no = 0;
         foreach($a as $k=>$v){
@@ -224,7 +235,7 @@ class basArray{
             if($flag){
                 return $k;
             }
-            if($k===$key){
+            if($k==$key){
                 $flag = 1;
             }
         }

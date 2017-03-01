@@ -13,6 +13,7 @@ echo "<p>
   <a href='?dir=exdiy'>exdiy:扩展功能</a>
   # <a href='?dir=08data&part=08data'>08data:导数据</a> 
   # <a href='?dir=fzg360&part=fzg360'>fzg360:采集分析</a> 
+  # <a href='?dir=fzgcaiji&part=fzgcaiji'>fzgcaiji:fang采集</a> 
   <br> $svlink
 </p>\n";
 
@@ -23,6 +24,7 @@ $pcfg = array(
   'tester' => array(dirname(DIR_PROJ)."/project/tester", '../../../../project/tester'),
   '08data' => array(dirname(DIR_PROJ)."/project", '../../../../project'),
   'fzg360' => array(dirname(DIR_PROJ)."/project", '../../../../project'),
+  'fzgcaiji' => array(dirname(DIR_PROJ)."/project", '../../../../project'),
 );
 $dbase = $pcfg[$part][0]; 
 

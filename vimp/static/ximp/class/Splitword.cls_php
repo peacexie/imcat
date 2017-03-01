@@ -321,9 +321,9 @@ class Splitword
   				$t = 6;
   				$testok = false;
   				while($t>=4){
-  				  $w = substr($addw,0,$t);
+  				  $w = substr($addw,0,$t); 
   				  if($this->IsWord($w) 
-  				  && ($this->GetRank($w) > $this->GetRank($ws[$i+1])*2) ){
+  				  && ($this->GetRank($w) > intval($this->GetRank($ws[$i+1]))*2) ){
   					   $limitW = substr($ws[$i+1],strlen($ws[$i+1])-$t-2,strlen($ws[$i+1])-strlen($w)+2);
   					   if($limitW!='') $reStr .= $spc.$w.$spc.$limitW;
   					   else $reStr .= $spc.$w;
@@ -489,10 +489,10 @@ class Splitword
     if($okstr=='') return '';
     $ws = explode(" ",$okstr);
     $okstr = '';
-    $wks = '';
+    $wks = array();
     foreach($ws as $w)
     {
-      $w = trim($w);
+      $w = trim($w); 
       //排除小于2的字符
       if(strlen($w)<2) continue;
       //排除数字或日期
@@ -525,8 +525,12 @@ class Splitword
   //获得词的词频
   //--------------------
   function GetRank($w){
-  	if(isset($this->RankDic[strlen($w)][$w])) return $this->RankDic[strlen($w)][$w];
-  	else return 0;
+  	if(isset($this->RankDic[strlen($w)][$w])){
+      $res = $this->RankDic[strlen($w)][$w]; 
+      return trim($res);
+    }else{
+      return 0;
+    }
   }
   //----------------------------
   //把全角数字或英文单词转为半角

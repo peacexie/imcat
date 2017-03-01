@@ -5,6 +5,11 @@ E:.
 │  ├─b_jscss
 │  ├─frame
 │  └─_config
+├─app
+│  ├─b_files
+│  ├─b_func
+│  ├─c_mod
+│  └─_config
 ├─chn
 │  ├─b_func
 │  ├─b_jscss

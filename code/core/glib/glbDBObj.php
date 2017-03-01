@@ -14,13 +14,13 @@ class glbDBObj{
     private $nolog = array(
         'active_admin', 'active_online', 'active_session',
         'logs_dbsql', 'logs_detmp', 'logs_jifen', 'logs_syact',
-        'wex_qrcode', 'wex_msgget', 'ex_locate',
+        'wex_qrcode', 'wex_msgget', 'wex_locate',
     );
     private $options = array(); // 查询表达式参数
     static $uobj = array(); //实例化的前数据对象
 
     function __construct($config=array()){
-        $this->config = empty($config) ? read('db','cfg') : $config;
+        $this->config = empty($config) ? self::getCfg() : $config;
         $this->options['field'] = '*';//默认查询字段
         $this->class = $this->config['db_class']; //PHP5.5不支持mysql扩展,use mysqli or PDO instead
         if($this->class=='mysql' && strnatcmp(PHP_VERSION, '5.5.0')>=0) $this->class = 'mysqli'; 
@@ -154,11 +154,10 @@ class glbDBObj{
         $field='count(*)';//查询的字段
         $where=$this->_parseCond();//条件
         $this->sql="SELECT $field FROM $table $where";
-        $data="";
         $this->connect();            
-        $data['count(*)'] = $this->db->val($this->sql);
+        $re = $this->db->val($this->sql);
         $this->runTimer('count');
-        return $data['count(*)'];
+        return $re;
     }
 
     //只查询一条信息，返回一维数组    
@@ -169,7 +168,7 @@ class glbDBObj{
         $where=$this->_parseCond();//条件
         $this->options['field']='*';//设置下一次查询时，字段的默认值
         $this->sql="SELECT $field FROM $table $where";
-        $data="";
+        $data = array();
         $this->connect();
         $data = $this->db->row($this->sql);
         $this->runTimer('find');
@@ -378,9 +377,14 @@ class glbDBObj{
     // 
     static function dbObj($config=array()){ 
         if(empty($config)){
-            $key = 'dbobj_default';
-        }else{
-            $key = 'dbobj_'.$config['db_host'].'_'.$config['db_name'];
+            $key = 'db0_main';
+        }elseif(is_string($config)){ // `user`
+            $dbcfg = self::getCfg(); 
+            $key = $config;
+            $config = isset($dbcfg[$key]) ? $dbcfg[$key] : $dbcfg;
+            $key = isset($dbcfg[$key]) ? "db1_$key" : 'db0_main';
+        }else{ // array()
+            $key = 'dba_'.$config['db_host'].'_'.$config['db_name'];
         }
         if(empty(self::$uobj[$key])){ 
             self::$uobj[$key] = new self($config); 
@@ -390,8 +394,11 @@ class glbDBObj{
     }
     
     static function getCfg($key=''){
-        $dbcfg = read('db','cfg');
-        return $key ? $dbcfg[$key] : $dbcfg;
+        static $dbcfg;
+        if(empty($dbcfg)){
+            $dbcfg = read('db','cfg');
+        }
+        return ($key && isset($dbcfg[$key])) ? $dbcfg[$key] : $dbcfg;
     }
 
 }

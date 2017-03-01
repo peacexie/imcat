@@ -64,13 +64,13 @@ class autoLoad_ys{
     static function vload($name){ 
         // -pr4规范
         foreach(self::$cfgpr4 as $k=>$v){ 
-            if(!strstr($name,$k)) continue; //strpos比file_exists快多了吧？
+            if(!strstr($name,$k)) continue; //strstr 比file_exists快多了吧？
             $file = str_replace('\\', '/', str_replace($k, $v[0].'/', $name)).'.php'; 
             return self::doinc($file,DIR_VENDOR);
         }
         // -namespace规范
         foreach(self::$cfgnsp as $k=>$v){ 
-            if(!strstr($name,$k)) continue; //strpos比file_exists快多了吧？
+            if(!strstr($name,$k)) continue; //strstr 比file_exists快多了吧？
             $file = str_replace('\\', '/', $v[0].'/'.$name).'.php'; 
             return self::doinc($file,DIR_VENDOR);
         }

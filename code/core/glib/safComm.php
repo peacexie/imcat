@@ -243,7 +243,7 @@ class safComm{ // extends safBase
             return "{$safix}[tm]=$stamp&{$safix}[enc]=$encode";
         }else{
             $flag = 0;
-            $re_stamp = basReq::ark($safix,'tm');
+            $re_stamp = intval(basReq::ark($safix,'tm'));
             $re_encode = basReq::ark($safix,'enc'); 
             if(empty($re_stamp) || empty($re_encode)) $flag = 'empty';
             if($stamp-$re_stamp>$time) $flag = 'timeout';

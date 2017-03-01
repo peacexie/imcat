@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 (!defined('RUN_INIT')) && die('No Init');
 ?>
 <meta charset="utf-8">

@@ -1,0 +1,219 @@
+
+<!DOCTYPE html><html><head>
+<meta charset='utf-8'>
+<title>prettyPhoto Test</title>
+<script src='../jquery/_jqimp.php'></script>
+<script src='./prettyPhoto.js?_r=1487916443'></script>
+<link href='./prettyPhoto.css?_r=1487916443' type='text/css' rel='stylesheet'/>
+</head><body>
+
+<ul>
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/10144422281cb91c3e7430_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/10144422281cb91c3e7430_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/10145034bbac3727483395_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/10145034bbac3727483395_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/10144422be96c485492053_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/10144422be96c485492053_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/10144748f1e6f2d6d45908_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/10144748f1e6f2d6d45908_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/10145047ce2068fbe42295_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/10145047ce2068fbe42295_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+    <li><a href="http://img1.fzg360.com/world/userfiles/image/20170110/101447475111799a4f7239_800_600.jpg" rel="viewPhoto[xc]" title="项目相册"><img src="http://img1.fzg360.com/world/userfiles/image/20170110/101447475111799a4f7239_120_90.jpg" width="120" height="90" alt="项目相册"></a></li>
+
+
+</ul>
+
+<script>
+$(function(){
+  $("a[rel^='viewPhoto']").prettyPhoto({social_tools:''});
+});
+</script>
+
+<table border="1">
+    <tbody>
+        <tr>
+        <tr>
+            <th>参数</th>
+            <th>说明</th>
+            <th>默认值</th>
+            <th>可选值</th>
+        </tr>
+        <tr>
+            <td>animation_speed</td>
+            <td>动画速度</td>
+            <td>fast</td>
+            <td>fast/slow/normal</td>
+        </tr>
+        <tr>
+            <td>slideshow</td>
+            <td><br></td>
+            <td>5000</td>
+            <td>false/具体数值</td>
+        </tr>
+        <tr>
+            <td>autoplay_slideshow</td>
+            <td>自动播放</td>
+            <td>false</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td>opacity</td>
+            <td>透明度</td>
+            <td>0.80</td>
+            <td>0-1之间</td>
+        </tr>
+        <tr>
+            <td>show_title</td>
+            <td>显示标题</td>
+            <td>true</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td>allow_resize</td>
+            <td>自适应屏幕</td>
+            <td>true</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td>default_width</td>
+            <td><br></td>
+            <td>500</td>
+            <td>具体数值</td>
+        </tr>
+        <tr>
+            <td>default_height</td>
+            <td><br></td>
+            <td>344</td>
+            <td>具体数值</td>
+        </tr>
+        <tr>
+            <td>counter_separator_label</td>
+            <td>图片数量与当前图片分隔符</td>
+            <td>/</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>theme</td>
+            <td>主题样式</td>
+            <td>pp_default</td>
+            <td>light_rounded / dark_rounded / light_square / dark_square / facebook</td>
+        </tr>
+        <tr>
+            <td>horizontal_padding</td>
+            <td>图片与边框间距</td>
+            <td>20</td>
+            <td>具体数值</td>
+        </tr>
+        <tr>
+            <td>hideflash</td>
+            <td><br></td>
+            <td>false</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>wmode</td>
+            <td><br></td>
+            <td>opaque</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>autoplay</td>
+            <td>视频自动播放</td>
+            <td>true</td>
+            <td>true/false</td>
+        </tr>
+        <tr>
+            <td>modal</td>
+            <td><br></td>
+            <td>false</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>deeplinking</td>
+            <td><br></td>
+            <td>true</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>overlay_gallery</td>
+            <td><br></td>
+            <td>true</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>keyboard_shortcuts</td>
+            <td><br></td>
+            <td>true</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>changepicturecallback</td>
+            <td>播放前执行函数</td>
+            <td>function(){}</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>callback</td>
+            <td>关闭时执行函数</td>
+            <td>function(){}</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>ie6_fallback</td>
+            <td><br></td>
+            <td>true</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>gallery_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>image_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>flash_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>quicktime_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>iframe_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>inline_markup</td>
+            <td><br></td>
+            <td>见演示效果</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>custom_markup</td>
+            <td><br></td>
+            <td>空</td>
+            <td><br></td>
+        </tr>
+        <tr>
+            <td>social_tools</td>
+            <td><br></td>
+            <td>见演示效果</td>
+        </tr>
+    </tbody>
+</table>
+
+</body></html>

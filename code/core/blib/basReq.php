@@ -124,27 +124,22 @@ class basReq{
         if(is_string($data)){
             //$data=trim(htmlspecialchars($data));//防止被挂马，跨站攻击
             $data = addslashes($data);//防止sql注入
-            return $data;
         }else if(is_array($data)){ //如果是数组采用递归过滤
             foreach($data as $key=>$value){
                  $data[$key]=self::in($value);
             }
-            return $data;
-        }else{
-            return $data;
-        }    
+        }
+        return $data;
     }
     static function out($data){
         if(is_string($data)){
-            return $data = stripslashes($data);
+            $data = stripslashes($data);
         }else if(is_array($data)){ //如果是数组采用递归过滤
             foreach($data as $key=>$value){
-                 $data[$key]=self::out($value);
+                $data[$key]=self::out($value);
             }
-            return $data;
-        }else {
-            return $data;
-        }    
+        }
+        return $data;  
     }
     
     //获取REQUEST_URI

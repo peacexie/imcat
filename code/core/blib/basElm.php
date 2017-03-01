@@ -70,8 +70,7 @@ class basElm{
         }elseif(empty($text)){ 
             return array();
         }elseif(isset($_groups[$text])){ 
-            $cfg = read($text); 
-            $rei = $cfg['i']; 
+            $rei = read("$text.i"); 
             foreach($rei as $k=>$v){ 
                 $re[$k] = $v['title'];
             }
@@ -102,35 +101,9 @@ class basElm{
         return $af;
     } 
     // 获取xml/html标签 的一个值 或 一个innerHTML
-    // 标签法 ($data,'<div class="content">(*)</div>') 或 ($data,'class="content"(*)</div>','>')
-    static function getVal($xStr,$flag,$fix=0){  
-        $af = self::fmtFlag($flag);     
-        $p1 = strpos($xStr, $af[0]); $len1 = strlen($af[0]);
-        if(empty($fix)){
-            $p1 = $p1+$len1;
-        }elseif(is_numeric($fix)){
-            $p1 = $p1+$len1+$fix;
-        }else{
-            $tmp = substr($xStr,$p1+$len1);
-            $at['op'] = substr($fix,0,1); // +,-
-            $at['val'] = substr($fix,1);  // <td>, </div>
-            $pt = strpos($tmp, $at['val']); $lent = strlen($at['val']); 
-            $pt = $at['op']=='+' ? $pt : $pt+$lent; 
-            $p1 += $len1+$pt;
-        }
-        $xStr = substr($xStr,$p1); 
-        $tag = '<'.strtolower(substr($af[1],2,strlen($af[1])-3)); // </div> -=> <div
-        $a2 = explode($af[1],$xStr); $p2 = 0; // $a[1] = </div>, id="link" 
-        foreach($a2 as $v2){
-            if(strstr(strtolower($v2),$tag)){
-                $p2 += strlen($v2)+strlen($af[1]);
-            }else{
-                $p2 += strlen($v2); 
-                break;
-            }
-        } 
-        $xStr = substr($xStr,0,$p2);
-        return $xStr;
+    // 标签法 ($data,'<div class="content">(*)</div>') 
+    static function getVal($xStr,$flag){  
+        return self::getPos($xStr,$flag);
     }  
     // 获取xml/html标签 的一个值 或 一个innerHTML
     // 定点法 ($data,'<div class="content">(*)id="link"')
@@ -146,15 +119,7 @@ class basElm{
     // 标签法 ($data,'<li class="cls22">(*)</li>') 或 ($data,'<li class(*)</li>')
     static function getArr($xStr,$flag,$no=-1){  
         $af = self::fmtFlag($flag); 
-        $a2 = explode($af[0],$xStr); $re = array();
-        foreach($a2 as $k2=>$v2){
-            if($k2==0) continue;
-            $p1 = substr($af[0],-1)!='>' ? strpos($v2,'>') : 0; 
-            $p2 = strpos($v2,$af[1]);
-            if(is_int($p2)){ 
-                $re[] = substr($v2,$p1,$p2-$p1);
-            }
-        }
+        $re = self::getTags($xStr,$af[0],$af[1]);
         if($no==-1) return $re;
         else return isset($re[$no]) ? $re[$no] : '';
     }
@@ -199,7 +164,35 @@ class basElm{
         return $re;
     }
 
-
-
+    // 取一组tag<ul>资料
+    // ($str,'a'), ($str,'li'), ($str,'<div class="logo">','</div>')
+    static function getTags($str,$tg1='ul',$tg2=''){
+        if(empty($tg2)){
+            $tg2 = "</$tg1>"; $tg1 = "<$tg1"; 
+        }
+        $uls = explode($tg1,$str); 
+        $res = array();
+        foreach ($uls as $i=>$row) {
+            if($i==0) continue;
+            $tmp = explode($tg2,$row);
+            if(isset($tmp[1])){
+                $res[] = $tg1.$tmp[0].$tg2;
+            }
+        }
+        return $res;
+    }
+    // 去tag<img>
+    static function moveTag($str,$tag='img',$close=0){
+        $str = preg_replace("/<{$tag}[^>]*>/is", '', $str);
+        if(!$close) return $str;
+        $str = str_replace("</$tag>", '', $str);
+        return $str;
+    }
+    // 去<tag属性>
+    static function moveAttr($html){
+        $html = preg_replace('/<(\w+)[^>]*>/i', '<\1>', $html);
+        return $html;
+    }
+    
 }
 

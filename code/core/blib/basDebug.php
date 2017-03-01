@@ -13,11 +13,12 @@ class basDebug{
     static function varShow($val,$flag=''){    
         echo "\r\n<pre style='line-height:150%;'>"; 
         if($flag) echo "[$flag]\r\n"; $flag = 0;
-        if(is_array($val)) echo "[a:".count($val)."] "; 
-        elseif(is_string($val)) echo "[s:".strlen($val)."] ";
-        elseif(is_numeric($val)) echo "[n:".strlen($val)."] ";
+        if(is_bool($val)) echo "[bool] "; 
+        elseif(is_numeric($val)) echo "[num] ";
+        elseif(is_string($val)) echo "[str:".strlen($val)."] ";
+        elseif(is_array($val)) echo "[arr:".count($val)."] "; 
         elseif(is_object($val)) echo "[obj] ";
-        else{ echo "[unknow] "; } // ,"\n"
+        else{ echo "[num] "; } // ,"\n"
         echo str_replace(array('<','>'),array('&lt;','&gt;'),var_export($val,1));
         echo "</pre>\r\n";
     }

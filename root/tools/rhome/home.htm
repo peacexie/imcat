@@ -1,7 +1,8 @@
 {php}
 $_cbase['tpl']['tpl_dir'] = 'chn';
 $isMobile = basEnv::isMobile();
-$vcfg = vopTpls::etr1('tpl');    
+$vcfg = vopTpls::etr1('tpl');
+unset($vcfg['adm']);
 $qrActs = $isMobile ? '' : "qrActs();";    
 glbHtml::page(" (sys_name) - ".lang('tools.home_extitle'));
 glbHtml::page('viewport'); //robots

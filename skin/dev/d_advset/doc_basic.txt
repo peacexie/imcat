@@ -3,32 +3,93 @@
 #prboot#boot参数
 
 * 目录：/code/cfgs/boot/
-* const.cfg.php : Cookie前缀,自定义配置,调试日志配置
-* cfg_load.php : 类自动加载规范，二次开发可能需要配置
-* cfg_db.php : 数据库配置，更换数据库请配置
+
+* _paths.php : 系统目录设置
+ - 可以更改系统目录如：html/ures, code/root/skin, vary/vimp
+
 * cfg_adbug.php : 辅助调试工具的账号密码
-  -> 起始页：/root/index.php?start 有些链接为常用工具，需要这里设置 或 后台登录才可使用
+ - 起始页：/root/index.php?start 
+ - 有些链接为常用工具，需要这里设置 或 后台登录才可使用
+
+* cfg_db.php : 数据库配置，更换数据库请配置
+
+* cfg_load.php : 类自动加载规范，二次开发可能需要配置
+
+* const.cfg.php : Cookie前缀,自定义配置,调试日志配置
 
 
 #prexcfg#excfg参数
 
 * 目录：/code/cfgs/excfg/
-* ex_mail.php : 邮件参数
-* ex_sms.php : 短信
-* ex_vopfmt.php : 展示模版
-* ex_outdb.php : 数据分享同步，外部数据库 配置参数
+
 * ex_a3rd.php : 第三方[支付/登录]配置
+
+* ex_coms.php : 点击,digg字段设置
+
+* ex_dmbind.php : 域名绑定设置
+ - (示例)原本地址：/html/cargo/2015-9c/h3h1.html
+ - -=>设置后，输出地址
+ - http://pro.my_domain.com/2015-9c/h3h1.html
+ - 具体见文件中的注释
+ - 本系统外自行设置：具体域名解析，伪静态规则 等
+
+* ex_ipstop.php : 设置ip访问过滤
+
+* ex_mail.php : 邮件参数
+
+* ex_outdb.php : 数据分享同步，外部数据库 配置参数
+
+* ex_sms.php : 短信接口参数
+
+* ex_sphinx.php : Sphinx检索设置
+
+* ex_store.php : 存储参数，(FTP附件/云存储设置)
+
+* ex_vjump.php : 分站跳转配置
+
+* ex_vopfmt.php : 展示模版配置
+
+* ex_wmark.php : 水印配置
 
 
 #prsycfg#sycfg参数
 
 * 目录：/code/cfgs/sycfg/
-* sy_keepid.php 系统保留ID配置
-* sy_uachk.php 搜索引擎，浏览器，UserAgent关键字配置
-* 系统参数，根据需要可修改
+
+* sy_domain.php :  子域名跳转,跨域,顶级域名 等配置
+
+* sy_fadvs.php : 广告位字段配置
+
+* sy_fdemo.php : 常用字段配置
+
+* sy_filetyep.php : 附件类型配置
+
+* sy_fkeywd.php : 字段关键字
+
+* sy_frame.php : 模型架构 相关设置（存储格式，扩展参数）
+
+* sy_keepid.php : 系统保留ID配置
+
+* sy_modstat.php : 模型统计(后台首页使用) 配置
+
+* sy_pubcfg.php : 发布配置
+
+* sy_simpass.php : 简单帐号密码配置(这里设置的字符串不能用作帐号密码)
+
+* sy_sysids.php : 系统url变量(某些地方，可直接使用这些变量)
+
+* sy_uachk.php : 搜索引擎，浏览器，UserAgent关键字配置
+
+* sy_updvnow.php : 在线更新配置
+
+* sy_urdir.php : 附件资源管理 目录配置
 
 
 #prelse#其他参数
+
+* 目录：/code/cfgs/player/ 播放器配置
+
+* 目录：/code/cfgs/scfile/ 脚步扩展配置
 
 * 微信配置：后台 >> 插件 >> 微信接口 (支持多功能公众号)
 

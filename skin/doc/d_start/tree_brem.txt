@@ -24,6 +24,7 @@
 │  └─tools : DIY Tools and Setup Entrys 
 ├─skin : tpls(Eache set of tpl has a sub dir) include js,css 
 │  ├─adm : Admin Center
+│  ├─app : app/api Server
 │  ├─chn : 中文版
 │  ├─demodir : Demo dir
 │  ├─dev : 开发文档

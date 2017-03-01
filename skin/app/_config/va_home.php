@@ -1,13 +1,14 @@
 <?php
 /*
-? 
-*/
+ * 总配置
+/*/
 $_va_home = array(
 
     'c' => array(
-        'vmode' => 'dynamic', //dynamic,catch,close
-        'stexp' => '24h', //30,60,3h,6h,12h,24h,7d
-        'stext' => '.htm',
+        'close' => '0', //0,1
+        'debug' => '1', //0,1
+        'dmacc' => array('',''),
+        'stexp' => '30', //30,60,3h,6h,12h,24h,7d
     ),
     
     //mod.home模块首页模板
@@ -23,6 +24,7 @@ $_va_home = array(
     
     //扩展模块
     // home,error
-    'extra' => array('info',), //home,error,info-sys,info-read,
+    'extra' => array('info','data'), //info-sys,info-read,
+    // user-(login,logout,app,del)
 
 );

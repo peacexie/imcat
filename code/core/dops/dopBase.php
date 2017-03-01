@@ -47,7 +47,6 @@ class dopBase{
         $this->mod = empty($cfg['kid']) ? 0 : $cfg['kid'];
         $this->tbid = $tabid;
         $this->type = $cfg['pid']; 
-        unset($GLOBALS['cfg']);
     }
     
     // 左上信息条
