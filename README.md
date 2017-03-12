@@ -14,15 +14,15 @@ V3.6升级中……
 
 ### 【Functions】
 
-* Support: PHP5.2~PHP7.0 / custom module / custom field / custom parameter / custom classification
-* Data&share / sync / ourter import / Crawler / seo push / old vertion import
+* Support: PHP5.2~PHP7.1 / custom module / custom field / custom parameter / custom classification
+* Data&share AppServer / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [IntimateCat(贴心猫)](http://txmao.txjia.com/)
 
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.2 ~ PHP7.x (Recommend: PHP5.3 ~ PHP5.6)
+  - PHP5.2 ~ PHP7.1 (Recommend: PHP5.3 ~ PHP7.0)
   - mysql5.0+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -40,7 +40,7 @@ V3.6升级中……
   - View Start Page: `/index.php?start` to Check and Config
   - View Url: `/root/tools/setup/` to Setup.
 
-### 【v3.5 ChangeLog】 (2017.02)
+### 【v3.6 ChangeLog】 (2017.03)
 
 * Add: app.php - Private interface:
  - Apply infomation for app/api (The server of app)
@@ -74,9 +74,9 @@ V3.6升级中……
 
 ### 【功能介绍】
 
-* 支持：PHP5.2~PHP7.0/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态
+* 支持：PHP5.2~PHP7.1/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态
 * 模型：问答系统/内部公文/商品展销/新闻/专题/课程资源/样例文档/用户
-* 接口：Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
+* 接口：App服务端/Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
 
 ### 【安装提示】
 
@@ -92,7 +92,7 @@ V3.6升级中……
  - 访问起始页：/index.php?start 检查配置；
  - 访问地址：/root/tools/setup/ 安装程序。
 
-### 【v3.5更新日志】(2017.02)
+### 【v3.6更新日志】(2017.03)
 
 * 增加：app.php - 专用接口 ：
  - 为app/api提供服务器端支持
