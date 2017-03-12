@@ -16,6 +16,7 @@ $cfgs['exdiys'] = array(
     //'admin/ediy&part=exdiy&dkey=tpls' => 'Tpl Set',
     'admin/ediy&part=exdiy&dkey=skin' => 'Tpl Set',
     'admin/ediy&part=exdiy&dkey=cfgs' => 'Sys Parms',
+    'admin/ediy&part=exdiy&dkey=dtmp' => 'dtmp Parms',
     'admin/ediy&part=exdiy&dkey=runs' => 'Entry Set',
 ); 
 

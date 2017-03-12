@@ -107,7 +107,9 @@ if(strstr($act,'sysInit')){
 }
 
 if(strstr($act,'autoJQ')){
-    if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
+    if(req('light')){ // 需要自行添加如下tepto文件
+        require(DIR_VENDUI.'/jquery/zepto-1.2.imp_js');
+    }elseif(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
         require(DIR_VENDUI.'/jquery/jquery-1.x.imp_js'); 
         require(DIR_VENDUI.'/jquery/html5.imp_js'); 
     }else{
@@ -137,7 +139,7 @@ if(strstr($act,'testInfo')){
 }
 // test
 if(strstr($act,'testSleep')){    
-    usleep(1200*1000); //usleep(200000);#暂停200毫秒，防注册机，发帖机爆力破解...
+    usleep(1200*1000); //usleep(200000);#暂停200毫秒
     echo "var testSleep$r = 'ts1_$r'; ";    
 }
 

@@ -1,6 +1,6 @@
 <?php
 
-### 子域名跳转配置
+### 分站跳转配置
 // 分站配置,注意城市名称不要加“站/分站/市”等
 $_ex_vjump['sites'] = array(
     'bj' => '北京', // http://bj.my_domain.cn/

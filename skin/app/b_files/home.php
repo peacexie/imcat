@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head>
 <meta charset="utf-8">
-<title>Hi, AppAppServer!</title>
+<title>Hi, AppServer!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name='robots' content='noindex, nofollow'>
 <style type="text/css">
@@ -9,7 +9,7 @@
 </style>
 </head><body>
 
-<h3>Hi, AppAppServer!</h3>
+<h3>Hi, AppServer!</h3>
 
 <div id="ind_cont">
 <?php

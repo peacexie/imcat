@@ -7,7 +7,7 @@ $_va_home = array(
     'c' => array(
         'close' => '0', //0,1
         'debug' => '1', //0,1
-        'dmacc' => array('',''),
+        'dmacc' => array('127.0.0.1',''),
         'stexp' => '30', //30,60,3h,6h,12h,24h,7d
     ),
     

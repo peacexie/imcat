@@ -17,6 +17,7 @@
  - 其中：$keyapi = $_cbase['safe']['api'];
  - 前缀`_012`：$safix = $_cbase['safe']['safix'];
  - 保证：app端和本系统中，参数：$safix, $keyapi 双方一致
+ - retype: json, jsonp, xml
  - debug=1：表示调试。
 
 * 第三方系统-同步数据
@@ -38,6 +39,7 @@
  - $keyapi = $_cbase['safe']['api'];
  - prefix`_012`: $safix = $_cbase['safe']['safix'];
  - In app and this system, the params `$safix`, `$keyapi` must set the same value
+ - retype: json, jsonp, xml
  - debug=1: the param for debug
 
 * Third party system - synchronous data

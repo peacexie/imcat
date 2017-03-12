@@ -261,7 +261,7 @@ class vopStatic{
                 $kc = "_vc_$mod"; $cfg = $$kc;
                 if($itype && !empty($cfg['c']['stypes']) && !in_array($itype,$cfg['c']['stypes'])){ 
                     continue; // 忽略不需要生成静态的页面
-                }
+                } 
                 if($cfg['c']['vmode']=='static'){
                     if($act=='del'){
                         $_cbase['tpl']['tpl_dir'] = $tpl; 

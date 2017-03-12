@@ -25,8 +25,8 @@
 #check#环境需求
 
 * PHP环境：
- - PHP5.2 ~ PHP7.x
- - 推荐：PHP5.3 ~ PHP5.6
+ - PHP5.2 ~ PHP7.1
+ - 推荐：PHP5.3 ~ PHP7.0
  
 * Mysql数据库服务器：
  - mysql5.x+

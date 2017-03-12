@@ -21,7 +21,7 @@ class basReq{
             }elseif(isset($_GET[$k])){
                 $val = $_GET[$k];    
             }else{
-                $val = '';
+                $val = array();
             }
             $re[$k] = $val;
         }

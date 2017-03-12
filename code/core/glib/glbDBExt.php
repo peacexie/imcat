@@ -9,7 +9,7 @@ class glbDBExt{
         $db = db();
         $tabf = 'base_fields';
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
-        if($r['dbtype']=='nodb') return; 
+        if(in_array($r['dbtype'],array('nodb','file'))) return; 
         $tabid = self::getTable($mod,$r['etab']);
         $cols = $db->fields($tabid); //echo "$mod,$cid,$act";
         if($act=='del'){

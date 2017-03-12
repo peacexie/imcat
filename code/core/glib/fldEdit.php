@@ -91,11 +91,7 @@ class fldEdit{
         
     // iDbOpts
     function fmDbOpts(){ 
-        if($this->fmextra=='editor'){
-            $opts = "<option value='text'>text.(64K)".lang('admin.fe_ltext')."</option>";
-            $opts .= "<option value='mediumtext' ".($this->cfg['dbtype']=='mediumtext' ? 'selected' : '').">medium.(16M)".lang('admin.fe_ltext')."</option>";
-            $flen = 0;
-        }elseif($this->fmextra=='datetm'){
+        if($this->fmextra=='datetm'){
             $opts = "<option value='int'>int.".lang('admin.fe_int')."</option>";
             $flen = 11;
         }elseif(in_array($this->fmextra,array('winpop','map','color'))){ 
@@ -106,12 +102,15 @@ class fldEdit{
         }elseif(in_array($this->type,array('passwd','file'))){ 
             $opts = "<option value='varchar'>varchar.".lang('admin.fe_vchar')."</option>";
             $flen = 255;
-        }elseif(in_array($this->type,array('text'))){ 
-            $opts = "<option value='text'>text.(64K)".lang('admin.fe_ltext')."</option>";
+        }elseif(in_array($this->type,array('text'))){ // $this->fmextra=='editor'
+            $opts = "<option value='text'>text.(64K)".lang('admin.fe_text')."</option>";
+            $opts .= "<option value='mediumtext' ".($this->cfg['dbtype']=='mediumtext' ? 'selected' : '').">medium.(16M)".lang('admin.fe_ltext')."</option>";
+            $opts .= "<option value='file' ".($this->cfg['dbtype']=='file' ? 'selected' : '').">file.(1G)".lang('admin.fe_svfile')."</option>";
             $flen = 0;            
         }else{
-            $oldval = empty($this->cfg['dbtype']) ? 'xxxxx' : $this->cfg['dbtype'];
-            $dbtypes = fldCfgs::dbTypes(); unset($dbtypes['text'],$dbtypes['mediumtext'],$dbtypes['nodb']);
+            $oldval = empty($this->cfg['dbtype']) ? 'varchar' : $this->cfg['dbtype'];
+            $dbtypes = fldCfgs::dbTypes(); 
+            foreach(array('text','mediumtext','nodb','file') as $dk){ unset($dbtypes[$dk]); }
             $opts = basElm::setOption($dbtypes,$oldval,lang('admin.fe_dbtype'));
         }
         $dblen = isset($flen) ? $flen : (empty($this->cfg['dblen']) ? '0' : $this->cfg['dblen']);

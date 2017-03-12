@@ -62,7 +62,7 @@ if($view=='set'){
     $clen = req('clen',48);
     $ret = req('ret','html');
     $tpl = req('tpl','','');
-    $tpldef = $tpl ? $tpl : "<li><a href='{rhome}/run/chn.php?$mod.{kid}'>{title}</a></li>";
+    $tpldef = $tpl ? $tpl : "<li><a href='{rmain}/chn.php?$mod.{kid}'>{title}</a></li>";
     $dis = $view=='json' ? 'disabled' : '';
 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist'); //

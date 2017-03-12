@@ -2,7 +2,14 @@
 <meta charset="utf-8">
 <title>AppServer说明</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name='robots' content='noindex, nofollow'>
+<?php
+glbHtml::page('imp');
+$text = comFiles::get(vopTpls::pinc("c_mod/info-read",'.txt')); 
+$text = extMkdown::pdext($text);
+$fcall = file_get_contents(__FILE__);
+$fcjs = basElm::getVal($fcall,'script');
+//print_r($fcjs);
+?>
 <style type="text/css">
   #help_cont{ max-width:760px; line-height:150%; margin:10px auto 10px auto; }
   h3{ text-align: center; }
@@ -12,11 +19,33 @@
 </head><body>
 
 <div id="help_cont">
-  <?php 
-  $text = comFiles::get(vopTpls::pinc("c_mod/info-read",'.txt')); 
-  $text = extMkdown::pdext($text);
-  echo $text; 
-  ?>
+  <?php echo $text; ?>
+  <h4>Demo / Effect</h4>
+  <ul id='demo_list'>
+    <li>list</li>
+  </ul>
+  <h4>Code (js)</h4>
+  <ul id='code_area'>
+    <li><pre><?php echo basStr::filForm($fcjs); ?></pre></li>
+  </ul>
 </div>
+
+<script>
+$(function(){
+    var sign = '<?php echo safComm::signApi('init'); ?>'; // &stype=nsystem
+    var rurl = '<?php echo surl('app:0','',1); ?>?mod=news&psize=8&retype=jsonp&'+sign;
+    $.get(
+        rurl, {_test1: 'tester'}, 
+        function (data) { 
+            var html = ''; //console.log(data); 
+            for(var i in data){ 
+                var url = '?mod=news&id='+data[i].did+'&'+sign;
+                html += '<li><a href="'+url+'" target="_blank">'+data[i].title+'</a></li>';  
+            }
+            $('#demo_list').html(html);
+        }, 'jsonp'
+    );
+}); 
+</script>
 
 </body></html>

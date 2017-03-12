@@ -14,7 +14,7 @@ $_ve_uplog = array(
     //'t' => 'c_mod/{mod}_one', //about,alink
     
     /*
-    ...... (这里不用定义,有如下a_cfgs.php文件定义)
+    ...... (这里不用定义,由如下a_cfgs.php文件定义)
     '3_2' => 'c_demo/uplog_main', 
     '3_1' => 'c_demo/uplog_main',
     '3_0' => 'c_demo/uplog_main', 
@@ -25,7 +25,7 @@ $_ve_uplog = array(
 
 include(dirname(dirname(__FILE__)).'/d_uplog/a_cfgs.php');
 foreach ($cfgs as $key => $v) {
-    if(preg_match("/\d{1}_\w{1}/",$key)){
+    if(preg_match("/\d{1,2}_\w{1,2}/",$key)){
         $_ve_uplog[$key] = 'c_demo/uplog_main';
     }
 }

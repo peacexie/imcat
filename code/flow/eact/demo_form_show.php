@@ -5,6 +5,10 @@ if(!empty($did)){
     $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
     $fme = $db->table($dop->tbext)->where("did='$did'")->find();
     $fme && $fmo = $fmo + $fme;
+    // 扩展示例-字段内容存文件
+    if($mod=='demo'){
+        $fmo['cfile'] = dopFunc::getFsval($mod,$did,'cfile');
+    } 
     $isadd = 0;
 }else{
     $fmo = array();

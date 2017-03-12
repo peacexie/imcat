@@ -189,9 +189,20 @@ class safComm{ // extends safBase
         }
     }
     
-    // --- signVeryfy
-    // 签名: data=array, keys='k1,k2'
-    // 认证: data=timeout, keys='k1,k2'
+    /*
+    --- signVeryfy
+    签名: data=array, keys='k1,k2'
+    认证: data=timeout, keys='k1,k2'
+    $act = req('act','sign');
+    if($act=='sign'){
+        $arr = array('act'=>'check','aa'=>'aa1','bb'=>'bb1',);
+        $str = safComm::signVeryfy($arr,'act,aa');
+        echo ":<a href='?$str' target='_blank'>$str</a>:";
+    }elseif($act=='check'){
+        $timeout = req('timeout','5');
+        $res = safComm::signVeryfy($timeout,'act,aa');
+        echo $res;
+    }*/
     static function signVeryfy($data=60,$keys=''){ 
         global $_cbase;
         $stamp = $_cbase['run']['stamp']; 
@@ -220,17 +231,6 @@ class safComm{ // extends safBase
             return $encode==$usign ? '' : 'error';
         }
     }
-    /*
-    $act = req('act','sign');
-    if($act=='sign'){
-        $arr = array('act'=>'check','aa'=>'aa1','bb'=>'bb1',);
-        $str = safComm::signVeryfy($arr,'act,aa');
-        echo ":<a href='?$str' target='_blank'>$str</a>:";
-    }elseif($act=='check'){
-        $timeout = req('timeout','5');
-        $res = safComm::signVeryfy($timeout,'act,aa');
-        echo $res;
-    }*/
     
     // --- act=init,stop,flag
     static function signApi($act='init',$time=3600){  

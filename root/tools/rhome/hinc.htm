@@ -18,7 +18,7 @@ h1{ text-align:center;}
 <h1>IntimateCat(贴心猫) V<?php echo $_cbase['sys']['ver']; ?></h1>
 <h3>IntimateCat V<?php echo $_cbase['sys']['ver']; ?> Coming Soon ...</h3>
 <h3>贴心猫 V<?php echo $_cbase['sys']['ver']; ?> 升级中……</h3>
-<p class="right">2017-02</p>
+<p class="right"><?php echo date('Y-m');?></p>
 <nav class="nav">
 
 <li>
@@ -28,6 +28,7 @@ h1{ text-align:center;}
 <li>
     <a href="./root/run/adm.php">(adm)管理</a> # 
     <a href="./root/run/umc.php">(umc)会员</a> # 
+    <a href="./root/run/app.php">(app)API</a> # 
 </li>
 <li>
     <a href="dev.php">(dev)演示版</a> # 

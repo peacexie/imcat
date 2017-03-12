@@ -41,6 +41,7 @@ $cfgs['fcfg_dbtype'] = array(
     'float'   => 'float.浮点',
     'text'    => 'text.64K长文本',
     'mediumtext' => 'mtext.16M长文本',
+    'file'    => '文本文件',
     'nodb'    => 'nodb.不保存',    
 );        
 // 字段认证

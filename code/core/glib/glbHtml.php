@@ -28,16 +28,17 @@ class glbHtml{
                 $ips['js'] .= "&$exjs";
                 $ips['css'] .= "&$excss";    
             }elseif($mod=='imadm'){
-                $ips = self::impub(); 
+                $ips = self::impub(0,1); 
                 $ips['js'] .= "&$exjs&lang=".$_cbase['sys']['lang'];
                 $ips['css'] .= "&$excss";    
             }elseif($mod=='imvop'){
-                $ips = self::impub(1);
+                $ips = self::impub();
                 $ips['js'] .= "&$exjs&$iex";
                 $ips['css'] .= "&$excss";
             }elseif($mod=='imin'){
-                $ips['js'] = "";
-                $ips['css'] = "act=cssInit";
+                $ips = self::impub('light',0);
+                $ips['js'] .= "&$exjs";
+                $ips['css'] .= "&$excss"; 
             }
             foreach (array('css','js') as $key) {
                 echo basJscss::imp("/plus/ajax/comjs.php?".$ips[$key],'',$key);
@@ -57,12 +58,20 @@ class glbHtml{
     }
 
     // _impub
-    static function impub($nolayer='',$nohick=''){
+    static function impub($light=0,$layer=0){
         echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/a_img/favicon.ico' />\n";
-        echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-        echo basJscss::imp('/bootstrap-3.x/css/bootstrap.min.css','vendui','css');
-        echo basJscss::imp('/bootstrap-3.x/js/bootstrap.min.js','vendui','js');
-        if(!$nolayer) echo basJscss::imp('/layer/layer.js','vendui');
+        if(empty($light)){
+            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
+            echo basJscss::imp('/bootstrap/css/bootstrap.min.css','vendui','css');
+            echo basJscss::imp('/bootstrap/js/bootstrap.min.js','vendui','js');
+        }else{ // 需要自行添加如下ratchet,tepto文件
+            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ&light=1'); 
+            echo basJscss::imp('/ratchet/css/ratchet.min.css','vendui','css');
+            echo basJscss::imp('/ratchet/js/ratchet.min.js','vendui','js');
+        }
+        if(!empty($layer)){
+            echo basJscss::imp('/layer/layer.js','vendui');
+        }
         return array('js'=>"act=sysInit",'css'=>"act=cssInit");
     }
 

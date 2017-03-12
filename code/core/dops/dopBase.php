@@ -17,6 +17,7 @@ class dopBase{
     public $fmo = array(); // 原始数据(database),供表单设置初始值
     public $fmv = array(); // fields中：表单数据(基本表)
     public $fmu = array(); // fields中：表单数据(扩展表)
+    public $fmf = array(); // fields中：表单数据(存文件)
     public $fme = array(); // fields外数据：(ip,time,user,catid,grade...)
     
     public $pg = NULL;
@@ -193,16 +194,20 @@ class dopBase{
         if(isset($f[$k])){ //$val = $v;
             if($f[$k]['dbtype']=='nodb') continue;
             $val = dopFunc::svFmtval($f,$this->mod,$k,$v);
-            if(empty($f[$k]['etab'])) $this->fmv[$k] = $val;        
-            else                      $this->fmu[$k] = $val;
+            if($f[$k]['dbtype']=='file'){
+                $this->fmf[$k] = $val;
+            }elseif(empty($f[$k]['etab'])){
+                $this->fmv[$k] = $val;
+            }else{
+                $this->fmu[$k] = $val;
+            } 
         }else{
             $this->fme[$k] = $v;
         } }
         return;
     }
     function svMoveFiles($kid=''){
-        $fall = $this->cfg['f'];
-        foreach($fall as $f=>$cfg){ 
+        foreach($this->cfg['f'] as $f=>$cfg){ 
             $ext = @$cfg['fmextra'];
             $arr = array('fmv','fmu');
             foreach($arr as $k){
@@ -214,6 +219,13 @@ class dopBase{
                     }
                 }
             }
+        } 
+    }
+    function svFileData($kid=''){
+        if(empty($this->fmf)) return;
+        foreach($this->fmf as $f=>$val){ 
+            $dir = comStore::getResDir($this->mod,$kid,1,1)."/fs_$f.data";
+            $val && comFiles::put($dir,$val);
         } 
     }
     // FALogs。
@@ -240,6 +252,7 @@ class dopBase{
     // svEnd。
     function svEnd($id,$show=1){
         $this->svMoveFiles($id);
+        $this->svFileData($id);
         if(in_array($this->cfg['pid'],array('docs','users'))){ //,'types'
             //是否判定cheched?
             $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 

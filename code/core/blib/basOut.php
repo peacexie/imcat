@@ -6,7 +6,7 @@ class basOut
     static $options = array(
         // 输出参数-jsonp
         'jsonp_callback' => 'callback',
-        'jsonp_return' => 'jsonpReturn',
+        'jsonp_return' => 'callback',
         // 输出参数-xml
         'root_node' => 'root', // 根节点名
         'root_attr' => '', // 根节点属性

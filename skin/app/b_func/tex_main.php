@@ -8,7 +8,7 @@ class tex_main{
     public $act = '';
     public $vars = array(); //存放变量信息
     
-    function __construct() {
+    function __construct() { if(req('mod')=='mod') die('sss');
         $this->init();
         $this->check();
         $this->vars();

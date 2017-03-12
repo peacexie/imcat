@@ -5,6 +5,12 @@
 /*/
 $_vc_demo = array(
     
+    //config配置
+    'c' => array(
+        'vmode' => 'dynamic', //dynamic,static,close
+        'stexp' => '2h', //hour(s)
+    ),
+    
     //list-条件
     'list' => array(
         /*

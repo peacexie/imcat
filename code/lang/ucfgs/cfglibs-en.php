@@ -41,6 +41,7 @@ $cfgs['fcfg_dbtype'] = array(
     'float'   => 'float.Decimal',
     'text'    => 'text.64K Text',
     'mediumtext' => 'mtext.16M LongText',
+    'file'    => 'Text file',
     'nodb'    => 'nodb.NO-Save',    
 );        
 // 字段认证

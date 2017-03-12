@@ -101,9 +101,6 @@ $_sy_pubcfg['skfiles'] =  array(
     'haibao.jpg', // static:/media/cover/
     '100-gushi.jpg', // static:/file_demo1/
     'cacert.pem', // vendor:/a3rd/alipay_class/
-    'bootstrap.css', // vendui:/bootstrap-3.x
-    'bootstrap-theme.css',
-    'bootstrap.js',
     'echarts.min.js',
     //'jquery-3.x.imp_js',
 

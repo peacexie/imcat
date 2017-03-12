@@ -14,7 +14,7 @@ i, b { font-style:normal; font-weight:normal; display:inline-block; padding:0px 
 i { width:150px; }
 b.comm, b.ext { float:right; }
 b.comm { width:320px; text-align:right; }
-b.ext { width:60px; text-align:left; }
+b.ext { width:70px; text-align:left; }
 b.view { width:50px; text-align:left; }
 input, select { padding: 2px; }
 .notice { font-size:small; color:#F00; background:#FF9; display:block; padding:5px; }

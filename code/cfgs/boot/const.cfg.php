@@ -6,15 +6,15 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = 'a8970b32-eac0-czyx-xmao-2017-22c8jcra'; //序列号
-$_cbase['sys']['ver']     = '3.5'; // 版本号
+$_cbase['sys']['sn']      = '786e93c1-8e48-czyx-xmao-2017-3cn6j9m2'; //序列号
+$_cbase['sys']['ver']     = '3.6'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'en'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = 'Zcz08'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = 'HhzCh'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 

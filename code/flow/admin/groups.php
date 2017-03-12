@@ -132,7 +132,7 @@ if($view=='glist'){
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
     
-}elseif($view=='gform'){
+}elseif($view=='gform'){ 
 
     if(!empty($bsend)){
         if($kid=='is__add'){

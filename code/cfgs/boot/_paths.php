@@ -2,7 +2,7 @@
 (!defined('RUN_INIT')) && die('No Init');
 
 // 项目(project): 访问相对根路径：注意：在根目录设置是空字符串,而不是/，非根目录前面以/开头,后面不要/
-define('PATH_PROJ', '/txmao/v35'); #Old:  ''); 
+define('PATH_PROJ', ''); 
 
 //dirs&path : DIR_*实体路径; PATH_*访问路径
 define('DIR_ROOT', DIR_PROJ.'/root'); define('PATH_ROOT', PATH_PROJ.'/root'); //web_root入口文件根目录,访问相对路径

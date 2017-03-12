@@ -17,6 +17,7 @@ fldView::lists($mod,$fmo);
 $dop->fmProp();
 glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+// 扩展示例
 if($mod=='cargo'){
     fldView::relat("relpb,fm[catid],fm[brand]","fm[xinghao],$mod,$did"); 
 }

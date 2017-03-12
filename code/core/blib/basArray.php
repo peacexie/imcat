@@ -101,8 +101,9 @@ class basArray{
     static function opaItems($items,$types='',$frame=1){  
         $a = array();
         foreach($items as $k=>$v){ 
+            $deep = intval($v['deep']);
             $k2 = ($frame && !empty($v['frame'])) ? "^group^$k" : $k;
-            $a[$k2] = (@$v['deep']>'1' ? str_repeat('&nbsp;',2*@$v['deep']) : '').$v['title'];
+            $a[$k2] = ($deep>'1' ? str_repeat('&#12288;',$deep-1) : '').$v['title'];
         }
         return $a;
     }

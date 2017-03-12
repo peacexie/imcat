@@ -2,6 +2,13 @@
 // dopFunc : 基本操作 static函数
 class dopFunc{    
 
+    // 得到`字段存文件`的内容
+    static function getFsval($mod,$kid,$fid='cfile'){
+        $cfdir = comStore::getResDir($mod,$kid,1,0)."/fs_$fid.data";
+        $cfile = comFiles::get($cfdir);
+        return $cfile; 
+    }
+
     static function getMinfo($mod,$kid='',$fid=''){
         $fid || $fid = glbDBExt::getKeyid($mod);
         $info = db()->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
@@ -149,6 +156,8 @@ class dopFunc{
             $val = str_replace(array('<','>','"',"'","\\","\r","\n",'*','|','?'),'',$val); 
         }elseif(in_array($f[$k]['dbtype'],array('int','float'))){
             $val = basReq::fmt($val,'0','N');
+        }elseif($f[$k]['dbtype']=='file'){
+            $val = basStr::filHtml($val); 
         }elseif($f[$k]['dbtype']=='text'){ 
             $val = basReq::fmt($val,'','Html',24123); //24K
             $val = basReq::in($val);

@@ -78,7 +78,7 @@ if($view=='list'){
         basMsg::show($msg);    //,'Redir'?file=$file&mod=$mod
     }else{
 
-        echo basJscss::imp('/skin/_pub/a_jscss/weixin.js');
+        echo basJscss::imp('/_pub/a_jscss/weixin.js');
         if(!empty($kid)){
             $fm = $db->table($tabid)->where("kid='$kid'")->find();
         }else{

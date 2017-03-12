@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //模板显示格式
 
 $_ex_vopfmt = array();
@@ -17,17 +17,16 @@ $_ex_vopfmt['langs'] = array(
 
 // 所有模板
 $_ex_vopfmt['tpl'] = array(
-    //'app' => array('AppServer', '/app.php'), // 不要在这里配置
     'adm' => array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
         '/root/run/adm.php'
     ),
     'chn' => array(
-        '中文版',  
+        '经典版',  
         '/chn.php'
     ), 
     'dev' => array(
-        '演示版',  
+        '中文文档',  
         '/dev.php'
     ), 
     'doc' => array(
@@ -42,6 +41,10 @@ $_ex_vopfmt['tpl'] = array(
         array('cn'=>'会员中心', 'en'=>'User'),
         '/root/run/umc.php'
     ), 
+    'app' => array(
+        'AppServer', 
+        '/root/run/app.php'
+    ),
     //'demodir' => array('hello','/root/run/front.php'), 
 );
 

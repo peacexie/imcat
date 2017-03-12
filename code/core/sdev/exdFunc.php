@@ -24,9 +24,9 @@ class exdFunc extends exdBase{
     function exdShow(){ //tpl,cut,clen,ret(html/js),
         $data = $this->odata(); 
         $tpl = req('tpl','','');
-        $burl = vopTpls::etr1('chn',0).'?'; 
-        $tpl = $tpl ? comParse::urlBase64($tpl,1) : "<li><a href='{rhome}$burl?$this->mod.{kid}'>{title}</a></li>";
-        $tpl = str_replace('{rhome}',cfg('run.rsite'),$tpl);
+        $burl = vopTpls::etr1(1,'chn'); 
+        $tpl = $tpl ? comParse::urlBase64($tpl,1) : "<li><a href='$burl?$this->mod.{kid}'>{title}</a></li>";
+        $tpl = str_replace('{rmain}',cfg('run.rmain'),$tpl);
         $cut = ','.req('cut',"title,company").',';
         $clen = req('clen',"255",'N');
         $ret = req('ret','js'); 

@@ -25,8 +25,8 @@
 #check#Environmental
 
 * PHP Environmental:
- - PHP5.2 ~ PHP7.x
- - Recommend: PHP5.3 ~ PHP5.6
+ - PHP5.2 ~ PHP7.1
+ - Recommend: PHP5.3 ~ PHP7.0
  
 * Mysql Environmental:
  - mysql5.x+

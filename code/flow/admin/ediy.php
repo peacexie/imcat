@@ -5,6 +5,7 @@ usrPerm::run('pfile','(auto)');
 $_sy_nava['exdiys'] = array(
     'skin' => '/skin',
     'cfgs' => '/code/cfgs',
+    'dtmp' => '',
     'runs' => 'vopfmt',
 ); 
 
@@ -20,7 +21,7 @@ $msg = ''; //print_r($msg);
 $view = req('view');
 $efile = req('efile','');
 
-if(in_array($part,array('edit','restore'))){
+if(in_array($part,array('edit','restore','down'))){
 
     $edir = $_sy_nava['exdiys'][$dkey]; 
     $edir = $edir=='vopfmt' ? '' : (empty($dsub) ? $edir : "$edir/$dsub");
@@ -30,6 +31,9 @@ if(in_array($part,array('edit','restore'))){
     if($part=='restore'){
         unlink($fp); copy("$fp.maobak",$fp);
         basMsg::show(lang('admin.ediy_rebok'));
+    }elseif($part=='down'){
+        comHttp::downLoad(DIR_DTMP.$nfile, basename(DIR_DTMP.$nfile)); 
+        die();
     }elseif(!empty($bsend)){
         $ndata = $_POST['ndata']; //req('ndata','','Html',102400);
         @unlink("$fp.maobak"); copy($fp,"$fp.maobak");
@@ -68,6 +72,11 @@ if(in_array($part,array('edit','restore'))){
         $lnkds = " -- ".lang('admin.ediy_nosdir')." -- ";
         $edir = $_sy_nava['exdiys'][$dkey];
         $listu = comFiles::listScan(DIR_PROJ.$edir);
+    }elseif($dkey=='dtmp'){
+        $lnkds = " -- ".lang('admin.ediy_nosdir')." -- ";
+        $edir = $_sy_nava['exdiys'][$dkey];
+        $listu = comFiles::listScan(DIR_DTMP.$edir);
+
     }else{ //skin
         $edir = $_sy_nava['exdiys'][$dkey]; 
         $lists = comFiles::listDir(DIR_SKIN);
@@ -104,7 +113,7 @@ if(in_array($part,array('edit','restore'))){
       }
       $ndir = $idir==$odir ? '' : $idir;
       $odir = $idir;
-      $atime = fileatime(DIR_PROJ.$edir."/$bkfile");
+      $atime = $dkey=='dtmp' ? 0 : fileatime(DIR_PROJ.$edir."/$bkfile"); 
       $atstr = date("Y-m-d H:i",$atime);
       $atstr = $atime==$fv[0] ? "<span class='cCCC'>$atstr</span>" : "<span class='cF0F'>$atstr</span>";
       echo "<td class='tr'>$ndir</td>\n";
@@ -112,7 +121,9 @@ if(in_array($part,array('edit','restore'))){
       echo "<td class='tr'>".basStr::showNumber($fv[1],'Byte')."</td>\n";
       echo "<td class='tc'>".date("Y-m-d H:i",$fv[0])."</td>\n"; //$title,$td=1,$url,$twin='',$w=780,$h=560
       echo "<td class='tc'>$atstr</td>\n";
-      if(file_exists(DIR_PROJ.$edir."/$bkfile.maobak")){
+      if($dkey=='dtmp'){
+          echo $cv->Url('Down','1',"?file=$file&part=down&dkey=$dkey&dsub=$dsub&efile=$bkfile");
+      }elseif(file_exists(DIR_PROJ.$edir."/$bkfile.maobak")){
           echo $cv->Url(lang('admin.ediy_rebak'),'1',"?file=$file&part=restore&dkey=$dkey&dsub=$dsub&efile=$bkfile");
       }else{
           echo "<td class='tc cCCC'>".lang('admin.ediy_rebak')."</td>\n";
