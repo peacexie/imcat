@@ -42,14 +42,29 @@ V3.6升级中……
 
 ### 【v3.5 ChangeLog】 (2017.02)
 
-* Add: Hook Function(Class), for easy extend 
-* Add: Manual(free) push info at front 
-* Add: Ftp store, it can easy add a cloud-store api in system 
-* Add: Sphinx search, for large data
-* Impove thumb, support Ftp store 
-* Add [广告] Flag on the advertise 
-* Impove: batch static create, support mod-kid-view params
-* Optiming: static dirs( move html/ures dirs from vary) 
+* Add: app.php - Private interface:
+ - Apply infomation for app/api (The server of app)
+ - Include: Third party data synchronization interface
+
+* Add: `Save Content to file` (NOT save to db as common fields)
+ - Whow to use see: Faq system online
+* Add: Multi-db config, It's a nother step to the High-end!
+ - Whow to use see: code/cfgs/boot/cfg_db.php-cdemo (The notice)
+* Add: js plug: prettyPhoto --- a set of image player plug
+ - Whow to use see: /vimp/vendui/prettyPhoto/demo.html
+* Add: doT --- a set of js template engine
+ - Whow to use see: /vimp/vendui/common/doT.demo.html
+* Add: js plug: swiper --- a set of slide plug
+
+* Fixed: 
+ - Put the system in a virtual directory, It will appear a bug
+ - Several compatible in PHP v7.1
+ - One security bug
+ - The default links in Share DIY
+
+* Impove: 
+ - English language pack
+ - Faq-(Infomation)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -79,11 +94,27 @@ V3.6升级中……
 
 ### 【v3.5更新日志】(2017.02)
 
-* 增加：Hook钩子函数(类), 用于扩展 
-* 增加：前台-手动推送资料 
-* 增加：附件Ftp存储, 同时与后期云存储打下基础 
-* 增加：Sphinx检索, 应对海量数据
-* 优化: thumb 优化, 支持ftp存储 
-* 优化: 为广告位添加 [广告]标识 
-* 优化：静态文件url目录（默认把html目录移动到跟目录） 
-* 增强：静态生成，支持 mod-kid-view的第三个参数批量生成静态 
+* 增加：app.php - 专用接口 ：
+ - 为app/api提供服务器端支持
+ - 包含：与第三方数据同步接口
+
+* 增加：`字段内容存文件`
+ - 使用见：问答系统，为高大上系统，悄悄地又做一铺垫！
+* 增加：多库调用配置
+ - 使用见：code/cfgs/boot/cfg_db.php-cdemo 说明
+* 增加：前端js插件：prettyPhoto图片播放插件，
+ - 使用见：/vimp/vendui/prettyPhoto/demo.html
+* 增加：前端js模版引擎：doT，
+ - 使用见：/vimp/vendui/common/doT.demo.html
+* 增加：前端js插件：swiper滑动插件, 
+
+* 修正：
+ - 把整个系统，放置在虚拟目录下，检测目录可能出问题；
+ - PHP v7.1下 几处兼容性
+ - 一处字符过滤安全bug
+ - 分享DIY - 默认连接错误
+
+* 完善：
+ - 中英文文档
+ - 问答系统（资料）
+ 
