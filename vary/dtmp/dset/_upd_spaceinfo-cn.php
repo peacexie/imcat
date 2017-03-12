@@ -3,18 +3,18 @@ $data = array (
   'db' => 
   array (
     'idx' => '334.00 (KB) ',
-    'free' => '6.43 (KB) ',
-    'data' => '757.38 (KB) ',
+    'free' => '14.39 (KB) ',
+    'data' => '760.20 (KB) ',
   ),
   'dir' => 
   array (
-    'main' => '2.94 (MB) ',
-    'vary' => '1.39 (MB) ',
-    'vimp' => '10.50 (MB) ',
+    'main' => '2.97 (MB) ',
+    'vary' => '951.01 (KB) ',
+    'vimp' => '9.82 (MB) ',
     'html' => '279.04 (KB) ',
     'ures' => '1.53 (MB) ',
   ),
   'total' => 30,
-  'sum' => '17.37 (MB) ',
+  'sum' => '16.26 (MB) ',
 )
 ?>

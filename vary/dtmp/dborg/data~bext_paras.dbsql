@@ -1,5 +1,5 @@
 
--- bext_paras@2017-02-02 12:28:34 -- 
+-- bext_paras@2017-03-12 20:21:00 -- 
 INSERT INTO `{pre}bext_paras{ext}` VALUES 
 ('aliwapdir','paymode_cn','支付宝手机支付','支付宝帐号：xxx3@domain.com','23','0','160','1','zfb.jpg','note,123','','0','','','0',''),
 ('alidirect','paymode_cn','支付宝即时到账','支付宝帐号：xxx1@domain.com','23','0','140','1','zfb.jpg','note,123','','0','','','0',''),
@@ -29,12 +29,12 @@ INSERT INTO `{pre}bext_paras{ext}` VALUES
 ('daxue','jifen_grade','大学生','','900','0','260','1','','','','0','','','0',''),
 ('shuoshi','jifen_grade','硕士','','3000','0','272','1','','','','0','','','0',''),
 ('boshi','jifen_grade','博士','','9000','0','284','1','','','','0','','','0',''),
-('push_site','seo_push','推送站点','txjia.com','0','0','888','0','','','','0','','','0',''),
+('push_site','seo_push','推送站点','www.your_domain.com','0','0','888','0','','','','0','','','0',''),
 ('baidu_map.html','seo_sitemap','百度Siatemap','<!doctype html><html><head>\r\n<meta charset=\"utf-8\">\r\n<title>Baidu Sitemap</title>\r\n</head><body>\r\n(*)\r\n</body></html>','0','0','888','1','<li><a href=\"(url)\">(title)</a></li>','news,100,chn\r\ncargo,100,chn\r\ntopic,100,chn','','0','','','0',''),
 ('baidu_push.txt','seo_sitemap','百度主动推送','','0','0','888','1','(url)','news,100,chn\r\ncargo,100,chn\r\ntopic,100,chn','','0','','','0',''),
 ('google_map.xml','seo_sitemap','Google站点地图','<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<urlset>\r\n(*)\r\n</urlset>','0','0','888','1','<url>\r\n<loc>(url)</loc>\r\n<lastmod>(time)</lastmod>\r\n<changefreq>(freq)</changefreq>\r\n<priority>(priority)</priority>\r\n</url>','news,100,chn,monthly,0.5\r\ncargo,100,chn,monthly,0.7\r\ntopic,100,chn,monthly,0.8','','0','','','0',''),
 ('push_time','seo_push','最后推送时间','','0','0','888','0','','','','0','','','0',''),
-('push_token','seo_push','推送token','9IFIpTzdC8rFs1vT','0','0','240','0','','','','0','','','0',''),
+('push_token','seo_push','推送token','9UKUrOpnC3zKs3vO','0','0','240','0','','','','0','','','0',''),
 ('mobilesms','indoc_tpl','手机短信模板','您收到了 {from} 发来的公文：\r\n《<a href=\"{url}\">{title}</a>》；\r\n请点击查看。','0','0','888','1','','','','0','','','0',''),
 ('weixinsms','indoc_tpl','微信通知模板','您收到了 {from} 发来的公文：\r\n《<a href=\"{url}\">{title}</a>》；\r\n请点击查看。','0','0','888','1','','','','0','','','0',''),
 ('parnav','parnav','参数分类','','0','0','124','1','','','127.0.0.1','1475664609','peace','127.0.0.1','1475667732','peace'),

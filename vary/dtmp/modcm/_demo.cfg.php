@@ -84,6 +84,25 @@ $_demo = array (
       'fmexstr' => 'full,exbar',
       'cfgs' => '',
     ),
+    'cfile' => 
+    array (
+      'kid' => 'cfile',
+      'title' => '测试存文件',
+      'etab' => '1',
+      'type' => 'text',
+      'dbtype' => 'file',
+      'dblen' => '0',
+      'dbdef' => '',
+      'vreg' => '',
+      'vtip' => '',
+      'vmax' => '0',
+      'fmsize' => '640',
+      'fmline' => '1',
+      'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
+    ),
     'mpic' => 
     array (
       'kid' => 'mpic',

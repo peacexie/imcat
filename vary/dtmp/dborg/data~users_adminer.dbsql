@@ -1,5 +1,5 @@
 
--- users_adminer@2017-02-02 12:28:35 -- 
+-- users_adminer@2017-03-12 20:21:00 -- 
 INSERT INTO `{pre}users_adminer{ext}` VALUES 
 ('2010-4q-jlp','jlp','aperm','九龙坡区','','','','','','0','0','disturb','1381572544','','imp.123.456.116','1381706280',''),
 ('2010-4q-wzq','wzq','astop','万州区','','','','','','0','0','disturb','1381485840','','imp.123.456.93','1381615480',''),
@@ -14,5 +14,5 @@ INSERT INTO `{pre}users_adminer{ext}` VALUES
 ('2010-4q-slz','slz','supper','石龙镇','','','','','','0','0','disturb','1381646916','','imp.123.456.79','1381655318',''),
 ('2010-4q-sjz','sjz','astop','石碣镇','','','','','','0','0','disturb','1381338992','','imp.123.456.6','1381785268',''),
 ('2010-4q-gzv','gzv','astop','高埗镇','','','','','','0','0','disturb','1381266031','','imp.123.456.144','1381795226',''),
-('1979-9d-0913','peace','supper','XieYS永顺5','132-1324-6555','xpigeon@165.com','80893510126','Hunan Chenzhou Yongxing Qijia5','inpro','1','0','(reset)','0','peace','2016-8a-n0q5798-55as4dsbh-59c2838d5','1485834007','peace'),
+('1979-9d-0913','peace','supper','XieYS永顺5','132-1324-6555','xpigeon@165.com','80893510126','Hunan Chenzhou Yongxing Qijia5','inpro','1','0','(reset)','0','peace','2016-c7-mfnkrqc-6ysbws8xq-59c2838d5','1489226030','peace'),
 ('2015-69-ac7n','admindemo','ainfo','ainfodemo','135-37432147','xpigeon@163.com','','Nancheng','intech','1','0','192.168.1.11','1422494979','adminer','192.168.1.11','1422495128','admindemo');

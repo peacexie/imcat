@@ -1,5 +1,5 @@
 
--- bext_dbdict@2017-02-02 12:28:34 -- 
+-- bext_dbdict@2017-03-12 20:21:00 -- 
 INSERT INTO `{pre}bext_dbdict{ext}` VALUES 
 ('passwd','users_adminer','密码','','0','','','0',''),
 ('qrcode','wex_apps','二维码','','0','','','0',''),

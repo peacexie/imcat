@@ -1008,7 +1008,7 @@ CREATE TABLE `{pre}docs_demo{ext}` (
   `euser` varchar(24) NOT NULL DEFAULT '',
   PRIMARY KEY (`did`),
   UNIQUE KEY `spid` (`spid`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}docs_faqs{ext}`;
 CREATE TABLE `{pre}docs_faqs{ext}` (
