@@ -117,20 +117,19 @@ $("#demo6").html(partText(dataPart));
 <p>Demo from : http://www.jq22.com/jquery-info8648</p>
 </body>
 <script type="text/javascript">
-		var def = {
-			header: document.getElementById('headertmpl').text,
-			customheader: document.getElementById('customizableheadertmpl').text
-		};
-		var data = {
-			title: "My title(农民工)",
-			name: "My name(Peace)"
-		};
+var def = {
+	header: document.getElementById('headertmpl').text,
+	customheader: document.getElementById('customizableheadertmpl').text
+};
+var data = {
+	title: "My title(农民工)",
+	name: "My name(Peace)"
+};
 
-		var pagefn = doT.template(document.getElementById('pagetmpl').text, undefined, def);
-		document.getElementById('content').innerHTML = pagefn(data);
+var pagefn = doT.template(document.getElementById('pagetmpl').text, undefined, def);
+document.getElementById('content').innerHTML = pagefn(data);
 
-		pagefn = doT.template(document.getElementById('pagetmplwithcustomizableheader').text, undefined, def);
-		document.getElementById('contentcustom').innerHTML = pagefn(data);
-
-	</script>
+pagefn = doT.template(document.getElementById('pagetmplwithcustomizableheader').text, undefined, def);
+document.getElementById('contentcustom').innerHTML = pagefn(data);
+</script>
 </html>
