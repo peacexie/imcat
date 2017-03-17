@@ -1,5 +1,5 @@
 
--- base_fields@2017-03-12 20:21:00 -- 
+-- base_fields@2017-03-17 20:22:39 -- 
 INSERT INTO `{pre}base_fields{ext}` VALUES 
 ('mpic','demo','缩略图','142','1','0','file','varchar','255','','nul:fix:image','gif/jpg/jpeg/png格式.','255','320','1','1','','','','','','0','','','0',''),
 ('jump','demo','跳转地址','182','1','0','input','varchar','255','','nul:fix:uri','http://开头','255','360','1','1','','','','','','0','','','0',''),
