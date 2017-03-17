@@ -12,9 +12,9 @@ En
  --- Apply info for App/Api!<br> 
 ● 经典PC版 
  --- 传统经典PC主要展示版本<br> 
-● 中文文档 / English Guides
- --- 为您指点迷津;二次开发DIY!<br> 
- --- Guides and Manual, (development)DIY<br> 
+● 中文文档 / English Guides<br> 
+ 　--- 为您指点迷津;二次开发DIY!<br> 
+ 　--- Guides and Manual, (development)DIY<br> 
 ● Mobile
  --- View in mobile phone<br> 
 ● User

@@ -20,7 +20,6 @@ $reqHandler->setInSandBox($sandbox);
 //----------------------------------------
 //以下业务参数名称参考开放平台sdk文档-PHP
 //----------------------------------------
-//echo 'xx'; die();
 // 设置财付通appid: 财付通app注册时，由财付通分配
 $reqHandler->setAppid($appid); 
 

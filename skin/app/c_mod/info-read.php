@@ -3,19 +3,21 @@
 <title>AppServer说明</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php
-glbHtml::page('imp');
+glbHtml::page('imjq');
 $text = comFiles::get(vopTpls::pinc("c_mod/info-read",'.txt')); 
 $text = extMkdown::pdext($text);
 $fcall = file_get_contents(__FILE__);
 $fcjs = basElm::getVal($fcall,'script');
-//print_r($fcjs);
 ?>
 <style type="text/css">
-  #help_cont{ max-width:760px; line-height:150%; margin:10px auto 10px auto; }
-  h3{ text-align: center; }
-  #help_cont h4 { display: block; padding: 10px 10px 1px 10px; margin: 10px 10px 1px 40px; border-top: 1px solid #CCC; }
-  h4:before { display: inline-block; content:"◎◎"; color:#036; }
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;color:#333;background-color:#fff;}
+#help_cont{ max-width:760px; line-height:150%; margin:10px auto 10px auto; }
+h2{ text-align: center; }
+#help_cont h4 { display:block; font-size:18px; color:#555; padding:10px 10px 0 10px; margin: 10px 10px 0 40px; border-top: 1px solid #CCC; }
+h4:before { display: inline-block; content:"◎◎"; }
+pre { background:#EEE; border:1px solid #CCC; padding:10px; margin:5px 10px 10px 40px; }
 </style>
+<base target="_blank" />
 </head><body>
 
 <div id="help_cont">
@@ -25,9 +27,7 @@ $fcjs = basElm::getVal($fcall,'script');
     <li>list</li>
   </ul>
   <h4>Code (js)</h4>
-  <ul id='code_area'>
-    <li><pre><?php echo basStr::filForm($fcjs); ?></pre></li>
-  </ul>
+  <pre><?php echo basStr::filForm($fcjs); ?></pre>
 </div>
 
 <script>

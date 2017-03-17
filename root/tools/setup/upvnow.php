@@ -2,7 +2,7 @@
 require(dirname(__FILE__).'/_config.php');    
 
 bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login" target="x">login</a></p>');
-$upc = updBase::preCheck(); //print_r($upc);
+$upc = updBase::preCheck(); 
 
 $msg = lang('tools.upn_tip1'); 
 $res = "";
@@ -90,7 +90,5 @@ if(in_array($act,$carrs)){
     include(vopShow::inc('/tools/setup/upflow.htm',DIR_ROOT));
 }
 
-//echo "<pre>";
-//print_r($upc); print_r($rep);    
 glbHtml::page('end');
 ?>

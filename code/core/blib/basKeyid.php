@@ -121,7 +121,7 @@ class basKeyid{
         $sLen = strlen($sOrg); $str = '';
         if($Len<=0){
             for($i=0;$i<$sLen;$i++){
-                $ch = $sOrg{mt_rand(0,$sLen-1)}; //echo $ch;
+                $ch = $sOrg{mt_rand(0,$sLen-1)}; 
                 $str .= $ch; 
                 $sOrg = str_replace($ch,'',$sOrg);
                 if($nLen==1){ $str .= $sOrg; break; }
@@ -218,7 +218,7 @@ class basKeyid{
                     }
                     $c = $tn{$n}; 
                 }else{ //ILOZ不在列表中则
-                    $c = $c=='z' ? 'z' : chr(ord($c)+1); //echo "f.$c,";
+                    $c = $c=='z' ? 'z' : chr(ord($c)+1); 
                 }
                 $s = $c.$s;
             } 

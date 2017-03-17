@@ -4,7 +4,8 @@ require(dirname(__FILE__).'/_config.php');
 $_groups = read('groups');
 
 glbHtml::page("Pick Data");
-glbHtml::page('imadm');
+glbHtml::page('imjq');
+echo "<style type='text/css'>div.pg_bar li{margin: 0px 1px;}</style>";
 glbHtml::page('body');
 
 $mod = req('mod','','Key');
@@ -31,8 +32,7 @@ $retitle = req('retitle','','Title'); if(empty($retitle)) $retitle = key($fshow)
 $refval = req('refval','','Title');
 $refname = req('refname','','Title');
 
-$msg = ''; //echo "$retitle,$refval,$refname ;"; //print_r($mcfg);
-//print_r($fso); print_r($ford); print_r($fshow);
+$msg = ''; 
 
 $cfg = $mcfg + array(
     'sofields'=>$fso,

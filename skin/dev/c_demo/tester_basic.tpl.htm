@@ -11,11 +11,11 @@ $kar = array(
     'effect'  => 'effect 效果',
     'cssview'    => 'css显示样式',
 );
-$subs = tex_base::lister($key); //print_r($subs);
-$code = req('code',current($subs)); //current($subs)
-$sub = req('sub',''); //include
+$subs = tex_base::lister($key); 
+$code = req('code',current($subs)); 
+$sub = req('sub',''); 
 $titletop = $kar[$key].'-测试代码'; 
-$titlesub = $kar[$key]; //print_r($key); 
+$titlesub = $kar[$key]; 
 ?>{/block:extop}
 
 {block:exbar}

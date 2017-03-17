@@ -83,7 +83,7 @@ class comPager{
                 if($ptype=='end'){
                     $lcnt = $this->prec%$this->psize;
                     $lcnt = $lcnt ? $lcnt : $this->psize;
-                    $limit = ' LIMIT '.$lcnt; //echo "@@@$limit";
+                    $limit = ' LIMIT '.$lcnt; 
                 }else{
                     $limit = ' LIMIT '.$this->psize;
                 }
@@ -100,7 +100,7 @@ class comPager{
             }else{
                 $order = ' ORDER BY '.$this->order.($this->odesc ? ' DESC' : '');
                 $this->sql[0] = $sfrom.$where.$order.$limit;
-            } //echo "<br>{$this->sql[0]}";
+            } 
             return $this->sql[0];
         }
     }

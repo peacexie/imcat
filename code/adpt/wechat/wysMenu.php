@@ -16,7 +16,7 @@ class wysMenu extends wmpMenu{
     
     // 08格式的menu数组，
     function get(){ 
-        $menu = $this->menuGet(); //print_r($menu);
+        $menu = $this->menuGet(); 
         $re=array(); $i=0; $j=0; 
         if(isset($menu['menu']['button'])){
             $menu = $menu['menu']['button']; 
@@ -94,7 +94,7 @@ class wysMenu extends wmpMenu{
         $data = db()->table('wex_menu')->where("appid='$appid'")->select(); 
         foreach($data as $row){
             $re[$row['key']] = $row;
-        } //echo "<pre>"; print_r($re);
+        } 
         return $re;
     }
 

@@ -61,7 +61,6 @@ class dopAdvs extends dopBase{
         $item .= "$sels<input type='button' value='".lang('flow.dops_fromdata')."' onclick=\"pickOpen('fm[pmod]','','fm[pid]','fm[title]',1)\" class='btn'>";
         glbHtml::fmae_row(lang('flow.dops_fromdata'),$item);
         glbHtml::fmae_row(lang('flow.dops_icat'),$this->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$this->fmShow());
-        //echo "<tr><th>".lang('flow.dops_detail')."</th><th class='tr'>---</th></tr>\n";
     }
 
     // 属性设置

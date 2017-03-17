@@ -69,7 +69,7 @@ if(empty($bsend)){
     }
     if(in_array('relat',$clr)){
         $re = glbCUpd::upd_relat();
-        print_r($re);    
+        dump($re);    
     }
     foreach($clr as $k){
         if(substr($k,0,5)=='type_'){
@@ -127,7 +127,6 @@ if(empty($bsend)){
     }
     
     echo '<br>'.basDebug::runInfo().'<hr>';
-    //print_r($clr);
     basMsg::show(lang('admin.ud_end'),'Redir',"?file=admin/update&parts=$parts");
 
 }elseif($view=='set'){

@@ -190,7 +190,7 @@ class vopStatic{
             $mcfg = glbConfig::vcfg($mod); 
             $fext = $mcfg['c']['stext'];
             $msg = '';
-        } //echo "($fext)";
+        } 
         $dfix = req('offset');
         $elen = strlen($fext);
         $ndir = DIR_HTML."/$mod$sub";

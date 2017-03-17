@@ -79,8 +79,8 @@ class exdFunc extends exdBase{
         $limit = $limit ? $limit : $jcfg['limit'];
         $para = "act=pull&mod=$jcfg[mod]&stype=$jcfg[stype]&limit=$limit&order={$this->mkid}:$omode&offset=$offset";
         $url = $jcfg['api']."/plus/ajax/exdb.php?$para&".exdBase::getJSign();
-        $json = comHttp::doGet($url); //var_dump($json);
-        $data = comParse::jsonDecode($json); //print_r($data);
+        $json = comHttp::doGet($url); 
+        $data = comParse::jsonDecode($json); 
         return $data;
     }
     // Update
@@ -138,7 +138,7 @@ class exdFunc extends exdBase{
         if($offset){
             $sql = str_replace(array('1=1'),array("m.$jcfg[kname]{$omode}'$offset'"),$sql);    
         } 
-        $data = $this->odb->query($sql,'all'); //print_r($data);
+        $data = $this->odb->query($sql,'all'); 
         return $data;
     }
     // Update
@@ -162,7 +162,7 @@ class exdFunc extends exdBase{
         $cfields = $this->getJFlds($jcfg['kid']);
         $re = array('msg'=>'','cnt'=>0,'ok'=>0,'next'=>'','min'=>'','max'=>'',);
         $pm2 = exdCrawl::ugetPages($jcfg);
-        $re['next'] = $pm2[1]; //print_r($pm2);
+        $re['next'] = $pm2[1]; 
         if(strlen($pm2[0])){
             $urls = exdCrawl::ugetLinks($jcfg,$pm2[0]);
             foreach($urls as $url){
@@ -199,7 +199,7 @@ class exdFunc extends exdBase{
             $url = req('url');
             $url || $url = $jcfg['odmp'];
             $data = comHttp::doGet($url,5); 
-            $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); // echo $data;
+            $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); 
             $field = req('field');
             return exdCrawl::orgAll($data,$cfields[$field]);
         }

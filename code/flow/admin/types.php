@@ -8,7 +8,7 @@ $pid = empty($pid) ? '0' : $pid;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@types.php'); 
 $gbar = admAFunc::grpNav('types',$mod); 
 
-$cfg = read($mod); //print_r($cfg);
+$cfg = read($mod); 
 $tabid = empty($cfg['etab']) ? 'types_common' : "types_$mod";
 
 if($view=='glist'){
@@ -161,7 +161,7 @@ if($view=='glist'){
     require(dirname(dirname(__FILE__)).'/binc/set_id.php');
 }elseif($view=='check'){
     $irep = devBase::typCheck($mod);
-    echo "<pre> "; print_r(str_replace(";","\n",$irep)); echo "</pre>";
+    dump(str_replace(";","\n",$irep),1);
 }
 
 ?>

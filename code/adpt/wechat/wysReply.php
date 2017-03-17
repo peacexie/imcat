@@ -88,7 +88,7 @@ class wysReply extends wmpMsgresp{
         if($list){ foreach($list as $row){
             $key = $row['keyword']=='follow_autoreply_info' ? $row['keyword'] : $row['kid'];
             $klist[$key] = $row;
-        } } //print_r($this->cfg);
+        } } 
         if($relist=='follow_autoreply_info' && isset($klist['follow_autoreply_info'])){
             return $klist['follow_autoreply_info']['detail'];
         }else{

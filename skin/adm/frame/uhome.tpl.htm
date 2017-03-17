@@ -122,7 +122,7 @@ include(DIR_CODE."/flow/eact/adfavor_view.php");
 </table>
 <div class="h05">&nbsp;</div>
 
-<?php $_cbase['debug']['err_mode'] && print_r(basDebug::runInfo()); ?>
+<?php if($_cbase['debug']['err_mode']) echo basDebug::runInfo(); ?>
 
 {/block:abody}
 

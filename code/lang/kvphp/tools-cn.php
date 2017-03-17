@@ -179,8 +179,8 @@ return array(
     'binf_suplocal' => '支持本地存储',
 
     'home_extitle' => '通用PHP建站系统',
-    'home_exkwd' => '轻量免费,开源共享,PHP CMS,微信接口,IntimateCat,贴心猫,txmao,imcat',
-    'home_exdes' => '是一款轻量、免费、共享的通用PHP网站应用系统；PC版-手机版-微信接口一站搞定！',
+    'home_exkwd' => '贴心猫,轻量免费,开源共享,PHP CMS,微信接口,IntimateCat,txmao,imcat',
+    'home_exdes' => '一款轻量、免费、共享的通用PHP网站应用系统；App服务端-PC版-手机版-微信接口一站搞定！',
     'home_botname' => '贴心猫',
 
     'chk_envcheck' => '环境检测',

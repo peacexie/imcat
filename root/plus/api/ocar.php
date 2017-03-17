@@ -9,7 +9,6 @@ if($act=='shipfee'){
     $from = req('from','');
     $to = req('to','');
     $weight = req('weight','0.1','N');
-    //echo "$from,$to,$weight";
     $data = exvOcar::shipfee($from,$to,$weight); 
     if(strlen(req('debug'))) print_r($data);
     $data = comParse::jsonEncode($data);

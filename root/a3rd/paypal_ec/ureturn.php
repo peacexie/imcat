@@ -170,7 +170,7 @@
                  Display the Transaction Details
                 <h4> There is a Funding Failure in your account. You can modify your funding sources to fix it and make purchase later. </h4>
                 Payment Status:-->
-                <?php  //echo($resArrayDoExpressCheckout["PAYMENTINFO_0_PAYMENTSTATUS"]);
+                <?php  
                         RedirectToPayPal ( $resArray["TOKEN"] );
                 ?>
                 <!--<h3> Click <a href='https://www.sandbox.paypal.com/'>here </a> to go to PayPal site.</h3> <!--Change to live PayPal site for production-->

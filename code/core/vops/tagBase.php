@@ -96,7 +96,7 @@ class tagBase{
         //$mod = $this->modid;
         //$pid = $_groups[$mod]['pid'];
         $cfg = $this->p1Cfg('join');
-        $this->jonArr = $cfg; //print_r($cfg);
+        $this->jonArr = $cfg; 
         /*
         $join = ''; 
         if(empty($cfg[1])){ 

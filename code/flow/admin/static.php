@@ -10,7 +10,7 @@ $view = req('view','list');
 $nmod = req('nmod','home'); 
 $vcfgs = vopTpls::etr1('tpl');
 $stitle = lang('admin.st_admin').":($ntpl)".basLang::pick(0,$vcfgs[$ntpl][0]); 
-$msg = ''; //print_r($msg);
+$msg = ''; 
 
 $lnks = "# "; $ncfg = array(); 
 foreach($vcfgs as $itpl=>$suit){
@@ -101,12 +101,7 @@ if($view=='list'){
         }
         echo "</table>";
     }
-    
-    /*
-    echo "<pre>"; 
-    #$res = vopStatic::updKid('news','2015-9g-mvp1','upd'); print_r($res);
-    print_r($mods);
-    //*/
+
     
 }
 

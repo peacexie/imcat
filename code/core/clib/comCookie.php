@@ -21,7 +21,7 @@ class comCookie{
             $n++;
             if(($cnt-$n) > $max) continue; 
             $str .= "$k=$v\n";
-        } //echo "$gkey,$str,$glife";
+        } 
         self::oset($gkey,$str,$glife);
     }
     // mget :

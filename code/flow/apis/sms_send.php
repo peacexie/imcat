@@ -16,7 +16,7 @@ if($act=='chargeUp'){ //act=chargeUp&charge=
     $re = $sms->sendSMS($stel,$smsg,5);
     $msg = $re[1];
 } 
-$sb = $sc ? array(-3,0) : $sms->getBalance(); //print_r($sms->cnow);
+$sb = $sc ? array(-3,0) : $sms->getBalance(); 
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 $links = admPFunc::fileNav('send','sms');

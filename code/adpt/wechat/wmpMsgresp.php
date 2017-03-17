@@ -132,7 +132,7 @@ class wmpMsgresp extends wmpBasic{
             $data = $data + array(
                 'appid' => $this->cfg['appid'],
                 'openid' => $this->post->FromUserName,
-            ); //print_r($data);
+            ); 
             $this->_db->table('wex_locate')->data($data)->insert();
         }
     }

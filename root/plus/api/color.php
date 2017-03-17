@@ -1,10 +1,10 @@
 <?php
 require(dirname(__FILE__).'/_config.php'); 
-glbHtml::page('Types Pick',1);
-glbHtml::page('imadm'); //adm 
+glbHtml::page('Color Pick',1);
+glbHtml::page('imjq'); //adm 
 ?>
 <style TYPE="text/css">
-body, td { background:#FFF; font-size:13px;}
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;color:#333;background-color:#fff}
 table {border:1px #CCC solid; margin:auto;}
 td {width:8px;height:8px;border:1px #FFF solid;}
 td.tab td{ font-size:8px;line-height:8px;cursor:pointer; }

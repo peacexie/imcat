@@ -45,7 +45,7 @@ class updInfo{
         if(empty($data)){
             // ● 当前版本：3.0.2015.1225（官方版本：3.0.2015.1225）
             $surl = $_cbase['server']['txmao']."/root/plus/api/update.php";
-            $nver = $_cbase['sys']['ver']; //echo ".$surl.";
+            $nver = $_cbase['sys']['ver']; 
             $sver = comHttp::doGet("$surl?act=version",8); 
             $sdata = comHttp::doGet("$surl?act=server",8);
             $linkb = "● ".lang('updinfo_nowver')."V{$nver}"; 
@@ -210,7 +210,7 @@ class updInfo{
         global $_cbase;
         $api = req('api',$_cbase['server']['txmao']."/root/plus/api/update.php"); 
         //$api = $_cbase['run']['roots'].'/plus/api/update.php';
-        $dtmp = comHttp::doGet("$api?act=table"); //echo "$url\n";
+        $dtmp = comHttp::doGet("$api?act=table"); 
         $data = comParse::jsonDecode($dtmp);
         //return empty($data) ? $dtmp : $data;
         $kid = req('kid');

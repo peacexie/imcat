@@ -179,8 +179,8 @@ return array(
     'binf_suplocal' => 'Support local storage',
 
     'home_extitle' => 'A general PHP+Msql web site system!',
-    'home_exkwd' => 'Lightweight, free, sharing, PHP CMS, IntimateCat, 贴心猫, txmao, imcat',
-    'home_exdes' => 'is A general PHP+Msql web site system! Include PC/Mobile Views, pay/map/wechat APIs!',
+    'home_exkwd' => 'IntimateCat, Lightweight, free, sharing, PHPCMS, txmao, imcat',
+    'home_exdes' => 'A general PHP+Msql web site system! Include AppServer/PC/Mobile Views, pay/map/wechat APIs!',
     'home_botname' => 'IntimateCat',
 
     'chk_envcheck' => 'Env.Check',

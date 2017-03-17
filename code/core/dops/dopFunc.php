@@ -19,18 +19,18 @@ class dopFunc{
         $ids = '';
         foreach($re as $k=>$v){
             $ids .= (empty($ids) ? '' : ',')."'".$v[$kk]."'";
-        } //echo "$ids"; print_r($re);
+        } 
         if(empty($ids)) return;
         $re1 = db()->table(glbDBExt::getTable($mod,1))->where("$kk IN($ids)")->select(); 
         $re2 = array();
         foreach($re1 as $k1=>$v1){ 
             $re2[$v1[$kk]] = $v1;
-        } //print_r($re2);
+        } 
         foreach($re as $k=>$v){
             if(isset($re2[$v[$kk]])){
                 $re[$k] = $v + $re2[$v[$kk]];
             }
-        } //print_r($re);
+        } 
     }
 
     static function vgetLink($title,$mod='',$kid='',$link=''){

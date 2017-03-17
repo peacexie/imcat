@@ -13,7 +13,7 @@ foreach($list as $r){
         $cfg = $r;
         $restr = $cfg['cfgs']; $rearr = basElm::text2arr($restr); 
     }
-} //print_r($cfg); //echo $aurl[1];
+} 
 
 if($view=='upd'){
     $re = glbCUpd::upd_relat();

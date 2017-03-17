@@ -50,7 +50,7 @@ class vopUrl{
         //$mod分析
         $mod = $a[0]; $key = $a[1]; $view = empty($a[2]) ? '' : $a[2];
         if($remod) return $remod=='a' ? $a : $mod;
-        $hcfg = glbConfig::vcfg('home'); //print_r($hcfg);
+        $hcfg = glbConfig::vcfg('home'); 
         $vcfg = self::mcheck($hcfg,$mod); //mod-close, home-static, 
         if($type=='mhome' && $vcfg['m']=='first') self::ifirst($mod); //first跳转
         foreach(self::$params as $k) $re[$k] = $$k;
@@ -64,7 +64,7 @@ class vopUrl{
         if($type=='mtype'){ 
             if(isset($vcfg[$key])){
                 $cfg = $vcfg[$key];
-            }else{ //echo "::cc"; 
+            }else{ 
                 $mcfg = read($mod);
                 if(isset($mcfg['i'][$key])){
                     $cfg = $vcfg['t'];
@@ -78,7 +78,7 @@ class vopUrl{
             $cfg = $vcfg['m'];
         }else{ //mhome
             $cfg = $vcfg['m']; 
-        } //echo "<br>$mod,$key,$view,$type<br>";
+        } 
         if($view && isset($cfg[$view])){ 
             $tpl = $cfg[$view]; 
         }else{ //if(!empty($cfg))

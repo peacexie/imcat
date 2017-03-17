@@ -71,7 +71,7 @@ class usrMember extends usrBase{
         if(empty($uname)){
             $uname = substr($mod,0,1).str_replace('-','',basKeyid::kidTemp('5'));
         }
-        $r = db()->table($tabid)->field($key)->where("$key='$uname'")->find(); //print_r($r);
+        $r = db()->table($tabid)->field($key)->where("$key='$uname'")->find(); 
         if(!empty($r[$key])){ 
             return self::addUname('',$mod);
         }
@@ -86,7 +86,7 @@ class usrMember extends usrBase{
         }else{
             $uno = '1';    
         }
-        $r = db()->table($tabid)->field($key)->where("$key='$uid'")->find(); //print_r($r);
+        $r = db()->table($tabid)->field($key)->where("$key='$uid'")->find(); 
         if(!empty($r[$key])){ 
             return self::addUid();
         }

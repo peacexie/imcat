@@ -6,7 +6,7 @@ $act = req('act','');
 $part = $ntpl = req('part','');
 
 glbHtml::page("Check/Scan",1);
-glbHtml::page('imp');
+glbHtml::page('imnul');
 
 $dcfgs = array(
  'curlDown' => 37712,
@@ -74,7 +74,7 @@ if(empty($can_upfile)){
 }
 $bompath = empty($_GET['bompath']) ? '' : $_GET['bompath'];
 $bomfile = @$_GET['bomfile']; $bommsg = '';
-$bomreal = str_replace("\\","/",realpath($bomroot)); //echo $bomreal;
+$bomreal = str_replace("\\","/",realpath($bomroot)); 
 ?>
 
 <div>

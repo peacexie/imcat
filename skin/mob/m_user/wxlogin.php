@@ -91,7 +91,7 @@ if($state=='dogetpw'){
     $state_old = req('state_old',''); 
     $username = req('username',''); 
     $password = req('password',''); 
-    $umod = req('umod',''); //echo ":$username,$password:";
+    $umod = req('umod',''); 
     //1. 快速新增帐号
     if($actys=='add'){  
         $re = wysUser::addUser($openid,$username,$password,$umod); 
@@ -158,7 +158,7 @@ $mpassd = substr($mnamed,0,3).'_'.basKeyid::kidRand(24,5);
 
 // sysvals:
 $state_old = $state;
-$state = 'dobind'; //print_r($_da);
+$state = 'dobind'; 
 $umods = array();
 foreach($_groups as $k=>$v){ if($v['pid']=='users') $umods[$k]=$v['title']; }
 $karr = array('kid','scene','code','openid','codecheck','uinfo','mnamed','mpassd','state_old','state');

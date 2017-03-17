@@ -25,57 +25,41 @@ class comImage{
         }
     }
 
-    /** 生成缩略图
+    /** 生成缩略图 (补灰边,超比例截取)
      * @param string $image  原图
      * @param string $thumbname 缩略图文件名
-     * @param string $type 图像格式 
      * @param string $maxWidth  宽度
      * @param string $maxHeight  高度
      * @param boolean $interlace 启用隔行扫描
+     * @param string $type 图像格式 
      */
-    static function thumb($image,$thumbname,$type='',$maxWidth=120,$maxHeight=90,$interlace=true)
-    {
-        // 获取原图信息
-        $info = self::info($image);
-        if($info !== false){
-            $srcWidth  = $info['width'];
-            $srcHeight = $info['height'];
-            $type = empty($type)?$info['type']:$type;
-            $type = strtolower($type);
-            $interlace  =  $interlace? 1:0;
-            unset($info);
-            $scale = min($maxWidth/$srcWidth, $maxHeight/$srcHeight); // 计算缩放比例
-            if($scale>=1) { // 超过原图大小不再缩略
-                return false;
-            }else{ // 缩略图尺寸
-                $width  = (int)($srcWidth*$scale);
-                $height = (int)($srcHeight*$scale);
-            } // _mpos()
-            // 载入原图
-            $createFun = 'ImageCreateFrom'.($type=='jpg'?'jpeg':$type);
-            $srcImg    = $createFun($image);
-            //创建缩略图
-            if($type!='gif' && function_exists('imagecreatetruecolor'))
-                $thumbImg = imagecreatetruecolor($width, $height);
-            else
-                $thumbImg = imagecreate($width, $height);
-            // 复制图片
-            $fresized = function_exists("ImageCopyResampled") ? "ImageCopyResampled" : "ImageCopyResized";
-            $fresized($thumbImg, $srcImg, 0,0, 0,0, $width,$height, $srcWidth,$srcHeight);
-            if('gif'==$type || 'png'==$type) {
-                $background_color = imagecolorallocate($thumbImg,  0,255,0);  //  指派一个绿色
-                imagecolortransparent($thumbImg,$background_color);  //  设置为透明色，若注释掉该行则输出绿色的图
-            }
-            // 对jpeg图形设置隔行扫描
-            if('jpg'==$type || 'jpeg'==$type) imageinterlace($thumbImg,$interlace);
-            // 生成图片
-            $imageFun = 'image'.($type=='jpg'?'jpeg':$type);
-            $imageFun($thumbImg,$thumbname);
-            imagedestroy($thumbImg);
-            imagedestroy($srcImg);
-            return $thumbname;
-         }
-         return false;
+    static function thumb($image,$thumbname,$maxWidth=120,$maxHeight=90,$interlace=true,$type=''){
+        $ire = self::_thpos($image, $maxWidth, $maxHeight);
+        if(!$ire) return false;
+        extract($ire); 
+        // 载入原图
+        $func = 'ImageCreateFrom'.($type=='jpg'?'jpeg':$type);
+        $srcImg = $func($image);
+        // 创建缩略图
+        $func = ($type!='gif' && function_exists('imagecreatetruecolor')) ? 'imagecreatetruecolor' : 'imagecreate';
+        $thumbImg = $func($maxWidth, $maxHeight);
+        // 填充白底
+        $bg_color = imagecolorallocate($thumbImg, 204,204,204);
+        imagefill($thumbImg,0,0,$bg_color);
+        // 复制图片
+        $func = function_exists("ImageCopyResampled") ? "ImageCopyResampled" : "ImageCopyResized";
+        $func($thumbImg,$srcImg, $ox,$oy, $ix,$iy, $ow,$oh, $iw,$ih);
+        if('gif'==$type || 'png'==$type) { // 设置为透明色
+            imagecolortransparent($thumbImg,$bg_color);
+        }else{ // 对jpeg图形设置隔行扫描
+            if('jpg'==$type || 'jpeg'==$type) imageinterlace($thumbImg, $interlace?1:0);
+        }
+        // 生成图片
+        $func = 'image'.($type=='jpg'?'jpeg':$type);
+        $func($thumbImg,$thumbname);
+        imagedestroy($thumbImg);
+        imagedestroy($srcImg);
+        return $thumbname;
     }
     // {staticroot}/icons/basic/demo_pic1.jpg
     // http://img.domain.com/imcat/demo/abc.jpg
@@ -87,7 +71,7 @@ class comImage{
         $objd = str_replace(array('.'),array("-$resize."),$orgd);
         $objp = str_replace(array('.'),array("-$resize."),$orgp);
         if(file_exists($orgd)){ // local
-            $res = comImage::thumb($orgd,$objd,'',$size[0],$size[1]);
+            $res = comImage::thumb($orgd,$objd,$size[0],$size[1]);
             return $res ? $objp : $orgp;
         }elseif(strpos($orgp,'://')>0 && strpos($orgp,PATH_URES)===0){ // ftp http://img.domain...
             $scfg = read('store','ex');
@@ -246,4 +230,46 @@ class comImage{
         }
         return array($posX, $posY);
     }
+
+    static function _thpos($image, $ow, $oh){
+        $img = self::info($image);
+        if(!$img) return false;
+        $iw = $img['width'];
+        $ih = $img['height'];
+        $res = array(
+            'type'=>$img['type'],
+            'ix'=>0,'iy'=>0,'iw'=>$iw,'ih'=>$ih,
+            'ox'=>0,'oy'=>0,'ow'=>$ow,'oh'=>$oh,
+        );
+        if($iw>$ow && $ih>$oh){
+            $is = $iw/$ih; $os = $ow/$oh;
+            if($is>$os){ // 太宽(截取)
+                $ew = $ih * $os;
+                $dw = intval(($iw-$ew)/2);
+                $res['ix'] = $dw; $res['iw'] = $ew;
+            }elseif($os>$is){ // 太高(截取)
+                $eh = $iw / $os;
+                $dh = intval(($ih-$eh)/2);
+                $res['iy'] = $dh; $res['ih'] = $eh;
+            }
+        }elseif($iw>$ow){ // 太宽(截取+补边)
+            $dw = intval(($iw-$ow)/2);
+            $dh = intval(($oh-$ih)/2);
+            $res['oy'] = $dh; $res['oh'] = $ih;
+            $res['ix'] = $dw; $res['iw'] = $ow;
+        }elseif($ih>$oh){ // 太高(截取+补边)
+            $dw = intval(($ow-$iw)/2);
+            $dh = intval(($ih-$oh)/2);
+            $res['ox'] = $dw; $res['ow'] = $iw;
+            $res['iy'] = $dh; $res['ih'] = $oh;
+        }else{ // 
+            return false; //$res
+        }
+        return $res; 
+    }
+
 }
+
+/*
+
+*/

@@ -40,10 +40,10 @@ class wmpBasic{
         }else{
             $url = sprintf($this->act_url,$this->cfg['appid'],$this->cfg['appsecret']); 
             $data = comHttp::doGet($url,3); 
-            $databak = $data; //print_r($data);
+            $databak = $data; 
             $save = 1;
         } 
-        $data = wysBasic::jsonDecode($data,$this->act_url); //print_r($data);
+        $data = wysBasic::jsonDecode($data,$this->act_url); 
         /*if(!empty($data['errcode'])){
             return wysBasic::debugError($data['errcode'],$data,$url,1);
         }*/

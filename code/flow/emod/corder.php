@@ -53,7 +53,6 @@ if($view=='list'){
           $cid = $idend = $r['cid'];
           if(empty($idfirst)) $idfirst = $cid;
           echo $cv->Select($cid);
-          //echo $cv->Field($r['title'],1,64);  
           echo $cv->Url($r['title'],1,surl("chn:0",'')."?mkv=ocar-invoce&ordid=$cid","blank");
           echo $cv->TKeys($r,1,'ordstat',12,'-');
           echo $cv->Field($r['feetotle']);

@@ -5,7 +5,7 @@ usrPerm::run('pfile','admin/fields.php');
 $mod = empty($mod) ? 'docs' : $mod;
 $view = empty($view) ? 'list' : $view;
 $ispara = req('ispara','0'); //1,0
-$catid = req('catid','0'); $cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
+$catid = req('catid','0'); $cawhr = ($catid) ? "AND catid='$catid'" : ""; 
 $tabid = 'base_fields'; if($ispara) $tabid = 'base_paras'; if($catid) $tabid = 'bext_fields';
 $title = lang('flow.title_field'); if($ispara || $catid) $title = lang('admin.fls_paritem');
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@fields.php'); 
@@ -155,7 +155,7 @@ if($view=='ftest'){
     echo "<th>".lang('flow.title_edit')."</th><th class='wp15'>".lang('flow.title_note')."</th>\n";
     echo "</tr>\n";    
     if(!empty($catid)){
-        $_dbmfields = $db->fields(glbDBExt::getTable($mod)); //print_r($_dbmfields);
+        $_dbmfields = $db->fields(glbDBExt::getTable($mod)); 
     }
     $list = $db->table($tabid)->where("model='$mod' $cawhr")->order('enable DESC,top')->select();
     if($list){

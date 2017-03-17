@@ -61,7 +61,7 @@ if($view=='list'){
           echo "<td class='tc' title='{$r['type']}'>$typeu</td>\n";
           echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
           #echo "<td class='tc'>".date('Y-m-d H:i',$r['acexp'])."</td>\n";
-          //echo ;配置
+          // 配置
           echo $cv->Url($r['appid'],1,"$aurl[1]&view=form&kid=$kid",lang('awex.ecfg'),480,360);
           echo "<td class='tc'><a href='?file=awex/wex_menu&wekid=$r[kid]' target='_blank'>$cnav[menu]</a></td>\n";
           echo "<td class='tc'><a href='?file=awex/wex_user&wekid=$r[kid]' target='_blank'>$cnav[user]</a></td>\n";

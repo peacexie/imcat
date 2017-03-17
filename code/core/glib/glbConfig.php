@@ -53,7 +53,7 @@ class glbConfig{
             $file = vopTpls::pinc("_config/{$dir}_$file",'',0); 
             $base = DIR_SKIN;
         }
-        $file = "$base$file"; //echo "$dir,<br>";
+        $file = "$base$file"; 
         $ck = "{$dir}_$key";
         if(!isset(self::$_CACHES_YS[$ck])){
             if(file_exists($file)){ // inc大文件，其实很占时间
@@ -139,7 +139,7 @@ class glbConfig{
             $re = self::read('docs','va');  
         }else{ //没有找到规则-当做关闭
             $re = $renull;    
-        } //echo "$mod:"; print_r($re['c']); echo "<br>";
+        } 
         $re['c']['etr'] = vopTpls::etr1(0,$tpldir);
         if(isset($re['c']['vmode']) && $re['c']['vmode']=='static' && empty($re['c']['stext'])){ 
             $re['c']['stext'] = $hcfgs['c']['stext']; //模块未设置后缀,则继承home的后缀

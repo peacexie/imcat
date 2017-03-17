@@ -16,7 +16,7 @@ class basArray{
                 $rea[] = $val;
                 $reb[] = $arb[$k];
             } 
-        } //dump($rea); dump($reb);
+        } 
         return array($rea,$reb);
     }
 
@@ -101,7 +101,7 @@ class basArray{
     static function opaItems($items,$types='',$frame=1){  
         $a = array();
         foreach($items as $k=>$v){ 
-            $deep = intval($v['deep']);
+            $deep = intval(empty($v['deep'])?1:$v['deep']);
             $k2 = ($frame && !empty($v['frame'])) ? "^group^$k" : $k;
             $a[$k2] = ($deep>'1' ? str_repeat('&#12288;',$deep-1) : '').$v['title'];
         }

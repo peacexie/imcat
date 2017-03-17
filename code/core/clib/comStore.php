@@ -140,7 +140,6 @@ class comStore{
         if($ishtml){ //a,img,embed,value?,
             preg_match_all("/\s+(src|href|value)=(\S+)[\s|>]+/i",$str,$arr); //3
             $ar2 = empty($arr[2]) ? array() : str_replace(array("\\",'"',"'"),array(),$arr[2]); 
-            //echo "<pre>"; print_r($arr); die();
         }else{
             if(strpos($str,';')){ //pics
                 $ar2 = explode(';',$str);
@@ -162,13 +161,13 @@ class comStore{
         $rmain = cfg('run.rmain');
         $cfg = self::cfgDirPath($key,'arr');
         $res = $v;
-        if(strpos($res,'://')>0){ //完整路径
+        /*if(strpos($res,'://')>0){ //完整路径
             if(strpos($res,$rmain)===0){ //本地
                 //$res = str_replace($rmain,"",$res); 
             }else{ //外网(可处理远程图...)
                 //return $str;    
             }
-        }
+        }*/
         if(strpos($res,$cfg[1].$fix)===0 && !empty($cfg[1])){
             $res = '{'.$key.'root}'.substr($res,strlen($cfg[1]));
             $str = str_replace($v,$res,$str);

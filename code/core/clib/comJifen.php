@@ -57,7 +57,7 @@ class comJifen{
         $data['jfmod'] = $mcfg['kid'];
         $data['note'] = $msg ? $msg : "{$mcfg['kid']}:$act";
         $db->table("logs_jifen")->data($data)->insert();
-        //echo "<pre>"; print_r($mcfg); print_r($mcfg); die();
+
     }
     
 

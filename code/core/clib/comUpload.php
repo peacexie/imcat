@@ -25,7 +25,6 @@ class comUpload
     function __construct($fileField, $config, $type = "upload")
     {
         $this->stateMap = basLang::ucfg('cfglibs.upload');
-        //dump($this->config); dump($this->stateMap);
         $this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $this->stateMap['ERROR_TYPE_NOT_ALLOWED'];
         $this->fileField = $fileField;
         $this->config = $config;

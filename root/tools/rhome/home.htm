@@ -7,8 +7,8 @@ $qrActs = $isMobile ? '' : "qrActs();";
 glbHtml::page(" (sys_name) - ".lang('tools.home_extitle'));
 glbHtml::page('viewport'); //robots
 glbHtml::page('keywords',$_cbase['sys_name'].':'.lang('tools.home_exkwd'));
-glbHtml::page('robots',$_cbase['sys_name'].lang('tools.home_exdes'));    
-glbHtml::page('imvop',array('js'=>'/tools/rhome/hfunc.js','css'=>'/tools/rhome/hstyle.css'));    
+glbHtml::page('description',$_cbase['sys_name'].lang('tools.home_exdes'));
+glbHtml::page('imjq',array('js'=>'/tools/rhome/hfunc.js','css'=>'/tools/rhome/hstyle.css'));    
 {/php}
 <style type="text/css">
 div.outer {  

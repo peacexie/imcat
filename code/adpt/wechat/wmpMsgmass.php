@@ -26,7 +26,6 @@ class wmpMsgmass extends wmpBasic{
         foreach ($openids as $openid) {
             $url = $this->msgTpl."?access_token={$this->actoken}";
             $paras = '{"touser":"'.$openid.'","template_id":"'.$tpl.'","url":"'.$link.'","data":{'.$data.'}}';
-            //dump($paras);
             $data = comHttp::doPost($url, $paras, 3); 
             $res[$openid] = wysBasic::jsonDecode($data,$this->msgTpl);
         }
@@ -76,7 +75,7 @@ class wmpMsgmass extends wmpBasic{
         $msgup['media_id'] = $media_id;
         $msgup['title'] = $title;
         $msgup['description'] = $description;
-        $paras = wysBasic::jsonEncode($message); //echo $paras;
+        $paras = wysBasic::jsonEncode($message);
         $data = comHttp::doPost($url, $paras, 3);  
         $re = wysBasic::jsonDecode($data,$this->upVideo);
         if(!empty($re['media_id'])){

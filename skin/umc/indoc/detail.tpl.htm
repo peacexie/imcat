@@ -116,20 +116,15 @@ if(in_array($sealpos,array('cseal_bl','cseal_br'))){
 <div class="clear h10">&nbsp;</div>
 
 </body></html>
-<!--`{php print_r(basDebug::runInfo()); }`-->
+<!--`{php echo basDebug::runInfo(); }`-->
 
 {php}
 $jstr = "var cm='$this->mod', ck='".(empty($_cview)?$this->key:$_cview)."', cv='$this->view', ct='$this->type';";
 $jstr .= "\njtagSend();\nsetTimeout('jsactInread(ck)',2300)";
-echo "<script>$jstr</script>"; //print_r($this); print_r($user);
+echo "<script>$jstr</script>"; 
 {/php}
 
 <?php
-//echo "<pre>";
 $re = tex_indoc::isread($user,$did,"<i class='itm-{val}'></i>");
-//var_dump($re);
-//unset($this->vars['detail']);
-//print_r($user);
-//print_r($this->vars);
 ?>
 

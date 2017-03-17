@@ -1,5 +1,5 @@
 <!DOCTYPE html><html><head>
-{php $this->pmeta('中文PC版 - '.$_cbase['sys_name']); }
+{php $this->pmeta('经典PC版/演示版 - '.$_cbase['sys_name']); }
 {php $this->pimp(array('css'=>'~tpl/b_jscss/home.css','js'=>'/jquery/jq_imgChange.js:vendui')); } 
 <style type="text/css">table.home-tabadv i{background-color:rgba(255,255,255,.6);}</style>
 </head><body>
@@ -100,7 +100,7 @@
     <dl {php if($i_v%$col==$col-1) echo "class='right'"; }>
       <dd>
         <p class="tc uimark-pos-rel">
-        <img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' onload='imgShow(this,160,120)' />
+        <a href="<?php echo vopUrl::root($v['url']);?>"><img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' onload='imgShow(this,160,120)' /></a>
         {if !empty($v['star'])}<b class="uimark-star-icon1b"></b>{/if}</p>
         <p class="detail"><i class="right">&yen;{$v['price']}元</i><i class="click">浏览{$v['click']}次</i>
         </p>

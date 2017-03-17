@@ -6,8 +6,8 @@ glbHtml::head('html');
 $db = db();
 $act = req('act','chkVImg'); 
 $mod = req('mod','','Key'); //basStr::filKey('');
-$kid = basReq::ark('fm','kid','Key'); //echo $mod.':'.$kid;
-$uid = basReq::ark('fm','uid','Key'); //echo $mod.':'.$uid;
+$kid = basReq::ark('fm','kid','Key'); 
+$uid = basReq::ark('fm','uid','Key'); 
 $_groups = read('groups');
 
 // 处理语言
@@ -66,7 +66,7 @@ case 'fieldCatid':
     
     $catid = req('catid',''); 
     $ccfg = read($mod,'_c'); 
-    $mfields = @$ccfg[$catid]; //var_dump($mfields); 
+    $mfields = @$ccfg[$catid]; 
     
     if($re=basKeyid::keepCheck($kid,1,0,1)){ //$key,$chk,$fix,$grp
         die($re);
@@ -135,7 +135,6 @@ case 'chkVImg':
     $mod = req('mod'); $key = req('key'); 
     $key = "{$mod}_{$key}";
     $vcode = req($key);
-    //echo "$mod, $vcode";
     $re = safComm::formCVimg($mod, $vcode, 'check', 600);
     if(strstr($re,'-Error')){
         echo lang('plus.cajax_vcerr');

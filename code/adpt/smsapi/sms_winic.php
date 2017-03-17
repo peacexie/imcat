@@ -28,7 +28,6 @@ class sms_winic{
         $arr['to'] = $mobiles;
         $arr['content'] = $content;
         $html = comHttp::doPost("{$this->baseurl}/sys_port/gateway/", $arr, 3); 
-        //echo basStr::filText($html);
         // -02/Send:2/Consumption:0/Tmoney:0/sid:
         if(empty($html)){
             return array('-1','(sms-Server Error)');
@@ -44,7 +43,6 @@ class sms_winic{
     function getBalance(){ 
         $html = comHttp::doPost("{$this->baseurl}:8009/webservice/public/remoney.asp", $this->arr, 3); 
         unset($this->arr['uid']);
-        //echo basStr::filText($html);
         // .5
         if(empty($html)){
             return array('-1','(sms-Server Error)');

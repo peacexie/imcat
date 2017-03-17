@@ -7,7 +7,6 @@ $lang = req('lang');
 $exjs = req('exjs'); 
 $excss = req('excss'); 
 glbHtml::head($excss ? 'css' : 'js');
-//echo "$act<br>\n$exjs\n$excss\n";
 
 // 初始化js
 if(strstr($act,'sysInit')){
@@ -87,7 +86,7 @@ if(strstr($act,'sysInit')){
             $jscfg .= "\n_miadm.uname = '".$user->usess['uname']."';";
             $jscfg .= "\n_mpadm.title = '".@$user->uperm['title']."';";
         }
-    } //print_r($user->uperm);
+    } 
     echo "$jscfg\n";
     
     // ***** 加载Base.js *****
@@ -102,8 +101,6 @@ if(strstr($act,'sysInit')){
     //require(DIR_SKIN.'/_pub/jslib/jq_play.js'); 
     require(DIR_SKIN.'/_pub/jslib/jq_win.js');
     //require(DIR_VENDUI.'/jquery/jq-qrcode.js');
-
-    //print_r(basDebug::runInfo());
 }
 
 if(strstr($act,'autoJQ')){
@@ -227,7 +224,7 @@ if(strstr($act,'jsFields')){
         if(!empty($amod)){
             $ccfg['f'] = $amod;
         }
-    } //print_r($ccfg);
+    } 
     foreach($ccfg as $k1=>$v1){
         foreach($v1 as $k2=>$v2){ 
             $v3 = &$ccfg[$k1][$k2]; 
@@ -238,13 +235,11 @@ if(strstr($act,'jsFields')){
             foreach($v3 as $k4=>$v4){
                 if(!in_array($k4,array('title','type','fmline','cfgs'))){
                     unset($v3[$k4]);
-                } // 'enable','etab','dbtype','dblen','dbdef','vreg','vtip','vmax','fmsize','fmtitle'
+                } 
             }
             $v3['cfgs'] = str_replace(array("\r\n","\r","\n",";;"),array(";",";",";",";"),$v3['cfgs']);
-    }   }  //print_r($ccfg);
+    }   }  
     $ccfg = comParse::jsonEncode($ccfg);
     $ccfg = str_replace(array("\\/","\"}},\"",),array("/","\"}}\n,\"",),$ccfg);
     echo "\nvar _{$mods}_fields = $ccfg;\n"; //"\",\"cfgs\":\""
 }
-
-//echo basDebug::runInfo();

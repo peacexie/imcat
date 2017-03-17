@@ -2,7 +2,7 @@
 <div>
 <?php 
 if($act=='cmpdata'){ 
- $data = updAdmin::ddData($upc); //echo "<pre>"; print_r($data); echo "</pre>"; 
+ $data = updAdmin::ddData($upc); 
  $ntab = req('ntab');
  if($ntab){
   $rec = updAdmin::ddComp($data,$ntab); 

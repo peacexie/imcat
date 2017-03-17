@@ -40,7 +40,7 @@ class basSql{
                 $val = strtotime($val); 
             }
             if($op=='<' && strstr($val,':')) $val += 86401;    
-        } //echo "<br>$val:$sql:".date('Y-m-d H:i:s',$val);
+        } 
         $sql = " AND $key$op='$val'"; 
         return $sql;
     }
@@ -105,7 +105,7 @@ class basSql{
             }else{
                 $sql = " AND $sfid='((.null.))'";
             }
-        } //print_r($sql);
+        } 
         return $sql;
     }
     

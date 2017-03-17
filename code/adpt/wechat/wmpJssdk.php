@@ -60,7 +60,7 @@ class wmpJssdk extends wmpBasic{
         }
     }else{
         $ticket = $data->jsapi_ticket;
-    } //echo $ticket;
+    } 
     return $ticket;
     }
 
@@ -69,7 +69,6 @@ class wmpJssdk extends wmpBasic{
         if(!file_exists($this->cacheFull)){ 
             $this->cacheSave(array('jsapi_ticket'=>'','expire_time'=>''));
         }
-        //die($this->cacheFull);
     }
   
     private function cacheSave($data) {

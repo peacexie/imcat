@@ -49,7 +49,7 @@ class comSphinx {
         
         $this->opt = $opt; 
         $this->search($qstr, $mod, $fields, $opt);
-        $idstr = $this->idstr(); //dump($idstr);
+        $idstr = $this->idstr(); 
         if(!empty($idstr)){
             return db()->table(glbDBExt::getTable($mod))->where("spid IN($idstr)")->select();
         }else{
@@ -82,7 +82,6 @@ class comSphinx {
         $this->so->SetRankingMode(SPH_RANK_PROXIMITY_BM25); //仅使用BM25评分计算
         //$res = $this->so->query('@title 人','index_imcat_demo_main,index_imcat_demo_delta'); 
         //if(!empty($res['_error'])) die($res['_error']);
-        //dump($res); dump($this->so); 
     }
 
     /**
@@ -114,9 +113,9 @@ class comSphinx {
         } //$qstr = "you";
         if($ordby) { //排列
             $this->so->SetSortMode(SPH_SORT_EXTENDED, $ordby); 
-        } //echo "$qstr: $offset, $limit,($spidx),$ordby";
+        } 
         // res 
-        $this->res = $this->so->query($qstr, $spidx); //dump($this->res);
+        $this->res = $this->so->query($qstr, $spidx); 
         return $this->res;
     }
     

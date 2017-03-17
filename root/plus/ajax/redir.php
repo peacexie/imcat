@@ -19,7 +19,7 @@ if(strpos($mkv,'.')>0){
 }else{
     $mod = '';
     $kid = $mkv;
-} //echo "$act:$mkv; $mod:$kid<hr>";
+} 
 
 switch($act){
 
@@ -107,8 +107,8 @@ die();
 
 $act = req('act','chkVImg'); 
 $mod = req('mod','','Key'); //basStr::filKey('');
-$kid = basReq::ark('fm','kid','Key'); //echo $mod.':'.$kid;
-$uid = basReq::ark('fm','uid','Key'); //echo $mod.':'.$uid;
+$kid = basReq::ark('fm','kid','Key'); 
+$uid = basReq::ark('fm','uid','Key'); 
 $_groups = read('groups');
 
 */

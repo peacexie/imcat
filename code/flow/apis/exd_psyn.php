@@ -4,7 +4,7 @@ require(dirname(__FILE__).'/_pub_cfgs.php');
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_psyn'; 
 $job = req("job"); 
-$jcfg = exdBase::getJCfgs('psyn',$job); //print_r($jcfg); 
+$jcfg = exdBase::getJCfgs('psyn',$job); 
 
 if($view=='list'){
 
@@ -132,7 +132,7 @@ if($view=='list'){
         //'soarea'=>array('jifen','数量'),
         'kid'=>'sysid',
     );
-    $dop = new dopExtra('exd_pslog',$cfg); //print_r($dop); 
+    $dop = new dopExtra('exd_pslog',$cfg); 
     
     // 删除操作
     if(!empty($bsend)){

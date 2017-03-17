@@ -23,7 +23,6 @@ class devData{
             }
             return $n;
         }catch (Exception $e){ 
-            //dump($e->getMessage());
             return $e->getMessage();
         }
     }
@@ -111,7 +110,6 @@ class devData{
             $arr2 = explode($fix2.$pre,$sql);
             $sqla = $arr2[0];             $sqla = str_replace(array($pre,$suf),array($db->pre,$db->ext),$sqla);
             $sqlb = "$fix2$pre".$arr2[1]; $sqlb = str_replace(array($pre,$suf),array($db->pre,$db->ext),$sqlb);
-            //echo " \n \n <br>$sqla \n <br>$sqlb";
             try {
                 if($db->config['db_type']=='sqlite'){
                     $sqla = basSql::sqlite_tabcreate($sqla);
@@ -217,7 +215,7 @@ class devData{
             }
             return true;
         }catch(Exception $e){
-            #print_r($e->getMessage());;
+            # $e->getMessage()
             return false;
         }
     }
@@ -255,7 +253,6 @@ class devData{
         $sqlLoad = self::dataImpLang($sqlLoad,$tab);
         if($db->config['db_type']=='sqlite'){
             $sqlLoad = basSql::sqlite_insbatch($sqlLoad);
-            //dump($sqlLoad); die();
         }
         try {
             $db->query($sqlClean,'run');
@@ -286,7 +283,6 @@ class devData{
                     $tmp = basArray::lenParts($rcn[$tab],$ren[$tab],$i);
                     if(!empty($tmp[0])){
                         $sql = str_replace($tmp[0],$tmp[1],$sql); 
-                        //dump($tmp);
                     } 
                 }
             }

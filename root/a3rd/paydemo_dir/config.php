@@ -53,7 +53,7 @@ function dmdoCheck(){
     $trade_no = req('trade_no');
     $sign = req('sign');
     $enc = comConvert::sysEncode("$notify_time.$trade_no");
-    $flag = ($enc==$sign) && ($stamp-$notify_time<60); //var_dump($flag);
+    $flag = ($enc==$sign) && ($stamp-$notify_time<60); 
     return $flag;
 }
 

@@ -16,7 +16,7 @@ if(!empty($csmsg)){
 }
 
 $setCfgs = devSetup::supCfgs();
-$func = "sup$act"; //print_r(devSetup::$func($tab)); //echo $func;
+$func = "sup$act"; 
 
 if($act=='EditDB'){    
     $dbname = req('dbname');    
@@ -39,12 +39,11 @@ glbHtml::page('body');
 
 $cmydb3 = devRun::runMydb3();
 $cmynow = $cmydb3[glbDBObj::getCfg('db_class')];
-include(DIR_CODE.'/cfgs/boot/cfg_db.php'); //print_r($cmynow);
+include(DIR_CODE.'/cfgs/boot/cfg_db.php'); 
 
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 require(dirname(__FILE__).'/sflow.htm');
-#vopShow::inc('/tools/rhome/home.htm',DIR_ROOT); //通过模板解析
 glbHtml::page('end');
 ?>

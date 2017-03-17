@@ -13,7 +13,6 @@ $sfie = array(); $scnt = array();
 $stag = '';  $sadv = ''; 
 foreach($a as $k=>$v){
     //$k = basStr::filKey($k,"-._@:");
-    //echo "\n<hr>$k:$v<hr>\n\n";
     if(strstr($k,'jsid_tags_')){
         $re = tagCache::jsTag($k,$_cbase['run']['mkv'],$v);
         $stag .= "jtagRep('$k','$re');\n";

@@ -42,7 +42,7 @@ class tex_base{
     }
     
     static function coder($tpl=''){ 
-        $path = vopTpls::path('tpl',1); //echo 'xxx '.basename($obj->tplname);
+        $path = vopTpls::path('tpl',1); 
         $file = "$path/$tpl".(strpos($tpl,'.php') ? '' : cfg('tpl.tpl_ext'));
         if(!file_exists($file)) return '';
         $code = comFiles::get($file);
@@ -60,8 +60,8 @@ class tex_base{
         $arr = explode('<h1>',$text);
         foreach($arr as $block){ 
             if(empty($block)) continue;
-            $b = explode('</h1>',$block); //echo $block;
-            $c = explode('#',$b[0]); //echo $c[0].'::'.$c[1].'::'.$b[1];
+            $b = explode('</h1>',$block); 
+            $c = explode('#',$b[0]); 
             if(empty($c[0]) || empty($c[1]) || empty($b[1])) continue;
             $key = $c[0];
             $re[$key]['title'] = $c[1];
@@ -80,7 +80,7 @@ class tex_base{
             }elseif(strstr($k,"u{$key}_")){
                 $re2[] = str_replace(array('.php'),array(''),$k);
             }
-        } //print_r($re); echo $key;
+        } 
         return $re2;
     }
     
@@ -100,7 +100,7 @@ class tex_base{
     
     static function texter($key='',$conv=0,$ptpl=''){ 
         $path = $ptpl ? DIR_SKIN."/$ptpl" : vopTpls::path('tpl',1);
-        $file = "$path/$key"; //echo $file;
+        $file = "$path/$key"; 
         if(!file_exists($file)) return '';
         $data = comFiles::get($file);
         $conv && $data = comConvert::autoCSet($data,'gbk');

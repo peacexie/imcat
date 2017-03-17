@@ -31,7 +31,7 @@ class comCron{
         $this->db = db();
         $this->stamp = time();
         if(!tagCache::chkUpd($this->frun,$this->rgap)){ 
-            $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=0"; //echo($whr);
+            $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=0"; 
             $this->jobs = $this->db->table($this->tab)->where($whr)->select();
         } 
     }

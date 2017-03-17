@@ -14,7 +14,6 @@ class ipBaidu{
         if(!empty($addr['address'])){
             $addr = $addr['address'];
         }elseif(!empty($addr['message'])){
-            //dump($addr);
             $addr = $addr['message'].'('.$addr['status'].')'; 
         }else{
             $addr = var_export($addr,1);

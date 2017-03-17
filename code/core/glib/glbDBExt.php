@@ -11,7 +11,7 @@ class glbDBExt{
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
         if(in_array($r['dbtype'],array('nodb','file'))) return; 
         $tabid = self::getTable($mod,$r['etab']);
-        $cols = $db->fields($tabid); //echo "$mod,$cid,$act";
+        $cols = $db->fields($tabid); 
         if($act=='del'){
             if(isset($cols[$cid])) $db->query("ALTER TABLE $db->pre{$tabid}$db->ext DROP `$cid` ");
             $db->table($tabf)->where("model='$mod' AND kid='$cid'")->delete();     
@@ -36,7 +36,7 @@ class glbDBExt{
         if(isset($_groups[$col]) && $_groups[$col]['pid']=='types' && isset($a['catid'])){
             $def = 'catid';
         }else{
-            $def = ''; $bak = ''; //print_r($a);
+            $def = ''; $bak = ''; 
             foreach($a as $k=>$v){
                 if($k=='aip'){ 
                     $def = empty($bak) ? 'aip' : $bak;
@@ -101,7 +101,7 @@ class glbDBExt{
         $tmpbak = $tmp;
         if(strpos('(,6,7,3.4,4.5,5.6,)',",$tmp,")){ 
             $kid = basKeyid::kidTemp($tmp);
-        }elseif($key){ //echo "c.$key:";
+        }elseif($key){ 
             $len = $n>10 ? strlen($n)-1+2 : 2;
             $kno = substr($key,8,3).basKeyid::kidRand('',$len);  
             $kid = substr($key,0,8).$kno; 

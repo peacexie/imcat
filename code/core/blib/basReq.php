@@ -32,7 +32,7 @@ class basReq{
                 $val = self::val($k, '', $k0, $def);
                 $re[$k] = $val;
             }
-        } //print_r($re);
+        } 
         return $re;
     }
     
@@ -47,7 +47,6 @@ class basReq{
         return is_array($val) ? $val : self::fmt($val,$def,$type,$len);
     }
     static function arr($fix,$type='Title',$len=255){ 
-        //echo "<br>fix:"; print_r($fix);
         if(isset($_POST[$fix])){
             $val = $_POST[$fix];
         }elseif(isset($_GET[$fix])){
@@ -168,7 +167,7 @@ class basReq{
         if(!strstr($ura[1],'?')) $ura[1] = "?$ura[1]";
         if($ura[1]&&$skip){ //《"&<>》HTML《:/?=&#%》URL《\/*?"<>|》FILE
             $ura[1] = preg_replace("/[\?|\&]($skip)=[^\f\n\r\t\v\&\#]{0,80}/i",'',$ura[1]);    
-        } //print_r($ura);
+        } 
         if($re==-2) return $ura;
         elseif($re==-1) return implode($ura);
         elseif(isset($ura[$re])) return $ura[$re]; //'http://'.$_SERVER['HTTP_HOST'].

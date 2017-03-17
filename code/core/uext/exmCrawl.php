@@ -19,7 +19,7 @@ class exmCrawl{
     }
 
     function initPage($url){
-        $html = comHttp::doGet($url); //dump($html);
+        $html = comHttp::doGet($url); 
         $flags = $this->flags;
         $links = basElm::getPos($html,$flags['p1'].'(*)'.$flags['p2']);
         $pages = basElm::getPos($html,$flags['p2'].'(*)'.$flags['p3']);
@@ -28,7 +28,7 @@ class exmCrawl{
         foreach ($tmp as $val) {
             $val = substr($val,0,strpos($val,'"'));
             if(!strpos($val,'link?url=')) continue;
-            $links[] = $val; //dump($val);
+            $links[] = $val; 
         }
         $pages = basElm::getArr($pages,'<span class="pc">(*)</span>');
         $this->data = array('links'=>$links,'pages'=>$pages,'url'=>$url);

@@ -10,7 +10,7 @@ $part = req('part','imy');
 $stype = req('stype',''); $stit2 = vopCell::cOpt($stype,$this->mod);
 $stitle = @$gets[substr($part,1)] .(empty($stit2)?'':'-') .$stit2;
 $null = "<span class='cCCC'>---</span>"; //where
-$where = tex_indoc::expwhr($user,$part,$stype); //echo $where;
+$where = tex_indoc::expwhr($user,$part,$stype); 
 ?>
 <div class="pgf_mid">
   <div class="pgf_mcon"> 

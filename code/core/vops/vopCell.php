@@ -39,12 +39,12 @@ class vopCell{
     static function optArray($fc,$val='',$color=1){
         $sc = '333,'.cfg('ucfg.ctab').',999'; $ac = explode(',',$sc); 
         if(empty($val)) return array(); 
-        $arr = basElm::text2arr($fc); //print_r($arr);
+        $arr = basElm::text2arr($fc); 
         $va = explode(',',str_replace('+',',',$val)); 
         foreach($va as $k1){
             if(empty($k1)) continue;
             $vre[$k1] = empty($arr[$k1]) ? $k1 : $arr[$k1];
-        } //echo "\n\naab:"; print_r($vre);
+        } 
         if($color && count($arr)<count($ac)){
             $no = 0; $na = array();
             foreach($arr as $k2=>$v2){
@@ -105,7 +105,7 @@ class vopCell{
         if(!strpos($resize,'x')){ // demo_120x90.jpg,1
             preg_match("/(\d{2,3}x\d{2,3})\./",$def,$m); // 160x120
             $resize = empty($m[1]) ? 0 : $m[1]; 
-        } //dump($resize);
+        } 
         // 参数错误/已经是缩略图:直接返回
         if(empty($resize) || strpos($val,"-$resize.")>0) return vopUrl::root($val);
         $scfg = read('store.resize','ex'); 
@@ -189,7 +189,7 @@ class vopCell{
     //        [<span class='itm-(k)'>(v)</span>]: 自定模版显示,可自行写css.class着色
     static function cOpt($val='',$mod='',$split=0,$null=''){ 
         $color = empty($split);
-        $arr = self::optArray($mod,$val,$color); //echo "\n\naaa:"; print_r($arr);
+        $arr = self::optArray($mod,$val,$color);
         $rea = '';
         if(!empty($arr)){
             if(empty($split)){
@@ -318,7 +318,7 @@ class vopCell{
 
     //function __destory(){  }
     /*function __construct($cfg=array()){ 
-        basDebug::varShow(basDebug::runInfo());
+        ;
     }*/
 
 }

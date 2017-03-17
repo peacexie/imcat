@@ -32,7 +32,7 @@ if($act=='image'){
 }
 
 glbHtml::page(lang('tools.chk_envcheck')."-$title",1);
-glbHtml::page('imp');
+glbHtml::page('imnul');
 
 $iniPath = get_cfg_var('cfg_file_path');
 $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARNING: No configuration file (php.ini) used by PHP!";

@@ -84,7 +84,6 @@ class usrBase{
         if($this->userFlag=='Error') return 'Forbid';
         if($this->userFlag=='Login') return 'isLogin'; 
         $uname = basStr::filKey($uname,'_'); 
-        //echo "$uname,$upass,$this->userType = $epw;<br> ";
         $this->uinfo = $this->uget_minfo($uname,$upass); 
         if(empty($this->uinfo['show'])) return 'noChecked'; 
         $data = $this->sinit; unset($data['scode']);
@@ -148,7 +147,6 @@ class usrBase{
     //...
     static function uget_perms($grade){
         $grades = read('grade','dset');
-        //print_r($grades);
         if(isset($grades[$grade])){
             $res = $grades[$grade];
         }else{

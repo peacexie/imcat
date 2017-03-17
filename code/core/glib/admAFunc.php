@@ -11,7 +11,7 @@ class admAFunc{
         $mcfg = array(); 
         foreach($dbcfg as $k=>$v){
             $mcfg[$v['kid']] = $v;
-        } //print_r($mcfg);
+        } 
         foreach($mlist as $key=>$val){
             $mpos = strpos("$key)","-m)");
             $pid = $mpos ? 0 : substr($key,0,strpos($key,"-")).'-m';
@@ -20,14 +20,14 @@ class admAFunc{
             if(isset($mcfg[$key])){
                 unset($mcfg[$key]);
                 $db->table($tabid)->data(basReq::in($fm))->where("model='mumem' AND kid='$key'")->update();  
-            }else{ //echo "\nadd:$key,$pid,$deep, ";
+            }else{ 
                 $fm = array_merge($fm,array('kid'=>$key,'title'=>'','model'=>'mumem','cfgs'=>'','top'=>'888',));
                 $db->table($tabid)->data(basReq::in($fm))->insert();
             }
         }
         foreach($mcfg as $key=>$val){
             $db->table($tabid)->where("model='mumem' AND kid='$key'")->delete(); 
-        } //print_r($mcfg);
+        } 
     }
     
     // umcVmods

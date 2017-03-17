@@ -33,7 +33,7 @@ class safComm{ // extends safBase
         if($act=='save'){
             $stamp = $_cbase['run']['stamp']; 
             $encode = $stamp.','.comConvert::sysEncode($sform.strtoupper($vcode),$stamp);
-            comCookie::mset('vcodes',0,$mod,$encode); //echo $encode;
+            comCookie::mset('vcodes',0,$mod,$encode); 
             return;
         }else{ //check
             $cookie = comCookie::mget('vcodes',$mod); 
@@ -147,7 +147,7 @@ class safComm{ // extends safBase
     echo 'aab:<pre>'.var_dump(xxx::urlParse($url4)).'</pre><br>';
     */
     static function urlParse($url){    
-        $aurl = parse_url($url); //var_dump($aurl);
+        $aurl = parse_url($url); 
         $top = basEnv::TopDomain(@$aurl['host']);
         if(!empty($top)){ //IP(含ipv6)
             $aurl['host'] = $top;

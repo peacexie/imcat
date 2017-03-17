@@ -3,7 +3,7 @@
 {block:init}
 <?php
 $map = req('map'); //39.9151,116.404,
-$maps = wmpUser::convMap($map); //print_r($map); //坐标转化
+$maps = wmpUser::convMap($map); //坐标转化
 $mapsql = basSql::whrMap($maps['y'],$maps['x'],3,1,'map'); 
 ?>
 {/block:init}

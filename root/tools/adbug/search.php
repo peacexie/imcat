@@ -21,7 +21,7 @@ $dir = isset($_REQUEST['dir'])?$_REQUEST['dir']:''; if(!$dir) $dir = array('incl
 $skip = isset($_REQUEST['skip'])?$_REQUEST['skip']:SDIR; 
 $ex1 = isset($_REQUEST['ex1'])?$_REQUEST['ex1']:array('.php'); 
 $ex2 = isset($_REQUEST['ex2'])?$_REQUEST['ex2']:array('.gif','.jpg','.jpeg','.png'); 
-$key = isset($_REQUEST['key'])?$_REQUEST['key']:''; //echo $key;
+$key = isset($_REQUEST['key'])?$_REQUEST['key']:''; 
 $key = stripslashes($key); $keyBak = $key; $key = strtolower($key); 
 
 $file = isset($_REQUEST['file'])?$_REQUEST['file']:'';

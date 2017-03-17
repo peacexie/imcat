@@ -34,7 +34,6 @@ class NativeNotifyCallBack extends WxPayNotify
     
     public function NotifyProcess($data, &$msg)
     {
-        //echo "处理回调";
         Log::DEBUG("call back:" . json_encode($data));
         
         if(!array_key_exists("openid", $data) ||

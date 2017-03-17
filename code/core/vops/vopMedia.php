@@ -14,7 +14,7 @@ class vopMedia{
                 $mtype = self::onePara($porg,'type'); 
                 if(!isset($cfgs[$mtype])) continue;
                 $sres = self::_repItem($porg,$mtype);
-                $cstr = str_replace($itm,$sres,$cstr); //echo "\n b--- $cstr";
+                $cstr = str_replace($itm,$sres,$cstr); 
             }
         }
         $cstr = comStore::revSaveDir($cstr);

@@ -15,7 +15,8 @@ $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-glbHtml::page('imp',array('css'=>'/tools/adbug/style.css'));
+glbHtml::page('imnul',array('css'=>'/tools/adbug/style.css'));
+echo "<style type='text/css'>select[multiple]{height:auto;}</style>";
 ?>
 </head><body>
 

@@ -25,7 +25,7 @@ if($view=='list'){
     );
     $dop = new dopExtra($tabid,$cfg); 
     $dop->so->whrstr .= " AND `appid`='$weapp'";
-    $dop->order = $dop->so->order = req('order','kid'); //echo $dop->so->whrstr;
+    $dop->order = $dop->so->order = req('order','kid'); 
     if(!empty($bsend)){
         if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
         if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
@@ -83,7 +83,7 @@ if($view=='list'){
     );
     $dop = new dopExtra($tabid,$cfg); 
     $dop->so->whrstr .= " AND `appid`='$weapp'";
-    $dop->order = $dop->so->order = req('order','kid'); //echo $dop->so->whrstr;
+    $dop->order = $dop->so->order = req('order','kid'); 
     if(!empty($bsend)){
         if(empty($fs_do)) $msg = lang('flow.dops_setop'); 
         if(empty($fs) && in_array($fs_do,array('delete','clearact'))) $msg = lang('flow.dops_setitem');
@@ -142,10 +142,9 @@ if($view=='list'){
 
     $kid = req('kid',''); 
     $openid = req('openid','');
-    $msgtype = req('msgtype',''); //print_r($fm);
+    $msgtype = req('msgtype',''); 
     $groupid = req('groupid','');
     $doend = req('doend','');
-    //echo "$kid,$openid";
     if(!empty($bsend)){    
         $detail = $fm['detail']; 
         $fm['atime'] = $_cbase['run']['stamp'];
@@ -192,7 +191,7 @@ if($view=='list'){
         if(!empty($openid)){
             define('WERR_RETURN',1);
             $weixin = new wmpUser($wecfg);
-            $udata = $weixin->getUserInfo($openid); //print_r($udata);
+            $udata = $weixin->getUserInfo($openid); 
             if(!empty($udata['errcode'])){
                 $utitle = lang('awex.m3_guing').$udata['errcode']." <br>(".$udata['message'];
             }else{
@@ -200,7 +199,7 @@ if($view=='list'){
             }
             glbHtml::fmae_row($cmsg['srep'],"$utitle");
         }else{
-            $weixin = new wmpUser($wecfg); //print_r($wecfg);
+            $weixin = new wmpUser($wecfg); 
             $data = $weixin->groupList(); $garr = array();
             foreach($data['groups'] as $k=>$v){
                 $k2 = $v['id'] ? $v['id'] : '-1';

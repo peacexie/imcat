@@ -16,7 +16,7 @@ $dsub = req('dsub','');
 $lfile = "<a href='?file=admin/files'>SysFiles</a> # ";
 $links = admPFunc::fileNav($part,'envdiy');
 if(!in_array($part,array('edit','restore'))) glbHtml::tab_bar("$lfile ".lang('admin.ediy_extool')."[$part]","$links",50); 
-$msg = ''; //print_r($msg);
+$msg = ''; 
 
 $view = req('view');
 $efile = req('efile','');
@@ -91,7 +91,6 @@ if(in_array($part,array('edit','restore','down'))){
     } 
     glbHtml::tab_bar("$lnkdk",$lnkds,50); 
 
-    //echo $edir; echo "<pre>"; print_r($listu);
     glbHtml::fmt_head('fmlist',"?",'tblist');
     
     echo "<tr><th>".(empty($edir)?'[/]':$edir)."</th><th>".lang('admin.ediy_file')."</th><th>".lang('admin.ediy_size')."</th>"; 
@@ -99,7 +98,7 @@ if(in_array($part,array('edit','restore','down'))){
     $idir = $odir = '|';
     foreach($listu as $ifile=>$fv){ 
       $ext = strtolower(strrchr($ifile,".")); 
-      if(!in_array($ext,array('.php','.htm','.html','.css','.js','.txt'))) { continue; } //echo "$ifile, "; 
+      if(!in_array($ext,array('.php','.htm','.html','.css','.js','.txt'))) { continue; } 
       $tmp = explode('/',$ifile); $bkfile = $ifile;
       if(count($tmp)==1){
           $idir = '[/]';
@@ -134,12 +133,6 @@ if(in_array($part,array('edit','restore','down'))){
     
     glbHtml::fmt_end(array("nmod|nmod","ntpl|ntpl"));
     
-} //echo $part;
-
-    /*
-    echo "<pre>"; 
-    #$res = vopStatic::updKid('news','2015-9g-mvp1','upd'); print_r($res);
-    print_r($mods);
-    //*/
+} 
 
 ?>

@@ -7,7 +7,6 @@ $qstr = $_SERVER['QUERY_STRING'];
 // 获取ip,可在地址栏输入?ip用于调试
 $userip = ($qstr && strpos($qstr,'.')) ? $qstr : comSession::getUIP(); 
 
-#dump($qstr.$userip);
 if($qstr=='nav'){
     $rip = '121.'.mt_rand(3,17).'.197.187';
     $data = array('nav','cfgs','html','lang','debug',$rip,$rip.':debug');

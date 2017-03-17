@@ -8,7 +8,6 @@ if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').'
 $gbar = admAFunc::grpNav('users',$mod); 
 $cfg = read($mod); 
 $tabid = "base_grade";
-//print_r(comTypes::getSubs($cfg['i'],'hn','3'));
 
 if($view=='glist'){
 

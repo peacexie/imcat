@@ -32,7 +32,7 @@ if(!empty($size) && !empty($img) && strpos($csize,$size) && strpos($size,'x') &&
     $siza = explode('x',$size); 
     $objd = str_replace(array('.'),array("-$size."),$orgd);
     $objp = str_replace(array('.'),array("-$size."),$orgp);
-    $res = comImage::thumb($orgd,$objd,'',$siza[0],$siza[1]);
+    $res = comImage::thumb($orgd,$objd,$siza[0],$siza[1]);
     $objp = $res ? $objp : $orgp;
 }else{
     $objp = PATH_STATIC."/icons/basic/$def";

@@ -5,7 +5,8 @@ class glbHtml{
     // 页面结构
     static function page($mod='',$ext='',$iex=''){
         global $_cbase; 
-        $sdir = vopTpls::def(); //可能没有定义
+        $imarr = array('imp','imadm','imvop','imin','imjq','imnul');
+        $mtarr = array('robots','viewport','keywords','description');
         if($mod=='body'){
             echo "</head><body$ext>\n";
         }elseif($mod=='end'){
@@ -14,35 +15,14 @@ class glbHtml{
             }
             if(strlen($ext)>12) echo "$ext\n";
             echo "</body></html>\n";
-        }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
+        }elseif(in_array($mod,$mtarr)){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width, initial-scale=1';
             echo "<meta name='$mod' content='$ext'>\n"; 
         }elseif($mod=='h1'){
             echo "<h1>$ext</h1>\n";
-        }elseif(in_array($mod,array('imp','imadm','imvop','imin'))){
-            $exjs = "exjs=/$sdir/b_jscss/comm.js".(empty($ext['js'])?'':';'.$ext['js']);
-            $excss = "excss=/$sdir/b_jscss/comm.css".(empty($ext['css'])?'':';'.$ext['css']);
-            if($mod=='imp'){
-                $ips = self::impub();
-                $ips['js'] .= "&$exjs";
-                $ips['css'] .= "&$excss";    
-            }elseif($mod=='imadm'){
-                $ips = self::impub(0,1); 
-                $ips['js'] .= "&$exjs&lang=".$_cbase['sys']['lang'];
-                $ips['css'] .= "&$excss";    
-            }elseif($mod=='imvop'){
-                $ips = self::impub();
-                $ips['js'] .= "&$exjs&$iex";
-                $ips['css'] .= "&$excss";
-            }elseif($mod=='imin'){
-                $ips = self::impub('light',0);
-                $ips['js'] .= "&$exjs";
-                $ips['css'] .= "&$excss"; 
-            }
-            foreach (array('css','js') as $key) {
-                echo basJscss::imp("/plus/ajax/comjs.php?".$ips[$key],'',$key);
-            }
+        }elseif(in_array($mod,$imarr)){
+            self::imsub($mod,$ext,$iex);
         }else{ //head
             $_cbase['run']['headed'] = 1;
             $mod || $mod = $_cbase['sys_name'];
@@ -51,9 +31,42 @@ class glbHtml{
             echo "<meta charset='".cfg('sys.cset')."'>\n";
             echo "<title>$mod</title>\n";
             if($ext) echo "<meta name='robots' content='noindex, nofollow'>\n";
-            if(defined('RUN_MOB')){ 
-                echo "<meta name='viewport' content='width=device-width, initial-scale=1'>\n";
-            }
+        }
+    }
+
+    // _imsub
+    static function imsub($mod='',$ext='',$iex=''){
+        global $_cbase; 
+        $sdir = vopTpls::def(); //可能没有定义
+        $exjs = "exjs=/$sdir/b_jscss/comm.js".(empty($ext['js'])?'':';'.$ext['js']);
+        $excss = "excss=/$sdir/b_jscss/comm.css".(empty($ext['css'])?'':';'.$ext['css']);
+        if($mod=='imp'){
+            $ips = self::impub();
+            $ips['js'] .= "&$exjs";
+            $ips['css'] .= "&$excss";    
+        }elseif($mod=='imadm'){
+            $ips = self::impub(0,1); 
+            $ips['js'] .= "&$exjs&lang=".$_cbase['sys']['lang'];
+            $ips['css'] .= "&$excss";    
+        }elseif($mod=='imvop'){
+            $ips = self::impub();
+            $ips['js'] .= "&$exjs&$iex";
+            $ips['css'] .= "&$excss";
+        }elseif($mod=='imin'){
+            $ips = self::impub('imin',0);
+            $ips['js'] .= "&$exjs";
+            $ips['css'] .= "&$excss"; 
+        }elseif($mod=='imjq'){
+            $ips = self::impub('imjq',0);
+            $ips['js'] .= "&$exjs";
+            $ips['css'] .= "&$excss"; 
+        }elseif($mod=='imnul'){
+            $ips = self::impub('imnul',0);
+            $ips['js'] .= "&$exjs&$iex";
+            $ips['css'] .= "&$excss"; 
+        }
+        foreach (array('css','js') as $key) {
+            echo basJscss::imp("/plus/ajax/comjs.php?".$ips[$key],'',$key);
         }
     }
 
@@ -64,11 +77,13 @@ class glbHtml{
             echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
             echo basJscss::imp('/bootstrap/css/bootstrap.min.css','vendui','css');
             echo basJscss::imp('/bootstrap/js/bootstrap.min.js','vendui','js');
-        }else{ // 需要自行添加如下ratchet,tepto文件
+        }elseif($light=='imjq'){
+            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
+        }elseif($light=='imin'){ // 需要自行添加如下ratchet,tepto文件
             echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ&light=1'); 
             echo basJscss::imp('/ratchet/css/ratchet.min.css','vendui','css');
             echo basJscss::imp('/ratchet/js/ratchet.min.js','vendui','js');
-        }
+        } // else{ /*imnul*/ }
         if(!empty($layer)){
             echo basJscss::imp('/layer/layer.js','vendui');
         }
@@ -98,12 +113,10 @@ class glbHtml{
             @$domain = $aurl['host'];
         }
         if(in_array($domain, $allow)){ 
-            header("Access-Control-Allow-Origin:http://$domain"); // 指定允许其他域名访问  
+            header("Access-Control-Allow-Origin:http://$domain"); // 指定允许其他域名访问
             header('Access-Control-Allow-Methods:POST'); // 响应类型  
             header('Access-Control-Allow-Headers:x-requested-with,content-type'); // 响应头设置
-            /*
-            cls_HttpStatus::trace(array('X-Frame-Options' => 'ALLOWALL'));    //ALLOWALL，ALLOW-FROM
-            */
+            header('X-Frame-Options:ALLOWALL'); //ALLOWALL，ALLOW-FROM
         } 
     }
     
@@ -121,7 +134,7 @@ class glbHtml{
         $recbk = req('recbk','');
         $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
         echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
-        echo "<table border='$tbbrd' class='$tbcss'>\n"; // echo "\n";
+        echo "<table border='$tbbrd' class='$tbcss'>\n"; 
     }    
     // form+table:(end):结束
     static function fmt_end($data='',$tabend='</table>'){
@@ -152,8 +165,9 @@ class glbHtml{
     }
     // form:(增加/修改):提交
     static function fmae_send($fmid,$title,$width=0,$bcls='tc'){
+        $input = "<input name='$fmid' type='submit' class='btn' value='$title' />";
         echo "<tr><td class='tc' ".(!empty($width) ? "width='$width%'" : "").">$title</td>\n";
-        echo "<td class='$bcls'><input name='$fmid' type='submit' class='btn' value='$title' />".($bcls=='tr' ? " &nbsp; 　 " : "")."</td></tr>\n";
+        echo "<td class='$bcls'>$input".($bcls=='tr' ? " &nbsp; 　 " : "")."</td></tr>\n";
     }
     
     static function null_cell($str,$char='Y'){
@@ -161,10 +175,12 @@ class glbHtml{
     }
     
     static function ieLow_js(){
+        $tags = 'abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer';
+        $tags .= ',header,hgroup,mark,menu,meter,nav,output,progress,section,time,video';
         $s = '<!--[if lt IE 9]><script>';
         $s .= '(function(){';
         $s .= 'if(! /*@cc_on!@*/ 0) return;';
-        $s .= 'var e = "abbr,article,aside,audio,canvas,datalist,details,dialog,eventsource,figure,footer,header,hgroup,mark,menu,meter,nav,output,progress,section,time,video".split(",");';
+        $s .= 'var e = "$tags".split(",");';
         $s .= 'for(var i=0;i<e.length;i++){document.createElement(e[i]);} ';
         $s .= '})()</script><![endif]-->';
         echo "\n$s\n";

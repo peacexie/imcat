@@ -16,7 +16,7 @@ if($rs=$dop->getRecs()){
       $cid = $idend = $r['cid'];
       if(empty($idfirst)) $idfirst = $cid;
       echo $cv->Select($cid);
-      echo $cv->Field($r['title'],1,64); //echo $cv->Types($r['title']);
+      echo $cv->Field($r['title'],1,64); 
       echo $cv->Field($r['vno']);
       echo $cv->Field($r['vtop']);
       echo $cv->Field($r['vcnt']);

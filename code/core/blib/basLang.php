@@ -88,7 +88,7 @@ class basLang{
             }
             $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
             $_cbase['sys']['lang'] = $lang=='zh' ? 'cn' : 'en';
-        } //dump($_cbase['sys']['lang']);
+        } 
     }
 
     // links

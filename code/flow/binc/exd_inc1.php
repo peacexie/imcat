@@ -70,7 +70,7 @@ if($view=='set_a2'){
         "dealtabs","dealfmts","dealconv","dealfunc","dealfunp","defval","defover",
     );
     foreach($fa as $k){ 
-        $fm[$k] = @basStr::filForm($fm[$k]); //echo "\n\n<br>$jcfg[$k]\n<br>$fm[$k]";
+        $fm[$k] = @basStr::filForm($fm[$k]); 
     }
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
     echo "\n<tr><th class='tc w150'>$jcfg[title]</th>\n<th class='tl'>".lang('flow.ei_fldxcfg',$kid)."</th></tr>\n";
@@ -143,7 +143,7 @@ if($view=='set_a2'){
         $dop->fext['catid'] = array('title'=>lang('flow.title_cata'),'dbtype'=>"varchar (12)");
     }elseif($_groups[$mod]['pid']=='users'){
         $dop->fext['grade'] = array('title'=>lang('flow.title_grade'),'dbtype'=>"varchar (12)");
-    } //print_r($_groups);
+    } 
     echo "<tr style='border:1px solid #00CCFF'><td class='tc' colspan=10></td></tr>";
     foreach($dop->fext as $fk=>$fv){
       if(!in_array($fk,array('atime','catid','grade'))) continue;

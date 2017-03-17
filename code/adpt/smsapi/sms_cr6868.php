@@ -39,7 +39,7 @@ class sms_cr6868{
         $arr['content'] = $content; //urlencode($content); 
         $arr['mobile'] = $mobiles; 
         $html = comHttp::doPost("$this->baseurl", $arr, 3); 
-        $re = $this->fmtInfo($html); //var_dump($html); 
+        $re = $this->fmtInfo($html); 
         //if($re[0]=='1') $re[1] = '发送成功';
         return $re;        
     }
@@ -51,7 +51,7 @@ class sms_cr6868{
     function getBalance(){
         //return array(1,1234);
         $arr = $this->arr;
-        $html = comHttp::doGet("$this->baseurl?name=$this->userid&pwd=$this->userpw&type=balance", 3); //var_dump($html);  
+        $html = comHttp::doGet("$this->baseurl?name=$this->userid&pwd=$this->userpw&type=balance", 3); 
         $re = $this->fmtInfo($html);
         //if(substr($html,0,1)=='.') $html = "0$html";
         if($re[0]=='1') $re[1] = substr($re[1],2);

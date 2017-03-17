@@ -9,10 +9,9 @@ class tagCache{
     static function showAdv($mkey){ 
         $mk = explode(':',$mkey);
         if(empty($mk[1])) return '';
-        $a = explode(',',$mk[1]); //print_r($a);
+        $a = explode(',',$mk[1]);
         $p = empty($a[1]) ? '4' : substr($a[1],0,1);
         $s = (!empty($a[1]) && strlen($a[1])>1) ? ' '.substr($a[1],1) : ' cCCC'; 
-        //echo "$p:$s";
         $cfg = array(
             1=>"<i class='advFlag advTopL$s'>广告</i>",
             2=>"<i class='advFlag advTopR$s'>广告</i>",

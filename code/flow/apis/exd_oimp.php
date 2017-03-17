@@ -4,7 +4,7 @@ require(dirname(__FILE__).'/_pub_cfgs.php');
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_oimp'; 
 $job = req("job"); 
-$jcfg = exdBase::getJCfgs('oimp',$job); //print_r($jcfg);
+$jcfg = exdBase::getJCfgs('oimp',$job); 
 
 if($view=='list'){
 
@@ -94,7 +94,7 @@ if($view=='list'){
             //if(empty($fm['fdefs']))    $fm['fdefs'] = "catid=c1234";
         }elseif($_groups[$mod]['pid']=='users'){
             //if(empty($fm['fdefs']))    $fm['fdefs'] = "grade=g1234";
-        } //print_r($_groups);
+        } 
         
         $ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
         $ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
@@ -139,7 +139,7 @@ if($view=='list'){
         //'soarea'=>array('jifen','数量'),
         'kid'=>'sysid',
     );
-    $dop = new dopExtra('exd_oilog',$cfg); //print_r($dop); 
+    $dop = new dopExtra('exd_oilog',$cfg); 
     
     // 删除操作
     if(!empty($bsend)){

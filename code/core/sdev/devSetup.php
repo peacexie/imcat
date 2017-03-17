@@ -64,7 +64,6 @@ class devSetup{
         $mpid = req($menu); if(empty($mpid)) $mpid = $pid;
         $idata = str_replace(",'(pid-$menu)',",",'$mpid',",$idata);
         $flag = devData::run1Sql($idata);
-        //echo "\n\n::(pid-$menu):".req($menu);
         return 'OK!';
     }
 
@@ -142,7 +141,6 @@ class devSetup{
             }
         }
         $jstr .= "\ndemo_tabs='".implode(',',$demo_tabs)."',\nbase_tabs='".implode(',',$base_tabs)."';\n";
-        #print_r($all_tabs); print_r($demo_tabs); print_r($base_tabs); 
         return array($data,'okcnt'=>$okcnt,'jstr'=>$jstr);    
     }
     
@@ -152,7 +150,7 @@ class devSetup{
         $text = comFiles::get($setflag);
         $text = preg_replace("/step{$step}\=\S+/is", "step{$step}=$val", $text);
         comFiles::put($setflag,$text);
-        if($step==4){ glbCUpd::upd_groups(); }
+        //if($step==4){ glbCUpd::upd_groups(); }
         if($step==5){ 
             comFiles::put(DIR_DTMP.self::$fsetuped,date('Y-m-d H:i:s'));
             vopStatic::advMod('adtext',"(all)");
@@ -172,7 +170,7 @@ class devSetup{
                 self::ajaxStop($re);
             }
         }
-        $cfg = devRun::runPath($k); //print_r($cfg);
+        $cfg = devRun::runPath($k);
         foreach($cfg as $re){ 
             $re = $re['res'];
             if($re!=FLAGYES){ 
@@ -185,7 +183,7 @@ class devSetup{
             $re = $re1['res']; 
             if($re==FLAGYES) $n3++;
         }
-        $re = $n3 ? 'OK' : ''; //print_r($re); 
+        $re = $n3 ? 'OK' : '';
         $msg = $n3 ? '' : lang('devsetup_chkmysql');
         $re = array('res'=>$re,'msg'=>$msg);
         self::ajaxStop($re);
@@ -284,7 +282,6 @@ class devSetup{
                 continue;
             }else{ // pid in 'docs','coms','users','advs','types'
                 glbCUpd::upd_model($key);
-                //echo "$key, ";
             }
         }
         glbCUpd::upd_relat();

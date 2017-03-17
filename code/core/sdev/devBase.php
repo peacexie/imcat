@@ -91,7 +91,7 @@ class devBase{
                 }
             }
             closedir($handle);
-        } //print_r($maps);
+        } 
         $ckeys = array_keys($maps); 
         $re = $tip = '';
         foreach($maps as $class=>$nsp){
@@ -163,7 +163,7 @@ class devBase{
         $lists = comFiles::listScan($dir,'',array('tpls','a3rd','skin'));
         foreach($lists as $file=>$fv){
             if(!strpos($file,'.php')) continue;
-            $url = "$burl/$file"; //echo "\n<br>$url,";
+            $url = "$burl/$file"; 
             self::scanCheck($url,$file,$re);
         }
         return $re;
@@ -181,7 +181,7 @@ class devBase{
                 $mkv = "$mod-$key";
             }
             if(empty($mkv)) continue;
-            $url = "$burl$mkv"; //echo "\n<br>$url";
+            $url = "$burl$mkv"; 
             self::scanCheck($url,$mkv,$re);
         }} //die();
         return $re;
@@ -316,7 +316,7 @@ class devBase{
                 }
             }
             if($rs) $re .= "$k1-$v1[title]$rs ; ";
-        } //print_r($citys);
+        } 
         return $re;
     }
 

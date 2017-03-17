@@ -1,13 +1,11 @@
 <?php
 (!defined('RUN_DOPA')) && die('No DopA'); 
 
-$fm = basReq::arr('fm','Html'); //dump($fm);
+$fm = basReq::arr('fm','Html'); 
 $omkv = req('omkv');
 $otpl = req('otpl');
-//echo 'ex:'.__FILE__;
 
 if(req('umod')=='upd'){
-    //echo vopStatic::advMod($mod,"(all)");
     echo "<p class='tc'><a href='?file=$file&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
 }
 
@@ -117,7 +115,7 @@ if($view=='list'){
     }
 
     $cfg = $db->table($dop->tbid)->where("aid='$aid'")->find(); 
-    $fields = comParse::jsonDecode($cfg['mpic']); //dump($fields);
+    $fields = comParse::jsonDecode($cfg['mpic']); 
     $data = comParse::jsonDecode($cfg['detail']); 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<tr>";

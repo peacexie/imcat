@@ -111,7 +111,7 @@ class wmpUser extends wmpBasic{
         $mar[1] = empty($mar[1]) ? '0' : $mar[1];
         $data = file_get_contents("http://api.map.baidu.com/ag/coord/convert?from=0&to=4&x=$mar[1]&y=$mar[0]");
         // from=0比from=2更准确 : 0表示地球坐标，2表示火星坐标，4表示百度坐标(所以这个原始坐标是地球坐标)
-        $data = json_decode($data); //print_r($data);;
+        $data = json_decode($data); 
         if(empty($data->error)){
             $mapx = base64_decode($data->x);
             $mapy = base64_decode($data->y);

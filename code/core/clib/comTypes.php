@@ -73,7 +73,7 @@ class comTypes{
             if($start && strstr($deep,$v['deep'])){
                 $a[$k] = $v;
             }
-        } //print_r($a);
+        } 
         $re = empty($ra) ? count($a) : $a;
         return $re;
     }
@@ -118,7 +118,7 @@ class comTypes{
             $arr = $imod['i'];  
         }
         $a = basArray::opaItems($arr,'',$frame);
-        return basElm::setOption($a,$def,empty($msg) ? '-<Null>-' : $msg);
+        return basElm::setOption($a,$def,empty($msg) ? '-(def)-' : $msg);
     }
     
 

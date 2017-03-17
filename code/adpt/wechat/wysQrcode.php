@@ -87,7 +87,7 @@ class wysQrcode extends wmpQrcode{
                 'extp' => $extp, //Label
                 'atime' => $stamp,
                 'auser' => $this->uniqueid,
-            ); //print_r($row);
+            ); 
             if(empty($row['ticket'])){
                 $qrdata = $this->qrcodeTicket($sid, 'fnum'); 
                 $ticket = $qrdata['ticket']; 

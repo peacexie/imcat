@@ -58,7 +58,6 @@ class db_pdox{
         return $this->query($sql, 'all');
     }
     function row($sql) { // row
-        //dump($sql);
         return $this->query($sql)->fetch();
     }
     function val($sql) { // val
@@ -125,7 +124,7 @@ class db_pdox{
             case 'MYSQL':
             default:
                 $sql   = 'DESCRIBE '.$tableName;//备注: 驱动类不只针对mysql，不能加``
-        }dump($sql);
+        } 
         $result = $this->query($sql);
         $info   =   array();
         if($result) {

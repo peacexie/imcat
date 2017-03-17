@@ -28,7 +28,7 @@ $kname = isset($karr[$key]) ? $karr[$key] : "($key)";
 
 {block:action}Body for {$kname}{/block:action}
 
-<p class="tc f12">{php print_r(basDebug::runInfo()); }</p>
+<p class="tc f12">{php echo basDebug::runInfo(); }</p>
 </body></html>
 {block:footer}
 {php $_cbase['tpl']['tplpend']='jstag'; }

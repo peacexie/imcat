@@ -59,7 +59,6 @@ class dopCheck extends dopBase{
                 $chk->$method($val);
             }
         }
-        #dump($chk->excfg);
     }
 
     function __construct($cfg=array()){ 
@@ -130,7 +129,6 @@ class dopCheck extends dopBase{
             }
         }
         $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-$num)."'")->count();
-        //dump($cnt); dump($num);
         if($cnt>0){
             glbHtml::end(lang('flow.ck_rep',$num));
         }

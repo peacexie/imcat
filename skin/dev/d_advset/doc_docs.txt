@@ -13,7 +13,7 @@
 * 步骤1：设置参数
 
  - 文件：\code\cfgs\sycfg\sy_frame.php
- - 参数：$resfmt, 把模型加进去...
+ - 参数：$expars, 把模型加进去...
 
 * 步骤2：扩展脚本
 

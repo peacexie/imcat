@@ -113,7 +113,7 @@ class exdBase{
                     $this->fme[$k] = $v; // fields外数据：
                 }
             }  
-        } //print_r($this->fmv); print_r($this->fmu); //print_r($this->fme);
+        } 
     }
     function svAccount(){ 
         $fma['uid'] = $this->fmv['uid']; $uname = str_replace('-','',$this->fmv['uid']);
@@ -178,7 +178,7 @@ class exdBase{
                     if(in_array($k2,array('model','aip','atime','auser','eip','etime','euser'))) unset($v[$k2]);
                 }
                 $farr[$v['kid']] = $v;    
-            } //print_r($farr);
+            } 
             $this->cfields = $farr; 
         } 
         return $this->cfields;

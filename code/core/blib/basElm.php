@@ -5,14 +5,16 @@ class basElm{
 
     // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号,|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
-    static function setOption($cfgs,$val='',$title='-<Null>-'){
-        $title = $title=='-<Null>-' ? lang('core.opt_first') : $title;
-        $cfgs = str_replace(array(';','|',','),array("\n",'=','='),$cfgs);
-        $cfgs = self::text2arr($cfgs); //print_r($cfgs);
+    static function setOption($cfgs,$val='',$title='-(def)-'){
+        $title = $title=='-(def)-' ? lang('core.opt_first') : $title;
+        if(is_string($cfgs)){
+            $cfgs = str_replace(array(';','|',','),array("\n",'=','='),$cfgs);
+            $cfgs = self::text2arr($cfgs); 
+        }
         if($title) $cfgs = array(''=>$title) + $cfgs; 
         $str = '';
         foreach($cfgs as $k=>$v){ 
-            $v = is_string($v) ? $v : $v['title']; // isset($v['title']), 某些环境下出错...
+            $v = is_string($v) ? $v : $v['title']; // isset($v['title']) 某些环境下出错...
             if(strstr($k,'^group^')){
                 $str .= "\n<optgroup label='$v'></optgroup>";
             }else{
@@ -128,7 +130,7 @@ class basElm{
     static function getPreg($xStr,$flg1,$reg="[^\n|\r]{1,1200}",$no=-1){  
         $flag = preg_quote($flg1); // =\(\*\)
         $flag = str_replace("/","\\/",$flag);
-        $flag = str_replace('\(\*\)',"($reg)",$flag); //echo "(($flag))";
+        $flag = str_replace('\(\*\)',"($reg)",$flag); 
         preg_match_all("/$flag/i",$xStr,$m);
         if($no==-2){
             return $m;

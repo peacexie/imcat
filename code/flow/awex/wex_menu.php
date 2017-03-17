@@ -13,7 +13,7 @@ if($view=='list'){
     $flgcreate = req('create');
     $flggetmnu = req('getmnu');
     $flgdelete = req('delete');
-    //echo "<pre>"; print_r($fm);
+
     if(!empty($flgmusave)){
         $whr = "`appid`='$weapp'"; //array('appid'=>$wecfg['appid']);
         foreach($fm as $k=>$v){

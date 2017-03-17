@@ -1,6 +1,6 @@
 
 
-### AppServer说明(Server for App Notice)
+## AppServer说明(Server for App Notice)
 
 
 #### 说明
@@ -19,6 +19,10 @@
  - 保证：app端和本系统中，参数：$safix, $keyapi 双方一致
  - retype: json, jsonp, xml
  - debug=1：表示调试。
+
+* 第三方调用示例
+ - http://yscode.txjia.com/mlabs/csframe.htm
+ - 查看对应代码：Demo : Data From IntimateCat
 
 * 第三方系统-同步数据
  - 接口：app.php?mod=data
@@ -41,6 +45,10 @@
  - In app and this system, the params `$safix`, `$keyapi` must set the same value
  - retype: json, jsonp, xml
  - debug=1: the param for debug
+
+* Get data in 3nd-part 
+ - http://yscode.txjia.com/mlabs/csframe.htm
+ - See : Demo : Data From IntimateCat
 
 * Third party system - synchronous data
  - Interface: app.php?mod=data

@@ -5,7 +5,7 @@ $_groups = read('groups');
 $show = "<a href='?user-apply'>".lang('user.uap_reapp')."</a>";
 if($act=='doapply'){
     $bsend = 1;
-    $fm = $_POST['fm']; //print_r($fm);
+    $fm = $_POST['fm']; 
     $re2 = safComm::formCAll('fmapply');
     if(empty($re2[0])){ 
         $mod = req('mod');

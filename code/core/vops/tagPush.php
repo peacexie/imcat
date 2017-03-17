@@ -23,10 +23,10 @@ class tagPush extends tagList{
         $ids = str_replace(array("'",','),array("","','"),$ids);
         $sfrom = "aid,detail FROM ".$db->table('advs_adpush',2)." m ";
         $sqlAll = "SELECT $sfrom WHERE m.aid IN('$ids') ORDER BY `top`"; 
-        $re1 = $db->query($sqlAll); //echo $this->sqlAll; 
+        $re1 = $db->query($sqlAll); 
         foreach($re1 as $row) {
             $res[$row['aid']] = comParse::jsonDecode($row['detail']); 
-        } //dump($res); 
+        } 
         return $res;
     }
     
@@ -38,7 +38,7 @@ class tagPush extends tagList{
         $sfrom = "m.* FROM ".db()->table($this->sqlArr['tabid'],2)." m ";
         $where = empty($this->whrStr) ? '' : "WHERE ".$this->whrStr;
         $this->sqlAll = "SELECT $sfrom $where LIMIT 1"; //ORDER BY `top` 
-        $re = $this->db->query($this->sqlAll); //echo $this->sqlAll; 
+        $re = $this->db->query($this->sqlAll); 
         if(empty($re[0]['detail'])){
             $re = array();
         }else{

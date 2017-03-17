@@ -2,7 +2,7 @@
 require(dirname(__FILE__).'/_config.php'); 
 
 glbHtml::page('Types Pick',1);
-glbHtml::page('imadm',array('js'=>'/_pub/jslib/search.js'));
+glbHtml::page('imjq',array('js'=>'/_pub/jslib/search.js'));
 ?>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 0px 8px; }

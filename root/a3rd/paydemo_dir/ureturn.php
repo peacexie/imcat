@@ -19,7 +19,7 @@ if($verify_result) {//验证成功
     if($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
         //判断该笔订单是否在商户网站中已经做过处理
     }else{
-           //echo "trade_status=".req('trade_status');
+        //echo "trade_status=".req('trade_status');
     }
         
     $msg = lang('a3rd.ureturn_ok');

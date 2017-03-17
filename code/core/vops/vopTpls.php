@@ -157,7 +157,7 @@ class vopTpls{
             if(empty($tplchks[$tpl])){
                 $tplchks[$tpl]['ok'] = 1;    
             }
-        } //print_r($tplchks);
+        }
         if($die && empty($tplchks[$tpl]['ok'])){
             vopShow::msg("[excfg/ex_vopfmt.php]/[$tpl/_config] Config Error!");
         } 

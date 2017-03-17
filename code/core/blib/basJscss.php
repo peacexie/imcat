@@ -54,7 +54,7 @@ class basJscss{
         if(empty($_cbase['tpl']['tpc_on'])){
             $_r = '_r='.time();
             $path .= strpos($path,'?') ? "&$_r" : "?$_r";
-        } //echo "\n$mod:$path";
+        } 
         if($mod=='js') return self::jscode('',$path)."\n";
         else return "<link href='$path' type='text/css' rel='stylesheet'/>\n";
     }

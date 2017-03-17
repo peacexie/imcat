@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-//echo 'ins/upd';
 
 $dm = req('dm','');
 if(empty($dm) || empty($_groups[$dm])){ 
@@ -22,8 +21,6 @@ unset($_cfg,$_tmp,$_cls);
 $kid = req($dop->_kid,'');
 $isadd = $kid ? 0 : 1;
 if(!$isadd) $_POST['fm'][$dop->_kid] = $kid;
-
-//echo $pid;
 
 $dop->svPrep();
 $fp = vopTpls::pinc("c_mod/data-$dm"); // 扩展:c_mod/data-demo
@@ -71,7 +68,6 @@ if(file_exists($fp)){
 
 $dop->svEnd($uid); 
 //basMsg::show("$actm".lang('flow.dops_ok')); 
-//dump($dop);
 
 $kid = $dop->_kid;
 $vars = array(

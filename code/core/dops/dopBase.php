@@ -69,7 +69,7 @@ class dopBase{
         $psize || $psize = cfg('show.apsize');
         $key = $key ? $key : $this->_kid; 
         $sfrom = "* FROM `".$this->db->pre.$this->tbid.$this->db->ext."` ";  
-        $where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5)); //echo $where;
+        $where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5)); 
         $opkey = $this->order===$key ? 1 : 0;
         if(strpos($this->order,'-a')){
             $order = str_replace('-a','',$this->order);
@@ -77,7 +77,7 @@ class dopBase{
         }else{
             $order = $this->order;
             $odesc = 1;
-        } //echo "$sfrom,$where,($opkey),$odesc,$order";
+        } 
         $pg = new comPager($sfrom,$where,$psize,$order); 
         $pg->set('odesc',$odesc); // odesc/opkey
         $pg->set('opkey',$opkey);
@@ -91,7 +91,7 @@ class dopBase{
         $tabid = $this->cfg['pid']=='users' ? $this->tbuacc : $this->tbid;
         $_key = $this->cfg['pid']=='users' ? 'uid' : $this->_kid;
         $val = @$this->fmo[$_key];  
-        if(empty($val)){ //echo $this->kfix.$this->ktmp;
+        if(empty($val)){ 
             $kar = glbDBExt::dbAutID($tabid,$this->kfix,$this->ktmp);
             $kid = $kar[0]; $kno = $kar[1];
             $dis = "class='txt w180'";

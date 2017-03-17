@@ -33,8 +33,8 @@ class sms_emhttp{
         $arr = $this->arr;
         $arr['phone'] = $mobiles;
         $arr['message'] = $content;
-        $html = comHttp::doPost("{$this->baseurl}sendsms.action", $arr, 3); //var_dump(basStr::filText($html));  
-        $re = $this->fmtInfo($html); //var_dump($re);
+        $html = comHttp::doPost("{$this->baseurl}sendsms.action", $arr, 3); 
+        $re = $this->fmtInfo($html); 
         if($re[0]=='1') $re[1] = '发送成功';
         return $re;
     }
@@ -43,8 +43,8 @@ class sms_emhttp{
     function getBalance(){
         //return array(1,123.4);
         $url = "querybalance.action?cdkey=$this->userid&password=$this->userpw";
-        $html = comHttp::doGet("{$this->baseurl}$url", 3); //var_dump(basStr::filText($html));  
-        $re = $this->fmtInfo($html,1); //var_dump($re);
+        $html = comHttp::doGet("{$this->baseurl}$url", 3); 
+        $re = $this->fmtInfo($html,1); 
         return $re;
     }
     

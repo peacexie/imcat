@@ -27,7 +27,7 @@ if($mod=='(emtel)'){
 // 显示表单qr码
 }elseif($mod=='qrShow'){
     $size = req('size','5');
-    $data = req('data','','Safe4',255); //echo "$data, $size";
+    $data = req('data','','Safe4',255); 
     $level = req('level','2');
     $margin = req('margin','1');
     extQRcode::show($data, $size, $level, $margin);
@@ -44,7 +44,7 @@ if($mod=='(emtel)'){
         $msg = '<p>'.($flag=='OK' ? lang('plus.vimp_ok') : lang('plus.vimp_err')."<br>$flag").'</p>';
         echo "<p>$msg</p>";
         foreach($res[1] as $k=>$v){ echo "<br>$k=".@$v; }
-        echo "<pre>"; print_r($_GET); echo "</pre>";
+        dump($_GET,1);
         glbHtml::page('end');
     }else{
         die($res);

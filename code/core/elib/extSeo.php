@@ -19,7 +19,7 @@ class extSeo{
     
     // 
     function createSmap($job=''){
-        $jcfg = $this->db->table($this->tabid)->where("kid='$job'")->find(); //print_r($jcfg);
+        $jcfg = $this->db->table($this->tabid)->where("kid='$job'")->find(); 
         $tfcfg = array(
             'daily'=>'Y-m-d','monthly'=>'Y-m','yearly'=>'Y',
             'always'=>'Y-m-d H:i:s','weekly'=>'Y-m-d',
@@ -34,7 +34,7 @@ class extSeo{
                 $exd->minit($b[0]);    
             }
             $cfg = array('limit'=>$b[1],'order'=>$exd->mkid.':DESC'); //stype,limit(1-500),order(did:ASC),offset
-            $data = $exd->odata($cfg,0,''); //print_r($data);
+            $data = $exd->odata($cfg,0,''); 
             foreach($data as $row){
                 $url = surl("{$b[2]}:{$b[0]}.{$row[$exd->mkid]}",0,1); 
                 $title = empty($row['title']) ? (empty($row['company']) ? @$row['mname'] : $row['company']) : $row['title'];
@@ -48,7 +48,7 @@ class extSeo{
         }
         $fdata && $jcfg['detail'] && $fdata = str_replace(array("(*)"),array($fdata),$jcfg['detail']);
         @mkdir(DIR_HTML."/map", 0777, true);
-        $file = DIR_HTML."/map/$job"; //echo $fdata;
+        $file = DIR_HTML."/map/$job"; 
         $res = $fdata ? comFiles::put($file,$fdata) : 0;
         return $res;
     }    
@@ -81,7 +81,7 @@ class extSeo{
             $data = $text;    
         }  
         $urls = str_replace(array(";","\r","\n\n"),"\n",$data);
-        $pcfg = $this->bpushCfg(); //echo "($urls):".$this->pcfg['push_token']['detail'];
+        $pcfg = $this->bpushCfg(); 
         if(empty($urls) || empty($this->pcfg['push_token']['detail'])){
             return array('ok'=>0,'msg'=>'Error:Data or API.');    
         }

@@ -8,10 +8,10 @@
 * Background
  - Forward v3.5, It's a nother step to the High-end!
  - Add app.php api, It show the excellent expand-property!
-
+sa
 * Basic information:
- - Release: 2017.03.xx~(2017-03-xx)
- - Weight: 3.51 MB
+ - Release: 2017.03.11~(2017-03-18)
+ - Weight: 3.43 MB
 
 
 #detail#ChangeLog

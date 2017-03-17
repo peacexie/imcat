@@ -4,7 +4,6 @@ require('_config.php');
 $user || basMsg::show('Not Login.','die'); //未登录
 $dfile = req('dfile',''); 
 $cfg_dirs = read('urdirs','sy');
-//print_r($user); die();
 
 if($parts=='temp'){
     
@@ -42,7 +41,7 @@ $_delPath = in_array($parts,array('temp','now',));
 $_upPath = in_array($parts,array('temp',));
 if($dfile && $_admPerm && $_delPath){
     if(strstr($dfile,'./')) glbError::show('Error Path.');
-    @$dre = unlink($rdir.$dfile); //var_dump($dre);
+    @$dre = unlink($rdir.$dfile); 
     $dmsg = $dre ? lang('plus.fv_delok') : lang('plus.fv_delng');
 }
 pfileHead($parts,lang('plus.fv_ftitle'));
@@ -106,7 +105,7 @@ foreach($re['file'] as $fnm=>$v){
   $iSize = basStr::showNumber($v[1]);
   $iTime = date("Y-m-d H:i:s",$v[0]);
   $nFile++;
-  $sFile += $iSize;
+  $sFile += $v[1];
   $fPName = "$rpath/$ufix/$fnm";
   $ticon = comFiles::getTIcon($fnm);
   $id = $tdAct = '';

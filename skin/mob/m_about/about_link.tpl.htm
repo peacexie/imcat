@@ -3,7 +3,7 @@
 {block:main}
 
     {inc:"m_about/about_apage"}
-    <?php //print_r($now);
+    <?php 
     $map = $now['exp_i01']; $title = $now['title']; //[ext=$title]
     $map = "{media:[type=map][val=$map][w=100%][h=320]/media}"; 
     $map = vopMedia::repShow($map);

@@ -22,7 +22,7 @@ class wysEvent extends wmpMsgresp{
         parent::__construct($post,$wecfg); 
         $method = $this->getMethod('Event'); 
         $this->_db = db();
-        $this->init(); //echo $method;
+        $this->init(); 
         //setQrtable
         return $this->$method();
     }
@@ -58,11 +58,11 @@ class wysEvent extends wmpMsgresp{
     function reScanBase(){ 
         if(!in_array(strlen($this->eventKey),array(5,10))){ die(''); }
         $this->qrInfo = $this->getQrinfo($this->eventKey); 
-        $modKey = ucfirst(strtolower($this->qrInfo['smod'])); //echo "($modKey.$this->eventKey)";
+        $modKey = ucfirst(strtolower($this->qrInfo['smod'])); 
         if(empty($modKey)){
             die($this->remText("二维码已过期，请重新获取二维码再操作！[$modKey:$this->eventKey]"));
         }
-        $method = $this->getEvnact("scan$modKey",'scan'); //echo "<br>($method)";
+        $method = $this->getEvnact("scan$modKey",'scan');
         return $this->$method();
     }
     // ex
@@ -120,7 +120,7 @@ class wysEvent extends wmpMsgresp{
         return $row;
     }
     
-    function getEvnact($mcomm,$fix){ //echo "$mcomm,$fix"; 
+    function getEvnact($mcomm,$fix){ 
         return method_exists($this,$mcomm) ? $mcomm : (method_exists($this,"{$mcomm}Base") ? "{$mcomm}Base" : "{$fix}_Extra"); 
     }
 

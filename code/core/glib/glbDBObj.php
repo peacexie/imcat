@@ -139,7 +139,7 @@ class glbDBObj{
                 //echo 'RUN_JSHOW';
             }elseif(!empty($isDemo)){
                 //echo 'skipDemo';
-            }else{ //echo $this->options['table']; `users_adminer_ys`
+            }else{ 
                 die(glbHtml::page('h1','Can NOT run in DEMO Site!'));
             }
         }
@@ -252,7 +252,7 @@ class glbDBObj{
     function tables($info=0){
         $this->connect();
         $a = $info ? $this->db->tabinfo() : $this->db->tables();
-        $this->runTimer('tables'); //dump($a);
+        $this->runTimer('tables'); 
         $tab = array();
         foreach($a as $v){ 
             if($info){

@@ -92,7 +92,7 @@ class extSms{
             $mobiles = implode(',',$atel);
             $this->balanceWarn("--tels:$mobiles\n --cmsg:$content"); //写记录
             return array('-2',lang('sms_charge0'));        
-        } //print_r("$limit,$limit<$nmsg");
+        } 
         if($limit && $limit<$nmsg){
             return array('-2',lang('sms_charged'));    
         }

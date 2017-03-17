@@ -52,7 +52,7 @@ class autoLoad_ys{
             } 
             return self::doinc($file,$base);
         }else{ // 按[前缀-目录]对照加载
-            $fx3 = substr($name,0,3); //echo "<br>$name";
+            $fx3 = substr($name,0,3); 
             foreach(self::$acdirs as $dir=>$fixs){ //
                 if(strstr($fixs,$fx3)){ 
                     return self::doinc("/$dir/$name.php",DIR_CODE);
@@ -93,7 +93,7 @@ class autoLoad_ys{
 function bootPerm_ys($key='',$re='0',$exmsg=''){
     global $_cbase; // 不能用cfg()
     $tid = preg_replace("/[^\w]/", '', $_cbase['safe']['safil']); 
-    $sid = 'pmSessid_'.$tid; //echo $sid;
+    $sid = 'pmSessid_'.$tid; 
     if($re=='sid') return $sid;
     $sval = @$_SESSION[$sid];
     if(empty($key)){

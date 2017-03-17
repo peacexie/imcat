@@ -29,7 +29,7 @@ class exdCrawl{
     static function ugetLinks($jcfg=array(),$pno=1){
         $ourl = str_replace('(*)',$pno,$jcfg['ourl']);
         $data = comHttp::doGet($ourl,5); 
-        $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); // echo $data;
+        $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); 
         $data = self::orgAll($data,$jcfg);
         // modeAttr(:)href(^)url 规则可要可不要
         if(is_string($data)){ $data = basElm::getAttr($data,'href','url',-1); }
@@ -55,7 +55,7 @@ class exdCrawl{
             foreach($data as $k=>$url){
                 $data[$k] = $jcfg['oroot'].$data[$k];
             }
-        } //print_r($data);
+        } 
         return $data;
     }
     
@@ -63,13 +63,13 @@ class exdCrawl{
     static function ugetRow($jcfg,$cfields=array(),$udata=''){
         $farr = array(); 
         if(is_array($udata)){ //oimp
-            foreach($cfields as $k=>$v){ //echo "\n$k::::"; print_r($v);
+            foreach($cfields as $k=>$v){ 
                 if(empty($v['orgtg1']) || !isset($udata[$v['orgtg1']])) continue;
                 $farr[$k] = self::orgAll($udata[$v['orgtg1']],$v,0);    
             } 
         }else{
             $data = comHttp::doGet($udata,5); 
-            $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); // echo $data;
+            $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); 
             foreach($cfields as $k=>$v){ 
                 $farr[$k] = self::orgAll($data,$v);    
             } 
@@ -81,10 +81,10 @@ class exdCrawl{
         $dold = $data;
         foreach($cfg as $key=>$val){ 
             if(substr($key,0,5)=='orgtg'){
-                if(strlen($val)<18) continue; //echo "\n\n($key=$val)\n";
+                if(strlen($val)<18) continue; 
                 $data = self::orgPos($data,$val);
             } 
-            if(substr($key,0,4)=='deal'){ //echo "\n\n($key=$val)\n";
+            if(substr($key,0,4)=='deal'){ 
                 if(in_array($key,array('dealfunp'))) continue;
                 $extp = $key=='dealfunc' ? $cfg['dealfunp'] : '';
                 if(!empty($val)){
@@ -94,13 +94,13 @@ class exdCrawl{
             }
             if($key=='dealval'){ //可以是0
                 $data = self::dealDefv($data,$val,$cfg['defover']);
-            } //echo "<br>$key=$val=$data";
+            } 
         }
         return $recomp ? ($data==$dold ? '' : $data) : $dold;
     }
     
     static function orgPos($data,$pcfg){ // (:)  (^)  (*)
-        if(empty($pcfg)) return $data; //echo "\n\n:="; print_r($pcfg);
+        if(empty($pcfg)) return $data; 
         $pcfg = explode('(:)',"$pcfg(:)(:)");
         $pmode = $pcfg[0]; $paras = @explode('(^)',$pcfg[1]."(^)(^)(^)"); $pext = $pcfg[2]; 
         if($pmode=='modeVal'){ // ($data,'<div class="content">(*)</div>') 或 ($data,'class="content"(*)</div>','>')
@@ -158,7 +158,7 @@ class exdCrawl{
             $ure = comStore::moveTmpDir($info['url'],$mod,basKeyid::kidTemp('hms'),0);
         }else{
             $ure = '';    
-        } //print_r($ure);
+        } 
         return $ure;
     }
     
@@ -195,7 +195,7 @@ class exdCrawl{
         foreach($fmts as $key=>$val){
             $rek[] = $key;
             $rev[] = $val=='(null)' ? '' : $val;
-        } //print_r($rek);
+        } 
         if(!empty($rek)) $data = str_replace($rek,$rev,$data);
         return $data;
     }

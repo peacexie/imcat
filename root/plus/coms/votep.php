@@ -32,7 +32,6 @@ foreach ($fm as $cid) {
 }
 $kar = glbDBExt::dbAutID('coms_votep','yyyy-md-',31);
 $data = array('detail'=>$dstr,'cid'=>$kar[0],'cno'=>$kar[1],'pid'=>$pid);
-//dump($data);
 $db->table('coms_votep')->data($data)->insert(); 
 basMsg::show('感谢投票！','Redir');
 

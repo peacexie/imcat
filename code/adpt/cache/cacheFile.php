@@ -48,7 +48,7 @@ final class cacheFile{
     //写入缓存
     function set($sKey, $mVal, $iExpire=null){
         if(empty($sKey)) return false;
-        $sFile = self::getFileName($sKey,1); //echo $sFile;
+        $sFile = self::getFileName($sKey,1); 
         if(!$sFile) return false;
         $aBuf = array();
         $aBuf[] = time() + ((empty($iExpire)) ? self::cacExp : intval($iExpire));
@@ -95,4 +95,12 @@ final class cacheFile{
     }
 
 }
-?>
+
+/*
+    $fext = str_replace(array('/','+','*','|','?',':'),array('~','-','.','!','$',';'),$para); 
+    $fext = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[m','[n','[c','[s'),$fext); 
+    $fext = basStr::filTitle($fext); //del:&,#
+    if(strlen($fext)>150) $fext = substr($fext,0,20).'~'.md5($fext);
+    $path = "/_tagc/$tpldir$fext.cac_htm"; //".(substr($fmd5,0,1))."/
+    return $path;
+*/

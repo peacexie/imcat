@@ -1,7 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
 $data = comFiles::get(dirname(__FILE__).'/uexlib_elmhtml.php');
-//echo $data;
 
 /*
 $data = '{block:abody}abody{/block:abody}';

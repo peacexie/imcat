@@ -1,4 +1,6 @@
 <?php
+// (自v3.5开始) `设置站点相对目录` 等路径请移步至 `/code/cfgs/boot/_paths.php`
+
 // 页面_cbase, 运行时常用变量, 基本常量 
 $_pbase = empty($_cbase) ? array() : $_cbase; // 页面_cbase: run.outer, skip.*, tpl.tpl_dir, 
 $_cbase['run']['timer']  = microtime(1); // 越是最先运行越准确 
@@ -25,4 +27,4 @@ if(empty($_cbase['run']['outer'])){
     basEnv::runSkips(); // 处理skips
     safComm::urlQstr7(); // QUERY-7参数检测 
     basLang::auto(); // 自动语言配置
-} // dump(basDebug::runInfo());
+} 

@@ -88,7 +88,7 @@ class updDbcmp{
     static function cmpField($new,$old,$seq=0){
         $res = array('edit'=>array(),'add'=>array(),'old'=>array(),'skip'=>array(),'eq'=>array(),); 
         foreach($new as $tab=>$v){
-            if(!isset($old[$tab])) continue; //echo "\n<br>::a:[$tab]";
+            if(!isset($old[$tab])) continue; 
             foreach($v as $k2=>$v2){
                 if(is_numeric($k2)) continue; 
                 if(!isset($old[$tab][$k2])){
@@ -96,13 +96,12 @@ class updDbcmp{
                 }elseif($old[$tab][$k2]==$v2){
                     $res['eq'][$tab][] = $v2;
                     unset($old[$tab][$k2]);
-                }elseif($old[$tab][$k2]!=$v2){ //echo "\n<br>::[$tab][$k2]";
+                }elseif($old[$tab][$k2]!=$v2){ 
                     $k3 = self::cmpFSkip($v2,$old[$tab][$k2]) ? 'skip' : 'edit';
                     $res[$k3][$tab][$k2] = array('old'=>$old[$tab][$k2],'new'=>$v2,);
                     unset($old[$tab][$k2]);
                 }
-    
-            } //echo "<br>$tab,";
+            } 
             if(!empty($old[$tab])){ 
                 foreach($old[$tab] as $k3=>$v3){
                     if(is_numeric($k3)) continue; 

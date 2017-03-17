@@ -27,7 +27,6 @@ function fsget_file($path,$deep=0) {
             $f1++; break;
         } }
         if(!$f1){
-              //echo "<br>ex1:$path/$file";
               continue;
         }
         if($ex2){
@@ -36,12 +35,10 @@ function fsget_file($path,$deep=0) {
               $f2++; break;
         } } }
         if($f2){
-              //echo "<br>ex2:$path/$file";
               continue;
         }
         $size = filesize("$now/$file")/1024;
         if($size>FMAX){
-              //echo "<br>size:$path/$file";
               continue;
         }
         

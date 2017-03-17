@@ -8,7 +8,6 @@ if(in_array($view,array('list','set'))){
     $links = admPFunc::fileNav($file,'exd_psyn');
     glbHtml::tab_bar("[".lang('flow.sh_title')."]<span class='span ph5'>#</span>$lnkadd","$links",50);
 }
-//echo $mod;
 
 if($view=='set'){
     

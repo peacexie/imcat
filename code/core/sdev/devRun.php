@@ -133,7 +133,7 @@ class devRun{
     // verGdlib
     static function verGdlib() { 
         if(!function_exists('gd_info')) return array('title'=>'GD library','info'=>'-','res'=>FLAGNO,'tip'=>'V2.0+');
-        $info = gd_info(); //print_r($info);
+        $info = gd_info(); 
         $ver = preg_replace("/[^\d\.]/",'',$info['GD Version']); 
         $res = version_compare($ver,"2.0",">") ? FLAGYES : FLAGNO;
         $status = array('title'=>'GD library','info'=>$info['GD Version'],'res'=>$res,'tip'=>'V2.0+','demo'=>'?act=image');
@@ -203,7 +203,7 @@ class devRun{
             $a[$type] = array('res'=>FLAGYES,'info'=>''); //支持pdo扩展
             try{
                 $dsn = 'mysql:host='.$_cfgs['db_host'].';dbname='.$_cfgs['db_name'].'';
-                @$pdo = new PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); //print_r($pdo);
+                @$pdo = new PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); 
                 // PDO::ATTR_DRIVER_NAME, PDO::ATTR_SERVER_VERSION, PDO::ATTR_SERVER_VERSION
                 $info = " OK : ".$pdo->getAttribute(PDO::ATTR_SERVER_VERSION)."; OK : {$_cfgs['db_name']}";
             }catch(PDOException $e){

@@ -31,7 +31,7 @@ class tex_main{
             header('Access-Control-Allow-Methods:POST'); // 响应类型  
             header('Access-Control-Allow-Headers:x-requested-with,content-type'); // 响应头设置
             header('Access-Control-Allow-Credentials:true'); // 允许携带 用户认证凭据（也就是请求携带Cookie）
-            cls_HttpStatus::trace(array('X-Frame-Options' => 'ALLOWALL'));    //ALLOWALL，ALLOW-FROM
+            header('X-Frame-Options:ALLOWALL'); //ALLOWALL，ALLOW-FROM    
         } 
         vopTpls::pinc('tex_func');
     }

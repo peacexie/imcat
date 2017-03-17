@@ -18,7 +18,6 @@ if($udata && in_array($uptype,array('remote','base64'))){
 }else{
     die(lang('plus.fop_error'));    
 }
-///echo "<pre>$uptype\n";print_r($uparr); //print_r($_FILES);
 
 if($uparr){ 
     

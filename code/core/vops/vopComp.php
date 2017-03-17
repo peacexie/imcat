@@ -78,12 +78,10 @@ class vopComp{
     function impBlock($template=''){
         preg_match("/\{imp:\"(.*)\"\}/ie", $template, $match);
         if(empty($match[0]) || empty($match[1])) return $template; //没有imp,原样返回
-        //print_r($match);
         $re = self::checkTpls($match[1]);
         $layout = comFiles::get($re[0]);
         $template = substr($template,strlen($match[0]));
         preg_match_all("/\{block:([a-z][a-z0-9_]{1,17})\}/i", $layout, $match);
-        //print_r($match); 
         if(empty($match[1])){ return $layout; }//没有block
         foreach($match[1] as $key){ 
             $k1 = "{block:$key}"; $k2 = "{/block:$key}";

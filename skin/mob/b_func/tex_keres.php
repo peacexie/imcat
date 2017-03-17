@@ -28,7 +28,7 @@ class tex_keres{ //extends tex_base
       $icon = PATH_STATIC."/icons/file18/{$ticon['icon']}.gif";
       $icon = "<img src='$icon' width='18' height='18' border='0' align='absmiddle'>";
       $ufpath = comStore::revSaveDir($ufile);
-      $ufdir = comStore::revSaveDir($ufile,'dir'); //echo $ufdir;
+      $ufdir = comStore::revSaveDir($ufile,'dir'); 
       $ufsize = filesize($ufdir);
       $ufsize = $ufsize ? basStr::showNumber($ufsize,'Byte') : '';
       //$vpath = strstr($ufile,'root}') ? $ufile : substr($ufile,-24,24);

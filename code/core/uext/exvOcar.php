@@ -9,14 +9,14 @@ class exvOcar{
         $from = self::shipfix($from); 
         $to = self::shipfix($to); 
         $url = "http://www.chakd.com/index.php?action=search&start=$from&end=$to&weight=$weight&Submit=1";
-        $data = comHttp::doGet($url, 3); //echo $data;
-        $data = comConvert::autoCSet($data,'gb2312','utf-8'); //echo $data;
+        $data = comHttp::doGet($url, 3); 
+        $data = comConvert::autoCSet($data,'gb2312','utf-8'); 
         $arr = explode('</tr>',$data);
         $data = array();
         foreach($arr as $row){
             if(strpos($row,'天</div></td>') && strpos($row,'元</div></td>')){
-                $row = strip_tags($row,'<td>'); //echo "::\n$row";
-                $ar2 = explode('</td>',$row); //echo "::\n$row";
+                $row = strip_tags($row,'<td>'); 
+                $ar2 = explode('</td>',$row); 
                 foreach($ar2 as $k=>$v){
                     $v = preg_replace("/\s(?=\s)/","\\1",strip_tags($v)); 
                     $v = trim($v);
@@ -24,8 +24,8 @@ class exvOcar{
                 }
                 $data[] = $ar2;
             }
-        } //print_r($data);
-        $devs = glbDBExt::getExtp('logmode_cn'); //print_r($devs);
+        } 
+        $devs = glbDBExt::getExtp('logmode_cn'); 
         foreach($devs as $key=>$row){ 
             foreach($data as $fee){
                 if(strstr($fee[0],$row['title'])){
@@ -51,8 +51,8 @@ class exvOcar{
     
     static function whruser(){ 
         $stamp = time();
-        $user = user('Member'); //print_r($user);
-        $uadm = user('Admin'); //print_r($uadm);
+        $user = user('Member'); 
+        $uadm = user('Admin'); 
         $enc = req('enc');
         if($uadm->userFlag=='Login'){
             $re['flag'] = 'Admin';

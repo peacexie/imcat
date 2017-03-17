@@ -42,5 +42,3 @@ if($_fex=dopFunc::modFile($_scdir,$mod,$dop->type)){
     }
 }
 
-//print_r(basDebug::runInfo());
-//print_r(basDebug::bugStop()); 

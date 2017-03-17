@@ -71,7 +71,7 @@ class wysBasic{
     
     static function jsonDecode($data,$url=''){ 
         if(empty($data)) return self::debugError($url.'<br>[Remote]获取远程数据错误，请检查php扩展和服务器环境<br>','');
-        $arr = json_decode($data,1); //print_r($data); 
+        $arr = json_decode($data,1); 
         if(!empty($arr['errcode'])){
             return self::debugError($arr['errcode'],$arr,$url);
         }else{

@@ -26,7 +26,7 @@ Lang.jcore = {
     jqbase_checkform : '请检查表单的规范性与完整性：', 
     jqbase_notrule : '不规范', 
 
-    pop_pickmap : '选择地图坐标', 
+    pop_pickmap : '选择地图坐标 (拖动到适当位置后确定)', 
     pop_repeat : '该资料重复!', 
     pop_pickmod : '请选模型！', 
     pop_infopick : '信息选取', 

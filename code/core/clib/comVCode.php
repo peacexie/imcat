@@ -31,7 +31,7 @@ class comVCode {
     }
     
     // 显示
-    function show(){     
+    function show(){
         // 填充
         if(empty($type) || $this->mod=='(emtel)'){
             $color = imagecolorallocate($this->im, 255,255,255);

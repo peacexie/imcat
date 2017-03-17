@@ -18,7 +18,6 @@ function get_user_info()
 
 //获取用户基本资料
 $arr = get_user_info();
-//print_r($arr);
 
 echo "<p>";
 echo "Gender:".$arr["gender"];

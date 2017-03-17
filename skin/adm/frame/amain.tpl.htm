@@ -20,7 +20,7 @@ if(in_array(substr($file,0,2),array('ea','em'))){
     require($full);
 }
 echo "\n<!--inc:end-->\n<p>"; 
-$_cbase['debug']['err_mode'] && print_r(basDebug::runInfo('qstr'));
+if($_cbase['debug']['err_mode']) echo basDebug::runInfo('qstr');
 echo "</p>";
 ?>
 {/block:abody}

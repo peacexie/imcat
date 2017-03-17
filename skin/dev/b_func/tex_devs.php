@@ -19,10 +19,10 @@ class tex_devs{ //extends tex_base
                 }
             }
         }
-        $data = self::$data[$mod]; //dump($data);
+        $data = self::$data[$mod]; 
         //     'tplsuit' => '整套模版',
         preg_match_all("/['|\"]{1}{$key}['|\"]{1}\s*\=\>\s*['|\"]{1}([^\']+)['|\"]{1}\,/is", $data, $m);
-        $re = empty($m[1][0]) ? "[$key]" : $m[1][0]; //dump($m);
+        $re = empty($m[1][0]) ? "[$key]" : $m[1][0]; 
         return $re;
     }
 

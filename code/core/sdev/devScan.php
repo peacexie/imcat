@@ -10,7 +10,7 @@ class devScan{
         $re = ''; $ns = ''; $np = 0;
         foreach($tabs as $tab){ 
             $fa = $db->fields($tab);
-            foreach($fa as $k=>$v){ //print_r($v);
+            foreach($fa as $k=>$v){ 
                 $len = str_replace(array('varchar(',')'),'',$v['type']); 
                 if(strstr($v['type'],'varchar(') && intval($len)>255) $ns .= ",$k($len) "; 
                 if(!empty($v['primary'])) $np++; 
@@ -50,7 +50,7 @@ class devScan{
         foreach($logtabs as $tab){
             $db->table($tab)->where("atime<'".$stnow."'")->delete();
         }
-        $tabinfo = $db->tables(); //print_r($tabinfo);
+        $tabinfo = $db->tables(); 
         $db->table('bext_dbdict')->where("tabid NOT IN('".implode("','",$tabinfo)."')")->delete();
         foreach(array('wex_locate','wex_msgget','wex_msgsend','wex_qrcode') as $tabid){
             $db->table($tabid)->where("atime<'".($stnow-3600)."'")->delete();
@@ -158,7 +158,7 @@ class devScan{
         } }
         $data = comFiles::get($file);
         foreach($vals as $k=>$v){ 
-            $key = preg_quote($k); //echo "$k=$key, ";
+            $key = preg_quote($k); 
             $data = preg_replace("/[$]$key\s*\=\s*.*?;/is", "\${$key} = '$v';", $data);
             $data = preg_replace("/(\[(['|\"]?)$key(['|\"]?)\])\s*\=\s*.*?;/is", "\\1 = '$v';", $data);
         }

@@ -8,7 +8,6 @@ class tex_indoc{ //extends tex_base
     static $ncfgs = array();
     
     static function expwhr($user,$part,$stype,$read=0,$cnt=0){ 
-        //print_r($user);
         $db = db(); 
         if($user->userFlag=='Login'){
             $uname = $user->uinfo['uname'];
@@ -28,7 +27,7 @@ class tex_indoc{ //extends tex_base
             $where .= " AND catid='$stype'";
         }
         if(!empty($read)){ // in,not
-            $dbcfg = glbDBObj::getCfg(); //print_r($dbcfg);
+            $dbcfg = glbDBObj::getCfg(); 
             $subs = "SELECT pid FROM {$db->pre}coms_inread{$db->ext} WHERE auser='$uname'";
             $where .= " AND m.did ".($read=='no' ? 'NOT' : '')." IN($subs)";
         }
@@ -46,7 +45,7 @@ class tex_indoc{ //extends tex_base
         }
     }
     // 发通知扩展
-    static function exNotice($dop,$isadd){ //print_r($dop);
+    static function exNotice($dop,$isadd){ 
         $db = db(); 
         $stype = basReq::ark('fm','sendsms') ; 
         //$stype = 'wechat'; 
@@ -93,7 +92,6 @@ class tex_indoc{ //extends tex_base
         $detail .= "【{$info['sys_name']}】";
         $sms = new extSms(); 
         if($sms->isClosed()) return; 
-        //dump($detail);
         $res = $sms->sendSMS($tels,$detail,0); 
         if($res[0]!==1){
             $res = implode(':',$res); 
@@ -111,7 +109,6 @@ class tex_indoc{ //extends tex_base
         $detail .= $c['xuser']."{$info['auser']}；<br>\n";
         $detail .= "<a href='{$info['url']}'>{$c['xclick']}</a><br>\n";
         $detail .= "【{$info['sys_name']}】";
-        //dump($detail);
         $mail = new extEmail($type);
         $res = $mail->send($mails,lang('user.exf_indocmsg'),$detail,"{$info['sys_name']}");
         if($res!=='SentOK'){
@@ -127,13 +124,11 @@ class tex_indoc{ //extends tex_base
         $detail .= '"time":{"value":"'.$info['atime'].'",'.$color.'},';
         $detail .= '"auser":{"value":"'.$info['auser'].'",'.$color.'},';
         $detail .= '"remark":{"value":"'.$c['xclick'].'",'.$color.'}';
-        //dump($detail);
         $weixin = new wmpMsgmass(wysBasic::getConfig('admin'));
         $data = $weixin->sendTpl($opids, cfg('weixin.tplidIndoc'), $detail, $info['url']);
         $res = '';
         foreach ($data as $opid => $re1) {
             $res .= "{$re1['errcode']}:{$re1['errmsg']}; ";
-            //dump($re1);
         }
         self::exNLoger($res,$detail);
     }
@@ -159,7 +154,6 @@ class tex_indoc{ //extends tex_base
     static function exNLoger($info=array(),$detail){
         if(is_array($info)) $info = implode(':',$info); 
         $info .= "\ndetail:".$detail;
-        //dump($info);
         $debug = cfg('indoc.debug');
         if($debug){
             basDebug::bugLogs('indoc',$info,'detmp','db');

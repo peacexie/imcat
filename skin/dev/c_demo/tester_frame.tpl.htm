@@ -2,7 +2,7 @@
 $code = req('code','');
 $path = vopTpls::path('tpl',1);
 //$file = dirname($this->tplname).'/'.$code.'.php'; 
-$full = "$path/d_tester/$code.php"; //echo $file;
+$full = "$path/d_tester/$code.php"; 
 
 $tfile = $code ? $full : 'list...';
 glbHtml::page("/d_tester/$code.php(Test Code)");

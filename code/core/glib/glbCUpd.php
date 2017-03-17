@@ -40,7 +40,7 @@ class glbCUpd{
         $_groups = read('groups');
         $list = db()->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
         $arr = array();
-        foreach($list as $k=>$v){ //print_r($v);
+        foreach($list as $k=>$v){ 
             $v['modname'] = $_groups[$v['model']]['title'];
             $v['grade'] = $v['kid'];
             foreach(array('model','modname','title','cfgs','note','grade') as $k){
@@ -321,7 +321,7 @@ class glbCUpd{
         }
         $pmadm =  $icfg['pmadm']; 
         $pfile = ",{$icfg['pfile']}";
-        $a = explode(',',$pmadm); //echo "$pfile,$pmadm";
+        $a = explode(',',$pmadm); 
         if(!empty($a)){
             foreach($a as $k){
                 if(!empty($_mpm[$k]) && !strstr($pfile,$_mpm[$k])) $pfile .= ",$_mpm[$k]";

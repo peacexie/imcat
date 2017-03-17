@@ -22,7 +22,7 @@ $exp .= " &nbsp; <a href='$aurl[1]&view=Clear' target='_blank'>".lang('admin.dba
 $sbar = $view=='list' ? $fixs : "$opts $exp";
 
 // dbdict操作
-$syrem = glbDBExt::dbComment(); //print_r($syrem);
+$syrem = glbDBExt::dbComment(); 
 if(!empty($bsend)){
     if(empty($fs_do)) $msg = lang('flow.dops_setop');
     if(empty($fs)) $msg = lang('flow.dops_setitem');
@@ -36,7 +36,7 @@ if(!empty($bsend)){
              $cnt++;
           }elseif($fs_do=='upd'){ 
              $uptab = basReq::arr('uptab');
-             $uprem = basReq::arr('uprem'); //print_r($uprem);
+             $uprem = basReq::arr('uprem'); 
              if(!empty($uprem[$id])){
                  if(isset($syrem['fdemo'][$id]) && $uprem[$id]==$syrem['fdemo'][$id]){ 
                      $db->table('bext_dbdict')->where("kid='$id' AND tabid='$tabid'")->delete(); //array('kid'=>$id,'tabid'=>$tabid)
@@ -72,7 +72,7 @@ if($view=='Clear'){
     $sqldata = req("sqldata",'','html'); 
     $list = comFiles::listDir(DIR_DTMP.'/update/','file');
     $list += comFiles::listDir(DIR_DTMP.'/dbexp/','file');
-    $part = req("part"); //dump($part); dump($list); 
+    $part = req("part"); 
     if(!empty($sqldata)){ 
         $res = devData::run1Sql($sqldata);
         $msg = is_numeric($res) ? "($res) Run OK!" : $res;
@@ -139,7 +139,7 @@ if($view=='Clear'){
     
 }elseif($view=='rem'){
     
-    $fields = glbDBExt::dbComment($tabid); //print_r($fields);
+    $fields = glbDBExt::dbComment($tabid); 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>Name</th><th>type</th><th>null</th><th>def</th><th>pri/AI</th><th>Comment</th>\n";
         $r = @$fields[0];

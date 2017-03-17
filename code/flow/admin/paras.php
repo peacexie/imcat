@@ -10,7 +10,6 @@ if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').'
 $gpid = $_groups[$mod]['pid'];
 
 $aval = glbCUpd::upd_paras($gpid, '');
-//print_r($aval);
 
 if($view=='upd'){
     
@@ -21,7 +20,6 @@ if($view=='upd'){
 
     foreach($fm as $k=>$v){
         $db->table($tabid)->data(array('val'=>$v))->where("kid='$k'")->update(); 
-        //echo "<br>".$db->sql;
     }
     glbCUpd::upd_paras($gpid);
     echo basJscss::Alert(lang('admin.pr_editend'),'Redir',"$aurl[1]");

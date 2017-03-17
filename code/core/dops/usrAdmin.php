@@ -41,7 +41,7 @@ class usrAdmin extends usrBase{
             $str .= "&pextra=pstools,psdev";
         }else{
             $str .= "&pextra=".@$this->uperm['pextra'];    
-        } //echo $str;
+        } 
         comSession::set($this->sessid,$str); 
     }
     

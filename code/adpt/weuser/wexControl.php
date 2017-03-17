@@ -43,7 +43,6 @@ class wexControl{
     function replyPost($data){
         define('RUN_WECHAT','1');
         $post = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
-        //print_r($post);
         if(empty($post->MsgType)){ 
             $this->error("Error Code/Null MsgType"); 
         }else{
@@ -66,7 +65,7 @@ class wexControl{
             //$this->error("Error Class: [$class]", $post);
             $clsex = 'wex'.$class.ucfirst(strtolower($this->kid));
             $class = 'wys'.$class;
-            $class = class_exists($clsex) ? $clsex : (class_exists($class) ? $class : ''); //echo $class;
+            $class = class_exists($clsex) ? $clsex : (class_exists($class) ? $class : ''); 
             if($class){ 
                 new $class($post, $this->cfg);
             }else{

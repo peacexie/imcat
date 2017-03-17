@@ -37,11 +37,9 @@ tmp...
 * Three direction/Future
  - 1. 对 图文混排 - 做个演示模块；
  - 2. 征集/开发 一些应用模块；
- - 3. Back end: use Python and other languages, process planning tasks, process queues, Etc.
 
 * Recent target
- - 增加：api/app.php - 专用接口 ：为app,api提供服务器端支持
- - Planning for the next version : ver3.6
+ - Planning for the next version : ver3.7
  - Perfect known bugs, documentation, UI.
 
 

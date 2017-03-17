@@ -46,7 +46,7 @@ class fldCfgs{
     // mymap|map|地图^varchar|255|-|str:|2|255 // nul:fix:image // tit:2-60 */
     static function addPick($mod,$re='str'){
         $_groups = read('groups'); 
-        $mpid = $_groups[$mod]['pid']; //echo $mpid;
+        $mpid = $_groups[$mod]['pid']; 
         $ademo = self::addDemo('init_docs')+self::addDemo('init_dext')+self::addDemo('init_coms')+self::addDemo('init_users'); 
         $list = db()->table('base_fields')->where("model='$mod'")->select();
         $amods = array(-1); $b = array(); $s = ' &nbsp; '.lang('flow.fc_rftype'); $a = array();

@@ -21,9 +21,7 @@ $dop->sobar("$links$umsg",40,array());
 if($view=='vcfgs'){
 
     $cfgs = exvOpay::getCfgs();
-    //print_r($cfgs);
     $para = glbDBExt::getExtp('paymode_%');
-    //print_r($para);
     
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.pay_api')."</th><th>".lang('flow.pay_method')."</th><th>".lang('flow.pay_dir')."</th><th>".lang('flow.pay_note')."</th><th>".lang('flow.pay_cfg')."</th></tr>\n";

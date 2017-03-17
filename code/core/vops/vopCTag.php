@@ -56,7 +56,7 @@ class vopCTag{
         preg_match_all("/\{".self::$tag_fix."/i", $tpl, $_m);
         $tags = array();
         if(!empty($_m[0])){
-            for($i=count($_m[0])-1;$i>=0;$i--){ //echo "\n:::".$_m[0][$i];
+            for($i=count($_m[0])-1;$i>=0;$i--){ 
                 $tpl = self::tagOne($tpl, $_m[0][$i]);
             }
         }

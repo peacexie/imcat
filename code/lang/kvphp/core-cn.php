@@ -116,7 +116,7 @@ return array(
     'safcomm_vcode' => '点击输入框后见图片,<br>不分大小写',
     'rule_uname' => '字母开头,允许3-16字节<br>允许字母数字下划线',
     'rule_upass' => '允许6,15字节',
-    'ie_low' => 'IE浏览器过低！建议你更换浏览器，如Chrome,Firefox,IE{val}}+！',
+    'ie_low' => 'IE浏览器过低！建议你更换浏览器，如Chrome,Firefox,IE{val}+！',
     'cfg_close' => '网站升级中，临时关闭!',
     'cfg_dggdcn' => '感谢dg.gd.cn提供主机空间',
 

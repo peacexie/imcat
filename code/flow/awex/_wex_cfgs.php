@@ -28,4 +28,3 @@ $_cbase['run']['sobarnav'] = "<p class='tc pv5'>
  
 </p>";
 
-//echo $wekid;

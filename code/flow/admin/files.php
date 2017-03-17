@@ -37,7 +37,6 @@ if(isset($purls[$part])){
         $navs .= (empty($navs)?'':' - ')."<a href='?file=$file&part=$part&dir=$idir' $cur>$idir</a>";
     }
     $flist = $dir ? comFiles::listScan($basedir."/$dir",'',array()) : array();
-    //dump($flist);
 
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     $psub = $dir ? "&gt;$dir" : "";

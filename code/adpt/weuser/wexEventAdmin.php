@@ -65,7 +65,6 @@ class wexEventAdmin extends wysEvent{
         //直接发微信信息...
         $msg = $this->subScanmsg;
         $row = $this->_db->table('users_uppt')->where("pptuid='{$this->fromName}' AND pptmod='weixin'")->find();
-        //dump($this->qrInfo);
         $mname = comConvert::sysRevert($this->qrInfo['extp'], 1, '', 600);
         if(!$row){  
             $url = $this->oauthUrl($mname,'mbindDone'); 
@@ -195,7 +194,7 @@ class wexEventAdmin extends wysEvent{
             $tabid = glbDBExt::getTable($mod,1);
             $dext = $db->table($tabid)->where("$fid='$kid'")->find();
             $dext && $data += $dext; 
-        } //print_r($data);
+        } 
         $this->sendInfo = $data;
     }
     function getSendText($key,$fields,$tplink=''){ 
@@ -214,7 +213,7 @@ class wexEventAdmin extends wysEvent{
                 $s .= "$v: $val\n";     
             }
             $i++;
-        } //print_r($this->sendInfo);
+        } 
         if(strpos($tplink,'{kid}')){
             $link = str_replace(array('{kid}'),$key,wysBasic::fmtUrl($tplink));
         }elseif($tplink){

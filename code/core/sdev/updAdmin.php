@@ -234,7 +234,7 @@ class updAdmin extends updBase{
             }
             $row .= "$val".($i==count($data) ? ';' : ',');
             $sql .= $row;
-        } //echo $sql;
+        } 
         if($run){
             return $db->query($sql); 
         }else{

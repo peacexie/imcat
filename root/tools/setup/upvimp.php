@@ -2,7 +2,7 @@
 require(dirname(__FILE__).'/_config.php');
 
 //check, re:cfgs:
-$cfg = updDbcmp::uimpCheck(); //print_r($cfg);
+$cfg = updDbcmp::uimpCheck(); 
 $nav = '';
 
 $groups = devBase::_tabGroup();
@@ -29,18 +29,18 @@ if($act=='cpcfg'){
 }elseif($act=='cptables'){
 
     $ctab = updDbcmp::cmpTable($cnew,$cold);
-    echo "<pre>"; print_r($ctab); echo "</pre>";    
+    dump($ctab,1);   
 
 }elseif($act=='cpfields'){
     
     $cfields = updDbcmp::cmpField($cnew,$cold,0);
-    echo "<pre>"; print_r($cfields); echo "</pre>";    
+    dump($cfields,1);   
     updBase::cacSave($cfields,'uimp_fields');
     
 }elseif($act=='cpindexs'){
     
     $cindexs = updDbcmp::cmpIndex($cnew,$cold,1);
-    echo "<pre>"; print_r($cindexs); echo "</pre>";    
+    dump($cindexs,1);   
     updBase::cacSave($cindexs,'cimp_indexs');
 
 }elseif($act=='sqlins' || $act=='sqlrep'){

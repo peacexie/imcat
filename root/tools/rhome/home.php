@@ -7,7 +7,7 @@ $qrActs = $isMobile ? '' : "qrActs();";
 ?>
 <!DOCTYPE html><html><head>
 <meta charset="utf-8">
-<?php glbHtml::page('imvop'); ?>
+<?php glbHtml::page('imjq'); ?>
 <script src="<?php echo PATH_ROOT; ?>/tools/rhome/hfunc.js?v12"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/tools/rhome/hstyle.css?v12'/>
 <title><?php echo $_cbase['sys_name']; ?> - 通用PHP建站系统 </title>

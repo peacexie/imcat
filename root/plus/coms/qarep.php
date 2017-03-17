@@ -2,7 +2,7 @@
 $_mod = basename(__FILE__,'.php');
 require(dirname(__FILE__).'/_cfgcom.php'); 
 
-$pinfo = dopFunc::getMinfo('faqs',$pid); //dump($pinfo);
+$pinfo = dopFunc::getMinfo('faqs',$pid); 
 if($pinfo['bugst']=='close'){
     basMsg::show(lang('plus.coms_closerep'),'die');
 }

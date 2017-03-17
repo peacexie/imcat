@@ -17,7 +17,7 @@ class fldEdit{
             } //如果键名为字符，且键名相同，数组相加会将最先出现的值作为结果
             $fm = $fm + $from + $def;
         }else{
-            $cawhr = ($catid) ? "AND catid='$catid'" : ""; //echo $cawhr;
+            $cawhr = ($catid) ? "AND catid='$catid'" : ""; 
             $fm = db()->table($tabid)->where("model='$mod' AND kid='$kid' $cawhr")->find(); 
         } 
         return $fm;

@@ -4,7 +4,7 @@ require(dirname(__FILE__).'/_pub_cfgs.php');
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_crawl';
 $job = req("job"); 
-$jcfg = exdBase::getJCfgs('crawl',$job); //print_r($jcfg);
+$jcfg = exdBase::getJCfgs('crawl',$job); 
 
 if($view=='list'){
 
@@ -93,7 +93,7 @@ if($view=='list'){
             //if(empty($fm['fdefs']))    $fm['fdefs'] = "catid=c1234";
         }elseif($_groups[$mod]['pid']=='users'){
             //if(empty($fm['fdefs']))    $fm['fdefs'] = "grade=g1234";
-        } //print_r($_groups);
+        } 
         
         $ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
         $ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
@@ -135,7 +135,7 @@ if($view=='list'){
     echo "<div class='h02'>&nbsp;</div>";
     $fm = $jcfg; $fa = array('orgtg1','orgtg2','orgtg3',);
     foreach($fa as $k){ 
-        $fm[$k] = basStr::filForm($fm[$k]); //echo "\n\n<br>$jcfg[$k]\n<br>$fm[$k]";
+        $fm[$k] = basStr::filForm($fm[$k]); 
     }
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
     echo "\n<tr><th class='tc w150'>$fm[title]</th>\n<th class='tl'>".lang('flow.cw_urlfrom')."</th></tr>\n";
@@ -171,7 +171,7 @@ if($view=='list'){
         //'soarea'=>array('jifen','数量'),
         'kid'=>'sysid',
     );
-    $dop = new dopExtra('exd_crlog',$cfg); //print_r($dop); 
+    $dop = new dopExtra('exd_crlog',$cfg); 
     
     // 删除操作
     if(!empty($bsend)){

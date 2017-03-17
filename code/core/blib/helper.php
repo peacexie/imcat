@@ -6,8 +6,12 @@
  */
 
 // dump(格式化输出：变量，数组，Object)
-function dump($var){  
-    basDebug::varShow($var);
+function dump($var,$min=0){  
+    if($min){
+        echo "<pre>"; print_r($var); echo "</pre>";
+    }else{
+        basDebug::varShow($var);
+    }
 }
 // cfg(读取cbase配置) cfg('sys.cset');
 function cfg($key,$def=''){

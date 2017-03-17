@@ -42,7 +42,6 @@ class tex_base{
         $pnow = empty($_micfg[$pkey]['cfgs']) ? '.login' : $_micfg[$pkey]['cfgs']; //1, (empty), .guest
         if($pnow==1) $pnow = $pkey;
         $pmarr = empty($user->uperm['pmusr']) ? array() : explode(',',$user->uperm['pmusr']);
-        //dump($pnow); dump($pmarr); dump($_micfg); // die();
         if($pnow=='.guest' || in_array($obj->tplname,array('user/tips','user/home')) || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
             //游客可操作 or 提示页本身 or 跳转首页
         }elseif($pnow=='.login'){ 

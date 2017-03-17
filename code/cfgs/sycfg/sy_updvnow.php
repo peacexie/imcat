@@ -42,4 +42,4 @@ $_sy_updvnow['dellist'] = array(
 );
 
 $_sy_updvnow['compcfgs'] = array_merge($_sy_updvnow['selfcfgs'],$_sy_updvnow['compcfgs']);
-//var_dump($_sy_updvnow);
+

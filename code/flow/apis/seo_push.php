@@ -28,9 +28,9 @@ if($pid=='create'){
     
     $pfile = req('pfile');
     $plink = req('plink');
-    if($pfile){ //echo "$pfile";
+    if($pfile){ 
         $res = $seo->bpushRun($pfile);
-    }elseif($plink){ //echo "$plink";
+    }elseif($plink){ 
         $res = $seo->bpushRun(0,$plink);
     }
     $go = "<a href='?file=$file&pid=seo_pset'>".lang('flow.dops_back')."</a>";

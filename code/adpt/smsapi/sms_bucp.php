@@ -26,8 +26,8 @@ class sms_bucp{
         $arr = $this->arr;
         $arr['mobile'] = $mobiles;
         $arr['content'] = $content;
-        $html = comHttp::doPost("{$this->baseurl}z_send.aspx?", $arr, 3); //var_dump($html);   
-        $re = $this->fmtInfo($html); //var_dump($re);  
+        $html = comHttp::doPost("{$this->baseurl}z_send.aspx?", $arr, 3); 
+        $re = $this->fmtInfo($html); 
         return $re;
     }
     
@@ -35,8 +35,8 @@ class sms_bucp{
     function getBalance(){
         //return array(1,1234);
         $url = "z_balance.aspx?sn=$this->userid&pwd=$this->userpw"; 
-        $html = comHttp::doGet("{$this->baseurl}$url", 3); //var_dump($html);  
-        $re = $this->fmtInfo($html,1); //var_dump($re);  
+        $html = comHttp::doGet("{$this->baseurl}$url", 3);  
+        $re = $this->fmtInfo($html,1); 
         return $re;
     }
     

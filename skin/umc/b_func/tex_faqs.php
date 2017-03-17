@@ -169,7 +169,7 @@ class tex_faqs{ //extends tex_base
                 if(empty($tag)) continue;
                 if(isset($at[$tag])) $at[$tag] += 1;
                 else $at[$tag] = 1;
-            } //echo "\n<br>{$tags['tags']},";
+            } 
         }
         $no = 100;
         $db->table('coms_qatag')->where("cid>'0'")->delete(); 

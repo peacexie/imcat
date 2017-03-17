@@ -159,7 +159,7 @@ div.pg_bar input{ width:40px; }
 .pics_out {  }
 .pics_item {  }
 .color_out{ display:inline-block; position:relative;display:inline-block; z-index:6130; }
-.color_in{ display:inline-block; position:absolute;width:280px;height:225px;left:-256px;top:8px;background:#FFF;border:1px solid #CCC;padding:1px; }
+.color_in{ display:inline-block; position:absolute;width:250px;height:200px;left:-256px;top:8px;background:#FFF;border:1px solid #CCC;padding:1px; }
 /*.divcss5{height: expression_r(this.height> 500 ? 500 :true);  max-height:500px;} */
 .wpop_step { width:expression_r(this.height>60?60:true);max-width:60px; height:16px; line-height:16px; vertical-align:middle; overflow:hidden; display:inline-block; padding:0px 5px 0px 0px; margin:0px; }
 /* wpop */

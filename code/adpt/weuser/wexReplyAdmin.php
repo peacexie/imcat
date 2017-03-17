@@ -35,7 +35,7 @@ class wexReplyAdmin extends wysReply{
                         $link2 = empty($mpoint) ? "" : "\n坐标：$map[1]";
                         $str .= "\n{$link1} {$link2}"; 
                     }
-                } //echo strlen($str);
+                } 
                 die($this->remText($str));
             }
         }

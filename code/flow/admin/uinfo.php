@@ -2,7 +2,7 @@
 (!defined('RUN_INIT')) && die('No Init');
 usrPerm::run('pfile','(auto)'); 
 
-$view = req('view','uinfo'); //echo $view;
+$view = req('view','uinfo'); 
 $bspw = req('bspw');
 $mod = $user->uinfo['umods']; //$user->uperm['model'];
 $tabid = "users_$mod";

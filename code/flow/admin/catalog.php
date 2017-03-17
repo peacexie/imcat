@@ -11,7 +11,6 @@ $cfg = read($mod);
 $tabid = "base_catalog";
 $gbar = admAFunc::grpNav($cfg['pid'],$mod); 
 if(!in_array($cfg['pid'],array('docs','advs'))) glbHtml::end(lang('flow.dops_parerr').':mod2@catalog.php');
-//print_r(comTypes::getSubs($cfg['i'],'hn','3'));
 
 if($view=='glist'){
 
@@ -109,7 +108,6 @@ if($view=='glist'){
             unset($fm['kid']);
             $db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$kid'")->update();
         } 
-        //echo ",$mod,";
         glbCUpd::upd_model($mod);
         basMsg::show($msg);    
     }else{

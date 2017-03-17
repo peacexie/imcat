@@ -38,7 +38,7 @@ class tagList extends tagBase{
         $s = implode("','",$a);
         if($s){
             $this->whrArr[] = "m.{$this->fpk} IN('$s')";
-        } //print_r($this->whrArr);
+        }
     }
     
     function pOffset(){
@@ -123,7 +123,7 @@ class tagList extends tagBase{
         $where = empty($this->whrStr) ? '' : "WHERE ".$this->whrStr;
         $offset = empty($this->sqlArr['offset']) ? '' : $this->sqlArr['offset'].','; 
         $this->sqlAll = "SELECT $sfrom $where ORDER BY ".$this->sqlArr['ofull']." LIMIT $offset".$this->sqlArr['limit']; 
-        $re = $this->re = $this->db->query($this->sqlAll); //echo $this->sqlAll;
+        $re = $this->re = $this->db->query($this->sqlAll); 
         return $this->getJoin($re);
             
     }

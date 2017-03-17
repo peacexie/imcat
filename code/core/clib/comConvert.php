@@ -36,7 +36,7 @@ class comConvert{
             $data = basSql::filNotes($data);
         }elseif($re=='arr'){
             $data = basElm::line2arr($data,0);
-        } //echo "\n\n\nkey=$part\n$data\n";
+        } 
         return $data;  
     } 
     
@@ -74,7 +74,6 @@ class comConvert{
         $res = substr($enc,7,8).'-'.substr($enc,23,4);
         $res .= "-$area-$corp-";
         $res .= substr($time,0,4).'-'.substr($time,4,8);
-        //echo "$time<br>$enc<br>$res";
         return $res;
     }
     
