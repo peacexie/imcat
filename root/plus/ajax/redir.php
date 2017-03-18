@@ -72,11 +72,12 @@ case 'advs':
     $mkv = explode(',',comConvert::sysBase64($mkv,'de'));
     $mod = $mkv[0];
     $aid = @$mkv[1];
-    $url = @$mkv[2];
+    $url = @$mkv[2]; 
     if(empty($mod) || empty($aid) || empty($url)){
         exit("Error: [$mod,$aid,$url]");
     }else{
-        db()->query("UPDATE ".$db->table("advs_$mod",2)." SET click=click+1 WHERE aid='$aid'");
+        $db = db();
+        $db->query("UPDATE ".$db->table("advs_$mod",2)." SET click=click+1 WHERE aid='$aid'");
         header("Location: $url");    
     }
     //check,click,dir
