@@ -93,25 +93,23 @@ class vopShow{
         $tplname = &$this->tplname; 
         // check-tpldir
         vopTpls::check($_cbase['tpl']['tpl_dir']);
-        // 处理:detail 设置的模板
-        if(!empty($this->view)){
-            if(!empty($vars['tplname'.$this->view])){ 
-                $tplname = $vars['tplname'.$this->view];
-            }elseif($this->type=='detail'){ 
-                $cfgs = '';
-                if(isset($vars['grade'])){
-                    $mcfgs = read('grade','dset');
-                    $cfgs = $mcfgs[$vars['grade']];
-                }elseif(isset($vars['catid'])){
-                    $mcfgs = read($this->mod);
-                    $cfgs = $mcfgs['i'][$vars['catid']];
-                }
-                $cfgs = empty($cfgs['cfgs']) ? array() : basElm::text2arr($cfgs['cfgs']); 
-                if(!empty($cfgs['tplname'.$this->view])){
-                    $tplname = $cfgs['tplname'.$this->view];
-                } 
+        // 处理:detail 设置的模板 
+        if(!empty($vars['tplname'.$this->view])){ 
+            $tplname = $vars['tplname'.$this->view];
+        }elseif($this->type=='detail'){ 
+            $cfgs = '';
+            if(isset($vars['grade'])){
+                $mcfgs = read('grade','dset');
+                $cfgs = $mcfgs[$vars['grade']];
+            }elseif(isset($vars['catid'])){
+                $mcfgs = read($this->mod);
+                $cfgs = $mcfgs['i'][$vars['catid']];
             }
-        }
+            $cfgs = empty($cfgs['cfgs']) ? array() : basElm::text2arr($cfgs['cfgs']); 
+            if(!empty($cfgs['tplname'.$this->view])){
+                $tplname = $cfgs['tplname'.$this->view];
+            } 
+        } 
         // 编译
         // $tplname = 'c_page/_home'; // for Test
         if(!empty($_cbase['tpl']['tpc_on']) || !file_exists(vopTpls::path('tpc')."/$tplname")){

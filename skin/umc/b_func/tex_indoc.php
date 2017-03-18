@@ -236,11 +236,15 @@ class tex_indoc{ //extends tex_base
     // 是否已查看:noread,isread,0
     // tpl:<i class='tim-{val}'></i>
     static function isread($user,$did,$tpl="(val)",$flag=1){ 
+        $open = "<b class='glyphicon glyphicon-folder-open'></b> ";
+        $close = "<b class='glyphicon glyphicon-folder-close'></b> ";
+        $sopen = 'style="color: #008000; font-weight : bold;"';
+        $sclose = 'style="color: #ff0000; font-weight : bold;"';
         $cfg = array(
-            'isread1' => '<span style="color: #008000; font-weight : bold;" title="'.lang('user.exf_readok').'">&#10004;</span>',
-            'noread1' => '<span style="color: #ff0000; font-weight : bold;" title="'.lang('user.exf_unread').'">&#10008;</span>',
-            'isread2' => '<span style="color: #008000; font-weight : bold;">&#10004;'.lang('user.exf_readok').'</span>',
-            'noread2' => '<span style="color: #ff0000; font-weight : bold;">&#10008;'.lang('user.exf_unread').'</span>',
+            'isread1' => '<span '.$sopen.' title="'.lang('user.exf_readok').'">'.$open.'</span>',
+            'noread1' => '<span '.$sclose.' title="'.lang('user.exf_unread').'">'.$close.'</span>',
+            'isread2' => '<span '.$sopen.'>'.$open.lang('user.exf_readok').'</span>',
+            'noread2' => '<span '.$sclose.'>'.$close.lang('user.exf_unread').'</span>',
         );
         $data = array();
         if($user->userFlag!='Login'){
