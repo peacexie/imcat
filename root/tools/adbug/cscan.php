@@ -6,7 +6,7 @@ $act = req('act','');
 $part = $ntpl = req('part','');
 
 glbHtml::page("Check/Scan",1);
-glbHtml::page('imnul');
+glbHtml::page('imjq');
 
 $dcfgs = array(
  'curlDown' => 37712,

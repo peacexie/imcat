@@ -22,7 +22,7 @@ $_ex_vopfmt['tpl'] = array(
         '/root/run/adm.php'
     ),
     'chn' => array(
-        '经典版',  
+        '经典PC版',  
         '/chn.php'
     ), 
     'dev' => array(
