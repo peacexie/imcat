@@ -75,16 +75,20 @@
 ### 【安装提示】
 
 * 设置站点相对目录；
+
  - 文件：/code/cfgs/boot/_paths.php 设置PATH_PROJ值为站点相对目录如：“/txmao”或 根目录用“”(空)等；
  - （首次安装使用会自动更正项目路径，所以可省略上述操作）
 
 * 修改数据库配置：
+
  - 文件：/code/cfgs/boot/cfg_db.php；注意`数据库类`默认为：$_cfgs['db_class'] = 'mysqli';
  - （可安装时配置，如果修改建议手动配置）
 
 * 安装/配置:
+
  - 访问起始页：/index.php?start 检查配置；
  - 访问地址：/root/tools/setup/ 安装程序。
+
 
 ### 【v3.6更新日志】(2017.03)
 
