@@ -11,11 +11,11 @@ class comPager{
     //public  $paras = '?';
     public  $psize = 20; //分页大小
     public  $page = 1; //当前页
+    public  $pcnt = 1; //总前页
     // page para
     public  $prec = 0; //总记录数
     public  $ptype = 'start'; //first,prev,next,last
     public  $pkey = ''; 
-    public  $pjump = 0; //jump
     // order    
     public  $order = ''; //排序字段,含前缀,如a.aid
     public  $orderb = ''; //排序字段,去掉了前缀,如aid
@@ -38,11 +38,11 @@ class comPager{
             $this->orderb = $order;    
         }
         // init;
-        $a = array('page','prec','pjump','ptype','pkey',); //'odesc','opkey',
+        $a = array('page','prec','ptype','pkey',); // 'odesc','opkey',
         foreach($a as $k){
-            if(!empty($_GET[$k])){ 
-                $__v = req($k,'Key',24); //req($k); 
-                if(in_array($k,array('page','prec','pjump',))) $__v = max(0,intval($__v));
+            if(isset($_GET[$k])){ 
+                $__v = req($k,'Key',24); 
+                if(in_array($k,array('page','prec',))) $__v = max(0,intval($__v));
                 $this->$k = $__v;
             }
         }
@@ -54,7 +54,7 @@ class comPager{
             foreach($key as $k=>$v) $this->set($k,$v);
         }else{
             $this->$key = $value;
-        } // if(in_array($var,get_object_vars($this)))
+        } 
     }
     
     function sql($cnt=''){ 
@@ -66,13 +66,13 @@ class comPager{
         }else{
             $where = ' WHERE '.($this->where ? $this->where : '1=1');
             $ptype = $this->ptype;
-            $pkey = $this->pkey;
+            $pkey = $this->pkey; 
             $odesc = $this->odesc;
             if($this->opkey&&$ptype){
                 if($ptype=='start'){
-                    $where .= "";    
+                    //$where .= "";
                 }else if($ptype=='end'){
-                    $where .= "";
+                    //$where .= "";
                 }else if($ptype=='next'){ 
                     if($odesc) $where .= " AND {$this->order}<'$pkey'";
                     if(!$odesc) $where .= " AND {$this->order}>'$pkey'";
@@ -87,7 +87,6 @@ class comPager{
                 }else{
                     $limit = ' LIMIT '.$this->psize;
                 }
-                if($this->pjump) $limit = ' OFFSET '.($this->pjump*$this->psize);
             }else{
                 $offset = ($this->page-1)*$this->psize;
                 $limit = " LIMIT $offset,".$this->psize;
@@ -111,64 +110,62 @@ class comPager{
             $rec = $db->query($this->sql('_rc_recs_'));
             $this->prec = $rec[0]['_rc_recs_'];
         } 
+        $this->pcnt = ceil($this->prec/$this->psize);
         $this->bar = $this->links();
         return $rs;
     }
     
     function show($kfirst='',$klast='',$type='',$pbase=''){
         $pbase = empty($pbase) ? basReq::getUri(-1,'','page|prec|ptype|pkey') : $pbase; 
-        $pcnt = ceil($this->prec/$this->psize);
         $a = $this->bar; $bar = ''; $para = "&prec=$this->prec&page=";
-        $p0 = array("{pfirst}","{pprev}","{pnext}","{plast}",);
-        $p1 = array("{$para}1","$para".($this->page-1),"$para".($this->page+1),"$para".$pcnt,);
+        $p0 = array("{pfirst}","{pprev}","{pnext}","{plast}",); 
+        $p1 = array("{$para}1","$para".($this->page-1),"$para".($this->page+1),"$para".$this->pcnt,); 
         if($this->opkey){
             $p1[0] .= "&ptype=start";
             $p1[1] .= "&ptype=prev&pkey=$kfirst";
             $p1[2] .= "&ptype=next&pkey=$klast";
             $p1[3] .= "&ptype=end";
         }
+        $a['pjump'] = str_replace("{pjump}","{$para}0&ptype=0",$a['pjump']); 
         foreach($a as $k=>$v){
-            $v = str_replace($p0,$p1,$v);
             $v = str_replace("<li>","\n<li class='pg_$k'>",$v);
-            $v = str_replace("{url}",$pbase,$v);
-            $bar .= $v; $a[$k] = $v; 
+            if(in_array($k,array('first','prev','next','last'))){
+                $v = str_replace($p0,$p1,$v);
+            }
+            $bar .= $v; 
         }
+        $bar = str_replace("{url}",$pbase,$bar);
         return $bar;
     }
     
     function links(){
-        $pcnt = ceil($this->prec/$this->psize);
-        $a = array(); //$bar = ''; 
+        $pcnt = $this->pcnt;
+        $a = array(); 
         $sFirst = '&laquo;||'.basLang::show('page_First');   $sPrev = '&lt;|'.basLang::show('page_Prev');   
         $sNext = basLang::show('page_Next').'|&gt;';   $sLast = basLang::show('page_Last').'||&raquo;';
         $a['total'] = "<li>$this->prec</li>";
         $a['pagno'] = "<li>$this->page/$pcnt</li>";
+        $a['first'] = "<li>$sFirst</li>";
+        $a['prev']  = "<li>$sPrev</li>";
+        $a['now']   = "<li>$this->page</li>";
+        $a['next']  = "<li>$sNext</li>";
+        $a['last']  = "<li>$sLast</li>";
         if($pcnt<=1){
-            $a['first'] = "<li>$sFirst</li>";
-            $a['prev']  = "<li>$sPrev</li>";
-            $a['now']   = "<li>$this->page</li>";
-            $a['next']  = "<li>$sNext</li>";
-            $a['last']  = "<li>$sLast</li>";
+            //first...last;
         }elseif($this->page==$pcnt){
             $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
             $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";
-            $a['now']   = "<li>$this->page</li>";
-            $a['next']  = "<li>$sNext</li>";
-            $a['last']  = "<li>$sLast</li>";
         }elseif($this->page==1){
-            $a['first'] = "<li>$sFirst</li>";
-            $a['prev']  = "<li>$sPrev</li>";
-            $a['now']   = "<li>$this->page</li>";
             $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>";
             $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>";
         }else{
             $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
             $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";
-            $a['now']   = "<li>$this->page</li>";
+            //now
             $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>";
             $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>";
         }
-        $a['goto'] = "<li><input type='text' id='goto' value='$this->page' maxlength='9' onchange=\"alert(1);\"/></li>";
+        $a['pjump'] = "<li><input type='text' id='pg_pjump' pjurl='{url}{pjump}' pjmax='{$pcnt}' value='$this->page' maxlength='9' onchange=\"goPjump(this);\"/></li>";
         return $a;
     }
 }

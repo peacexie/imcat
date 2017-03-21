@@ -72,15 +72,15 @@ function winSize(re){
     }else if(re=='scroll'){ //获取滚动条到左边/顶部的垂直宽/高度
         w = $(document).scrollLeft();
         h = $(document).scrollTop();    
-    } //jsLog(h);
+    } 
     return {w:w,h:h};
 }
 // 
 function winAutoMargin(div,gap){
     if(!div) div = 'topMargin';
     if(!gap) gap = 20;
-    wv = winSize('win'); //jsLog(wv);
-    wc = winSize('out'); //jsLog(wc);
+    wv = winSize('win'); 
+    wc = winSize('out'); 
     if(wv.h>wc.h+gap){ 
         jQuery('#'+div).show();
         jQuery('#'+div).height((wv.h-wc.h-gap/2)*0.33);
@@ -91,6 +91,14 @@ function winAutoMargin(div,gap){
 
 // 前后台 表单 ===================================================================================================
 
+function goPjump(e){
+    var p = $(e).val();
+    p = isNaN(p) ? 1 : parseInt(p);
+    m = parseInt($(e).attr('pjmax'));
+    if(p>m){ p = m; } 
+    url = $(e).attr('pjurl').replace('&page=0&','&page='+p+'&'); 
+    window.location.href = url;
+}
 function fsCHidd(fmid){
     jsElm.jeID(fmid+'_vBox').style.display = 'none';
 }
