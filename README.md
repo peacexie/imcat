@@ -1,9 +1,13 @@
 
-* During 2017-04-30 ~ 2017-05-30 
+
+* During 2017-04-30 ~ 2017-05-20 
 V3.7 Upgrading...
 
-* 2017-04-30 ~ 2017-05-30 期间 
+* 2017-04-30 ~ 2017-05-20 期间 
 V3.7升级中……
+
+
+--- --- --- --- --- --- --- --- --- 
 
 ### What is IntimateCat(贴心猫)?
 
@@ -38,29 +42,30 @@ V3.7升级中……
   - View Start Page: `/index.php?start` to Check and Config
   - View Url: `/root/tools/setup/` to Setup.
 
-### 【v3.6 ChangeLog】 (2017.03)
+### 【v3.7 ChangeLog】 (2017.05)
 
-* Add: app.php - Private interface:
-  - Apply infomation for app/api (The server of app)
-  - Include: Third party data synchronization interface
+* Improve: Member:reg/login 
+  - Add: E-mail active the account after register
+  - Add: Send sms verification code before register
 
-* Add: `Save Content to file` (NOT save to db as common fields)
-  - Whow to use see: Faq system online
-* Add: Multi-db config, It's a nother step to the High-end!
-  - Whow to use see: code/cfgs/boot/cfg_db.php-cdemo (The notice)
-* Add: js plug: prettyPhoto --- a set of image player plug
-  - Whow to use see: /vimp/vendui/prettyPhoto/demo.html
-* Add: doT --- a set of js template engine
-  - Whow to use see: /vimp/vendui/common/doT.demo.html
-* Add: js plug: swiper --- a set of slide plug
+* Improve: Mobile experience
+  - Dynamic page: automatic mobile terminal adaptation
+  - Static page: JS mobile adapter jump
+  - Tools/Info page: responsive device adaptation
 
-* Fixed: 
-  - Put the system in a virtual directory, It will appear a bug
-  - Several compatible in PHP v7.1
-  - One security bug
-  - The default links in Share DIY
+* Optimization: Code details:
+  - Template : the default suffix change to `.htm`
+  - Delete some php debug code
+  - Delete some js debug code
 
-* Impove: 
+* Adjust logo/sinc directory
+* Add: Add some demo template
+
+* Fix:
+  - Page Jump error
+  - The cache switch Does'nt work 
+
+* Improve: 
   - English language pack
   - Faq-(Infomation)
 
@@ -91,27 +96,28 @@ V3.7升级中……
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v3.6更新日志】(2017.03)
+### 【v3.7更新日志】(2017.05)
 
-* 增加：app.php - 专用接口 ：
-  - 为app/api提供服务器端支持
-  - 包含：与第三方数据同步接口
+* 增强：会员:注册/登录相关功能 
+  - 增加：注册邮件激活：
+  - 增加：短信验证码注册：
 
-* 增加：`字段内容存文件`
-  - 使用见：问答系统，为高大上系统，悄悄地又做一铺垫！
-* 增加：多库调用配置
-  - 使用见：code/cfgs/boot/cfg_db.php-cdemo 说明
-* 增加：前端js插件：prettyPhoto图片播放插件，
-  - 使用见：/vimp/vendui/prettyPhoto/demo.html
-* 增加：前端js模版引擎：doT，
-  - 使用见：/vimp/vendui/common/doT.demo.html
-* 增加：前端js插件：swiper滑动插件, 
+* 增强：移动版体验
+  - 动态页:自动移动端适配
+  - 静态页:js移动适配跳转
+  - 工具提示页:响应式设备适配
+
+* 优化：代码细节：
+  - 模板，默认后缀改为 `.htm`
+  - 删除一批php调试代码
+  - 删除一批js调试代码
+
+* 调整logo/sinc目录
+* 增加：模板调用演示
 
 * 修正：
-  - 把整个系统，放置在虚拟目录下，检测目录可能出问题；
-  - PHP v7.1下 几处兼容性
-  - 一处字符过滤安全bug
-  - 分享DIY - 默认连接错误
+  - 翻页跳转错误
+  - 模板缓存开关 无效问题
 
 * 完善：
   - 中英文文档
