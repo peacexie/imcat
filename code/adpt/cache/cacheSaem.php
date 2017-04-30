@@ -13,7 +13,7 @@ class cacheSaem {
     //读取缓存
     function get($key) {
         $expire = memcache_get($this->mmc, $this->group.'_'.$this->ver.'_time_'.$key);
-        if(intval($expire) > time() ) {
+        if(intval($expire) > $_SERVER["REQUEST_TIME"] ) {
              return memcache_get($this->mmc, $this->group.'_'.$this->ver.'_'.$key);
         } else {
             return false;
@@ -22,7 +22,7 @@ class cacheSaem {
     
     //设置缓存
     function set($key, $value, $expire = 1800) {
-        $expire = ($expire == -1)? time()+365*24*3600 : time() + $expire;
+        $expire = ($expire == -1)? $_SERVER["REQUEST_TIME"]+365*24*3600 : $_SERVER["REQUEST_TIME"] + $expire;
         memcache_set($this->mmc, $this->group.'_'.$this->ver.'_time_'.$key, $expire);//写入缓存时间
         return memcache_set($this->mmc, $this->group.'_'.$this->ver.'_'.$key, $value);
     }

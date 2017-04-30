@@ -33,7 +33,7 @@ class tex_base{
         strstr($base,'fanyi') && $js .= "js_i18nbar();\n";
         strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
-        echo basJscss::jscode($js)."\n";
+        echo basJscss::jscode("\n$js")."\n";
     }
     
 

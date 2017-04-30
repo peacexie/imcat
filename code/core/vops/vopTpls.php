@@ -14,20 +14,25 @@ class vopTpls{
     // include_once:扩展函数：{php vopTpls::pinc('chn:tex_keres');} -=> chn/b_func/tex_keres.php
     // 得到_config路径：      {php include(vopTpls::pinc('_config/va_home')); } -=> _config/va_home.php
     // 得到include需要的路径：{php include(vopTpls::pinc('d_tools/a_cfgs')); } -=> d_tools/a_cfgs.php
+    // {imp:"_pub:stpl/_lay_info"} -=> code/cogs/stinc/d_tools/_lay_info.htm
     static function pinc($finc,$ext='',$refull=1){
-        $fpos = strpos($finc,'/');
+        $tpl = cfg('tpl.tpl_dir');
         if(strpos($finc,':')){
             $a = explode(':',$finc);
             $tpl = $a[0];
             $finc = $a[1];
         }else{
-            $tpl = cfg('tpl.tpl_dir');
-        }
-        $ext = empty($ext) ? '.php' : $ext;
-        if($fpos){ 
-            return ($refull ? DIR_SKIN : '')."/$tpl/$finc$ext";
-        }else{ 
+            $a = array(0,0);
+        } 
+        $ext = strpos($finc,'.') ? '' : (empty($ext) ? '.php' : $ext);
+        if(!strpos($finc,'/')){ // 'chn:tex_keres' -=> {chn}/b_func/tex_keres
             include_once(DIR_SKIN."/$tpl/b_func/$finc$ext");
+        }elseif(strpos($tpl,']')){ // [root]:tools/exdiy/rplan
+            $tpl = str_replace(array('[',']'),'',$tpl); 
+            $tpl = comStore::cfgDirPath($tpl); 
+            return "$tpl/$finc$ext";
+        }else{ // me(d_tools/a_cfgs) -=> d_tools/a_cfgs(.php)
+            return ($refull ? DIR_SKIN : '')."/$tpl/$finc$ext";
         }
     }
     
@@ -57,7 +62,7 @@ class vopTpls{
     
     //type=res,show,tpl;title;0,1,
     static function etr1($type=0,$dir=''){
-        $vcfg = read('vopfmt','ex'); 
+        $vcfg = read('vopcfg','sy'); 
         if(strlen($type)<3){ // 0,1,''
             $etr = PATH_PROJ.$vcfg['tpl'][$dir][1];
             if($type){ //$full
@@ -146,8 +151,8 @@ class vopTpls{
     static function check($tpl,$die=1){
         static $tplchks;
         if(empty($tplchks[$tpl])){
-            $vopfmt = read('vopfmt','ex'); 
-            if(empty($vopfmt['tpl'][$tpl])){ //无tpl配置
+            $vopcfg = read('vopcfg','sy'); 
+            if(empty($vopcfg['tpl'][$tpl])){ //无tpl配置
                 $tplchks[$tpl]['cfg'] = 1;
             }
             $fp = DIR_SKIN."/$tpl/_config/va_home.php";
@@ -159,7 +164,7 @@ class vopTpls{
             }
         }
         if($die && empty($tplchks[$tpl]['ok'])){
-            vopShow::msg("[excfg/ex_vopfmt.php]/[$tpl/_config] Config Error!");
+            vopShow::msg("[sycfg/sy_vopcfg.php]/[$tpl/_config] Config Error!");
         } 
         return $tplchks[$tpl];
     }

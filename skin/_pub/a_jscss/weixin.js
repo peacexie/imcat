@@ -6,9 +6,9 @@ function wxMenuClear(imuid){
 }
 
 function wxSetDebugType(key,init){
-    var kch3 = key.substr(0,3); //console.log(kch3);
+    var kch3 = key.substr(0,3); 
     $('.tbdata tr').each(function(index, element) {
-        var html = $(this).find('td:first').html(); //console.log(element);
+        var html = $(this).find('td:first').html(); 
         if(html.indexOf('--,')>0){ 
              $(this).hide();
         }
@@ -43,7 +43,7 @@ function wxSetUserPage(data){
     data = data.user_info_list;
     $('[id^=wu_row]').hide();
     for(var i=0;i<data.length;i++){ 
-        var itm = data[i]; //jsLog(itm);
+        var itm = data[i]; 
         var cheadimg = "<a href='"+itm.headimgurl+"' target='_blank'>头像</a>";
         var csex = itm.sex==1 ? '男' : '女';
         var atime = wxFmtLocalTime(itm.subscribe_time);
@@ -66,7 +66,7 @@ function wxGetPageBar(pnow) {
     var pall = Math.ceil((wu_count)/50);
     var pmin = pnow-5; if(pmin<1) pmin=1;
     var pmax = pnow+5; if(pmax>pall) pmax=pall;
-    var css = '', i=0; //console.log(wu_count + ':'+ pall);
+    var css = '', i=0; 
     var sbar = "";
     if(pmin>1){
         i=1; css = i==pnow ? 'pg_num cF0F' : 'pg_num';

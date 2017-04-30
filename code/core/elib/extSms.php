@@ -50,36 +50,32 @@ class extSms{
     
     /** 短信发送，支持短信模版替换，
      * @param    string    $mobiles     手机号码,参考sendSMS()
-     * @param    string    $tpl         支持模版，如：{$subject}{$name}标记
-     * @param    array    $source        替换源：array('subject'=>'hellow corp!','name'=>'peace',)
+     * @param    string    $tpl         支持模版，如：{subject}{name}标记
+     * @param    array     $source        替换源：array('subject'=>'hellow corp!','name'=>'peace',)
      * @param    string    $type         发送方式/发送身份,参考sendSMS()
      * @return    array    ---        结果数组,参考sendSMS()
      **/
-    function sendTpl($mobiles,$tpl,$source,$limit=1){
+    function sendTpl($mobiles,$tpl,$source,$limit=1,$cfgs=array()){
         $tpl = str_replace(array("\r\n","\r","\n"),array(' ',' ',' '),$tpl);
-        if(preg_match_all('/{\s*(\$[a-zA-Z_]\w*)\s*}/i', $tpl, $matchs)){
+        if(preg_match_all('/{\s*([a-zA-Z_0-9]\w*)\s*}/i', $tpl, $matchs)){
             if(!empty($matchs[0])){
                 foreach($matchs[0] as $v){
-                    $k = str_replace(array('{','$','}'),'',$v);
+                    $k = str_replace(array('{','}'),'',$v);
                     $val = isset($source[$k]) ? $source[$k] : (isset($GLOBALS[$k]) ? $GLOBALS[$k] : "{\$$k}");
                     $tpl = str_replace($v,$val,$tpl);
                 }
             }
         }
-        return $this->sendSMS($mobiles,$tpl,$limit);
+        return $this->sendSMS($mobiles,$tpl,$limit,$cfgs);
     }
     
     /** 短信发送
      * @param    string    $mobiles     手机号码,array/string(英文逗号分开)
      * @param    string    $content     255个字符以内
-     * @param    string    $type         发送方式,发送身份 ：
-     *                    scom=默认,普通会员发送,检测余额, 
-     *                    sadm=管理员(不检测余额), 
-     *                    ctel=手机认证(不检测登陆,每次一个号码,70字以内)
-     *                    $uid=会员id(整数),以$uid的用户发送并扣余额,(!!!)调用发送的地方请控制好权限,否则,会扣完$uid的余额
+     * @param    string    $limit       xxx ：
      * @return    array    ---        结果数组,如：array(1,'操作成功'): 
      **/
-    function sendSMS($mobiles,$content,$limit=1){
+    function sendSMS($mobiles,$content,$limit=1,$cfgs=array()){
         // 格式化 $mobiles,$content, 
         $atel = $this->telFormat($mobiles);
         $amsg = $this->msgCount($content);
@@ -113,8 +109,9 @@ class extSms{
         // 写记录-db
         $stel = implode(',',$atel); 
         if(strlen($stel)>255) $stel = substr($stel,0,240).'...'.substr($stel,strlen($stel)-5,255);
+        $pid = empty($cfgs['pid'])?'':$cfgs['pid'];
         $data = array( 
-            'kid'=>basKeyid::kidTemp(),
+            'kid'=>basKeyid::kidTemp(),'pid'=>$pid,
             'tel'=>$stel,'msg'=>basReq::in($amsg[0]),
             'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
         );

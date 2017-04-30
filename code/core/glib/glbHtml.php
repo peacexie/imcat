@@ -21,6 +21,13 @@ class glbHtml{
             echo "<meta name='$mod' content='$ext'>\n"; 
         }elseif($mod=='h1'){
             echo "<h1>$ext</h1>\n";
+        }elseif($mod=='init'){
+            echo "<meta charset='".$_cbase['sys']['cset']."'>\n";
+            echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";
+            self::page('viewport'); 
+            // 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！
+            if($ext) self::page('robots'); 
+            if(empty($iex)) echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/logo/favicon.ico' />\n";
         }elseif(in_array($mod,$imarr)){
             self::imsub($mod,$ext,$iex);
         }else{ //head
@@ -28,18 +35,18 @@ class glbHtml{
             $mod || $mod = $_cbase['sys_name'];
             $mod = str_replace('(sys_name)',$_cbase['sys_name'],$mod);
             echo "<!DOCTYPE html><html><head>\n";
-            echo "<meta charset='".cfg('sys.cset')."'>\n";
-            echo "<title>$mod</title>\n";
-            if($ext) echo "<meta name='robots' content='noindex, nofollow'>\n";
+            self::page('init',$ext,$iex);
+            echo "<title>$mod</title>\n"; 
         }
     }
 
     // _imsub
     static function imsub($mod='',$ext='',$iex=''){
         global $_cbase; 
+        $tmfix = empty($_cbase['run']['tmfix']) ? '' : $_cbase['run']['tmfix'];
         $sdir = vopTpls::def(); //可能没有定义
-        $exjs = "exjs=/$sdir/b_jscss/comm.js".(empty($ext['js'])?'':';'.$ext['js']);
-        $excss = "excss=/$sdir/b_jscss/comm.css".(empty($ext['css'])?'':';'.$ext['css']);
+        $exjs = "exjs=/$sdir/b_jscss/comm$tmfix.js".(empty($ext['js'])?'':';'.$ext['js']);
+        $excss = "excss=/$sdir/b_jscss/comm$tmfix.css".(empty($ext['css'])?'':';'.$ext['css']);
         if($mod=='imp'){
             $ips = self::impub();
             $ips['js'] .= "&$exjs";
@@ -72,7 +79,6 @@ class glbHtml{
 
     // _impub
     static function impub($light=0,$layer=0){
-        echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/a_img/favicon.ico' />\n";
         if(empty($light)){
             echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
             echo basJscss::imp('/bootstrap/css/bootstrap.min.css','vendui','css');
@@ -83,6 +89,10 @@ class glbHtml{
             echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ&light=1'); 
             echo basJscss::imp('/ratchet/css/ratchet.min.css','vendui','css');
             echo basJscss::imp('/ratchet/js/ratchet.min.js','vendui','js');
+        }elseif($light=='imsg'){ // 
+            echo basJscss::imp('/_pub/a_jscss/cinfo.css');
+            echo basJscss::imp('/_pub/jslib/jsbase.js');
+            return;
         } // else{ /*imnul*/ }
         if(!empty($layer)){
             echo basJscss::imp('/layer/layer.js','vendui');
@@ -130,6 +140,7 @@ class glbHtml{
     }
     // form+table:头
     static function fmt_head($fmid,$fmact,$tbcss='',$win='',$tbbrd=1){
+        $fmact = basReq::getURep($fmact,'recbk');
         echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
         $recbk = req('recbk','');
         $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
@@ -185,9 +196,9 @@ class glbHtml{
         $s .= '})()</script><![endif]-->';
         echo "\n$s\n";
     }
-    static function ieLow_html($mie=8,$nie=9,$css='LowIE',$msg=''){
-        $msg || $msg = basLang::show('core.ie_low',$nie); 
-        $s = "<!--[if lt IE $mie]>\n"; //<!--[if lt IE 8]>
+    static function ieLow_html($mie=9,$css='LowIE',$msg=''){
+        $msg || $msg = basLang::show('core.ie_low',$mie); 
+        $s = "<!--[if lt IE $mie]>\n"; //<!--[if lt IE 9]>
         $s .= "<div class='$css'>$msg</div>\n";
         $s .= "<![endif]-->";
         echo "\n$s\n";

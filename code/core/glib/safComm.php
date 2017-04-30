@@ -35,6 +35,11 @@ class safComm{ // extends safBase
             $encode = $stamp.','.comConvert::sysEncode($sform.strtoupper($vcode),$stamp);
             comCookie::mset('vcodes',0,$mod,$encode); 
             return;
+        }elseif($mod=='vsms4'){
+            $enc = comConvert::sysBase64($vcode); 
+            $ck = comCookie::oget('vsms4'); 
+            $res = strlen($vcode)>0 && $enc==$ck;
+            return $res ? '' : 'VCode-Error[vsms4]！';
         }else{ //check
             $cookie = comCookie::mget('vcodes',$mod); 
             $stamp = substr($cookie,0,strpos($cookie,',')); 
@@ -68,14 +73,13 @@ class safComm{ // extends safBase
             $restr = "<input type='hidden' name='{$safix}[dt]' value='$dval' />";
             $restr .= "<input type='hidden' name='{$safix}[tm]' value='$stamp' />";
             $restr .= "<input type='hidden' name='{$safix}[enc]' value='$encode' />";
-            $fmid = req('fmid','');
-            $css1 = req('css1','txt w60');
+            $fmid = req('fmid',''); $tabi = req('tabi',19790);
+            $pos = req('pos',''); 
+            $css1 = req('css1','form-control'); // txt w60
             $css2 = req('css2','fs_vimg');
-            $tabi = req('tabi',19790);
             $senc = comConvert::sysEncode($sform,$stamp,$len2); 
-            $vgap = '\\"'; 
             $vstr = "maxlength='5' reg='vimg:3-5' tip='".lang('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
-            $restr .= "<input id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus={$vgap}fsCode('{$fmid}'){$vgap} $vstr />";
+            $restr .= "<input id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus=\\\"fsCode('{$fmid}',0,'$pos')\\\" $vstr />";
             $restr .= "<samp id='{$fmid}_vBox' class='$css2' style='display:none'></samp>"; //samp,span, style='width:50px;'
             return $restr;
         }else{

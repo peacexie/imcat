@@ -22,8 +22,8 @@
  - The param `ven` is the tpl dir
  
 * Add Config:
- - File : /code/cfgs/excfg/ex_vopfmt.php
- - Add an item in $_ex_vopfmt['tpl'], `'ven' => array('English','/english.php'),`
+ - File : /code/cfgs/sycfg/sy_vopcfg.php
+ - Add an item in $_sy_vopcfg['tpl'], `'ven' => array('English','/english.php'),`
  - View Url : /english.php, Enjoy! 
  
 * Reference Tips:

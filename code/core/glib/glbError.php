@@ -7,8 +7,9 @@ class glbError extends Exception {
     private $erLine = 0;
     private $erCode = 0;
     private $erLevel = 0;
-     private $trace = array();
-     private $trMsgs = '';
+    private $trace = array();
+    private $trMsgs = '';
+    private $dbMsgs = '';
 
     //抛出错误信息，用于外部调用
     static function show($msg="",$code=0) {
@@ -18,13 +19,27 @@ class glbError extends Exception {
     function __construct($erCode=0,$erMsg='',$erFile='',$erLine=0) { 
         parent::__construct(); //$erMsg,$erCode
         $this->detail($erCode,$erMsg,$erFile,$erLine);
-        $this->erOutput(); 
+        $this->errView(); 
     }
 
     //detail
     protected function detail($erCode=0,$erMsg='',$erFile='',$erLine=0) {
         $msgmy = $msgphp = ''; 
-        if(is_object($erCode)){ 
+        if(is_array($erMsg)){ // && $erMsg['msg']=='dberr'
+            unset($erMsg['msg']);
+            $tInfo = ''; 
+            foreach($erMsg as $ek=>$ev) {
+                $ev = basDebug::hidInfo($ev,1);
+                if($ek=='sql'){
+                    $ev = basSql::fmtShow($ev,2);
+                    $tInfo .= "<li><div class='divta' contenteditable='true'>$ev</div></li>\n";
+                }else{
+                    $tInfo .= "<li>$ek : $ev </li>\n";
+                }
+            }
+            $this->dbMsgs = $tInfo;
+            $this->erCode = $erCode;
+        }elseif(is_object($erCode)){ 
             $this->erMsg = $erCode->getMessage();
             $this->erFile = basDebug::hidInfo($erCode->getFile());
             $this->erLine = $erCode->getLine();
@@ -47,7 +62,7 @@ class glbError extends Exception {
                 $this->erCode = $errs['type'];
             }
         }
-         $this->dtrace();
+        $this->dtrace();
     }
     
     //获取trace信息
@@ -58,8 +73,8 @@ class glbError extends Exception {
             $class = isset($t['class']) ? $t['class'] : '';
             $type = isset($t['type']) ? $t['type'] : '';
             $function = isset($t['function']) ? $t['function'] : '';
-            $tInfo .= @$t['file'] . ' (' . @$t['line'] . ') ';
-            $tInfo .= $class . $type . $function . "<br />\r\n";
+            $tInfo .= "<li>".@$t['file'] . ' (' . @$t['line'] . ') ';
+            $tInfo .= $class . $type . $function . "</li>\n";
         }
         $this->trMsgs = $tInfo ;
     }
@@ -86,25 +101,29 @@ class glbError extends Exception {
     }
     
     //输出错误信息
-     protected function erOutput($message=''){
+     protected function errView($message=''){
         //if(defined('DEBUG') && false == DEBUG){ exit; } 
         $message = empty($message) ? $this->erMsg : $message;
-        @header("HTTP/1.1 404 Not Found");
+        $message = basDebug::hidInfo($message);
         $sCode = empty($this->erCode) ? '[RUN]' : $this->erCode;
         $sLevel = $this->getLevel();
         $sLevel = empty($sLevel) ? '[RUN]' : $this->getLevel();
-        basMsg::init("Error : $sCode",1);
-        $html = '';
-        if($this->erFile){
-            $html .= "\n<strong> ------ File</strong>: ".$this->erFile.' (Line:'.$this->erLine.')<br>';
+        $title = empty($this->dbMsgs) ? lang('stinc_errun')." : $sCode" : lang('stinc_erdbsql')." $sCode";
+        $traceInfo = basDebug::hidInfo($this->trMsgs);
+        $dberrInfo = basDebug::hidInfo($this->dbMsgs);
+        @header("HTTP/1.1 404 Not Found");
+        //define('RUN_AJAX',1); 
+        if(defined('RUN_AJAX')){
+            ob_start(); 
+            include(vopShow::inc("_pub:stpl/err_ajax"));
+            $re = ob_get_contents(); 
+            $re = strip_tags($re,'<li>');
+            $re = str_replace(array('<li>','</li>'),array("  - ",""),$re);
+            ob_clean();
+            die($re); 
+        }else{
+            include(vopShow::inc("_pub:stpl/err_info"));
+            die();
         }
-        $message = basDebug::hidInfo($message);
-        $html .= "\n<strong> ------ Info</strong>: (Level:$sLevel)<br>({message})<br>";
-        $html .= "\n<strong> ------ Trace</strong>: (Time:".date("Y-m-d H:i:s").")<br>".basDebug::hidInfo($this->trMsgs).'<br>';
-        $html .= "\n<strong> ------ Debug Info</strong>: ".basDebug::runInfo().'<br>';
-        $html .= "\n<strong> ------ Now you can</strong>: <a href='{$_SERVER['PHP_SELF']}'>Retry</a> , <a href='javascript:history.back()'>Return</a> OR <a href='".PATH_ROOT."'>Go Homepage</a><br>";
-        if(defined('RUN_AJAX')){ $html = "<pre>".strip_tags($html)."\n</pre>"; } 
-        $html = str_replace('({message})',$message,$html);
-        die(glbHtml::page('end',$html));
     }
 }

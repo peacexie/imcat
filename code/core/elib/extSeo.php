@@ -96,7 +96,7 @@ class extSeo{
             $msg = 'Error:push-Empty';
         }elseif(!empty($res->success)){
             if(empty($text)){
-                $this->db->table($this->tabid)->data(array('detail'=>time()))->where("kid='push_time'")->update();
+                $this->db->table($this->tabid)->data(array('detail'=>$_SERVER["REQUEST_TIME"]))->where("kid='push_time'")->update();
                 // 注意更新时间为生成文件的时间。
                 comFiles::put($file,''); //清空旧资料
             }
@@ -111,7 +111,7 @@ class extSeo{
     // 
     function bpushSql(){
         $ptime = empty($this->pcfg['push_time']['detail']) ? 0 : $this->pcfg['push_time']['detail'];
-        $stamp = time(); //当前时刻
+        $stamp = $_SERVER["REQUEST_TIME"]; //当前时刻
         $sbase = strtotime('2005-12-31'); //更新一个含早的时间:2000年,肯定还没有这些功能...
         if(empty($ptime)){
             $sql = " AND atime<='$stamp'"; 

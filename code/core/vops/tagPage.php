@@ -39,9 +39,9 @@ class tagPage extends tagList{
             $mkv = $_cbase['mkv']['mkv']; 
         }*/
         if(strpos($scname,'plus/ajax/cron.php') || strpos($scname,'plus/ajax/jshow.php')){
-            $burl = surl(0)."?mkv=$mkv";    
+            $burl = surl(0)."?mkv=$mkv";
         }else{
-            $burl = basReq::getUri(-1,'','page|prec|ptype|pkey');
+            $burl = basReq::getUri(-1,'','page|prec|ptype|pkey'); 
             $burl = strstr($burl,'mkv=') ? $burl : str_replace('.php?','.php?mkv=',$burl);     
         }
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";

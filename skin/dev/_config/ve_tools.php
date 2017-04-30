@@ -1,4 +1,5 @@
 <?php
+(!defined('RUN_INIT')) && die('No Init');
 /*
  * tools扩展信息模板配置
 /*/
@@ -11,19 +12,9 @@ $_ve_tools = array(
     'm' => 'd_tools/b_home',
     'index' => 'd_tools/b_index',
 
-    'ipaddr' => 'd_tools/tools_ipaddr',
-    'cnconv' => 'd_tools/tools_cnconv',
-    'seal'   => 'd_tools/tools_seal',
-    'qrcode' => 'd_tools/tools_qrcode',
-    'vimg'   => 'd_tools/tools_vimg',
-    'shapan' => 'd_tools/tools_shapan',
-    
-    'spword' => 'd_tools/tools_spword',
-    'wmark' => 'd_tools/tools_wmark',
-    
-    'chrcom' => 'd_tools/tools_chrcom',
-    'chrall' => 'd_tools/tools_chrall',
-    
-    'schulte' => 'd_tools/tools_schulte',
-
 );
+
+include(dirname(dirname(__FILE__)).'/d_tools/a_cfgs.php');
+foreach ($cfgs as $key => $v) {
+    $_ve_tools[$key] = 'd_tools/tools_'.$key;
+}

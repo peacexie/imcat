@@ -4,6 +4,12 @@
 
 return array(
 
+    // dops/usrMember.php
+    'usrm_emsubj' => '邮件找回密码',
+    'usrm_emtip' => '请登录邮件，根据提示找回密码。',
+    'usrm_emeror' => '发邮件错误！请稍等再试，或联系管理员。',
+    'usrm_eremail' => '账号-邮箱:参数错误！',
+    
     // indoc/*
     'idoc_perm' => '没有权限查看',
     'idoc_dep' => '部门',
@@ -53,7 +59,7 @@ return array(
     'ord_time' => '时间',
     'ord_more' => '等',
 
-    // user/tips.tpl.htm
+    // user/tips.htm
     'tips_systips' => '系统提示',
     'tips_vpage' => '访问页',
     'tips_nperm' => '需要权限',
@@ -87,6 +93,8 @@ return array(
     'nv2_user' => '会员',
     'nv2_login' => '登陆',
     'nv2_reg' => '注册',
+    'nv2_share' => '分享',
+    'nv2_gbook' => '留言',
 
     // public 
     'pub_cindoc' => '公文中心',
@@ -102,7 +110,7 @@ return array(
     'pub_guest' => '游客',
     'pub_hi' => '{val}您好！',
     'pub_exit' => '退出',
-    // b_lay/c-subs.tpl.htm
+    // b_lay/c-subs.htm
     'pub_bind' => '绑定账号',
     'pub_onlord' => '在线订单',
     'pub_hisord' => '历史订单',
@@ -116,7 +124,7 @@ return array(
     'pub_admlist' => '管理列表',
     'pub_docpub' => '公文发布',
 
-    // user/user_apply.tpl.htm
+    // user/user_apply.htm
     'uap_reapp' => '[返回]重新申请',
     'uap_appok' => '申请成功!',
     'uap_nochk' => '未审核',
@@ -132,8 +140,24 @@ return array(
     'uap_pwxeq' => '密码不匹配',
     'uap_name' => '会员名',
     'uap_link' => '联系人',
+    'uap_loginemail' => '登录如下邮件',
+    'uap_activeuser' => '激活账号',
 
-    // user/uinfo.tpl.htm
+    'uap_forgamail' => '用来接收激活邮件',
+    'uap_forgsmscode' => '用来接收短信验证码',
+    'uap_mobnum' => '手机号',
+    'uap_cshowvcode' => '点击输入框显示验证码',
+    'uap_getvcode' => '获取短信验证码',
+    'uap_smsvcode' => '短信验证码',
+    'uae_regactem' => '注册激活邮件',
+    'uae_sendactemok' => '发送激活邮件-成功！',
+    'uae_copytokefu' => '复制如下信息,联系客服:',
+    'uae_sendactemng' => '发送激活邮件-失败！',
+    'uae_errtimeout' => '认证错误，或超时了！',
+    'uae_errvode' => '认证错误！',
+    'uap_sendsms' => '发短信',
+
+    // user/uinfo.htm
     'uif_corder' => '商品订单',
     'uif_caritems' => '购物车商品:{val}个',
     'uif_clickv' => '点击我查看',
@@ -153,8 +177,14 @@ return array(
     'uif_runinfo' => '运行信息',
     'uif_sysinfo' => '系统信息',
     'uif_tlinks' => '测试连接:',
+    'uif_utype' => '用户类型',
 
-    // user/user_login.tpl.htm
+    // user/user_login.htm
+    'lon_3idpw' => '账号/密码',
+    'lon_3wechat' => '微信扫码',
+    'lon_3qqcon' => 'QQ登录',
+    'lon_allhome' => '总首页',
+
     'lon_jump' => '处理跳转',
     'lon_ercnt' => '错误登录次数[{val}]次',
     'lon_lockto' => '锁定时间至',
@@ -177,7 +207,7 @@ return array(
     'lon_errsvr' => '服务器返回格式错误。',
     'lon_lonok' => '登录成功！',
 
-    // user/user_getpw.tpl.htm
+    // user/user_getpw.htm
     'gtp_rtip1' => '您的密码重置为',
     'gtp_rtip2' => '红色字符部分，注意不含空格',
     'gtp_wechat' => '用微信扫描找密码！',

@@ -6,7 +6,7 @@ $_va_docs = array(
 
     //config配置
     'c' => array(
-        'vmode' => 'dynamic', //dynamic,static,close
+        'vmode' => 'dynamic', //dynamic,static,close(关闭)
         'stexp' => '2h', //hour(s)
     ),
     

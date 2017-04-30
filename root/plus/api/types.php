@@ -163,7 +163,7 @@ function popItem(itm,n,flag,deep){ // flag:def,step,tree
     if(flag=='step'){
         act = "<span class='tree_bg tree_dA' onClick=\"popList('"+itm[0]+"','add')\" > </span>";
         str = '<span id="'+idout+'" class="inblock ph5" >'+str+act+'</span>';    
-    }else if(flag=='tree'){ //jsLog(flag);
+    }else if(flag=='tree'){ 
         var dot = itm[3]-deep==0 ? 'A' : 'C'; // deep=dmin
         dot = '<span class="tree_bg tree_d'+dot+'"></span>';
         str = '<span id="'+idout+'" class="tree_d'+(itm[3]-deep+1)+'">'+dot+str+'</span>';    
@@ -177,7 +177,7 @@ function popItmCheck(kid,e){
     var idnow = 'xid2_inow'+kid; 
     var idin = 'xid2_iin'+kid;
     var idcb = 'xid2_icb'+kid;
-    var chked = e.checked; //alert(chked);
+    var chked = e.checked; 
     eval("var obj=_wp."+fid2+"_obj;");  //n=obj.n, 
     if(chked){ // Add --- 从:未选-=>选 
         var cbnow = jsElm.jeID('xid2_now').getElementsByTagName('label'); 
@@ -204,7 +204,7 @@ function popSetValue(type,kval){
     var val=jsElm.pdID(fid).value;
     if(type=='clear'){
         jsElm.pdID(fid).value = '';
-        jsElm.pdID(fid2+'_name').value = ''; //alert('xx');
+        jsElm.pdID(fid2+'_name').value = ''; 
         $('#xid2_close').trigger("click");
     }else if(type=='add'){
         if(val.length==0) val = kval;

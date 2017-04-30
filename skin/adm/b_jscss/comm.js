@@ -34,6 +34,5 @@ function stsetLink(e){
     var offset = $("input[name='offset']").val();
     //offset = offset.length==0 ? 0 : offset;
     url = url+'&limit='+limit+'&offset='+offset+'';
-    //jsLog(type+':'+url);
     return winOpen(url,e.innerHTML);
 }

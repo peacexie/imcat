@@ -15,16 +15,6 @@ $note .= "*. [Select][Checkbox][Radio]Fmt1/2/3:\n";
 $note .= "*. [WinPick][WinPick-Multi]Fmt3:";
 $reinc[$part] = $note;
 
-break;case 'userm_empw': 
-
-$data = "Hi,{$uarr['uname']}! <br><br>\n\n";
-$data .= "Welcome use get-password by Email!<br>\n"; //  {$uarr['sys_name']}
-$data .= "Please click(or copy) the url, and view the page:<br>\n";
-$data .= "{$uarr['url']}<br>\n";
-$data .= "Get passowrd by these tips.<br>\n<br>\n";
-$data .= "{$uarr['sys_name']} ".date('Y-m-d H:i:s')."<br>\n";
-$reinc[$part] = $note;
-
 break;case 'plus_upbat': ?>
     
 Notice: <br>

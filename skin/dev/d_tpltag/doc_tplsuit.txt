@@ -22,8 +22,8 @@
  - ven即为模板目录
  
 * 添加配置：
- - 文件：/code/cfgs/excfg/ex_vopfmt.php
- - $_ex_vopfmt['tpl']中 添加一项 `'ven' => array('英文版','/english.php'),`
+ - 文件：/code/cfgs/sycfg/sy_vopcfg.php
+ - $_sy_vopcfg['tpl']中 添加一项 `'ven' => array('英文版','/english.php'),`
  - 访问地址：/english.php，Enjoy！
  
 * 参考提示：

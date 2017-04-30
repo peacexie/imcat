@@ -72,7 +72,7 @@ class wysUser extends wmpUser{
         $upass = comConvert::sysPass($uname,$password,$umod);
         if($dbpass!=$upass){  
            $uid = 0;
-           $msg = '密码错误'; //cls_message::show('密码错误',axaction(1,M_REFERER));
+           $msg = '密码错误'; 
            $res = 0;
         }else{
             usrMember::bindUser($uname,'weixin',$openid);

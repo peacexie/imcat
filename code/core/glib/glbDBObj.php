@@ -311,9 +311,11 @@ class glbDBObj{
                 $data=array();
                 $data['key']="";
                 $data['value']="";
-                foreach($this->options['data'] as $key=>$value){
-                    $data['key'].="`$key`,";
-                    $data['value'].="'$value',";
+                if(!empty($this->options['data'])){
+                    foreach($this->options['data'] as $key=>$value){
+                        $data['key'].="`$key`,";
+                        $data['value'].="'$value',";
+                    }
                 }
                 $data['key']=substr($data['key'], 0,-1);//去除后面的逗号
                 $data['value']=substr($data['value'], 0,-1);//去除后面的逗号
@@ -322,8 +324,10 @@ class glbDBObj{
                 break;
             case 'save':
                 $data="";
-                foreach($this->options['data'] as $key=>$value){
-                    $data.="`$key`='$value',";
+                if(!empty($this->options['data'])){
+                    foreach($this->options['data'] as $key=>$value){
+                        $data.="`$key`='$value',";
+                    }
                 }
                 $data=substr($data, 0,-1);    //去除后面的逗号
                 unset($this->options['data']);    //清空$this->options['data']数据

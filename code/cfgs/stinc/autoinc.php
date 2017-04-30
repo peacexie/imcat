@@ -1,12 +1,12 @@
 <?php 
 //$aincfile = '/root/run/_init.php';
-//$aincfile = '/cfgs/stinc/err404.php';
+//$aincfile = '/cfgs/stinc/404_info.php';
 
 function autoInc_ys($file=''){
 	if(empty($file)) return $file;
 	$path = ''; // -- ×Ô¶¯¼ì²âÂ·¾¶
-	// /html/model/collum1/collum2/collum2/yyyy/m/d/id/
-	for($i=0;$i<12;$i++){
+	// /vary/html/model/yyyy/md/id/
+	for($i=0;$i<6;$i++){
 		$path = empty($path) ? dirname(__FILE__) : dirname($path);
 		$full = "$path$file";
 		if(file_exists($full)){

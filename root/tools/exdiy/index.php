@@ -8,13 +8,14 @@ $svlink = '';
 foreach ($list['dir'] as $dir=>$ctime) {
   $svlink .= "<a href='?dir=$dir&part=tester'>$dir</a> #";
 }
-echo "<meta charset='utf-8'>\n<style type='text/css'>p{margin:20px;line-height:150%;}</style>\n";
+glbHtml::page();
+echo '</head><body class="divOuter">';
 echo "<p>
   <a href='?dir=exdiy'>exdiy:扩展功能</a>
   # <a href='?dir=08data&part=08data'>08data:导数据</a> 
   # <a href='?dir=fzg360&part=fzg360'>fzg360:采集分析</a> 
   # <a href='?dir=fzgcaiji&part=fzgcaiji'>fzgcaiji:fang采集</a> 
-  <br> $svlink
+  <hr> $svlink
 </p>\n";
 
 $part = req('part','(root)');
@@ -38,17 +39,6 @@ function listDir($dbase,$dir='',$part=''){
    echo " --- <a href='{$b2}/$dir/$fp' target='_blank'>$fp</a><br>\n";
   }
 }
-
-/*
-$ex = new Exception();
-$ex->__construct();
-//error_get_last(); 
-$trace = $ex->getTrace();
-dump($trace);
-//
-@$s = 222/0;
-//new glbError(); 
-*/
 
 echo "\n<p>";
 if(!strstr($dir,'./')) listDir($dbase,$dir,$part);

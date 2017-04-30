@@ -1,0 +1,28 @@
+{block:init}{inc:"c_pub/c-init"}{/block:init}
+<!DOCTYPE html><html><head>
+{block:pmeta}{php $this->pmeta('会员中心'); }{/block:pmeta}
+{php $this->pimp(); } 
+{block:pimp}{/block:pimp}
+</head><body> 
+
+{block:head}{inc:"c_pub/m-head"}{/block:head}
+
+{block:brnav}
+<ol class="breadcrumb">
+  <li><a href="{surl($this->mod)}">{$mdtitle}</a></li>
+  <li class="active">{$sbtitle}</li>
+</ol>
+{/block:brnav}
+
+{block:main}
+main
+{/block:main}
+
+{block:foot}{inc:"c_pub/m-foot"}{/block:foot}
+
+</body></html>
+
+{block:exend}
+{/block:exend}
+<!--`{php echo basDebug::runInfo(); }`-->
+

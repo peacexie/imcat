@@ -1,5 +1,4 @@
-<?php    
-$_cbase['ucfg']['lang'] = '(auto)';
+<?php
 require(dirname(__FILE__).'/_config.php');
 
 // Check proot
@@ -44,6 +43,7 @@ include(DIR_CODE.'/cfgs/boot/cfg_db.php');
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
+glbHtml::ieLow_html(); 
 require(dirname(__FILE__).'/sflow.htm');
 glbHtml::page('end');
 ?>

@@ -10,8 +10,6 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
-.LowIE { width:99%; max-width:480px; text-align:center; color:#FFF; padding:10px; margin:10px auto; }
-
 .divOuter {
     margin-left: auto;
     margin-right: auto;

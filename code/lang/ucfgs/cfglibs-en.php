@@ -2,6 +2,12 @@
 
 // 语言包:cn
 
+$cfgs['pubGrades'] = array(
+    'isGuests' => 'isGuest',
+    'isStopped' => 'isStopped',
+    'unActivated' => 'unActivated', 
+);
+
 $cfgs['grset_types'] = array(
     'pmadm'=>'Menu',
     'pmusr'=>'Member',
@@ -109,6 +115,7 @@ $cfgs['usrbase'] = array(
     'isLogin' => 'Already logged, Can NOT Loinin Repeat!',
     'OK' => 'Login OK!',
 );
+$cfgs['usrbase'] += $cfgs['pubGrades'];
 
 $cfgs['upload'] = array(
     "SUCCESS", //上传成功标记

@@ -52,6 +52,9 @@ Guestbook(<i id="jsid_count_{$modid}:0">0</i>Items) //All guestbook rec(s)
  - Advs can be showed with Base-Tags, but it is recommended to use this method;
  - In a large system, may create a large number of static HTML files, use js-Tag load advs, It can easy to update ads alone, do not update the entire HTML file;
 
+* 关于：某些浏览器，屏蔽广告的说明
+ - 
+ - 
 
 #xxxx#Temp
 

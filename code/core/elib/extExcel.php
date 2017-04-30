@@ -47,7 +47,7 @@ class extExcel{
    
     // 向客户端发送Excel头信息; $fname:文件名称,不能是中文 
     function generateXMLHeader($fname=''){
-        $fname = $fname ? preg_replace('/[^aA-zZ0-9\_\-]/', '', $fname) : 'Book-'.date('md-His',time());
+        $fname = $fname ? preg_replace('/[^aA-zZ0-9\_\-]/', '', $fname) : 'Book-'.date('md-His',$_SERVER["REQUEST_TIME"]);
         header("Pragma: public");   header("Expires: 0");
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header("Content-Type: application/force-download");

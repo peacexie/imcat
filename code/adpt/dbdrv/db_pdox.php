@@ -196,25 +196,25 @@ class db_pdox{
 
     // 数据库错误信息
     function error($msg='', $sql=''){ 
-        $sql = basDebug::hidInfo($sql,1);
         //$func = empty($this->config['efunc']) ? '' $this->config['efunc']: ;
         if(!$func = empty($this->config['efunc'])) return $func($message);
+        $errorno = 'db';
         if(empty($msg)){
             if(!empty($this->PDOStatement)) {
                 $error = $this->PDOStatement->errorInfo();
-                $this->error = '<i>Info</i>: '.$error[1].':'.$error[2].'<br>';
+                $this->error = $error[2];
+                $errorno = $error[1];
             }else{
-                $this->error = '';
+                $this->error = '[pdo-error]';
             }
-            if(!empty($this->queryStr)){
-                $this->error .= "<i>SQL</i>: ".$this->queryStr.'<br>';
-            }else{
-                $this->error .= "<i>SQL</i>: ".$this->sql.'<br>';
-            }
+            $sql = empty($this->queryStr) ? $sql : $this->queryStr;
+            $sql = basDebug::hidInfo($sql,1);
+            $sql = str_replace(array('<','>'),array('&lt;','&gt;'),$sql);
+            $this->error['sql'] = $sql;
         }else{
             $this->error = $msg;    
         }
-        glbError::show($msg); 
+        glbError::show($this->error,$errorno); 
     }
     
     // 释放查询结果

@@ -39,7 +39,7 @@ class comHook extends comCron{
     // init 
     function init($mkv='',$tpl=''){
         $this->db = db();
-        $this->stamp = time(); 
+        $this->stamp = $_SERVER["REQUEST_TIME"]; 
         if(!tagCache::chkUpd($this->frun,$this->rgap)){
             $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=1";
             $whr .= $mkv ? " AND (hkmkv='0' OR hkmkv='$mkv')" : " AND hkmkv='0'";

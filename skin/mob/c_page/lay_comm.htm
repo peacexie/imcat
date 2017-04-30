@@ -1,0 +1,22 @@
+{block:init}{/block:init}<!DOCTYPE html><html><head>
+{block:pmeta}{php $this->pmeta(); }{/block:pmeta}
+{php $this->pimp(); } 
+{block:pimp}{/block:pimp}
+</head><body> 
+
+{block:head}{inc:"c_pub/ahead"}{/block:head}
+
+{block:main}
+<div class="pgf_main">
+      [inc:"c_pub/mnews_detail"]
+    <div class="clear"></div>
+</div>
+{/block:main}
+
+{block:foot}{inc:"c_pub/afoot"}{/block:foot}
+
+</body></html>
+
+{block:exend}{/block:exend}
+<!--`{php echo basDebug::runInfo(); }`-->
+

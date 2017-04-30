@@ -44,7 +44,7 @@ function mpic_madd(fmid,file){
         mpic_marea(fmid,val+file+';\n');
         cfg.data.push(file);
     }else{    
-        alert(lang('jcore.mpic_readd')); //jsLog('ss:'+file); 
+        alert(lang('jcore.mpic_readd')); 
     }
 }
 //删除一个图
@@ -53,7 +53,7 @@ function mpic_mdel(fmid,e){
     itm = $(e).parent(); 
     url = $(itm).find('img').attr('src'); 
     $(itm).remove(); 
-    cfg = mpic_data(fmid); //jsLog(cfg);
+    cfg = mpic_data(fmid); 
     str = ''; d=new Array();
     for(i=0;i<cfg.data.length;i++){
         a = cfg.data[i].split(',');
@@ -70,11 +70,11 @@ function mpic_mdel(fmid,e){
 //设置一个图
 function mpic_mset(fmid,e){
     var val,itm,url,cfg,str,d,i,a;
-    val = $(e).val(); //jsLog(val);
+    val = $(e).val(); 
     itm = $(e).parent(); 
     url = $(itm).find('img').attr('src');
     val = url+','+val;
-    cfg = mpic_data(fmid); //jsLog(cfg);
+    cfg = mpic_data(fmid); 
     str = ''; d=new Array();
     for(i=0;i<cfg.data.length;i++){
         a = cfg.data[i].split(',');
@@ -101,13 +101,14 @@ function mpic_clear(fmid){
 }
 
 //显示-初始化
-function mpic_view(fmid,w,h){
+function mpic_view(fmid,w,h,play){
     var cfg,i,a,v,pic,opt,str='';
     cfg = mpic_data(fmid, 1);
     for(i=0;i<cfg.data.length;i++){
         a = cfg.data[i].split(',');
         v = a.length>0 ? a[1] : '';
-        pic = "<div class='pview'><img src='"+a[0]+"' width="+w+" height="+h+" data-val='"+v+"' onload='imgShow(this,"+w+","+h+")'></div>";
+        img = "<img src='"+a[0]+"' width="+w+" height="+h+" data-val='"+v+"' onload='imgShow(this,"+w+","+h+")'>";
+        pic = "<div class='pview'>"+(play?"<a href='"+a[0]+"' title='' rel='viewPhoto["+fmid+"]'>":'')+img+(play?"":'</a>')+"</div>";
         str += pic;
     }
     $('#'+fmid+'show').html(str);

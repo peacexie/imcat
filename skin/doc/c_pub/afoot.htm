@@ -1,0 +1,16 @@
+<?php 
+$ntpl_str = implode(',',$_cbase['run']['tpls']); 
+$ntpl_url = "?mkv=info-coder&tpls=$ntpl_str"; 
+$now_info = basDebug::runInfo();
+$now_info = str_replace(array('); Tpl:','; Upd:'),array("); Tpl:<a href='$ntpl_url' title='View Tpl Code' target='_blank'>","</a>; Upd:"),$now_info); 
+//Done:2.000/72.004(ms); 4(queries)/0.852(MB); tpl:c_page/info_coder; Time:2015-10-10 20:25:42+08:00;
+?>
+<div class="pgf_w pgf_footer">
+  <p class="pgf_blink">
+  Notice: These pages at `/dev.php` is the Manual for IntimateCat, Welcome to `<a href="{surl(umc:faqs)}" target="_blank">Faqs</a>` Exchange experience！
+  </p>
+  <p class="copy">
+  <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="IntimateCat(贴心猫)Technical" target="_blank">QQGroup:607070548</a>; Copyright © 2011-2018 xxxxx.com All rights reserved. 粤ICP备07020797号. 
+  </p>
+  <p class="info">{$now_info} </p>
+</div>

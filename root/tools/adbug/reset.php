@@ -15,19 +15,22 @@ $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-glbHtml::page('imjq',array('css'=>'/tools/adbug/style.css'));
-echo "<style type='text/css'>select[multiple]{height:auto;}</style>";
+glbHtml::impub('imsg');
 ?>
-</head><body>
+<style type='text/css'>
+td { white-space:nowrap; }
+select[multiple]{height:auto;}
+</style>
+</head><body class="divOuter">
 
-<div>
+<?php basLang::shead(lang('tools.rst_title')); ?>
+
+  <div class="pa5"></div>
   <table width="100%" border="1" class="tblist">
   <?php tadbugNave(); ?>
   </table>
-</div>
 
-<div>
-<p class="tip"><?php lang('tools.rst_title',0); ?> / <?php lang('tools.rst_dbops',0); ?></p>
+<p class="title"><?php lang('tools.rst_title',0); ?> / <?php lang('tools.rst_dbops',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
   <tr>
@@ -101,10 +104,7 @@ echo "<style type='text/css'>select[multiple]{height:auto;}</style>";
     <td><input name="" value="Export" class="btn" type="submit"><input name="act" type="hidden" value="expMod"></td>
   </tr> 
   </form>
-
   </table>
-
-</div>
 
 <?php
 $re = '-';
@@ -169,8 +169,7 @@ $re .= '<br> @ '.date('Y-m-d H:i:s');
 
 ?>
 
-<div>
-  <p><?php lang('tools.rst_res',0); ?></p>
+  <p class="title"><?php lang('tools.rst_res',0); ?></p>
   <table width="100%" border="1" class="tblist">
   <tr id="res" class="tc">
     <td><?php echo $re.@$exmsg; ?></td>
@@ -179,13 +178,12 @@ $re .= '<br> @ '.date('Y-m-d H:i:s');
     <td class="tip"><?php lang('tools.rst_idpw_tip1',0); ?></td>
   </tr> 
   </table>
-</div>
 
 <script>
 function chkIdpass(e,no,len){
   var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
   var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
-  var tmp = $(e).val().replace(/\W/g, ""); //jsLog(tmp);
+  var tmp = $(e).val().replace(/\W/g, ""); 
   if(simpass.indexOf(tmp)>0 || tmp.length<len){
     tmp = orgcfgs[no];
     alert('<?php lang('tools.rst_idpw_tip2',0); ?>'+simpass);

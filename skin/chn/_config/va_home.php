@@ -9,6 +9,7 @@ $_va_home = array(
         'vmode' => 'dynamic', //dynamic,static,close(关闭)
         'stext' => '.html', 
         'stexp' => '2h', //hour(s)
+        //'tmfix' => '-mob', // 移动适配-模板后缀(正式使用请丰富模板,或屏蔽这里)
     ),
     
     //mod.home模块首页模板

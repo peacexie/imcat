@@ -1,0 +1,107 @@
+{imp:"d_tools/b_lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+$title = '简繁/拼音:转化类';
+$ufix = surl()."?mkv=".$this->mkv;
+$vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
+
+$str = req('str','PHP程序员-郴莞圳-亍,丌,兀,丐,廿,卅-閱讀,复习,雙節棍,真理诞生-閱讀理解');
+
+$timer = microtime(1);
+$fan = comConvert::jianfanMain($str,'j2f',3);
+$jian = comConvert::jianfanMain($str,'f2j',3);
+$spy = comConvert::pinyinMain($str,3);
+$timer = (microtime(1)-$timer)*1000;
+
+//$ipObj = new extIPAddr($api);
+//$pclass = DIR_CODE.'/core/uext/exaCSeal.php';
+if(strstr($act,'down')){
+    $path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
+    comHttp::downLoad($path, basename($path)); 
+}
+?>{/block:extop}
+
+{block:eximp}
+<?php
+$this->pimp('/plus/ajax/comjs.php',0);
+$this->pimp('/plus/ajax/comjs.php?act=pycfgTab',0);
+$this->pimp('/plus/ajax/comjs.php?act=jfcfgTab',0);
+?>
+{/block:eximp}
+
+{block:exbody}
+<div class="tools_outer">
+
+<h3 class="tc"><?php echo $title;?></h3>
+<?php 
+
+?>
+
+<h4 class="tl">### {$title}说明：</h4>
+<p>汉字拼音转化，支持9100多个汉字，包含了2500各常用字，1000各次常用字；原始信息采集于网络。</p>
+<p>汉字简繁转化，支持2359对简繁汉字；原始信息采集于网络如维基百科等。</p>
+<p>{$title} 支持js，php转化！ @整理/整合 by Peace（QQ:8089-3510 , E-mail:xpigeon#163.com）</p>
+
+<form action="{$ufix}" method="post">
+  <h4 class="tl">### PHP Convert: (用时:<span id="time1"><?php echo $timer; ?></span>)</h4>
+  string:
+  <input name="str" type="text" id="str" value="<?php echo $str; ?>" size="64" />
+  <br />
+  to jian:
+  <input name="jian" type="text" id="jian" value="<?php echo $jian; ?>" size="64" />
+  <br />
+  to fan:
+  <input name="fan" type="text" id="fan" value="<?php echo $fan; ?>" size="64" />
+  <br />
+  pinyin:
+  <input name="pinyin" type="text" id="pinyin" value="<?php echo $spy; ?>" size="64" />  
+  <br />
+  <input type="submit" name="button" id="button" value="提交" />
+</form>
+
+<h4 class="tl">### 测试文字：</h4>
+<p><span class="cont">等中國強大了，全叫老外考中文四六級！文言文太簡單，全用毛筆答題，這是便宜他們，惹急了爺，一人一把刀，一個龜殼，刻甲骨文。論文題目就叫論三個代表，聽力全用周傑倫的歌，雙節棍隻聽一遍，閱讀理解就用周易，口試要求唱京劇，實驗就考包餃子!</span></p>
+<p><span class="SysCPad SysCont">转播到腾讯微博 微信扫一扫，分享给朋友.... 复习=不挂科，不复习=挂科，所以，复习+ 不复习=不挂科+挂科，提公因式、（1+不）复习=（不+1）挂科，约分，所以，复习=挂科 。我靠，真理诞生了...</span></p>
+
+<h4 class="tl">### JS Convert: (用时:<span id="time2"><?php echo $timer; ?></span>) </h4>
+string:
+<input name="jsstr" type="text" id="jsstr" value="<?php echo $str; ?>" size="64" />
+<br />
+to jian:
+<input name="jsjian" type="text" id="jsjian" value="" size="64" />
+<br />
+to fan:
+<input name="jsfan" type="text" id="jsfan" value="" size="64" />
+<br />
+pinyin:
+<input name="jspinyin" type="text" id="jspinyin" value="" size="64" />
+<br />
+<input type="button" name="button2" id="button2" value="按钮" onclick="cnConvTest2()" />
+<script>
+
+function cnConvTest2(){
+  str = document.getElementById('jsstr').value; 
+  timer1 = new Date().getTime();
+  sjian = jianfanMain(str,'f2j');
+  sfan = jianfanMain(str,'j2f');
+  spy = pinyinMain(str);
+  timer2 = new Date().getTime();
+  timer = timer1 - timer2; 
+  document.getElementById('jsjian').value = sjian;
+  document.getElementById('jsfan').value = sfan;
+  document.getElementById('jspinyin').value = spy;
+  document.getElementById('time2').innerHTML = timer;
+}
+cnConvTest2();
+
+</script>
+
+<?php 
+$_cbase['tpl']['tplpend'] = "/*no js*/\n";
+?>
+    
+</div>
+{/block:exbody}
+
+
+

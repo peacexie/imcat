@@ -12,7 +12,7 @@ class tex_devs{ //extends tex_base
     static function getKeyTitle($mod,$key){
         if(empty(self::$data[$mod])){
             foreach (self::$dcfg as $mkey) {
-                $data = comFiles::get(vopTpls::pinc("c_demo/{$mod}_{$mkey}",'.tpl.htm'));
+                $data = comFiles::get(vopTpls::pinc("c_demo/{$mod}_{$mkey}",'.htm'));
                 if($data){
                     self::$data[$mod] = $data;
                     break;

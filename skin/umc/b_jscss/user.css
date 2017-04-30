@@ -1,28 +1,73 @@
 /* CSS Document */
 
-.pgu_logo, .pgu_lowie, .pgu_login, .pgu_lscan, .pgu_tips, .pgu_applay{ width:680px; border:1px solid #CCC; padding:2px; margin:10px auto; font-size:14px; }
+/**/
+.pgu_outer{ width:750px; position:relative; margin:5px auto; }
 
-.pgu_logo .logo{ width:120px; height:60px; padding:5px; float:right; background-image:url(../../../skin/_pub/a_img/logo120x60.jpg); background-position:center; background-repeat:no-repeat; }
-.pgu_logo .title{ width:450px; height:60px; padding:5px; float:left; }
-.pgu_logo h3{ font-size:18px; text-align:center; color:#333; padding:1px; margin:1px;}
-.pgu_logo h1{ font-size:14px; color:#09C; padding-left:20px; margin:1px;}
+.head { position:relative; }
+.head .logo{ position:absolute; right:10px; top:10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+.head select{ position:absolute; left:10px; top:10px; width:120px; }
+.head p{ text-align:center; background:#F4F4F4; padding:3px; margin:0px 130px 0px 130px; border-radius:5px; }
+.head h3{ padding:5px 0px 1px 0px; }
 
-.pgu_login, .pgu_lscan{ background-image:url(../../../skin/_pub/a_img/line_h1.jpg); background-position:360px -180px; background-repeat:no-repeat; } 
-.pgu_login p{ padding:5px; line-height:150%; }
-.pgu_lscan p{ padding:5px; }
-.pgu_login p.button{ padding:5px 20px 0 85px; }
-.pgu_login .apply, .pgu_lscan .apply{ width:280px; padding:10px; float:right; }
-.pgu_login .apply p{ padding:4px; }
+.block-login {
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-top: 1px solid #FFF;
+}
+.block-login .row{
+    text-align:center;
+    padding:3px 0px;
+}
+.block-login ol li{
+    list-style-type: decimal;
+    font-weight:normal;
+}
+.block-login i{
+    text-align:right;
+}
+.block-login .note{
+    font-size:14px;
+    clear:both;
+    padding:10px 0px 1px 0px;
+    border-top:1px solid #CCC;
+    margin:10px 0px 1px 0px;
+}
+
+.block-login i.tl{
+    text-align:left;
+}
+
+img.gray{filter:grayscale(100%); 
+    -webkit-filter:grayscale(100%); 
+    -moz-filter:grayscale(100%); 
+    -ms-filter:grayscale(100%); 
+    -o-filter:grayscale(100%); 
+    filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1); 
+    -webkit-filter:grayscale(1);
+}
+
+/**/
+
+.pgu_logo, .pgu_login, .pgu_lscan, .pgu_applay{ border:1px solid #CCC; padding:10px; font-size:14px; clear:both; }
+
+.pgu_logo { position:relative; padding:10px; }
+
+.pgu_login, .pgu_lscan{ background-image:url(../../../skin/_pub/a_img/line_h1.jpg); background-position:380px -100px; background-repeat:no-repeat; } 
+.pgu_login p{ line-height:150%; }
+.pgu_login p.button{ padding-left:90px; }
 .pgu_login .login{ width:360px; padding:15px; float:left; }
 .pgu_lscan .login{ width:360px; padding:0px; float:left; }
-.pgu_login .msg{ font-size:14px; color:#F00; text-align:center; padding:20px 0; }
-.login i { font-style:normal; }
+
+.pgu_login .login .row{
+    text-align:center;
+    padding:5px 0px;
+}
 
 div.apform p { padding:5px 1px; }
-div.apform i, div.login i { font-style:normal; display:inline-block; width:85px; padding-left:15px; }
-span.submit { display:inline-block; float:right; padding-right:150px; }
-
-.pgu_tips div.tipu{ background:#FFC; padding:10px 10px; line-height:180%; }
-.pgu_tips div.tipu p{ list-style:disc; list-style-position:outside; padding:2px 5px; }
-.pgu_tips div.tips{ padding:10px 10px; }
-.pgu_tips div.tips p{ list-style:disc; list-style-position:outside; padding:2px 5px; }
+div.apform i { font-style:normal; display:inline-block; text-align:right; padding-left:15px; width:120px; }
+div.login i { padding:12px 15px 0 0; }
+span.submit { display:inline-block; margin-left:230px; }
+div.apform i.vcm1, div.apform i.vcm2 { cursor:pointer; text-align:left; }
+div.apform i.vcm1 { width:150px; color:#36F; border:1px solid #DDD; }
+div.apform i.vcm2 { width:210px; }
+div.apform i.vct1 { width:175px; }

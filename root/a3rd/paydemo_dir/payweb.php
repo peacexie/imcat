@@ -23,8 +23,8 @@ if($act=='dologin'){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <title><?php lang('a3rd.demo_title',0); ?></title>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
+<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
 <style type="text/css">
 .pgu_login{ width:640px; border:1px solid #CCC; padding:2px; margin:10px auto; font-size:14px; }
@@ -36,8 +36,9 @@ if($act=='dologin'){
 .pgu_login p.title{ border-bottom:1px solid #CCC; padding-left:20px; }
 .pgu_login .login{ width:350px; padding:10px 1px; float:left; }
 .login i { font-style:normal; display:inline-block; width:65px; padding-left:10px; }
+#evf_vtip{ display:none; }
 </style>
-<link rel="shortcut icon" href="<?php echo PATH_SKIN; ?>/_pub/a_img/favicon.ico" />
+<link rel="shortcut icon" href="<?php echo PATH_SKIN; ?>/_pub/logo/favicon.ico" />
 </head>
 <body>
 <div id="topMargin" style="display:none; border:0px solid #999;"></div>
@@ -63,7 +64,7 @@ if($act=='dologin'){
     <input id="fm[upass]" name="fm[upass]" tabindex="2" type="password" value="" class="txt w250" reg="str:6-48" autocomplete="off" tip="<?php lang('a3rd.payweb_letters615',0); ?>" />
   </p>
   <p> <i><?php lang('vcode',0); ?>: </i>
-    <script>fsInit('fmlpay');</script>
+    <script>fsInit('fmlpay','5,-32','txt w80');</script>
   </p>
   <p class="button"> <i class="right pt2 f14"><a href="index.php"><?php lang('a3rd.payweb_refresh',0); ?></a></i> 
     <input name="submit" value="<?php lang('submit',0); ?>" tabindex="19830" type="submit" class="btn" />

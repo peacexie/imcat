@@ -34,7 +34,7 @@ class basSql{
         $val = preg_replace('/[^0-9A-Za-z,\.\-\ \:]/','',$val);
         if( in_array($key,array('atime','etime')) || @$cfg=='isdate' || @$cfg['f'][$key]['mfextra']=='datetm' ){
             if(is_numeric($val)){
-                $valbase = strtotime(date('Y-m-d',time()));
+                $valbase = strtotime(date('Y-m-d',$_SERVER["REQUEST_TIME"]));
                 $val = $valbase - $val*86400;
             }else{ 
                 $val = strtotime($val); 

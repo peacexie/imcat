@@ -1,24 +1,28 @@
 #
 # robots.txt for txmao
-# Version 3.5
+# Version 3.6
 #
 
 User-agent: *
 
+Allow: /chn.php
+Allow: /dev.php
+Allow: /doc.php
+Allow: /index.php
+Allow: /mob.php
 Disallow: /@read/
 Disallow: /code/
-Disallow: /skin/
-
+Allow: /html/
 Disallow: /root/a3rd/
 Disallow: /root/plus/
 Disallow: /root/run/adm.php
+Allow: /root/run/app.php?mod=info
 Disallow: /root/run/app.php
 Disallow: /root/tools/
-
-Allow: /html/
-Allow: /ures/
+Allow: /skin/_pub/logo/
+Disallow: /skin/
+Disallow: /ures/
 Disallow: /vary/
-
-Allow: /vimp/static/
+Disallow: /vimp/static/
 Disallow: /vimp/vendor/
 Disallow: /vimp/vendui/

@@ -1,0 +1,26 @@
+<div class="pgf_w pgf_header">
+  <p class="pgf_logo"> <a href="./?"><img src="{PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60" alt="{$_cbase['sys_name']}(LOGO)" /></a> </p>
+  <p class="pgf_topbar">
+    {if !cmod('indoc')}<b class="qrcode_tip"><a href="{surl(umc:indoc)}" target="_blank">Inner docu.</a></b>{/if}
+    {if !cmod('faqs')}<b class="qrcode_tip"><a href="{surl(umc:faqs)}" target="_blank">Faqs</a></b>{/if}
+    {if !cmod('votes')}<b class="qrcode_tip"><a href="{surl(mob:votes)}" target="_blank">Votes</a></b>{/if}
+    <b class="qrcode_tip"><a href="{surl(dev:tools-index)}" target="_blank">Demo Tools</a></b>
+    <i class="notice">{$_cbase['sys_name']} V{$_cbase['sys']['ver']} --- Guides, Let your develop DIY!</i>
+  </p>
+  <p class="pgf_mtop h180">
+  Lightweight, free, sharing: <br> a general web site system!
+  </p>
+  <p class="pgf_lang">
+    <select class="w200" onchange="location.href=this.value;">
+      <option value='' selected>Now : English Manual</option>
+      <option value='{PATH_ROOT}/plus/ajax/redir.php?lang:cn&recbk={surl(dev:0)}'>跳转到: 中文文档</option>
+    </select>
+    <select class="w200" onchange="location.href=this.value;">
+      <option>- Intimate Series -</option>
+      <option value='http://yscode.txjia.com/tools/screen.htm'>Intimate Pocket</option>
+      <option value='http://txjia.com/peace/txbox.htm'>Intimate JavaBox</option>
+      <option value='http://txjia.com/peace/txasp.htm'>Intimate Asp</option>
+    </select>
+  </p>
+
+</div>

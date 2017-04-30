@@ -291,7 +291,7 @@ class devRun{
         if(empty($rsub)) return;
         static $frstr,$bonum; 
         if(empty($frstr)){ 
-            $frstr = "\n<ul>\n<li><b> ====== [root]: ====== </b></li>\n";
+            $frstr = "\n<ul>\n<li><b> ====== [root] ====== </b></li>\n";
             $bonum = 0;
         }
         $full = "$bomroot/$rsub";

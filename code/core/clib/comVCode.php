@@ -11,9 +11,10 @@ class comVCode {
     private $color = '';    //颜色
 
     function __construct($mod='(istest)', $ttf='', $type='0'){ 
+        //if($mod=='vsms4') $mod = '(emtel)';
         $this->mod = $mod; 
         $this->ttf = $ttf;
-        $this->color = rand(1,2);  
+        $this->color = rand(1,2);
         // 显示图片一般图片
         if(function_exists('imagecreate')){ 
             if($this->mod=='(emtel)'){
@@ -70,11 +71,11 @@ class comVCode {
             }elseif(ord($chr)>96){
                 $size = mt_rand(22,26);
             }else{
-                $size = mt_rand(16,20);
+                $size = mt_rand(16,20); 
             }
-            $angle = $this->mod=='(emtel)' ? 0              : mt_rand(-30,30);
-            $x     = $this->mod=='(emtel)' ? $i*20+8        : mt_rand(10,20)+$i*26;
-            $y     = $this->mod=='(emtel)' ? mt_rand(27,29) : mt_rand(20,30);
+            $angle = $this->mod=='(emtel)' ? 0              : mt_rand(-20,20);
+            $x     = $this->mod=='(emtel)' ? $i*20+8        : mt_rand(15,20)+$i*26;
+            $y     = $this->mod=='(emtel)' ? mt_rand(27,29) : mt_rand(28,30);
             if(empty($this->ttf)){
                 imagestring($this->im, mt_rand(1,5), $x, $y-15, $chr, $this->rnd_color($this->im));
             }else{

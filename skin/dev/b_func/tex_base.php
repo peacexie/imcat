@@ -31,15 +31,27 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext'];
-        $base || $base = 'jstag,menu,aheight';
+        $base || $base = basEnv::isMobile() ? 'jstag' : 'jstag,menu,aheight';
         $js = "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
         strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
-        echo basJscss::jscode($js)."\n";
+        echo basJscss::jscode("\n$js")."\n";
     }
     
+    static function uplog_furl(){ 
+        include(vopTpls::pinc("d_uplog/a_cfgs"));
+        $mkv = 'uplog';
+        foreach ($cfgs as $key => $val) {
+            if($key!='readme'){
+                $mkv = "$mkv-$key";
+                break;
+            }
+        }
+        echo surl($mkv);
+    }
+
     static function coder($tpl=''){ 
         $path = vopTpls::path('tpl',1); 
         $file = "$path/$tpl".(strpos($tpl,'.php') ? '' : cfg('tpl.tpl_ext'));

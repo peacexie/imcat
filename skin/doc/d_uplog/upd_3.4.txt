@@ -1,10 +1,5 @@
 
 
-xxx
-
--------------------------
-
-
 #bg#Background
 
 * Original plan

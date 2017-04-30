@@ -11,13 +11,13 @@ define('PATH_PAYRUN', PATH_ROOT.'/a3rd/tenpay_sdk');
 */
 
 //设置财付通App-id: 财付通App注册时，由财付通分配
-$appid = $pay_uinfo['ten']['appid']; 
+$appid = $_ex_a3rd['ten']['appid']; 
 
 //签名密钥: 开发者注册时，由财付通分配
-$key = $pay_uinfo['ten']['key'];  
+$key = $_ex_a3rd['ten']['key'];  
 
 //sabdbox
-$sandbox = $pay_uinfo['ten']['sandbox'];     
+$sandbox = $_ex_a3rd['ten']['sandbox'];     
 
 // 设置通知url：接收财付通后台通知的URL，用户在财付通完成支付后，财付通会回调此URL，向财付通APP反馈支付结果。
 // 此URL可能会被多次回调，请正确处理，避免业务逻辑被多次触发。需给绝对路径，例如：http://wap.isv.com/notify.asp

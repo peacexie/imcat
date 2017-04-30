@@ -177,11 +177,11 @@ class basDebug{
         if(!$db){ // DIR_IMPS, DIR_VARS ,dirname(DIR_PROJ)
             $str = str_replace(array(DIR_PROJ,DIR_IMPS,DIR_VARS),'~',$str); 
         }else{
-            $cdb = read('db','cfg');
+            $cdb = read('db','cfg'); 
             foreach(array('pre','suf') as $key){
                 $fix = $cdb["db_{$key}fix"];
                 if(!empty($fix)){
-                    $str = str_replace(array(" $fix","$fix "),array(" {pre}","{suf} ",),$str);
+                    $str = str_replace(array(" $fix","$fix ","`$fix","$fix`"),array(" {pre}","{suf} ","`{pre}","{suf}`",),$str);
                 }
             }
         }

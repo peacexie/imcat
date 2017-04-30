@@ -8,6 +8,9 @@ table.home-tabadv td.side a { width:180px; display:block; padding:3px 10px; }
 table.home-tabadv td.head a { display:inline-block; padding:3px 10px; }
 table.home-tabadv td.foot a { display:inline-block; padding:3px 10px; }
 table.home-tabadv td.cpic { padding:1px; background:#FFF; }
+table.home-tabnews td.pic { padding:0px; }
+table.home-tabnews td.pic li{ }
+table.home-tabnews td.pic p{ background:#DDD; padding:5px 1px; margin:0px 10px; }
 
 table.home-tabnews { width:1200px; margin:0px auto 10px auto; }
 table.home-tabnews td { padding:10px; border:1px solid #CCC; }

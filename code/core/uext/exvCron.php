@@ -26,7 +26,7 @@ class exvCron{
         $hm1 = date('H:i');
         $hm2 = $hm1."@".date('w');
         $hm3 = $hm1."@".((date('w')+3)%7);
-        $hm4 = date('H:i', time()+60);
+        $hm4 = date('H:i', $_SERVER["REQUEST_TIME"]+60);
         $list = "\n";
         for($i=1;$i<=4;$i++){
             $k = "hm$i";

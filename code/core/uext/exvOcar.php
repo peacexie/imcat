@@ -50,7 +50,7 @@ class exvOcar{
     }
     
     static function whruser(){ 
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $user = user('Member'); 
         $uadm = user('Admin'); 
         $enc = req('enc');
@@ -78,7 +78,7 @@ class exvOcar{
         $res = array();
         $flag = $ouser['flag'];
         $ordstat = $order['ordstat'];
-        $stamp = time()-$order['atime']; //<($flag=='Admin' ? 5*86400 : 30*60);
+        $stamp = $_SERVER["REQUEST_TIME"]-$order['atime']; //<($flag=='Admin' ? 5*86400 : 30*60);
         //$flag = 'xxMember'; 
         //$stamp = 6666666;
         if($flag=='Admin'){
@@ -151,6 +151,7 @@ class exvOcar{
         $ouser = self::whruser();
         $where = $ouser['sql'];
         $fm = basReq::arr('fm');
+        if(empty($fm)) return 0; // ??? 
         $erow = db()->table('coms_corder')->data(basReq::in($fm))->where("cid='$ordid' AND $where")->update();
         return $erow;
     }

@@ -1,0 +1,31 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}<?php
+$subs = tex_base::docer("d_start/doc_".$this->key);
+$sub = array();
+$cfgt = array(
+    'help'=>'捐赠贡献',
+    'service'=>'为您服务',
+); 
+$titletop = $titlesub = $cfgt[$this->key];
+?>{/block:extop}
+
+{block:exbar}{/block:exbar}
+
+{block:exmain}
+    
+    <?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="mod-section">
+      <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {$v[detail]}
+    </ul>
+    <?php } ?>
+
+{/block:exmain}
+
+{block:exside}{inc:"c_page/info_side"}{/block:exside}
+
+{block:exfoot}
+<script>_cbase.jsrun.menuid='{$this->key}';</script>
+{/block:exfoot}
+

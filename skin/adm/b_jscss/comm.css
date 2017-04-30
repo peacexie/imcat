@@ -54,28 +54,17 @@ p.err{ font-size:18px; padding:10px; }
 
 #adf_title,#adf_nav1 { height:26px; background-image:url(../../../skin/_pub/a_img/nv_01.png); background-position:0px -180px; border-bottom:1px solid #3A6EA5; padding:4px 5px 4px 0px; }
 #adf_title { width:155px; float:left; text-align:center; border-right:1px solid #3A6EA5; }
-#adf_nav1 { margin-left:151px; padding-left:8px; }
+#adf_nav1 { min-width:480px; margin-left:151px; padding-left:8px; }
 #adf_nav1 a { display:inline-block; padding:0px 6px 0px 6px; border-right:1px solid #999; }
 #adf_nav1 p a { border-right:0px; border-left:1px solid #999; }
 #adf_left { width:155px; float:left; border-right:1px solid #3A6EA5; overflow-x:hidden; overflow-y:scroll;  }
-#adf_right { margin:0px 0px 0px 156px; padding:0px 0px 0px 0px; }
+#adf_right { min-width:480px; margin:0px 0px 0px 156px; padding:0px 0px 0px 0px; }
 #adf_copy { text-align:center; border-top:1px solid #A6CAF0; padding:8px 1px 0px 1px; margin:5px 5px 2px 5px; }
-#adf_logo { color:#555; text-align:left; padding:19px 0 0 53px; list-style:none; background-image:url(../../../skin/_pub/a_img/logo088x31.jpg); background-position:12px 3px; background-repeat:no-repeat; }
+#adf_logo { color:#555; text-align:left; padding:19px 0 0 53px; list-style:none; background-image:url(../../../skin/_pub/logo/logo088x31.jpg); background-position:12px 3px; background-repeat:no-repeat; }
 
 ul.adf_mnu2 li.adf_dir { color:#3A6EA5; font-weight:bold; background-image:url(../../../skin/_pub/a_img/tree.gif); background-position:10px -118px; background-repeat:no-repeat; padding:3px 3px 3px 35px; }
 ul.adf_mnu2 li { line-height:150%; background-image:url(../../../skin/_pub/a_img/tree.gif); background-position:2px -19px; background-repeat:no-repeat; padding:3px 3px 3px 15px; }
 ul.adf_mnu2 li a { display:inline-block; padding:0px 1px 0px 3px; }
-
-.adl_box { text-align:left; margin:10px auto 0 auto; width:620px; }
-.adl_box i{ width:80px; text-align:center; display:inline-block; font-style:normal; }
-.adl_box .adl_logo p{ line-height:250%; }
-.adl_box .adl_logo p.ps50{ padding:0 25px 0 50px; }
-.adl_box .adl_logo { width:280px; height:190px; float:left; background-image:url(../../../skin/_pub/a_img/logo120x60.jpg); background-position:bottom left; background-repeat:no-repeat; padding:10px 0 0 0; }
-.adl_box .adl_read { width:340px; height:220px; float:right; padding-left:20px; background-image:url(../../../skin/_pub/a_img/line_h1.jpg); background-position:3px -120px; background-repeat:no-repeat; }
-.adl_box h1{ font-size:18px; color:#09C; padding:3px 0; margin:5px 0 8px 0; border-bottom: 2px solid #3A6EA5; }
-.adl_box .adl_read li{ display:inline-block; list-style:disc; list-style-position:inside; padding:3px 0; }
-.adl_box .adl_tip { clear:both; height:35px; font-size:12px; color:#F33; padding:8px 5px 1px 8px; margin:1px auto; background-image:url(../../../skin/_pub/a_img/nv_02.png); background-position:0px -5px; background-repeat:repeat-x; }
-.adl_box .adl_remsg { clear:both; height:35px; font-size:12px; color:#F33; background:#FFC; padding:8px 5px 1px 8px; margin:1px auto; border:1px solid #0A246A; }
 
 .mpic_out .pview { width:124px; height:90px; float:left; text-align:center; position: relative; padding:0px; margin:1px 5px 1px 1px; border:1px solid #CCC; }
 .mpic_out .pitem { width:124px; height:120px; float:left; text-align:center; position: relative; padding:0px; margin:1px 5px 1px 1px; border:1px solid #CCC; }
@@ -106,3 +95,38 @@ ul.adf_mnu2 li a { display:inline-block; padding:0px 1px 0px 3px; }
   background-color:#FFF;
   border:1px solid #CCC;
 }
+
+
+.login-outer{ width:750px; position:relative; margin:5px auto; }
+.login-head { position:relative; }
+.login-head .logo{ position:absolute; left:10px; top:-10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+.login-head select{ position:absolute; right:10px; top:10px; width:120px; }
+.login-head p{ text-align:center; padding:10px; margin:0px 130px 0px 130px; border:1px dashed #A6CAF0; border-radius:5px; background-clip:padding-box; }
+.login-head h3{ padding:5px 0px 1px 0px; }
+form.login { width:360px; float:left; }
+form.login i{ font-style:normal; text-align:right; word-break:normal; white-space:nowrap; }
+form.login p{ padding:1px; margin:5px 1px; }
+form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
+.login-read { width:340px; float:right; padding:0px 0px 0px 0px; margin:0px 0px 0px 0px; }
+.login-read ul{ padding:0px 0px 10px 0px;}
+.login-read ul li{ 
+    list-style-type: disc;
+    list-style-position: inside;
+    font-weight: normal;
+}
+.login-read li{ padding:1px; margin:5px; }
+.login-fbar{ text-align:center; background:#FFF; border-top:1px solid #428bca; }
+
+@media only screen and (max-width:767px) {
+    .login-outer{ width:96%; margin:5px auto; }
+    .login-head { height:60px; }
+    .login-head .logo{ position:absolute; left:10px; top:-10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+    .login-head select{ float:right; position:static; width:120px; }
+    .login-head p{ position:absolute; background:#A6CAF0; color:#333; padding:10px 0px 10px 0px; margin:65px 0 10px 0; border:0; background-clip:padding-box; }
+    form.login { width:100%; float:none; padding-top:38px;  }
+    form div.topmsg{ }
+    .login-read { width:100%; font-size:small; float:none; }
+}
+
+.btn, input.btn { background-clip: padding-box; }
+/* #locSetS { background-clip:padding-box; } select*/

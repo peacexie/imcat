@@ -47,10 +47,6 @@
 
 * ex_vjump.php : 分站跳转配置
 
-* ex_vopfmt.php : 展示模版配置
-
-* ex_wmark.php : 水印配置
-
 
 #prsycfg#sycfg参数
 
@@ -83,6 +79,16 @@
 * sy_updvnow.php : 在线更新配置
 
 * sy_urdir.php : 附件资源管理 目录配置
+
+* sy_user.php : 会员登录注册相关设置
+ - 注册认证方式
+ - 登录类型方式
+ - 会员邮件模板
+
+* ex_vopcfg.php
+ : 展示模版配置
+
+* ex_wmark.php : 水印配置
 
 
 #prelse#其他参数

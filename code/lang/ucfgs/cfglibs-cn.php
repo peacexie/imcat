@@ -2,6 +2,12 @@
 
 // 语言包:cn
 
+$cfgs['pubGrades'] = array(
+    'isGuests' => '(游客)',
+    'isStopped' => '(已禁用)',
+    'unActivated' => '(未激活)', 
+);
+
 $cfgs['grset_types'] = array(
     'pmadm'=>'菜单',
     'pmusr'=>'会员',
@@ -109,6 +115,7 @@ $cfgs['usrbase'] = array(
     'isLogin' => '已经登录，不能重复登录！',
     'OK' => '登录成功！',
 );
+$cfgs['usrbase'] += $cfgs['pubGrades'];
 
 $cfgs['upload'] = array(
     "SUCCESS", //上传成功标记

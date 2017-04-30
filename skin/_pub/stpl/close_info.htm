@@ -1,0 +1,24 @@
+{imp:"_pub:stpl/_lay_info"}<!--模板继承-->
+
+{block:init}{:parent}
+<?php
+(!defined('RUN_INIT')) && die('No Init'); 
+$cmsg = lang('stinc_closed');
+$sname = urlencode($_cbase['sys_name']);
+?>
+{/block:init}
+
+{block:title}{lang(stinc_closed)}{/block:title}
+
+{block:hdcss}
+{/block:hdcss}
+
+{block:main}
+<p>Hi, <?php echo lang('core.cfg_close'); ?></p>
+<hr>
+<p>{lang(stinc_cmore)}</p>
+<ul>
+  <li>{lang(stinc_findat)} [<a href="http://www.baidu.com/s?wd={$sname}" target="_blank">baidu.com</a>].</li>
+  <li>{lang(stinc_findat)} [<a href="http://www.google.com.hk/search?q={$sname}" target="_blank">google.com</a>].</li>
+</ul>
+{/block:main}

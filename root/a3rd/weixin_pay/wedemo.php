@@ -171,7 +171,6 @@ function getQrcode(qrmod){
 function checkLogin(sid,extp,stampys,signys){
     var url = 'actys=chkLogin&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
     $.getScript(ubase+url, function(){
-        jsLog(data);
         if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
             alert('服务器返回格式错误。');
             return '';
@@ -189,8 +188,7 @@ function checkLogin(sid,extp,stampys,signys){
 var pstr = ','; //用这个判断，已经显示了的，就不再显示
 function checkUpload(sid,extp,stampys,signys){ //xxx
     var url = 'actys=chkUpload&scene='+sid+'&extp='+extp+'&stampys='+stampys+'&signys='+signys+'&varname=data';
-    $.getScript(ubase+url, function(){
-        //jsLog(data);
+    $.getScript(ubase+url, function(){        
         if(typeof(data.error)=='undefined' || typeof(data.message)=='undefined' ){
             alert('服务器返回格式错误。');
             return '';
@@ -205,13 +203,12 @@ function checkUpload(sid,extp,stampys,signys){ //xxx
             for (var i = 0; i < data.res.length; i++) { 
                 var medid = data.res[i].media_id; 
                 var imgmid = ubase+'actys=loadFile&mediaid='+medid+'&kid=<?php echo $kid; ?>'; 
-                var imgurl = data.res[i].detail; //jsLog(imgurl.indexOf('weixin.qq'));
+                var imgurl = data.res[i].detail; 
                 var img = imgurl.indexOf('mmbiz.qpic')>0 ? imgmid : imgurl;
                 if(pstr.indexOf(medid)<=0){
                     nstr += '<a href="'+img+'"><img src="'+img+'" height="60"></a>';
                     pstr += medid+','; 
                 }
-                //jsLog(data.res[i].detail);
             };
             nstr && $('#pic_res').append(nstr);
         } 

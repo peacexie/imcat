@@ -1,0 +1,71 @@
+{imp:"c_pub/mlay_main"}<!--继承父模板-->
+
+{block:init}{php vopTpls::pinc('tex_devs');}<?php
+$titletop = '站点导航';
+$titlesub = '站点导航';
+$mods = array(
+  'start' => '快速开始',
+  'tpltag' => '模板标签',
+  'dev2nd' => '二次开发',
+  'advset' => '系统参数',
+  //'tester' => '测试代码',
+);
+?>{/block:init}
+
+{block:main}
+<div class="h10">&nbsp;</div>
+
+    {loop $mods $mod $mv}
+    {php $vcfg = glbConfig::vcfg($mod); unset($vcfg['c'],$vcfg['m'],$vcfg['d']); }
+    <ul class="mod-list">
+      <a href="{surl($mod,-);}"><li class="type">
+      <b class="right ext">{$mod}</b>
+      {$mod}:{$mv}
+      </li></a>
+      {loop $vcfg $key $val}
+      {php $ktitle = tex_devs::getKeyTitle($mod,$key); }
+      <a href="{surl("$mod-$key")}"><li>
+      <i class="atype">{$key}</i>
+      <i class="title ellipsis">{$ktitle}</i>
+      </li></a>
+      {/loop}
+    </ul>
+    {/loop}
+
+    <ul class="mod-list">
+    <li><a href="{surl(info)}">map:站点导航</a></li>
+    <li><a href="{surl(info-help)}">help:捐赠贡献</a></li>
+    <li><a href="{surl(info-service)}">service:为您服务</a></li>
+    <li><a href="{surl(info-gbook)}">gbook:留言问答</a></li>
+    <li><a href="{surl(info-coder)}">coder:源代码器</a></li>
+    </ul>
+
+    {code:"dev:d_tools/a_cfgs"}
+    <ul class="mod-list">
+      <a href="{surl(tools)}"><li class="type">
+      <b class="right ext">tools</b>
+      贴心工具
+      </li></a>
+      <?php foreach($cfgs as $key=>$val){ ?>
+      <a href="{surl("tools-$key")}"><li>
+      <i class="atype">{$key}</i>
+      <i class="title ellipsis">{$val['mt']}</i>
+      </li></a>
+      <?php } ?>
+    </ul>
+
+    {code:"dev:d_uplog/a_cfgs"}
+    <ul class="mod-list">
+      <a href="{surl(uplog)}"><li class="type">
+      <b class="right ext">publish</b>
+      版本发布
+      </li></a>
+      <?php foreach($cfgs as $key=>$val){ ?>
+      <a href="{surl(uplog)}"><li>
+      <i class="atype">{$val[0]}</i>
+      <i class="title ellipsis">{$val[1]}</i>
+      </li></a>
+      <?php } ?>
+    </ul>
+
+{/block:main}

@@ -483,8 +483,6 @@ wx.ready(function () {
 		localId: images.localId[i],
 		success: function (res) {
 		  i++;
-		  //alert('ÒÑÉÏ´«£º' + i + '/' + length);
-
 		  images.serverId.push(res.serverId);
 		  if (i < length) {
 			upload();

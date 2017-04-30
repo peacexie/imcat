@@ -2,7 +2,6 @@
 var wNames = new Array("Sun", "Mon", "Tue", "Wen","Thu", "Fri", "Sat");
 // 执行一个任务
 function jobRun(hm,i){
-  //jsLog('do:'+jid);
   var jid = pLists[i][0];
   if(!jsElm.jeID('job_'+jid)){
     //var url = _cbase.run.roots + jcronRun(0,0,1) + '&fjob=' + jid;

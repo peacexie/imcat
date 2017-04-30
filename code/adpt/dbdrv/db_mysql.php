@@ -129,15 +129,17 @@ class db_mysql {
     //输出错误信息
     function error($message='', $sql='') {
         $sql = basDebug::hidInfo($sql,1);
+        $sql = str_replace(array('<','>'),array('&lt;','&gt;'),$sql);
         $func = @$this->config['efunc'];
         if($func) return $func($message);
         $error = (($this->link) ? mysql_error($this->link) : mysql_error());
         $errorno = intval(($this->link) ? mysql_errno($this->link) : mysql_errno());
-        $str= "    <i>Info</i>: $message<br>
-                <i>SQL</i>: $sql<br>
-                <i>Detail</i>: $error<br>
-                <i>Code</i>:$errorno"; 
-        glbError::show($str); 
+        $msga = array(
+            'Resume' => $message,
+            'Detail' => $error,
+            'sql' => $sql,
+        );
+        glbError::show($msga,$errorno); 
     }
     //释放结果内存
     function free($query) {

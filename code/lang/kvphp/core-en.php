@@ -31,12 +31,6 @@ return array(
     'usrb_ertimes' => 'IP/PW Error, Times:{val}!',
     'usrb_erunknow' => 'unKnow Error',
 
-    // dops/usrMember.php
-    'usrm_emsubj' => 'Get password by Email',
-    'usrm_emtip' => 'Please login your E-mail, and get password according to the mail message.',
-    'usrm_emeror' => 'Send E-mail Error, Please wait a moment, or contact the administrator.',
-    'usrm_eremail' => 'Error:E-mail Error!',
-
     // sdev/devApp.php
     'devapp_dferr' => 'Non-standard directory or file name',
     'devapp_dfnum' => 'Directory or file name can NOT all numbers',
@@ -194,5 +188,19 @@ return array(
     'page_Next' => 'Next',
     'page_Last' => 'Last',
     
+    //stinc
+    'stinc_closed' => 'Site Closed!',
+    'stinc_cmore' => 'More Infomation you can find:',
+    'stinc_findat' => 'Find@',
+    'stinc_errun' => 'Run-Error',
+    'stinc_erdbsql' => 'DB-Sql Error',
+    'stinc_erbase' => 'Basic Info',
+    'stinc_ertrace' => 'Trace Info',
+    'stinc_nycan' => 'Now you can',
+    'stinc_retry' => 'Retry',
+    'stinc_reback' => 'Return',
+    'stinc_gohome' => 'Go Homepage',
+
+
 );
 

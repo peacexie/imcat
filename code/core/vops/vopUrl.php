@@ -139,9 +139,13 @@ class vopUrl{
         if(!in_array($mod,$ukeyh) && !isset($_groups[$mod])){
             vopShow::msg("[{$mod}][mod]".lang('core.vop_parerr'));
         }elseif(!empty($_cbase["close_$tpldir"])){ //close
-            include(DIR_CODE."/cfgs/stinc/close_info.php");    
+            vopShow::inc("_pub:stpl/close_info",0,1);
+            die('');   
         }
         if($mod=='home'){ // home-static
+            if($hcfg['c']['vmode']=='close'){
+                vopShow::msg("[{$mod}][close]".lang('core.vop_closemod'));    
+            }
             if(!defined('RUN_STATIC') && $hcfg['c']['vmode']=='static'){
                 $file = vopStatic::getPath('home','home',1);
                 if($path=tagCache::chkUpd($file,$hcfg['c']['stexp'],0)){ 

@@ -218,7 +218,7 @@ class vopCell{
     static function jsFields($a){
         $_groups = read('groups');
         $db = db();
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         //[demo:2013-cm-a201:click] => 535,add1,uclick1
         //[demo:2013-cm-a201:etime] => 1387418573
         //[demo:2013-cm-abcd:etime] => 1387418573

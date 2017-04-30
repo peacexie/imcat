@@ -1,0 +1,41 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}
+{code:"dev:d_uplog/a_cfgs"}
+<?php 
+$key = empty($this->key) ? 'readme' : $this->key;
+$flog = @$cfgs[$key][1];
+$subs = tex_base::docer("d_uplog/upd_$flog"); 
+if(empty($subs)){ $this->msg('还未发布！'); }
+$sub = req('sub',''); 
+$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1].'.'.$cfgs[$key][0] : $cfgs[$key][0];
+$titlesub = $titletop = $verflag; 
+$titlesub = $_cbase['sys_name'].' '.$titlesub;
+?>
+{/block:extop}
+
+{block:exbar}{/block:exbar}
+
+{block:exmain}
+    
+    <?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="mod-section">
+      <li class="type">{$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {$v[detail]}
+    </ul>
+    <?php } ?>
+
+{if empty($this->key)}
+<script>
+$(document).ready(function(){
+    $('a').each(function(i, e) {
+        var url = $(e).attr("href"); 
+        if(url.indexOf('://')>0) $(e).attr("target",'_blank');
+    });
+});
+</script>
+{/if}
+
+{/block:exmain}
+
+{block:exside}{inc:"c_demo/uplog_aside"}{/block:exside}

@@ -45,7 +45,7 @@ function edt_Init(fid,bar,w,h){
     if(w) para += "width:"+w+",";
     if(h) para += "height:"+h+",";
     para += "toolbar:edt_"+bar+"Bar"; //edt_"+bar+"Bar
-    para += "});"; //alert(para);
+    para += "});"; 
     eval(para); //CKEDITOR.replace(fid);
     edt_showBar(fid);
 }

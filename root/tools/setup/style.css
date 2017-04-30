@@ -1,4 +1,7 @@
-h2 { font-size:24px; }
+
+body, td, input, textarea, select, button{ color:#333; font:14px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
+
+h2 { font-size:18px; line-height:100%; }
 tr.tc td { text-align:center; }
 table.tblist td, td, th { padding: 2px; }
 table.tblist td.note { padding: 5px; line-height:150%; }
@@ -22,6 +25,14 @@ ul.cmpfile { width:340px; overflow-x:scroll; padding:10px 10px 10px 8px; }
 
 .upgres{ width:98%; max-width:98%; margin:10px auto; padding:10px; }
 
-.langbar { max-width: 720px; margin: 10px auto; padding:5px; border-bottom: 1px dashed #999; }
+.langbar { max-width:720px; padding:5px; margin:10px auto; border-bottom:1px dashed #999; }
+.langbar img{ float:right; }
 .langbar a { padding-right:5px; }
-.langbar a:before { content:" ->"; }
+.langbar a:before { content:" ●"; }
+
+/* 平板电脑布局: 481px 至 768px。样式继承自: 移动设备布局。 */
+@media only screen and (max-width:767px) {
+    div { position:static; width:100%; padding:1px; }
+    .esql { width:100%; }
+    .langbar { width: 100%; }
+}

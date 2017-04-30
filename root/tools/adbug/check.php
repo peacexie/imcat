@@ -31,18 +31,23 @@ if($act=='image'){
   die(); 
 }
 
-glbHtml::page(lang('tools.chk_envcheck')."-$title",1);
-glbHtml::page('imnul');
+glbHtml::page(lang('tools.chk_envcheck')."-$title");
+glbHtml::impub('imsg');
 
 $iniPath = get_cfg_var('cfg_file_path');
 $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARNING: No configuration file (php.ini) used by PHP!";
 
 ?>
-<link rel='stylesheet' type='text/css' href='./style.css'/>
-</head><body>
+<style type="text/css">
+td { white-space:nowrap; }
+input.r { width:96%; }
+</style>
+</head><body class="divOuter">
 
-<div>
-  <table width="100%" border="1" class="tblist">
+<?php basLang::shead(lang('tools.chk_envcheck')); ?>
+
+  <div class="pa5"></div>
+  <table border="1" class="tblist">
   <?php tadbugNave(); ?>
   <tr class="tc">
     <td colspan="5">
@@ -54,14 +59,12 @@ $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARN
     </td>
   </tr>
   </table>
-</div>
 
 <?php 
 if($act=='check'){ 
 ?>
 
-<div>
-<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_envbaisc',0); ?></p>
+<p class="title"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_envbaisc',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
   <tr>
@@ -143,13 +146,9 @@ function setInpval(e){
   <tr>
     <td class="tip" colspan="4"><?php echo $iniInfo; ?></td>
   </tr>
-  
   </table>
 
-</div>
-
-<div>
-<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_sysdirs',0); ?></p>
+<p class="title"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_sysdirs',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
   <tr>
@@ -176,10 +175,8 @@ function setInpval(e){
   </tr> 
   <?php } //} ?>
   </table>
-</div>
 
-<div>
-<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_dblink',0); ?></p>
+<p class="title"><?php lang('tools.chk_envcheck',0); ?> --- <?php lang('tools.chk_dblink',0); ?></p>
 
   <table width="100%" border="1" class="tblist">
   <tr>
@@ -204,14 +201,13 @@ function setInpval(e){
   <?php } ?>
   
   </table>
-</div>
 
 <?php 
 }if($act=='define'){
 ?>
 
 <div style="height:500px; overflow-y:scroll;">
-<p class="tip"><?php lang('tools.chk_envcheck',0); ?> --- define</p>
+<p class="title"><?php lang('tools.chk_envcheck',0); ?> --- define</p>
   <table width="100%" border="1" class="tblist">
   <?php 
   $df = get_defined_constants(true);
@@ -233,15 +229,13 @@ function setInpval(e){
   </tr>
   <?php } } ?>
   </table>
-</div>
 
 <?php
 }if($act=='upload'){ 
 ?>
-<div>
   <form id="fmup" name="fmup" method="post" action="?act=upload" enctype="multipart/form-data">
-  <p class="tc tip"><?php lang('tools.cf_fupload',0); ?></p>
-  <ul>
+  <p class="tc title"><?php lang('tools.cf_fupload',0); ?></p>
+  <ul class="pa10">
  <?php
   if(!empty($_POST['upLoad'])){ // LINKOK,FAILED
     $uppath = $_POST['uppath'];
@@ -262,16 +256,14 @@ function setInpval(e){
   </li>
   </ul>
   </form>
-</div>
 <?php } ?>
 
 <?php 
 if($act=='remote'){ 
 ?>
-<div>
   <form id="fmremote" name="fmremote" method="get" action="?" target="_blank">
-  <p class="tc tip"><?php lang('tools.cf_remote',0); ?></p>
-  <ul>
+  <p class="tc title"><?php lang('tools.cf_remote',0); ?></p>
+  <ul class="pa10">
   <li>
     <i class="w2">Url: </i>
     <input name="rem_url" type="text" value="<?php echo $rem_url; ?>" style="width:360px;"> 
@@ -305,7 +297,6 @@ if($act=='remote'){
   <input name="remote" type="hidden" value="1">
   <input name="act" type="hidden" value="remote">
   </form>
-</div>
 <?php } ?>
 
 </body></html>

@@ -192,10 +192,10 @@ class comFiles{
     // 是否可写 //if(is_writable($pfile)){}
     static function canWrite($dir){
         if(is_dir($dir)){
-            $file = '/__'.basKeyid::kidTemp().'__.test';
-            if($fp = @fopen($dir.$file, 'w')) {
+            $pfile = str_replace('','',$dir.'/@can_Write.test');
+            @unlink($pfile);
+            if($fp = @fopen($pfile, 'w')) {
                 @fclose($fp);
-                @unlink($dir.$file);
                 $fwrite = 1;
             }else $fwrite = 0;
         }elseif(is_file($dir)){

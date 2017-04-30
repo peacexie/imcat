@@ -12,6 +12,7 @@ class extEmail{
     public $umail = null;
     public $message = null;
     public $re = '';
+    public $log = array();
     
     function __construct($type='',$cfg=array()){
         $this->cfg  = empty($cfg) ? read('mail','ex') : $cfg;
@@ -45,7 +46,7 @@ class extEmail{
         //$this->umail = &$mail;
     }
     
-    function send($to,$subject,$msg,$from=''){
+    function send($to,$title,$detail,$from=''){
         $re = 'SentOK';
         $from || $from = $this->cfg['from'];
         if($this->type=='phpmailer'){
@@ -62,8 +63,8 @@ class extEmail{
                 }else{
                     $this->umail->AddAddress($to); 
                 }
-                $this->umail->Subject = $subject;
-                $this->umail->Body = $msg; 
+                $this->umail->Subject = $title;
+                $this->umail->Body = $detail; 
                 #$this->umail->AltBody = "To view the message, please use an HTML compatible email viewer!"; //当邮件不支持html时备用显示，可以省略 
                 $this->umail->WordWrap = 80; // 设置每行字符串的长度 
                 #$this->umail->AddAttachment("f:/test.png"); //可以添加附件 
@@ -87,19 +88,38 @@ class extEmail{
             try {
                 $this->message
                 ->setEncoder(Swift_Encoding::get8BitEncoding())
-                ->setSubject($subject) 
+                ->setSubject($title) 
                 ->setFrom(array($this->cfg['from'] => $from))
                 ->setTo($tos)
-                ->setBody($msg, 'text/html');
-                #echo "\n<hr>message:<br>"; echo $this->message -> toString();
+                ->setBody($detail, 'text/html');
                 $result = $this->umail->send($this->message); 
-                #echo "\n<hr>logger:<br>";  echo $logger->dump();
             } catch (Exception $e) { 
                 $re = $e->getMessage(); //Boring error messages from anything else!
             }
         }
+        $alog = array('to','title','detail','from',);
+        foreach ($alog as $key) {
+            $this->log[$key] = $$key;
+        }
         return $re;
     }
+
+    // 写记录
+    function slog($stat=1,$cfgs=array()){
+        $detail = basElm::getPos($this->log['detail'],'body');
+        //$detail = basElm::getPos($detail,'</head>(*)</html>'); // 保险
+        $detail = trim(strip_tags($detail)); 
+        $kid = empty($cfgs['kid'])?basKeyid::kidTemp():$cfgs['kid'];
+        $pid = empty($cfgs['pid'])?'':$cfgs['pid'];
+        $data = array( 
+            'kid'=>$kid,'pid'=>$pid,
+            'ufrom'=>$this->log['from'],'uto'=>$this->log['to'],
+            'title'=>$this->log['title'],'detail'=>basReq::in($detail),
+            'stat'=>$stat,'api'=>$this->type,
+        );
+        db()->table('plus_emsend')->data($data)->insert();
+    }
+
 }
 
 ?>

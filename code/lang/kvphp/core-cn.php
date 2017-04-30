@@ -31,12 +31,6 @@ return array(
     'usrb_ertimes' => '账号密码错误，错误次数：{val}次！',
     'usrb_erunknow' => '未知错误',
 
-    // dops/usrMember.php
-    'usrm_emsubj' => '邮件找回密码',
-    'usrm_emtip' => '请登录邮件，根据提示找回密码。',
-    'usrm_emeror' => '发邮件错误！请稍等再试，或联系管理员。',
-    'usrm_eremail' => '账号-邮箱:参数错误！',
-
     // sdev/devApp.php
     'devapp_dferr' => '目录或文件名不规范',
     'devapp_dfnum' => '目录或文件名不能全为数字',
@@ -193,6 +187,20 @@ return array(
     'page_Prev' => '上页',
     'page_Next' => '下页',
     'page_Last' => '尾页',
+
+    //stinc
+    'stinc_closed' => '网站关闭提示!',
+    'stinc_cmore' => '更多信息，按如下查找:',
+    'stinc_findat' => '查找@',
+    'stinc_errun' => '运行中错误',
+    'stinc_erdbsql' => '数据库-Sql 错误',
+    'stinc_erbase' => '基本信息',
+    'stinc_ertrace' => 'Trace 信息',
+    'stinc_nycan' => '尝试操作……',
+    'stinc_retry' => '稍后重试一',
+    'stinc_reback' => '返回上页',
+    'stinc_gohome' => '返回首页',
+    
     
 );
 

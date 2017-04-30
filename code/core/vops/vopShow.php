@@ -13,30 +13,45 @@ class vopShow{
     
     public $pgflag = array();
     public $pgbar = array(); //分页信息
-    public $mod,$key,$view,$type; 
+    public $mod,$key,$view,$type,$tplname,$tplfull; 
     
     function __construct($start=1){
         $this->tplCfg = cfg('tpl');
         $start && $this->run();
     }
     
+    // 解析后的模板内容
+    static function tpl($file,$ext='',$data=array()){
+        global $_cbase; 
+        $fpath = self::inc($file,$ext); 
+        extract($data, EXTR_OVERWRITE); 
+        ob_start(); 
+        include($fpath);
+        $res = ob_get_contents();
+        ob_end_clean(); 
+        return $res;
+    }
     // 包含html区块（通过模板解析）
-    // vopShow::inc('/tools/rhome/home.htm',DIR_ROOT,1);
-    // include(vopShow::inc('/tools/rhome/home.htm',DIR_ROOT));
-    static function inc($file,$part='',$inc=0){
-        global $_cbase;
-        $cac = '/_vinc/'.substr($file,strpos($file,'/')+1);
-        if(!file_exists(DIR_CTPL.$cac) || !$_cbase['tpl']['tpc_on']){
-            $template = comFiles::get($part.$file);
+    // vopShow::inc('_pub:rhome/home',0,1);
+    // include(vopShow::inc('_pub:rhome/home'));
+    static function inc($file,$ext='',$inc=0){
+        global $_cbase; 
+        $ext || $ext = $_cbase['tpl']['tpl_ext']; 
+        $cac = '/_vinc/'.substr($file,strpos($file,':')+1);
+        $tplfull = DIR_CTPL.$cac.$_cbase['tpl']['tpc_ext'];
+        if(!file_exists($tplfull) || !$_cbase['tpl']['tpc_on']){
+            $template = vopTpls::pinc($file,$ext); 
+            $template = comFiles::get($template); 
             $btpl = new vopComp();
             $template = $btpl->bcore($template);
-            comFiles::chkDirs($cac,'tpc'); 
-            comFiles::put(DIR_CTPL.$cac, $template); //写入缓存
+            comFiles::chkDirs($cac,'ctpl',1); 
+            comFiles::put($tplfull, $template); //写入缓存
         }
+        $_cbase['run']['tplname'] = $file;
         if($inc){
-            include(DIR_CTPL.$cac);
+            include($tplfull);
         }else{
-            return DIR_CTPL.$cac;
+            return $tplfull;
         }
     }
     //init-js
@@ -57,8 +72,7 @@ class vopShow{
         $tagparas = $temp;
         $unv = in_array($tagtype,array('One')) ? $tagre : $varid;
         $$unv = $this->tagParse($tagname,$tagtype,$temp);
-        //显示模板 
-        //$user = user(); 
+        //显示模板  
         $_groups = read('groups'); 
         require(vopTpls::path('tpc').$tagpath);
     }
@@ -84,7 +98,7 @@ class vopShow{
         //模板:判断+编译+显示
         $this->getTpl($vars); 
         $_groups = read('groups'); //显示
-        include(vopTpls::path('tpc')."/$this->tplname".$this->tplCfg['tpc_ext']);//加载编译后的模板缓存
+        include($this->tplfull);//加载编译后的模板缓存
     }
     
     //getTpl
@@ -110,9 +124,14 @@ class vopShow{
                 $tplname = $cfgs['tplname'.$this->view];
             } 
         } 
+        if(!empty($this->ucfg['vcfg']['tmfix']) && basEnv::isMobile()){
+            $tmfix = $this->ucfg['vcfg']['tmfix']; 
+            $_cbase['run']['tmfix'] = $tmfix; // -mob标记用于css,js后缀
+            $tplname .= $tmfix; 
+        } 
         // 编译
-        // $tplname = 'c_page/_home'; // for Test
-        if(!empty($_cbase['tpl']['tpc_on']) || !file_exists(vopTpls::path('tpc')."/$tplname")){
+        $this->tplfull = vopTpls::path('tpc')."/$tplname".$this->tplCfg['tpc_ext'];
+        if(empty($_cbase['tpl']['tpc_on']) || !file_exists($this->tplfull)){
             vopComp::main($tplname);
         }
         // save
@@ -221,7 +240,7 @@ class vopShow{
                 } //公司新闻,客户新闻,行业新闻
             }
         }elseif($this->type=='mtype'){ 
-            if(empty($title) && !empty($mcfg['i'])){ 
+            if(empty($title) && !empty($mcfg['i']['title'])){ 
                 $title = $mcfg['i'][$this->key]['title']; 
                 if(!empty($mcfg['i'][$this->key]['pid'])){
                     $title .= '-'.$mcfg['i'][$mcfg['i'][$this->key]['pid']]['title'];
@@ -233,14 +252,11 @@ class vopShow{
             if(!strstr($title,$_cbase['sys_name'])) $title .= " - ".$_cbase['sys_name'];
         }
         $ua = $this->ucfg['ua']; $up = empty($ua['page']) ? 1 : $ua['page']; //??? 
-        echo "<meta charset='{$_cbase['sys']['cset']}'>\n";
+        $ext = count($ua)>5 || $up>5;
+        glbHtml::page('init',$ext);
         if($title) echo "<title>".basStr::filTitle($title)."</title>\n";
-        if(count($ua)>5 | $up>5){
-            echo "<meta name='robots' content='noindex, nofollow'>\n";
-        }else{
-            if($keywd) echo "<meta name='keywords' content='".basStr::filTitle($keywd)."' />\n";
-            if($desc) echo "<meta name='description' content='".basStr::filTitle($desc)."' />\n";
-        }
+        if($keywd) echo "<meta name='keywords' content='".basStr::filTitle($keywd)."' />\n";
+        if($desc) echo "<meta name='description' content='".basStr::filTitle($desc)."' />\n";
     }
     
     // page-import

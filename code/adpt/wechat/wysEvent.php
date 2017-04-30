@@ -113,7 +113,7 @@ class wysEvent extends wmpMsgresp{
     
     //获取场景二维码数据
     function getQrinfo($sid){
-        $timeNmin = time()-($this->qrexpired*60*2); //10分钟 //saveState
+        $timeNmin = $_SERVER["REQUEST_TIME"]-($this->qrexpired*60*2); //10分钟 //saveState
         $row = $this->_db->table('wex_qrcode')->where("sid='$sid' AND atime>'$timeNmin'")->find();
         $this->sflag = basKeyid::kidRand(24,8);
         $this->_db->table('wex_qrcode')->data(array('sflag'=>$this->sflag,'openid'=>$this->fromName,))->where("sid='$sid'")->update();

@@ -90,7 +90,7 @@ function i18nb_mui(from,obj,api,btn,cb,url){
 
 function i18nb_open(url){
     if(url.length<12) return;
-    window.open(url); //jsLog(url);
+    window.open(url); 
 }
 
 //http://translate.google.com.hk/translate?hl=zh-CN&ie=UTF8&prev=_t&sl=auto&tl=zh-CN&u=http://www.pswpower.com/peng/pic.asp%3FModID%3DPicS224%26TypID%3DS210052

@@ -1,6 +1,7 @@
 <?php
 require(dirname(dirname(__FILE__)).'/adbug/_config.php');
 
+$qstr = $_SERVER['QUERY_STRING'];
 $proot = devRun::prootGet(); 
 $fmsg = array();
 if($qstr=='FixProot' && $proot!=PATH_PROJ){
@@ -11,7 +12,7 @@ if($qstr=='FixProot' && $proot!=PATH_PROJ){
   $qstr = 'start';
 }
 if(!in_array($qstr,array('FixPrError','FixPrOkey')) && $proot!=PATH_PROJ){ 
-  header("Location:../adbug/start.php?FixProot"); 
+  header("Location:start.php?FixProot"); 
 }
 
 $umsg = devRun::startCheck(); 
@@ -21,61 +22,51 @@ if(!empty($fmsg)){
 }
 
 $vcfg = vopTpls::etr1('tpl');
+unset($vcfg['_pub']);
 
+glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
+glbHtml::impub('imsg');
 ?>
-<!DOCTYPE html><html><head>
-<meta charset="utf-8">
-<title><?php echo $_cbase['sys_name'].' - '.lang('tools.start_title'); ?></title>
-<meta name='robots' content='noindex, nofollow'>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/adm/b_jscss/comm.css'/>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_ROOT; ?>/tools/adbug/style.css'/>
 <base target="_blank"/>
-</head><body>
-<!--[if lt IE 9]>
-<h4 class='LowIE'>IE浏览器过低！建议你更换浏览器，如Chrome,Firefox,IE9+！</h4>
-<![endif]-->
-<dd class="langbar">
-  <?php echo basLang::links("<a href='{url}' class='c666' target='_self'>{title}</a>"); ?>
-</dd>
-<div style="max-width:720px;margin:10px auto;">
-  <table width="100%" border="1" class="tblist">
-  <?php if(!empty($umsg)){ foreach($umsg as $k=>$v){ ?>
-  <tr class="tc">
-    <td class="tip"><?php echo $v['msg']; ?></td>
-    <td class="tip"><h4><?php echo $v['tip']; ?></h4></td>
-  </tr>
-  <?php } } ?>
-  <tr class="tc">
-    <td>
-    <h4><?php echo $_cbase['sys_name'].' - '.lang('tools.start_title'); ?> </h4>
-    </td>
-    <td width="25%" class="tc"><p class="txcode_logopub txcode_logostart"></p></td>
-  </tr> 
-  </table>
-</div>
+</head><body class="divOuter">
+
+<?php 
+if(!empty($umsg)){ 
+  echo "<table style='max-width:460px;margin:10px auto; '>\n";
+  foreach($umsg as $k=>$v){ 
+?>
+  <tr><td class="tip"><?php echo $v['msg']; ?></td>
+  <td class="tip"><?php echo $v['tip']; ?></td></tr>
+<?php 
+  }
+  echo "</table>\n";
+  die();
+}
+echo glbHtml::ieLow_html();
+basLang::shead($_cbase['sys_name'].' - '.lang('tools.start_title'));
+?>
 
 <?php
 if(!empty($fmsg)){ die('</body></html>'); }
 $mapurl = PATH_ROOT.'/plus/map/index.php?api=';
+$tolurl = PATH_PROJ.'/dev.php';
 ?>
-<div>
-  <p><?php lang('tools.bug_tools',0); ?></p>
+
+  <p class="title"><?php lang('tools.bug_tools',0); ?></p>
   <table width="100%" border="1" class="tblist">
   <tr class="tc">
     <td><a href="binfo.php?phpinfo1" target="_self">phpinfo</a></td>
     <td colspan="2" class="tip">
    <a href="../setup/">Setup - <?php lang('tools.start_setup',0) ?></a>
     </td>
-    <td><a href="search.php">search</a></td>
+    <td><a href="search.php">Search</a></td>
   </tr>
   <?php tadbugNave(1); ?>
   <tr class="tc">
-    <td><a href="cstudy.php">study</a>-<a href='cyahei.php'>yahei</a></td>
-    <td><a href="<?php echo PATH_ROOT; ?>/plus/api/color.php">Color Pick</a></td>
-    <td><a href="<?php echo $mapurl; ?>baidu">baidu<?php lang('tools.start_map',0) ?></a>-<a href="<?php echo $mapurl; ?>baidu&act=pick&point=113.756963,23.02224,17">pick</a></td>
-    <td><a href="<?php echo $mapurl; ?>google">google<?php lang('tools.start_map',0) ?></a>-<a href="<?php echo $mapurl; ?>google&act=pick&point=113.750633,23.016454,16">pick</a></a></td>
+    <td><a href="cstudy.php"><?php lang('tools.start_dtstudy',0) ?></a></td>
+    <td><a href='cyahei.php'><?php lang('tools.start_dtyahei',0) ?></a></td>
+    <td><a href="../exdiy/nomuma.php"><?php lang('tools.start_tmuma',0) ?></a></td>
+    <td><a href="<?php echo PATH_ROOT; ?>/plus/api/color.php">Color</a></td>
   </tr> 
   <tr class="tc">
     <td><a href="binfo.php?login"><?php lang('tools.start_login',0) ?></a></td>
@@ -83,8 +74,13 @@ $mapurl = PATH_ROOT.'/plus/map/index.php?api=';
     <td><a href="../exdiy/index.php">tools</a>-<a href="../exdiy/derun.php">derun</a></td>
     <td><a href="dbadm.php"><?php lang('tools.start_dbadmin',0) ?></a></td>
   </tr> 
+  <tr class="tc">
+    <td colspan='2'><a href="<?php echo $mapurl; ?>baidu">baidu<?php lang('tools.start_map',0) ?></a> -
+    <a href="<?php echo $mapurl; ?>baidu&act=pick&point=113.756963,23.02224,17">pick</a></td>
+    <td colspan='2'><a href="<?php echo $mapurl; ?>google">google<?php lang('tools.start_map',0) ?></a> -
+    <a href="<?php echo $mapurl; ?>google&act=pick&point=113.750633,23.016454,16">pick</a></a></td>
+  </tr>
   </table>
-</div>
 
 <?php
 $col = 4; $ti = 0; 
@@ -99,32 +95,48 @@ for($i=1;$i<$tm;$i++){
 }
 $vcfg['---'] = array('HOME','');
 ?>
-<div>
-  <p>CMS<?php lang('tools.start_cmsentry',0) ?></p>
+
+  <p class="title">CMS<?php lang('tools.start_cmsentry',0) ?></p>
   <table width="100%" border="1" class="tblist">
   <tr class="tc">
-   <?php foreach($vcfg as $k=>$v){ $ti++; $url=($k=='---')?'../../':PATH_PROJ.@$v[1]; ?>
-    <td width="25%"><a href="<?php echo $url; ?>"><?php echo !empty($v[0]) ? "($k)".basLang::pick(0,$v[0]) : ''; ?></a></td>
+   <?php foreach($vcfg as $k=>$v){ $ti++; if($k=='umc'){$v[1].='?user-login';} $url=($k=='---')?'../../../?':PATH_PROJ.@$v[1]; ?>
+    <td width="25%"><a href="<?php echo $url; ?>"><?php echo !empty($v[0]) ? basLang::pick(0,$v[0]) : ''; ?></a></td>
     <?php if(($ti)%$col==0 && $ti<count($vcfg)){ echo "</tr><tr class='tc'>\n"; }  } ?>
   </tr>
+  <tr class="tc" style="border-top:3px solid #A6CAF0;">
+    <td><a href="<?php echo $tolurl; ?>?tools-seal">PHP印章</a></td>
+    <td><a href="<?php echo $tolurl; ?>?tools-qrcode">二维码</a></td>
+    <td><a href="<?php echo $tolurl; ?>?tools-vimg">电话图片</a></td>
+    <td><a href="<?php echo $tolurl; ?>?tools-chrcom">字符集</a></td>
+  </tr> 
   <tr class="tc">
-    <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">yscode@txjia.com</a></td>
-    <td><a href="http://txmao.txjia.com/">txmao@txjia.com</a></td>
-    <td><a href="http://txjia.com/peace/txbox.htm">txbox@txjia.com</a></td>
-    <td><a href="http://txjia.com/peace/txasp.htm">txasp@txjia.com</a></td>
-  </tr> 
-  <tr>
-    <td colspan="4" class="tl"><?php 
-   $rtime = 1000*(microtime(1)-$_cbase['run']['timer']); 
-   $rinfo = basDebug::runInfo();
-   echo "<pre>"; echo "$rtime : $rinfo\n"; print_r($_cbase); echo "</pre>"; 
-   ?></td>
-  </tr> 
-  <tr>
-    <td colspan="4" class="tip tc">Hi, I am <?php echo "<a href='{$_cbase['server']['txmao']}'>{$_cbase['sys_name']}</a>! I run @ <strong>{$_SERVER['HTTP_HOST']}</strong>";?></td>
+    <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">贴心口袋</a></td>
+    <td><a href="http://txmao.txjia.com/">贴心猫</a></td>
+    <td><a href="http://txjia.com/peace/txbox.htm">Java盒子</a></td>
+    <td><a href="http://txjia.com/peace/txasp.htm">贴心Asp</a></td>
   </tr> 
   </table>
-</div>
+
+  <table width="100%" border="1" class="tblist">
+  <tr class="tc">
+    <td class="tip tc">Hi, I am <?php echo "<a href='{$_cbase['server']['txmao']}'>{$_cbase['sys_name']}</a> @ <strong>{$_SERVER['HTTP_HOST']}</strong>";?></td>
+  </tr> 
+  <tr>
+    <td class="tc"><?php 
+   $rtime = 1000*(microtime(1)-$_cbase['run']['timer']); 
+   $rinfo = basDebug::runInfo();
+   echo "<textarea style='width:96%; height:360px; overflow:visible;'>"; 
+   echo "$rtime\n$rinfo\n"; print_r($_cbase); 
+   echo "</textarea>"; 
+   ?></td>
+  </tr> 
+  </table>
+
+<?php
+$fres = var_export($proot!=PATH_PROJ,1);
+$flag = $proot!=PATH_PROJ ? "?FixProot" : 'isOK';
+echo "<!--\n($proot)\n(".PATH_PROJ.")\n($fres:$flag)\n-->";
+?>
 
 </body></html>
 

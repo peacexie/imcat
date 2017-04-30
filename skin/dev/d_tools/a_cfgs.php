@@ -3,6 +3,12 @@
 
 $cfgs = array(
 
+    'bezier' => array(
+        'title' => '贝塞尔曲线 (Bezier Curve) ',
+        'rem' => '贝塞尔曲线是计算机图形学中相当重要的参数曲线，在一些比较成熟的位图软件中也有贝塞尔曲线工具，如PhotoShop等。',
+        'mt' => '贝塞尔曲线',
+    ),
+
     'schulte' => array(
         'title' => '舒尔特方格 (Schulte Grid) ',
         'rem' => '在一张方形卡片上画上25 个方格，格子内任意填写上阿拉伯数字 1 ~ 25 等共 25 个数字；测试幼儿注意力水平。',
@@ -43,7 +49,7 @@ $cfgs = array(
         'title' => '沙盘-图片中显示自定义沙盘点',
         'rem' => '沙盘，在图片(地图)中显示热点(自定义沙盘)坐标点',
         'mt' => '地图中的沙盘',
-    ), // shapan (temp_480x200.jpg) (\vimp\static\media\cover)
+    ),
     
     'spword' => array(
         'title' => '中文分词-关键词提取',

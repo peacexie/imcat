@@ -73,6 +73,8 @@ return array(
 
   //ajax/cajax.php
   'cajax_userid' => '该登陆名',
+  'cajax_mailid' => '邮件账号',
+  'cajax_telnum' => '手机号码',
   'cajax_field' => '字段',
   'cajax_sysuesed' => '已占用或被系统保留',
   'cajax_syskeep' => '已被系统保留',

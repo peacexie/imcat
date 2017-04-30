@@ -10,8 +10,8 @@
  - Edit the path(_paths.php) in this file: `require(dirname(dirname(__FILE__)).'/run/_init.php');`
 
 * Edit config: 
- - File: /code/cfgs/excfg/ex_vopfmt.php
- - Edit item: $_ex_vopfmt['tpl'], 
+ - File: /code/cfgs/sycfg/sy_vopcfg.php
+ - Edit item: $_sy_vopcfg['tpl'], 
  - like as: `'adm' => '/usecret/cat.php',`// the path and the filename modify according to your set
 
 * Visit the url, Enjoy! : 

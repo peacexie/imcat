@@ -155,6 +155,9 @@ return array(
     'start_login' => 'LoginTools',
     'start_dbadmin' => 'dbAdmin',
     'start_cmsentry' => ' Entry',
+    'start_dtyahei' => 'yh.Probe',
+    'start_dtstudy' => 'st.Probe',
+    'start_tmuma' => 'Trojan',
 
     'adcfg_start' => 'Start',
     'adcfg_setup' => 'Setup',
@@ -167,6 +170,7 @@ return array(
     'binf_userenv' => 'User Info.',
     'binf_showerror' => 'Here will find [Warning/Notice]Messages and [-End-]Flag,',
     'binf_sererror' => 'If it cant show theses, Please set the environmental for debug.',
+    'binf_sadmerror' => 'In PRODUCTION, Can set in Admin Center Close the message [架设-超管工具-核心参数-基本开关-调试模式].', 
     'binf_usenotes' => 'Tips: Please change the password before use, please delete the file or move to the out of the web directory!',
     'binf_nosupport' => 'NOT Support',
     'binf_frames' => 'Frames',

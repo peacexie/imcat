@@ -46,8 +46,8 @@ function req($key,$def='',$type='Title',$len=255){
     return basReq::val($key,$def,$type,$len);
 }
 // 输入 : addslashes 反斜杠
-function in($data){
-    return basReq::in($data);
+function in($data,$type=''){
+    return basReq::in($data,$type);
 }
 // 输出 : 格式: str,json,jsonp,xml
 function out($data,$type='json'){

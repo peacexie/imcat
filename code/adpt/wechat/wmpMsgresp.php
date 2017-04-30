@@ -23,7 +23,7 @@ class wmpMsgresp extends wmpBasic{
         $to = @$this->post->ToUserName; //Trying to get property of non-object in
         $data = "<ToUserName><![CDATA[$from]]></ToUserName>";
         $data .= "<FromUserName><![CDATA[$to]]></FromUserName>";
-        $data .= "<CreateTime>".time()."</CreateTime>";
+        $data .= "<CreateTime>".$_SERVER["REQUEST_TIME"]."</CreateTime>";
         $data .= "<MsgType><![CDATA[$type]]></MsgType>";
         return $data;
     }
@@ -124,7 +124,7 @@ class wmpMsgresp extends wmpBasic{
             'latitude' => $type=='auto' ? $this->post->Latitude : $this->post->Location_X,
             'longitude' => $type=='auto' ? $this->post->Longitude : $this->post->Location_Y,
             'extra' => $type=='auto' ? $this->post->Precision : $this->post->Scale, //Label
-            'atime' => time(),
+            'atime' => $_SERVER["REQUEST_TIME"],
         ); 
         if($row){
             $this->_db->table('wex_locate')->data($data)->where("openid='{$this->post->FromUserName}' AND appid='{$this->cfg['appid']}'")->update();  

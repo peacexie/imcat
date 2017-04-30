@@ -13,6 +13,11 @@ class dopUser extends dopBase{
     //function __destory(){  }
     function __construct($cfg){ 
         $mod = $cfg['kid'];
+        $grcfgs = basLang::ucfg('cfglibs.pubGrades');
+        /*foreach ($grcfgs as $key => $val) {
+            $cfg['i'][$key] = array('title'=>$val);
+        }*/
+        $cfg['i']['unActivated'] = array('title'=>$grcfgs['unActivated']);
         parent::__construct($cfg,$cfg['pid']."_$mod");
         $this->typfid = $this->so->typfid = 'grade';
         $this->dskey  = $this->so->dskey  = 'mname'; 

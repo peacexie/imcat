@@ -3,25 +3,25 @@
 .cst-out { width: 960px; margin: 10px auto; border:1px solid #CCC; background-color: #F3F3F3; border-collapse:inherit; 
   border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
 .cst-out td { font-size:14px; vertical-align:top; padding:0px; margin:0px; }
-td.cst-title1, td.cst-title2 { text-align:left; width:200px; line-height:30px; font-size:16px; padding:3px 8px 3px 3px; 
+.cst-title1, .cst-title2 { text-align:left; width:200px; line-height:30px; font-size:16px; padding:3px 8px 3px 3px; 
   background: #D8D8D8; }
-td.cst-title1 i, td.cst-title2 i { font-size:12px; }
-td.cst-title2, { border-top:1px solid #666; }
-td.cst-navtop { text-align:left; width:760px; padding:0px; margin:0px; border-left:1px solid #E0E0E0;
+.cst-title1 i, .cst-title2 i { font-size:12px; }
+.cst-title2, { border-top:1px solid #666; }
+.cst-navtop { text-align:left; width:760px; padding:0px; margin:0px; border-left:1px solid #E0E0E0;
  background: #eaeaea; background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E5E5E5), color-stop(0.1, #F3F3F3), color-stop(0.5, #ECECEC), color-stop(0.9, #E8E8E8), color-stop(1.0, #E5E5E5)); background-image: -moz-linear-gradient(top, #F3F3F3 10%, #ECECEC 50%, #E8E8E8 90%, #E5E5E5 100%); }
 td.cst-navtop a { display: inline-block; height: 35px; line-height: 35px; padding: 0px 18px; margin:0px; border-right:1px solid #CCC; }
-td.cst-navtop a.act, td.cst-navtop a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
+td.cst-navtop a.act, .cst-navtop a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
 td.cst-main { background: #FFF; padding:15px; border-left:1px solid #E0E0E0; }
 td.cst-main dt{ margin:2px 0px 3px 0px; }
 td.cst-main dd { padding:0px 0px 10px 0px; margin:0px 0px 10px 0px; border-bottom:1px solid #DDD; }
 td.cst-footer { font-size:x-small; text-align:center; background: #EBEBEB; padding:8px 20px; border-top:1px solid #DDD; }
-td.cst-types { background: #F4F4F4; padding:0 0 10px 0; }
-td.cst-types a { display:block; padding:8px 10px; border-bottom:1px solid #CCC; }
-td.cst-types a.act, td.cst-types a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
-td.cst-types a i { display:inline-block; font-size:small; color:#999; padding:0px 0px 0px 3px; }
-td.cst-tags { background: #F4F4F4; padding:10px 0 0 0px; }
-td.cst-tags a { display:inline-block; background: #EBEBEB; padding:5px; margin:0px 2px 10px 7px; border:1px solid #DDD; }
-td.cst-tags a.act, td.cst-tags a:hover { color: #F00; background:#FFF; }
+.cst-types { background: #F4F4F4; padding:0 0 10px 0; }
+.cst-types a { display:block; padding:8px 10px; border-bottom:1px solid #CCC; }
+.cst-types a.act, .cst-types a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
+.cst-types a i { display:inline-block; font-size:small; color:#999; padding:0px 0px 0px 3px; }
+.cst-tags { background: #F4F4F4; padding:10px 0 0 0px; }
+.cst-tags a { display:inline-block; background: #EBEBEB; padding:5px; margin:0px 2px 10px 7px; border:1px solid #DDD; }
+.cst-tags a.act, .cst-tags a:hover { color: #F00; background:#FFF; }
 div.cst-tag1 { background: #F4F4F4; padding:0; margin:5px 0; }
 div.cst-tag1 a { display:inline-block; background: #EBEBEB; padding:2px 5px; margin:0px 10px 0 0; border:1px solid #DDD; }
 div.cst-tag1 a.act, div.cst-tag1 a:hover { color: #F00; background:#FFF; }

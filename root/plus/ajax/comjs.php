@@ -6,6 +6,8 @@ $act = req('act','sysInit');
 $lang = req('lang'); 
 $exjs = req('exjs'); 
 $excss = req('excss'); 
+$tpldir = req('tpldir');
+$mkv = req('mkv');
 glbHtml::head($excss ? 'css' : 'js');
 
 // 初始化js
@@ -13,78 +15,89 @@ if(strstr($act,'sysInit')){
     $lang = $lang ? $lang : $_cbase['sys']['lang'];
     // ***** js配置区 *****
     $jscfg  = "\n// js Config";
-    $jscfg .= "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
-    $jscfg .= "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
-    $jscfg .= "\n";
-    $jscfg .= "\n_cbase.run.timer = '".$_cbase['run']['timer']."';";
-    $jscfg .= "\n_cbase.run.stamp = '".$_cbase['run']['stamp']."';";
-    $jscfg .= "\n_cbase.run.userag = '".$_cbase['run']['userag']."';";
-    $jscfg .= "\n_cbase.run.jsimp = ',';";
+    echo "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
+    echo "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
+    echo "\nif(typeof(_pbase)=='undefined'){_pbase={}} ";
+    echo "\n";
+    echo "\n_cbase.run.timer = '".$_cbase['run']['timer']."';";
+    echo "\n_cbase.run.stamp = '".$_cbase['run']['stamp']."';";
+    echo "\n_cbase.run.userag = '".$_cbase['run']['userag']."';";
+    echo "\n_cbase.run.jsimp = ',';";
     //sys
-    $jscfg .= "\n_cbase.sys.cset = '".$_cbase['sys']['cset']."';";
-    $jscfg .= "\n_cbase.sys.tzone = '".$_cbase['sys']['tmzone']."';"; // 时区+-12
-    $jscfg .= "\n_cbase.sys.lang = '$lang';";
-    $jscfg .= "\n_cbase.run.ref = '".@$_SERVER['HTTP_REFERER']."';"; // 
-    $jscfg .= "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
-    $jscfg .= "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
-    $jscfg .= "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
-    $jscfg .= "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_SKIN."';";
-    $jscfg .= "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
+    echo "\n_cbase.sys.cset = '".$_cbase['sys']['cset']."';";
+    echo "\n_cbase.sys.tzone = '".$_cbase['sys']['tmzone']."';"; // 时区+-12
+    echo "\n_cbase.sys.lang = '$lang';";
+    echo "\n_cbase.run.ref = '".@$_SERVER['HTTP_REFERER']."';"; // 
+    echo "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
+    echo "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
+    echo "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
+    echo "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_SKIN."';";
+    echo "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
     //tpl
-    if($tpldir=req('tpldir')){
-        $tpldir = vopTpls::set($tpldir);
+    if($tpldir){
+        vopTpls::set($tpldir);
         if(!empty($_cbase["close_$tpldir"])){ //close-for-static-files
+            basEnv::obClean();
             die("location.href='".PATH_PROJ."?close&tpldir=$tpldir';");
         }
-        $jscfg .= "\n_cbase.run.mkv = '".req('mkv')."';";
-        $jscfg .= "\n_cbase.run.csname = '".vopUrl::burl()."';";
-        $jscfg .= "\n_cbase.run.tpldir = '$tpldir';";
+        echo "\n_cbase.run.mkv = '$mkv';";
+        echo "\n_cbase.run.csname = '".vopUrl::burl()."';";
+        echo "\n_cbase.run.tpldir = '$tpldir';";
     }
+    // auto-dir:mob-page var _pbase={}; _pbase.rdmob=1; .jscode='xxx';
+    echo "\n_cbase.run.isRobot = ".(basEnv::isRobot()?1:0).";";
+    echo "\n_cbase.run.isMoble = ".(basEnv::isMobile()?1:0).";";
+    echo "\n_cbase.run.isWeixin = ".(basEnv::isWeixin()?1:0).";";
+    if($mkv && $tpldir!='mob'){
+        echo "\n_cbase.run.mobDir = '".surl("mob:$mkv")."';";
+        echo "\nif(typeof(_pbase.rdmob)!='undefined' && _cbase.run.isMoble){location.href=_cbase.run.mobDir;}";
+    }
+    echo "\nif(typeof(_pbase.jscode)!='undefined'){eval(_pbase.jscode);}";
     // Path  
-    $jscfg .= "\n_cbase.path.cache   = '".PATH_DTMP."';"; 
-    $jscfg .= "\n_cbase.path.vendor  = '".PATH_VENDOR."';"; 
-    $jscfg .= "\n_cbase.path.vendui  = '".PATH_VENDUI."';"; 
-    $jscfg .= "\n_cbase.path.static  = '".PATH_STATIC."';"; 
-    $jscfg .= "\n_cbase.path.skin    = '".PATH_SKIN."';"; 
-    $jscfg .= "\n_cbase.path.editor  = _cbase.path.vendui + '/edt_".@$_cbase['sys_editor']."/';"; 
+    echo "\n_cbase.path.cache   = '".PATH_DTMP."';"; 
+    echo "\n_cbase.path.vendor  = '".PATH_VENDOR."';"; 
+    echo "\n_cbase.path.vendui  = '".PATH_VENDUI."';"; 
+    echo "\n_cbase.path.static  = '".PATH_STATIC."';"; 
+    echo "\n_cbase.path.skin    = '".PATH_SKIN."';"; 
+    echo "\n_cbase.path.editor  = _cbase.path.vendui + '/edt_".@$_cbase['sys_editor']."/';"; 
     // Cookie
-    $jscfg .= "\n_cbase.ck.ckpre = '".$_cbase['ck']['pre']."';";
-    $jscfg .= "\n_cbase.ck.ckdomain = '".$_cbase['ck']['domain']."';";
-    $jscfg .= "\n_cbase.ck.ckpath = '".$_cbase['ck']['path']."';";
+    echo "\n_cbase.ck.ckpre = '".$_cbase['ck']['pre']."';";
+    echo "\n_cbase.ck.ckdomain = '".$_cbase['ck']['domain']."';";
+    echo "\n_cbase.ck.ckpath = '".$_cbase['ck']['path']."';";
     
     // Safil
-    $jscfg .= "\n";
-    $jscfg .= "\n_cbase.safe.safil = '".$_cbase['safe']['safil']."';";
-    $jscfg .= "\n_cbase.safe.safix = '".$_cbase['safe']['safix']."';";
-    #$jscfg .= "\n_cbase.safe.rnum = '".$_cbase['safe']['rnum']."';";
-    #$jscfg .= "\n_cbase.safe.rspe = '".$_cbase['safe']['rspe']."';";
-    $jscfg .= "\n_cbase.safil.url = '".safComm::urlStamp('init')."';";
+    echo "\n";
+    echo "\n_cbase.safe.safil = '".$_cbase['safe']['safil']."';";
+    echo "\n_cbase.safe.safix = '".$_cbase['safe']['safix']."';";
+    #echo "\n_cbase.safe.rnum = '".$_cbase['safe']['rnum']."';";
+    #echo "\n_cbase.safe.rspe = '".$_cbase['safe']['rspe']."';";
+    echo "\n_cbase.safil.url = '".safComm::urlStamp('init')."';";
     
     // Para
-    $jscfg .= "\n"; //_cbase.para={};\n
-    $jscfg .= "\n_cbase.sys_editor = '".@$_cbase['sys_editor']."';";
-    $jscfg .= "\n_cbase.sys_open = ".(empty($_cbase['sys_open']) ? 1 : $_cbase['sys_open']).";";
-    $jscfg .= "\n_cbase.sys_pop = ".(empty($_cbase['sys_pop']) ? 1 : $_cbase['sys_pop']).";";
-    $jscfg .= "\n_cbase.msg_timea = ".(empty($_cbase['sys_timea']) ? 1500 : $_cbase['sys_timea']).";";
-    $jscfg .= "\n_cbase.sys_map = '".@$_cbase['sys_map']."';";
-    $jscfg .= "\n";
+    echo "\n"; //_cbase.para={};\n
+    echo "\n_cbase.sys_editor = '".@$_cbase['sys_editor']."';";
+    echo "\n_cbase.sys_open = ".(empty($_cbase['sys_open']) ? 1 : $_cbase['sys_open']).";";
+    echo "\n_cbase.sys_pop = ".(empty($_cbase['sys_pop']) ? 1 : $_cbase['sys_pop']).";";
+    echo "\n_cbase.msg_timea = ".(empty($_cbase['sys_timea']) ? 1500 : $_cbase['sys_timea']).";";
+    echo "\n_cbase.sys_map = '".@$_cbase['sys_map']."';";
+    echo "\n";
     
     if(!empty($_GET['user'])){
-        $jscfg .= "\n// js Member/Admin"; 
-        $jscfg .= "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
+        echo "\n// js Member/Admin"; 
+        echo "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
         $user = user('Member');
         if(!empty($user)){
-            $jscfg .= "\n_minfo.userType = '".$user->userType."';";
-            $jscfg .= "\n_minfo.userFlag = '".$user->userFlag."';";
-            $jscfg .= "\n_minfo.uname = '".$user->usess['uname']."';";
-            $jscfg .= "\n_mperm.title = '".@$user->uperm['title']."';";
+            echo "\n_minfo.userType = '".$user->userType."';";
+            echo "\n_minfo.userFlag = '".$user->userFlag."';";
+            echo "\n_minfo.uname = '".$user->usess['uname']."';";
+            echo "\n_mperm.title = '".@$user->uperm['title']."';";
         }
         $user = user('Admin');
         if(!empty($user)){
-            $jscfg .= "\n_miadm.userType = '".$user->userType."';";
-            $jscfg .= "\n_miadm.userFlag = '".$user->userFlag."';";
-            $jscfg .= "\n_miadm.uname = '".$user->usess['uname']."';";
-            $jscfg .= "\n_mpadm.title = '".@$user->uperm['title']."';";
+            echo "\n_miadm.userType = '".$user->userType."';";
+            echo "\n_miadm.userFlag = '".$user->userFlag."';";
+            echo "\n_miadm.uname = '".$user->usess['uname']."';";
+            echo "\n_mpadm.title = '".@$user->uperm['title']."';";
         }
     } 
     echo "$jscfg\n";
@@ -108,7 +121,7 @@ if(strstr($act,'autoJQ')){
         require(DIR_VENDUI.'/jquery/zepto-1.2.imp_js');
     }elseif(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
         require(DIR_VENDUI.'/jquery/jquery-1.x.imp_js'); 
-        require(DIR_VENDUI.'/jquery/html5.imp_js'); 
+        require(DIR_VENDUI.'/jquery/html5.imp_js'); // html5shiv + respond
     }else{
         require(DIR_VENDUI.'/jquery/jquery-2.x.imp_js');
     }

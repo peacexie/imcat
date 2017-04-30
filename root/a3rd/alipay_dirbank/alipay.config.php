@@ -24,13 +24,13 @@ define('LIBS_PAYRUN', DIR_VENDOR.'/a3rd/alipay_class');
  
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //合作身份者id，以2088开头的16位纯数字
-$alipay_config['partner']        = $pay_uinfo['ali']['partner'];
+$alipay_config['partner']        = $_ex_a3rd['ali']['partner'];
 
 //收款支付宝账号
-$alipay_config['seller_email']    = $pay_uinfo['ali']['email'];
+$alipay_config['seller_email']    = $_ex_a3rd['ali']['email'];
 
 //安全检验码，以数字和字母组成的32位字符
-$alipay_config['key']            = $pay_uinfo['ali']['key'];
+$alipay_config['key']            = $_ex_a3rd['ali']['key'];
 
 
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑

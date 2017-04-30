@@ -47,10 +47,6 @@
 
 * ex_vjump.php : for sub-site jump
 
-* ex_vopfmt.php : Tpl-Show
-
-* ex_wmark.php : for water-mark
-
 
 #prsycfg#sycfg-Param
 
@@ -83,6 +79,15 @@
 * sy_updvnow.php : for update-now config
 
 * sy_urdir.php : attach file list dirs
+
+* sy_user.php : configs about user
+ - Register authentication mode
+ - Login type 
+ - Member Email/Sms Template 
+
+* sy_vopcfg.php : Tpl-Show
+
+* sy_wmark.php : for water-mark
 
 
 #prelse#else-Param

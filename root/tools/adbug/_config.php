@@ -26,7 +26,7 @@ if(strstr($_selfname,'start.php')){
     //else {  $_isOut = 1;    @include(dirname(__FILE__).'/devRun.php');    }
 }    
 
-function    tadbugNave($path=''){
+function tadbugNave($path=''){
     if(empty($path)){
     echo "<tr class='tc'>
         <td class='tip'><a href='start.php'>&lt;&lt;".lang('tools.adcfg_start')."</a></td>
@@ -36,7 +36,7 @@ function    tadbugNave($path=''){
     echo "</tr><tr class='tc'>
         <td width='25%'><a href='binfo.php'>".lang('tools.adcfg_binfo')."</a></td>
         <td width='25%'><a href='check.php'>".lang('tools.adcfg_chkenv')."</a></td>
-        <td width='25%'><a href='cscan.php'>Check/Scan</a></td>
+        <td width='25%'><a href='cscan.php'>Scan</a></td>
         <td width='25%'><a href='reset.php'>".lang('tools.adcfg_reset')."</a></td>
         </tr>";
 }

@@ -15,7 +15,12 @@ class basJscss{
             if(file_exists($ipath)) include($ipath); 
             if($lang){
                 $flang = str_replace(".js","-{$lang}.js",$ipath); 
-                if(file_exists($flang)) include($flang); 
+                if(strpos($flang,"-mob-{$lang}.js")){
+                    if(!file_exists($flang)){ // 无-mob的js，则与pc公用js
+                        $flang = str_replace("-mob-{$lang}.js","-{$lang}.js",$flang);
+                    }
+                }
+                if(file_exists($flang)) include_once($flang); 
             }    
         } 
     }
@@ -52,11 +57,11 @@ class basJscss{
         $path = self::imPath($path,$base); //"$base$path";
         if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js'; 
         if(empty($_cbase['tpl']['tpc_on'])){
-            $_r = '_r='.time();
+            $_r = '_r='.$_SERVER["REQUEST_TIME"];
             $path .= strpos($path,'?') ? "&$_r" : "?$_r";
         } 
         if($mod=='js') return self::jscode('',$path)."\n";
-        else return "<link href='$path' type='text/css' rel='stylesheet'/>\n";
+        else return self::csscode('',$path)."\n"; 
     }
     
     /*《"&<>》HTML
@@ -76,8 +81,7 @@ class basJscss{
       global $_cbase;
       if($head && empty($_cbase['run']['headed'])) glbHtml::page();
       if(empty($xAddr)) $xAddr = @$_SERVER["HTTP_REFERER"];
-      $s = "\n<script language='javascript'>\n";
-      $s .= "alert('$xMsg');\n";
+      $s = "alert('$xMsg');\n";
       switch ($xAct) { 
       case "Back" : 
         $s .= "history.go($xAddr);\n";
@@ -104,15 +108,13 @@ class basJscss{
       default: 
         break; 
       }
-      $s .= "</script>\n";
-      return $s;
+      return self::jscode($s);
     }
     // $enchf=1,编码html标记：尖括号，
     static function jsShow($xStr, $enchf=1){
        $Tmp = $xStr;
        $enchf && $Tmp = str_replace(array('<','>'),array('&lt;','&gt;'),$Tmp);
-       $Tmp = str_replace(array("\\","'",'"'),array("\\\\","\\'",'\\"'),$Tmp); 
-       $Tmp = str_replace(array("\r\n","\r","\n"),array("\\r\\n","\\r","\\n"),$Tmp);
+       $Tmp = addcslashes($Tmp, "'\"\\\r\n");
        return $Tmp;
     }
     static function jsKey($xStr) {
@@ -128,7 +130,14 @@ class basJscss{
         if($url){
             return "<script src='$url'></script>"; 
         }else{
-            return "<script>\n$code</script>";
+            return "<script>$code</script>";
+        }
+    }
+    static function csscode($code,$url=''){ 
+        if($url){
+            return "<link href='$url' type='text/css' rel='stylesheet'/>"; 
+        }else{
+            return "<style type='text/css'>$code</style>";
         }
     }
 }

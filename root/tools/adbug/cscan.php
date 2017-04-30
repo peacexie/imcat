@@ -5,8 +5,8 @@ set_time_limit(300);
 $act = req('act','');
 $part = $ntpl = req('part','');
 
-glbHtml::page("Check/Scan",1);
-glbHtml::page('imjq');
+glbHtml::page("Check/Scan");
+glbHtml::impub('imsg');
 
 $dcfgs = array(
  'curlDown' => 37712,
@@ -45,11 +45,16 @@ if($act=='scanInit'){
 }
 
 ?>
+<style type="text/css">
+li { border-bottom: 1px solid #CCC; padding: 5px; margin: 1px 0px; }
+i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; padding: 0px 3px; margin: 0px; }
+</style>
 
-<link rel='stylesheet' type='text/css' href='./style.css'/>
-</head><body>
+</head><body class="divOuter">
 
-<div>
+<?php basLang::shead('Check/Scan'); ?>
+
+  <div class="pa5"></div>
   <table width="100%" border="1" class="tblist">
   <?php tadbugNave(); ?>
   <tr class="tc">
@@ -62,7 +67,7 @@ if($act=='scanInit'){
     </td>
   </tr>
   </table>
-</div>
+
 
 <?php if($act=='bomcheck'){ ?>
 
@@ -77,7 +82,6 @@ $bomfile = @$_GET['bomfile']; $bommsg = '';
 $bomreal = str_replace("\\","/",realpath($bomroot)); 
 ?>
 
-<div>
   <?php
   if(!empty($bomfile)){
     if(empty($can_upfile)) die("Please SET [ \$can_upfile = '1' ]"); 
@@ -85,8 +89,8 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
   }
   ?>
   <form id="fmbom" name="fmbom" method="get" action="?">
-  <p class="tc tip">BOM Check</p>
-  <ul>
+  <p class="tc title">BOM Check</p>
+  <ul class='pa10'>
   <?php echo $bommsg; ?>
   <li>
     <i class="w2"><?php lang('tools.scan_root',0); ?></i><input name="bomroot" type="text" value="<?php echo $bomroot; ?>" size="36"> 
@@ -115,12 +119,11 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
     devRun::bomScan($bomreal,$bompath);
   }
   ?>
-</div>
+
 
 <?php }else{ ?>
 
-<div>
-<p class="tip">Check/Scan</p>
+<p class="title">Check/Scan</p>
 
   <table width="100%" border="1" class="tblist">
   <tr>
@@ -135,11 +138,11 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
   <tr>
     <td class="tc">Open[hlist]Entry</td>
     <td class="tc" colspan="3">
-     # <a href='?act=openLinks&part=umc'>open_umc</a>
-     | <a href='?act=openLinks&part=mob'>open_mob</a>
-     | <a href='?act=openLinks&part=chn'>open_chn</a>
-     | <a href='?act=openLinks&part=dev'>open_dev</a>
-     | <a href='?act=openLinks&part=doc'>open_doc</a>
+     # <a href='?act=openLinks&part=umc'>umc</a>
+     | <a href='?act=openLinks&part=mob'>mob</a>
+     | <a href='?act=openLinks&part=chn'>chn</a>
+     | <a href='?act=openLinks&part=dev'>dev</a>
+     | <a href='?act=openLinks&part=doc'>doc</a>
      #
     </td>
   </tr> 
@@ -181,14 +184,20 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
   </tr> 
   </table>
 
-</div>
-
 <?php
 if($act=='openLinks'){ 
+  echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
   $_cbase['tpl']['tpl_dir'] = empty($ntpl) ? $_cbase['tpl']['def_static'] : $ntpl;
-  $ncfg = vopTpls::entry($part,'ehlist','ehlist');
+  $ncfg = vopTpls::entry($part,'ehlist','ehlist'); 
+  if($part=='umc'){
+    $ncfg = array();
+    $list = db()->table('docs_faqs')->where("1=1")->order('did DESC')->select(); 
+    foreach ($list as $key => $row) {
+      $ncfg['faqs'][] = $row['did'];
+    }
+  }
 ?>
-<div>
+
   <p>[<?php echo "$ntpl"; ?>]openLinks</p>
   <table width="100%" border="1" class="tblist" id="idlinks">
   <?php foreach($ncfg as $mod=>$vals){ ?>
@@ -196,15 +205,22 @@ if($act=='openLinks'){
     <td>
    --- <b><?php echo $mod; ?></b><br>
     <?php foreach($vals as $key=>$val){ 
-  if(is_array($val)) continue; 
-  if(!strpos($val,'/')) continue; 
-  //if(!strpos($val,'/')) continue;
-  $mkv = $key=='m' ? $mod : "$mod-$key";
-  $url = surl($mod=='home' ? '' : "$mkv");
-  if(strpos($url,'?ocar')) continue;
+      if(is_array($val)) continue; 
+      if(is_numeric($key)){
+        $url = surl("$mod.$val");
+      }else{
+        if(!strpos($val,'/')) continue; 
+        //if(!strpos($val,'/')) continue;
+        $mkv = $key=='m' ? $mod : "$mod-$key";
+        $url = surl($mod=='home' ? '' : "$mkv");
+        if(strpos($url,'?ocar')) continue;
+      }
    ?>
     <a href="<?php echo "$url"; ?>" target="_blank"><?php echo "$val"; ?></a><br>
     <?php } ?>
+    --- <b>tiexin-tips</b><br>
+    <a href="http://txjia.com/peace/txasp.htm" target="_blank">tiexin-asp</a><br>
+    <a href="http://txjia.com/peace/txbox.htm" target="_blank">tiexin-box</a><br>
     </td>
   </tr> 
   <?php } ?>
@@ -212,7 +228,7 @@ if($act=='openLinks'){
     <td class="tip">……</td>
   </tr> 
   </table>
-</div>
+
 <script>
 var wmax = 6; // 6~12
 function funcOpen(){
@@ -234,7 +250,7 @@ function funcOset(no){
   }else{
     html += 'Error!'
   }
-  $(ilink).html(html.replace(_cbase.run.rsite,''));
+  $(ilink).html(html.replace('<?php echo $_cbase['run']['rsite']; ?>',''));
 }
 funcOpen();
 </script>
@@ -267,13 +283,13 @@ if($act=='openDowns'){
     <td class="tip">……</td>
   </tr> 
   </table>
-</div>
+
 <script>
 var wmax = 6; // 6~12
 function funcOpen(){
   for(var i=0;i<wmax+1;i++){ window.open('','_w'+i); }
   $('#idlinks').find('a').each(function(no, ilink) {
-    var r = jsRnd(1700,4300); //jsLog(i)
+    var r = jsRnd(1700,4300); 
     setTimeout("funcOset("+no+");",(no+1)*2500+r);
   });
 }

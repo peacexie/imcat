@@ -39,7 +39,7 @@ class comCookie{
         $kbak = $key; $fset = 0;
         $ckpre = isset($_cbase['ck']['pre']) ? $_cbase['ck']['pre'] : 'sysCookie';
         $key = ($pre=='(def)'?$ckpre:$pre).$key; 
-        $life && $life = time() + $life + $_cbase['sys']['tmzone']*3600; //,  + 72 * 3600
+        $life && $life = $_SERVER["REQUEST_TIME"] + $life + $_cbase['sys']['tmzone']*3600; //,  + 72 * 3600
         $path = isset($_cbase['ck']['path']) ? $_cbase['ck']['path'] : '/'; 
         $domain = isset($_cbase['ck']['domain']) ? $_cbase['ck']['domain'] : '';
         $secure = $_SERVER['SERVER_PORT'] == 443 ? 1 : 0;

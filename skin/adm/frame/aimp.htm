@@ -1,0 +1,13 @@
+{block:ainit}{php extract(basReq::sysVars()); $db=db(); }{/block:ainit}
+<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{block:atitle}{php echo lang('admin.adm_center').'-'.$_cbase['sys_name']; }{/block:atitle}</title>
+{php glbHtml::imsub('imadm'); }
+{block:ahead}{/block:ahead}
+</head><body class="abprop">
+{block:abody}abody{/block:abody}
+</body></html>
+{block:aend}
+{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }
+{/block:aend}
+

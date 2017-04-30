@@ -33,12 +33,12 @@
      Hello + <select name="mod" id="mod"><?php echo devBuild::modOpt($mod); ?></select>
      </b> 
    </li>
-   <?php if(!comFiles::canWrite(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php')){ ?>
+   <?php if(!comFiles::canWrite(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php')){ ?>
    <li>
      <i class="c999">{lang(tools.mktpl_nowrite)}</i> 
      <b class="ext">&nbsp;</b>
      <b class="comm">
-      {lang(tools.mktpl_fnwrite,/cfgs/excfg/ex_vopfmt.php)}
+      {lang(tools.mktpl_fnwrite,/cfgs/sycfg/sy_vopcfg.php)}
      </b> 
    </li>
    <?php }elseif($dmsg){ ?>

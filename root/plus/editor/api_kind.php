@@ -38,7 +38,7 @@ function edt_Init(fid,bar,w,h){
         if(w) para += "width:'"+w+"px',";
         if(h) para += "height:'"+h+"px',";
         para += "items:edt_"+bar+"Bar";
-        para += "});"; //alert(para);
+        para += "});"; 
         eval(para);
         edt_showBar(fid);
     });

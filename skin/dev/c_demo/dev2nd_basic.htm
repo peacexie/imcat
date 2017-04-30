@@ -1,0 +1,33 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}<?php
+$key = empty($this->key) ? 'basic' : $this->key;
+$kar = array(
+    'basic'   => '架构/规范',
+    'ucode' => '常用代码',
+    'ucodb' => '数据库操作',
+    'suit'     => '完整示例',
+    'editor'   => 'editor',
+    'i18n'     => '国际化',
+    'sms'      => '短信接口',
+);
+$subs = tex_base::docer("d_dev2nd/doc_$key");
+$sub = req('sub',''); //include
+$titletop = (empty($kar[$key]) ? $key : $kar[$key]).'-二次开发';
+$titlesub = empty($kar[$key]) ? $key : $kar[$key]; 
+
+?>{/block:extop}
+
+{block:exmain}
+    
+    <?php foreach($subs as $k=>$v){ ?>
+    <ul id="s_{$k}" class="mod-section">
+      <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {$v[detail]}
+    </ul>
+    <?php } ?>
+    
+{/block:exmain}
+
+{block:exside}{inc:"c_demo/dev2nd_aside"}{/block:exside}
+

@@ -6,7 +6,8 @@ tmp...
 * Concise, lightweight, practical, free, sharing: general PHP web application system!
 * Responsibility statement: no copyright, sharing in various legal purposes!
 * Apply to: online shop, hospital, school, enterprise, personal website, enterprise intranet, profession portal site, etc.......
-* refuse to use: any illegal activities... 
+* Follow the MIT License (MIT)
+* Refuse to use: any illegal activities... 
 
 
 #func#Functions
@@ -34,12 +35,12 @@ tmp...
 
 #sysbug#Problems
 
-* Three direction/Future
- - 1. 对 图文混排 - 做个演示模块；
- - 2. 征集/开发 一些应用模块；
+* Future/Direction
+ - 1. Collect / develop some application modules;
+ - 2. Mixed picture-text modules(demonstration)
 
 * Recent target
- - Planning for the next version : ver3.7
+ - Planning for the next version : ver3.8
  - Perfect known bugs, documentation, UI.
 
 

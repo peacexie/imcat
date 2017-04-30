@@ -145,7 +145,7 @@ function btnSEnd(type){
       jsElm.pdID(pcolor+'_pop').style.display = 'none';
   }else{
     window.returnValue = '#'+re; 
-    window.close(); //alert(re);
+    window.close(); 
   }
 }
 
@@ -224,7 +224,6 @@ var parDoc = parent.document;
 var resOrg = jsElm.jeID('resOrg');
 resOrg.value = '#'+jsElm.pdID(pcolor).value; 
 try{resOrg.style.color = resOrg.value;}catch(ex){}
-//alert(getRGB+':'+pcolor);
 </script>
 </body>
 </html>

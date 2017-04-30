@@ -38,7 +38,19 @@ class tex_base{
         strstr($base,'menu') && $js .= "jsactMenu();\n";
         strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
-        echo basJscss::jscode($js)."\n";
+        echo basJscss::jscode("\n$js")."\n";
+    }
+    
+    static function uplog_furl(){ 
+        include(vopTpls::pinc("d_uplog/a_cfgs"));
+        $mkv = 'uplog';
+        foreach ($cfgs as $key => $val) {
+            if($key!='readme'){
+                $mkv = "$mkv-$key";
+                break;
+            }
+        }
+        echo surl($mkv);
     }
     
     static function coder($tpl=''){ 

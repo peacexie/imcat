@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head>
+{block:extop}<?php
+$title = '模板标签-演示'; // 标题
+?>{/block:extop}
+{php $this->pmeta($title); }
+{php $this->pimp(); }
+<style type="text/css">
+body{ padding:10px; }
+body,nav,div {
+    padding:5px;
+}
+body,td,th,div {
+    font-size:14px; line-height:180%;
+}
+td,th {
+    padding:2px;
+}
+</style>
+</head><body>
+
+<nav class="tc">
+
+    <a href="{surl(tester)}">tester-Home</a> <br>
+
+    <a href='<?php echo PATH_SKIN."/dev/d_tester/step_ufile.php"; ?>'>用基本类库</a> |
+    <a href='<?php echo PATH_SKIN."/dev/d_tester/step_ufunc.php"; ?>'>多用点类库</a> |
+    <a href='<?php echo PATH_PROJ."/dev.php?tester-step_utpl"; ?>'>用模板和类库</a> |
+    <a href='<?php echo PATH_PROJ."/dev.php?tester-step_imtpl"; ?>'>用模板继承</a> <br>
+
+    <a href="{surl(tester-hello)}">demo-hello</a> # 
+    <a href="{surl(tester-demotag)}">demo-tag</a> # 
+    <a href="{surl(tester-demotjs)}">demo-tjs</a> # 
+    <a href="{surl(tester-adpush)}">demo-adpush</a> # 
+    <a href="{surl(tester-sphinx)}">demo-sphinx</a>
+    
+</nav>
+
+{block:exmain}{/block:exmain}
+
+<?php
+$_cbase['tpl']['tplpend'] = 'jstag';
+?>
+{inc:"c_pub/mfoot"}
+
+</body></html>

@@ -5,8 +5,8 @@ usrPerm::run('pfile','(auto)');
 $_sy_nava['exdiys'] = array(
     'skin' => '/skin',
     'cfgs' => '/code/cfgs',
-    'dtmp' => '',
-    'runs' => 'vopfmt',
+    'dtmp' => '', // 与`admin/files`gonge功能重复
+    'runs' => 'vopcfg',
 ); 
 
 $part = req('part','binfo'); 
@@ -24,7 +24,7 @@ $efile = req('efile','');
 if(in_array($part,array('edit','restore','down'))){
 
     $edir = $_sy_nava['exdiys'][$dkey]; 
-    $edir = $edir=='vopfmt' ? '' : (empty($dsub) ? $edir : "$edir/$dsub");
+    $edir = $edir=='vopcfg' ? '' : (empty($dsub) ? $edir : "$edir/$dsub");
     $nfile = str_replace('//','/',"/$edir/$efile");
     $fp = DIR_PROJ.$nfile;
     

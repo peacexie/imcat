@@ -48,7 +48,7 @@ if(empty($bsend)){
     glbHtml::fmae_row(lang('flow.dops_clear').':'.$cfg['data'],$strb);
     glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
     glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid))); 
-    echo basJscss::jscode("\nfunction clr_group(e,part){fmSelGroup(e,part);$('#navid_'+part).toggleClass('cur');}$('input:first').trigger('click');");
+    echo basJscss::jscode("function clr_group(e,part){fmSelGroup(e,part);$('#navid_'+part).toggleClass('cur');}$('input:first').trigger('click');");
 
 }elseif(!empty($bsend)){
 

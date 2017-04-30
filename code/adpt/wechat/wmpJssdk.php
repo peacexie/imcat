@@ -17,7 +17,7 @@ class wmpJssdk extends wmpBasic{
         // 注意 URL 一定要动态获取，不能 hardcode.
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
         $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $timestamp = time();
+        $timestamp = $_SERVER["REQUEST_TIME"];
         $nonceStr = $this->createNonceStr();
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序
         $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
@@ -45,7 +45,7 @@ class wmpJssdk extends wmpBasic{
     private function getJsApiTicket() {
     // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
     $data = json_decode(comFiles::get($this->cacheFull));
-    if ($data->expire_time < time()) {
+    if ($data->expire_time < $_SERVER["REQUEST_TIME"]) {
         $accessToken = $this->getAccessToken();
         // 如果是企业号用以下 URL 获取 ticket
         // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
@@ -54,7 +54,7 @@ class wmpJssdk extends wmpBasic{
         $res = json_decode($res);
         $ticket = $res->ticket; 
         if ($ticket) {
-            $data->expire_time = time() + $this->act_life;
+            $data->expire_time = $_SERVER["REQUEST_TIME"] + $this->act_life;
             $data->jsapi_ticket = $ticket;
             $this->cacheSave($data);
         }

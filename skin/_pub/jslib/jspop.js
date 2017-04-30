@@ -18,9 +18,9 @@ function relInit(relid,fm1,fm2){
             val = rcfg[k];
             break;
         }
-    } //jsLog(key);
+    } 
     if(val.length>1){
-        $(_bak).find('option').each(function(index, element) { //jsLog($(this).html());
+        $(_bak).find('option').each(function(index, element) { 
             var v2 = $(this).val(), text = $(this).html(), sel = v2==$(o2).val() ? 'selected' : ''; 
             if(v2.length<=1 || val.indexOf(v2)>=0) html += "<option value='"+v2+"' "+sel+">"+text+"</option>"; 
         });
@@ -28,7 +28,6 @@ function relInit(relid,fm1,fm2){
         html = $(_bak).html();    
     }
     $(jsElm.jeID(fm2)).html(html);    
-    //jsLog(key+':'+val);
 }
 
 function relCatid(pid,mod,kid,catid){
@@ -121,7 +120,6 @@ function pickOne(e){
                 var vi = $(this).val();
                 var vp = $(e).attr('data-'+fk);
                 if(vp && vi.length==0) $(this).val(vp);
-                //jsLog(name+':('+vi+'):'+vp);
             }
         }
     });
@@ -144,7 +142,7 @@ function pickMul(e,isdel){
             }
         }); 
     }else{
-        var has = $("[value='"+itm[0]+"']",window.parent.document); //jsLog(has);
+        var has = $("[value='"+itm[0]+"']",window.parent.document); 
         if(has && $(has[0]).prop('name')==pfield) return;
         if(e.checked && parseInt($('#sel_cnt').html())>=pick_max){ 
             alert(lang('jcore.pop_maxn',pick_max));
@@ -162,7 +160,7 @@ function pickAll(e){
     if(inow+rows>pick_max){
         alert(lang('jcore.pop_maxm',pick_max));
         return false; 
-    }else{ //jsLog(name); //
+    }else{ 
         fmSelAll(e);
         $('#fmlist tr input').each(function(i, ei) {
             var name = $(ei).prop('name').replace('fs[','').replace(']',''); if(!name || name=='fs_act') return true;
@@ -175,7 +173,7 @@ function pickInit(n){
     $("[name='"+pfield+"']",window.parent.document).each(function(i, e) { 
         pvals += $(e).val()+',';
         cnt++;
-    }); //jsLog(pvals+':'+n);
+    }); 
     if(n) $('#sel_cnt').html(cnt); 
     $('#fmlist tr input').each(function(i, e) {
         var name = $(e).prop('name').replace('fs[','').replace(']',''); if(!name) return true;
@@ -184,7 +182,7 @@ function pickInit(n){
 }
 function pickRinfo(e){
     var key = $(e).prop('name').replace('fs[','').replace(']',''); 
-    var title = jsElm.jeID(pick_retitle+'_'+key).innerText; //jsLog(key+'::'+title+':'+pick_retitle);
+    var title = jsElm.jeID(pick_retitle+'_'+key).innerText; 
     return [key,title];
 }
 

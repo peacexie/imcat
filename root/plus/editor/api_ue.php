@@ -39,7 +39,7 @@ function edt_Init(fid,bar,w,h){
     if(w) para += "initialFrameWidth:"+w+",";
     if(h) para += "initialFrameHeight:"+h+",";
     para += "toolbars:edt_"+bar+"Bar,";
-    para += "focus:true"; //alert(para);
+    para += "focus:true"; 
     para += "});"; 
     eval(para);
     edt_showBar(fid);

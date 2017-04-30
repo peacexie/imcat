@@ -48,12 +48,11 @@ class usrMember extends usrBase{
         @$mcfg = basElm::text2arr($md['cfgs']); 
         $defgrade = (isset($mcfg['defgrade']) && isset($md['i'][$mcfg['defgrade']])) ? $mcfg['defgrade'] : '';
         $grade = isset($excfg['grade']) ? $excfg['grade'] : $defgrade; 
-        @$defshow = in_array($mcfg['defcheck'],array('Y','1')) ? '1' : 0;
+        @$defshow = in_array($mcfg['defcheck'],array('Y','1','y')) ? '1' : 0;
         @$show = intval($excfg['check']) ? intval($excfg['check']) : $defshow; 
         $mname = $mname ? $mname : $uname; 
         $mtel = $mtel ? $mtel : '127-6666-8888'; 
         $memail = $memail ? $memail : "$mname@domain.com";
-        $tabid = $md['pid']."_$mod";
         $upass = comConvert::sysPass($uname,$upass,$mod);
         $acc = array('uid'=>$uid,'uno'=>$uno,'uname'=>$uname,'upass'=>$upass,'umods'=>$mod,); 
         $dataex = basSql::logData();
@@ -61,8 +60,8 @@ class usrMember extends usrBase{
         $umd = array('uid'=>$uid,'uname'=>$uname,'grade'=>$grade,'mname'=>$mname,'mtel'=>$mtel,'memail'=>$memail,'show'=>$show,);
         if(isset($md['f']['company']) && isset($excfg['company'])) $umd['company'] = $excfg['company']; 
         $db->table("users_$mod")->data($umd+$dataex)->insert();
-        $re = array('uid'=>$uid,'grade'=>$grade,'check'=>$show,'uname'=>$uname,);
-        comJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname)),'add','×¢²á¼Ó·Ö');
+        $re = array('uid'=>$uid,'grade'=>$grade,'check'=>$show,'uname'=>$uname,'defgrade'=>$defgrade,);
+        comJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname,'defgrade'=>$defgrade)),'add','User-Reg');
         return $re;
     }
     
@@ -96,25 +95,36 @@ class usrMember extends usrBase{
     static function bindUser($mname,$pptmod,$pptuid){ 
         db()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
     }
-    
-    static function emailGetpw($uname, $memail){ 
-        $uinfo = self::uget_minfo($uname);
-        if(!empty($uinfo['memail']) && $uinfo['memail']==$memail){
-            $upass = basKeyid::kidRand('24',8);
-            $dbpass = comConvert::sysPass($uname,$upass,$uinfo['umods']); 
-            db()->table("users_uacc")->data(array('upass'=>$dbpass))->where("uname='$uname'")->update();
-            $upass = comConvert::sysRevert($upass, 0, '', 3600);
-            $url = surl('umc:0','',1)."?mkv=user-getpw&act=emshow&upass=$upass";
-            $sys_name = cfg('sys_name'); 
-            $mail = new extEmail();
-            $subj = lang('usrm_emsubj');
-            $data = basLang::inc('uless','userm_empw',array('uname'=>$uname,'sys_name'=>$sys_name,'url'=>$url));
-            $re = $mail->send($memail,$subj,$data,$sys_name);
-            $re = $re=='SentOK' ? lang('usrm_emtip') : lang('usrm_emeror');
-        }else{
-            $re = lang('usrm_eremail');
+
+    static function chkExists($key,$val,$mod=''){ 
+        $db = db();
+        $_groups = read('groups');    
+        if($key=='uname' && $re=basKeyid::keepCheck($val,1,1,1)){
+            return $re;
         }
-        return $re;
-    }    
+        if($key=='uname'){
+            if($uinfo = $db->table("users_uacc")->where("uname='$val'")->find()){
+                return lang('plus.cajax_userid')."[$val](uacc)".lang('plus.cajax_exsists');
+            }
+            if($mod && isset($_groups[$mod]) && $_groups[$mod]['pid']=='users'){
+                if($uinfo = $db->table("users_$mod")->where("uname='$val'")->find()){
+                    return lang('plus.cajax_userid')."[$val]($mod)".lang('plus.cajax_exsists');
+                }
+            }
+        }elseif($key=='memail' || $key=='mtel'){
+            if($key=='memail' && !basStr::isMail($val)){
+                $tmsg = lang('plus.cajax_mailid');
+                return "Error $tmsg:[$val]!";
+            };
+            if($key=='mtel' && !basStr::isTel($val)){
+                $tmsg = lang('plus.cajax_telnum');
+                return "Error $tmsg:[$val]!";
+            };
+            if($uinfo = $db->table("users_uppt")->where("pptmod='$key' AND pptuid='$val'")->find()){
+                return $tmsg."[$val](uacc)".lang('plus.cajax_exsists');
+            }
+        }
+        return "success";
+    }
 
 }

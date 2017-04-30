@@ -31,7 +31,7 @@ $cset2 = ($cset)?$cset:'utf-8';
 
 ?>
 <!DOCTYPE html><html><head>
-<meta charset="<?php echo $cset2; ?>">
+<?php glbHtml::page('init',1); ?>
 <title>files-Search</title>
 <style type="text/css">
 body, td, th {  font-size: 14px; line-height: 150%; }

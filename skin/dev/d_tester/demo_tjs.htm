@@ -1,0 +1,189 @@
+{imp:"d_tester/tester_layout"}<!--继承父模板-->
+
+{block:extop}<?php
+$title = 'js标签';
+?>{/block:extop}
+
+{block:exmain}
+
+
+<hr>
+{php $did = '2013-ck-jc01'; $etime = '321123'; }
+<br><div id='jsid_advs_ab'><!--cd--> ----------- 不会替换,不会替换...(jsid_advs_ab=cd)</div>
+<br><div id='jsid_advs_adv1'><!--adpic:aphom--></div>
+<br><span id='jsid_advs_adv2'><!--adpic:apinn--></span>
+<br><div id='jsid_advs_advx'><!--adxxx:yyhom--></div>
+
+<div class="detail_bar">
+  ::: <i id='field_test231'>123</i>
+  <br>点击a: <i id="uclick1">{$click}</i>次 ----- 
+  <br>点击b: <i id="jsid_field_news:{$did}:click">{$click}<!--,add1,uclick1,field_test231--></i>次 -----  
+  <br>修改a: <i id="jsid_field_news:{$did}:etime"></i> ----- 
+  <br>修改b: <i id="jsid_field_news:2013-ff-dcyq:etime">{$etime}</i> ----- 
+  <br>统计a: <i id="jsid_count_nrem:2013-ff-dcyq">0<!--,ucount1--></i> ----- 
+</div>
+<br>测试0: <i id="xxx:2013-ff-dcyq:etime">id="xxx_:2013-ff-dcyq:etime"</i>
+<br>测试1: <i id="xxx.2013-ff-dcyq.etime">id="xxx.2013-ff-dcyq.etime"</i>
+<script>
+//$('#xxx\:2013-ff-dcyq\:e\'time').html('id测试xx1'); //xxx
+//$("[id='xxx:2013-ff-dcyq:e\'time']").html('id测试xx2');
+//$('#xxx\\.2013-ff-dcyq\\.etime').html('id测试xx1'); //xxx
+</script>
+
+<hr>
+
+{tag:d3hinfo=[jsList][modid,cargo][hinfo,pindao+home+zhuanti,in][show,1][cache,1h][limit,6]}
+<li>
+<p><a href="{surl("cargo.$t_did")}">{title($t_title,96,$v)}</a></p>
+</li>
+{/tag:d3hinfo}
+
+<hr>
+
+{php $_did = '2006-97-8axx'; }
+{tag:demo1=[jsOne][modid,demo][join,detail][order,etime]}
+<li><a href="{surl("demo.$t_did")}">{$v['title']}</a> <br>detail: --- {stime($t_atime)} --- {$t_detail}</li>
+{/tag:demo1}
+<hr>
+
+
+pgbar ::: test:
+{tag:demo2=[jsPage][modid,demo][keywd,05,title+mname][limit,3]}
+{:row}
+<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+{/row}
+{php echo $_cbase['page']['bar']; }
+{/tag:demo2}
+<hr>
+
+
+$_did = 'yyyy-md-xxxx';
+{php $_did = '2006-97-8axx'; }
+{tag:demo3=[jsList][modid,demo][keywd,西,title+mname][order,etime][limit,3]}
+<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+{/tag:demo3}
+<hr>
+
+
+<ul>
+<li><a href="{surl(about,-);}">about-{$_groups['about']['title']}</a></li>
+{tag:about=[jsType][modid,about]}
+<li><a href="{surl("about-$v[kid]")}">{$t_title}</a></li>
+{/tag:about}
+</ul>
+<hr>
+
+
+modid,china : sun:zx --- 
+[keywd,2][idfix,sun:p1012][idfix,sall:p1012]
+{tag:flag4=[jsType][modid,china][idfix,sun:zx]}
+<li>{$t_kid},{$t_title}</li>
+{/tag:flag4}
+<hr>
+
+
+{php}
+$_modx1 = 'cargo';
+{/php}
+{tag:flag1=[jsType,re1][modid,$_modx1][idfix,top]}
+<div>
+<li>head: mod={$mod} top</li>
+row{:row}
+<li>{$re1['title']}</li>
+{/row}/row
+</div>
+{/tag:flag1}
+<hr>
+
+
+{tag:flag2=[jsType][modid,demo][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, 
+{/row}
+{/tag:flag2}
+<hr>
+
+
+<br>
+Test__xxxx<br>
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__01=[jsType][modid,topic][test1234560000,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __01
+{/row}
+{/tag:test__01}
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__02=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __02
+{/row}
+{/tag:test__02}
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__03=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __03
+{/row}
+{/tag:test__03}
+<hr>
+
+
+<br>
+Test__xxxx<br>
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__11=[jsType][modid,topic][test1234560000,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __11
+{/row}
+{/tag:test__11}
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__12=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __12
+{/row}
+{/tag:test__12}
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__13=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title},  __13
+{/row}
+{/tag:test__13}
+<hr>
+
+
+<br>
+Test__xxxx<br>
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+-----------------------------------http://127.0.0.1/08tools/yscode/plus/ajax/comjs.php?...&_rnd=0.2878694636747241 <br>
+-----------------------------------http://192.168.0.11/08tools/yscode/plus/ajax/comjs.php?...&_rnd=0.2878694636747241 <br>
+<div>
+{tag:test__31=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __31
+{/row}
+{/tag:test__31}
+{tag:test__32=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title}, __32
+{/row}
+{/tag:test__32}
+-----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
+{tag:test__33=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
+demo-top: 
+{:row}
+{$t_kid}{$t_title},  __33
+{/row}
+{/tag:test__33}
+</div>
+
+<hr>
+
+{/block:exmain}

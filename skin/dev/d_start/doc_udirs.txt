@@ -10,8 +10,8 @@
  - 修改文件中_paths.php路径：`require(dirname(dirname(__FILE__)).'/run/_init.php');`
 
 * 修改配置：
- - 文件：/code/cfgs/excfg/ex_vopfmt.php
- - 修改项：$_ex_vopfmt['tpl']，
+ - 文件：/code/cfgs/sycfg/sy_vopcfg.php
+ - 修改项：$_sy_vopcfg['tpl']，
  - 修改为：`'adm' => '/usecret/cat.php',`//目录和路径与上述修改的一致
 
 * 访问Enjoy！：

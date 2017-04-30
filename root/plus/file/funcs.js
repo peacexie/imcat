@@ -17,7 +17,7 @@ function batSends(init){
     }else if(deelNO<sendCnt){ //结果（单项循环）
         deelNO=sendOK=0; 
         $('#tdfiles .bat_fdiv').each(function(index) {
-            var t = $(this).html(); //jsLog(index+':'+t);
+            var t = $(this).html(); 
             //msg & 循环
             if(t.indexOf('[OK!]')>=0) { sendOK++; deelNO++; }
             if(t.indexOf('[Error]')>=0) { deelNO++; }
@@ -30,7 +30,7 @@ function batSends(init){
 }
 
 function batSend1(id){ 
-    var sDoc = $(window.frames["biifr_"+id].document); //jsLog(sImg);
+    var sDoc = $(window.frames["biifr_"+id].document); 
     var upren = $("#upren").val();
     if($("#file1",sDoc).val().length==0) { $("#bidiv_"+id).html("[Null] "+lang('jfile.null')); }
     else { $("#upren",sDoc).val(upren); $("#fup1",sDoc).submit(); sendOK++; }
@@ -93,7 +93,7 @@ function fviPick(file,type,size){
     }catch(ex){ 
     try{ // For Select/Textarea File
         efm = p.jsElm.jeID(fidForPick); 
-        if(p.jsElm.jeID(fidForPick+'show')){ //jsLog(efm);
+        if(p.jsElm.jeID(fidForPick+'show')){ 
             p.mpic_madd(fidForPick,file);
         }else{
             p.jsElm.jeID(fidForPick).value = file;

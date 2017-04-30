@@ -31,15 +31,10 @@ case 'fsInit':
 break;
 case 'userExists':
 
-    if($re=basKeyid::keepCheck($uname,1,1,1)){ //$key,$chk,$fix,$grp
-        die($re);
-    }elseif($uinfo = $db->table("users_uacc")->where("uname='$uname'")->find()){
-        die(lang('plus.cajax_userid')."[$uname](uacc)".lang('plus.cajax_exsists'));
-    }elseif($uinfo = $db->table("users_$mod")->where("uname='$uname'")->find()){
-        die(lang('plus.cajax_userid')."[$uname]($mod)".lang('plus.cajax_exsists'));
-    }else{
-        die("success");
-    }    
+    $key = req('key','uname');
+    $val = req($key); $val || $val = basReq::ark('fm',$key);
+    $res = usrMember::chkExists($key,$val,$mod);
+    die($res);
 
 break;
 case 'fieldExists':
@@ -168,6 +163,9 @@ case 'uLogin':
     }else{
         echo "(uname=$uname)";    
     }
+
+break;
+case 'chku_exist':
     
 break;
 default:
@@ -176,4 +174,6 @@ default:
     
 }//end switch
 
-
+/*
+$rdb = $db->table('plus_emsend')->where("kid='$kid' AND pid='mail-act:$code'")->find();
+*/

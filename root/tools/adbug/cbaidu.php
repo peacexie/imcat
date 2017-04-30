@@ -72,7 +72,7 @@ function funcOpen(){
     if(mpages>45 && xr>1000&&xr<1320) return true;
     if(mpages>30 && xr>1000&&xr<1260) return true;
     if(mpages>15 && xr>1000&&xr<1200) return true;
-    var ra = jsRnd(1700,4300); //jsLog(i)
+    var ra = jsRnd(1700,4300); 
     setTimeout("funcOset("+no+");",(no+1)*2500+ra);
   });
 }
@@ -103,7 +103,7 @@ function runPages(){
 function oneLinks(no){
   url = '<?php echo "?d=$d&kw=$kw&pn=(0)&act=json"; ?>&'+jsRnd();
   url = url.replace('(0)',''+no);
-  $.get(url, function(re){ //jsLog(re);
+  $.get(url, function(re){ 
     eval("var _arr="+re+";"); 
     var links = _arr.links;
     var str = '';

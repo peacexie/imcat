@@ -257,38 +257,28 @@ function lang(mk, val){
     try{ 
         vre = eval("Lang."+mk); 
     }catch (ex1){ return '{'+mk+'}'; }
-    // jsLog(vre);
     if(typeof(val)=="undefined") return vre;
     vre = vre.replace('{val}',val); 
     return vre;
 }
 // 动态导入Js/CSS文件 使用 命名空间方式 
-// echo "jQuery.getScript(_skroot+'/_pub/a_jscss/adpush.js', function(){ jsLog('33'); });\n";
+// echo "jQuery.getScript(_skroot+'/_pub/a_jscss/adpush.js', function(){ 
 // echo "jQuery('head').append('<link href=\"'+_skroot+'/_pub/a_jscss/adpush.css\" rel=\"stylesheet\" type=\"text/css\" />');\n";
-function jsImp(sFile,basePath,callback){     
+function jsImp(sFile,basePath,cbk){     
     if(_cbase.run.jsimp.indexOf(sFile)<=0) _cbase.run.jsimp += ','+sFile;
     else return;  
     if(typeof(basePath)=='undefined') basePath = _cbase.run.roots;
     if(basePath.length==0) basePath = _cbase.run.roots;
-    bFile = sFile;
     sFile = basePath + sFile; 
-    ext = sFile.substr(sFile.length-4); //alert(sFile);
-    if(callback=='{code}'){
-        var _tpl = "<script src='{file}'></script>"; 
-        if(ext=='.css') _tpl = "<link rel='stylesheet' type='text/css' href='{file}'/>";
-        var _code = _tpl.replace('{file}',sFile);
+    ext = sFile.substr(sFile.length-4); 
+    if(cbk=='{code}'){
+        var _code = "<link href='"+sFile+"' rel='stylesheet' type='text/css' />"; 
+        if(ext=='.css') _code = "<script src='"+sFile+"'></script>";
         document.write(_code);
     }else if(ext=='.css'){ 
         document.createStyleSheet(sFile); 
     }else{
-        try{ 
-            jQuery.getScript(sFile,function(){
-                if(callback){ try{
-                    var func = callback + (callback.indexOf('()')<=0 ? '' : '()');
-                    eval(""+func+";");
-                }catch(ex2){ jsLog(ex2); } } 
-            }); 
-        }catch (ex1){ jsLog(ex1); }
+        jQuery.getScript(sFile,function(){ cbk && cbk.call(); }); 
     }
 }
 

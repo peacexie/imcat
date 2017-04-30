@@ -37,7 +37,7 @@ class devScan{
     // clrLogs();
     static function clrLogs(){
         $db = db();
-        $stnow = time();
+        $stnow = $_SERVER["REQUEST_TIME"];
         // 432000=5day, 86400=1天 active_online
         $db->table('active_admin')->where("stime<'".($stnow-86400)."'")->delete(); 
         $db->table('active_online')->where("stime<'".($stnow-86400)."'")->delete();     

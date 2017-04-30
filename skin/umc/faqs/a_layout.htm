@@ -1,0 +1,86 @@
+{block:init}{inc:"c_pub/c-init"}<?php
+vopTpls::pinc('tex_faqs');
+$tag = req('tag');
+$keywd = req('keywd');
+?>{/block:init}
+<!DOCTYPE html><html><head>
+<?php
+if(!empty($title)){
+  $title = $title.'-'.lang('user.qa_title');
+}else{
+  $title = lang('user.qa_title').'-'.$_cbase['sys_name'];
+}
+?>
+{block:title}{php $this->pmeta($title); }{/block:title}
+{php $this->pimp(array('css'=>'~tpl/b_jscss/faqs.css'));}
+{php $this->pimp('/layer/layer.js','vendui'); }
+</head><body>
+{php glbHtml::ieLow_html();}
+
+<div class="umc_cont umc_head">
+  <p class="umc_logo">&nbsp;</p>
+  <div class="umc_unow tl">
+    <p class="umc_msg">
+    &nbsp; {lang(user.qa_title)} --- {$_cbase['sys_name']}！ 
+    # <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中</a>|<a href="{PATH_ROOT}/plus/ajax/redir.php?lang:en">En]</a>  
+    <i>
+    <a href="{surl(0)}"><b class="glyphicon glyphicon-user"></b>{lang(user.pub_cuser)}</a>
+    <a href="{surl(chn:0)}" class="cF0F" target="_blank">[{lang(user.qa_home)}]<b class="glyphicon glyphicon-home"></b></a>
+    </i>
+    </p>
+  </div>
+  <div class="umc_nav1">
+  <form action="{surl(0)}" method="get">
+  <a {php vopCell::vOpen('faqs',0,0,620,480); }>{lang(user.qa_pub)}</a>
+  <input name="mkv" type="hidden" value="faqs--list">
+  <select onChange="jsqaSearch(this)"><option value="keywd">{lang(user.qa_subj)}</option><option value="tag" {if !empty($tag) }selected{/if}>{lang(user.qa_tag)}</option></select><input 
+  name="keywd" id='keywd' type="text" value="{php echo $keywd.$tag; }"> <input type="submit" value="{lang(user.qa_so)}">
+  </form>
+  </div>
+</div>
+
+<table class="cst-out">
+    <tr>
+        <td class="cst-title1">
+<i class="right cCCC">{lang(user.qa_more)}&gt;&gt;</i><i class="glyphicon glyphicon-book"></i> Class/分类
+        </td>
+        <td class="cst-navtop">
+        {php echo tex_faqs::navTop($this); }
+        <a class="act" id="qat_detail" style="display:none;">{lang(user.qa_detail)}</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        <div class="cst-types">
+        {php echo tex_faqs::navSide($this); }
+        </div>
+        <div class="cst-title2">
+<i class="right"><a href="{surl(faqs-tag)}">{lang(user.qa_more)}&gt;&gt;</a></i><i class="glyphicon glyphicon-flag"></i> Tags/标签 
+        </div>
+        <div class="cst-tags">
+{block:tagt}
+{if !empty($this->vars['tags']) }{php echo tex_faqs::navTags($this,$this->vars['tags']); }
+{else}{tag:tags=[List][modid,qatag][show,1][order,hotcnt][limit,24]}
+{:row}<a href="{surl(0)}?mkv=faqs--list&tag={$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
+{/tag:tags}{/if}
+{/block:tagt}
+        </div>
+        </td>
+        <td class="cst-main">
+{block:main}
+<a href="#">action</a>
+{/block:main}
+        </td>
+    </tr>
+    <tr>
+        <td class="cst-footer" colspan="2">{php echo basDebug::runInfo(); }</td>
+    </tr>
+</table>
+
+<!--inc:"c_pub/c-nav2"-->
+</body></html>
+
+{block:uend}{php}
+$_cbase['tpl']['tplpend'] = 'jstag'; // (null),jstag,menu,
+$_cbase['tpl']['tplpext'] = "jsactMfaqs();";
+{/php}{/block:uend}

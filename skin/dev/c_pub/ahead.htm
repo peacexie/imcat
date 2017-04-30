@@ -1,0 +1,26 @@
+<div class="pgf_w pgf_header">
+  <p class="pgf_logo"> <a href="./?"><img src="{PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60" alt="{$_cbase[sys_name]}(LOGO)" /></a> </p>
+  <p class="pgf_topbar">
+    {if !cmod('indoc')}<b class="qrcode_tip"><a href="{surl(umc:indoc)}" target="_blank">公文</a></b>{/if}
+    {if !cmod('faqs')}<b class="qrcode_tip"><a href="{surl(umc:faqs)}" target="_blank">问答</a></b>{/if}
+    {if !cmod('votes')}<b class="qrcode_tip"><a href="{surl(mob:votes)}" target="_blank">投票</a></b>{/if}
+    <b class="qrcode_tip"><a href="{surl(tools-index)}" target="_blank">贴心工具</a></b>
+    <i class="notice">{$_cbase['sys_name']} V{$_cbase['sys']['ver']} --- 使用手册，指点迷津；开发文档，DIY！</i>
+  </p>
+  <p class="pgf_mtop h180">
+  轻量、免费、共享：<br>通用PHP网站应用系统！
+  </p>
+  <p class="pgf_lang">
+    <select class="w200" onchange="location.href=this.value;">
+      <option value='' selected>当前 : 中文文档</option>
+      <option value='{PATH_ROOT}/plus/ajax/redir.php?lang:en&recbk={surl(doc:0)}'>Jump to : English Manual</option>
+    </select>
+    <select class="w200" onchange="location.href=this.value;">
+      <option>- 贴心家族 -</option>
+      <option value='http://yscode.txjia.com/tools/screen.htm'>贴心口袋</option>
+      <option value='http://txjia.com/peace/txbox.htm'>Java盒子</option>
+      <option value='http://txjia.com/peace/txasp.htm'>贴心Asp</option>
+    </select>
+  </p>
+
+</div>

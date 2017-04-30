@@ -1,0 +1,20 @@
+{imp:"c_pub/mlay_main"}<!--继承父模板-->
+
+{block:init}{code:"dev:d_uplog/a_cfgs"}<?php
+$key = empty($this->key) ? 'readme' : $this->key;
+$flog = @$cfgs[$key][1]; 
+$msubs = tex_base::docer("d_uplog/upd_$flog"); 
+$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1].'.'.$cfgs[$key][0] : $cfgs[$key][0];
+?>{/block:init}
+
+{block:main}
+
+  {loop $msubs $k $v}
+  <div class="inn-atitle">
+  <a href="#" class="right">[Top]</a>
+  <p class="label label-primary">{$v[title]}</p>
+  </div>
+  {$v[detail]}
+  {/loop}
+
+{/block:main}

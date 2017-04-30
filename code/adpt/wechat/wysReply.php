@@ -47,7 +47,7 @@ class wysReply extends wmpMsgresp{
 
     // 图片消息
     function reImageBase($re=0){ 
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $picUrl = $this->post->PicUrl;
         $this->saveMsg('image', $picUrl, '-', $this->post->MediaId);
         //保持会话不过期
@@ -125,7 +125,7 @@ class wysReply extends wmpMsgresp{
             'type' => $retype,
             'detail' => basReq::in($detail),
             'restate' => $restat,
-            'atime' => time(),
+            'atime' => $_SERVER["REQUEST_TIME"],
             'appid' => $this->cfg['appid'],
             'openid' => $this->post->FromUserName,
         );
@@ -139,7 +139,7 @@ class wysReply extends wmpMsgresp{
             'kid' => basKeyid::kidTemp(),
             'type' => $reauto['type'],
             'detail' => basReq::in($reauto['remsg']),
-            'atime' => time(),
+            'atime' => $_SERVER["REQUEST_TIME"],
             'appid' => $this->cfg['appid'],
             'openid' => $this->post->FromUserName,
         ); 

@@ -14,7 +14,7 @@ i, b { font-style: normal; font-weight:normal; }
 
 .pgu_logo{ width:720px; border:1px solid #CCC; padding:2px; margin:10px auto; font-size:14px; }
 
-.pgu_logo .logo{ width:120px; height:60px; padding:5px; float:right; background-image:url(../../../skin/_pub/a_img/logo120x60.jpg); background-position:center; background-repeat:no-repeat; }
+.pgu_logo .logo{ width:120px; height:60px; padding:5px; float:right; background-image:url(../../../skin/_pub/logo/logo120x60.jpg); background-position:center; background-repeat:no-repeat; }
 .pgu_logo .title{ width:450px; height:60px; padding:5px; float:left; }
 .pgu_logo h3{ font-size:18px; text-align:center; color:#333; padding:1px; margin:1px;}
 .pgu_logo h1{ font-size:14px; color:#09C; padding:0px 5px; margin:1px;}

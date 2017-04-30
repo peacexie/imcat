@@ -7,6 +7,7 @@ $_ve_user = array(
     'c' => array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
+        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     
     'm' => 'user/uinfo',    
@@ -23,10 +24,11 @@ $_ve_user = array(
     'testguset' => 'user/test', //
     'testset' => 'user/test', //
     
-    'login' => 'user/user_login',
-    'apply' => 'user/user_apply',
-    //'appdo' => 'c_page/user_acts',
-    'getpw' => 'user/user_getpw',
-    //'getdo' => 'c_page/user_acts',
+    'login' => 'uio/login',
+    'apply' => 'uio/apply',
+    //'wxlogin' => 'uio/wxlogin',
+    //'wxlocal' => 'uio/wxlocal',
+
+    //'getpw' => 'user/user_getpw',
     
 );

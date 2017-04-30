@@ -1,0 +1,27 @@
+{block:init}{/block:init}<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{block:title}{/block:title}</title>
+<?php glbHtml::impub('imsg'); ?>
+<style type="text/css">
+<?php include(DIR_SKIN.'/_pub/a_jscss/cinfo.css'); ?>
+{block:hdcss}{/block:hdcss}
+</style>
+</head><body> 
+<div class="divOuter">
+
+<div class='header'>
+<p><img src="{$_cbase['run']['rmain']}/skin/_pub/logo/imcat-40x.png" width="40" height="40"></p>
+<h2>{block:title}{/block:title}</h2>
+</div>
+
+<div class="main">{block:main}{/block:main}</div>
+
+<div class='footer'>
+<?php
+echo "\n<p>".date('Y-m-d H:i:s').'</p>';
+echo "\n<p>".$_SERVER['SERVER_SOFTWARE'].'</p>';
+?>
+</div>
+
+</div>
+</body></html>

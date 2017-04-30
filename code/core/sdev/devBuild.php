@@ -28,9 +28,9 @@ class devBuild{
         if(in_array($dir,$exa) || in_array($front,$exa)){
             return lang('devapp_dfues');    
         }
-        $vopfmt = read('vopfmt','ex'); 
+        $vopcfg = read('vopcfg','sy'); 
         $groups = read('groups'); 
-        if(isset($vopfmt['tpl'][$dir]) || is_dir(DIR_SKIN."/$dir")){
+        if(isset($vopcfg['tpl'][$dir]) || is_dir(DIR_SKIN."/$dir")){
             return lang('devapp_dfext');
         }
         if(empty($groups[$mod]['pid']) || $groups[$mod]['pid']!='docs'){
@@ -69,12 +69,12 @@ class devBuild{
         $data = comFiles::get(DIR_ROOT.'/run/front.php');
         $data = str_replace(array("'demodir'","dirname(__FILE__).'/_init.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_init.php'"),$data);
         comFiles::put(DIR_PROJ."/$front.php", $data);
-        // vopfmt
-        $data = comFiles::get(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php');
-        $flag = "\$_ex_vopfmt['tpl'] = array(".PHP_EOL;
+        // vopcfg
+        $data = comFiles::get(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php');
+        $flag = "\$_sy_vopcfg['tpl'] = array(".PHP_EOL;
         $icfg = "    '$dir' => array(".PHP_EOL."        '$title',".PHP_EOL."        '/$front.php'".PHP_EOL."    ),".PHP_EOL.'    ';
-        $data = preg_replace("/[$]_ex_vopfmt\[\'tpl\'\]\s{0,4}\=\s{0,4}array\(\s{0,4}/is", $flag.$icfg, $data);
-        comFiles::put(DIR_CODE.'/cfgs/excfg/ex_vopfmt.php', $data);
+        $data = preg_replace("/[$]_sy_vopcfg\[\'tpl\'\]\s{0,4}\=\s{0,4}array\(\s{0,4}/is", $flag.$icfg, $data);
+        comFiles::put(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php', $data);
     }
 
     // modOpt

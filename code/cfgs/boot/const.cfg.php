@@ -6,20 +6,20 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = '786e93c1-8e48-czyx-xmao-2017-3cn6j9m2'; //序列号
-$_cbase['sys']['ver']     = '3.6'; // 版本号
+$_cbase['sys']['sn']      = '5010fa41-224e-czyx-xmao-2017-4yj04wwk'; //序列号
+$_cbase['sys']['ver']     = '3.7'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'en'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = 'HhzCh'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = 'b8wTL'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
 //调试日志配置
-$_cbase['debug']['err_mode']  = '0'; //后台设置,是否开启调试模式，1,0(run=0)
+$_cbase['debug']['err_mode']  = '1'; //可后台设置,是否开启调试模式，1,0(run=0)
 $_cbase['debug']['err_save']  = 'file'; //记录方式: file, db, 
 $_cbase['debug']['err_path']  = ''; //出错信息存放的目录，出错信息以天为单位存放，一般不需要修改 /erlog  
 $_cbase['debug']['err_file']  = 'Y-md'; //文件格式: Y-md:1979-0913, Y-m-d: 1979-09-13
@@ -35,7 +35,7 @@ $_cbase['debug']['db_area'] = array('RUN_FRONT','RUN_MOB',); //,'RUN_ADMIN','RUN
 $_cbase['debug']['db_time'] = '100'; //0,10,100
 
 //模板配置 
-$_cbase['tpl']['tpl_ext'] = '.tpl.htm'; //模板后缀，建议为：[.tpl.htm]
+$_cbase['tpl']['tpl_ext'] = '.htm'; //模板后缀，建议为：[.htm]
 $_cbase['tpl']['tpc_on']  = 0; //是否开启模板缓存，true开启,false不开启 
 $_cbase['tpl']['tpc_ext'] = '.cac_php'; //模板缓存后缀,一般不需要修改 
 $_cbase['tpl']['no_static'] = '(adm)'; //,umc

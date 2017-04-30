@@ -37,7 +37,7 @@ if(!empty($bsend)){
         }
     }
     $dop->fmAE3(1);
-    glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmdocfaqs');</script>");
+    glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmdocfaqs','5,-32','txt w80');</script>");
     glbHtml::fmae_send('bsend',lang('submit'),0,'tr');
 
 }

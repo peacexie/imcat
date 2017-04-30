@@ -75,7 +75,7 @@ function bomScan($bomroot,$rsub='',$flag=0) {
   if(empty($rsub)) return;
   static $frstr,$bonum; 
   if(empty($frstr)){ 
-    $frstr = "\n<ul>\n<li><b> ====== [root]: ====== </b></li>\n";
+    $frstr = "\n<ul>\n<li><b> ====== [root] ====== </b></li>\n";
     $bonum = 0;
   }
   $full = "$bomroot/$rsub";
@@ -229,8 +229,9 @@ if(strstr($qstr,'phpinfo')){
 ?>
 <!DOCTYPE html><html><head>
 <meta charset="utf-8">
-<title>Debuger</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name='robots' content='noindex, nofollow'>
+<title>Debuger</title>
 <style type="text/css">
 body {  padding: 1px; margin: 1px; }
 div {  border: 1px solid #999; padding: 10px; max-width: 620px; margin: 10px auto; }
@@ -245,7 +246,7 @@ li i.red {  color:#F00; }
 li i.utf8 {  color:#999; }
 li.rmok {  color: #ff0000; font-weight: bold; }
 <?php }else{ ?>
-li {  border-bottom:1px solid #CCC; margin:1px 0px; }
+li {  border-bottom:1px solid #CCC; padding:5px 0; margin:5px 0px; }
 li,a {  vertical-align:top; line-height:120%; }
 i {  width:150px; font-style:normal; display:inline-block; overflow:hidden; padding:0px 3px; margin:0px; }
 i.w1 {  width:240px; }

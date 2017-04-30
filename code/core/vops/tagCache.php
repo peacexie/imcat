@@ -113,7 +113,7 @@ class tagCache{
         $bdir = empty($bdir) ? '' : (isset($cfg[$bdir]) ? $cfg[$bdir] : $bdir); 
         if(file_exists($bdir.$file)){ 
             $last = filemtime($bdir.$file);
-            if($last + $ctime > time()){ 
+            if($last + $ctime > $_SERVER["REQUEST_TIME"]){ 
                 return $bdir.$file;
             }
         }

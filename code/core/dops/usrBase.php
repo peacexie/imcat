@@ -86,11 +86,13 @@ class usrBase{
         $uname = basStr::filKey($uname,'_'); 
         $this->uinfo = $this->uget_minfo($uname,$upass); 
         if(empty($this->uinfo['show'])) return 'noChecked'; 
+        if($this->uinfo['grade']=='isStopped') return 'isStopped'; //grade=xstop处理???
+        if($this->uinfo['grade']=='unActivated') return 'unActivated'; 
         $data = $this->sinit; unset($data['scode']);
         $data['uname'] = $uname; $data['show'] = '0'; $data['cfgs'] = '0';
         if($this->uinfo){ 
             $this->userFlag = 'Login';
-            $data['grade'] = $this->uinfo['grade']; //grade=xstop处理???
+            $data['grade'] = $this->uinfo['grade']; 
             $data['errno'] = 0;
             $data['show'] = empty($this->uinfo['show']) ? '0' : $this->uinfo['show'];
             $this->uperm = $this->uget_perms($this->uinfo['grade']); 
@@ -113,7 +115,7 @@ class usrBase{
     
     //$re //Login/Guest,Error
     function check_cuser(){
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $_groups = read('groups');
         $sid = $this->sinit['sid'];
         $this->usess = $this->uget_online($sid,'*'); 

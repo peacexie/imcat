@@ -1,0 +1,67 @@
+{php}
+$isMobile = basEnv::isMobile();
+$_cbase['tpl']['tpl_dir'] = 'chn';
+$vcfg = vopTpls::etr1('tpl');
+unset($vcfg['_pub']); 
+if($isMobile) unset($vcfg['adm']); 
+glbHtml::page(" (sys_name) - ".lang('tools.home_extitle'));
+glbHtml::page('keywords',$_cbase['sys_name'].':'.lang('tools.home_exkwd'));
+glbHtml::page('description',$_cbase['sys_name'].lang('tools.home_exdes'));
+glbHtml::page('imjq',array('js'=>'/_pub/rhome/hfunc.js','css'=>'/_pub/rhome/hstyle.css'));    
+{/php}
+<style type="text/css">
+div.outer {  
+    background-image:url({PATH_STATIC}/media/cover/green_02_1024x576.jpg);
+    /*background-image:url({PATH_STATIC}/media/cover/gray_nv1_1024_576.jpg);*/
+}
+</style>
+{php}    
+glbHtml::page('body');
+glbHtml::ieLow_html();    
+{/php}
+
+<p class="ptop" style="display:none;"></p>
+<div class="outer" id="outer">
+    <div id="nav" class="nav">
+    {loop $vcfg $k $v}
+    <a href="{PATH_PROJ}{$v[1]}" class="qrcode_tip">{if $v}<?php echo basLang::pick(0,$v[0]); ?>{/if}<i class="qrcode_pic" id="qrcode_pic{$k}" style="display:none;"></i></a>
+    {/loop}
+    </div>
+    <p class="logo"><img src="{PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60" ></p>
+    <h1 class="title"><b>{$_cbase['sys_name']} V{$_cbase['sys']['ver']}</b></h1>
+    
+    <div class="vnote">
+        <?php echo basLang::inc('front','homevn'.($isMobile ? '-mob' : '')); ?>
+    </div>
+    
+    <p class="foot">
+        <span>[<a href="?start">Start</a>] # </span>
+        <?php echo basLang::links("<a href='{url}' target='_self'>{title}</a> # "); ?>
+        <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>
+        <span> # <a href="mailto:xpigeon#163.com">E-mail</a> 
+        # [<a class="qrcode_home" _url='{PATH_PROJ}'>Scan<i class="qrcode_hpic" id="qrcode_pichome" style="display:none;"></i></a>] </span>
+    <br>
+    Copyright © {$_cbase['sys_name']}    
+    </p>
+</div>
+
+<script type="text/javascript">
+var _burl = '{$_cbase['run']['rsite']}';
+var _ismb = <?php echo $isMobile ? 1 : 0; ?>;
+$(function(){ 
+    winReset(_ismb); 
+    if(_ismb){
+        $('.vnote p').hide();
+        setTimeout('tipActs()',500); 
+        $('.foot span').hide();
+    }else{
+        qrActs();
+    }
+});
+$(window).resize(function(){ winReset(_ismb); });
+</script>
+
+{php}
+glbHtml::page('end');
+echo "<!--".basDebug::runInfo()."-->";    
+{/php}

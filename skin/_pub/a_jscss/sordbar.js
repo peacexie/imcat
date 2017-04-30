@@ -16,7 +16,7 @@ function sordb_init(mod,key,url,rel,tpl){
     if(url){
         org = url
     }else if(unow.indexOf('?mkv=')>0){ //搜索页
-        org = unow; //+(stype); jsLog(unow);
+        org = unow; 
     }else{ //静态, ?cargo-type
         org = _cbase.run.csname+'?mkv='+sordb_cfgs.mod+(sordb_cfgs.stype>0 ? '&stye='+sordb_cfgs.stype : '');
         if(sordb_cfgs.stype && !stype) org += "&stype="+sordb_cfgs.stype;
@@ -26,7 +26,7 @@ function sordb_init(mod,key,url,rel,tpl){
     v = sordb_mftUrl(v,'pkey'); v = sordb_mftUrl(v,'ptype'); v = sordb_mftUrl(v,'prec');
     sordb_cfgs.now = org; 
     sordb_cfgs.so = v;
-    sordb_cfgs.page = sordb_mftUrl(org,'page'); //jsLog(sordb_cfgs);
+    sordb_cfgs.page = sordb_mftUrl(org,'page'); 
     sordb_cfgs.rel = rel ? rel : '';
     sordb_cfgs.tpl = tpl ? tpl : "<a href='(url)' class='(act)'>(title)</a>"; 
 }
@@ -36,7 +36,7 @@ function sordb_init(mod,key,url,rel,tpl){
 function sordb_sotype(tpl,pid,act,clear){
     var key, dval, dlay, data;
     key = 'stype'; pid = pid ? pid : '0';
-    dval = sordb_cfgs.stype; //jsLog(pid);
+    dval = sordb_cfgs.stype; 
     dlay = sordb_typeLay(sordb_cfgs.mod,dval); 
     data = sordb_data(sordb_cfgs.mod+'-'+pid); 
     return sordb_links(tpl,key,act,clear,data,dlay);
@@ -47,7 +47,7 @@ function sordb_extype(tpl,keyp,act,clear){
     var a, key, dval, dlay, data;
     a = keyp.split('-'); key = a[0]; pid = a.length>0 ? a[1] : '0';
     dval = urlPara(key,''); 
-    dlay = sordb_typeLay(key,dval); //jsLog(pid);
+    dlay = sordb_typeLay(key,dval); 
     data = sordb_data(keyp+'-'+pid); 
     return sordb_links(tpl,key,act,clear,data,dlay);
 }
@@ -57,7 +57,7 @@ function sordb_relat(tpl,keyp,act,clear){
     var a, key, dval, dlay, data;
     a = keyp.split('-'); key = a[0]; rel = a.length>0 ? a[1] : ''; pid = a.length>1 ? a[2] : '';
     dval = urlPara(key,''); 
-    dlay = sordb_typeLay(key,dval); //jsLog(pid);
+    dlay = sordb_typeLay(key,dval); 
     data = sordb_drel(key,rel,pid);
     return sordb_links(tpl,key,act,clear,data,dlay);
     // _relpb_data
@@ -93,7 +93,7 @@ function sordb_area(tpl,keyc,act,clear){
     var a, key, unt, dval, data;
     a = keyc.split(':'); key = a[0]; unt = a.length>1 ? a[2] : lang('jcore.sobar_curunit');
     dval = urlPara(key,''); 
-    data = sordb_darea(a[1],unt); //jsLog(data);
+    data = sordb_darea(a[1],unt); 
     return sordb_links(tpl,key,act,clear,data,dval);
 }
 // 搜索链接:公用
@@ -101,7 +101,7 @@ function sordb_links(tpl,key,act,clear,data,vals){
     var re, burl, i, icfg, iurl, sact, itmp;
     if(!tpl) tpl = sordb_cfgs.tpl;
     burl = sordb_mftUrl(sordb_cfgs.so, key);
-    re = ''; vals = '(,'+vals+',)'; //jsLog(vals);
+    re = ''; vals = '(,'+vals+',)'; 
     for(i=0;i<data.length;i++){
         icfg = data[i].split('=');
         if(!icfg[0] || !icfg[1]) continue; // !undefined
@@ -113,8 +113,8 @@ function sordb_links(tpl,key,act,clear,data,vals){
     }
     clear = clear ? (clear=='-' ? '' : clear) : '>='+lang('jcore.sobar_all');
     if(re && clear){ 
-        icfg = clear.split('='); //jsLog(icfg);
-        sact = vals.replace('(null)','').length==4 ? act : ''; //jsLog(sact+':'+vals);
+        icfg = clear.split('='); 
+        sact = vals.replace('(null)','').length==4 ? act : ''; 
         itmp = tpl.replace('(url)',burl).replace('(title)',icfg[1]).replace('(act)',sact);
         re = (icfg[0]=='<' ? itmp+"\n" : '') + re + (icfg[0]=='>' ? itmp+"\n" : ''); 
     }
@@ -138,7 +138,7 @@ function sordb_data(keyd){
             if(pid==itm[1]){
                 data += (data.length>0 ? ';' : '')+itm[0]+"="+itm[2];
             }
-        } //jsLog(data); 
+        }  
     }
     return data.split(';');
 }
@@ -149,7 +149,7 @@ function sordb_drel(key,rel,pid){
     eval("dorg = _"+key+"_data;");
     eval("drel = _"+rel+"_data;"); //p2012
     pdip = pid ? eval("dpid = _"+rel+"_data."+pid+";") : ','; 
-    dpid = dpid ? dpid : ','; //jsLog(dpid);
+    dpid = dpid ? dpid : ','; 
     for(i=0;i<dorg.length;i++){
         itm = dorg[i]; 
         if(dpid.indexOf(','+itm[0]+',')>=0){
@@ -244,7 +244,7 @@ function sordb_mftUrl(url,key,val,cb){
 function sordb_setLinks(key,val,tag){
     if(!tag) tag = 'p';
     if(val){
-        $('#'+key).html(val); //jsLog('a:'+val);
+        $('#'+key).html(val); 
     }else{
         //$('#'+key).parent().hide();
         $('#'+key).closest(tag).hide();

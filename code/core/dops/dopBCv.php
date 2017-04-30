@@ -70,7 +70,7 @@ class dopBCv{
     }
     // 显示项-Types
     function Types($val,$td=1){
-        $val = @$this->cfg['i'][$val]['title'];
+        $val = empty($this->cfg['i'][$val]['title']) ? $val : $this->cfg['i'][$val]['title'];
         if(empty($td)) return $val;
         return "<td class='tc'>$val</td>\n"; 
     }

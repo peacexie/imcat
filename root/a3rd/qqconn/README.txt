@@ -1,6 +1,11 @@
+
+
+http://wiki.open.qq.com/wiki/website/%E7%BD%91%E7%AB%99%E6%8E%A5%E5%85%A5wiki%E7%B4%A2%E5%BC%95
+
 ====================PHP SDK使用说明====================
 开发者只需要按照下面的说明修改几行代码，就可以在网站上实现“QQ登录”功能。
-1. 完成【QQ登录】准备工作(http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91%E5%BC%80%E5%8F%91%E6%94%BB%E7%95%A5_Server-side#.E5.87.86.E5.A4.87.E5.B7.A5.E4.BD.9C)。
+1. 完成【QQ登录】准备工作
+ - http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91%E5%BC%80%E5%8F%91%E6%94%BB%E7%95%A5_Server-side#.E5.87.86.E5.A4.87.E5.B7.A5.E4.BD.9C
 
 2. 使用前先修改 comm/config.php 中的4个变量
 	$_SESSION["appid"];
@@ -8,7 +13,8 @@
 	$_SESSION["callback"];  
 	$_SESSION["scope"];  
 
-3. 在页面添加QQ登录按钮。详见文档说明（http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91%E5%BC%80%E5%8F%91%E6%94%BB%E7%95%A5_Server-side#Step1.EF.BC.9A.E6.94.BE.E7.BD.AEQQ.E7.99.BB.E5.BD.95.E6.8C.89.E9.92.AE）
+3. 在页面添加QQ登录按钮。详见文档说明
+ - http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91%E5%BC%80%E5%8F%91%E6%94%BB%E7%95%A5_Server-side#Step1.EF.BC.9A.E6.94.BE.E7.BD.AEQQ.E7.99.BB.E5.BD.95.E6.8C.89.E9.92.AE
    
    示例代码：	
    <a href="#" onclick='toQzoneLogin()'><img src="img/qq_login.png"></a>
@@ -73,7 +79,8 @@ weibo文件夹：
 	add_weibo.php：发表一条微博    
 
 
-QQ登录更多OpenAPI正在不断开放，详见API列表：http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91API%E6%96%87%E6%A1%A3
+QQ登录更多OpenAPI正在不断开放，详见API列表：
+ - http://wiki.opensns.qq.com/wiki/%E3%80%90QQ%E7%99%BB%E5%BD%95%E3%80%91API%E6%96%87%E6%A1%A3
 
 
 

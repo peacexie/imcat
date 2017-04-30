@@ -80,7 +80,7 @@ class wysTester{
 
     // 组测试signature
     static function getSignurl($wecfg=array(), $apiurl=''){
-        $timestamp = time();
+        $timestamp = $_SERVER["REQUEST_TIME"];
         $nonce = mt_rand(100001,2147483123);
         $tmpArr = array($wecfg['token'], $timestamp, $nonce);
         sort($tmpArr, SORT_STRING); // use SORT_STRING rule

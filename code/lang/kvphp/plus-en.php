@@ -73,6 +73,8 @@ return array(
 
   //ajax/cajax.php
   'cajax_userid' => 'User ID',
+  'cajax_mailid' => 'Mail ID',
+  'cajax_telnum' => 'Moble NO',
   'cajax_field' => 'Field',
   'cajax_sysuesed' => ' has used by System',
   'cajax_syskeep' => ' has keeped by System',

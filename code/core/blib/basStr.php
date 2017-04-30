@@ -231,8 +231,21 @@ class basStr{
         return $str===$new && $len>=$m1 && $len<=$m2;
     }
 
+    // type:mob,400,800,tel
+    static function isTel($val,$type='mob') {
+        if($type=='mob'){ // 138-1234-5678
+            return strlen($val) > 10 && preg_match("/^1[\d]{2}[\-]{0,1}[\d]{4}[\-]{0,1}[\d]{4}$/", $val);
+        }elseif($type=='400'){ // 400-123-4567
+            return strlen($val) > 9 && preg_match("/^400[\-]{0,1}[\d]{3}[\-]{0,1}[\d]{4}$/", $val);
+        }elseif($type=='800'){ // 800-123-4567
+            return strlen($val) > 9 && preg_match("/^800[\-]{0,1}[\d]{3}[\-]{0,1}[\d]{4}$/", $val);
+        }else{ // tel: 010-1234-5678
+            return strlen($val) > 9 && preg_match("/^0[\d]{2,3}[\-]{0,1}[\d]{3,4}[\-]{0,1}[\d]{4}$/", $val);
+        }
+        
+    }
     static function isMail($email) {
-        return strlen($email) > 6 && preg_match("/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/", $email);
+        return strlen($email) > 6 && preg_match("/^[\w\-\.]+@[\w\-\.]+(\.\w{2,3})+$/", $email);
     }
     // 检查字符串是否是UTF8编码,是返回true,否则返回false
     static function isUtf8($str,$re='T/F'){
@@ -269,6 +282,31 @@ class basStr{
         $re = ''; for($i=0;$i < $n;$i++) $re .= $char;
         $str = substr_replace($str,$re,$start,$n);
         return $str.$suf;
+    }
+
+    // 模板替换
+    static function tplReplace($tpl,$source=array()){
+        global $_cbase; 
+        if(preg_match_all('/{\s*([\$]{0,1}\w*)\s*}/i', $tpl, $matchs)){
+            if(!empty($matchs[0])){ 
+                foreach($matchs[0] as $ik=>$iv){
+                    $k = str_replace('$','',$matchs[1][$ik]); 
+                    $val = isset($source[$k]) ? $source[$k] : '';
+                    $cks = array('ucfg','sys','server',);
+                    foreach ($cks as $ic) {
+                        if(strlen($val)==0 && isset($_cbase[$ic][$k])){ 
+                            $val = $_cbase[$ic][$k]; 
+                            break;
+                        } 
+                    }
+                    if(strlen($val)==0){ 
+                        $val = isset($_cbase[$k]) ? $_cbase[$k] : "($k)"; 
+                    } 
+                    $tpl = str_replace($iv,$val,$tpl);
+                }
+            }
+        }
+        return $tpl;
     }
 
 }

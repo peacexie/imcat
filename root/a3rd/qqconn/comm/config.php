@@ -32,20 +32,20 @@ if (defined("QQDEBUG") && QQDEBUG)
 /**
  * session
  */
-#include_once("session.php");
+#include_once("session.php"); // 需要者自行开启,并下载相关文件
 
 
 /**
  * 在你运行本demo之前请到 http://connect.opensns.qq.com/申请appid, appkey, 并注册callback地址
  */
 //申请到的appid
-$_SESSION["appid"]    = $pay_uinfo['qqconn']['appid']; 
+$_SESSION["appid"]    = $_ex_a3rd['qqconn']['appid']; 
 
 //申请到的appkey
-$_SESSION["appkey"]   = $pay_uinfo['qqconn']['appkey']; 
+$_SESSION["appkey"]   = $_ex_a3rd['qqconn']['appkey']; 
 
 //QQ登录成功后跳转的地址,请确保地址真实可用，否则会导致登录失败。
-$_SESSION["callback"] = $pay_uinfo['qqconn']['callback']; 
+$_SESSION["callback"] = $_ex_a3rd['qqconn']['callback']; 
 
 //QQ授权api接口.按需调用
 $_SESSION["scope"] = "get_user_info"; //get_user_info,add_share,list_album,add_album,upload_pic,add_topic,add_one_blog,add_weibo

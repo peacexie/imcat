@@ -15,7 +15,7 @@ $_va_home = array(
     'm' => 'c_page/_home',
     
     //关闭模块
-    'close' => array('topic','demo'),
+    'close' => array('topic','demo','about'),
     //文档/资讯:默认按va_docs设置
     //其他未设置模块按关闭处理
     
@@ -26,6 +26,6 @@ $_va_home = array(
     ),
     
     //扩展模块
-    'extra' => array('home','info','user'), 
+    'extra' => array('home','user'), 
     
 );

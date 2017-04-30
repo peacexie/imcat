@@ -4,6 +4,12 @@
 
 return array(
 
+    // dops/usrMember.php
+    'usrm_emsubj' => 'Get password by Email',
+    'usrm_emtip' => 'Please login your E-mail, and get password according to the mail message.',
+    'usrm_emeror' => 'Send E-mail Error, Please wait a moment, or contact the administrator.',
+    'usrm_eremail' => 'Error:E-mail Error!',
+
     // indoc/*
     'idoc_perm' => 'No permission...',
     'idoc_dep' => 'Dept.',
@@ -53,7 +59,7 @@ return array(
     'ord_time' => 'Time',
     'ord_more' => '...',
 
-    // user/tips.tpl.htm
+    // user/tips.htm
     'tips_systips' => 'System Tips',
     'tips_vpage' => 'View Page',
     'tips_nperm' => 'Need Perm',
@@ -87,6 +93,8 @@ return array(
     'nv2_user' => 'User',
     'nv2_login' => 'Login',
     'nv2_reg' => 'Register',
+    'nv2_share' => 'Share',
+    'nv2_gbook' => 'Message',
 
     // public 
     'pub_cindoc' => 'Inner Doucment',
@@ -102,7 +110,7 @@ return array(
     'pub_guest' => 'Guest',
     'pub_hi' => 'Hi, {val}!',
     'pub_exit' => 'Exit',
-    // b_lay/c-subs.tpl.htm
+    // b_lay/c-subs.htm
     'pub_bind' => 'Bind User',
     'pub_onlord' => 'Online Order',
     'pub_hisord' => 'His.Order',
@@ -116,10 +124,10 @@ return array(
     'pub_admlist' => 'Management',
     'pub_docpub' => 'Publish',
 
-    // user/user_apply.tpl.htm
+    // user/user_apply.htm
     'uap_reapp' => '[Back]Re-apply',
     'uap_appok' => 'Apply successful!',
-    'uap_nochk' => 'Nnceck',
+    'uap_nochk' => 'Unchecked',
     'uap_chkok' => 'Y-Checked',
     'uap_hasuid' => 'I have an account? Please ',
     'uap_login' => 'Login',
@@ -132,8 +140,24 @@ return array(
     'uap_pwxeq' => 'Passwords do not match',
     'uap_name' => 'Name',
     'uap_link' => 'Contacts',
+    'uap_loginemail' => 'Login the Emial',
+    'uap_activeuser' => 'and Active your Account',
 
-    // user/uinfo.tpl.htm
+    'uap_forgamail' => 'Receive Active Email',
+    'uap_forgsmscode' => 'Receive Sms Code',
+    'uap_mobnum' => 'Mobile',
+    'uap_cshowvcode' => 'Click and show the Code',
+    'uap_getvcode' => 'Get Sms Code',
+    'uap_smsvcode' => 'Sms-Code',
+    'uae_regactem' => 'Register Active Email',
+    'uae_sendactemok' => 'Send Active Email OK!',
+    'uae_copytokefu' => 'Copy below info, to the Customer service:',
+    'uae_sendactemng' => 'Send Active Email Fail!',
+    'uae_errtimeout' => 'Certified Error : Timeout!',
+    'uae_errvode' => 'Certified Error ',
+    'uap_sendsms' => 'SendSms',
+
+    // user/uinfo.htm
     'uif_corder' => 'Cargo Order',
     'uif_caritems' => '{val} Items in shop car',
     'uif_clickv' => 'Click View',
@@ -153,8 +177,14 @@ return array(
     'uif_runinfo' => 'Run-Info',
     'uif_sysinfo' => 'Sys-Info',
     'uif_tlinks' => 'Test-Links',
+    'uif_utype' => 'User Type',
 
-    // user/user_login.tpl.htm
+    // user/user_login.htm
+    'lon_3idpw' => 'ID/PW',
+    'lon_3wechat' => 'Wechat',
+    'lon_3qqcon' => 'QQ',
+    'lon_allhome' => 'Homepage',
+
     'lon_jump' => 'Jump to ',
     'lon_ercnt' => 'Error times:[{val}]',
     'lon_lockto' => 'Lock to ',
@@ -170,14 +200,14 @@ return array(
     'lon_noidpw' => 'I don`t have an account yet?',
     'lon_followme' => 'Folow me',
     'lon_app30' => 'Apply an account in 30 sec! ',
-    'lon_fpass' => 'Password',
+    'lon_fpass' => 'Get Password',
     'lon_nowechat' => 'I don`t want to use WeChat?',
-    'lon_uidpw' => 'Use IP/PW Login!',
+    'lon_uidpw' => 'Use ID/PW Login!',
     'lon_scanb' => 'Use wechat scan and get a user in 10 sec!',
     'lon_errsvr' => 'Server return error.',
     'lon_lonok' => 'Login OK!',
 
-    // user/user_getpw.tpl.htm
+    // user/user_getpw.htm
     'gtp_rtip1' => 'Your new password is ',
     'gtp_rtip2' => 'Red character part, NOT include space',
     'gtp_wechat' => 'Use wechat scan get password!',

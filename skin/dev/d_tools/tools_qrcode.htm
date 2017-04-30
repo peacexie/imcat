@@ -1,0 +1,70 @@
+{imp:"d_tools/b_lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+$title = '二维码生成器（QRCODE）';
+?>{/block:extop}
+
+{block:eximp}
+<style type="text/css">
+img { padding:10px; margin:10px; border:1px solid #CCC; }
+</style>
+{/block:eximp}
+
+{block:exbody}
+<div class="tools_outer">
+
+<h3 class="tc"><?php echo $title;?></h3>
+
+<h4 class="tl">### 二维码设置：</h4> 
+<p>二维码 数据(Url地址)：<br>
+<input type="text" name="data" id="data" value="<?php echo $_cbase['run']['rmain']; ?>" class="w450">
+</p>
+<p>二维码 参数：<br>
+size(s):<input type="text" name="size" id="size" value="2,3,4,5,6,7,8" class="w120"> &nbsp; 
+level:<input type="text" name="level" id="level" value="2" class="w30"> &nbsp; 
+margin:<input type="text" name="margin" id="margin" value="1" class="w30"> &nbsp; 
+# <input type="button" name="margin" id="margin" value="提交" onClick="shwQrcode()">
+</p>
+
+<h4 class="tl">### 二维码 结果：</h4>
+<p class="tc" id="qritms"></p>
+
+<h4 class="tl">### 公众号 二维码：</h4>
+<p>
+
+只需要在浏览器中输入如下地址：
+http://open.weixin.qq.com/qr/code/?username=weixin_account，
+    <br>
+    将weixin_account替换成需要获取的微信公众号的微信号。
+    <br>
+    注意：微信公众号的weixin_account是指微信公众平台后台中的”微信号“，
+不是”名称“，也不是”原始ID“</p>
+<p>例如要获取游迹天下官方微信uooji_com的二维码图片，直接在浏览器中输入：
+    <br>
+    <a href="http://open.weixin.qq.com/qr/code/?username=uooji_com" target="_blank">http://open.weixin.qq.com/qr/code/?username=uooji_com</a>， <br>
+    <a href="http://open.weixin.qq.com/qr/code/?username=peaceys" target="_blank">http://open.weixin.qq.com/qr/code/?username=peaceys</a>， <br>
+    
+    即可以得到如下二维码图片： </p>
+<p>来源：http://www.zhihu.com/question/21384291</p>
+
+<?php 
+$_cbase['tpl']['tplpend'] = "/*no js*/\n";
+?>
+    
+</div>
+
+<script>
+var burl = '<?php echo PATH_ROOT; ?>/plus/ajax/vimg.php?mod=qrShow&data=';
+function shwQrcode(id){ 
+    var vsize = jsElm.jeID('size').value; var asize = vsize.split(','); 
+    var paras = '&level='+jsElm.jeID('level').value+'&margin='+jsElm.jeID('margin').value+'&size=';
+    var url = burl+urlEncode(jsElm.jeID('data').value)+paras;
+    var str = '';
+    for(var i=0;i<asize.length;i++){
+        str += '<img src="'+url+asize[i]+'">';
+    } 
+    jsElm.jeID('qritms').innerHTML = str;
+}
+</script>
+
+{/block:exbody}

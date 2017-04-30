@@ -1,0 +1,80 @@
+{if $this->key=='dbtab' }
+<?php 
+$data = comFiles::get(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm");
+if(!$data){
+    $data = devBase::dbDict(); 
+    comFiles::put(DIR_DTMP."/store/dbdic-".$_cbase['sys']['lang'].".cac_htm",$data);
+}
+echo $data; 
+$_cbase['tpl']['tplpend'] = '_null_';
+?>
+{else}
+<?php
+$act = req('act','root'); 
+if($act=='imps'){
+    $root = DIR_CODE.'/adpt';
+    $dirs = comFiles::listDir($root); 
+    $subs = array_keys($dirs['dir']); 
+}elseif($act=='jslib'){
+    $root = DIR_SKIN;
+    $subs = array(
+        '_pub/jslib',
+        '_pub/a_jscss',
+        'adm/b_jscss',
+        'chn/b_jscss',
+        'dev/b_jscss',
+        'mob/b_jscss',
+        'umc/b_jscss',
+    ); 
+}else{
+    $root = DIR_CODE.'/core';
+    $dirs = comFiles::listDir($root); 
+    $subs = array_keys($dirs['dir']);
+}
+
+glbHtml::page("类库函数");
+?>
+
+<style type="text/css">
+div{ display:block; line-height:120%; text-align:left; clear: both;}
+h3{ color:#006; padding:0px; margin:5px; }
+ul.ul { display:block; clear:left; padding:10px 0px 10px 0px; margin:0px; }
+li.li, b.li { width:88px; float:left; overflow:hidden;  } 
+#navx { width:360px; height:96%; overflow-y:scroll; background:#FFF; position:fixed; right:10px; top:0px; z-index:10; padding:0px 10px 10px 10px; margin:10px; border:1px solid #999; }
+.red { color:#060; } 
+@media only screen and (max-width:767px) {
+    #navx { width:95%; position:static; left:1px; top:10px; }
+}
+</style>
+{php glbHtml::page('body'); }
+
+Nav: 
+<a href='{surl($this->mkv)}'>core-root</a> - 
+<a href='{surl(0)}?mkv={$this->mkv}&act=imps'>core-imps</a> - 
+<a href='{surl(0)}?mkv={$this->mkv}&act=jslib'>js-lib</a> #  
+<a href='{surl(0)}?mkv={$this->mkv}&act=autonsp'>autonsp</a> #  
+<a href='{surl(start)}'>[start]</a> 
+<hr>
+
+<?php
+
+if($act=='autonsp'){
+    echo devBase::nspList();
+}elseif($act=='showfunc'){
+    $file = req('file');
+    $func = req('func');
+    $code = devBase::docFunc1(DIR_CODE.$file,$func);
+    $code = highlight_string("<?php\n".$code."\n?>",1);
+    echo $code;
+}else{
+    $nav = devBase::docClass($root,$subs);
+    echo "<div id='navx'>$nav</div>";
+}
+echo "\n<p>".basDebug::runInfo()."</p>";
+basDebug::runLoad(1);
+
+?>
+
+</body></html>
+{/if}
+

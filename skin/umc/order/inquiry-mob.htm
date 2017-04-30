@@ -1,0 +1,40 @@
+{imp:"c_pub/m-frame"}<!--继承父模板-->
+
+{block:init}{:parent}<?php
+$mdtitle = lang('user.pub_order');
+$sbtitle = lang('user.pub_qorder');
+?>{/block:init}
+
+{block:pimp}
+<style type='text/css'>
+td { word-break:break-all; padding:6px 1px; }
+</style>
+{php $this->pimp('/b_jscss/user-mob.css'); }
+</style>
+
+{/block:pimp}
+
+
+{block:main}
+
+<ul class="mod-user">
+<form action="{surl(chn:0)}?" method="get" target="_blank">
+  <li class="type">
+  <b class="right ext">inquiry</b>
+  {lang(user.pub_qorder)}
+  </li>
+
+  <li>
+  <i class="atype">{lang(user.ord_no3)}</i>
+  <i class="title ellipsis"><input name="ordid" type="text" class="95%" maxlength='24' placeholder="eg:2015-ch-xxx99" /></i>
+  </li>
+  <li>
+  <i class="atype">{lang(submit)}</i>
+  <i class="title"><input type='submit' class='btn' value='{lang(submit)}' /></i>
+  </li>
+</form>
+</ul>
+
+</div>
+
+{/block:main}

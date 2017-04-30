@@ -1,7 +1,5 @@
 
-<dd class="langbar">
-  <?php echo basLang::links("<a href='{url}' class='c666' target='_self'>{title}</a>"); ?>
-</dd>
+<?php include(DIR_ROOT.'/tools/setup/_head.htm'); ?>
 <h2 class="tc pv5">
   <?php echo $_cbase['sys_name']; ?> 
   [V<?php echo $_cbase['sys']['ver']; ?>] - 
@@ -147,7 +145,7 @@
 <?php echo $setCfgs['jstr']; ?>
 var steps = new Array('','Check','Stru','Base','Demo','Idpw');
 var nowStep = 0;
-setState(); //jsLog(steps[1]);
+setState(); 
 var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
 var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
 var otimer = null;

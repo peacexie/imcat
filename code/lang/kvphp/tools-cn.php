@@ -155,6 +155,9 @@ return array(
     'start_login' => '工具登录',
     'start_dbadmin' => '数据库管理',
     'start_cmsentry' => '入口',
+    'start_dtyahei' => '雅黑探针',
+    'start_dtstudy' => 'Study探针',
+    'start_tmuma' => '木马工具',
 
     'adcfg_start' => '首页',
     'adcfg_setup' => 'Setup',
@@ -167,6 +170,7 @@ return array(
     'binf_userenv' => '用户环境',
     'binf_showerror' => '测试是否看到[Warning/Notice]提示和最后的[-End-]标记；',
     'binf_sererror' => '开发环境如不能看到,请设置环境以便于调试！',
+    'binf_sadmerror' => '正式使用,可后台设置关闭调试[架设-超管工具-核心参数-基本开关-调试模式].', 
     'binf_usenotes' => 'Peace提示：请用于合法用途；使用前前改密码，使用后请删除本文件或移动到网站目录之外！',
     'binf_nosupport' => '不支持',
     'binf_frames' => '框架',

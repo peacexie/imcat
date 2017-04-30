@@ -1,8 +1,4 @@
-<!DOCTYPE html><html><head>
-<meta charset="utf-8">
-<title>Hi, AppServer!</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name='robots' content='noindex, nofollow'>
+<?php glbHtml::page('Hi, AppServer!'); ?>
 <style type="text/css">
   #ind_cont{ max-width:760px; line-height:150%; margin:10px auto 10px auto; }
   h3{ text-align: center; }

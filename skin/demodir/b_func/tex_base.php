@@ -23,7 +23,7 @@ class tex_base{
         $js = "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         $ext && $js .= "$ext;\n";
-        echo basJscss::jscode($js)."\n";
+        echo basJscss::jscode("\n$js")."\n";
     }
 
 }

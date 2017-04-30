@@ -116,9 +116,9 @@ class comConvert{
             $str =  base64_decode(substr($str,$nn));
         }else{
             $str = serialize($str);
-            $keyc = substr(md5(microtime()), -$nn);
+            $keyc = substr(md5($_SERVER["REQUEST_TIME"]), -$nn);
             $ckey = $keya.md5($keya.$keyc); $ckn = strlen($ckey);
-            $str =  sprintf('%010d', $exp ? $exp+time() : 0).substr(md5($str.$keyb),0,16).$str;
+            $str =  sprintf('%010d', $exp ? $exp+$_SERVER["REQUEST_TIME"] : 0).substr(md5($str.$keyb),0,16).$str;
         }
         $mm = strlen($str); $box = range(0,255); $rnd = array();
         for($i=0; $i<=255; $i++){ 
@@ -135,7 +135,7 @@ class comConvert{
             $res .= chr(ord($str[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
         }
         if($de){
-            if(substr($res,0,10)==0 || substr($res,0,10)-time()>0) {
+            if(substr($res,0,10)==0 || substr($res,0,10)-$_SERVER["REQUEST_TIME"]>0) {
                 return unserialize(substr($res,26));
             }
             return '';

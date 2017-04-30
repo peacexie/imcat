@@ -15,7 +15,7 @@ glbHtml::page(lang('tools.upi_title').' - '.$_cbase['sys_name'],1);
 glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
 glbHtml::page('body');
 
-include(vopShow::inc('/tools/setup/upvimp.htm',DIR_ROOT));
+include(vopShow::inc('[root]:tools/setup/upvimp'));
 
 $cnew = updBase::cacGet('uimp_new');
 $cold = updBase::cacGet('uimp_old');

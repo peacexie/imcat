@@ -30,7 +30,7 @@ if(!empty($bsend)){
     fldView::lists($mod,$fmo);
     $dop->fmPKey(1,0,1);
     $dop->fmProp(0,1);
-    glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmqarep');</script>");
+    glbHtml::fmae_row(lang('vcode'),"<script>fsInit('fmqarep','5,-32','txt w80');</script>");
     glbHtml::fmae_send('bsend',lang('submit'),0,'tr');
 }
 

@@ -45,26 +45,27 @@ class basEnv{
     // 前置处理,运行时常用变量
     static function runCbase(){
         global $_cbase;
+        $run = &$_cbase['run'];
         // 运行时常用变量,
-        $_cbase['run']['domain'] = $_SERVER['SERVER_NAME'];
-        $_cbase['run']['dmtop'] = self::topDomain($_cbase['run']['domain']);
-        $_cbase['run']['stamp'] = intval($_cbase['run']['timer']);
-        $_cbase['run']['userag'] = self::userAG();
-        $_cbase['run']['userip'] = self::userIP();
-        $_cbase['run']['query'] = 0; //查询次数
-        $_cbase['run']['qtime'] = 0; //查询时间
-        $_cbase['run']['jsimp'] = ','; //imp-js:files
-        $_cbase['run']['tplname'] = ''; //tpl:name
-        $_cbase['run']['tplnow'] = ''; //tpl:now
-        $_cbase['run']['tagnow'] = ''; //vopShow::tagParse()使用
-        $_cbase['run']['tmpFile'] = array();
-        $_cbase['run']['jtype_mods'] = ''; //fldView::lists()使用
-        $_cbase['run']['jtype_init'] = ''; //fldView::lists()使用
-        $_cbase['run']['sobarnav'] = ''; //dopBSo->Form()使用,搜索条上的导航
+        $run['domain'] = $_SERVER['SERVER_NAME'];
+        $run['dmtop'] = self::topDomain($run['domain']);
+        $run['stamp'] = $_SERVER["REQUEST_TIME"]; 
+        $run['userag'] = self::userAG();
+        $run['userip'] = self::userIP();
+        $run['query'] = 0; //查询次数
+        $run['qtime'] = 0; //查询时间
+        $run['jsimp'] = ','; //imp-js:files
+        $run['tplname'] = ''; //tpl:name
+        $run['tplnow'] = ''; //tpl:now
+        $run['tagnow'] = ''; //vopShow::tagParse()使用
+        $run['tmpFile'] = array();
+        $run['jtype_mods'] = ''; //fldView::lists()使用
+        $run['jtype_init'] = ''; //fldView::lists()使用
+        $run['sobarnav'] = ''; //dopBSo->Form()使用,搜索条上的导航
         $_cbase['tpl']['tplpend'] = ''; //默认'',除非人工改变
         $_cbase['tpl']['tplpext'] = ''; //默认'',除非人工改变
         //$_cbase['mkv'] = array();
-        $_cbase['run']['headed'] = '';
+        $run['headed'] = '';
         self::sysHome(); //,topDomain,IP过滤
     }
     
@@ -88,18 +89,21 @@ class basEnv{
     // 加载错误处理类 
     static function runError(){
         global $_cbase;
+        $debug = $_cbase['debug'];
         // 加载错误处理类 
-        if(!isset($_cbase['skip']['error']) && $_cbase['debug']['err_hand']){
-            ini_set('display_errors', 'On');
-            if($_cbase['debug']['err_mode']){
+        if(!isset($_cbase['skip']['error'])){ //  && $debug['err_hand']
+            if($debug['err_mode']){
+                ini_set('display_errors', 'On');
                 error_reporting(E_ALL); 
             }else{
                 error_reporting(0); 
             }
-            $hkey = $_cbase['debug']['err_hkey'];
-            $hkey = ($hkey=='(def)' || intval($hkey)<=0) ? E_ALL^E_WARNING^E_NOTICE : $_cbase['debug']['err_hkey']; 
-            set_exception_handler('except_handler_ys'); //注册异常处理函数
-            set_error_handler('error_handler_ys',$hkey); //注册错误处理函数
+            if($debug['err_hand']){
+                $hkey = $debug['err_hkey'];
+                $hkey = ($hkey=='(def)' || intval($hkey)<=0) ? E_ALL^E_WARNING^E_NOTICE : $hkey; 
+                set_exception_handler('except_handler_ys'); //注册异常处理函数
+                set_error_handler('error_handler_ys',$hkey); //注册错误处理函数
+            }
         }
     }
 
@@ -154,6 +158,7 @@ class basEnv{
     
     // 是否Mobile(奇迹方舟(imiku.com))
     static function isMobile($ckey=''){
+        //return true;
         if(isset($_SERVER['HTTP_X_WAP_PROFILE'])){
             return true;
         }

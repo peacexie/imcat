@@ -82,7 +82,7 @@ class exdCopy{
         $rn = array(); $arr = array('atime','etime');
         foreach ($row as $key => $value) {
             if(in_array($key,$arr)){
-                $rn[$key] = time();
+                $rn[$key] = $_SERVER["REQUEST_TIME"];
             }else{
                 $rn[$key] = isset($new[$key]) ? $new[$key] : $value;
             }

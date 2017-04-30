@@ -161,8 +161,8 @@ class comHttp
         header("Pragma: public");
         header("Cache-control: max-age=".$expire);
         //header('Cache-Control: no-store, no-cache, must-revalidate');
-        header("Expires: " . gmdate("D, d M Y H:i:s",time()+$expire) . "GMT");
-        header("Last-Modified: " . gmdate("D, d M Y H:i:s",time()) . "GMT");
+        header("Expires: " . gmdate("D, d M Y H:i:s",$_SERVER["REQUEST_TIME"]+$expire) . "GMT");
+        header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_SERVER["REQUEST_TIME"]) . "GMT");
         header("Content-Disposition: attachment; filename=".$showname);
         header("Content-Length: $size"); 
         header("Content-type: ".$type);

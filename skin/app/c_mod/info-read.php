@@ -1,9 +1,6 @@
-<!DOCTYPE html><html><head>
-<meta charset="utf-8">
-<title>AppServer说明</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<?php
-glbHtml::page('imjq');
+<?php 
+glbHtml::page('AppServer说明');
+glbHtml::imsub('imjq');
 $text = comFiles::get(vopTpls::pinc("c_mod/info-read",'.txt')); 
 $text = extMkdown::pdext($text);
 $fcall = file_get_contents(__FILE__);
@@ -37,7 +34,7 @@ $(function(){
     $.get(
         rurl, {_test1: 'tester'}, 
         function (data) { 
-            var html = ''; //console.log(data); 
+            var html = ''; 
             for(var i in data){ 
                 var url = '?mod=news&id='+data[i].did+'&'+sign;
                 html += '<li><a href="'+url+'" target="_blank">'+data[i].title+'</a></li>';  

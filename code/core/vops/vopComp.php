@@ -76,10 +76,13 @@ class vopComp{
     // 模板继承extend,block,layout,parent,inherit
     // {imp:"c_layout/news"] // {block:title]Welcome!{/block:title] // {block:title] {:parent} {:clear} News - Project Name{/block:title]
     function impBlock($template=''){
-        preg_match("/\{imp:\"(.*)\"\}/ie", $template, $match);
+        preg_match("/\{imp:\"([\S]{3,48})\"\}/ie", $template, $match);
         if(empty($match[0]) || empty($match[1])) return $template; //没有imp,原样返回
-        $re = self::checkTpls($match[1]);
-        $layout = comFiles::get($re[0]);
+        /*if(strpos($match[1],'[-mob]') && !basEnv::isMobile()){
+            $match[1] = str_replace('[-mob]','',$match[1]);
+        }*/
+        $layout = vopTpls::pinc($match[1],self::$tplCfg['tpl_ext']); 
+        $layout = comFiles::get($layout);
         $template = substr($template,strlen($match[0]));
         preg_match_all("/\{block:([a-z][a-z0-9_]{1,17})\}/i", $layout, $match);
         if(empty($match[1])){ return $layout; }//没有block
@@ -91,9 +94,9 @@ class vopComp{
                 $layout = str_replace("$k1{$blkp}$k2", "", $layout);
             }elseif(!empty($blk1)){ 
                 if(strlen($blkp)>6 && strstr($blk1,'{:parent}')) $blk1 = str_replace("{:parent}", $blkp, $blk1);
-                $layout = str_replace("$k1{$blkp}$k2", "{$blk1}", $layout);    
+                $layout = str_replace("$k1{$blkp}$k2", "{$blk1}", $layout);
             }
-            $layout = str_replace(array($k1,$k2), "", $layout);
+            $layout = str_replace(array($k1,$k2,'{:parent}'), "", $layout);
         }
         return $layout;
     }

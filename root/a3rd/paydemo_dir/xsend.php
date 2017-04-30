@@ -5,8 +5,8 @@ require_once(dirname(__FILE__)."/config.php");
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <title><?php lang('a3rd.xsend_title',0); ?></title>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
+<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
 <link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
 <style type="text/css">
 

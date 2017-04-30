@@ -33,7 +33,7 @@ class dopCheck extends dopBase{
     // iprep=3(ip重复发布时间间隔)
     static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
         $ckey = "$mod.$kid";
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $glife = intval($num)*60;
         $ck = comCookie::mget('diggs',$ckey); // cookie;
         if(empty($ck) || ($stamp-intval($ck))>$glife){
@@ -114,7 +114,7 @@ class dopCheck extends dopBase{
                 return;
             }
         }
-        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-86400)."'")->count();
+        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".($_SERVER["REQUEST_TIME"]-86400)."'")->count();
         if($cnt>=$num){
             glbHtml::end(lang('flow.ck_day',$num));
         }
@@ -128,7 +128,7 @@ class dopCheck extends dopBase{
                 return;
             }
         }
-        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".(time()-$num)."'")->count();
+        $cnt = $this->db->table($this->tabid)->where("aip='".basEnv::userIP()."' AND atime>='".($_SERVER["REQUEST_TIME"]-$num)."'")->count();
         if($cnt>0){
             glbHtml::end(lang('flow.ck_rep',$num));
         }

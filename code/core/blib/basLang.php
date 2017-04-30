@@ -92,8 +92,8 @@ class basLang{
     }
 
     // links
-    static function links($dir=''){
-        $vopfmt = read('vopfmt','ex');
+    static function links($dir='',$cfgs=array()){
+        $langs = empty($cfgs) ? read('vopcfg.langs','sy') : array();
         $url = PATH_ROOT."/plus/ajax/redir.php?lang:{key}";
         if(empty($dir)){
             $tpl = "<a href='$url' title='{title}'>{mini}</a>";
@@ -104,12 +104,37 @@ class basLang{
             $tpl = "<a href='$url' title='{title}'>{mini}</a>";
         }
         $res = '';
-        foreach ($vopfmt['langs'] as $key => $val) {
+        foreach ($langs as $key => $val) {
             $res .= "\n".str_replace(array('{key}','{title}','{mini}'),array($key,$val[0],$val[1]),$tpl);
         }
         return $res;
-
     }    
+    // sopts
+    static function sopts($def='',$img=1){
+        global $_cbase;
+        $flag = isset($_cbase['ucfg']['lang']) ? $_cbase['ucfg']['lang'] : '(auto)';
+        if($flag!='(auto)'){
+            $langs = read('vopcfg.langs','sy');
+            $cfgs[$flag] = $langs[$flag];
+        }else{
+            $cfgs = array();
+        }
+        $img = $img ? '<img src="'.PATH_SKIN.'/_pub/logo/imcat-40x.png" width="40" height="40">' : '';
+        echo '<p>';
+        echo '    '.$img;
+        echo '    <select id="locSetS" onchange="location.href=this.value;">';
+        echo '    <option value=""> En&#x21d4;中 </option>'; //  <!-- ⇔ <i>»<i> -->
+        echo '    '.basLang::links("<option value='{url}'>{title}</option>",$cfgs);
+        echo '    </select>';
+        echo '</p>';
+    }
+    // shead
+    static function shead($title){
+        echo '<div class="header">';
+        basLang::sopts();
+        echo "<h2 class='title'>$title</h2>";
+        echo '</div>';
+    }
 
     // jimp
     static function jimp($path,$base='root',$lang='(auto)',$injs=0){

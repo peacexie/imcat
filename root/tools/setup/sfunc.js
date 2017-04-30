@@ -3,7 +3,7 @@ function upInit(){
     $('#alltips').hide();
     var    n = 0;
     $("[type='button']").each(function(index, element) {
-        var id = $(this).attr("id"); //jsLog(id);
+        var id = $(this).attr("id"); 
         if(steps.indexOf(id)>0){
             $(this).prop('disabled',true);
             $(this).removeClass('btn');
@@ -37,7 +37,7 @@ function clear1(){
 */
 
 function chkIdpass(e,no,len){
-    var tmp = $(e).val().replace(/\W/g, ""); //jsLog(tmp);
+    var tmp = $(e).val().replace(/\W/g, ""); 
     if(simpass.indexOf(tmp)>0 || tmp.length<len){
         tmp = orgcfgs[no];
         alert(lang('setup.idpw_rule')+simpass);
@@ -78,7 +78,7 @@ function setStp34(step,id){
         }
             }else{ setState(step); }
         });
-    }else{ //Finish //console.log(re);
+    }else{ 
         setJSON(id,"{'res':'OK','msg':''}");
         setState('step'+id,2,id);    //step = id;
     }
@@ -156,7 +156,7 @@ function setJSON(step,data,tab){
         var re = {};
         re.res = e.name;
         re.msg = e.name+' @ '+e.message+' ::: '+data;    
-    } //jsLog(re);
+    } 
     msg = (tab ? lang('setup.impres',tab) : '<b>'+lang('setup.step_no',step)+lang('setup.result'))+re.res+re.msg+'</b><br>';
     $('#reinfo').html(msg+$('#reinfo').html());
     return re;
@@ -164,7 +164,7 @@ function setJSON(step,data,tab){
 
 //    定时器-显示
 function loadShow(){
-    $('#idLoad').show(); //jsLog('a, ');
+    $('#idLoad').show(); 
     $('#idLoad img').toggle();
     otimer = setTimeout("loadShow()",1000);    
 }

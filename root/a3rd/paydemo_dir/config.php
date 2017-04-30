@@ -59,13 +59,13 @@ function dmdoCheck(){
 
 //↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 //合作身份者id，以2088开头的16位纯数字
-$demopay_config['partner']        = $pay_uinfo['demo']['partner'];
+$demopay_config['partner']        = $_ex_a3rd['demo']['partner'];
 
 //收款演示账号
-$demopay_config['seller_email']    = $pay_uinfo['demo']['email'];
+$demopay_config['seller_email']    = $_ex_a3rd['demo']['email'];
 
 //安全检验码，以数字和字母组成的32位字符
-$demopay_config['key']            = $pay_uinfo['demo']['key'];
+$demopay_config['key']            = $_ex_a3rd['demo']['key'];
 
 //↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 

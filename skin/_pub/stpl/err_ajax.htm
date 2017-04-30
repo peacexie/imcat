@@ -1,0 +1,24 @@
+
+{if !empty($dberrInfo) }
+
+### {lang(stinc_erdbsql)}:
+
+{$dberrInfo}
+  - <?php echo basDebug::runInfo(); ?>
+
+{else}
+
+### (Level:{$sLevel}) {$message}
+
+  - {lang(stinc_erbase)}:</p>
+  - Level : {$sLevel}</li>
+  {if $this->erFile }
+  - File : {$this->erFile} (Line:{$this->erLine})
+  {/if}
+  - <?php echo basDebug::runInfo(); ?>
+
+{/if}
+
+### {lang(stinc_ertrace)}:
+
+{$traceInfo}

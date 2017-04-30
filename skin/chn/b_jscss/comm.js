@@ -18,7 +18,7 @@ function js_cklogin(id){
     }else{
         var citems = ocar_items;
     }
-    citems = citems ? citems : 0; //jsLog(citems);
+    citems = citems ? citems : 0; 
     ainf += '<br><a class="cF0F" href="'+ocar_url+'">购物车('+citems+')</a>';
     if(!id) id = 'top_cklogin';
     if(id) $('#'+id).html("<span class='ainf'>"+ainf+"</span>"+sinf);
@@ -74,7 +74,7 @@ function qrcargo_act(id,type,url){
          var src = $('#qrcode_pic'+id).attr('src');
          if(!src){
             if(url.indexOf('?')>=0){ //08tools/yssina/1/root/run/mob.php?cargo.2015-97-dad1
-                url = _cbase.run.rsite+url; //jsLog(url);
+                url = _cbase.run.rsite+url; 
                 img = _cbase.run.roots+"/plus/ajax/vimg.php?mod=qrShow&data="+url; 
                 $('#qrcode_pic'+id).find('img').attr('src',img);
             }else{//cargo.2015-97-dad1
@@ -82,12 +82,12 @@ function qrcargo_act(id,type,url){
                 extp = url+','+extp;
                 var url = 'actys=getQrcode&qrmod=send&extp='+extp+'&datatype=js&varname=data';
                 $.getScript(_cbase.run.roots+'/plus/api/wechat.php?'+url, function(){ 
-                    img = data.url; //jsLog(data);
+                    img = data.url; 
                     $('#qrcode_pic'+id).find('img').attr('src',img);
                 });    
             }
          }
-    } //jsLog(img);
+    } 
     if(type) $('#qrcode_pic'+id).show();
     else $('#qrcode_pic'+id).hide();
 }

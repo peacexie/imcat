@@ -8,7 +8,7 @@ function jeID(id) {
 // 初始化-所有点
 function sha_init(id){
     movingNow = new moveMain(); 
-    mapPos = jePos('MapImages'); //alert(mapPos[0]+':'+mapPos[1]);
+    mapPos = jePos('MapImages'); 
     for(var i=0;i<dots_data.length;i++){
         var iarr = dots_data[i].split(':');
         var imsg = iarr[0].split('^');

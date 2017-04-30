@@ -4,7 +4,7 @@ $_sy_keepid = '
 ,sysmodel,|,test,model,cbase,suser,pbase,catid,grade,passpt,home,info,common,
 ,sysfield,|,kid,did,uid,cid,aid,sid,uname,
 ,aip,atime,auser,eip,etime,euser,
-,pagebar,|,page,prec,pjump,ptype,pkey,
+,pagebar,|,page,prec,ptype,pkey,
 ,sysdir,|,code,root,skin,main,vary,vimp,html,ures,dtmp,ctpl,static,vendor,vendui,cache,plus,run,tools,index,
 ,inittable,|,init_advs,init_coms,init_dext,init_docs,init_types,init_users,
 ,sysuserid,|,admin,master,peace,lihan,xiecy,shierly,xieys,

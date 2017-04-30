@@ -8,22 +8,26 @@ class basReq{
     - get,xxx前缀
     - by Peace(XieYS) 2012-02-18
     ***************************************************************************** */
-    
+
+    // getGP, [request_order], php5.3="GP", php5.2="CGP"
+    static function getGP($key,$def=''){ 
+        if(isset($_GET[$key])){
+            $val = $_GET[$key];
+        }elseif(isset($_POST[$key])){
+            $val = $_POST[$key];    
+        }else{
+            $val = $def;
+        }
+        return $val;
+    }
 
     // Request Vars
     // Demo : extract(basReq::sysVars());
-    static function sysVars(){
+    static function sysVars(){ //in($_GET['fm'],'Title'); 
         $sy_sids = read('sysids','sy');
         $re = array();
-        foreach($sy_sids['GET'] as $k){
-            if(isset($_POST[$k])){
-                $val = $_POST[$k];
-            }elseif(isset($_GET[$k])){
-                $val = $_GET[$k];    
-            }else{
-                $val = array();
-            }
-            $re[$k] = $val;
+        foreach($sy_sids['GET'] as $key){
+            $re[$key] = self::getGP($key,array());
         }
         foreach(array('Title','Key','N') as $k0){
             $items = $sy_sids[$k0];
@@ -37,23 +41,11 @@ class basReq{
     }
     
     static function val($key,$def='',$type='Title',$len=255){ 
-        if(isset($_POST[$key])){
-            $val = $_POST[$key];
-        }elseif(isset($_GET[$key])){
-            $val = $_GET[$key];    
-        }else{
-            $val = '';
-        }
+        $val = self::getGP($key);
         return is_array($val) ? $val : self::fmt($val,$def,$type,$len);
     }
     static function arr($fix,$type='Title',$len=255){ 
-        if(isset($_POST[$fix])){
-            $val = $_POST[$fix];
-        }elseif(isset($_GET[$fix])){
-            $val = $_GET[$fix];    
-        }else{
-            $val = array();
-        }
+        $val = self::getGP($fix,array());
         if($type && !empty($val)){
             foreach($val as $k=>$v)    {
                 $val[$k] = is_array($v) ? $v : self::fmt($v,'',$type,$len);
@@ -62,13 +54,8 @@ class basReq{
         return $val;
     }
     static function ark($fix,$key,$type='Title',$len=255){ 
-        if(isset($_POST[$fix][$key])){
-            $val = $_POST[$fix][$key];
-        }elseif(isset($_GET[$fix][$key])){
-            $val = $_GET[$fix][$key];    
-        }else{
-            $val = '';
-        }
+        $tmp = self::getGP($fix,array());
+        $val = isset($tmp[$key]) ? $tmp[$key] : '';
         return is_array($val) ? $val : self::fmt($val,'',$type,$len);
     }
 
@@ -119,13 +106,13 @@ class basReq{
         }
     }
     
-    static function in($data){
+    static function in($data,$type=''){
         if(is_string($data)){
             //$data=trim(htmlspecialchars($data));//防止被挂马，跨站攻击
-            $data = addslashes($data);//防止sql注入
+            $data = $type ? self::fmt($data,'',$type) : addslashes($data);//防止sql注入
         }else if(is_array($data)){ //如果是数组采用递归过滤
             foreach($data as $key=>$value){
-                 $data[$key]=self::in($value);
+                 $data[$key]=self::in($value,$type);
             }
         }
         return $data;

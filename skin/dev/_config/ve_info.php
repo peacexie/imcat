@@ -7,12 +7,17 @@ $_ve_info = array(
     'c' => array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
+        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     'm'     => 'c_page/info_snav', //站点导航
     
     'gbook'  => 'c_page/info_gbook', //gbook
     'coder'  => 'c_page/info_coder', //coder
-    'help'  => 'c_page/info_help', //help
+    'help'  => 'c_page/info_doc', //help
+    'service'  => 'c_page/info_doc', //service
+
+    //'bstest'  => 'd_tester/bs_test', 
+    //'bsmob'  => 'd_tester/bs_mob', 
     
     //'d' => 'c_mod/{mod}_detail',
     //'t' => 'c_mod/{mod}_one', //about,alink

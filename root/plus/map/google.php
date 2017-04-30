@@ -2,6 +2,9 @@
 <!--
 http://sunflowers.iteye.com/blog/743086
 【zk开发】zk5.0.3中使用google 地图 v3
+key : http://ditu.google.cn/maps/api/js?key=AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g&sensor=false
+'25.745,123.47' : 中国-钓鱼岛
+'26.309,113.531' : 南湾-八亩
 -->
 <script>
 var mpoint = new google.maps.LatLng(<?php echo "$pa[1],$pa[0]";?>);
@@ -36,6 +39,19 @@ window.onresize = function(){window.location.reload();} //jqInit('');
 <?php }else{ ?>
 
 <?php } ?>
+/*
+	latlng = new google.maps.LatLng(parseFloat(coord[0], 10) || "51.543,-0.123", parseFloat(coord[1], 10) || "151.2195");
+	var infowindow = new google.maps.InfoWindow();
+	infowindow.setContent('<div class="info">'+title+'</div>');
+	infowindow.setPosition(latlng);
+	map = new google.maps.Map(document.getElementById('cmap'), {
+		zoom: 11,
+		center: {lat: parseFloat(coord[0], 10) || 51.5005, lng: parseFloat(coord[0], 10) || -0.125}
+	});
+	map.setCenter(latlng);
+	infowindow.open(map);
+	var geocoder = new google.maps.Geocoder();
+*/
 </script>
 </body>
 </html>

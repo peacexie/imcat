@@ -16,7 +16,7 @@ class tagPush extends tagList{
         echo basJscss::imp('/_pub/a_jscss/adpush.css');
         echo basJscss::imp('/_pub/a_jscss/adpush.js');
         $lngs = "{ps_pinfo:'".lang('flow.ps_pinfo')."',ps_title:'".lang('flow.ps_title')."'}";
-        echo basJscss::jscode("Lang.push=$lngs;\n");
+        echo basJscss::jscode("Lang.push=$lngs;");
     }
     static function gets($ids){
         $db = db(); $res = array();

@@ -29,7 +29,7 @@ class comCron{
     // init
     function init(){
         $this->db = db();
-        $this->stamp = time();
+        $this->stamp = $_SERVER["REQUEST_TIME"];
         if(!tagCache::chkUpd($this->frun,$this->rgap)){ 
             $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=0"; 
             $this->jobs = $this->db->table($this->tab)->where($whr)->select();
@@ -75,7 +75,7 @@ class comCron{
     // 运行一个任务
     static function rone($row,$data=array()){
         $db = db();
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $file = "/adpt/cron/{$row['kid']}.php"; 
         if(!empty($row['cfgs'])){
             // run-sql

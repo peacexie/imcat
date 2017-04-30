@@ -26,7 +26,7 @@ foreach($a as $k=>$v){
         $sfie[substr($k,11)] = $v;
     }elseif(strstr($k,'jsid_count_')){
         $scnt[substr($k,11)] = $v;
-    }else{ // _cbase.run.mkv,_cbase.run.csname,_rnd
+    }else{ 
         //;
     }
 }

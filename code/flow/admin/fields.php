@@ -86,7 +86,7 @@ if($view=='ftest'){
         
     }else{
         
-        echo basJscss::imp('/skin/_pub/a_jscss/fields.js'); 
+        echo basJscss::imp('/_pub/a_jscss/fields.js'); 
         $fm = fldEdit::fmOrgData($tabid,$mod,$kid,$fm,$catid);
         
         $fedit = new fldEdit($mod,$fm);

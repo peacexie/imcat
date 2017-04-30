@@ -1,0 +1,30 @@
+{block:init}{inc:"c_pub/c-init"}{/block:init}
+<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{block:title}{php echo lang('user.pub_cuser').'-'.$_cbase['sys_name']; }{/block:title}</title>
+{php $this->pimp(); }
+</head><body>
+{php glbHtml::ieLow_html();}
+
+{block:nav1}{inc:"c_pub/c-nav1"}{/block:nav1}
+
+{block:nav2}
+<div class="umc_cont">
+  {inc:"c_pub/c-subs"}
+</div>
+{/block:nav2}
+
+<div class="umc_cont">
+{block:action}{/block:action}
+<div class="clear h10">&nbsp;</div>
+</div>
+
+{block:foot}{inc:"c_pub/c-nav2"}{/block:foot}
+
+</body></html>
+
+{block:uend}{php}
+$jstr = "var cm='$this->mod', ck='".(empty($_cview)?$this->key:$_cview)."', cv='$this->view', ct='$this->type';";
+echo "<script>$jstr</script>"; 
+{/php}{/block:uend}
+

@@ -15,16 +15,6 @@ $note .= "*. [下拉选择][多选框][单选按钮]格式1或2或3:\n";
 $note .= "*. [开窗单选][开窗多选]格式3:";
 $reinc[$part] = $note;
 
-break;case 'userm_empw':  
-
-$data = "{$uarr['uname']} 您好！<br><br>\n\n";
-$data .= "欢迎使用 {$uarr['sys_name']} 邮件找回密码功能！<br>\n";
-$data .= "请点击（或复制）访问如下链接：<br>\n";
-$data .= "{$uarr['url']}<br>\n";
-$data .= "根据提示，找回密码。<br>\n<br>\n";
-$data .= "{$uarr['sys_name']} ".date('Y-m-d H:i:s')."<br>\n";
-$reinc[$part] = $note;
-
 break;case 'plus_upbat': ?> 
 
 说明：<br>

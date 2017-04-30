@@ -35,7 +35,7 @@ final class cacheFile{
         $sFile  = self::getFileName($sKey);
         if(!file_exists($sFile)) return null;
         $handle = fopen($sFile,'rb');
-        if(intval(fgets($handle)) > time()){ //未失效期，取出数据
+        if(intval(fgets($handle)) > $_SERVER["REQUEST_TIME"]){ //未失效期，取出数据
             $sData = fread($handle, filesize($sFile)); 
             fclose($handle);
             return unserialize($sData);
@@ -51,7 +51,7 @@ final class cacheFile{
         $sFile = self::getFileName($sKey,1); 
         if(!$sFile) return false;
         $aBuf = array();
-        $aBuf[] = time() + ((empty($iExpire)) ? self::cacExp : intval($iExpire));
+        $aBuf[] = $_SERVER["REQUEST_TIME"] + ((empty($iExpire)) ? self::cacExp : intval($iExpire));
         $aBuf[] = serialize($mVal);
         $handle = fopen($sFile,'wb');/*写入文件操作*/
         fwrite($handle, implode("\n", $aBuf));

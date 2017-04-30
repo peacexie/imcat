@@ -137,7 +137,7 @@ class dopFunc{
             $val = basReq::in($val);
         }elseif($fext=='datetm'){  
             $totime = strtotime(basReq::fmt($val,'1979-09-13'));
-            $val = empty($val) ? time() : (is_numeric($val) ? $val : $totime); 
+            $val = empty($val) ? $_SERVER["REQUEST_TIME"] : (is_numeric($val) ? $val : $totime); 
         }elseif($fext=='color'){
             $val = preg_replace('/[^0-9A-Fa-f]/','',$val);
         }elseif($fext=='map'){

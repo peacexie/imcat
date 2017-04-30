@@ -60,18 +60,36 @@ HTML;
 }
 ?>
 <!DOCTYPE html><html><head>
-<meta charset="utf-8">
+<?php glbHtml::page('init',1); ?>
 <title><?php lang('tools.binf_userenv',0);?>-(COOKIE,SERVER,phpinfo(4,8),Login,Logout)</title>
-<meta name='robots' content='noindex, nofollow'>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel='shortcut icon' href='../../../skin/_pub/a_img/favicon.ico' />
-<script src="../../../skin/_pub/jslib/jsbase.js"></script>
-<link rel='stylesheet' type='text/css' href='../../../skin/_pub/a_jscss/stpub.css'/>
-<link rel='stylesheet' type='text/css' href='../../../skin/adm/b_jscss/comm.css'/>
-<link rel='stylesheet' type='text/css' href='./style.css'/>
+<link href="<?php echo PATH_SKIN; ?>/_pub/a_jscss/cinfo.css?v1" type='text/css' rel='stylesheet'/>
+<script src="<?php echo PATH_SKIN; ?>/_pub/jslib/jsbase.js?v1"></script>
+
+<style type="text/css">
+.notice { font-size:small; color:#F00; background:#FF9; padding:5px; }
+td.tip { font-size:small; color:#F00; background:#FF9; }
+input.r { width:96%; }
+/*binfo*/
+section { margin: 5px; }
+.css3 { font-size: larger; color: #009; padding:5px; border:5px solid #CCC; 
+  text-shadow: 0px -3px 0px #FFF, 0px 2px 3px #333; border-radius: 32px; }
+li { border-bottom: 1px solid #CCC; padding: 5px; margin: 1px 0px; }
+li i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; padding: 0px 3px; margin: 0px; }
+i.w1 { width: 240px; }
+i.w2 { width: 80px; }
+p.test { font-weight: normal; border: 0px; text-align: left; background: #FFF; padding: 5px; }
+b, strong, .b { font-weight: bolder; }
+@media only screen and (max-width:767px) {
+    .login span { display:block; padding:5px; }
+}
+</style>
+
 </head>
-<body>
-<div>
+<body class="divOuter">
+
+<?php basLang::shead(lang('tools.adcfg_binfo')); ?>
+
+  <div class="pa5"></div>
   <table width="100%" border="1" class="tblist">
     <?php tadbugNave(); ?>
     <tr class="tc">
@@ -82,11 +100,12 @@ HTML;
       <a href="?login" target="_self">Login</a> | <a href="?logout" target="_self">Logout</a></td>
     </tr>
   </table>
-</div>  
 
 <?php
 if($qstr=='testError'){
-  echo "<div>".lang('tools.binf_showerror')."<br> --- ".lang('tools.binf_sererror')."<br>\n";
+  echo "<div class='ma10'>".lang('tools.binf_showerror')."<br>\n 
+        --- ".lang('tools.binf_sererror')."<br>\n
+        --- ".lang('tools.binf_sadmerror')."\n";
   $er1 = 234/0;
   $er2 = $er3;
   die('<p>-End-</p></div>');
@@ -108,27 +127,25 @@ if($qstr=='cookie'){
 }
 ?>
 <?php if(in_array($qstr,array('login','logout','dologin'))){ ?>
-<div>
+
   <?php if(@!strstr($_SESSION[$sess_id],'pstools')){ ?>
-  <p>Login ……</p>
+  <p class="title">Login ……</p>
   <form action="?dologin" method="post" target="_self">
-    <ul class="tc">
-      User
-      <input type="text" name="user" id="user" value="">
-      Pass
-      <input type="password" name="pass" id="pass" value="">
-      <input type="submit" name="act" id="act" value="Login">
+    <ul class="tc pa10 login">
+      <span>User <input type="text" name="user" id="user" value=""></span>
+      <span>Pass <input type="password" name="pass" id="pass" value=""></span>
+      <span><input type="submit" name="act" id="act" value="Login"></span>
     </ul>
   </form>
   <?php }else{ ?>
-  <p>Login OK!</p>
+  <p class="tc pa10">Login OK!</p>
   <?php } ?>
   <p class="notice"><?php lang('tools.binf_usenotes',0);?></p>
-</div>
+
 <?php } ?>
 <?php if($qstr=='binfo'){ ?>
-<div>
-  <p>(PHP)User Info # <a href="#" onClick="show('plugs')">(js)Plugs</a></p>
+
+  <p class="title">(PHP)User Info # <a href="#" onClick="show('plugs')">(js)Plugs</a></p>
   <ul>
     <?php echo userInfo(); ?> <?php echo '<li><i>Server Time:</i>'.date('r').'</li>'; ?>
     <li><i>(js)USER_AGENT:</i><span id="jsua">JS NOT Support(<?php lang('tools.binf_nosupport',0);?>JavaScript)!</span></li>
@@ -137,14 +154,11 @@ if($qstr=='cookie'){
     <li id="jsplat"></li>
   </ul>
   <p class="test" id="plugs" style="display:none"></p>
-</div>
 
-<div>
-  <p>Iframe/Frameset (<?php lang('tools.binf_frames',0);?>) &gt;&gt; <a href='?fset' target='_blank'>Open</a></p>
+  <p class="title">Iframe/Frameset (<?php lang('tools.binf_frames',0);?>) &gt;&gt; <a href='?fset' target='_blank'>Open</a></p>
   <iframe src="?fset" height="60" style="width:48%;"></iframe>
   <iframe src="?iframe" height="60" style="width:48%;"></iframe>
-</div>
-<div>
+
   <p title="svg,canvas,audio,localStorage,contenteditable">Html5 (<?php lang('tools.binf_html5base',0);?>)</p>
   <span id="lsSection"> &nbsp; [localStorage]<?php lang('tools.binf_nosuplocal',0);?></span>
   <section style="width:120px; float:right;"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="100">
@@ -171,14 +185,12 @@ if($qstr=='cookie'){
   </section>
   <details>
     <summary>summary & details</summary><?php lang('tools.binf_details',0);?></details>
-</div>
-<div class="css3">
-  <p>CSS3 (<?php lang('tools.binf_css3r',0);?>)</p>
-  <section> 看到[圆角/阴影]效果了吗？没有看到，表示不支持CSS3。</section>
+
+  <p class="title">CSS3 (<?php lang('tools.binf_css3r',0);?>)</p>
+  <section class='css3'> 看到[圆角/阴影]效果了吗？没有看到，表示不支持CSS3。</section>
   <section></section>
-</div>
-<div>
-  <p>字体样式:span:bold # <a href="#" onClick="show('fonts')"><?php lang('tools.binf_detail',0);?></a></p>
+
+  <p class="title">字体样式:span:bold # <a href="#" onClick="show('fonts')"><?php lang('tools.binf_detail',0);?></a></p>
   <p class="test" id="fonts" style="display:none"> 字体样式：默认-Default:<br>
     <strong>字体样式：Tag-strong；</strong><br>
     <b>字体样式：Tag-b；</b><br>
@@ -189,7 +201,6 @@ if($qstr=='cookie'){
     <span style="font-weight:500">字体样式：span:500:</span><br>
     <span style="font-weight:700">字体样式：span:700:</span><br>
     <span style="font-weight:900">字体样式：span:900:</span></p>
-</div>
 
 <script>
 function plugs(){ //获取插件所有的名称

@@ -14,10 +14,5 @@ $_ve_tpltag = array(
     'tagbase' => 'c_demo/tpltag_main',
     'tagjs' => 'c_demo/tpltag_main',
     'tplsuit' => 'c_demo/tpltag_main', 
-    
-    'hello' => 'd_tpltag/demo_hello', 
-    'demotag' => 'd_tpltag/demo_tag', 
-    'demotjs' => 'd_tpltag/demo_tjs', 
-    
-    
+   
 );

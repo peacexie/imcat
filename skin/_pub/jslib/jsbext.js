@@ -99,21 +99,41 @@ function goPjump(e){
     url = $(e).attr('pjurl').replace('&page=0&','&page='+p+'&'); 
     window.location.href = url;
 }
-function fsCHidd(fmid){
-    jsElm.jeID(fmid+'_vBox').style.display = 'none';
+function fsPos(fmid,pos){
+    var x=0, y=0;
+    var box = $('#'+fmid+'_vBox').prev();
+    var samp = $('#'+fmid+'_vBox samp:first');
+    var objw = $(box).outerWidth();
+    var objh = $(box).outerHeight();
+    var boxh = $(samp).outerHeight(); 
+    if(pos && pos.indexOf(',')>0){
+        var tmp = pos.split(',');
+        x = tmp[0];
+        y = tmp[1];
+    }else{ // top
+        var type = $(box).css('display'); 
+        if(type=='block'){
+            x = '0'; //+objw;
+            y = '-'+(boxh+objh+3);
+        }else{ // inline-block
+            x = '-'+objw;
+            y = '-'+(boxh+5);
+        }
+    }
+    $(samp).css({'left':x+'px','top':y+'px'});
 }
 // 认证码初始化(认证码:onFocus触发)
-function fsCode(fmid,reLoad,x,y){
-    var box = jsElm.jeID(fmid+'_vBox');
-    if(box.innerHTML.length<24){
-      x = x ? x : 3; y = y ? y-25 : -20;
-      var img = '<samp class="fs_vimg_span" style="left:'+x+'px;top:'+y+'px;">';
+function fsCode(fmid,reLoad,pos){
+    var box = $('#'+fmid+'_vBox');
+    if($(box).html().length<24){
+      var img = '<samp class="fs_vimg_span" style="">';
       img += '<img id="'+fmid+'_vimg" src="'+_cbase.run.rskin+'/_pub/a_img/blank.gif" onclick=\'fsCode("'+fmid+'","reLoad")\' title="'+lang('jcore.vcode_upd')+'" />';
-      img += '<samp class="fs_vimg_close" onclick=\'fsCHidd("'+fmid+'")\' title="'+lang('jcore.hide')+'">[X]</samp></samp>';
-      box.innerHTML = img; 
+      img += '<samp class="fs_vimg_close" onclick=\'jeShow("'+fmid+'_vBox")\' title="'+lang('jcore.hide')+'">[X]</samp></samp>';
+      $(box).html(img); 
       reLoad = 1;
-    } 
-    if(box.style.display=='none') box.style.display = ''; 
+    }
+    if($(box).css('display')=='none') $(box).css('display','');
+    fsPos(fmid,pos);
     //超时检测...
     var fimg = jsElm.jeID(fmid+'_vimg');
     if(reLoad){ 
@@ -129,9 +149,10 @@ function fsReLoad(fmid){
     js.src += 1;
 }
 // 表单认证码
-function fsInit(fmid,css1,css2,tabi){
+function fsInit(fmid,pos,css1,css2,tabi){
     url = _cbase.run.roots+'/plus/ajax/cajax.php?act=fsInit&fmid='+fmid;
-    if(css1) url += '&css1='+css1;
+    if(pos) url += '&pos='+pos; 
+    if(css1) url += '&css1='+css1; 
     if(css2) url += '&css2='+css2;
     if(tabi) url += '&tabi='+tabi;
     para = '&'+_cbase.safil.url+'&'+jsRnd();
@@ -317,30 +338,29 @@ function mselElms(fmid,dkey,no,ops){
 // localStorage/sessionStorage ===================================================================
 
 /**
- * @class multiStore
- * @author Peace@txmao.com
+ * @class mulStore
  * @参考: http://www.cnblogs.com/zjcn/archive/2012/07/03/2575026.html#comboWrap
  * Demo: 
-    var locStore = new multiStore('local');
-    var sesStore = new multiStore('session');
-    locStore.set('aa1','bb1');
-    var tt1 = locStore.get('aa1');
-    console.log(tt1);
-    sesStore.set('aa2','bb2');
-    var tt2 = sesStore.get('aa2');
-    console.log(tt2);
+    var sloc = new mulStore('local'); sloc.set('aa1','bb1');
+    var sess = new mulStore('session'); var tt2 = sess.get('aa2');
+    function fms(k,v){jsLog(k+'(=)'+v);} sloc.each(fms);
  */
-function multiStore(flag){ // local,session
-    this.parFlag = flag=='session' ? 'sessionStorage' : 'localStorage';
-    this.parStore = flag=='session' ? window.sessionStorage : window.localStorage;
-    // 是否支持localStorage/sessionStorage
+function mulStore(flag){ // local,session
+    this.key = flag=='session' ? 'sessionStorage' : 'localStorage';
+    this.Store = window[this.key];
+    // 是否支持 
     this.ready = function(){ 
-        return (this.parFlag in window) && (window[this.parFlag] !== null); 
+        return (this.key in window) && (window[this.key] !== null); 
+    };
+    // 扩展 : 初始化不支持的提示信息
+    // demo: obj.init('itemList','不支持本地存储')
+    this.init = function(id,msg){
+        var canFlag = this.ready();
+        if(!canFlag) document.getElementById(id).innerHTML = msg;
     };
     // 扩展 : 最多设置保存mnum个key(如最近浏览历史记录)
-    // demo: locStore|sesStore.setGroup('{$ckpre}chid{$chid}','{aid}',10); // ('_auto_dev52_chid2','542350',10); 
-    // ??? 一条记录存储更多信息? 这里没有处理, 统一规范? 目前要扩展, 如类似信息【id|529026;time|14-07-2110:50】
-    this.setGroup = function(keyid,nowkey,mnum){
+    // demo: obj.mset('{$pre}mod{$mod}','{did}',10); // ('_imcat_news','2017-3q-abcd',5); 
+    this.mset = function(keyid,nowkey,mnum){
         if(nowkey.length==0) return;
         if(!mnum) mnum = 10;
         var oldkeys = this.get(keyid); 
@@ -359,45 +379,35 @@ function multiStore(flag){ // local,session
                 }
             }
         }
-        keystr = keystr.replace(/[^0-9A-Za-z_\.\-\:\,\|\;]/g,''); // setGroup内容字符限制 \=\)\(\]\[  善用ascii码
+        keystr = keystr.replace(/[^0-9A-Za-z_\.\-\:\,\|\;]/g,''); // 内容字符限制 \=\)\(\]\[
         this.set(keyid,keystr);
-    };
-    // 扩展 : 初始化信息(不支持localStorage/sessionStorage)
-    // demo: locStore|sesStore.initMessage('itemList','<li class="none">不支持localStorage/sessionStorage(本地存储)</li>')
-    this.initMessage = function(id,msg){
-        var canFlag = this.ready();
-        if(!canFlag) document.getElementById(id).innerHTML = msg;
     };
     // 设置值
     this.set = function(key, value){
-        //在iPhone/iPad上有时设置setItem()时会出现诡异的QUOTA_EXCEEDED_ERR错误；这时一般在setItem之前，先removeItem()就ok了
-        if( this.get(key) !== null )
-            this.remove(key);
-        this.parStore.setItem(key, value);
+        //在iPhone/iPad上有时设置setItem()时会出现诡异的QUOTA_EXCEEDED_ERR错误；
+        if( this.get(key) !== null ) this.del(key);
+        this.Store.setItem(key, value);
     };
     // 获取值 查询不存在的key时，有的浏览器返回undefined，这里统一返回null
     this.get = function(key){
-        var v = this.parStore.getItem(key);
+        var v = this.Store.getItem(key);
         return v === undefined ? null : v;
     };
+    this.del = function(key){
+        this.Store.removeItem(key);
+    }
+    this.clear = function(){
+        this.Store.clear();
+    };
     this.each = function(fn){
-        var n = this.parStore.length, i = 0, fn = fn || function(){}, key;
+        var n = this.Store.length, i = 0, fn = fn || function(){}, key;
         for(; i<n; i++){
-            key = this.parStore.key(i);
-            if( fn.call(this, key, this.get(key)) === false )
-                break;
+            key = this.Store.key(i);
+            if( fn.call(this, key, this.get(key)) === false ) break;
             //如果内容被删除，则总长度和索引都同步减少
-            if( this.parStore.length < n ){
-                n --;
-                i --;
+            if( this.Store.length < n ){
+                n--; i--;
             }
         }
     };
-    this.remove = function(key){
-        this.parStore.removeItem(key);
-    }
-    this.clear = function(){
-        this.parStore.clear();
-    };
-    
 }

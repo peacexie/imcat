@@ -22,7 +22,12 @@ class glbDBExt{
             if(empty($r) && !empty($cfg)) $r = $cfg;
             $sql.= " `$cid` $r[dbtype]".($r['dbtype']=='varchar' ? "($r[dblen])" : ''); 
             $sql.= (strpos("($r[vreg]",'nul:') ? " NULL " : ' NOT NULL '); 
-            $sql.= (empty($r['dbdef']) ? "" : " DEFAULT '$r[dbdef]' "); 
+            //$sql.= (empty($r['dbdef']) ? "" : " DEFAULT '$r[dbdef]' "); 
+            if(strstr($r['dbtype'],'char')){
+                $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'':$r['dbdef'])."' "; 
+            }elseif(strstr($r['dbtype'],'int')){
+                $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'0':$r['dbdef'])."' "; 
+            }
             $after = self::findAfterField($cols,$cid);
             if(!isset($cols[$cid])) $after && $sql.= " AFTER `$after` ";
             $db->query($sql);

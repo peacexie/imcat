@@ -38,7 +38,7 @@ class wysQrcode extends wmpQrcode{
     // 正式使用(临时二维码) [100-428]+[9,999,999] : 
     // 同类sid,5分钟内获取一个相同的ID,10分中后失效,(设置给微信的为最大值：7天（即604800秒）), 定时清理1天内的数据
     function getQTemp($smod, $extp=''){
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $timeNmin = $stamp-($this->qrexpired*60); //5分钟
         $row = $this->_db->table('wex_qrcode')->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->find();
         if($row){ 
@@ -69,7 +69,7 @@ class wysQrcode extends wmpQrcode{
     // 正式使用(固定二维码) [10012,99987] :
     // 同类sid,5分钟内获取一个相同的ID,10分中后失效, (不用清理)
     function getQLimit($smod, $extp=''){
-        $stamp = time();
+        $stamp = $_SERVER["REQUEST_TIME"];
         $timeNmin = $stamp-($this->qrexpired*60); //5分钟
         $row = $this->_db->table('wex_qrcode')->where("auser='$this->uniqueid' AND smod='$smod' AND atime>'$timeNmin'")->find();
         if($row){ 
