@@ -10,8 +10,8 @@ $_prbase = array (
   array (
     'adm_mode' => 
     array (
+      'kid' => 'adm_mode',
       'title' => '系统管理模式',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -23,12 +23,16 @@ $_prbase = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => '',
       'key' => 'adm_mode',
+      'val' => 'expert',
     ),
     'debug_mode' => 
     array (
+      'kid' => 'debug_mode',
       'title' => '调试模式',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -40,14 +44,41 @@ $_prbase = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'key' => '[debug][err_mode]',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => '0=关闭
 1=调试',
+      'key' => '[debug][err_mode]',
+      'val' => '1',
+    ),
+    'close_home' => 
+    array (
+      'kid' => 'close_home',
+      'title' => '首页导航开关',
+      'etab' => '0',
+      'type' => 'select',
+      'dbtype' => 'varchar',
+      'dblen' => '12',
+      'dbdef' => 'index',
+      'vreg' => '',
+      'vtip' => '',
+      'vmax' => '12',
+      'fmsize' => '',
+      'fmline' => '1',
+      'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => 'index=index引导页
+dir-chn=跳转到chn版
+dir-mob=跳转到mob版
+close=关闭',
+      'key' => 'close_home',
+      'val' => 'index',
     ),
     'close_chn' => 
     array (
+      'kid' => 'close_chn',
       'title' => '关闭chn显示模板',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -59,14 +90,17 @@ $_prbase = array (
       'fmsize' => '500x6',
       'fmline' => '1',
       'fmtitle' => '0',
-      'key' => 'close_chn',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => '0=开启
 1=关闭',
+      'key' => 'close_chn',
+      'val' => '0',
     ),
     'close_mob' => 
     array (
+      'kid' => 'close_mob',
       'title' => '关闭mob显示模板',
-      'enable' => '1',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -78,14 +112,17 @@ $_prbase = array (
       'fmsize' => '500x6',
       'fmline' => '1',
       'fmtitle' => '0',
-      'key' => 'close_mob',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => '0=开启
 1=关闭',
+      'key' => 'close_mob',
+      'val' => '1',
     ),
     'close_dev' => 
     array (
-      'title' => '关闭dev显示模板',
-      'enable' => '1',
+      'kid' => 'close_dev',
+      'title' => '关闭dev/doc显示模板',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -97,14 +134,17 @@ $_prbase = array (
       'fmsize' => '500x6',
       'fmline' => '1',
       'fmtitle' => '0',
-      'key' => 'close_dev',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => '0=开启
 1=关闭',
+      'key' => 'close_dev',
+      'val' => '0',
     ),
     'login_dev' => 
     array (
-      'title' => '显示dev需登录',
-      'enable' => '1',
+      'kid' => 'login_dev',
+      'title' => '显示dev/doc需登录',
       'etab' => '0',
       'type' => 'radio',
       'dbtype' => 'varchar',
@@ -116,10 +156,13 @@ $_prbase = array (
       'fmsize' => '500x6',
       'fmline' => '1',
       'fmtitle' => '0',
-      'key' => 'login_dev',
+      'fmextra' => '',
+      'fmexstr' => '',
       'cfgs' => 'adminer=仅管理员
 member=会员登录
 0=不需登录',
+      'key' => 'login_dev',
+      'val' => '0',
     ),
   ),
 );

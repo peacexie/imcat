@@ -1,7 +1,0 @@
-
--- bext_mins@2017-03-12 20:21:00 -- 
-INSERT INTO `{pre}bext_mins{ext}` VALUES 
-('demo-c1','演示新闻','888','mods:demo,drem;','dbsql,php,rar','','(system)','','','0','','','0',''),
-('indoc-u1-c2-m1','内部公文','888','mods:indoc,inmem,inread,inrem;\r\nmenus:m2indoc;','dbsql,php','','(system)','','','0','','','0',''),
-('faqs-c2-m1','问答系统	','888','mods:faqs,qarep,qatag;\r\nmenus:m2faqs;','dbsql,php','','(system)','','','0','','','0',''),
-('votes-c2-m1','问答系统	','888','mods:votes,votei,votep;\r\nmenus:m2vote;','dbsql,php','','(system)','','','0','','','0','');
