@@ -8,10 +8,16 @@ $_va_home = array(
         'vmode' => 'dynamic', //dynamic,catch,close
         'stexp' => '2h', //30,60,3h,6h,12h,24h,7d
         'stext' => '-u.htm', 
+        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     
     //mod.home模块首页模板
     'm' => 'user/home',
+    'apply'  => 'uio/apply',
+    'login'  => 'uio/login',
+    'logout' => 'uio/login',
+    //'wxlogin' => 'uio/wxlogin',
+    //'wxlocal' => 'uio/wxlocal',
     
     //关闭模块
     'close' => array('xxxxx'),
@@ -34,8 +40,6 @@ $_va_home = array(
     //*
     'u' => array(
         'umc_frees' => array(-1,'faqs','help'), //umc-不需要登录模型
-        //'login' => 'chn:user-login', //登录地址，用于提示
-        //'apply' => 'chn:user-apply', //注册地址，用于提示
     ),//*/
     
 );

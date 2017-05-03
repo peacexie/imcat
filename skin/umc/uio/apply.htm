@@ -9,14 +9,14 @@
       <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px">
         [{$user->usess['uname']}] {lang(user.lon_logined)}
       </p>
-      <p> {lang(user.lon_change)}【<a href="?mkv=user-login&act=doout">{lang(user.lon_logout)}</a>】; </p>
+      <p> {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】; </p>
       <p> {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } </p>
     </div>
 {elseif !empty($bsend) }
     <div class="text-danger bg-warning pa10">
       <p class="text-danger bg-warning right w350 pa10 tc" style="margin:-10px -10px 0px 0px">
         {$show} <br>
-        <a href="{surl(user-login)}">{lang(user.nv2_login)}</a> # <a href="{surl(user-apply)}">{lang(user.nv2_reg)}</a> # <a href="{surl(0)}">{lang(user.nv2_home)}</a>
+        <a href="{surl(?login)}">{lang(user.nv2_login)}</a> # <a href="{surl(?reg)}">{lang(user.nv2_reg)}</a> # <a href="{surl(0)}">{lang(user.nv2_home)}</a>
       </p>
       <p> {$msg} </p>
       {if $ucfg['regnow']=='mail-act'}
@@ -30,9 +30,9 @@
 {else}
     <div class="text-danger bg-warning pa10 mv10">
       <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px">
-        <a href="{surl(user-login)}">{lang(user.nv2_login)}</a> # <a href="{surl(user-apply)}">{lang(user.nv2_reg)}</a> # <a href="{surl(0)}">{lang(user.nv2_home)}</a>
+        <a href="{surl(?login)}">{lang(user.nv2_login)}</a> # <a href="{surl(?reg)}">{lang(user.nv2_reg)}</a> # <a href="{surl(0)}">{lang(user.nv2_home)}</a>
       </p>
-      <p> {lang(user.uap_hasuid)}<a href="{surl(user-login)}">{lang(user.uap_login)}</a>！ </p>
+      <p> {lang(user.uap_hasuid)}<a href="{surl(?login)}">{lang(user.uap_login)}</a>！ </p>
     </div>
 {/if}
 
@@ -62,7 +62,7 @@
     #fmapply .form-control { display:inline-block; }
     </style>
     {php $this->pimp('/layer/layer.js','vendui'); }
-    <form action="{surl(user-apply)}" usercheck='uapply' method="post" name="fmapply" id="fmapply">
+    <form action="?reg" usercheck='uapply' method="post" name="fmapply" id="fmapply">
     <div class="pgu_applay">
       <div class="h10">&nbsp;</div>
       <div class="apform">

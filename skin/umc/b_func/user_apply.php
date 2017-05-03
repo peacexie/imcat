@@ -4,7 +4,7 @@ $_groups = read('groups');
 $ucfg = read('user','sy'); 
 $mod = req('mod');
 
-$show = "<a href='?user-apply'>".lang('user.uap_reapp')."</a>";
+$show = "<a href='?reg'>".lang('user.uap_reapp')."</a>";
 if($act=='doapply'){
     $bsend = 1;
     $fm = in($_POST['fm'],'Title'); 

@@ -43,9 +43,17 @@
 ``` 
 Safe:Min-Max: 0 - 2147012012
 layer.js --- zIndex:19891014+
-pop --- 
-map --- 
+date-picker - 100010
+win_webox --- 2046/2048
+color_out --- 6400
+evf_vtip ---- 8888
+adpush_edit --- 4096
+advFlag --- 4048
+qrcode_pic --- 1024
+map-bar --- 666
+map-div --- 333
 map-point --- 
+jsmove.js --- 500
 dom --- 
 ```
 
@@ -53,7 +61,7 @@ dom ---
 ```
 Safe:Min-Max: 0 - 32767 (Specification in W3C)
 Auth code: 19790
-submit: 19830
+submit: 19820/19830
 ```    
 
 #sysurl#System-Url

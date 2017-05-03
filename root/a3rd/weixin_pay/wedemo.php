@@ -65,7 +65,7 @@ wxDebugNavbar();
 
 <p>4. 登出重新调试：<br>
 &nbsp; * a. 因已经是登录状态就无需登录；所以请另开浏览器窗口，在未登录情况下测试；<br>
-&nbsp; * b. 如果是登录状态：<a href="<?php echo surl('umc:'); ?>?mkv=user-login&act=doout">登出重新调试</a>
+&nbsp; * b. 如果是登录状态：<a href="<?php echo surl('umc:'); ?>?logout">登出重新调试</a>
 </p>
 
 <hr>

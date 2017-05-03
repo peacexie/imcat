@@ -12,8 +12,8 @@ class tex_base{
         $perm = $perm=='.login' ? lang('user.tex_base_ulogin') : lang('user.tex_base_uperm').'»'.comTypes::getLnks(comTypes::getLays($_mumem['i'],$perm),'([k])[v]');
         $from = req('from');
         $from = substr($from,0,2)=='q-' ? comParse::urlBase64(substr($from,2),1,1) : $from;
-        $ulogin = 'user-login';
-        $uapply = 'user-apply';
+        $ulogin = 'home-login';
+        $uapply = 'home-apply';
         $runinfo = '';
         $runinfo .= "".$run['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
         $runinfo .= "tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname'])."; "; //tpl 

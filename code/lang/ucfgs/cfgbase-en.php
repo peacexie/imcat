@@ -102,6 +102,7 @@ $cfgs['ord_smslog'] = array(
 
 $cfgs['user_ops'] = array(
     'login'=>'User Login',
+    'logout'=>'Logout OK',
     'apply'=>'User Reg.',
     'getpw'=>'Get Password',
 );

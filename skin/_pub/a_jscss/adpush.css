@@ -4,7 +4,7 @@
     position:relative;    
 }
 .adpush_edit{
-    position:absolute; top:0; height:100%; width:100%; text-align:center;
+    position:absolute; top:0; height:100%; width:100%; text-align:center; z-index: 4096;
     background:rgba(204, 204, 204, 0.6) none repeat scroll 0 0 !important; filter:Alpha(opacity=60); background:#ccc;
 }
 .adpush_edit a{

@@ -24,10 +24,10 @@ if(empty($sbtitle)){
         <li><a href="{surl(faqs)}"><i class='glyphicon glyphicon-flag'></i> {lang(user.pub_faqs)}</a></li>
         <li role="separator" class="divider"></li>
         {if $user->userFlag=='Login' }
-        <li><a href="?mkv=user-login&act=doout"><i class='glyphicon glyphicon-user'></i> {lang(user.lon_logout)}</a></li>
+        <li><a href="?logout"><i class='glyphicon glyphicon-user'></i> {lang(user.lon_logout)}</a></li>
         {else}
-        <li><a href="{surl(user-login)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_login)}</a></li>
-        <li><a href="{surl(user-apply)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_reg)}</a></li>
+        <li><a href="{surl(?login)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_login)}</a></li>
+        <li><a href="{surl(?reg)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_reg)}</a></li>
         {/if}
         <li role="separator" class="divider"></li>
         <?php echo basLang::links("<li><a href='{url}' title='{title}'><i class='glyphicon glyphicon-random'></i> {title}</a></li>"); ?>
@@ -44,10 +44,10 @@ if(empty($sbtitle)){
       <ul class="dropdown-menu" aria-labelledby="nav_msub2">
             <?php if(in_array($this->key,array('apply','login','getpw'))){ ?>
             {if $user->userFlag=='Login' }
-            <li><a href="{surl(user-doout)}">{lang(user.lon_logout)}</a></li>
+            <li><a href="?logout">{lang(user.lon_logout)}</a></li>
             {else}
-            <li><a href="{surl(user-login)}">{lang(user.nv2_login)}</a></li>
-            <li><a href="{surl(user-apply)}">{lang(user.lon_reg)}</a></li>
+            <li><a href="{surl(?login)}">{lang(user.nv2_login)}</a></li>
+            <li><a href="{surl(?reg)}">{lang(user.lon_reg)}</a></li>
             <li><a href="{surl(help-getpw)}">{$karr['getpw']}</a></li>
             {/if}
             <?php }elseif($this->mod=='user'){ ?>

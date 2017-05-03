@@ -166,8 +166,8 @@ class basReq{
         if(strpos($url,"$key=")){
             $url = preg_replace("/$key=([^\f\n\r\t\v\&\#]{0,80})/i",$para,$url);    
         }else{
-            $url = strpos($url,'?') ? $url : "$url?";
-            $url .= "&$para";
+            $url = strstr($url,'?') ? $url : "$url?";
+            $para && $url .= "&$para";
             $url = str_replace(array("?&","&&"),array("?","&"),$url);    
         }
         return $url;

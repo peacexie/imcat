@@ -99,7 +99,7 @@ $vcfg['---'] = array('HOME','');
   <p class="title">CMS<?php lang('tools.start_cmsentry',0) ?></p>
   <table width="100%" border="1" class="tblist">
   <tr class="tc">
-   <?php foreach($vcfg as $k=>$v){ $ti++; if($k=='umc'){$v[1].='?user-login';} $url=($k=='---')?'../../../?':PATH_PROJ.@$v[1]; ?>
+   <?php foreach($vcfg as $k=>$v){ $ti++; if($k=='umc'){$v[1].='?login';} $url=($k=='---')?'../../../?':PATH_PROJ.@$v[1]; ?>
     <td width="25%"><a href="<?php echo $url; ?>"><?php echo !empty($v[0]) ? basLang::pick(0,$v[0]) : ''; ?></a></td>
     <?php if(($ti)%$col==0 && $ti<count($vcfg)){ echo "</tr><tr class='tc'>\n"; }  } ?>
   </tr>

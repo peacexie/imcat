@@ -3,7 +3,7 @@
 extract(basReq::sysVars()); 
 $db=db();
 $title = lang('admin.adm_center');
-$remsg = usrAdmin::opLogin();  
+$remsg = usrAdmin::opLogin($this);  
 $btncls = $user->userFlag=='Error' ? 'class="disc"' : 'class="btn"';
 {/php}
 {php $this->pmeta($title); }

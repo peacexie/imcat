@@ -14,7 +14,7 @@
 {if $user->userFlag=='Login' }
     <p class="text-danger bg-warning pa10">
       [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
-      {lang(user.lon_change)}【<a href="?mkv=user-login&act=doout">{lang(user.lon_logout)}</a>】; <br>
+      {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】; <br>
       {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } 
     </p>
 {elseif !empty($bsend) }
@@ -33,7 +33,7 @@
     </p>
 {else}
     <div class="text-danger bg-warning pa10">
-      {lang(user.uap_hasuid)}<a href="{surl(user-login)}">{lang(user.uap_login)}</a>！
+      {lang(user.uap_hasuid)}<a href="{surl(?login)}">{lang(user.uap_login)}</a>！
     </div>
 {/if}
 
@@ -59,7 +59,7 @@
   <p class="bg-info tc pa10">{lang(user.lon_reg)}</p>
 
   <div class="user-login">
-    <form action="{surl(user-apply)}" usercheck='uapply' method="post" name="fmapply" id="fmapply">
+    <form action="?reg" usercheck='uapply' method="post" name="fmapply" id="fmapply">
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex1">{lang(user.uap_type)}</label></li>
       <li class="col-xs-8 col-md-8">

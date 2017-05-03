@@ -102,6 +102,7 @@ $cfgs['ord_smslog'] = array(
 
 $cfgs['user_ops'] = array(
     'login'=>'会员登录',
+    'logout'=>'已经登出',
     'apply'=>'会员注册',
     'getpw'=>'获取密码',
 );

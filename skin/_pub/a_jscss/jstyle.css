@@ -6,8 +6,8 @@ div table.tblist td{ }
 table.tblist th.msg_th{ font-size:14px; padding:5px 12px; }
 
 /*win_webox*/
-.webox_bg { Z-INDEX: 998; POSITION: fixed; WIDTH: 100%; BACKGROUND: rgb(50,50,50); HEIGHT: 100%; TOP: 0px; LEFT: 0px; _position: absolute }
-.webox_out { Z-INDEX: 999; POSITION: fixed; _position: absolute; _background: #777; PADDING: 0px; BORDER:#369 1px solid; }
+.webox_bg { Z-INDEX: 2046; POSITION: fixed; WIDTH: 100%; BACKGROUND: rgb(50,50,50); HEIGHT: 100%; TOP: 0px; LEFT: 0px; _position: absolute }
+.webox_out { Z-INDEX: 2048; POSITION: fixed; _position: absolute; _background: #777; PADDING: 0px; BORDER:#369 1px solid; }
 .webox_out #webox_in { BACKGROUND-COLOR: #ffffff; HEIGHT: 240px }  
 .webox_out #webox_in H1 { POSITION: relative; LINE-HEIGHT: 30px; PADDING:0 0 0 5px; MARGIN: 0px; DISPLAY: block; FONT-FAMILY: Arial; BACKGROUND: #3A6EA5; HEIGHT: 30px; COLOR: #FFF; FONT-SIZE: 13px; CURSOR: move; FONT-WEIGHT: 800;user-select: none }
 .webox_out #webox_in H1 A { BACKGROUND-IMAGE: url(../../../skin/_pub/a_img/win_webox_close.png); POSITION: absolute; MARGIN-TOP: 6px; WIDTH: 17px; DISPLAY: inline-block; BACKGROUND-REPEAT: no-repeat; BACKGROUND-POSITION: center bottom; HEIGHT: 17px; FONT-SIZE: 14px; TOP: 0px; CURSOR: pointer; RIGHT: 6px }
@@ -25,7 +25,7 @@ table.tblist th.msg_th{ font-size:14px; padding:5px 12px; }
 .wtips-content-boxCss { overflow-y:hidden; overflow-x:hidden; }
 
 /*easy_validator.css*/
-p#evf_vtip {position: absolute; padding: 10px; left: 5px; font-size: 14px; background-color: white; border: 1px solid #a6c9e2; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 9999;}
+p#evf_vtip {position: absolute; padding: 10px; left: 5px; font-size: 14px; background-color: white; border: 1px solid #a6c9e2; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 8888;}
 p#evf_vtip #evf_vtipArrow { position: absolute; top: -10px; left: 5px }
 .evf_valid-failed { border: 2px solid #FF0000; color:red;}
 

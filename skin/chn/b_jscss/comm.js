@@ -2,7 +2,7 @@ function js_cklogin(id){
     var sinf, ainf='';
     if(_minfo.userFlag=='Guest'){
         var uname = 'Guest';
-        sinf = '<span class="uname">'+uname+'</span> 您好！<br><a href="'+umc_url+'?mkv=user-login&recbk=ref">马上登陆…</a>';
+        sinf = '<span class="uname">'+uname+'</span> 您好！<br><a href="'+umc_url+'?logout&recbk=ref">马上登陆…</a>';
     }else{
         var uname = _minfo.uname;
         if(uname.length>9){
@@ -11,7 +11,7 @@ function js_cklogin(id){
         sinf = '<span class="uname" title="'+_mperm.title+'">'+uname+'</span> 您好！<br><a href="'+umc_url+'?mkv=user-login&act=doout&recbk=ref" target="_blank">登出…</a>';
     }
     if(_miadm.userFlag=='Login'){ 
-        ainf = '<a class="cF0F" href="'+_cbase.run.roots+'/run/adm.php?mkv=login&act=doout" target="_blank" title="登出:'+_mpadm.title+'">登出:'+_miadm.uname+'</a>';
+        ainf = '<a class="cF0F" href="'+_cbase.run.roots+'/run/adm.php?logout" target="_blank" title="登出:'+_mpadm.title+'">登出:'+_miadm.uname+'</a>';
     }
     if(typeof(ocar_items)=="undefined"){
         var citems = getCookie('ocar_items');

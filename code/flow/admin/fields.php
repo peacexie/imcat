@@ -90,7 +90,8 @@ if($view=='ftest'){
         $fm = fldEdit::fmOrgData($tabid,$mod,$kid,$fm,$catid);
         
         $fedit = new fldEdit($mod,$fm);
-        glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
+        $aurl[1] = substr($aurl[1],0,strpos($aurl[1],'&fm[type]')); // 去掉-url的fm
+        glbHtml::fmt_head('fmlist',$aurl[1],'tbdata');
         $fedit->fmTypeOpts();
         $fedit->fmPlusPara();
         $fedit->fmParaKeys();

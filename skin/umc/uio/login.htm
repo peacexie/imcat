@@ -17,11 +17,11 @@
 {elseif $user->userFlag=='Login' }
 
     <div class="text-danger bg-warning pa10">
-      <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px"> {lang(user.lon_change)}【<a href="?mkv={$this->mkv}&act=doout">{lang(user.lon_logout)}</a>】;  <br>
+      <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px"> {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】;  <br>
           {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
       </p>
       [{$user->usess['uname']}] {lang(user.lon_logined)}
-      <a href="{surl(0)}">{lang(user.pub_cuser)}</a><!--:user-login-->
+      <a href="{surl(0)}">{lang(user.pub_cuser)}</a><!--:home-login-->
     </div>
 
 {elseif !empty($remsg) }
@@ -39,7 +39,7 @@
   <div class="block-login">
       <div class="right w220 small">
         <p class="pa10">{lang(user.lon_noidpw)}<br>
-          <a class="btn btn-warning w130 block" href="{surl(user-apply)}"><i class="glyphicon glyphicon-floppy-save"></i> {lang(user.lon_reg)}</a>
+          <a class="btn btn-warning w130 block" href="{surl(?reg)}"><i class="glyphicon glyphicon-floppy-save"></i> {lang(user.lon_reg)}</a>
         </p>
         <p class="pa10">{lang(user.lon_fpass)}?<br>
           <a class="btn btn-warning w130 block" href="{surl(help-getpw)}"><i class="glyphicon glyphicon-question-sign"></i> {$karr['getpw']}</a>
@@ -54,7 +54,7 @@
       </div>
 
       <div id="idx_login" class="left w450 pv10">
-        <form action="?mkv={$this->mkv}" method="post" name="fmlogin" id="fmlogin">
+        <form action="?login" method="post" name="fmlogin" id="fmlogin">
         <p class="row"> <i class="col-xs-4 col-md-4"><a class="block pt10 c333">{lang(uname)}:</a></i>
           <i class="col-xs-8 col-md-8">
           <input id="fm[uname]" name="fm[uname]" tabindex="1" type="text" class="form-control txt" reg="key:2-15" tip="{lang(admin.fad_uid31546)}" />

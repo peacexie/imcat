@@ -10,7 +10,7 @@ $_ve_user = array(
         'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     
-    'm' => 'user/uinfo',    
+    'm' => 'user/uinfo',
     //'home' => 'user/uinfo', //
     'tips' => 'user/tips', //
     
@@ -23,12 +23,5 @@ $_ve_user = array(
     'testlogin' => 'user/test', //
     'testguset' => 'user/test', //
     'testset' => 'user/test', //
-    
-    'login' => 'uio/login',
-    'apply' => 'uio/apply',
-    //'wxlogin' => 'uio/wxlogin',
-    //'wxlocal' => 'uio/wxlocal',
 
-    //'getpw' => 'user/user_getpw',
-    
 );

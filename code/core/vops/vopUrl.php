@@ -11,6 +11,7 @@ class vopUrl{
     
     // get/url初始数据
     static function iget($q=''){
+        global $_cbase;
         $re = array(); 
         $q = strlen($q)==0 ? (empty($_SERVER['QUERY_STRING'])?'':$_SERVER['QUERY_STRING']) : $q; //可能为0
         if(empty($q) || $q=='home'){
@@ -21,9 +22,12 @@ class vopUrl{
             $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
             //about-profile&ext=2015-9d-d4k1 ??? 
             //$mkv = empty($ua['mkv']) ? key($ua) : $mkv = $ua['mkv'];
-        }else{ //无=且不为空
+        }else{ //无=且不为空 
             $ua = array('mkv'=>$q);
             $mkv = $q;    
+        }
+        if(isset($_cbase['rmcfg'][$mkv])){
+            $mkv = $_cbase['rmcfg'][$mkv];
         }
         $re['q'] = $q;
         $re['mkv'] = $mkv; 
@@ -170,6 +174,9 @@ class vopUrl{
     static function fout($mkv='',$type='',$host=0){ //,$ext=array()
         if(strpos($mkv,':')) return self::ftpl($mkv,$type,$host);
         $burl = self::burl($host); 
+        if(strstr($mkv,'?')){ // {surl(umc:?login)}
+            return $burl .= "$mkv";
+        }
         //mkv分析
         if(strlen($mkv)<3) return self::bind($burl); //首页
         $type || $type = strpos($mkv,'.') ? '.' : '-';
@@ -184,13 +191,13 @@ class vopUrl{
             $vext = empty($view) ? '' : ".$view";
             $ust = '/'.vopStatic::getPath($mod,$key.$vext,0);
             $url = file_exists(DIR_HTML.$ust) ? PATH_HTML.$ust : '';
-            //$url = PATH_HTML.$ust; // is_file,file_exists
         }
         //动态
         if(empty($url)){
             $key = empty($key) ? '' : "$type$key";
             $view = empty($view) ? '' : "$type$view";
             $mkv = "$mod$key$view";
+
             $url = $burl."?$mkv";
         }
         $url = self::bind($url);

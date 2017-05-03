@@ -5,8 +5,10 @@ include(dirname(__FILE__).'/_config.php');
 // for your dir debug ... 
 $list = comFiles::listDir(dirname(DIR_PROJ).'/project/tester'); 
 $svlink = '';
-foreach ($list['dir'] as $dir=>$ctime) {
-  $svlink .= "<a href='?dir=$dir&part=tester'>$dir</a> #";
+if(!empty($list['dir'])){
+  foreach ($list['dir'] as $dir=>$ctime) {
+    $svlink .= "<a href='?dir=$dir&part=tester'>$dir</a> #";
+  }
 }
 glbHtml::page();
 echo '</head><body class="divOuter">';

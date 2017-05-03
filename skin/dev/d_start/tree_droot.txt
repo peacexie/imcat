@@ -27,5 +27,4 @@ E:.
 └─tools
     ├─adbug
     ├─exdiy
-    ├─rhome
     └─setup

@@ -4,7 +4,7 @@ $_cbase['tpl']['tpl_dir'] = 'chn';
 $vcfg = vopTpls::etr1('tpl');
 unset($vcfg['_pub']); 
 if($isMobile) unset($vcfg['adm']); 
-glbHtml::page(" (sys_name) - ".lang('tools.home_extitle'));
+glbHtml::page(" (sys_name) v".$_cbase['sys']['ver']." - ".lang('tools.home_extitle'));
 glbHtml::page('keywords',$_cbase['sys_name'].':'.lang('tools.home_exkwd'));
 glbHtml::page('description',$_cbase['sys_name'].lang('tools.home_exdes'));
 glbHtml::page('imjq',array('js'=>'/_pub/rhome/hfunc.js','css'=>'/_pub/rhome/hstyle.css'));    
@@ -12,7 +12,6 @@ glbHtml::page('imjq',array('js'=>'/_pub/rhome/hfunc.js','css'=>'/_pub/rhome/hsty
 <style type="text/css">
 div.outer {  
     background-image:url({PATH_STATIC}/media/cover/green_02_1024x576.jpg);
-    /*background-image:url({PATH_STATIC}/media/cover/gray_nv1_1024_576.jpg);*/
 }
 </style>
 {php}    

@@ -14,8 +14,8 @@
 <a href="{surl(company)}">用户/会员</a>
 <a href="{surl(info-gbook)}">留言问答</a>
 <a href="{surl(info);}">[导航]</a>
-<a href="{surl(umc:user-login)}">[登录]</a>
-<a href="{surl(umc:user-apply)}">[注册]</a>
+<a href="{surl(umc:?login)}">[登录]</a>
+<a href="{surl(umc:?reg)}">[注册]</a>
 {surl(news.2016-12-abcd,0,1)} //完整地址
 {surl(dev:news.2016-12-abcd,0,1)} //完整地址 
 {if cmod('votes')}投票已关闭{/if}

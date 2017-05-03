@@ -93,5 +93,43 @@ class extExcel{
         return "<Row>\n" . $cells . "</Row>\n";
     }
 
+    // 建议用: exRead轻量的类
+    static function peRead($file,$encode='utf-8'){
+        include_once DIR_VENDOR.'/Excel/PHPExcel.php'; // 自行下载PHPExcel到相关目录
+        $Reader = PHPExcel_IOFactory::createReader('Excel5');
+        $Reader->setReadDataOnly(true);
+        $PHPExcel = $Reader->load($file);
+        $sheet = $PHPExcel->getActiveSheet();
+        $hRow = $sheet->getHighestRow(); 
+        $hColumn = $sheet->getHighestColumn(); 
+        $hCIndex = PHPExcel_Cell::columnIndexFromString($hColumn); 
+        $data = array(); 
+        for($row = 1; $row <= $hRow; $row++) { 
+            for ($col = 0; $col < $hCIndex; $col++) { 
+                $data[$row][] =(string)$sheet->getCellByColumnAndRow($col, $row)->getValue();
+           } 
+        } 
+        return $data;
+    }
+
+    // $data = exRead('./@note/163data-1zz.xls','gbk'); 
+    function exRead($file,$encode='utf-8',$rtb=0){ 
+        include_once DIR_VENDOR.'/Excel/reader.php'; 
+        $data = new Spreadsheet_Excel_Reader(); 
+        $data->setOutputEncoding($encode);
+        $data->read($file); 
+        $sheets = $data->sheets; 
+        return isset($sheets[$rtb]) ? $sheets[$rtb] : $sheets;
+    }
+
 }
 
+/*
+    ### ExcelReader 小问题：
+
+    (1)出现Deprecated: Function split() is deprecated in 。。。错误
+      解决：将excel_reader2.php源码中split改为explode,详情点击php中explode与split的区别介绍
+
+    (2)出现Deprecated: Assigning the return value of new by reference is deprecated in错误
+      解决：将excel_reader2.php源码中$this->_ole =& new OLERead()中 &去掉，因为php5.3中废除了=& 符号直接用=引用
+*/

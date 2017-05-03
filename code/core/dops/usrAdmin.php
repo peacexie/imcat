@@ -57,11 +57,11 @@ class usrAdmin extends usrBase{
             $re = 'amain';
         }else{
             $re = '';
-        }
+        } 
         return $re;
     }
 
-    static function opLogin(){    
+    static function opLogin($vop=null){    
         $user = user('Admin');
         $act = req('act');
         if($act=='dologin'){ 
@@ -74,12 +74,12 @@ class usrAdmin extends usrBase{
             }else{
                 $remsg = lang('admin.oplogin_vform_err');    
             } 
-        }elseif($act=='doout'){
+        }elseif($vop->key=='logout'){ 
             $user->logout();
             $remsg = lang('admin.oplogin_logout');    
         }
         $remsg = empty($remsg) ? lang('admin.oplogin_please_login') : $remsg; 
         return $remsg;
-    } // # $remsg = "错误登录次数：{$user->usess['errno']}次；&nbsp; 锁定时间至：".date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut)."。";
+    } 
 
 }

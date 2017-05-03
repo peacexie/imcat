@@ -20,7 +20,7 @@ header .xxx{ display:none; }
 <p>{$res['uname']}({$res['uto']}) 您好！</p>
 <p>您在 {$_cbase['sys_name']} 注册的帐号，激活成功！</p>
 <p>您现在可以：<br><b class="block center">
-<a href="{surl(umc:0)}?user-login" target="_blank">登录系统</a>
+<a href="{surl(umc:?login)}" target="_blank">登录系统</a>
 或
 <a href="{surl(chn:0)}" target="_blank">返回首页</a>
 </b></p>
@@ -30,7 +30,7 @@ header .xxx{ display:none; }
 <p>不好了，不好了！</p>
 <p class="cmbg">您激活帐号时出了问题！<b class="block center cmsg">{$res}</b></p>
 <p>您现在可以：<br><b class="block center">
-<a href="{surl(umc:0)}?user-apply" target="_blank">再去注册</a>
+<a href="{surl(umc:?reg)}" target="_blank">再去注册</a>
 或
 <a href="{surl(chn:0)}" target="_blank">返回首页</a>
 </b></p>

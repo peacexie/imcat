@@ -14,8 +14,8 @@
 <a href="{surl(company)}">User/Member</a>
 <a href="{surl(info-gbook)}">Guestbook</a>
 <a href="{surl(info);}">[Navigation]</a>
-<a href="{surl(umc:user-login)}">[Lgoin]</a>
-<a href="{surl(umc:user-apply)}">[Register]</a>
+<a href="{surl(umc:?login)}">[Lgoin]</a>
+<a href="{surl(umc:?reg)}">[Register]</a>
 {surl(news.2016-12-abcd,0,1)} //Full-Url
 {surl(dev:news.2016-12-abcd,0,1)} //Full-Url
 {if cmod('votes')}Votes is Closed!{/if}
