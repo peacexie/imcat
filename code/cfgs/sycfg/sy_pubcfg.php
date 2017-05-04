@@ -103,6 +103,8 @@ $_sy_pubcfg['skfiles'] =  array(
     'cacert.pem', // vendor:/a3rd/alipay_class/
     'echarts.min.js',
     //'jquery-3.x.imp_js',
+    'bank_full.html',
+    'combo.png',
 
     //ext-*
     'extMedoo.php',

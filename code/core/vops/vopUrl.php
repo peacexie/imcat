@@ -197,7 +197,6 @@ class vopUrl{
             $key = empty($key) ? '' : "$type$key";
             $view = empty($view) ? '' : "$type$view";
             $mkv = "$mod$key$view";
-
             $url = $burl."?$mkv";
         }
         $url = self::bind($url);

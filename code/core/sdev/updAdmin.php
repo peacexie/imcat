@@ -47,7 +47,7 @@ class updAdmin extends updBase{
         $old = self::cacGet("tab_$part.php-cdemo",DIR_DTMP."/dset");
         foreach($new as $k=>$v){
             if(file_exists($pold."/$k")){
-                $old[$k] = md5(comFiles::get($pold."/$k"));
+                $old[$k] = md5_file($pold."/$k");
             }
         }
         self::cacSave($new,"file_$part.new");

@@ -9,10 +9,13 @@ class basReq{
     - by Peace(XieYS) 2012-02-18
     ***************************************************************************** */
 
-    // getGP, [request_order], php5.3="GP", php5.2="CGP"
-    static function getGP($key,$def=''){ 
+    // [request_order], php5.3="GP", php5.2="CGP"
+    static function gp($key,$def=''){ 
         if(isset($_GET[$key])){
             $val = $_GET[$key];
+            /*if(is_array($val) && isset($_POST[$key]){
+                $val = $val + $_POST[$key];
+            }*/
         }elseif(isset($_POST[$key])){
             $val = $_POST[$key];    
         }else{
@@ -27,7 +30,7 @@ class basReq{
         $sy_sids = read('sysids','sy');
         $re = array();
         foreach($sy_sids['GET'] as $key){
-            $re[$key] = self::getGP($key,array());
+            $re[$key] = self::gp($key,array());
         }
         foreach(array('Title','Key','N') as $k0){
             $items = $sy_sids[$k0];
@@ -41,11 +44,11 @@ class basReq{
     }
     
     static function val($key,$def='',$type='Title',$len=255){ 
-        $val = self::getGP($key);
+        $val = self::gp($key);
         return is_array($val) ? $val : self::fmt($val,$def,$type,$len);
     }
     static function arr($fix,$type='Title',$len=255){ 
-        $val = self::getGP($fix,array());
+        $val = self::gp($fix,array());
         if($type && !empty($val)){
             foreach($val as $k=>$v)    {
                 $val[$k] = is_array($v) ? $v : self::fmt($v,'',$type,$len);
@@ -54,7 +57,7 @@ class basReq{
         return $val;
     }
     static function ark($fix,$key,$type='Title',$len=255){ 
-        $tmp = self::getGP($fix,array());
+        $tmp = self::gp($fix,array());
         $val = isset($tmp[$key]) ? $tmp[$key] : '';
         return is_array($val) ? $val : self::fmt($val,'',$type,$len);
     }

@@ -1,0 +1,47 @@
+
+### Excel-Reader =================
+
+--------2k--------
+BugFix :
+added patch by Rberto Innocenti - robyinno to fix infinite loop on 64 bit processors.
+fixed order of operations error on date fields. - bizon153
+
+--------2j--------
+Features:
+added example2.php which demonstrates a more feature rich use
+
+BugFix:
+dates were being rolled back by one day
+
+-------- demo --------
+require_once 'Excel/reader.php';
+
+$data = new Spreadsheet_Excel_Reader();
+$data->setOutputEncoding('CP1251');
+$data->read('jxlrwtest.xls');
+
+error_reporting(E_ALL ^ E_NOTICE);
+for ($i = 1; $i <= $data->sheets[0]['numRows']; $i++) {
+	for ($j = 1; $j <= $data->sheets[0]['numCols']; $j++) {
+		echo "\"".$data->sheets[0]['cells'][$i][$j]."\",";
+	}
+	echo "\n";
+}
+
+### Excel-Writer =================
+
+-------- demo --------
+require_once 'Excel/writer.php';
+
+// 数据导出成Excel文件,暂不支持中文文件名称。尽量生成UTF-8编码的excel（包括从数据库取出来的数据转成UTF-8）,测试时某些WPS版本只支持UTF-8的编码
+/* @example 
+    $head1 = array('AA1','BB1');
+    $data1 = array(array('1a','1ba'),array('1c','1d'));
+    $head2 = array('AA2','BB2');
+    $data2 = array(array('2a','2bb'),array('2c','2d'));
+    $xls = new extExcel($charset); //默认UTF-8编码
+    $xls->generateXMLHeader('ExcelName_'.date('Y-md-His',$timestamp));  //excel文件名
+    $xls->setTable($head1,$data1);
+    $xls->setTable($head2,$data2);
+    $xls->generateXMLFoot();
+*/

@@ -251,7 +251,7 @@ class updBase{
                 if(empty($sub) && in_array($file,self::$skipdirs)) continue;
                 $re = array_merge($re,self::listDir($fp,"$sub$file/")); 
             }else{
-                $re[$key] = md5(comFiles::get($fp));
+                $re[$key] = md5_file($fp);
             }
         }
         closedir($handle);

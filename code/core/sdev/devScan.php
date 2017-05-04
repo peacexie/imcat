@@ -87,7 +87,7 @@ class devScan{
         $arr = array();
         $cfgs = comFiles::listDir(DIR_PROJ);
         foreach($cfgs['file'] as $file=>$frow){
-            $arr[$file] = md5(comFiles::get(DIR_PROJ."/$file"));
+            $arr[$file] = md5_file(DIR_PROJ."/$file");
         }
         updBase::cacSave($arr,"tab_proj.php-cdemo",$ptab);
     }
