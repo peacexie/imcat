@@ -15,7 +15,7 @@ class basReq{
             $val = $_GET[$key];
             /*if(is_array($val) && isset($_POST[$key]){
                 $val = $val + $_POST[$key];
-            }*/
+            }*/ // (如果有这个情况,是否也不合理???)
         }elseif(isset($_POST[$key])){
             $val = $_POST[$key];    
         }else{

@@ -164,7 +164,7 @@ class vopTpls{
             }
         }
         if($die && empty($tplchks[$tpl]['ok'])){
-            vopShow::msg("[sycfg/sy_vopcfg.php]/[$tpl/_config] Config Error!");
+            vopShow::msg("Config Error! <br>[cfgs/sycfg/sy_vopcfg.php] : _sy_vopcfg['tpl'][$tpl]");
         } 
         return $tplchks[$tpl];
     }

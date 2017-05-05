@@ -74,11 +74,13 @@ class vopShow{
         $$unv = $this->tagParse($tagname,$tagtype,$temp);
         //显示模板  
         $_groups = read('groups'); 
-        require(vopTpls::path('tpc').$tagpath);
+        include(vopTpls::path('tpc').$tagpath);
     }
     //run
     function run($q=''){ 
         global $_cbase; 
+        // check-tpldir
+        vopTpls::check($_cbase['tpl']['tpl_dir']);
         //初始化
         $this->vars = array(); //重新清空,连续生成静态需要
         $this->ucfg = $_cbase['mkv'] = vopUrl::init($q); 
@@ -105,8 +107,6 @@ class vopShow{
     function getTpl($vars=array()) { 
         global $_cbase; 
         $tplname = &$this->tplname; 
-        // check-tpldir
-        vopTpls::check($_cbase['tpl']['tpl_dir']);
         // 处理:detail 设置的模板 
         if(!empty($vars['tplname'.$this->view])){ 
             $tplname = $vars['tplname'.$this->view];

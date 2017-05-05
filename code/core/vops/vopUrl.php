@@ -26,8 +26,8 @@ class vopUrl{
             $ua = array('mkv'=>$q);
             $mkv = $q;    
         }
-        if(isset($_cbase['rmcfg'][$mkv])){
-            $mkv = $_cbase['rmcfg'][$mkv];
+        if(isset($_cbase['route'][$mkv])){
+            $mkv = $_cbase['route'][$mkv];
         }
         $re['q'] = $q;
         $re['mkv'] = $mkv; 
@@ -37,7 +37,11 @@ class vopUrl{
     
     // mkv/mod初始分析
     static function imkv($re,$remod=0){
+        $hcfg = glbConfig::vcfg('home'); 
         $mkv = $re['mkv']; $type = '';
+        if(isset($hcfg[$mkv])){
+            $mkv = $re['mkv'] = "home-$mkv";
+        }
         if(strpos($mkv,'.')){ //mod.id1-xxx-id2.view
             $a = explode('.',"$mkv.");
             $type = 'detail';
@@ -54,7 +58,6 @@ class vopUrl{
         //$mod分析
         $mod = $a[0]; $key = $a[1]; $view = empty($a[2]) ? '' : $a[2];
         if($remod) return $remod=='a' ? $a : $mod;
-        $hcfg = glbConfig::vcfg('home'); 
         $vcfg = self::mcheck($hcfg,$mod); //mod-close, home-static, 
         if($type=='mhome' && $vcfg['m']=='first') self::ifirst($mod); //first跳转
         foreach(self::$params as $k) $re[$k] = $$k;
@@ -136,7 +139,7 @@ class vopUrl{
     }
     
     static function mcheck($hcfg,$mod){
-        global $_cbase; 
+        global $_cbase;
         $tpldir = $_cbase['tpl']['tpl_dir'];
         $_groups = read('groups');
         $ukeyh = array_merge($hcfg['extra'],array('home'));

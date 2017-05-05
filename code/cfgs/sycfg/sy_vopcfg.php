@@ -18,7 +18,7 @@ $_sy_vopcfg['langs'] = array(
 
 // 所有模板
 $_sy_vopcfg['tpl'] = array(
-      'adm' => array(
+    'adm' => array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
         '/root/run/adm.php'
     ),
@@ -43,11 +43,12 @@ $_sy_vopcfg['tpl'] = array(
         '/root/run/umc.php'
     ), 
     'app' => array(
-        'Server', 
+        'apiServer', 
         '/root/run/app.php'
     ),
     '_pub' => 0,
-    //'demodir' => array('hello','/root/run/front.php'), 
+    //'demodir' => array('Hello','/root/run/front.php'), 
+    //'ven' => array('English','/root/run/eng.php'), 
 );
 
 // 各模块展示show
