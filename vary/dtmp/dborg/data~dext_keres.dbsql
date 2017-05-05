@@ -1,5 +1,5 @@
 
--- dext_keres@2017-04-30 17:00:31 -- 
+-- dext_keres@2017-05-05 20:10:34 -- 
 INSERT INTO `{pre}dext_keres{ext}` VALUES 
 ('2015-9d-q5d1','~','','','','','','{staticroot}/media/sample/demo-word.doc',''),
 ('2015-9d-q6q1','~','','','','','','{staticroot}/media/sample/demo-ppt.pptx',''),

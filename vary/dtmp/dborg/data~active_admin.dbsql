@@ -1,5 +1,4 @@
 
--- active_admin@2017-04-30 17:00:31 -- 
+-- active_admin@2017-05-05 20:10:33 -- 
 INSERT INTO `{pre}active_admin{ext}` VALUES 
-('1107e32e077bffd4a78a0f7e58f04d12','peace','supper','1','0','0','1493542678','2017-3g-me6b98w-6t4c8jauq-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36'),
-('ad989584fea8a5867e595c4bbabe1bfc','peace','supper','1','0','0','1493531795','2017-43-35f5bqe-y44q8vsdj-a038cd62b','HUAWEI Y516-T00_TD/V1 Linux/3.4.5 Android/4.2.2 Release/07.30.2013 Browser/AppleWebKit534.30 Mobile Safari/534.30;');
+('1107e32e077bffd4a78a0f7e58f04d12','peace','supper','1','0','0','1493985919','2017-3g-me6b98w-6t4c8jauq-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36');
