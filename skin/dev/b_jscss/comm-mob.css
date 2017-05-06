@@ -34,7 +34,7 @@ a.cur { color:#C00; }
 
 .breadcrumb{ margin-bottom:0px; }
 .inn-atitle{ display:block; margin:10px 0 10px 0; }
-.inn-atitle i{ line-height:180%; font-size:100%; }
+.inn-atitle i{ display:inline-block; color:#FFF; line-height:180%; font-size:100%; padding:0px 5px; border-radius:4px;  }
 
 
 .mod-list { line-height:150%; xborder:0px solid #CCC; padding:0px; margin:0px 0px 0px 0px; }
