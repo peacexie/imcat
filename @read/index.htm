@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8">
+<title>贴心猫(Intimate) - readme</title>
+<meta name='robots' content='noindex, nofollow'>
+<style type='text/css'>
+li{ padding:5px; }
+</style>
+</head>
+<body>
+
+<h3> 贴心猫(Intimate) - readme </h3>
+
+<ul>
+    <li><a href="lang-cn.htm" target="_blank">见文档: lang-cn.htm</a></li>
+    <li><a href="lang-en.htm" target="_blank">See File: lang-en.htm</a></li>
+</ul>
+
+<script>
+var ulang = ':' + navigator.language.toLowerCase();
+if(ulang.indexOf('cn')>0 || ulang.indexOf('zh')>0){
+    url = "lang-cn.htm";
+//}else if(ulang.indexOf('fr')>0){
+    //url = "lang-fr.htm";
+}else{ 
+    url = "lang-en.htm";
+}
+window.location.href = url;
+</script>
+
+</body>
+</html>
+
