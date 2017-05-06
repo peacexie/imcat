@@ -5,4 +5,4 @@ $_cbase['tpl']['tpl_dir'] = 'app';
 //$_cbase['sys']['lang'] = 'cn'; // 切换语言
 require(dirname(__FILE__).'/_init.php');
 vopTpls::pinc('tex_main');
-$vop = new tex_main(); 
+$vop = new tex_main();

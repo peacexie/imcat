@@ -4,7 +4,7 @@ require(dirname(__FILE__).'/root/run/_init.php');
 
 $qstr = $_SERVER['QUERY_STRING'];
 $_cbase['close_home'] = empty($_cbase['close_home']) ? 'index' : $_cbase['close_home'];
-//$_cbase['close_home'] = 'close'; // test: close,
+//$_cbase['close_home'] = 'close'; // close,
 
 if(devRun::prootGet()!=PATH_PROJ){ // 检查路径
     header("Location:./root/tools/adbug/start.php?FixProot"); 

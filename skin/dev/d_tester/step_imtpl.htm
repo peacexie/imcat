@@ -14,25 +14,7 @@ $burl = surl(0).'?mkv='.$this->mod.'-'.$this->key;
 
 {block:exmain}
 
-<h3>用模板和类库 - 用模板和系统类库调用:示例</h3>
-
-<nav> pid: 
-  <a href='{$burl}'>[RESET]</a> |
-  <a href='{$burl}&pid=cnhn'>cnhn</a> |
-  <a href='{$burl}&pid=cngd'>cngd</a> |
-  <a href='{$burl}&pid=cngx'>cngx</a> |
-<br> orderby: 
-  <a href='{$burl}&order=kid&pid={$pid}'>kid</a> |
-  <a href='{$burl}&order=title&pid={$pid}'>title</a> |
-  <a href='{$burl}&order=pid&pid={$pid}'>pid</a> |
-<br> ordermode: 
-  <a href='{$burl}&odesc=1&pid={$pid}'>odesc=1</a> |
-  <a href='{$burl}&odesc=0&pid={$pid}'>odesc=0</a> |
-<br> view source-code: 
-  <a href='{surl(0)}?mkv=info-coder&tpls=d_tester/utpl' target="_blank">查看代码</a>
-</nav>
-
-<hr />
+<h3>用模板继承 - head,body不在当前模板页,到父模板页去了:示例</h3>
 
 <table border=1>
 {tag:demo2=[Page][modid,china][pid,$pid][where,$where][order,$order][limit,10]}

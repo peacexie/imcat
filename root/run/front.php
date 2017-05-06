@@ -4,4 +4,4 @@ define('RUN_FRONT', 1);
 $_cbase['tpl']['tpl_dir'] = 'demodir';
 //$_cbase['sys']['lang'] = 'cn'; // 切换语言
 require(dirname(__FILE__).'/_init.php');  
-$vop = new vopShow(); 
+$vop = new vopShow();

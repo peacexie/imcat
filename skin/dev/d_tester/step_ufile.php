@@ -25,6 +25,7 @@ body,nav,div {
 body,td,th,div {
     font-size:14px; line-height:180%;
 }
+p { text-align:left; margin:auto; }
 td,th {
     padding:2px;
 }
@@ -32,6 +33,8 @@ input { background:#CCC; /*不可用*/ }
 </style>
 </head>
 <body>
+
+<?php include(DIR_SKIN."/dev/d_tester/tester_nav.htm"); ?>
 
 <h3>用基本类库 - 只用系统类库,不用模板调用:示例</h3>
 
@@ -69,10 +72,5 @@ echo "<div class='pg_bar'>".$pg->show($idfirst,$idend)."</div>";
 
 ?>
 
-<hr />
-
-<?php
-echo(basDebug::runInfo());
-?>
 </body>
 </html>

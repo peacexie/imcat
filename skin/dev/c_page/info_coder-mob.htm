@@ -19,7 +19,7 @@ $fext = $_cbase['tpl']['tpl_ext'];
 <?php foreach($tpla as $tpl){ if(empty($tpl)) continue; ?>
   <div class="inn-atitle">
   <a href="#" class="right">[Top]</a>
-  <p class="label label-primary">{$path}/{$tpl}{if !strstr($tpl,'.php')}{$fext}{/if}</p>
+  <p><i class="label label-primary">{$path}/{$tpl}{if !strstr($tpl,'.php')}{$fext}{/if}</i></p>
   </div>
   <li class="info-coder" style="font-family:Tahoma, Geneva, sans-serif"><?php echo tex_base::coder($tpl); ?></li>
 <?php } ?>

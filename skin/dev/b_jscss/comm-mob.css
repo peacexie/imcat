@@ -29,12 +29,12 @@ a.cur { color:#C00; }
 .home-block li, #home-block li{ list-style-position:inside; padding:10px; border-bottom:1px dashed #CCC; }
 #home-bnav { margin:0px 0px; }
 #home-bnav li{ text-align:center; }
+.container pre{ width:100%; clear:both; font-family:Tahoma, Geneva, sans-serif; }
 
 
 .breadcrumb{ margin-bottom:0px; }
 .inn-atitle{ display:block; margin:10px 0 10px 0; }
-.inn-atitle p{ line-height:180%; font-size:100%; }
-.inn-atitle a{ font-size:75%; }
+.inn-atitle i{ line-height:180%; font-size:100%; }
 
 
 .mod-list { line-height:150%; xborder:0px solid #CCC; padding:0px; margin:0px 0px 0px 0px; }

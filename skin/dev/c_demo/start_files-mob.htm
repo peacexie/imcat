@@ -15,9 +15,9 @@ $msubs = array(
   <?php foreach($msubs as $k=>$v){ $data = tex_base::texter("d_start/$k"); ?>
   <div class="inn-atitle">
   <a href="#" class="right">[Top]</a>
-  <p class="label label-primary">{$k} [{$msubs[$k]}]</p>
+  <p><i class="label label-primary">{$k} [{$msubs[$k]}]</i></p>
   </div>
-  <pre style="font-family:Tahoma, Geneva, sans-serif">{$data}</pre>
+  <pre>{$data}</pre>
   <?php } ?>
 
 {/block:main}

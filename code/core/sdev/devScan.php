@@ -82,7 +82,7 @@ class devScan{
         $ptab = DIR_DTMP."/store"; 
         foreach($dcfg as $key=>$path){
             $arr = updBase::listDir($path); 
-            updBase::cacSave($arr,"tab_$key.php-cdemo","$ptab");
+            updBase::cacSave($arr,"tab_$key.php-cdemo",$ptab);
         }
         $arr = array();
         $cfgs = comFiles::listDir(DIR_PROJ);

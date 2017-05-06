@@ -17,13 +17,16 @@ body,nav,div {
 body,td,th,div {
     font-size:14px; line-height:180%;
 }
+p { text-align:left; margin:auto; }
 td,th {
     padding:2px;
 }
 </style>
 </head><body>
 
-<h3>用模板和类库 - 用模板和系统类库调用:示例</h3>
+{inc:"d_tester/tester_nav"}
+
+<h3>用模板和类库 - 可以看到head,body等结构:示例</h3>
 
 <nav> pid: 
   <a href='{$burl}'>[RESET]</a> |

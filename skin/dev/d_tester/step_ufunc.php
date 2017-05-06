@@ -18,6 +18,9 @@ glbHtml::page('imjq');
 echo basJscss::imp('/skin/dev/b_jscss/comm.css');
 glbHtml::page('body');
 ?>
+
+<?php include(DIR_SKIN."/dev/d_tester/tester_nav.htm"); ?>
+
 <style type="text/css">
 body,nav,div {
     padding:5px;
@@ -25,6 +28,7 @@ body,nav,div {
 body,td,th,div {
     font-size:14px; line-height:180%;
 }
+p { text-align:left; margin:auto; }
 td,th {
     padding:2px;
 }
