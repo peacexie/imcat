@@ -1,9 +1,9 @@
 <?php
 return array (
-  'chn.php' => '86cdd32ea46258bdbdf914ffab7bbbb9',
-  'dev.php' => '24fd9c9857fa52856b6a106aea41de7a',
-  'doc.php' => '0d14c796c5bd024f433685b8a987a6c8',
-  'index.php' => '1e6b32f00208f374eba0e400c05e653d',
-  'mob.php' => '6e56edd73221494bd3f33a2d92ae634b',
+  'chn.php' => 'd5009d025489c70e135c7afae8e278b1',
+  'dev.php' => 'b7781b55342171231cbd57fa72ffb96a',
+  'doc.php' => '1a38f3417e02cd3b148b242e0febff73',
+  'index.php' => '5df4038a29567143953cde69728dcec6',
+  'mob.php' => '98176d01517bdd62089e79be5a069f4a',
   'robots.txt' => '1643da68e34688a72ae4f239d9eb0be2',
 ); 
