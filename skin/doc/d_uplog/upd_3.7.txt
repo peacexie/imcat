@@ -9,7 +9,7 @@
  - Tips: in the demo site, It just demo the function, and demo how to use; Specific user templates, please modify their own or adjustments.
 
 * Basic-Info:
- - Release: 2017.05.13,(2017-05-20)
+ - Release: 2017.04.30,(2017-05-07)
  - rar-Size: 3.54 MB
 
 
