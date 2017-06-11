@@ -48,6 +48,14 @@ $_groups = array (
     'etab' => '0',
     'deep' => '1',
   ),
+  'notea' => 
+  array (
+    'pid' => 'coms',
+    'title' => '站务笔记',
+    'top' => '129',
+    'etab' => '0',
+    'deep' => '1',
+  ),
   'inrem' => 
   array (
     'pid' => 'coms',

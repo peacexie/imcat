@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php');  
+require dirname(__FILE__).'/_config.php';  
 
 glbHtml::page("Run Plan - (sys_name)",1);
 echo "<meta http-equiv='refresh' content='14400' />\n";
@@ -14,7 +14,7 @@ $sapp = $ocfgs['sign']['sapp'];
 $skey = $ocfgs['sign']['skey'];
 
 $act = req('act','');
-include(vopShow::inc('[root]:tools/exdiy/rplan'));
+include vopShow::inc('[root]:tools/exdiy/rplan');
 glbHtml::page('end');
 ?>
 

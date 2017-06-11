@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_cfgall.php');
+require dirname(__FILE__).'/_cfgall.php';
 
 $act = req('act','view');
 $mod = @$_mod; 

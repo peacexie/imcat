@@ -1,5 +1,5 @@
 <?php
-require('_config.php');
+require '_config.php';
 glbHtml::head('html');
 $fid = req('fid','content');
 $pSub = req('pSub','peace'); // peace,baidu,eweb //// peace,def

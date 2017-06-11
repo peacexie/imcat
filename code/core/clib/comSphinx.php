@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-include_once(DIR_STATIC.'/ximp/class/sphinxapi.cls_php'); 
+include DIR_STATIC.'/ximp/class/sphinxapi.cls_php'; 
 
 // Sphinx搜索类
 class comSphinx {
@@ -17,13 +17,14 @@ class comSphinx {
     
     // $rs=$dop->getRecs() 通用mod全文搜索
     function getRecs($mod='', $opt=array(), $filts=array()){
-        $groups = read('groups'); $mcfg = read($mod); 
-        $sfid = req('sfid','','Key'); 
-        $sfkw = req('sfkw'); $keywd = req('keywd'); 
+        global $_cbase;
+        $groups = glbConfig::read('groups'); $mcfg = glbConfig::read($mod); 
+        $sfid = basReq::val('sfid','','Key'); 
+        $sfkw = basReq::val('sfkw'); $keywd = basReq::val('keywd'); 
         $sfkw = empty($sfkw) ? $keywd : $sfkw;
         $qstr = empty($sfkw) ? '' : (empty($sfid) ? '' : "@$sfid ")."$sfkw";
         $fields = array();
-        $stype = req('stype','','Key');
+        $stype = basReq::val('stype','','Key');
         if($stype){
             $mpid = $mcfg['pid'];
             if(in_array($mpid,array('docs','advs'))){ 
@@ -35,23 +36,22 @@ class comSphinx {
             }
         }
         foreach ($groups as $key => $row) {
-            $kval = req($key,'','Key');
+            $kval = basReq::val($key,'','Key');
             if(!empty($stype) && isset($mcfg['f'][$key])){
-                $kcfg = read($key);
+                $kcfg = glbConfig::read($key);
                 $fields[$key] = basSql::whrTree($kcfg['i'],'(crc32)',$kval);
             }
         }
         if(!empty($filts)) $fields = array_merge($fields,$filts);
-        $page = req('page',1,'N'); 
-        if(empty($opt['limit'])) $opt['limit'] = cfg('show.apsize'); 
+        $page = basReq::val('page',1,'N'); 
+        if(empty($opt['limit'])) $opt['limit'] = $_cbase['show']['apsize'];
         if(empty($opt['offset'])) $opt['offset'] = ($page-1)*$opt['limit']; 
         if(empty($opt['ordby'])) $opt['ordby'] = '@id desc';
-        
         $this->opt = $opt; 
         $this->search($qstr, $mod, $fields, $opt);
         $idstr = $this->idstr(); 
         if(!empty($idstr)){
-            return db()->table(glbDBExt::getTable($mod))->where("spid IN($idstr)")->select();
+            return glbDBObj::dbObj()->table(glbDBExt::getTable($mod))->where("spid IN($idstr)")->select();
         }else{
             return array();
         }
@@ -63,14 +63,14 @@ class comSphinx {
         $pg->bar = $pg->links();
         $pgs = $pg->show($idfirst,$idend);
         if($idfirst=='rebar') return $pgs;
-        $op = "".basElm::setOption(lang('flow.op_op3'),'',lang('flow.op0_bacth'));
+        $op = "".basElm::setOption(basLang::show('flow.op_op3'),'',basLang::show('flow.op0_bacth'));
         dopFunc::pageBar($pgs,$op);
     }
 
     // init
     public function _init() {
         //spcfgs
-        $spcfgs = read('sphinx','ex');
+        $spcfgs = glbConfig::read('sphinx','ex');
         $this->cfgs = $spcfgs['cfgs'];
         $this->idxs = $spcfgs['index'];
         //初始化sphinx

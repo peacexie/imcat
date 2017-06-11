@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include 'header.php'; ?>
     <span class="span4">
     </span>
     <span class="span5">
@@ -8,4 +8,4 @@
     </span>
     <span class="span3">
     </span>
-<?php include('footer.php'); ?>
+<?php include 'footer.php'; ?>

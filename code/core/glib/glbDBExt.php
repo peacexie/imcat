@@ -5,8 +5,8 @@ class glbDBExt{
     
     // 字段 - 添加/删除/修改 
     static function setOneField($mod,$cid,$act='del',$cfg=array()){
-        $_groups = read('groups');
-        $db = db();
+        $_groups = glbConfig::read('groups');
+        $db = glbDBObj::dbObj();
         $tabf = 'base_fields';
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
         if(in_array($r['dbtype'],array('nodb','file'))) return; 
@@ -36,7 +36,7 @@ class glbDBExt{
     
     // tab下-添加字段，在什么字段后面
     static function findAfterField($tab,$col){
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         $a = is_array($tab) ? $tab : $db->fields($tab);
         if(isset($_groups[$col]) && $_groups[$col]['pid']=='types' && isset($a['catid'])){
             $def = 'catid';
@@ -57,7 +57,7 @@ class glbDBExt{
     }
     
     static function setfieldDemo($mod,$obj,$org='(drop)'){
-        $db = db();
+        $db = glbDBObj::dbObj();
         if($org=='(drop)'){
             $db->query("DROP TABLE IF EXISTS $db->pre{$obj}$db->ext ");
             $db->table('base_fields')->where("model='$mod'")->delete(); 
@@ -66,7 +66,7 @@ class glbDBExt{
             $obj && $db->query("CREATE TABLE IF NOT EXISTS $db->pre{$obj}$db->ext LIKE $db->pre{$org}$db->ext");
             if(in_array($_ta[0],array('coms','docs','users'))){ //增加默认字段配置'dext',
                 $pid = $_ta[1]; 
-                $_cfg = read($pid);
+                $_cfg = glbConfig::read($pid);
                 $farr = @$_cfg['f']; 
                 $top = 120; 
                 if($farr){ foreach($farr as $k=>$v){
@@ -92,7 +92,7 @@ class glbDBExt{
     // db, tab, n; $tmp(4,6,3.4,5.6)
     // y,m,d: 2013-md01 / 2013m-dh001 / 2013-md-h001
     static function dbAutID($tab='utest_keyid',$fix='yyyy-md-',$tmp='6',$key='',$n=0){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $kno = 0;
         $tfix = substr($tab,0,5); 
         if(in_array($tfix,array('docs_','coms_','advs_','users'))){
@@ -138,15 +138,15 @@ class glbDBExt{
     }
 
     static function dbNxtID($tab,$mod,$pid=0){
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         $fix = substr($mod,0,1);
         if($pid){
-            $cfg = read($mod); 
+            $cfg = glbConfig::read($mod); 
             $fix .= ($cfg['i'][$pid]['deep']+1);
         }else{ $fix .= "1"; }
         $sqlm = $tab=='bext_relat' ? '' : ($tab=='base_model' ? 'pid' : 'model')."='$mod' AND ";
         $whr = "$sqlm kid LIKE '$fix%'"; //"$sqlm kid REGEXP ('^{$fix}[0-9]{3}$')";
-        $re = db()->table($tab)->where($whr)->order('kid DESC')->find();
+        $re = glbDBObj::dbObj()->table($tab)->where($whr)->order('kid DESC')->find();
         if($re){
             $nid = substr($re['kid'],2);
             $nid = basKeyid::kidNext('',$nid,'012',2,3);
@@ -157,7 +157,7 @@ class glbDBExt{
     }
     
     static function getTable($mod,$ext=0){ 
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if(!isset($_groups[$mod])) return '';
         if($_groups[$mod]['pid']=='docs'){
             $tabid = $ext ? 'dext_'.$mod : 'docs_'.$mod;
@@ -176,7 +176,7 @@ class glbDBExt{
     }
     
     static function getKeyid($mod){ 
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if($_groups[$mod]['pid']=='docs'){
             $keyid = 'did';
         }elseif($_groups[$mod]['pid']=='users'){
@@ -194,7 +194,7 @@ class glbDBExt{
     static function getKids($mod,$kid='',$whr='',$ret='sub'){
         $tabid = self::getTable($mod); 
         $kid = $kid ? basStr::filKey($kid,'_-.') : self::getKeyid($mod); 
-        $list = db()->table($tabid)->field($kid)->where($whr)->select();
+        $list = glbDBObj::dbObj()->table($tabid)->field($kid)->where($whr)->select();
         $re = array();
         if($list){
         foreach($list as $r){
@@ -211,7 +211,7 @@ class glbDBExt{
     
     static function dbComment($tabid='~return~'){ 
         static $dbdict,$fmod,$fdemo;
-        $db = db();
+        $db = glbDBObj::dbObj();
         $fsystem = basLang::ucfg('fsystem');
         if(empty($dbdict)){
             $dict = $db->table('bext_dbdict')->field("kid,tabid,title")->select();
@@ -227,7 +227,7 @@ class glbDBExt{
         }    
         if(empty($fdemo)){
             $fdemo = array();
-            $demo = read('fdemo','sy');
+            $demo = glbConfig::read('fdemo','sy');
             foreach(array('init_users','init_coms','init_dext','init_docs',) as $part){
                 $fpart = $demo[$part];
                 foreach($fpart as $f=>$v){
@@ -261,15 +261,15 @@ class glbDBExt{
             $fields[$f]['_flag'] = $flag;
             $fields[$f]['_rem'] = basStr::filSafe4($rem);
         }
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if(isset($_groups[$modid]) && $_groups[$modid]['pid']==$moda[0]){
             $fields[0]['_flag'] = 'sys'; 
             $cfg = basLang::ucfg('cfglibs.dbext');
-            $fields[0]['_rem'] = $_groups[$modid]['title'].('['.$cfg[$moda[0]].']').lang('dbdict_tab');
+            $fields[0]['_rem'] = $_groups[$modid]['title'].('['.$cfg[$moda[0]].']').basLang::show('dbdict_tab');
         }
         if(isset($_groups[$modid]) && $moda[0]=='dext'){
             $fields[0]['_flag'] = 'sys';
-            $fields[0]['_rem'] = $_groups[$modid]['title'].lang('dbdict_extab');
+            $fields[0]['_rem'] = $_groups[$modid]['title'].basLang::show('dbdict_extab');
         }
         if(isset($fsystem['_stabs'][$tabid])){
             $fields[0]['_flag'] = 'sys';
@@ -285,7 +285,7 @@ class glbDBExt{
     static function getExtp($type){ 
         $data = array();
         $whr = strpos($type,'%') ? " LIKE '$type'" : "='$type'";
-        $list = db()->table('bext_paras')->where("pid$whr AND enable=1")->order('top')->limit(99)->select();
+        $list = glbDBObj::dbObj()->table('bext_paras')->where("pid$whr AND enable=1")->order('top')->limit(99)->select();
         if($list){ foreach($list as $i=>$r){ 
             $r['i'] = $i+1;
             foreach(array('aip','atime','auser','eip','etime','euser','cfgs','note','enable') as $k2){

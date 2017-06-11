@@ -46,11 +46,11 @@ class usrAdmin extends usrBase{
     }
     
     static function getMkv(){
-        $file = req('file'); 
+        $file = basReq::val('file'); 
         if(in_array(substr($file,0,1),array('.','/'))){
             return 'amain'; // 不能是 .和/ 开头; 
         }
-        $frame = req('frame');
+        $frame = basReq::val('frame');
         if($frame && $file){
             $re = 'awtop';
         }elseif($file){
@@ -62,8 +62,8 @@ class usrAdmin extends usrBase{
     }
 
     static function opLogin($vop=null){    
-        $user = user('Admin');
-        $act = req('act');
+        $user = usrBase::userObj('Admin');
+        $act = basReq::val('act');
         if($act=='dologin'){ 
             $re2 = safComm::formCAll('fmadm'); 
             if(empty($re2[0])){ 
@@ -72,13 +72,13 @@ class usrAdmin extends usrBase{
                 $remsg = $res[0]=='OK' ? '' : $res[1];
                 $remsg || header('Location:'."?");    
             }else{
-                $remsg = lang('admin.oplogin_vform_err');    
+                $remsg = basLang::show('admin.oplogin_vform_err');    
             } 
         }elseif($vop->key=='logout'){ 
             $user->logout();
-            $remsg = lang('admin.oplogin_logout');    
+            $remsg = basLang::show('admin.oplogin_logout');    
         }
-        $remsg = empty($remsg) ? lang('admin.oplogin_please_login') : $remsg; 
+        $remsg = empty($remsg) ? basLang::show('admin.oplogin_please_login') : $remsg; 
         return $remsg;
     } 
 

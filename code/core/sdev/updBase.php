@@ -19,10 +19,10 @@ class updBase{
         $data = comFiles::get(DIR_DTMP.self::$prereset);
         $dcfg = basElm::text2arr($data);
         if(@$dcfg['done']=='locked'){ 
-            $msg = lang('updbase_lock1')."<br>";
+            $msg = basLang::show('updbase_lock1')."<br>";
             $msg .= "[".basDebug::hidInfo(DIR_DTMP)."/store/]:[_upd_reset.txt]<br>";
-            $msg .= lang('updbase_tip1')."<br>";
-            $msg .= lang('updbase_tip2');
+            $msg .= basLang::show('updbase_tip1')."<br>";
+            $msg .= basLang::show('updbase_tip2');
             basMsg::show($msg,'die');
         }
         if(empty($dcfg['path']) || empty($dcfg['steps'])) return '';
@@ -32,24 +32,24 @@ class updBase{
     // 检测路径
     static function preReset($path){
         $path = str_replace("\\","/",$path);
-        $link = " &gt; <a href='?'>".lang('updbase_back')."</a>";
+        $link = " &gt; <a href='?'>".basLang::show('updbase_back')."</a>";
         if(!$path || !is_dir($path)){ 
-            basMsg::show(lang('updbase_setdirerr',$path)."$link ",'die');
+            basMsg::show(basLang::show('updbase_setdirerr',$path)."$link ",'die');
         }
         if(!is_dir(DIR_DTMP.'/update/')) mkdir(DIR_DTMP.'/update/');
         if(strstr($path,DIR_ROOT) || strstr($path,DIR_CODE)) die("Error Dir [$path]!");
-        include($path."/code/cfgs/boot/const.cfg.php"); 
+        include $path."/root/cfgs/boot/const.cfg.php"; 
         $vnew = $_cbase['sys']['ver'];
-        include(DIR_CODE."/cfgs/boot/const.cfg.php"); 
+        include DIR_ROOT.'/cfgs/boot/const.cfg.php'; 
         $vold = $_cbase['sys']['ver'];
         if(version_compare($vold,$vnew)>=0){ 
-            basMsg::show(lang('updbase_verbig'),'die');
+            basMsg::show(basLang::show('updbase_verbig'),'die');
         }
         $br = "\r\n";
         $data = "path=$path{$br}steps=`{$br}dbdata=`{$br}vnew=$vnew{$br}vold=$vold{$br}done=update";
         $f = comFiles::put(DIR_DTMP.self::$prereset,$data);
         if(!$f){ 
-            basMsg::show(lang('updbase_notwrite',DIR_DTMP."/update/")."$link ",'die');
+            basMsg::show(basLang::show('updbase_notwrite',DIR_DTMP."/update/")."$link ",'die');
         }
         self::prePsyn($path,0);
     }
@@ -67,7 +67,7 @@ class updBase{
                 $re['copy'] = @copy($pnew,$pold);
             }
         }else{// comp
-            $re['comp'] = '<br>'.lang('updbase_compare');  
+            $re['comp'] = '<br>'.basLang::show('updbase_compare');  
             self::$comps = array(
                 'cfgs/boot/cfg_load.php' => 'code',
                 'cfgs/boot/const.cfg.php' => 'code',
@@ -104,7 +104,7 @@ class updBase{
     }
     static function fileEdit($new,$old,$pnew,$pold){
         $re = array();
-        $upcfgs = read('updvnow','sy');
+        $upcfgs = glbConfig::read('updvnow','sy');
         $compcfgs = $upcfgs['compcfgs'] + $upcfgs['dellist']; 
         foreach($new as $k=>$v){
             if(in_array($k,$compcfgs)) continue;
@@ -117,7 +117,7 @@ class updBase{
     }
     static function fileComp($new,$old,$pnew,$pold){
         $re = array();
-        $upcfgs = read('updvnow','sy');
+        $upcfgs = glbConfig::read('updvnow','sy');
         $compcfgs = $upcfgs['compcfgs'];
         foreach($compcfgs as $k){
             if(!empty($old[$k]) && $old[$k]!=$new[$k]){
@@ -165,7 +165,7 @@ class updBase{
     }
     
     static function dbCreate($tab,$v){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $i = 0;
         $sql = "CREATE TABLE `{$db->pre}$tab{$db->ext}` (\n"; 
         foreach($v as $k2=>$v2){
@@ -176,7 +176,7 @@ class updBase{
         return $sql;
     }
     static function dbTable($new,$old,$cfg){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $add = array();
         foreach($new as $tab=>$v){
             if(!isset($old[$tab])){
@@ -237,7 +237,7 @@ class updBase{
     static function cacGet($file,$path=''){ 
         $path = empty($path) ? DIR_DTMP."/update" : $path;
         $file = strpos($file,'.') ? $file : "$file.php";
-        return file_exists("$path/$file") ? include("$path/$file") : array();
+        return file_exists("$path/$file") ? include "$path/$file" : array();
     }
     
     static function listDir($dir,$sub=''){

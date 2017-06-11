@@ -1,13 +1,13 @@
 <?php
 $_cbase['skip']['.none.'] = true;
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 
-$tpldir = $_cbase['tpl']['tpl_dir'] = req('tpldir');
-$fjob = req('fjob'); 
-$static = req('static'); // 后台静态管理/保存资料
-$mkv = req('mkv');
-$act = req('act');
-$mod = req('mod');
+$tpldir = $_cbase['tpl']['tpl_dir'] = basReq::val('tpldir');
+$fjob = basReq::val('fjob'); 
+$static = basReq::val('static'); // 后台静态管理/保存资料
+$mkv = basReq::val('mkv');
+$act = basReq::val('act');
+$mod = basReq::val('mod');
 //$q = $_SERVER['QUERY_STRING'];
 $safix = $_cbase['safe']['safix'];
 $sapp = basReq::ark($safix,'sapp'); 

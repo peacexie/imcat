@@ -1,6 +1,6 @@
 <?php
 $_cbase['run']['subDirs'] = '1';
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 // ?debug,ip,cfgs,html
 $qstr = $_SERVER['QUERY_STRING'];

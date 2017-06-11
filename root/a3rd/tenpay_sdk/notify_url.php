@@ -4,8 +4,8 @@
 //支付成功回调接收,财付通后台调用此地址
 //---------------------------------------------------------
 
-require_once(dirname(__FILE__)."/tenpay_config.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/PayResponse.class.php");
+require dirname(__FILE__)."/tenpay_config.php";
+require DIR_VENDOR."/a3rd/tenpay_class/PayResponse.class.php";
 
 /* 创建支付结果反馈响应对象：支付跳转接口为异步返回，用户在财付通完成支付后，财付通通过回调return_url和notify_url向财付通APP反馈支付结果。 */
 $resHandler = new PayResponse($key);

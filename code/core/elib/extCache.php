@@ -5,7 +5,7 @@ class extCache{
     
     function __construct( $config = array()) {
         $cacheDriver = 'cp' . $type;
-        require_once(DIR_CODE . '/adpt/cache/' . $cacheDriver . '.class.php');
+        require DIR_CODE . '/adpt/cache/' . $cacheDriver . '.class.php';
         $this->cache = new $cacheDriver( $config );
     }
 

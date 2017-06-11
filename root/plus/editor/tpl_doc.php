@@ -1,6 +1,6 @@
 <?php 
-require('tpl_cfg.php'); 
-require(DIR_STATIC.'/ximp/utabs/tpl_doc.imp_htm'); 
+require 'tpl_cfg.php'; 
+require DIR_STATIC.'/ximp/utabs/tpl_doc.imp_htm'; 
 ?>
 
 <script>

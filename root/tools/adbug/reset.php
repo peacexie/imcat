@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 $act = req('act','');
 $part = req('part','');
@@ -34,7 +34,7 @@ select[multiple]{height:auto;}
 
   <table width="100%" border="1" class="tblist">
   <tr>
-    <td class="tc" colspan="4">(@code/cfgs/boot/cfg_adbug.php)
+    <td class="tc" colspan="4">(@root/cfgs/boot/cfg_adbug.php)
     &nbsp; [can_reset=<?php echo $can_reset; ?>] &nbsp; 
     <span style="color: #<?php echo $can_reset ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $can_reset ? lang('tools.chk_risk') : lang('tools.chk_safe'); ?></span>
     <?php lang('tools.chk_set0',0); ?>

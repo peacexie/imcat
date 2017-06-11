@@ -82,6 +82,9 @@
  - You can choose the following payment method to donate to us:
  - Alipay ID: xpigeon@163.com
  - TenPay ID: 154482721@qq.com
+ - Wechat Pay: Scan as below:
+
+<p class="tc"><img src="{static}/bank/wx-p3.png" width='80%'></p>
 
 * Contact and check
  - E-mail: xpigeon@163.com

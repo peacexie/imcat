@@ -137,7 +137,7 @@ class tex_faqs{ //extends tex_base
         $arr = array();
         $file = "/store/_faqs_types.cfg.php";
         if($act=='get' && tagCache::chkUpd($file,30)){ 
-            include(DIR_DTMP.$file);
+            include DIR_DTMP.$file;
             $arr = $_faqs_types;
             return $arr;
         }else{

@@ -1,16 +1,11 @@
-{imp:"frame/aimp"}<!--模板继承-->
-
-{block:ahead}<style type='text/css'>
-.abprop{padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
-</style>{/block:ahead}
-
-{block:abody}
-<?php
+{php}
+extract(basReq::sysVars()); 
+$db = glbDBObj::dbObj();
 $act = req('act');
 $exinfo = req('exinfo');
 if($act=='update'){
-    $arr = array('client-cn','client-en','server-cn','server-en'); 
-    foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
+  $arr = array('client-cn','client-en','server-cn','server-en'); 
+  foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }elseif($act=='modstat'){
   $arr = array('modstat-cn','modstat-en'); 
   foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
@@ -18,8 +13,16 @@ if($act=='update'){
   $arr = array('spaceinfo-cn','spaceinfo-en'); 
   foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
 }
-//basDebug::varShow($data)
-?>
+{/php}
+<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
+{php glbHtml::imsub('imadm'); }
+<style type='text/css'>
+.abprop{padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
+</style>
+</head><body class="abprop">
+
 <table border='0' class='tbbar1'><tr>
 <td class='tc'><h4>[{$_cbase['sys_name']}] {lang(admin.home_index)}</h4></td>
 <td class='tr pa5'>{lang(admin.home_sn)} : <a href='#' class='cur'>{$_cbase['sys']['sn']}</a></td>
@@ -86,7 +89,7 @@ echo "--></pre>\n";
 </table>
 <?php
 $stype = 'afadmin'; $actstr = $whrself = '';
-include(DIR_CODE."/flow/eact/adfavor_view.php");
+include DIR_CODE."/flow/eact/adfavor_view.php";
 ?>
 <div class="h05">&nbsp;</div>
 <table border='1' class='tblist'>
@@ -121,8 +124,6 @@ include(DIR_CODE."/flow/eact/adfavor_view.php");
 
 </table>
 <div class="h05">&nbsp;</div>
-
 <?php if($_cbase['debug']['err_mode']) echo basDebug::runInfo(); ?>
-
-{/block:abody}
-
+</body></html>
+{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }

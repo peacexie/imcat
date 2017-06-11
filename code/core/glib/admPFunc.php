@@ -5,7 +5,7 @@ class admPFunc{
 
     // fileNav
     static function modList($pmods,$type='relmod'){    
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         $a = array(); $pid = '';
         foreach($pmods as $pmod){
         foreach($_groups as $k=>$v){

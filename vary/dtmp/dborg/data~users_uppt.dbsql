@@ -1,5 +1,5 @@
 
--- users_uppt@2017-05-05 20:10:34 -- 
+-- users_uppt@2017-06-11 11:58:31 -- 
 INSERT INTO `{pre}users_uppt{ext}` VALUES 
 ('admin','system','','','0','','','0',''),
 ('master','system','','','0','','','0',''),

@@ -1,7 +1,7 @@
 <?php
 define('RUN_JSHOW', 1);
 $_cbase['skip']['.none.'] = true;
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 vopTpls::set(req('tpldir'));
 glbHtml::head();
 

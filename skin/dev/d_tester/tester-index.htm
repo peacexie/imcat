@@ -8,7 +8,7 @@ $full = "$path/d_tester/$code.php";
 
 echo "<h3>/d_tester/$code.php(Test Code)</h3>\n";
 if(file_exists($full)){
-    include($full);
+    include $full;
 }else{
     $subs = tex_base::lister('');
     $fix = '';

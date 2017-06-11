@@ -1,13 +1,13 @@
 <?php 
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 #safComm::urlFrom(); 
 extract(basReq::sysVars());
-$act = req('act','sysInit'); 
-$lang = req('lang'); 
-$exjs = req('exjs'); 
-$excss = req('excss'); 
-$tpldir = req('tpldir');
-$mkv = req('mkv');
+$act = basReq::val('act','sysInit'); 
+$lang = basReq::val('lang'); 
+$exjs = basReq::val('exjs'); 
+$excss = basReq::val('excss'); 
+$tpldir = basReq::val('tpldir');
+$mkv = basReq::val('mkv');
 glbHtml::head($excss ? 'css' : 'js');
 
 // 初始化js
@@ -49,7 +49,8 @@ if(strstr($act,'sysInit')){
     echo "\n_cbase.run.isMoble = ".(basEnv::isMobile()?1:0).";";
     echo "\n_cbase.run.isWeixin = ".(basEnv::isWeixin()?1:0).";";
     if($mkv && $tpldir!='mob'){
-        echo "\n_cbase.run.mobDir = '".surl("mob:$mkv")."';";
+        if($mkv=='home') $mkv='0';
+        echo "\n_cbase.run.mobDir = '".vopUrl::fout("mob:$mkv")."';";
         echo "\nif(typeof(_pbase.rdmob)!='undefined' && _cbase.run.isMoble){location.href=_cbase.run.mobDir;}";
     }
     echo "\nif(typeof(_pbase.jscode)!='undefined'){eval(_pbase.jscode);}";
@@ -85,14 +86,14 @@ if(strstr($act,'sysInit')){
     if(!empty($_GET['user'])){
         echo "\n// js Member/Admin"; 
         echo "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
-        $user = user('Member');
+        $user = usrBase::userObj('Member');
         if(!empty($user)){
             echo "\n_minfo.userType = '".$user->userType."';";
             echo "\n_minfo.userFlag = '".$user->userFlag."';";
             echo "\n_minfo.uname = '".$user->usess['uname']."';";
             echo "\n_mperm.title = '".@$user->uperm['title']."';";
         }
-        $user = user('Admin');
+        $user = usrBase::userObj('Admin');
         if(!empty($user)){
             echo "\n_miadm.userType = '".$user->userType."';";
             echo "\n_miadm.userFlag = '".$user->userFlag."';";
@@ -103,35 +104,35 @@ if(strstr($act,'sysInit')){
     echo "$jscfg\n";
     
     // ***** 加载Base.js *****
-    require(DIR_SKIN.'/_pub/jslib/jsbase.js');
-    require(DIR_SKIN.'/_pub/jslib/jsbext.js'); 
-    require(DIR_SKIN.'/_pub/jslib/jspop.js'); 
+    require DIR_SKIN.'/_pub/jslib/jsbase.js';
+    require DIR_SKIN.'/_pub/jslib/jsbext.js'; 
+    require DIR_SKIN.'/_pub/jslib/jspop.js'; 
     $flang = DIR_SKIN."/_pub/jslib/jcore-$lang.js";
-    if(file_exists($flang)) require($flang); 
+    if(file_exists($flang)) require $flang; 
 
     // ***** 加载jsPlus *****
-    require(DIR_SKIN.'/_pub/jslib/jq_base.js'); 
-    //require(DIR_SKIN.'/_pub/jslib/jq_play.js'); 
-    require(DIR_SKIN.'/_pub/jslib/jq_win.js');
-    //require(DIR_VENDUI.'/jquery/jq-qrcode.js');
+    require DIR_SKIN.'/_pub/jslib/jq_base.js'; 
+    //require DIR_SKIN.'/_pub/jslib/jq_play.js'; 
+    require DIR_SKIN.'/_pub/jslib/jq_win.js';
+    //require DIR_VENDUI.'/jquery/jq-qrcode.js';
 }
 
 if(strstr($act,'autoJQ')){
-    if(req('light')){ // 需要自行添加如下tepto文件
-        require(DIR_VENDUI.'/jquery/zepto-1.2.imp_js');
+    if(basReq::val('light')){ // 需要自行添加如下tepto文件
+        require DIR_VENDUI.'/jquery/zepto-1.2.imp_js';
     }elseif(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
-        require(DIR_VENDUI.'/jquery/jquery-1.x.imp_js'); 
-        require(DIR_VENDUI.'/jquery/html5.imp_js'); // html5shiv + respond
+        require DIR_VENDUI.'/jquery/jquery-1.x.imp_js'; 
+        require DIR_VENDUI.'/jquery/html5.imp_js'; // html5shiv + respond
     }else{
-        require(DIR_VENDUI.'/jquery/jquery-2.x.imp_js');
+        require DIR_VENDUI.'/jquery/jquery-2.x.imp_js';
     }
 }
 
 if(strstr($act,'cssInit')){
     echo "/*stpub*/";
-    include(DIR_SKIN."/_pub/a_jscss/stpub.css"); 
+    include DIR_SKIN."/_pub/a_jscss/stpub.css"; 
     echo "/*jstyle*/";
-    include(DIR_SKIN."/_pub/a_jscss/jstyle.css"); 
+    include DIR_SKIN."/_pub/a_jscss/jstyle.css"; 
 }
 
 if(!empty($exjs)){ // /chn/b_jscss/comm.css;/b_jscss/home.css
@@ -175,7 +176,7 @@ if(strstr($act,'jsTypes')){
     foreach($moda as $mod){
         if(empty($mod)) continue;
         if(strstr($done,",$mod,")) continue;
-        $mcfg = read($mod);
+        $mcfg = glbConfig::read($mod);
         $s0 = "\nvar _{$mod}_data = ["; $gap = '';
         if(!empty($mcfg['i'])){
         foreach($mcfg['i'] as $k=>$v){
@@ -214,19 +215,19 @@ if(strstr($act,'jsType2')){
     foreach($moda as $m1){
         if(empty($m1)) continue;
         if(strstr($done,",$m1,")) continue;
-        echo read($m1,'modcm','json')."\n";
+        echo glbConfig::read($m1,'modcm','json')."\n";
         $done .= "$m1,";
     }
 }
 if(strstr($act,'jsFields')){
     //扩展字段
     $mods = exvFunc::actMods($act,'jsFields'); 
-    $ccfg = read($mods,'_c');
+    $ccfg = glbConfig::read($mods,'_c');
     //常规字段
-    $cmod = req('cmod');
+    $cmod = basReq::val('cmod');
     $amod = array();
     if($cmod){
-        ${"_$mods"} = read($mods); 
+        ${"_$mods"} = glbConfig::read($mods); 
         if($mfields = @${"_$mods"}['f']){
             foreach($mfields as $k1=>$v1){
                 if(($cmod=='(a)'&&in_array($v1['type'],array('select','cbox','radio'))) || strstr($cmod,$k1)){

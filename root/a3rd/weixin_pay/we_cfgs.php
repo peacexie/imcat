@@ -1,7 +1,7 @@
 <?php
 //define('RUN_AJAX', 1);  
 //if(!isset($_cbase['skip'])) $_cbase['skip']['_all_'] = true;
-require(dirname(dirname(dirname(dirname(__FILE__)))).'/root/run/_init.php'); 
+require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 
 
 if(empty($_cbase['run']['wedemo'])){
     //usrPerm::run('pmod','apiweixin');

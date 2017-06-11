@@ -11,7 +11,7 @@ class dopFunc{
 
     static function getMinfo($mod,$kid='',$fid=''){
         $fid || $fid = glbDBExt::getKeyid($mod);
-        $info = db()->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
+        $info = glbDBObj::dbObj()->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
         return $info; 
     }
 
@@ -21,7 +21,7 @@ class dopFunc{
             $ids .= (empty($ids) ? '' : ',')."'".$v[$kk]."'";
         } 
         if(empty($ids)) return;
-        $re1 = db()->table(glbDBExt::getTable($mod,1))->where("$kk IN($ids)")->select(); 
+        $re1 = glbDBObj::dbObj()->table(glbDBExt::getTable($mod,1))->where("$kk IN($ids)")->select(); 
         $re2 = array();
         foreach($re1 as $k1=>$v1){ 
             $re2[$v1[$kk]] = $v1;
@@ -49,13 +49,13 @@ class dopFunc{
 
     // 获取字段值(标题,公司名,会员名)
     static function vgetTitle($mod,$val='',$field=''){
-        $mcfg = read($mod); 
+        $mcfg = glbConfig::read($mod); 
         $field || $field ="title,company,uid,uname,mname,mtel,memail"; 
         $field = self::vchkFields($field,self::vgetFields($mcfg['f'],'all','all'));
         $field = implode(',',array_keys($field)); 
         $field = explode(',',$field); $field = $field[0];
         $kid = substr($mcfg['pid'],0,1).'id'; if($kid=='uid') $kid='uname';
-        $r = db()->table(glbDBExt::getTable($mod))->field($field)->where("$kid='$val'")->find(); 
+        $r = glbDBObj::dbObj()->table(glbDBExt::getTable($mod))->field($field)->where("$kid='$val'")->find(); 
         return empty($r[$field]) ? '' : $r[$field] ; 
     }
     
@@ -87,9 +87,9 @@ class dopFunc{
     static function vordFields($obj){
         //$obj 
         foreach($obj as $k=>$v){
-            $obj["$k-a"] = "$v".lang('flow.dops_ordasc');    
+            $obj["$k-a"] = "$v".basLang::show('flow.dops_ordasc');    
         }
-        return array_merge($obj,array('atime'=>lang('flow.dops_ordtimd'),'atime-a'=>lang('flow.dops_ordtima')));
+        return array_merge($obj,array('atime'=>basLang::show('flow.dops_ordtimd'),'atime-a'=>basLang::show('flow.dops_ordtima')));
     }
     
     // 表单默认值 showdef=1/0
@@ -117,7 +117,7 @@ class dopFunc{
 
     // 翻页条
     static function pageBar($pgbar,$opbar,$opname='(null)',$jsFunc='fmSelAll'){
-        $opname = $opname=='(null)' ? lang('flow.dops_exeu') : $opname;
+        $opname = $opname=='(null)' ? basLang::show('flow.dops_exeu') : $opname;
         $pgbar = "<div class='pg_bar'>$pgbar</div>";
         $opstr = strpos($opbar,'</option>') ? "<select name='fs_do' class='w100'>$opbar</select>" : $opbar;
         $opbar = "<div class='w180 tc right'>$opstr";
@@ -175,14 +175,14 @@ class dopFunc{
         if(defined('RUN_ADMIN')){ //后台
             $udir = 'umod'; //用户扩展
             $edir = 'emod'; //系统扩展
-            $ecfg = 'ex_fadm';
+            $ecfg = 'sc_fadm';
         }else{ //会员
             $udir = 'umou'; //用户扩展
             $edir = 'emod'; //系统扩展
-            $ecfg = 'ex_fmem';
+            $ecfg = 'cs_fmem';
         }
         $re = '';
-        require(DIR_CODE."/cfgs/scfile/$ecfg.php"); //$_scfile
+        require DIR_ROOT."/cfgs/scfile/$ecfg.php"; //$_scfile
         if(file_exists($_fex="$scbase/$udir/{$mod}.php")){
             $re = $_fex; 
         }elseif(file_exists($_fex="$scbase/$edir/{$mod}.php")){

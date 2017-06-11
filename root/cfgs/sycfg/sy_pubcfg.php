@@ -28,31 +28,31 @@ $_sy_pubcfg['ids'] =  array(
 // - 是否有个-cdemo文件
 // - 替换
 $_sy_pubcfg['cdemo'] =  array(
-    'code/cfgs/excfg/ex_mail.php' =>'',
-    'code/cfgs/excfg/ex_sms.php' =>'',
-    'code/cfgs/excfg/ex_a3rd.php' =>'',
-    'code/cfgs/excfg/ex_store.php' =>'',
-    'code/cfgs/boot/_paths.php' => array(
+    'root/cfgs/excfg/ex_mail.php' =>'',
+    'root/cfgs/excfg/ex_sms.php' =>'',
+    'root/cfgs/excfg/ex_a3rd.php' =>'',
+    'root/cfgs/excfg/ex_store.php' =>'',
+    'root/cfgs/boot/_paths.php' => array(
         array("'".PATH_PROJ."'",),
         array("''",),
     ), 
-    'code/cfgs/boot/cfg_db.php' => array(
+    'root/cfgs/boot/cfg_db.php' => array(
         array("'".glbDBObj::getCfg('db_name')."';", "'".glbDBObj::getCfg('dc_prefix')."';", ),
         array("'".devSetup::setDbname()."';",       "'".basKeyid::kidRand('f',5)."';",),
     ),
-    'code/cfgs/boot/cfg_adbug.php' => array(
+    'root/cfgs/boot/cfg_adbug.php' => array(
         array("'ut.<rnd8>';",                       "'up.<rnd12>';",),
         array("'ut.".basKeyid::kidRand('f',8)."';", "'up.".basKeyid::kidRand('f',12)."';",),
     ),    
-    'code/cfgs/boot/const.cfg.php' => array( 
+    'root/cfgs/boot/const.cfg.php' => array( 
         array("'".$_cbase['ck']['pre']."';", "'".$_cbase['sys']['sn']."';",),
         array("'".basKeyid::kidRand('f',5)."';", "'".comConvert::sysSn()."';",), 
     ), //sn, ver, sign
-    'code/cfgs/excfg/ex_outdb.php' => array( 
+    'root/cfgs/excfg/ex_outdb.php' => array( 
         array("'".$ocfgs['sign']['sapp']."';",   "'".$ocfgs['sign']['skey']."';",   ), 
         array("'".basKeyid::kidRand('k',24)."';", "'".basKeyid::kidRand('f',36)."';", ),
     ),
-    'code/cfgs/excfg/ex_sphinx.php' => array(
+    'root/cfgs/excfg/ex_sphinx.php' => array(
         array("'index_imcat_demo_main,index_imcat_demo_delta',",),
         array("'', //index_imcat_demo_main,index_imcat_demo_delta",),
     ), 
@@ -69,6 +69,7 @@ $_sy_pubcfg['rndata'] =  array(
 
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
+    'main' => array('fitpl'),
     'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony','Zend'), //,'Spyc'
     'dtmp' => array('@test','@udoc','debug','update','updsvr','weixin','08exp'),
 );
@@ -105,6 +106,11 @@ $_sy_pubcfg['skfiles'] =  array(
     //'jquery-3.x.imp_js',
     'bank_full.html',
     'combo.png',
+
+    'efjian.ttf', //斜
+    'efm17.ttf',
+    'efmE.ttf',
+    'efmO.ttf',
 
     //ext-*
     'extMedoo.php',

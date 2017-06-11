@@ -9,7 +9,7 @@ $cronurl = PATH_ROOT."/plus/ajax/cron.php";
 $view = req('view','list');
 $nmod = req('nmod','home'); 
 $vcfgs = vopTpls::etr1('tpl');
-unset($vcfgs['_pub']); 
+unset($vcfgs['_pub'],$vcfgs['app']); 
 $stitle = lang('admin.st_admin').":($ntpl)".basLang::pick(0,$vcfgs[$ntpl][0]); 
 $msg = ''; 
 

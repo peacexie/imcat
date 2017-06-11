@@ -11,12 +11,12 @@ class updAdmin extends updBase{
         $vnew = $upc['vnew'];
         $key = "[$]_cbase\[\'sys\'\]\[\'ver\'\]\s*\=\s*[\"'].*?[\"'];";
         $val = "\$_cbase['sys']['ver']     = '$vnew';";
-        $path = DIR_CODE."/cfgs/boot/const.cfg.php";
+        $path = DIR_ROOT.'/cfgs/boot/const.cfg.php';
         $data = comFiles::get($path);
         $data = preg_replace("/$key/is", $val, $data);
         $data = comFiles::put($path, $data);
         // delete files
-        $upcfgs = read('updvnow','sy');
+        $upcfgs = glbConfig::read('updvnow','sy');
         $dellist = $upcfgs['dellist'];
         foreach($dellist as $file){
             if(strpos($file,':')){
@@ -79,7 +79,7 @@ class updAdmin extends updBase{
         $res = self::fileComp($new,$old,$pnew,$pold);
         $str = ""; 
         foreach($res as $file=>$val){
-            $str .= "$file -&gt; $val -&gt; <a href='?act=cmpfile&file=$file&part=$part' target='x'>[".lang('core.upd_comp')."]</a><br>";
+            $str .= "$file -&gt; $val -&gt; <a href='?act=cmpfile&file=$file&part=$part' target='x'>[".basLang::show('core.upd_comp')."]</a><br>";
         }
         return $str;
     }
@@ -124,7 +124,7 @@ class updAdmin extends updBase{
             if(!empty($vals['add'])){
                 //try{ $f1 = $db->query($vals['del']); }catch(Exception $e){}
                 if(!strpos($cfg['steps'],'`db_fadd`')){
-                    $f1 = db()->query($vals['add']); 
+                    $f1 = glbDBObj::dbObj()->query($vals['add']); 
                 }
                 $str .= "<li> ● {$tab} ●<pre>{$vals['add']}</pre></li>";    
             }
@@ -146,7 +146,7 @@ class updAdmin extends updBase{
             if(!empty($vals['sql'])){
                 $istr .= "{$vals['sql']}\n";
             }
-            $istr && $str .= "<li> ● {$tab} <a href='?act=cmptable&tab=$tab' target='x'>[".lang('core.upd_comp')."]</a>●<pre>{$istr}</pre></li>";    
+            $istr && $str .= "<li> ● {$tab} <a href='?act=cmptable&tab=$tab' target='x'>[".basLang::show('core.upd_comp')."]</a>●<pre>{$istr}</pre></li>";    
         }
         return $str;
     }
@@ -173,8 +173,8 @@ class updAdmin extends updBase{
                         $res[$tab]['edit'][$k] = array('old'=>$dold[$k],'new'=>$v,);
                     }
                 }
-                $ntab = req('ntab');
-                $nact = req('nact'); //rep,[add]
+                $ntab = basReq::val('ntab');
+                $nact = basReq::val('nact'); //rep,[add]
                 if($ntab==$tab){
                     if(!empty($res[$tab]['add']) && !empty($nact)){ self::ddDone($res[$tab],$tab,'add',1); }
                     if(!empty($res[$tab]['edit']) && $nact=='rep'){ self::ddDone($res[$tab],$tab,'edit',1); }
@@ -220,7 +220,7 @@ class updAdmin extends updBase{
     }
     // 数据表 更新
     static function ddDone($data, $tab, $act='', $run=0){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $sql = ($act=='add' ? 'INSERT' : 'REPLACE')." INTO `{$db->pre}$tab{$db->ext}` VALUES";
         if(empty($data[$act])) return '';
         $data = $data[$act]; $i=0;
@@ -244,7 +244,7 @@ class updAdmin extends updBase{
     
     // 比较Table
     static function compTable($cfg){
-        $tab = req('tab');
+        $tab = basReq::val('tab');
         $new = self::cacGet("dbcfg_new");
         $old = self::cacGet("dbcfg_old");
         $new = self::dbFields(self::dbCreate($tab,$new[$tab]));
@@ -254,8 +254,8 @@ class updAdmin extends updBase{
     
     // 比较文件
     static function compFile($cfg){
-        $part = req('part');
-        $file = req('file','','Html');
+        $part = basReq::val('part');
+        $file = basReq::val('file','','Html');
         $dcfg = array('code'=>DIR_CODE,'root'=>DIR_ROOT);
         $pnew = $cfg['path']."/$part/$file"; 
         $pold = $dcfg[$part]."/$file";

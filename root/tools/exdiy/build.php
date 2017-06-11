@@ -1,5 +1,5 @@
 <?php    
-require(dirname(__FILE__).'/_config.php');        
+require dirname(__FILE__).'/_config.php';        
 
 glbHtml::page("Create Suit Template - (sys_name)",1);
 glbHtml::page('imjq');
@@ -23,6 +23,6 @@ if($dir && $front && $mod){
     $dmsg = devBuild::clang($org, $obj);
 }
 
-include(vopShow::inc('[root]:tools/exdiy/build'));
+include vopShow::inc('[root]:tools/exdiy/build');
 
 glbHtml::page('end');

@@ -4,18 +4,12 @@ E:.
 │  ├─cache
 │  ├─cron
 │  ├─dbdrv
+│  ├─fitpl
 │  ├─ipapi
 │  ├─smsapi
 │  ├─store
 │  ├─wechat
 │  └─weuser
-├─cfgs
-│  ├─boot
-│  ├─excfg
-│  ├─player
-│  ├─scfile
-│  ├─stinc
-│  └─sycfg
 ├─core
 │  ├─blib
 │  ├─clib

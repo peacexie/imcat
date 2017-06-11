@@ -18,5 +18,5 @@ function autoInc_ys($file=''){
 }
 
 if(!empty($aincfile) && $aincpath=autoInc_ys($aincfile)){
-	include($aincpath);
+	include $aincpath;
 }

@@ -12,7 +12,7 @@ class comJifen{
     }
     
     static function update(){
-        $list = db()->table('bext_paras')->where("pid='jifen_grade'")->order('top')->select();
+        $list = glbDBObj::dbObj()->table('bext_paras')->where("pid='jifen_grade'")->order('top')->select();
         $arr = array(); 
         foreach($list as $r){
             $arr[$r['kid']] = array('title'=>$r['title'],'numa'=>$r['numa'],'icon'=>$r['cfgs'],);
@@ -22,8 +22,8 @@ class comJifen{
     }
     
     static function grade($mark=0,$re='title'){
-        $jfcfg = read('jifen','dset'); 
-        $jftitle = lang('core.no_rank');
+        $jfcfg = glbConfig::read('jifen','dset'); 
+        $jftitle = basLang::show('core.no_rank');
         $jfnow = array('kid'=>'-null-','title'=>$jftitle,'icon'=>'-null-'); 
         foreach($jfcfg as $k=>$v){
             if($v['numa']>=$mark){
@@ -37,7 +37,7 @@ class comJifen{
     
     // act : add,del
     static function main($mcfg,$act,$msg=''){
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         $key = "cr$act";
         if(empty($mcfg[$key])){
             return;    

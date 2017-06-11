@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__)."/alipay.config.php");
-require_once(LIBS_PAYRUN."/alipay_notify.class.php");
+require dirname(__FILE__)."/alipay.config.php";
+require LIBS_PAYRUN."/alipay_notify.class.php";
 
 //计算得出通知验证结果
 $alipayNotify = new AlipayNotify($alipay_config);

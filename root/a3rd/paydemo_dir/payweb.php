@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/config.php");
+require dirname(__FILE__)."/config.php";
 safComm::urlFrom();
 $act = req('act');
 $rndname = 'user_'.basKeyid::kidRand('24',8).'@domain.com';

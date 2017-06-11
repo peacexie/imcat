@@ -17,7 +17,7 @@ class tagOne extends tagBase{
     }
     
     function getData(){ 
-        $sfrom = "m.* FROM ".db()->table($this->sqlArr['tabid'],2)." m ";
+        $sfrom = "m.* FROM ".glbDBObj::dbObj()->table($this->sqlArr['tabid'],2)." m ";
         $where = empty($this->whrStr) ? '' : "WHERE ".$this->whrStr;
         $this->sqlAll = "SELECT $sfrom $where ORDER BY ".$this->sqlArr['ofull']." LIMIT 1"; 
         $this->re = $this->db->query($this->sqlAll); 

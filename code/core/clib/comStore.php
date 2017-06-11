@@ -30,12 +30,12 @@ class comStore{
     } 
     static function rsClass($clsName=''){
         if(empty($clsName)){
-            $scfg = read('store','ex'); //store
+            $scfg = glbConfig::read('store','ex'); //store
             $clsName = $scfg['type'];
             return $clsName;
         }else{ // 加载
             if(empty(self::$objs[$clsName])){
-                require_once(DIR_CODE."/adpt/store/$clsName.php");
+                require_once DIR_CODE."/adpt/store/$clsName.php";
                 self::$objs[$clsName] = new $clsName();
             }
             return self::$objs[$clsName];
@@ -47,7 +47,7 @@ class comStore{
      * @return string
      */
     static function getTmpDir($isfull=1){
-        $user = user();
+        $user = usrBase::userObj();
         $sid = empty($user->sinit['sid']) ? usrPerm::getUniqueid('Cook','sip') : $user->sinit['sid'];
         $path = "@udoc/$sid"; //$modFix-
         comFiles::chkDirs($path,'dtmp',0);
@@ -65,13 +65,13 @@ class comStore{
      * @return string
      */
     static function getResDir($mod,$kid,$isfull=1,$chkdir=0){
-        $grs = read('groups'); 
+        $grs = glbConfig::read('groups'); 
         $mcfgs = empty($grs[$mod]) ? array() : $grs[$mod];
         if(empty($kid)){
             die(__FUNCTION__);
         }
         $kpath = $kid; 
-        $fmts = read('frame.resfmt','sy'); // docs,users; types; advs,coms 
+        $fmts = glbConfig::read('frame.resfmt','sy'); // docs,users; types; advs,coms 
         $fmt = (!empty($mcfgs['pid']) && in_array($mcfgs['pid'],array('docs','users'))) ? 1 : 0;
         foreach($fmts as $k=>$v){ // 默认:fmt=1 : yyyy/md-noid
             if(in_array($mod,$v)){ $fmt=$k; break; }
@@ -158,7 +158,8 @@ class comStore{
     
     //替换root路径
     static function moveRepRoot($str,$v,$key,$fix=''){
-        $rmain = cfg('run.rmain');
+        global $_cbase;
+        $rmain = $_cbase['run']['rmain'];
         $cfg = self::cfgDirPath($key,'arr');
         $res = $v;
         /*if(strpos($res,'://')>0){ //完整路径

@@ -16,6 +16,13 @@ E:.
 │      ├─demo
 │      ├─doc
 │      └─lib
+├─cfgs
+│  ├─boot
+│  ├─excfg
+│  ├─player
+│  ├─scfile
+│  ├─stinc
+│  └─sycfg
 ├─plus
 │  ├─ajax
 │  ├─api

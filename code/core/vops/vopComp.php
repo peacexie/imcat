@@ -11,7 +11,8 @@ class vopComp{
     }
     
     function __construct($tpl='') {
-        self::$tplCfg = cfg('tpl'); 
+        global $_cbase;
+        self::$tplCfg = $_cbase['tpl']; 
         if($tpl) return $this->build($tpl);
     }
     
@@ -23,10 +24,10 @@ class vopComp{
         $content = comFiles::get($re[0]);
         $content = $this->bcore($content); //获取经编译后的内容
         $shead = "(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
-        $shead .= "\nif(file_exists(\$tebp=vopTpls::pinc('tex_base'))){ include_once(\$tebp); }";
+        $shead .= "\nif(file_exists(\$tebp=vopTpls::pinc('tex_base'))){ include_once \$tebp; }";
         $shead .= "\nif(method_exists('tex_base','init')){ \$user = tex_base::init(\$this); }";
         #if(file_exists($path=vopTpls::pinc(basename($this->ucfg['tplname'])))){
-            #include_once($path);
+            #include_once $path;
         #}
         $spend = "if(method_exists('tex_base','pend')){ tex_base::pend(); }";
         comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.($spend ? "<?php \n$spend \n?>" : '')); //写入缓存
@@ -67,7 +68,7 @@ class vopComp{
             $arr = $match[1]; 
             foreach($arr as $tpl){
                 $pfile = "vopTpls::pinc('$tpl','.php')"; 
-                $template = str_replace("{code:\"$tpl\"}", "<?php include($pfile); ?>", $template);
+                $template = str_replace("{code:\"$tpl\"}", "<?php include $pfile; ?>", $template);
             }
         }
         return $template;
@@ -173,11 +174,13 @@ class vopComp{
     
     // retpl : 直接返回模版文件路径
     static function checkTpls($tpl,$retpl=0){ 
+        global $_cbase;
+        $tpldir = $_cbase['tpl']['tpl_dir']; 
         $tplFile = vopTpls::path('tpl').'/'.$tpl.self::$tplCfg['tpl_ext'];
         if($retpl) return $tplFile;
         $cacheFile = vopTpls::path('tpc').'/'.$tpl.self::$tplCfg['tpc_ext']; 
         if(!file_exists($tplFile)) glbError::show("$tplFile NOT Exists!"); 
-        comFiles::chkDirs(cfg('tpl.tpl_dir').'/'.$tpl,'ctpl'); 
+        comFiles::chkDirs($tpldir.'/'.$tpl,'ctpl'); 
         return array($tplFile, $cacheFile);
     }
     

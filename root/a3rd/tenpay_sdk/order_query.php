@@ -3,9 +3,9 @@
 //根据商户订单号或者财付通订单号查询财付通侧记录的具体订单信息
 //---------------------------------------------------------
 
-require_once(dirname(__FILE__)."/tenpay_config.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/PayRequest.class.php"); 
-require_once(DIR_VENDOR."/a3rd/tenpay_class/OrderQueryRequest.class.php"); 
+require dirname(__FILE__)."/tenpay_config.php";
+require DIR_VENDOR."/a3rd/tenpay_class/PayRequest.class.php"; 
+require DIR_VENDOR."/a3rd/tenpay_class/OrderQueryRequest.class.php"; 
 
 
 // 初始化订单查询请求:根据商户订单号或者财付通订单号查询财付通侧记录的具体订单信息.

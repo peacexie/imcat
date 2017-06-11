@@ -65,7 +65,8 @@ class vopCTag{
     
     // 解析一个标签
     // $tag1 like {tag:flag3
-    static function tagOne($tpl, $tag1){ 
+    static function tagOne($tpl, $tag1){
+        global $_cbase; 
         $tag2 = str_replace('{tag:','{/tag:',$tag1).'}'; // 结束符 {tag:flag3
         $p1 = strpos($tpl, $tag1);
         $p2 = strpos($tpl, $tag2);
@@ -82,7 +83,7 @@ class vopCTag{
             $dstr = self::tagRows($dstr, $_m, $tag2, $varid, $re, $type);
             if(substr($type,0,2)=='js'){ //js标签
                 //$dstr = str_replace('$this->show(', '$vop->show(', $dstr);
-                $tplnow = cfg('run.comp'); 
+                $tplnow = $_cbase['run']['comp']; 
                 $jsfile = vopTpls::path('tpc')."/$tplnow.$tag0.comjs.php";
                 $dstr = str_replace($_m[0], '<!-- start('.$unv.'); -->', $dstr);
                 $conhead = "(!defined('RUN_INIT')) && die('No Init'); "; 

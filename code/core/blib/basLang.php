@@ -16,8 +16,8 @@ class basLang{
         return $re;
     }
 
-    // {lang(core.view_times,$click)}
-    // {lang(core.sys_name)}
+    // {basLang::show(core.view_times,$click)}
+    // {basLang::show(core.sys_name)}
     static function show($mk, $val='', $dir='kvphp'){
         $mk = str_replace("'",'',$mk);
         if(!strpos($mk,'.')) $mk = "core.$mk";
@@ -34,12 +34,13 @@ class basLang{
     
     // 多语言...
     static function getCfgs($key, $mod='core', $dir='kvphp'){
-        $lang = cfg('sys.lang'); 
+        global $_cbase;
+        $lang = $_cbase['sys']['lang'];
         if(isset(self::$_CACHES_LG[$mod])){
             $cfgs = self::$_CACHES_LG[$mod];
         }else{
             $flang = DIR_CODE."/lang/$dir/$mod-$lang.php"; 
-            $cfgs = self::$_CACHES_LG[$mod] = file_exists($flang) ? include($flang) : array();    
+            $cfgs = self::$_CACHES_LG[$mod] = file_exists($flang) ? include $flang : array();    
         }
         if(empty($key)) return $cfgs;
         return isset($cfgs[$key]) ? $cfgs[$key] : '{'."$mod.$key".'}';
@@ -47,9 +48,10 @@ class basLang{
 
     // {linc(file.part)} <大段文本>
     static function inc($file, $part='', $uarr=array()){
-        $lang = cfg('sys.lang'); 
+        global $_cbase;
+        $lang = $_cbase['sys']['lang'];
         $flang = DIR_CODE."/lang/ptinc/$file-$lang.php";
-        include($flang); 
+        include $flang; 
         if(isset($reinc[$part])){
             return $reinc[$part];
         }
@@ -57,10 +59,11 @@ class basLang{
 
     // 字段从数组中选个语言键值
     static function pick($key, $vals=array()){
+        global $_cbase;
+        $lang = $_cbase['sys']['lang'];
         if(!is_array($vals)){
             return $vals;
         }
-        $lang = cfg('sys.lang'); 
         if($key && isset($vals[$key])){
             return $vals[$key];
         }elseif(isset($vals[$lang])){
@@ -76,7 +79,7 @@ class basLang{
         global $_cbase; 
         if(empty($_cbase['ucfg']['lang'])) return;
         if($_cbase['ucfg']['lang']=='(auto)'){
-            $ulang = req('lang');
+            $ulang = basReq::val('lang');
             if(!empty($ulang)){
                 $_cbase['sys']['lang'] = $ulang;
                 return;
@@ -93,7 +96,8 @@ class basLang{
 
     // links
     static function links($dir='',$cfgs=array()){
-        $langs = empty($cfgs) ? read('vopcfg.langs','sy') : array();
+        $vopcfg = glbConfig::read('vopcfg','sy');
+        $langs = empty($cfgs) ? $vopcfg['langs'] : array();
         $url = PATH_ROOT."/plus/ajax/redir.php?lang:{key}";
         if(empty($dir)){
             $tpl = "<a href='$url' title='{title}'>{mini}</a>";
@@ -114,7 +118,8 @@ class basLang{
         global $_cbase;
         $flag = isset($_cbase['ucfg']['lang']) ? $_cbase['ucfg']['lang'] : '(auto)';
         if($flag!='(auto)'){
-            $langs = read('vopcfg.langs','sy');
+            $langs = glbConfig::read('vopcfg','sy');
+            $langs = $langs['langs'];
             $cfgs[$flag] = $langs[$flag];
         }else{
             $cfgs = array();
@@ -138,7 +143,8 @@ class basLang{
 
     // jimp
     static function jimp($path,$base='root',$lang='(auto)',$injs=0){
-        if($lang=='(auto)') $lang = cfg('sys.lang'); 
+        global $_cbase;
+        if($lang=='(auto)') $lang = $_cbase['sys']['lang']; 
         if($injs){
             $pcfg = comStore::cfgDirPath($base,'dir');
             $p1 = $path;

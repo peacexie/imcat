@@ -1,6 +1,6 @@
 <?php
-require_once dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
-//require_once "../lib/WxPay.MicroPay.php";
+require dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
+//require "../lib/WxPay.MicroPay.php";
 
 if(isset($_REQUEST["bill_date"]) && $_REQUEST["bill_date"] != ""){
     $bill_date = $_REQUEST["bill_date"];

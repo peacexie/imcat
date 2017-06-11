@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 glbHtml::head('html');
 // 邮箱,短信发送接口
 

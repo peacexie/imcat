@@ -15,10 +15,10 @@ if($view=='set_a2'){
     echo "\n<tr><th class='tc w150'></th>\n<th>".lang('flow.ei_sharecfg').": </th></tr>\n";
     if(empty($ocfgs)){
         echo "\n<tr><td class='tc w180'>".lang('flow.cfg_tips').": </td>\n<td>
-            ".lang('flow.cfg_nocfg')."<br>".lang('flow.cfg_copy').": {code}/cfgs/excfg/ex_outdb.php
+            ".lang('flow.cfg_nocfg')."<br>".lang('flow.cfg_copy').": /root/cfgs/excfg/ex_outdb.php
         </td></tr>\n";
     }else{
-        echo "\n<tr><td class='tc w150'>".lang('flow.ei_cfgfile').": </td>\n<td>{code}/cfgs/excfg/ex_outdb.php，
+        echo "\n<tr><td class='tc w150'>".lang('flow.ei_cfgfile').": </td>\n<td>/root/cfgs/excfg/ex_outdb.php，
         <a href='?file=admin/ediy&part=edit&dkey=cfgs&dsub=&efile=excfg/ex_outdb.php' onclick=\"return winOpen(this,'".lang('flow.ei_editcfg')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
         echo "\n<tr><td class='tc'>['psyn']['server']</td>\n<td>{$ocfgs['psyn']['server']}/plus/ajax/exdb.php</td></tr>\n";
         echo "\n<tr><td class='tc'>['sign']['sapp']</td>\n<td>{$ocfgs['sign']['sapp']}</td></tr>\n";

@@ -2,7 +2,7 @@
 
 #autoload#类自动加载
 
-- 类前缀及类自动加载规范见配置：code/cfgs/boot/cfg_load.php
+- 类前缀及类自动加载规范见配置：root/cfgs/boot/cfg_load.php
 - 二次开发等，请按这个规范
 
 

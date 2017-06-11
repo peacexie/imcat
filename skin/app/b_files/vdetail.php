@@ -5,7 +5,7 @@ $vars = $dext = array();
 $mfile = vopTpls::pinc("c_mod/vdetail-{$this->mod}"); 
 
 if(file_exists($mfile)){ // 扩展
-    include($mfile);
+    include $mfile;
 }elseif(in_array($pmod,array('docs','users','coms','advs','types'))){
     $tabid = glbDBExt::getTable($this->mod);
 	$whrid = tex_func::detail_kid($pmod,$this->id);

@@ -22,11 +22,11 @@ class tagBase{
     
     function __construct($paras=array()) {
         $this->paras = $paras;
-        $this->db = db(); 
+        $this->db = glbDBObj::dbObj(); 
         $this->setModid();
         $this->setFrom();
         $this->pJoin();
-        $this->mcfg = read($this->modid);
+        $this->mcfg = glbConfig::read($this->modid);
     }
     
     // 所有公用: [idfix,top] -=> array('idfix','top')
@@ -48,7 +48,7 @@ class tagBase{
             if(isset($para[2])){
                 $ext = $para[2];
                 if(strstr($ext,'get')){
-                    $mod2 = req($modid,'','Key');
+                    $mod2 = basReq::val($modid,'','Key');
                     global $_cbase;
                     if($mod2 && isset($_cbase[$mod2])) $modid = $mod2; 
                 }
@@ -58,7 +58,7 @@ class tagBase{
     }
     // List, Page, One: 
     function setFrom(){ 
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         $mod = $this->modid;
         if($_groups[$mod]['pid']=='docs'){
             $tabid = 'docs_'.$mod;
@@ -92,7 +92,7 @@ class tagBase{
     // Join (目前仅支持一个join)
     // [join,detail]      -=>  INNER JOIN dext_news    d ON d.did=m.did 
     function pJoin(){ 
-        //$_groups = read('groups');
+        //$_groups = glbConfig::read('groups');
         //$mod = $this->modid;
         //$pid = $_groups[$mod]['pid'];
         $cfg = $this->p1Cfg('join');
@@ -118,7 +118,7 @@ class tagBase{
         if($join){ 
             $a = explode(' ',$join);
             $a['fields'] = $cols;
-            $a['full'] = str_replace($a[2],db()->table($this->sqlArr['tabid'],2),$join);
+            $a['full'] = str_replace($a[2],glbDBObj::dbObj()->table($this->sqlArr['tabid'],2),$join);
             $this->jonArr = $a; 
         }*/
 
@@ -133,7 +133,7 @@ class tagBase{
         }elseif(!empty($cfg[1])){
             $order = $cfg[1]; //认证?
         }elseif(empty($cfg[1]) && !empty($cfg[2])){
-            $order = req('order','','Key',24); 
+            $order = basReq::val('order','','Key',24); 
             $a = explode('+',$cfg[2]);
             if($order && !in_array($order,$a)){ //认证?
                 $order = '';    
@@ -142,7 +142,7 @@ class tagBase{
             $order = '';    
         }
         $order || $order = $this->sqlArr['ordef'];
-        $odesc = req('odesc','1','N');
+        $odesc = basReq::val('odesc','1','N');
         $this->sqlArr['order'] = $order;
         $this->sqlArr['odesc'] = $odesc;
         $this->sqlArr['ofull'] = 'm.'.$order.($odesc ? ' DESC' : '');
@@ -155,7 +155,7 @@ class tagBase{
         //优先取标签属性,再去url的stype
         $stype = empty($cfg[1]) ? vopUrl::umkv('key','stype') : $cfg[1]; 
         if(empty($stype)) return;
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         $pid = $_groups[$this->modid]['pid'];
         if($stype && in_array($pid,array('docs','advs'))){
             $sql = basSql::whrTree($this->mcfg['i'],'m.catid',$stype); 
@@ -166,7 +166,7 @@ class tagBase{
             
         } 
         /*
-        $ccfg = read($this->modid,'_c');
+        $ccfg = glbConfig::read($this->modid,'_c');
         if($fix && !empty($ccfg)){ 
             if(!empty($ccfg[$fix])){
                 $exFlds = array_keys($ccfg[$fix]);
@@ -193,7 +193,7 @@ class tagBase{
     
     function getJoin($re){ 
         if(empty($re)) return $re;
-        $minfo = read($this->modid); 
+        $minfo = glbConfig::read($this->modid); 
         if(!empty($this->jonArr[1]) && $this->jonArr[1]=='detail'){
             if(in_array($minfo['pid'],array('docs','types'))){
                 dopFunc::joinDext($re,$this->modid, $minfo['pid']=='docs'?'did':'kid');

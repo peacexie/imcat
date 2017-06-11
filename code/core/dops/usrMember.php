@@ -35,9 +35,9 @@ class usrMember extends usrBase{
     static function addUser($mod,$uname,$upass,$mname='',$mtel='',$memail='',$excfg=array()){ 
         $arr = array('uname','mname','mtel','memail'); foreach($arr as $k){ $$k = basStr::filTitle($$k); }
         if(isset($excfg['company'])) { $excfg['company'] = basStr::filTitle($excfg['company']); }
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         $re = array('erno'=>'','ermsg'=>'');
-        $md = read($mod);
+        $md = glbConfig::read($mod);
         if($md['pid']!='users'){
             $re['erno'] = "model:$mod:Error!";
             $re['ermsg'] = "model[$mod]Error!";
@@ -70,7 +70,7 @@ class usrMember extends usrBase{
         if(empty($uname)){
             $uname = substr($mod,0,1).str_replace('-','',basKeyid::kidTemp('5'));
         }
-        $r = db()->table($tabid)->field($key)->where("$key='$uname'")->find(); 
+        $r = glbDBObj::dbObj()->table($tabid)->field($key)->where("$key='$uname'")->find(); 
         if(!empty($r[$key])){ 
             return self::addUname('',$mod);
         }
@@ -85,7 +85,7 @@ class usrMember extends usrBase{
         }else{
             $uno = '1';    
         }
-        $r = db()->table($tabid)->field($key)->where("$key='$uid'")->find(); 
+        $r = glbDBObj::dbObj()->table($tabid)->field($key)->where("$key='$uid'")->find(); 
         if(!empty($r[$key])){ 
             return self::addUid();
         }
@@ -93,35 +93,35 @@ class usrMember extends usrBase{
     }
     
     static function bindUser($mname,$pptmod,$pptuid){ 
-        db()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
+        glbDBObj::dbObj()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
     }
 
     static function chkExists($key,$val,$mod=''){ 
-        $db = db();
-        $_groups = read('groups');    
+        $db = glbDBObj::dbObj();
+        $_groups = glbConfig::read('groups');    
         if($key=='uname' && $re=basKeyid::keepCheck($val,1,1,1)){
             return $re;
         }
         if($key=='uname'){
             if($uinfo = $db->table("users_uacc")->where("uname='$val'")->find()){
-                return lang('plus.cajax_userid')."[$val](uacc)".lang('plus.cajax_exsists');
+                return basLang::show('plus.cajax_userid')."[$val](uacc)".basLang::show('plus.cajax_exsists');
             }
             if($mod && isset($_groups[$mod]) && $_groups[$mod]['pid']=='users'){
                 if($uinfo = $db->table("users_$mod")->where("uname='$val'")->find()){
-                    return lang('plus.cajax_userid')."[$val]($mod)".lang('plus.cajax_exsists');
+                    return basLang::show('plus.cajax_userid')."[$val]($mod)".basLang::show('plus.cajax_exsists');
                 }
             }
         }elseif($key=='memail' || $key=='mtel'){
             if($key=='memail' && !basStr::isMail($val)){
-                $tmsg = lang('plus.cajax_mailid');
+                $tmsg = basLang::show('plus.cajax_mailid');
                 return "Error $tmsg:[$val]!";
             };
             if($key=='mtel' && !basStr::isTel($val)){
-                $tmsg = lang('plus.cajax_telnum');
+                $tmsg = basLang::show('plus.cajax_telnum');
                 return "Error $tmsg:[$val]!";
             };
             if($uinfo = $db->table("users_uppt")->where("pptmod='$key' AND pptuid='$val'")->find()){
-                return $tmsg."[$val](uacc)".lang('plus.cajax_exsists');
+                return $tmsg."[$val](uacc)".basLang::show('plus.cajax_exsists');
             }
         }
         return "success";

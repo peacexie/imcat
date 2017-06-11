@@ -1,6 +1,6 @@
 {imp:"c_page/lay_comm"}<!--继承父模板-->
 
-{block:init}{php include_once(vopTpls::pinc('m_user/wxlogin')); }{/block:init}
+{block:init}{php include vopTpls::pinc('m_user/wxlogin'); }{/block:init}
 
 {block:pimp}
 {php $this->pimp('/b_jscss/user.css'); }

@@ -25,6 +25,7 @@ class glbConfig{
     // $_sy_keepid = read('keepid','sy');
     // $dbcfg = read('db','cfg'); 
     static function read($file,$dir='modcm'){ 
+        global $_cbase;
         $modid = $file;
         if(in_array($dir,array('modcm','modex'))){ 
             $key = "_$file";
@@ -38,7 +39,7 @@ class glbConfig{
         }elseif(in_array($dir,array('cfg'))){
             $key = "_cfg_$file"; $kk = "_cfgs"; 
             $file = "/cfgs/boot/cfg_$file.php";
-            $base = DIR_CODE;
+            $base = DIR_ROOT;
         }elseif(in_array($dir,array('dset'))){
             $key = "_$file";
             $file = "/dset/$key.cfg.php";
@@ -46,9 +47,9 @@ class glbConfig{
         }elseif(in_array($dir,array('sy','ex'))){
             $key = "_{$dir}_$file";
             $file = "/cfgs".($dir=='sy' ? "/sycfg" : "/excfg")."/".substr($key,1).".php";
-            $base = DIR_CODE;
+            $base = DIR_ROOT;
         }elseif(in_array($dir,array('va','vc','ve'))){
-            $tpldir = cfg('tpl.tpl_dir');
+            $tpldir = $_cbase['tpl']['tpl_dir'];
             $key = "{$tpldir}_$file"; $kk = "_{$dir}_$file"; 
             $file = vopTpls::pinc("_config/{$dir}_$file",'',0); 
             $base = DIR_SKIN;
@@ -57,7 +58,7 @@ class glbConfig{
         $ck = "{$dir}_$key";
         if(!isset(self::$_CACHES_YS[$ck])){
             if(file_exists($file)){ // inc大文件，其实很占时间
-                require($file); 
+                require $file; 
             }else{ 
                 return array();
             }
@@ -117,8 +118,10 @@ class glbConfig{
     
     //$_vc = vcfg('home'); //'news'
     static function vcfg($mod){ 
+        global $_cbase;
+        $tpldir = $_cbase['tpl']['tpl_dir'];
         $renull['c']['vmode'] = 'close';
-        $tpldir = cfg('tpl.tpl_dir');
+        $renull['m'] = '';
         if(empty($tpldir)) return $renull;
         $key = "{$tpldir}_$mod"; //检查缓存
         if(isset(self::$_CACHES_YS[$key])) return self::$_CACHES_YS[$key];
@@ -138,6 +141,7 @@ class glbConfig{
         }elseif(isset($_groups[$mod]) && $_groups[$mod]['pid']=='docs'){ //默认文档处理,(按va_docs)
             $re = self::read('docs','va');  
         }else{ //没有找到规则-当做关闭
+            $renull['c']['vmode'] = 'dynamic';
             $re = $renull;    
         } 
         $re['c']['etr'] = vopTpls::etr1(0,$tpldir);

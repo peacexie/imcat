@@ -1,4 +1,4 @@
-<?php require_once ("config.php"); ?>
+<?php require "config.php"; ?>
 <?php
 //'------------------------------------
 //' Calls the SetExpressCheckout API call

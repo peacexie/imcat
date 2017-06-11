@@ -12,13 +12,13 @@
 ├─@read : Readme Files
 ├─code : Libs,Cfgs,Tpls(the core code of the system)
 │  ├─adpt : api/Dirves
-│  ├─cfgs : Configs
 │  ├─core : Core Libs
 │  ├─flow : Admin flow scripts
 │  └─lang : Language package 
 ├─html : Static Html Files
 ├─root : Entrys files(include js,css) 
 │  ├─a3rd : 3nd [Login/Pay] Api
+│  ├─cfgs : Configs
 │  ├─plus : Api/ajax Entrys
 │  ├─run : Startup path and Admin Entrys
 │  └─tools : DIY Tools and Setup Entrys 
@@ -51,11 +51,11 @@
 
 * Entry (Demo): /doc.php
  - Entry Setting, common const
- - Load Init File require(...'/root/run/_init.php');
+ - Load Init File require ...'/root/run/_init.php';
 
 * Init File: _init.php
  - Init $_cbase
- - Load Paths ('/code/cfgs/boot/_paths.php');
+ - Load Paths ('/root/cfgs/boot/_paths.php');
  - Load Common configs ('/cfgs/boot/const.cfg.php')
  - Load Admin _score '/dset/_score.cfg.php')
  - Include loader ('/core/blib/loader.php')

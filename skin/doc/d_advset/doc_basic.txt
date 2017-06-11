@@ -2,7 +2,7 @@
 
 #prboot#boot-Param
 
-* Dir : /code/cfgs/boot/
+* Dir : /root/cfgs/boot/
 
 * _paths.php : sys-paths config
  - Can change the sys-dirs as : html/ures, code/root/skin, vary/vimp
@@ -20,7 +20,7 @@
 
 #prexcfg#excfg-Param
 
-* Dir : /code/cfgs/excfg/
+* Dir : /root/cfgs/excfg/
 
 * ex_a3rd.php : 3rd [Pay/Login]Config
 
@@ -50,7 +50,7 @@
 
 #prsycfg#sycfg-Param
 
-* Dir : /code/cfgs/sycfg/
+* Dir : /root/cfgs/sycfg/
 
 * sy_domain.php : sub-domain jump,xss,top-domain config
 
@@ -92,9 +92,9 @@
 
 #prelse#else-Param
 
-* Dir : /code/cfgs/player/ for Player
+* Dir : /root/cfgs/player/ for Player
 
-* Dir : /code/cfgs/scfile/ for script extra
+* Dir : /root/cfgs/scfile/ for script extra
 
 * Wechat config : Admin >> Frame >> Plus/API >> WechatAPI (Support more then ONE public number)
 

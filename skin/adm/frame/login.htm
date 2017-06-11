@@ -1,8 +1,8 @@
 <!DOCTYPE html><html><head>
 {php}
 extract(basReq::sysVars()); 
-$db=db();
-$title = lang('admin.adm_center');
+$db=glbDBObj::dbObj();
+$title = basLang::show('admin.adm_center');
 $remsg = usrAdmin::opLogin($this);  
 $btncls = $user->userFlag=='Error' ? 'class="disc"' : 'class="btn"';
 {/php}

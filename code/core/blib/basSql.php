@@ -14,8 +14,9 @@ class basSql{
 
     // type=a/e; $re='arr/str'; ip=''
     static function logData($type='a',$ip='',$time=0,$user=''){ 
-        $run = cfg('run');
-        $unow = user();
+        global $_cbase;
+        $run = $_cbase['run'];
+        $unow = usrBase::userObj();
         $cfg = array(
             'ip' => $ip ? $ip : $run['userip'],
             'time' => $time ? $time : $run['stamp'],
@@ -126,7 +127,7 @@ class basSql{
             foreach($arr as $v) $sql = str_replace($v,"\n$v",$sql);    
             $sql = str_replace(") AND",") \n AND",$sql); 
         }else{
-            require_once(DIR_VENDOR.'/sql-formatter/SqlFormatter.php');
+            require_once DIR_VENDOR.'/sql-formatter/SqlFormatter.php';
             $sql = SqlFormatter::format($sql, $hlight);            
         }
         return $sql;

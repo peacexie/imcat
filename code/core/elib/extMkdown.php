@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-include_once(DIR_STATIC.'/ximp/class/Parsedown.cls_php'); 
+include DIR_STATIC.'/ximp/class/Parsedown.cls_php'; 
 
 class extMkdown extends Parsedown{
     

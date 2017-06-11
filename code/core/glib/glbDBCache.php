@@ -89,7 +89,7 @@ class glbDBCache extends glbDBObj{
         if(is_object($this->cache)){
             return true;
         }elseif($this->config['dc_type']){
-            require_once(DIR_CODE.'/adpt/cache/extCache.php');
+            require DIR_CODE.'/adpt/cache/extCache.php';
             $config['DATA_CACHE_PATH']=DIR_DTMP.$this->config['dc_path'].'/';
             $config['DATA_CACHE_TIME']=$this->config['dc_tmout'];
             $config['DATA_CACHE_CHECK']=$this->config['dc_check'];        

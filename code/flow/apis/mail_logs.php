@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 
 $cfg = array(
     'sofields'=>array('title','ufrom','uto','detail','stat'),
@@ -11,7 +11,7 @@ $dop = new dopExtra('plus_emsend',$cfg);
 
 // 删除操作
 if(!empty($bsend)){
-    require(dirname(dirname(__FILE__)).'/binc/act_ops.php');
+    require dirname(dirname(__FILE__)).'/binc/act_ops.php';
 } 
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
@@ -24,10 +24,10 @@ if($view=='vcfgs'){
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     if(empty($cfgs)){
         echo "\n<tr><td class='tc w180'>".lang('flow.cfg_tips').": </td>\n<td>
-            ".lang('flow.cfg_nocfg').": <br>".lang('flow.cfg_copy').": {code}/cfgs/excfg/ex_mail.php-demo ".lang('flow.cfg_to')." ex_mail.php; <br>".lang('flow.cfg_editip')."
+            ".lang('flow.cfg_nocfg').": <br>".lang('flow.cfg_copy').": /root/cfgs/excfg/ex_mail.php-demo ".lang('flow.cfg_to')." ex_mail.php; <br>".lang('flow.cfg_editip')."
         </td></tr>\n";
     }else{ 
-        echo "\n<tr><td class='tc w150'>".lang('flow.cfg_nowcfg').":</td>\n<td>".lang('flow.cfg_nowfile').": {code}/cfgs/excfg/ex_mail.php，
+        echo "\n<tr><td class='tc w150'>".lang('flow.cfg_nowcfg').":</td>\n<td>".lang('flow.cfg_nowfile').": /root/cfgs/excfg/ex_mail.php，
         <a href='?file=admin/ediy&part=edit&dkey=cfgs&dsub=&efile=excfg/ex_mail.php' onclick=\"return winOpen(this,'".lang('flow.cfg_edit')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
         foreach($cfgs as $key=>$v){
             echo "\n<tr><td class='tc'>{$key}: </td>\n<td>$v</td></tr>\n";

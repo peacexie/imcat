@@ -1,7 +1,7 @@
 <?php
-require(dirname(dirname(__FILE__)).'/adbug/_config.php');
+require dirname(dirname(__FILE__)).'/adbug/_config.php';
 
-$qstr = $_SERVER['QUERY_STRING'];
+$qstr = @$_SERVER['QUERY_STRING'];
 $proot = devRun::prootGet(); 
 $fmsg = array();
 if($qstr=='FixProot' && $proot!=PATH_PROJ){
@@ -75,10 +75,18 @@ $tolurl = PATH_PROJ.'/dev.php';
     <td><a href="dbadm.php"><?php lang('tools.start_dbadmin',0) ?></a></td>
   </tr> 
   <tr class="tc">
-    <td colspan='2'><a href="<?php echo $mapurl; ?>baidu">baidu<?php lang('tools.start_map',0) ?></a> -
-    <a href="<?php echo $mapurl; ?>baidu&act=pick&point=113.756963,23.02224,17">pick</a></td>
-    <td colspan='2'><a href="<?php echo $mapurl; ?>google">google<?php lang('tools.start_map',0) ?></a> -
-    <a href="<?php echo $mapurl; ?>google&act=pick&point=113.750633,23.016454,16">pick</a></a></td>
+    <td colspan='2'>
+    <a href="<?php echo $mapurl; ?>baidu">baidu<?php lang('tools.start_map',0) ?></a> -
+    <a href="<?php echo $mapurl; ?>baidu&act=pick&point=113.756963,23.02224,17">pick</a> -
+    <a href="<?php echo $mapurl; ?>baidu&point=113.537,26.315,16">bamu</a> -
+    <a href="<?php echo $mapurl; ?>baidu&point=123.480,25.750,16">diao</a>
+    </td>
+    <td colspan='2'>
+    <a href="<?php echo $mapurl; ?>google">google<?php lang('tools.start_map',0) ?></a> -
+    <a href="<?php echo $mapurl; ?>google&act=pick&point=113.750633,23.016454,16">pick</a> -
+    <a href="<?php echo $mapurl; ?>google&point=113.531,26.309,16">bamu</a> -
+    <a href="<?php echo $mapurl; ?>google&point=123.47,25.745,16">diao</a>
+    </td>
   </tr>
   </table>
 

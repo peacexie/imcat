@@ -76,7 +76,7 @@ $_ex_vjump['_defs'] = array(
 ### 本系统上扩展实现
 
 - 原来的各分站，还是原始的系统，这样好啊，利于升级，维护！
-- 在任意一个系统分站，配置文件：/code/cfgs/excfg/ex_vjump.php；
+- 在任意一个系统分站，配置文件：/root/cfgs/excfg/ex_vjump.php；
 - 把 www.my_domain.com 或 my_domain.com 指向：/root/plus/api/，设置vjump.php为默认页
 - 各分站调用所有分站列表接口：/vjump.php?html 或 /vjump.php?cfgs
 - 调试连接：/vjump.php?nav

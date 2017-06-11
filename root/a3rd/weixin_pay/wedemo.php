@@ -1,6 +1,6 @@
 <?php
 $_cbase['run']['wedemo'] = 1;
-require(dirname(__FILE__).'/we_cfgs.php');
+require dirname(__FILE__).'/we_cfgs.php';
 
 $act = req('act','main'); 
 $kid = req('kid','admin');

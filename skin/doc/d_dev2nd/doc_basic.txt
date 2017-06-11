@@ -2,7 +2,7 @@
 
 #autoload#Autoloader
 
-- Class prefix and autoload path see config : code/cfgs/boot/cfg_load.php
+- Class prefix and autoload path see config : root/cfgs/boot/cfg_load.php
 - If you 2nd-Dev, Please use this `Autoload` Specification
 
 

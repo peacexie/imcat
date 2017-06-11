@@ -3,8 +3,8 @@
 
 // 同步服务器 'http://master.domain.com/root';
 $_ex_outdb['psyn']['server'] = 'http://127.0.0.1/txmao'; //同步服务器
-$_ex_outdb['sign']['sapp'] = 'v8h1f5v1xw8vaarrjwbhxmyy'; //签名:sapp
-$_ex_outdb['sign']['skey'] = 'ni8NHpfEHslgzvL8KKL3k1kUtbqtaE9ofZFA'; //签名:skey
+$_ex_outdb['sign']['sapp'] = '61t3chbbhackn1nnsfuce9tj'; //签名:sapp
+$_ex_outdb['sign']['skey'] = 'PSKdiXEjqQw02Qn4gVMgC5IlK2G1wYKzLQJp'; //签名:skey
 // 单独设置(暂未使用...)
 #$_ex_outdb['sign_(jobid)']['sapp'] = ''; //签名:sapp
 #$_ex_outdb['sign_(jobid)']['skey'] = ''; //签名:skey

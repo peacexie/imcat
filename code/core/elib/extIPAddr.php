@@ -11,17 +11,18 @@ class extIPAddr{
     private $class = ''; // ipSina
     
     // 配置接口
-    function __construct($api='') { 
-        $defapi = cfg('ucfg.ipapi', 'cbase', $this->api);
+    function __construct($api=''){
+        global $_cbase; 
+        $defapi = empty($_cbase['ucfg']['ipapi']) ? $this->api : $_cbase['ucfg']['ipapi'];
         $this->api = $api ? $api : $defapi; 
         $this->class = 'ip'.ucfirst($this->api);
         $file = DIR_CODE.'/adpt/ipapi/'.$this->class.'.php';
         if(file_exists($file)){
-            require_once($file);    
+            require $file;    
         }else{
             $this->api = 'local';
             $this->class = 'ipLocal';
-            require_once(DIR_CODE.'/adpt/ipapi/'.$this->class.'.php');        
+            require DIR_CODE.'/adpt/ipapi/'.$this->class.'.php';        
         }
     }
     
@@ -38,7 +39,6 @@ class extIPAddr{
         if($na[0] == 10 || $na[0] == 127 || ($na[0] == 192 && $na[1] == 168) || ($na[0] == 172 && ($na[1] >= 16 && $na[1] <= 31))){
             return 'LAN'; //Local Area Network
         }
-        require_once(DIR_CODE.'/adpt/ipapi/'.$this->class.'.php');
         $ipa = new $this->class();
         if(method_exists($ipa,'getAddr')){ //检查方法...
             $addr = $ipa->getAddr($ip);
@@ -62,10 +62,11 @@ class extIPAddr{
     
     // Http获取数据
     function http($url, $cset, $ip){
+        global $_cbase;
         if(empty($ip)) return '';
         $addr = comHttp::doGet($url.$ip); //获取原始数据
         if(empty($addr)) return ''; 
-        $addr = comConvert::autoCSet($addr,$cset,cfg('sys.cset'));
+        $addr = comConvert::autoCSet($addr,$cset,$_cbase['sys']['cset']);
         return $addr;
     }
 
@@ -99,29 +100,18 @@ class extIPAddr{
 
     // isLocal
     static function isLocal($ip, $isIntra=0){
-        $local = array(
-            '127.0.0.1',
-            '::1',
-        );
-        $intra = array(
-            '192',
-            '10.',
-        );
-        $obj = $isIntra ? $intra : $local; 
-        $ip = $isIntra ? substr($ip,0,3) : $local; 
-        return in_array($ip,$obj) ? true : false;
+        return basEnv::isLocal($ip);
     }
 
     // local,intra,ipv6,in.Code,unknow,
     static function inArea($area='CN', $ip=''){
         $ip || $ip = comSession::getUIP();
-        if(self::isLocal($ip,0)) return 'local';
-        if(self::isLocal($ip,1)) return 'intra';
+        if(self::isLocal($ip)) return 'local';
         if(strpos("($ip)",':')) return 'ipv6';
         $ip3 = self::ipParts($ip, 'arr');
         $str3 = "$ip3[0].$ip3[1].$ip3[2]";
         $file = DIR_STATIC."/media/iptabs/$area-tab.php";
-        include($file);
+        include $file;
         if(strpos("($ipsStr)",";$str3;")){
             return "in.$area";
         }

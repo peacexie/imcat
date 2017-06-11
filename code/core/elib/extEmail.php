@@ -15,7 +15,7 @@ class extEmail{
     public $log = array();
     
     function __construct($type='',$cfg=array()){
-        $this->cfg  = empty($cfg) ? read('mail','ex') : $cfg;
+        $this->cfg  = empty($cfg) ? glbConfig::read('mail','ex') : $cfg;
         $this->type = empty($type) ? $this->cfg['type'] : $type;
         $this->setServer($cfg);        
     }
@@ -23,7 +23,7 @@ class extEmail{
     function setServer($cfg=array()){
         $this->cfg = empty($cfg) ? $this->cfg : $cfg;
         if($this->type=='phpmailer'){
-            require_once DIR_VENDOR.'/PHPMailer/PHPMailerAutoload.php';
+            require DIR_VENDOR.'/PHPMailer/PHPMailerAutoload.php';
             $this->umail = new PHPMailer(true); 
             $this->umail->IsSMTP(); 
             $this->umail->CharSet = 'UTF-8'; //设置邮件的字符编码，这很重要，不然中文乱码 
@@ -33,7 +33,7 @@ class extEmail{
             $this->umail->Username = $this->cfg['user']; 
             $this->umail->Password = $this->cfg['pass']; 
         }else{
-            require_once DIR_VENDOR.'/swiftmailer/swiftmailer/lib/swift_required.php';
+            require DIR_VENDOR.'/swiftmailer/swiftmailer/lib/swift_required.php';
             $transport = Swift_SmtpTransport::newInstance($this->cfg['smtp'], $this->cfg['port'])
               ->setUsername($this->cfg['user']) //注意中转邮箱要和下面的From 邮箱一致
               ->setPassword($this->cfg['pass']);
@@ -117,7 +117,7 @@ class extEmail{
             'title'=>$this->log['title'],'detail'=>basReq::in($detail),
             'stat'=>$stat,'api'=>$this->type,
         );
-        db()->table('plus_emsend')->data($data)->insert();
+        glbDBObj::dbObj()->table('plus_emsend')->data($data)->insert();
     }
 
 }

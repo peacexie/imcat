@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 set_time_limit(300); 
 
 $act = req('act','');
@@ -171,7 +171,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
     <td class="tc">Check[Cnchr]Char</td>
     <td class="tc" colspan="3">
      <a href='?act=scanCnchr&part=code/adpt' target="_blank">adpt</a> 
-     | <a href='?act=scanCnchr&part=code/cfgs' target="_blank">cfgs</a>
+     | <a href='?act=scanCnchr&part=root/cfgs' target="_blank">cfgs</a>
      | <a href='?act=scanCnchr&part=code/core' target="_blank">core</a>
      | <a href='?act=scanCnchr&part=code/flow' target="_blank">flow</a>
      # <a href='?act=scanCnchr&part=skin/adm' target="_blank">adm</a>

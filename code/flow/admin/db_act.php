@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
+require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
 
 $tabinfo = $db->tables(1); 
 $tabid = req("tabid",'base_model'); 
@@ -82,7 +82,7 @@ if($view=='Clear'){
     $istr = "<textarea name='sqldata' cols='' wrap='off' rows='24' style='width:100%'></textarea>";
     if(strpos($part,'.dbsql')>0){
         if(strstr($part,'ins')){
-            $arr = include(DIR_DTMP."/update/$part"); 
+            $arr = include DIR_DTMP."/update/$part"; 
             $data = implode(devData::$spsql,$arr);
         }else{
             $data = comFiles::get(DIR_DTMP."/dbexp/$part"); 
@@ -179,6 +179,6 @@ if($view=='Clear'){
     echo "<p class='tc'><br><a href='$aurl[1]&view=View'>".lang('admin.dba_view')."</a><br><br><p>";
 }elseif($view=='View'){ 
     basEnv::obClean();
-    include(DIR_DTMP."/store/dbdic-{$_cbase['sys']['lang']}.cac_htm");
+    include DIR_DTMP."/store/dbdic-{$_cbase['sys']['lang']}.cac_htm";
     die();
 }

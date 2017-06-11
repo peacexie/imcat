@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/config.php");
+require dirname(__FILE__)."/config.php";
 $cfg = array('ordid','feeamount','apino','status','msg');
 foreach($cfg as $key){ 
     empty($res[$key]) && $res[$key] = '';  

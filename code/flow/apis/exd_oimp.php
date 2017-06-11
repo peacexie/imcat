@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_oimp'; 
 $job = req("job"); 
@@ -31,7 +31,7 @@ if($view=='list'){
         basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
     }
 
-    include(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+    include dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
     $list = $db->table($tabid)->order('top')->select(); 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.oi_from')."</th><th>".lang('flow.title_model')."</th><th>".lang('flow.title_field')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th><th>".lang('flow.title_edit')."</th><th>".lang('flow.dops_exeu')."</th><th>".lang('flow.oi_logs')."</th><th>".lang('flow.title_copy')."</th>\n";
@@ -132,7 +132,7 @@ if($view=='list'){
 
 }elseif(in_array($view,array('loglist'))){ 
     
-    include(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+    include dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
     $cfg = array(
         'sofields'=>array('sysid','outid'),
         'soorders'=>basLang::ucfg('cfgbase.ord_com2'),
@@ -145,7 +145,7 @@ if($view=='list'){
     if(!empty($bsend)){
         $vbak = $view;
         $view = 'del_b3';
-        require(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+        require dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
         $view = $vbak;
     } 
     
@@ -178,7 +178,7 @@ if($view=='list'){
     glbHtml::fmt_end(array("mod|$mod","job|$job","view|$view"));
     
 }elseif(in_array($view,array('fields','fset'))){ 
-    include(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+    include dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
 }
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 glbHtml::page('Types Pick',1);
 glbHtml::page('imjq',array('js'=>'/_pub/jslib/search.js'));

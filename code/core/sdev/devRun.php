@@ -43,12 +43,12 @@ class devRun{
     static function prootMsg($proot, $fixres){
         $re = array();
         $fps = self::$fp_paths;
-        $exmsg = empty($proot) ? lang('devrun_tipr1') : lang('devrun_tipr2');
-        $exupd = "<a href='?' style='color:blue;float:right' target='_top'>".lang('devrun_upd')."</a>";
-        $exok = lang('devrun_fixpararm')."(/code$fps): <br>define('PATH_PROJ', '$proot');";
-        $exng = lang('devrun_file')."(/code$fps), ".lang('devrun_setpath')."<br>define('PATH_PROJ', '$proot');";
+        $exmsg = empty($proot) ? basLang::show('devrun_tipr1') : basLang::show('devrun_tipr2');
+        $exupd = "<a href='?' style='color:blue;float:right' target='_top'>".basLang::show('devrun_upd')."</a>";
+        $exok = basLang::show('devrun_fixpararm')."(/code$fps): <br>define('PATH_PROJ', '$proot');";
+        $exng = basLang::show('devrun_file')."(/code$fps), ".basLang::show('devrun_setpath')."<br>define('PATH_PROJ', '$proot');";
         if($fixres=='FixPrOkey'){
-            $re['msg'] = "$exok $exupd <br>$exmsg : ".lang('devrun_upding');
+            $re['msg'] = "$exok $exupd <br>$exmsg : ".basLang::show('devrun_upding');
             $re['tip'] = FLAGYES;
         }else{ // FixPrError
             $re['msg'] = "$exng $exupd <br>$exmsg";
@@ -62,12 +62,12 @@ class devRun{
         // php版本
         $pver = MINPHPVER;
         if(version_compare(PHP_VERSION,$pver,'<')){
-            $umsg['vphp']['msg'] = lang('devrun_needenv')." PHP V{$pver}+";
+            $umsg['vphp']['msg'] = basLang::show('devrun_needenv')." PHP V{$pver}+";
             $umsg['vphp']['tip'] = FLAGNO;
         }
 
         // db配置
-        $_cfgs = read('db','cfg'); 
+        $_cfgs = glbConfig::read('db','cfg'); 
         $dbcls = $_cfgs['db_class'];
         if($dbcls=='pdox'){
             $dbflag = class_exists('PDO');
@@ -77,17 +77,17 @@ class devRun{
         // mysql扩展
         $exlib = array('mysqli'=>'mysqli','mysql'=>'mysql','pdox'=>'pdo_mysql');
         if(!$dbflag){
-            $umsg['mysql']['msg'] = lang('devrun_my3a',$exlib[$_cfgs['db_class']]).lang('devrun_my3b')."(/code/cfgs/boot/cfg_db.php)，<br>".lang('devrun_my3c')."\$_cfgs['db_class'] = 'mysqli,mysql,pdox'; //".lang('devrun_my3d');
+            $umsg['mysql']['msg'] = basLang::show('devrun_my3a',$exlib[$_cfgs['db_class']]).basLang::show('devrun_my3b')."(/root/cfgs/boot/cfg_db.php)，<br>".basLang::show('devrun_my3c')."\$_cfgs['db_class'] = 'mysqli,mysql,pdox'; //".basLang::show('devrun_my3d');
             $umsg['mysql']['tip'] = FLAGNO; 
         }
         // gd2扩展
         if(!function_exists('gd_info')){
-            $umsg['gd2']['msg'] = lang('devrun_gd2')."<br>extension=php_gd2.dll";
+            $umsg['gd2']['msg'] = basLang::show('devrun_gd2')."<br>extension=php_gd2.dll";
             $umsg['gd2']['tip'] = FLAGNO;
         }
         // 重置辅助调试工具账号密码
         if(!file_exists($fpath=DIR_DTMP.self::$sfixidpw)){
-            $cfgs = read('pubcfg','sy');
+            $cfgs = glbConfig::read('pubcfg','sy');
             $key = 'cfgs/boot/cfg_adbug.php';
             $rep = $cfgs['cdemo']["code/$key"];
             $data = comFiles::get(DIR_CODE."/$key-cdemo");
@@ -99,7 +99,7 @@ class devRun{
     }
 
     static function startDbadd($dbname){ 
-        $_cfgs = read('db','cfg'); 
+        $_cfgs = glbConfig::read('db','cfg'); 
         foreach($_cfgs as $k=>$v){
             if(!empty($_POST[$k])) $_cfgs[] = $_POST[$k];
         }
@@ -125,8 +125,8 @@ class devRun{
     static function verPHP(){ 
         $info = PHP_VERSION.' (SAPI:'.PHP_SAPI.')';
         $res = version_compare(PHP_VERSION,MINPHPVER,">") ? FLAGYES : FLAGNO;
-        $tip = 'V5.2+, '.lang('devrun_phpvbest').' V5.3+';
-        $status = array('title'=>lang('devrun_phpver'),'info'=>$info,'res'=>$res,'tip'=>$tip);
+        $tip = 'V5.2+, '.basLang::show('devrun_phpvbest').' V5.3+';
+        $status = array('title'=>basLang::show('devrun_phpver'),'info'=>$info,'res'=>$res,'tip'=>$tip);
         return $status;
     }
     
@@ -176,7 +176,7 @@ class devRun{
             if(in_array($key,$ca2)){
                 $fwrite = comFiles::canWrite($dir);
                 if(!$fwrite){
-                    $stat = str_replace('<!--isNo-->',lang('devrun_notwrite'),FLAGNO);        
+                    $stat = str_replace('<!--isNo-->',basLang::show('devrun_notwrite'),FLAGNO);        
                 } 
             }
             $re[] = array('ukey'=>$ukey,'dir'=>str_replace($dhid,"{...}",$dir),'path'=>$path,'res'=>$stat);
@@ -189,7 +189,7 @@ class devRun{
     static function runMydb3($dbcfgs=array()){ 
         $a = array('mysqli'=>array(),'mysql'=>array(),'pdo'=>array());
         if(empty($dbcfgs)){
-            $_cfgs = read('db','cfg'); 
+            $_cfgs = glbConfig::read('db','cfg'); 
         }else{
             $_cfgs = $dbcfgs; 
         }
@@ -198,7 +198,7 @@ class devRun{
         }
         $type = 'pdo'; 
         if(!class_exists($type)){
-            $a[$type] = array('res'=>FLAGNO,'info'=>lang('devrun_extendset',$type));
+            $a[$type] = array('res'=>FLAGNO,'info'=>basLang::show('devrun_extendset',$type));
         }else{
             $a[$type] = array('res'=>FLAGYES,'info'=>''); //支持pdo扩展
             try{
@@ -224,7 +224,7 @@ class devRun{
             $ferrno = "{$type}_errno"; 
             $ferror = "{$type}_error";
             if(!function_exists($fconn)){
-                $a[$type] = array('res'=>FLAGNO,'info'=>lang('devrun_extendset',$type));
+                $a[$type] = array('res'=>FLAGNO,'info'=>basLang::show('devrun_extendset',$type));
             }else{
                 $a[$type] = array('res'=>FLAGYES,'info'=>""); //支持type
                 $link = @$fconn($_cfgs['db_host'], $_cfgs['db_user'], $_cfgs['db_pass']);
@@ -238,7 +238,7 @@ class devRun{
                         $info = " - [".$ferrno($link)."] ".$ferror($link).' - '; 
                     }
                 }else{
-                    $info = lang('devrun_linkmysqlerr'); 
+                    $info = basLang::show('devrun_linkmysqlerr'); 
                 }
                 if(!strstr($info,'; OK :')){
                     $a[$type]['res'] = $stat = FLAGNO;    
@@ -298,7 +298,7 @@ class devRun{
         $handle = opendir($full);
         while($file=readdir($handle)){ //echo "<br>aa:$file";
             if(in_array($file,array('.','..','.svn',))) continue;
-            $bonum++; if($bonum>1000) die("<p>".lang('devrun_tmfiles')."</p>");
+            $bonum++; if($bonum>1000) die("<p>".basLang::show('devrun_tmfiles')."</p>");
             if(is_dir("$full/$file")){
                 $real = basDebug::hidInfo(realpath("$full/$file"));
                 echo "\n<ul>\n";

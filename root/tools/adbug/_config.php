@@ -5,9 +5,9 @@
 //$_cbase['skip']['_sess_'] = true;
 if(!session_id()) session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
-include(dirname(dirname(dirname(__FILE__))).'/run/_init.php');
-include(DIR_CODE.'/cfgs/boot/cfg_adbug.php');
-$sess_id = 'pmSessid_'.preg_replace("/[^\w]/", '', @$_cbase['safe']['safil']);
+include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
+include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';
+$sess_id = usrPerm::getSessid(); 
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
@@ -23,7 +23,7 @@ if(strstr($_selfname,'start.php')){
     ;//
 }else{
     bootPerm_ys('pstools','','<p><a href="binfo.php?login">login</a></p>');
-    //else {  $_isOut = 1;    @include(dirname(__FILE__).'/devRun.php');    }
+    //else {  $_isOut = 1;    @include dirname(__FILE__).'/devRun.php';    }
 }    
 
 function tadbugNave($path=''){
@@ -54,7 +54,7 @@ function dfmtRemote($str,$method=''){
         $str=preg_replace("/<(style.*?)>(.*?)<(\/style.*?)>/si","",$str);
     }else{
         $str = nl2br($str);
-        $str = htmlspecialchars($str);    
+        $str = str_replace(array('<','>'), array('&lt;','&gt;'), $str);    
         $str = str_replace(array('&lt;br /&gt;','&amp;nbsp;'),array('<br />',' '),$str);    
     }
     return "<h1>$method</h1>\n$str";

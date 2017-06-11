@@ -22,7 +22,7 @@ class glbCUpd{
 
     // upd config
     static function upd_groups(){
-        $grps = db()->table('base_model')->where("enable=1")->order('pid,top,kid')->select(); 
+        $grps = glbDBObj::dbObj()->table('base_model')->where("enable=1")->order('pid,top,kid')->select(); 
         $str = '';
         foreach($grps as $k=>$v){
             $arr[$v['kid']] = array('pid'=>$v['pid'],'title'=>$v['title'],'top'=>$v['top'],); 
@@ -37,8 +37,8 @@ class glbCUpd{
     
     // upd grade
     static function upd_grade(){
-        $_groups = read('groups');
-        $list = db()->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
+        $_groups = glbConfig::read('groups');
+        $list = glbDBObj::dbObj()->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
         $arr = array();
         foreach($list as $k=>$v){ 
             $v['modname'] = $_groups[$v['model']]['title'];
@@ -56,9 +56,9 @@ class glbCUpd{
     
     // upd model
     static function upd_model($mod=0){ 
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if(empty($mod)) return;
-        $v = db()->table('base_model')->where("kid='$mod'")->find(); 
+        $v = glbDBObj::dbObj()->table('base_model')->where("kid='$mod'")->find(); 
         $arr = array('kid'=>$v['kid'],'pid'=>$v['pid'],'title'=>$v['title'],'enable'=>$v['enable']); 
         $arr['etab'] = $v['etab']; //'docs','types'
         $arr['deep'] = $v['deep']; //'docs','types','menus','advs'
@@ -90,21 +90,21 @@ class glbCUpd{
         glbConfig::save($arr,$mod);
     }
     static function upd_afield($cfg){     
-        $f = read('fadvs','sy');
+        $f = glbConfig::read('fadvs','sy');
         if($cfg['etab']==1){ unset($f['detail'],$f['mpic']); }
         if($cfg['etab']==2){ unset($f['detail']); }
         if($cfg['etab']==3){ 
             unset($f['mpic']); 
-            $f['url']['title'] = lang('core.cupd_reprule');
+            $f['url']['title'] = basLang::show('core.cupd_reprule');
             $f['url']['vreg'] = '';
-            $f['url']['vtip'] = lang('core.msg_eg').'{root}[=]http://txjia.com/<br>'.lang('core.msg_or').'/path/[=]/peace/dev/imcat/root/';
+            $f['url']['vtip'] = basLang::show('core.msg_eg').'{root}[=]http://txjia.com/<br>'.basLang::show('core.msg_or').'/path/[=]/peace/dev/imcat/root/';
         }
         return $f;
     }        
     // upd fields（考虑继承父级参数?）
     static function upd_cfield($mod=0){
         $f = array();
-        $list = db()->field(self::$_fields.",catid")->table('bext_fields')->where("model='$mod' AND enable='1'")->order('catid,top')->select(); 
+        $list = glbDBObj::dbObj()->field(self::$_fields.",catid")->table('bext_fields')->where("model='$mod' AND enable='1'")->order('catid,top')->select(); 
         foreach($list as $k=>$v){
             $cid = $v['kid']; $catid = $v['catid']; 
             foreach($v as $i=>$u){ //kid,top,cfgs
@@ -119,7 +119,7 @@ class glbCUpd{
     
     // upd fields
     static function upd_fields($mod=0){
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if(isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','users','coms','types'))){ 
             $tabid = 'base_fields';
             $fields = self::$_fields;
@@ -128,7 +128,7 @@ class glbCUpd{
             $fields = self::$_fields.",`key`,val";
         }
         $f = array();
-        $list = db()->field($fields)->table($tabid)->where("model='$mod' AND enable='1'")->order('top')->select(); 
+        $list = glbDBObj::dbObj()->field($fields)->table($tabid)->where("model='$mod' AND enable='1'")->order('top')->select(); 
         foreach($list as $k=>$v){
             $cid = $v['kid'];
             foreach($v as $i=>$u){ //kid,top,cfgs
@@ -143,7 +143,7 @@ class glbCUpd{
     
     // upd itype,icatalog
     static function upd_itype($mod,$cfg,$pid=0){
-        $db = db();
+        $db = glbDBObj::dbObj();
         if(in_array($cfg['pid'],array('docs','advs'))){
             $tabid = 'base_catalog';
         }else{
@@ -156,7 +156,7 @@ class glbCUpd{
     }
     // upd iuser
     static function upd_iuser($mod,$cfg,$pid=0){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $tabid = 'base_grade'; 
         $arr = array(); 
         $list = $db->field('kid,title')->table($tabid)->where("model='$mod' AND enable='1' ")->order('top')->select();
@@ -170,7 +170,7 @@ class glbCUpd{
     }
     // upd imenu
     static function upd_imenu($mod,$cfg,$pid=0){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $tabid = 'base_menu';
         $fileds = 'kid,pid,title,deep,cfgs';
         $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
@@ -180,7 +180,7 @@ class glbCUpd{
     
     // upd relat
     static function upd_relat(){ 
-        $list = db()->table('bext_relat')->order('top,kid')->select(); 
+        $list = glbDBObj::dbObj()->table('bext_relat')->order('top,kid')->select(); 
         $re = array();
         foreach($list as $r){
             $kid = $r['kid'];
@@ -197,15 +197,15 @@ class glbCUpd{
     }
     
     static function upd_paras($pid, $re='save'){ 
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         $str = ''; $arr = array();
         foreach($_groups as $k=>$v){ 
             if($v['pid']==$pid){ 
-                $cfg = read($k);
+                $cfg = glbConfig::read($k);
                 if(empty($cfg['f'])) continue;
                 foreach($cfg['f'] as $k2=>$v2){
                     $k3 = strstr($v2['key'],'[') ? str_replace(array('[',']'),array("['","']"),$v2['key']) : "['".$v2['key']."']";
-                    $res = db()->table('base_paras')->where("kid='$k2'")->find();
+                    $res = glbDBObj::dbObj()->table('base_paras')->where("kid='$k2'")->find();
                     $val = str_replace(array('"',"\\"),array("\\\"","\\\\"),$res['val']);
                     $str .= "\n\$_cbase$k3 = \"$val\";";
                     $arr[$k2] = $res['val'];
@@ -220,7 +220,7 @@ class glbCUpd{
         }
     }
     static function upd_menus($mod,$cfg=array()){ 
-        if(empty($cfg)) $cfg = read($mod);
+        if(empty($cfg)) $cfg = glbConfig::read($mod);
         if($mod=='muadm'){ 
             $s0 = ''; $s1 = ''; $js1 = ''; $js2 = '';
             $mperm = array();
@@ -252,17 +252,17 @@ class glbCUpd{
     }
     
     static function upd_madvs(&$s0){ //按栏目显示菜单项
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         foreach($_groups as $k2=>$v2){ 
         if($v2['pid']=='advs'){
-            $cfg = read($k2);
+            $cfg = glbConfig::read($k2);
             $s0 .= "<ul class='adf_mnu2' id='left_$k2'>";
             $s0 .= "<li class='adf_dir'><a href='?file=dops/a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
             foreach($cfg['i'] as $k3=>$v3){ 
             if(empty($v3['pid'])){ //顶级
                 $s0 .= "<li id='left_$k3'>";
                 $s0 .= "<a href='?file=dops/a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
-                $s0 .= "<a onclick=\"admJsClick('$k2')\">".lang('core.msg_add')."</a></li>";
+                $s0 .= "<a onclick=\"admJsClick('$k2')\">".basLang::show('core.msg_add')."</a></li>";
             }}
             $s0 .= "</ul>";
         }}
@@ -317,7 +317,7 @@ class glbCUpd{
     static function upd_ipfile(&$icfg){
         static $_mpm;
         if(empty($_mpm)){
-            $_mpm = read('muadm_perm','dset'); 
+            $_mpm = glbConfig::read('muadm_perm','dset'); 
         }
         $pmadm =  $icfg['pmadm']; 
         $pfile = ",{$icfg['pfile']}";

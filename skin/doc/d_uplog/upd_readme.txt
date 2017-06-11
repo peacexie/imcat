@@ -16,7 +16,7 @@
 
 * Backup program files
  - Mainly: /code and /root dirs。
- - Important file (folder): /code/cfgs/，/code/cfgs/boot/_paths.php. 
+ - Important file (folder): /root/cfgs/，/root/cfgs/boot/_paths.php. 
 
 
 #preset#Preparation
@@ -28,11 +28,11 @@
 * Cover files
  - /code/core/ >> blib/clib/glib/sdev subdirs
  - /root/tools/setup >> (skip index.php setup entry)
- - /code/cfgs/boot/cfg_load.php The automatic loading configs, you can edit it manually $_cfgs['acdir']
+ - /root/cfgs/boot/cfg_load.php The automatic loading configs, you can edit it manually $_cfgs['acdir']
  
 * Backup configuration again
- - dirs: /code/cfgs/;
- - file: /code/cfgs/boot/_paths.php;
+ - dirs: /root/cfgs/;
+ - file: /root/cfgs/boot/_paths.php;
  - set: /code and /root writeable (to add files or modify files to be copied when upgrading).
 
 * Execution entry:
@@ -69,8 +69,8 @@
  - After modifying the structure of the database, you can be re initialized the cache, to check the structure.
 
 * Set database:
- - File: {code}/cfgs/excfg/ex_outdb.php (part of $_cfgs)
- - Tips: file: {code}/cfgs/boot/cfg_db.php can copy from old system 
+ - File: /root/cfgs/excfg/ex_outdb.php (part of $_cfgs)
+ - Tips: file: /root/cfgs/boot/cfg_db.php can copy from old system 
 
 * Initialization cache:
  - Run first please.

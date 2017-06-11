@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 
 //check, re:cfgs:
 $cfg = updDbcmp::uimpCheck(); 
@@ -15,7 +15,7 @@ glbHtml::page(lang('tools.upi_title').' - '.$_cbase['sys_name'],1);
 glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
 glbHtml::page('body');
 
-include(vopShow::inc('[root]:tools/setup/upvimp'));
+include vopShow::inc('[root]:tools/setup/upvimp');
 
 $cnew = updBase::cacGet('uimp_new');
 $cold = updBase::cacGet('uimp_old');
@@ -29,18 +29,18 @@ if($act=='cpcfg'){
 }elseif($act=='cptables'){
 
     $ctab = updDbcmp::cmpTable($cnew,$cold);
-    dump($ctab,1);   
+    dump($ctab,'min');   
 
 }elseif($act=='cpfields'){
     
     $cfields = updDbcmp::cmpField($cnew,$cold,0);
-    dump($cfields,1);   
+    dump($cfields,'min');   
     updBase::cacSave($cfields,'uimp_fields');
     
 }elseif($act=='cpindexs'){
     
     $cindexs = updDbcmp::cmpIndex($cnew,$cold,1);
-    dump($cindexs,1);   
+    dump($cindexs,'min');   
     updBase::cacSave($cindexs,'cimp_indexs');
 
 }elseif($act=='sqlins' || $act=='sqlrep'){

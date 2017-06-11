@@ -1,6 +1,6 @@
 <?php
 $_mod = basename(__FILE__,'.php');
-require(dirname(__FILE__).'/_cfgcom.php'); 
+require dirname(__FILE__).'/_cfgcom.php'; 
 
 if(empty($bsend)){ die('Empty!'); }
 dopCheck::headComm();

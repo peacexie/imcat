@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_wex_cfgs.php');
+require dirname(__FILE__).'/_wex_cfgs.php';
 
 $types = basLang::ucfg('cfgbase.wx_type');
 $cfg = array(

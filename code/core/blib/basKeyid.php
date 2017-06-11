@@ -7,7 +7,7 @@ class basKeyid{
     《!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~》// All:32
     《"&<>》HTML
     《:/?=&#%》URL/COOKIE 
-    《\/*?"<>|》(WIN)FILE
+    《\/*?"<>|:》(WIN)FILE
     《'$[]{}》SQL,PHP,下标,变量
     《|:"';》session存数据库,特殊字符
     《!()+,-.;@^_`~》安全13个 
@@ -228,20 +228,20 @@ class basKeyid{
     }
     
     static function keepCheck($key,$chk=1,$fix=1,$grp=0,$len=3){
-        $groups = read('groups');
-        $keepids = read('keepid','sy');
+        $groups = glbConfig::read('groups');
+        $keepids = glbConfig::read('keepid','sy');
         if(strlen($key)<$len){
-            return lang('core.kid_minlen',$len); //"请输入$len+个字符！";
+            return basLang::show('core.kid_minlen',$len); //"请输入$len+个字符！";
         }
         if($chk && strpos($keepids,",$key,")){
-            return lang('core.kid_keeped',$key); 
+            return basLang::show('core.kid_keeped',$key); 
         }
         if($fix && strpos($key,"_")){
             $fix = strpos($key,0,strpos($key,'_'));
-            if(strstr($keepids,",$fix,")) return lang('core.kid_preused',$key); 
+            if(strstr($keepids,",$fix,")) return basLang::show('core.kid_preused',$key); 
         }
         if($grp && isset($groups[$key])){ 
-            return lang('core.kid_ismodel',$key); 
+            return basLang::show('core.kid_ismodel',$key); 
         }
         return '';
     }

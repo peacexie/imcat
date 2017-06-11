@@ -1,13 +1,19 @@
-{imp:"frame/aimp"}<!--模板继承-->
-
-{block:ahead}<style type='text/css'>
-.abprop{ padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
-</style>{/block:ahead}
-
-{block:abody}
-<?php 
+{php}
+extract(basReq::sysVars()); 
+$_groups = glbConfig::read('groups'); 
+$db = glbDBObj::dbObj();
 $aurl = basReq::getUri(-2); 
 extract(basReq::sysVars());
+{/php}
+<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
+{php glbHtml::imsub('imadm'); }
+<style type='text/css'>
+.abprop{ padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
+</style>
+</head><body class="abprop">
+<?php 
 echo "\n<!--inc:/$file.php-->\n"; 
 $full = DIR_CODE."/flow/$file.php";
 if(in_array(substr($file,0,2),array('ea','em'))){
@@ -17,10 +23,11 @@ if(in_array(substr($file,0,2),array('ea','em'))){
 }else{
     $dop = new dopBase(@$_groups[$mod],'base_model');
     $cv = $dop->cv;
-    require($full);
+    require $full;
 }
 echo "\n<!--inc:end-->\n<p>"; 
 if($_cbase['debug']['err_mode']) echo basDebug::runInfo('qstr');
 echo "</p>";
 ?>
-{/block:abody}
+</body></html>
+{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }

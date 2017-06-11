@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -7,8 +7,8 @@
 </head>
 <?php
 
-require_once(dirname(__FILE__)."/alipay.config.php");
-require_once(LIBS_PAYRUN."/alipay_smob.class.php");
+require dirname(__FILE__)."/alipay.config.php";
+require LIBS_PAYRUN."/alipay_smob.class.php";
 
 /**************************调用授权接口alipay.wap.trade.create.direct获取授权码token**************************/
     

@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/we_cfgs.php');
+require dirname(__FILE__).'/we_cfgs.php';
 
 $act = req('act','main'); 
 $kid = req('kid','admin');
@@ -172,7 +172,7 @@ if($act=='main'){
 }elseif($act=='tmptest'){
     
     $user['nickname'] = "和平鸽(peace)-测his--223"; //xieys,和平鸽(peace)-测his--223
-    $res = wysUser::fmtUserName($user);
+    $res = usrExtra::fmtUserName($user);
     echo ("<br>".$res);
     
     #$unow = user(); 

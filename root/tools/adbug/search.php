@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 // install;patch;updatedata;
 define('SKIP',';.svn;_svn;.git;_git;'); 
@@ -11,7 +11,7 @@ define('FMAX',1024); // 最大文件(KB)
 define('CSET','utf-8'); // 默认编码(gb2312,gbk,big5,utf-8)
 
 $file_arr = array();
-include_once(DIR_CODE."/core/uext/exaSearch.php");
+include DIR_CODE."/core/uext/exaSearch.php";
 
 $path = isset($_REQUEST['path'])?$_REQUEST['path']:'';
 $act = isset($_REQUEST['act'])?$_REQUEST['act']:'Form'; // Form,(Data,File),View,Light
@@ -61,7 +61,8 @@ if(strstr('(View,Light)',$act)){
   highlight_file(BASE."/$file");
   }else{
  $data = file_get_contents(BASE."$file"); // null,lower
- echo "<pre>".htmlspecialchars($data,1)."\n</pre>\n"; 
+ $data = str_replace(array('<','>'), array('&lt;','&gt;'), $data);
+ echo "<pre>$data\n</pre>\n"; 
   }
   $divkey = "document.getElementById('div_key_peace_xieys').innerHTML = 'keywords: $keyBak';";
   echo "<script type='text/javascript'>var n=0; schDone('$keyBak'); $divkey</script>";

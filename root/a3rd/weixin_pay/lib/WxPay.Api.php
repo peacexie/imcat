@@ -1,6 +1,6 @@
 <?php
-require_once dirname(__FILE__)."/WxPay.Config.php";
-require_once LIBS_PAYRUN."/WxPay.Exception.php";
-require_once LIBS_PAYRUN."/WxPay.Data.php";
+require dirname(__FILE__)."/WxPay.Config.php";
+require LIBS_PAYRUN."/WxPay.Exception.php";
+require LIBS_PAYRUN."/WxPay.Data.php";
 
-require_once LIBS_PAYRUN."/WxPay.Api.php";
+require LIBS_PAYRUN."/WxPay.Api.php";

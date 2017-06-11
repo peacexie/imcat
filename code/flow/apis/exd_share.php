@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 
 if(in_array($view,array('list','set'))){
@@ -13,7 +13,7 @@ if($view=='set'){
     
     $vbak = $view;
     $view = 'set_a2';
-    require(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+    require dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
     $view = $vbak;
 
 }elseif($view=='list'){

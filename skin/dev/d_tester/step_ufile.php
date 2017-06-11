@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__FILE__).'/step_ucfg.php'; 
+include dirname(__FILE__).'/step_ucfg.php'; 
 
 $pid = req('pid'); 
 $order = req('order','kid');
@@ -34,7 +34,7 @@ input { background:#CCC; /*不可用*/ }
 </head>
 <body>
 
-<?php include(DIR_SKIN."/dev/d_tester/tester_nav.htm"); ?>
+<?php include DIR_SKIN."/dev/d_tester/tester_nav.htm"; ?>
 
 <h3>用基本类库 - 只用系统类库,不用模板调用:示例</h3>
 

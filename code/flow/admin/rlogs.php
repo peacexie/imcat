@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
+require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
 
 $part = req('part','delog'); 
 $ord4 = basLang::ucfg('cfgbase.admord4a');
@@ -17,7 +17,7 @@ if($part=='dbsql'){
     
     // 删除操作
     if(!empty($bsend)){
-        require(dirname(dirname(__FILE__)).'/binc/act_ops.php');
+        require dirname(dirname(__FILE__)).'/binc/act_ops.php';
     } 
     
     $lnkset = "(<a href='?file=admin/ediy&part=edit&dkey=cfgs&dsub=&efile=boot/const.cfg.php' onclick='return winOpen(this,\"".lang('admin.rl_setpm')."\");'>".lang('flow.title_set')."</a>)";
@@ -64,7 +64,7 @@ if($part=='dbsql'){
     
     // 删除操作
     if(!empty($bsend)){
-        require(dirname(dirname(__FILE__)).'/binc/act_ops.php');
+        require dirname(dirname(__FILE__)).'/binc/act_ops.php';
     }  
     
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';

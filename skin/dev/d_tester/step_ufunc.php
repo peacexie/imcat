@@ -1,5 +1,5 @@
 <?php
-include_once dirname(__FILE__).'/step_ucfg.php';
+include dirname(__FILE__).'/step_ucfg.php';
 
 $pid = req('pid'); 
 $order = req('order','kid');
@@ -19,7 +19,7 @@ echo basJscss::imp('/skin/dev/b_jscss/comm.css');
 glbHtml::page('body');
 ?>
 
-<?php include(DIR_SKIN."/dev/d_tester/tester_nav.htm"); ?>
+<?php include DIR_SKIN."/dev/d_tester/tester_nav.htm"; ?>
 
 <style type="text/css">
 body,nav,div {

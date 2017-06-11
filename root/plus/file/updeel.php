@@ -1,5 +1,5 @@
 <?php
-require('_config.php'); 
+require '_config.php'; 
 usrPerm::run('pextra','edtup'); //上传权限 
 
 $recbk = req('recbk','ref'); 

@@ -28,7 +28,7 @@ class tex_base{
     
     static function init($obj){ 
         global $_cbase;
-        $user = user('Member'); 
+        $user = usrBase::userObj('Member'); 
         if($obj->mkv=='home') header('Location:'."?user");
         $_micfg = read('mumem.i'); 
         $pkey = "$obj->mod-"; //obj: type:detail,mext,mtype,mhome

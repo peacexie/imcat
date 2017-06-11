@@ -1,7 +1,7 @@
 <?php 
 /**
- * 类的自动加载
- * spl_autoload_register('func_name'); //可以多个...
+ * 类的自动加载 //可以多个...
+ * spl_autoload_register('func_name');
  * spl_autoload_register(array('autoLoad_ys','load'));     
  */
 class autoLoad_ys{
@@ -31,7 +31,7 @@ class autoLoad_ys{
     }
     
     static function init(){ 
-        require DIR_CODE.'/cfgs/boot/cfg_load.php';
+        require DIR_ROOT.'/cfgs/boot/cfg_load.php';
         self::$acdirs = $_cfgs['acdir'];
         self::$cfgpr4 = $_cfgs['acpr4'];
         self::$cfgnsp = $_cfgs['acnsp']; 
@@ -41,7 +41,6 @@ class autoLoad_ys{
     }
     // 核心类库
     static function cload($name){ 
-        $path = ''; 
         if(isset(self::$cfgmap[$name])){ // 自定义-class-map
             if(substr(self::$cfgmap[$name],0,1)=='~'){
                 $base = DIR_CODE;
@@ -50,12 +49,12 @@ class autoLoad_ys{
                 $base = DIR_VENDOR;
                 $file = self::$cfgmap[$name];
             } 
-            return self::doinc($file,$base);
+            return self::doinc($file,$base,1);
         }else{ // 按[前缀-目录]对照加载
             $fx3 = substr($name,0,3); 
             foreach(self::$acdirs as $dir=>$fixs){ //
                 if(strstr($fixs,$fx3)){ 
-                    return self::doinc("/$dir/$name.php",DIR_CODE);
+                    return self::doinc("/$dir/$name.php",DIR_CODE,1);
                 }
             }
         }
@@ -77,23 +76,19 @@ class autoLoad_ys{
         return ''; 
     }
     // inc
-    static function doinc($file,$base=''){
+    static function doinc($file,$base='',$exist=0){
         global $_cbase; 
-        if(file_exists($base.$file)){ 
+        if($exist || file_exists($base.$file)){ 
             $_cbase['run']['aclass'][] = $file;
-            require($base.$file); 
+            require $base.$file; 
         }
     }
 }
 
-/**
- * 权限判断函数
- * 用于未加载核心类库场合
- */
+// 权限判断函数,用于未加载核心类库场合
 function bootPerm_ys($key='',$re='0',$exmsg=''){
     global $_cbase; // 不能用cfg()
-    $tid = preg_replace("/[^\w]/", '', $_cbase['safe']['safil']); 
-    $sid = 'pmSessid_'.$tid; 
+    $sid = usrPerm::getSessid(); 
     if($re=='sid') return $sid;
     $sval = @$_SESSION[$sid];
     if(empty($key)){
@@ -107,3 +102,23 @@ function bootPerm_ys($key='',$re='0',$exmsg=''){
         die("NO Permission :<br>\n$msg$exmsg"); 
     }
 }
+
+// 一组handler函数
+/*function uerr_handler($msg='') {  
+    return $msg; 
+}*/
+// 默认异常处理函数
+function except_handler_ys($e) {  
+    throw new glbError($e); 
+}
+// 默认错误处理函数
+function error_handler_ys($Code,$Message,$File,$Line) {  
+    throw new glbError(@$Code,$Message,$File,$Line); 
+}
+// 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
+function shutdown_handler_ys() {  
+    //echo "(shutdown)";
+    basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
+}
+
+//(!function_exists('intl_is_failure'))

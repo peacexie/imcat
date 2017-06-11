@@ -1,7 +1,7 @@
 <?php 
 $_cbase['skip']['_paths'] = true;
 $_fpcfg = dirname(__FILE__).'/_config.php';
-if(file_exists($_fpcfg)) require($_fpcfg); 
+if(file_exists($_fpcfg)) require $_fpcfg; 
 
 // 辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
 $_abase['out']['user'] = 'maotools'; // 如果有_config.php，则使用_config.php中的设置；
@@ -152,7 +152,7 @@ function rem_Text($str,$method=''){
   if(strstr($rem_show,'style')) $str=preg_replace("/<(style.*?)>(.*?)<(\/style.*?)>/si","",$str);
   if(strstr($rem_show,'tags')) $str = strip_tags($str);
   $str = nl2br($str);
-  $str = htmlspecialchars($str); 
+  $str = str_replace(array('<','>'), array('&lt;','&gt;'), $str);
   $str = str_replace(array('&lt;br /&gt;','&amp;nbsp;'),array('<br />',' '),$str); 
   return "<hr><h1>$method</h1><br>$str";
 }

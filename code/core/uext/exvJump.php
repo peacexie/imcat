@@ -18,7 +18,7 @@ class exvJump{
                 break;        
             }
         }
-        $nurl = surl("$kname:0"); 
+        $nurl = vopUrl::fout("$kname:0"); 
         return $nurl;
     }
 
@@ -50,7 +50,7 @@ class exvJump{
     // 获得ujump配置
     static function getCfgs($key=''){
         if(empty(self::$jcfg)){
-            self::$jcfg = read('vjump','ex');
+            self::$jcfg = glbConfig::read('vjump','ex');
         }
         return $key && isset(self::$jcfg[$key]) ? self::$jcfg[$key] : self::$jcfg;
     }

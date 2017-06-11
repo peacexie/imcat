@@ -1,1 +1,61 @@
-{imp:"c_demo/start_sdict-pub"}<!--继承父模板-->
+<?php
+glbHtml::page("类库函数");
+glbHtml::page('body');
+$base = surl(0)."?mkv={$this->mkv}&act";
+?>
+
+<style type="text/css">
+div{ display:block; line-height:120%; text-align:left; clear: both;}
+h3{ color:#006; padding:0px; margin:5px; }
+ul.ul { display:block; clear:left; padding:10px 0px 10px 0px; margin:0px; }
+li.li, b.li { width:88px; float:left; overflow:hidden;  } 
+#navx { width:360px; height:96%; overflow-y:scroll; background:#FFF; position:fixed; right:10px; top:0px; z-index:10; padding:0px 10px 10px 10px; margin:10px; border:1px solid #999; }
+.red { color:#060; } 
+@media only screen and (max-width:767px) {
+    #navx { width:95%; position:static; left:1px; top:10px; }
+}
+</style>
+
+<?php
+
+echo "Nav:\n
+<a href='".surl($this->mkv)."'>core-root</a> - 
+<a href='$base=maps&min=1'>core-maps</a> - 
+<a href='$base=imps'>core-imps</a> - 
+<a href='$base=jslib'>js-lib</a> #  
+<a href='$base=autonsp'>autonsp</a> #  
+<a href='".surl($this->mkv)."'>[return]</a> 
+<hr>\n";
+
+if($act=='maps'){
+    echo "<pre>";
+    foreach(array('adpt','core') as $kk){
+        $pt1 = comFiles::listScan(DIR_CODE."/".$kk); 
+        echo "\n    //code/$kk\n";
+        foreach($pt1 as $fp=>$v){
+            if(!strpos($fp,'/')) continue;
+            $tmp = explode('/',$fp);
+            $fx3 = substr($tmp[1],0,3); 
+            if(!basArray::inArr($_cfgm,$fx3)) continue;
+            echo "    '".str_replace('.php','',$tmp[1])."' => '~/$kk/$fp',\n";
+        }
+    }
+    echo "</pre>";
+}elseif($act=='autonsp'){
+    echo devBase::nspList();
+}elseif($act=='showfunc'){
+    $file = req('file');
+    $func = req('func');
+    $code = devBase::docFunc1(DIR_CODE.$file,$func);
+    $code = highlight_string("<?php\n".$code."\n?>",1);
+    echo $code;
+}else{
+    $nav = devBase::docClass($root,$subs);
+    echo "<div id='navx'>$nav</div>";
+}
+echo "\n<p>".basDebug::runInfo()."</p>";
+basDebug::runLoad(1);
+
+?>
+
+</body></html>

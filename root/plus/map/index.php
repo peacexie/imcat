@@ -1,5 +1,5 @@
 <?php
-require('_config.php'); 
+require '_config.php'; 
 
 glbHtml::page("{$api} ".lang('plus.map_title'),1);
 glbHtml::page('imjq','',"lang=".$_cbase['sys']['lang']); //adm
@@ -18,6 +18,13 @@ glbHtml::page('body');
 <div id="map" style="z-index:333;"></div>
 
 <?php
-require("$api.php"); 
-?>
 
+require "$api.htm"; 
+
+/*
+key : http://ditu.google.cn/maps/api/js?key=AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g&sensor=false
+'25.745,123.47' : 中国-钓鱼岛
+'26.309,113.531' : 南湾-八亩
+*/
+
+?>

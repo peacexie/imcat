@@ -19,22 +19,22 @@ class devBuild{
     // 创建应用 
     static function create($dir, $front, $mod){ 
         if(strlen(basStr::filKey($dir,''))<3 || strlen(basStr::filKey($front,''))<3){
-            return lang('devapp_dferr');
+            return basLang::show('devapp_dferr');
         } 
         if(is_numeric($dir) || is_numeric($front)){
-            return lang('devapp_dfnum');
+            return basLang::show('devapp_dfnum');
         }
         $exa = array('demodir','front','home','info');
         if(in_array($dir,$exa) || in_array($front,$exa)){
-            return lang('devapp_dfues');    
+            return basLang::show('devapp_dfues');    
         }
-        $vopcfg = read('vopcfg','sy'); 
-        $groups = read('groups'); 
+        $vopcfg = glbConfig::read('vopcfg','sy'); 
+        $groups = glbConfig::read('groups'); 
         if(isset($vopcfg['tpl'][$dir]) || is_dir(DIR_SKIN."/$dir")){
-            return lang('devapp_dfext');
+            return basLang::show('devapp_dfext');
         }
         if(empty($groups[$mod]['pid']) || $groups[$mod]['pid']!='docs'){
-            return lang('devapp_dataerr');
+            return basLang::show('devapp_dataerr');
         }
         self::cdir(DIR_SKIN."/demodir", DIR_SKIN."/$dir", $mod);
         self::cfiles($dir, $front, $mod);
@@ -64,22 +64,22 @@ class devBuild{
 
     // 修改文件
     static function cfiles($dir, $front, $mod){ 
-        $title = req('title',"{$dir}App");
+        $title = basReq::val('title',"{$dir}App");
         // front
         $data = comFiles::get(DIR_ROOT.'/run/front.php');
         $data = str_replace(array("'demodir'","dirname(__FILE__).'/_init.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_init.php'"),$data);
         comFiles::put(DIR_PROJ."/$front.php", $data);
         // vopcfg
-        $data = comFiles::get(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php');
+        $data = comFiles::get(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php');
         $flag = "\$_sy_vopcfg['tpl'] = array(".PHP_EOL;
         $icfg = "    '$dir' => array(".PHP_EOL."        '$title',".PHP_EOL."        '/$front.php'".PHP_EOL."    ),".PHP_EOL.'    ';
         $data = preg_replace("/[$]_sy_vopcfg\[\'tpl\'\]\s{0,4}\=\s{0,4}array\(\s{0,4}/is", $flag.$icfg, $data);
-        comFiles::put(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php', $data);
+        comFiles::put(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php', $data);
     }
 
     // modOpt
     static function modOpt($mod){ 
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         $ops = '';
         foreach($_groups as $km=>$kv){
             if($kv['pid']=='docs'){

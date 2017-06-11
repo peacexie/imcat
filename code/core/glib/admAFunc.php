@@ -4,7 +4,7 @@
 class admAFunc{    
     
     static function umcVInit(){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $tabid = 'base_menu'; 
         $mlist = vopTpls::entry('umc');
         $dbcfg = $db->table($tabid)->where("model='mumem'")->order('pid,top,kid')->select();
@@ -34,7 +34,7 @@ class admAFunc{
     
     // 所有[关联模型]为$mod的模型
     static function pmodSuns($mod='',$re='a'){
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         $a = array(); if(!$mod) return $a;
         foreach($_groups as $k=>$v){
             if($mod==$v['pmod']){
@@ -45,7 +45,7 @@ class admAFunc{
     }
     // [关联模型]保存
     static function pmodSave($omod,$pmod=''){
-        $oldPid = req('oldPid');
+        $oldPid = basReq::val('oldPid');
         if($oldPid && $oldPid===$pmod) return;
         if(empty($pmod)){ //取消
             glbDBExt::setOneField($omod,'pid','del');    
@@ -59,8 +59,8 @@ class admAFunc{
     // $fm:is_del,mod_id,
     // $cid:modid(pro),'',reset
     static function modCopy($mod, $tabid, $fm, $cid=''){
-        $_groups = read('groups'); 
-        $db = db();
+        $_groups = glbConfig::read('groups'); 
+        $db = glbDBObj::dbObj();
         $org_arr = array('coms'=>'nrem','docs'=>'news','users'=>'person','types'=>'common','advs'=>'adpic');
         if($fm=='is_del'){
             $fm = $db->table($tabid)->where("kid='$cid'")->find();
@@ -72,19 +72,19 @@ class admAFunc{
                 if($mod=='docs' || $mod=='advs') $db->table('base_catalog')->where("model='$cid'")->delete();
                 if($mod=='users') $db->table('base_grade')->where("model='$cid'")->delete();
             }
-            return $dcnt ? lang('admin.aaf_delok') : lang('admin.aaf_errkeep');
+            return $dcnt ? basLang::show('admin.aaf_delok') : basLang::show('admin.aaf_errkeep');
         }elseif(is_string($fm) && isset($_groups[$fm]) && is_string($cid) && isset($_groups[$cid])){
             $fm_org = $db->table($tabid)->where("kid='$fm'")->find(); 
             $fm_now = $db->table($tabid)->where("kid='$cid'")->find();
             self::modCopy($mod, $tabid, 'is_del', $cid); //del
             self::modCopy($mod, $tabid, $fm_now, $fm); //copy
-            return lang('admin.aaf_resetok');
+            return basLang::show('admin.aaf_resetok');
         }elseif(is_array($fm) && $cid && empty($fm['org_tab'])){ //copy
             $fm_org = $db->table($tabid)->where("kid='$cid'")->find();
             $fm['etab'] = $fm_org['etab'];
             $fm['org_tab'] = "{$mod}_$cid";
             self::modCopy($mod, $tabid, $fm, $cid); //add
-            return lang('admin.aaf_copyok');
+            return basLang::show('admin.aaf_copyok');
         }elseif(is_array($fm)){ //add
             $id = basReq::in(@$fm['kid']);
             $org_tab = @$fm['org_tab']; unset($fm['org_tab']);
@@ -96,9 +96,9 @@ class admAFunc{
                     glbDBExt::setfieldDemo($id, "dext_$id", str_replace('docs_','dext_',$org_tab));     
                 }
             }
-            return lang('admin.aaf_addok');
+            return basLang::show('admin.aaf_addok');
         }else{
-            return lang('admin.aaf_error');    
+            return basLang::show('admin.aaf_error');    
         }
         return $msg;
         
@@ -106,8 +106,8 @@ class admAFunc{
         
     // upd config
     static function grpNav($pid,$mod){
-        $_groups = read('groups');
-        $file = req('file'); 
+        $_groups = glbConfig::read('groups');
+        $file = basReq::val('file'); 
         $str = ''; 
         $ggap = ''; $top0 = '1';
         foreach($_groups as $k=>$v){
@@ -125,9 +125,9 @@ class admAFunc{
     // types,catalog,menus使用
     static function typLay($cfg,$aurl,$pid){ 
         if(empty($pid)){
-            return lang('admin.aaf_ttype');
+            return basLang::show('admin.aaf_ttype');
         }else{
-            $str = "<a href='".basReq::getURep($aurl[1],'pid','0')."'>".lang('admin.aaf_top')."</a>»";
+            $str = "<a href='".basReq::getURep($aurl[1],'pid','0')."'>".basLang::show('admin.aaf_top')."</a>»";
             $lnk = "<a href='".basReq::getURep($aurl[1],'pid','[k]')."'>[v]</a>";
             $str .= comTypes::getLnks(comTypes::getLays($cfg['i'],$pid),$lnk);
         }

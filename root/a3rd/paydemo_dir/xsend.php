@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/config.php");
+require dirname(__FILE__)."/config.php";
 ?>
 <!DOCTYPE html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">

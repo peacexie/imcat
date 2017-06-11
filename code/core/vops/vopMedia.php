@@ -22,7 +22,8 @@ class vopMedia{
     }    
 
     static function _repItem($porg,$mtype){
-        $mapi = cfg('sys_map');
+        global $_cbase; 
+        $mapi = $_cbase['sys_map'];
         $pw = self::onePara($porg,'w'); $pw = $pw>80 ? $pw : '480'; //100%;
         $ph = self::onePara($porg,'h'); $ph = $ph>60 ? $ph : '360';
         $val = self::_itmUri($porg);
@@ -57,7 +58,7 @@ class vopMedia{
     }
         
     static function _itmTpl($file){
-        return comFiles::get(DIR_CODE."/cfgs/player/$file.htm"); 
+        return comFiles::get(DIR_ROOT."/cfgs/player/$file.htm"); 
     }
     
     static function _itmRep($org,$val,$pw,$ph){

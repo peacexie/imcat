@@ -154,7 +154,7 @@ class exdCrawl{
         $up = new comUpload($url, $config, 'remote');
         $info = $up->getFileInfo(); 
         if($info['state']=='SUCCESS'){
-            $mod = req('mod'); $mod || $mod='crawl';
+            $mod = basReq::val('mod'); $mod || $mod='crawl';
             $ure = comStore::moveTmpDir($info['url'],$mod,basKeyid::kidTemp('hms'),0);
         }else{
             $ure = '';    

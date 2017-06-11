@@ -21,32 +21,32 @@ class dopUser extends dopBase{
         parent::__construct($cfg,$cfg['pid']."_$mod");
         $this->typfid = $this->so->typfid = 'grade';
         $this->dskey  = $this->so->dskey  = 'mname'; 
-        $this->order  = $this->so->order  = req('order','uid');
+        $this->order  = $this->so->order  = basReq::val('order','uid');
         $this->tbuacc  = 'users_uacc';
     }
     // 翻页条,批量操作
     function pgbar($idfirst,$idend){
         $pg = $this->pg->show($idfirst,$idend);
-        $op = "".basElm::setOption(lang('flow.op_op3'),'',lang('flow.op0_bacth'));
+        $op = "".basElm::setOption(basLang::show('flow.op_op3'),'',basLang::show('flow.op0_bacth'));
         dopFunc::pageBar($pg,$op);
     }
     // 搜索条 // check,fields
     function sobar($msg='',$width=30){ 
         $mod = $this->mod;
-        $sbar = "\n".$this->so->Type(90,lang('du_gradeo')); 
+        $sbar = "\n".$this->so->Type(90,basLang::show('du_gradeo')); 
         if(method_exists($this,"sobar_$mod")){ //中间部分定制
             $sbar .= $this->{"sobar_$mod"}($msg,$width);
         }else{
-            $sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
+            $sbar .= "\n&nbsp; ".$this->so->Word(80,80,basLang::show('flow.op0_filt'));
             $sbar .= "\n&nbsp; ".$this->so->Show(60);
         }
-        $sbar .= "\n&nbsp; ".$this->so->Order(array('uname' => lang('flow.dops_orduidd'),'uname-a' => lang('flow.dops_orduida'),));
+        $sbar .= "\n&nbsp; ".$this->so->Order(array('uname' => basLang::show('flow.dops_orduidd'),'uname-a' => basLang::show('flow.dops_orduida'),));
         $this->so->Form($sbar,$msg,$width);
     }
     // 搜索条_company
     function sobar_company($msg='',$width=30){ 
         $sbar = "\n&nbsp; ".$this->so->Field('ftype',$w=90);
-        $sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
+        $sbar .= "\n&nbsp; ".$this->so->Word(80,80,basLang::show('flow.op0_filt'));
         $sbar .= "<br />\n".$this->so->Show();
         $sbar .= "\n&nbsp; ".$this->so->Area(90);
         return $sbar;
@@ -56,10 +56,10 @@ class dopUser extends dopBase{
     function fmAccount(){ 
         glbHtml::fmae_row('ID',$this->fmSetID()); //'显示:'.$this->fmShow().
         //echo "<tr><th>账户资料</th><th class='tr'>---</th></tr>\n";
-        glbHtml::fmae_row(lang('du_userid'),$this->fmSetUname().' &nbsp; '.lang('du_upass').$this->fmSetPW());
+        glbHtml::fmae_row(basLang::show('du_userid'),$this->fmSetUname().' &nbsp; '.basLang::show('du_upass').$this->fmSetPW());
         //glbHtml::fmae_row('问题',$this->fmSetQA('getpwq').' &nbsp; 答案'.$this->fmSetQA('getpwa'));
-        glbHtml::fmae_row(lang('du_gradet'),$this->fmType('grade',180).' &nbsp; '.lang('flow.dops_ishow').$this->fmShow());
-        echo "<tr><th>".lang('flow.dops_detail')."</th><th class='tr'>---</th></tr>\n";
+        glbHtml::fmae_row(basLang::show('du_gradet'),$this->fmType('grade',180).' &nbsp; '.basLang::show('flow.dops_ishow').$this->fmShow());
+        echo "<tr><th>".basLang::show('flow.dops_detail')."</th><th class='tr'>---</th></tr>\n";
     }
     
     /*
@@ -77,12 +77,12 @@ class dopUser extends dopBase{
     function fmSetPW(){
         if(empty($this->fmo['uname'])){
             $nultip = ""; 
-            $nulmsg = lang('admin.fad_up624');
+            $nulmsg = basLang::show('admin.fad_up624');
         }else{
             $nultip = "nul:"; 
-            $nulmsg = lang('du_empty');
+            $nulmsg = basLang::show('du_empty');
         }
-        $item = "<input id='fm[upass]' name='fm[upass]' type='text' value='' maxlength=24 class='txt w180' reg='{$nultip}key:6-24' tip='".lang('admin.fad_up624')."' />$nulmsg";
+        $item = "<input id='fm[upass]' name='fm[upass]' type='text' value='' maxlength=24 class='txt w180' reg='{$nultip}key:6-24' tip='".basLang::show('admin.fad_up624')."' />$nulmsg";
         return $item;
     }
 
@@ -91,7 +91,7 @@ class dopUser extends dopBase{
         $mod = $this->mod;
         $val = @$this->fmo['uname']; 
         $len = empty($val) ? 'var:3-15' : 'var:2-24';
-        $prop = " id='fm[uname]' name='fm[uname]' type='text' maxlength=24 reg='$len' tip='".lang('admin.fad_uid31546')."' ";
+        $prop = " id='fm[uname]' name='fm[uname]' type='text' maxlength=24 reg='$len' tip='".basLang::show('admin.fad_uid31546')."' ";
         if(empty($val)){
             $uname = 'm'.basKeyid::kidRand('24',5);
             $vstr = "url='".PATH_ROOT."/plus/ajax/cajax.php?act=userExists&mod=$mod'"; 
@@ -106,7 +106,7 @@ class dopUser extends dopBase{
     function fmProp(){ 
         dopFunc::fmSafe();
         $mod = $this->mod;
-        echo "<tr><th nowrap>".lang('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
+        echo "<tr><th nowrap>".basLang::show('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
         $this->fmAE3();
     }
     // Account Info 账户资料
@@ -178,18 +178,18 @@ class dopUser extends dopBase{
     
     // edit-pass。
     static function editPass($mod,$uname){ //docs,users
-        $pwold = req('pwold');
-        $pwnew = req('pwnew');
-        $pwrep = req('pwrep'); 
+        $pwold = basReq::val('pwold');
+        $pwnew = basReq::val('pwnew');
+        $pwrep = basReq::val('pwrep'); 
         $oldpass = comConvert::sysPass($uname,$pwold,$mod);
         $newpass = comConvert::sysPass($uname,$pwnew,$mod);
         if(empty($pwnew) || $pwnew!==$pwrep){
-            $remsg = lang('du_noteq');
+            $remsg = basLang::show('du_noteq');
         }elseif($this->db->table("users_uacc")->where("uname='$uname' AND upass='$oldpass'")->find()){
             $this->db->table("users_uacc")->data(array('upass'=>$newpass))->where("uname='$uname'")->update();
-            $remsg = lang('du_editok');
+            $remsg = basLang::show('du_editok');
         }else{
-            $remsg = lang('du_erold');
+            $remsg = basLang::show('du_erold');
         }
         return $remsg;
     }

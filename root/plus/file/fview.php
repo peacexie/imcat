@@ -1,5 +1,5 @@
 <?php 
-require('_config.php');
+require '_config.php';
 
 $user || basMsg::show('Not Login.','die'); //未登录
 $dfile = req('dfile',''); 

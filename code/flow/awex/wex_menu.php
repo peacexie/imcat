@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_wex_cfgs.php');
+require dirname(__FILE__).'/_wex_cfgs.php';
 
 //$types = array('test'=>'测试号','chking'=>'未认证','dingyue'=>'订阅号','fuwu'=>'服务号');
 $tabid = 'wex_menu'; //$weapp

@@ -322,7 +322,7 @@ function jsLog(msg,color){
         }
         console.log(msg,cstr);
     }else{
-        ;//    
+        alert(JSON.stringify(msg)); 
     }
 }
 // 调试时间

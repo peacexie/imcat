@@ -1,0 +1,59 @@
+
+
+--------
+
+#bg#Basic-Info
+
+* Background
+ - This time, finished some works in v3.7 NOT finished --- like as `qq-login,English-doc(mobile)`
+ - Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
+
+* Basic-Info:
+ - Release: 2017.0x.x0,(2017-0x-x7)
+ - rar-Size: 3.54 MB
+
+
+#detail#ChangeLog
+
+* Add: Mobile version - English documentation
+* Add: qq-Login
+* Add: url-Alias configuration
+
+* Add: `Controller-Action`-style Extending templates and displaying data
+ -> This system: Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
+ -> see: http://txmao.txjia.com/dev.php?ctest
+
+* Add: Web admin notes
+ -> It's just a guestbook for admin, before the ASP system appeared.
+
+* Improve: 
+ -> Move the config dir from `root/cfgs` -=>to `root/cfgs` (Notice - test setup, update, upload)
+ -> Optimize Verification code class
+
+* Refine/Optimize: Not deliberately compatible with php5.2（Now you can run under php5.2）
+
+* Fix: 
+ -> The judge about `eval` in the `Trojan tools`
+ -> Some bugs
+
+* Else: 
+ -> improve: documents(Chinese and English), qa-resources
+ -> improve: code-detail(include)
+ -> PC-home (js)direct Mob-home
+
+
+#up37#Guide for update
+
+* Upgrade method-A. Install the new system, import the old data (Recommended)
+ - First install the new system, then import the old data;
+
+* Upgrade method-B. Upgrade ON Old system
+ - This version, We moved the config dir from `root/cfgs` -=>to `root/cfgs`, so NOT use this method.
+
+
+#tips#Future
+
+* Future planning
+ - Develop Nodejs/Python accessory project - these project will not in this case!
+ - v4.x paln - in v4.x, the dirs-files will more reasonable, emphasis on application...
+

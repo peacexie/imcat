@@ -3,8 +3,8 @@
 //生成支付请求串示例,用于生成支付请求
 //---------------------------------------------------------
 
-require_once(dirname(__FILE__)."/tenpay_config.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/PayRequest.class.php"); 
+require dirname(__FILE__)."/tenpay_config.php";
+require DIR_VENDOR."/a3rd/tenpay_class/PayRequest.class.php"; 
 
 $curDateTime = date("YmdHis");
 $randNum = rand(1000, 9999);

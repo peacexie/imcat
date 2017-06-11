@@ -10,7 +10,7 @@ class vopCell{
     // Array ( [exp_s01] => Array ( [title] => 手机类型 [val] => 3G [org] => net3g ) ...
     static function exFields($mod,$catid,$vars=''){ //
         $re = array();
-        $ccfg = read($mod,'_c'); 
+        $ccfg = glbConfig::read($mod,'_c'); 
         if(empty($ccfg[$catid])) return array();
         $mfields = $ccfg[$catid]; 
         if(empty($vars)) return $mfields;
@@ -37,7 +37,8 @@ class vopCell{
     // fc : modid=brand,china / 字段配置 / mod.field 
     // hn,gd -=> array('hn'=>'湖南','gd'=>'广东');
     static function optArray($fc,$val='',$color=1){
-        $sc = '333,'.cfg('ucfg.ctab').',999'; $ac = explode(',',$sc); 
+        global $_cbase; 
+        $sc = '333,'.$_cbase['ucfg']['ctab'].',999'; $ac = explode(',',$sc); 
         if(empty($val)) return array(); 
         $arr = basElm::text2arr($fc); 
         $va = explode(',',str_replace('+',',',$val)); 
@@ -70,8 +71,8 @@ class vopCell{
         }else{
             $return = 0;
             if(!$title){
-                $mcfg = read($mod);
-                $title = lang('core.pub_title').'-'.$mcfg['title'];
+                $mcfg = glbConfig::read($mod);
+                $title = basLang::show('core.pub_title').'-'.$mcfg['title'];
             }
             $scfile = file_exists(DIR_ROOT."/plus/coms/$mod.php") ? $mod : 'add_coms';
             $url = "'".PATH_ROOT."/plus/coms/$scfile.php?mod=$mod&pid=$pid"."'";
@@ -208,16 +209,17 @@ class vopCell{
     
     // show
     static function cShow($val,$vop=NULL){
+        global $_cbase;
         $re = empty($vop->$val) ? '' : $vop->$val;
-        $re || $re = cfg($val); 
+        $re || $re = $_cbase[$val]; 
         $re || $re = "{\$$val}";
         return $re;
     }
     
     // js动态显示字段
     static function jsFields($a){
-        $_groups = read('groups');
-        $db = db();
+        $_groups = glbConfig::read('groups');
+        $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
         //[demo:2013-cm-a201:click] => 535,add1,uclick1
         //[demo:2013-cm-a201:etime] => 1387418573
@@ -288,7 +290,7 @@ class vopCell{
     
     // js动态统计数量
     static function jsCounts($a){
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         $re = ''; $ext = ''; 
         //[drem:2013-cm-a201] => ucount1
         foreach($a as $k1=>$v1){
@@ -296,7 +298,7 @@ class vopCell{
             if(!isset($_groups[$t[0]])) continue; // || empty($t[1])
             $tab = glbDBExt::getTable($t[0]); 
             $key = basStr::filKey($t[1],'-_.'); 
-            $r = db()->table($tab)->where(empty($t[1]) ? "1=1" : "pid='$key'")->count(); 
+            $r = glbDBObj::dbObj()->table($tab)->where(empty($t[1]) ? "1=1" : "pid='$key'")->count(); 
             $r || $r = 0;
             $pa = explode(',',$v1);
             if(empty($r) && is_numeric($pa[0])){

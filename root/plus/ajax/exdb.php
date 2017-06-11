@@ -1,6 +1,6 @@
 <?php
 $_cbase['skip']['.none.'] = true;
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 $ocfgs = read('outdb','ex');
 
 $safix = $_cbase['safe']['safix']; 

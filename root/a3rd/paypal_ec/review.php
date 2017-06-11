@@ -3,7 +3,7 @@
     * Call to GetExpressCheckoutDetails
     */
 
-    require_once ("config.php");
+    require "config.php";
 
     /*
     * in paypalfunctions.php in a session variable 
@@ -72,7 +72,7 @@
         }
     }
     if(!USERACTION_FLAG){
-    include("header.php");
+    include "header.php";
 ?>    
     <div class="span4">
     </div>
@@ -115,4 +115,4 @@
     <?php
     }
     ?>
-<?php include('footer.php'); ?>
+<?php include 'footer.php'; ?>

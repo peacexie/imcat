@@ -24,7 +24,7 @@ $_ve_uplog = array(
     
 );
 
-include(dirname(dirname(__FILE__)).'/d_uplog/a_cfgs.php');
+include dirname(dirname(__FILE__)).'/d_uplog/a_cfgs.php';
 foreach ($cfgs as $key => $v) {
     if(preg_match("/\d{1,2}_\w{1,2}/",$key)){
         $_ve_uplog[$key] = 'c_demo/uplog_main';

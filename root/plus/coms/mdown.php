@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_cfgall.php');
+require dirname(__FILE__).'/_cfgall.php';
 
 if(!empty($mod) && !empty($kid)){
 

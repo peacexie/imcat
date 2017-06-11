@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 glbHtml::head('html');
 
 $nav[1] = array('nav','mscfg','msuply','mfatch'); 

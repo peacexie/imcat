@@ -14,7 +14,7 @@ class ipIp138{
 		//<ul class="ul1"><li>本站主数据：江苏省盐城市  联通</li><li>参考数据一：江苏省盐城市 联通</li></ul>
 		$arrText = array('<ul class="ul1"><li>','</li><li>'); 
 		$addr = basElm::getVal($addr, $arrText);
-		$addr = substr($addr,18) ;
+		$addr = substr($addr,15) ;
 		return $addr;
 	}
 }

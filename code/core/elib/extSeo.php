@@ -13,7 +13,7 @@ class extSeo{
     
     //function __destory(){  }
     function __construct(){ 
-        $this->db = db();
+        $this->db = glbDBObj::dbObj();
         //$this->bpushCfg();
     }
     
@@ -36,7 +36,7 @@ class extSeo{
             $cfg = array('limit'=>$b[1],'order'=>$exd->mkid.':DESC'); //stype,limit(1-500),order(did:ASC),offset
             $data = $exd->odata($cfg,0,''); 
             foreach($data as $row){
-                $url = surl("{$b[2]}:{$b[0]}.{$row[$exd->mkid]}",0,1); 
+                $url = vopUrl::fout("{$b[2]}:{$b[0]}.{$row[$exd->mkid]}",0,1); 
                 $title = empty($row['title']) ? (empty($row['company']) ? @$row['mname'] : $row['company']) : $row['title'];
                 $istr = $jcfg['cfgs']."\n";
                 $istr = str_replace(array("(url)","(title)"),array($url,$title),$istr);
@@ -100,9 +100,9 @@ class extSeo{
                 // 注意更新时间为生成文件的时间。
                 comFiles::put($file,''); //清空旧资料
             }
-            $msg = lang('push_ok').$rslog;
+            $msg = basLang::show('push_ok').$rslog;
         }else{
-            $msg = lang('push_ng').$rslog;
+            $msg = basLang::show('push_ng').$rslog;
         }
         basDebug::bugLogs('bpushRun',$msg,'detmp','db');
         $nok = empty($res->success) ? 0 : $res->success;

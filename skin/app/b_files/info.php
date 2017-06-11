@@ -5,11 +5,11 @@ if($this->act=='sys'){
             unset($_cbase[$key]);
     }
     $vars = $_cbase;
-}elseif($this->act=='read'){
+}elseif($this->act=='sample'){
     $vout = 0; // 不用系统输出
-    $fp = vopTpls::pinc("c_mod/info-read");
+    $fp = vopTpls::pinc("c_mod/info-sample");
     if(file_exists($fp)){
-        include($fp);
+        include $fp;
     }
 }else{
     $this->vars = $this->error("Error-Act:{$this->act}");

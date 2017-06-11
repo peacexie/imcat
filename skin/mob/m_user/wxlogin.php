@@ -152,7 +152,7 @@ if($state=='dogetpw'){
 */
 $weuser = new wysUser($wecfg); 
 $uinfo = $weuser->getUserInfo($openid); 
-$mnamed = wysUser::fmtUserName($uinfo);
+$mnamed = usrExtra::fmtUserName($uinfo);
 $mpassd = substr($mnamed,0,3).'_'.basKeyid::kidRand(24,5); 
 
 

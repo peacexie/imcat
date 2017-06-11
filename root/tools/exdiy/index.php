@@ -1,7 +1,6 @@
 <?php 
-include(dirname(__FILE__).'/_config.php'); 
+include dirname(__FILE__).'/_config.php'; 
 
-// This script is only accessible from: <br>localhost (127.0.0.1, ::1)
 // for your dir debug ... 
 $list = comFiles::listDir(dirname(DIR_PROJ).'/project/tester'); 
 $svlink = '';

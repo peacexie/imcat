@@ -15,7 +15,7 @@ class tex_base{
             $row || $row = 0;
             comCookie::oset('ocar_items',$row);
         }
-        $user = user('Member'); 
+        $user = usrBase::userObj('Member'); 
         return $user;
     }
     

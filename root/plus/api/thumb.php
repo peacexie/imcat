@@ -5,7 +5,7 @@
 die();
 
 $_cbase['run']['subDirs'] = '1';
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 safComm::urlFrom();
 
 $size = req('size'); 

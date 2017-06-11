@@ -1,5 +1,5 @@
 <?php
-require('_config.php');
+require '_config.php';
 
 $act = req('act');
 $d = req('d','txjia.com');

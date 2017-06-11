@@ -22,7 +22,7 @@
  - ven即为模板目录
  
 * 添加配置：
- - 文件：/code/cfgs/sycfg/sy_vopcfg.php
+ - 文件：/root/cfgs/sycfg/sy_vopcfg.php
  - $_sy_vopcfg['tpl']中 添加一项 `'ven' => array('英文版','/english.php'),`
  - 访问地址：/english.php，Enjoy！
  
@@ -102,7 +102,7 @@
 -=>应当为：<?php echo "userip=".@$_cbase['run']['userip'].";"; ?>
 解决1：用原始的点(.)连接字符串：{php echo "userip=".@$_cbase['run']['userip'].";"; }
 解决2：对大块PHP代码，不需要模板解析，可用如下类似语法包含文件：
-{php include_once(vopTpls::pinc('m_tppart/tpfile')); } 
+{php include_once vopTpls::pinc('m_tppart/tpfile'); } 
 或：{code:"dev:d_tools/a_cfgs"}
 -=> 相当于inc文件（此方式不会使用模板解析）：
 {当前模板}/m_tppart/tpfile.php 

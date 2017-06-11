@@ -25,7 +25,7 @@ class tagList extends tagBase{
     function pPid(){ 
         $cfg = $this->p1Cfg('pid'); 
         if(empty($cfg[1])) return;
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         $pmod = @$_groups[$this->modid]['pmod'];
         if(!$pmod) return;
         $cfg[1] = basStr::filKey($cfg[1],'-.@');
@@ -48,9 +48,10 @@ class tagList extends tagBase{
     }
 
     function pLimit(){
+        global $_cbase; 
         $cfg = $this->p1Cfg('limit'); 
         $limit = empty($cfg[1]) ? 0 : intval($cfg[1]);
-        if($limit<1) $limit = intval(cfg('show.fpsize'));
+        if($limit<1) $limit = intval($_cbase['show']['fpsize']);
         if($limit<1) $limit = 10;
         $this->sqlArr['limit'] = $limit;
     }
@@ -59,9 +60,9 @@ class tagList extends tagBase{
         $cfg = $this->p1Cfg('keywd');
         $sql = ''; 
         if(!empty($cfg)){
-            $fix = empty($cfg[1]) ? req('keywd') : $cfg[1]; 
+            $fix = empty($cfg[1]) ? basReq::val('keywd') : $cfg[1]; 
             $fields = @$cfg[2];
-            $_groups = read('groups'); 
+            $_groups = glbConfig::read('groups'); 
             if($fix && $fields){
                 $flist = $this->mcfg['f'];
                 $fa = explode('+',$fields);
@@ -96,7 +97,7 @@ class tagList extends tagBase{
             $sql = '';
             if(isset($flist[$para[0]]) || in_array($para[0],$exFields)){
                 $f = $para[0]; 
-                $v = empty($para[1]) ? req($f) : $para[1]; 
+                $v = empty($para[1]) ? basReq::val($f) : $para[1]; 
                 $op = @$para[2]; 
                 if($v){
                     if(in_array($op,array('>','>=','<','<='))){ 
@@ -119,7 +120,7 @@ class tagList extends tagBase{
     }
     
     function getData(){ 
-        $sfrom = "m.* FROM ".db()->table($this->sqlArr['tabid'],2)." m ";
+        $sfrom = "m.* FROM ".glbDBObj::dbObj()->table($this->sqlArr['tabid'],2)." m ";
         $where = empty($this->whrStr) ? '' : "WHERE ".$this->whrStr;
         $offset = empty($this->sqlArr['offset']) ? '' : $this->sqlArr['offset'].','; 
         $this->sqlAll = "SELECT $sfrom $where ORDER BY ".$this->sqlArr['ofull']." LIMIT $offset".$this->sqlArr['limit']; 

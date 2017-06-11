@@ -34,7 +34,7 @@ class glbDBObj{
         $_cbase['run']['qstart'] = microtime(1); //分析Start
         if(!is_object($this->db)){ //$this->db不是对象，则连接数据库
               $class = 'db_'.$this->class;
-              require_once(DIR_CODE."/adpt/dbdrv/{$class}.php");
+              require DIR_CODE."/adpt/dbdrv/{$class}.php";
               $this->db = new $class();//连接数据库
               $this->db->connect($this->config) ;
         }
@@ -129,7 +129,8 @@ class glbDBObj{
 
     //执行sql语句
     function run($sql,$act=''){ 
-        $isDemo = cfg('run.isDemo');
+        global $_cbase;
+        $isDemo = empty($_cbase['run']['isDemo']) ? 0 : $_cbase['run']['isDemo'];
         if(!empty($isDemo)){ 
             $tab1 = '`'.$this->pre.'active_online'.$this->ext.'`';
             $tab2 = '`'.$this->pre.'active_admin'.$this->ext.'`';
@@ -400,7 +401,7 @@ class glbDBObj{
     static function getCfg($key=''){
         static $dbcfg;
         if(empty($dbcfg)){
-            $dbcfg = read('db','cfg');
+            $dbcfg = glbConfig::read('db','cfg');
         }
         return ($key && isset($dbcfg[$key])) ? $dbcfg[$key] : $dbcfg;
     }

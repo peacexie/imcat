@@ -33,16 +33,16 @@ class dopBase{
 
     //function __destory(){  }
     function __construct($cfg,$tabid=''){ 
-        $this->db = db(); 
+        $this->db = glbDBObj::dbObj(); 
         $this->so = new dopBSo($cfg,$tabid);
         $this->cv = new dopBCv($cfg,$tabid);
         $this->so->skey = $this->cv->skey = $this->skey;
         $this->so->sopc = $this->cv->sopc = $this->sopc;
         $this->so->fext = $this->cv->fext = $this->fext = array(
-            'aip' => array('title'=>lang('flow.log_aip'),'dbtype'=>'varchar',),
-            'eip' => array('title'=>lang('flow.log_eip'),'dbtype'=>'varchar',),
-            'atime' => array('title'=>lang('flow.log_atime'),'dbtype'=>'int',),
-            'etime' => array('title'=>lang('flow.log_etime'),'dbtype'=>'int',),
+            'aip' => array('title'=>basLang::show('flow.log_aip'),'dbtype'=>'varchar',),
+            'eip' => array('title'=>basLang::show('flow.log_eip'),'dbtype'=>'varchar',),
+            'atime' => array('title'=>basLang::show('flow.log_atime'),'dbtype'=>'int',),
+            'etime' => array('title'=>basLang::show('flow.log_etime'),'dbtype'=>'int',),
         );
         $this->cfg = $cfg;
         $this->mod = empty($cfg['kid']) ? 0 : $cfg['kid'];
@@ -53,20 +53,21 @@ class dopBase{
     // 左上信息条
     function msgBar($msg='',$lnkadd=''){
         $mod = $this->mod;
-        $file = req('file');
-        $stype = req('stype');  
+        $file = basReq::val('file');
+        $stype = basReq::val('stype');  
         $gname = $this->cfg['title'];
-        empty($lnkadd) && $lnkadd = $this->cv->Url(lang('flow.dops_add2').'&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
+        empty($lnkadd) && $lnkadd = $this->cv->Url(basLang::show('flow.dops_add2').'&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
         $lnkadd = str_replace("<a ","<a id='{$mod}_add' ",$lnkadd);
         if($msg && !strpos($msg,'<')) $msg = "<span class='cF00'>$msg</span>";
         $msg && $msg = $msg."<br>";
-        $msg = "{$msg}[$gname]".lang('flow.dops_adm2')."<span class='span ph5'>|</span>$lnkadd";
+        $msg = "{$msg}[$gname]".basLang::show('flow.dops_adm2')."<span class='span ph5'>|</span>$lnkadd";
         return $msg;
     }
         
     // 列表-记录集
     function getRecs($key='',$psize=0){
-        $psize || $psize = cfg('show.apsize');
+        global $_cbase; 
+        $psize || $psize = $_cbase['show']['apsize'];
         $key = $key ? $key : $this->_kid; 
         $sfrom = "* FROM `".$this->db->pre.$this->tbid.$this->db->ext."` ";  
         $where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5)); 
@@ -100,13 +101,13 @@ class dopBase{
             $kno = $this->fmo[$this->_kno];
             $dis = "class='txt w160 disc' readonly";    
         } 
-        $item = "<input id='fm[$_key]' name='fm[$_key]' type='text' value='$kid' maxlength=24 $dis tip='".lang('flow.tip_slogs')."' />";
+        $item = "<input id='fm[$_key]' name='fm[$_key]' type='text' value='$kid' maxlength=24 $dis tip='".basLang::show('flow.tip_slogs')."' />";
         $item .= "\n<input name='fm[$this->_kno]' type='hidden' value='$kno' />";
         return $item;
     }    
     // 表单-类别
     function fmType($key='catid',$w=150){ 
-        $dval = empty($this->fmo[$key]) ? req('stype') : $this->fmo[$key];
+        $dval = empty($this->fmo[$key]) ? basReq::val('stype') : $this->fmo[$key];
         $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' reg='tit:2-12'>"; 
         $str .= comTypes::getOpt($this->cfg['i'],$dval); 
         $str .= "</select>";
@@ -115,13 +116,14 @@ class dopBase{
     // def：0/1; 当前资料优先, 再次是模型设置优先, 最后用$def默认值
     function fmShow($def=1){
         $val = dopFunc::fmDefval($this,'show',$def);
-        $item = basElm::setOption("1=".lang('flow.op_show')."\n0=".lang('flow.op_hide')."",$val,lang('flow.op0_show')); 
-        $item = "\n<select name='fm[show]' class='w80' reg='n+i:' tip='".lang('flow.tip_ssel')."'>$item</select>";
+        $item = basElm::setOption("1=".basLang::show('flow.op_show')."\n0=".basLang::show('flow.op_hide')."",$val,basLang::show('flow.op0_show')); 
+        $item = "\n<select name='fm[show]' class='w80' reg='n+i:' tip='".basLang::show('flow.tip_ssel')."'>$item</select>";
         return $item;
     }
     function fmAELogs($type,$key){
-        $run = cfg('run');
-        $user = user();
+        global $_cbase; 
+        $run = $_cbase['run'];
+        $user = usrBase::userObj();
         if($type=='date'){
             $val = empty($this->fmo[$key]) ? $run['stamp'] : $this->fmo[$key];
             $val = date('Y-m-d H:i:s',$val); 
@@ -130,17 +132,17 @@ class dopBase{
             $item = "$iinp<span class='fldicon fdate' onClick=\"WdatePicker({el:'fm[$key]',dateFmt:'yyyy-MM-dd HH:mm:ss'})\" /></span>";
         }elseif($type=='user'){
             $val = empty($this->fmo[$key]) ? @$user->uinfo['uname'] : $this->fmo[$key];
-            $item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=24 tip='".lang('flow.tip_suser')."' />";
+            $item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=24 tip='".basLang::show('flow.tip_suser')."' />";
         }elseif($type=='uip'){
             $val = empty($this->fmo[$key]) ? $run['userip'] : $this->fmo[$key];
-            $item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=255 tip='".lang('flow.tip_sip')."' />";
+            $item = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' maxlength=255 tip='".basLang::show('flow.tip_sip')."' />";
         }
         return $item;
     }
     function fmAE3($hid=0){
-        glbHtml::fmae_row(lang('flow.log_optime'),lang('flow.log_opadd').$this->fmAELogs('date','atime').' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('date','etime'),$hid);
-        glbHtml::fmae_row(lang('flow.log_opuser'),  lang('flow.log_opadd').$this->fmAELogs('user','auser').' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('user','euser'),$hid);
-        glbHtml::fmae_row(lang('flow.log_opip'),  lang('flow.log_opadd').$this->fmAELogs('uip','aip')   .' &nbsp; '.lang('flow.log_opedit').$this->fmAELogs('uip','eip'),   $hid);
+        glbHtml::fmae_row(basLang::show('flow.log_optime'),basLang::show('flow.log_opadd').$this->fmAELogs('date','atime').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('date','etime'),$hid);
+        glbHtml::fmae_row(basLang::show('flow.log_opuser'),  basLang::show('flow.log_opadd').$this->fmAELogs('user','auser').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('user','euser'),$hid);
+        glbHtml::fmae_row(basLang::show('flow.log_opip'),  basLang::show('flow.log_opadd').$this->fmAELogs('uip','aip')   .' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('uip','eip'),   $hid);
     }
 
     // svAKey，
@@ -168,7 +170,7 @@ class dopBase{
         $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
         if(isset($this->fme[$field])){
             $type = $this->fmv[$field] = preg_replace('/[^0-9A-Za-z\.\-]/','',$this->fme[$field]);
-            $ccfg = read($this->mod,'_c'); //类别扩展属性 
+            $ccfg = glbConfig::read($this->mod,'_c'); //类别扩展属性 
             if(empty($ccfg[$type])) return;
             $cfield = $ccfg[$type];
             foreach($cfield as $k=>$v){
@@ -183,7 +185,7 @@ class dopBase{
         if(empty($_POST['fm'])) glbHtml::end('svFields@'.__CLASS__);
         $f = $this->cfg['f'];
         if(in_array($this->cfg['pid'],array('users','docs'))){
-            $fc = read($this->mod,'_c'); 
+            $fc = glbConfig::read($this->mod,'_c'); 
             $fk = $this->cfg['pid']=='users' ? 'grade' : 'catid';
             $fv = @$_POST['fm'][$fk];
             if(isset($fc[$fv])){

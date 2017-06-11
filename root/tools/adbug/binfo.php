@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 if($qstr=='logout'){
   $_SESSION[$sess_id] = '';
@@ -161,7 +161,7 @@ if($qstr=='cookie'){
 
   <p title="svg,canvas,audio,localStorage,contenteditable">Html5 (<?php lang('tools.binf_html5base',0);?>)</p>
   <span id="lsSection"> &nbsp; [localStorage]<?php lang('tools.binf_nosuplocal',0);?></span>
-  <section style="width:120px; float:right;"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="100">
+  <section style="width:120px; float:right;"> <svg height="100">
     <polygon points="50,10 20,90 100,30 10,30 80,90"
   style="fill:rgb(120,120,120);stroke:rgb(60,60,60);stroke-width:2;fill-rule:evenodd;" />
     </svg> </section>

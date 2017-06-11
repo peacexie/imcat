@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<?php include('header.php');
-      include('paypal_config.php'); ?>
+<?php include 'header.php';
+      include 'paypal_config.php'; ?>
    <div class="span5">
             <!--Form containing item parameters and seller credentials needed for SetExpressCheckout Call-->
             <form class="form" action="paypal_ec_redirect.php" method="POST">
@@ -167,4 +167,4 @@
    </script>
    <script src="//www.paypalobjects.com/api/checkout.js" async></script>
 
-<?php include('footer.php') ?>
+<?php include 'footer.php' ?>

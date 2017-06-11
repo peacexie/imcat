@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 
 $part = req('part','slogs'); //logs,charge
 
@@ -13,7 +13,7 @@ $dop = new dopExtra(($part=='charge' ? 'plus_smcharge' : 'plus_smsend'),$cfg);
 
 // 删除操作
 if(!empty($bsend)){
-    require(dirname(dirname(__FILE__)).'/binc/act_ops.php');
+    require dirname(dirname(__FILE__)).'/binc/act_ops.php');
 } 
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';

@@ -28,7 +28,7 @@ class comCron{
     
     // init
     function init(){
-        $this->db = db();
+        $this->db = glbDBObj::dbObj();
         $this->stamp = $_SERVER["REQUEST_TIME"];
         if(!tagCache::chkUpd($this->frun,$this->rgap)){ 
             $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=0"; 
@@ -74,13 +74,13 @@ class comCron{
     
     // 运行一个任务
     static function rone($row,$data=array()){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
         $file = "/adpt/cron/{$row['kid']}.php"; 
         if(!empty($row['cfgs'])){
             // run-sql
         }elseif(file_exists(DIR_CODE.$file)){
-            include_once(DIR_CODE.$file);
+            include_once DIR_CODE.$file;
         }else{
             // logger???
         }

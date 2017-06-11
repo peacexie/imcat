@@ -1,0 +1,23 @@
+{imp:"c_pub/mlay_main"}<!--继承父模板-->
+
+{block:init}<?php
+$msubs = array(
+    'tree_brem.txt' =>'目录概况',
+    'tree_dcode.txt' =>'code结构',
+    'tree_droot.txt' =>'root结构',
+    'tree_dskin.txt' =>'skin结构',
+    'tree_0cmd.bat' =>'制作命令(DOS)',
+);
+?>{/block:init}
+
+{block:main}
+
+  <?php foreach($msubs as $k=>$v){ $data = tex_base::texter("d_start/$k"); ?>
+  <div class="inn-atitle">
+  <a href="#" class="right">[Top]</a>
+  <p><i class="label-primary">{$k} [{$msubs[$k]}]</i></p>
+  </div>
+  <pre>{$data}</pre>
+  <?php } ?>
+
+{/block:main}

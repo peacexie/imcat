@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 //safComm::urlFrom();
 glbHtml::head('html');
 

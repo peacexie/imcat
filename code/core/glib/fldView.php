@@ -5,10 +5,11 @@ class fldView{
 
     // 认证str
     static function mkpar($mod='',$kid=''){
-        $mod = $mod ? $mod : req('mod');
-        $pid = cfg("$mod.pid", 'groups');
+        $groups = glbConfig::read('groups');
+        $mod = $mod ? $mod : basReq::val('mod');
+        $pid = $groups[$mod]['pid'];
         $smod = $mod ? "&mod=$mod" : "&mod=$mod"; 
-        $skid = $kid ? "&kid=$kid" : "&kid=".req(substr($pid,0,1).'id')."";
+        $skid = $kid ? "&kid=$kid" : "&kid=".basReq::val(substr($pid,0,1).'id')."";
         return "$smod$skid";
     }
     
@@ -27,7 +28,8 @@ class fldView{
     }
     // 编辑器-格式化(um不要格式化的)
     static function iedifmt($val){
-        $eid = cfg('sys_editor', 'cbase', 'kind');
+        global $_cbase;
+        $eid = empty($_cbase['sys_editor']) ? 'kind' : $_cbase['sys_editor'];
         if($eid=='um'){
             return $val;
         }else{
@@ -36,9 +38,10 @@ class fldView{
     }
     // 编辑器
     static function ieditor($k,$cfg,$val,$size,$vstr){ 
+        global $_cbase;
         $val = comStore::revSaveDir($val,1);
         $item = '';    $smk = self::mkpar();
-        $sys_editor = cfg('sys_editor');
+        $sys_editor = $_cbase['sys_editor'];
         $eid = empty($sys_editor) ? 'kind' : $sys_editor;
         echo basJscss::imp("/plus/editor/api_$eid.php?eid=$eid$smk",'','js'); //&lang=
         $size = str_replace('x',',',$cfg['fmsize']); if(empty($size)) $size = '480x120';
@@ -90,9 +93,9 @@ class fldView{
             $simg = "<br><span class='idHidden' id='$id'><img src='$val' onload='imgShow(this,360,240)' border='0' /></span>";
         }
         $item .= "<input id='fm_{$k}_' name='fm[{$k}]' type='text' value='$val' class='file' $vstr $jsAct>";
-        $item .= "<input type='button' value='".lang('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upone.php?fid=fm_{$k}_$smk','".lang('admin.fv_upfiles')."',360,120)\">";
-        $item .= "<input type='button' value='".lang('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".lang('admin.fv_vfiles')."',720,480)\">";
-        $item .= "<input type='button' value='".lang('admin.fv_clear')."' onclick=\"$('#fm_{$k}_').val('');\">$simg";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upone.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_upfiles')."',360,120)\">";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_vfiles')."',720,480)\">";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_clear')."' onclick=\"$('#fm_{$k}_').val('');\">$simg";
         return $item;
     }
     // pics
@@ -103,9 +106,9 @@ class fldView{
         $item .= "<div id='fm_{$k}_out' class='mpic_out'>"; 
         $item .= "<div id='fm_{$k}_show'>{$cfg['cfgs']}</div>"; 
         $item .= "<div id='fm_{$k}_tarea' class='clear'><textarea name='fm[$k]' id='fm_{$k}_' style='display:none;'>$val</textarea></div>"; 
-        $item .= "<input type='button' value='".lang('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upbat.php?fid=fm_{$k}_$smk','".lang('admin.fv_upfiles')."',720,560)\">"; 
-        $item .= "<input type='button' value='".lang('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".lang('admin.fv_vfiles')."',720,560)\">"; 
-        $item .= "<input type='button' value='".lang('admin.fv_clear')."' onClick=\"mpic_clear('fm_{$k}_');\">";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upbat.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_upfiles')."',720,560)\">"; 
+        $item .= "<input type='button' value='".basLang::show('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_vfiles')."',720,560)\">"; 
+        $item .= "<input type='button' value='".basLang::show('admin.fv_clear')."' onClick=\"mpic_clear('fm_{$k}_');\">";
         $item .= "</div>"; 
         $jpath = PATH_SKIN."/_pub/a_jscss/multpic.js";
         $item .= basJscss::jscode("jQuery.getScript('$jpath',function(){ mpic_minit('fm_{$k}_'); })"); 
@@ -123,7 +126,7 @@ class fldView{
             }
         }
         $item = "<div id='fm_{$k}_refname'>$item</div><input name='fm_{$k}_modpicks' id='fm_{$k}_modpicks' type='hidden' value='$pmod'>";
-        $item .= "<input type='button' value='".lang('admin.fv_pick')."' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  
+        $item .= "<input type='button' value='".basLang::show('admin.fv_pick')."' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  
         // pmod,cnt, $ptitle = dopFunc::vgetTitle($pmod,$val); 
         return $item;
     }
@@ -131,7 +134,8 @@ class fldView{
     // fields-公共函数
     // form: item，一项的内容。
     static function fitem($k,$cfg,$vals=array()){
-        $_groups = read('groups');
+        global $_cbase;
+        $_groups = glbConfig::read('groups');
         $size = fldCfgs::getSizeArray($cfg);
         $tmp = self::vstr($cfg,$size); 
         $vstr = $tmp[0]; $vmsg = $tmp[1]; $item = '';
@@ -150,12 +154,12 @@ class fldView{
             $item .= "<span id='fm[$k]_pop' class='color_out' style='display:none'></span>";
             if(strlen($val)>2) { $item .= basJscss::jscode("colorSet('$val','$_fid')"); } 
         }elseif($extra=='map'){ //地图
-            $sys_map = cfg('sys_map');
+            $sys_map = $_cbase['sys_map'];
             $mpid = empty($sys_map) ? 'baidu' : $sys_map;
             $item = "$iinp<span class='fldicon fmap' onClick=\"mapPick('$mpid','fm[$k]');\">&nbsp;</span>";
         }elseif($extra=='repeat'){ //检查重名 
             $act = "onclick=\"repeatCheck('".str_replace(',',"','",@$cfg['cfgs'])."','$k');\""; ;
-            $item = "$ihid <input type='button' value='".lang('admin.fv_chkrep')."' id='fm_repeat_$k' $act class='btn'> ";
+            $item = "$ihid <input type='button' value='".basLang::show('admin.fv_chkrep')."' id='fm_repeat_$k' $act class='btn'> ";
         }elseif($extra=='winpop'){ //winpop
             $item = self::iwinpop($k,$cfg,$val,$size,@$cfg['vreg']);
         }elseif($extra=='pics'){ //pics
@@ -195,11 +199,11 @@ class fldView{
         if(!empty($ufields)){
             $mfields = $ufields; 
         }elseif($catid){ 
-            $ccfg = read($mod,'_c'); 
+            $ccfg = glbConfig::read($mod,'_c'); 
             if(empty($ccfg[$catid])) return;
             $mfields = $ccfg[$catid]; 
         }else{
-            ${"_$mod"} = read($mod); 
+            ${"_$mod"} = glbConfig::read($mod); 
             $mfields = ${"_$mod"}['f']; 
         }
         $skip = array('0');

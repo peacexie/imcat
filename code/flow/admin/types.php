@@ -158,7 +158,7 @@ if($view=='glist'){
     }
 
 }elseif($view=='set'){
-    require(dirname(dirname(__FILE__)).'/binc/set_id.php');
+    require dirname(dirname(__FILE__)).'/binc/set_id.php';
 }elseif($view=='check'){
     $irep = devBase::typCheck($mod);
     dump(str_replace(";","\n",$irep),1);

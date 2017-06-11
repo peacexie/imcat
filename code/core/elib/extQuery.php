@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-include_once(DIR_VENDOR.'/phpQuery/phpQuery.php');
+include DIR_VENDOR.'/phpQuery/phpQuery.php';
 
 class extQuery extends phpQuery{
     

@@ -1,6 +1,6 @@
 <?php
 $_mod = basename(__FILE__,'.php'); 
-require(dirname(__FILE__).'/_cfgdoc.php'); 
+require dirname(__FILE__).'/_cfgdoc.php'; 
 
 if(!empty($bsend)){
     

@@ -51,9 +51,9 @@ class exvOcar{
     
     static function whruser(){ 
         $stamp = $_SERVER["REQUEST_TIME"];
-        $user = user('Member'); 
-        $uadm = user('Admin'); 
-        $enc = req('enc');
+        $user = usrBase::userObj('Member'); 
+        $uadm = usrBase::userObj('Admin'); 
+        $enc = basReq::val('enc');
         if($uadm->userFlag=='Login'){
             $re['flag'] = 'Admin';
             $re['sql'] = '1=1';
@@ -120,7 +120,7 @@ class exvOcar{
     }
     
     static function oadd($unqid,$user){ 
-        $db = db();
+        $db = glbDBObj::dbObj();
         $fm = basReq::arr('fm');
         $kar = glbDBExt::dbAutID('coms_corder','yyyy-md-','32');
         $fm['cid'] = $fm['title'] = $kar[0]; 
@@ -140,7 +140,7 @@ class exvOcar{
     }
     
     static function odel($ordid){ 
-        $db = db();
+        $db = glbDBObj::dbObj();
         $ouser = self::whruser();
         $where = $ouser['sql'];
         $erow = $db->table('coms_corder')->where("cid='$ordid' AND $where")->delete();
@@ -152,19 +152,19 @@ class exvOcar{
         $where = $ouser['sql'];
         $fm = basReq::arr('fm');
         if(empty($fm)) return 0; // ??? 
-        $erow = db()->table('coms_corder')->data(basReq::in($fm))->where("cid='$ordid' AND $where")->update();
+        $erow = glbDBObj::dbObj()->table('coms_corder')->data(basReq::in($fm))->where("cid='$ordid' AND $where")->update();
         return $erow;
     }
     
     static function iadd($unqid,$user){ 
-        $db = db();
-        $fm['cid'] = req('cid');
-        $fm['pid'] = req('pid');
+        $db = glbDBObj::dbObj();
+        $fm['cid'] = basReq::val('cid');
+        $fm['pid'] = basReq::val('pid');
         $fm['ordid'] = $unqid;
-        $fm['ordcnt'] = req('ordcnt','0','N');
-        $fm['ordprice'] = req('ordprice','0','N');
-        $fm['title'] = req('title','');
-        $fm['ordweight'] = req('ordweight','0','N');
+        $fm['ordcnt'] = basReq::val('ordcnt','0','N');
+        $fm['ordprice'] = basReq::val('ordprice','0','N');
+        $fm['title'] = basReq::val('title','');
+        $fm['ordweight'] = basReq::val('ordweight','0','N');
         $kar = glbDBExt::dbAutID('coms_cocar','yyyy-md-','32');
         $fm['cid'] = $kar[0]; 
         $fm['cno'] = $kar[1];
@@ -179,7 +179,7 @@ class exvOcar{
     }
     
     static function ilist($tabid,$where,$limit=99){ 
-        $list = db()->table($tabid)->where($where)->limit($limit)->select();
+        $list = glbDBObj::dbObj()->table($tabid)->where($where)->limit($limit)->select();
         $data = array(); $afee = 0.00; $aweight = 0.00; $acnt = 0;
         if($list){ foreach($list as $i=>$r){ 
             $r['i'] = $i+1;

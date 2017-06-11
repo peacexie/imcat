@@ -21,7 +21,7 @@ class dopBSo{
     }
     // 搜索项-类别
     function Type($w,$msg='(null)'){ 
-        $stype = req('stype','','Key');
+        $stype = basReq::val('stype','','Key');
         if($stype){
             $this->urlstr .= "&stype=$stype";
             if(in_array($this->type,array('docs','advs'))){ 
@@ -36,7 +36,7 @@ class dopBSo{
             $str = "\n<input name='stype' type='text' class='w90' value='$stype'>";
         }else{
             $str = "\n<select name='stype' class='w$w'>"; 
-            if($msg=='(null)') $msg=lang('flow.op0_type');
+            if($msg=='(null)') $msg=basLang::show('flow.op0_type');
             $str .= comTypes::getOpt($this->cfg['i'],$stype,$msg,0); 
             $str .= "</select>";
         } 
@@ -44,10 +44,10 @@ class dopBSo{
     }
     // 搜索项-Keyword
     function Word($w1=80,$w2=90,$msg='(null)',$soarr=array()){ 
-        if($msg=='(null)') $msg = lang('flow.op0_filt');
-        $sfid = req('sfid',$this->dskey,'Key');
-        $sfop = req('sfop','lb','Key');
-        $sfkw = req('sfkw');
+        if($msg=='(null)') $msg = basLang::show('flow.op0_filt');
+        $sfid = basReq::val('sfid',$this->dskey,'Key');
+        $sfop = basReq::val('sfop','lb','Key');
+        $sfkw = basReq::val('sfkw');
         if($sfkw && isset($this->cfg['f'][$sfid])){ 
             $this->urlstr .= "&sfid=$sfid&sfkw=$sfkw&sfop=$sfop";
             $fcfg = $this->cfg['f'][$sfid];
@@ -72,9 +72,9 @@ class dopBSo{
     }
     // 搜索项-范围
     function Area($w=90,$w2=90,$rfield=''){ 
-        $sfrng = $rfield ? $rfield : req('sfrng','','Key');
-        $srva = req('srva');
-        $srvb = req('srvb');  
+        $sfrng = $rfield ? $rfield : basReq::val('sfrng','','Key');
+        $srva = basReq::val('srva');
+        $srvb = basReq::val('srvb');  
         if((!empty($srva) || !empty($srvb)) && (isset($this->cfg['f'][$sfrng]) || isset($this->fext[$sfrng]))){
             $this->urlstr .= "&sfrng=$sfrng&srva=$srva&srvb=$srvb";
             empty($srva) || $this->whrstr .= basSql::whrDate($sfrng,$srva,'>',$this->cfg);
@@ -93,8 +93,8 @@ class dopBSo{
     }
     // 搜索项-字段(select,winpop)
     function Field($key,$w=90){ 
-        $_groups = read('groups');
-        $val = req($key,'','Key');
+        $_groups = glbConfig::read('groups');
+        $val = basReq::val($key,'','Key');
         $fc = @$this->cfg['f'][$key];
         $ftype = @$fc['type']; $cfgs = @$fc['cfgs'];
         $extra = @$fc['fmextra']; $exstr = @$fc['fmexstr'];
@@ -119,11 +119,11 @@ class dopBSo{
                 if($_n>1){
                     $this->whrstr .= " AND $key LIKE '%$val%'";
                 }else{
-                    $imod = read($exstr); 
+                    $imod = glbConfig::read($exstr); 
                     $this->whrstr .= basSql::whrTree($imod['i'],$key,$val);
                 }
             }elseif($ftype=='select' && isset($_groups[$cfgs])){
-                $imod = read($cfgs); 
+                $imod = glbConfig::read($cfgs); 
                 $this->whrstr .= basSql::whrTree($imod['i'],$key,$val);    
             }elseif($ftype=='select' && $cfgs){
                 $this->whrstr .= " AND $key='$val'";    
@@ -135,14 +135,14 @@ class dopBSo{
     }
     // 搜索项-Show()
     function Show($w=70){ 
-        $item = basElm::setOption("s1=".lang('flow.op_show')."\ns0=".lang('flow.op_hide')."",@$val,lang('flow.op0_show')); 
+        $item = basElm::setOption("s1=".basLang::show('flow.op_show')."\ns0=".basLang::show('flow.op_hide')."",@$val,basLang::show('flow.op0_show')); 
         $str = "\n<select name='show' class='w$w'>$item</select>";
         return $str;
     }
     // 搜索项-排序
     function Order($ord_now,$w=80,$msg='(null)',$opubs='-1'){ 
-        if($msg=='(null)') $msg = lang('flow.op0_order');
-        $ord_pub = $opubs==='-1' ? array('atime' => lang('flow.log_atime'),'etime' => lang('flow.log_etime')) : $opubs;
+        if($msg=='(null)') $msg = basLang::show('flow.op0_order');
+        $ord_pub = $opubs==='-1' ? array('atime' => basLang::show('flow.log_atime'),'etime' => basLang::show('flow.log_etime')) : $opubs;
         $str = "\n<select name='order' class='w$w'>"; 
         $ords = array_merge($ord_pub,$ord_now);
         $str .= basElm::setOption($ords,$this->order,$msg); 
@@ -151,18 +151,19 @@ class dopBSo{
     }
     // 搜索项-form
     function Form($bar,$msg,$w,$khid=array()){
-        $run = cfg('run');
+        global $_cbase; 
+        $run = $_cbase['run'];
         $mod = $this->mod;
-        $bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".lang('flow.dops_search')."'>";
+        $bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".basLang::show('flow.dops_search')."'>";
         echo "\n<form id='fmid' name='fmid' method='GET' action='?".$this->urlstr."'>";
         empty($run['sobarnav']) || $bar = $run['sobarnav']."$bar";
         glbHtml::tab_bar($msg,$bar,$w,'tl');
-        echo "\n<input name='file' type='hidden' value='".req('file')."' />";
+        echo "\n<input name='file' type='hidden' value='".basReq::val('file')."' />";
         echo "\n<input name='mod' type='hidden' value='$mod' />";
-        echo "\n<input name='view' type='hidden' value='".req('view')."' />";
-        echo "\n<input name='pid' type='hidden' value='".req('pid')."' />";
-        echo "\n<input name='part' type='hidden' value='".req('part')."' />";
-        echo "\n<input name='act' type='hidden' value='".req('act')."' />";
+        echo "\n<input name='view' type='hidden' value='".basReq::val('view')."' />";
+        echo "\n<input name='pid' type='hidden' value='".basReq::val('pid')."' />";
+        echo "\n<input name='part' type='hidden' value='".basReq::val('part')."' />";
+        echo "\n<input name='act' type='hidden' value='".basReq::val('act')."' />";
         foreach($khid as $k=>$v){
             echo "\n<input name='$k' type='hidden' value='$v' />";
         }
@@ -173,13 +174,13 @@ class dopBSo{
     // getOptions(Select)
     function Options($types='',$def='',$soarr=array()){ 
         if($types=='char'){
-            $msg = lang('flow.op0_type');
+            $msg = basLang::show('flow.op0_type');
             $ft = 'varchar';
         }elseif($types=='num'){
-            $msg = lang('flow.op0_area');
+            $msg = basLang::show('flow.op0_area');
             $ft = 'tinyint,int,float';
         }else{
-            $msg = lang('flow.op0_search');
+            $msg = basLang::show('flow.op0_search');
             $ft = '';    
         }
         if(!empty($soarr)){

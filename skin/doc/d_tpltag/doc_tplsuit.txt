@@ -22,7 +22,7 @@
  - The param `ven` is the tpl dir
  
 * Add Config:
- - File : /code/cfgs/sycfg/sy_vopcfg.php
+ - File : /root/cfgs/sycfg/sy_vopcfg.php
  - Add an item in $_sy_vopcfg['tpl'], `'ven' => array('English','/english.php'),`
  - View Url : /english.php, Enjoy! 
  
@@ -103,7 +103,7 @@ eg: {php echo "userip={$_cbase['run']['userip']};"; }
 // -=>It should: <?php echo "userip=".@$_cbase['run']['userip'].";"; ?>
 Solve1: Use `.` contact the string: {php echo "userip=".@$_cbase['run']['userip'].";"; }
 Solve2: For large block PHP code, do not need template parsing, can be used as follows:
-{php include_once(vopTpls::pinc('m_tppart/tpfile')); } 
+{php include_once vopTpls::pinc('m_tppart/tpfile'); } 
 or: {code:"dev:d_tools/a_cfgs"}
 -=> include file (it will NOT parse the code)
 {NOW-Tpl-Dir}/m_tppart/tpfile.php 

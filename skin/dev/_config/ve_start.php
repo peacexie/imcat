@@ -15,6 +15,6 @@ $_ve_start = array(
     'files' => 'c_demo/start_files',
     'udirs' => 'c_demo/start_main', 
     'class' => 'c_demo/start_sdict',
-    'dbtab' => 'c_demo/start_sdict',
+    //'dbtab' => 'c_demo/start_sdict',
     
 );

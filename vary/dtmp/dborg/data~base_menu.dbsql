@@ -1,5 +1,5 @@
 
--- base_menu@2017-05-05 20:10:33 -- 
+-- base_menu@2017-06-11 11:58:30 -- 
 INSERT INTO `{pre}base_menu{ext}` VALUES 
 ('m1info','muadm','0','资讯','320','1','1','','新闻,资讯','','0','','','0',''),
 ('m1012','muadm','0','演示','112','1','1','','演示菜单,扩展','','0','','','0',''),
@@ -107,4 +107,5 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('user-mbind','mumem','user-m','','888','1','2','','user/mbind','','0','','','0',''),
 ('m2vote','muadm','m1coms','投票管理','360','1','2','','','127.0.0.1','1479793536','peace','127.0.0.1','1479822741','peace'),
 ('m3voip','muadm','m2vote','选项记录','136','1','3','<a href=\"?file=dops/a&mod=votei\">投票选项</a> \r\n- <a href=\"?file=dops/a&mod=votep\">记录</a>','','','0','','127.0.0.1','1479796890','peace'),
-('m3vtadm','muadm','m2vote','管理发布','124','1','3','投票管理(!)?file=dops/a&mod=votes\r\n发布(!)votes(!)jsadd','','','0','','127.0.0.1','1480679102','peace');
+('m3vtadm','muadm','m2vote','管理发布','124','1','3','投票管理(!)?file=dops/a&mod=votes\r\n发布(!)votes(!)jsadd','','','0','','127.0.0.1','1480679102','peace'),
+('m3notea','muadm','m2else','站务笔记管理','888','1','3','笔记管理(!)?file=dops/a&mod=notea\r\n发布(!)notea(!)jsadd','','220.115.158.76, 10.50.148.56','1496145801','peace','220.115.158.76, 10.50.148.55','1496145822','peace');

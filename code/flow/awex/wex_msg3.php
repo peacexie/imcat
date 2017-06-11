@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_wex_cfgs.php');
+require dirname(__FILE__).'/_wex_cfgs.php';
 
 //$mtab = req('mtab','get'); //get,send,form
 $mtab = $view=='list' ? 'get' : $view; 

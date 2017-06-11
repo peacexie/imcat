@@ -1,4 +1,5 @@
 <?php
+die('forbid!'); // 自行添加安全认证后注释这行
 (!defined('RUN_INIT')) && die('No Init');
 
 $dm = req('dm','');
@@ -26,7 +27,7 @@ $dop->svPrep();
 $fp = vopTpls::pinc("c_mod/data-$dm"); // 扩展:c_mod/data-demo
 
 if(file_exists($fp)){
-    include($fp); 
+    include $fp; 
 }elseif($pid=='docs'){
 
     if(!empty($isadd)){ 
@@ -99,4 +100,6 @@ $vars = array(
 * 扩展：
  - 如扩展脚本处理，则添加文件，c_mod/data-$dm.php，参考上面代码改写
  - 如扩展demo模块，则添加 c_mod/data-demo.php 文件
+* 安全提醒：
+ - 请自行添加安全认证,默认本文件首屏蔽了此操作的运行！
 */

@@ -15,9 +15,9 @@ function autoInc_ys($file=''){
 }
 
 $incfile = '/root/run/_init.php';
-// require(dirname(__FILE__).$incfile); // 可直接注释以下代码用类似此行代码
+// require dirname(__FILE__).$incfile; // 可直接注释以下代码用类似此行代码
 if(!empty($incfile) && $incpath=autoInc_ys($incfile)){
-  include_once($incpath);
+  include $incpath;
 }
 
 // 

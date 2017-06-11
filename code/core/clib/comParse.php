@@ -66,38 +66,22 @@ class comParse{
 
     // xml(node) -------------------------------------------------- 
     
-    static function nodeParse($node) {
-        $array = false;
-        if ($node->hasAttributes()) {
-            foreach ($node->attributes as $attr) {
-                $array[$attr->nodeName] = $attr->nodeValue;
-            }
+    static function nodeParse($data,$cset='') {
+        if(is_string($data)){
+            $hfix = $cset ? "<?xml version='1.0' encoding='$cset'?>" : '';
+            $data = simplexml_load_string($hfix.$data); // obj(自动转:utf-8)
         }
-        if ($node->hasChildNodes()) {
-            if ($node->childNodes->length == 1) {
-                $array[$node->firstChild->nodeName] = getArray($node->firstChild);
-            } else {
-                foreach ($node->childNodes as $childNode) {
-                if ($childNode->nodeType != XML_TEXT_NODE) {
-                    $array[$childNode->nodeName][] = self::nodeParse($childNode);
-                } }
-            }
-        } else {
-            return $node->nodeValue;
-        }
-        return $array;
+        $json = json_encode($data);
+        $arr = json_decode($json, true);
+        return $arr;
     }
+    
     // json -------------------------------------------------- 
     
     // 将数组转换为JSON字符串（兼容中文）
     static function jsonEncode($array) {        
-        if(version_compare(PHP_VERSION,"5.4",">=")){
-            $json = json_encode($array, JSON_UNESCAPED_UNICODE); 
-        }else{
-            self::jsonFormat($array, 'urlencode');
-            $json = json_encode($array);
-            $json = urldecode($json);
-        } 
+        $json = json_encode($array, JSON_UNESCAPED_UNICODE); 
+        // JSON_UNESCAPED_UNICODE:PHP>=5.4生效
         $json = str_replace("\"},\"","\"}\n,\"",$json);
         $json = str_replace(",\",\"",",\"\n,\"",$json);
         return $json;
@@ -107,35 +91,6 @@ class comParse{
         $str = trim($str); 
         $arr = json_decode($str,1);
         return $arr;
-    }
-    // 使用特定function对数组中所有元素做处理
-    // $func 不用了，用self::jsonChinese代替
-    static function jsonFormat(&$array, $func){ 
-        if(!is_array($array)) return;
-        static $recursive_counter = 0;
-        if (++$recursive_counter > 1000) {
-            glbError::show("possible deep recursion attack!"); 
-        }
-        foreach ($array as $key => $value) {
-            if (is_array($value) && !empty($value)) {
-                self::jsonFormat($array[$key], $func);
-            } else {
-                $array[$key] = self::jsonChinese($value);
-                //$array[$key] = $func($value); // $func='urlencode'
-            }
-        }
-        $recursive_counter--;
-    }
-    //  获取只编码中文的字符串（目前只支持UTF-8编码的字符串）
-    static function jsonChinese($string){
-        if (preg_match_all('/[\x7f-\xff]+/', (string) $string, $chinse)){
-            $array = array();
-            foreach ($chinse[0] as &$_chinse){
-                $array[] = urlencode($_chinse);
-            }
-            $string = str_replace($chinse[0], $array, $string);
-        }
-        return $string;
     }
     
     // serialize -------------------------------------------------- 

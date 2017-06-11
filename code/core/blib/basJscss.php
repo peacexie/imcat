@@ -12,7 +12,7 @@ class basJscss{
             }else{
                 $ipath = DIR_SKIN.$val;
             } 
-            if(file_exists($ipath)) include($ipath); 
+            if(file_exists($ipath)) include $ipath; 
             if($lang){
                 $flang = str_replace(".js","-{$lang}.js",$ipath); 
                 if(strpos($flang,"-mob-{$lang}.js")){
@@ -20,7 +20,7 @@ class basJscss{
                         $flang = str_replace("-mob-{$lang}.js","-{$lang}.js",$flang);
                     }
                 }
-                if(file_exists($flang)) include_once($flang); 
+                if(file_exists($flang)) include_once $flang; 
             }    
         } 
     }

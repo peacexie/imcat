@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_cfgall.php'); 
+require dirname(__FILE__).'/_cfgall.php'; 
 
 # mod,kid
 $opfid = req('opfid'); // 操作字段

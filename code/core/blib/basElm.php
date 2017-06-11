@@ -6,7 +6,7 @@ class basElm{
     // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号,|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
     static function setOption($cfgs,$val='',$title='-(def)-'){
-        $title = $title=='-(def)-' ? lang('core.opt_first') : $title;
+        $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
         if(is_string($cfgs)){
             $cfgs = str_replace(array(';','|',','),array("\n",'=','='),$cfgs);
             $cfgs = self::text2arr($cfgs); 
@@ -65,14 +65,15 @@ class basElm{
     }
     // form: text2arr
     static function text2arr($text){ 
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         if(is_array($text)){
             if(isset($text['title']) && !empty($text['cfgs'])) return self::text2arr($text['cfgs']);
             return $text;
         }elseif(empty($text)){ 
             return array();
         }elseif(isset($_groups[$text])){ 
-            $rei = read("$text.i"); 
+            $rei = glbConfig::read("$text"); 
+            $rei = $rei['i'];
             foreach($rei as $k=>$v){ 
                 $re[$k] = $v['title'];
             }
@@ -80,7 +81,7 @@ class basElm{
             $re = glbDBExt::getExtp(substr($text,11));
         }elseif(strpos($text,'.') && !(strpos($text,"\n")||strpos($text,"\r"))){ //corder.ordstat
             $t = explode('.',$text);
-            $mcfg = read($t[0]); 
+            $mcfg = glbConfig::read($t[0]); 
             $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
         }else{
             $text = str_replace(array(' ',"\n","\r"),array('','&','&'),$text);

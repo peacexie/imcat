@@ -119,7 +119,7 @@ return array(
     'upg_bkdb' => 'Backup database',
     'upg_tipdb' => '[advice/attention] First stop service before backup; or copy database directory;',
     'upg_blfile' => 'Backup file',
-    'upg_tipfile' => 'Main backup: /code and /root. <br>Important file (folder)/code/cfgs/, /root/run/_init.php. ',
+    'upg_tipfile' => 'Main backup: /code and /root. <br>Important file (folder)/root/cfgs/, /root/run/_init.php. ',
     'upg_use' => 'Using the scene',
     'upg_tipup' => 'Now is the older version, download the latest version of the package (DONT installed), 
       <br>Update in the existing older version, the new version of the file will copied to THIS version, 

@@ -32,7 +32,7 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext'];
-        $base || $base = 'jstag,menu,aheight';
+        $base || $base = basEnv::isMobile() ? 'jstag' : 'jstag,menu,aheight';
         $js = "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
@@ -42,7 +42,7 @@ class tex_base{
     }
     
     static function uplog_furl(){ 
-        include(vopTpls::pinc("d_uplog/a_cfgs"));
+        include vopTpls::pinc("d_uplog/a_cfgs");
         $mkv = 'uplog';
         foreach ($cfgs as $key => $val) {
             if($key!='readme'){

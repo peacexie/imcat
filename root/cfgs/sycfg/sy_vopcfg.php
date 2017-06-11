@@ -1,8 +1,7 @@
 <?php
 //模板显示格式
 
-$_sy_vopcfg
- = array();
+$_sy_vopcfg = array();
 
 // 所有语言
 $_sy_vopcfg['langs'] = array(

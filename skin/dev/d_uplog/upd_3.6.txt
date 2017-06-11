@@ -20,7 +20,7 @@
 * 增加：`字段内容存文件`
  - 使用见：问答系统，为高大上系统，悄悄地又做一铺垫！
 * 增加：多库调用配置
- - 使用见：code/cfgs/boot/cfg_db.php-cdemo 说明
+ - 使用见：root/cfgs/boot/cfg_db.php-cdemo 说明
 * 增加：前端js插件：prettyPhoto图片播放插件，
  - 使用见：/vimp/vendui/prettyPhoto/demo.html
 * 增加：前端js模版引擎：doT，

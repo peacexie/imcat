@@ -38,7 +38,7 @@
 * 方式2. 自带升级程序升级
  - 先手动更新：\code\core\sdev\下 updAdmin.php, updBase.php 两文件；
  - 先手动更新：/root/tools/setup下文件 (除index.php安装入口)；
- - 必要的话：先按新系統手动调整code/cfgs/boot/cfg_load.php配置；
+ - 必要的话：先按新系統手动调整root/cfgs/boot/cfg_load.php配置；
 
 * 通用指引
 

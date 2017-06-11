@@ -74,7 +74,7 @@ class comImage{
             $res = comImage::thumb($orgd,$objd,$size[0],$size[1]);
             return $res ? $objp : $orgp;
         }elseif(strpos($orgp,'://')>0 && strpos($orgp,PATH_URES)===0){ // ftp http://img.domain...
-            $scfg = read('store','ex');
+            $scfg = glbConfig::read('store','ex');
             $cutp = $scfg[$scfg['type']]['cut_ures']; // http://domain.com/cut.php?
             $orgp = str_replace(array('{uresroot}','{staticroot}'),'',$val); 
             return str_replace(array("(size)","(img)"),array($resize,$orgp),$cutp); 
@@ -89,7 +89,7 @@ class comImage{
         $image_w = $imageInfo['width']; //取得水印图片的宽
         $image_h = $imageInfo['height']; //取得水印图片的高
         //读取水印文字配置
-        $waterInfo = read('wmark','sy');
+        $waterInfo = glbConfig::read('wmark','sy');
         $w = $waterInfo['width']; //取得水印图片的宽
         $h = $waterInfo['height']; //取得水印图片的高ctext
         if($image_w<=$w || $image_h<=$h){
@@ -159,7 +159,7 @@ class comImage{
         if(!file_exists($image)){ //检查图片是否存在
             return 'file NOT exists!';
         }
-        $wcfgs = read('wmark','sy');
+        $wcfgs = glbConfig::read('wmark','sy');
         if(empty($waterPos)) $waterPos = $wcfgs['pos'];
         if(empty($type) || in_array($type,array('pic','text'))){
             if(empty($type)) $type = $wcfgs['type'];

@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 
 $tabid = 'bext_cron';
 $units = basLang::ucfg('cfgbase.corn_unit');

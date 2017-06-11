@@ -53,7 +53,7 @@ class comFiles{
     }
 
     static function getTIcon($file){ 
-        $cfg = read('filetype','sy');
+        $cfg = glbConfig::read('filetype','sy');
         $type = $icon = 'unknow';
         $ext = strtolower(strrchr($file,"."));
         $ext = substr($ext,1);

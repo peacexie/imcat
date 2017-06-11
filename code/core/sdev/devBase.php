@@ -47,8 +47,6 @@ class devBase{
             $handle = opendir("$root/$dir/");
             while($file = readdir($handle)) {
                 if($file=='.'||$file=='..') continue;
-                if(basArray::inStr(array('conf.','inc.',),$file)) continue;
-                //if(in_array($file,array('conf.','inc.',))) continue;
                 $fp = "$root/$dir/$file"; $forg = $file;
                 $fext = strtolower(strrchr($file,'.'));
                 $file = str_replace($farr,'',$file);
@@ -59,7 +57,7 @@ class devBase{
                     echo self::docFuncs($fp);
                     echo "</ul>";
                     if(strstr($class,",$file,")){ 
-                        $sfile = "<span class='red' title='".lang('devbase_clsrepeat')."'>$file</span>";
+                        $sfile = "<span class='red' title='".basLang::show('devbase_clsrepeat')."'>$file</span>";
                     }else{
                         $sfile = "$file";
                         $class .= "$file,";
@@ -103,11 +101,13 @@ class devBase{
             $re .= "\n<li>namespace $nsp;</li>";
             foreach($ckeys as $class2){
                 if(strstr($str,$class2)){
-                    $ire = "\n<li>use $maps[$class]\\$class2;</li>"; 
-                    if($class==$class2){ 
-                        $tip .= "$ire --- ??? ";
-                    }else{
-                        $re .= "$ire";     
+                    if($nsp!=$maps[$class2]){
+                        $ire = "\n<li>use $maps[$class2]\\$class2;</li>"; 
+                        if($class==$class2){ 
+                            $tip .= "$ire --- ??? ";
+                        }else{
+                            $re .= "$ire";     
+                        }
                     }
                 }
             }
@@ -125,7 +125,7 @@ class devBase{
             $tbfix = substr($file,5,4);
             $tbname = str_replace('.dbsql','',substr($file,5)); 
             if(!in_array(substr($file,5,4),array('base','bext'))) continue;
-            $old = include(DIR_CODE."/lang/dbins/$tbname-cn.php");
+            $old = include DIR_CODE."/lang/dbins/$tbname-cn.php";
             $data = comFiles::get("$path/$file");
             $arr = basStr::getMatch($data,'dbstr','c196');
             $arb = basArray::lenOrder($arr);
@@ -200,11 +200,12 @@ class devBase{
     }
 
     static function dbDict($tabinfo=array()){
-        if(empty($tabinfo)) $tabinfo = db()->tables(1); 
-        $tdoc = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbdoc.htm'); 
-        $ttab = comFiles::get(DIR_CODE.'/cfgs/stinc/is_dbtab.htm');
+        global $_cbase;
+        if(empty($tabinfo)) $tabinfo = glbDBObj::dbObj()->tables(1); 
+        $tdoc = comFiles::get(DIR_ROOT.'/cfgs/stinc/is_dbdoc.htm'); 
+        $ttab = comFiles::get(DIR_ROOT.'/cfgs/stinc/is_dbtab.htm');
         $slist = $tlist = ''; 
-        $clist = '<tr><td>'.lang('core.dbdict_table').'</td><td>'.lang('core.dbdict_field').'</td></tr>'; 
+        $clist = '<tr><td>'.basLang::show('core.dbdict_table').'</td><td>'.basLang::show('core.dbdict_field').'</td></tr>'; 
         foreach($tabinfo as $tab=>$r){ 
             $ra=''; $tabid = $r['Name']; $rows = $r['Rows'];
             $tblfields = glbDBExt::dbComment($tabid);
@@ -218,7 +219,7 @@ class devBase{
             $tlist .= "<a href='#$tabid'>".($tabrem ? $tabrem : $tabid)."</a>\n"; 
         }
         $org = array('{tablists}','{tabmap}','{tabcnt}','{sysname}','{dict-title}');
-        $obj = array($slist,$tlist,count($tabinfo),cfg('sys_name'),lang('core.dbdict_title'));
+        $obj = array($slist,$tlist,count($tabinfo),$_cbase['sys_name'],basLang::show('core.dbdict_title'));
         $data = str_replace($org,$obj,$tdoc); 
         //$lang = $_cbase['sys']['lang']; 
         $data = devData::dataImpLang($data,'base_model,base_fields,bext_dbdict');
@@ -276,7 +277,7 @@ class devBase{
     
     static function _tabGroup($tabinfo=''){
         if(!$tabinfo){
-            $tabinfo = db()->tables(); 
+            $tabinfo = glbDBObj::dbObj()->tables(); 
         }
         $re = array(); $fixa = array('-1'); 
         foreach($tabinfo as $row){
@@ -290,7 +291,7 @@ class devBase{
     }
 
     static function typChkall(){
-        $groups = read('groups');
+        $groups = glbConfig::read('groups');
         $res = array();
         foreach($groups as $key=>$val){
             if($val['pid']=='types'){
@@ -301,7 +302,7 @@ class devBase{
         return $res;
     }
     static function typCheck($key){
-        $mcfg = read($key); 
+        $mcfg = glbConfig::read($key); 
         $done = array('-1'); $re = '';
         foreach($mcfg['i'] as $k1=>$v1){
             $rs = '';
@@ -319,12 +320,6 @@ class devBase{
         } 
         return $re;
     }
-
-    static function xx(){
-        $sy_sids = read('sysids','sy');
-        return $re;
-    }
-    
 
 }
 

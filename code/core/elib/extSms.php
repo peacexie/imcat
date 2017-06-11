@@ -17,8 +17,8 @@ class extSms{
     
     //function __destory(){  }
     function __construct(){ 
-        require(DIR_CODE."/adpt/smsapi/api_cfgs.php"); // 加载
-        $_cfgs = read('sms','ex');
+        require DIR_CODE."/adpt/smsapi/api_cfgs.php"; // 加载
+        $_cfgs = glbConfig::read('sms','ex');
         $api = @$_cfgs['cfg_api'];
         if($api && isset($_apis[$api])){ 
             $this->api = $api;
@@ -27,7 +27,7 @@ class extSms{
             //$this->name = $this->cnow['name'];
             $class = "sms_$this->api";
             // 统一实例化一个 api对象 // load sms libs
-            require(DIR_CODE."/adpt/smsapi/sms_{$this->api}.php"); // 加载
+            require DIR_CODE."/adpt/smsapi/sms_{$this->api}.php"; // 加载
             $this->smsdo = new $class($_cfgs); 
         }
         $this->amap = $_apis;
@@ -79,23 +79,23 @@ class extSms{
         // 格式化 $mobiles,$content, 
         $atel = $this->telFormat($mobiles);
         $amsg = $this->msgCount($content);
-        if(empty($atel)) return array('-2',lang('sms_errtel'));    
-        if(empty($amsg[0])) return array('-2',lang('sms_errmsg'));
+        if(empty($atel)) return array('-2',basLang::show('sms_errtel'));    
+        if(empty($amsg[0])) return array('-2',basLang::show('sms_errmsg'));
         $nmsg = count($atel)*$amsg[1];
         // 需扣费计算条数,检查余额
         $balance = $this->smsdo->getBalance(); 
         if((float)$balance[1]<=0){
             $mobiles = implode(',',$atel);
             $this->balanceWarn("--tels:$mobiles\n --cmsg:$content"); //写记录
-            return array('-2',lang('sms_charge0'));        
+            return array('-2',basLang::show('sms_charge0'));        
         } 
         if($limit && $limit<$nmsg){
-            return array('-2',lang('sms_charged'));    
+            return array('-2',basLang::show('sms_charged'));    
         }
         // 发送及结果
         if(count($atel)>$this->cfg_mtels){ // 分组发送
             $groups = array_chunk($atel,$this->cfg_mtels);
-            $res = array('-2',lang('sms_msenderr'));
+            $res = array('-2',basLang::show('sms_msenderr'));
             $flag = false; //成功标记
             foreach($groups as $group){ 
                 $res_temp = $this->smsdo->sendSMS($group,$content);
@@ -115,7 +115,7 @@ class extSms{
             'tel'=>$stel,'msg'=>basReq::in($amsg[0]),
             'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
         );
-        db()->table('plus_smsend')->data($data)->insert();
+        glbDBObj::dbObj()->table('plus_smsend')->data($data)->insert();
         // 扣钱 for 0test_balance.txt
         if($this->api=='0test' && $res[0]=='1'){
             $this->smsdo->deductingCharge($nmsg);
@@ -131,12 +131,13 @@ class extSms{
      * @return    NULL    
      **/
     function balanceWarn($flag){
+        global $_cbase;
         $file = "debug/balance_apiwarn.wlog"; 
         comFiles::chkDirs($file,'dtmp');
         if(is_numeric($flag)){ //检查文件,多少时间(day)内修改过
             return tagCache::chkUpd("/$file",'24h');
         }else{ 
-            $onlineip = cfg('run.userip'); $data = ''; 
+            $onlineip = $_cbase['run']['userip']; $data = ''; 
             if(file_exists($file)){
                 $data = comFiles::get($file);
             }
@@ -170,7 +171,8 @@ class extSms{
     // param    int        $slen     最多截取多少文字
     // return    array    $re        返回array(文字,信息条数,文字个数)
     function msgCount($msg,$slen=255){
-        $cset = cfg('sys.cset');
+        global $_cbase;
+        $cset = $_cbase['sys']['cset'];
         $cnt = mb_strlen($msg, $cset);
         if($cnt>255){
             $msg = mb_substr($str, 0, 250, $cset); 

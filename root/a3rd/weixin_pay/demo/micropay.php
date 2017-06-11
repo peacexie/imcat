@@ -5,9 +5,9 @@
     <title>微信支付样例-查退款单</title>
 </head>
 <?php
-require_once dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
-require_once "WxPay.MicroPay.php";
-require_once 'log.php';
+require dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
+require "WxPay.MicroPay.php";
+require 'log.php';
 
 //初始化日志
 $logHandler= new CLogFileHandler("../logs/".date('Y-m-d').'.log');

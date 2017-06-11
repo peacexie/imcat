@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__)."/config.php");
+require dirname(__FILE__)."/config.php";
 
 //计算得出通知验证结果
 $verify_result = dmdoCheck();

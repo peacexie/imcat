@@ -14,7 +14,7 @@ $_ve_tools = array(
 
 );
 
-include(dirname(dirname(__FILE__)).'/d_tools/a_cfgs.php');
+include dirname(dirname(__FILE__)).'/d_tools/a_cfgs.php';
 foreach ($cfgs as $key => $v) {
     $_ve_tools[$key] = 'd_tools/tools_'.$key;
 }

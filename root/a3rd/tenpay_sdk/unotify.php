@@ -4,9 +4,9 @@
 //支付成功回调接收,财付通后台调用此地址
 //---------------------------------------------------------
 
-require_once(dirname(__FILE__)."/tenpay_config.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/PayResponse.class.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/NotifyQueryRequest.class.php");
+require dirname(__FILE__)."/tenpay_config.php";
+require DIR_VENDOR."/a3rd/tenpay_class/PayResponse.class.php";
+require DIR_VENDOR."/a3rd/tenpay_class/NotifyQueryRequest.class.php";
 
 /* 创建支付应答对象 */
 $resHandler = new PayResponse($config['key']);

@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__)."/alipay.config.php");
-require_once(LIBS_PAYRUN."/alipay_notify.class.php");
+require dirname(__FILE__)."/alipay.config.php";
+require LIBS_PAYRUN."/alipay_notify.class.php";
 
 //计算得出通知验证结果
 $alipayNotify = new AlipayNotify($alipay_config);
@@ -55,4 +55,4 @@ foreach($cfg as $k1=>$k2){
 $res['msg'] = $msg;
 $res['api'] = 'AliWscow';
 $res['stamp'] = req('notify_time');
-require_once(dirname(dirname(__FILE__))."/paydemo_dir/xresult.php");
+require dirname(dirname(__FILE__))."/paydemo_dir/xresult.php";

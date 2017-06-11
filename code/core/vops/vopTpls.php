@@ -7,16 +7,18 @@ class vopTpls{
     
     //获得模版或缓存路径:type=tpl,tpc;
     static function path($type='',$root=1){
-        $tpldir = cfg('tpl.tpl_dir');
-        return ($root ? ($type=='tpc' ? DIR_CTPL : DIR_SKIN) : '').'/'.$tpldir;  
+        global $_cbase;
+        $tpl = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
+        return ($root ? ($type=='tpc' ? DIR_CTPL : DIR_SKIN) : '').'/'.$tpl;  
     }
     
     // include_once:扩展函数：{php vopTpls::pinc('chn:tex_keres');} -=> chn/b_func/tex_keres.php
-    // 得到_config路径：      {php include(vopTpls::pinc('_config/va_home')); } -=> _config/va_home.php
-    // 得到include需要的路径：{php include(vopTpls::pinc('d_tools/a_cfgs')); } -=> d_tools/a_cfgs.php
+    // 得到_config路径：      {php include vopTpls::pinc('_config/va_home'); } -=> _config/va_home.php
+    // 得到include需要的路径：{php include vopTpls::pinc('d_tools/a_cfgs'); } -=> d_tools/a_cfgs.php
     // {imp:"_pub:stpl/_lay_info"} -=> code/cogs/stinc/d_tools/_lay_info.htm
     static function pinc($finc,$ext='',$refull=1){
-        $tpl = cfg('tpl.tpl_dir');
+        global $_cbase;
+        $tpl = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
         if(strpos($finc,':')){
             $a = explode(':',$finc);
             $tpl = $a[0];
@@ -26,7 +28,7 @@ class vopTpls{
         } 
         $ext = strpos($finc,'.') ? '' : (empty($ext) ? '.php' : $ext);
         if(!strpos($finc,'/')){ // 'chn:tex_keres' -=> {chn}/b_func/tex_keres
-            include_once(DIR_SKIN."/$tpl/b_func/$finc$ext");
+            include_once DIR_SKIN."/$tpl/b_func/$finc$ext";
         }elseif(strpos($tpl,']')){ // [root]:tools/exdiy/rplan
             $tpl = str_replace(array('[',']'),'',$tpl); 
             $tpl = comStore::cfgDirPath($tpl); 
@@ -42,7 +44,7 @@ class vopTpls{
     //设置当前tpl:set tpl path
     static function set($dir=''){
         global $_cbase; 
-        //$dir = $dir ? $dir : req('tpldir');
+        //$dir = $dir ? $dir : basReq::val('tpldir');
         if($dir){
             $_cbase['tpl']['tpl_dir'] = $dir;    
         }
@@ -51,7 +53,8 @@ class vopTpls{
     
     //获得默认模板
     static function def($type='adm'){
-        $tpldir = cfg('tpl.tpl_dir');
+        global $_cbase;
+        $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
         if(!empty($tpldir)){
             return $tpldir;
         }else{
@@ -62,11 +65,12 @@ class vopTpls{
     
     //type=res,show,tpl;title;0,1,
     static function etr1($type=0,$dir=''){
-        $vcfg = read('vopcfg','sy'); 
+        global $_cbase; 
+        $vcfg = glbConfig::read('vopcfg','sy'); 
         if(strlen($type)<3){ // 0,1,''
             $etr = PATH_PROJ.$vcfg['tpl'][$dir][1];
             if($type){ //$full
-                $etr = cfg('run.rsite').$etr;
+                $etr = $_cbase['run']['rsite'].$etr;
             }
             return $etr;
         }elseif(in_array($type,array('show','tpl'))){
@@ -81,7 +85,8 @@ class vopTpls{
     // entry 
     // $cb=emumem/ehlist
     static function entry($dir='',$cb='emumem',$mode=''){
-        $dir = $dir ? $dir : cfg('tpl.tpl_dir');    
+        global $_cbase;
+        $dir = $dir ? $dir : $_cbase['tpl']['tpl_dir'];    
         $dir = DIR_SKIN."/$dir/_config";
         $list = comFiles::listDir($dir);
         $re = array();
@@ -89,7 +94,7 @@ class vopTpls{
             if(strpos($file,'.maobak')) continue;
             $key = str_replace('.php','',$file);
             $kc = "_$key"; $km = substr($key,3);
-            include("$dir/$file"); $cfg[$km] = $$kc;
+            include "$dir/$file"; $cfg[$km] = $$kc;
             if(!in_array($key,array('va_docs'))){ //,'va_home'
                 $re = $re + self::$cb($cfg[$km],$km,$mode); 
         }    } 
@@ -123,7 +128,7 @@ class vopTpls{
         $re[$km] = array();
         // 展开:types
         if(!empty($cfg['t'])){
-            $mcfg = read($km); 
+            $mcfg = glbConfig::read($km); 
             foreach($mcfg['i'] as $ki=>$kv){ 
                 if(!isset($cfg[$ki])) $cfg[$ki] = $cfg['t']; 
             }
@@ -151,7 +156,7 @@ class vopTpls{
     static function check($tpl,$die=1){
         static $tplchks;
         if(empty($tplchks[$tpl])){
-            $vopcfg = read('vopcfg','sy'); 
+            $vopcfg = glbConfig::read('vopcfg','sy'); 
             if(empty($vopcfg['tpl'][$tpl])){ //无tpl配置
                 $tplchks[$tpl]['cfg'] = 1;
             }

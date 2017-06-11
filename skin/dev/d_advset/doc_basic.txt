@@ -2,7 +2,7 @@
 
 #prboot#boot参数
 
-* 目录：/code/cfgs/boot/
+* 目录：/root/cfgs/boot/
 
 * _paths.php : 系统目录设置
  - 可以更改系统目录如：html/ures, code/root/skin, vary/vimp
@@ -20,7 +20,7 @@
 
 #prexcfg#excfg参数
 
-* 目录：/code/cfgs/excfg/
+* 目录：/root/cfgs/excfg/
 
 * ex_a3rd.php : 第三方[支付/登录]配置
 
@@ -50,7 +50,7 @@
 
 #prsycfg#sycfg参数
 
-* 目录：/code/cfgs/sycfg/
+* 目录：/root/cfgs/sycfg/
 
 * sy_domain.php :  子域名跳转,跨域,顶级域名 等配置
 
@@ -93,9 +93,9 @@
 
 #prelse#其他参数
 
-* 目录：/code/cfgs/player/ 播放器配置
+* 目录：/root/cfgs/player/ 播放器配置
 
-* 目录：/code/cfgs/scfile/ 脚步扩展配置
+* 目录：/root/cfgs/scfile/ 脚步扩展配置
 
 * 微信配置：后台 >> 插件 >> 微信接口 (支持多功能公众号)
 

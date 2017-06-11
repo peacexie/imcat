@@ -1,6 +1,6 @@
 <?php
 
-   require_once ("config.php");
+   require "config.php";
   
    //Call to SetExpressCheckout using the shopping parameters collected from the shopping form on index.php and few from config.php 
 
@@ -22,7 +22,7 @@
     $_SESSION['post_value']['RETURN_URL'] = $returnURL;
     $_SESSION['post_value']['CANCEL_URL'] = $cancelURL;
     $_SESSION['EXPRESS_MARK'] = 'ECMark';
-   include('header.php');
+   include 'header.php';
 ?>
    <div class="span4">
    </div>

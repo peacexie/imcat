@@ -51,9 +51,9 @@ $_sy_user['utpls'] = array(
 * 配置说明 
 
  - 这里只设置相关`注册/登录`开关, 具体第三方帐号,appkey等,请按如下提示去配置
- - 发邮件配置：/code/cfgs/excfg/ex_mail.php
- - 发短信配置：/code/cfgs/excfg/ex_sms.php
- - QQ登录配置：/code/cfgs/excfg/ex_a3rd.php 中 `qqconn` 区块
+ - 发邮件配置：/root/cfgs/excfg/ex_mail.php
+ - 发短信配置：/root/cfgs/excfg/ex_sms.php
+ - QQ登录配置：/root/cfgs/excfg/ex_a3rd.php 中 `qqconn` 区块
  - 微信登录配置：后台 >> 架构 >> xxx >> 配置 `admin(总站)` 对应的微信公众号(需要服务号)配置
 
 * 关于发短信-验证码

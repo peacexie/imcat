@@ -3,7 +3,7 @@
     * Call to GetExpressCheckoutDetails and DoExpressCheckoutPayment APIs
     */
 
-    require_once ("config.php");
+    require "config.php";
 
     /*
     * The paymentAmount is the total value of the shopping cart(in real apps), here it was set 
@@ -98,7 +98,7 @@
     //$resArrayDoExpressCheckout = ConfirmPayment ( $newTotalAmt );
     $resArrayDoExpressCheckout = ConfirmPayment ( $finalPaymentAmount );
     $ackDoExpressCheckout = strtoupper($resArrayDoExpressCheckout["ACK"]);
-    include('header.php');
+    include 'header.php';
 
     session_unset();   // free all session variables
     session_destroy(); //destroy session
@@ -187,4 +187,4 @@
         }
     }        
 ?>
-<?php include('footer.php'); ?>
+<?php include 'footer.php'; ?>

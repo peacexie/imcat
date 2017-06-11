@@ -37,7 +37,7 @@
 
 * 调整logo/sinc目录
  - /skin/_pub/a_img/ 相关logo都移动到 /skin/_pub/logo/ 目录
- - /code/cfgs/sinc/ 相关logo都移动到 /skin/_pub/stpl/ 目录
+ - /root/cfgs/sinc/ 相关logo都移动到 /skin/_pub/stpl/ 目录
  - 让运营者更便于管理替换自己的图标
 
 * 增加：增加/丰富 模板调用演示

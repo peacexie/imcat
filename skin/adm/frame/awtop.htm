@@ -1,15 +1,19 @@
-{imp:"frame/aimp"}<!--模板继承-->
-
-{block:ahead}<style type='text/css'>
-<?php if(!basEnv::isMobile()) echo "html,body{overflow:hidden;}"; ?>
-</style>{/block:ahead}
-
-{block:abody}
 {php}
+extract(basReq::sysVars()); 
+$_groups = glbConfig::read('groups'); 
+$db = glbDBObj::dbObj();
 $userstr = "<span title='".@$user->uperm['title']."(".@$user->uperm['grade'].")'>Hi:".$user->usess['uname']."!</span>";
 $ainurl = basReq::getUri(-2); $ainurl = str_replace('&frame=1','',$ainurl[1]);
-$mainurl = empty($file) ? surl(0).'?uhome' : $ainurl; //surl()."?file=$file"; 
+$mainurl = empty($file) ? vopUrl::fout(0).'?uhome' : $ainurl; //surl()."?file=$file"; 
 {/php}
+<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
+{php glbHtml::imsub('imadm'); }
+<style type='text/css'>
+<?php if(!basEnv::isMobile()) echo "html,body{overflow:hidden;}"; ?>
+</style>
+</head><body>
 <div id="adf_title"> ({lang(admin.top_now)}) </div>
 <div id="adf_nav1">
   <p class="inblock right">
@@ -33,5 +37,5 @@ $mainurl = empty($file) ? surl(0).'?uhome' : $ainurl; //surl()."?file=$file";
   <iframe src="{$mainurl}" id="adf_main" name="adf_main" style="width:100%; overflow-y:scroll; overflow-x:hidden;" frameBorder=0></iframe>
 </div>
 {php $this->pimp('/b_jscss/awtop.js'); }
-{/block:abody}
-
+</body></html>
+{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }

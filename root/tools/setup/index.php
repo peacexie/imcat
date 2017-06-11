@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 
 // Check proot
 $proot = devRun::prootGet();
@@ -21,7 +21,7 @@ if($act=='EditDB'){
     $dbname = req('dbname');    
     $dbnold = req('dbnold');
     if($dbname!==$dbnold){
-        devData::rstVals(DIR_CODE."/cfgs/boot/cfg_db.php",array('db_name'=>$dbname),0);
+        devData::rstVals(DIR_ROOT.'/cfgs/boot/cfg_db.php',array('db_name'=>$dbname),0);
     }else{
         devRun::startDbadd($dbname);
     }
@@ -38,12 +38,12 @@ glbHtml::page('body');
 
 $cmydb3 = devRun::runMydb3();
 $cmynow = $cmydb3[glbDBObj::getCfg('db_class')];
-include(DIR_CODE.'/cfgs/boot/cfg_db.php'); 
+include DIR_ROOT.'/cfgs/boot/cfg_db.php'; 
 
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::ieLow_html(); 
-require(dirname(__FILE__).'/sflow.htm');
+require dirname(__FILE__).'/sflow.htm';
 glbHtml::page('end');
 ?>

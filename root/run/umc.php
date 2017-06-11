@@ -7,5 +7,5 @@ $_cbase['ucfg']['lang'] = '(auto)';
 $_cbase['route'] = array( 
     'reg' => 'home-apply',
 ); 
-require(dirname(__FILE__).'/_init.php'); 
+require dirname(__FILE__).'/_init.php'; 
 $vop = new vopShow();

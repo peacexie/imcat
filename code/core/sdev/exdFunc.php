@@ -15,21 +15,22 @@ class exdFunc extends exdBase{
     // 拉取
     function exdPull(){
         $data = $this->odata();
-        //$ret = req('ret','json');
+        //$ret = basReq::val('ret','json');
         $data = comParse::jsonEncode($data);
         return $data;
     }
     
     // 分享
     function exdShow(){ //tpl,cut,clen,ret(html/js),
+        global $_cbase;
         $data = $this->odata(); 
-        $tpl = req('tpl','','');
+        $tpl = basReq::val('tpl','','');
         $burl = vopTpls::etr1(1,'chn'); 
         $tpl = $tpl ? comParse::urlBase64($tpl,1) : "<li><a href='$burl?$this->mod.{kid}'>{title}</a></li>";
-        $tpl = str_replace('{rmain}',cfg('run.rmain'),$tpl);
-        $cut = ','.req('cut',"title,company").',';
-        $clen = req('clen',"255",'N');
-        $ret = req('ret','js'); 
+        $tpl = str_replace('{rmain}',$_cbase['run']['rmain'],$tpl);
+        $cut = ','.basReq::val('cut',"title,company").',';
+        $clen = basReq::val('clen',"255",'N');
+        $ret = basReq::val('ret','js'); 
         $str = ''; 
         foreach($data as $nv){ 
             $istr = $tpl;
@@ -69,7 +70,7 @@ class exdFunc extends exdBase{
             $data = $this->exdPsyn_Data($jcfg,$re['max'],1);
             $re['next'] = empty($data) ? 0 : 1; 
         }else{
-            $re['msg'] = lang('core.nul_orgdata');
+            $re['msg'] = basLang::show('core.nul_orgdata');
             $re['next'] = 0;    
         } 
         return $re; 
@@ -119,7 +120,7 @@ class exdFunc extends exdBase{
             $data = $this->exdOimp_Data($jcfg,$re['max'],1);
             $re['next'] = empty($data) ? 0 : 1; 
         }else{
-            $re['msg'] = lang('core.nul_orgdata');
+            $re['msg'] = basLang::show('core.nul_orgdata');
             $re['next'] = 0;    
         } 
         return $re; 
@@ -129,8 +130,8 @@ class exdFunc extends exdBase{
         $oukey = $jcfg['ktype']=='int' ? 'ouint' : 'outid';
         if(empty($offset)) $offset = $this->getJFm2('exd_oilog',$jcfg['kid'],$oukey,'MAX'); 
         if(empty($this->odb)){
-            $ocfgs = read('outdb','ex');
-            require_once(DIR_CODE."/adpt/dbdrv/db_pdox.php");
+            $ocfgs = glbConfig::read('outdb','ex');
+            require DIR_CODE."/adpt/dbdrv/db_pdox.php";
             $this->odb = new db_pdox(); 
             $this->odb->connect($ocfgs[$jcfg['odb']]); 
         }
@@ -185,7 +186,7 @@ class exdFunc extends exdBase{
             $oplog = str_replace(array(",,"),array(","),"$oplog,$pm2[0],");
             $this->db->table('exd_crawl')->data(array('oplog'=>$oplog))->where("kid='{$jcfg['kid']}'")->update();
         }else{
-            $re['msg'] = lang('core.nul_orgdata');
+            $re['msg'] = basLang::show('core.nul_orgdata');
             $re['next'] = 0;
         }
         return $re; 
@@ -196,11 +197,11 @@ class exdFunc extends exdBase{
         if($debug=='links'){ 
             return exdCrawl::ugetLinks($jcfg);
         }elseif($debug=='field'){
-            $url = req('url');
+            $url = basReq::val('url');
             $url || $url = $jcfg['odmp'];
             $data = comHttp::doGet($url,5); 
             $data = comConvert::autoCSet($data,$jcfg['ocset'],'utf-8'); 
-            $field = req('field');
+            $field = basReq::val('field');
             return exdCrawl::orgAll($data,$cfields[$field]);
         }
     }

@@ -37,8 +37,8 @@ if($view=='list'){
 }elseif(in_array($view,array('vself','vsite'))){
 
 	$stype = 'afauser'; $actstr = ''; $whrself = $duwhr; 
-	include(dirname(dirname(__FILE__))."/eact/adfavor_view.php");
+	include dirname(dirname(__FILE__))."/eact/adfavor_view.php";
     $stype = 'afadmin'; $actstr = ''; $whrself = '';
-    include(dirname(dirname(__FILE__))."/eact/adfavor_view.php");
+    include dirname(dirname(__FILE__))."/eact/adfavor_view.php";
 
 }

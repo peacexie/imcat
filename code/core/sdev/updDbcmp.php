@@ -9,8 +9,8 @@ class updDbcmp{
     static function uimpCheck(){
         bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login">login</a></p>');
         if(empty(self::$cpcfgs)){
-            $db = db();
-            $ocfgs = read('outdb','ex');
+            $db = glbDBObj::dbObj();
+            $ocfgs = glbConfig::read('outdb','ex');
             $ocfgs = $ocfgs['psyn']['odbcfgs'];
             $ocfgs = array_merge($db->config,$ocfgs); 
             $res = devRun::runMydb3($ocfgs); 

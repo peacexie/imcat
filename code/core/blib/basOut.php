@@ -60,7 +60,7 @@ class basOut
         $opt = self::$options;
         try {
             // 返回JSON数据格式到客户端
-            $callback = req('callback',$opt['jsonp_callback']); 
+            $callback = basReq::val('callback',$opt['jsonp_callback']); 
             $handler = !empty($callback) ? $callback : $opt['jsonp_return'];
             $data = comParse::jsonEncode($data);
             /*if ($data === false) {

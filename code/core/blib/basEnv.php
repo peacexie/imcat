@@ -8,38 +8,35 @@ class basEnv{
         global $_cbase;
         // 加载runskip
         if(isset($_cbase['skip'])){
-            include(DIR_CODE.'/cfgs/boot/bootskip.php'); 
+            include DIR_ROOT.'/cfgs/boot/bootskip.php'; 
         }
         // 全局系统配置
         if(!empty($_pbase)){ 
-            if(!empty($_pbase)) $_cbase = basArray::Merge($_cbase, $_pbase);
+            $_cbase = basArray::Merge($_cbase, $_pbase);
         }
     }
 
     // 系统信息,魔术变量,时区
     static function runVersion(){
+        global $_cbase; 
         if(version_compare(PHP_VERSION,'5.4.0','<')) {
             ini_set('magic_quotes_runtime',0);
             ini_set('magic_quotes_gpc',0);
         }
-        date_default_timezone_set(cfg('sys.tzcode'));        
+        date_default_timezone_set($_cbase['sys']['tzcode']);        
     }
     // const,
     static function runConst(){
-        /*
         define('IS_CGI',     substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
         define('IS_WIN',     strstr(PHP_OS, 'WIN') ? 1 : 0 );
         define('IS_CLI',     PHP_SAPI=='cli'? 1   :   0);
-        //define('IN_APP',   0);
-        */
-        define('KEY_TAB36',  '0123456789abcdefghijklmnopqrstuvwxyz'); // 极端情况下用
-        define('KEY_TAB32',  '0123456789abcdefghjkmnpqrstuvwxy'); // - iloz (字形可能与数字012混淆)
+        define('KEY_NUM10',  '0123456789');
+        define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');
+        define('KEY_NUM16',  KEY_NUM10.'abcdef'); 
+        define('KEY_TAB36',  KEY_NUM10.KEY_CHR26); // 极端情况下用
+        define('KEY_TAB32',  KEY_NUM10.'abcdefghjkmnpqrstuvwxy'); // - iloz (字形可能与数字012混淆)
         define('KEY_TAB30',  '123456789abcdfghjkmnpqrstuvwxy'); // - 0e + iloz (0字形,e读音易混淆)
         define('KEY_TAB24',  '3456789abcdfghjkpqstuvwxy'); // - 012eilmnorz(25) (去除字形读音易混淆者)
-        define('KEY_NUM10',  '0123456789');
-        define('KEY_NUM16',  '0123456789abcdef'); 
-        define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');    
-
     }
 
     // 前置处理,运行时常用变量
@@ -71,7 +68,8 @@ class basEnv{
     
     // 处理skips
     static function runSkips(){
-        $skip = cfg('skip');
+        global $_cbase;
+        $skip = isset($_cbase['skip']) ? $_cbase['skip'] : array(); 
         // 错误处理类 
         if(!isset($skip['error'])){
             self::runError();
@@ -91,7 +89,7 @@ class basEnv{
         global $_cbase;
         $debug = $_cbase['debug'];
         // 加载错误处理类 
-        if(!isset($_cbase['skip']['error'])){ //  && $debug['err_hand']
+        if(!isset($_cbase['skip']['error'])){ // && $debug['err_hand']
             if($debug['err_mode']){
                 ini_set('display_errors', 'On');
                 error_reporting(E_ALL); 
@@ -134,7 +132,7 @@ class basEnv{
     
     // 是否搜索引擎来访
     static function isRobot($user_agent=''){
-        $rbt = read('uachk','sy');
+        $rbt = glbConfig::read('uachk','sy');
         $kw_spiders = $rbt['spname'];
         $kw_browsers = $rbt['browsers'];
         $user_agent || $user_agent = self::userAG();
@@ -165,7 +163,7 @@ class basEnv{
         if(isset($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'],"wap")){
             return true;
         }
-        $rbt = read('uachk','sy');
+        $rbt = glbConfig::read('uachk','sy');
         $kw_spkeywd = $rbt['spkeywd'];
         if(preg_match("/($kw_spkeywd)/i", $_SERVER['HTTP_USER_AGENT'])){
             return true;
@@ -196,7 +194,8 @@ class basEnv{
             $part1 = $arr[$cnt-1]; $part2 = $arr[$cnt-2];
             $re = "$part2.$part1"; //默认
             if($cnt>=3){
-                $tcfg = read('domain.dmtop','sy'); 
+                $tcfg = glbConfig::read('domain','sy'); 
+                $tcfg = $tcfg['dmtop'];
                 $t3p = '.com.net.org.edu.gov.int.mil.';
                 $re3 = $arr[$cnt-3].".$re";
                 if(!empty($tcfg[$re])){
@@ -217,7 +216,8 @@ class basEnv{
         global $_cbase;
         $host = $_SERVER["HTTP_HOST"]; 
         $http = (@$_SERVER['HTTPS']==='on') ? 'https' : 'http';
-        $sdirs = read('domain.subDirs','sy'); 
+        $res = glbConfig::read('domain','sy');
+        $sdirs = $res['subDirs'];
         // dir-跳转:
         if(isset($sdirs[$host])){
             $host = $sdirs[$host];
@@ -228,6 +228,19 @@ class basEnv{
         $_cbase['run']['rsite'] = "$http://$host"; 
         $_cbase['run']['rmain'] = "$http://$host".PATH_PROJ; 
         $_cbase['run']['roots'] = "$http://$host".PATH_ROOT; 
+    }
+
+    static function isLocal($ip=''){
+        $ip || $ip = $_SERVER['REMOTE_ADDR'];
+        if(strpos($ip,'.')){ // IPv4
+            $p1 = intval($ip);
+            return in_array($p1,array('10','127','192'));
+        }elseif(strpos($ip,':')){ // IPv6
+            $arr = explode(':',$ip);
+            return in_array($arr[0],array('FE80','FEC0'));
+        }else{ // ::1=127.0.0.1=localhost
+            return in_array($ip,array('::1'));
+        }
     }
 
     // 缓冲区obSave(...)

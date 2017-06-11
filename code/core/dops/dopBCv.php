@@ -50,7 +50,7 @@ class dopBCv{
         $val = dopFunc::vgetLink($val,$this->mod,$r[$_key],$url); 
         if(!empty($r['mpic'])){ 
             $ticon = comFiles::getTIcon($r['mpic']);
-            $val = "<span class='c33F'>".($ticon['icon']=='pic' ? lang('core.bcv_pic') : lang('core.bcv_file'))."</span>$val"; 
+            $val = "<span class='c33F'>".($ticon['icon']=='pic' ? basLang::show('core.bcv_pic') : basLang::show('core.bcv_file'))."</span>$val"; 
         }
         if(empty($td)) return $val;
         return "<td class='tl'>$val</td>\n";
@@ -82,13 +82,14 @@ class dopBCv{
     }
     // 显示项-Time
     function Time($val,$td=1,$fmt='',$end=0){
+        global $_cbase;
         if(empty($fmt)) $fmt='Y-m-d H:i';
         if($fmt=='y') $fmt='y-m-d H:i';
         if($fmt=='D') $fmt='Y-m-d';
         if($fmt=='d') $fmt='y-m-d';
         $val = empty($val) ? "<span class='cCCC'>---</span>" : date($fmt,$val);
         if(!empty($end)){
-            $vc = date('Y-m-d',cfg('run.stamp'));
+            $vc = date('Y-m-d',$_cbase['run']['stamp']);
             $vd = substr($val,0,10); 
             if($vc===$vd){
                 $val = "<span class='c00F'>$val</span>";
@@ -141,7 +142,7 @@ class dopBCv{
             //$va = explode(',',$val); 
             $re = "";
             foreach($arr as $k=>$v){
-                $re .= "\nset_$k|".lang('core.bcv_set')."($k)$v";
+                $re .= "\nset_$k|".basLang::show('core.bcv_set')."($k)$v";
             }
 
         return $re; 

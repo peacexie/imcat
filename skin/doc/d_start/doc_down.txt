@@ -24,9 +24,9 @@
 
 #check#Environmental
 
-* PHP Environmental:
- - PHP5.2 ~ PHP7.1
- - Recommend: PHP5.3 ~ PHP7.0
+* PHP Environmental: 
+ - PHP5.3 ~ PHP7.1 (It can run Under php5.2 temporary, But we do NOT guarantee compatible with php5.2)
+ - Recommend: PHP5.4 ~ PHP7.0
  
 * Mysql Environmental:
  - mysql5.x+
@@ -41,12 +41,12 @@
 
 * Set the relative path of the site:
  - all files will be placed on the site of any directory (do not have Chinese characters, spaces and special characters in the dir name);
- - In file: /code/cfgs/boot/_paths.php Param: PATH_PROJ;
+ - In file: /root/cfgs/boot/_paths.php Param: PATH_PROJ;
  - The value of PATH_PROJ is the relative path of the site, eg:['/txmao'] or root [''](empty string);
  - For the first time, It will automatically correct the project path, so you can omit the operation;
 
 * Edit DB-Config(It can be edited while installing, advice you config manually);
- - File: /code/cfgs/boot/cfg_db.php;
+ - File: /root/cfgs/boot/cfg_db.php;
  - Tip: the defalut `DB-Type` is: $_cfgs['db_class'] = 'mysqli';
  
 * Setup/Config
@@ -66,7 +66,7 @@
 * Del or remove Dirs: /root/tools/setup/,
 * Keep Dirs: /root/tools/adbug, in order to subsequent debugging.
 * Start page: /index.php some of the links as a common tools, need to login the admin.
- - can also be a separate login, please set the params in file /code/cfgs/boot/cfg_adbug.php.
+ - can also be a separate login, please set the params in file /root/cfgs/boot/cfg_adbug.php.
  - Please reset the params enough complex and keep it properly!
 
 
@@ -75,8 +75,8 @@
 * Files and Permission
  - Write Permission  
  　 vary and sub dirs, need write  
- 　 File: /code/cfgs/boot/_paths.php When you install, Need write (if you are not setting, you can automatically reset the path, only once)  
- 　 File: /code/cfgs/boot/cfg_adbug.php Need write (reset the auxiliary debugging tools account/password, only once)
+ 　 File: /root/cfgs/boot/_paths.php When you install, Need write (if you are not setting, you can automatically reset the path, only once)  
+ 　 File: /root/cfgs/boot/cfg_adbug.php Need write (reset the auxiliary debugging tools account/password, only once)
  - File frame
  　 [Dir Frames]({static}/file_image/txmao-tree.png) ,
     [Down parts]({static}/file_image/txmao-parts.png) ,

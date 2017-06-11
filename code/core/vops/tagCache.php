@@ -29,7 +29,7 @@ class tagCache{
         preg_match("/\[cache\,([a-z0-9]+)\]/", $para, $m);  
         if(!empty($m[0]) && !empty($m[1])){ // && intval($m[1])>0
             $pkey = str_replace(array("[List]","[Page]","[One]"),'',$para);
-            $path = self::ctPath($pkey,req('tpldir')); 
+            $path = self::ctPath($pkey,basReq::val('tpldir')); 
             $fpath = self::chkUpd($path,$m[1]); 
             $data = $path ? comFiles::get($fpath) : ''; 
             $para = str_replace($m[0],'',$para);     
@@ -93,8 +93,9 @@ class tagCache{
     }
     
     static function setCache($file,$data,$isa=0){
+        global $_cbase; 
         if($isa){
-            $data['page_bar'] = cfg('page.bar');
+            $data['page_bar'] = $_cbase['page']['bar'];
             $data = serialize($data); //var_export
         }
         comFiles::chkDirs($file,'ctpl');

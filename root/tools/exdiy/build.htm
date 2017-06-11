@@ -33,7 +33,7 @@
      Hello + <select name="mod" id="mod"><?php echo devBuild::modOpt($mod); ?></select>
      </b> 
    </li>
-   <?php if(!comFiles::canWrite(DIR_CODE.'/cfgs/sycfg/sy_vopcfg.php')){ ?>
+   <?php if(!comFiles::canWrite(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php')){ ?>
    <li>
      <i class="c999">{lang(tools.mktpl_nowrite)}</i> 
      <b class="ext">&nbsp;</b>

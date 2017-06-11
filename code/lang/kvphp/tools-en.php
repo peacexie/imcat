@@ -128,7 +128,7 @@ return array(
     'upi_title' => 'Update - Compare database structure',
     'upi_recache' => 'Reset Cache: OK!',
     'upi_updnav' => 'Update - Navigation',
-    'upi_tipcfg' => 'Config File: {code}/cfgs/excfg/ex_outdb.php ($_cfgs parts)<br>Tips: Can Copy from Old Version {code}/cfgs/boot/cfg_db.php and Edit.',
+    'upi_tipcfg' => 'Config File: /root/cfgs/excfg/ex_outdb.php ($_cfgs parts)<br>Tips: Can Copy from Old Version /root/cfgs/boot/cfg_db.php and Edit.',
     'upi_tips' => 'Tips',
     'upi_dbstrucp' => 'DB-Structure Compare ',
     'upi_initcache' => 'Reset Cache',
@@ -184,7 +184,7 @@ return array(
 
     'home_extitle' => 'A general PHP+Msql web site system!',
     'home_exkwd' => 'IntimateCat, Lightweight, free, sharing, PHPCMS, txmao, imcat',
-    'home_exdes' => 'A general PHP+Msql web site system! Include AppServer/PC/Mobile Views, pay/map/wechat APIs!',
+    'home_exdes' => 'A general PHP+Msql web site system! Include ApiServer/PC/Mobile Views, pay/map/wechat APIs!',
     'home_botname' => 'IntimateCat',
 
     'chk_envcheck' => 'Env.Check',
@@ -208,7 +208,7 @@ return array(
     'chk_dblink' => 'DB Link',
     'chk_dbstatus' => 'contact status/result',
     'chk_dbextra' => ' Extend',
-    'chk_dbset' => 'Check File:[/code/cfgs/boot/cfg_db.php]',
+    'chk_dbset' => 'Check File:[/root/cfgs/boot/cfg_db.php]',
 
     'cf_fupload' => 'File Upload',
     'cf_file' => 'File: ',
@@ -296,7 +296,7 @@ return array(
     'setup_creat' => 'Create',
     'setup_dbnoexsists' => 'DB {val} Not Exists',
     'setup_clickadd' => 'Click [Create] or ',
-    'setup_dbcfg' => 'Edit[/code/cfgs/boot/cfg_db.php]Config',
+    'setup_dbcfg' => 'Edit[/root/cfgs/boot/cfg_db.php]Config',
     'setup_refresh' => 'Refresh',
     'setup_cantlink' => 'Can NOT contact Mysql DB:',
     'setup_x1' => '[1]Check Env.', //(Before Setup)

@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php');
+require dirname(__FILE__).'/_config.php';
 
 $qstr = $_SERVER['QUERY_STRING'];
 // advs:mod.key

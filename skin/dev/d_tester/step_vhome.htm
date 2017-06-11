@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>使用`控制器(类)-操作(方法)`扩展显示数据 - 贴心猫</title>
+<meta name='keywords' content='贴心猫,OOP,MVC,自由奔放'>
+<meta name='description' content='不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！'>
+<style type='text/css'>
+li{ width:150px; float:left; }
+h1,p,nav{ max-width:620px; line-height:150%; margin:20px auto;}
+h1{ font-size:larger; text-align:center; }
+hr{ clear:both; }
+</style>
+</head><body>
+<nav>
+    {loop $arr $key}
+    <li><a href='?ctest-{$key}' target=_blank>ctest-{$key}<a/></li>
+    {/loop}
+    <li><a href='?ctest.{$key}' target=_blank>ctest.{$key}<a/></li>
+</nav>
+<hr>
+<h1>使用`控制器(类)-操作(方法)`扩展显示数据</h1>
+<p>*0. 此方式不是必要的做法，主要用于扩展当前`模型`下，各`操作`的数据/模版等场合; 
+   使用与其它主流框架类似的`控制器(类)-操作(方法)`方式展现数据,<br>
+   ---> 充分体现了本系统的:`<b>不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！</b>`的思想!</p>
+<hr>
+<p>*1. 先来实例: url中,dev.php?start-down:
+   则类名为:startCtrl(Ctrl为后缀,start即模型名), 方法名为downAct(Act为后缀,down即操作或分类)</p>
+<p>*1.a 一个模型，对应一个控制器(类),放在当前模板文件夹的`b_ctrls`下,如:/skin/dev/b_ctrls/startCtrl.php</p>
+<p>*1.b 一个分类或一个操作，对应一个方法
+   模型首页用homeAct方法, 空方法`_emptyAct`为没有对应方法的共用执行方法(适合:'mtype'类别,如新闻各栏目分类)
+</p>
+<p>*2.a 可用于变更当前模板, 如vip会员使用另一个模版, 或不需套用-mob后缀(即pc/mob共用模版): 
+   用'newtpl'键值返回, return array('newtpl'=>'c_demo/start_sdict');</p>
+<p>*2.b 可用于得到复杂php逻辑数据,供模版中调用: 
+   用'vars'键值返回, return array('vars'=>$vars);</p>
+<p>*2.c 可用原始php作为模板(不使用模板解析/编译)
+   用'tplorg'键值返回, return array('tplorg'=>'mdir/tsub');</p>
+<p>*2.d 可直接die()终止后续操作,如ajax请求等; 或返回`tplnull`标记终止后续模板操作
+   return array('tplnull'=>1);</p>
+<p>*3. 在某些特别场合中,可只改变$_cbase等全部变量,或一些参数供后续使用,不用返回任何东西</p>
+<p>*4. url中,dev.php?uplog-3_2, 3_2Act()这个方法名不成立(目前暂不正面解决这个问题)</p>
+<hr>
+<p>*x. <strong>如果您吃了个鸡蛋,觉得味道不错</strong>,您还可继续了解下蛋的经历<br> 
+   --- 开发扩展这个功能的由来...</p>
+<p>*x.a 上一版本,实现了自动移动端适配,但在某些特定情境下,需要更灵活自由的方式控制...</p>
+<p>*x.b 不同栏目,等级(vip会员)使用不同模版,已经实现,但是还不够灵活...</p>
+<p>*x.c 最近看了点Yii2,默认无模板引擎; 而有些用户,又强烈反感模板引擎; 本套系统,少数地方也有需求,所以添加'tplorg'参数...</p>
+<p>*x.d 看了点ThinkPHP3.X,它可以直接从路由到模板,也可中间添加`控制器/方法`再到模板...</p>
+<p>*x.x 综合这些原因,才出现了`控制器(类)-操作(方法)`扩展示数据这一功能.</p>
+<hr>
+<p><?php echo basDebug::runInfo(); ?></p>
+</body></html>

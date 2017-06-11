@@ -4,8 +4,8 @@
 //以确保通知是从财付通发起的，没有被篡改过。
 //---------------------------------------------------------
 
-require_once(dirname(__FILE__)."/tenpay_config.php");
-require_once(DIR_VENDOR."/a3rd/tenpay_class/NotifyQueryRequest.class.php");
+require dirname(__FILE__)."/tenpay_config.php";
+require DIR_VENDOR."/a3rd/tenpay_class/NotifyQueryRequest.class.php";
 
 /* 初始化通知验证请求:财付通APP接收到财付通的支付成功通知后，通过此接口查询订单的详细情况，以确保通知是从财付通发起的，没有被篡改过。 */
 // 设置在沙箱中运行:正式环境请设置为false

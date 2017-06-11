@@ -19,26 +19,26 @@ class dopDocs extends dopBase{
         }
         $this->typfid = $this->so->typfid = 'catid';
         $this->dskey  = $this->so->dskey  = 'title'; 
-        $this->order  = $this->so->order  = req('order','did'); 
+        $this->order  = $this->so->order  = basReq::val('order','did'); 
         $this->tbext  = "dext_$mod";
     }
     // 翻页条,批量操作
     function pgbar($idfirst,$idend){
         $pg = $this->pg->show($idfirst,$idend);
-        $op = "".basElm::setOption(lang('flow.op_op3'),'',lang('flow.op0_bacth'));
+        $op = "".basElm::setOption(basLang::show('flow.op_op3'),'',basLang::show('flow.op0_bacth'));
         dopFunc::pageBar($pg,$op);
     }
     // 搜索条 // check,fields
     function sobar($msg='',$width=30){ 
         $mod = $this->mod;
-        $sbar = "\n".$this->so->Type(90,lang('flow.op0_cat')); 
+        $sbar = "\n".$this->so->Type(90,basLang::show('flow.op0_cat')); 
         if(method_exists($this,"sobar_$mod")){ //中间部分定制
             $sbar .= $this->{"sobar_$mod"}($msg,$width);
         }else{
-            $sbar .= "\n&nbsp; ".$this->so->Word(80,80,lang('flow.op0_filt'));
+            $sbar .= "\n&nbsp; ".$this->so->Word(80,80,basLang::show('flow.op0_filt'));
             $sbar .= "\n&nbsp; ".$this->so->Show(60);
         }
-        $sbar .= "\n&nbsp; ".$this->so->Order(array('did' => lang('flow.dops_ordkidd'),'did-a' => lang('flow.dops_ordkida'),),80);
+        $sbar .= "\n&nbsp; ".$this->so->Order(array('did' => basLang::show('flow.dops_ordkidd'),'did-a' => basLang::show('flow.dops_ordkida'),),80);
         $this->so->Form($sbar,$msg,$width);
     }
     // 搜索条:模块(pro)扩展
@@ -47,8 +47,8 @@ class dopDocs extends dopBase{
     // 属性设置
     function fmProp(){ 
         dopFunc::fmSafe();
-        echo "<tr><th nowrap>".lang('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
-        glbHtml::fmae_row(lang('flow.title_attrtitle'),' &nbsp; ID:'.$this->fmSetID()); //'显示:'.$this->fmShow().
+        echo "<tr><th nowrap>".basLang::show('flow.title_attrset')."</th><th class='tr'>---</th></tr>\n";
+        glbHtml::fmae_row(basLang::show('flow.title_attrtitle'),' &nbsp; ID:'.$this->fmSetID()); //'显示:'.$this->fmShow().
         $this->fmAE3();
     }
     // svEKey，

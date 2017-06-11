@@ -5,7 +5,7 @@ class vopStatic{
 
     //生成一个广告类别的缓存
     static function advType($mod,$type=''){
-        $cfg = read($mod);
+        $cfg = glbConfig::read($mod);
         $dtpl = array(
             '1'=> "<a href='{url}' target='_blank'>{title}</a>",
             '2'=> "<a href='{url}' target='_blank'><img src='{mpic}' name='{title}' alt='{title}' /></a>",
@@ -13,7 +13,7 @@ class vopStatic{
         );
         $tpl = empty($cfg['i'][$type]['cfgs']) ? $dtpl[$cfg['etab']] : $cfg['i'][$type]['cfgs']; 
         $data = ''; $rep = array('title','url','mpic','detail');
-        $list = db()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
+        $list = glbDBObj::dbObj()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
         if($list){
             foreach($list as $r){
                 $istr = $tpl;
@@ -40,7 +40,7 @@ class vopStatic{
 
     //广告Static(按类别)
     static function advMod($mod,$aids=array()){
-        $cfg = read($mod);
+        $cfg = glbConfig::read($mod);
         if($cfg['etab']==4) return;
         if($mod=='adpush') return;
         $ids = '';
@@ -55,7 +55,7 @@ class vopStatic{
         if(!$ids) return;
         $whr = $ids=="'(all)'" ? '1=1' : "aid IN($ids)";
         $types = array(); $data = '';
-        $list = db()->field('DISTINCT catid')->table("advs_$mod")->where($whr)->select(); //frame=0 AND 
+        $list = glbDBObj::dbObj()->field('DISTINCT catid')->table("advs_$mod")->where($whr)->select(); //frame=0 AND 
         if($list){
             foreach($list as $r){
                 $caid = $r['catid'];
@@ -68,18 +68,18 @@ class vopStatic{
 
     // showRes
     static function showRes($res){
-        $msg = lang('core.vops_batres')."<br><br>\n";
-        $msg .= $res['msg'] ? $res['msg']."<br>" : lang('core.vops_dores',"[{$res['ok']}/{$res['cnt']}]")."<br>\n";
+        $msg = basLang::show('core.vops_batres')."<br><br>\n";
+        $msg .= $res['msg'] ? $res['msg']."<br>" : basLang::show('core.vops_dores',"[{$res['ok']}/{$res['cnt']}]")."<br>\n";
         $msg .= "[".date('Y-m-d H:i:s')."]<br>\n";
         if($res['next']){ 
-            $msg .= "<br>\n".lang('core.vops_3secnext')."<br>\n";
+            $msg .= "<br>\n".basLang::show('core.vops_3secnext')."<br>\n";
             $js = "setTimeout(\"location.href='{$res['url']}';\",3000);"; 
             $js = basJscss::jscode($js);
         }else{
-            $msg .= "<br>\n".lang('core.vops_end')."<br>\n";
+            $msg .= "<br>\n".basLang::show('core.vops_end')."<br>\n";
             $js = '';    
         }
-        glbHtml::page(lang('core.vops_res'));
+        glbHtml::page(basLang::show('core.vops_res'));
         glbHtml::page('body');
         echo "\n<p>$msg</p>\n<hr>\n$js";
         unset($res['msg']); basDebug::varShow($res);
@@ -124,17 +124,17 @@ class vopStatic{
         } 
         $re['msg'] = $msg;
         if($re['next']){
-            $offset = req('order')=='ASC' ? $re['max'] : $re['min'];
+            $offset = basReq::val('order')=='ASC' ? $re['max'] : $re['min'];
             $re['url'] = basReq::getURep(0,'offset',$offset);
         }
         return $re; 
     }
     // mod,limit(1-500),order(did:ASC),stype,offset
     static function batKids($mod){
-        $mcfg = read($mod); $whrstr = '';
-        $stype = req('stype'); $offset = req('offset');
-        $limit = req('limit',10,'N'); if($limit<1) $limit = 10;
-        $order = req('order','DESC');
+        $mcfg = glbConfig::read($mod); $whrstr = '';
+        $stype = basReq::val('stype'); $offset = basReq::val('offset');
+        $limit = basReq::val('limit',10,'N'); if($limit<1) $limit = 10;
+        $order = basReq::val('order','DESC');
         if(in_array($mcfg['pid'],array('docs','advs'))){ 
             $stype && $whrstr .= basSql::whrTree($mcfg['i'],'catid',$stype);
             $ftype = ',catid';    
@@ -148,7 +148,7 @@ class vopStatic{
         }
         $kname = substr($mcfg['pid'],0,1).'id';
         $omod = in_array(strtoupper($order),array('ASC','DESC','EQ')) ? strtoupper($order) : 'DESC';
-        $offset = req('offset');
+        $offset = basReq::val('offset');
         if($offset){
             if(strstr($omod,'DESC')){
                 $op = '<';
@@ -160,7 +160,7 @@ class vopStatic{
             $whrstr .= " AND $kname$op'$offset'";
         } 
         $whrstr = $whrstr ? substr($whrstr,5) : '1=1'; 
-        $data = db()->field("$kname$ftype,`show`")->table($tabid)->where($whrstr)->order("$kname $omod")->limit($limit)->select(); 
+        $data = glbDBObj::dbObj()->field("$kname$ftype,`show`")->table($tabid)->where($whrstr)->order("$kname $omod")->limit($limit)->select(); 
         $re = array();
         if(!empty($data)){
             foreach($data as $row){ 
@@ -191,7 +191,7 @@ class vopStatic{
             $fext = $mcfg['c']['stext'];
             $msg = '';
         } 
-        $dfix = req('offset');
+        $dfix = basReq::val('offset');
         $elen = strlen($fext);
         $ndir = DIR_HTML."/$mod$sub";
         if(!is_dir("$ndir")){ return false; };
@@ -257,7 +257,7 @@ class vopStatic{
             if(strpos($_cbase['tpl']['no_static'],$tpl)) continue;
             $file = DIR_SKIN."/$tpl/_config/vc_$mod.php";
             if(file_exists($file)){
-                include($file); 
+                include $file; 
                 $kc = "_vc_$mod"; $cfg = $$kc;
                 if($itype && !empty($cfg['c']['stypes']) && !in_array($itype,$cfg['c']['stypes'])){ 
                     continue; // 忽略不需要生成静态的页面
@@ -283,8 +283,8 @@ class vopStatic{
         $vcfg = glbConfig::vcfg($moda[0]); 
         if(@$vcfg['c']['vmode']!='static') return 0;
         $vext = empty($moda[2]) ? '' : ".$moda[2]";
-        $file = self::getPath($moda[0],$kid.$vext,0);
-        $flag = !tagCache::chkUpd("/$file",$vcfg['c']['stexp'],'htm');
+        $file = self::getPath($moda[0],$kid.$vext,0); 
+        $flag = !tagCache::chkUpd("/$file",$vcfg['c']['stexp'],'html');
         return $flag;    
     }
 

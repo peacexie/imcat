@@ -1,5 +1,5 @@
 <?php 
-require(dirname(__FILE__).'/_config.php'); 
+require dirname(__FILE__).'/_config.php'; 
 
 $act = @$_GET['act']; $act || $act = 'check'; 
 $inptype = @$_GET['inptype']; 
@@ -80,7 +80,7 @@ if($act=='check'){
   <tr>
     <td class="tc"><?php echo $key; ?></td>
     <td class="tc"><span style="color: #<?php echo $$key ? "ff0000" : "008000"; ?>; font-weight : bold;"><?php echo $$key ? lang('tools.chk_risk') : lang('tools.chk_safe'); ?></span></td>
-    <td><?php echo $key; ?>=<?php echo $$key; ?> (@code/cfgs/boot/cfg_adbug.php)</td>
+    <td><?php echo $key; ?>=<?php echo $$key; ?> (@root/cfgs/boot/cfg_adbug.php)</td>
     <td><?php lang('tools.chk_set0',0); ?></td>
   </tr>
   <?php }?>

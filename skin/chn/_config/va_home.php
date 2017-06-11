@@ -16,7 +16,7 @@ $_va_home = array(
     'm' => 'c_page/_home',
     
     //关闭模块
-    'close' => array('indoc','demo','votes'),
+    'close' => array('indoc','votes'),
     //文档/资讯:默认按va_docs设置
     //其他未设置模块按关闭处理
     

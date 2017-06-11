@@ -23,8 +23,8 @@ class basMsg{
 
     // show
     static function show($xMsg,$xAct='Redir',$xAddr=array(),$head=0){
-        $dialog = req('dialog','','');
-        $recbk = req('recbk','','Html'); 
+        $dialog = basReq::val('dialog','','');
+        $recbk = basReq::val('recbk','','Html'); 
         if(empty($xAddr) && $recbk) $xAddr = $recbk; 
         if($xAct=='die'){
             @header("HTTP/1.1 404 Not Found");
@@ -46,10 +46,10 @@ class basMsg{
         if(!empty($xAddr) && is_array($xAddr)){ $i=0; 
             foreach($xAddr as $ar){ $i++;
               $link = "<a href='$ar[1]'>$ar[0]</a>";
-              $str .= "\n<tr><td class='tc'>".($i>1 ? lang('core.msg_goto') : lang('core.msg_or'))."</td><td class='tl'>$link</td></tr>";
+              $str .= "\n<tr><td class='tc'>".($i>1 ? basLang::show('core.msg_goto') : basLang::show('core.msg_or'))."</td><td class='tl'>$link</td></tr>";
               if($i==1){ $lnks = $link; $lnka = $ar; }
             }
-            $str .= "\n<tr><td width='20%' class='tc'>".lang('core.msg_jumpto')."</td><td class='tc'>{$lnks}</td></tr>";
+            $str .= "\n<tr><td width='20%' class='tc'>".basLang::show('core.msg_jumpto')."</td><td class='tc'>{$lnks}</td></tr>";
         } 
         $tm = empty($_cbase['msg_timea']) ? 1503 : $_cbase['msg_timea']; 
         $pwin = $_cbase['sys_open']=='1' ? 'window.opener' : 'parent'; //window.opener,parent

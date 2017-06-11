@@ -41,7 +41,8 @@ class basStr{
 
     // 计算字符串字节数，英文算一个字节,不管[GBK/utf-8]编码中文算两个字节
     static function chrCount($str){
-        $ch = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
+        global $_cbase;
+        $ch = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
         $length = strlen(preg_replace('/[\x00-\x7F]/', '', $str)); 
         if($length){
             return strlen($str) - $length + intval($length / $ch) * 2;
@@ -53,7 +54,8 @@ class basStr{
     
     // *** 截取字符串，英文算一个,中文算一个 
     static function cutCount($str,$len=255){ 
-        $ch = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
+        global $_cbase;
+        $ch = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
         $n = strlen($str); //php函数原始长度
         $p = 0; //指针
         $cnt = 0; // 计数,英文算一个字符
@@ -70,9 +72,10 @@ class basStr{
     }
     
     // *** 截取字符串，得到等宽字符串
-    static function cutWidth($string, $length=24, $etc='...') {  
+    static function cutWidth($string, $length=24, $etc='...') {
+        global $_cbase;
         if(!$string) return ""; 
-        $clen = cfg('sys.cset')=='utf-8' ? 3 : 2; //中文宽度
+        $clen = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
         $sLen=0; $width=0; $strcut=''; $length=$length*2; //中文宽计算
         if(strlen($string) > $length) {
             //将$length换算成实际UTF8格式编码下字符串的长度
@@ -111,8 +114,9 @@ class basStr{
     // *** 显示状态
     // "Y;N;X;-","已审;未审;未过;未知",$SetShow);
     static function showState($xState,$xMsg,$val){
+        global $_cbase; 
         if($xMsg==""){ $xMsg=$xState; }
-        $sc = '333,'.cfg('ucfg.ctab').',999'; $ac = explode(',',$sc); 
+        $sc = '333,'.$_cbase['ucfg']['ctab'].',999'; $ac = explode(',',$sc); 
         $ak = explode(';',$xState); $am = explode(';',$xMsg);
         $j=0; $r="<span style='color:#CCC'>-</span>";
         for($i=0;$i<sizeof($ak);$i++) { 
@@ -139,15 +143,14 @@ class basStr{
     // Filter转义/还原
 
     // *** 文本文件
-    static function filText($xStr,$cbr=1){  
-        if(is_array($xStr)) {
-            foreach($xStr as $k => $v) $xStr[$k] = self::filText($v);
-        }else{
-            $xStr = htmlentities($xStr,ENT_QUOTES,"UTF-8"); //ENT_QUOTES:编码双引号和单引号
-            $xStr = str_replace(array('<','>'),array('&lt;','&gt;'),$xStr);
-            if($cbr) $xStr = nl2br($xStr);
+    static function filText($str,$cbr=1){
+        if(is_array($str)) {
+            foreach($str as $key => $val) $str[$key] = self::filText($val,$cbr);
+        }else{// 不用:html(specialchars/entities) : 1-不好记, 2-不兼容数组, 3-php5.4+gbk返回空
+            $str = str_replace(array('&','"',"'",'<','>'), array('&amp;','&quot;',"&#039;",'&lt;','&gt;'), $str);
+            if($cbr) $str = nl2br($str); // htmlentities($str,3,"UTF-8");
         }
-        return $xStr;
+        return $str;
     }
     // *** 过滤危险的HTML
     static function filHtml($val){
@@ -168,9 +171,8 @@ class basStr{
         return $xStr; // nl2br($s);
     }
     // *** Form中字符编码
-    static function filForm($xStr,$type=3) {
-        $xStr = htmlentities($xStr,$type,"UTF-8"); //type=3=ENT_QUOTES:编码双引号和单引号
-        return $xStr;
+    static function filForm($str) {
+        return self::filText($str,0);
     }
     // *** Account过滤帐号
     static function filKey($str,$ext='_'){

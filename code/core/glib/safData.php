@@ -47,7 +47,7 @@ class safData{ // extends safBase
   
   // plan: xxx -------------------------- 
   static function planMain($str,$plan='',$nmax=0){ 
-      $_safil = read('sfdata','ex');
+      $_safil = glbConfig::read('sfdata','ex');
       if(empty($str) || empty($_safil['plan'][$plan])) return;
       $plan = $_safil['plan'][$plan];
       $n = 0; //Words,4,mark
@@ -99,7 +99,7 @@ class safData{ // extends safBase
     
     // rules: 常用词>N个 -------------------------- 
     static function ruleNCom($str,$n=1,$re='mark',$tab='cn'){ 
-        $_safil = read('sfdata','ex');
+        $_safil = glbConfig::read('sfdata','ex');
         $str = strip_tags($str);
         $str = trim($str);
         if($tab=='cn'){
@@ -171,7 +171,7 @@ class safData{ // extends safBase
     
     // rules-tab: 得到关键字表 -------------------------- 
     static function _ruleTab($key='key',$tab='(all)'){ 
-        $_safil = read('sfdata','ex');
+        $_safil = glbConfig::read('sfdata','ex');
         $rk = '';
         if($tab=='(all)'){
             $t = $_safil["tab_$key"];
@@ -187,8 +187,9 @@ class safData{ // extends safBase
     
 
     // XXX
-    static function XXXXXX($act='init'){  
-        $safix = cfg('safe.safix');
+    static function XXXXXX($act='init'){
+        global $_cbase;
+        $safix = $_cbase['safe']['safix'];
         if($act=='init'){
 
         }else{

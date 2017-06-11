@@ -20,7 +20,7 @@ sa
 * Add: `Save Content to file` (NOT save to db as common fields)
  - Whow to use see: Faq system online
 * Add: Multi-db config, It's a nother step to the High-end!
- - Whow to use see: code/cfgs/boot/cfg_db.php-cdemo (The notice)
+ - Whow to use see: root/cfgs/boot/cfg_db.php-cdemo (The notice)
 * Add: js plug: prettyPhoto --- a set of image player plug
  - Whow to use see: /vimp/vendui/prettyPhoto/demo.html
 * Add: doT --- a set of js template engine

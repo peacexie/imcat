@@ -1,5 +1,5 @@
 <?php 
-require('api_cfg.php'); 
+require 'api_cfg.php'; 
 $larr = array(
     'en'=>'en',
     'gb'=>'en',

@@ -14,12 +14,12 @@ class safComm{ // extends safBase
         //fromUrl 认证
         self::urlFrom($path);
         $rest = self::formCInit('x', $timeout);
-        $code = req("{$mod}_{$rest[1]}");
+        $code = basReq::val("{$mod}_{$rest[1]}");
         $revc = self::formCVimg($mod, $code, 'check', $timeout, 1);
         if(!empty($rest[0])){ 
-            $re = lang('safcomm_vcoderr')."[$rest[0]]";
+            $re = basLang::show('safcomm_vcoderr')."[$rest[0]]";
         }elseif(!empty($revc)){ //认证码 认证
-            $re = lang('safcomm_vcoderr')."[$revc]";
+            $re = basLang::show('safcomm_vcoderr')."[$revc]";
         }
         return array($re,$code); //认证结果
     }
@@ -73,12 +73,12 @@ class safComm{ // extends safBase
             $restr = "<input type='hidden' name='{$safix}[dt]' value='$dval' />";
             $restr .= "<input type='hidden' name='{$safix}[tm]' value='$stamp' />";
             $restr .= "<input type='hidden' name='{$safix}[enc]' value='$encode' />";
-            $fmid = req('fmid',''); $tabi = req('tabi',19790);
-            $pos = req('pos',''); 
-            $css1 = req('css1','form-control'); // txt w60
-            $css2 = req('css2','fs_vimg');
+            $fmid = basReq::val('fmid',''); $tabi = basReq::val('tabi',19790);
+            $pos = basReq::val('pos',''); 
+            $css1 = basReq::val('css1','form-control'); // txt w60
+            $css2 = basReq::val('css2','fs_vimg');
             $senc = comConvert::sysEncode($sform,$stamp,$len2); 
-            $vstr = "maxlength='5' reg='vimg:3-5' tip='".lang('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
+            $vstr = "maxlength='5' reg='vimg:3-5' tip='".basLang::show('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
             $restr .= "<input id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus=\\\"fsCode('{$fmid}',0,'$pos')\\\" $vstr />";
             $restr .= "<samp id='{$fmid}_vBox' class='$css2' style='display:none'></samp>"; //samp,span, style='width:50px;'
             return $restr;
@@ -197,13 +197,13 @@ class safComm{ // extends safBase
     --- signVeryfy
     签名: data=array, keys='k1,k2'
     认证: data=timeout, keys='k1,k2'
-    $act = req('act','sign');
+    $act = basReq::val('act','sign');
     if($act=='sign'){
         $arr = array('act'=>'check','aa'=>'aa1','bb'=>'bb1',);
         $str = safComm::signVeryfy($arr,'act,aa');
         echo ":<a href='?$str' target='_blank'>$str</a>:";
     }elseif($act=='check'){
-        $timeout = req('timeout','5');
+        $timeout = basReq::val('timeout','5');
         $res = safComm::signVeryfy($timeout,'act,aa');
         echo $res;
     }*/

@@ -195,7 +195,7 @@ if($mod=='mumem' && $view=='glist'){
 
 }elseif($view=='set'){
     
-    require(dirname(dirname(__FILE__)).'/binc/set_id.php');
+    require dirname(dirname(__FILE__)).'/binc/set_id.php';
 
 }
 

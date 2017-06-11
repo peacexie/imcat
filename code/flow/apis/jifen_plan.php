@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 
 $tabid = 'bext_paras'; //$tabid = 'bext_jifen'; die('coming soon!');
 $pid = empty($pid) ? 'jifen_grade' : $pid;
@@ -107,7 +107,7 @@ if($view=='upd'){
     
     // 删除操作
     if(!empty($bsend)){
-        require(dirname(dirname(__FILE__)).'/binc/act_ops.php');
+        require dirname(dirname(__FILE__)).'/binc/act_ops.php';
     } 
     
     $umsg = $msg ? "<span class='cF00'>$msg</span>" : '';

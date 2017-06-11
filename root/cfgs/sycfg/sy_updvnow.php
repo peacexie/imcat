@@ -9,7 +9,7 @@ $_sy_updvnow['selfcfgs'] = array(
     'cfgs/excfg/ex_paras.php',
     'cfgs/sycfg/sy_vopcfg.php',
     
-    'cfgs/scfile/ex_fadm.php',
+    'cfgs/scfile/sc_fadm.php',
     'cfgs/boot/_paths.php',
     
 );

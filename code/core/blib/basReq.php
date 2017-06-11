@@ -27,7 +27,7 @@ class basReq{
     // Request Vars
     // Demo : extract(basReq::sysVars());
     static function sysVars(){ //in($_GET['fm'],'Title'); 
-        $sy_sids = read('sysids','sy');
+        $sy_sids = glbConfig::read('sysids','sy');
         $re = array();
         foreach($sy_sids['GET'] as $key){
             $re[$key] = self::gp($key,array());
@@ -111,7 +111,6 @@ class basReq{
     
     static function in($data,$type=''){
         if(is_string($data)){
-            //$data=trim(htmlspecialchars($data));//防止被挂马，跨站攻击
             $data = $type ? self::fmt($data,'',$type) : addslashes($data);//防止sql注入
         }else if(is_array($data)){ //如果是数组采用递归过滤
             foreach($data as $key=>$value){

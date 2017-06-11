@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(__FILE__).'/_pub_cfgs.php');
+require dirname(__FILE__).'/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_psyn'; 
 $job = req("job"); 
@@ -138,7 +138,7 @@ if($view=='list'){
     if(!empty($bsend)){
         $vbak = $view;
         $view = 'del_b3';
-        require(dirname(dirname(__FILE__)).'/binc/exd_inc1.php');
+        require dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
         $view = $vbak;
     } 
     

@@ -102,7 +102,8 @@ class glbHtml{
 
     // header
     static function head($type='js',$cset=''){
-        $cset = $cset ? $cset : cfg('sys.cset');
+        global $_cbase;
+        $cset = $cset ? $cset : $_cbase['sys']['cset'];
         $a = array(
             'html'=>'text/html',
             'css'=>'text/css',
@@ -117,7 +118,7 @@ class glbHtml{
     
     // domain_allow跨域允许
     static function dallow($domain=''){
-        $allow = read('domain.dmacc','sy'); 
+        $allow = glbConfig::read('domain.dmacc','sy'); 
         if(empty($domain)){
             @$aurl = parse_url($_SERVER["HTTP_REFERER"]);
             @$domain = $aurl['host'];
@@ -142,7 +143,7 @@ class glbHtml{
     static function fmt_head($fmid,$fmact,$tbcss='',$win='',$tbbrd=1){
         $fmact = basReq::getURep($fmact,'recbk');
         echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
-        $recbk = req('recbk','');
+        $recbk = basReq::val('recbk','');
         $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
         echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
         echo "<table border='$tbbrd' class='$tbcss'>\n"; 
@@ -215,8 +216,8 @@ class glbHtml{
     
     // PageEnd()
     static function end($msg='',$end=''){
-        $headed = cfg('run.headed');
-        if(empty($headed)){
+        global $_cbase;
+        if(empty($_cbase['run']['headed'])){
             self::page('');
         }
         if($end) echo "$end\n";

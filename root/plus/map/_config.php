@@ -1,7 +1,7 @@
 <?php
 $_cbase['skip']['_all_'] = true;
 $_cbase['ucfg']['lang'] = '(auto)'; 
-require(dirname(dirname(dirname(__FILE__))).'/run/_init.php'); 
+require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 
 
 $urls = array(
     'baidu' => 'http://api.map.baidu.com/api?v=1.4',

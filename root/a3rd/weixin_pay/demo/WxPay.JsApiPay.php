@@ -1,5 +1,5 @@
 <?php
-require_once dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
+require dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
 
 /**
  * 

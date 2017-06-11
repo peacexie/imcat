@@ -1,12 +1,12 @@
 
 
-## AppServer说明(Server for App Notice)
+## ApiServer/AppServer 说明(Notice)
 
 
 #### 说明
 
 * 目的,意义
- - 目的: 这里仅做为App的服务端，提供本系统的信息
+ - 目的: 这里仅做为App/Api的服务端，提供本系统的信息
  - 因为仅提供数据，本入口进去不启用模板解析
  - 为安全起见，每次请求，请安如下url签名进行处理
 
@@ -32,7 +32,7 @@
 #### Notes
 
 * Purpose
- - Here just act as the `App server`, and apply infomations for it.
+ - Here just act as the `App/Api server`, and apply infomations for it.
  - Because only provide data for app, This entry does not use the template parsing
  - For the safety, the url must deal(signature) as below
 

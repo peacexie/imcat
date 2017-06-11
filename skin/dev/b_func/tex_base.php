@@ -9,7 +9,7 @@ class tex_base{
     static function init($obj){
         global $_cbase;
         if(!empty($_cbase['login_dev'])){
-            $user = user(); $msg = '';
+            $user = usrBase::userObj(); $msg = '';
             if(empty($user)){
                 $msg = '需要'.($_cbase['login_dev']=='adminer' ? 'adminer' : '').'登录查看！';
             }elseif($_cbase['login_dev']=='adminer' && $user->userType!='adminer'){
@@ -41,7 +41,7 @@ class tex_base{
     }
     
     static function uplog_furl(){ 
-        include(vopTpls::pinc("d_uplog/a_cfgs"));
+        include vopTpls::pinc("d_uplog/a_cfgs");
         $mkv = 'uplog';
         foreach ($cfgs as $key => $val) {
             if($key!='readme'){

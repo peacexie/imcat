@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/_cfgcom.php'); 
+require dirname(__FILE__).'/_cfgcom.php'; 
 
 $adeel = dirname(__FILE__)."/{$mod}.php"; 
 if(file_exists($adeel)){ die("It must deel with [{$mod}.php]." ); }
@@ -15,7 +15,7 @@ if(!empty($bsend)){
     }
     
     if(file_exists($asave)){
-        require($asave);
+        require $asave;
     }else{
         $dop->svPrep(); 
         $dop->svAKey();
@@ -28,7 +28,7 @@ if(!empty($bsend)){
 }else{
     
     if(file_exists($aform)){
-        require($aform);
+        require $aform;
     }else{
         dopCheck::headComm();
         $dop->fmo = $fmo = array();

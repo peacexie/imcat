@@ -16,7 +16,7 @@
 
 * 备份程序文件
  - 主要备份：/code 和 /root目录。
- - 重要文件（夹）：/code/cfgs/目录，/code/cfgs/boot/_paths.php文件。
+ - 重要文件（夹）：/root/cfgs/目录，/root/cfgs/boot/_paths.php文件。
 
 
 #preset#升级前准备
@@ -28,11 +28,11 @@
 * 覆盖升级文件
  - /code/core/下：blib/clib/glib/sdev子目录
  - /root/tools/setup下文件 (除index.php安装入口)
- - /code/cfgs/boot/cfg_load.php 自动加载配置 如果需要手动对比$_cfgs['acdir']配置
+ - /root/cfgs/boot/cfg_load.php 自动加载配置 如果需要手动对比$_cfgs['acdir']配置
  
 * 再次备份配置
- - /code/cfgs/目录，
- - /code/cfgs/boot/_paths.php文件
+ - /root/cfgs/目录，
+ - /root/cfgs/boot/_paths.php文件
  - 设置 /code 和 /root 目录可写（升级时要复制添加文件或修改文件）。
 
 * 执行入口：
@@ -69,8 +69,8 @@
  - 修正数据库结构后，可重新初始化缓存再对比，以达到可导入数据的条件。
 
 * 设置对比数据库：
- - 设置配置文件：{code}/cfgs/excfg/ex_outdb.php (下方的$_cfgs相关配置)
- - 提示：可从旧版的{code}/cfgs/boot/cfg_db.php中复制过来
+ - 设置配置文件：/root/cfgs/excfg/ex_outdb.php (下方的$_cfgs相关配置)
+ - 提示：可从旧版的/root/cfgs/boot/cfg_db.php中复制过来
 
 * 初始化缓存：
  - 请首先执行

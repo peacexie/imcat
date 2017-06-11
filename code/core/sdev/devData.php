@@ -8,7 +8,7 @@ class devData{
     // runSql
     static function run1Sql($sql,$rep=''){
         if(empty($sql)) return true;
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         //if($rep=='Update'){
             $sql = str_replace("INSERT INTO `{pre}","REPLACE INTO `{pre}",$sql); 
         //}
@@ -56,7 +56,7 @@ class devData{
             return $ctmp;
         }
         $shead = $sins = "";
-        $list = db()->table($tab)->where($whr)->select(); 
+        $list = glbDBObj::dbObj()->table($tab)->where($whr)->select(); 
         if($list){ //分块未考虑... 
             $shead = devBase::_tabHead($tab); $i = 0; 
             foreach($list as $row){
@@ -96,7 +96,7 @@ class devData{
     
     // struImp('/dbexp/'); 从文件导入结构
     static function struImp($path){
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         $file = DIR_DTMP.$path.'_stru_tables.dbsql';
         $data = comFiles::get($file);
         $fix1 = 'DROP TABLE IF EXISTS `'; 
@@ -222,7 +222,7 @@ class devData{
     
     // dataImpFile("/dborg/data~",'base_fields'); 从文件导入数据
     static function dataImpFile($path,$tab,$dtmp=0){
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         $tabfull = $db->pre.$tab.$db->ext;
         $path = ($dtmp ? $dtmp : DIR_DTMP).$path;
         $file = str_replace("\\","/",$path."$tab.dbsql"); 
@@ -240,7 +240,7 @@ class devData{
     
     // dataImpInsert("/dborg/data~",'base_fields'); 从文件导入数据
     static function dataImpInsert($path,$tab,$dtmp=0){
-        $db = db(); 
+        $db = glbDBObj::dbObj(); 
         $tabfull = $db->pre.$tab.$db->ext;
         $path = ($dtmp ? $dtmp : DIR_DTMP).$path;
         $file = str_replace("\\","/",$path."$tab.dbsql"); 
@@ -264,7 +264,8 @@ class devData{
     }
 
     static function dataImpLang($sql,$tabs){
-        $lang = cfg('sys.lang');
+        global $_cbase;
+        $lang = $_cbase['sys']['lang'];
         if($lang!=='cn'){ 
             $taba = explode(',',$tabs);
             $rcn = $ren = array();
@@ -272,8 +273,8 @@ class devData{
                 $cnlang = DIR_CODE."/lang/dbins/$tab-cn.php"; 
                 $oblang = DIR_CODE."/lang/dbins/$tab-$lang.php"; 
                 if(file_exists($oblang)){
-                    $rcn[$tab] = include($cnlang); 
-                    $ren[$tab] = include($oblang); 
+                    $rcn[$tab] = include $cnlang; 
+                    $ren[$tab] = include $oblang; 
                 }else{
                     return $sql;
                 }

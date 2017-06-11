@@ -656,6 +656,30 @@ CREATE TABLE `{pre}coms_kerem{ext}` (
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}coms_notea{ext}`;
+CREATE TABLE `{pre}coms_notea{ext}` (
+  `cid` varchar(24) NOT NULL,
+  `cno` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL,
+  `detail` text NOT NULL,
+  `mname` varchar(24) DEFAULT '',
+  `mtel` varchar(24) DEFAULT '',
+  `memail` varchar(255) DEFAULT NULL,
+  `miuid` varchar(120) NOT NULL,
+  `mweb` varchar(255) DEFAULT NULL,
+  `maddr` varchar(120) DEFAULT NULL,
+  `show` tinyint(4) NOT NULL DEFAULT '0',
+  `leixing` varchar(12) NOT NULL DEFAULT 't124',
+  `reply` text,
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}coms_nrem{ext}`;
 CREATE TABLE `{pre}coms_nrem{ext}` (
   `cid` varchar(24) NOT NULL,

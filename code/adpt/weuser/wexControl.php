@@ -110,7 +110,7 @@ class wexControl{
         $whrstr = "sid='$scene' AND stat='LoginOK' AND extp='$extp' AND auser='$uniqueid' AND smod='login'"; //安全吗？!!! 
         $row = $db->table('wex_qrcode')->where("$whrstr AND atime>'".($_cbase['run']['stamp']-5*60)."'")->find();
         if(!empty($row['openid'])){ //!empty($row['extp']) && 
-            $uname = wysUser::setLoginLogger($row['openid']);
+            $uname = usrExtra::setLoginLogger($row['openid']);
             $this->status['error'] = '';
             $this->status['message'] = "登录成功。";
             $this->status['uname'] = $uname;

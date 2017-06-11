@@ -1,0 +1,43 @@
+
+
+#shenming#Service statement
+
+* Free open source
+ - IntimateCat, A set of free, open source system that follows the MIT Protocol;
+ - The system itself is not encrypted, free modification, free use.
+
+* Your own template
+ - In the demo template, We just Demonstration the system function;
+ - The template in your case, We strongly recommend your `DIY`;
+
+
+#free#Free resources
+
+* Free resources(Self-help)
+ - Chinese document：http://txmao.txjia.com/dev.php
+ - English document：http://txmao.txjia.com/doc.php
+ - Faq System：http://txmao.txjia.com/root/run/umc.php?faqs
+
+* Friends exchange (mutual aid)
+ - See: the topic : `[Good news] 二次开发/定制 供需说明`
+ - http://txmao.txjia.com/root/run/umc.php?faqs.2017-3b-n5b1
+ - Casual say(message/complaints) http://txmao.txjia.com/dev.php?info-gbook
+ - QQ-Group：607070548
+
+
+#fee#Individual service
+
+* Scope of services
+ - We provide free consultation and solution advice for the advanced user, include program customization / data conversion / interface development and so on.
+ - Welcome report bugs! we will trace the bug(s) until fixed or fix it at next upgrade;
+ - As time and energy are limited, That's all of the services for you! The following is `naked money relationship' ------ For life, For individua!
+ - Speaking of this, you can <a href="?info-help">Donate directly</a>...
+
+
+* Paid services
+ - IntimateCat Provide (`Limited` and `Amateur`) service for the Advanced user (Template, We strongly recommend your `DIY`);
+ - Program customization : We provide functional customization based on this system; (fully shows the powerful extended characteristic) 
+ - Data conversion : Convert other system's Data into this system, like as the data based on MYSQL,MSSQL,ACCESS...
+ - Value-added service : Interface development, Setup environment, Software upgrade, Data transfer and so on...
+ - Notice：About the details, we can interviews, I usually do this on weekend or holidays (during the spare time)
+

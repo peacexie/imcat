@@ -329,6 +329,15 @@ $_muadm = array (
       'deep' => '3',
       'cfgs' => '?file=dops/a&mod=gbook',
     ),
+    'm3notea' => 
+    array (
+      'kid' => 'm3notea',
+      'pid' => 'm2else',
+      'title' => '站务笔记管理',
+      'deep' => '3',
+      'cfgs' => '笔记管理(!)?file=dops/a&mod=notea
+发布(!)notea(!)jsadd',
+    ),
     'm1adv' => 
     array (
       'kid' => 'm1adv',

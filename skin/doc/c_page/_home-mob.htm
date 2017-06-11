@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta('Manual/Guides'); }
+{php glbHtml::page('keywords',lang('tools.home_exkwd')); }
+{php glbHtml::page('description',lang('tools.home_exdes')); }
+{php $this->pimp(); } 
+</head><body> 
+
+
+<div class="header">
+  <div class="dropdown pull-right">
+  <button class="btn btn-primary dropdown-toggle bg-primary" type="button" id="nav_hsub2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    Manual
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="nav_hdoc1">
+    {inc:"c_pub/mmenu"}
+    <li><a href="{surl(dev:0)}" target="_blank"><i class="glyphicon glyphicon-euro"></i>中文文档</a></li>
+    <li><a href="{PATH_PROJ}/?start" target="_blank"><i class="glyphicon glyphicon-cog"></i>Start Page</a></li>
+    <li><a href="{PATH_PROJ}" target="_blank"><i class="glyphicon glyphicon-home"></i>Homepage</a></li>
+  </ul>
+  </div>
+  <div class="dropdown pull-left">
+  <button class="btn btn-primary dropdown-toggle bg-primary" type="button" id="nav_hdoc1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    IntimateCat
+  </button>
+  </div>
+</div>
+
+<p class="text-center pa10">Guides ------ <br>
+Let your develop DIY!</p>
+<h1 class="home-title">
+{$_cbase['sys_name']} Manual
+</h1>
+<p class="text-center bg-primary pa10">Lightweight, free, sharing ... </p>
+
+
+<div class="container">
+<div class="h15">&nbsp;</div>
+
+
+  {code:"d_uplog/a_cfgs"}
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a>Versions</a></li>
+    <li role="presentation"><a>News</a></li>
+    <li role="presentation"><a>Nav</a></li>
+  </ul>
+  <ul class="home-block">
+    <?php 
+      $ik = 0; $imax = 6;
+      foreach($cfgs as $k=>$v){ 
+      if($ik>=$imax) continue; 
+      if(in_array($k,array('readme','2_x'))) continue; 
+      $iver=str_replace('_','.',$k); 
+    ?>
+    <li>
+      <i class="right">Ver:{$iver}</i>{if is_numeric($v[0])}Pub.Date:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+    </li>
+    <?php $ik++; } ?>
+  </ul>
+  <ul class="home-block hide">
+    {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
+    <li>
+      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+    </li>
+    {/tag:tlist3}
+    {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
+    <li>
+      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+    </li>
+    {/tag:tlist2}
+    {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
+    <li>
+      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+    </li>
+    {/tag:tlist1}
+  </ul>
+  <ul class="row home-block hide" id='home-bnav'>
+
+    <li class="col-xs-4 col-md-4"><a href="{surl(start)}" type="button" class="btn btn-default">FastStart</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(tpltag)}" type="button" class="btn btn-default">Tpl/Tag</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(dev2nd)}" type="button" class="btn btn-default">Develop</a></li>
+    
+    <li class="col-xs-4 col-md-4"><a href="{surl(advset)}" type="button" class="btn btn-default">Setting</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(info-help)}" type="button" class="btn btn-default">Help</a></li> 
+    <li class="col-xs-4 col-md-4"><a href="{surl(tools)}" type="button" class="btn btn-default" target="_blank">Tools</a></li>
+
+    <li class="col-xs-4 col-md-4"><a href="{surl(tester)}" type="button" class="btn btn-default" target="_blank">Tester</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(umc:faqs)}" type="button" class="btn btn-default" target="_blank">[Faqs]</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(mob:votes)}" type="button" class="btn btn-default" target="_blank">[Votes]</a></li>
+    
+    <li class="col-xs-4 col-md-4"><a href="{surl(info)}" type="button" class="btn btn-default" target="_blank">[Nav]</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(umc:?login)}" type="button" class="btn btn-default" target="_blank">[Login]</a></li>
+    <li class="col-xs-4 col-md-4"><a href="{surl(umc:?reg)}" type="button" class="btn btn-default" target="_blank">[Reg.]</a></li>
+  </ul>
+
+
+  <div class="h15">&nbsp;</div>
+  <?php
+  $null2 = "<span class='cCCC'>------</span>";
+  $i_v = 0;
+  $subs = tex_base::docer('d_start/doc__home'); 
+  ?>
+  <div class="panel panel-primary">
+    {loop $subs $k $v}
+    <div class="panel-heading" phdid='{$i_v}'>
+      <i class="glyphicon glyphicon-chevron-right right"></i>
+      {$_cbase['sys_name']}：{$v['title']}
+    </div>
+    <div class="panel-body">
+      <?php echo $v['detail']; ?>
+    </div>
+    {if $i_v<count($subs)-1}<div class="h01">&nbsp;</div>{/if}
+    <?php $i_v++; ?>{/loop}
+  </div>
+
+
+</div>
+{inc:"c_pub/mfoot"}
+</body></html>
+
+
+<script>
+
+var tipno = 0; showTip1(0);
+var tplay = setInterval(showNext,3700);
+$('.panel-heading').click(function(){
+  clearInterval(tplay);
+  var id = $(this).attr('phdid');
+  showTip1(id);  
+});
+
+$('.nav-tabs li').click(function(){
+  var id = $(this).index();
+  $('.nav-tabs li').removeClass('active');
+  $(this).addClass('active');
+  $('.home-block').addClass('hide');
+  $('.home-block').eq(id).removeClass('hide');
+});
+
+</script>
+
+<!--`{php echo basDebug::runInfo(); }`-->

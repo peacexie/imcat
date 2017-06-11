@@ -14,7 +14,7 @@ class exvFunc{
             }
             return '';
         }else{
-            return req('mod','');    
+            return basReq::val('mod','');    
         }
     }
 

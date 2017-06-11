@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require(dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php');
+require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
 
 $part = req('part','dtmp'); 
 $purls = comStore::cfgDirPath(0,'arr'); 

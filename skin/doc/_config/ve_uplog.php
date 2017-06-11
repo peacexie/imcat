@@ -8,6 +8,7 @@ $_ve_uplog = array(
     'c' => array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
+        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     'm' => 'c_demo/uplog_main',
     'd' => 'c_demo/uplog_main',
@@ -23,7 +24,7 @@ $_ve_uplog = array(
     
 );
 
-include(dirname(dirname(__FILE__)).'/d_uplog/a_cfgs.php');
+include dirname(dirname(__FILE__)).'/d_uplog/a_cfgs.php';
 foreach ($cfgs as $key => $v) {
     if(preg_match("/\d{1,2}_\w{1,2}/",$key)){
         $_ve_uplog[$key] = 'c_demo/uplog_main';

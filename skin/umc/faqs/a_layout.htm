@@ -5,9 +5,7 @@ $keywd = req('keywd');
 ?>{/block:init}
 <!DOCTYPE html><html><head>
 <?php
-if(!empty($title)){
-  $title = $title.'-'.lang('user.qa_title');
-}else{
+if(empty($title)){
   $title = lang('user.qa_title').'-'.$_cbase['sys_name'];
 }
 ?>

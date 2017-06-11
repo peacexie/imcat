@@ -112,9 +112,9 @@ class comTypes{
     
     // getOptions(Select)
     static function getOpt($arr,$def='',$msg='',$frame=1){ 
-        $_groups = read('groups'); 
+        $_groups = glbConfig::read('groups'); 
         if(is_string($arr) && isset($_groups[$arr])){
-            $imod = read($arr);
+            $imod = glbConfig::read($arr);
             $arr = $imod['i'];  
         }
         $a = basArray::opaItems($arr,'',$frame);

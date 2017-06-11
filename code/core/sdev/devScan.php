@@ -5,7 +5,7 @@ class devScan{
 
     // cdbStrus(); // 无主索引数据表, varchar(>255)字段, 组合索引数据表 检测
     static function cdbStrus($part){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $tabs = $db->tables();
         $re = ''; $ns = ''; $np = 0;
         foreach($tabs as $tab){ 
@@ -30,13 +30,18 @@ class devScan{
             comFiles::delDir(DIR_DTMP."/$dir",0);
         }
         comFiles::put(DIR_DTMP.updBase::$prereset,"done=locked");
+        /*
+        $lists = glob(DIR_DTMP.'/weixin/qqcon_*.cac_txt');
+        foreach ($lists as $fp) {
+            unlink($fp);
+        }*/
         //comFiles::delDir(DIR_URES,0); //,"@setup_flag.txt"
         //comFiles::delDir(DIR_HTML,0);
     }    
     
     // clrLogs();
     static function clrLogs(){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $stnow = $_SERVER["REQUEST_TIME"];
         // 432000=5day, 86400=1天 active_online
         $db->table('active_admin')->where("stime<'".($stnow-86400)."'")->delete(); 
@@ -103,11 +108,11 @@ class devScan{
     }
     // rstRndata();
     static function rstRndata($path='/dbexp/data~'){
-        $cfgs = read('pubcfg','sy');
+        $cfgs = glbConfig::read('pubcfg','sy');
         foreach($cfgs['rndata'] as $tab=>$cfg){
             if(strpos($tab,':')) $tab = substr($tab,0,strpos($tab,':'));
             $file = str_replace("\\","/",DIR_DTMP.$path."$tab.dbsql");
-            $list = db()->table($tab)->field($cfg[1])->where($cfg[0])->select();
+            $list = glbDBObj::dbObj()->table($tab)->field($cfg[1])->where($cfg[0])->select();
             if($list){    
                 $data = $dbak = comFiles::get($file);
                 foreach($list as $row){
@@ -130,7 +135,7 @@ class devScan{
     
     // rstIDPW();
     static function rstIDPW($uname='',$upass=''){
-        $db = db();
+        $db = glbDBObj::dbObj();
         $enc = comConvert::sysPass($uname,$upass,'adminer');
         $db->table('users_uacc')->data(array('uname'=>$uname,'upass'=>$enc))->where("aip='(reset)'")->update();
         $db->table('users_adminer')->data(array('uname'=>$uname))->where("aip='(reset)'")->update();
@@ -168,7 +173,8 @@ class devScan{
     
     static function pubMain($pdir,$cfgs){ 
         // copy : root
-        comFiles::copyDir(DIR_PROJ,$pdir,array(),$cfgs['skfiles']);
+        $skip = isset($cfgs['skip']['main']) ? $cfgs['skip']['main'] : array();
+        comFiles::copyDir(DIR_PROJ,$pdir,$skip,$cfgs['skfiles']);
         // reset : ids
         foreach($cfgs['ids'] as $v){
             self::rstVals("$pdir/".$v[0]."$v[1]",$v[2]);
@@ -204,8 +210,8 @@ class devScan{
     }
     // 重新发布目录
     static function rstPub(){
-        $cfgs = read('pubcfg','sy');
-        $part = req('part','main'); //part=main/vars/vimp
+        $cfgs = glbConfig::read('pubcfg','sy');
+        $part = basReq::val('part','main'); //part=main/vars/vimp
         $pdir = dirname(DIR_PROJ).'/'.date('md-His-').$part; 
         mkdir($pdir,0777);
         $method = 'pub'.ucfirst($part);

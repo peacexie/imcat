@@ -37,7 +37,7 @@
 
 * Adjust logo directory
  - Move some logo from `/skin/_pub/a_img/` to `/skin/_pub/logo/`
- - Move some tpls from `/code/cfgs/sinc/` to `/skin/_pub/stpl/`
+ - Move some tpls from `/root/cfgs/sinc/` to `/skin/_pub/stpl/`
  - Make it easier for operators to manage their icons/logos
 
 * Add: Add / Enrich use of template

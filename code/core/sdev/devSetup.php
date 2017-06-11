@@ -20,7 +20,7 @@ class devSetup{
         }else{ // &act=Close&acg=mods&mod=inrem
             $tab = $type=='mods' ? 'base_model' : 'base_menu';
             $data = array('enable'=>$act=='Close'?0:1);
-            db()->table($tab)->data($data)->where("kid='$mod'")->update();
+            glbDBObj::dbObj()->table($tab)->data($data)->where("kid='$mod'")->update();
         }
         if($type=='mods'){
             glbCUpd::upd_groups(); 
@@ -61,7 +61,7 @@ class devSetup{
     static function ins1Menu($menu,$data=array(),$pid=0){
         if(empty($menu)) return array();
         $idata = self::ins1Data($data,"menu_$menu");
-        $mpid = req($menu); if(empty($mpid)) $mpid = $pid;
+        $mpid = basReq::val($menu); if(empty($mpid)) $mpid = $pid;
         $idata = str_replace(",'(pid-$menu)',",",'$mpid',",$idata);
         $flag = devData::run1Sql($idata);
         return 'OK!';
@@ -71,8 +71,8 @@ class devSetup{
     static function expGroup($mods,$menus='',$xxx=''){
         if(strlen("$mods$menus")==0) return '';
         $data = $mids = $ares = array(); 
-        $_groups = read('groups'); 
-        $_muadm = read('muadm.i'); 
+        $_groups = glbConfig::read('groups'); 
+        $_muadm = glbConfig::read('muadm.i'); 
         // menu
         $marr = explode(',',$menus);
         foreach ($marr as $menu) {
@@ -124,11 +124,11 @@ class devSetup{
             $jstr .= "$k='$v', ";
         }
         if($nstep==5 || self::isSetuped()){
-            basMsg::show(lang('devsetup_deltip')."<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]".lang('devsetup_dt1')."<br>_setup_step.txt ".lang('devsetup_dt2')." _setup_lock.txt".lang('devsetup_dt3')."",'die');
+            basMsg::show(basLang::show('devsetup_deltip')."<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]".basLang::show('devsetup_dt1')."<br>_setup_step.txt ".basLang::show('devsetup_dt2')." _setup_lock.txt".basLang::show('devsetup_dt3')."",'die');
         }
         $pvInfo = devRun::verPHP(); //定义了FLAGYES/FLAGNO常量
         $jstr .= "\nfYES='".FLAGYES."',\nfNO='".FLAGNO."',";
-        $jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? lang('devsetup_donen') : lang('devsetup_nosetup'))."',";
+        $jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? basLang::show('devsetup_donen') : basLang::show('devsetup_nosetup'))."',";
         
         $files = comFiles::listDir(DIR_DTMP.'/dborg'); 
         $all_tabs = array_keys($files['file']); 
@@ -166,7 +166,7 @@ class devSetup{
             $re = devRun::$k(); 
             $re = $re['res']; 
             if($re!=FLAGYES){ 
-                $re = array('res'=>'','msg'=>lang('devsetup_chkenv'));
+                $re = array('res'=>'','msg'=>basLang::show('devsetup_chkenv'));
                 self::ajaxStop($re);
             }
         }
@@ -174,7 +174,7 @@ class devSetup{
         foreach($cfg as $re){ 
             $re = $re['res'];
             if($re!=FLAGYES){ 
-                $re = array('res'=>'','msg'=>lang('devsetup_chkdir'));
+                $re = array('res'=>'','msg'=>basLang::show('devsetup_chkdir'));
                 self::ajaxStop($re);
             }
         }
@@ -184,7 +184,7 @@ class devSetup{
             if($re==FLAGYES) $n3++;
         }
         $re = $n3 ? 'OK' : '';
-        $msg = $n3 ? '' : lang('devsetup_chkmysql');
+        $msg = $n3 ? '' : basLang::show('devsetup_chkmysql');
         $re = array('res'=>$re,'msg'=>$msg);
         self::ajaxStop($re);
     }
@@ -197,7 +197,7 @@ class devSetup{
             $msg = implode('<br>',$re[1]);
             $re = array('res'=>'','msg'=>$msg);
         }elseif(empty($re[0])){
-            $re = array('res'=>'','msg'=>lang('devsetup_noframe'));    
+            $re = array('res'=>'','msg'=>basLang::show('devsetup_noframe'));    
         }else{
             $re = array('res'=>'OK','msg'=>'');
         }
@@ -216,7 +216,7 @@ class devSetup{
     static function supIdpw(){ 
         if(self::isSetuped()){ die('isRunning...'); }
         // Rnd_Keys
-        $rcfg['sys_name']   = req('name');
+        $rcfg['sys_name']   = basReq::val('name');
         $rcfg['safe_site']  = 'name';  for($i=0;$i<5;$i++) $rcfg['safe_site']  .= '-'.basKeyid::kidRand('f',5);
         $rcfg['safe_pass']  = 'pass';  for($i=0;$i<5;$i++) $rcfg['safe_pass']  .= '-'.basKeyid::kidRand('fs3',5);
         $rcfg['safe_api']   = 'api';   for($i=0;$i<5;$i++) $rcfg['safe_api']   .= '-'.basKeyid::kidRand('f',5);
@@ -230,7 +230,7 @@ class devSetup{
         $rcfg['tout_admin']  = 1;
         $rcfg['tout_member']  = 4;
         foreach($rcfg as $k=>$v){
-            db()->table('base_paras')->data(array('val'=>$v))->where("kid='$k'")->update();
+            glbDBObj::dbObj()->table('base_paras')->data(array('val'=>$v))->where("kid='$k'")->update();
         }
         global $_cbase;
         $_cbase['safe']['site']  = $rcfg['safe_site'];
@@ -241,7 +241,7 @@ class devSetup{
         $_cbase['safe']['rndtab'] = $rcfg['safe_rndtab'];
         $_cbase['tout_admin'] = $rcfg['tout_admin'];  
         $_cbase['tout_member'] = $rcfg['tout_member'];    
-        devScan::rstIDPW(req('uid'),req('upw'));
+        devScan::rstIDPW(basReq::val('uid'),basReq::val('upw'));
         self::updCache();
         $re = array('res'=>'OK','msg'=>'');
         self::ajaxStop($re);
@@ -258,8 +258,8 @@ class devSetup{
 
     // ajaxStop 
     static function ajaxStop($re){ 
-        $act = req('act');
-        $step = req('step'); 
+        $act = basReq::val('act');
+        $step = basReq::val('step'); 
         $re['with'] = "act=$act;step=$step";
         $re = comParse::jsonEncode($re);
         //glbHtml::head('json');
@@ -272,7 +272,7 @@ class devSetup{
 
     // updCache 
     static function updCache(){ 
-        $g0 = db()->table('base_model')->where("enable='1'")->order('kid')->select();
+        $g0 = glbDBObj::dbObj()->table('base_model')->where("enable='1'")->order('kid')->select();
         $skip = array('groups','plus','docs','coms','users','advs',);
         foreach($g0 as $k=>$v){
             $key = $v['kid'];

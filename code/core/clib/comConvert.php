@@ -77,16 +77,18 @@ class comConvert{
         return $res;
     }
     
-    static function sysPass($uid='',$upw='',$mod=''){ 
+    static function sysPass($uid='',$upw='',$mod=''){
+        global $_cbase;
         if(empty($uid) || empty($upw)) return '(null)';
-        $pfix = $mod=='adminer' ? cfg('safe.pass').$mod : 'pass';
+        $pfix = $mod=='adminer' ? $_cbase['safe']['pass'].$mod : 'pass';
         return self::sysEncode("$upw@$uid",$pfix,24);
     }
     // *** 加密MD5
     // $methods:md5,sha1,(md5比sha1快点)
     // $ukey = in_array($ukey,array('pass','form','api','js','other'))
     static function sysEncode($str,$ukey='other',$len=16,$methods='md5,sha1'){
-        $safe = cfg('safe');
+        global $_cbase;
+        $safe = $_cbase['safe'];
         $fmd5 = false; $fsh1 = false;
         $a = explode(',',$methods);
         foreach($a as $m){ 
@@ -106,7 +108,8 @@ class comConvert{
     
     //加密解密，$key：密钥；$de：是否解密；$expire 过期时间
     static function sysRevert($str, $de=0, $key='', $exp=0){
-        $key || $key = cfg('safe.other'); 
+        global $_cbase;
+        $key || $key = $_cbase['safe']['other']; 
         $nn = 4; $key = md5($key); $res = '';
         $keya = md5(substr($key,0,16)); $keyb = md5(substr($key,16,16));
         if($de){
@@ -147,8 +150,9 @@ class comConvert{
     
     //base64编码(并加密/解密)
     static function sysBase64($s,$de=0,$key=''){
+        global $_cbase;
         if(empty($s)) return $s;
-        $safe = cfg('safe');
+        $safe = $_cbase['safe'];
         $org = basKeyid::kidRTable('f','org');
         $rnd = $safe['rndtab'].'.-'; $re = ''; 
         $fix = ($key ? $key : $safe['rndch6'])."^";

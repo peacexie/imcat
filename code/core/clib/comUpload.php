@@ -197,7 +197,7 @@ class comUpload
     private function getFileName () {
         
         $ext = $this->getFileExt();
-        $upren = req('upren','auto');
+        $upren = basReq::val('upren','auto');
         if($upren=='auto'){ // || in_array($this->type,array('remote','base64'))
             $name = basKeyid::kidTemp().$ext;
         }else{

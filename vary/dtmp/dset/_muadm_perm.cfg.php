@@ -24,6 +24,7 @@ $_muadm_perm = array (
   'm3vtadm' => 'dops/a',
   'm3voip' => 'dops/a',
   'm3gbook' => 'dops/a',
+  'm3notea' => 'dops/a',
   'm3catch' => 'admin/update,admin/static',
   'm3self' => 'admin/uinfo',
   'm3env' => 'admin/ediy',

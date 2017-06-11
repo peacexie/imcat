@@ -2,15 +2,15 @@
 /**
  * 一组别名函数（使用Symfony的dump后添加的,有的叫助手函数）
  * 如果与其它程序一起使用，发现有如下函数冲突，请设置[run.outer]参数即可
- * 设置[run.outer]后，如需要用本系统方法，请用autoLoad_ys::init()加载即可
+ * 核心类库:core中，尽量不要使用别名函数
  */
 
 // dump(格式化输出：变量，数组，Object)
-function dump($var,$min=0){  
-    if($min){
+function dump($var,$min=1){
+    if($min=='min'){
         echo "<pre>"; print_r($var); echo "</pre>";
     }else{
-        basDebug::varShow($var);
+        basDebug::varShow($var,'',$min);
     }
 }
 // cfg(读取cbase配置) cfg('sys.cset');
@@ -23,7 +23,7 @@ function cfg($key,$def=''){
     }
     return $re;
 }
-// lang(显示语言标识)
+// show(显示语言标识)
 function lang($mk, $val=''){
     if($val===0){ 
         echo basLang::show($mk, $val===0?'':$val);
@@ -72,30 +72,6 @@ function surl($mkv='',$type='',$host=0){
 }
 // cmod模块关闭
 function cmod($key=''){
-    $_groups = read('groups'); 
+    $_groups = glbConfig::read('groups'); 
     return !isset($_groups[$key]);
 }
-
-/**
- * 一组handler函数
- */
-/*
-function uerr_handler($msg='') {  
-    return $msg; 
-}
-*/
-// 默认异常处理函数
-function except_handler_ys($e) {  
-    throw new glbError($e); 
-}
-// 默认错误处理函数
-function error_handler_ys($Code,$Message,$File,$Line) {  
-    throw new glbError(@$Code,$Message,$File,$Line); 
-}
-// 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
-function shutdown_handler_ys() {  
-    //echo "(shutdown)";
-    basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
-}
-
-//(!function_exists('intl_is_failure'))

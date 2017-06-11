@@ -10,9 +10,19 @@ class basDebug{
     ***************************************************************************** */
     
     // *** 显示变量 
-    static function varShow($val,$flag=''){    
+    static function varShow($val,$flag='',$lev=1){
+        $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        $arr = array();
+        foreach($trace as $k=>$row) {
+            $bf = basename($row['file']);
+            if(in_array($bf,array('helper.php','basDebug.php'))){
+                unset($trace[$k]);
+                continue;
+            } 
+            $arr[] = "line:{$row['line']} ".self::hidInfo($row['file']);
+        }
         echo "\r\n<pre style='line-height:150%;'>"; 
-        if($flag) echo "[$flag]\r\n"; $flag = 0;
+        if($flag) echo "[$flag]\r\n"; 
         if(is_bool($val)) echo "[bool] "; 
         elseif(is_numeric($val)) echo "[num] ";
         elseif(is_string($val)) echo "[str:".strlen($val)."] ";
@@ -20,6 +30,11 @@ class basDebug{
         elseif(is_object($val)) echo "[obj] ";
         else{ echo "[num] "; } // ,"\n"
         echo str_replace(array('<','>'),array('&lt;','&gt;'),var_export($val,1));
+        if($lev<2){
+            echo ' ('.$arr[0].')';
+        }else{
+            echo "\n".implode("\n",$arr);
+        }
         echo "</pre>\r\n";
     }
     // *** 变量列表
@@ -33,7 +48,7 @@ class basDebug{
                 if(isset($_SERVER[$k])) { $sf=0; $sv .= "$k, "; }
                 if(isset($_COOKIE[$k])) { $sf=0; $sc .= "$k, "; }
                 if(isset($_SESSION[$k])) { $sf=0; $se .= "$k, "; }
-                if($sf) echo "\r\n$k=[".htmlspecialchars($v)."]<br>";  
+                if($sf) echo "\r\n$k=[".str_replace(array('<','>'),array('&lt;','&gt;'),$v)."]<br>";  
                 $cnt++; $sf=1;
             } 
         }
@@ -58,8 +73,9 @@ class basDebug{
     }
     // 运行统计信息
     // tq : tpl, qstr, auto
-    static function runInfo($tq='auto'){ 
-        $run = cfg('run');
+    static function runInfo($tq='auto'){
+        global $_cbase;
+        $run = $_cbase['run'];
         $qtime = $run['qtime'];
         $rtime = microtime(1) - $run['timer'];
         if($rtime>1){
@@ -81,8 +97,9 @@ class basDebug{
         return $info;
     }
     // 运行Load
-    static function runLoad($pre=0){  
-        $aclass = cfg('run.aclass');
+    static function runLoad($pre=0){
+        global $_cbase;
+        $aclass = $_cbase['run']['aclass'];
         $fix = $pre ? 'pre' : '!--';
         $tmp = self::hidInfo($aclass);
         echo "\n".($pre ? '<pre>' : '<!--'); 
@@ -149,7 +166,7 @@ class basDebug{
             $dcss = "border:1px solid #F00; background-color:#FFFFCC; padding:8px; margin:5px; clear:both; display:block;";    
             print_r("\n\n<div style=\"$dcss\">$data</div>\n\n");
         }elseif($mod=='db'){
-            $db = db();
+            $db = glbDBObj::dbObj();
             $kid = basKeyid::kidTemp();
             $vals = "'$kid','$act','$info[run]','$info[vp]','$info[rp]','".basReq::in($msg)."','$info[ip]','{$_cbase['run']['stamp']}','$info[ua]'";
             $db->db->run("INSERT INTO ".$db->table("logs_$path",2)."(kid,`act`,used,page,pref,note,aip,atime,aua)VALUES($vals)");     
@@ -177,7 +194,7 @@ class basDebug{
         if(!$db){ // DIR_IMPS, DIR_VARS ,dirname(DIR_PROJ)
             $str = str_replace(array(DIR_PROJ,DIR_IMPS,DIR_VARS),'~',$str); 
         }else{
-            $cdb = read('db','cfg'); 
+            $cdb = glbConfig::read('db','cfg'); 
             foreach(array('pre','suf') as $key){
                 $fix = $cdb["db_{$key}fix"];
                 if(!empty($fix)){

@@ -8,7 +8,7 @@ class tex_main{
     public $act = '';
     public $vars = array(); //存放变量信息
     
-    function __construct() { if(req('mod')=='mod') die('sss');
+    function __construct() { 
         $this->init();
         $this->check();
         $this->vars();
@@ -16,16 +16,18 @@ class tex_main{
     }
     
     function init(){
+        global $_cbase;
+        $safix = $_cbase['safe']['safix'];
         $qs = empty($_SERVER['QUERY_STRING'])?'':$_SERVER['QUERY_STRING']; //可能为0
         $this->qs = $qs;
-        parse_str($qs,$ua); unset($ua['_r'],$ua['_'],$ua[cfg('safe.safix')]);
+        parse_str($qs,$ua); unset($ua['_r'],$ua['_'],$ua[$safix]);
         $this->ua = $ua;
-        $this->hcfgs = read('home','va'); 
+        $this->hcfgs = glbConfig::read('home','va'); 
         if(!empty($this->hcfgs['c']['close'])){
             $this->vars = $this->error('closed-all(init)');
             $this->view('~');
         }
-        $domain = req('domain','');
+        $domain = basReq::val('domain','');
         if($domain && in_array($domain, $this->hcfgs['c']['dmacc'])){ 
             header("Access-Control-Allow-Origin:*"); // 指定允许其他域名访问  
             header('Access-Control-Allow-Methods:POST'); // 响应类型  
@@ -52,7 +54,7 @@ class tex_main{
         }
         $this->mod = $this->ua['mod'];
         $this->act = empty($this->ua['act']) ? '' : $this->ua['act'];
-        $this->id = req('id','');
+        $this->id = basReq::val('id','');
         if(in_array($this->mod,$this->hcfgs['close'])){
             $this->vars = $this->error("closed-{$this->mod}(init)");
             $this->view('~');
@@ -60,7 +62,7 @@ class tex_main{
     }
     
     function vars(){
-        $_groups = read('groups');
+        $_groups = glbConfig::read('groups');
         if(in_array($this->mod,$this->hcfgs['extra'])){
             $this->view($this->mod);
         }
@@ -85,16 +87,16 @@ class tex_main{
 
     function view($file='info',$vout=1,$die=1){
         global $_cbase;
-        $_groups = read('groups');
-        $db = db();
+        $_groups = glbConfig::read('groups');
+        $db = glbDBObj::dbObj();
         $vars = $this->vars;
         $fp = vopTpls::pinc("b_files/$file");
         if(file_exists($fp)){
-            include($fp); 
+            include $fp; 
         }
-        $type = req('retype','json');
+        $type = basReq::val('retype','json');
         if($vout){ 
-            if(req('debug')){
+            if(basReq::val('debug')){
                 glbHtml::head('html'); 
                 dump($vars);
             }else{

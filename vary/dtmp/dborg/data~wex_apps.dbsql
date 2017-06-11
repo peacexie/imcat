@@ -1,8 +1,8 @@
 
--- wex_apps@2017-05-05 20:10:34 -- 
+-- wex_apps@2017-06-11 11:58:31 -- 
 INSERT INTO `{pre}wex_apps{ext}` VALUES 
-('admin','test','1','asads_dsndsr_91831990','wx20b06b3c8d4e2a46','777778q778877a7a87i777qa8ayqiq8a','wx_tys_test.jpg','','0','','','0',''),
-('y08_test','fuwu','1','48fnt44585435855884QDnltl','wx77827302390ce603','j3c533icf331c33155f3jjc1i35cf33i','','','0','','','0',''),
-('zhanghua','test','1','lhldskksk4444444494','wx3b915d8db305b742','qg666qza6g66q66666666a666z6gq66a','','','0','','','0',''),
-('zhanhl','test','1','Ct6_orv_v6b_turob_kvu','wxb864010c7215b0b1','d0200j22g2000d0d00djj0000xj0002d','wx_zhl_test.jpg','','0','','','0',''),
-('peays','chking','1','I1HIADsERlI5iiisIivH','wxce96c26e3d9b8799','4e44444444444a4d4e4444d4d4a44444','','','0','','','0','');
+('admin','test','1','plvwl_tletla_09009000','wx20b06b3c8d4e2a46','888688r888888r8r86r868rr7rbrrr8r','wx_tys_test.jpg','','0','','','0',''),
+('y08_test','fuwu','1','54rns55393594974495EYnxjx','wx77827302390ce603','n6n222qny722n22222a2nnn2q22ny62q','','','0','','','0',''),
+('zhanghua','test','1','qwzgwtwwt1101017700','wx3b915d8db305b742','qo252qec2o50d00005005c055e0ob00c','','','0','','','0',''),
+('zhanhl','test','1','Ge0_mys_y2u_yyfau_yey','wxb864010c7215b0b1','d4624v76y6552d5d55dvh5245hh2447d','wx_zhl_test.jpg','','0','','','0',''),
+('peays','chking','1','I1OIMFeIMyI1irreIihO','wxce96c26e3d9b8799','8t33833333333n3e3t3333e8e3n38338','','','0','','','0','');

@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-include_once(DIR_VENDOR.'/Spyc/Spyc.cls_php'); 
+include DIR_VENDOR.'/Spyc/Spyc.cls_php'; 
 
 
 class extYaml extends Spyc{
@@ -24,7 +24,7 @@ class extYaml extends Spyc{
 $fp_array = DIR_VENDOR.'/Spyc/cfg_array.php';
 $fp_yaml = DIR_VENDOR.'/Spyc/cfg_yaml.yaml';
 
-require($fp_array);
+require $fp_array;
 $str_yaml = file_get_contents($fp_yaml);
 
 $yaml = extYaml::adump($cfg_array,4,60);

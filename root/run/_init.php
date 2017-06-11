@@ -1,5 +1,5 @@
 <?php
-// (自v3.5开始) `设置站点相对目录` 等路径请移步至 `/code/cfgs/boot/_paths.php`
+// (自v3.8开始) `设置站点相对目录` 等路径请移步至 `/root/cfgs/boot/_paths.php`
 
 // 页面_cbase, 运行时常用变量, 基本常量 
 $_pbase = empty($_cbase) ? array() : $_cbase; // 页面_cbase: run.outer, skip.*, tpl.tpl_dir, 
@@ -11,19 +11,19 @@ define('RUN_INIT', 1); // 初始化标记
 define('DS', DIRECTORY_SEPARATOR); // 目录分隔符
 
 // 加载:系统路径配置,常规配置,自动加载类
-include(DIR_PROJ.'/code/cfgs/boot/_paths.php'); // 加载系统路径配置
-require(DIR_CODE.'/cfgs/boot/const.cfg.php'); // 基本设置const: 可被后台设置,页面设置覆盖
-require(DIR_DTMP.'/dset/_score.cfg.php'); // 后台设置_score: 其次,可被页面设置_pbase覆盖
-require(DIR_CODE.'/core/blib/loader.php'); // 包含自动加载类(仅包含文件)
+include DIR_PROJ.'/root/cfgs/boot/_paths.php'; // 加载系统路径配置
+require DIR_ROOT.'/cfgs/boot/const.cfg.php'; // 基本设置const: 可被后台设置,页面设置覆盖
+require DIR_DTMP.'/dset/_score.cfg.php'; // 后台设置_score: 其次,可被页面设置_pbase覆盖
+require DIR_CODE.'/core/blib/loader.php'; // 包含自动加载类(仅包含文件)
 
+autoLoad_ys::init(); // 初始化-类自动加载
 // 处理outer运行模式
 if(empty($_cbase['run']['outer'])){ 
-    require(DIR_CODE.'/core/blib/helper.php'); // 别名函数
-    autoLoad_ys::init(); // 初始化-类自动加载
+    require DIR_CODE.'/core/blib/helper.php'; // 别名函数
     basEnv::runPbase($_pbase); unset($_pbase); //处理_pbase 
     basEnv::runVersion(); // 系统信息,魔术变量,时区
-    basEnv::runConst(); // const,
-    basEnv::runCbase(); // 前置处理,运行时常用变量
+    basEnv::runConst(); // (*)const,
+    basEnv::runCbase(); // (*)前置处理,运行时常用变量
     basEnv::runSkips(); // 处理skips
     safComm::urlQstr7(); // QUERY-7参数检测 
     basLang::auto(); // 自动语言配置

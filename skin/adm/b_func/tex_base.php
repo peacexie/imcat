@@ -11,7 +11,7 @@ class tex_base{
     }
     
     static function init($obj){
-        $user = user('Admin');
+        $user = usrBase::userObj('Admin');
         if(!in_array($obj->key,array('login','help'))){
             if($user->userFlag=='Guest') header('Location:'."?login");
             $user->setSess();

@@ -18,7 +18,7 @@ class tagPage extends tagList{
     
     function pPgbar(){ 
         global $_cbase; 
-        $sfrom = "m.* FROM ".db()->table($this->sqlArr['tabid'],2)." m ";
+        $sfrom = "m.* FROM ".glbDBObj::dbObj()->table($this->sqlArr['tabid'],2)." m ";
         $where = $this->whrStr; 
         $pg = new comPager($sfrom,$where,$this->sqlArr['limit'],"m.".$this->sqlArr['order']); 
         $pg->set('odesc',$this->sqlArr['odesc']); 
@@ -34,12 +34,8 @@ class tagPage extends tagList{
         }
         $scname = $_SERVER["SCRIPT_NAME"]; //REQUEST_URI
         $mkv = vopUrl::umkv('mkv');
-        /*$mkv = req('mkv','','Key',24);
-        if(empty($mkv) && !empty($_cbase['mkv']['mkv'])){
-            $mkv = $_cbase['mkv']['mkv']; 
-        }*/
         if(strpos($scname,'plus/ajax/cron.php') || strpos($scname,'plus/ajax/jshow.php')){
-            $burl = surl(0)."?mkv=$mkv";
+            $burl = vopUrl::fout(0)."?mkv=$mkv";
         }else{
             $burl = basReq::getUri(-1,'','page|prec|ptype|pkey'); 
             $burl = strstr($burl,'mkv=') ? $burl : str_replace('.php?','.php?mkv=',$burl);     

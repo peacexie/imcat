@@ -4,7 +4,7 @@ usrPerm::run('pfile','(auto)');
 
 $_sy_nava['exdiys'] = array(
     'skin' => '/skin',
-    'cfgs' => '/code/cfgs',
+    'cfgs' => '/root/cfgs',
     'dtmp' => '', // 与`admin/files`gonge功能重复
     'runs' => 'vopcfg',
 ); 
