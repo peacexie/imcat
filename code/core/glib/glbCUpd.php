@@ -225,7 +225,7 @@ class glbCUpd{
             $s0 = ''; $s1 = ''; $js1 = ''; $js2 = '';
             $mperm = array();
             foreach($cfg['i'] as $k1=>$v1){ 
-                if(!empty($v1['cfgs']) && strstr($v1['cfgs'],'?file')){
+                if(!empty($v1['cfgs']) && strstr($v1['cfgs'],'?mkv')){
                     $mperm[$k1] = self::upd_imperm($v1['cfgs']);
                 }
                 if($v1['deep']=='1'){
@@ -307,7 +307,7 @@ class glbCUpd{
         return $t;
     }
     static function upd_imperm($cfgs){
-        preg_match_all("/\?file=([\w|\/|\-]{5,36})/i",$cfgs,$ma);
+        preg_match_all("/\?mkv=([\w|\/|\-]{5,36})/i",$cfgs,$ma);
         if(!empty($ma[1])){
             $rea = array_unique($ma[1]);
             $re = implode(',',$rea);
