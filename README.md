@@ -56,7 +56,7 @@ V3.8升级中……再
   - Add: `Controller-Action`-style Extending templates and displaying data
   - see: http://txmao.txjia.com/doc.php?ctest
   - Add: `mkvRouter-Tpl`-style Show data direct, skip complex tpl config:
-  - see: http://txmao.txjia.com/doc.php?umold
+  - see: http://txmao.txjia.com/doc.php?umod
 
 * Add: Web admin notes
   - It's just a guestbook for admin, before the ASP system appeared.
@@ -116,7 +116,7 @@ V3.8升级中……再
   - 增加：`控制器-操作` 模式扩展模板和显示数据:
   - 见：http://txmao.txjia.com/doc.php?ctest
   - 增加：`mkv路由-模板` 模式直接显示数据，无需复杂的config配置:
-  - 见：http://txmao.txjia.com/doc.php?umold
+  - 见：http://txmao.txjia.com/doc.php?umod
 
 * 增加：站务笔记
   - 其实就是一个管理员自己在后台给自己留言或作笔记的小功能，之前在asp系统中出现过。
