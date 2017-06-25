@@ -63,7 +63,7 @@ V3.8升级中……再
 
 * Improve: 
  -> Move the config dir from `root/cfgs` -=>to `root/cfgs` (Notice - test setup, update, upload)
- -> 增强代码调试功能
+ -> Improve debug experience
  -> Optimize Verification code class
 
 * Refine/Optimize: Not deliberately compatible with php5.2（Now you can run under php5.2）
