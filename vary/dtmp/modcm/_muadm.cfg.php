@@ -38,8 +38,8 @@ $_muadm = array (
       'pid' => 'm2pro',
       'title' => '产品订单',
       'deep' => '3',
-      'cfgs' => '订单管理(!)?file=dops/a&mod=corder
-评论(!)?file=dops/a&mod=crem',
+      'cfgs' => '订单管理(!)?mkv=dops-a&mod=corder
+评论(!)?mkv=dops-a&mod=crem',
     ),
     'm3pro' => 
     array (
@@ -47,7 +47,7 @@ $_muadm = array (
       'pid' => 'm2pro',
       'title' => '产品管理',
       'deep' => '3',
-      'cfgs' => '产品管理(!)?file=dops/a&mod=cargo
+      'cfgs' => '产品管理(!)?mkv=dops-a&mod=cargo
 增加(!)cargo(!)jsadd',
     ),
     'm3cset' => 
@@ -56,8 +56,8 @@ $_muadm = array (
       'pid' => 'm2pro',
       'title' => '分类设置',
       'deep' => '3',
-      'cfgs' => '产品分类(!)?file=admin/catalog&mod=cargo(!)frame
-设置(!)?file=apis/exp_order',
+      'cfgs' => '产品分类(!)?mkv=admin-catalog&mod=cargo(!)frame
+设置(!)?mkv=apis-exp_order',
     ),
     'm2res' => 
     array (
@@ -73,7 +73,7 @@ $_muadm = array (
       'pid' => 'm2res',
       'title' => '课程资源',
       'deep' => '3',
-      'cfgs' => '课程资源(!)?file=dops/a&mod=keres
+      'cfgs' => '课程资源(!)?mkv=dops-a&mod=keres
 增加(!)keres(!)jsadd',
     ),
     'm3keres' => 
@@ -82,8 +82,8 @@ $_muadm = array (
       'pid' => 'm2res',
       'title' => '评论设置',
       'deep' => '3',
-      'cfgs' => '资源评论(!)?file=admin/catalog&mod=keres(!)
-栏目(!)?file=admin/catalog&mod=keres(!)frame',
+      'cfgs' => '资源评论(!)?mkv=admin-catalog&mod=keres(!)
+栏目(!)?mkv=admin-catalog&mod=keres(!)frame',
     ),
     'm2user' => 
     array (
@@ -99,7 +99,7 @@ $_muadm = array (
       'pid' => 'm2user',
       'title' => '个人会员',
       'deep' => '3',
-      'cfgs' => '个人会员(!)?file=dops/a&mod=person
+      'cfgs' => '个人会员(!)?mkv=dops-a&mod=person
 添加(!)person(!)jsadd',
     ),
     'm3060' => 
@@ -108,7 +108,7 @@ $_muadm = array (
       'pid' => 'm2user',
       'title' => '企业会员',
       'deep' => '3',
-      'cfgs' => '企业会员(!)?file=dops/a&mod=company
+      'cfgs' => '企业会员(!)?mkv=dops-a&mod=company
 添加(!)company(!)jsadd',
     ),
     'm3062' => 
@@ -117,7 +117,7 @@ $_muadm = array (
       'pid' => 'm2user',
       'title' => '政府机构',
       'deep' => '3',
-      'cfgs' => '政府机构(!)?file=dops/a&mod=govern
+      'cfgs' => '政府机构(!)?mkv=dops-a&mod=govern
 添加(!)govern(!)jsadd',
     ),
     'm3064' => 
@@ -126,7 +126,7 @@ $_muadm = array (
       'pid' => 'm2user',
       'title' => '非盈利组织',
       'deep' => '3',
-      'cfgs' => '非盈利组织(!)?file=dops/a&mod=organize
+      'cfgs' => '非盈利组织(!)?mkv=dops-a&mod=organize
 添加(!)organize(!)jsadd',
     ),
     'm1info' => 
@@ -151,7 +151,7 @@ $_muadm = array (
       'pid' => 'm2info',
       'title' => '新闻动态',
       'deep' => '3',
-      'cfgs' => '新闻动态(!)?file=dops/a&mod=news
+      'cfgs' => '新闻动态(!)?mkv=dops-a&mod=news
 增加(!)news(!)jsadd',
     ),
     'm3nrem' => 
@@ -160,8 +160,8 @@ $_muadm = array (
       'pid' => 'm2info',
       'title' => '新闻评论',
       'deep' => '3',
-      'cfgs' => '新闻评论(!)?file=dops/a&mod=nrem(!)
-栏目(!)?file=admin/catalog&mod=news(!)frame',
+      'cfgs' => '新闻评论(!)?mkv=dops-a&mod=nrem(!)
+栏目(!)?mkv=admin-catalog&mod=news(!)frame',
     ),
     'm3about' => 
     array (
@@ -169,7 +169,7 @@ $_muadm = array (
       'pid' => 'm2info',
       'title' => '站点介绍',
       'deep' => '3',
-      'cfgs' => '站点介绍(!)?file=dops/a&mod=about
+      'cfgs' => '站点介绍(!)?mkv=dops-a&mod=about
 增加(!)about(!)jsadd',
     ),
     'm2topic' => 
@@ -186,7 +186,7 @@ $_muadm = array (
       'pid' => 'm2topic',
       'title' => '专题新闻',
       'deep' => '3',
-      'cfgs' => '专题新闻(!)?file=dops/a&mod=topic
+      'cfgs' => '专题新闻(!)?mkv=dops-a&mod=topic
 增加(!)topic(!)jsadd',
     ),
     'm3torem' => 
@@ -195,8 +195,8 @@ $_muadm = array (
       'pid' => 'm2topic',
       'title' => '评论栏目',
       'deep' => '3',
-      'cfgs' => '新闻评论(!)?file=dops/a&mod=trem(!)
-栏目(!)?file=admin/catalog&mod=topic(!)frame',
+      'cfgs' => '新闻评论(!)?mkv=dops-a&mod=trem(!)
+栏目(!)?mkv=admin-catalog&mod=topic(!)frame',
     ),
     'm1coms' => 
     array (
@@ -220,7 +220,7 @@ $_muadm = array (
       'pid' => 'm2indoc',
       'title' => '公文管理',
       'deep' => '3',
-      'cfgs' => '公文管理(!)?file=dops/a&mod=indoc
+      'cfgs' => '公文管理(!)?mkv=dops-a&mod=indoc
 发布(!)indoc(!)jsadd',
     ),
     'm3inread' => 
@@ -229,8 +229,8 @@ $_muadm = array (
       'pid' => 'm2indoc',
       'title' => '阅读记录',
       'deep' => '3',
-      'cfgs' => '阅读记录(!)?file=dops/a&mod=inread
-栏目(!)?file=admin/catalog&mod=indoc(!)frame	',
+      'cfgs' => '阅读记录(!)?mkv=dops-a&mod=inread
+栏目(!)?mkv=admin-catalog&mod=indoc(!)frame	',
     ),
     'm3inrem' => 
     array (
@@ -238,8 +238,8 @@ $_muadm = array (
       'pid' => 'm2indoc',
       'title' => '评论设置',
       'deep' => '3',
-      'cfgs' => '<a href="?file=dops/a&mod=inrem">评论记录</a> 
-- <a href="?file=apis/exp_indoc">设置</a>
+      'cfgs' => '<a href="?mkv=dops-a&mod=inrem">评论记录</a> 
+- <a href="?mkv=apis-exp_indoc">设置</a>
 ',
     ),
     'm3inmem' => 
@@ -248,8 +248,8 @@ $_muadm = array (
       'pid' => 'm2indoc',
       'title' => '公文会员',
       'deep' => '3',
-      'cfgs' => '公文会员(!)?file=dops/a&mod=inmem
-等级(!)?file=admin/grade&mod=inmem',
+      'cfgs' => '公文会员(!)?mkv=dops-a&mod=inmem
+等级(!)?mkv=admin-grade&mod=inmem',
     ),
     'm2faqs' => 
     array (
@@ -265,7 +265,7 @@ $_muadm = array (
       'pid' => 'm2faqs',
       'title' => '管理发布',
       'deep' => '3',
-      'cfgs' => '问答管理(!)?file=dops/a&mod=faqs
+      'cfgs' => '问答管理(!)?mkv=dops-a&mod=faqs
 发布(!)faqs(!)jsadd',
     ),
     'm3qrtag' => 
@@ -274,8 +274,8 @@ $_muadm = array (
       'pid' => 'm2faqs',
       'title' => '回复标签',
       'deep' => '3',
-      'cfgs' => '<a href="?file=dops/a&mod=qarep">问答回复</a> 
-- <a href="?file=dops/a&mod=qatag">标签</a>
+      'cfgs' => '<a href="?mkv=dops-a&mod=qarep">问答回复</a> 
+- <a href="?mkv=dops-a&mod=qatag">标签</a>
 ',
     ),
     'm3qaset' => 
@@ -284,8 +284,8 @@ $_muadm = array (
       'pid' => 'm2faqs',
       'title' => '统计更新',
       'deep' => '3',
-      'cfgs' => '<a href="?file=apis/exp_qaset">问答统计</a> 
-- <a href="?file=apis/exp_qaset&view=uset">更新</a>',
+      'cfgs' => '<a href="?mkv=apis-exp_qaset">问答统计</a> 
+- <a href="?mkv=apis-exp_qaset&view=uset">更新</a>',
     ),
     'm2vote' => 
     array (
@@ -301,7 +301,7 @@ $_muadm = array (
       'pid' => 'm2vote',
       'title' => '管理发布',
       'deep' => '3',
-      'cfgs' => '投票管理(!)?file=dops/a&mod=votes
+      'cfgs' => '投票管理(!)?mkv=dops-a&mod=votes
 发布(!)votes(!)jsadd',
     ),
     'm3voip' => 
@@ -310,8 +310,8 @@ $_muadm = array (
       'pid' => 'm2vote',
       'title' => '选项记录',
       'deep' => '3',
-      'cfgs' => '<a href="?file=dops/a&mod=votei">投票选项</a> 
-- <a href="?file=dops/a&mod=votep">记录</a>',
+      'cfgs' => '<a href="?mkv=dops-a&mod=votei">投票选项</a> 
+- <a href="?mkv=dops-a&mod=votep">记录</a>',
     ),
     'm2else' => 
     array (
@@ -327,7 +327,7 @@ $_muadm = array (
       'pid' => 'm2else',
       'title' => '网站留言管理',
       'deep' => '3',
-      'cfgs' => '?file=dops/a&mod=gbook',
+      'cfgs' => '?mkv=dops-a&mod=gbook',
     ),
     'm3notea' => 
     array (
@@ -335,7 +335,7 @@ $_muadm = array (
       'pid' => 'm2else',
       'title' => '站务笔记管理',
       'deep' => '3',
-      'cfgs' => '笔记管理(!)?file=dops/a&mod=notea
+      'cfgs' => '笔记管理(!)?mkv=dops-a&mod=notea
 发布(!)notea(!)jsadd',
     ),
     'm1adv' => 
@@ -368,8 +368,8 @@ $_muadm = array (
       'pid' => 'm2sys',
       'title' => '缓存静态',
       'deep' => '3',
-      'cfgs' => '系统缓存(!)?file=admin/update
-静态(!)?file=admin/static',
+      'cfgs' => '系统缓存(!)?mkv=admin-update
+静态(!)?mkv=admin-static',
     ),
     'm3self' => 
     array (
@@ -377,8 +377,8 @@ $_muadm = array (
       'pid' => 'm2sys',
       'title' => '个人资料',
       'deep' => '3',
-      'cfgs' => '个人资料(!)?file=admin/uinfo
-密码(!)?file=admin/uinfo&view=passwd',
+      'cfgs' => '个人资料(!)?mkv=admin-uinfo
+密码(!)?mkv=admin-uinfo&view=passwd',
     ),
     'm3env' => 
     array (
@@ -386,8 +386,8 @@ $_muadm = array (
       'pid' => 'm2sys',
       'title' => '环境检测',
       'deep' => '3',
-      'cfgs' => '<a href="?file=admin/ediy&part=binfo">基础环境</a> 
-- <a href="?file=admin/ediy&part=check">检测</a>',
+      'cfgs' => '<a href="?mkv=admin-ediy&part=binfo">基础环境</a> 
+- <a href="?mkv=admin-ediy&part=check">检测</a>',
     ),
     'm3ediy' => 
     array (
@@ -395,8 +395,8 @@ $_muadm = array (
       'pid' => 'm2sys',
       'title' => '配置搜索',
       'deep' => '3',
-      'cfgs' => '<a href="?file=admin/ediy&part=exdiy">DIY配置</a> 
-- <a href="?file=admin/ediy&part=search">搜索</a>',
+      'cfgs' => '<a href="?mkv=admin-ediy&part=exdiy">DIY配置</a> 
+- <a href="?mkv=admin-ediy&part=search">搜索</a>',
     ),
     'm2data' => 
     array (
@@ -412,8 +412,8 @@ $_muadm = array (
       'pid' => 'm2data',
       'title' => '计划任务',
       'deep' => '3',
-      'cfgs' => '计划任务(!)?file=apis/cron_plan
-积分(!)?file=apis/jifen_plan',
+      'cfgs' => '计划任务(!)?mkv=apis-cron_plan
+积分(!)?mkv=apis-jifen_plan',
     ),
     'm3share' => 
     array (
@@ -421,8 +421,8 @@ $_muadm = array (
       'pid' => 'm2data',
       'title' => '分享同步',
       'deep' => '3',
-      'cfgs' => '数据分享(!)?file=apis/exd_share
-同步(!)?file=apis/exd_psyn',
+      'cfgs' => '数据分享(!)?mkv=apis-exd_share
+同步(!)?mkv=apis-exd_psyn',
     ),
     'm3data' => 
     array (
@@ -430,8 +430,8 @@ $_muadm = array (
       'pid' => 'm2data',
       'title' => '采集导入',
       'deep' => '3',
-      'cfgs' => '数据导入(!)?file=apis/exd_oimp
-采集(!)?file=apis/exd_crawl',
+      'cfgs' => '数据导入(!)?mkv=apis-exd_oimp
+采集(!)?mkv=apis-exd_crawl',
     ),
     'm3seo' => 
     array (
@@ -439,8 +439,8 @@ $_muadm = array (
       'pid' => 'm2data',
       'title' => '优化推送',
       'deep' => '3',
-      'cfgs' => 'SEO优化(!)?file=apis/seo_push
-推送(!)?file=apis/seo_push&pid=seo_pset',
+      'cfgs' => 'SEO优化(!)?mkv=apis-seo_push
+推送(!)?mkv=apis-seo_push&pid=seo_pset',
     ),
     'm2fav' => 
     array (
@@ -456,7 +456,7 @@ $_muadm = array (
       'pid' => 'm2fav',
       'title' => '收藏帮助',
       'deep' => '3',
-      'cfgs' => '网址收藏(!)?file=dops/a&mod=adfavor&view=vself
+      'cfgs' => '网址收藏(!)?mkv=dops-a&mod=adfavor&view=vself
 帮助(!){$root}/dev.php(!)blank',
     ),
     'm1adm' => 
@@ -481,8 +481,8 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '模块架设',
       'deep' => '3',
-      'cfgs' => '模块架设(!)?file=admin/groups
-安装(!)?file=admin/upgrade&mod=install',
+      'cfgs' => '模块架设(!)?mkv=admin-groups
+安装(!)?mkv=admin-upgrade&mod=install',
     ),
     'm3auser' => 
     array (
@@ -490,7 +490,7 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '管理员:设置/添加',
       'deep' => '3',
-      'cfgs' => '管理员(!)?file=dops/a&mod=adminer
+      'cfgs' => '管理员(!)?mkv=dops-a&mod=adminer
 添加(!)adminer(!)jsadd',
     ),
     'm3catalog' => 
@@ -499,9 +499,9 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '栏目管理:文档/广告',
       'deep' => '3',
-      'cfgs' => '<a href="?file=admin/catalog" title="文档栏目">栏目管理</a> 
+      'cfgs' => '<a href="?mkv=admin-catalog" title="文档栏目">栏目管理</a> 
 - 
-<a href="?file=admin/catalog&mod=adpic" title="广告栏目">广告</a>',
+<a href="?mkv=admin-catalog&mod=adpic" title="广告栏目">广告</a>',
     ),
     'm3relat' => 
     array (
@@ -509,8 +509,8 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '类别:管理/关联',
       'deep' => '3',
-      'cfgs' => '类别管理(!)?file=admin/types
-关联(!)?file=admin/relat',
+      'cfgs' => '类别管理(!)?mkv=admin-types
+关联(!)?mkv=admin-relat',
     ),
     'm3amenu' => 
     array (
@@ -518,7 +518,7 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '菜单导航配置',
       'deep' => '3',
-      'cfgs' => '?file=admin/menus',
+      'cfgs' => '?mkv=admin-menus',
     ),
     'm3grade' => 
     array (
@@ -526,7 +526,7 @@ $_muadm = array (
       'pid' => 'm2stru',
       'title' => '等级权限设置',
       'deep' => '3',
-      'cfgs' => '?file=admin/grade',
+      'cfgs' => '?mkv=admin-grade',
     ),
     'm2api' => 
     array (
@@ -542,8 +542,8 @@ $_muadm = array (
       'pid' => 'm2api',
       'title' => '短信接口',
       'deep' => '3',
-      'cfgs' => '短信发送(!)?file=apis/sms_send
-记录(!)?file=apis/sms_logs',
+      'cfgs' => '短信发送(!)?mkv=apis-sms_send
+记录(!)?mkv=apis-sms_logs',
     ),
     'm3apipay' => 
     array (
@@ -551,8 +551,8 @@ $_muadm = array (
       'pid' => 'm2api',
       'title' => '支付记录',
       'deep' => '3',
-      'cfgs' => '支付记录(!)?file=apis/pay_logs
-接口(!)?file=apis/pay_logs&view=vcfgs',
+      'cfgs' => '支付记录(!)?mkv=apis-pay_logs
+接口(!)?mkv=apis-pay_logs&view=vcfgs',
     ),
     'm3apimail' => 
     array (
@@ -560,8 +560,8 @@ $_muadm = array (
       'pid' => 'm2api',
       'title' => '邮件接口',
       'deep' => '3',
-      'cfgs' => '邮件记录(!)?file=apis/mail_logs
-接口(!)?file=apis/mail_logs&view=vcfgs',
+      'cfgs' => '邮件记录(!)?mkv=apis-mail_logs
+接口(!)?mkv=apis-mail_logs&view=vcfgs',
     ),
     'm3apiwexin' => 
     array (
@@ -569,7 +569,7 @@ $_muadm = array (
       'pid' => 'm2api',
       'title' => '微信接口',
       'deep' => '3',
-      'cfgs' => '<a href="?file=awex/wex_apps">微信接口</a> 
+      'cfgs' => '<a href="?mkv=awex-wex_apps">微信接口</a> 
 - 
 <a href="../a3rd/weixin_pay/wedemo.php">演示</a>',
     ),
@@ -587,8 +587,8 @@ $_muadm = array (
       'pid' => 'm2adt',
       'title' => '参数设置',
       'deep' => '3',
-      'cfgs' => '核心参数(!)?file=admin/paras
-扩展(!)?file=admin/parex',
+      'cfgs' => '核心参数(!)?mkv=admin-paras
+扩展(!)?mkv=admin-parex',
     ),
     'm3dbs' => 
     array (
@@ -597,7 +597,7 @@ $_muadm = array (
       'title' => '数据库管理',
       'deep' => '3',
       'cfgs' => '数据库(!){root}/root/tools/adbug/dbadm.php(!)blank
-管理(!)?file=admin/db_act',
+管理(!)?mkv=admin-db_act',
     ),
     'm3safes' => 
     array (
@@ -605,8 +605,8 @@ $_muadm = array (
       'pid' => 'm2adt',
       'title' => '安全日志',
       'deep' => '3',
-      'cfgs' => '安全参数(!)?file=admin/paras&mod=prsafe
-日志(!)?file=admin/rlogs&mod=syact',
+      'cfgs' => '安全参数(!)?mkv=admin-paras&mod=prsafe
+日志(!)?mkv=admin-rlogs&mod=syact',
     ),
     'm3upver' => 
     array (
@@ -614,8 +614,8 @@ $_muadm = array (
       'pid' => 'm2adt',
       'title' => '更新升级',
       'deep' => '3',
-      'cfgs' => '系统升级(!)?file=admin/upgrade
-导入(!)?file=admin/upgrade&mod=import',
+      'cfgs' => '系统升级(!)?mkv=admin-upgrade
+导入(!)?mkv=admin-upgrade&mod=import',
     ),
   ),
 );
