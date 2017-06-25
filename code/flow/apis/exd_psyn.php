@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_psyn'; 
 $job = req("job"); 
@@ -28,7 +28,7 @@ if($view=='list'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
 
     $lnkadd = "<a href='$aurl[1]&view=form' onclick='return winOpen(this,\"".lang('flow.sy_add')."\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";
@@ -52,12 +52,12 @@ if($view=='list'){
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref","");
       echo $cv->Url(lang('flow.dops_exeu'),1,PATH_ROOT."/plus/ajax/exdb.php?act=psyn&mod=$r[mod]&job=$kid&".exdBase::getJSign(),'blank');
       echo $cv->Url(lang('flow.oi_logs'),1,"$aurl[1]&view=loglist&job=$r[kid]&recbk=ref",''); 
-      echo $cv->Url(lang('flow.title_copy'),1,"?file=binc/exd_copy&mod=exd_oimp&kid=$r[kid]&type=tabid&title=$r[title]",lang('flow.oi_copy'),480,360); 
+      echo $cv->Url(lang('flow.title_copy'),1,"?mkv=binc-exd_copy&mod=exd_oimp&kid=$r[kid]&type=tabid&title=$r[title]",lang('flow.oi_copy'),480,360); 
       echo "</tr>"; 
     }}
     echo "<tr>\n";
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "<td class='tr' colspan='11'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
 

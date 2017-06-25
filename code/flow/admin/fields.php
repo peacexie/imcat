@@ -12,7 +12,7 @@ if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').'
 
 if($view=='ftest'){ 
     
-        $lnkbak = "<a href='?file=$file&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;".lang('admin.fls_backflist')."</a>";
+        $lnkbak = "<a href='?mkv=$mkv&mod=$mod&view=list&ispara=$ispara&catid=$catid'>&lt;&lt;".lang('admin.fls_backflist')."</a>";
         glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]".lang('admin.fls_fmres'),'---',40);
     if(empty($bsend)){ 
         glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
@@ -141,13 +141,13 @@ if($view=='ftest'){
         glbCUpd::upd_model($mod);
     }     
 
-    $lnkbak = "<a href='?file=admin/groups&mod=".$_groups[$mod]['pid']."'>&lt;&lt;".lang('admin.fls_backmod')."</a>"; //&view=list&ispara=$ispara
-    $lnkcat = "<a href='?file=admin/catalog&mod=$mod'>&lt;&lt;".lang('admin.fls_backcat')."</a>";
-    $lnkgrd = "<a href='?file=admin/grade&mod=$mod'>&lt;&lt;".lang('admin.fls_backgrade')."</a>";
+    $lnkbak = "<a href='?mkv=admin-groups&mod=".$_groups[$mod]['pid']."'>&lt;&lt;".lang('admin.fls_backmod')."</a>"; //&view=list&ispara=$ispara
+    $lnkcat = "<a href='?mkv=admin-catalog&mod=$mod'>&lt;&lt;".lang('admin.fls_backcat')."</a>";
+    $lnkgrd = "<a href='?mkv=admin-grade&mod=$mod'>&lt;&lt;".lang('admin.fls_backgrade')."</a>";
     $lnkbak = $catid ? ($_groups[$mod]['pid']=='users'? $lnkgrd : $lnkcat) : $lnkbak;
     
-    $lnkadd = "<a href='?file=$file&mod=$mod&view=fadd&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('admin.fls_addfield')."\")'>".lang('admin.fls_add')." $title&gt;&gt;</a>"; 
-    $lnkform = " | <a href='?file=$file&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>".lang('admin.fls_fmres')."&gt;&gt;</a>";
+    $lnkadd = "<a href='?mkv=$mkv&mod=$mod&view=fadd&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('admin.fls_addfield')."\")'>".lang('admin.fls_add')." $title&gt;&gt;</a>"; 
+    $lnkform = " | <a href='?mkv=$mkv&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>".lang('admin.fls_fmres')."&gt;&gt;</a>";
     glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]{$title} ".lang('admin.fls_list')."<span class='span ph5'>|</span>$lnkadd",$lnkform,40);
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th>";
@@ -186,7 +186,7 @@ if($view=='ftest'){
       echo "<td class='tl'>".$types[$r['type']]." $plugstr</td>\n";
       echo "<td class='tc'>$dbstr</td>\n";
       echo "<td class='tr'>".glbHtml::null_cell($r['vmax'],'')." | ".glbHtml::null_cell($r['dblen'],'')."</td>\n";
-      echo "<td class='tc'><a href='?file=$file&mod=$mod&view=form&kid=$r[kid]&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('flow.title_edit')." $title\")'>".lang('flow.title_edit')."</a></td>\n";
+      echo "<td class='tc'><a href='?mkv=$mkv&mod=$mod&view=form&kid=$r[kid]&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('flow.title_edit')." $title\")'>".lang('flow.title_edit')."</a></td>\n";
       echo "<td class='tl'><input type='text' value='$note' class='txt w150 disc' disabled='disabled' /></td>\n";
       echo "</tr>"; 
     }} 

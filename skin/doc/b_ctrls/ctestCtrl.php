@@ -18,7 +18,7 @@ class ctestCtrl{
         $rnd = 's'.basKeyid::kidRand('',5);
         $arr = array('hello','json','jsonp','xml','tplorg',$rnd,);
         $re['vars']['arr'] = $arr; // 变量
-        $re['newtpl'] = 'd_tester/step_vhome'; // 模板
+        $re['newtpl'] = 'umod/step_vhome'; // 模板
         return $re;
     }
 
@@ -26,7 +26,7 @@ class ctestCtrl{
     function helloAct(){
         $name = req('name','Imcat');
         $re['vars']['name'] = $name; // 变量
-        $re['newtpl'] = 'd_tester/step_vhello'; // 模板
+        $re['newtpl'] = 'umod/step_vhello'; // 模板
         return $re;
     }
 
@@ -48,7 +48,7 @@ class ctestCtrl{
     function tplorgAct(){
         $name = req('name','Imcat');
         $re['vars']['name'] = $name; // 变量
-        $re['tplorg'] = 'd_tester/step_vtplorg'; // 模板
+        $re['tplorg'] = 'umod/step_vtplorg'; // 模板
         return $re;
     }
 

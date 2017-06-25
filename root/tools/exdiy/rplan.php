@@ -14,7 +14,7 @@ $sapp = $ocfgs['sign']['sapp'];
 $skey = $ocfgs['sign']['skey'];
 
 $act = req('act','');
-include vopShow::inc('[root]:tools/exdiy/rplan');
+include vopTpls::cinc('[root]:tools/exdiy/rplan');
 glbHtml::page('end');
 ?>
 

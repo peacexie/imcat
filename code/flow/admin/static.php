@@ -20,7 +20,7 @@ foreach($vcfgs as $itpl=>$suit){
     }
     $cname = basLang::pick(0,$suit[0]); //is_array($suit[0]) ? $suit[0]['cn'] : $suit[0];
     $ititle = $itpl==$ntpl ? "<span class='cF0F'>$cname<span>" : $cname;
-    $lnks .= "<a href='?file=$file&ntpl=$itpl'>{$ititle}</a> # ";
+    $lnks .= "<a href='?mkv=$mkv&ntpl=$itpl'>{$ititle}</a> # ";
     
 }
 glbHtml::tab_bar("$stitle $msg",$lnks,40);
@@ -29,14 +29,14 @@ if($view=='list'){
 
     $mods = array_keys($ncfg);
     glbHtml::fmt_head('fmlist',"?",'tblist');
-    echo "\n<tr><th class='tc'></th>\n<th>".lang('admin.st_admin')." --- $ntpl:$nmod --- <a href='?file=$file&ntpl=$ntpl&nmod=all'>".lang('admin.st_allmod')."</a></th></tr>\n";
+    echo "\n<tr><th class='tc'></th>\n<th>".lang('admin.st_admin')." --- $ntpl:$nmod --- <a href='?mkv=$mkv&ntpl=$ntpl&nmod=all'>".lang('admin.st_allmod')."</a></th></tr>\n";
     echo "\n<tr><td class='tc'>".lang('admin.st_opmode').": </td>\n<td>"; $ti = 0;
     foreach($mods as $imod){
         $iname = $imod=='home' ? lang('admin.st_home') : (isset($_groups[$imod]) ? $_groups[$imod]['title'] : "($imod)");
         $ititle = $imod==$nmod ? "<span class='cF0F'>$iname<span>" : "$iname";
         if($ti==0) echo " ";
         else echo ($ti && $ti%6==0) ? "<br>" : " # ";
-        echo "<a href='?file=$file&ntpl=$ntpl&nmod=$imod'>$ititle</a>";    
+        echo "<a href='?mkv=$mkv&ntpl=$ntpl&nmod=$imod'>$ititle</a>";    
         $ti++;
     }
     echo "</td></tr>\n";

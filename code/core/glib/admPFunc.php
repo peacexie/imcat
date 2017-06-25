@@ -27,11 +27,12 @@ class admPFunc{
         if(is_string($cfg) && isset($_cfg[$cfg])) $cfg = $_cfg[$cfg];
         $str = ''; 
         foreach($cfg as $file=>$title){
-            $cur = strstr($file,$now) ? "class='cur'" : '';
+            $file = str_replace('/','-',$file);
+			$cur = strstr($file,$now) ? "class='cur'" : '';
             if(strpos($file,'root}')){
                 $file = str_replace(array('{root}','{$root}',),array(PATH_PROJ,PATH_PROJ,),$file);
             }else{
-                $file = "?file=$file";
+                $file = "?mkv=$file";
             }
             $str .= ($str ? $gap : '')."<a href='$file' $cur>$title</a>";    
         }

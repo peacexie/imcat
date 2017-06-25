@@ -24,7 +24,7 @@ if($view=='list'){
           echo $cv->Show($r['show']);
           echo $cv->Time($r['atime']);
           echo $cv->Field($r['auser']);
-          echo $cv->Url('Items',1,"?file=dops/a&mod=votei&pid=$r[did]","");
+          echo $cv->Url('Items',1,"?mkv=dops-a&mod=votei&pid=$r[did]","");
           echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&did=$r[did]&recbk=ref","");
           echo "</tr>"; 
         }

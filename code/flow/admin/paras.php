@@ -27,7 +27,7 @@ if($view=='upd'){
 }else{
 
     $gbar = admAFunc::grpNav($gpid,$mod); 
-    $lnkbak = "<a href='?file=admin/groups&mod=$gpid'>&lt;&lt;[".lang('admin.pr_backmod')."]</a>";
+    $lnkbak = "<a href='?mkv=admin-groups&mod=$gpid'>&lt;&lt;[".lang('admin.pr_backmod')."]</a>";
     $lnkadd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('admin.pr_updpara')."\",300,200);'>[".lang('admin.pr_updpara')."]&gt;&gt;</a>";
     glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[{$gname}]".lang('admin.pr_set')."<span class='span ph5'>|</span>$lnkadd",$gbar,40);
 

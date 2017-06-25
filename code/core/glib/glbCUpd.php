@@ -257,11 +257,11 @@ class glbCUpd{
         if($v2['pid']=='advs'){
             $cfg = glbConfig::read($k2);
             $s0 .= "<ul class='adf_mnu2' id='left_$k2'>";
-            $s0 .= "<li class='adf_dir'><a href='?file=dops/a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
+            $s0 .= "<li class='adf_dir'><a href='?mkv=dops-a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
             foreach($cfg['i'] as $k3=>$v3){ 
             if(empty($v3['pid'])){ //顶级
                 $s0 .= "<li id='left_$k3'>";
-                $s0 .= "<a href='?file=dops/a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
+                $s0 .= "<a href='?mkv=dops-a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
                 $s0 .= "<a onclick=\"admJsClick('$k2')\">".basLang::show('core.msg_add')."</a></li>";
             }}
             $s0 .= "</ul>";
@@ -287,7 +287,7 @@ class glbCUpd{
             if(!strstr($t,'target=')){
                 $t = str_replace("<a","<a target='adf_main'",$t);
             }
-        }elseif(strstr($t,'(!)')){ //站点介绍(!)?file=dops/a&mod=about(!)frame|blank|jsadd
+        }elseif(strstr($t,'(!)')){ //站点介绍(!)?mkv=dops-a&mod=about(!)frame|blank|jsadd
             $ta = basElm::line2arr($t); $t = '';
             foreach($ta as $row){
                 $tb = explode("(!)","$row(!)(!)");
@@ -307,7 +307,7 @@ class glbCUpd{
         return $t;
     }
     static function upd_imperm($cfgs){
-        preg_match_all("/\?file=([\w|\/]{5,36})/i",$cfgs,$ma);
+        preg_match_all("/\?file=([\w|\/|\-]{5,36})/i",$cfgs,$ma);
         if(!empty($ma[1])){
             $rea = array_unique($ma[1]);
             $re = implode(',',$rea);

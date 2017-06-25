@@ -49,7 +49,7 @@ if($view=='list'){
           echo "<td class='tc'><input name='fm_[picurl]' type='text' value='$r[picurl]' class='txt w120' /></td>\n";
           echo "<td class='tc'>$r[top]</td>\n";
           echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$kid",lang('awex.ecfg'));
-          //echo "<td class='tc'><a href='?file=awex/wex_rkey&kid=$r[kid]' target='_blank'>关键字</a></td>\n";
+          //echo "<td class='tc'><a href='?mkv=awex-wex_rkey&kid=$r[kid]' target='_blank'>关键字</a></td>\n";
           echo "</tr>";
         }
         $dop->pgbar($idfirst,$idend,"delete|*".lang('awex.delkw')."");
@@ -75,7 +75,7 @@ if($view=='list'){
             $db->table($tabid)->data(basReq::in($fm))->where("kid='$kid'")->update();
             $msg = lang('flow.msg_upd');
         } 
-        basMsg::show($msg);    //,'Redir'?file=$file&mod=$mod
+        basMsg::show($msg);    //,'Redir'?mkv=$mkv&mod=$mod
     }else{
 
         echo basJscss::imp('/_pub/a_jscss/weixin.js');

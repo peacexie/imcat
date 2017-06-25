@@ -53,7 +53,7 @@ if(empty($bsend)){
 }elseif(!empty($bsend)){
 
     $clr = basReq::arr('clr'); 
-    if(empty($clr)) basMsg::show(lang('admin.ud_pick'),'Redir',"?file=admin/update&parts=$parts");
+    if(empty($clr)) basMsg::show(lang('admin.ud_pick'),'Redir',"?mkv=admin-update&parts=$parts");
     
     if(in_array('cache',$clr)){
         glbCUpd::upd_groups();
@@ -127,7 +127,7 @@ if(empty($bsend)){
     }
     
     echo '<br>'.basDebug::runInfo().'<hr>';
-    basMsg::show(lang('admin.ud_end'),'Redir',"?file=admin/update&parts=$parts");
+    basMsg::show(lang('admin.ud_end'),'Redir',"?mkv=admin-update&parts=$parts");
 
 }elseif($view=='set'){
 

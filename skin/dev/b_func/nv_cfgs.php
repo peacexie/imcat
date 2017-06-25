@@ -10,6 +10,8 @@ $nv_cfgs = array(
         'udirs' => '目录规划',
         'class' => '类库函数',
         'dbtab' => '数据库结构',
+        'names' => '重要术语',
+        'hello' => 'Hello World!',
     ),
     'blanks' => array(
         'class',
@@ -45,6 +47,7 @@ $nv_cfgs = array(
         'ucode' => '常用代码',
         'ucodb' => '数据库操作',
         'suit'  => '完整示例',
+        'apps'  => '多应用',
         'editor'=> 'editor',
         'i18n'  => '国际化',
         'sms'   => '短信接口',

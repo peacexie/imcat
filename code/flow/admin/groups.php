@@ -34,7 +34,7 @@ if($view=='glist'){
         if($fs_do!='del' && in_array($mod,array('score','sadm','smem','suser',))){ 
             glbCUpd::upd_paras($mod);
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     } 
 
     $list = $db->table($tabid)->where("pid='$mod'")->order('top')->select(); 
@@ -89,33 +89,33 @@ if($view=='glist'){
       echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' />$pstr</td>\n";
       echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
       echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
-      $ftd3 = $cv->Url(lang('flow.title_fields'),1,"?file=admin/fields&mod=$r[kid]")."<td class='tc'>".lang('flow.title_set')."</td>\n";
+      $ftd3 = $cv->Url(lang('flow.title_fields'),1,"?mkv=admin-fields&mod=$r[kid]")."<td class='tc'>".lang('flow.title_set')."</td>\n";
       $ftd3 .= $cv->Url(lang('flow.title_copy'),1,"$aurl[1]&view=gform&cid=$r[kid]",lang('admin.grp_copyitem')." - $r[title]");
       if($mod=='docs'){ 
-          echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
+          echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?mkv=admin-catalog&mod=$r[kid]",'frame');
           echo $ftd3;
       }elseif($mod=='coms'){ 
           echo $ftd3;
       }elseif($mod=='users'){
-          echo $cv->Url(lang('flow.title_grade').'&gt;&gt;',1,"?file=admin/grade&mod=$r[kid]&frame=1",'frame');
+          echo $cv->Url(lang('flow.title_grade').'&gt;&gt;',1,"?mkv=admin-grade&mod=$r[kid]&frame=1",'frame');
           echo $ftd3;
       }elseif($mod=='advs'){
-          echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?file=admin/catalog&mod=$r[kid]",'frame');
+          echo $cv->Url(lang('flow.title_cata').'&gt;&gt;',1,"?mkv=admin-catalog&mod=$r[kid]",'frame');
           echo "<td class='tc'>".$advetabs[$r['etab']]."</td>\n";
           echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
       }elseif($mod=='types'){ 
           if(strstr(@$rmcfg['cfgs'],'exdoc=1') && @$rmcfg['etab']){
-              echo $cv->Url(lang('flow.title_fields'),1,"?file=admin/fields&mod=$r[kid]");  
+              echo $cv->Url(lang('flow.title_fields'),1,"?mkv=admin-fields&mod=$r[kid]");  
           }else{
               echo "<td class='tc'>".lang('flow.title_fields')."</td>\n"; 
           }
-          echo $cv->Url(lang('flow.title_admin'),1,"?file=admin/types&mod=$r[kid]",'frame');
+          echo $cv->Url(lang('flow.title_admin'),1,"?mkv=admin-types&mod=$r[kid]",'frame');
       }elseif($mod=='menus'){ 
-          echo $cv->Url(lang('flow.title_admin'),1,"?file=admin/menus&mod=$r[kid]",'frame');
+          echo $cv->Url(lang('flow.title_admin'),1,"?mkv=admin-menus&mod=$r[kid]",'frame');
           echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n"; 
       }elseif(in_array($mod,array('score','sadm','smem','suser'))){ 
-          echo $cv->Url(lang('admin.fls_paritem'),1,"?file=admin/fields&mod=$r[kid]&ispara=1");
-          echo $cv->Url(lang('flow.title_parset'),1,"?file=admin/paras&mod=$r[kid]");
+          echo $cv->Url(lang('admin.fls_paritem'),1,"?mkv=admin-fields&mod=$r[kid]&ispara=1");
+          echo $cv->Url(lang('flow.title_parset'),1,"?mkv=admin-paras&mod=$r[kid]");
       }elseif($mod=='plus'){
           echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
       }else{ 
@@ -152,7 +152,7 @@ if($view=='glist'){
         if(in_array($mod,array('docs','users','types','coms','advs'))){
             glbCUpd::upd_model($kid); 
         }
-        basMsg::show($msg);    //,'Redir'?file=$file&mod=$mod
+        basMsg::show($msg);    //,'Redir'?mkv=$mkv&mod=$mod
     }else{
 
         if(!empty($cid)){ //copy

@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabid = 'bext_cron';
 $units = basLang::ucfg('cfgbase.corn_unit');
@@ -28,7 +28,7 @@ if($view=='list'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
 
     $lnkadd = "<a href='$aurl[1]&view=form' onclick='return winOpen(this,\"".lang('flow.cr_addhook')."\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";

@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabinfo = $db->tables(1); 
 $tabid = req("tabid",'base_model'); 
@@ -15,7 +15,7 @@ foreach($tabinfo as $r){
     $fixa[] = $fix;
     $opts .= "$itab|$itab($r[Rows])\n";
 }
-$sact = "window.location.href='?file=$file&view=$view&tabid='+this.options[selectedIndex].value";
+$sact = "window.location.href='?mkv=$mkv&view=$view&tabid='+this.options[selectedIndex].value";
 $opts = "<select onchange=\"$sact\">".basElm::setOption($opts,$tabid,lang('admin.dba_stab'))."</select>";
 $exp = " &nbsp; <a href='$aurl[1]&view=Export' target='_blank'>".lang('admin.dba_dict')."</a>";
 $exp .= " &nbsp; <a href='$aurl[1]&view=Clear' target='_blank'>".lang('admin.dba_clear')."</a>";
@@ -56,9 +56,9 @@ if(!empty($bsend)){
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 $links = admPFunc::fileNav($view,'dba');
 if($view=='runsql'){
-    $a1 = "<a href='?file=$file&view=$view&part=data'>data~*</a>";
-    $a2 = "<a href='?file=$file&view=$view&part=gbak'>gbak~*</a>";
-    $a3 = "<a href='?file=$file&view=$view&part=ins'>ins~*</a>";
+    $a1 = "<a href='?mkv=$mkv&view=$view&part=data'>data~*</a>";
+    $a2 = "<a href='?mkv=$mkv&view=$view&part=gbak'>gbak~*</a>";
+    $a3 = "<a href='?mkv=$mkv&view=$view&part=ins'>ins~*</a>";
     $sbar = "Run-SQL : $a1 # $a2 # $a3";
 } 
 if(!in_array($view,array('Export','View'))) glbHtml::tab_bar("$links $umsg",$sbar,35,'tc');
@@ -97,7 +97,7 @@ if($view=='Clear'){
             $tm = date('Y-m-d H:i',$v[0]);
             $sz = basStr::showNumber($v[1], 'Byte');
             $sz = str_pad($sz,15," ");
-            $istr .= "<a href='?file=$file&view=$view&part=$fp'>$fp</a>-$sz $tm\n";
+            $istr .= "<a href='?mkv=$mkv&view=$view&part=$fp'>$fp</a>-$sz $tm\n";
         }
         $istr .= "</pre>";
     }

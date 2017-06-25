@@ -152,7 +152,7 @@ class updInfo{
         $mcfgs = self::getModConfigs();
         $tcfgs = self::getTimeConfigs();
         foreach($mcfgs[$key] as $mod){ 
-            $link = "<a href='?file=dops/a&mod=$mod'>{$_groups[$mod]['title']}</a>";
+            $link = "<a href='?mkv=dops-a&mod=$mod'>{$_groups[$mod]['title']}</a>";
             $v = array();
             foreach($tcfgs as $tk=>$tv){
                 $v[$tk] = empty($data[$mod."_$tk"]) ? 0 : $data[$mod."_$tk"];
@@ -333,7 +333,7 @@ class updInfo{
         $_muadm = read('muadm.i');
         $re = array('abtn'=>array(),'slist'=>'','ins'=>0,);
         $icfg = include DIR_DTMP.'/update/'.$fnow; 
-        $burl = "?file=admin/upgrade&mod=install&kid=$kid";
+        $burl = "?mkv=admin-upgrade&mod=install&kid=$kid";
         if(!empty($icfg['mods'])){
         foreach ($icfg['mods'] as $mod => $mcfg) {
             $pid = $mcfg['pid'];

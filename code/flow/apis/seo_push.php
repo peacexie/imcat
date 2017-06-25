@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabid = 'bext_paras'; 
 $pid = empty($pid) ? 'seo_sitemap' : $pid;
@@ -33,7 +33,7 @@ if($pid=='create'){
     }elseif($plink){ 
         $res = $seo->bpushRun(0,$plink);
     }
-    $go = "<a href='?file=$file&pid=seo_pset'>".lang('flow.dops_back')."</a>";
+    $go = "<a href='?mkv=$mkv&pid=seo_pset'>".lang('flow.dops_back')."</a>";
     echo "<p class='tc'><br>".@$res['msg']."<br>$go</p>";
 
 }elseif($pid=='seo_sitemap' && $view=='list'){
@@ -56,7 +56,7 @@ if($pid=='create'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
     
     $list = $db->table($tabid)->where("pid='seo_sitemap'")->order('top')->select();
@@ -71,7 +71,7 @@ if($pid=='create'){
       echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
       echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref",""); 
-      $url1 = $cv->Url(lang('flow.pu_create'),0,"?file=$file&pid=create&job=$kid",lang('flow.pu_create'));
+      $url1 = $cv->Url(lang('flow.pu_create'),0,"?mkv=$mkv&pid=create&job=$kid",lang('flow.pu_create'));
       $url2 = file_exists(DIR_HTML."/map/$kid") ? "<a href='".PATH_HTML."/map/$kid' target='_blank'>".lang('flow.pu_view')."</a>" : lang('flow.pu_view');
       echo "<td class='tc'>$url1/$url2</td>\n";
       echo "</tr>"; 
@@ -103,7 +103,7 @@ if($pid=='create'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&pid=$pid");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&pid=$pid");
     }
     
     $list = $seo->bpushCfg();

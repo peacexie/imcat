@@ -1,0 +1,67 @@
+
+
+#apps#多项目
+
+* 单应用系统
+ - 单应用系统中，一个独立的系统对应一个应用项目
+ - 如你用贴心猫系统架构一套房产系统，再安装一个贴心猫系统架构一套企业站
+ - 这完全没有问题！
+
+* 问题
+ - 如果有一天，你的两个系统，要升级程序；如code,vimp等文件，要操作两次！！
+ - 如果你不觉得麻烦，开发者确还在为您想：能不能code,vimp共用?!
+ - 来看看用 贴心猫 架构多项目
+
+* 多项目目标
+ - 多个项目，共用code,vimp等程序文件，和静态文件
+ - 各项目使用不同配置，设置不同缓存目录（包含html目录,资源目录）
+ - 模板，共用一部分，如adm后台管理模板共用，其他各自分开
+
+* 多项目设置
+ - 修改配置：xxx/cfgs/sycfg/sy_vopcfg.php
+ - 和 xxx/cfgs/boot/_paths.php
+ - 相关资料：`整套模版` http://txmao.txjia.com/dev.php?tpltag-tplsuit
+
+
+#files#文件结构图
+
+```
+[SiteProject]
+│  index.php 
+├─@read : (共用)
+├─code : (共用)
+│  ├─adpt
+│  ├─...
+│  └─lang
+├─html_house : 房产静态文件
+├─html_invest : 招商静态文件
+├─house : (原来`房产站`root目录)
+│  │  house.php
+│  │  ...
+│  │  robots.txt
+│  ├─a3rd : 第三方 [登录/支付] 接口
+│  ├─...
+│  └─tools : 工具,二次开发,安装入口等
+├─invest : (原来`招商站`root目录)
+│  ├─ ...
+│  └─ 同`房产站`
+├─skin : (共用,叠加)
+│  ├─adm :  (共用)后台管理
+│  ├─house : 中文pc版
+│  ├─invest : 中文pc版
+│  ├─...
+│  └─_pub : 公用css,js,logo等
+├─ures_house : 房产上传资源
+├─ures_invest : 招商上传资源
+├─vary_house : 房产(缓存,临时文件)
+│  ├─ctpl : Tpl-缓存目录
+│  └─dtmp : 缓存/临时文件目录
+├─vary_invest : 招商(缓存,临时文件)
+│  ├─ctpl : Tpl-缓存目录
+│  └─dtmp : 缓存/临时文件目录
+└─vimp : (共用)
+    ├─static
+    ├─vendor
+    └─vendui
+```
+

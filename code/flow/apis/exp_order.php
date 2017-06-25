@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabid = 'bext_paras';
 $pid = empty($pid) ? 'paymode_cn' : $pid;
@@ -25,7 +25,7 @@ if($view=='list'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
 
     $linka = admPFunc::fileNav($pid,'ordcn'); $gname = admPFunc::fileNavTitle($pid,'ordcn');

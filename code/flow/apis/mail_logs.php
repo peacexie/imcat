@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $cfg = array(
     'sofields'=>array('title','ufrom','uto','detail','stat'),
@@ -28,7 +28,7 @@ if($view=='vcfgs'){
         </td></tr>\n";
     }else{ 
         echo "\n<tr><td class='tc w150'>".lang('flow.cfg_nowcfg').":</td>\n<td>".lang('flow.cfg_nowfile').": /root/cfgs/excfg/ex_mail.php，
-        <a href='?file=admin/ediy&part=edit&dkey=cfgs&dsub=&efile=excfg/ex_mail.php' onclick=\"return winOpen(this,'".lang('flow.cfg_edit')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
+        <a href='?mkv=admin-ediy&part=edit&dkey=cfgs&dsub=&file=excfg/ex_mail.php' onclick=\"return winOpen(this,'".lang('flow.cfg_edit')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
         foreach($cfgs as $key=>$v){
             echo "\n<tr><td class='tc'>{$key}: </td>\n<td>$v</td></tr>\n";
         }
@@ -38,7 +38,7 @@ if($view=='vcfgs'){
     // 清理操作
     if(!empty($bsend)&&$fs_do=='dnow'){
         $msg = $dop->opDelnow();
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }  
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>title</th><th>ufrom</th><th>uto</th><th>api</th><th>stat</th><th>aip</th><th>".lang('flow.cfg_optime')."</th></tr>\n";

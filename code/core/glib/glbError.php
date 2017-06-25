@@ -115,14 +115,14 @@ class glbError extends Exception {
         //define('RUN_AJAX',1); 
         if(defined('RUN_AJAX')){
             ob_start(); 
-            include vopShow::inc("_pub:stpl/err_ajax");
+            include vopTpls::cinc("_pub:stpl/err_ajax");
             $re = ob_get_contents(); 
             $re = strip_tags($re,'<li>');
             $re = str_replace(array('<li>','</li>'),array("  - ",""),$re);
             ob_clean();
             die($re); 
         }else{
-            include vopShow::inc("_pub:stpl/err_info");
+            include vopTpls::cinc("_pub:stpl/err_info");
             die();
         }
     }

@@ -1,0 +1,39 @@
+{imp:"umod/_layout"}<!--继承父模板-->
+
+{block:robot}{:clear}{/block:robot}
+
+{block:cmain}
+
+<h1>直接从`mkv路由`-=>到`模板`展示数据</h1>
+<p>Hello, MKV!, mkv=`{$this->mkv}`, 模板=`{$this->tplname}`;</p>
+<p>*0. 此功能灵感来自：`ThinkPHP3.X` 直接从路由到模板, 不要中间的`控制器/方法`...</p>
+<hr>
+<p>*1. <strong>umod</strong>, `umod`为自定义的显示模型，<br>
+见：`_config/va_home.php` &gt;&gt;  'extra' &gt;&gt; 'umod';<br>
+其他无任何设置情况下：模板名为：`模型目录/分类`, <br>
+`?umod`首页模板：`umod/mhome`, (模型首页默认为mhome)<br>
+`?umod-sub1`sub1分类模板：`umod/sub1`, <br>
+`?umod-sub2`sub2分类模板：`umod/sub2`, （如果未定义模板，显示错误信息）<br>
+`?umod.id-1234`详情模板：`umod/detail`, (详情默认为detail)<br>
+`?umod--list`搜索列表模板：`umod/mext`。 </p>
+
+<p>*2. <strong>person</strong>, `person`为后台定义的会员模型（系统模型），见后台：`模块架设`;<br>
+其他无任何设置情况下：模板名为：`模型目录/分类`, <br>
+`?person`首页模板：`person/mhome`, (模型首页默认为mhome)<br>
+`?person-pvip`pvip分类模板：`person/mtype`, (系统模型风雷模板默认为mtype)<br>
+`?person-sub2`sub2自定分类模板：`person/sub2`, （定义模板即可正常显示）<br>
+`?person.id-1234`详情模板：`person/detail`, (针对系统模型,不存在的id会报错)<br>
+`?person--list`搜索列表模板：`person/mext`。</p>
+
+<hr>
+
+<p>*3. `正常情况`下，因考虑静态生成，关闭模型等丰富的设置和信息控制，还是建议：<br>
+    每个模型（系统模型或自定模型）都明确关闭或设置一个模板配置文件;<br>
+- 示例见`/dev.php?tester-hello` 或 各模板目录下的 `_config/*` 文件。</p>
+
+<p>*a. 定义自定义模型，`_config/va_home.php` &gt;&gt;  'extra' &gt;&gt; 'tester'; <br>
+*b. 添加模板配置文件：`_config/ve_tester.php` (自行查看文件详情)<br>
+*c. 效果：访问`/dev.php?tester-hello`
+</p>
+
+{/block:cmain}

@@ -72,7 +72,7 @@ if($mod=='mumem' && $view=='glist'){
 }elseif($view=='umcinit'){
     
     admAFunc::umcVInit();
-    basMsg::show(lang('admin.mu_initend'),'Redir',"?file=$file&mod=$mod&pid=$pid");
+    basMsg::show(lang('admin.mu_initend'),'Redir',"?mkv=$mkv&mod=$mod&pid=$pid");
 
 }elseif($view=='glist'){
 
@@ -180,9 +180,9 @@ if($mod=='mumem' && $view=='glist'){
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21245')."' />$itop");
         glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea>
         <br>".lang('admin.mu_fmta')."
-        <br>1. ?file=admin/groups, ".lang('admin.mu_flagroot','{$root}')."
+        <br>1. ?mkv=admin-groups, ".lang('admin.mu_flagroot','{$root}')."
         <br>2. ".lang('admin.mu_tiptitle')."(!)link(!)frame|blank|jsadd, ".lang('admin.mu_tipline')."
-        <br>3. &lt;a href=&quot;?file=admin/types&quot;&gt;".lang('admin.mu_typa')."&lt;/a&gt; - &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;".lang('admin.set')."&lt;/a&gt;；");
+        <br>3. &lt;a href=&quot;?mkv=admin-types&quot;&gt;".lang('admin.mu_typa')."&lt;/a&gt; - &lt;a href=&quot;#&quot; target=&quot;_blank&quot;&gt;".lang('admin.set')."&lt;/a&gt;；");
         glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","fm[pid]|$pid","kid|".(empty($kid) ? '_isadd_' : $kid)));

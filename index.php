@@ -13,7 +13,7 @@ if(devRun::prootGet()!=PATH_PROJ){ // 检查路径
 }elseif(!empty($qstr) && !is_numeric($qstr)){ //处理跳转
     require DIR_ROOT.'/plus/ajax/redir.php';
 }elseif($_cbase['close_home']=='close'){
-    vopShow::inc("_pub:stpl/close_info",0,1);
+    vopTpls::cinc("_pub:stpl/close_info",0,1);
 }elseif(substr($_cbase['close_home'],0,4)=='dir-'){
     $tpl = substr($_cbase['close_home'],4);
     $cfg = read('vopcfg.tpl','sy');
@@ -23,5 +23,5 @@ if(devRun::prootGet()!=PATH_PROJ){ // 检查路径
     // * 原生代码(自己写脚本)
     //require DIR_ROOT.'/tools/rhome/home.php';
     // * 通过模板解析
-    vopShow::inc("_pub:rhome/home",0,1);
+    vopTpls::cinc("_pub:rhome/home",0,1);
 }

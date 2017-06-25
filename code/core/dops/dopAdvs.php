@@ -27,13 +27,13 @@ class dopAdvs extends dopBase{
     }
     // 搜索条 // check,fields
     function sobar($msg='',$width=30){ 
-        $file = basReq::val('file');
+        $mkv = basReq::val('mkv');
         $mod = $this->mod;
         $sbar = "\n".$this->so->Type(120,basLang::show('flow.op0_cat')); 
         $sbar .= "\n&nbsp; ".$this->so->Word(80,80,basLang::show('flow.op0_filt'));
         $sbar .= "\n&nbsp; ".$this->so->Show(60);
         $sbar .= "\n&nbsp; ".$this->so->Order(array('aid' => basLang::show('flow.dops_orduidd'),'aid-a' => basLang::show('flow.dops_orduida'),));
-        $updlink = ($this->cfg['etab']==4) ? basLang::show('flow.op_upd') : "<a href='?file=$file&mod=$mod&view=list&umod=upd'>".basLang::show('flow.op_upd')."</a>";
+        $updlink = ($this->cfg['etab']==4) ? basLang::show('flow.op_upd') : "<a href='?mkv=$mkv&mod=$mod&view=list&umod=upd'>".basLang::show('flow.op_upd')."</a>";
         $this->so->Form("[$updlink] | ".$sbar,$msg,$width);
     }
     

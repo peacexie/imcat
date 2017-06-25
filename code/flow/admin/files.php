@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $part = req('part','dtmp'); 
 $purls = comStore::cfgDirPath(0,'arr'); 
@@ -12,7 +12,7 @@ if(isset($purls[$part])){
     $navp = '<b>'; 
     foreach ($purls as $idir => $itime) {
         $cur = $part==$idir ? "class='cur'" : '';
-        $navp .= (strpos($navp,'<a')?' - ':'')."<a href='?file=$file&part=$idir' $cur>".basename($itime[0])."</a>";
+        $navp .= (strpos($navp,'<a')?' - ':'')."<a href='?mkv=$mkv&part=$idir' $cur>".basename($itime[0])."</a>";
     }
     $navp .= '</b><br>'; 
 
@@ -34,13 +34,13 @@ if(isset($purls[$part])){
     $navs = ''; 
     foreach ($dlist as $idir => $itime) {
         $cur = $dir==$idir ? "class='cur'" : '';
-        $navs .= (empty($navs)?'':' - ')."<a href='?file=$file&part=$part&dir=$idir' $cur>$idir</a>";
+        $navs .= (empty($navs)?'':' - ')."<a href='?mkv=$mkv&part=$part&dir=$idir' $cur>$idir</a>";
     }
     $flist = $dir ? comFiles::listScan($basedir."/$dir",'',array()) : array();
 
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     $psub = $dir ? "&gt;$dir" : "";
-    $ldiy = "<a href='?file=admin/ediy&part=exdiy'>DIYSet</a> # ";
+    $ldiy = "<a href='?mkv=admin-ediy&part=exdiy'>DIYSet</a> # ";
     glbHtml::tab_bar("$ldiy Sys Files : $part$psub $umsg","$navp$navs",40);
         
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
@@ -48,7 +48,7 @@ if(isset($purls[$part])){
     if(!empty($flist)){ 
         $i=0;
         foreach($flist as $ifile=>$cfg){ 
-            $i++; $burl = "?file=$file&part=$part&dir=$dir&opfile=$ifile";
+            $i++; $burl = "?mkv=$mkv&part=$part&dir=$dir&opfile=$ifile";
             $down = "<a href='$burl&bsend=down' target='_blank'>Down</a>";
             $move = "<i class='c999'>Move</i>";
             if($part=='dtmp' && !in_array($dir,array('dset','modcm','modex','store'))){

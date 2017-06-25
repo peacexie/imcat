@@ -31,19 +31,19 @@
 
 ```
 // 一行只有一个连接：直接填连接
-?file=admin/groups
+?mkv=admin-groups
 // 一行多个连接:格式1:直接填html代码：
-<a href="?file=admin/catalog" title="文档栏目">栏目管理</a> - 
-<a href="?file=admin/catalog&mod=adpic" title="广告栏目">广告</a>
+<a href="?mkv=admin-catalog" title="文档栏目">栏目管理</a> - 
+<a href="?mkv=admin-catalog&mod=adpic" title="广告栏目">广告</a>
 // 一行多个连接:格式2：
-站点介绍(!)?file=dops/a&mod=about
+站点介绍(!)?mkv=dops-a&mod=about
 增加(!)about(!)jsadd
 // 一行多个连接:格式3：
-新闻评论(!)?file=dops/a&mod=nrem(!)
-栏目(!)?file=admin/catalog&mod=news(!)frame
+新闻评论(!)?mkv=dops-a&mod=nrem(!)
+栏目(!)?mkv=admin-catalog&mod=news(!)frame
 // 一行多个连接:格式3：
-产品分类(!)?file=admin/catalog&mod=cargo(!)frame
-设置(!)?file=apis/exp_order
+产品分类(!)?mkv=admin-catalog&mod=cargo(!)frame
+设置(!)?mkv=apis-exp_order
 
 ```
 

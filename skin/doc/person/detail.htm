@@ -1,0 +1,14 @@
+{imp:"umod/_layout"}<!--继承父模板-->
+
+{block:title}Hello, {$uname},详情模板{/block:title}
+
+{block:cmain}
+<h1>{$uname}:`详情`的模板</h1>
+<p>Hello, MKV!, mkv=`{$this->mkv}`, 模板=`{$this->tplname}`;</p>
+{php}
+$mcfg = glbConfig::read($this->mod);
+{/php}
+{loop $mcfg['f'] $key $fv}
+<p>{$fv['title']}({$key}) = `<?php echo $$key; ?>`;</p>
+{/loop}
+{/block:cmain}

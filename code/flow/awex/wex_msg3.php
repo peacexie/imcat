@@ -10,9 +10,9 @@ $cmsg = basLang::ucfg('cfgbase.wx_nmsg');
 $tmsg = basLang::ucfg('cfgbase.wx_tmsg');
 
 $mlink = "<p class='tc pv5'>
-   <a href='?file=awex/wex_msg3&wekid=$wekid&view=list'>$cmsg[get]</a>
- # <a href='?file=awex/wex_msg3&wekid=$wekid&view=send'>$cmsg[send]</a>
- # <a href='?file=awex/wex_msg3&wekid=$wekid&view=form' onclick=\"return winOpen(this,'$cmsg[ms]',780,560);\">$cmsg[ms]</a>
+   <a href='?mkv=awex-wex_msg3&wekid=$wekid&view=list'>$cmsg[get]</a>
+ # <a href='?mkv=awex-wex_msg3&wekid=$wekid&view=send'>$cmsg[send]</a>
+ # <a href='?mkv=awex-wex_msg3&wekid=$wekid&view=form' onclick=\"return winOpen(this,'$cmsg[ms]',780,560);\">$cmsg[ms]</a>
  
 </p>";
 
@@ -65,7 +65,7 @@ if($view=='list'){
           echo "<td class='tc'>$r[openid]</td>\n";
           echo "<td class='tc'>$time</td>\n";
           echo "<td class='tc'>$res</td>\n"; 
-          echo $cv->Url($cmsg['nrep'],1,"?file=awex/wex_msg3&kid=$kid&view=form&wekid=$wekid",$cmsg['rep']);
+          echo $cv->Url($cmsg['nrep'],1,"?mkv=awex-wex_msg3&kid=$kid&view=form&wekid=$wekid",$cmsg['rep']);
           echo "</tr>";
         }
         $dop->pgbar($idfirst,$idend,"delete|*".lang('awex.m3_delmsg'));

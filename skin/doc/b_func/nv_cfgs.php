@@ -10,6 +10,8 @@ $nv_cfgs = array(
         'udirs' => 'Dir-planning',
         //'class' => 'Class-Map',
         'dbtab' => 'DB/Tables',
+        'names' => 'Important Noun',
+        'hello' => 'Hello World!',
     ),
     'blanks' => array(
         'class',
@@ -45,6 +47,8 @@ $nv_cfgs = array(
         'ucode' => 'Code-Unit',
         'ucodb' => 'DB-Act',
         'suit'  => 'Suit-Demo',
+        'names' => 'Important Nouns',
+        'apps'  => 'Multi-App',
         //'editor'=> 'editor',
         //'i18n'  => 'Internationalization',
         'sms'   => 'SMS-API',

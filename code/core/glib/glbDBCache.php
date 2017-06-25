@@ -14,7 +14,7 @@ class glbDBCache extends glbDBObj{
         $this->sql=$sql;
         //判断当前的sql是否是查询语句
         if($func){
-            return parent::($sql,$func)
+            return parent::query($sql,$func);
         }elseif(strpos(trim(strtolower($sql)),'select')===0){ 
             $data=array();
             //读取缓存
@@ -27,7 +27,7 @@ class glbDBCache extends glbDBObj{
             $this->_dcPut($data,'query');//写入缓存
             return $data;
         }else{ //不是查询条件，执行之后，直接返回
-            return parent::($sql,$func);
+            return parent::query($sql,$func);
         }
     }
 

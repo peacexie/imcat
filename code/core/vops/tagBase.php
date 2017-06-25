@@ -2,6 +2,7 @@
 /*
 */
 // 标签解析 基类
+
 class tagBase{
     
     public $modid = '';

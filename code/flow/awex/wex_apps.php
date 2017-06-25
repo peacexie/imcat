@@ -63,10 +63,10 @@ if($view=='list'){
           #echo "<td class='tc'>".date('Y-m-d H:i',$r['acexp'])."</td>\n";
           // 配置
           echo $cv->Url($r['appid'],1,"$aurl[1]&view=form&kid=$kid",lang('awex.ecfg'),480,360);
-          echo "<td class='tc'><a href='?file=awex/wex_menu&wekid=$r[kid]' target='_blank'>$cnav[menu]</a></td>\n";
-          echo "<td class='tc'><a href='?file=awex/wex_user&wekid=$r[kid]' target='_blank'>$cnav[user]</a></td>\n";
-          echo "<td class='tc'><a href='?file=awex/wex_msg3&wekid=$r[kid]' target='_blank'>$cnav[msg]</a></td>\n";
-          echo "<td class='tc'><a href='?file=awex/wex_rkey&wekid=$r[kid]' target='_blank'>$cnav[kw]</a></td>\n";
+          echo "<td class='tc'><a href='?mkv=awex-wex_menu&wekid=$r[kid]' target='_blank'>$cnav[menu]</a></td>\n";
+          echo "<td class='tc'><a href='?mkv=awex-wex_user&wekid=$r[kid]' target='_blank'>$cnav[user]</a></td>\n";
+          echo "<td class='tc'><a href='?mkv=awex-wex_msg3&wekid=$r[kid]' target='_blank'>$cnav[msg]</a></td>\n";
+          echo "<td class='tc'><a href='?mkv=awex-wex_rkey&wekid=$r[kid]' target='_blank'>$cnav[kw]</a></td>\n";
           echo "<td class='tc'><a href='".PATH_ROOT."/a3rd/weixin_pay/wedebug.php?kid=$kid' target='_blank'>$cnav[debug]</a></td>\n";
           echo "</tr>";
         }
@@ -94,7 +94,7 @@ if($view=='list'){
             $db->table($tabid)->data(basReq::in($fm))->where("kid='$kid'")->update();
             $msg = lang('flow.msg_upd');
         } 
-        basMsg::show($msg);    //,'Redir'?file=$file&mod=$mod
+        basMsg::show($msg);    //,'Redir'?mkv=$mkv&mod=$mod
     }else{
 
         if(!empty($kid)){

@@ -59,7 +59,7 @@ if($view=='glist'){
       echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";  
       echo "<td class='tc'>".($kid=='supper' ? lang('admin.grd_set') : "<a href='$aurl[1]&view=set&kid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
       echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.grd_edit')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
-      if(in_array($mod,$_ex_paras['grade'])) echo "<td class='tc'>".("<a href='?file=admin/fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
+      if(in_array($mod,$_ex_paras['grade'])) echo "<td class='tc'>".("<a href='?mkv=admin-fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
       echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
       echo "</tr>"; 
     }} 
@@ -125,12 +125,12 @@ if($view=='glist'){
     }else{
         $row = $db->table($tabid)->where("kid='$kid'")->find(); 
         $title = $row['title']; //company,govern,apimail
-        $lnkbak = "<a href='?file=$file&mod=$mod'>&lt;&lt;".lang('admin.grd_back')."[$gname]".lang('admin.grd_glist')."</a>";
+        $lnkbak = "<a href='?mkv=$mkv&mod=$mod'>&lt;&lt;".lang('admin.grd_back')."[$gname]".lang('admin.grd_glist')."</a>";
         $lpart1 = " | "; $lpart2 = " | ";
         $pcfg1 = array('pmod'=>lang('admin.grd_mod'),'padd'=>lang('flow.dops_add'),'pdel'=>lang('flow.dops_del'),'pcheck'=>lang('flow.dops_checked'));
-        foreach($pcfg1 as $k=>$v) { $lpart1 .= "<a href='?file=$file&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
+        foreach($pcfg1 as $k=>$v) { $lpart1 .= "<a href='?mkv=$mkv&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
         $pcfg2 = basLang::ucfg('cfglibs.grset_types');  
-        foreach($pcfg2 as $k=>$v) { $lpart2 .= "<a href='?file=$file&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
+        foreach($pcfg2 as $k=>$v) { $lpart2 .= "<a href='?mkv=$mkv&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
         glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$title]".lang('admin.grd_pedit')."","$lpart1<br>$lpart2",40); //-
         glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
         $pmstr = $row[$parts];  

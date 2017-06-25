@@ -76,7 +76,7 @@ if($view=='glist'){
       echo "<td class='tc'>$r[deep]</td>\n"; 
       echo "<td class='tc'>".glbHtml::null_cell($r['frame'])."</td>\n"; 
       echo "<td class='tc'>".($f_deep ? "<a href='$u_sub'>$s_cnt</a>" : glbHtml::null_cell($s_cnt))."</td>\n"; 
-      if(in_array($mod,$_ex_paras['catid'])) echo "<td class='tc'>".("<a href='?file=admin/fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";  
+      if(in_array($mod,$_ex_paras['catid'])) echo "<td class='tc'>".("<a href='?mkv=admin-fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";  
       echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.cat_edit')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
       echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
       echo "</tr>"; 

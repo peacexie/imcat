@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 
 if(in_array($view,array('list','set'))){
@@ -31,8 +31,8 @@ if($view=='set'){
       echo "<tr>\n".$cv->Select($kid);
       echo "<td class='tc'>$kid</td>\n";
       echo "<td class='tc'>$gv[title]</td>\n";
-      echo $cv->Url(lang('flow.sh_json'),1,"?file=$file&view=json&mod=$mod","blank");
-      echo $cv->Url(lang('flow.sh_tpl'),1,"?file=$file&view=tpl&mod=$mod","blank");
+      echo $cv->Url(lang('flow.sh_json'),1,"?mkv=$mkv&view=json&mod=$mod","blank");
+      echo $cv->Url(lang('flow.sh_tpl'),1,"?mkv=$mkv&view=tpl&mod=$mod","blank");
       echo "<td class='tl'><input type='text' value='".str_replace(array("\n","\r",";;"),array(";",";",";"),@$mcfg['cfgs'])."' class='txt w300' /></td>\n";
       echo "</tr>";
       $gmold = $gv['pid']; 

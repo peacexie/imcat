@@ -44,7 +44,7 @@ class tex_user{ //extends tex_base
         $re3['urlpath'] = surl('umc:0','',1)."?mkv=help-emact&mod=mail-act{$urp}"; 
         $re3['root'] = $_cbase['run']['rmain'];
         // tpl,email
-        $detail = vopShow::tpl($ucfg['utpls']['mail-act'],'',$re3);
+        $detail = vopTpls::show($ucfg['utpls']['mail-act'],'',$re3);
         $mail = new extEmail();
         $rem = $mail->send($fm['memail'],"$sys_name ".lang('user.uae_regactem'),$detail,$sys_name);
         // log,return
@@ -103,7 +103,7 @@ class tex_user{ //extends tex_base
             $re3['urlpath'] = surl('umc:0','',1)."?mkv=help-getpw&emid=$kid&vstr=$enc".safComm::urlStamp('init');
             $re3['root'] = $_cbase['run']['rmain'];
             // tpl,email
-            $detail = vopShow::tpl($ucfg['utpls']['mail-getpw'],'',$re3);
+            $detail = vopTpls::show($ucfg['utpls']['mail-getpw'],'',$re3);
             $mail = new extEmail();
             $rem = $mail->send($memail,"$sys_name ".lang('user.usrm_emsubj'),$detail,$sys_name);
             $re = $rem=='SentOK' ? lang('user.usrm_emtip') : lang('user.usrm_emeror');

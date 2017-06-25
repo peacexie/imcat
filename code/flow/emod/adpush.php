@@ -6,7 +6,7 @@ $omkv = req('omkv');
 $otpl = req('otpl');
 
 if(req('umod')=='upd'){
-    echo "<p class='tc'><a href='?file=$file&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
+    echo "<p class='tc'><a href='?mkv=$mkv&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
 }
 
 $msg = ''; $tabext = ''; 

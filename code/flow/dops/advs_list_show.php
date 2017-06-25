@@ -3,7 +3,7 @@
 
 if(req('umod')=='upd'){
     echo vopStatic::advMod($mod,"(all)");
-    echo "<p class='tc'><a href='?file=$file&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
+    echo "<p class='tc'><a href='?mkv=$mkv&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
 }
 
 //$dop->dskey  = $dop->so->dskey  = 'mtel'; //改变默认搜索字段

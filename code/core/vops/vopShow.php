@@ -1,7 +1,4 @@
 <?php
-/*
-
-*/
 // 标签解析,显示 总控类
 class vopShow{
     
@@ -20,41 +17,6 @@ class vopShow{
         global $_cbase;
         $this->tplCfg = $_cbase['tpl'];
         $start && $this->run();
-    }
-    
-    // 解析后的模板内容
-    static function tpl($file,$ext='',$data=array()){
-        global $_cbase; 
-        $fpath = self::inc($file,$ext); 
-        extract($data, EXTR_OVERWRITE); 
-        ob_start(); 
-        include $fpath;
-        $res = ob_get_contents();
-        ob_end_clean(); 
-        return $res;
-    }
-    // 包含html区块（通过模板解析）
-    // vopShow::inc('_pub:rhome/home',0,1);
-    // include vopShow::inc('_pub:rhome/home');
-    static function inc($file,$ext='',$inc=0){
-        global $_cbase; 
-        $ext || $ext = $_cbase['tpl']['tpl_ext']; 
-        $cac = '/_vinc/'.substr($file,strpos($file,':')+1);
-        $tplfull = DIR_CTPL.$cac.$_cbase['tpl']['tpc_ext'];
-        if(!file_exists($tplfull) || !$_cbase['tpl']['tpc_on']){
-            $template = vopTpls::pinc($file,$ext); 
-            $template = comFiles::get($template); 
-            $btpl = new vopComp();
-            $template = $btpl->bcore($template);
-            comFiles::chkDirs($cac,'ctpl',1); 
-            comFiles::put($tplfull, $template); //写入缓存
-        }
-        $_cbase['run']['tplname'] = $file;
-        if($inc){
-            include $tplfull;
-        }else{
-            return $tplfull;
-        }
     }
     //init-js
     function rjs($data=''){
@@ -84,55 +46,55 @@ class vopShow{
         vopTpls::check($_cbase['tpl']['tpl_dir']);
         $this->vars = array(); // 重新清空(初始化),连续生成静态需要
         $this->ucfg = vopUrl::init($q); 
-        if(empty($this->ucfg)) { return; }
         foreach(array('mkv','mod','key','view','type','tplname',) as $k){
             $this->$k = $this->ucfg[$k];
         }
-        $this->getVars(); // 读取数据,赋值 $this->set('name', 'test_Name');
+        $this->homeStatic(); // 首页静态
+        $this->getVars(); // 读取数据
         $this->extActs(); // 操作扩展(vars,tpls)
-        $tplfull = $this->tplCheck(); // 
+        $tplfull = $this->chkTpl(); // 检查模板,编译
         if(!$tplfull){
-            return '';
-        }elseif($this->err){ // 考虑生成静态,不要die,返回给生产静态的处理
-            $this->ucfg = array(); 
-            return $this->msg($this->err);
-        }else{
-            extract($this->vars, EXTR_OVERWRITE); 
+            $this->ucfg = array(); // 生成静态判断
+            return;
         }
+        extract($this->vars, EXTR_OVERWRITE); 
         $_cbase['mkv'] = $this->ucfg; 
         $_cbase['run']['tplname'] = $this->tplname;
-        include $tplfull; //加载编译后的模板缓存
+        include $tplfull;
     }
-    function tplCheck() { // 检查+编译
-        if(!defined('RUN_STATIC') && $this->ucfg['hcfg']['vmode']=='static'){
-            $file = vopStatic::getPath('home','home',1);
-            if($path=tagCache::chkUpd($file,$this->ucfg['hcfg']['stexp'],0)){ 
-                include $path; 
-                echo "\n<!--".basDebug::runInfo()."-->";
-                return '';
-            }
-        }
+    // 检查模板,编译
+    function chkTpl() {
         if(!empty($this->tplnull)){
-            return '';
+            return ''; // 不要后续模板显示-直接返回
         }
-        if(empty($this->tplname)){
+        if(empty($this->tplname) || is_string($this->vars)){
             $msgk = $this->ucfg['vcfg']['vmode']=='close' ? 'closemod' : 'parerr';
-            return $this->err = "$this->mkv:".basLang::show("core.vop_$msgk");
-        }
-        if(is_string($this->vars)){
-            return $this->err = $this->vars;
+            $ermsg = empty($this->tplname) ? "$this->mkv:".basLang::show("core.vop_$msgk") : $this->vars;
+            $this->msg($ermsg);
+            return ''; // 返回空,终止操作
         }
         if(!empty($this->tplorg)){
-            return vopTpls::path('tpl')."/{$this->tplorg}".$this->tplCfg['tpl_ext'];
+            $tplorg = vopTpls::path('tpl')."/{$this->tplorg}".$this->tplCfg['tpl_ext'];
+        }else{
+            $tplorg = vopTpls::path('tpl')."/{$this->tplname}".$this->tplCfg['tpl_ext'];
         }
-        $tplfull = vopTpls::path('tpc')."/{$this->tplname}".$this->tplCfg['tpc_ext'];
-        if(empty($_cbase['tpl']['tpc_on']) || !file_exists($tplfull)){
-            vopComp::main($this->tplname);
+        if(!file_exists($tplorg)){ // 原始模板是否存在
+            $this->msg("$tplorg NOT Exists!");
+            return ''; // 返回空,终止操作
+        }
+        if(!empty($this->tplorg)){
+            $tplfull = $tplorg; // 原始包含,不要解析判断
+        }else{ // 编译
+            $tplfull = vopTpls::path('tpc')."/{$this->tplname}".$this->tplCfg['tpc_ext'];
+            if(empty($_cbase['tpl']['tpc_on']) || !file_exists($tplfull)){
+                vopComp::main($this->tplname);
+            }   
         }
         return $tplfull;
     }
+    // 扩展操作
     function extActs() {
-        $class = $this->mod.'Ctrl'; 
+        $class = $this->mod.'Ctrl';
         $fp = vopTpls::path('tpl')."/b_ctrls/$class.php";
         if(file_exists($fp)){
             include_once $fp;
@@ -149,20 +111,17 @@ class vopShow{
         if(!empty($res['vars'])){ 
             $this->vars = array_merge($this->vars,$res['vars']);
         }
-        if(!empty($res['newtpl'])){
-            $this->tplname = $res['newtpl'];
-        }else{
-            $this->extTpl(); // 模板扩展
-        }
-        if(!empty($res['tplorg'])){
-            $this->tplname = $this->tplorg = $res['tplorg'];
-        } 
         if(!empty($res['tplnull'])){
             $this->tplnull = $res['tplnull'];
+        }elseif(!empty($res['newtpl'])){
+            $this->tplname = $res['newtpl'];
+        }elseif(!empty($res['tplorg'])){
+            $this->tplname = $this->tplorg = $res['tplorg']; 
+        }else{
+            $this->extTpl(); // 扩展模板
         }
     }
-
-    //extTpl
+    // 扩展模板
     function extTpl() { 
         global $_cbase; 
         $vars = $this->vars;
@@ -190,7 +149,6 @@ class vopShow{
             $tplname .= $tmfix; 
         }
     }
-
     //GetVars
     function getVars() { 
         $_groups = glbConfig::read('groups');
@@ -202,17 +160,30 @@ class vopShow{
             $db = glbDBObj::dbObj();
             $tabid = glbDBExt::getTable($this->mod);
             $data = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-            if(empty($data)){ return $this->msg("[{$this->key}]".basLang::show('core.vshow_uncheck')); }
+            if(empty($data)){ 
+                $this->vars = "[{$this->key}]".basLang::show('core.vshow_uncheck');
+                return; 
+            }
             if(in_array($pid,array('docs'))){
                 $tabid = glbDBExt::getTable($this->mod,1);
                 $dext = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
                 $dext && $data += $dext; 
             }
         }
-        return $this->vars = $data;
+        $this->vars = $data;
     }
-    
-    //分页标签
+    // 首页静态
+    function homeStatic() {
+        if($this->mod=='home' && !defined('RUN_STATIC') && $this->ucfg['hcfg']['vmode']=='static'){
+            $file = vopStatic::getPath('home','home',1);
+            if($path=tagCache::chkUpd($file,$this->ucfg['hcfg']['stexp'],0)){ 
+                include $path; 
+                echo "\n<!--".basDebug::runInfo()."-->";
+                die(); // 可以终止,生成静态不走这里
+            }
+        }
+    }    
+    // 分页标签
     function chkPage($tagname) {
         global $_cbase; 
         $nowtpl = $_cbase['run']['tplnow'];
@@ -225,7 +196,6 @@ class vopShow{
             $this->msg("$msg0$msg1$msg2");
         }
     }
-
     // 解析
     function tagParse($tagname,$type,$paras=array()){ 
         global $_cbase; 
@@ -255,26 +225,17 @@ class vopShow{
     }
     // unset
     function tagEnd($tname=''){}
-
     //模板赋值
-    function set($name, $value = '') {
-        if( is_array($name) ){
-            foreach($name as $k => $v){
-                $this->vars[$k] = $v;
-            }
-        } else {
-            $this->vars[$name] = $value;
-        }
-    }
+    function xxx_set($name, $value = '') {}
+
     // msg分析
     static function msg($msg=''){
         if(!defined('RUN_STATIC')){
-            glbError::show($msg,0);    
+            glbError::show($msg,0);
         }else{
             return $msg;    
         }
     }
-    
     // page-meta
     function pmeta($title='',$keywd='',$desc=''){
         global $_cbase; 
@@ -310,7 +271,6 @@ class vopShow{
         if($keywd) echo "<meta name='keywords' content='".basStr::filTitle($keywd)."' />\n";
         if($desc) echo "<meta name='description' content='".basStr::filTitle($desc)."' />\n";
     }
-    
     // page-import
     // {php $this->pimp(); }
     // {php $this->pimp(array('css'=>'~tpl/b_jscss/home.css','js'=>'/jquery/jq_imgChange.js:vendui')); } 
@@ -339,4 +299,3 @@ class vopShow{
     }
 
 }
-

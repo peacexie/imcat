@@ -65,27 +65,37 @@ class vopUrl{
     // tpl/key分析
     static function itpl($re){
         foreach(self::$params as $k) $$k = $re[$k]; 
-        $tpl = ''; $cfg = array();
+        $tpl = ''; $dsub = $type; // mhome,mext(sub),detail
+        $cfg = array();
         if($type=='mtype'){ 
+            $dsub = $key;
             if(isset($vcfg[$key])){
                 $cfg = $vcfg[$key];
             }else{ 
                 $mcfg = glbConfig::read($mod);
                 if(isset($mcfg['i'][$key])){
-                    $cfg = $vcfg['t'];
+                    $cfg = empty($vcfg['t']) ? '' : $vcfg['t'];
+                    $dsub = $type;
                 }
             }
         }elseif($type=='detail'){
             $cfg = empty($vcfg['d']) ? '' : $vcfg['d'];
         }elseif(isset($vcfg['m'])){ // mext,mhome
             $cfg = $vcfg['m']; 
-        } 
+        }
         if($view && isset($cfg[$view])){ 
             $tpl = $cfg[$view]; 
         }else{ //if(!empty($cfg))
             $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; 
         }
-        // 处理{mod}, 
+        if(empty($tpl)){
+            $_groups = glbConfig::read('groups'); 
+            $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','coms','users')); // types, advs,
+            if($ina4 || in_array($mod,$re['hcfg']['extra'])){ 
+                $tpl = "$mod/$dsub";
+            }
+        }
+        // 处理{mod}
         $re['tplname'] = str_replace('{mod}',$mod,$tpl);
         return $re;
     }
@@ -99,7 +109,7 @@ class vopUrl{
             $re['tplname'] = $re['hcfg']['m'];
         }else{ 
             $re['vcfg'] = glbConfig::vcfg($re['mod']); 
-            if($re['type']=='mhome' && $re['vcfg']['m']=='first') self::ifirst($re['mod']); //first跳转
+            if($re['type']=='mhome' && isset($re['vcfg']['m']) && $re['vcfg']['m']=='first') self::ifirst($re['mod']); //first跳转
             $re = self::itpl($re);
         }
         empty($re['hcfg']['u']) || $re['u'] = $re['hcfg']['u']; //自定义参数
@@ -213,20 +223,6 @@ class vopUrl{
             }
         }
         return $url;
-    }
-
-    // 路由
-    static function route($str=''){
-        $org['self'] = $_SERVER['PHP_SELF']; // path/file.php/routdir/routpart
-        $org['script'] = $_SERVER['SCRIPT_NAME']; // /path/file.php
-        // PATH_INFO = /routdir/routpart, 可能不支持提示(cgi.fix_pathinfo=0)：No input file specified.
-        $org['route'] = empty($_SERVER['PATH_INFO']) ? '' : $_SERVER['PATH_INFO']; 
-        $org['query'] = $_SERVER['QUERY_STRING']; // act=test&key1=myval2
-        parse_str($org['query'],$par); //parse_str() 函数把查询字符串解析到变量中。
-        /*if(!safComm::urlQstr7()){
-            vopShow::msg("[QUERY]参数错误!");
-        }*/
-        return array('org'=>$org,'par'=>$par);
     }
     
     // umkv：获取mkv: $_GET > $_cbase > 

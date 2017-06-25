@@ -8,7 +8,7 @@ $mtitle = $nava["admin/upgrade&mod=$mod"];
 $step = req('step','init'); // init,set,deel
 $kid = req('kid'); 
 $act = req('act'); $acg = req('acg'); $acm = req('acm');
-$burl = "?file=$file&mod=$mod&kid=";
+$burl = "?mkv=$mkv&mod=$mod&kid=";
 
 if($act&&$acg&&$acm){
     devSetup::ins1Item($act,$acm,$acg,$kid,req('pid'));

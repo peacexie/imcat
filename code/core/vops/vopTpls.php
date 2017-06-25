@@ -4,7 +4,42 @@
 */
 // 模版相关
 class vopTpls{
-    
+
+    // 显示解析后的模板内容
+    static function show($file,$ext='',$data=array()){
+        global $_cbase; 
+        $fpath = self::cinc($file,$ext); 
+        extract($data, EXTR_OVERWRITE); 
+        ob_start(); 
+        include $fpath;
+        $res = ob_get_contents();
+        ob_end_clean(); 
+        return $res;
+    }
+    // 包含html区块（通过模板解析）
+    // vopTpls::cinc('_pub:rhome/home',0,1);
+    // include vopTpls::cinc('_pub:rhome/home');
+    static function cinc($file,$ext='',$inc=0){
+        global $_cbase; 
+        $ext || $ext = $_cbase['tpl']['tpl_ext']; 
+        $cac = '/_vinc/'.substr($file,strpos($file,':')+1);
+        $tplfull = DIR_CTPL.$cac.$_cbase['tpl']['tpc_ext'];
+        if(!file_exists($tplfull) || !$_cbase['tpl']['tpc_on']){
+            $template = vopTpls::pinc($file,$ext); 
+            $template = comFiles::get($template); 
+            $btpl = new vopComp();
+            $template = $btpl->bcore($template);
+            comFiles::chkDirs($cac,'ctpl',1); 
+            comFiles::put($tplfull, $template); //写入缓存
+        }
+        $_cbase['run']['tplname'] = $file;
+        if($inc){
+            include $tplfull;
+        }else{
+            return $tplfull;
+        }
+    }
+
     //获得模版或缓存路径:type=tpl,tpc;
     static function path($type='',$root=1){
         global $_cbase;

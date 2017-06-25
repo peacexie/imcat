@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabid = 'bext_paras'; //$tabid = 'bext_jifen'; die('coming soon!');
 $pid = empty($pid) ? 'jifen_grade' : $pid;
@@ -41,7 +41,7 @@ if($view=='upd'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
     
     $list = $db->table($tabid)->where("pid='$pid'")->order('top')->select();
@@ -85,7 +85,7 @@ if($view=='upd'){
       echo "<td class='tc'>$gv[title]</td>\n";
       echo "<td class='tc'>$numa</td>\n";
       echo "<td class='tc'>$numb</td>\n";
-      echo $cv->Url(lang('flow.dops_edit'),1,"?file=admin/groups&mod=$gm&view=gform&kid=$mod&recbk=ref","");
+      echo $cv->Url(lang('flow.dops_edit'),1,"?mkv=admin-groups&mod=$gm&view=gform&kid=$mod&recbk=ref","");
       echo "<td class='tl'><input type='text' value='".str_replace(array("\n","\r",";;"),array(";",";",";"),@$mcfg['cfgs'])."' class='txt w300' /></td>\n";
       echo "</tr>";
       $gmold = $gv['pid']; 
@@ -116,7 +116,7 @@ if($view=='upd'){
     // 清理操作
     if(!empty($bsend)&&$fs_do=='dnow'){
         $msg = $dop->opDelnow();
-        basMsg::show($msg,'Redir',"?file=$file&pid=$pid&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&pid=$pid&mod=$mod&flag=v1");
     }
     
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');

@@ -5,5 +5,4 @@ $_cbase['tpl']['tpl_dir'] = 'adm';
 $_cbase['ucfg']['lang'] = '(auto)'; 
 // 路由简化配置 $_cbase['route'] = array();
 require dirname(__FILE__).'/_init.php';
-$vop = new vopShow(0);
-$vop->run(usrAdmin::getMkv());
+$vop = new vopShow();

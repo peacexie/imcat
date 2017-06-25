@@ -9,7 +9,7 @@
  - Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
 
 * Basic-Info:
- - Release: 2017.0x.x0,(2017-0x-x7)
+ - Release: 2017.07.08,(2017-07-15)
  - rar-Size: 3.54 MB
 
 
@@ -19,15 +19,19 @@
 * Add: qq-Login
 * Add: url-Alias configuration
 
-* Add: `Controller-Action`-style Extending templates and displaying data
+* Add: 
  -> This system: Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
- -> see: http://txmao.txjia.com/dev.php?ctest
+ -> Add: `Controller-Action`-style Extending templates and displaying data
+ -> see: http://txmao.txjia.com/doc.php?ctest
+ -> Add: `mkvRouter-Tpl`-style Show data direct, skip complex tpl config:
+ -> see: http://txmao.txjia.com/doc.php?umold
 
 * Add: Web admin notes
  -> It's just a guestbook for admin, before the ASP system appeared.
 
 * Improve: 
  -> Move the config dir from `root/cfgs` -=>to `root/cfgs` (Notice - test setup, update, upload)
+ -> 增强代码调试功能
  -> Optimize Verification code class
 
 * Refine/Optimize: Not deliberately compatible with php5.2（Now you can run under php5.2）
@@ -50,10 +54,8 @@
 * Upgrade method-B. Upgrade ON Old system
  - This version, We moved the config dir from `root/cfgs` -=>to `root/cfgs`, so NOT use this method.
 
-
 #tips#Future
 
 * Future planning
  - Develop Nodejs/Python accessory project - these project will not in this case!
  - v4.x paln - in v4.x, the dirs-files will more reasonable, emphasis on application...
-

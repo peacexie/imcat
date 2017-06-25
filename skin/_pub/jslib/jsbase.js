@@ -261,22 +261,18 @@ function lang(mk, val){
     vre = vre.replace('{val}',val); 
     return vre;
 }
-// 动态导入Js/CSS文件 使用 命名空间方式 
-// echo "jQuery.getScript(_skroot+'/_pub/a_jscss/adpush.js', function(){ 
-// echo "jQuery('head').append('<link href=\"'+_skroot+'/_pub/a_jscss/adpush.css\" rel=\"stylesheet\" type=\"text/css\" />');\n";
+// 动态导入Js/CSS文件
 function jsImp(sFile,basePath,cbk){     
     if(_cbase.run.jsimp.indexOf(sFile)<=0) _cbase.run.jsimp += ','+sFile;
     else return;  
     if(typeof(basePath)=='undefined') basePath = _cbase.run.roots;
     if(basePath.length==0) basePath = _cbase.run.roots;
     sFile = basePath + sFile; 
-    ext = sFile.substr(sFile.length-4); 
     if(cbk=='{code}'){
-        var _code = "<link href='"+sFile+"' rel='stylesheet' type='text/css' />"; 
-        if(ext=='.css') _code = "<script src='"+sFile+"'></script>";
-        document.write(_code);
-    }else if(ext=='.css'){ 
-        document.createStyleSheet(sFile); 
+        var ext = sFile.substr(sFile.length-4);
+        var cjs = "<script src='"+sFile+"'></script>";
+        if(ext=='.css'){ cjs="<link href='"+sFile+"' rel='stylesheet' type='text/css'/>"; }
+        document.write(cjs);
     }else{
         jQuery.getScript(sFile,function(){ cbk && cbk.call(); }); 
     }

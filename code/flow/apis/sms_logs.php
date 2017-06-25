@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $part = req('part','slogs'); //logs,charge
 
@@ -23,7 +23,7 @@ $dop->sobar("$links$umsg",40,array());
 // 清理操作
 if(!empty($bsend)&&$fs_do=='dnow'){
     $msg = $dop->opDelnow();
-    basMsg::show($msg,'Redir',"?file=$file&mod=$mod&part=$part&flag=v1");
+    basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&part=$part&flag=v1");
 }
     
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');

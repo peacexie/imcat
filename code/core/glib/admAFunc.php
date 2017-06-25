@@ -107,7 +107,7 @@ class admAFunc{
     // upd config
     static function grpNav($pid,$mod){
         $_groups = glbConfig::read('groups');
-        $file = basReq::val('file'); 
+        $mkv = basReq::val('mkv',$_SERVER['QUERY_STRING']); 
         $str = ''; 
         $ggap = ''; $top0 = '1';
         foreach($_groups as $k=>$v){
@@ -117,7 +117,7 @@ class admAFunc{
                 $ggap = ' | '; $top0 = $top1;
             }
         }
-        $str = str_replace("?mod=","?file=$file&mod=",$str);
+        $str = str_replace("?mod=","?mkv=$mkv&mod=",$str);
         $str = str_replace("&mod=$mod","&mod=$mod' class='cur",$str); 
         return $str;
     }

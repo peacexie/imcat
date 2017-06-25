@@ -18,7 +18,7 @@ if($rs=$dop->getRecs()){
       //echo $cv->Field($r['auser']);
       echo $cv->Time($r['etime'],'y');
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&did=$r[did]&recbk=ref","");
-      echo $cv->Url(lang('flow.dops_copy'),1,"?file=binc/exd_copy&mod=$mod&kid=$r[did]&title=$r[title]",lang('flow.dops_cpro'),480,360);
+      echo $cv->Url(lang('flow.dops_copy'),1,"?mkv=binc-exd_copy&mod=$mod&kid=$r[did]&title=$r[title]",lang('flow.dops_cpro'),480,360);
       echo "</tr>"; 
     }
     $dop->pgbar($idfirst,$idend);

@@ -148,11 +148,6 @@ if(strstr($act,'testInfo')){
     echo "var testInfo = '$pprev';";
     echo "document.write(\"$pprev\")";
 }
-// test
-if(strstr($act,'testSleep')){    
-    usleep(1200*1000); //usleep(200000);#暂停200毫秒
-    echo "var testSleep$r = 'ts1_$r'; ";    
-}
 
 // 一次一个if()关闭,是因为可能出现类似[?act=jsTypes:cargo,brand;jsRelat:relpb;jsFields:cargo ]参数，同时执行几段代码
 

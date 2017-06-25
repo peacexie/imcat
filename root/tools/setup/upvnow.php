@@ -85,9 +85,9 @@ glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sf
 glbHtml::page('body');
 
 if(in_array($act,$carrs)){    
-    include vopShow::inc('[root]:tools/setup/upcomp');
+    include vopTpls::cinc('[root]:tools/setup/upcomp');
 }else{
-    include vopShow::inc('[root]:tools/setup/upflow');
+    include vopTpls::cinc('[root]:tools/setup/upflow');
 }
 
 glbHtml::page('end');

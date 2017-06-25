@@ -1,11 +1,3 @@
-{php}
-extract(basReq::sysVars()); 
-$_groups = glbConfig::read('groups'); 
-$db = glbDBObj::dbObj();
-$userstr = "<span title='".@$user->uperm['title']."(".@$user->uperm['grade'].")'>Hi:".$user->usess['uname']."!</span>";
-$ainurl = basReq::getUri(-2); $ainurl = str_replace('&frame=1','',$ainurl[1]);
-$mainurl = empty($file) ? vopUrl::fout(0).'?uhome' : $ainurl; //surl()."?file=$file"; 
-{/php}
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
@@ -29,7 +21,7 @@ $mainurl = empty($file) ? vopUrl::fout(0).'?uhome' : $ainurl; //surl()."?file=$f
   <ul id='adf_copy'>
     <li>{$userstr}</li>
     <li><a href="?" class="cF0F">{lang(admin.adm_side)}</a> - <a href="?logout" target="_parent" class="cF00">{lang(admin.exit_side)}</a></li>
-    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {$_cbase['server']['txjia']}/)" title="Intimate">{lang(admin.pro_name)}</li>
+    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {$_cbase['server']['txjia']}/)">{lang(admin.pro_name)}</li>
     <li>Copyright&copy;Peace</li>
   </ul>
 </div>
@@ -38,4 +30,4 @@ $mainurl = empty($file) ? vopUrl::fout(0).'?uhome' : $ainurl; //surl()."?file=$f
 </div>
 {php $this->pimp('/b_jscss/awtop.js'); }
 </body></html>
-{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }
+{php echo basJscss::jscode("setTimeout('jcronRun()',5400);")."\n"; }

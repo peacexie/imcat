@@ -88,7 +88,7 @@ function wxGetPageBar(pnow) {
     <li class='pg_now'>1</li>
     <li class='pg_next'>下页|&gt;</li>
     <li class='pg_last'>尾页||&raquo;</li>
-    <li class='pg_last'><a href='/08tools/yssina/1/root/run/adm.php?file=dops/a&mod=news&prec=22&page=2&ptype=end' >尾页</a></li>
+    <li class='pg_last'><a href='/08tools/yssina/1/root/run/adm.php?mkv=dops-a&mod=news&prec=22&page=2&ptype=end' >尾页</a></li>
     <li class='pg_total'>2</li>
     <li class='pg_pagno'>1/1</li>
     */

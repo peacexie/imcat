@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $cfg = array(
     'sofields'=>array('ordid','apino','api','expar'),
@@ -36,7 +36,7 @@ if($view=='vcfgs'){
       echo "</tr>";
     }
     echo "\n<tr><td colspan='5'>
-    1. <a href='?file=apis/exp_order&pid=paymode_cn&frame=1' target='_blank'>".lang('flow.pay_pcfg')."</a> <br>
+    1. <a href='?mkv=apis-exp_order&pid=paymode_cn&frame=1' target='_blank'>".lang('flow.pay_pcfg')."</a> <br>
     2. ".lang('flow.pay_2ndoc')."
     
     </td></tr>\n";
@@ -46,7 +46,7 @@ if($view=='vcfgs'){
     // 清理操作
     if(!empty($bsend)&&$fs_do=='dnow'){
         $msg = $dop->opDelnow();
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>ordid</th><th>apino</th><th>amount</th><th>api</th><th>stat</th><th>".lang('flow.cfg_optime')."</th></tr>\n";

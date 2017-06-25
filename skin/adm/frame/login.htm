@@ -1,10 +1,7 @@
 <!DOCTYPE html><html><head>
-{php}
-extract(basReq::sysVars()); 
-$db=glbDBObj::dbObj();
+{php} 
 $title = basLang::show('admin.adm_center');
-$remsg = usrAdmin::opLogin($this);  
-$btncls = $user->userFlag=='Error' ? 'class="disc"' : 'class="btn"';
+$remsg = usrAdmin::opLogin($this);
 {/php}
 {php $this->pmeta($title); }
 {php $this->pimp(); }

@@ -53,10 +53,10 @@ class dopBase{
     // 左上信息条
     function msgBar($msg='',$lnkadd=''){
         $mod = $this->mod;
-        $file = basReq::val('file');
+        $mkv = basReq::val('mkv');
         $stype = basReq::val('stype');  
         $gname = $this->cfg['title'];
-        empty($lnkadd) && $lnkadd = $this->cv->Url(basLang::show('flow.dops_add2').'&gt;&gt;',0,"?file=$file&mod=$mod&view=form&stype=$stype&recbk=ref","");
+        empty($lnkadd) && $lnkadd = $this->cv->Url(basLang::show('flow.dops_add2').'&gt;&gt;',0,"?mkv=$mkv&mod=$mod&view=form&stype=$stype&recbk=ref","");
         $lnkadd = str_replace("<a ","<a id='{$mod}_add' ",$lnkadd);
         if($msg && !strpos($msg,'<')) $msg = "<span class='cF00'>$msg</span>";
         $msg && $msg = $msg."<br>";

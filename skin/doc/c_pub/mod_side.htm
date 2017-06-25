@@ -10,7 +10,11 @@
 </div>
 
 <ul class="sd-mkeys">
-<?php foreach(array('demo','news','topic','keres','cargo') as $mod){ $mdk=$mod=='demo'?$mod:"chn:$mod"; ?>
+<?php 
+$_groups = read('groups');
+foreach(array('demo','news','topic','keres','cargo') as $mod){ 
+$mdk=$mod=='demo'?$mod:"chn:$mod"; 
+?>
 <li><a href="{surl($mdk)}" {if $this->mod==$mod}class='act'{/if} target='_blank'>Docs/Info : {= $_groups[$mod]['title']}</a></li>
 <?php } ?>
 </ul>

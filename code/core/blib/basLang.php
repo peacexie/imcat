@@ -128,7 +128,7 @@ class basLang{
         echo '<p>';
         echo '    '.$img;
         echo '    <select id="locSetS" onchange="location.href=this.value;">';
-        echo '    <option value=""> En&#x21d4;中 </option>'; //  <!-- ⇔ <i>»<i> -->
+        echo '    <option value=""> En<>中 </option>'; //  <!-- <>◇/↔/⇔/&#x21d4; <i>«»<i> -->
         echo '    '.basLang::links("<option value='{url}'>{title}</option>",$cfgs);
         echo '    </select>';
         echo '</p>';

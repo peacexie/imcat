@@ -26,9 +26,6 @@ class vopComp{
         $shead = "(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
         $shead .= "\nif(file_exists(\$tebp=vopTpls::pinc('tex_base'))){ include_once \$tebp; }";
         $shead .= "\nif(method_exists('tex_base','init')){ \$user = tex_base::init(\$this); }";
-        #if(file_exists($path=vopTpls::pinc(basename($this->ucfg['tplname'])))){
-            #include_once $path;
-        #}
         $spend = "if(method_exists('tex_base','pend')){ tex_base::pend(); }";
         comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.($spend ? "<?php \n$spend \n?>" : '')); //写入缓存
         return $re[1];

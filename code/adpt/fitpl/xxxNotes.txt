@@ -1,0 +1,29 @@
+
+
+
+
+
+### PHP5.2/5.3不做特别兼容
+
+* 自v3.7开始,PHP5.2/5.3不做特别兼容
+* 移除PHP5.2/5.3下，一些不太重要的代码，放到此文件夹
+
+
+
+
+### 一些备注 
+
+
+* 存储 /code/adpt/store/ 
+ - rsLocal.php
+ - rsFtp.php
+ - rsSina.php
+ - rsBaidu.php
+
+* 增加 + add
+ - extPimple.ph,
+ - extZip.php
+ - [vops]Router.php
+
+* 精简 - del
+ - extMedoo.php,

@@ -1,0 +1,67 @@
+
+
+#apps#Multi-App
+
+* Single-App
+ - In Sing-App system(website), a separate system corresponds to an application project;
+ - eg. You can use IntimateCAT setup a Property website, and use IntimateCAT setup another Investment website;
+ - It's ok, No problem!
+
+* Problem
+ - If someday, you must upgrade you two apps, you must upgrade the dirs like `code`,`vimp` twice!
+ - In this system, More then one app can use ONLY one set of `code`,`vimp` dirs?!
+ - How to use IntimateCAT setup Multi-App?
+
+* Multi-Target
+ - More than one App, use the some `code`,`vimp` dirs and static files,
+ - Each app use their own config, cache dir (include html-dir,res(upload)-dir)
+ - Templates some parts templates are share for each, such as `adm`, management template.
+
+* Multi-Set
+ - Edit Config: xxx/cfgs/sycfg/sy_vopcfg.php
+ - And xxx/cfgs/boot/_paths.php
+ - Related-Info.: `Suit Tpl` http://txmao.txjia.com/doc.php?tpltag-tplsuit
+
+
+#files#Files-Structure
+
+```
+[SiteProject]
+│  index.php 
+├─@read : (Public)
+├─code : (Public)
+│  ├─adpt
+│  ├─...
+│  └─lang
+├─html_house : House Html Files
+├─html_invest : Invest Html Files
+├─house : (House org `root` dir)
+│  │  house.php
+│  │  ...
+│  │  robots.txt
+│  ├─a3rd : The 3rd APIs
+│  ├─...
+│  └─tools : Tools,Setup
+├─invest : (Invest org `root` dir)
+│  ├─ ...
+│  └─ as `house` dir
+├─skin : (Public,Merge)
+│  ├─adm :  (Public) Admin
+│  ├─house : pc-view(House)
+│  ├─invest : pc-view(Invest)
+│  ├─...
+│  └─_pub : Public css,js,logo
+├─ures_house : House Uploads
+├─ures_invest : Invest Uploads
+├─vary_house : House(Cache,Temp-Files)
+│  ├─ctpl : Tpl-Cache
+│  └─dtmp : Cache/Temp-Files
+├─vary_invest : Invest(Cache,Temp-Files)
+│  ├─ctpl : Tpl-Cache
+│  └─dtmp : Cache/Temp-Files
+└─vimp : (Public)
+    ├─static
+    ├─vendor
+    └─vendui
+```
+

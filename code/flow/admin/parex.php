@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(dirname(__FILE__)).'/apis/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
 $tabid = 'bext_paras'; 
 $pid = empty($pid) ? 'parnav' : $pid;
@@ -62,7 +62,7 @@ if($view=='upd'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&pid=$pid&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&pid=$pid&flag=v1");
     }
     
     $list = $pid=='parnav' ? $lnav : $db->table($tabid)->where("pid='$pid'")->order('top')->select();

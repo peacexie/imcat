@@ -7,7 +7,7 @@ $tabid = 'bext_relat';
 $list = $db->table($tabid)->order('top,kid')->select(); 
 $gbar = ''; $ggap = ''; $cfg = array();
 foreach($list as $r){
-    $gbar .= "$ggap<a href='?file=$file&view=set&parts=$r[kid]' ".($parts==$r['kid'] ? 'class="cur"' : '').">$r[title]</a>";
+    $gbar .= "$ggap<a href='?mkv=$mkv&view=set&parts=$r[kid]' ".($parts==$r['kid'] ? 'class="cur"' : '').">$r[title]</a>";
     $ggap = ' | ';
     if($parts==$r['kid']){ 
         $cfg = $r;
@@ -62,7 +62,7 @@ if($view=='upd'){
       echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";   
       echo "<td class='tc'>".@$_groups[$r['mod1']]['title']."</td>\n";
       echo "<td class='tc'>".@$_groups[$r['mod2']]['title']."</td>\n";
-      echo "<td class='tc'><a href='?file=$file&view=set&parts=$r[kid]'>".lang('flow.title_set')."</a></td>\n";
+      echo "<td class='tc'><a href='?mkv=$mkv&view=set&parts=$r[kid]'>".lang('flow.title_set')."</a></td>\n";
       echo "<td class='tc'><a href='$aurl[1]&view=form&kid=$r[kid]' onclick='return winOpen(this,\"".lang('flow.title_edit')."\");'>".lang('flow.title_edit')."</a></td>\n"; //
       echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
       echo "</tr>"; 
@@ -128,7 +128,7 @@ if($view=='upd'){
         glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid)));
     }
 }elseif($view=='set'){
-    $lnkbak = "<a href='?file=$file&view=list'>&lt;&lt;".lang('admin.rel_relist')."</a>";
+    $lnkbak = "<a href='?mkv=$mkv&view=list'>&lt;&lt;".lang('admin.rel_relist')."</a>";
     glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$cfg[title]]".lang('admin.rel_set')."<span class='span ph5'>|</span>",$gbar,25);
     echo "<div class='h02'>&nbsp;</div>";
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
@@ -146,7 +146,7 @@ if($view=='upd'){
         echo "<td class='tc w80'>$k</td>";
         echo "<td class='tl w200'><input type='text' value='$fix$v[title]' class='txt w180' /></td>";
         echo "<td class='tl'>$str</td>";
-        echo "<td class='tc w40'><a href='?file=$file&view=sone&parts=$parts&kid=$k' onclick='return winOpen(this,\"[".$v['title']."]".lang('admin.rel_relx')."[".@$_groups[$cfg['mod2']]['title']."]\");'>".lang('flow.title_set')."</a></td>\n";
+        echo "<td class='tc w40'><a href='?mkv=$mkv&view=sone&parts=$parts&kid=$k' onclick='return winOpen(this,\"[".$v['title']."]".lang('admin.rel_relx')."[".@$_groups[$cfg['mod2']]['title']."]\");'>".lang('flow.title_set')."</a></td>\n";
         echo "</tr>";    
     }
     glbHtml::fmt_end(array("parts|$parts"));

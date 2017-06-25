@@ -23,6 +23,6 @@ if($dir && $front && $mod){
     $dmsg = devBuild::clang($org, $obj);
 }
 
-include vopShow::inc('[root]:tools/exdiy/build');
+include vopTpls::cinc('[root]:tools/exdiy/build');
 
 glbHtml::page('end');

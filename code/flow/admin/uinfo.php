@@ -21,7 +21,7 @@ if(!empty($bsend)){
 $fmo = $db->table($tabid)->where("uid='$uid'")->find(); 
 
 // 个人资料 - 密码
-$lnks = "<a href='?file=admin/uinfo&view=uinfo'>".lang('admin.ui_uinfo')."</a> | <a href='?file=admin/uinfo&view=passwd'>".lang('admin.ui_upass')."</a>";
+$lnks = "<a href='?mkv=admin-uinfo&view=uinfo'>".lang('admin.ui_uinfo')."</a> | <a href='?mkv=admin-uinfo&view=passwd'>".lang('admin.ui_upass')."</a>";
 glbHtml::tab_bar("$title $msg",$lnks,35);
 
 if($view=='uinfo'){ //basDebug::varShow($user);

@@ -1,0 +1,84 @@
+
+
+#app#App-Project
+
+* It's also called `Website`, `app` or `应用` and so on;
+* eg: There are 3 web site: Investment site, Property site adn Decoration website; Among them, the first two developed by IntimateCAT system, The latter developed by a certain CMS.
+* Each application has a separate configuration, database, cache, and so on...
+* Generally, a separate system corresponds to an application project (i.e. Single-App System), You can also develop and manage more then ONE apps in a IntimateCAT, No special description is based on the former description.
+
+
+#entry#Display-Entrance
+
+* An app should have at least one or more entries(file); without specific instructions, usually more then one entry in an app;
+* eg: admin entry, pc-entry, mobile-entry, app-entry and so on;
+* An entry corresponds to a set of templates (Views) and related configs, more then one models data can shows in one entry;
+
+
+#mkv#mkv-Route
+
+* Demos: (The following description omitted the `/chn.php` or `/dev.php`)
+ - `?news` The home of the news model(`news` is a model defined at backend)
+ - `?news-inner` `inner` a sub column of news(defined at backend)
+ - `?news.2017-ab-1234` The detail of the news(id=2017-ab-1234)
+ - `?build.2017-7a-5678` The detail of the Building(id=2017-7a-5678)
+ - `?build.2017-7a-5678.adv` The adv. of the Building(`adv` is an extra view of the Building)
+ - `?build.2017-7a-5678.rent` The rent lists(an extra view belong to the Building)
+ - `?build.2017-7a-5678.sale` The sale lists(an extra view belong to the Building) 
+
+* mkv
+ - There are 2-3 parts in the url after `?`, Separate by `.` or `-`, We called these parts `mkv`
+ - Model and sub column Separate by `-`
+ - Model and detail Separate by`.`
+ - In this system, template configs and show data by mkv.
+
+* m: model
+ - The models(news,build) are defined at backend;
+ - It can also be a custom model, Please see this entry `http://txmao.txjia.com/doc.php`:
+ - ?start The home of `FastStart`(custom model)
+
+* k: It stands for column id or detail id or custom-sub id
+ - ?news-inner `inner` a column id in system
+ - ?start-files `files`, files structure(custom-sub id)
+
+* v: Extra-View-Parms
+ - If only m in URL, That is the home of the model; of course, You can config a list template for it. At this point there are no V extra parameter
+ - If only m and column id(custom-sub id)in URL, The default view is list, At this point there are no V extra parameter
+ - If only shows details, The mkv should be m+id, like as `news.2015-a1-fhh1`, no V extra parameter
+ - Some situations need to display complex content; Such as a building,  
+   include a detail page, an ad. page,  
+   a list of rent(rooms) page, a list of sale(rooms) page...  
+   Now, this time, we must use more extra view parameters for shows these pages
+
+* mkv-config
+ - see the sub-dir(`_config`) in the skin dir
+ - eg: /skin/dev/_config/
+
+
+#flow#(Attach)Startup-Flow
+
+* Entry (Demo): /doc.php
+ - Entry Setting, common const
+ - Load Init File require ...'/root/run/_init.php';
+
+* Init File: _init.php
+ - Init $_cbase
+ - Load Paths ('/root/cfgs/boot/_paths.php');
+ - Load Common configs ('/cfgs/boot/const.cfg.php')
+ - Load Admin _score '/dset/_score.cfg.php')
+ - Include loader ('/core/blib/loader.php')
+ - Deal outer Run mode, Load alias functions, Run autoloads
+
+* Back to Entry file:
+ - Run code like this: `$vop = new vopShow();`
+ - Show pages by vopShow
+
+* vopShow::run
+ - vopTpls::check(); Entrance check
+ - vopUrl::init($q); Init mkv
+ - $this->getVars(); Get basic data
+ - $this->extActs(); Run:Controller-Action(If have)
+ - $this->tplCheck(); Check-tpl+Compile-tpl
+ - extract(); Extract values
+ - include $tplfull; include tpl(compiled), show data
+

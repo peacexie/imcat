@@ -34,19 +34,19 @@
 
 ```
 // There is only one menu link in a line: set the link direct
-?file=admin/groups
+?mkv=admin-groups
 // There is more then one menu, format1: set the html code direct:
-<a href="?file=admin/catalog" title="Docs-Catalog">Catalog</a> - 
-<a href="?file=admin/catalog&mod=adpic" title="Advs-Catalog">Advs</a>
+<a href="?mkv=admin-catalog" title="Docs-Catalog">Catalog</a> - 
+<a href="?mkv=admin-catalog&mod=adpic" title="Advs-Catalog">Advs</a>
 // There is more then one menu, format2: 
-AboutUs(!)?file=dops/a&mod=about
+AboutUs(!)?mkv=dops-a&mod=about
 Add(!)about(!)jsadd
 // There is more then one menu, format3: 
-Remark(!)?file=dops/a&mod=nrem(!)
-Catalog(!)?file=admin/catalog&mod=news(!)frame
+Remark(!)?mkv=dops-a&mod=nrem(!)
+Catalog(!)?mkv=admin-catalog&mod=news(!)frame
 // There is more then one menu, format3: 
-Types(!)?file=admin/catalog&mod=cargo(!)frame
-Set(!)?file=apis/exp_order
+Types(!)?mkv=admin-catalog&mod=cargo(!)frame
+Set(!)?mkv=apis-exp_order
 
 ```
 

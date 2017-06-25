@@ -19,7 +19,7 @@ if($view=='set_a2'){
         </td></tr>\n";
     }else{
         echo "\n<tr><td class='tc w150'>".lang('flow.ei_cfgfile').": </td>\n<td>/root/cfgs/excfg/ex_outdb.php，
-        <a href='?file=admin/ediy&part=edit&dkey=cfgs&dsub=&efile=excfg/ex_outdb.php' onclick=\"return winOpen(this,'".lang('flow.ei_editcfg')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
+        <a href='?mkv=admin-ediy&part=edit&dkey=cfgs&dsub=&efile=excfg/ex_outdb.php' onclick=\"return winOpen(this,'".lang('flow.ei_editcfg')."',780,560);\">".lang('flow.title_edit')."</a></td></tr>\n";
         echo "\n<tr><td class='tc'>['psyn']['server']</td>\n<td>{$ocfgs['psyn']['server']}/plus/ajax/exdb.php</td></tr>\n";
         echo "\n<tr><td class='tc'>['sign']['sapp']</td>\n<td>{$ocfgs['sign']['sapp']}</td></tr>\n";
         echo "\n<tr><td class='tc'>['sign']['skey']</td>\n<td>{$ocfgs['sign']['skey']}</td></tr>\n";
@@ -47,7 +47,7 @@ if($view=='set_a2'){
     /*/ 清理操作
     if(!empty($bsend)&&$fs_do=='dnow'){
         $msg = $dop->opDelnow();
-        basMsg::show($msg,'Redir',"?file=$file&view=$view&job=$job&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&view=$view&job=$job&mod=$mod&flag=v1");
     }*/
     
 }if($view=='fset'){
@@ -131,7 +131,7 @@ if($view=='set_a2'){
            echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
             echo "<td class='tc'>".($r['dbtype']=='nodb' ? '---' : glbHtml::null_cell($r['etab']))."</td>\n";
             echo "<td class='tl'>".$types[$r['type']]." $plugstr</td>\n";
-          echo "<td class='tc'><a href='?file=$file&mod=$mod&view=fset&job=$job&kid=$r[kid]' onclick='return winOpen(this,\"".lang('flow.ei_fldcfg')."\")'>".lang('flow.title_cfg')."</a></td>\n";
+          echo "<td class='tc'><a href='?mkv=$mkv&mod=$mod&view=fset&job=$job&kid=$r[kid]' onclick='return winOpen(this,\"".lang('flow.ei_fldcfg')."\")'>".lang('flow.title_cfg')."</a></td>\n";
       }
       echo "<td class='tc'>$dbstr</td>\n";
       echo "<td class='tr'>".glbHtml::null_cell($r['vmax'],'')." | ".glbHtml::null_cell($r['dblen'],'')."</td>\n";
@@ -153,7 +153,7 @@ if($view=='set_a2'){
       echo "<td class='tc c999'>---</td>\n";
       echo "<td class='tc'>Y</td>\n";
       echo "<td class='tc c666' colspan=2>-- ".lang('flow.ei_addfld')." --</td>\n";
-      echo "<td class='tc'><a href='?file=$file&mod=$mod&view=fset&job=$job&kid=$fk' onclick='return winOpen(this,\"".lang('flow.title_cfg')."\")'>".lang('flow.title_cfg')."</a></td>\n";
+      echo "<td class='tc'><a href='?mkv=$mkv&mod=$mod&view=fset&job=$job&kid=$fk' onclick='return winOpen(this,\"".lang('flow.title_cfg')."\")'>".lang('flow.title_cfg')."</a></td>\n";
       echo "<td class='tc'>$fv[dbtype]</td>\n";
       echo "<td class='tr'>--</td>\n";
       echo "<td class='tl'><input type='text' value='$note' class='txt w150 disc' disabled='disabled' /></td>\n";

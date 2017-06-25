@@ -16,6 +16,8 @@ $_ve_dev2nd = array(
     'ucodb' => 'c_demo/dev2nd_basic',
     'suit' => 'c_demo/dev2nd_basic',
     
+    'apps' => 'c_demo/dev2nd_basic',
+
     'editor' => 'c_demo/dev2nd_basic',
     'sms' => 'c_demo/dev2nd_basic',
     'i18n' => 'c_demo/dev2nd_basic',

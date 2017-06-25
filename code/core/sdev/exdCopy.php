@@ -87,7 +87,7 @@ class exdCopy{
                 $rn[$key] = isset($new[$key]) ? $new[$key] : $value;
             }
         }
-        return $this->db->table($this->tab)->data(basReq::in($rn))->insert();
+        return $this->db->table($this->tab)->data(basReq::in($rn))->insert(0);
     }
 
     // _getWhr
@@ -122,4 +122,3 @@ class exdCopy{
 /*
 
 */
-

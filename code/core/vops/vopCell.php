@@ -5,8 +5,6 @@
 // Cell 类
 class vopCell{    
 
-    //public static $hcfg = array();
-    
     // Array ( [exp_s01] => Array ( [title] => 手机类型 [val] => 3G [org] => net3g ) ...
     static function exFields($mod,$catid,$vars=''){ //
         $re = array();
@@ -317,10 +315,5 @@ class vopCell{
         }
         return $re;
     }
-
-    //function __destory(){  }
-    /*function __construct($cfg=array()){ 
-        ;
-    }*/
 
 }

@@ -1,6 +1,6 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-require dirname(__FILE__).'/_pub_cfgs.php';
+require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');
 $tabid = 'exd_oimp'; 
 $job = req("job"); 
@@ -28,7 +28,7 @@ if($view=='list'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?file=$file&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
     }
 
     include dirname(dirname(__FILE__)).'/binc/exd_inc1.php';
@@ -45,13 +45,13 @@ if($view=='list'){
       echo "<td class='tc'>$r[title]</td>\n";
       echo "<td class='tc'>$frname</td>\n";
       echo "<td class='tc'>$mdname</td>\n";
-      echo $cv->Url(lang('flow.title_cfg'),1,"?file=$file&mod=$r[mod]&view=fields&job=$r[kid]&recbk=ref","");
+      echo $cv->Url(lang('flow.title_cfg'),1,"?mkv=$mkv&mod=$r[mod]&view=fields&job=$r[kid]&recbk=ref","");
       echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
       echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref",""); 
       echo $cv->Url(lang('flow.oi_imp'),1,PATH_ROOT."/plus/ajax/exdb.php?act=oimp&mod=$r[mod]&job=$kid&".exdBase::getJSign(),'blank');
       echo $cv->Url(lang('flow.oi_logs'),1,"$aurl[1]&view=loglist&job=$r[kid]&recbk=ref",'');
-      echo $cv->Url(lang('flow.title_copy'),1,"?file=binc/exd_copy&mod=exd_oimp&kid=$r[kid]&type=tabid&title=$r[title]",lang('flow.oi_copy'),480,360);  
+      echo $cv->Url(lang('flow.title_copy'),1,"?mkv=binc-exd_copy&mod=exd_oimp&kid=$r[kid]&type=tabid&title=$r[title]",lang('flow.oi_copy'),480,360);  
       echo "</tr>"; 
     }}
     echo "<tr>\n";
