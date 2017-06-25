@@ -45,32 +45,37 @@ V3.8升级中……再
   - View Start Page: `/index.php?start` to Check and Config
   - View Url: `/root/tools/setup/` to Setup.
 
-### 【v3.7 ChangeLog】 (2017.05)
+### 【v3.8 ChangeLog】 (2017.07)
 
-* Improve: Member:reg/login 
-  - Add: E-mail active the account after register
-  - Add: Send sms verification code before register
+* Add: Mobile version - English documentation
+* Add: qq-Login
+* Add: url-Alias configuration
 
-* Improve: Mobile experience
-  - Dynamic page: automatic mobile terminal adaptation
-  - Static page: JS mobile adapter jump
-  - Tools/Info page: responsive device adaptation
+* Add: 
+ -> This system: Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
+ -> Add: `Controller-Action`-style Extending templates and displaying data
+ -> see: http://txmao.txjia.com/doc.php?ctest
+ -> Add: `mkvRouter-Tpl`-style Show data direct, skip complex tpl config:
+ -> see: http://txmao.txjia.com/doc.php?umold
 
-* Optimization: Code details:
-  - Template : the default suffix change to `.htm`
-  - Delete some php debug code
-  - Delete some js debug code
-
-* Adjust logo/sinc directory
-* Add: Add some demo template
-
-* Fix:
-  - Page Jump error
-  - The cache switch Does'nt work 
+* Add: Web admin notes
+ -> It's just a guestbook for admin, before the ASP system appeared.
 
 * Improve: 
-  - English language pack
-  - Faq-(Infomation)
+ -> Move the config dir from `root/cfgs` -=>to `root/cfgs` (Notice - test setup, update, upload)
+ -> 增强代码调试功能
+ -> Optimize Verification code class
+
+* Refine/Optimize: Not deliberately compatible with php5.2（Now you can run under php5.2）
+
+* Fix: 
+ -> The judge about `eval` in the `Trojan tools`
+ -> Some bugs
+
+* Else: 
+ -> improve: documents(Chinese and English), qa-resources
+ -> improve: code-detail(include)
+ -> PC-home (js)direct Mob-home
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -100,30 +105,35 @@ V3.8升级中……再
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v3.7更新日志】(2017.05)
+### 【v3.8更新日志】(2017.07)
 
-* 增强：会员:注册/登录相关功能 
-  - 增加：注册邮件激活：
-  - 增加：短信验证码注册：
+* 增加：移动版-英文文档
+* 增加：qq登陆
+* 增加：url别名指向配置
 
-* 增强：移动版体验
-  - 动态页:自动移动端适配
-  - 静态页:js移动适配跳转
-  - 工具提示页:响应式设备适配
+* 增加：模板显示控制功能
+ -> 体现：不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！的设计思想!
+ -> 增加：`控制器-操作` 模式扩展模板和显示数据:
+ -> 见：http://txmao.txjia.com/doc.php?ctest
+ -> 增加：`mkv路由-模板` 模式直接显示数据，无需复杂的config配置:
+ -> 见：http://txmao.txjia.com/doc.php?umold
 
-* 优化：代码细节：
-  - 模板，默认后缀改为 `.htm`
-  - 删除一批php调试代码
-  - 删除一批js调试代码
+* 增加：站务笔记
+ -> 其实就是一个管理员自己在后台给自己留言或作笔记的小功能，之前在asp系统中出现过。
 
-* 调整logo/sinc目录
-* 增加：模板调用演示
+* 优化：
+ -> 移动配置文件夹 root/cfgs -=>移动到 root/cfgs (注意测试 - setup, update, upload)
+ -> 增强代码调试功能
+ -> 优化 验证码类
+
+* 精简/优化：不刻意兼容php5.2（但目前还是可正常使用php5.2）
 
 * 修正：
-  - 翻页跳转错误
-  - 模板缓存开关 无效问题
+ -> 木马工具中，对eval的相关判断
+ -> 一些已知bug
 
-* 完善：
-  - 中英文文档
-  - 问答系统（资料）
+* 其他：
+ -> 完善：中英文文档，问答系统
+ -> 优化：代码细节(include)
+ -> 经典版首页 跳转到 手机版首页
  
