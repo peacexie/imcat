@@ -21,7 +21,7 @@ if($act=='EditDB'){
     $dbname = req('dbname');    
     $dbnold = req('dbnold');
     if($dbname!==$dbnold){
-        devData::rstVals(DIR_ROOT.'/cfgs/boot/cfg_db.php',array('db_name'=>$dbname),0);
+        devScan::rstVals(DIR_ROOT.'/cfgs/boot/cfg_db.php',array('db_name'=>$dbname),0);
     }else{
         devRun::startDbadd($dbname);
     }

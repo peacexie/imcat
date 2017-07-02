@@ -27,10 +27,10 @@ class devRun{
     static function prootFix($proot){
             $fpath = DIR_DTMP.self::$sfixpath;
             if(file_exists($fpath)) return false; //只修正一次
-            $data = comFiles::get(DIR_CODE.self::$fp_paths);
+            $data = comFiles::get(DIR_ROOT.self::$fp_paths);
             $fix = "define('PATH_PROJ'"; 
             $data = str_replace("$fix,","$fix, '$proot'); #Old: ",$data);
-            $fres = comFiles::put(DIR_CODE.self::$fp_paths,$data);
+            $fres = comFiles::put(DIR_ROOT.self::$fp_paths,$data);
             if($fres && !empty($data)){
                 $re = 1;
                 comFiles::put($fpath,date('Y-m-d H:i:s')); 
@@ -90,9 +90,9 @@ class devRun{
             $cfgs = glbConfig::read('pubcfg','sy');
             $key = 'cfgs/boot/cfg_adbug.php';
             $rep = $cfgs['cdemo']["code/$key"];
-            $data = comFiles::get(DIR_CODE."/$key-cdemo");
+            $data = comFiles::get(DIR_ROOT."/$key-cdemo");
             $data = str_replace($rep[0],$rep[1],$data);
-            comFiles::put(DIR_CODE."/$key",$data);
+            comFiles::put(DIR_ROOT."/$key",$data);
             comFiles::put($fpath,date('Y-m-d H:i:s')); 
         }
         return $umsg;
