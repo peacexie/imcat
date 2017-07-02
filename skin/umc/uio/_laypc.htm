@@ -10,7 +10,10 @@ $kname = isset($karr[$key]) ? $karr[$key] : "($key)";
 {/php}{/block:minit}
 <!DOCTYPE html><html><head>
 {php $this->pmeta($kname.'-'.$_cbase['sys_name']); }
-{php $this->pimp(array('css'=>'~tpl/b_jscss/user.css','js'=>'~tpl/b_jscss/user.js')); }
+{php}
+imp('initJs','jquery,bootstrap;comm;comm(-lang);user');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);user(-mob)'); 
+{/php}
 </head><body>
 <div id="topMargin" style="display:none; border:0px solid #999;"></div>
 {php glbHtml::ieLow_html();}

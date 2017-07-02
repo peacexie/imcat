@@ -41,9 +41,10 @@ class _admCtrl{
         // head
         echo '<!DOCTYPE html><html><head>';
         glbHtml::page('init',1);
-        echo '<title>'.basLang::show('admin.adm_center').'-'.$_cbase['sys_name'].'</title>';
-        glbHtml::imsub('imadm');
-        echo '</head><body style="padding:2px 3px;overflow-y:scroll;overflow-x:hidden;">';
+        echo '<title>'.basLang::show('admin.adm_center').'-'.$_cbase['sys_name']."</title>\n";
+        imp('initJs','jquery,jspop;comm;comm(-lang)');
+        imp('initCss','bootstrap,stpub,jstyle;comm');
+        echo '</head><body style="padding:2px 3px;overflow-y:scroll;'.(basEnv::isMobile()?'':'overflow-x:hidden;').'">';
         // inc
         echo "\n<!--inc:/$file.php-->\n"; 
         $full = DIR_CODE."/flow/$file.php";
@@ -56,9 +57,10 @@ class _admCtrl{
         }
         echo "\n<!--inc:end-->\n<p>"; 
         // footer
-        if($_cbase['debug']['err_mode']) echo basDebug::runInfo('qstr');
-        echo "</p>";
-        echo '</body></html>';
+        if($_cbase['debug']['err_mode']) echo basDebug::runInfo();
+        echo "</p>\n";
+        imp('loadExtjs','jq_base,jq_win,bootstrap,layer');
+        echo "</body></html>\n";
         echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n";
         die(); //return array('tplnull'=>1);
     }

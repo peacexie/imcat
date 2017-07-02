@@ -14,6 +14,7 @@ function autoInc_ys($file=''){
   return '';
 }
 
+$_cbase['tpl']['tpl_dir'] = 'dev';
 $incfile = '/root/run/_init.php';
 // require dirname(__FILE__).$incfile; // 可直接注释以下代码用类似此行代码
 if(!empty($incfile) && $incpath=autoInc_ys($incfile)){
@@ -21,4 +22,4 @@ if(!empty($incfile) && $incpath=autoInc_ys($incfile)){
 }
 
 // 
-$_cbase['tpl']['tpl_dir'] = 'dev';
+

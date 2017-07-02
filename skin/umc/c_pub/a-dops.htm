@@ -1,5 +1,6 @@
 {block:init}{inc:"c_pub/c-init"}{/block:init}
 <?php
+$_groups = glbConfig::read('groups'); 
 $mod = 'indoc'; //$view = 'list';
 $mcfg = read($mod); 
 $gname = $_groups[$mod]['title'];
@@ -11,7 +12,10 @@ $msg = ''; $tabext = '';
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{php echo lang('user.pub_cindoc').'-'.$_cbase['sys_name']; }{/block:title}</title>
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob)'); 
+{/php}
 {block:excss}{/block:excss}
 </head><body>
 {php glbHtml::ieLow_html();}

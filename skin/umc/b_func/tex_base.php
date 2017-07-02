@@ -60,7 +60,7 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext'];
-        $base || $base = 'menu'; //jstag,menu,
+        $base || $base = basEnv::isMobile() ? '' : 'menu'; //jstag,menu,
         $js = "setTimeout(\"jcronRun()\",3700);\n";
         $ext && $js .= "$ext;\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";

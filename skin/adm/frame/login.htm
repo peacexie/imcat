@@ -2,9 +2,10 @@
 {php} 
 $title = basLang::show('admin.adm_center');
 $remsg = usrAdmin::opLogin($this);
+$this->pmeta($title);
+imp('initJs','jquery,bootstrap;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm'); 
 {/php}
-{php $this->pmeta($title); }
-{php $this->pimp(); }
 <style type="text/css">
 body, input, textarea, select, button{ font-size:14px; }
 </style>

@@ -1,7 +1,10 @@
 {block:init}{/block:init}<!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{/block:title}</title>
-<?php glbHtml::impub('imsg'); ?>
+<?php
+imp('/_pub/a_jscss/cinfo.css');
+imp('/_pub/jslib/jsbase.js');
+?>
 <style type="text/css">
 <?php include DIR_SKIN.'/_pub/a_jscss/cinfo.css'; ?>
 {block:hdcss}{/block:hdcss}

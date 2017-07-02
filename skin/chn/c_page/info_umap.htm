@@ -1,7 +1,10 @@
 {php vopTpls::pinc('tex_keres');}
 <!DOCTYPE html><html><head>
 {php $this->pmeta('商家地图'); }
-{php $this->pimp(array('css'=>'~tpl/b_jscss/info.css')); }
+{php}
+imp('initJs','jquery;comm',1);
+imp('initCss','bootstrap,stpub;comm;info'); 
+{/php}
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}

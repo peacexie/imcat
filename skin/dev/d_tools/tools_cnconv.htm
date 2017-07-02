@@ -13,8 +13,6 @@ $jian = comConvert::jianfanMain($str,'f2j',3);
 $spy = comConvert::pinyinMain($str,3);
 $timer = (microtime(1)-$timer)*1000;
 
-//$ipObj = new extIPAddr($api);
-//$pclass = DIR_CODE.'/core/uext/exaCSeal.php';
 if(strstr($act,'down')){
     $path = strpos($act,'Class') ? $pclass : DIR_IMPS.$pfont;
     comHttp::downLoad($path, basename($path)); 
@@ -23,9 +21,8 @@ if(strstr($act,'down')){
 
 {block:eximp}
 <?php
-$this->pimp('/plus/ajax/comjs.php',0);
-$this->pimp('/plus/ajax/comjs.php?act=pycfgTab',0);
-$this->pimp('/plus/ajax/comjs.php?act=jfcfgTab',0);
+imp('/plus/ajax/comjs.php?act=pycfgTab');
+imp('/plus/ajax/comjs.php?act=jfcfgTab');
 ?>
 {/block:eximp}
 

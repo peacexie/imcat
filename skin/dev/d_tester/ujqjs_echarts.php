@@ -1,9 +1,7 @@
 
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-
-$this->pimp();
-$this->pimp('/common/echarts.min.js','vendui');
+imp('/common/echarts.min.js','vendui');
 ?>
 
 <p>ECharts</p>

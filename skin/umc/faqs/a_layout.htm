@@ -10,8 +10,10 @@ if(empty($title)){
 }
 ?>
 {block:title}{php $this->pmeta($title); }{/block:title}
-{php $this->pimp(array('css'=>'~tpl/b_jscss/faqs.css'));}
-{php $this->pimp('/layer/layer.js','vendui'); }
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs'); 
+{/php}
 </head><body>
 {php glbHtml::ieLow_html();}
 

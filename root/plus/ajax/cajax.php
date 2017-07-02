@@ -11,7 +11,7 @@ $uid = basReq::ark('fm','uid','Key');
 $_groups = read('groups');
 
 // 处理语言
-$lang = isset($_GET['lang']) ? $_GET['lang'] : $_cbase['sys']['lang'];
+$lang = req('lang',$_cbase['sys']['lang']);
 $lang && $_cbase['sys']['lang'] = $lang;
 
 switch($act){

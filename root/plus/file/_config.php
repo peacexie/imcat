@@ -1,5 +1,6 @@
 <?php
 $_cbase['ucfg']['lang'] = '(auto)'; 
+$_cbase['tpl']['tpl_dir'] = 'adm';
 require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 
 $lang = $_cbase['sys']['lang']; 
 
@@ -24,7 +25,8 @@ function pfcfgPars($arr=1){
 
 function pfileHead($parts,$title=''){
     glbHtml::page($title,1);
-    glbHtml::page('imadm',array('js'=>'/plus/file/funcs.js','css'=>'/plus/file/style.css',)); 
+    imp('initJs','jquery,bootstrap,layer;comm;comm(-lang);/plus/file/funcs;/plus/file/funcs(-lang)');
+    imp('initCss','bootstrap,stpub,jstyle;comm;/plus/file/style');
     glbHtml::page('body',' style="margin:0px 2px;"');
     $allpars = pfcfgPars(0);
     $cfg_parts = pfcfgParts();

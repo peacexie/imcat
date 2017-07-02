@@ -1,10 +1,12 @@
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
-{php glbHtml::imsub('imadm'); }
-<style type='text/css'>
-<?php if(!basEnv::isMobile()) echo "html,body{overflow:hidden;}"; ?>
-</style>
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm'); 
+{/php}
+<script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script>
+<style type='text/css'>html,body{overflow:hidden;}</style>
 </head><body>
 <div id="adf_title"> ({lang(admin.top_now)}) </div>
 <div id="adf_nav1">
@@ -14,8 +16,7 @@
   <a href="?logout" class="cF00">{lang(admin.top_exit)}</a> 
   <a class="c999">-</a> 
   <?php echo basLang::links("<a href='{url}' class='c666' title='{title}'>{mini}</a>"); ?>
-  </p> 
-  <script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script> 
+  </p>
 </div>
 <div id="adf_left">
   <ul id='adf_copy'>
@@ -26,8 +27,7 @@
   </ul>
 </div>
 <div id="adf_right">
-  <iframe src="{$mainurl}" id="adf_main" name="adf_main" style="width:100%; overflow-y:scroll; overflow-x:hidden;" frameBorder=0></iframe>
+  <iframe src="{$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
 </div>
-{php $this->pimp('/b_jscss/awtop.js'); }
+{php imp('/~tpl/awtop.js'); }
 </body></html>
-{php echo basJscss::jscode("setTimeout('jcronRun()',5400);")."\n"; }

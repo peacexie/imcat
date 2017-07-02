@@ -1,6 +1,9 @@
 {block:init}{/block:init}<!DOCTYPE html><html><head>
 {block:pmeta}{php $this->pmeta(); }{/block:pmeta}
-{php $this->pimp(); } 
+{php}
+imp('initJs','jspop,jquery;comm');
+imp('initCss','bootstrap,stpub;comm');
+{/php}
 {block:pimp}{/block:pimp}
 </head><body> 
 

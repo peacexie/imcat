@@ -1,5 +1,5 @@
 
--- types_world@2017-06-11 11:58:31 -- 
+-- types_world@2017-07-02 14:29:14 -- 
 INSERT INTO `{pre}types_world{ext}` VALUES 
 ('sc','world','0','塞舌尔','632','1','1','0','S','ename=Seychelles\ntelc=248\ntime=-4','','','0','','','0',''),
 ('sn','world','0','塞内加尔','656','1','1','0','S','ename=Senegal\ntelc=221\ntime=-8','','','0','','','0',''),
@@ -181,4 +181,5 @@ INSERT INTO `{pre}types_world{ext}` VALUES
 ('yu','world','0','南斯拉夫','588','1','1','0','N','ename=Yugoslavia\ntelc=381\ntime=-7','','','0','','','0',''),
 ('zw','world','0','津巴布韦','424','1','1','0','J','ename=Zimbabwe\ntelc=263\ntime=-6','','','0','','','0',''),
 ('zr','world','0','扎伊尔','848','1','1','0','Z','ename=Zaire\ntelc=243\ntime=-7','','','0','','','0',''),
-('zm','world','0','赞比亚','844','1','1','0','Z','ename=Zambia\ntelc=260\ntime=-6','','','0','','','0','');
+('zm','world','0','赞比亚','844','1','1','0','Z','ename=Zambia\ntelc=260\ntime=-6','','','0','','','0',''),
+('w1012','world','0','DSSDds','888','1','1','0','D','ds','','127.0.0.1','1498976252','peace','127.0.0.1','1498976262','peace');

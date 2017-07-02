@@ -29,8 +29,10 @@ if($act=='CreatSeal'){
 ?>{/block:extop}
 
 {block:eximp}
-{php $this->pimp('/skin/umc/b_jscss/cseal.css',0); }
-{php $this->pimp('/skin/umc/b_jscss/cseal.js',0); }
+<?php
+imp('/skin/umc/b_jscss/cseal.css');
+imp('/skin/umc/b_jscss/cseal.js');
+?>
 {/block:eximp}
 
 {block:exbody}

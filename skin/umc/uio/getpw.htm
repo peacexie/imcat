@@ -5,12 +5,10 @@
 
 {block:title}{lang(user.lon_fpass)}{/block:title}
 
-{block:hdimp}<?php
-echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-echo basJscss::imp('/plus/ajax/comjs.php?act=sysInit','','js');
-echo basJscss::imp('/plus/ajax/comjs.php?act=cssInit&excss=/_pub/a_jscss/cinfo.css','','css');
-echo basJscss::imp('/bootstrap/css/bootstrap.min.css','vendui','css');
-?>{/block:hdimp}
+{block:hdimp}{php}
+imp('initJs','jquery,bootstrap;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;/_pub/a_jscss/cinfo'); 
+{/php}{/block:hdimp}
 {block:hdcss}{:parent}
 .vcm1{ float:right; }
 div.main p.150 { line-height:150%; }

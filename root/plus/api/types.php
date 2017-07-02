@@ -2,7 +2,8 @@
 require dirname(__FILE__).'/_config.php'; 
 
 glbHtml::page('Types Pick',1);
-glbHtml::page('imjq',array('js'=>'/_pub/jslib/search.js'));
+imp('initJs','jquery,jspop;comm;comm(-lang);/_pub/jslib/search'); 
+imp('initCss','stpub,jstyle;comm'); // bootstrap,
 ?>
 <style type="text/css">
 .highlight { background: green; font-weight: bold; color: white; padding: 0px 8px; }

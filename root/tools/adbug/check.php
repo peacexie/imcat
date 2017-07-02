@@ -32,7 +32,8 @@ if($act=='image'){
 }
 
 glbHtml::page(lang('tools.chk_envcheck')."-$title");
-glbHtml::impub('imsg');
+imp('/_pub/a_jscss/cinfo.css');
+imp('/_pub/jslib/jsbase.js');
 
 $iniPath = get_cfg_var('cfg_file_path');
 $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARNING: No configuration file (php.ini) used by PHP!";

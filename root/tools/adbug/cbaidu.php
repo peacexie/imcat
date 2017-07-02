@@ -20,7 +20,8 @@ if(!empty($act)){
 }
 
 glbHtml::page("Baidu - Search Engine Scan",1);
-glbHtml::page('imp'); //adm
+imp('initJs','jquery');
+imp('initCss','stpub'); 
 ?>
 <style type="text/css">
 div, form, h4{ margin:10px; }

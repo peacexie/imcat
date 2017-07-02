@@ -1,11 +1,11 @@
 <!DOCTYPE html><html><head>
 <?php echo basJscss::jscode("var _pbase={}; _pbase.rdmob=1;")."\n"; ?>
-{php $this->pmeta(); }
-{php $this->pimp(array('js'=>'/_pub/a_jscss/multpic.js;/_pub/a_jscss/sordbar.js')); }
-<?php
-$fexts = vopCell::exFields($this->mod,$catid); //,$this->vars
+{php}
+imp('initJs','jspop,jquery;comm;/_pub/a_jscss/multpic;/_pub/a_jscss/sordbar',1);
+imp('initCss','bootstrap,stpub;comm');
+imp('/layer/layer.js','vendui');
 $null = "<span class='cCCC'>------</span>";
-?>
+{/php} 
 <script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
 </head><body> 
 {inc:"c_pub/ahead"}

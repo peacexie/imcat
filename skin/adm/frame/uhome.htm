@@ -1,8 +1,11 @@
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
-{php glbHtml::imsub('imadm'); }
-</head><body>
+{php}
+imp('initJs','jquery,bootstrap;comm;comm(-lang)');
+imp('initCss','stpub,bootstrap;comm'); 
+{/php}
+</head><body style="padding:2px 3px;overflow-y:scroll;">
 
 <table border='0' class='tbbar1'><tr>
 <td class='tc'><h4>[{$_cbase['sys_name']}] {lang(admin.home_index)}</h4></td>

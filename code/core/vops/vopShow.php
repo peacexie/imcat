@@ -46,6 +46,7 @@ class vopShow{
         vopTpls::check($_cbase['tpl']['tpl_dir']);
         $this->vars = array(); // 重新清空(初始化),连续生成静态需要
         $this->ucfg = vopUrl::init($q); 
+        $_cbase['mkv'] = $this->ucfg; 
         foreach(array('mkv','mod','key','view','type','tplname',) as $k){
             $this->$k = $this->ucfg[$k];
         }
@@ -58,7 +59,6 @@ class vopShow{
             return;
         }
         extract($this->vars, EXTR_OVERWRITE); 
-        $_cbase['mkv'] = $this->ucfg; 
         $_cbase['run']['tplname'] = $this->tplname;
         include $tplfull;
     }
@@ -270,32 +270,6 @@ class vopShow{
         if($title) echo "<title>".basStr::filTitle($title)."</title>\n";
         if($keywd) echo "<meta name='keywords' content='".basStr::filTitle($keywd)."' />\n";
         if($desc) echo "<meta name='description' content='".basStr::filTitle($desc)."' />\n";
-    }
-    // page-import
-    // {php $this->pimp(); }
-    // {php $this->pimp(array('css'=>'~tpl/b_jscss/home.css','js'=>'/jquery/jq_imgChange.js:vendui')); } 
-    // {php $this->pimp('/b_jscss/home.css'); }
-    // {php $this->pimp('/jquery/jq_imgChange.js','vendui'); }
-    // {php $this->pimp('act=1&exjs=/_pub/jslib/jsmove.js;~tpl/b_jscss/shapan.js','comjs.php','js'); }
-    function pimp($imp='',$base='tpl'){
-        global $_cbase; 
-        $sdir = vopTpls::def(); //可能没有定义
-        $eimp = $imp ? str_replace('~tpl',"/skin/$sdir",$imp) : '';
-        if(empty($imp)||is_array($imp)){
-            $extp = "user=1&mkv={$this->mkv}&tpldir=$sdir&lang={$_cbase['sys']['lang']}";
-            glbHtml::page('imvop',$eimp,$extp);
-        }elseif($base && $base=='comjs.php'){
-            $type = strpos($eimp,'&excss') ? 'css' : 'js';
-            echo basJscss::imp("/plus/ajax/comjs.php?$eimp",'',$type);
-        }else{
-            // tpl(tpl,'',0),skin,root,vendor,vendui,static
-            $base = empty($base) ? '' : $base;
-            if($base=='tpl'){ 
-                $base = '';
-                $imp = "/skin/$sdir$imp";
-            } 
-            echo basJscss::imp($imp,$base);
-        }
     }
 
 }

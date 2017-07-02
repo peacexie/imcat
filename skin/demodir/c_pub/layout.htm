@@ -1,7 +1,10 @@
 {block:init}{/block:init}<!DOCTYPE html><html><head>
 {block:pmeta}{php $this->pmeta(); }{/block:pmeta}
 <meta name='robots' content='noindex, nofollow'>
-{php $this->pimp(); } 
+{php}
+imp('initJs','jquery;comm');
+imp('initCss','stpub;comm'); 
+{/php}
 {block:pimp}{/block:pimp}
 </head><body> 
 

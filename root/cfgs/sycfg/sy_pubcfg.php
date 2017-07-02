@@ -79,7 +79,7 @@ $_sy_pubcfg['skfiles'] =  array(
     '_setfix_path.txt', // dtmp:/store/
     '_setup_lock.txt',
     '_setup_step.txt',
-    'simkai.ttf', // static:/media/fonts/
+    
     'hello.3gpp', // static:/media/sample
     'movecar.3gp',
     'sample.avi',
@@ -103,10 +103,11 @@ $_sy_pubcfg['skfiles'] =  array(
     '100-gushi.jpg', // static:/file_demo1/
     'cacert.pem', // vendor:/a3rd/alipay_class/
     'echarts.min.js',
-    //'jquery-3.x.imp_js',
+    'jquery-3.x.js',
     'bank_full.html',
     'combo.png',
 
+    'simkai.ttf', // static:/media/fonts/
     'efjian.ttf', //斜
     'efm17.ttf',
     'efmE.ttf',

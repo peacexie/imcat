@@ -47,7 +47,7 @@ if($view=='ftest'){
             $ops = basElm::setOption("0|".lang('admin.fe_mtab')."\n1|".lang('admin.fe_extab')."",'');
             glbHtml::fmae_row(lang('admin.fls_dbtab'),"<select id='fm[etab]' name='fm[etab]' class='w150' reg='str:1-12' tip='".lang('admin.fls_seldbtab')."'>$ops</select>");
         }else{
-            echo "<input name='fm[etab]' type='hidden' value='' />";
+            echo "<input name='fm[etab]' id='fm[etab]' type='hidden' value='' />";
         }
         glbHtml::fmae_row(lang('flow.fl_kflag'),"<input id='fm[kid]' name='fm[kid]' type='text' value='' class='txt w150' maxlength='12' reg='key:3-12' $vstr />");
         glbHtml::fmae_send('bsend',lang('flow.dops_send'));

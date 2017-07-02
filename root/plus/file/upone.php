@@ -11,7 +11,8 @@ $_upPerm = '1';//usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $isbat = req('isbat','');
 
 glbHtml::page(lang('plus.fop_uponetitle'),1);
-glbHtml::page('imadm',array('js'=>'/plus/file/funcs.js','css'=>'/plus/file/style.css'));
+imp('initJs','jquery;/plus/file/funcs;/plus/file/funcs(-lang)');
+imp('initCss','bootstrap,stpub;/plus/file/style'); // 
 glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"');
 
 ?>

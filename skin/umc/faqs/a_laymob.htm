@@ -5,7 +5,10 @@ $keywd = req('keywd');
 ?>{/block:init}
 <!DOCTYPE html><html><head>
 {block:pmeta}{php $this->pmeta(); }{/block:pmeta}
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob)'); 
+{/php}
 {block:pimp}{/block:pimp}
 </head><body> 
 

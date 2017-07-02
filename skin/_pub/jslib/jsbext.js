@@ -181,7 +181,7 @@ function fmSelGroup(e,part) {
 
 function jcronRun(tpldir,mkv,reurl){
     tpldir = tpldir ? tpldir : ((typeof(_cbase.run.tpldir)=='undefined') ? '' : _cbase.run.tpldir);
-    mkv = mkv ? mkv : ((typeof(_cbase.run.mkv)=='undefined') ? '' : _cbase.run.mkv);
+    mkv = mkv ? mkv : ((typeof(_cbase.run.mkv)=='undefined') ? urlPara('mkv','') : _cbase.run.mkv);
     mkv = (typeof(_cbase.run.mkv)=='undefined') ? '' : _cbase.run.mkv;
     var url = '/plus/ajax/cron.php?tpldir='+tpldir+'&mkv='+mkv+'&'+_cbase.safil.url+'&'+jsRnd();
     if(reurl) return url;

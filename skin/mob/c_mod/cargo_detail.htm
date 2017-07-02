@@ -9,8 +9,11 @@ $null = "<span class='cCCC'>------</span>";
 {/block:init}
 
 {block:pimp}
-{php $this->pimp(array('js'=>'/_pub/a_jscss/multpic.js;/_pub/a_jscss/sordbar.js')); }
-{php $this->pimp('/layer/layer.js','vendui'); }
+{php}
+imp('/_pub/a_jscss/multpic.js');
+imp('/_pub/a_jscss/sordbar.js');
+imp('/layer/layer.js','vendui');
+{/php} 
 <script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
 {/block:pimp}
 

@@ -15,7 +15,10 @@ $mods = array(
 ?>
 {/block:extop}
 
-{block:eximp}{php $this->pimp('/b_jscss/info.css'); }{/block:eximp}
+{block:eximp}{php}
+imp('initJs','jquery;comm');
+imp('initCss','bootstrap,stpub;comm;info');
+{/php}{/block:eximp}
 
 {block:exbar}
     <a href="#">子标题(类别)有没有</a>

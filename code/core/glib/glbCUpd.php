@@ -243,7 +243,7 @@ class glbCUpd{
             $data .= "\nvar admNavName = '$js2';";
             $data .= "\nvar admHtmTop = '".basJscss::jsShow($s1,0)."';";
             $data .= "\nvar admHtmLeft = '".basJscss::jsShow($s0,0)."';";
-            $data .= "\ndocument.write(admHtmTop);";
+            // $data .= "\ndocument.write(admHtmTop);";
             glbConfig::save($data,"{$mod}",'dset','.js');
             glbConfig::save($mperm,"{$mod}_perm",'dset'); 
             return $s0;

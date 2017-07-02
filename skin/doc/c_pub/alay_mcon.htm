@@ -6,10 +6,11 @@ $titlesub = 'Sub Title';
 ?>
 {/block:extop}
 {php $this->pmeta($titletop); }
-{php $this->pimp(); }
-{block:eximp}
-{php $this->pimp('/layer/layer.js','vendui'); }
-{/block:eximp}
+{block:eximp}{php}
+imp('initJs','jquery;comm',1);
+imp('initCss','bootstrap,stpub;comm');
+imp('/layer/layer.js','vendui');
+{/php}{/block:eximp}
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}

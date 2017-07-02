@@ -11,9 +11,11 @@ $toarr = tex_indoc::toshow($this->vars);
 
 {block:pimp}
 <meta name='robots' content='noindex, nofollow'>
-{php $this->pimp('/layer/layer.js','vendui'); }
-{php $this->pimp('/skin/umc/b_jscss/cseal.css',0); }
-{php $this->pimp('/skin/umc/b_jscss/cseal.js',0); }
+{php}
+imp('/layer/layer.js','vendui');
+imp('/skin/umc/b_jscss/cseal.css');
+imp('/skin/umc/b_jscss/cseal.js');
+{/php}
 {/block:pimp}
 
 {block:main}

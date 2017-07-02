@@ -1,7 +1,10 @@
 {php vopTpls::pinc('tex_keres');}
 <!DOCTYPE html><html><head>
 {php $this->pmeta(); }
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery;comm',1);
+imp('initCss','bootstrap,stpub,jstyle;comm'); 
+{/php}
 <?php
 $null1 = "所有类别";
 $null2 = "<span class='cCCC'>------</span>";

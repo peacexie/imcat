@@ -2,7 +2,10 @@
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{php echo lang('user.pub_cuser').'-'.$_cbase['sys_name']; }{/block:title}</title>
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob)'); 
+{/php}
 </head><body>
 {php glbHtml::ieLow_html();}
 
@@ -27,4 +30,3 @@
 $jstr = "var cm='$this->mod', ck='".(empty($_cview)?$this->key:$_cview)."', cv='$this->view', ct='$this->type';";
 echo "<script>$jstr</script>"; 
 {/php}{/block:uend}
-

@@ -16,7 +16,10 @@ if($act=='iadd' || $act=='oadd'){
 ?>{/block:minit}
 <!DOCTYPE html><html><head>
 {php $this->pmeta($title); }
-{php $this->pimp(array('js'=>'/_pub/a_jscss/sordbar.js','css'=>'~tpl/b_jscss/ocar.css')); }
+{php}
+imp('initJs','jspop,jquery;comm;/_pub/a_jscss/sordbar',1);
+imp('initCss','bootstrap,stpub;comm;ocar'); 
+{/php}
 {block:mimp}
 <script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
 {/block:mimp}

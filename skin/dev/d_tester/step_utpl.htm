@@ -9,7 +9,10 @@ $burl = surl(0).'?mkv='.$this->mod.'-'.$this->key;
 
 ?>
 {php $this->pmeta('模板演示'); }
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery;comm');
+imp('initCss','stpub,jstyle;comm'); 
+{/php}
 <style type="text/css">
 body,nav,div {
     padding:5px;

@@ -5,8 +5,10 @@ class fldView{
 
     // 认证str
     static function mkpar($mod='',$kid=''){
+        global $_cbase;
         $groups = glbConfig::read('groups');
         $mod = $mod ? $mod : basReq::val('mod');
+        $mod = $mod ? $mod : $_cbase['run']['dopmod'];
         $pid = $groups[$mod]['pid'];
         $smod = $mod ? "&mod=$mod" : "&mod=$mod"; 
         $skid = $kid ? "&kid=$kid" : "&kid=".basReq::val(substr($pid,0,1).'id')."";

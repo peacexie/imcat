@@ -1,10 +1,10 @@
 
 <?php 
 (!defined('RUN_INIT')) && die('No Init');
-$this->pimp(); 
+imp('/_pub/a_jscss/sordbar.js');
+imp('/_pub/jslib/jspop.js'); 
 ?>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
-<script src='<?php echo PATH_SKIN; ?>/_pub/a_jscss/sordbar.js?_a=1'></script>
+<!--//plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand/--> 
 <script src='<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=jsTypes:cargo,china,natcn;'></script>
 
 <table border="1" align="center" cellpadding="5" cellspacing="5">

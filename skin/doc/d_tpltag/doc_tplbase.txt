@@ -37,12 +37,21 @@
 <link href='{PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
 <script src='{PATH_VENDUI}/layer/layer.js'></script>
 or
-{php $this->pmeta($_cbase['sys_name']); }
-{php $this->pimp(); }
-{php $this->pimp('/b_jscss/home.css'); }
-{php $this->pimp('/picSwitch/jquery.easing.min.js','vendui'); }
-{php $this->pimp('/picSwitch/lin_picSwitch.js','vendui'); }
-<?php $this->pimp('/layer/layer.js','vendui'); ?>
+imp('initJs','jquery,bootstrap;comm;comm(-lang);user');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs');
+imp('loadExtjs','jq_base,jq_win,bootstrap,layer')
+imp('/~tpl/user.css')
+imp('/layer/layer.js','vendui')
+imp('/_pub/a_jscss/cinfo.css');
+imp('/_pub/jslib/jsbase.js');
+imp('/plus/ajax/comjs.php?act=autoJQ');
+//basJscss::loadJqbs('zepto',0);
+//basJscss::loadJqbs('jquery',0);
+basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
+{php}
+imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs'); 
+{/php}
 ```
 
 #exfunc#Extra-Libs

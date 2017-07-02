@@ -5,7 +5,6 @@ class glbHtml{
     // 页面结构
     static function page($mod='',$ext='',$iex=''){
         global $_cbase; 
-        $imarr = array('imp','imadm','imvop','imin','imjq','imnul');
         $mtarr = array('robots','viewport','keywords','description');
         if($mod=='body'){
             echo "</head><body$ext>\n";
@@ -28,8 +27,6 @@ class glbHtml{
             // 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！
             if($ext) self::page('robots'); 
             if(empty($iex)) echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/logo/favicon.ico' />\n";
-        }elseif(in_array($mod,$imarr)){
-            self::imsub($mod,$ext,$iex);
         }else{ //head
             $_cbase['run']['headed'] = 1;
             $mod || $mod = $_cbase['sys_name'];
@@ -38,66 +35,6 @@ class glbHtml{
             self::page('init',$ext,$iex);
             echo "<title>$mod</title>\n"; 
         }
-    }
-
-    // _imsub
-    static function imsub($mod='',$ext='',$iex=''){
-        global $_cbase; 
-        $tmfix = empty($_cbase['run']['tmfix']) ? '' : $_cbase['run']['tmfix'];
-        $sdir = vopTpls::def(); //可能没有定义
-        $exjs = "exjs=/$sdir/b_jscss/comm$tmfix.js".(empty($ext['js'])?'':';'.$ext['js']);
-        $excss = "excss=/$sdir/b_jscss/comm$tmfix.css".(empty($ext['css'])?'':';'.$ext['css']);
-        if($mod=='imp'){
-            $ips = self::impub();
-            $ips['js'] .= "&$exjs";
-            $ips['css'] .= "&$excss";    
-        }elseif($mod=='imadm'){
-            $ips = self::impub(0,1); 
-            $ips['js'] .= "&$exjs&lang=".$_cbase['sys']['lang'];
-            $ips['css'] .= "&$excss";    
-        }elseif($mod=='imvop'){
-            $ips = self::impub();
-            $ips['js'] .= "&$exjs&$iex";
-            $ips['css'] .= "&$excss";
-        }elseif($mod=='imin'){
-            $ips = self::impub('imin',0);
-            $ips['js'] .= "&$exjs";
-            $ips['css'] .= "&$excss"; 
-        }elseif($mod=='imjq'){
-            $ips = self::impub('imjq',0);
-            $ips['js'] .= "&$exjs";
-            $ips['css'] .= "&$excss"; 
-        }elseif($mod=='imnul'){
-            $ips = self::impub('imnul',0);
-            $ips['js'] .= "&$exjs&$iex";
-            $ips['css'] .= "&$excss"; 
-        }
-        foreach (array('css','js') as $key) {
-            echo basJscss::imp("/plus/ajax/comjs.php?".$ips[$key],'',$key);
-        }
-    }
-
-    // _impub
-    static function impub($light=0,$layer=0){
-        if(empty($light)){
-            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-            echo basJscss::imp('/bootstrap/css/bootstrap.min.css','vendui','css');
-            echo basJscss::imp('/bootstrap/js/bootstrap.min.js','vendui','js');
-        }elseif($light=='imjq'){
-            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-        }elseif($light=='imin'){ // 需要自行添加如下ratchet,tepto文件
-            echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ&light=1'); 
-            echo basJscss::imp('/ratchet/css/ratchet.min.css','vendui','css');
-            echo basJscss::imp('/ratchet/js/ratchet.min.js','vendui','js');
-        }elseif($light=='imsg'){ // 
-            echo basJscss::imp('/_pub/a_jscss/cinfo.css');
-            echo basJscss::imp('/_pub/jslib/jsbase.js');
-            return;
-        } // else{ /*imnul*/ }
-        if(!empty($layer)){
-            echo basJscss::imp('/layer/layer.js','vendui');
-        }
-        return array('js'=>"act=sysInit",'css'=>"act=cssInit");
     }
 
     // header

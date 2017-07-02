@@ -81,7 +81,8 @@ if(empty($upc['path'])){
 }    //    $act = 'upmain';
 
 glbHtml::page(lang('tools.upn_title').' - '.$_cbase['sys_name'],1);
-glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
+imp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
+imp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
 if(in_array($act,$carrs)){    

@@ -3,7 +3,10 @@
 $title = '模板标签-演示'; // 标题
 ?>{/block:extop}
 {php $this->pmeta($title); }
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery;comm');
+imp('initCss','stpub,jstyle;comm'); 
+{/php}
 <style type="text/css">
 body{ padding:10px; }
 body,nav,p,div {

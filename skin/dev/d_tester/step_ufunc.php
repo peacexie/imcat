@@ -14,8 +14,10 @@ $pg->set('opkey',$opkey);
 $rs = $pg->exe(); 
 
 glbHtml::page('db,翻页:演示2');
-glbHtml::page('imjq');
-echo basJscss::imp('/skin/dev/b_jscss/comm.css');
+
+imp('initJs','jquery');
+imp('initCss','comm');
+
 glbHtml::page('body');
 ?>
 

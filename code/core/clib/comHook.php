@@ -25,7 +25,7 @@ class comHook extends comCron{
 
     //function __destory(){  } mkv+tpl url+file
     function __construct($mkv,$tpl,$upd=1){
-        if(empty($mkv)&&empty($tpl)) return;
+        if(empty($mkv)||empty($tpl)) return;
         if(strpos('.',$mkv)){
             $tmp = explode('.',$mkv);
             $tmp[1] = 'detail';

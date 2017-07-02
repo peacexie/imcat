@@ -11,7 +11,10 @@ $mdtitle = lang('user.pub_cuser');
 {/php}{/block:minit}
 <!DOCTYPE html><html><head>
 {php $this->pmeta($kname.'-'.$_cbase['sys_name']); }
-{php $this->pimp(array('js'=>'~tpl/b_jscss/user-mob.js')); } 
+{php}
+imp('initJs','jquery,bootstrap;comm;comm(-lang)');
+imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);user(-mob)'); 
+{/php}
 {block:pimp}{/block:pimp}
 </head><body>
 

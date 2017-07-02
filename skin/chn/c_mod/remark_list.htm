@@ -1,4 +1,5 @@
 <?php
+$_groups = glbConfig::read('groups');
 $db = db();
 $minfo = read($this->mod);
 $pid = req('pid');
@@ -8,8 +9,11 @@ $ptitle = $pinfo['title'];
 ?>
 <!DOCTYPE html><html><head>
 {php $this->pmeta(); }
-{php $this->pimp(); }
-{php $this->pimp('/layer/layer.js','vendui'); }
+{php}
+imp('initJs','jquery;comm',1);
+imp('initCss','bootstrap,stpub;comm');
+imp('/layer/layer.js','vendui');
+{/php} 
 
 </head><body>
 {inc:"c_pub/ahead"}

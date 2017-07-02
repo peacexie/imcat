@@ -5,7 +5,10 @@ $title = '七甲-南湾:沙盘(郴州-永兴)';
 ?>{/block:extop}
 
 {block:eximp}
-{php $this->pimp('act=1&exjs=/_pub/jslib/jsmove.js;~tpl/b_jscss/shapan.js','comjs.php'); }
+{php}
+imp('/_pub/jslib/jsmove.js');
+imp('/~tpl/shapan.js');
+{/php}
 <style type="text/css">
 p { margin: 10px 0px 0px 10px; }
 p.rtop{ font-size:14px; padding:1px; margin:5px; float:right; } 

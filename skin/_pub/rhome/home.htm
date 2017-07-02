@@ -7,7 +7,8 @@ if($isMobile) unset($vcfg['adm']);
 glbHtml::page(" (sys_name) v".$_cbase['sys']['ver']." - ".lang('tools.home_extitle'));
 glbHtml::page('keywords',$_cbase['sys_name'].':'.lang('tools.home_exkwd'));
 glbHtml::page('description',$_cbase['sys_name'].lang('tools.home_exdes'));
-glbHtml::page('imjq',array('js'=>'/_pub/rhome/hfunc.js','css'=>'/_pub/rhome/hstyle.css'));    
+imp('initJs','jquery;comm;/_pub/rhome/hfunc');
+imp('initCss','stpub;/_pub/rhome/hstyle');  
 {/php}
 <style type="text/css">
     div.outer {

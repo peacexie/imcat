@@ -25,12 +25,14 @@ $vcfg = vopTpls::etr1('tpl');
 unset($vcfg['_pub']);
 
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
-glbHtml::impub('imsg');
+imp('/_pub/a_jscss/cinfo.css');
+imp('/_pub/jslib/jsbase.js');
 ?>
 <base target="_blank"/>
 </head><body class="divOuter">
 
 <?php 
+
 if(!empty($umsg)){ 
   echo "<table style='max-width:460px;margin:10px auto; '>\n";
   foreach($umsg as $k=>$v){ 

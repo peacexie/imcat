@@ -1,10 +1,10 @@
 <!DOCTYPE html><html><head>
-{php $this->pmeta(); }
-{php $this->pimp(array('js'=>'/_pub/a_jscss/multpic.js')); } 
-{php $this->pimp('/layer/layer.js','vendui'); }
-<?php
+{php}
+imp('initJs','jquery;comm;/_pub/a_jscss/multpic',1);
+imp('initCss','bootstrap,stpub;comm');
+imp('/layer/layer.js','vendui');
 $null = "<span class='cCCC'>------</span>";
-?>
+{/php} 
 </head><body> 
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}

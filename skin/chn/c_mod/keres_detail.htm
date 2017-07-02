@@ -1,8 +1,10 @@
 {php vopTpls::pinc('tex_keres');}
 <!DOCTYPE html><html><head>
 {php $this->pmeta(); }
-{php $this->pimp(); } 
-{php $this->pimp('/layer/layer.js','vendui'); }
+{php}
+imp('initJs','jquery,layer;comm',1);
+imp('initCss','bootstrap,stpub,jstyle;comm'); 
+{/php}
 
 </head><body> 
 {inc:"c_pub/ahead"}

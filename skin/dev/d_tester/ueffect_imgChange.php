@@ -1,8 +1,7 @@
 
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-$this->pimp();
-$this->pimp('/jquery/jq_imgChange.js','vendui');
+imp('/jquery/jq_imgChange.js','vendui');
 ?>
 
 <style type="text/css">

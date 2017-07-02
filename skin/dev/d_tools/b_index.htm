@@ -5,7 +5,10 @@ $ptitle = $titlesub = '贴心工具[Tools] - index';
 $i_v = 0;
 ?>
 {php $this->pmeta($ptitle); }
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery,bootstrap;comm;comm');
+imp('initCss','bootstrap,stpub;comm;comm(-mob)'); 
+{/php}
 </head><body style="padding:10px;">
 
     <?php foreach($cfgs as $k=>$v){ $title = $v['title']; $i_v++; ?>

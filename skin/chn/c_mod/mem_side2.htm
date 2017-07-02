@@ -10,7 +10,10 @@
 </div>
 
 <ul class="sd-mkeys">
-<?php foreach(array('company','govern','organize') as $mod){ ?>
+<?php 
+$_groups = glbConfig::read('groups');
+foreach(array('company','govern','organize') as $mod){ 
+?>
 <li class="list"><a href="{surl($mod)}" {if $this->mod==$mod}class='act'{/if}>用户/会员 : {= $_groups[$mod]['title']}</a></li>
 <?php } ?>
 </ul>

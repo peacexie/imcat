@@ -2,10 +2,10 @@
 
 {block:pmeta}{php $this->pmeta('移动版 - '.$_cbase['sys_name']); }{/block:pmeta}
 
-{block:pimp}
-{php $this->pimp('/b_jscss/home.css'); }
-{php $this->pimp('/jquery/jq_imgChange.js',PATH_VENDUI); }
-{/block:pimp}
+{block:pimp}{php}
+imp('/jquery/jq_imgChange.js','vendui');
+imp('/~tpl/home.css');
+{/php}{/block:pimp}
 
 {block:head}
 <?php 

@@ -3,9 +3,8 @@ require dirname(__FILE__).'/_config.php';
 
 glbHtml::page("Run Plan - (sys_name)",1);
 echo "<meta http-equiv='refresh' content='14400' />\n";
-glbHtml::page('imjq');
-echo basJscss::imp("/tools/exdiy/style.css");
-echo basJscss::imp("/tools/exdiy/rplan.js");
+imp('initJs','jquery;/tools/exdiy/rplan.js');
+imp('initCss','stpub;/tools/exdiy/style.css');
 glbHtml::page('body');
 
 $ocfgs = read('outdb','ex');

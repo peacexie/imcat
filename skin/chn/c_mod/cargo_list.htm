@@ -1,7 +1,9 @@
 {php vopTpls::pinc('tex_cargo');}
 <!DOCTYPE html><html><head>
-{php $this->pmeta(); }
-{php $this->pimp(array('js'=>'/_pub/a_jscss/sordbar.js')); }
+{php}
+imp('initJs','jspop,jquery;comm;/_pub/a_jscss/sordbar',1);
+imp('initCss','bootstrap,stpub;comm');
+{/php} 
 <script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
 </head><body>
 {inc:"c_pub/ahead"}

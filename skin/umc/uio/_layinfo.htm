@@ -3,7 +3,10 @@ $act = req('act');
 {/php}{/block:init}<!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{/block:title}</title>
-{block:hdimp}<?php glbHtml::impub('imsg'); ?>{/block:hdimp}
+{block:hdimp}<?php
+imp('/_pub/a_jscss/cinfo.css');
+imp('/_pub/jslib/jsbase.js');
+?>{/block:hdimp}
 <style type="text/css">{block:hdcss}
 p.nav a{ display:inline-block; padding:2px 3px; margin:3px 3px 0px 3px; border: 1px solid #DDD; }
 @media only screen and (max-width:767px) {

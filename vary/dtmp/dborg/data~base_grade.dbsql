@@ -1,5 +1,5 @@
 
--- base_grade@2017-06-11 11:58:30 -- 
+-- base_grade@2017-07-02 14:29:13 -- 
 INSERT INTO `{pre}base_grade{ext}` VALUES 
 ('supper','adminer','超级管理员','124','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','127.0.0.1','1484831377','peace'),
 ('auser','adminer','会员管理员','148','1','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','0','','','0',''),

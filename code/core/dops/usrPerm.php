@@ -13,6 +13,9 @@ class usrPerm{
     //usrPerm::run(array('pcheck,about','padd,about'));
     //usrPerm::run('pfile','admin/groups.php');
     static function run($key,$val='',$fix='end'){
+        if($key=='pfile'){
+            $val = str_replace(array('/','.php'),array('-',''),$val);
+        }
         $msg = self::check($key,$val); 
         if(empty($fix)){
             return $msg;
@@ -72,7 +75,7 @@ class usrPerm{
             return '-';
         }else{ 
             $str = self::pmStr($key); 
-            if($key=='pfile' && $val=='(auto)') $val = basReq::arr('file'); 
+            if($key=='pfile' && $val=='(auto)') $val = basReq::arr('mkv'); 
             if(strpos($str,$val)){
                 return '';
             }else{

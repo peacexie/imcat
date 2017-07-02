@@ -1,6 +1,7 @@
 <?php
 //define('RUN_AJAX', 1);  
 //if(!isset($_cbase['skip'])) $_cbase['skip']['_all_'] = true;
+$_cbase['tpl']['tpl_dir'] = 'adm';
 require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 
 
 if(empty($_cbase['run']['wedemo'])){

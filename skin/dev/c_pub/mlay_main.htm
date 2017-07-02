@@ -3,7 +3,10 @@ $mcfgs = $nv_cfgs[$this->mod];
 $skey = empty($this->key) ? 'home' : $this->key;
 ?>{block:init}{/block:init}<!DOCTYPE html><html><head>
 {block:pmeta}{php $this->pmeta('文档手册'); }{/block:pmeta}
-{php $_cbase['run']['tmfix']='-mob'; $this->pimp(); } 
+{php}
+imp('initJs','jquery,bootstrap;comm-mob');
+imp('initCss','bootstrap,stpub;comm-mob');
+{/php}
 {block:pimp}{/block:pimp}
 </head><body> 
 

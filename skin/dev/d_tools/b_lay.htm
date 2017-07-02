@@ -7,7 +7,10 @@ $act = req('act');
 if(empty($ptitle)) $ptitle = "$title - (sys_name)";
 ?>
 {php $this->pmeta($ptitle); }
-{php $this->pimp(array('css'=>'~tpl/b_jscss/tools.css')); }
+{php}
+imp('initJs','jquery;comm'); // ,bootstrap
+imp('initCss','stpub;comm;tools'); //bootstrap,
+{/php}
 {block:eximp}{/block:eximp}
 </head><body>
 {block:exbody}{/block:exbody}

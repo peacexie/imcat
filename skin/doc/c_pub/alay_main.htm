@@ -10,7 +10,10 @@ $titletop = 'Main Title';
 $titlesub = 'Sub Title';
 ?>{/block:extop}
 {php $this->pmeta($titletop); }
-{php $this->pimp(); }
+{php}
+imp('initJs','jquery;comm');
+imp('initCss','bootstrap,stpub;comm');
+{/php}
 {block:eximp}{/block:eximp}
 </head><body>
 {inc:"c_pub/ahead"}

@@ -11,8 +11,7 @@ class Recorder{
     private $inc;
     private $error;
 
-    private $acfile = '';
-    private $actmp = "/weixin/qqcon_(appid).cac_txt";
+    private $acfile = '/weixin/qqcon_(appid).cac_txt';
     private $aclife = '72d'; // Access_Token的有效期默认是3个月
 
 
@@ -37,7 +36,7 @@ class Recorder{
         }
         //-------读取配置文件 
         $appid = $this->readInc("appid");
-        $this->acfile = DIR_DTMP.str_replace('(appid)',$appid,$this->actmp);
+        $this->acfile = str_replace('(appid)',$appid,$this->acfile);
     }
 
     public function write($name,$value){
@@ -69,15 +68,18 @@ class Recorder{
     }
 
     function setActic($actik='',$save=1){
-        if($save) comFiles::put($this->acfile,$actik);
-        else unlik($this->acfile);
+        if($save){ 
+		    $actik && comFiles::put(DIR_DTMP.$this->acfile,$actik);
+		}else{ 
+		    unlink(DIR_DTMP.$this->acfile);
+		}
     }
 
     function getActic(){
-        $upath = tagCache::chkUpd($this->acfile,$this->aclife,0);
+        $upath = tagCache::chkUpd($this->acfile,$this->aclife);
         $actik = '';
         if($upath){ 
-            $actik = @comFiles::get($this->acfile);
+            $actik = comFiles::get(DIR_DTMP.$this->acfile);
         }
         return $actik;
     }

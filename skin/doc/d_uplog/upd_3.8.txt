@@ -24,15 +24,17 @@
  -> Add: `Controller-Action`-style Extending templates and displaying data
  -> see: http://txmao.txjia.com/doc.php?ctest
  -> Add: `mkvRouter-Tpl`-style Show data direct, skip complex tpl config:
- -> see: http://txmao.txjia.com/doc.php?umold
+ -> see: http://txmao.txjia.com/doc.php?umod
 
 * Add: Web admin notes
  -> It's just a guestbook for admin, before the ASP system appeared.
 
 * Improve: 
  -> Move the config dir from `root/cfgs` -=>to `root/cfgs` (Notice - test setup, update, upload)
- -> 增强代码调试功能
+ -> Improve debug experience
+ -> Optimize js/css load
  -> Optimize Verification code class
+ -> Optimize Mobile-Admin-Control
 
 * Refine/Optimize: Not deliberately compatible with php5.2（Now you can run under php5.2）
 

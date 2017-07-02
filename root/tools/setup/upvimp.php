@@ -12,7 +12,8 @@ foreach($groups as $kg){
 }
 
 glbHtml::page(lang('tools.upi_title').' - '.$_cbase['sys_name'],1);
-glbHtml::page('imp',array('css'=>'/tools/setup/style.css','js'=>'/tools/setup/sfunc.js'));
+imp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
+imp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
 include vopTpls::cinc('[root]:tools/setup/upvimp');

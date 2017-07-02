@@ -1,7 +1,9 @@
 <!DOCTYPE html><html><head>
 {php $this->pmeta($company); }
-{php $this->pimp(array('css'=>'~tpl/b_jscss/umem.css')); } 
-{php $this->pimp('/layer/layer.js','vendui'); }
+{php}
+imp('initJs','jquery,layer;comm',1);
+imp('initCss','bootstrap,stpub,jstyle;comm;umem'); 
+{/php}
 
 </head><body> 
 {inc:"c_pub/ahead"}

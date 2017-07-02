@@ -23,8 +23,12 @@ class homeCtrl{
             $reurl = comParse::urlBase64($mke,1);
         }
         $mainurl = vopUrl::fout(0).(empty($reurl) ? '?uhome' : $reurl);
-        $vars['mainurl'] = $mainurl; 
-        return array('vars'=>$vars);
+        $vars['mainurl'] = $mainurl;
+        $re = array('vars'=>$vars); 
+        if(basEnv::isMobile()){
+            $re['newtpl'] = 'frame/awtop-mob';
+        }
+        return $re; 
     }
 
     function uhomeAct(){

@@ -25,15 +25,16 @@ class QC extends Oauth{
         parent::__construct();
 
         //如果access_token和openid为空，则从session里去取，适用于demo展示情形
+		$appid = (int)$this->recorder->readInc("appid");
         if($access_token === "" || $openid === ""){
             $this->keysArr = array(
-                "oauth_consumer_key" => (int)$this->recorder->readInc("appid"),
+                "oauth_consumer_key" => $appid,
                 "access_token" => $this->recorder->read("access_token"),
                 "openid" => $this->recorder->read("openid")
             );
         }else{
             $this->keysArr = array(
-                "oauth_consumer_key" => (int)$this->recorder->readInc("appid"),
+                "oauth_consumer_key" => $appid,
                 "access_token" => $access_token,
                 "openid" => $openid
             );
@@ -45,8 +46,6 @@ class QC extends Oauth{
          * 规则 array( baseUrl, argListArr, method)
          */
         $this->APIMap = array(
-        
-            
             /*                       qzone                    */
             "add_blog" => array(
                 "https://graph.qq.com/blog/add_one_blog",
@@ -147,6 +146,11 @@ class QC extends Oauth{
         );
     }
 
+    public function setParms($access_token, $openid){
+		$this->keysArr['access_token'] = $access_token;
+		$this->keysArr['openid'] = $openid;
+	}
+
     //调用相应api
     private function _applyAPI($arr, $argsList, $baseUrl, $method){
         $pre = "#";
@@ -229,6 +233,7 @@ class QC extends Oauth{
      * @return array          返加调用结果数组
      */
     public function __call($name,$arg){
+		
         //如果APIMap不存在相应的api
         if(empty($this->APIMap[$name])){
             $this->error->showError("api调用名称错误","不存在的API: <span style='color:red;'>$name</span>");

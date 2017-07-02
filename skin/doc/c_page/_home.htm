@@ -2,7 +2,10 @@
 {php $this->pmeta('Manual/Guides - '.$_cbase['sys_name'].' v'.$_cbase['sys']['ver']); }
 {php glbHtml::page('keywords',lang('tools.home_exkwd')); }
 {php glbHtml::page('description',lang('tools.home_exdes')); }
-{php $this->pimp(array('css'=>'~tpl/b_jscss/home.css')); }
+{php}
+imp('initJs','jquery;comm');
+imp('initCss','bootstrap,stpub;comm;home');
+{/php} 
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}

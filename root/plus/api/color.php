@@ -1,7 +1,8 @@
 <?php
 require dirname(__FILE__).'/_config.php'; 
 glbHtml::page('Color Pick',1);
-glbHtml::page('imjq'); //adm 
+imp('initJs','jquery'); 
+imp('initCss',';comm');
 ?>
 <style TYPE="text/css">
 body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;color:#333;background-color:#fff}
