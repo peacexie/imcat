@@ -137,6 +137,8 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
 </table>
 <input name="act" type="hidden" value="oadd" />
 </form>
+
+{php}imp('loadExtjs','jq_base,jq_win');{/php}
 <script>
 jQuery.getScript('{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes&mod=,china,',function(){
     var fm_ordshto__obj; popInit('fm[ordshto]','china',240,1,'',{},'ocar_setship');

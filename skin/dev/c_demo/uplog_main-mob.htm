@@ -4,7 +4,7 @@
 $key = empty($this->key) ? 'readme' : $this->key;
 $flog = @$cfgs[$key][1]; 
 $msubs = tex_base::docer("d_uplog/upd_$flog"); 
-$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1].'.'.$cfgs[$key][0] : $cfgs[$key][0];
+$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1] : $cfgs[$key][0];
 ?>{/block:init}
 
 {block:main}

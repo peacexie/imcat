@@ -27,7 +27,7 @@ Lang.jcore = {
     jqbase_notrule : 'Non-standard', 
 
     pop_pickmap : 'Please Pick map piont (Drag to the appropriate position and Confirm)', 
-    pop_repeat : 'Info repeat!', 
+    pop_xrepeat : 'Info NOT repeat!', 
     pop_pickmod : 'Please select model!', 
     pop_infopick : 'Info Pick', 
     pop_maxn : 'Max Items:[{val}]', 

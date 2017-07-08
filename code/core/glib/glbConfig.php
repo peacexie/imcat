@@ -130,11 +130,11 @@ class glbConfig{
         $hcfgs = self::read('home','va'); 
         if($mod=='home'){ //首页
             $re = $hcfgs;
-        }elseif(in_array($mod,$hcfgs['close'])){ //关闭模块
+        }elseif(in_array($mod,$hcfgs['c']['close'])){ //关闭模块
             $re = $renull; 
-        }elseif(isset($hcfgs['imcfg'][$mod])){ 
-            $re = self::read($hcfgs['imcfg'][$mod],'vc'); //导入模块
-        }elseif(in_array($mod,$hcfgs['extra'])){ //扩展模块
+        }elseif(isset($hcfgs['c']['imcfg'][$mod])){ 
+            $re = self::read($hcfgs['c']['imcfg'][$mod],'vc'); //导入模块
+        }elseif(in_array($mod,$hcfgs['c']['extra'])){ //扩展模块
             $re = self::read($mod,'ve');             
         }elseif(file_exists(vopTpls::pinc("_config/vc_$mod"))){ //常规模块
             $re = self::read($mod,'vc'); 

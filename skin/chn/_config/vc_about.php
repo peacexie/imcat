@@ -29,9 +29,7 @@ $_vc_about = array(
         'v2' => 'm_about/about_link',
         'v3' => 'm_about/about_link',
     ),
-    
-    'istest' => 'close',
-    
+
     //'v' => 'v1,v2,v3', //所有类别可带view参数
     
     /*'d' => array(
@@ -39,6 +37,5 @@ $_vc_about = array(
         'list1' => 'm_about/about_dlist1',
         'list2' => 'm_about/about_dlist2',
     )*/
-    //'iutest' => 'aa/bb',
-    
+
 );

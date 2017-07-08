@@ -45,6 +45,10 @@ $_sy_vopcfg['tpl'] = array(
         'apiServer', 
         '/root/run/app.php'
     ),
+    /*'rest' => array(
+        'REST-API', 
+        '/root/run/rest.php'
+    ),*/
     '_pub' => 0,
     //'demodir' => array('Hello','/root/run/front.php'), 
     //'ven' => array('English','/root/run/eng.php'), 

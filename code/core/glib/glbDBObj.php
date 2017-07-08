@@ -141,7 +141,7 @@ class glbDBObj{
             }elseif(!empty($isDemo)){
                 //echo 'skipDemo';
             }else{ 
-                die(glbHtml::page('h1','Can NOT run in DEMO Site!'));
+                die('<h1>Can NOT run in DEMO Site!</h1>');
             }
         }
         $re = $this->db->run($this->sql);

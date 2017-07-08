@@ -94,6 +94,7 @@
 
 {block:footer}
 {:parent}
+{php} imp('loadExtjs','jq_base,jq_win');{/php}
 <script>
 var ubase = '<?php echo PATH_ROOT."/plus/api/wechat.php?"; ?>';
 var iTime = 0;

@@ -69,7 +69,7 @@ $_sy_pubcfg['rndata'] =  array(
 
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
-    'main' => array('fitpl'),
+    'main' => array('fitpl','rest'),
     'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony','Zend'), //,'Spyc'
     'dtmp' => array('@test','@udoc','debug','update','updsvr','weixin','08exp'),
 );
@@ -118,6 +118,9 @@ $_sy_pubcfg['skfiles'] =  array(
     'DbManage.cls_php',
     'Medoo.cls_php',
     'Pimple.cls_php',
+
+    // 
+    'rest.php',
 
 );
 

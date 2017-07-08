@@ -8,7 +8,7 @@ $flog = @$cfgs[$key][1];
 $subs = tex_base::docer("d_uplog/upd_$flog"); 
 if(empty($subs)){ $this->msg('Has NOT Release!'); }
 $sub = req('sub',''); 
-$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1].'.'.$cfgs[$key][0] : $cfgs[$key][0];
+$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1] : $cfgs[$key][0];
 $titlesub = $titletop = $verflag; 
 $titlesub = $_cbase['sys_name'].' '.$titlesub;
 ?>

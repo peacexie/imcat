@@ -161,9 +161,9 @@ class vopComp{
         $template = preg_replace ( "/\{loop\s+(\S+)\s+(\S+)\s+(\S+)\}/", "<?php \$n=1; if(is_array(\\1)) foreach(\\1 as \\2 => \\3) { ?>", $template );
         $template = preg_replace ( "/\{\/loop\}/", "<?php } ?>", $template );
         // ----------------------------
-        // {php}{/php}, if, for, loop 标签 --- 可在前后添加 <!--, --> 以便在html中显示调试
-        $_aorg = array('{php}','{/php}','<!--<?php','?>-->');
-        $_aobj = array('<?php','?>','<?php','?>');
+        // {php}{/php} 标签 --- 可在前后添加 <!--, --> 以便在html中显示调试
+        $_aorg = array('{php} ','{php}','{/php}','<!--<?php','?>-->');
+        $_aobj = array('{php}','<?php ','?>','<?php','?>');
         $template = str_replace ( $_aorg, $_aobj, $template );
         // ----------------------------
         return $template;

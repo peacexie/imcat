@@ -1,9 +1,10 @@
 <!DOCTYPE html><html><head>
-<?php echo basJscss::jscode("var _pbase={}; _pbase.rdmob=1;")."\n"; ?>
 {php}
+echo basJscss::jscode("var _pbase={}; _pbase.rdmob=1;")."\n";
+$this->pmeta();
 imp('initJs','jspop,jquery;comm;/_pub/a_jscss/multpic;/_pub/a_jscss/sordbar',1);
 imp('initCss','bootstrap,stpub;comm');
-imp('/layer/layer.js','vendui');
+$fexts = vopCell::exFields($this->mod,$catid);
 $null = "<span class='cCCC'>------</span>";
 {/php} 
 <script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
@@ -130,7 +131,7 @@ $null = "<span class='cCCC'>------</span>";
 {inc:"c_pub/afoot"}
 </body></html>
 
-<script src='{PATH_VENDUI}/layer/layer.js'></script>
+{php} imp('loadExtjs','jq_base,jq_win,layer');{/php}
 <link href='{PATH_VENDUI}/prettyPhoto/prettyPhoto.css' type='text/css' rel='stylesheet'/>
 <script src='{PATH_VENDUI}/prettyPhoto/prettyPhoto.js'></script>
 <script>

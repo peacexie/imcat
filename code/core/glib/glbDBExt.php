@@ -156,39 +156,33 @@ class glbDBExt{
         return $fix.$nid;
     }
     
+    // ext: 0-tab, 1-ext, kid, arr
     static function getTable($mod,$ext=0){ 
         $_groups = glbConfig::read('groups');
         if(!isset($_groups[$mod])) return '';
         if($_groups[$mod]['pid']=='docs'){
-            $tabid = $ext ? 'dext_'.$mod : 'docs_'.$mod;
-        }elseif($_groups[$mod]['pid']=='users'){
-            $tabid = 'users_'.$mod;
-        }elseif($_groups[$mod]['pid']=='advs'){
-            $tabid = 'advs_'.$mod;
-        }elseif($_groups[$mod]['pid']=='coms'){    
-            $tabid = 'coms_'.$mod;
-        }elseif($_groups[$mod]['pid']=='types'){    
-            $tabid = empty($_groups[$mod]['etab']) ? 'types_common' : 'types_'.$mod;
-        }else{
-            $tabid = '';    
-        }
-        return $tabid;
-    }
-    
-    static function getKeyid($mod){ 
-        $_groups = glbConfig::read('groups');
-        if($_groups[$mod]['pid']=='docs'){
+            $tabid = $ext==1 ? 'dext_'.$mod : 'docs_'.$mod;
             $keyid = 'did';
         }elseif($_groups[$mod]['pid']=='users'){
+            $tabid = 'users_'.$mod;
             $keyid = 'uid';
         }elseif($_groups[$mod]['pid']=='advs'){
+            $tabid = 'advs_'.$mod;
             $keyid = 'aid';
         }elseif($_groups[$mod]['pid']=='coms'){    
+            $tabid = 'coms_'.$mod;
             $keyid = 'cid';
         }elseif($_groups[$mod]['pid']=='types'){    
+            $tabid = empty($_groups[$mod]['etab']) ? 'types_common' : 'types_'.$mod;
             $keyid = 'kid';
+        }else{
+            $tabid = $keyid = '';    
         }
-        return $keyid;
+        if(is_numeric($ext)){ // 0, 1
+            return $tabid;
+        }else{ // kid,arr
+            return $ext=='kid' ? $keyid : array($tabid,$keyid);
+        }
     }
     
     static function getKids($mod,$kid='',$whr='',$ret='sub'){

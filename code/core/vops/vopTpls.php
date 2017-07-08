@@ -133,13 +133,13 @@ class vopTpls{
             if(!in_array($key,array('va_docs'))){ //,'va_home'
                 $re = $re + self::$cb($cfg[$km],$km,$mode); 
         }    } 
-        if(!empty($cfg['home']['close'])){
-            foreach($cfg['home']['close'] as $km){
+        if(!empty($cfg['c']['close'])){
+            foreach($cfg['c']['close'] as $km){
                 unset($re[$km]);
             }
         }
-        if(!empty($cfg['home']['imcfg'])){
-            foreach($cfg['home']['imcfg'] as $km=>$from){
+        if(!empty($cfg['c']['imcfg'])){
+            foreach($cfg['c']['imcfg'] as $km=>$from){
                 $re = $re + self::$cb($cfg[$from],$km,$mode); 
             }
         }
@@ -207,6 +207,23 @@ class vopTpls{
             vopShow::msg("Config Error! <br>[cfgs/sycfg/sy_vopcfg.php] : _sy_vopcfg['tpl'][$tpl]");
         } 
         return $tplchks[$tpl];
+    }
+
+    static function impCtrl($mod){
+        global $_cbase; 
+        $hcfg = $_cbase['mkv']['hcfg'];
+        $tpdir = DIR_SKIN.'/'.$_cbase['tpl']['tpl_dir'];
+        $arr = array(); 
+        if(!empty($hcfg['_tabCtrl']) && in_array($mod.'Ctrl',$hcfg['_tabCtrl'])) $arr[] = $mod.'Ctrl';
+        if(!empty($hcfg['_defCtrl'])) $arr[] = $hcfg['_defCtrl'];
+        foreach ($arr as $class) {
+            $fp = $tpdir."/b_ctrls/$class.php";
+            //if(file_exists($fp)){
+            include_once $fp;
+            return $class;
+            //}
+        }
+        return 0;
     }
 
 }

@@ -8,6 +8,21 @@ safBase : 常规-安全过滤(Safil=Safety Filter)
 */
 class safComm{ // extends safBase
     
+    static function chkVImg(){
+        safComm::urlStamp('check');
+        $mod = req('mod'); $key = req('key'); 
+        $key = "{$mod}_{$key}";
+        $vcode = req($key);
+        $re = safComm::formCVimg($mod, $vcode, 'check', 600);
+        if(strstr($re,'-Error')){
+            echo lang('plus.cajax_vcerr');
+        }elseif(strstr($re,'-Timeout')){
+            echo lang('plus.cajax_vctout');
+        }else{
+            echo "success";
+        }
+    }
+
     // 综合认证：
     static function formCAll($mod,$path='',$timeout=3600){
         $re = '';

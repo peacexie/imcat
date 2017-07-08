@@ -10,8 +10,10 @@ class dopFunc{
     }
 
     static function getMinfo($mod,$kid='',$fid=''){
-        $fid || $fid = glbDBExt::getKeyid($mod);
-        $info = glbDBObj::dbObj()->table(glbDBExt::getTable($mod))->where("$fid='$kid'")->find(); 
+        $tmp = glbDBExt::getTable($mod,'arr');
+        $tab = $tmp[0]; $kid = $tmp[1];
+        $fid || $fid = $kid;
+        $info = glbDBObj::dbObj()->table($tab)->where("$fid='$kid'")->find(); 
         return $info; 
     }
 

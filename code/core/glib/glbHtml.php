@@ -9,17 +9,13 @@ class glbHtml{
         if($mod=='body'){
             echo "</head><body$ext>\n";
         }elseif($mod=='end'){
-            if(empty($_cbase['run']['headed'])){
-                self::page('');
-            }
+            if(empty($_cbase['run']['headed'])) self::page('');
             if(strlen($ext)>12) echo "$ext\n";
             echo "</body></html>\n";
         }elseif(in_array($mod,$mtarr)){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width, initial-scale=1';
             echo "<meta name='$mod' content='$ext'>\n"; 
-        }elseif($mod=='h1'){
-            echo "<h1>$ext</h1>\n";
         }elseif($mod=='init'){
             echo "<meta charset='".$_cbase['sys']['cset']."'>\n";
             echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";

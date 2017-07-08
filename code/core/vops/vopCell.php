@@ -238,8 +238,8 @@ class vopCell{
         $cfgc = read('coms.click','ex'); 
         foreach($b as $k2=>$v2){
             $t = explode(':',$k2);
-            $tab = glbDBExt::getTable($t[0]);
-            $kid = glbDBExt::getKeyid($t[0]);
+            $tmp = glbDBExt::getTable($t[0],'arr');
+            $tab = $tmp[0]; $kid = $tmp[1];
             $key = basStr::filKey($t[1],'-_.');
             $cola = array(); 
             foreach($v2 as $k3=>$v3){

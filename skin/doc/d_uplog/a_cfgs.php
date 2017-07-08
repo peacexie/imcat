@@ -4,7 +4,7 @@
 $cfgs = array(
     'readme' => array('[General] Update Notes','readme'),
     //'8_8' => array('Release:Forecast(v8.8)','8.8'),
-    '3_8' => array('Release:Forecast(v3.8)','3.8'),
+    '3_8' => array('2017.0708','3.8'),
     '3_7' => array('2017.0507','3.7'),
     '3_6' => array('2017.0318','3.6'),
     '3_5' => array('2017.0202','3.5'),

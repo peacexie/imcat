@@ -77,7 +77,7 @@ function mapPick(type,fid,w,h){
 function repeatCheck(mod,fid,kid){
     var para = 'act=infoRepeat&mod='+mod+'&fid='+fid+'&kwd='+jsElm.jeID('fm['+fid+']').value+'';
     jQuery.getScript(_cbase.run.roots+'/plus/ajax/cajax.php?'+para,function(){ 
-        var re = _repeat_res=='success' ? lang('jcore.pop_repeat') : _repeat_res;
+        var re = _repeat_res=='success' ? lang('jcore.pop_xrepeat') : _repeat_res;
         layer.tips(re, '#fm_repeat_'+kid, {tips:3});
     });
 }

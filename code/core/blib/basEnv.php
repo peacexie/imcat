@@ -231,7 +231,7 @@ class basEnv{
     }
 
     static function isLocal($ip=''){
-        $ip || $ip = $_SERVER['REMOTE_ADDR'];
+        $ip || $ip = self::userIP(); //$_SERVER['REMOTE_ADDR'];
         if(strpos($ip,'.')){ // IPv4
             $p1 = intval($ip);
             return in_array($p1,array('10','127','192'));

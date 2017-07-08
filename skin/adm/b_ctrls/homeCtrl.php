@@ -50,7 +50,7 @@ class homeCtrl{
         return array('vars'=>$vars);
     }
     
-    // _empty
+    // 
     function _cloginAct($sess=0){
         $user = usrBase::userObj('Admin');
         if($user->userFlag=='Guest') header('Location:'."?login");

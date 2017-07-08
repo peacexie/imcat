@@ -8,6 +8,7 @@ mkv --=> tpl
 class vopUrl{    
     
     static $params = array('mkv','mod','key','view','type','hcfg','vcfg');
+    static $keepmk = array('c','d','m','t','u');
     
     // get/url初始数据
     static function iget($q=''){
@@ -54,7 +55,10 @@ class vopUrl{
         }else{ //mod
             $a = array($mkv,'','');    
             $type = 'mhome';
-        } 
+        }
+        if(in_array($a[0],self::$keepmk) || in_array($a[1],self::$keepmk)){
+            vopShow::msg($re['mkv'].basLang::show('core.vop_parerr'));
+        }
         //$mod分析
         $mod = $a[0]; $key = $a[1]; $view = empty($a[2]) ? '' : $a[2];
         if($remod) return $remod=='a' ? $a : $mod;
@@ -91,8 +95,8 @@ class vopUrl{
         if(empty($tpl)){
             $_groups = glbConfig::read('groups'); 
             $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','coms','users')); // types, advs,
-            if($ina4 || in_array($mod,$re['hcfg']['extra'])){ 
-                $tpl = "$mod/$dsub";
+            if($ina4 || in_array($mod,$re['hcfg']['c']['extra'])){ 
+                $tpl = "$mod/$dsub"; 
             }
         }
         // 处理{mod}

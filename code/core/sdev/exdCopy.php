@@ -41,7 +41,7 @@ class exdCopy{
     // 复制一条数据(文档/资讯|会员/交互)
     // ('2015-9c-p2k1', '2016-9c-p2k1', 'New Title~');
     function cdata($id, $nid='', $ntilte=''){
-        $kid = glbDBExt::getKeyid($this->mod);
+        $kid = glbDBExt::getTable($this->mod,'kid');
         $this->crow("$kid='$id'", array($kid=>$nid,'title'=>$ntilte));
         if(in_array($this->pid,array('docs'))){
             $tbext = glbDBExt::getTable($this->mod,1);

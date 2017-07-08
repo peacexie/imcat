@@ -11,7 +11,7 @@ $dop = new dopExtra('plus_paylog',$cfg);
 
 // 删除操作
 if(!empty($bsend)){
-    require dirname(dirname(__FILE__)).'/binc/act_ops.php');
+    require dirname(dirname(__FILE__).'/binc/act_ops.php');
 } 
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';

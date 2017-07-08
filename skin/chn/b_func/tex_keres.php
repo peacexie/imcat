@@ -29,7 +29,7 @@ class tex_keres{ //extends tex_base
       $icon = "<img src='$icon' width='18' height='18' border='0' align='absmiddle'>";
       $ufpath = comStore::revSaveDir($ufile);
       $ufdir = comStore::revSaveDir($ufile,'dir'); 
-      $ufsize = filesize($ufdir);
+      $ufsize = @filesize($ufdir);
       $ufsize = $ufsize ? basStr::showNumber($ufsize,'Byte') : '';
       $vpath = strstr($ufile,'root}') ? $ufile : substr($ufile,-56,56);
       $link = "<a href='$ufpath'>$icon [$type] $ufile</a> $ufsize ";

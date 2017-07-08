@@ -68,7 +68,7 @@ class vopShow{
             return ''; // 不要后续模板显示-直接返回
         }
         if(empty($this->tplname) || is_string($this->vars)){
-            $msgk = $this->ucfg['vcfg']['vmode']=='close' ? 'closemod' : 'parerr';
+            $msgk = @$this->ucfg['vcfg']['vmode']=='close' ? 'closemod' : 'parerr';
             $ermsg = empty($this->tplname) ? "$this->mkv:".basLang::show("core.vop_$msgk") : $this->vars;
             $this->msg($ermsg);
             return ''; // 返回空,终止操作
@@ -94,18 +94,13 @@ class vopShow{
     }
     // 扩展操作
     function extActs() {
-        $class = $this->mod.'Ctrl';
-        $fp = vopTpls::path('tpl')."/b_ctrls/$class.php";
-        if(file_exists($fp)){
-            include_once $fp;
-            if(class_exists($class)){
-                $aex = new $class($this->ucfg,$this->vars);
-                $method = empty($this->key) ? 'homeAct' : ($this->type=='detail' ? '_detailAct' : $this->key.'Act');
-                if(method_exists($aex,$method)){
-                    $res = $aex->$method();
-                }elseif($this->type=='mtype' && method_exists($aex,'_emptyAct')){
-                    $res = $aex->_emptyAct();
-                }
+        if($class=vopTpls::impCtrl($this->mod)){
+            $aex = new $class($this->ucfg,$this->vars);
+            $method = empty($this->key) ? 'homeAct' : ($this->type=='detail' ? '_detailAct' : $this->key.'Act');
+            if(method_exists($aex,$method)){
+                $res = $aex->$method();
+            }elseif($this->type=='mtype' && method_exists($aex,'_defAct')){
+                $res = $aex->_defAct();
             }
         }
         if(!empty($res['vars'])){ 

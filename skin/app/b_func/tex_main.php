@@ -23,7 +23,7 @@ class tex_main{
         parse_str($qs,$ua); unset($ua['_r'],$ua['_'],$ua[$safix]);
         $this->ua = $ua;
         $this->hcfgs = glbConfig::read('home','va'); 
-        if(!empty($this->hcfgs['c']['close'])){
+        if(!empty($this->hcfgs['capp'])){
             $this->vars = $this->error('closed-all(init)');
             $this->view('~');
         }
@@ -55,7 +55,7 @@ class tex_main{
         $this->mod = $this->ua['mod'];
         $this->act = empty($this->ua['act']) ? '' : $this->ua['act'];
         $this->id = basReq::val('id','');
-        if(in_array($this->mod,$this->hcfgs['close'])){
+        if(in_array($this->mod,$this->hcfgs['c']['close'])){
             $this->vars = $this->error("closed-{$this->mod}(init)");
             $this->view('~');
         }
@@ -63,7 +63,7 @@ class tex_main{
     
     function vars(){
         $_groups = glbConfig::read('groups');
-        if(in_array($this->mod,$this->hcfgs['extra'])){
+        if(in_array($this->mod,$this->hcfgs['c']['extra'])){
             $this->view($this->mod);
         }
         if(isset($_groups[$this->mod])){

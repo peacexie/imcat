@@ -1,8 +1,8 @@
 <?php
-include dirname(__FILE__).'/_admCtrl.php';
+include dirname(__FILE__).'/_defCtrl.php';
 /*
 */ 
-class bincCtrl extends _admCtrl{
+class bincCtrl extends _defCtrl{
 	
     private $skacts = array('exd_inc1','act_ops','_pub_cfgs');
 
@@ -15,6 +15,6 @@ class bincCtrl extends _admCtrl{
         }
     }
 
-    //function _emptyAct(){}
+    //function _defAct(){}
     
 }

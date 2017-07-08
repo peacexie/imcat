@@ -27,7 +27,7 @@ Lang.jcore = {
     jqbase_notrule : '不规范', 
 
     pop_pickmap : '选择地图坐标 (拖动到适当位置后确定)', 
-    pop_repeat : '该资料重复!', 
+    pop_xrepeat : '该资料未重复!', 
     pop_pickmod : '请选模型！', 
     pop_infopick : '信息选取', 
     pop_maxn : '最多个[{val}个]', 

@@ -11,7 +11,8 @@ h1,p,nav{ max-width:620px; line-height:150%; margin:20px auto;}
 h1{ font-size:larger; text-align:center; }
 hr{ clear:both; }
 </style>
-</head><body>
+</head><body>        
+        
 <nav>
     {loop $arr $key}
     <li><a href='?ctest-{$key}' target=_blank>ctest-{$key}<a/></li>
@@ -26,9 +27,11 @@ hr{ clear:both; }
 <hr>
 <p>*1. 先来实例: url中,dev.php?start-down:
    则类名为:startCtrl(Ctrl为后缀,start即模型名), 方法名为downAct(Act为后缀,down即操作或分类)</p>
-<p>*1.a 一个模型，对应一个控制器(类),放在当前模板文件夹的`b_ctrls`下,如:/skin/dev/b_ctrls/startCtrl.php</p>
+<p>*1.a 一个模型，对应一个控制器(类),放在当前模板文件夹的`b_ctrls`下,如:/skin/dev/b_ctrls/startCtrl.php
+   为了优化加载不用file_exists检测文件存在，而需要在_config/va_home.php中注册(`c`键值下)如：`'_tabCtrl' => array('homeCtrl','bincCtrl'),`
+   同时，可注册一个默认控制器（类）(`'_defCtrl' => '_defCtrl',`),使每个未定义控制器类的模型都按这个方式处理 </p>
 <p>*1.b 一个分类或一个操作，对应一个方法
-   模型首页用homeAct方法, 空方法`_emptyAct`为没有对应方法的共用执行方法(适合:'mtype'类别,如新闻各栏目分类)
+   模型首页用homeAct方法, 默认方法`_defAct`为没有对应方法的共用执行方法(适合:'mtype'类别,如新闻各栏目分类)
 </p>
 <p>*2.a 可用于变更当前模板, 如vip会员使用另一个模版, 或不需套用-mob后缀(即pc/mob共用模版): 
    用'newtpl'键值返回, return array('newtpl'=>'c_demo/start_sdict');</p>

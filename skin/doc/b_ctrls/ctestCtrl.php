@@ -52,10 +52,10 @@ class ctestCtrl{
         return $re;
     }
 
-    // _empty
-    function _emptyAct(){
+    // _defAct
+    function _defAct(){
         echo glbHtml::page('init');
-        echo "<p>_emptyAct(这里不需要模板,这里显示就完了) <br>--- 用了空方法,用['tplnull'=>1]返回</p>\n";
+        echo "<p>_defAct(这里不需要模板,这里显示就完了) <br>--- 用了空方法,用['tplnull'=>1]返回</p>\n";
         echo basDebug::runInfo();
         // die()
         return array('tplnull'=>1);

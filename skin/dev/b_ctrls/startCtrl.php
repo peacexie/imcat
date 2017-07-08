@@ -66,8 +66,8 @@ class startCtrl{
         return array('tplnull'=>1);
     }
 
-    /*/ _empty
-    function _emptyAct(){
+    /*/ _defAct
+    function _defAct(){
         if(in_array($this->ucfg['key'],array('class','dbtab'))){
             return array('newtpl'=>$this->ucfg['tplname']);
         } // 不用使用-mob后缀

@@ -4,8 +4,8 @@ require dirname(__FILE__).'/_cfgall.php';
 # mod,kid
 $opfid = req('opfid'); // 操作字段
 if(empty($mod)||!isset($_groups[$mod])) die("Error-1:{$mod}");
-$kfid = glbDBExt::getKeyid($mod);
-$tbid = glbDBExt::getTable($mod);
+$tmp = glbDBExt::getTable($mod,'arr');
+$tbid = $tmp[0]; $kfid = $tmp[1];
 $tabfull = $db->table($tbid,2);
 
 // 基本判断

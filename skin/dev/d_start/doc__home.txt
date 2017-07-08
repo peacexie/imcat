@@ -36,7 +36,7 @@ tmp...
 
 * 将来方向
  - 1. 寻求Nodejs/Python配套方案
- - 2. 筹划v4.x
+ - 2. REST-API, 筹划v4.x
 
 * 近期目标
  - 筹划下一版本：ver3.9/ver4.0

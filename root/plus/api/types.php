@@ -1,6 +1,5 @@
 <?php
 require dirname(__FILE__).'/_config.php'; 
-
 glbHtml::page('Types Pick',1);
 imp('initJs','jquery,jspop;comm;comm(-lang);/_pub/jslib/search'); 
 imp('initCss','stpub,jstyle;comm'); // bootstrap,
@@ -229,7 +228,7 @@ function popSetValue(type,kval){
     <?php $cb=req('cb'); echo $cb ? "window.parent.$cb(kval,jsElm.pdID(fid2+'_name').value);\n" : "\n"; ?>
 }
 </script>
-<?php glbHtml::page('body',' style="padding:3px"'); ?>
+</head><body style="padding:3px">
 <script>
 var _wp = window.parent, _pd = parent.document;
 var fid = urlPara('fid'), fid2 = jsKey(fid); 
