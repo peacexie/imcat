@@ -24,10 +24,13 @@ class vopComp{
         $content = comFiles::get($re[0]);
         $content = $this->bcore($content); //获取经编译后的内容
         $shead = "(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
-        $shead .= "\nif(file_exists(\$tebp=vopTpls::pinc('tex_base'))){ include_once \$tebp; }";
-        $shead .= "\nif(method_exists('tex_base','init')){ \$user = tex_base::init(\$this); }";
-        $spend = "if(method_exists('tex_base','pend')){ tex_base::pend(); }";
-        comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.($spend ? "<?php \n$spend \n?>" : '')); //写入缓存
+        $fptex = '/b_func/tex_base.php'; $spend = '';
+        if(file_exists(vopTpls::path().$fptex)){
+            $shead .= "\ninclude_once vopTpls::path().'$fptex';";
+            $shead .= "\nif(method_exists('tex_base','init')){ tex_base::init(\$this); }";
+            $spend = "<?php\nif(method_exists('tex_base','pend')){ tex_base::pend(); }\n?>";
+        }
+        comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.$spend); //写入缓存
         return $re[1];
     }
 

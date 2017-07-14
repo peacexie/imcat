@@ -34,7 +34,8 @@ class devSetup{
     // 导入一项数据
     static function ins1Data($data,$key=''){
         if(is_array($data) && isset($data[$key])){ return $data[$key]; }
-        return comConvert::impData($data,$key,'sql');
+        $data = comConvert::impData($data,$key);
+        return basSql::filNotes($data);
     }
 
     // 导入一个模型数据

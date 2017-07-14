@@ -11,8 +11,7 @@ class tex_base{
     }
     
     static function init($obj){
-        $user = user();
-        return $user;    
+        //    
     }
     
     static function pend(){

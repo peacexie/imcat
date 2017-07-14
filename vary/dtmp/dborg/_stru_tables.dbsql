@@ -1593,6 +1593,37 @@ CREATE TABLE `{pre}plus_sphinx{ext}` (
   PRIMARY KEY (`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}token_limit{ext}`;
+CREATE TABLE `{pre}token_limit{ext}` (
+  `kid` varchar(255) NOT NULL,
+  `mod` varchar(12) NOT NULL DEFAULT '',
+  `act` varchar(24) NOT NULL DEFAULT '',
+  `etime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`kid`,`mod`,`act`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}token_rest{ext}`;
+CREATE TABLE `{pre}token_rest{ext}` (
+  `kid` varchar(12) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL DEFAULT '',
+  `perm` text NOT NULL,
+  `exp` int(10) unsigned NOT NULL DEFAULT '0',
+  `etime` int(10) unsigned NOT NULL DEFAULT '0',
+  `debug` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `rate` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`kid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}token_store{ext}`;
+CREATE TABLE `{pre}token_store{ext}` (
+  `kid` varchar(24) NOT NULL,
+  `token` varchar(255) NOT NULL DEFAULT '',
+  `exp` int(10) unsigned NOT NULL DEFAULT '0',
+  `etime` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`kid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}types_auto{ext}`;
 CREATE TABLE `{pre}types_auto{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',

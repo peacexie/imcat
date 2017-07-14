@@ -54,3 +54,15 @@
  - Interface: app.php?mod=data
  - Notice: See the notice in：/skin/app/b_files/data.php 
 
+
+#### Sample/Tips
+
+* Sample:
+ - <a href='?mod=info&act=sample&{sign}'>Demo Code &gt;&gt;</a>
+
+* Tips:
+ - 提示：请使用 新的 `REST-API` 替代本功能：
+ - 去更强大更刺激的 <a href="rest.php">`REST-API`<a/>!
+ - Tips: Please use `REST-API` instead this API:
+ - Go to the More Power and Exciting <a href="rest.php">`REST-API`<a/>!
+

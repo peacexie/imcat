@@ -1,5 +1,6 @@
 {block:init}{code:"b_func/tex_user"}{php}
 $act = req('act');
+$user = usrBase::userObj('Member'); 
 {/php}{/block:init}<!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{/block:title}</title>

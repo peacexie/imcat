@@ -1,4 +1,5 @@
 <?php
+$user = usrBase::userObj('Member'); 
 vopTpls::pinc('tex_indoc');
 if($res=tex_indoc::noperm($user,$this->vars)){
     basMsg::show(lang('user.idoc_perm').":[$res]",'die');

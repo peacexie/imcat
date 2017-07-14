@@ -9,9 +9,7 @@ class comConvert{
         $f1 = 'start(!@~)'; $f2 = '(!@~)isend'; $f0 = '(split!@~flag)'; // 标记 
         if(substr($name,0,6)=='/ximp/'){
             $file = DIR_STATIC.$name; 
-            if(file_exists($file)){
-                $data = comFiles::get($file);
-            } 
+            $data = comFiles::get($file); 
         }elseif(!empty($name)){
             $data = $name; 
         }
@@ -30,13 +28,6 @@ class comConvert{
         if(strpos($data,$f0)>0){
             $data = explode($f0,$data);
         }
-        if($re=='str'){
-            $data = preg_replace('/\s/','',$data); //去空白
-        }elseif($re=='sql'){
-            $data = basSql::filNotes($data);
-        }elseif($re=='arr'){
-            $data = basElm::line2arr($data,0);
-        } 
         return $data;  
     } 
     
@@ -220,7 +211,7 @@ class comConvert{
         $len = count($arr); $py=""; 
         for($i=0;$i<$len;$i++){
             if(ord($arr[$i])<128){
-                $py .= $arr[$i];
+                $py .= preg_replace("/\W/",'_',$arr[$i]);
             }else{
                 $tmp = self::pinyinOne($arr[$i]); 
                 $py .= $first ? substr($tmp,0,1) : $tmp;
@@ -240,8 +231,9 @@ class comConvert{
     }
     static function pycfgTab(){
         static $pycfg_tab;
-        if(!isset($pycfg_tab)){ 
-            $pycfg_tab = self::impData('/ximp/utabs/pinyin.imp_txt');
+        if(!isset($pycfg_tab)){
+            $file = DIR_STATIC.'/ximp/utabs/pinyin.imp_txt';
+            $pycfg_tab = comFiles::get($file);
         }
         return $pycfg_tab;
     }

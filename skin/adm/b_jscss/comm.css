@@ -5,6 +5,8 @@ body{ background:#FFF; border:0px; padding:0px; margin:0px; }
 body, td, input, textarea, select, button{ color:#333; line-height:150%; font:12px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
 ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%; margin:0; padding:0; }
 li{ list-style:none; }
+.mobbody{ padding:2px 3px;overflow-y:scroll; }
+.pcbody{ padding:2px 3px;overflow-y:scroll; overflow-x:hidden; }
 
 a img{ border:none; }
 table{ border-collapse:collapse;}

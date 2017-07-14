@@ -16,4 +16,8 @@ echo "$d1\n\n//($lang)\n$d2";
 // _pub.js     --- DEL
 // tpl_cfg.php --- DEL 
 
+function edwimp($file){
+    echo basJscss::write(basJscss::imp($file,'vendui'))."\n";
+}
 
+//echo basJscss::write(basJscss::imp('/KindEditor/kindeditor-min.js','vendui'))."\n";

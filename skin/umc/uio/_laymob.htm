@@ -1,5 +1,6 @@
 {block:minit}{code:"b_func/tex_user"}
 {php}
+$user = usrBase::userObj('Member'); 
 $key = $this->ucfg['key'];
 $key = empty($key) ? 'login' : $key;
 $act = req('act');

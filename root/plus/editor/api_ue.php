@@ -9,19 +9,20 @@ $larr = array(
     'fr'=>'en',
     'ru'=>'en',
 );
-echo basJscss::write(basJscss::imp('/edt_ue/ueditor.config.js','vendui'))."\n";
-echo basJscss::write(basJscss::imp('/edt_ue/ueditor.all.min.js','vendui'))."\n";
+edwimp('/edt_ue/ueditor.config.js');
+edwimp('/edt_ue/ueditor.all.min.js');
+// 'preview', 'backcolor', 
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [[
     'fullscreen', 'source', '|', 'undo', 'redo', '|',
     'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'blockquote', 'pasteplain', '|', 
     'insertorderedlist', 'insertunorderedlist', '|',
-    'lineheight', '|', 'anchor','link', 'removeformat', 'autotypeset', 'preview', 
+    'lineheight', '|', 'anchor','link', 'removeformat', 'autotypeset', 
 ],[
     'paragraph', 'fontfamily', 'fontsize', '|',
     'directionalityltr', 'directionalityrtl', '|',
-    'forecolor', 'backcolor', 'justifyleft', 'justifycenter', 'justifyright', '|',
+    'forecolor', 'justifyleft', 'justifycenter', 'justifyright', '|',
     'insertimage', 'map', 'inserttable', 'horizontal', '|',
     'help'
 ]]; //'insertvideo','attachment','insertframe',

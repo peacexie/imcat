@@ -39,12 +39,10 @@ class _defCtrl{
         }
         $file = str_replace('-','/',$this->ucfg['mkv']);
         // head
-        echo '<!DOCTYPE html><html><head>';
-        glbHtml::page('init',1);
-        echo '<title>'.basLang::show('admin.adm_center').'-'.$_cbase['sys_name']."</title>\n";
+        glbHtml::page(basLang::show('admin.adm_center').'-(sys_name)',1);
         imp('initJs','jquery,jspop;comm;comm(-lang)');
         imp('initCss','bootstrap,stpub,jstyle;comm');
-        echo '</head><body style="padding:2px 3px;overflow-y:scroll;'.(basEnv::isMobile()?'':'overflow-x:hidden;').'">';
+        echo '</head><body class="'.(basEnv::isMobile()?'mobbody':'pcbody').'">';
         // inc
         echo "\n<!--inc:/$file.php-->\n"; 
         $full = DIR_CODE."/flow/$file.php";

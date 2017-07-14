@@ -15,8 +15,6 @@ class tex_base{
             $row || $row = 0;
             comCookie::oset('ocar_items',$row);
         }
-        $user = usrBase::userObj('Member'); 
-        return $user;
     }
     
     static function pend(){

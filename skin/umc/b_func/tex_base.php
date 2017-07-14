@@ -53,7 +53,6 @@ class tex_base{
             header('Location:'."?mkv=user-tips&from=$from&perm=$pnow"); #echo "$from"; #
         } 
         $_cbase['tpl']['tplpext'] = "var pmusr='".implode(',',$pmarr)."';";
-        return $user;
     }
     
     static function pend(){

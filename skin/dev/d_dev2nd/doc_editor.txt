@@ -50,15 +50,15 @@ http://ueditor.baidu.com/website/
 = umeditor.min.js
 = third-party/zeroclipboard/
 -------------------------------
-* plugins/attachment
-* plugins/charts
-* plugins/insertframe
-* plugins/music
-* plugins/scrawl
-* plugins/template
-* plugins/video
-* plugins/webapp
-* plugins/wordimage
+* dialogs/attachment
+* dialogs/charts
+* dialogs/insertframe
+* dialogs/music
+* dialogs/scrawl
+* dialogs/template
+* dialogs/video
+* dialogs/webapp
+* dialogs/wordimage
 * third-party/mathquill/font
 
 -4. Modify

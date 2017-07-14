@@ -9,8 +9,8 @@ $larr = array(
     'fr'=>'en',
     'ru'=>'ru',
 );
-echo basJscss::write(basJscss::imp('/KindEditor/kindeditor-min.js','vendui'))."\n";
-echo basJscss::write(basJscss::imp("/KindEditor/lang/$larr[$lang].js",'vendui'))."\n";
+edwimp('/KindEditor/kindeditor-min.js');
+edwimp("/KindEditor/lang/$larr[$lang].js");
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [

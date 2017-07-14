@@ -221,7 +221,6 @@ class devBase{
         $org = array('{tablists}','{tabmap}','{tabcnt}','{sysname}','{dict-title}');
         $obj = array($slist,$tlist,count($tabinfo),$_cbase['sys_name'],basLang::show('core.dbdict_title'));
         $data = str_replace($org,$obj,$tdoc); 
-        //$lang = $_cbase['sys']['lang']; 
         $data = devData::dataImpLang($data,'base_model,base_fields,bext_dbdict');
         return $data;    
     }

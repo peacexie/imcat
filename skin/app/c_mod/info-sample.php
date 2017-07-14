@@ -61,4 +61,9 @@ $(function(){
 }); 
 </script>
 
+<hr>
+<p class="pc"><?php
+echo basDebug::runInfo(); 
+?></p>
+
 </body></html>

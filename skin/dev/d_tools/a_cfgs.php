@@ -22,9 +22,9 @@ $cfgs = array(
     ),
     
     'cnconv' => array(
-        'title' => '简繁转化（js/php）',
-        'rem' => '简繁转化接口',
-        'mt' => '简繁转化',
+        'title' => '简繁/拼音转化（js/php）',
+        'rem' => '简繁转化接口,拼音转化接口',
+        'mt' => '简繁/拼音转化',
     ),
 
     'seal' => array(

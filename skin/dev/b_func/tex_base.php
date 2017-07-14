@@ -24,7 +24,6 @@ class tex_base{
         }else{
             $user = NULL;
         }
-        return $user;
     }
     
     static function pend(){
