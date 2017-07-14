@@ -1,14 +1,5 @@
 
 
-* During 2017-06 ~ 2017-07 
-V3.8 Upgrading...
-During this time, please use v3.7
-
-* 2017-06 ~ 2017-07 期间 
-V3.8升级中……再
-在此期间, 请使用v3.7
-
-
 --- --- --- --- --- --- --- --- --- 
 
 ### What is IntimateCat(贴心猫)?
@@ -50,6 +41,7 @@ V3.8升级中……再
 * Add: Mobile version - English documentation
 * Add: qq-Login
 * Add: url-Alias configuration
+* Add: REST-API(Alpha)
 
 * Add: 
   - This system: Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
@@ -110,6 +102,7 @@ V3.8升级中……再
 * 增加：移动版-英文文档
 * 增加：qq登陆
 * 增加：url别名指向配置
+* 增加：REST-API(Alpha)
 
 * 增加：模板显示控制功能
   - 体现：不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！的设计思想!
