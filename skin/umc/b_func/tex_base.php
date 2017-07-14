@@ -51,7 +51,10 @@ class tex_base{
         }else{
             $from = $obj->ucfg['q']==$obj->mkv ? $obj->mkv : 'q-'.comParse::urlBase64($obj->ucfg['q'],0,1); 
             header('Location:'."?mkv=user-tips&from=$from&perm=$pnow"); #echo "$from"; #
-        } 
+        }
+        if(in_array($obj->mod,array('order','indoc'))){
+            glbError::show('This page is closed temporary @v3.8.');
+        }
         $_cbase['tpl']['tplpext'] = "var pmusr='".implode(',',$pmarr)."';";
     }
     
