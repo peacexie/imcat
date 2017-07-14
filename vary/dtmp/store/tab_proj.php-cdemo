@@ -3,7 +3,7 @@ return array (
   'chn.php' => '3d52285640638203465007a906e3e9c9',
   'dev.php' => '685e0d529140195117757c5373f08579',
   'doc.php' => '573ea447380dc9fb3d574cf5e7c6227c',
-  'index.php' => 'd83957b3624837c37feba8866f98ebdd',
+  'index.php' => '0e33aa39c18a996509a3478fb38305ac',
   'mob.php' => 'd391bd8ea7f1c9adb4f2a21e9ebeb84a',
   'robots.txt' => '1643da68e34688a72ae4f239d9eb0be2',
 ); 

@@ -61,6 +61,8 @@ return array(
         'logs_syact'=>'(系统)调试记录表', 'logs_jifen'=>'(积分)操作记录', 
         'plus_emsend'=>'(邮件)发送记录', 'plus_paylog'=>'(支付)历史记录', 'plus_sphinx'=>'(Sphinx)MaxID', 
         'plus_smcharge'=>'(短信)充值记录', 'plus_smsend'=>'(短信)发送记录', 
+
+        'token_limit'=>'Token频率限制', 'token_rest'=>'Token账户', 'token_store'=>'Token存储(外部)', 
         
         'wex_apps'=>'(微信)配置表', 'wex_menu'=>'(微信)菜单表', 'wex_keyword'=>'(微信)关键字表', 'wex_qrcode'=>'(微信)二维码表', 
         'wex_locate'=>'(微信)地理位置表', 'wex_msgget'=>'(微信)接收信息', 'wex_msgsend'=>'(微信)发送信息',

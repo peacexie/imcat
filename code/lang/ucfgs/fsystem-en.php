@@ -61,6 +61,8 @@ return array(
         'logs_syact'=>'(sys)Debug Log', 'logs_jifen'=>'(piont)op Log', 
         'plus_emsend'=>'(mail)Send Log', 'plus_paylog'=>'(pay)Pay Log', 'plus_sphinx'=>'(Sphinx)MaxID',  
         'plus_smcharge'=>'(sms)Charge  Log', 'plus_smsend'=>'(sns)Send Log', 
+
+        'token_limit'=>'Token Rate Limit', 'token_rest'=>'Token Users', 'token_store'=>'Token Store(Outer)', 
         
         'wex_apps'=>'(Weixin)Appsets', 'wex_menu'=>'(Weixin)Menus', 'wex_keyword'=>'(Weixin)Keywords', 'wex_qrcode'=>'(Weixin)Qrcode', 
         'wex_locate'=>'(Weixin)Locate', 'wex_msgget'=>'(Weixin)ReciveLog', 'wex_msgsend'=>'(Weixin)SendLog',
