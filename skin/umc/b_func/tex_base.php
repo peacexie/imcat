@@ -42,20 +42,20 @@ class tex_base{
         $pnow = empty($_micfg[$pkey]['cfgs']) ? '.login' : $_micfg[$pkey]['cfgs']; //1, (empty), .guest
         if($pnow==1) $pnow = $pkey;
         $pmarr = empty($user->uperm['pmusr']) ? array() : explode(',',$user->uperm['pmusr']);
-        if($pnow=='.guest' || in_array($obj->tplname,array('user/tips','user/home')) || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
-            //游客可操作 or 提示页本身 or 跳转首页
-        }elseif($pnow=='.login'){ 
-            //需要登录 and 已登录
-        }elseif(in_array($pnow,$pmarr)){ //登录用户有权限
-            //登录用户有权限
-        }else{
-            $from = $obj->ucfg['q']==$obj->mkv ? $obj->mkv : 'q-'.comParse::urlBase64($obj->ucfg['q'],0,1); 
-            header('Location:'."?mkv=user-tips&from=$from&perm=$pnow"); #echo "$from"; #
-        }
-        if(in_array($obj->mod,array('order','indoc'))){
-            glbError::show('This page is closed temporary @v3.8.');
-        }
         $_cbase['tpl']['tplpext'] = "var pmusr='".implode(',',$pmarr)."';";
+        /*if(in_array($obj->mod,array('order','indoc'))){
+            glbError::show('This page is closed temporary @v3.8.');
+        }*/
+        if($pnow=='.guest' || in_array($obj->tplname,array('user/tips')) || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
+            return; // 游客可操作 or 提示页本身 or 免认证
+        }
+        if($pnow=='.login'){ // def:.login 
+            if($user->userFlag=='Login') return; // 需要登录 and 已登录
+        }else{ // 1:set
+            if(!empty($pmarr) && in_array($pnow,$pmarr)) return;
+        }
+        $from = $obj->ucfg['q']==$obj->mkv ? $obj->mkv : 'q-'.comParse::urlBase64($obj->ucfg['q'],0,1); 
+        header('Location:'."?mkv=user-tips&from=$from&perm=$pnow"); 
     }
     
     static function pend(){

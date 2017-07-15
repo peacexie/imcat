@@ -89,12 +89,24 @@ class basDebug{
         } // Done in 0.253444 sec(s), 12 queries .
         $info = "Done:$qtime/$rtime($unit); ";
         $info .= "".$run['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
-        $route = empty($_SERVER['PATH_INFO']) ? '' : "Route:".$_SERVER['PATH_INFO']."; ";
-        $tpl = "Tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname'])."; "; //tpl 
-        $qstr = "[".(empty($_SERVER['QUERY_STRING']) ? '(null)' : $_SERVER['QUERY_STRING'])."] "; //qstr
-        $auto = empty($route) ? (empty($run['tplname']) ? $qstr : $tpl) : $route;
-        $info .= $$tq."Upd:".date('Y-m-d H:i:s')." "; // str_replace('T',' ',date(DATE_ATOM))
+        $route = empty($_SERVER['PATH_INFO']) ? '' : "Route:".$_SERVER['PATH_INFO'];
+        $tpl = "Tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname']); //tpl  
+        $auto = empty($route) ? (empty($run['tplname']) ? self::runQstr() : $tpl) : $route;
+        $info .= $$tq."; Upd:".date('Y-m-d H:i:s')." "; 
         return $info;
+    }
+    static function runQstr(){
+        $arr = array('mkv','mod','act','view','parts','kid','did','uid','aid');
+        if(empty($_SERVER['QUERY_STRING'])){
+            return '(null)';
+        }else{
+            $res = '';
+            foreach ($arr as $key) {
+                $val = basReq::val($key);
+                $val && $res .= (empty($res)?'':'&')."$key=$val";
+            }
+            return $res;
+        }
     }
     // 运行Load
     static function runLoad($pre=0){

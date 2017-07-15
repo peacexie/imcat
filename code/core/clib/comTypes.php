@@ -18,10 +18,11 @@ class comTypes{
             }
             unset($arr[$k]);
         }
-        $res = preg_replace("/\(i_[\w]{2,12}\)[\n]{1}/",'',$res);
+        $res = preg_replace("/\(i_[\w\-]{2,36}\)[\n]{1}/",'',$res);
         $res = "{\n".substr($res,0,strlen($res)-2)."\n}";
-        if(is_int($re)) $re = $cnt>=$re ? 'json' : 'arr';
-        return $re=='arr' ? comParse::jsonDecode($res) : $res;
+        if(is_int($re)) $re = $cnt>=$re ? 'json' : 'arr'; 
+        $res = $re=='arr' ? comParse::jsonDecode($res) : $res;
+        return $res;
     }
     // $arr 从db取得,ordby:deep,top
     static function arrSubs($arr){ 
@@ -62,6 +63,7 @@ class comTypes{
     // getSubs,所有pid以下的子分类
     static function getSubs($arr,$pid='0',$deep='12345',$ra=1){ 
         $start = '0'; $fdeep = '-1'; $a = array(); 
+        if(empty($arr)) return empty($ra) ? 0 : $a;
         foreach($arr as $k=>$v){
             if(!isset($v['deep'])) $v['deep'] = 1;
             if(!isset($v['pid'])) $v['pid'] = '0';
