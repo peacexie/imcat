@@ -28,7 +28,7 @@ $_va_home = array(
     // !isset-登陆, ''(空)-游客可用, 'xxx'-按设置
     //*
     'u' => array(
-        'umc_frees' => array(-1,'faqs','help'), //umc-不需要登录模型
+        'umc_frees' => array('home','faqs','help'), //umc-不需要登录模型
     ),//*/
     
 );

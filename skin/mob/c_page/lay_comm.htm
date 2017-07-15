@@ -1,6 +1,7 @@
 {block:init}{/block:init}<!DOCTYPE html><html><head>
 {block:pmeta}{php $this->pmeta(); }{/block:pmeta}
 {php}
+$user = usrBase::userObj('Member'); 
 imp('initJs','jspop,jquery;comm');
 imp('initCss','bootstrap,stpub;comm');
 {/php}

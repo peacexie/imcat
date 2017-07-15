@@ -1,6 +1,7 @@
 {imp:"c_page/lay_comm"}<!--继承父模板-->
 
 {block:init}<?php
+$user = usrBase::userObj('Member'); 
 extract(basReq::sysVars()); 
 if($user->userFlag=='Login'){
     $unowstr = $user->uinfo['mname'].'(<span class="c00F">'.$user->uinfo['uname'].'</span>)';
