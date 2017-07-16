@@ -96,7 +96,7 @@ function imp($type,$ext='',$user=0){
             $fix = 'css';
         }else{ // initJs/loadExtjs
             // ('initJs','jquery,bootstrap;comm;comm(-lang);user');
-            // ('loadExtjs','jq_base,jq_win,bootstrap,layer')
+            // ('loadExtjs','jq_base,bootstrap,layer')
             $exp = $type=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($user?'&user=1':'') : '';
             $fix = 'js';
         }

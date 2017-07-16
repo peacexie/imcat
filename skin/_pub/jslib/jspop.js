@@ -229,38 +229,43 @@ function popInit(fid,mod,w,n,def,cstr,cb){
         jsElm.jeID(fid2+'_name').value = str;
     }
 }
+
 function popOpen(title,url,w,h){
     var w = w ? w : 450;
     var h = h ? h : 360; 
     if(_cbase.sys_pop==4){ 
         var ops = {type:2, fix:false, maxmin:true, title:[title,true], area:[w+'px',h+'px'], content:[url], close:function(index){layer.close(index);}};
         layer.open(ops); // type:2, shade:[0], border:[5,0.7,'#0A246A',true], moveOut:true, offset:['50%','50%'],
-    }else if(_cbase.sys_pop==3){ 
-        tipsWindown(title,'iframe:'+url+'',w,h,'true','','true','content-boxCss');
-    }else if(_cbase.sys_pop==2){ 
-        $.webox({title:title, iframe:url, width:w, height:h, bgvisibel:false }); 
-    }else{ //=3
-        tipsWindown(title,'iframe:'+url+'',w,h,'true','','true','content-boxCss');
-        //drag:      是否可以拖动(ture为是,false为否)
-        //time:      自动关闭等待的时间，为空是则不自动关闭
-        //showbg:      [可选参数]设置是否显示遮罩层(0为不显示,1为显示)
-        //cssName:      [可选参数]附加class名称
+    }else{ //=1:bs
+        popWin(title,url,w,h);   
     }
-}
+} // webox:_cbase.sys_pop==2
 function popClose(){
     if(_cbase.sys_pop==4){ 
         var index = parent.layer.getFrameIndex(window.name);
         parent.layer.close(index);
-    }else if(_cbase.sys_pop==3){ 
-        $("#wtips-close", window.parent.document).trigger("click");
-    }else if(_cbase.sys_pop==2){ 
-        parent.$("#webox_close").trigger("click");
-    }else{ //=3
-        $("#wtips-close", window.parent.document).trigger("click");
-        //$('#wtips-close',window.parent.parent.document).trigger("click");
-        //window.parent.document.getElementById("#wtips-close")
-        //parent.$("#wtips-close").trigger("click");
+    }else{ //=1:bs
+        $("#win_bsm").hide();
+        $("#win_bsm",window.parent.document).hide();
     }        
+}
+// bs模态弹出窗
+function popWin(title,url,w,h) {
+    if(!$("#win_bsm").length){
+        var win_mtpl = '';
+        win_mtpl += '<div class="modal" id="win_bsm" tabindex="-1" role="dialog" style="display:block;">';
+        win_mtpl += '  <div class="modal-dialog modal-lg"><div class="modal-content">';
+        win_mtpl += '      <div class="modal-header">';
+        win_mtpl += '        <button type="button" class="close" onclick="popClose()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>';
+        win_mtpl += '        <h4 class="modal-title">Title</h4>';
+        win_mtpl += '      </div><div class="modal-body">';
+        win_mtpl += '        <iframe src="./loading.htm" width="100%" height="240" frameborder="0"></iframe>';
+        win_mtpl += '      </div>';
+        win_mtpl += '</div></div></div>';
+        $("body").append(win_mtpl);
+    }else{ $("#win_bsm").show(); }
+    $("#win_bsm").find("iframe").prop('src',url).prop('height',h);
+    $("#win_bsm .modal-title").html(title);
 }
 
 // *** wpop_data.js ======================================================================================

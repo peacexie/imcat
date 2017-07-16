@@ -139,7 +139,7 @@ class dopCheck extends dopBase{
         glbHtml::page($_cbase['sys_name'],1);
         imp('initJs','jquery,bootstrap,layer,jspop;comm;comm(-lang)');
         imp('initCss','jspop,bootstrap,stpub,jstyle;comm'); 
-        imp('loadExtjs','jq_base,jq_win,bootstrap,layer');
+        imp('loadExtjs','jq_base,bootstrap,layer');
         glbHtml::page('body',' style="padding:8px 5px 5px 5px;overflow-y:scroll;overflow-x:hidden;"'); 
     }
 

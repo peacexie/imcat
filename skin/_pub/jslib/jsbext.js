@@ -44,11 +44,7 @@ function winOpen(e,title,width,height,ext){
         var _x = (screen.width-width)/2, _y = (screen.height-height)/2, id = ext ? '_win_'+jsKey(ext) : '_win_';
         var p = ",left="+_x+",top="+_y+",width="+width+",height="+height+"";
         window.open(url,id,'scrollbars=yes,toolbar=no,location=no,status=no,menubar=no,resizable=yes'+p); 
-    }else if(wt==2){ 
-        $.webox({title:title, iframe:url, width:width, height:height, bgvisibel:false }); 
-    }else if(wt==3){  
-        tipsWindown(title,'iframe:'+url,width,height,'true','','0','content-boxCss');
-    }else if(wt==4){
+    }else{ // 4
         var ops = {type:2, fix:false, maxmin:true, title:[title,true], area:[width+'px',height+'px'], content:[url]};
         layer.open(ops);
     }

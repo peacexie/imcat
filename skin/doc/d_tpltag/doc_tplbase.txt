@@ -39,7 +39,7 @@
 or
 imp('initJs','jquery,bootstrap;comm;comm(-lang);user');
 imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs');
-imp('loadExtjs','jq_base,jq_win,bootstrap,layer')
+imp('loadExtjs','jq_base,bootstrap,layer')
 imp('/~tpl/user.css')
 imp('/layer/layer.js','vendui')
 imp('/_pub/a_jscss/cinfo.css');

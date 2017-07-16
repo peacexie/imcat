@@ -20,7 +20,7 @@ if(strstr($act,'initCss')){ // header
     basJscss::loadTabs($excss,$tpldir,$lang,'.css'); // xxx;comm;home
 }
 if(strstr($act,'loadExtjs')){ // footer
-    basJscss::loadExtjs($exjs); // jspop,jq_base,jq_win,bootstrap,layer
+    basJscss::loadExtjs($exjs); // jspop,jq_base,bootstrap,layer
 }
 
 if(strstr($act,'autoJQ')){
@@ -30,8 +30,9 @@ if(strstr($act,'autoJQ')){
         if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
             require DIR_VENDUI.'/jquery/ie8_html5_resp.js'; 
             require DIR_VENDUI.'/jquery/html5.js'; // html5shiv + respond
+            require DIR_VENDUI.'/jquery/jquery-1.x.js';
         }else{
-            require DIR_VENDUI.'/jquery/jquery-2.x.js';
+            require DIR_VENDUI.'/jquery/jquery-3.x.js';
         }
     }
 }

@@ -43,9 +43,6 @@ class tex_base{
         if($pnow==1) $pnow = $pkey;
         $pmarr = empty($user->uperm['pmusr']) ? array() : explode(',',$user->uperm['pmusr']);
         $_cbase['tpl']['tplpext'] = "var pmusr='".implode(',',$pmarr)."';";
-        /*if(in_array($obj->mod,array('order','indoc'))){
-            glbError::show('This page is closed temporary @v3.8.');
-        }*/
         if($pnow=='.guest' || in_array($obj->tplname,array('user/tips')) || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
             return; // 游客可操作 or 提示页本身 or 免认证
         }

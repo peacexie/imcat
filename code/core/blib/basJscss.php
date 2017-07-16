@@ -3,16 +3,13 @@
 // basJscss类
 class basJscss{    
 
-    // jspop,jq_base,jq_win,bootstrap,layer
+    // jspop,jq_base,bootstrap,layer
     static function loadExtjs($exjs){
         if(strstr($exjs,'jspop')){
             require DIR_SKIN.'/_pub/jslib/jspop.js';
         }
         if(strstr($exjs,'jq_base')){
             require DIR_SKIN.'/_pub/jslib/jq_base.js';
-        }
-        if(strstr($exjs,'jq_win')){ 
-            require DIR_SKIN.'/_pub/jslib/jq_win.js';
         }
         if(strstr($exjs,'bootstrap')){
             $jsimp = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
@@ -75,7 +72,7 @@ class basJscss{
                 echo "document.write(\"$jsimp\");\n"; // html5shiv + respond
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-1.x.js');
             }else{
-                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
+                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-3.x.js');
             }
         }
         if(strstr($exjs,'bootcss')){

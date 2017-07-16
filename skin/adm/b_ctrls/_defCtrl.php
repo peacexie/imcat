@@ -57,7 +57,9 @@ class _defCtrl{
         // footer
         if($_cbase['debug']['err_mode']) echo basDebug::runInfo();
         echo "</p>\n";
-        imp('loadExtjs','jq_base,jq_win,bootstrap,layer');
+        imp('/_pub/jslib/jq_base.js');
+        imp('/layer/layer.js','vendui');
+        imp('/bootstrap/js/bootstrap.min.js','vendui');
         echo "</body></html>\n";
         echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n";
         die(); //return array('tplnull'=>1);

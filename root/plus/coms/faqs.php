@@ -12,9 +12,9 @@ if(!empty($bsend)){
 
     $dop->svPrep(); 
     $dop->svAKey();
-    //$dop->svPKey('add');
     $dop->fmv['show'] = 0;
     $db->table($dop->tbid)->data($dop->fmv)->insert(); 
+    $dop->fmu['did'] = $dop->fmv['did'];
     $db->table($dop->tbext)->data($dop->fmu)->insert(0);
     dopCheck::headComm();
     basMsg::show(lang('plus.coms_addok',$_groups[$mod]['title']),'prClose');

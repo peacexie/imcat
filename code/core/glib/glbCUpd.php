@@ -262,7 +262,7 @@ class glbCUpd{
             if(empty($v3['pid'])){ //顶级
                 $s0 .= "<li id='left_$k3'>";
                 $s0 .= "<a href='?mkv=dops-a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
-                $s0 .= "<a onclick=\"admJsClick('$k2')\">".basLang::show('core.msg_add')."</a></li>";
+                $s0 .= "<a onclick=\"admJsClick(this)\">".basLang::show('core.msg_add')."</a></li>";
             }}
             $s0 .= "</ul>";
         }}
@@ -296,7 +296,7 @@ class glbCUpd{
                 }elseif(strstr($tb[2],'blank')){
                     $t .= (empty($t) ? '' : ' - ')."<a href='$tb[1]' target='_blank'>$tb[0]</a>";
                 }elseif(strstr($tb[2],'jsadd')){
-                    $t .= (empty($t) ? '' : ' - ')."<a onClick=\"admJsClick('{$tb[1]}')\">$tb[0]</a>";
+                    $t .= (empty($t) ? '' : ' - ')."<a onClick=\"admJsClick(this)\">$tb[0]</a>";
                 }else{
                     $t .= (empty($t) ? '' : ' - ')."<a href='$tb[1]' target='adf_main'>$tb[0]</a>";    
                 }

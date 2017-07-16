@@ -35,9 +35,10 @@ function listDir($dbase,$dir='',$part=''){
   $list = comFiles::listDir("$dbase/$dir"); 
   if(empty($list['file'])) die('(null)');
   foreach ($list['file'] as $fp => $val) {
-   if(!strpos($fp,'.php')) continue;
-   $b2 = $pcfg[$part][1]; 
-   echo " --- <a href='{$b2}/$dir/$fp' target='_blank'>$fp</a><br>\n";
+    if(strpos($fp,'.php') || strpos($fp,'.htm')){
+      $b2 = $pcfg[$part][1]; 
+      echo " --- <a href='{$b2}/$dir/$fp' target='_blank'>$fp</a><br>\n";
+    }
   }
 }
 

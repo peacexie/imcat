@@ -10,10 +10,10 @@ function admShowTop(){
     }
 }
 
-function admJsClick(id){ 
-    var _add = jsElm.ifID('adf_main').jsElm.jeID(id+'_add'); 
-    if(_add){ _add.click(); }
-    else{ layer.alert(lang('adm.open_nowmod_list')); } 
+function admJsClick(e){ 
+    var p = jeFind(e,'a','prev'); 
+    var url = $(p).prop('href')+'&view=form'; 
+    $('#adf_main').prop('src',url);
 }
 function admSetTab(id,rst){
     var a = admNavTab.split(',');

@@ -36,3 +36,5 @@ ul.cmpfile { width:340px; overflow-x:scroll; padding:10px 10px 10px 8px; }
     .esql { width:100%; }
     .langbar { width: 100%; }
 }
+
+.btn{ margin:3px 0; padding:1px 3px; border-color:#ddd #666 #666 #ddd; background:#DDD; color:#000; cursor:pointer; vertical-align:middle; }
