@@ -1,5 +1,5 @@
 
--- token_limit@2017-07-14 19:49:39 -- 
+-- token_limit@2017-07-16 16:24:41 -- 
 INSERT INTO `{pre}token_limit{ext}` VALUES 
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','news','list','1499912538'),
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','news','table','1499913062'),

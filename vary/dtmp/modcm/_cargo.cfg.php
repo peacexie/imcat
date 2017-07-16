@@ -101,7 +101,7 @@ $_cargo = array (
       'fmtitle' => '0',
       'fmextra' => 'repeat',
       'fmexstr' => '',
-      'cfgs' => 'pro,title',
+      'cfgs' => 'cargo,title',
     ),
     'xinghao' => 
     array (

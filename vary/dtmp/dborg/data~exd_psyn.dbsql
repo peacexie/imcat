@@ -1,4 +1,4 @@
 
--- exd_psyn@2017-07-02 14:29:13 -- 
+-- exd_psyn@2017-07-16 16:24:41 -- 
 INSERT INTO `{pre}exd_psyn{ext}` VALUES 
 ('psyn_test','0','测试同步任务','0','http://127.0.0.1/txmao/root','news','','100','','','0','','0','','','0','');

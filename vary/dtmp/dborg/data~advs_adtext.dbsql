@@ -1,5 +1,5 @@
 
--- advs_adtext@2017-07-02 14:29:13 -- 
+-- advs_adtext@2017-07-16 16:24:40 -- 
 INSERT INTO `{pre}advs_adtext{ext}` VALUES 
 ('2015-5z-gf01','1','athom','','','贴心家族-txjia.com','http://www.txjia.com/','','','1','888','','3','127.0.0.1','1433057112','adminer','127.0.0.1','1433057112','adminer'),
 ('2015-6k-ngs1','1','atdel','2015-9c-nu21','demo','[双语美文]做最好的自己：这十件事请放手','http://yscode.txjia.com/learn/emwen.htm','','','1','888','','3','127.0.0.1','1434630803','peace','127.0.0.1','1434630803','peace'),

@@ -1,5 +1,5 @@
 
--- users_uacc@2017-07-02 14:29:14 -- 
+-- users_uacc@2017-07-16 16:24:41 -- 
 INSERT INTO `{pre}users_uacc{ext}` VALUES 
 ('1982-79-0709','0','admin','P(w;fS!f*ByU%k|9v?^GvCD:,P.Q[l}5AD','it_is_null','0','','0','','','0',''),
 ('2010-4r-0424','0','master','e@v`1~aRrIS#$e1RU$WXL$j2&^*ACOyZ','it_is_null','0','','0','','','0',''),

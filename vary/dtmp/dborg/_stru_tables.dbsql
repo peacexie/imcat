@@ -844,7 +844,7 @@ DROP TABLE IF EXISTS `{pre}dext_faqs{ext}`;
 CREATE TABLE `{pre}dext_faqs{ext}` (
   `did` varchar(24) NOT NULL,
   `detail` text,
-  `author` varchar(255) NOT NULL,
+  `author` varchar(255) DEFAULT '',
   `source` varchar(255) NOT NULL,
   `seo_key` varchar(255) DEFAULT NULL,
   `seo_des` varchar(255) DEFAULT NULL,
