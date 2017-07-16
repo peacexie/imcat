@@ -103,7 +103,6 @@ $_sy_pubcfg['skfiles'] =  array(
     '100-gushi.jpg', // static:/file_demo1/
     'cacert.pem', // vendor:/a3rd/alipay_class/
     'echarts.min.js',
-    'jquery-3.x.js',
     'bank_full.html',
     'combo.png',
 

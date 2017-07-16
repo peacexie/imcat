@@ -1,12 +1,5 @@
 
 
-* 贴心猫(IntimateCat) V3.8(Alpha)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
-
-* All users of 贴心猫(IntimateCat) are encouraged to test this version carefully, 
-  and report any bugs in the `faq` system.
-* Thank you for helping us make 贴心猫(IntimateCat) better.
-
 --- --- --- --- --- --- --- --- --- 
 
 ### What is IntimateCat(贴心猫)?
