@@ -1617,7 +1617,7 @@ CREATE TABLE `{pre}token_rest{ext}` (
 
 DROP TABLE IF EXISTS `{pre}token_store{ext}`;
 CREATE TABLE `{pre}token_store{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(96) NOT NULL DEFAULT '' COMMENT '(appid)',
   `token` varchar(255) NOT NULL DEFAULT '',
   `exp` int(10) unsigned NOT NULL DEFAULT '0',
   `etime` int(10) unsigned NOT NULL DEFAULT '0',
