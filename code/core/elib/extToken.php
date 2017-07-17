@@ -80,7 +80,7 @@ class extToken{
             $data = array('token'=>'','exp'=>$stamp-86400);
         }
         $data['etime'] = $stamp;
-        $db->table("token_store")->data($data)->where("kid='$key'")->update(0);
+        $db->table("token_store")->data($data)->where("kid='$kid'")->update(0);
     }
     // 获取:store
     static function get($kid,$exp=1){

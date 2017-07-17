@@ -2,8 +2,8 @@
 require dirname(__FILE__).'/_config.php';        
 
 glbHtml::page("Create Suit Template - (sys_name)",1);
-imp('initJs','jquery');
-imp('initCss','stpub;/tools/exdiy/style.css');
+eimp('initJs','jquery');
+eimp('initCss','stpub;/tools/exdiy/style.css');
 glbHtml::page('body');
 
 $part = req('part','tpl');

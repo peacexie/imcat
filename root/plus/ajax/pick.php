@@ -4,8 +4,8 @@ require dirname(__FILE__).'/_config.php';
 $_groups = read('groups');
 
 glbHtml::page("Pick Data");
-imp('initJs','jquery,jspop;comm;comm(-lang)'); 
-imp('initCss','stpub,jstyle;comm'); // bootstrap,
+eimp('initJs','jquery,jspop;comm;comm(-lang)'); 
+eimp('initCss','stpub,jstyle;comm'); // bootstrap,
 echo "<style type='text/css'>div.pg_bar li{margin: 0px 1px;}</style>";
 glbHtml::page('body');
 

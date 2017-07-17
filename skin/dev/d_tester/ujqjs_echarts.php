@@ -1,7 +1,7 @@
 
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-imp('/common/echarts.min.js','vendui');
+eimp('/common/echarts.min.js','vendui');
 ?>
 
 <p>ECharts</p>

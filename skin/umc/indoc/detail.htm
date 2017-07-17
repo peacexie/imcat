@@ -11,8 +11,8 @@ $toarr = tex_indoc::toshow($this->vars);
 <?php glbHtml::page('init',1); ?>
 <title>{php echo lang('user.pub_cindoc').'-'.$_cbase['sys_name']; }</title>
 {php}
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang);cseal');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);cseal'); 
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang);cseal');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);cseal'); 
 {/php}
 </head><body>
 {php glbHtml::ieLow_html();}

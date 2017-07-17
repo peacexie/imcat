@@ -36,21 +36,46 @@
 ```
 <link href='{PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
 <script src='{PATH_VENDUI}/layer/layer.js'></script>
-or
-imp('initJs','jquery,bootstrap;comm;comm(-lang);user');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs');
-imp('loadExtjs','jq_base,bootstrap,layer')
-imp('/~tpl/user.css')
-imp('/layer/layer.js','vendui')
-imp('/_pub/a_jscss/cinfo.css');
-imp('/_pub/jslib/jsbase.js');
-imp('/plus/ajax/comjs.php?act=autoJQ');
-//basJscss::loadJqbs('zepto',0);
-//basJscss::loadJqbs('jquery',0);
-basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
+------ ------ or
 {php}
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs'); 
+eimp('/~tpl/cinfo.css'); // /skin/{tpldir}/b_jscss/a_jscss.css
+eimp('/layer/layer.js','vendui');
+eimp('/_pub/a_jscss/cinfo.css'); // /skin/_pub/a_jscss/cinfo.css
+eimp('/_pub/jslib/jsbase.js'); // /skin/_pub/a_jscss/jsbase.js
+{php}
+------ ------ or (Init)
+eimp('initJs','zepto,jquery,bootcss,bootstrap,layer;comm;comm(-lang);user'); // in head
+ -=>
+    // js-cfgs + /_pub/jslib/jsbase.js + /_pub/jslib/jsbext.js
+    + 
+    <script src='/skin/{tpldir}/b_jscss/comm.js'></script>
+    <script src='/skin/{tpldir}/b_jscss/comm-{lang}.js'></script> // {lang}=cn/en
+    <script src='/skin/{tpldir}/b_jscss/user.js'></script> // {lang}=cn/en
+    + (The above will mergered, And the below will Not mergered) 
+    <script src='{PATH_VENDUI}/jquery/zepto-1x.js'></script> // Just one with jquery
+    <script src='{PATH_VENDUI}/jquery/jquery-3.x.js'></script> // Auto use 1.x/3.x
+    <link href='{PATH_VENDUI}/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
+    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs'); // in head
+ -=>
+    @import url({PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
+    + (The below will mergered, And the above will Not mergered)
+    <link href='/_pub/jslib/stpub.css' type='text/css' rel='stylesheet'/>
+    <link href='/_pub/a_jscss/jstyle.css' type='text/css' rel='stylesheet'/>
+    <link href='/skin/{tpldir}/b_jscss/comm{-mob}.css' type='text/css' rel='stylesheet'/> // Auto use `{-mob}`
+    <link href='/skin/{tpldir}/b_jscss/faqs.css' type='text/css' rel='stylesheet'/>
+eimp('loadExtjs','jspop,jq_base,bootstrap,layer'); // Can put the end of body
+ -=>
+    <script src='/skin/_pub/jslib/jspop.js'></script>
+    <script src='/skin/_pub/jslib/jq_base.js'></script>
+    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+------ ------ or (Else)
+eimp('/plus/ajax/comjs.php?act=autoJQ');
+basJscss::loadJqbs('zepto',0);
+basJscss::loadJqbs('jquery',0);
+basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
 {/php}
 ```
 

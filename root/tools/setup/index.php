@@ -33,8 +33,8 @@ if($act=='EditDB'){
 }
 
 glbHtml::page(lang('tools.setup_title')." - ".$_cbase['sys_name'],1);
-imp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
-imp('initCss','bootstrap,stpub;/tools/setup/style.css');
+eimp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
+eimp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
 $cmydb3 = devRun::runMydb3();

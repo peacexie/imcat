@@ -6,8 +6,8 @@ $pSub = req('pSub','peace'); // peace,baidu,eweb //// peace,def
 $lang = $_cbase['sys']['lang']; 
 
 glbHtml::page(lang('plus.edt_tplchar'),1);
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang);/plus/editor/_pub;/plus/editor/_pub(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm;/plus/editor/tpl_style'); 
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang);/plus/editor/_pub;/plus/editor/_pub(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm;/plus/editor/tpl_style'); 
 glbHtml::page('body');
 
 $itpl = lang('plus.edt_tpl');

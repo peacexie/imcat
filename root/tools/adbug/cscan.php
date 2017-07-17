@@ -6,8 +6,8 @@ $act = req('act','');
 $part = $ntpl = req('part','');
 
 glbHtml::page("Check/Scan");
-imp('/_pub/a_jscss/cinfo.css');
-imp('/_pub/jslib/jsbase.js');
+eimp('/_pub/a_jscss/cinfo.css');
+eimp('/_pub/jslib/jsbase.js');
 
 $dcfgs = array(
  'curlDown' => 37712,

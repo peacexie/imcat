@@ -40,8 +40,8 @@ class _defCtrl{
         $file = str_replace('-','/',$this->ucfg['mkv']);
         // head
         glbHtml::page(basLang::show('admin.adm_center').'-(sys_name)',1);
-        imp('initJs','jquery,jspop;comm;comm(-lang)');
-        imp('initCss','bootstrap,stpub,jstyle;comm');
+        eimp('initJs','jquery,jspop;comm;comm(-lang)');
+        eimp('initCss','bootstrap,stpub,jstyle;comm');
         echo '</head><body class="'.(basEnv::isMobile()?'mobbody':'pcbody').'">';
         // inc
         echo "\n<!--inc:/$file.php-->\n"; 
@@ -57,9 +57,9 @@ class _defCtrl{
         // footer
         if($_cbase['debug']['err_mode']) echo basDebug::runInfo();
         echo "</p>\n";
-        imp('/_pub/jslib/jq_base.js');
-        imp('/layer/layer.js','vendui');
-        imp('/bootstrap/js/bootstrap.min.js','vendui');
+        eimp('/_pub/jslib/jq_base.js');
+        eimp('/layer/layer.js','vendui');
+        eimp('/bootstrap/js/bootstrap.min.js','vendui');
         echo "</body></html>\n";
         echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n";
         die(); //return array('tplnull'=>1);

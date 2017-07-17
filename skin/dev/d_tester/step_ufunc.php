@@ -15,8 +15,8 @@ $rs = $pg->exe();
 
 glbHtml::page('db,翻页:演示2');
 
-imp('initJs','jquery');
-imp('initCss','comm');
+eimp('initJs','jquery');
+eimp('initCss','comm');
 
 glbHtml::page('body');
 ?>

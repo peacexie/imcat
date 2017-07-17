@@ -13,8 +13,8 @@ if(@$debug['type']=='qrGet'){ //cookie-header问题,放在echo输出前
 }
 
 glbHtml::page("微信接口调试");
-imp('initJs','jquery;comm;comm(-lang);/_pub/a_jscss/weixin'); 
-imp('initCss','stpub;comm'); // bootstrap,
+eimp('initJs','jquery;comm;comm(-lang);/_pub/a_jscss/weixin'); 
+eimp('initCss','stpub;comm'); // bootstrap,
 echo basJscss::imp("/_pub/a_jscss/weixin.js"); 
 echo "<style type='text/css'>.radio{display:inline-block;}</style>";
 glbHtml::page('body',' style="margin:20px;"');

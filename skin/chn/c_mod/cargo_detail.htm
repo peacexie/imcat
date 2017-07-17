@@ -2,8 +2,8 @@
 {php}
 echo basJscss::jscode("var _pbase={}; _pbase.rdmob=1;")."\n";
 $this->pmeta();
-imp('initJs','jspop,jquery;comm;/_pub/a_jscss/multpic;/_pub/a_jscss/sordbar',1);
-imp('initCss','bootstrap,stpub;comm');
+eimp('initJs','jspop,jquery;comm;/_pub/a_jscss/multpic;/_pub/a_jscss/sordbar',1);
+eimp('initCss','bootstrap,stpub;comm');
 $fexts = vopCell::exFields($this->mod,$catid);
 $null = "<span class='cCCC'>------</span>";
 {/php} 
@@ -131,7 +131,7 @@ $null = "<span class='cCCC'>------</span>";
 {inc:"c_pub/afoot"}
 </body></html>
 
-{php} imp('loadExtjs','jq_base,layer');{/php}
+{php} eimp('loadExtjs','jq_base,layer');{/php}
 <link href='{PATH_VENDUI}/prettyPhoto/prettyPhoto.css' type='text/css' rel='stylesheet'/>
 <script src='{PATH_VENDUI}/prettyPhoto/prettyPhoto.js'></script>
 <script>

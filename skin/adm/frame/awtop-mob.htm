@@ -2,8 +2,8 @@
 <?php glbHtml::page('init',1); ?>
 <title>{php echo basLang::show('admin.adm_center').'-'.$_cbase['sys_name']; }</title>
 {php}
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm-mob'); 
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm-mob'); 
 {/php}
 <script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script>
 <style type='text/css'>html,body{overflow:hidden;}</style>
@@ -42,6 +42,6 @@ imp('initCss','bootstrap,stpub,jstyle;comm-mob');
 <div class="container pa1" id="adf_right">
 <iframe src="{$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
 </div>
-{php imp('/~tpl/awtop.js'); }
+{php eimp('/~tpl/awtop.js'); }
 
 </body></html>

@@ -1,8 +1,8 @@
 <?php 
 glbHtml::page('Demo-Code/Sample',1);
 basJscss::loadJqbs('jquery',0);
-//imp('/plus/ajax/comjs.php?act=autoJQ');
-//imp('initJs','jquery');
+//eimp('/plus/ajax/comjs.php?act=autoJQ');
+//eimp('initJs','jquery');
 $fcall = file_get_contents(__FILE__);
 $fcjs = basElm::getVal($fcall,'script');
 $sign = safComm::signApi('init').'&debug=1';

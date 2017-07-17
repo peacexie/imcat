@@ -13,8 +13,8 @@ $mdtitle = lang('user.pub_cuser');
 <!DOCTYPE html><html><head>
 {php $this->pmeta($kname.'-'.$_cbase['sys_name']); }
 {php}
-imp('initJs','jquery,bootstrap;comm;comm(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);user(-mob)'); 
+eimp('initJs','jquery,bootstrap;comm;comm(-lang);user');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);user(-mob)'); 
 {/php}
 {block:pimp}{/block:pimp}
 </head><body>

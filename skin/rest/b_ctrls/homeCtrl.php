@@ -62,14 +62,14 @@ class homeCtrl{
     }
     function tokSubmit($db,$kid,$pass){
         $pasn = basReq::val('pasn');
+        $sop = basReq::val('sop');
         // check-row
         if(empty($this->sess) || empty($kid) || $this->sess!==$kid){
             return $this->errorAct("Error User/Password[s1]!");
         }
-        $sop = basReq::val('sop');
         if($sop=='view'){
             header("Location:?token");
-        };
+        }
         if(empty($pass) || empty($this->vret['row']['pass']) || $pass!==$this->vret['row']['pass']){
             return $this->errorAct("Error User/Password[s2]!");
         }
@@ -81,17 +81,11 @@ class homeCtrl{
                 return $this->errorAct("Your new password is[ <b>$pasn</b> ]!");
             }
         }elseif($sop=='reset'){
-            $token = extToken::guid($kid);
-            $db->table('token_rest')->data(array('token'=>$token))->where(array('kid'=>$kid))->update(0);
-            return $this->errorAct("Your Net Token is [ <b>$token</b> ]!");
-        }else{ // exp : 1d,1w,1m,1y
-            $cfg = array(
-                '1d' => 86400,
-                '1w' => 86400*7,
-                '1m' => 86400*31,
-                '1y' => 86400*365,
-            );
-            $stamp = $_SERVER["REQUEST_TIME"] + (isset($cfg[$sop]) ? $cfg[$sop] : 86400);
+            $ntok = extToken::guid($kid);
+            $db->table('token_rest')->data(array('token'=>$ntok))->where(array('kid'=>$kid))->update(0);
+            return $this->errorAct("Your Net Token is [ <b>$ntok</b> ]!");
+        }else{ // exp : 1d,1w,1m,12m
+            $stamp = $_SERVER["REQUEST_TIME"] + tagCache::CTime($sop);
             $db->table('token_rest')->data(array('exp'=>$stamp))->where(array('kid'=>$kid))->update(0);
             return $this->errorAct("Your Expire-time Reset to [ ".(date('Y-m-d H:i:s',$stamp))." ]!");
         }

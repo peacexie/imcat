@@ -121,7 +121,7 @@ class tagCache{
         return '';
     }
 
-    // $ctime : 30s,60m,12h,7d,52w; 默认单位m
+    // $ctime : 30s,60m,12h,7d,4w,12m; 默认单位m
     static function CTime($ctime=30){ 
         if(is_numeric($ctime) || strpos($ctime,'m')){
             $ctime = intval($ctime)*60; 
@@ -131,10 +131,12 @@ class tagCache{
             $ctime = intval($ctime)*86400;
         }elseif(strpos($ctime,'w')){
             $ctime = intval($ctime)*86400*7;
+        }elseif(strpos($ctime,'m')){
+            $ctime = intval($ctime)*86400*30;
         }else{ 
             $ctime = intval($ctime);
         }
-        $ctime<60 && $ctime = 1800; //最小60s
+        $ctime<60 && $ctime = 86400; //最小60s
         return $ctime;
     }
 

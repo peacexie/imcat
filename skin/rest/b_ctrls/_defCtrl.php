@@ -32,24 +32,18 @@ class _defCtrl{
         $alltab = $this->db->tables(1);
         $tabs = array();
         foreach ($alltab as $k=>$row) {
-            if(strpos($row['Name'],"_".$this->mod)){
-                if($retype){
-                    $fields = glbDBExt::dbComment($row['Name']);
-                    $row['Comment'] = empty($fields[0]['_rem']) ? $row['Comment'] : $fields[0]['_rem'];
-                    unset($fields[0]['_rem']);
-                    $row['_fields'] = $fields; 
-                }
-                $tabs[$k] = $row;
-            }
+            if(!strpos($row['Name'],"_".$this->mod)) continue;
+            $fields = glbDBExt::dbComment($row['Name']);
+            $row['Comment'] = empty($fields[0]['_rem']) ? $row['Comment'] : $fields[0]['_rem'];
+            unset($fields[0]['_rem']);
+            $row['_fields'] = $fields; 
+            $tabs[$k] = $row;
         }
-        if($retype){
-            $data = $tabs;
-        }else{
-            $data = devBase::dbDict($tabs);
-            $a1 = array('>Default<','[Refresh]');
-            $a2 = array('>Def.<',   '');
-            $data = str_replace($a1,$a2,$data);
-        }
+        if($retype){ return $this->view($tabs); }
+        $data = devBase::dbDict($tabs);
+        $a1 = array('>Default<','[Refresh]');
+        $a2 = array('>Def.<',   '');
+        $data = str_replace($a1,$a2,$data);
         $this->view($data);
     }
     // 列表
@@ -68,71 +62,54 @@ class _defCtrl{
     }
 
     function addAct(){
-        if(method_exists($this,'addBefore')){
-            $this->addBefore($id);
-        }
         if(empty($this->skipMain)){
-            //*
-            $dop->svAKey(); 
+            $this->dop->svAKey(0); 
             if($this->pid=='docs'){
-                $id = $dop->fmu['did'] = $dop->fmv['did'];
+                $id = $this->dop->fmu['did'] = $this->dop->fmv['did'];
             }elseif($this->pid=='users'){
-                $dop->svAccount('add'); 
+                $this->dop->svAccount('add'); 
                 $id = $this->fmv['uid'];
             }elseif($this->pid=='coms'){
-                $dop->svPKey('add');
+                $this->dop->svPKey('add');
                 $id = $this->fmv['cid'];
             }
-            $this->db->table($dop->tbid)->data($dop->fmv)->insert(); 
+            $this->db->table($this->dop->tbid)->data($this->dop->fmv)->insert(); 
             if($this->pid=='docs'){
-                $this->db->table($dop->tbext)->data($dop->fmu)->insert(0); 
-            }//*/
-            echo 'addAct';
+                $this->db->table($this->dop->tbext)->data($this->dop->fmu)->insert(0); 
+            }
         }
-        if(method_exists($this,'addAfter')){
-            $this->addAfter($id);
-        }
+        $this->view(array($id,$this->pid));
     }
     function editAct(){
         $id = basReq::val('id');
-        if(method_exists($this,'editBefore')){
-            $this->editBefore($id);
-        }
         if(empty($this->skipMain)){
-            //*
-            $id = $dop->svEKey();
+            //$id = $dop->svEKey();
             if($this->pid=='docs'){
-                $dop->fmu['did'] = $id;
-                $this->db->table($dop->tbext)->data($dop->fmu)->replace(0);
+                $this->dop->fmu['did'] = $id;
+                $this->db->table($this->dop->tbext)->data($this->dop->fmu)->replace(0);
             }elseif($this->pid=='users'){
-                $dop->svAccount('edit'); 
+                $this->dop->svAccount('edit'); 
             }elseif($this->pid=='coms'){
-                $dop->svPKey('edit');
+                $this->dop->svPKey('edit');
             }
-            $this->db->table($dop->tbid)->data($dop->fmv)->where("did='$id'")->update();
-            //*/
-            echo 'editAct'.$id;
+            $this->db->table($this->dop->tbid)->data($this->dop->fmv)->where("did='$id'")->update();
         }
-        if(method_exists($this,'editAfter')){
-            $this->editAfter($id);
-        }
+        $this->view(array($id,$this->pid));
     }
     function delAct(){
         $id = basReq::val('id');
-        if(method_exists($this,'delBefore')){
-            $this->delBefore($id);
-        }
         if(empty($this->skipMain)){
             $this->dop->opDelete($id);
-            echo 'delAct'.$id;
         }
-        if(method_exists($this,'delAfter')){
-            $this->delAfter($id);
-        }
+        $this->view(array($id,$this->pid));
     }
     
     // upd-state, show-data
     function view($data=array(),$die=1){
+        $exact = $this->key.'After';
+        if(method_exists($this,$exact)){
+            $this->$exact($this->dop); // 后续数据调整
+        }
         extToken::upd($this->token,$this->mod,$this->key);
         if(empty($data)) return;
         if(is_string($data)) die($data);
@@ -180,6 +157,13 @@ class _defCtrl{
             $_cfg = read($this->mod); 
             $_cls = $_tmp[$this->pid][0]; 
             $this->dop = new $_cls($_cfg); 
+            if(in_array($this->key,array('add','edit'))){
+                $this->dop->svFields();
+            }
+            $exact = $this->key.'Before';
+            if(method_exists($this,$exact)){
+                $this->$exact($this->dop); // 预处理数据
+            }
         }else{
             if(in_array($this->key,array('add','edit','del'))){
                 glbError::show("Error [$this->mod] (act=$this->key)");

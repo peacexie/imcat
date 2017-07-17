@@ -11,8 +11,8 @@ if(empty($title)){
 ?>
 {block:title}{php $this->pmeta($title); }{/block:title}
 {php}
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs'); 
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs'); 
 {/php}
 </head><body>
 {php glbHtml::ieLow_html();}

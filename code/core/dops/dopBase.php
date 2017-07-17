@@ -146,7 +146,7 @@ class dopBase{
     }
 
     // svAKey，
-    function svAKey(){
+    function svAKey($jifen=1){
         $tabid = $this->cfg['pid']=='users' ? $this->tbuacc : $this->tbid;
         $_key = $this->cfg['pid']=='users' ? 'uid' : $this->_kid;
         if(!empty($this->fme[$_key]) && !empty($this->fme[$this->_kno])){    
@@ -163,7 +163,7 @@ class dopBase{
         $this->fmv[$_key] = $kid;    
         $this->fmv[$this->_kno] = $kno;
         $this->svMoveFiles($kid);
-        comJifen::main(array_merge($this->cfg,$this->fme),'add','');
+        $jifen && comJifen::main(array_merge($this->cfg,$this->fme),'add','');
         return $this->fmv[$_key];
     }
     function svTypes(){

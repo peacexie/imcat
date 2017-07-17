@@ -213,17 +213,30 @@ class basJscss{
     // imp css/js
     static function imp($path,$base='',$mod='auto'){
         global $_cbase; 
-        if(!strpos($_cbase['run']['jsimp'],$path)){
-            $_cbase['run']['jsimp'] .= "$path,";
+        $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
+        if(substr($path,0,1)=='/'){
+            $path = str_replace('/~tpl',"/skin/$tpldir/b_jscss",$path);
+            if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js'; 
         }else{
-            return;    
+            $lang = $_cbase['sys']['lang'];
+            $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
+            if($path=='initCss'){
+                $exp = "&tpldir=$tpldir&lang=$lang";
+                $mod = 'css';
+            }else{ // initJs/loadExtjs
+                $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?'&user=1':'') : '';
+                $mod = 'js'; 
+            }
+            $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";
+            $base = '';
         }
-        if(strpos($path,'/comjs.php')&&$mod=='auto') $mod = 'js';
-        $path = self::ipath($path,$base); //"$base$path";
-        if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js'; 
+        if(strpos($_cbase['run']['jsimp'],$path)){
+            return;
+        }
+        $_cbase['run']['jsimp'] .= "$path,";
+        $path = self::ipath($path,$base); 
         if(empty($_cbase['tpl']['tpc_on'])){
-            $_r = '_r='.$_SERVER["REQUEST_TIME"];
-            $path .= strpos($path,'?') ? "&$_r" : "?$_r";
+            $path .= (strpos($path,'?') ? '&' : '?').'_'.$_SERVER["REQUEST_TIME"].'=1';
         } 
         if($mod=='js') return self::jscode('',$path)."\n";
         else return self::csscode('',$path)."\n"; 

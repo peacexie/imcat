@@ -25,8 +25,8 @@ function pfcfgPars($arr=1){
 
 function pfileHead($parts,$title=''){
     glbHtml::page($title,1);
-    imp('initJs','jquery,bootstrap,layer;comm;comm(-lang);/plus/file/funcs;/plus/file/funcs(-lang)');
-    imp('initCss','bootstrap,stpub,jstyle;comm;/plus/file/style');
+    eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang);/plus/file/funcs;/plus/file/funcs(-lang)');
+    eimp('initCss','bootstrap,stpub,jstyle;comm;/plus/file/style');
     glbHtml::page('body',' style="margin:0px 2px;"');
     $allpars = pfcfgPars(0);
     $cfg_parts = pfcfgParts();

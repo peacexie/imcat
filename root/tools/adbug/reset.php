@@ -15,8 +15,8 @@ $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-imp('/_pub/a_jscss/cinfo.css');
-imp('/_pub/jslib/jsbase.js');
+eimp('/_pub/a_jscss/cinfo.css');
+eimp('/_pub/jslib/jsbase.js');
 ?>
 <style type='text/css'>
 td { white-space:nowrap; }

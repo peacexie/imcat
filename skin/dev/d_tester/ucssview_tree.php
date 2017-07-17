@@ -1,8 +1,8 @@
 
 <?php 
 (!defined('RUN_INIT')) && die('No Init');
-imp('/_pub/a_jscss/sordbar.js');
-imp('/_pub/jslib/jspop.js'); 
+eimp('/_pub/a_jscss/sordbar.js');
+eimp('/_pub/jslib/jspop.js'); 
 ?>
 <!--//plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand/--> 
 <script src='<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=jsTypes:cargo,china,natcn;'></script>

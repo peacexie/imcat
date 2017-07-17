@@ -3,8 +3,8 @@
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{php echo lang('user.pub_cuser').'-'.$_cbase['sys_name']; }{/block:title}</title>
 {php}
-imp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
-imp('initCss','bootstrap,stpub,jstyle;comm;comm(-mob)'); 
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob)'); 
 {/php}
 </head><body>
 {php glbHtml::ieLow_html();}

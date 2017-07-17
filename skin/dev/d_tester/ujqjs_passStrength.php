@@ -1,7 +1,7 @@
 
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-imp('/jquery/jquery.passwordStrength.js','vendui');
+eimp('/jquery/jquery.passwordStrength.js','vendui');
 ?>
 
 <h3>

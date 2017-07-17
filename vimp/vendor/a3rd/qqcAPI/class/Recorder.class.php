@@ -11,10 +11,6 @@ class Recorder{
     private $inc;
     private $error;
 
-    private $acfile = '/weixin/qqcon_(appid).cac_txt';
-    private $aclife = '72d'; // Access_Token的有效期默认是3个月
-
-
     public function __construct(){
         $this->error = new ErrorCase();
         //-------读取配置文件
@@ -34,9 +30,6 @@ class Recorder{
         }else{
             self::$data = $_SESSION['QC_userData'];
         }
-        //-------读取配置文件 
-        $appid = $this->readInc("appid");
-        $this->acfile = str_replace('(appid)',$appid,$this->acfile);
     }
 
     public function write($name,$value){
@@ -66,23 +59,5 @@ class Recorder{
     function __destruct(){
         $_SESSION['QC_userData'] = self::$data;
     }
-
-    function setActic($actik='',$save=1){
-        if($save){ 
-		    $actik && comFiles::put(DIR_DTMP.$this->acfile,$actik);
-		}else{ 
-		    unlink(DIR_DTMP.$this->acfile);
-		}
-    }
-
-    function getActic(){
-        $upath = tagCache::chkUpd($this->acfile,$this->aclife);
-        $actik = '';
-        if($upath){ 
-            $actik = comFiles::get(DIR_DTMP.$this->acfile);
-        }
-        return $actik;
-    }
-    
 
 }

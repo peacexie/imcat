@@ -61,7 +61,7 @@
     <style type="text/css">
     #fmapply .form-control { display:inline-block; }
     </style>
-    {php imp('/layer/layer.js','vendui'); }
+    {php eimp('/layer/layer.js','vendui'); }
     <form action="?reg" usercheck='uapply' method="post" name="fmapply" id="fmapply">
     <div class="pgu_applay">
       <div class="h10">&nbsp;</div>
@@ -146,7 +146,7 @@
     </form> 
 {/if} 
 
-{php}imp('/_pub/jslib/jq_base.js');{/php}
+{php}eimp('/_pub/jslib/jq_base.js');{/php}
 <script>
 function setUserMod(e){
     var v = $(e).val(); 

@@ -1,7 +1,7 @@
 
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-imp('/jquery/jq_imgChange.js','vendui');
+eimp('/jquery/jq_imgChange.js','vendui');
 ?>
 
 <style type="text/css">

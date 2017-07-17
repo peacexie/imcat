@@ -2,7 +2,7 @@
 require '_config.php'; 
 
 glbHtml::page("{$api} ".lang('plus.map_title'),1);
-imp('initJs','jspop,jquery');
+eimp('initJs','jspop,jquery');
 echo basJscss::imp($urls[$api],'js');
 echo "<style type='text/css'>body {padding:0px; margin:0px; }\nbody, html,#map {width: 100%;height: 100%;overflow: hidden;margin:0;}</style>";
 glbHtml::page('body');

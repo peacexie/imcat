@@ -66,40 +66,16 @@ function db($config=array()){
 function user($uclass=''){
     return usrBase::userObj($uclass);
 }
-// 格式化url输出
+// show-url:格式化url输出
 function surl($mkv='',$type='',$host=0){
     return vopUrl::fout($mkv,$type,$host);
 }
-// cmod模块关闭
+// close-mod:模块关闭
 function cmod($key=''){
     $_groups = glbConfig::read('groups'); 
     return !isset($_groups[$key]);
 }
-// import:css,js
-function imp($type,$ext='',$user=0){
-    global $_cbase;
-    $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
-    if(in_array($ext,array('vendui'))){
-        // ('/layer/layer.js','vendui')
-        echo basJscss::imp($type,$ext);
-    }elseif(substr($type,0,1)=='/'){
-        // ('/~tpl/user.css')
-        $type = str_replace('/~tpl',"/skin/$tpldir/b_jscss",$type);
-        echo basJscss::imp($type);
-    }else{
-        $lang = $_cbase['sys']['lang'];
-        $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
-        $url = "/plus/ajax/comjs.php?act=$type";
-        if($type=='initCss'){
-            // ('initCss','bootstrap,stpub,jstyle;comm;comm(-mob);faqs');
-            $exp = "&tpldir=$tpldir&lang=$lang";
-            $fix = 'css';
-        }else{ // initJs/loadExtjs
-            // ('initJs','jquery,bootstrap;comm;comm(-lang);user');
-            // ('loadExtjs','jq_base,bootstrap,layer')
-            $exp = $type=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($user?'&user=1':'') : '';
-            $fix = 'js';
-        }
-        echo basJscss::imp("$url$exp&ex$fix=$ext",'',$fix);
-    }
+// echo-import:css,js
+function eimp($type,$ext='',$user=0){
+    echo basJscss::imp($type,$ext,$user);
 }

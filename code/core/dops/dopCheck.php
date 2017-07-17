@@ -137,9 +137,9 @@ class dopCheck extends dopBase{
     static function headComm(){
         global $_cbase; 
         glbHtml::page($_cbase['sys_name'],1);
-        imp('initJs','jquery,bootstrap,layer,jspop;comm;comm(-lang)');
-        imp('initCss','jspop,bootstrap,stpub,jstyle;comm'); 
-        imp('loadExtjs','jq_base,bootstrap,layer');
+        eimp('initJs','jquery,bootstrap,layer,jspop;comm;comm(-lang)');
+        eimp('initCss','jspop,bootstrap,stpub,jstyle;comm'); 
+        eimp('loadExtjs','jq_base,bootstrap,layer');
         glbHtml::page('body',' style="padding:8px 5px 5px 5px;overflow-y:scroll;overflow-x:hidden;"'); 
     }
 
