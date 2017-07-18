@@ -8,13 +8,13 @@
  - 示例：点本页最后一行：类似[tpl:d_tpltag/tpltag_basic;]链接查看模板源代码（当前整套模板所有页类似都可看模板源代码）。
 
 * 加载页面代码区块（不需要编译）可以按如下加载：
- - 示例：{code:"d_tools/a_cfgs"}  -=> inc文件：{当前模板}/d_tools/a_cfgs.php 
+ - 示例：{code:"tools/a_cfgs"}  -=> inc文件：{当前模板}/tools/a_cfgs.php 
  - 注意：(前面不要/，后面不要.php)
- - 如果包含其他模板的区块，则加上`dir:`标记如：{code:"dev:d_tools/a_cfgs"}
+ - 如果包含其他模板的区块，则加上`dir:`标记如：{code:"dev:tools/a_cfgs"}
 
 * 跨模版包含:公共区块/代码区块
  - 包含公共模版区块：{inc:"chn:c_pub/inc_blinks"} -=> inc文件：{tpls}/chn/c_pub/inc_blinks.htm
- - 包含其它模版区块：{code:"dev:d_tools/a_cfgs"} -=> inc文件：{tpls}/dev/d_tools/a_cfgs.php
+ - 包含其它模版区块：{code:"dev:tools/a_cfgs"} -=> inc文件：{tpls}/dev/tools/a_cfgs.php
 
 
 #import#模板继承

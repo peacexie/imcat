@@ -12,12 +12,11 @@ $_ve_user = array(
     
     'm' => 'user/uinfo',
     //'home' => 'user/uinfo', //
-    'tips' => 'user/tips', //
     
     'uedit' => 'user/uedit', //
     'uedpw' => 'user/uedpw', //
     'mbind' => 'user/mbind', //
-    
+
     'v' => 'tips', //可带view参数
     
     'testlogin' => 'user/test', //

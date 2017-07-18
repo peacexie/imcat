@@ -33,8 +33,8 @@
 #docs#Articles
 
 * More exciting, found by you! recommend the following articles:
- - Tpl-Demo : hello-Test+ # http://txmao.txjia.com/dev.php?tester-hello
- - Tpl : Step by Step # http://txmao.txjia.com/dev.php?tester-step_imtpl
+ - Tpl-Demo : hello-Test+ # http://txmao.txjia.com/doc.php?tester-hello
+ - Tpl : Step by Step # http://txmao.txjia.com/doc.php?tester-step_imtpl
  - MVC ? Ctrl-Act # http://txmao.txjia.com/doc.php?ctest
  - MKV - Tpl-Data-Show # http://txmao.txjia.com/doc.php?umod
 
@@ -60,7 +60,7 @@
  - comFiles(file-operation)/comConvert(encryption)
  - comImage(Image-process)/comVCode(verification-code)/exaCSeal(image-seal)
  - # Integrated case: read database and pager
- - http://txmao.txjia.com/skin/dev/d_tester/step_ufile.php
+ - http://txmao.txjia.com/skin/dev/tester/step_ufile.php
  - # Official intimate tools:
  - http://txmao.txjia.com/dev.php?tools-index
  - # Class library function list:

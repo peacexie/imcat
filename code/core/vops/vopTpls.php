@@ -49,8 +49,8 @@ class vopTpls{
     
     // include_once:扩展函数：{php vopTpls::pinc('chn:tex_keres');} -=> chn/b_func/tex_keres.php
     // 得到_config路径：      {php include vopTpls::pinc('_config/va_home'); } -=> _config/va_home.php
-    // 得到include需要的路径：{php include vopTpls::pinc('d_tools/a_cfgs'); } -=> d_tools/a_cfgs.php
-    // {imp:"_pub:stpl/_lay_info"} -=> code/cogs/stinc/d_tools/_lay_info.htm
+    // 得到include需要的路径：{php include vopTpls::pinc('tools/a_cfgs'); } -=> tools/a_cfgs.php
+    // {imp:"_pub:stpl/_lay_info"} -=> code/cogs/stinc/tools/_lay_info.htm
     static function pinc($finc,$ext='',$refull=1){
         global $_cbase;
         $tpl = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
@@ -68,7 +68,7 @@ class vopTpls{
             $tpl = str_replace(array('[',']'),'',$tpl); 
             $tpl = comStore::cfgDirPath($tpl); 
             return "$tpl/$finc$ext";
-        }else{ // me(d_tools/a_cfgs) -=> d_tools/a_cfgs(.php)
+        }else{ // me(tools/a_cfgs) -=> tools/a_cfgs(.php)
             return ($refull ? DIR_SKIN : '')."/$tpl/$finc$ext";
         }
     }

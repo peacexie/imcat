@@ -1,0 +1,24 @@
+{imp:"tester/tester_layout"}<!--继承父模板-->
+
+{block:exmain}
+<?php
+$code = req('code','');
+$path = vopTpls::path('tpl',1);
+$full = "$path/tester/$code.php"; 
+
+echo "<h3>/tester/$code.php(Test Code)</h3>\n";
+if(file_exists($full)){
+    include $full;
+}else{
+    $subs = tex_base::lister('');
+    $fix = '';
+    foreach($subs as $v){ 
+        $a = explode('_',$v);
+        if($a[0]!=$fix) echo "\n<br>".$a[0]." ::: ";
+        echo " <a href='?mkv=$this->mkv&code=$v'>$v</a> # ";
+        $fix = $a[0];
+    }
+}
+
+?>
+{/block:exmain}

@@ -11,6 +11,7 @@ $larr = array(
 );
 edwimp('/edt_um/umeditor.config.js');
 edwimp('/edt_um/umeditor.min.js');
+// 'xx1', 'xx2',
 ?>
 <?php if(1==2){ ?><script><?php } ?>
 var edt_toolBar = [

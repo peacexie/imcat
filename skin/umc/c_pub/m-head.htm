@@ -48,12 +48,12 @@ if(empty($sbtitle)){
             {else}
             <li><a href="{surl(?login)}">{lang(user.nv2_login)}</a></li>
             <li><a href="{surl(?reg)}">{lang(user.lon_reg)}</a></li>
-            <li><a href="{surl(help-getpw)}">{$karr['getpw']}</a></li>
+            <li><a href="{surl(uio-getpw)}">{$karr['getpw']}</a></li>
             {/if}
             <?php }elseif($this->mod=='user'){ ?>
             <li><a href="{surl($this->mod)}">{lang(user.pub_accinfo)}</a></li>
             <li><a href="#{surl($this->mod."-uedit")}" disabled="disabled" class="cCCC">{lang(user.pub_einfo)}</a></li>
-            <li><a href="#{surl(help-wdtpw)}" disabled="disabled" class="cCCC">{lang(user.pub_epass)}</a></li>
+            <li><a href="#{surl(uio-wdtpw)}" disabled="disabled" class="cCCC">{lang(user.pub_epass)}</a></li>
             <li><a href="#{surl($this->mod."-mbind")}" disabled="disabled" class="cCCC">{lang(user.pub_bind)}</a></li>
             <?php } ?>
             <?php if($this->mod=='order'){ ?>

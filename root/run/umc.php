@@ -5,7 +5,8 @@ $_cbase['tpl']['tpl_dir'] = 'umc';
 $_cbase['ucfg']['lang'] = '(auto)'; 
 // 路由简化配置
 $_cbase['route'] = array( 
-    'reg' => 'home-apply',
+    'login' => 'uio-login',
+    'reg' => 'uio-apply',
 ); 
 require dirname(__FILE__).'/_init.php'; 
 $vop = new vopShow();

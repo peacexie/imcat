@@ -1,0 +1,108 @@
+{imp:"tester/tester_layout"}<!--继承父模板-->
+
+{block:extop}<?php
+$title = 'Push演示';
+?>{/block:extop}
+
+{block:exmain}
+<style>
+/* test */
+.test1box { width:360px; min-height:30px; border:1px solid #F0F; padding:0px; margin:10px; }
+.test2box { height:640px; }
+html{ padding:10px; }
+p { margin:20px 0 0 10px; }
+.pro { display:block; clear:both; }
+.pro img{ float:right; }
+.pro a{ display:inline-block; padding:2px; }
+i.red{ color:red; }
+</style>
+
+
+<?php if(req('adpush')==''){ ?>
+<hr>
+
+
+<pre>
+* [0] 先来看效果
+ - 先登录后台，否则因权限问题看不到效果。
+ - 访问：<a href="{PATH_PROJ}/chn.php?adpush=load" target="1">{root}/chn.php?adpush=load</a>, 鼠标滑上产品展示区块，点[Psuh] 或 [更新信息]，可更新信息
+ - 访问：<a href="{PATH_PROJ}/dev.php?mkv={$this->mkv}&adpush=load" target="1">{root}/dev.php?mkv=(mkv)&adpush=load</a>, 鼠标滑上相关区块，点[Psuh] 或 [更新信息]
+ 
+* [1] 后台配置推送位:
+ - 后台: 广告 > 手动推送 
+ - 示例: aid : cargo-push8, demo-news5, demo-tag3
+ 
+* [2] 模板调用推送位:
+ - &lt;div class="adpush_obj" aid='cargo-push8'&gt;
+ - if(req('adpush')=='load' && tagPush::check()){tagPush::load();}
+ 
+* [3] 手动推送资料:
+ - 见前面`效果`连接，鼠标滑上相关区块，点[Psuh] 或 [更新信息]
+ 
+* [4] 一次查询多个推送位:
+ - 查询: $res=tagPush::gets('demo-news5,demo-tag3');
+ - 调用: &#123;loop $res['demo-tag3'] $key $v]&#125;
+</pre>
+
+
+<?php }else{ ?>
+<hr>
+
+
+<p><b>[cargo-push8]</b></p>
+<div class='adpush_obj test1box' aid='cargo-push8'>
+{tag:dpush=[Push][modid,adpush][inids,cargo-push8]}
+<li class="pro">
+    <img src="<?php echo comStore::revSaveDir($t_mpic);?>" height="40">
+    <a href="{$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span>
+      {if empty($t_star)}<sup class="red">●</sup>{/if}</a>
+    <div><i>价格:{$t_price}</i> <i>点击:{$t_click}</i> </div>
+</li>
+{/tag:dpush}
+</div>
+
+<p><b>[demo-tag3]</b></p>
+<div class='adpush_obj test1box' aid='demo-tag3'>
+{tag:dpush=[Push][modid,adpush][inids,demo-tag3]}
+<li><a href="{$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span></a>
+<img src="<?php echo comStore::revSaveDir($t_mpic);?>" height="24"></li>
+{/tag:dpush}
+</div>
+
+<hr>
+
+<?php $res=tagPush::gets('demo-news5,demo-tag3');?>
+
+<p><b>[demo-news5]</b></p>
+<div class='adpush_obj test1box' aid='demo-news5'>
+{loop $res['demo-news5'] $key $v}
+<li><a href="{$v['url']}" target="_1"><span class="f18px">{title($v['title'],96,$v)}</span></a>
+{/loop}
+</div>
+
+<p><b>[demo-tag3]</b></p>
+<div class='adpush_obj test1box' aid='demo-tag3'>
+{loop $res['demo-tag3'] $key $v}
+<li><a href="$v['url']" target="_1"><span class="f18px">{title($v['title'],96,$v)}</span></a>
+<img src="<?php echo comStore::revSaveDir($v['mpic']);?>" height="24"></li>
+{/loop}
+</div>
+
+<p><b>[对比标签---无推送]</b></p>
+<div class="test1box">
+{tag:d2hinfo=[List][modid,adtext][stype,athom][limit,6]}
+<li>
+<a>{title($t_title,96,$v)}</a>
+</li>
+{/tag:d2hinfo}
+</div>
+
+<?php if(req('adpush')=='load' && tagPush::check()){tagPush::load();} ?>
+<?php } ?>
+
+
+<div class="test2box">
+...
+</div>
+
+{/block:exmain}

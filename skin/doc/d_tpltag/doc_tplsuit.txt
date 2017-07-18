@@ -104,7 +104,7 @@ eg: {php echo "userip={$_cbase['run']['userip']};"; }
 Solve1: Use `.` contact the string: {php echo "userip=".@$_cbase['run']['userip'].";"; }
 Solve2: For large block PHP code, do not need template parsing, can be used as follows:
 {php include_once vopTpls::pinc('m_tppart/tpfile'); } 
-or: {code:"dev:d_tools/a_cfgs"}
+or: {code:"dev:tools/a_cfgs"}
 -=> include file (it will NOT parse the code)
 {NOW-Tpl-Dir}/m_tppart/tpfile.php 
 ```

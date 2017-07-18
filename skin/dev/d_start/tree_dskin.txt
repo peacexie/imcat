@@ -37,10 +37,10 @@ E:.
 │  ├─d_advset
 │  ├─d_dev2nd
 │  ├─d_start
-│  ├─d_tester
-│  ├─d_tools
 │  ├─d_tpltag
 │  ├─d_uplog
+│  ├─tester
+│  ├─tools
 │  └─_config
 ├─doc
 │  ├─b_func

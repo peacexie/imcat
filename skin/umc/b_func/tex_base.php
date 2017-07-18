@@ -12,8 +12,8 @@ class tex_base{
         $perm = $perm=='.login' ? lang('user.tex_base_ulogin') : lang('user.tex_base_uperm').'»'.comTypes::getLnks(comTypes::getLays($_mumem['i'],$perm),'([k])[v]');
         $from = req('from');
         $from = substr($from,0,2)=='q-' ? comParse::urlBase64(substr($from,2),1,1) : $from;
-        $ulogin = 'home-login';
-        $uapply = 'home-apply';
+        $ulogin = 'uio-login';
+        $uapply = 'uio-apply';
         $runinfo = '';
         $runinfo .= "".$run['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
         $runinfo .= "tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname'])."; "; //tpl 
@@ -29,7 +29,6 @@ class tex_base{
     static function init($obj){ 
         global $_cbase;
         $user = usrBase::userObj('Member'); 
-        if($obj->mkv=='home') header('Location:'."?user");
         $_micfg = read('mumem.i'); 
         $pkey = "$obj->mod-"; //obj: type:detail,mext,mtype,mhome
         if($obj->type=='detail'){
@@ -43,7 +42,8 @@ class tex_base{
         if($pnow==1) $pnow = $pkey;
         $pmarr = empty($user->uperm['pmusr']) ? array() : explode(',',$user->uperm['pmusr']);
         $_cbase['tpl']['tplpext'] = "var pmusr='".implode(',',$pmarr)."';";
-        if($pnow=='.guest' || in_array($obj->tplname,array('user/tips')) || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
+        //$ftpls = array('uio/tips','uio/wxlocal','uio/wxlogin'); // in_array($obj->tplname,$ftpls) || 
+        if($pnow=='.guest' || in_array($obj->mod,$obj->ucfg['u']['umc_frees'])){ 
             return; // 游客可操作 or 提示页本身 or 免认证
         }
         if($pnow=='.login'){ // def:.login 
@@ -52,7 +52,7 @@ class tex_base{
             if(!empty($pmarr) && in_array($pnow,$pmarr)) return;
         }
         $from = $obj->ucfg['q']==$obj->mkv ? $obj->mkv : 'q-'.comParse::urlBase64($obj->ucfg['q'],0,1); 
-        header('Location:'."?mkv=user-tips&from=$from&perm=$pnow"); 
+        header('Location:'."?mkv=uio-tips&from=$from&perm=$pnow"); 
     }
     
     static function pend(){

@@ -16,9 +16,6 @@ $_ve_info = array(
     'help'  => 'c_page/info_doc', //help
     'service'  => 'c_page/info_doc', //service
 
-    //'bstest'  => 'd_tester/bs_test', 
-    //'bsmob'  => 'd_tester/bs_mob', 
-    
     //'d' => 'c_mod/{mod}_detail',
     //'t' => 'c_mod/{mod}_one', //about,alink
     

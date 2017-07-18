@@ -41,7 +41,7 @@ class tex_user{ //extends tex_base
         $sys_name = cfg('sys_name'); 
         $re3['site'] = $sys_name;
         $re3['time'] = date('Y-m-d H:i'); 
-        $re3['urlpath'] = surl('umc:0','',1)."?mkv=help-emact&mod=mail-act{$urp}"; 
+        $re3['urlpath'] = surl('umc:0','',1)."?mkv=uio-emact&mod=mail-act{$urp}"; 
         $re3['root'] = $_cbase['run']['rmain'];
         // tpl,email
         $detail = vopTpls::show($ucfg['utpls']['mail-act'],'',$re3);
@@ -100,7 +100,7 @@ class tex_user{ //extends tex_base
 			$kid = basKeyid::kidTemp();
             $re3['site'] = $sys_name;
             $re3['time'] = date('Y-m-d H:i'); 
-            $re3['urlpath'] = surl('umc:0','',1)."?mkv=help-getpw&emid=$kid&vstr=$enc".safComm::urlStamp('init');
+            $re3['urlpath'] = surl('umc:0','',1)."?mkv=uio-getpw&emid=$kid&vstr=$enc".safComm::urlStamp('init');
             $re3['root'] = $_cbase['run']['rmain'];
             // tpl,email
             $detail = vopTpls::show($ucfg['utpls']['mail-getpw'],'',$re3);

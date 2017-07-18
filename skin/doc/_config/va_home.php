@@ -21,7 +21,7 @@ $_va_home = array(
             'drem' => 'nrem',
         ),
         'extra' => array(
-            'home','info', 'umod','tmod',
+            'home','info', 'umod','tmod','tester', 
             'start','tpltag','dev2nd','advset','uplog'
         ),
     ),

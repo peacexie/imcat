@@ -12,9 +12,9 @@ class tagPush extends tagList{
         return strpos($grades,$user->uperm['grade']);
     }
     static function load(){
-        echo basJscss::eimp('/layer/layer.js','vendui');
-        echo basJscss::eimp('/_pub/a_jscss/adpush.css');
-        echo basJscss::eimp('/_pub/a_jscss/adpush.js');
+        eimp('/layer/layer.js','vendui');
+        eimp('/_pub/a_jscss/adpush.css');
+        eimp('/_pub/a_jscss/adpush.js');
         $lngs = "{ps_pinfo:'".basLang::show('flow.ps_pinfo')."',ps_title:'".basLang::show('flow.ps_title')."'}";
         echo basJscss::jscode("Lang.push=$lngs;");
     }

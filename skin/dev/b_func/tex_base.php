@@ -81,7 +81,7 @@ class tex_base{
     }
     
     static function lister($key=''){ 
-        $path = vopTpls::path('tpl',1)."/d_tester/"; 
+        $path = vopTpls::path('tpl',1)."/tester/"; 
         $re = comFiles::listDir($path);
         $re = $re['file']; $re2 = array();
         foreach($re as $k=>$v){

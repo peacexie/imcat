@@ -110,10 +110,10 @@ E:.
     ©¦  ©À©¤d_advset
     ©¦  ©À©¤d_dev2nd
     ©¦  ©À©¤d_start
-    ©¦  ©À©¤d_tester
-    ©¦  ©À©¤d_tools
     ©¦  ©À©¤d_tpltag
     ©¦  ©À©¤d_uplog
+    ©¦  ©À©¤tester
+    ©¦  ©À©¤tools
     ©¦  ©¸©¤_config
     ©À©¤doc
     ©¦  ©À©¤b_func

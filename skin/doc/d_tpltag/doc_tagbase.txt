@@ -8,7 +8,7 @@
 <a href="{surl(chn:0)}">[chn:Home]</a>
 <a href="{surl(chn:cargo)}">chn:Porduct</a>
 <a href="{surl(start)}">Start-Page</a>
-<a href="{surl(tester)}">Test-Code</a>
+<a href="{surl(doc:tester)}">Test-Code</a>
 <a href="{surl(demo)}">Docs/News</a>
 <a href="{surl(type)}">Types/Classic</a>
 <a href="{surl(company)}">User/Member</a>

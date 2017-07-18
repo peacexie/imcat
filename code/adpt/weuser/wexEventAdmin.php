@@ -132,7 +132,7 @@ class wexEventAdmin extends wysEvent{
         if(empty($pinfo)){
             $msg = "未能检测到您的地理位置信息；请重新关注,提示【是否允许公众号使用其地理位置】时选【是】即可使用本功能。";
         }else{
-            $url = "{root}/mob.php?mkv=user-wxlocal";
+            $url = "{root}/root/run/umc.php?mkv=uio-wxlocal";
             $wem = new wysMenu($this->cfg);
             $url = $wem->fmtUrl($url);
             $msg = "您的位置信息是：\n[{$pinfo['longitude']},{$pinfo['latitude']}]！\n";
@@ -226,7 +226,7 @@ class wexEventAdmin extends wysEvent{
     function oauthUrl($url, $state, $cope='snsapi_base'){ 
         if(!strpos($url,'.php')){
             $mname = $url;
-            $url = "{root}/mob.php?mkv=user-wxlogin&scene={$this->eventKey}&mname=$mname&sflag={$this->sflag}";
+            $url = "{root}/root/run/umc.php?mkv=uio-wxlogin&scene={$this->eventKey}&mname=$mname&sflag={$this->sflag}";
         }
         $wem = new wysMenu($this->cfg);
         return $wem->fmtUrl("oauth:$cope:$state:$url");

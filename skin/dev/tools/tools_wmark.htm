@@ -1,0 +1,68 @@
+{imp:"tools/b_lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+$title = '图片水印，文字描边水印';
+$ufix = surl()."?mkv=".$this->mkv;
+$act = req('act','Index');
+$org = "/file_image/qijia-nanwan.png";
+$img = DIR_DTMP."/@test/wmark-demo.png";
+if($act=='copy'){
+    @unlink($img);
+    copy(DIR_STATIC.$org,$img);
+}elseif($act=='wm-pic'){
+    comImage::wmark($img, DIR_ROOT."/skin/_pub/a_img/star-icon.gif");    
+}elseif($act=='wm-text'){
+    comImage::wmark($img, "Test:文字:End");    
+}elseif($act=='wm-def'){
+    comImage::wmark($img);    
+}
+$imgurl = str_replace(DIR_DTMP,PATH_DTMP,$img)."?".time();
+$fonttip = '';
+$waterInfo = read('wmark','sy');
+$tfont = DIR_STATIC.$waterInfo['font'];
+if(!file_exists($tfont.'')){
+    $fonttip =  "<p>提示: 字体文件：{static}".$tfont."不存在，<br>请见[<a href='".surl('tools-seal')."'>PHP印章制作DIY</a>]把字体文件下载放置站点相应位置。</p>";
+} 
+?>{/block:extop}
+
+{block:eximp}
+<style type="text/css">
+<style type="text/css">
+img { padding:10px; margin:10px; border:1px solid #CCC; }
+</style>
+</style>
+{/block:eximp}
+
+{block:exbody}
+<div class="tools_outer">
+
+<h3 class="tc"><?php echo $title;?></h3>
+
+{$fonttip}
+
+<h4 class="tl">### 水印操作：</h4>
+<p class="tc">
+<a href='{$ufix}'>刷新首页</a> # 
+<a href='{$ufix}&act=copy'>重置(复制):原图片</a> # 
+<a href='{$imgurl}' target='_blank'>打开:水印图片</a> # 
+{$act} <br> 
+<a href='{$ufix}&act=wm-pic'>加+图片水印</a> # 
+<a href='{$ufix}&act=wm-text'>加+文字水印</a> # 
+<a href='{$ufix}&act=wm-def'>加+默认水印</a> # 
+</p>
+
+<h4 class="tl">### 水印结果：</h4>
+<p>
+<img src="<?php echo $imgurl; ?>" width="560" />
+</p>
+
+<h4 class="tl">### 下载/DIY：</h4> 
+<p>打开：<a href="http://pan.baidu.com/share/home?uk=3191979020">百度云-网盘</a>，<br>
+下载txmao-main.rar文件(本系统核心代码) 查看如下相关文件：</p>
+<p>相关文件/夹：/skin/dev/tools/目录下<br>
+文件：tools_wmark.htm</p>
+
+</div>
+
+{/block:exbody}
+

@@ -29,7 +29,7 @@ if($view=='ftest'){
 }elseif($view=='fadd'){
     
     if(empty($bsend)){ 
-        echo basJscss::eimp('/_pub/a_jscss/fields.js');
+        eimp('/_pub/a_jscss/fields.js');
         $url = $aurl[1]; //basReq::getURep(,'view','form');
         $fmextra_bak = "\n<select id='fmextra_bak' name='fmextra_bak' style='display:none;' >".basElm::setOption(fldCfgs::viewPlugs(),'')."</select>";
         $field_from = "\n<input id='fm[from]' name='fm[from]' type='hidden' value='' />"; 
@@ -86,7 +86,7 @@ if($view=='ftest'){
         
     }else{
         
-        echo basJscss::eimp('/_pub/a_jscss/fields.js'); 
+        eimp('/_pub/a_jscss/fields.js'); 
         $fm = fldEdit::fmOrgData($tabid,$mod,$kid,$fm,$catid);
         
         $fedit = new fldEdit($mod,$fm);

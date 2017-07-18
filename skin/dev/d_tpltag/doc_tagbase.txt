@@ -8,7 +8,7 @@
 <a href="{surl(chn:0)}">[chn:首页]</a>
 <a href="{surl(chn:cargo)}">chn:产品中心</a>
 <a href="{surl(start)}">快速开始</a>
-<a href="{surl(tester)}">测试代码</a>
+<a href="{surl(doc:tester)}">测试代码</a>
 <a href="{surl(demo)}">文档/资讯</a>
 <a href="{surl(type)}">分类/组系</a>
 <a href="{surl(company)}">用户/会员</a>

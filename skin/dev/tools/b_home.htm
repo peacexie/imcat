@@ -1,0 +1,28 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}
+<?php
+$titletop = $titlesub = '贴心工具[Tools] - 首页'; 
+?>
+{/block:extop}
+
+{block:exbar}
+    <a href="{surl(tools-index)}" >index</a>
+{/block:exbar}
+
+{block:exmain}
+    <ul id="s_{$code}" class="mod-section">
+      <li class="iframe">
+        <iframe name="ifname" src="{surl(tools-index)}" width="100%" height="480"></iframe>
+      </li>
+    </ul>
+{/block:exmain}
+
+{block:exside}
+{code:"dev:tools/a_cfgs"}
+<ul class="sd-mkeys">
+<?php foreach($cfgs as $k=>$v){ $title = $v['title']; ?>
+<li><a href="{surl("tools-$k")}" target="_blank">{$title}</a></li>
+<?php } ?>
+</ul>
+{/block:exside}

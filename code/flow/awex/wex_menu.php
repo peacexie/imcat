@@ -55,7 +55,7 @@ if($view=='list'){
         die("<p class='tc'>$cmop[del] : $msg<br>".lang('awex.close')."<p>");
     }
     
-    echo basJscss::eimp('/_pub/a_jscss/weixin.js?v=1');
+    eimp('/_pub/a_jscss/weixin.js?v=1');
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     glbHtml::tab_bar(lang('awex.pids')."[$wekid] : ".lang('awex.mcfg')." $umsg",$_cbase['run']['sobarnav'],40,'tl');
     

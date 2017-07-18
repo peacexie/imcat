@@ -31,7 +31,7 @@ class wexReplyAdmin extends wysReply{
                             $mpoint = array();
                         } 
                         $link1 = "<a href='http://m.baidu.com/s?word={$v['title']}'>[$k]{$v['title']}</a>";
-                        //$link2 = empty($mpoint) ? "" : "<a href='".(wysBasic::fmtUrl('{root}/run/mob.php'))."mkv=user-wxlocal&map={$mpoint[1]},{$mpoint[0]}'>地图</a>";
+                        //$link2 = empty($mpoint) ? "" : "<a href='".(wysBasic::fmtUrl('{root}/run/umc.php'))."mkv=uio-wxlocal&map={$mpoint[1]},{$mpoint[0]}'>地图</a>";
                         $link2 = empty($mpoint) ? "" : "\n坐标：$map[1]";
                         $str .= "\n{$link1} {$link2}"; 
                     }

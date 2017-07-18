@@ -33,8 +33,8 @@
 #docs#相关文档
 
 * 更多精彩，由你发现! 推荐以下文章：
- - 模板示例 : hello测试+ # http://txmao.txjia.com/dev.php?tester-hello
- - 模板 : 模板步步高 # http://txmao.txjia.com/dev.php?tester-step_imtpl
+ - 模板示例 : hello测试+ # http://txmao.txjia.com/doc.php?tester-hello
+ - 模板 : 模板步步高 # http://txmao.txjia.com/doc.php?tester-step_imtpl
  - MVC ? 控制器-操作 # http://txmao.txjia.com/doc.php?ctest
  - MKV - 模板数据展示 # http://txmao.txjia.com/doc.php?umod
 
@@ -61,7 +61,7 @@
  - comFiles(文件操作)/comConvert(加密转化)
  - comImage(图片处理)/comVCode(验证码)/exaCSeal(印章)
  - # 综合案例：读取数据库列表分页显示，
- - http://txmao.txjia.com/skin/dev/d_tester/step_ufile.php
+ - http://txmao.txjia.com/skin/doc/tester/step_ufile.php
  - # 官方贴心工具：
  - http://txmao.txjia.com/dev.php?tools-index
  - # 类库函数集合：

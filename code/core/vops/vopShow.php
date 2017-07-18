@@ -46,7 +46,7 @@ class vopShow{
         vopTpls::check($_cbase['tpl']['tpl_dir']);
         $this->vars = array(); // 重新清空(初始化),连续生成静态需要
         $this->ucfg = vopUrl::init($q); 
-        $_cbase['mkv'] = $this->ucfg; 
+        $_cbase['mkv'] = $this->ucfg;
         foreach(array('mkv','mod','key','view','type','tplname',) as $k){
             $this->$k = $this->ucfg[$k];
         }
@@ -98,9 +98,18 @@ class vopShow{
             $aex = new $class($this->ucfg,$this->vars);
             $method = empty($this->key) ? 'homeAct' : ($this->type=='detail' ? '_detailAct' : $this->key.'Act');
             if(method_exists($aex,$method)){
-                $res = $aex->$method();
+                //$method = $method();
             }elseif($this->type=='mtype' && method_exists($aex,'_defAct')){
-                $res = $aex->_defAct();
+                $method = '_defAct';
+            }else{
+                $method = '';
+            }
+            if($method){
+                //$exact = $method.'Before'; // 预处理数据
+                //if(method_exists($aex,$exact)) $aex->$exact();
+                $res = $aex->$method();
+                //$exact = $method.'After'; // 后续数据调整
+                //if(method_exists($aex,$exact)) $aex->$exact();
             }
         }
         if(!empty($res['vars'])){ 
@@ -112,8 +121,8 @@ class vopShow{
             $this->tplname = $res['newtpl'];
         }elseif(!empty($res['tplorg'])){
             $this->tplname = $this->tplorg = $res['tplorg']; 
-        }else{
-            $this->extTpl(); // 扩展模板
+        }else{ // extActs/extTpl:取其一扩展模板
+            $this->extTpl();
         }
     }
     // 扩展模板
