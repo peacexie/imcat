@@ -14,7 +14,7 @@
 {if $user->userFlag=='Login' }
     <p class="text-danger bg-warning pa10">
       [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
-      {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】; <br>
+      {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】; <br>
       {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } 
     </p>
 {elseif !empty($bsend) }

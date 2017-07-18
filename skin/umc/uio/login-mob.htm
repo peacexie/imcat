@@ -23,7 +23,7 @@
       [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
       <a href="{surl(0)}">{lang(user.pub_cuser)}</a>
     </p>
-    <p class="text-danger bg-info pa10 mv10"> {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】;  <br>
+    <p class="text-danger bg-info pa10 mv10"> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】;  <br>
         {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
     </p>
 

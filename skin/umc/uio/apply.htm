@@ -9,7 +9,7 @@
       <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px">
         [{$user->usess['uname']}] {lang(user.lon_logined)}
       </p>
-      <p> {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】; </p>
+      <p> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】; </p>
       <p> {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } </p>
     </div>
 {elseif !empty($bsend) }

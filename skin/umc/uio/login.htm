@@ -17,7 +17,7 @@
 {elseif $user->userFlag=='Login' }
 
     <div class="text-danger bg-warning pa10">
-      <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px"> {lang(user.lon_change)}【<a href="?logout">{lang(user.lon_logout)}</a>】;  <br>
+      <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px"> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】;  <br>
           {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
       </p>
       [{$user->usess['uname']}] {lang(user.lon_logined)}
