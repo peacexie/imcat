@@ -244,7 +244,7 @@ class vopStatic{
             $dir = DIR_HTML.substr($dir,strlen(DIR_URES));     
         }
         $mcfg = glbConfig::vcfg($mod);
-        return $dir.empty($mcfg['c']['stext']) ? '.htm' : $mcfg['c']['stext'];
+        return $dir.(empty($mcfg['c']['stext']) ? '.htm' : $mcfg['c']['stext']);
     }
     
     //updKid:更新(add,del,edit)一个Kid的静态
