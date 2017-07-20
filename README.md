@@ -1,6 +1,6 @@
 
 
-### IntimateCat(贴心猫) Patches
+### IntimateCat(贴心猫) Patche(s) and Extend(s)
 
 --- --- --- --- --- --- --- --- --- 
 
