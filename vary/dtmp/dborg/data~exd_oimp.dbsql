@@ -1,5 +1,5 @@
 
--- exd_oimp@2017-07-16 16:24:41 -- 
+-- exd_oimp@2017-07-21 21:04:07 -- 
 INSERT INTO `{pre}exd_oimp{ext}` VALUES 
 ('demo_dede','0','织梦CMS导入','240','dedecms','','aid','int','','0','','news','0','color','','1','','0','','','0',''),
 ('demo_data','0','演示Data导入','120','demodata','SELECT m.*,d.* FROM arc_main2 m\r\nLEFT JOIN arc_detail2 d ON d.did=m.mid\r\nWHERE 1=1 \r\nORDER BY m.mid ASC\r\nLIMIT 10','mid','int','','0','adddate','news','10','color\r\nrel_doc\r\njump','','1','','0','','','0','');

@@ -1,4 +1,4 @@
 
--- token_store@2017-07-16 16:24:41 -- 
+-- token_store@2017-07-21 21:04:07 -- 
 INSERT INTO `{pre}token_store{ext}` VALUES 
 ('qq-login','abc506dfe180-999-a6bbf7d65ce123','1234567890','1');

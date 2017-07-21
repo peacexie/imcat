@@ -1,5 +1,4 @@
 
--- active_admin@2017-07-16 16:24:40 -- 
+-- active_admin@2017-07-21 21:04:07 -- 
 INSERT INTO `{pre}active_admin{ext}` VALUES 
-('7364cba8ec613cb22beea7e5e9034bb8','peace','supper','1','0','0','1500192569','2017-64-a1q5mu4-66qu864a3-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36'),
-('715eb93656653cb0e60a4775f60402ac','peace','supper','1','0','0','1500192941','2017-6a-f7m6x5a-sg9q6qa8y-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36');
+('7364cba8ec613cb22beea7e5e9034bb8','peace','supper','1','0','0','1500642000','2017-64-a1q5mu4-66qu864a3-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36');
