@@ -45,8 +45,6 @@ E:.
 ©¦  ©¦  ©À©¤paydemo_dir
 ©¦  ©¦  ©À©¤paypal_ec
 ©¦  ©¦  ©À©¤qqconn
-©¦  ©¦  ©¦  ©À©¤comm
-©¦  ©¦  ©¦  ©¸©¤oauth
 ©¦  ©¦  ©À©¤tenpay_sdk
 ©¦  ©¦  ©¸©¤weixin_pay
 ©¦  ©¦      ©À©¤cert
@@ -74,6 +72,7 @@ E:.
 ©¦      ©¸©¤setup
 ©¸©¤skin
     ©À©¤adm
+    ©¦  ©À©¤b_ctrls
     ©¦  ©À©¤b_func
     ©¦  ©À©¤b_jscss
     ©¦  ©À©¤frame
@@ -101,6 +100,7 @@ E:.
     ©¦  ©À©¤c_pub
     ©¦  ©¸©¤_config
     ©À©¤dev
+    ©¦  ©À©¤b_ctrls
     ©¦  ©À©¤b_func
     ©¦  ©À©¤b_jscss
     ©¦  ©À©¤c_demo
@@ -112,10 +112,11 @@ E:.
     ©¦  ©À©¤d_start
     ©¦  ©À©¤d_tpltag
     ©¦  ©À©¤d_uplog
-    ©¦  ©À©¤tester
+    ©¦  ©À©¤extend
     ©¦  ©À©¤tools
     ©¦  ©¸©¤_config
     ©À©¤doc
+    ©¦  ©À©¤b_ctrls
     ©¦  ©À©¤b_func
     ©¦  ©À©¤b_jscss
     ©¦  ©À©¤c_demo
@@ -127,6 +128,9 @@ E:.
     ©¦  ©À©¤d_start
     ©¦  ©À©¤d_tpltag
     ©¦  ©À©¤d_uplog
+    ©¦  ©À©¤person
+    ©¦  ©À©¤tester
+    ©¦  ©À©¤umod
     ©¦  ©¸©¤_config
     ©À©¤mob
     ©¦  ©À©¤b_func
@@ -136,9 +140,14 @@ E:.
     ©¦  ©À©¤c_pub
     ©¦  ©À©¤c_vote
     ©¦  ©À©¤indoc
-    ©¦  ©À©¤m_user
+    ©¦  ©¸©¤_config
+    ©À©¤rest
+    ©¦  ©À©¤b_ctrls
+    ©¦  ©À©¤b_func
+    ©¦  ©À©¤home
     ©¦  ©¸©¤_config
     ©À©¤umc
+    ©¦  ©À©¤b_ctrls
     ©¦  ©À©¤b_func
     ©¦  ©À©¤b_jscss
     ©¦  ©À©¤c_pub

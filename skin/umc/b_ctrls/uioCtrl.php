@@ -24,6 +24,11 @@ class uioCtrl{
     function loginAct(){
         if($this->newtpl) return array('newtpl'=>$this->newtpl);
     }
+    /*function logoutAct(){
+        $user = usrBase::userObj('Member'); 
+        $user->logout();
+        header('Location:?user');
+    }*/
     function applyAct(){
         if($this->newtpl) return array('newtpl'=>$this->newtpl);
     }

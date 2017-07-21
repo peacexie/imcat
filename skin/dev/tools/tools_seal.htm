@@ -18,6 +18,10 @@ $poso = "\n<select name='spos' class='w60'>".basElm::setOption($posa,$spos)."</s
 
 $pclass = DIR_CODE.'/core/uext/exaCSeal.php';
 $pfont = exaCSeal::$fpath;
+if(!is_file(DIR_STATIC.$pfont)){
+    $_dowurl = 'https://github.com/peacexie/imcat/raw/patches/excode/imp_files.rar';
+    die("Please down the file `$pfont` <br>\nfrom `$_dowurl`<br>\n");
+}
 
 if($act=='CreatSeal'){
     $seal = new exaCSeal($text,75,18,16,40);

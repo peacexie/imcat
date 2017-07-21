@@ -41,15 +41,15 @@ $_sy_vopcfg['tpl'] = array(
         array('cn'=>'会员中心', 'en'=>'User'),
         '/root/run/umc.php'
     ), 
-    'app' => array(
-        'apiServer', 
-        '/root/run/app.php'
-    ),
     'rest' => array(
         'REST-API', 
         '/root/run/rest.php'
     ),
     '_pub' => 0,
+    /*'app' => array(
+        'apiServer', 
+        '/root/run/app.php'
+    ),*/
     //'demodir' => array('Hello','/root/run/front.php'), 
     //'ven' => array('English','/root/run/eng.php'), 
 );

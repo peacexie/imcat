@@ -145,6 +145,7 @@ class _defCtrl{
         if(!in_array($this->key,$this->mkeys)){
             glbError::show("Error: [$this->mod] (kid=$this->key)");
         }
+        glbHtml::dallow('*');
     }
     // init-perm, init-dop, init-db
     function idop(){

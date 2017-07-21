@@ -50,15 +50,21 @@ class glbHtml{
     
     // domain_allow跨域允许
     static function dallow($domain=''){
-        $allow = glbConfig::read('domain.dmacc','sy'); 
-        if(empty($domain)){
-            @$aurl = parse_url($_SERVER["HTTP_REFERER"]);
-            @$domain = $aurl['host'];
+        if($domain=='*'){ // 请先自行认证,如oauth
+            $allow = array('*'); 
+        }else{
+            $allow = glbConfig::read('domain.dmacc','sy'); 
+            if(empty($domain)){
+                @$aurl = parse_url($_SERVER["HTTP_REFERER"]);
+                @$domain = $aurl['host'];
+            }
         }
         if(in_array($domain, $allow)){ 
-            header("Access-Control-Allow-Origin:http://$domain"); // 指定允许其他域名访问
+            $aldom = $domain=='*' ? '*' : "http://$domain"; // https ?
+            header("Access-Control-Allow-Origin:$aldom"); // 指定允许其他域名访问
             header('Access-Control-Allow-Methods:POST'); // 响应类型  
             header('Access-Control-Allow-Headers:x-requested-with,content-type'); // 响应头设置
+            header('Access-Control-Allow-Credentials:true'); // 允许携带 用户认证凭据（也就是请求携带Cookie）
             header('X-Frame-Options:ALLOWALL'); //ALLOWALL，ALLOW-FROM
         } 
     }

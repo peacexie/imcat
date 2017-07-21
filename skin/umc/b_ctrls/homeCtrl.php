@@ -13,7 +13,7 @@ class homeCtrl{
     }
 
     function homeAct(){
-        header('Location:'."?user");
+        header('Location:?user');
         die();
     }
 

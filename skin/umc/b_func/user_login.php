@@ -12,8 +12,9 @@ if($act=='dologin'){
       $remsg = lang('user.lon_jump').": <br>$recbk";
     }
   }
-}elseif($this->key=='logout'){ // $act=='doout'
+}elseif($this->key=='logout'){
   $user->logout();
+  header('Location:'."?login");
 }elseif($user->userFlag=='Login'){
   header('Location:'."?");
 }

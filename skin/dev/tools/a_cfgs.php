@@ -3,18 +3,6 @@
 
 $cfgs = array(
 
-    'bezier' => array(
-        'title' => '贝塞尔曲线 (Bezier Curve) ',
-        'rem' => '贝塞尔曲线是计算机图形学中相当重要的参数曲线，在一些比较成熟的位图软件中也有贝塞尔曲线工具，如PhotoShop等。',
-        'mt' => '贝塞尔曲线',
-    ),
-
-    'schulte' => array(
-        'title' => '舒尔特方格 (Schulte Grid) ',
-        'rem' => '在一张方形卡片上画上25 个方格，格子内任意填写上阿拉伯数字 1 ~ 25 等共 25 个数字；测试幼儿注意力水平。',
-        'mt' => '舒尔特方格',
-    ),
-
     'ipaddr' => array(
         'title' => 'IP转化地址类（IPv4）',
         'rem' => '接口：Local(本地纯真IP数据库)，Sina，Pcoln(太平洋接口)，Taobao(淘宝接口)，Ip138，S1616',
@@ -62,48 +50,20 @@ $cfgs = array(
         'rem' => '图片水印，文字描边水印',
         'mt' => '水印描边',
     ),
-    
-    'chrcom' => array(
-        'title' => '常用字符集',
-        'rem' => '按类别，整理收集常用字符集',
-        'mt' => '常用字符集',
-    ),
-    
-    'chrall' => array(
-        'title' => 'FFFF全字符集',
-        'rem' => '0000~FFFF，共65536个全字符集',
-        'mt' => 'FFFF全字符集',
-    ),    
-    
+
 );
-
-/*
-top域名, 常用字符集
-FFFF全字符集
-
-安全专题.随机表单.Url签名, 
-*/
 
 //用于首页对齐的链接
 $cfgs_ext = array(
-    'dedecms' => array(
-        'mt' => 'DEDE织梦(CMS)',
-        'url' => 'http://dedecms.com/',
+
+    'bezier' => array(
+        'mt' => '贝塞尔曲线',
+        'url' => 'http://txjia.com/peace/tip/effect/bezier.htm',
     ),
-    'destoon' => array(
-        'mt' => 'Destoon(B2B)',
-        'url' => 'http://www.destoon.com/product/',
+
+    'schulte' => array(
+        'mt' => '舒尔特方格',
+        'url' => 'http://txjia.com/peace/tip/effect/schulte.htm',
     ),
+
 );
-
-/*
-    'kindsoft' => array(
-        'mt' => 'KindEditor',
-        'url' => 'http://www.kindsoft.net/down.php',
-    ),
-    'ueditor' => array(
-        'mt' => 'UEditor',
-        'url' => 'http://ueditor.baidu.com/',
-    ),
-*/
-

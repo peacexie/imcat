@@ -3,16 +3,9 @@
 // 编码转化,加密类
 class comConvert{                  
     
-    // 加载-table数据 /ximp/utabs/jianfan.imp_txt
-    // re: arr, str, sql
-    static function impData($name,$part='',$re='str'){   
+    // 加载-table数据
+    static function impData($data,$part=''){   
         $f1 = 'start(!@~)'; $f2 = '(!@~)isend'; $f0 = '(split!@~flag)'; // 标记 
-        if(substr($name,0,6)=='/ximp/'){
-            $file = DIR_STATIC.$name; 
-            $data = comFiles::get($file); 
-        }elseif(!empty($name)){
-            $data = $name; 
-        }
         if(empty($data)) return '';
         $p1 = strpos($data,$f1)+10; $p2 = strpos($data,$f2);
         $data = substr($data,$p1,$p2-$p1);
@@ -223,8 +216,13 @@ class comConvert{
     
     static function jfcfgTab($key){
         static $jfcfg_tab;
-        if(!isset($jfcfg_tab)){ 
-            $jfcfg_tab = self::impData('/ximp/utabs/jianfan.imp_txt');
+        if(!isset($jfcfg_tab)){
+            $file = DIR_STATIC.'/ximp/utabs/jianfan.imp_txt';
+            $tmp = comFiles::get($file);
+            $tmp = explode('(split!@~flag)',$tmp);
+            $jfcfg_tab[0] = trim($tmp[1]);
+            $jfcfg_tab[1] = trim($tmp[2]);
+            unset($tmp); 
         }
         $id = $key=='Fan' ? 1 : 0;
         return $jfcfg_tab[$id];

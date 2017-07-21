@@ -8,8 +8,6 @@ E:.
 │  ├─paydemo_dir
 │  ├─paypal_ec
 │  ├─qqconn
-│  │  ├─comm
-│  │  └─oauth
 │  ├─tenpay_sdk
 │  └─weixin_pay
 │      ├─cert

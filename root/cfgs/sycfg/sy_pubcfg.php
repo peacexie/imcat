@@ -118,5 +118,12 @@ $_sy_pubcfg['skfiles'] =  array(
     'Medoo.cls_php',
     'Pimple.cls_php',
 
+    // mini-imps
+    'supper_muma.imp_php',
+    'check_yahei.imp_php',
+    'spword.imp_txt',
+    //'adminer.imp_php',
+    //'derun.imp_php',
+
 );
 
