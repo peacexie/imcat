@@ -214,10 +214,7 @@ class basJscss{
     static function imp($path,$base='',$mod='auto'){
         global $_cbase; 
         $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
-        if(substr($path,0,1)=='/'){
-            $path = str_replace('/~tpl',"/skin/$tpldir/b_jscss",$path);
-            if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js'; 
-        }else{
+        if(in_array($path,array('initCss','initJs','loadExtjs'))){
             $lang = $_cbase['sys']['lang'];
             $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
             if($path=='initCss'){
@@ -229,6 +226,11 @@ class basJscss{
             }
             $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";
             $base = '';
+        }else{
+            if(substr($path,0,1)=='/'){
+                $path = str_replace('/~tpl',"/skin/$tpldir/b_jscss",$path);
+            } // else : http://www...
+            if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js';
         }
         if(strpos($_cbase['run']['jsimp'],$path)){
             return;

@@ -35,7 +35,7 @@
  - 2nd-Dev/Extra class see: b_ctrls/_exdemoCtrl.php
 
 * Idea from Yii2
- - This idea comes fomr yii2, hte `RESTful Web Service`
+ - This idea comes fomr yii2, the `RESTful Web Service`
  - In Yii2, the `RESTful` Has powerful filter handling: authorized authentication / rate limiting
  - In this system, authorization verification / rate limiting is implemented very succinctly
  - And very convenient to achieve: token self-service management.

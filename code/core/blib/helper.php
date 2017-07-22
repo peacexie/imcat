@@ -76,6 +76,6 @@ function cmod($key=''){
     return !isset($_groups[$key]);
 }
 // echo-import:css,js
-function eimp($type,$ext='',$user=0){
-    echo basJscss::imp($type,$ext,$user);
+function eimp($type,$base='',$user=0){
+    echo basJscss::imp($type,$base,$user);
 }
