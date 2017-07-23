@@ -208,7 +208,7 @@ class basJscss{
             $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";
             $base = PATH_ROOT;
         }elseif(in_array(substr($path,0,6),array('/skin/','/_pub/','/~tpl/'))){
-            $path = str_replace('/~tpl/',"/$tpldir/b_jscss/",$path);
+            $path = str_replace(array('/skin/','/~tpl/'),array('/',"/$tpldir/b_jscss/"),$path);
             $base = PATH_SKIN;
         }elseif(in_array(substr($path,0,6),array('/plus/','/tools'))){
             $base = PATH_ROOT;
