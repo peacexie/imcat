@@ -263,9 +263,10 @@ function popWin(title,url,w,h) {
         win_mtpl += '      </div>';
         win_mtpl += '</div></div></div>';
         $("body").append(win_mtpl);
-    }else{ $("#win_bsm").show(); }
+    }
     $("#win_bsm").find("iframe").prop('src',url).prop('height',h);
     $("#win_bsm .modal-title").html(title);
+    $("#win_bsm").show();
 }
 
 // *** wpop_data.js ======================================================================================

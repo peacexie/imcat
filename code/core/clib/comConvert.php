@@ -7,20 +7,14 @@ class comConvert{
     static function impData($data,$part=''){   
         $f1 = 'start(!@~)'; $f2 = '(!@~)isend'; $f0 = '(split!@~flag)'; // 标记 
         if(empty($data)) return '';
-        $p1 = strpos($data,$f1)+10; $p2 = strpos($data,$f2);
-        $data = substr($data,$p1,$p2-$p1);
+        $p1 = strpos($data,$f1); $p2 = strpos($data,$f2);
+        if($p1) $data = substr($data,$p1+10,$p2-$p1+10);
         if($part){
             $len = strlen($part)+2;
             $p1 = strpos($data,"[$part]")+$len; $p2 = strpos($data,"[/$part]");
-            if(!$p1 || !$p2 || $p2<=$p1){
-                $data = '';
-            }else{
-                $data = substr($data,$p1,$p2-$p1);
-            }
+            $data = ($p1 && $p2) ? substr($data,$p1,$p2-$p1) : '';
         }
-        if(strpos($data,$f0)>0){
-            $data = explode($f0,$data);
-        }
+        if(strpos($data,$f0)>0) $data = explode($f0,$data);
         return $data;  
     } 
     

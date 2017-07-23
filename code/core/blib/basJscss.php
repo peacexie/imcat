@@ -191,27 +191,8 @@ class basJscss{
         if(file_exists($flang)) require $flang; 
     }
 
-    static function ipath($path,$base='',$pflg='path'){
-        if(strpos($path,'://')||strpos($path,'../')){
-            $base = '';
-        }elseif(in_array(substr($path,0,6),array('/plus/','/tools'))){
-            $base = $pflg=='path' ? PATH_ROOT : DIR_ROOT;
-        }elseif(in_array(substr($path,0,5),array('/skin','/_pub'))){
-            $base = $pflg=='path' ? PATH_SKIN : DIR_SKIN;
-            if(strstr($path,'/_pub/')) $path = "/skin$path";
-            if(strstr($path,'/skin/')){
-                $path = str_replace('/skin/','/',$path);
-            }
-        }elseif($pcfg = comStore::cfgDirPath($base,$pflg)){
-            $base = $pcfg;    
-        }else{
-            $base = $base=='null' ? '' : (empty($base) ? ($pflg=='path' ? PATH_ROOT : DIR_ROOT) : $base);    
-        }
-        return $base.$path;
-    }
-
     // imp css/js
-    static function imp($path,$base='',$mod='auto'){
+    static function imp($path,$base='',$mod=''){
         global $_cbase; 
         $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
         if(in_array($path,array('initCss','initJs','loadExtjs'))){
@@ -225,23 +206,22 @@ class basJscss{
                 $mod = 'js'; 
             }
             $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";
-            $base = '';
+            $base = PATH_ROOT;
+        }elseif(in_array(substr($path,0,6),array('/skin/','/_pub/','/~tpl/'))){
+            $path = str_replace('/~tpl/',"/$tpldir/b_jscss/",$path);
+            $base = PATH_SKIN;
+        }elseif(in_array(substr($path,0,6),array('/plus/','/tools'))){
+            $base = PATH_ROOT;
         }else{
-            if(substr($path,0,1)=='/'){
-                $path = str_replace('/~tpl',"/skin/$tpldir/b_jscss",$path);
-            } // else : http://www...
-            if(empty($mod) || $mod=='auto') $mod = strpos($path,'.css') ? 'css' : 'js';
+            $base = $base ? comStore::cfgDirPath($base,'path') : '';
         }
-        if(strpos($_cbase['run']['jsimp'],$path)){
-            return;
-        }
+        if(strpos($_cbase['run']['jsimp'],$path)){ return ''; }
         $_cbase['run']['jsimp'] .= "$path,";
-        $path = self::ipath($path,$base); 
         if(empty($_cbase['tpl']['tpc_on'])){
             $path .= (strpos($path,'?') ? '&' : '?').'_'.$_SERVER["REQUEST_TIME"].'=1';
-        } 
-        if($mod=='js') return self::jscode('',$path)."\n";
-        else return self::csscode('',$path)."\n"; 
+        }
+        $method = $mod ? "{$mod}code" : (strpos($path,'.css') ? 'css' : 'js').'code'; 
+        return self::$method('',$base.$path)."\n"; 
     }
 
     // keyid, subject('"<>\n\r), js
