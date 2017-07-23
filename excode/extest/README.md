@@ -13,7 +13,7 @@
   (extend目录 如果之前有文件，可清除)
 * 打开文件：/root/tools/extend/ 执行安装
 * 确认是否自动删除index.php安装文件，如果没有自动删除，请手动删除
-* 访问：/root/tools/extend/index.php 查看安装效果
+* 访问：/root/tools/extest/index.php 查看安装效果
 
 
 ### 相关提示
