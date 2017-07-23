@@ -7,6 +7,7 @@
 
 ### Setup/安装
 
+* 下载解压
 * 手动复制【/web/】下所有文件到项目目录
 * 复制【/sql/】和【index.php】到 /root/tools/extend/ 下  
   (extend目录 如果之前有文件，可清除)
