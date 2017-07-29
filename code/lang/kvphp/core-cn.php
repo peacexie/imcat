@@ -182,11 +182,13 @@ return array(
     'vcode' => '认证码',
     'submit' => '提交',
 
-    // pager
+    /*/ pager
     'page_First' => '首页',
     'page_Prev' => '上页',
     'page_Next' => '下页',
     'page_Last' => '尾页',
+    'page_mkPage' => '{val}页',
+    'page_mkRec' => '{val}记录',*/
 
     //stinc
     'stinc_closed' => '网站关闭提示!',

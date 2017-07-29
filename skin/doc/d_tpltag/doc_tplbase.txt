@@ -9,7 +9,7 @@
 
 * Code-Inclue, Do NOT compile like the tpl: 
  - Demo: {code:"tools/a_cfgs"}  -=> inc-file: {NOW-TPL}/tools/a_cfgs.php 
- - Notice: (Dont bega inwith `/`, and end with `.php`)
+ - Notice: (Dont begain with `/`, and end with `.php`)
  - If some bolck code NOT in the NOT set of tpl, use the flag `dir:`, eg: {code:"dev:tools/a_cfgs"}
 
 * Cross template-Include: Public-Tpl/Public-Code

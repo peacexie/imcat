@@ -1,28 +1,35 @@
-{imp:"c_pub/alay_main"}<!--继承父模板-->
-
-{block:extop}
-<?php
-$titletop = $titlesub = '贴心工具[Tools] - 首页'; 
-?>
-{/block:extop}
-
-{block:exbar}
-    <a href="{surl(tools-index)}" >index</a>
-{/block:exbar}
-
-{block:exmain}
-    <ul id="s_{$code}" class="mod-section">
-      <li class="iframe">
-        <iframe name="ifname" src="{surl(tools-index)}" width="100%" height="480"></iframe>
-      </li>
-    </ul>
-{/block:exmain}
-
-{block:exside}
+<!DOCTYPE html><html><head>
 {code:"dev:tools/a_cfgs"}
-<ul class="sd-mkeys">
-<?php foreach($cfgs as $k=>$v){ $title = $v['title']; ?>
-<li><a href="{surl("tools-$k")}" target="_blank">{$title}</a></li>
-<?php } ?>
-</ul>
-{/block:exside}
+<?php
+$ptitle = $titlesub = '贴心工具[Tools] - index'; 
+$i_v = 0;
+?>
+{php $this->pmeta($ptitle); }
+{php}
+eimp('initJs','jquery,bootstrap;comm;comm');
+eimp('initCss','bootstrap,stpub;comm'); 
+{/php}
+</head><body style="padding:10px;">
+
+  <h2 class="resume-title">{$ptitle}</h2>
+
+    <?php foreach($cfgs as $k=>$v){ $title = $v['title']; $i_v++; ?>
+    <dl class="resume-list"> 
+      <dt>
+      <a href="{surl("tools-$k")}" target="_blank">{$title}</a>
+      <i class="atime right">{$k}</i>
+      </dt>
+      <dd>{$v['rem']}</dd>
+      {if (($i_v+1)%5==0) } <div class="h15 cleft">&nbsp;</div> {/if}
+    </dl>
+    <div class="clear"></div>
+    <?php } ?>
+
+  <div class="h10">&nbsp;</div>
+  <p class="resume-list">
+    <a href="<?php tex_base::uplog_furl() ?>" class="right" target="_blank">贴心猫 V{$_cbase['sys']['ver']}发布</a>
+    <a href="{surl(tools)}" target="_blank">工具首页</a>
+  </p>
+
+</body></html>
+

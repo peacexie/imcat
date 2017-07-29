@@ -10,7 +10,7 @@ $_ve_tools = array(
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
     ),
     'm' => 'tools/b_home',
-    'index' => 'tools/b_index',
+    //'index' => 'tools/b_index',
 
 );
 

@@ -10,13 +10,13 @@ class glbDBObj{
     public $sql = '';//sql语句，主要用于输出构造成的sql语句
     public $pre = '';//表前缀，主要用于在其他地方获取表前缀
     public $ext = '';//表后缀，主要用于在其他地方获取表后缀
-    private $data = array();// 数据信息  
-    private $nolog = array(
+    public $data = array();// 数据信息  
+    public $nolog = array(
         'active_admin', 'active_online', 'active_session',
         'logs_dbsql', 'logs_detmp', 'logs_jifen', 'logs_syact',
         'wex_qrcode', 'wex_msgget', 'wex_locate',
     );
-    private $options = array(); // 查询表达式参数
+    public $options = array(); // 查询表达式参数
     static $uobj = array(); //实例化的前数据对象
 
     function __construct($config=array()){
@@ -292,7 +292,7 @@ class glbDBObj{
     }
 
     //解析数据,添加数据时$type=add,更新数据时$type=save
-    private function _parseData($type,$log='') {
+    public function _parseData($type,$log='') {
         if((!isset($this->options['data']))||(empty($this->options['data']))){
             unset($this->options['data']);    //清空$this->options['data']数据
             return false;
@@ -341,7 +341,7 @@ class glbDBObj{
     }
 
     //解析sql查询条件
-    private function _parseCond() {
+    public function _parseCond() {
         $condition="";
         //解析where()方法
         if(!empty($this->options['where'])){
@@ -380,7 +380,7 @@ class glbDBObj{
     }
     
     // 
-    static function dbObj($config=array()){ 
+    static function dbObj($config=array(),$catch=0){ 
         if(empty($config)){
             $key = 'db0_main';
         }elseif(is_string($config)){ // `user`
@@ -391,8 +391,10 @@ class glbDBObj{
         }else{ // array()
             $key = 'dba_'.$config['db_host'].'_'.$config['db_name'];
         }
-        if(empty(self::$uobj[$key])){ 
-            self::$uobj[$key] = new self($config); 
+        $key .= $catch;
+        if(empty(self::$uobj[$key])){
+            $class = $catch ? 'glbDBCache' : 'glbDBObj';
+            self::$uobj[$key] = new $class($config); 
             self::$uobj[$key]->connect($config); 
         }
         return self::$uobj[$key];

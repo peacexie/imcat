@@ -24,8 +24,8 @@ function urlPara(key,def,url){
 function urlRep(url,key,val){
     if(url.indexOf('?')<=0) url += '?';
     if(key){
-        val = val ? '&'+key+'='+val : ''; // new RegExp('(\\&'+_key+"=(\\d+))")
-        url = url.replace(new RegExp('((\\&?)'+key+"=([^(&|#)]*))"),val); //\\w*
+        url = url.replace(new RegExp(key + "=([^(&|#)]*)"),'');
+        url += (val ? '&'+key+'='+val : '');
     }
     return url.replace('?&','?').replace('&&','&');
 }

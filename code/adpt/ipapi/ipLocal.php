@@ -3,7 +3,7 @@
  * 算法代码：
 http://www.fuziba.com/2012/08/01/php%E8%AF%BB%E5%8F%96%E7%BA%AF%E7%9C%9Fip%E6%95%B0%E6%8D%AE%E5%BA%93/
  * 地址库：
-http://pc6.com/softview/SoftView_41490.html (纯真IP数据库)
+http://www.cz88.net/index.shtml (纯真IP数据库)
 下载安装，把qqwry.dat提取出来放到[/ximp/utabs/ip_qqwry.dat]；最后卸载...
 为保持本代码的瘦小，默认没有这个数据库文件，2014年6月15日对应的大小为9M，为本程序的几倍！
 */

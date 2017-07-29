@@ -5,7 +5,7 @@ class glbDBCache extends glbDBObj{
     public $cache = NULL; // 缓存对象
 
     function __construct($config=array()){
-        parent::__construct($paras); 
+        parent::__construct($config); 
     }
 
     //执行原生sql语句，如果sql是查询语句，返回二维数组
@@ -18,13 +18,13 @@ class glbDBCache extends glbDBObj{
         }elseif(strpos(trim(strtolower($sql)),'select')===0){ 
             $data=array();
             //读取缓存
-            $data=$this->_dcGet('query');
+            $data=$this->_dcGet();
             if(!empty($data)){ return $data; }
             //没有缓存，则查询数据库
             $this->connect();
             $data = $this->db->arr($this->sql);
             $this->runTimer('qSelect');
-            $this->_dcPut($data,'query');//写入缓存
+            $this->_dcPut($data);//写入缓存
             return $data;
         }else{ //不是查询条件，执行之后，直接返回
             return parent::query($sql,$func);
@@ -38,12 +38,12 @@ class glbDBCache extends glbDBObj{
         $where=$this->_parseCond();//条件
         $this->sql="SELECT $field FROM $table $where";
         //读取缓存
-        $re = $this->_dcGet('count');
+        $re = $this->_dcGet();
         if(!empty($re)){ return $re; }
         $this->connect();            
         $re = $this->db->val($this->sql);
         $this->runTimer('count');
-        $this->_dcPut($re,'count');//写入缓存
+        $this->_dcPut($re);//写入缓存
         return $re;
     }
 
@@ -56,12 +56,12 @@ class glbDBCache extends glbDBObj{
         $this->options['field']='*';//设置下一次查询时，字段的默认值
         $this->sql="SELECT $field FROM $table $where";
         //读取缓存
-        $data=$this->_dcGet('find');
+        $data=$this->_dcGet();
         if(!empty($data)){ return $data; }
         $this->connect();
         $data = $this->db->row($this->sql);
         $this->runTimer('find');
-        $this->_dcPut($data,'find');//写入缓存
+        $this->_dcPut($data);//写入缓存
         return $data;
      }
 
@@ -74,13 +74,13 @@ class glbDBCache extends glbDBObj{
         $this->sql="SELECT $field FROM $table $where";
         $data=array();
         //读取缓存
-        $data=$this->_dcGet('select');
+        $data=$this->_dcGet();
         if(!empty($data)){ return $data; }
         //没有缓存，则查询数据库
         $this->connect();
         $data = $this->db->arr($this->sql);
         $this->runTimer('select');
-        $this->_dcPut($data,'select');//写入缓存
+        $this->_dcPut($data);//写入缓存
         return $data;
      }
     
@@ -88,31 +88,25 @@ class glbDBCache extends glbDBObj{
     function _dcInit(){        
         if(is_object($this->cache)){
             return true;
-        }elseif($this->config['dc_type']){
-            require DIR_CODE.'/adpt/cache/extCache.php';
-            $config['DATA_CACHE_PATH']=DIR_DTMP.$this->config['dc_path'].'/';
-            $config['DATA_CACHE_TIME']=$this->config['dc_tmout'];
-            $config['DATA_CACHE_CHECK']=$this->config['dc_check'];        
-            $config['DATA_CACHE_FILE']=$this->config['dc_file'];
-            $config['DATA_CACHE_SIZE']=$this->config['dc_size'];
-            $config['DATA_CACHE_FLOCK']=$this->config['dc_flock'];
-            $this->cache=new extCache($config);
+        }elseif($this->config['dc_on']){
+            $config = array();
+            foreach ($this->config as $key => $val) {
+                if($key=='dc_on') continue;
+                $pre = substr($key,0,3);
+                if($pre=='dc_') $config[substr($key,3)] = $val;
+            }
+            $this->cache = new extCache($config);
             return true;
         }else{
             return false;
         }
     }
     //读取缓存
-    function _dcGet($cpre){
-        $expire=isset($this->options['cache'])?$this->options['cache']:$this->config['dc_tmout'];
-        //缓存时间为0，不读取缓存
-        if($expire==0) return false;
-        $data = "";    
-        if($this->_dcInit()){
-             $data=$this->cache->get(md5($cpre.$this->sql));
-        }
+    function _dcGet(){
+        $key = $this->_dcKey();
+        unset($this->options['cache']);
+        $data = $key ? $this->cache->get($key) : '';
         if(!empty($data)){
-            unset($this->options['cache']);
             return $data;
         }else{
             return "";
@@ -120,15 +114,35 @@ class glbDBCache extends glbDBObj{
 
     }
     //写入缓存
-    private function _dcPut($data,$cpre){    
-        $expire=isset($this->options['cache'])?$this->options['cache']:$this->config['dc_tmout'];
+    private function _dcPut($data){
+        $key = $this->_dcKey(0);
         unset($this->options['cache']);
-        //缓存时间为0，不读取缓存
-        if($expire==0) return false;
-        if($this->_dcInit()){    
-            return $this->cache->set(md5($cpre.$this->sql),$data,$expire);    
+        if($key){
+            $exp = $this->_dcKey('(exp)');
+            return $this->cache->set($key[0],$data,$key[1]);
         }
         return false;    
+    }
+    private function _dcKey($resql=1){
+        $expire = isset($this->options['cache']) ? $this->options['cache'] : $this->config['dc_exp'];
+        if(empty($expire)) return false; // 缓存时间为0，不读取缓存
+        if(!$this->_dcInit()){
+            return false;  
+        }
+        $arr1 = array(
+            'SELECT ','FROM ','WHERE ','AND ','OR ',
+            'INSERT INTO ','UPDATE ','DELETE ','REPLACE INTO ', 
+            'GROUP BY ','HAVING ','ORDER BY ','LIMIT ',
+            ' ',
+        ); // LEFT JOIN, RIGHT JOIN INNER JOIN
+        $arr2 = array(
+            '[s]','[f]','[w]','[a]','[o]',
+            '[ins]','[upd]','[del]','[rep]',
+            '[gby]','[hav]','[oby]','[m]',
+            '',
+        );
+        $sql = str_replace($arr1,$arr2,$this->sql);
+        return $resql ? $sql : array($sql,$expire);
     }
 
 }

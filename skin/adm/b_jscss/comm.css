@@ -133,4 +133,6 @@ form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
 
 .btn, input.btn { background-clip: padding-box; }
 .mframe{ width:100%; overflow-y:scroll; overflow-x:hidden; }
+.pg_bar .pagination{ margin: 2px 0; }
+.pg_bar .pagination>li>input{ height:31px; font-size:12px; }
 /* #locSetS { background-clip:padding-box; } select*/

@@ -73,7 +73,7 @@ class extToken{
     static function set($kid,$tval,$exp='1d'){
         $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
-        $exp = $exp ? $stamp + tagCache::CTime($exp) : 0;
+        $exp = $exp ? $stamp + extCache::CTime($exp) : 0;
         if(!empty($tval)){ 
             $data = array('token'=>$tval,'exp'=>$exp);
         }else{ // empty:clear

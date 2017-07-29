@@ -204,7 +204,8 @@ div.bdsharebuttonbox {  }
 .mpic_out .cntout { }
 .mpic_out .seltype { width:120px; float:right; }
 
-.resume-list { width:100%; }
+.resume-title { margin:auto; text-align:center; }
+.resume-list { width:640px; max-width:640px; margin:auto; }
 .resume-list dt { margin-bottom:5px; }
 .resume-list dt a { font-size:large; }
 .resume-list dt i, .resume-list dt b { font-style: normal; display: inline-block; padding: 0px 3px 0px 3px; }
@@ -215,6 +216,11 @@ div.bdsharebuttonbox {  }
 .resume-list dd i, .resume-list dd b { font-style: normal; display: inline-block; padding: 0px 3px 0px 3px; }
 .resume-list dd i.click { width: 18%; text-align:left; white-space:nowrap; }
 .resume-list dd i.price { width: 18%; text-align:left; white-space:nowrap; }
+
+@media only screen and (max-width:767px) {
+    .resume-list { width:100%; }
+    .resume-title { font-size:large; padding:20px 0; }
+}
 
 .mod-tbar { background:#EEE; padding:5px 10px; margin: 0px 18px 10px 0px; border:1px solid #CCC; }
 .mod-tbar i { font-style: normal; }
@@ -233,3 +239,7 @@ div.bdsharebuttonbox {  }
 
 .keres-vdo { width:640px; margin:10px auto; }
 .keres-down { width:640px; text-align:center; padding:10px; margin:10px auto; border:1px dashed #CCC; }
+
+.pg_bar{ margin:auto; text-align:center; }
+.pg_bar .pagination li a{ margin:0 5px; }
+.pg_bar .pagination li input{ width:60px; }

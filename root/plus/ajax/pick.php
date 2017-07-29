@@ -5,7 +5,7 @@ $_groups = read('groups');
 
 glbHtml::page("Pick Data");
 eimp('initJs','jquery,jspop;comm;comm(-lang)'); 
-eimp('initCss','stpub,jstyle;comm'); // bootstrap,
+eimp('initCss','bootstrap,stpub,jstyle;comm'); // bootstrap,
 echo "<style type='text/css'>div.pg_bar li{margin: 0px 1px;}</style>";
 glbHtml::page('body');
 

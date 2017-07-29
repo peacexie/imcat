@@ -1,0 +1,69 @@
+
+
+打包更轻松，扩展更灵活
+
+------------------------------------------------------------------------------
+
+* 
+ - http://www.topthink.com/user/product_add.html
+
+* docs/funcs 功能模块
+
+* adm-CSS
+ - admJsClick('adminer'), this,&view=form    --- ok
+ - http://www.cssmoban.com/
+
+
+* prem 权限
+
+* plus/coms
+ - footer ... 
+
+------------------------------------------------------------------------------
+
+* pager 分页                    --- ok
+
+* robots.txt                    --- ok
+
+* demodir                       --- ok 
+
+* - jilei
+ - apiServer:                   --- ok 
+ - Tools:chrall,schulte,bezier  --- ok
+ - adminer                      --- ??? 
+ - yahei                        --- ok
+ - muma                         --- ok
+ - spword                       --- ok
+ - derun.php                    --- ???
+
+* cache                         --- ok
+ - 增强缓存扩展
+
+* 扩展下载/extend               --- ok
+ - demo 
+ - xxx
+
+* map                           --- ok
+ - baidu地图           
+         
+* 静态 7-11 ~ 18                --- ok 
+           
+* jq-3                          --- ok 
+           
+* win/model                     --- ok 
+ - (del)jq_win.js             
+           
+* tokenStore                    --- ok 
+             
+* REST-API 正式                 --- ok (实际当中完善)
+            
+* wxlogin                       --- ok 
+ - 'm' => 'm_user/uhome',
+ - 'wxlogin' => 'm_user/wxlogin',
+ - 'wxlocal' => 'm_user/wxlocal',
+ - wex_menu_ys
+
+* umc ...                       --- ok 
+ - home,user,help,uio
+
+------------------------------------------------------------------------------

@@ -53,7 +53,7 @@ class comCron{
     // 计算下次运行时间
     // excunit=w,d,h  excycle=1-127
     function rnext($row,$rdo){
-        $ctime = tagCache::CTime($row['excycle'].$row['excunit']);
+        $ctime = extCache::CTime($row['excycle'].$row['excunit']);
         $stfix = date('i')*60 + date('s'); $stfix = $stfix > 1800 ? (3600-$stfix) : ($stfix-3600); //修正整点
         $exsecs = intval(substr($row['exsecs'],0,2))*60 + intval(substr($row['exsecs'],3,2)); 
         $next = $this->stamp + $stfix + $ctime + $exsecs; 

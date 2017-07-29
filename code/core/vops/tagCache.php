@@ -79,11 +79,9 @@ class tagCache{
     }
     
     static function ctPath($para,$tpldir){ 
-        $fext = str_replace(array('/','+','*','|','?',':'),array('~','-','.','!','$',';'),$para); 
-        $fext = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[m','[n','[c','[s'),$fext); 
-        $fext = basStr::filTitle($fext); //del:&,#
-        if(strlen($fext)>150) $fext = substr($fext,0,20).'~'.md5($fext);
-        $path = "/_tagc/$tpldir$fext.cac_htm"; //".(substr($fmd5,0,1))."/
+        $para = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[m','[n','[c','[s'),$para); 
+        $cp = extCache::CPath($para);
+        $path = "/_tagc/$tpldir/{$cp['file']}.cac_htm";
         return $path;
     }
     static function caPath($mod,$type,$full=0){ 
@@ -104,7 +102,7 @@ class tagCache{
     
     // -
     static function chkUpd($file,$ctime=30,$bdir='dtmp'){ 
-        $ctime = self::CTime($ctime);
+        $ctime = extCache::CTime($ctime);
         $cfg = array(
             'dtmp'=>DIR_DTMP,
             'ures'=>DIR_URES,
@@ -119,25 +117,6 @@ class tagCache{
             }
         }
         return '';
-    }
-
-    // $ctime : 30s,60m,12h,7d,4w,12m; 默认单位m
-    static function CTime($ctime=30){ 
-        if(is_numeric($ctime) || strpos($ctime,'m')){
-            $ctime = intval($ctime)*60; 
-        }elseif(strpos($ctime,'h')){
-            $ctime = intval($ctime)*3600;
-        }elseif(strpos($ctime,'d')){
-            $ctime = intval($ctime)*86400;
-        }elseif(strpos($ctime,'w')){
-            $ctime = intval($ctime)*86400*7;
-        }elseif(strpos($ctime,'m')){
-            $ctime = intval($ctime)*86400*30;
-        }else{ 
-            $ctime = intval($ctime);
-        }
-        $ctime<60 && $ctime = 86400; //最小60s
-        return $ctime;
     }
 
 }

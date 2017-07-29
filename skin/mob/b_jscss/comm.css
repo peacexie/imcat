@@ -191,3 +191,7 @@ div.bdsharebuttonbox {  }
 .indoc-readlog {}
 .indoc-readlog dt { font-weight:normal; border-bottom:1px dashed #EEE; }
 .indoc-readlog i { font-style:normal;  }
+
+.pg_bar{ margin:auto; text-align:center; }
+.pg_bar .pagination{ margin:0 0px; }
+.pg_bar .pagination li input{ display:none; }

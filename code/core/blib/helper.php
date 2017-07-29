@@ -59,8 +59,8 @@ function out($data,$type='json'){
     return $data;
 }
 // db(获得db对象)
-function db($config=array()){
-    return glbDBObj::dbObj($config);
+function db($config=array(),$catch=0){
+    return glbDBObj::dbObj($config,$catch);
 }
 // user(获得user对象)
 function user($uclass=''){

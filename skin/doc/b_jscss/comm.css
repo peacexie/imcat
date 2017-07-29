@@ -233,3 +233,7 @@ div.bdsharebuttonbox {  }
 
 .keres-vdo { width:640px; margin:10px auto; }
 .keres-down { width:640px; text-align:center; padding:10px; margin:10px auto; border:1px dashed #CCC; }
+
+.pg_bar{ margin:auto; text-align:center; }
+.pg_bar .pagination li a{ margin:0 5px; }
+.pg_bar .pagination li input{ width:60px; }

@@ -6,7 +6,7 @@ class cacheSaem {
     private $ver = 0;
     function __construct( $mcfgs = array() ) {
         $this->mmc = memcache_init();
-        $this->group = $mcfgs['SAE_MEM_GROUP'];
+        $this->group = $mcfgs['prefix'];
         $this->ver = intval( memcache_get($this->mmc, $this->group.'_ver') ); 
     }
 

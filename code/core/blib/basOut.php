@@ -26,20 +26,11 @@ class basOut
         return $re;
     }
 
-    /**
-     * 处理数据
-     * @param mixed $data 要处理的数据
-     * @return mixed
-     * @throws \Exception
-     */
     static function outJson($data)
     {
         try {
             // 返回JSON数据格式到客户端 包含状态信息
             $data = comParse::jsonEncode($data);
-            /*if ($data === false) {
-                throw new Exception(json_last_error_msg());
-            }*/
             return $data;
         } catch (Exception $e) {
             if ($e->getPrevious()) {
@@ -49,12 +40,6 @@ class basOut
         }
     }
 
-    /**
-     * 处理数据
-     * @param mixed $data 要处理的数据
-     * @return mixed
-     * @throws \Exception
-     */
     static function outJsonp($data)
     {
         $opt = self::$options;
@@ -63,9 +48,6 @@ class basOut
             $callback = basReq::val('callback',$opt['jsonp_callback']); 
             $handler = !empty($callback) ? $callback : $opt['jsonp_return'];
             $data = comParse::jsonEncode($data);
-            /*if ($data === false) {
-                throw new Exception(json_last_error_msg());
-            }*/
             $data = $handler . '(' . $data . ');';
             return $data;
         } catch (Exception $e) {
@@ -76,43 +58,24 @@ class basOut
         }
     }
 
-    /**
-     * 处理数据
-     * @param mixed $data 要处理的数据
-     * @return mixed
-     */
-    static function outXml($data)
+    static function outXml($data,$uopt=array())
     {
         $opt = self::$options;
-        // XML数据转换
-        return self::xmlEncode($data, $opt['root_node'], $opt['item_node'], $opt['root_attr'], $opt['item_key'], $opt['encoding']);
-    }
-
-    /**
-     * XML编码
-     * @param mixed $data 数据
-     * @param string $root 根节点名
-     * @param string $item 数字索引的子节点名
-     * @param string $attr 根节点属性
-     * @param string $id   数字索引子节点key转换的属性名
-     * @param string $encoding 数据编码
-     * @return string
-     */
-    static function xmlEncode($data, $root, $item, $attr, $id, $encoding)
-    {
-        if (is_array($attr)) {
-            $array = array();
+        if(!empty($uopt)) $opt = array($opt, $uopt);
+        $attr = $opt['root_attr'];
+        if(is_array($attr)) {
+            $arr = array();
             foreach ($attr as $key => $value) {
-                $array[] = "{$key}=\"{$value}\"";
+                $arr[] = "{$key}=\"{$value}\"";
             }
-            $attr = implode(' ', $array);
+            $attr = implode(' ', $arr);
         }
         $attr = trim($attr);
         $attr = empty($attr) ? '' : " {$attr}";
-        $xml  = "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
-        $xml .= "<{$root}{$attr}>\n";
-        $xml .= self::dataToXml($data, $item, $id);
-        $xml .= "</{$root}>\n";
+        $xml  = "<?xml version=\"1.0\" encoding=\"{$opt['encoding']}\"?>\n";
+        $xml .= "<{$opt['root_node']}{$attr}>\n";
+        $xml .= self::xmlRow($data, $opt['item_node'], $opt['item_key']);
+        $xml .= "</{$opt['root_node']}>\n";
         return $xml;
     }
 
@@ -123,17 +86,18 @@ class basOut
      * @param string $id   数字索引key转换为的属性名
      * @return string
      */
-    static function dataToXml($data, $item, $id)
+    static function xmlRow($data, $item, $id)
     {
         $xml = $attr = '';
+        $a1 = array("&","<",">");
+        $a2 = array("&amp;","&lt;","&gt;");
         foreach ($data as $key => $val) {
             if (is_numeric($key)) {
                 $id && $attr = " {$id}=\"{$key}\"";
                 $key         = $item;
             }
-            $xml .= "<{$key}{$attr}>";
-            $xml .= (is_array($val) || is_object($val)) ? self::dataToXml($val, $item, $id) : $val;
-            $xml .= "</{$key}>\n";
+            $val = (is_array($val)||is_object($val)) ? self::xmlRow($val,$item,$id) : str_replace($a1,$a2,$val);
+            $xml .= "<{$key}{$attr}>$val</{$key}>\n";
         }
         return $xml;
     }

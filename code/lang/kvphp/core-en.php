@@ -182,11 +182,13 @@ return array(
     'vcode' => 'AuthCode',
     'submit' => 'Submit',
 
-    // pager
+    /*/ pager
     'page_First' => 'First',
     'page_Prev' => 'Prev',
     'page_Next' => 'Next',
     'page_Last' => 'Last',
+    'page_mkPage' => 'P.{val}',
+    'page_mkRec' => 'Rec.{val}',*/
     
     //stinc
     'stinc_closed' => 'Site Closed!',

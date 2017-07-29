@@ -20,10 +20,11 @@ $subs = tex_base::docer('d_start/doc__home');
   <tr>
     <td valign="top" class="bar1">
     <div class="right">
-    <i><a href="{surl(dev:tools)}" target="_blank">Demo Tools</a></i>
+    <i><a href="{surl(doc:tester)}" class="c66F" target="_blanlk">TestCode</a></i>
+    <i><a href="{surl(demo)}">DemoArticle</a></i>
     <i><a href="{surl(umc:faqs)}" target="_blank">Tech. Faqs</a></i>
     </div>
-    
+
     <i class="act">IntimateCat Resume</i>
 
     </td>
@@ -51,17 +52,7 @@ $subs = tex_base::docer('d_start/doc__home');
       <i class="right">Ver:{$iver}</i>{if is_numeric($v[0])}Pub.Date:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
     </p>
     <?php } ?>
-    <p>
-      <i class="right">Ver:3.2</i>中文发布: <a href="{surl(dev:uplog-3_2)}" target="dev">2016.0625</a>
-    </p>
-    <p>
-      <i class="right">Ver:3.1</i>中文发布: <a href="{surl(dev:uplog-3_1)}" target="dev">2016.0410</a>
-    </p>
-    <p>
-      <i class="right">Ver:3.0</i>中文发布: <a href="{surl(dev:uplog-3_0)}" target="dev">2015.1225</a>
-    </p>
 
-    
     <p class="title">System. News</p>
     
     <!`--{surl(news-nsystem)}`-->

@@ -63,7 +63,7 @@
  - # 综合案例：读取数据库列表分页显示，
  - http://txmao.txjia.com/skin/doc/tester/step_ufile.php
  - # 官方贴心工具：
- - http://txmao.txjia.com/dev.php?tools-index
+ - http://txmao.txjia.com/dev.php?tools
  - # 类库函数集合：
  - http://txmao.txjia.com/dev.php?start-class
 

@@ -85,7 +85,7 @@ class homeCtrl{
             $db->table('token_rest')->data(array('token'=>$ntok))->where(array('kid'=>$kid))->update(0);
             return $this->errorAct("Your Net Token is [ <b>$ntok</b> ]!");
         }else{ // exp : 1d,1w,1m,12m
-            $stamp = $_SERVER["REQUEST_TIME"] + tagCache::CTime($sop);
+            $stamp = $_SERVER["REQUEST_TIME"] + extCache::CTime($sop);
             $db->table('token_rest')->data(array('exp'=>$stamp))->where(array('kid'=>$kid))->update(0);
             return $this->errorAct("Your Expire-time Reset to [ ".(date('Y-m-d H:i:s',$stamp))." ]!");
         }

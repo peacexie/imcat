@@ -135,24 +135,25 @@ class comPager{
             $bar .= $v; 
         }
         $bar = str_replace("{url}",$pbase,$bar);
-        return $bar;
+        return "<ul class='pagination'>$bar</ul>";
     }
     
     function links(){
         $pcnt = $this->pcnt;
         $a = array(); 
-        $sFirst = '&laquo;||'.basLang::show('page_First');   $sPrev = '&lt;|'.basLang::show('page_Prev');   
-        $sNext = basLang::show('page_Next').'|&gt;';   $sLast = basLang::show('page_Last').'||&raquo;';
-        $a['total'] = "<li>$this->prec</li>";
-        $a['pagno'] = "<li>$this->page/$pcnt</li>";
-        $a['first'] = "<li>$sFirst</li>";
-        $a['prev']  = "<li>$sPrev</li>";
-        $a['now']   = "<li>$this->page</li>";
-        $a['next']  = "<li>$sNext</li>";
-        $a['last']  = "<li>$sLast</li>";
-        if($pcnt<=1){
-            //first...last;
-        }elseif($this->page==$pcnt){
+        $sFirst = '<span class="glyphicon glyphicon-fast-backward"></span>';
+        $sPrev = '<span aria-hidden="true">&laquo;</span>';
+        $sNext = '<span aria-hidden="true">&raquo;</span>';
+        $sLast = '<span class="glyphicon glyphicon-fast-forward"></span>';
+        
+        $a['pagno'] = "<li class='pg_pagno'><a class='disabled'>$this->page/$pcnt</a></li>";
+        $a['first'] = "<li><a class='disabled'>$sFirst</a></li>";
+        $a['prev']  = "<li><a class='disabled'>$sPrev</a></li>";
+        $a['pjump'] = "<li class='pg_pjump'><input type='text' id='pg_pjump' pjurl='{url}{pjump}' pjmax='{$pcnt}' value='$this->page' maxlength='9' class='form-control' onchange=\"goPjump(this);\"/></li>";
+        $a['next']  = "<li><a class='disabled'>$sNext</a></li>";
+        $a['last']  = "<li><a class='disabled'>$sLast</a></li>";
+        $a['total'] = "<li class='pg_total'><a class='disabled'>$this->prec</a></li>";
+        if($this->page==$pcnt){
             $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
             $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";
         }elseif($this->page==1){
@@ -165,7 +166,6 @@ class comPager{
             $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>";
             $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>";
         }
-        $a['pjump'] = "<li><input type='text' id='pg_pjump' pjurl='{url}{pjump}' pjmax='{$pcnt}' value='$this->page' maxlength='9' onchange=\"goPjump(this);\"/></li>";
         return $a;
     }
 }

@@ -53,7 +53,7 @@ class comHook extends comCron{
         if(!empty($this->jobs)){
             foreach($this->jobs as $row){
                 $rdo = $this->rone($row);
-                $next = $this->stamp + tagCache::CTime($row['excycle'].$row['excunit']);
+                $next = $this->stamp + extCache::CTime($row['excycle'].$row['excunit']);
                 $this->jres[$row['kid']] = array(
                     'rdo' => $rdo, 
                     'next' => $next,

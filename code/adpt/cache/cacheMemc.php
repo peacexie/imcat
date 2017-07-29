@@ -8,7 +8,7 @@ class cacheMemc {
         $this->mmc = new Memcache;
         if( empty($mcfgs) ) {
             $mcfgs['MEM_SERVER'] = array(array('127.0.0.1', 11211));
-            $mcfgs['MEM_GROUP'] = '';
+            $mcfgs['MEM_GROUP'] = $mcfgs['prefix'];
         }
         foreach($mcfgs['MEM_SERVER'] as $config) {
             call_user_func_array(array($this->mmc, 'addServer'), $config);

@@ -3,9 +3,10 @@
 
 $cfgs = array(
 
-    // apiServer, admSkin, house
-    'ueditor', 
+    // admSkin, house
+    'ueditor', 'apiServer', 
     'exdemo', // 一页(10个)以内
-    'local-ip', 'simkai.ttf',
+    'LocalIP', 'Simkai',
+    
 );
 
