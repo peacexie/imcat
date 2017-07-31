@@ -22,7 +22,7 @@ $spcfg = read('sphinx.index','ex');
 if(empty($spcfg[$mod]) || empty($sfkw)){
     $rs = $dop->getRecs();
 }else{
-    $sph = new comSphinx();
+    $sph = new extSphinx();
     $rs = $sph->getRecs($mod);
 }
 if($rs){ 

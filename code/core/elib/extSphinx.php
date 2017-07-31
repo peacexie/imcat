@@ -3,7 +3,7 @@
 include DIR_STATIC.'/ximp/class/sphinxapi.cls_php'; 
 
 // Sphinx搜索类
-class comSphinx {
+class extSphinx {
     
     public $so = NULL;
     public $cfgs = array();

@@ -87,6 +87,7 @@ class basKeyid{
             case "k" : $sOrg = KEY_TAB32; break;
             case "30": $sOrg = KEY_TAB30; break;
             case "24": $sOrg = KEY_TAB24; break; 
+            case "22": $sOrg = KEY_CHR22; break;
             case "s" : $sOrg = $sSpe; break; 
             case "1" : $sOrg = $sSp1; break; 
             case "2" : $sOrg = $sSp2; break; 

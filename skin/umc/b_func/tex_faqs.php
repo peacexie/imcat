@@ -136,11 +136,8 @@ class tex_faqs{ //extends tex_base
     static function statTypes($act='get'){ 
         $arr = array();
         $file = "/store/_faqs_types.cfg.php";
-        if($act=='get' && tagCache::chkUpd($file,30)){ 
-            include DIR_DTMP.$file;
-            $arr = $_faqs_types;
-            return $arr;
-        }else{
+        $arr = extCache::tkGet('faqs_types',1);
+        if(empty($arr)){ 
             $act = 'upd';
         }
         $db = db(); 
@@ -151,8 +148,8 @@ class tex_faqs{ //extends tex_base
         foreach($q as $k=>$v){
             $arr[$v['catid']] = $v['cnt'];
         }
-        if($act=='upd'){ // || !file_exists(DIR_DTMP.$file)
-            glbConfig::save($arr,'faqs_types','store');
+        if($act=='upd'){
+            extCache::tkSet('faqs_types',$arr,30);
         }
         return $arr;
     }

@@ -284,7 +284,7 @@ class vopStatic{
         if(@$vcfg['c']['vmode']!='static') return 0;
         $vext = empty($moda[2]) ? '' : ".$moda[2]";
         $file = self::getPath($moda[0],$kid.$vext,0); 
-        $flag = !tagCache::chkUpd("/$file",$vcfg['c']['stexp'],'html');
+        $flag = !extCache::cfGet("/$file",$vcfg['c']['stexp'],'html');
         return $flag;    
     }
 

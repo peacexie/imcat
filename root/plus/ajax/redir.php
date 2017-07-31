@@ -1,6 +1,9 @@
 <?php 
 require dirname(__FILE__).'/_config.php';
 
+//$dir = new comTurl();
+//$dir->run();
+
 $qstr = $_SERVER['QUERY_STRING'];
 // advs:mod.key
 
@@ -60,7 +63,7 @@ case 'defdir':
             }
         } 
     } 
-    $url = surl("$tpl:$mod.$kid"); 
+    $url = surl("$tpl:".($mod?"$mod.":'')."$kid"); 
     if(strpos($url,'close#')) basMsg::show("$mod,$kid,$tpl<br>$url",'die');
     header("Location: $url"); 
     

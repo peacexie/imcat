@@ -2,7 +2,7 @@
 /* 
  */
 
-class extToken{
+class comToken{
 
     static $rate = 3; // 单位:分钟
     //static $ratw = 5; // 单位:秒(数据写入更新)
@@ -69,33 +69,4 @@ class extToken{
         $db->table('token_limit')->data(array('etime'=>$_SERVER["REQUEST_TIME"]))->where($arr)->update(0);
     }
 
-    // 保存:store
-    static function set($kid,$tval,$exp='1d'){
-        $db = glbDBObj::dbObj();
-        $stamp = $_SERVER["REQUEST_TIME"];
-        $exp = $exp ? $stamp + extCache::CTime($exp) : 0;
-        if(!empty($tval)){ 
-            $data = array('token'=>$tval,'exp'=>$exp);
-        }else{ // empty:clear
-            $data = array('token'=>'','exp'=>$stamp-86400);
-        }
-        $data['etime'] = $stamp;
-        $db->table("token_store")->data($data)->where("kid='$kid'")->update(0);
-    }
-    // 获取:store
-    static function get($kid,$exp=1){
-        $db = glbDBObj::dbObj();
-        $stamp = $_SERVER["REQUEST_TIME"];
-        $row = $db->table("token_store")->where("kid='$kid'")->find();
-        if($row){
-            $token = $row['token'];
-            $exp && $token = $row['exp']<=$stamp ? $token : '';
-            return $token;
-        }else{
-            $data = array('kid'=>$kid,'token'=>'','exp'=>0,'etime'=>$stamp);
-            $db->table("token_store")->data($data)->insert(0);
-            return '';
-        }
-    }
-    
 }

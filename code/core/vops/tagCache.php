@@ -29,16 +29,15 @@ class tagCache{
         preg_match("/\[cache\,([a-z0-9]+)\]/", $para, $m);  
         if(!empty($m[0]) && !empty($m[1])){ // && intval($m[1])>0
             $pkey = str_replace(array("[List]","[Page]","[One]"),'',$para);
-            $path = self::ctPath($pkey,basReq::val('tpldir')); 
-            $fpath = self::chkUpd($path,$m[1]); 
-            $data = $path ? comFiles::get($fpath) : ''; 
-            $para = str_replace($m[0],'',$para);     
+            $path = self::ctPath($pkey,basReq::val('tpldir'));
+            $data = extCache::cfGet($path,$m[1],'ctpl','str');
+            $para = str_replace($m[0],'',$para);
         }else{
-            $path = $data = ''; //无缓存,无数据        
+            $path = $data = ''; //无缓存,无数据
         }
         if(empty($data)){
             $data = self::jsData($k,$para); 
-            if($path) self::setCache($path,$data);     
+            if($path) self::setCache($path,$data);
         }
         $re = basJscss::jsShow($data, 0);
         return $re;
@@ -63,15 +62,14 @@ class tagCache{
             if($v[0]=='stype' && !isset($v[1])){
                 $fmkv = "-$mkv";
             }
-            $cex .= '['.implode(',',$v).']';    
+            $cex .= '['.implode(',',$v).']';
         } 
         if($cac){ 
             global $_cbase;
             $nowtpl = $_cbase['run']['tplnow']; 
             $tpl_dir = $_cbase['tpl']['tpl_dir']; 
             $path = self::ctPath("[{$nowtpl}][$type]{$cex}",$tpl_dir);
-            $cfile = self::chkUpd($path,$cac,'ctpl'); 
-            $data = $cfile ? unserialize(comFiles::get($cfile)) : ''; 
+            $data = extCache::cfGet($path,$cac,'ctpl','arr');
         }else{
             $data = ''; //无数据
         } 
@@ -94,29 +92,13 @@ class tagCache{
         global $_cbase; 
         if($isa){
             $data['page_bar'] = $_cbase['page']['bar'];
-            $data = serialize($data); //var_export
         }
-        comFiles::chkDirs($file,'ctpl');
-        comFiles::put(DIR_CTPL.$file,$data);
+        extCache::cfSet($file,$data,'ctpl');
     }
     
-    // -
+    //
     static function chkUpd($file,$ctime=30,$bdir='dtmp'){ 
-        $ctime = extCache::CTime($ctime);
-        $cfg = array(
-            'dtmp'=>DIR_DTMP,
-            'ures'=>DIR_URES,
-            'html'=>DIR_HTML,
-            'ctpl'=>DIR_CTPL,
-        );
-        $bdir = empty($bdir) ? '' : (isset($cfg[$bdir]) ? $cfg[$bdir] : $bdir); 
-        if(file_exists($bdir.$file)){ 
-            $last = filemtime($bdir.$file);
-            if($last + $ctime > $_SERVER["REQUEST_TIME"]){ 
-                return $bdir.$file;
-            }
-        }
-        return '';
+        return extCache::cfGet($file,$ctime,$bdir,0);
     }
 
 }

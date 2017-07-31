@@ -81,9 +81,9 @@ class homeCtrl{
                 return $this->errorAct("Your new password is[ <b>$pasn</b> ]!");
             }
         }elseif($sop=='reset'){
-            $ntok = extToken::guid($kid);
+            $ntok = comToken::guid($kid);
             $db->table('token_rest')->data(array('token'=>$ntok))->where(array('kid'=>$kid))->update(0);
-            return $this->errorAct("Your Net Token is [ <b>$ntok</b> ]!");
+            return $this->errorAct("Your New Token is [ <b>$ntok</b> ]!");
         }else{ // exp : 1d,1w,1m,12m
             $stamp = $_SERVER["REQUEST_TIME"] + extCache::CTime($sop);
             $db->table('token_rest')->data(array('exp'=>$stamp))->where(array('kid'=>$kid))->update(0);

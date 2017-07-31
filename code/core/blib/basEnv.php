@@ -32,9 +32,10 @@ class basEnv{
         define('IS_CLI',     PHP_SAPI=='cli'? 1   :   0);
         define('KEY_NUM10',  '0123456789');
         define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');
+        define('KEY_CHR22',  'abcdefghjkmnpqrstuvwxy'); // -iloz
         define('KEY_NUM16',  KEY_NUM10.'abcdef'); 
         define('KEY_TAB36',  KEY_NUM10.KEY_CHR26); // 极端情况下用
-        define('KEY_TAB32',  KEY_NUM10.'abcdefghjkmnpqrstuvwxy'); // - iloz (字形可能与数字012混淆)
+        define('KEY_TAB32',  KEY_NUM10.KEY_CHR22); // (字形可能与数字012混淆)
         define('KEY_TAB30',  '123456789abcdfghjkmnpqrstuvwxy'); // - 0e + iloz (0字形,e读音易混淆)
         define('KEY_TAB24',  '3456789abcdfghjkpqstuvwxy'); // - 012eilmnorz(25) (去除字形读音易混淆者)
     }

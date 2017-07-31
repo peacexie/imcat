@@ -4,6 +4,12 @@
 
 ------------------------------------------------------------------------------
 
+* cache
+ - _rlock_cron
+ - _faqs_types
+ - chkUpd($file,$ctime=30,$bdir='dtmp') 
+   -> extCache::cfGet($file,$ctime,$bdir);
+
 * 
  - http://www.topthink.com/user/product_add.html
 

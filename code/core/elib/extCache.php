@@ -64,7 +64,6 @@ class extCache{
         $ctime<60 && $ctime = 86400; //最小60s
         return $ctime;
     }
-
     // cache-path, dir: /12/34/ab 
     static function CPath($sKey,$mkdir=0,$base=''){
         $file = $sKey; $kmd5 = md5($sKey); $aDir = array();
@@ -87,5 +86,67 @@ class extCache{
         $dir = '/'.implode('/', $aDir);
         return array('dir'=>$dir,'file'=>$file);
     }
+
+    // cache-file-set: Set,Get
+    static function cfSet($file,$data,$bdir='dtmp'){
+        if(is_array($data)) $data = json_encode($data);
+        comFiles::chkDirs($file,$bdir);
+        $bdir = comStore::cfgDirPath($bdir);
+        comFiles::put($bdir.$file,$data);
+    }
+    // cache-file-get: re: 0=fp,str,arr,
+    static function cfGet($file,$ctime=30,$bdir='dtmp',$re=0){ 
+        $ctime = extCache::CTime($ctime);
+        $bdir = comStore::cfgDirPath($bdir);
+        if(file_exists($bdir.$file)){
+            $last = filemtime($bdir.$file);
+            if($last + $ctime > $_SERVER["REQUEST_TIME"]){
+                if(empty($re)) return $bdir.$file;  
+                $data = comFiles::get($bdir.$file);
+                if($re=='str') return $data;
+                if(empty($data) || is_numeric($data)) return $data;
+                if(substr($data,0,2)=='{"' || substr($data,0,1)=='"'){
+                    $data = json_decode($data,1);
+                }
+                return $data;
+            }
+        }
+        return false;
+    }
+
+    // token-set:
+    static function tkSet($kid,$token,$exp='1d'){
+        $db = glbDBObj::dbObj();
+        $stamp = $_SERVER["REQUEST_TIME"];
+        $exp = $exp ? $stamp + extCache::CTime($exp) : 0;
+        if(!empty($token)){
+            if(is_array($token)) $token = json_encode($token);
+            $data = array('token'=>$token,'exp'=>$exp);
+        }else{ // empty:clear
+            $data = array('token'=>'','exp'=>$stamp-86400);
+        }
+        $data['etime'] = $stamp;
+        $db->table("token_store")->data($data)->where("kid='$kid'")->update(0);
+    }
+    // token-get:
+    static function tkGet($kid,$exp=1){
+        $db = glbDBObj::dbObj();
+        $stamp = $_SERVER["REQUEST_TIME"];
+        $row = $db->table("token_store")->where("kid='$kid'")->find();
+        if($row){ 
+            $token = $row['token'];
+            $exp && $token = $row['exp']>=$stamp ? $token : '';
+            if(empty($token) || is_numeric($token)) return $token;
+            if(substr($token,0,2)=='{"' || substr($token,0,1)=='"'){
+                $token = json_decode($token,1);
+            }
+            return $token;
+        }else{
+            $data = array('kid'=>$kid,'token'=>'','exp'=>0,'etime'=>$stamp);
+            $db->table("token_store")->data($data)->insert(0);
+            return '';
+        }
+    }
+
 
 }

@@ -179,9 +179,9 @@ class vopShow{
     // 首页静态
     function homeStatic() {
         if($this->mod=='home' && !defined('RUN_STATIC') && $this->ucfg['hcfg']['vmode']=='static'){
-            $file = vopStatic::getPath('home','home',1);
-            if($path=tagCache::chkUpd($file,$this->ucfg['hcfg']['stexp'],0)){ 
-                include $path; 
+            $file = vopStatic::getPath('home','home',0);
+            if($data=extCache::cfGet("/$file",$this->ucfg['hcfg']['stexp'],'html','str')){ 
+                echo $data;
                 echo "\n<!--".basDebug::runInfo()."-->";
                 die(); // 可以终止,生成静态不走这里
             }

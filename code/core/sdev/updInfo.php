@@ -175,13 +175,12 @@ class updInfo{
     }
     // getCacheData
     static function getCacheData($file,$updkey,$type='data'){
-        $file = DIR_DTMP.$file;
         $updtime = self::$updtcfg[$updkey];
-        $upath = tagCache::chkUpd($file,$updtime,0);
+        $upath = extCache::cfGet($file,$updtime,'dtmp');
         if($upath && $type=='data'){
-            $data = comFiles::get($file);    
+            $data = comFiles::get($upath);    
         }elseif($upath){
-            include $file;
+            include $upath;
         }else{
             $data = array();    
         }

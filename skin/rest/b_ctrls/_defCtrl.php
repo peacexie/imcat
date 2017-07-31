@@ -21,8 +21,8 @@ class _defCtrl{
         $this->vars = $vars;
         $this->check();
         $this->idop();
-        $this->perms = extToken::perm($this->token,$this->mod,$this->key);
-        $this->gap = extToken::limit($this->token,$this->mod,$this->key);
+        $this->perms = comToken::perm($this->token,$this->mod,$this->key);
+        $this->gap = comToken::limit($this->token,$this->mod,$this->key);
         $this->db = glbDBObj::dbObj();
     }
 
@@ -110,7 +110,7 @@ class _defCtrl{
         if(method_exists($this,$exact)){
             $this->$exact($this->dop); // 后续数据调整
         }
-        extToken::upd($this->token,$this->mod,$this->key);
+        comToken::upd($this->token,$this->mod,$this->key);
         if(empty($data)) return;
         if(is_string($data)) die($data);
         $retype = basReq::val('retype'); 

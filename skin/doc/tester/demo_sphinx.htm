@@ -34,7 +34,7 @@ if($act=='so'){
     if(empty($spcfg[$mod]) || empty($keywd)){
         $rs = db()->table('docs_demo')->order('did DESC')->select();
     }else{
-        $sph = new comSphinx();
+        $sph = new extSphinx();
         $rs = $sph->getRecs($mod);
         $pgbar = $sph->pgbar('rebar','');
     }
