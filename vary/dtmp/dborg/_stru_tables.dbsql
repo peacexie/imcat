@@ -1618,10 +1618,19 @@ CREATE TABLE `{pre}token_rest{ext}` (
 DROP TABLE IF EXISTS `{pre}token_store{ext}`;
 CREATE TABLE `{pre}token_store{ext}` (
   `kid` varchar(96) NOT NULL COMMENT '(appid)',
-  `token` varchar(255) NOT NULL DEFAULT '',
+  `token` text NOT NULL,
   `exp` int(10) unsigned NOT NULL DEFAULT '0',
   `etime` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`kid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}token_turl{ext}`;
+CREATE TABLE `{pre}token_turl{ext}` (
+  `kid` varchar(12) NOT NULL DEFAULT '(appid)',
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `type` varchar(12) NOT NULL DEFAULT '(def)',
+  PRIMARY KEY (`kid`),
+  UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}types_auto{ext}`;
@@ -2202,5 +2211,7 @@ CREATE TABLE `{pre}xtest_keyid{ext}` (
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
   `test_v3x` int(11) NOT NULL DEFAULT '20160313',
+  `ex2017-7q-nh1jqqq` varchar(255) NOT NULL DEFAULT '2017-7q-nh1jqqx',
+  `ex2017-7q-p3vttus` varchar(255) NOT NULL DEFAULT '2017-7q-p3vttux',
   PRIMARY KEY (`kid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

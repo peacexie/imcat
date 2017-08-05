@@ -1,0 +1,16 @@
+
+-- token_turl@2017-08-05 10:00:03 -- 
+INSERT INTO `{pre}token_turl{ext}` VALUES 
+('bug','https://bugs.php.net/bug.php?id=74721','(def)'),
+('bb','http://txjia.com/baby/about.asp','txjia'),
+('yl','https://txjia2.taobao.com/index.htm','txjia'),
+('tip','http://txjia.com/tip/?typ=CoA1212','txjia'),
+('kd','http://yscode.txjia.com/tools/screen.htm','txjia'),
+('dg','http://www.weather.com.cn/weather/101281601.shtml','(def)'),
+('kg','http://www.txjia.com/kgfood/vgb/about.asp','txjia'),
+('cat','http://txmao.txjia.com/dev.php','txjia'),
+('box','http://txjia.com/peace/txbox.htm','txjia'),
+('asp','http://txjia.com/peace/txasp.htm','txjia'),
+('git','https://github.com/peacexie/imcat','txjia'),
+('eb','http://www.elifebike.com/page/pic.asp','(def)'),
+('psw','http://www.pswpower.com/page/pic.asp','(def)');

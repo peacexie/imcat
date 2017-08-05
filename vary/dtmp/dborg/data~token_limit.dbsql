@@ -1,9 +1,9 @@
 
--- token_limit@2017-07-21 21:04:07 -- 
+-- token_limit@2017-08-05 10:00:03 -- 
 INSERT INTO `{pre}token_limit{ext}` VALUES 
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','news','list','1499912538'),
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','news','table','1499913062'),
-('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','demo','table','1499949421'),
+('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','demo','table','1500679995'),
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','demo','list','1500032579'),
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','demo','a','0'),
 ('8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','china','table','1499951496');
