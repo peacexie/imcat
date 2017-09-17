@@ -19,15 +19,18 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_msub2">
-      {if $this->mod=='uplog'}
-        <?php foreach($cfgs as $k=>$v){ $imkv=$k=='readme'?'uplog':"uplog-$k"; $iver=is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; ?>
+      <?php
+      if($this->mod=='uplog'){
+      $cvs = tex_base::cutvers($cfgs,2,$key);
+      foreach($cfgs as $k=>$v){ if(in_array($k,$cvs)){ 
+      $imkv = $k=='readme' ? 'uplog' : "uplog-$k"; 
+      $iver = is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; 
+      if(strpos($_cbase['run']['verkeys'],$k)) $v[0] = '…… ……';
+      ?>
         <li><a {if ($this->key==$k)||($k=='readme'&&$this->key=='') }class="c00F"{/if} href="{surl($imkv)}">{=$iver} {=$v[0]}</a></li>
-        <?php } ?>
-      {else}
-        {loop $mcfgs['subs'] $k $v}
+      <?php } } } else{ foreach($mcfgs['subs'] as $k=>$v){ ?>
         <li><a {if ($this->key==$k)||($k=='home'&&$this->key=='') }class="c00F"{/if} href='{surl("$this->mod".($k=="home"?"":"-$k"))}' {if in_array($k,$mcfgs['blanks'])}target='_blank'{/if}>{=$v}</a></li>
-        {/loop}
-      {/if}
+      <?php } } ?>
       {if $this->mod=='tpltag'}
         <li><a class="c666" href="{surl(tools)}" target="_blank">* 贴心工具</a></li>
         <li><a class="c666" href="{surl(doc:tester-hello)}" target="_blank">* hello模板示例</a></li>

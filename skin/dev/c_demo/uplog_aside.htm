@@ -7,9 +7,15 @@
 
 <ul class="sd-mkeys"> 
 
-<?php foreach($cfgs as $k=>$v){ $imkv=$k=='readme'?'uplog':"uplog-$k"; $iver=is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; ?>
+<?php
+$cvs = tex_base::cutvers($cfgs,2,$key);
+foreach($cfgs as $k=>$v){ if(in_array($k,$cvs)){ 
+$imkv = $k=='readme' ? 'uplog' : "uplog-$k"; 
+$iver = is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; 
+if(strpos($_cbase['run']['verkeys'],$k)) $v[0] = '…… ……';
+?>
 <li><a href="{surl($imkv)}">{=$iver} {=$v[0]}</a></li>
-<?php } ?>
+<?php } } ?>
 </ul>
 
 <div class="sd-adv60"> 

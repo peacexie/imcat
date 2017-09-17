@@ -42,7 +42,7 @@ function read($file,$dir='modcm'){
         $flag = 0;
     }
     $res = glbConfig::read($file,$dir);
-    return $flag ? $res[$tmp[1]] : $res;
+    return ($flag && isset($res[$tmp[1]])) ? $res[$tmp[1]] : $res;
 }
 // req(获得get/post参数)
 function req($key,$def='',$type='Title',$len=255){
