@@ -2,7 +2,7 @@
 
 <div class="sd-so01">
 <form method="get" action="{surl(0:0)}">
-<input name="mkv" type="hidden" value="{$this->mod}--list">
+<input name="mkv" type="hidden" value="{=$this->mod}--list">
 <select name="stype" class="w200">{= basElm::setOption($this->mod,$this->key,'-Select-'); }</select>
 <input name="keywd" type="text" id="keywd" class="w150" />
 <input type="submit" id="sobtn" value="Search" />

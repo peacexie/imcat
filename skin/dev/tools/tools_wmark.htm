@@ -38,17 +38,17 @@ img { padding:10px; margin:10px; border:1px solid #CCC; }
 
 <h3 class="tc"><?php echo $title;?></h3>
 
-{$fonttip}
+{=$fonttip}
 
 <h4 class="tl">### 水印操作：</h4>
 <p class="tc">
-<a href='{$ufix}'>刷新首页</a> # 
-<a href='{$ufix}&act=copy'>重置(复制):原图片</a> # 
-<a href='{$imgurl}' target='_blank'>打开:水印图片</a> # 
-{$act} <br> 
-<a href='{$ufix}&act=wm-pic'>加+图片水印</a> # 
-<a href='{$ufix}&act=wm-text'>加+文字水印</a> # 
-<a href='{$ufix}&act=wm-def'>加+默认水印</a> # 
+<a href='{=$ufix}'>刷新首页</a> # 
+<a href='{=$ufix}&act=copy'>重置(复制):原图片</a> # 
+<a href='{=$imgurl}' target='_blank'>打开:水印图片</a> # 
+{=$act} <br> 
+<a href='{=$ufix}&act=wm-pic'>加+图片水印</a> # 
+<a href='{=$ufix}&act=wm-text'>加+文字水印</a> # 
+<a href='{=$ufix}&act=wm-def'>加+默认水印</a> # 
 </p>
 
 <h4 class="tl">### 水印结果：</h4>

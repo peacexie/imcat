@@ -21,8 +21,8 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);cseal');
 <div class="umc_cprint umc_head">
   <p class="umc_logo">&nbsp;</p>
   <div class="umc_indto">
-    <p class="umc_to1">TO: {$toarr['tou']}</p>
-    <p class="umc_to2">{lang(user.idoc_dep)}: {$toarr['tod']}</p>
+    <p class="umc_to1">TO: {=$toarr['tou']}</p>
+    <p class="umc_to2">{lang(user.idoc_dep)}: {=$toarr['tod']}</p>
   </div>
   <div class="clear"></div>
 </div>
@@ -66,7 +66,7 @@ if(in_array($sealpos,array('cseal_bl','cseal_br'))){
   {:row}
     <li>
     <i class="right">{stime($t_atime,min)}</i>
-    ({$t_readcnt}{lang(user.idoc_times)}) {title($t_auser,48,$v)}
+    ({=$t_readcnt}{lang(user.idoc_times)}) {title($t_auser,48,$v)}
     </li>
   {/row}
   </lu>
@@ -80,7 +80,7 @@ if(in_array($sealpos,array('cseal_bl','cseal_br'))){
         </td>
         <td width="50%" valign="top">    
   <div class="rembar">               
-  <span class="remadd"><a href="{surl(0)}?mkv=indoc&pid={$did}">(<i id="jsid_count_inrem:{$did}">0<!--indoc--></i>{lang(user.idoc_cnt)})</a> &nbsp; <a {php vopCell::vOpen('inrem',$did); }>&gt;&gt;{lang(user.idoc_pub)}</a></span> 
+  <span class="remadd"><a href="{surl(0)}?mkv=indoc&pid={=$did}">(<i id="jsid_count_inrem:{=$did}">0<!--indoc--></i>{lang(user.idoc_cnt)})</a> &nbsp; <a {php vopCell::vOpen('inrem',$did); }>&gt;&gt;{lang(user.idoc_pub)}</a></span> 
   <span class="remtitle">{lang(user.idoc_rem)}</span> 
   </div><!--[cache,60]--> 
   {tag:dlist=[List][modid,inrem][pid,$did][limit,20]}

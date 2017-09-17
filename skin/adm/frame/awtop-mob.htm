@@ -5,7 +5,7 @@
 eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
 eimp('initCss','bootstrap,stpub,jstyle;comm-mob'); 
 {/php}
-<script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script>
+<script src="{=PATH_DTMP}/dset/_muadm.cfg.js"></script>
 <style type='text/css'>html,body{overflow:hidden;}</style>
 </head><body>
 
@@ -13,16 +13,16 @@ eimp('initCss','bootstrap,stpub,jstyle;comm-mob');
 
   <div class="dropdown pull-right">
     <button class="btn btn-primary dropdown-toggle bg-primary" type="button" id="nav_mdoc1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <span class="glyphicon glyphicon-list"></span>
+      <span class="fa fa-list"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_mdoc1" id='adf_nav1'>
       <!--top-nav-->
       <li role="separator" class="divider"></li>
-      <?php echo basLang::links("<li><a href='{url}' class='c666' title='{title}'><i class='glyphicon glyphicon-random'></i> {title}</a></li>"); ?>
+      <?php echo basLang::links("<li><a href='{url}' class='c666' title='{title}'><i class='fa fa-random'></i> {title}</a></li>"); ?>
       <li role="separator" class="divider"></li>
-      <li><a href="?"><i class="glyphicon glyphicon-refresh"></i> {lang(admin.top_admin)}</a></li>
-      <li><a href="{surl(chn:0)}"><i class="glyphicon glyphicon-home"></i> {lang(admin.top_front)}</a></li>
-      <li><a href="?logout"><i class="glyphicon glyphicon-share"></i> {lang(admin.top_exit)}</a></li>
+      <li><a href="?"><i class="fa fa-refresh"></i> {lang(admin.top_admin)}</a></li>
+      <li><a href="{surl(chn:0)}"><i class="fa fa-home"></i> {lang(admin.top_front)}</a></li>
+      <li><a href="?logout"><i class="fa fa-share"></i> {lang(admin.top_exit)}</a></li>
 
     </ul>
   </div>
@@ -40,7 +40,7 @@ eimp('initCss','bootstrap,stpub,jstyle;comm-mob');
 </div>
 
 <div class="container pa1" id="adf_right">
-<iframe src="{$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
+<iframe src="{=$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
 </div>
 {php eimp('/~tpl/awtop.js'); }
 

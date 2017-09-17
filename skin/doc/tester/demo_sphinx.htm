@@ -14,15 +14,15 @@ ul { padding:5px; margin:20px; border:1px solid #CCC; }
 </style>
 
 <nav>
-    <a href="{surl(0)}?{$this->mkv}">[Home-Readme]</a><!--Read-->
+    <a href="{surl(0)}?{=$this->mkv}">[Home-Readme]</a><!--Read-->
     #
-    <a href="{surl(0)}?mkv={$this->mkv}&act=so">[com:List]</a>
+    <a href="{surl(0)}?mkv={=$this->mkv}&act=so">[com:List]</a>
     <br> Sphinx 
-    <a href="{surl(0)}?mkv={$this->mkv}&act=so&keywd=you">[so:you]</a>
+    <a href="{surl(0)}?mkv={=$this->mkv}&act=so&keywd=you">[so:you]</a>
     #
-    <a href="{surl(0)}?mkv={$this->mkv}&act=so&keywd=人">[so:人]</a>
+    <a href="{surl(0)}?mkv={=$this->mkv}&act=so&keywd=人">[so:人]</a>
     #
-    <a href="{surl(0)}?mkv={$this->mkv}&act=so&keywd=生">[so:生]</a>
+    <a href="{surl(0)}?mkv={=$this->mkv}&act=so&keywd=生">[so:生]</a>
 </nav>
 
 <hr>
@@ -41,9 +41,9 @@ if($act=='so'){
 ?>
 <ul>
     {loop $rs $k $row}
-    <li>{$row['did']} - {$row['title']}</li>
+    <li>{=$row['did']} - {=$row['title']}</li>
     {/loop}
-    <div class='pg_bar'>{$pgbar}</div>
+    <div class='pg_bar'>{=$pgbar}</div>
 </ul>
 
 <?php }else{ ?>
@@ -66,7 +66,7 @@ if($act=='so'){
  
 * [3] 模板使用:
  - url：点击本页上方相关连接：
- - 模版代码见：{$this->tplname} 
+ - 模版代码见：{=$this->tplname} 
 
 </pre>
 

@@ -21,19 +21,19 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);user(-mob)');
 
 <div class="pgu_outer panel panel-info">
     <div class="panel-heading head">
-        <img class="logo right" src="{PATH_SKIN}/_pub/logo/logo120x60.jpg">
+        <img class="logo right" src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg">
         <select class="form-control" id="locSetS" onchange="location.href=this.value;">
             <option value=""> En&#x21d4;中 </option>
             <?php echo basLang::links("<option value='{url}'>{title}</option>"); ?>
         </select>
         <p>{show(sys_name)}</p>
         <h3 class="panel-title">
-            <a href="{surl(0)}"><i class='glyphicon glyphicon-user'></i> {lang(user.pub_cuser)}</a>
-            &raquo; {$kname}
+            <a href="{surl(0)}"><i class='fa fa-user'></i> {lang(user.pub_cuser)}</a>
+            &raquo; {=$kname}
         </h3>
         </div>
         <div class="panel-body">
-            {block:action}Panel content{$kname}{/block:action}
+            {block:action}Panel content{=$kname}{/block:action}
         </div>
         <div class="panel-footer small tc" style="background:#FFF">
             <a href="{surl(chn:0)}">[{lang(user.nv2_home)}]</a> # 

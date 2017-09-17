@@ -96,9 +96,4 @@ class tagCache{
         extCache::cfSet($file,$data,'ctpl');
     }
     
-    //
-    static function chkUpd($file,$ctime=30,$bdir='dtmp'){ 
-        return extCache::cfGet($file,$ctime,$bdir,0);
-    }
-
 }

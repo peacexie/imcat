@@ -1,5 +1,5 @@
 
--- bext_dbdict@2017-07-21 21:04:07 -- 
+-- bext_dbdict@2017-09-17 15:06:38 -- 
 INSERT INTO `{pre}bext_dbdict{ext}` VALUES 
 ('passwd','users_adminer','密码','','0','','','0',''),
 ('qrcode','wex_apps','二维码','','0','','','0',''),
@@ -119,13 +119,4 @@ INSERT INTO `{pre}bext_dbdict{ext}` VALUES
 ('dealfunp','exd_sfield','处理函数参数','','0','','','0',''),
 ('defval','exd_sfield','为空时默认值','','0','','','0',''),
 ('defover','exd_sfield','覆盖标记','','0','','','0',''),
-('mod','exd_crawl','采集采集','','0','','','0',''),
-('hkflag','bext_cron','钩子标记','127.0.0.1','1483018370','peace','','0',''),
-('hkmkv','bext_cron','钩子mkv','127.0.0.1','1483018370','peace','','0',''),
-('hktpl','bext_cron','钩子tpl','127.0.0.1','1483018370','peace','','0',''),
-('mods','bext_mins','模块','127.0.0.1','1483018418','peace','','0',''),
-('files','bext_mins','文件','127.0.0.1','1483018418','peace','','0',''),
-('state','bext_mins','状态','127.0.0.1','1483018418','peace','','0',''),
-('modid','plus_sphinx','ModID','127.0.0.1','1483705130','peace','','0',''),
-('maxid','plus_sphinx','MaxID','127.0.0.1','1483705130','peace','','0',''),
-('0','plus_sphinx','(Sphinx)MaxID','127.0.0.1','1483866358','peace','','0','');
+('mod','exd_crawl','采集采集','','0','','','0','');

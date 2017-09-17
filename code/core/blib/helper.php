@@ -33,13 +33,16 @@ function lang($mk, $val=''){
 }
 // read(读取缓存)
 function read($file,$dir='modcm'){
-    // $file:支持格式:domain.dmacc
+    // $file:支持格式:news.i
     if(strpos($file,'.')){
         $tmp = explode('.',$file);
         $file = $tmp[0];
+        $flag = 1;
+    }else{
+        $flag = 0;
     }
     $res = glbConfig::read($file,$dir);
-    return empty($tmp[1]) ? $res : $res[$tmp[1]];
+    return $flag ? $res[$tmp[1]] : $res;
 }
 // req(获得get/post参数)
 function req($key,$def='',$type='Title',$len=255){

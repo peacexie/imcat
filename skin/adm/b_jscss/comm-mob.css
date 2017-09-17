@@ -25,6 +25,6 @@ a.cur { color:#C00; }
 
 .mframe{ width:100%; overflow:scroll; overflow-x:hidden; }
 
-ul.adf_mnu2 li.adf_dir { color:#3A6EA5; font-weight:bold; background-image:url(../../../skin/_pub/a_img/tree.gif); background-position:10px -118px; background-repeat:no-repeat; padding:3px 3px 3px 35px; }
-ul.adf_mnu2 li { line-height:150%; background-image:url(../../../skin/_pub/a_img/tree.gif); background-position:2px -19px; background-repeat:no-repeat; padding:3px 3px 3px 15px; }
+ul.adf_mnu2 li.adf_dir { color:#3A6EA5; font-weight:bold; padding:3px 3px 3px 15px; }
+ul.adf_mnu2 li { line-height:150%; padding:3px 3px 3px 8px; }
 ul.adf_mnu2 li a { display:inline-block; padding:0px 1px 0px 3px; }

@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','(auto)'); 
 
 $ntpl = req('ntpl',$_cbase['tpl']['def_static']);
 $_cbase['tpl']['tpl_dir'] = $ntpl;

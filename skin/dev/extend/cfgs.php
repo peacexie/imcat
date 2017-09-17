@@ -7,6 +7,7 @@ $cfgs = array(
     'ueditor', 'apiServer', 
     'exdemo', // 一页(10个)以内
     'LocalIP', 'Simkai',
+    'TinyUrl',
     
 );
 

@@ -11,7 +11,7 @@
 $_did = 'yyyy-md-xxxx';
 {php $_did = '2006-97-8axx'; }
 {tag:demo3=[jsList][modid,demo][order,etime][limit,3]}
-<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$t_title} --- {stime($t_atime)}</a></li>
 {/tag:demo3}
 ```
 
@@ -19,12 +19,12 @@ $_did = 'yyyy-md-xxxx';
 #jscount# js-Tag Count
 
 ```
-Clike <i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i> Times
+Clike <i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i> Times
 Remark:<i id="cnt_nrem">0</i> Items
-Remark(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>Items) (Notice use ` split the remark tag)
-Remark(<i id="jsid_count_{$pmod}:{$did}">0<!--news,cnt_nrem--></i>Items)
+Remark(<i id="jsid_count_{=$pmod}:{=$did}">0<!--`{=$this->mod},cnt_{=$pmod}`--></i>Items) (Notice use ` split the remark tag)
+Remark(<i id="jsid_count_{=$pmod}:{=$did}">0<!--news,cnt_nrem--></i>Items)
 Remark(<i id="jsid_count_nrem:2013-ck-jc01">0<!--`news,cnt_nrem`--></i>Items)
-Guestbook(<i id="jsid_count_{$modid}:0">0</i>Items) //All guestbook rec(s)
+Guestbook(<i id="jsid_count_{=$modid}:0">0</i>Items) //All guestbook rec(s)
 ```
 
 

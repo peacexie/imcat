@@ -5,6 +5,7 @@ class glbCUpd{
 
     public static $_mitems = 72;//最大Item个数,超过用josn
     public static $_fields = 'kid,title,etab,type,dbtype,dblen,dbdef,vreg,vtip,vmax,fmsize,fmline,fmtitle,fmextra,fmexstr,cfgs';
+    public static $_icons = array('1'=>'book','2'=>'folder-open-o','3'=>'file-text-o',);
 
     // upd rebuld
     static function upd_rebuld(){
@@ -41,15 +42,11 @@ class glbCUpd{
         $list = glbDBObj::dbObj()->table('base_grade')->where("enable='1'")->order('model,top')->select(); 
         $arr = array();
         foreach($list as $k=>$v){ 
-            $v['modname'] = $_groups[$v['model']]['title'];
             $v['grade'] = $v['kid'];
-            foreach(array('model','modname','title','cfgs','note','grade') as $k){
-                $arr[$v['kid']][$k] = @$v[$k];
-            }
-            foreach($v as $k2=>$v2){ if(substr($k2,0,1)=='p'){
-                $arr[$v['kid']][$k2] = empty($v[$k2]) ? '' : $v[$k2];
-            } } 
-            self::upd_ipfile($arr[$v['kid']]);
+            $dfs = array('top','enable','note','aip','atime','auser','eip','etime','euser');
+            foreach($dfs as $fk) unset($v[$fk]);
+            $arr[$v['kid']] = $v;
+            //self::upd_ipfile($arr[$v['kid']]);
         }
         glbConfig::save($arr,'grade','dset'); 
     }
@@ -172,7 +169,7 @@ class glbCUpd{
     static function upd_imenu($mod,$cfg,$pid=0){
         $db = glbDBObj::dbObj();
         $tabid = 'base_menu';
-        $fileds = 'kid,pid,title,deep,cfgs';
+        $fileds = 'kid,pid,title,icon,deep,cfgs';
         $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
         $res = comTypes::arrLays($arr,self::$_mitems);
         return $res;
@@ -222,16 +219,18 @@ class glbCUpd{
     static function upd_menus($mod,$cfg=array()){ 
         if(empty($cfg)) $cfg = glbConfig::read($mod);
         if($mod=='muadm'){ 
-            $s0 = ''; $s1 = ''; $js1 = ''; $js2 = '';
-            $mperm = array();
+            $s0 = $s1 =  $js1 = $js2 = $js3 = '';
+            $mperm = array(); 
             foreach($cfg['i'] as $k1=>$v1){ 
                 if(!empty($v1['cfgs']) && strstr($v1['cfgs'],'?mkv')){
                     $mperm[$k1] = self::upd_imperm($v1['cfgs']);
                 }
                 if($v1['deep']=='1'){
-                    $s1 .= "<a onclick=\"admSetTab('$k1')\">$v1[title]</a>";
+                    $icon = " <i class='fa fa-".(empty($v1['icon']) ? self::$_icons[1] : $v1['icon'])."'></i>";
+                    $s1 .= "<a onclick=\"admSetTab('$k1')\">$icon $v1[title]</a>";
                     $js1 .= ",$k1";
                     $js2 .= ",$v1[title]";
+                    $js3 .= ",$v1[icon]";
                     $s0 .= "<div id='left_$k1'>";
                     if(method_exists('exaFunc',$func="admenu_$k1")){ exaFunc::$func($s0); }
                     elseif($k1=='m1adv'){ self::upd_madvs($s0); }
@@ -241,6 +240,7 @@ class glbCUpd{
             }
             $data = "\nvar admNavTab = '$js1';";
             $data .= "\nvar admNavName = '$js2';";
+            $data .= "\nvar admNavIcon = '$js3';";
             $data .= "\nvar admHtmTop = '".basJscss::jsShow($s1,0)."';";
             $data .= "\nvar admHtmLeft = '".basJscss::jsShow($s0,0)."';";
             // $data .= "\ndocument.write(admHtmTop);";
@@ -256,11 +256,13 @@ class glbCUpd{
         foreach($_groups as $k2=>$v2){ 
         if($v2['pid']=='advs'){
             $cfg = glbConfig::read($k2);
+            $icon = "<i class='fa fa-".self::$_icons[2]."'></i>";
             $s0 .= "<ul class='adf_mnu2' id='left_$k2'>";
-            $s0 .= "<li class='adf_dir'><a href='?mkv=dops-a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
+            $s0 .= "<li class='adf_dir'>$icon <a href='?mkv=dops-a&amp;mod=$k2' target='adf_main'>$v2[title]</a></li>";
             foreach($cfg['i'] as $k3=>$v3){ 
             if(empty($v3['pid'])){ //顶级
-                $s0 .= "<li id='left_$k3'>";
+                $icon = "<i class='fa fa-".self::$_icons[3]."'></i>";
+                $s0 .= "<li id='left_$k3'>$icon ";
                 $s0 .= "<a href='?mkv=dops-a&amp;mod=$k2&stype=$k3' target='adf_main'>{$v3['title']}</a> - ";
                 $s0 .= "<a onclick=\"admJsClick(this)\">".basLang::show('core.msg_add')."</a></li>";
             }}
@@ -270,11 +272,13 @@ class glbCUpd{
     static function upd_mitms(&$s0,$cfg,$k1){ //后台配置的菜单项
         foreach($cfg['i'] as $k2=>$v2){ 
         if($v2['pid']==$k1){
+            $icon = " <i class='fa fa-".(empty($v2['icon']) ? self::$_icons[$v2['deep']] : $v2['icon'])."'></i>";
             $s0 .= "<ul class='adf_mnu2' id='left_$k2'>";
-            $s0 .= "<li class='adf_dir'>$v2[title]</li>";
+            $s0 .= "<li class='adf_dir'>$icon $v2[title]</li>";
             foreach($cfg['i'] as $k3=>$v3){ 
             if($v3['pid']==$k2){
-                $s0 .= "<li id='left_$k3'>";
+                $icon = " <i class='fa fa-".(empty($v3['icon']) ? self::$_icons[$v3['deep']] : $v3['icon'])."'></i>";
+                $s0 .= "<li id='left_$k3'>$icon ";
                 $t = self::upd_mlink($v3);
                 $s0 .= "$t</li>";
             }}
@@ -314,7 +318,7 @@ class glbCUpd{
         }
         return $re;
     }
-    static function upd_ipfile(&$icfg){
+    /*static function upd_ipfile(&$icfg){
         static $_mpm;
         if(empty($_mpm)){
             $_mpm = glbConfig::read('muadm_perm','dset'); 
@@ -328,6 +332,6 @@ class glbCUpd{
             }
         }
         $icfg['pfile'] = str_replace(array(',,,',',,'),',',"$pfile,");
-    }
+    }*/
     
 }

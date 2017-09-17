@@ -87,16 +87,17 @@
 * 【1】 tpl的html注释中用花括号({})输出变量：
 
 ```
-// 如：<!--{$this->tplname}-->
+// 如：<!--{=$this->tplname}-->
 // -=>解析成：<?php echo @$this->tplname; ?>
 // -=>应当为：<!--<?php echo @$this->tplname; ?>-->
-//  解决：在前后加个如空格等特殊符号如：<!--/{$this->tplname}/-->  
-// 或 评论(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>条) (变量需要`符号分开)
+//  解决：在前后加个如空格等特殊符号如：<!--/{=$this->tplname}/-->  
+// 或 评论(<i id="jsid_count_{=$pmod}:{=$did}">0<!--`{=$this->mod},cnt_{=$pmod}`--></i>条) (变量需要`符号分开)
 ```
 
 * 【2】 tpl的php块中输出变量，不能在双引号("")里面用花括号({})把变量包起来：
 
 ```
+// !!! 本问题在v3.9已经解决, old is:{$vname} -=> new is:{=$vname}
 如：{php echo "userip={$_cbase['run']['userip']};"; }
 -=>解析成：<?php echo "userip=<?php echo @$_cbase['run']['userip']; ?>;"; ?>
 -=>应当为：<?php echo "userip=".@$_cbase['run']['userip'].";"; ?>

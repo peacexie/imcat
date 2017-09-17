@@ -1,0 +1,89 @@
+
+
+此文档适合即将发布的：v3.9
+
+------------------------------------------------------------------------------
+
+### Apache Rewrite配置
+
+* 确认Apache已经正确加载了mod_rewrite模块
+
+* 测试:
+ - /@read/rew/entry1.php 以及出来的连接，都可点击打开
+
+* 配置服务器:
+ - 复制: `.htaccess/web.config` 到根目录
+ - 根据需要修改文件中`entry1`,`entry2`为`chn`,`mob`等
+
+* 配置本系统:
+ - \imcat\root\cfgs\sycfg\sy_pubcfg.php
+ - $_sy_vopcfg['tpl']某一节点如['doc'] 下，配合如下两行：
+ - `` '/', // 伪静态配置：把`.php?` ->替换为 `/` ``
+ - `` '.htm', // 伪静态后缀 ``
+
+
+------------------------------------------------------------------------------
+
+### iis7+ Rewrite配置
+
+* 下载安装:URL Rewrite
+ - https://www.iis.net/downloads/microsoft/url-rewrite
+
+* 后续配置，与 Apache 的 `测试` `配置` 相同
+
+* iis6设置有所不同，自行找参考资料
+ - iis6 是 Win2003的产物，而php5.5开始就不支持win2003了，
+ - 服务器建议用 Apache/Nginx 环境；win环境建议用win2008以上正版系统
+
+
+------------------------------------------------------------------------------
+
+### Nginx Rewrite配置
+
+* Nginx下设置伪静态方法与Apache差不多，直接在nginx.conf (或者在对应的*.conf) 中
+找到需设置伪静态规则的服务器对应字段，在server{ location/{ } }中添加以下代码:
+
+* 参考：
+ - http://bbs.qcloud.com/forum.php?mod=viewthread&tid=3545
+ - Apache和Nginx设置伪静态(URL Rewrite)的方法
+
+
+### 百度BAE空间 配置
+
+* 配置 app.conf 文件(演示站demo)：
+
+```
+  - url : (dev)\/([\w|\.|\-]+)\.htm
+    script : dev.php?$2
+  - url : (doc)\/([\w|\.|\-]+)\.htm
+    script : dev.php?$2
+```
+
+* 参考：
+ - http://www.laifuying.com/archives/464 
+ - 百度BAE app.conf 处理301 URL rewrite 重定向的一些方式及遇到的问题
+ - https://yq.aliyun.com/articles/27609
+ - 关于ThinkPHP在BAE上URL的rewrite问题
+ - 注意 YAML 语法与缩进 
+
+
+------------------------------------------------------------------------------
+
+### 注意事项
+
+* 如果是iis，一个站点中有多个 `web.config` 文件
+ - 请修改 `<rule name="import.htaccess">` 里面的名称(name属性)，使其各不相同，否则有如下错误
+ - 提示为：`在唯一密钥属性“name”设置为“imroot.htaccess”时，无法添加类型为“rule”的重复集合项`
+ - 错误行类似：`<rule name="imroot.htaccess">` (修改name属性即可)
+
+
+### 参考资源
+
+* http://www.cnblogs.com/yanzhen/archive/2012/01/07/iis7-wei-jing-tai.html
+IIS7 伪静态 web.config 配置方法【详解】
+
+* http://httpd.apache.org/docs/2.4/zh-cn/rewrite/
+Apache mod_rewrite
+
+* http://www.jb51.net/article/47907.htm
+13个实用的Apache Rewrite重写规则

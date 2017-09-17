@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','(auto)');
 
 $mod = req('mod','upvnow'); 
 $nava = basLang::ucfg('nava.upd_vers'); 

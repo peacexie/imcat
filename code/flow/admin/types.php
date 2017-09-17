@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','admin/types.php');
 
 $mod = empty($mod) ? 'china' : $mod;
 $view = empty($view) ? 'glist' : $view;
@@ -93,7 +92,7 @@ if($view=='glist'){
     echo "<tr>\n";
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
     $opstr = basElm::setOption(lang('flow.op_op4')."\nframe|".lang('admin.cat_frame')."\nnofrm|".lang('admin.cat_xframe')."\nchupd|".lang('admin.tp_updchar')."\nchord|".lang('admin.tp_ordchar')."");
-    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>$opstr</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "<td class='tr flgOpbar' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select class='w120 form-control' name='fs_do'>$opstr</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
     

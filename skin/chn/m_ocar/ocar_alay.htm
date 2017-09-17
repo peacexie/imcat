@@ -22,7 +22,7 @@ eimp('initJs','jspop,jquery;comm;/_pub/a_jscss/sordbar',1);
 eimp('initCss','bootstrap,stpub,jstyle;comm;ocar'); 
 {/php}
 {block:mimp}
-<script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
+<script src="{=PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
 {/block:mimp}
 </head><body>
 
@@ -38,9 +38,9 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;ocar');
   <div class="pgf_main"> 
     
     <div class="ocar-tbar">
-    <i>{$title}</i>
+    <i>{=$title}</i>
     <i class="right">
-    <a href="?{$this->mkv}" class="cF00">{$msg}</a>
+    <a href="?{=$this->mkv}" class="cF00">{=$msg}</a>
     </i>
     </div>
     {/block:mbdstart}
@@ -60,7 +60,7 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;ocar');
 <script>
 _cbase.jsrun.menuid = 'cargo'; 
 {if empty($this->key) }
-var ocar_items = '{$ocar_items}';
+var ocar_items = '{=$ocar_items}';
 setCookie('ocar_items',ocar_items);
 {/if}
 </script>

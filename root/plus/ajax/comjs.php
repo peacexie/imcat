@@ -28,7 +28,6 @@ if(strstr($act,'autoJQ')){
         require DIR_VENDUI.'/jquery/zepto-1x.js';
     }else{ 
         if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
-            require DIR_VENDUI.'/jquery/ie8_html5_resp.js'; 
             require DIR_VENDUI.'/jquery/html5.js'; // html5shiv + respond
             require DIR_VENDUI.'/jquery/jquery-1.x.js';
         }else{

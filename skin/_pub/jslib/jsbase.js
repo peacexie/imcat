@@ -216,14 +216,24 @@ function isObj(obj,type){
     if(!type) type = 'Object';
     return (cons.indexOf(type)!= -1);
 }
-// 正则测试str,如判断ie6浏览器
+// 正则测试str,如判断ie浏览器
 function jsTest(c,str) {  
-    if(!str) str = navigator.userAgent; 
-    if(!c) c = 'MSIE 6';
-    else if(!isNaN(c)) c = 'MSIE '+c; 
-    var pos = str.indexOf(c);
-    return pos<0 ? false : true; //reg.test(str);
+    if(!str) str = navigator.userAgent;
+    if(!c) c = 'MSIE';
+    str = str.toLowerCase();
+    c = c.toLowerCase();
+    return str.indexOf(c) !== -1;
 }
+function devices() {
+    var dtab = {
+        isIOS: jsTest('iPhone') || jsTest('iPad') || jsTest('iPod'),
+        isAndroid: jsTest('Android'),
+        isUCBrowser: jsTest('UCBrowser'),
+        isQQBrowser: jsTest('MQQBrowser'),
+        isWeixin: jsTest('MicroMessenger')
+    };
+    return dtab;
+};
 // jsKeys
 function jsKey(fid){
     var a = new Array("[",']',' ','/','-','.','&','=','#','?');

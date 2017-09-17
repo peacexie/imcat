@@ -15,11 +15,11 @@ $where = tex_indoc::expwhr($user,$part,$stype);
 <div class="pgf_mid">
   <div class="pgf_mcon"> 
     <div class="news-tbar">
-    <i>{$stitle}</i>
+    <i>{=$stitle}</i>
     <i class="right">
-    <a href="?mkv={$this->mkv}&part={$part}">[所有]</a>
+    <a href="?mkv={=$this->mkv}&part={=$part}">[所有]</a>
     {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
-    # <a href="?mkv={$this->mkv}&part={$part}&stype={$t_kid}">{title($t_title,32,$u)}</a>
+    # <a href="?mkv={=$this->mkv}&part={=$part}&stype={=$t_kid}">{title($t_title,32,$u)}</a>
     {/tag:tp}
     </i>
     </div>

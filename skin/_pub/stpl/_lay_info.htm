@@ -23,7 +23,7 @@ $rinfo = basDebug::runInfo();
 if(basEnv::isMobile()) $rinfo = str_replace(array('Tpl:','Upd:'),array('<br>Tpl:','<br>Upd:'),$rinfo);
 ?>
 <div class='footer'>
-  <p>{$rinfo}</p>  
+  <p>{=$rinfo}</p>  
 </div>
 
 </body></html>

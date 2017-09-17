@@ -141,10 +141,10 @@ class comPager{
     function links(){
         $pcnt = $this->pcnt;
         $a = array(); 
-        $sFirst = '<span class="glyphicon glyphicon-fast-backward"></span>';
+        $sFirst = '<span class="fa fa-fast-backward"></span>';
         $sPrev = '<span aria-hidden="true">&laquo;</span>';
         $sNext = '<span aria-hidden="true">&raquo;</span>';
-        $sLast = '<span class="glyphicon glyphicon-fast-forward"></span>';
+        $sLast = '<span class="fa fa-fast-forward"></span>';
         
         $a['pagno'] = "<li class='pg_pagno'><a class='disabled'>$this->page/$pcnt</a></li>";
         $a['first'] = "<li><a class='disabled'>$sFirst</a></li>";

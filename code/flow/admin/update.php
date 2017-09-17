@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
-usrPerm::run('pfile','(auto)');
 
 $parts = empty($parts) ? 'cache' : $parts;
 $cfg = basLang::ucfg('cfgbase.admupd'); 
@@ -86,7 +85,7 @@ if(empty($bsend)){
         }
     } // upd_grade放在upd_menus后面
     if(in_array('menum',$clr)){
-         admAFunc::umcVInit();
+         admAFunc::mkvInit();
     }
     if(in_array('gperm',$clr)){
         glbCUpd::upd_grade(); 

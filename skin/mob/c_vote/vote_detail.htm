@@ -13,13 +13,13 @@
     ?>
     <h1 class="news_title">{title($title,96,$this->vars)}</h1>
     <div class="news_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次
+      点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次
     </div>
     <div class="news_text"> {html($detail)} </div>
-    <form id='fmlist' name='fmlist' method='post' action='{PATH_ROOT}/plus/coms/votep.php?pid={$did}' onsubmit="return fmchk()">
+    <form id='fmlist' name='fmlist' method='post' action='{=PATH_ROOT}/plus/coms/votep.php?pid={=$did}' onsubmit="return fmchk()">
     <div class="vote_rem">
       <div class="rembar"> 
-      <span class="remadd">已投(<i id="cnt_votep"><img src="{PATH_SKIN}/_pub/a_img/loading.gif" width="10" height="10"></i>票次)</span> 
+      <span class="remadd">已投(<i id="cnt_votep"><img src="{=PATH_SKIN}/_pub/a_img/loading.gif" width="10" height="10"></i>票次)</span> 
       <span class="remtitle">选项列表</span> 
       </div>
       {tag:dlist=[List][modid,votei][pid,$did][limit,999]} <!--[order,vtop,asc]-->
@@ -27,8 +27,8 @@
       <?php $vcnts +=$t_vcnt; ?>
       <dl>
         <dt>
-        <span class="right">{$t_vcnt}票次&gt;</span>
-        <label><input name="fm[]" type="checkbox" class="rdcb" value="{$t_cid}">[{$t_vno}]{title($t_title,48,$v)}</label>
+        <span class="right">{=$t_vcnt}票次&gt;</span>
+        <label><input name="fm[]" type="checkbox" class="rdcb" value="{=$t_cid}">[{=$t_vno}]{title($t_title,48,$v)}</label>
         </dt>
         <dd style="display:xnone;">
         {text($t_detail,2400)}
@@ -45,7 +45,7 @@
 
 </div>
 <script>
-var vmax={$vmode};
+var vmax={=$vmode};
 $(".rdcb").click(function(){
     var len = $("input:checkbox:checked").length;
     if(len>vmax){
@@ -64,6 +64,6 @@ function fmchk(){
         return false;
     }
 }
-$('#cnt_votep').html({$vcnts});
+$('#cnt_votep').html({=$vcnts});
 </script>
 {/block:main}

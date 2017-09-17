@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
-usrPerm::run('pfile','admin/paras.php');
 
 $mod = empty($mod) ? 'prcore' : $mod;
 //$ispara = 1; //1,0

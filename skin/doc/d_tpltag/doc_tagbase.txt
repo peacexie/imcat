@@ -29,12 +29,12 @@
 * echo
 
 ```
-Variable: {$this->mod},{$this->key},{$title},{$t_title}
-Array: {$_cbase['server']['valkey']},{$fc['title']} (Recommended add quotes)
-  or {$_cbase[server][valkey]},{$fc[title]} (Not recommend)
+Variable: {=$this->mod},{=$this->key},{=$title},{=$t_title}
+Array: {=$_cbase['server']['valkey']},{=$fc['title']} (Recommended add quotes)
+  or {=$_cbase[server][valkey]},{=$fc[title]} (Not recommend)
 · {= date('Y-m-d'); } <br>
 · {= 'Hi! '; }{= date('Y-m-d') } 
-· {PATH_SKIN}/_pub/a_img/loadbig.gif
+· {=PATH_SKIN}/_pub/a_img/loadbig.gif
 ```
 
 
@@ -53,11 +53,11 @@ State3: {sopt($ordstat,corder.ordstat,tpl,$null)} //默认模版显示,可自行
 State4: {sopt($ordstat,corder.ordstat,$tpl,$null)} //自定模版显示,可自行写css.class着色
 demo:
     {php $f='exp_m01'; $fc=$fexts[$f]; $split='|'; $tpl="<span class='exp_s02-(k)'>(v)</span>"; }
-    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
-    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
-    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
-    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
-    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
+    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,0)} </b></p>
+    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,1)} </b></p>
+    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$split)} </b></p>
+    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,$tpl)} </b></p>
 -=>Result
     <span style='color:#F00'>Gray</span>
     <span style='color:#F0F'>Black</span> </b></p>
@@ -85,7 +85,7 @@ demo:
 ```
 {tag:demo2=[Page][modid,demo][limit,3]}
 {:row}
-<li>{$t_title} --- {stime($t_atime)}</li>
+<li>{=$t_title} --- {stime($t_atime)}</li>
 {/row}
 {php echo $_cbase['page']['bar']; }
 {/tag:demo2}
@@ -96,7 +96,7 @@ demo:
 ```
 {php $_did = '2006-97-8axx'; }
 {tag:demo1=[One][modid,demo][join,detail][where,"m.did='$_did'"][order,etime]}
-<li><a href="{surl("demo.$t_did")}">{$v['title']} --- {stime($t_atime)} --- {$t_detail}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$v['title']} --- {stime($t_atime)} --- {=$t_detail}</a></li>
 {/tag:demo1}
 ```
  
@@ -104,7 +104,7 @@ demo:
  - List for [Types/Class]
 ```
 {tag:flag4=[Type][modid,china][idfix,sun:zx]}
-<li>{$t_kid},{$t_title}</li>
+<li>{=$t_kid},{=$t_title}</li>
 {/tag:flag4}
 ```
 

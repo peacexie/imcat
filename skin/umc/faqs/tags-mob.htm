@@ -15,7 +15,7 @@ $where = tex_faqs::expwhr($this); // [keywd][where,$where]
 ?>
 {tag:qas=[Page][modid,qatag][show,1][order,hotcnt][limit,120]}
     {:row}
-    <dt><a href="{surl(0)}?mkv=faqs--list&tag={$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}({$t_hotcnt})</a></dt>
+    <dt><a href="{surl(0)}?mkv=faqs--list&tag={=$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}({=$t_hotcnt})</a></dt>
     {/row}
     </dd>
 {/tag:qas}

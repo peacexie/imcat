@@ -15,11 +15,11 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;umem');
   <div class="pgf_mcon">
       <h1 class="news_title">{title($company,96,$this->vars)} --- {if $this->view=='news' }新闻{else}产品{/if}</h1>
       <div class="news_bar"> 添加:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-        点击<i id="jsid_field_{$this->mod}:{$uid}:click">{$click}<!--,add1--></i>次 &nbsp; 
+        点击<i id="jsid_field_{=$this->mod}:{=$uid}:click">{=$click}<!--,add1--></i>次 &nbsp; 
       </div>
       
       <div class="h10">&nbsp;</div>
-      <h2>{$this->view} (模板功能演示) ... 会员发布的{if $this->view=='news' }新闻{else}产品{/if}列表……</h2>
+      <h2>{=$this->view} (模板功能演示) ... 会员发布的{if $this->view=='news' }新闻{else}产品{/if}列表……</h2>
       <div class="h10">&nbsp;</div>
       
     <div class="clear"></div>

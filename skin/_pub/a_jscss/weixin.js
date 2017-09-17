@@ -67,7 +67,7 @@ function wxGetPageBar(pnow) {
     var pmin = pnow-5; if(pmin<1) pmin=1;
     var pmax = pnow+5; if(pmax>pall) pmax=pall;
     var css = '', i=0; 
-    var sbar = "";
+    var sbar = "<li class='pg_pagno'><a class=disabled>"+pnow+"/"+pall+"</a></li>";
     if(pmin>1){
         i=1; css = i==pnow ? 'pg_num cF0F' : 'pg_num';
         sbar += "<li class='"+css+"'><a style='cursor:pointer' onclick='wxGetPageAct("+i+")'>"+i+"...</a></li>";    
@@ -80,8 +80,8 @@ function wxGetPageBar(pnow) {
         i=pall; css = i==pnow ? 'pg_num cF0F' : 'pg_num';
         sbar += "<li class='"+css+"'><a style='cursor:pointer' onclick='wxGetPageAct("+i+")'>..."+i+"</a></li>";
     }
-    sbar += "<li class='pg_total'>"+wu_count+"</li><li class='pg_pagno'>"+pnow+"/"+pall+"</li>";
-    $('.pg_bar').html(sbar);
+    sbar += "<li class='pg_total'><a class=disabled>"+wu_count+"</a></li>";
+    $('.pg_bar').html('<ul class="pagination">'+sbar+'</ul>');
     /*
     <li class='pg_first'>&laquo;||首页</li>
     <li class='pg_prev'>&lt;|上页</li>

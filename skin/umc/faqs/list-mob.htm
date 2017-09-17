@@ -13,7 +13,7 @@ $whr = $whrs[0]; $ord = $whrs[1];
 <dl class="faqs-list">
 {tag:qas=[Page][modid,faqs][where,$whr][order,$ord][show,1][limit,10]}
     {:row}
-    <dt>{if !empty($t_hinfo) }<b class="glyphicon glyphicon-leaf"></b>{/if}<a href="{surl("faqs.$t_did")}">{title($t_title,240,$v)}</a></dt>
+    <dt>{if !empty($t_hinfo) }<b class="fa fa-leaf"></b>{/if}<a href="{surl("faqs.$t_did")}">{title($t_title,240,$v)}</a></dt>
     <dd><i>{stime($t_atime,min)}</i>
     <span class="right"><a href="{surl("faqs-$t_catid")}">{sopt($t_catid,$this->mod,1,0)}</a></span>
     </dd>

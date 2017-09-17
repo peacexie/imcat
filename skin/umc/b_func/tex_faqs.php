@@ -134,23 +134,21 @@ class tex_faqs{ //extends tex_base
     
     // 统计类别下的问答
     static function statTypes($act='get'){ 
-        $arr = array();
+        $db = db(); 
         $file = "/store/_faqs_types.cfg.php";
         $arr = extCache::tkGet('faqs_types',1);
-        if(empty($arr)){ 
+        if(!is_array($arr) || empty($arr['_allt'])){
+            $arr = array();
             $act = 'upd';
         }
-        $db = db(); 
         $tabfull = "{$db->pre}docs_faqs{$db->ext}"; 
         $arr['_tags'] = $db->table('coms_qatag')->where("`show`='1'")->count(); 
         $arr['_allt'] = $db->table('docs_faqs')->where("`show`='1'")->count(); 
         $q = $db->query("SELECT catid,count(*) as cnt FROM $tabfull WHERE `show`='1' GROUP BY catid"); 
-        foreach($q as $k=>$v){
+        foreach($q as $k=>$v) 
             $arr[$v['catid']] = $v['cnt'];
-        }
-        if($act=='upd'){
+        if($act=='upd') 
             extCache::tkSet('faqs_types',$arr,30);
-        }
         return $arr;
     }
     

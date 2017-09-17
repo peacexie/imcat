@@ -18,7 +18,7 @@ $null = "<span class='cCCC'>------</span>";
     <!-- Detail Start -->
     <h1 class="pro_title">{title($title,96,$this->vars)}</h1>
     <div class="pro_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
+      点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次 &nbsp; 
       评论:<i id="cnt_nrem">0</i>条 </div>
     <div class="news_text"> {html($detail)} </div>
     
@@ -55,7 +55,7 @@ $null = "<span class='cCCC'>------</span>";
         <tr class='xxrem'>
             <td colspan="4" class="news_rem">        
                 <div class="rembar"> 
-                <span class="remadd"><a href="{surl(0)}?mkv=crem&pid={$did}">评论(<i id="jsid_count_crem:{$did}">0<!--,cnt_crem--></i>条)</a> &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
+                <span class="remadd"><a href="{surl(0)}?mkv=crem&pid={=$did}">评论(<i id="jsid_count_crem:{=$did}">0<!--,cnt_crem--></i>条)</a> &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
                 <span class="remtitle">评论列表</span> 
                 </div><!--[cache,60]-->
                 {tag:dlist=[jsList][modid,crem][pid,$did][limit,10]}
@@ -64,7 +64,7 @@ $null = "<span class='cCCC'>------</span>";
                   <dt>{title($t_title,48,$v)} </dt>
                   <dd>
                   {text($t_detail,2400)}
-                  <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+                  <p class="tr"><span>{=$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
                   </dd>
                 </dl>
                 {/row}
@@ -105,9 +105,5 @@ for(i=0;i<cfg.data.length;i++){
     str += pic;
 }
 $('#picMini').html(str);
-function mpro_vbig(e){
-    var src = $(e).attr('src');
-    $('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+v+"' onload='imgShow(this,400,300)'>");
-}
 
 </script>

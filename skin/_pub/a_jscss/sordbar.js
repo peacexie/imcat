@@ -5,7 +5,7 @@
 var sordb_cfgs = {}; // a=0; b='0'; c=''; -=> f,t,f
 
 // 初始化
-// sordb_init('{$this->mod}','{$this->key}',0,'stype:brand,price;typ2:fff1,fff2',"<a href='(url)' class='(act)'>(title)</a>"); 
+// sordb_init('{=$this->mod}','{=$this->key}',0,'stype:brand,price;typ2:fff1,fff2',"<a href='(url)' class='(act)'>(title)</a>"); 
 function sordb_init(mod,key,url,rel,tpl){ 
     var unow, stype, org, v;
     unow = window.location.href;

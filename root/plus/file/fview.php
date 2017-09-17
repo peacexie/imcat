@@ -23,7 +23,7 @@ if($parts=='temp'){
 }elseif(isset($cfg_dirs[$dir])){ //
     $cfg = $cfg_dirs[$dir]; 
     $rcfgs = array(
-        'wrskin' => array(DIR_ROOT,PATH_ROOT),
+        'skin' => array(DIR_SKIN,PATH_SKIN),
         'static' => array(DIR_STATIC,PATH_STATIC),
     );
     $_r = $rcfgs[$cfg[1]];

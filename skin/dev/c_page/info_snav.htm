@@ -29,10 +29,10 @@ eimp('initCss','bootstrap,stpub;comm;info');
     {loop $mods $mod $mv}
     {php $vcfg = glbConfig::vcfg($mod); unset($vcfg['c'],$vcfg['m'],$vcfg['d']); }
     <ul class="info-nav">
-      <li class="type"><a href="{surl($mod,-);}">{$mod}:{$mv}</a></li>
+      <li class="type"><a href="{surl($mod,-);}">{=$mod}:{=$mv}</a></li>
       {loop $vcfg $key $val}
       {php $ktitle = tex_devs::getKeyTitle($mod,$key); }
-      <li><a href="{surl("$mod-$key")}">{$key} : {$ktitle}</a></li>
+      <li><a href="{surl("$mod-$key")}">{=$key} : {=$ktitle}</a></li>
       {/loop}
     </ul>
     {/loop}
@@ -50,7 +50,7 @@ eimp('initCss','bootstrap,stpub;comm;info');
     <ul class="info-nav">
       <li class="type"><a href="{surl(tools)}">贴心工具</a></li>
       <?php foreach($cfgs as $key=>$val){ ?>
-      <li><a href="{surl("tools-$key")}">{$key} : {$val['mt']}</a></li>
+      <li><a href="{surl("tools-$key")}">{=$key} : {=$val['mt']}</a></li>
       <?php } ?>
     </ul>
 
@@ -58,7 +58,7 @@ eimp('initCss','bootstrap,stpub;comm;info');
     <ul class="info-nav">
       <li class="type"><a href="{surl(uplog)}">版本发布</a></li>
       <?php foreach($cfgs as $key=>$val){ ?>
-      <li><a href="{surl("uplog-$key")}">{$val[0]} : {$val[1]}</a></li>
+      <li><a href="{surl("uplog-$key")}">{=$val[0]} : {=$val[1]}</a></li>
       <?php } ?>
     </ul>
 

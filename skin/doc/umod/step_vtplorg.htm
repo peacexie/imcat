@@ -7,10 +7,10 @@
 <!--inc:end-->
 <nav>
     <a href='{surl($this->mkv)}'>(Default)</a>
-    <a href='{surl(0)}?mkv={$this->mkv}&name=Peace'>Peace</a>
+    <a href='{surl(0)}?mkv={=$this->mkv}&name=Peace'>Peace</a>
     (这里的标签就不会解析了)
 </nav>
 <p>这个模板不会编译,这个里面也只能全部写php+html!</p>
-<p><?php echo "Hello, {$name}! ".date('Y-m-d H:i:s'); ?></p>
+<p><?php echo "Hello, {=$name}! ".date('Y-m-d H:i:s'); ?></p>
 <p><?php echo basDebug::runInfo(); ?></p>
 </body></html>

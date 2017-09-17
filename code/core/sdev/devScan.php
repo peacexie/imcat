@@ -25,7 +25,7 @@ class devScan{
     
     // clrTmps();
     static function clrTmps(){
-        $arr = array('@test','@udoc','dbexp','debug','cache','weixin'); 
+        $arr = array('@test','@udoc','dbexp','debug','cacdb','cache','weixin'); 
         foreach($arr as $dir){ //,'update','updsvr'
             comFiles::delDir(DIR_DTMP."/$dir",0);
         }
@@ -54,6 +54,12 @@ class devScan{
         );
         foreach($logtabs as $tab){
             $db->table($tab)->where("atime<'".$stnow."'")->delete();
+        }
+        $etabs = array(
+            'token_limit', 'token_store',
+        );
+        foreach($etabs as $tab){
+            $db->table($tab)->where("etime<'".($stnow-3600)."'")->delete();
         }
         $tabinfo = $db->tables(); 
         $db->table('bext_dbdict')->where("tabid NOT IN('".implode("','",$tabinfo)."')")->delete();

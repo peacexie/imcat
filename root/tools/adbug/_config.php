@@ -11,7 +11,7 @@ $sess_id = usrPerm::getSessid();
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
-$_selfname = $_SERVER['PHP_SELF'];    
+$_selfname = $_SERVER['SCRIPT_NAME'];    
 $allowb = array('binfo','phpinfo1','cookie','login','dologin','iframe','frame','fset');
 $allowc = array('binfo');
 

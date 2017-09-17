@@ -33,8 +33,8 @@
 #imhead#加载CSS/JS
 
 ```
-<link href='{PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
-<script src='{PATH_VENDUI}/layer/layer.js'></script>
+<link href='{=PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ 或
 {php}
 eimp('/~tpl/cinfo.css'); // /skin/{tpldir}/b_jscss/a_jscss.css
@@ -51,14 +51,14 @@ eimp('initJs','zepto,jquery,bootcss,bootstrap,layer;comm;comm(-lang);user'); // 
     <script src='/skin/{tpldir}/b_jscss/comm-{lang}.js'></script> // {lang}=cn/en
     <script src='/skin/{tpldir}/b_jscss/user.js'></script> // {lang}=cn/en
     + (以上合并,以下不合并)
-    <script src='{PATH_VENDUI}/jquery/zepto-1x.js'></script> // 与jquer用其一即可
-    <script src='{PATH_VENDUI}/jquery/jquery-3.x.js'></script> // 1.x/3.x自适应
-    <link href='{PATH_VENDUI}/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
-    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
-    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+    <script src='{=PATH_VENDUI}/jquery/zepto-1x.js'></script> // 与jquer用其一即可
+    <script src='{=PATH_VENDUI}/jquery/jquery-3.x.js'></script> // 1.x/3.x自适应
+    <link href='{=PATH_VENDUI}/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
+    <script src='{=PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs'); // in head
  -=>
-    @import url({PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
+    @import url({=PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
     + (以上不合并,以下合并)
     <link href='/_pub/jslib/stpub.css' type='text/css' rel='stylesheet'/>
     <link href='/_pub/a_jscss/jstyle.css' type='text/css' rel='stylesheet'/>
@@ -68,8 +68,8 @@ eimp('loadExtjs','jspop,jq_base,bootstrap,layer'); // 可放body最后
  -=>
     <script src='/skin/_pub/jslib/jspop.js'></script>
     <script src='/skin/_pub/jslib/jq_base.js'></script>
-    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
-    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+    <script src='{=PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ 或（其他）
 eimp('/plus/ajax/comjs.php?act=autoJQ');
 basJscss::loadJqbs('zepto',0);

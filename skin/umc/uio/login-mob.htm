@@ -20,7 +20,7 @@
 {elseif $user->userFlag=='Login' }
 
     <p class="text-danger bg-warning pa10 tc">
-      [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
+      [{=$user->usess['uname']}] {lang(user.lon_logined)} <br>
       <a href="{surl(0)}">{lang(user.pub_cuser)}</a>
     </p>
     <p class="text-danger bg-info pa10 mv10"> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】;  <br>
@@ -29,7 +29,7 @@
 
 {elseif !empty($remsg) }
 
-    <p class="text-danger bg-warning pa10">{$remsg}</p>
+    <p class="text-danger bg-warning pa10">{=$remsg}</p>
 
 {else}
 
@@ -42,7 +42,7 @@
 
   <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a>{lang(user.lon_3idpw)}</a></li>
-    <li role="presentation"><a onclick='qqLogin()'><img src="{PATH_SKIN}/_pub/a_img/a3rd-qq_7.png" height="24" /></a></li>
+    <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_SKIN}/_pub/a_img/a3rd-qq_7.png" height="24" /></a></li>
     <li role="presentation"><a class="cCCC">{lang(user.lon_3wechat)}</a></li>
   </ul>
 
@@ -64,7 +64,7 @@
       <li class="col-xs-12 col-md-12">
         <button type="submit" class="btn btn-primary wp100">{lang(submit)}</button>
         <input name="act" type="hidden" value="dologin" />
-        <input name="recbk" type="hidden" value="{$recbk}" />
+        <input name="recbk" type="hidden" value="{=$recbk}" />
       </li>
     </ul>
     <ul class="row">

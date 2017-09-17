@@ -18,7 +18,7 @@ $ordcnt = 0;
 
 {block:action}
 <div class="umc-mitem">
-    <h3><i>order list</i>{$title}</h3>
+    <h3><i>order list</i>{=$title}</h3>
     <table class="tblist"> 
         <tr class="ordtitle">
         <td class="tc">{lang(user.ord_no2)}</td>
@@ -30,10 +30,10 @@ $ordcnt = 0;
         {tag:ordlist=[List][modid,corder][where,$whr][limit,100]}
         <?php $item=exvOcar::ilist('coms_coitem',"ordid='$t_cid'",2); @$v=@$item['data'][0]; @$ordcnt=count($t_ordlist); ?>
         <tr>
-        <td class="tc"><a href="{surl(chn:0)}?mkv=ocar-invoce&ordid={$t_cid}" target="detail">{$t_cid}</a></td>
+        <td class="tc"><a href="{surl(chn:0)}?mkv=ocar-invoce&ordid={=$t_cid}" target="detail">{=$t_cid}</a></td>
         <td class="tc">{sopt($t_ordstat,corder.ordstat,0,0)}</td>
-        <td class="tc">{$t_feeamount}</td>
-        <td class="tl"><a href="{surl("cargo.$v[pid]")}" target="detail">{$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">{lang(user.ord_more)}</i>{/if}</td>
+        <td class="tc">{=$t_feeamount}</td>
+        <td class="tl"><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">{lang(user.ord_more)}</i>{/if}</td>
         <td class="tc">{stime($t_atime,min)}</td>
         </tr>
         {/tag:ordlist}

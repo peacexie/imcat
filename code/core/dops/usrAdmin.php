@@ -12,7 +12,7 @@ class usrAdmin extends usrBase{
     
     //
     function login($uname='',$upass='',$ck=0){
-        $re1 = $this->check_login($uname,$upass); 
+        $re1 = $this->check_login($uname,$upass);
         $re2 = $this->login_msg($re1);
         if($re1=='OK'){ //Session
             $this->setSess();

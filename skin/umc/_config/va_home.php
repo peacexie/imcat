@@ -10,6 +10,7 @@ $_va_home = array(
         'stext' => '-u.htm', 
         '_tabCtrl' => array('homeCtrl','userCtrl','uioCtrl'),
         //'_defCtrl' => '_defCtrl', 
+        'pskip' => array('home','faqs','uio',), //umc-不需要登录模型
         'close' => array(),
         'imcfg' => array(),
         'extra' => array('user','order','uio'),
@@ -17,15 +18,6 @@ $_va_home = array(
     
     //mod.home模块首页模板
     'm' => 'user/home',
-
-    // 权限配置：哪个模板用什么权限？
-    // 键与模板关联，如：[tplname] => user/uinfo 则对应 [user][uinfo]；
-    // 值与权限设置中的[会员]里面的标示对应
-    // !isset-登陆, ''(空)-游客可用, 'xxx'-按设置
-    //*
-    'u' => array(
-        'umc_frees' => array('home','faqs','uio'), //umc-不需要登录模型
-    ),//*/
     
 );
     

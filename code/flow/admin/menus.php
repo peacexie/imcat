@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','admin/menus.php');
 
 $mod = empty($mod) ? 'muadm' : $mod;
 $view = empty($view) ? 'glist' : $view;
@@ -10,7 +9,7 @@ $gbar = admAFunc::grpNav('menus',$mod);
 $cfg = read($mod); 
 $tabid = 'base_menu';
 
-if($mod=='mumem' && $view=='glist'){
+if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
     
     $msg = '';    
     if(!empty($bsend)){
@@ -65,13 +64,13 @@ if($mod=='mumem' && $view=='glist'){
     $ops = basElm::setOption("upd|".lang('flow.op_upd')."\nshow|".lang('flow.op_open')."\nstop|".lang('flow.op_close')."");
     echo "<tr>\n";
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>$ops</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "<td class='tr flgOpbar' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select class='w120 form-control' name='fs_do'>$ops</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
     
 }elseif($view=='umcinit'){
     
-    admAFunc::umcVInit();
+    admAFunc::mkvInit($mod);
     basMsg::show(lang('admin.mu_initend'),'Redir',"?mkv=$mkv&mod=$mod&pid=$pid");
 
 }elseif($view=='glist'){
@@ -119,10 +118,11 @@ if($mod=='mumem' && $view=='glist'){
         $u_sub = strstr($aurl[1],'pid=') ? basReq::getURep($aurl[1],'pid',$r['kid']) : "$aurl[1]&pid=$r[kid]";
         $f_deep = @$cfg['i'][$pid]['deep'] < $cfg['deep']-1;
         $s_cnt = count(comTypes::getSubs($cfg['i'],$r['kid']));
+        $iconstr = empty($r['icon']) ? '(x)' : " <i class='fa fa-".$r['icon']."'></i>";
         echo "<tr>\n";
         echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' /></td>\n";
         echo "<td class='tc'><a href='$aurl[1]&view=set&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.fad_setid',$r['title'])."\");'>$r[kid]</a></td>\n";
-        echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' /></td>\n";
+        echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' /> $iconstr</td>\n";
         echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
         echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
         echo "<td class='tc'>$r[deep]</td>\n"; 
@@ -133,7 +133,7 @@ if($mod=='mumem' && $view=='glist'){
     }} 
     echo "<tr>\n";
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "<td class='tr flgOpbar' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select class='w120 form-control' name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
     
@@ -162,7 +162,7 @@ if($mod=='mumem' && $view=='glist'){
         }else{
             $fm = $db->table($tabid)->where("model='$mod' AND kid='$kid'")->find();
         }
-        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','deep'=>'1','cfgs'=>'',);
+        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','deep'=>'1','cfgs'=>'','icon'=>'',);
         foreach($def as $k=>$v){
             if(!isset($fm[$k])) $fm[$k] = $v;
         }
@@ -178,6 +178,9 @@ if($mod=='mumem' && $view=='glist'){
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:2-12' $vstr />$ienable");
         }
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21245')."' />$itop");
+        $iconstr = empty($r['icon']) ? '(null)' : "<i class='fa fa-".$r['icon']."'></i>";
+        $iconstr = " <a href='".PATH_VENDUI."/bootstrap/FontAwesome.htm' target='_blank'>$iconstr</a>";
+        glbHtml::fmae_row('Icon',"<input name='fm[icon]' type='text' value='$fm[icon]' class='txt w150' maxlength='12' reg='tit:0-48' />$iconstr");
         glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea>
         <br>".lang('admin.mu_fmta')."
         <br>1. ?mkv=admin-groups, ".lang('admin.mu_flagroot','{$root}')."

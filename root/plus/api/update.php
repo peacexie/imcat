@@ -40,7 +40,7 @@ if($act=='nav'){
     $dir = req('dir');
     $fp = req('fp'); die('mfatch');
     // check-dir, check-fp
-    $svr = req('svr'); // 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']
+    $svr = req('svr'); // 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME']
     $data = $svr ? file_get_contents("$svr?act=msuply&dir=$dir&fp=$fp") : ''; 
     if($data){
         $dir = comStore::cfgDirPath($dir);

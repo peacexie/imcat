@@ -25,6 +25,7 @@ class _defCtrl{
 
     // _defAct
     function _defAct(){
+        usrPerm::run();
         // init
         global $_cbase;
         extract(basReq::sysVars()); 

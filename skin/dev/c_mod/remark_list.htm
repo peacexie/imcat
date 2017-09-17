@@ -17,10 +17,10 @@ $titlesub = '评论';
 {/block:extop}
 
 {block:exmain}
-    <h1 class="news_title">(<a href="{surl(0)}?mkv={$this->mod}&pid={$pid}">评论</a>) <a href="{surl("$pmod.$pid")}">{title($ptitle,96,$pinfo)}</a></h1>
+    <h1 class="news_title">(<a href="{surl(0)}?mkv={=$this->mod}&pid={=$pid}">评论</a>) <a href="{surl("$pmod.$pid")}">{title($ptitle,96,$pinfo)}</a></h1>
     <div class="news_rem">
       <div class="rembar"> 
-      <span class="remadd"><a href="{surl(0)}?mkv={$this->mod}&pid={$pid}">评论(<i id="jsid_count_nrem:{$pid}">0<!--,cnt_nrem--></i>条)</a> &nbsp; <a {php vopCell::vOpen($this->mod,$pid); }>&gt;&gt;发布</a></span> 
+      <span class="remadd"><a href="{surl(0)}?mkv={=$this->mod}&pid={=$pid}">评论(<i id="jsid_count_nrem:{=$pid}">0<!--,cnt_nrem--></i>条)</a> &nbsp; <a {php vopCell::vOpen($this->mod,$pid); }>&gt;&gt;发布</a></span> 
       <span class="remtitle">评论列表</span> 
       </div><!--[cache,60]-->
       {tag:nrlist=[Page][modid,$this->mod][pid,$pid][keywd,0,title+detail][limit,50]}
@@ -29,7 +29,7 @@ $titlesub = '评论';
         <dt>{title($t_title,48,$v)} </dt>
         <dd>
         {text($t_detail,2400)}
-        <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+        <p class="tr"><span>{=$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
         </dd>
       </dl>
       {/row}
@@ -43,8 +43,8 @@ $titlesub = '评论';
     <div class="h10">&nbsp;</div>
     <div class="sd-so01">
     <form method="get" action="{surl(0:0)}">
-    <input name="mkv" type="hidden" value="{$this->mod}--list">
-    <input name="pid" type="hidden" value="{$pid}">
+    <input name="mkv" type="hidden" value="{=$this->mod}--list">
+    <input name="pid" type="hidden" value="{=$pid}">
     <input name="keywd" type="text" id="keywd" class="w150" />
     <input type="submit" id="sobtn" value="搜索" />
     </form>

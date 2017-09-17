@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','admin/grade.php');
 
 $mod = empty($mod) ? 'adminer' : $mod;
 $view = empty($view) ? 'glist' : $view;
@@ -65,7 +64,7 @@ if($view=='glist'){
     }} 
     echo "<tr>\n";
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
-    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "<td class='tr flgOpbar' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select class='w120 form-control' name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
     
@@ -133,7 +132,7 @@ if($view=='glist'){
         foreach($pcfg2 as $k=>$v) { $lpart2 .= "<a href='?mkv=$mkv&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
         glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$title]".lang('admin.grd_pedit')."","$lpart1<br>$lpart2",40); //-
         glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-        $pmstr = $row[$parts];  
+        $pmstr = $row[$parts];
         if(in_array($parts,array('pmod','padd','pdel','pcheck'))){
             $a0 = array('docs','coms','users','advs','plus');
             foreach($a0 as $k){
@@ -164,8 +163,8 @@ if($view=='glist'){
                 }}
                 glbHtml::fmae_row($s2,$s3);
             }}
-        }elseif(in_array($parts,array('pmusr'))){
-            $a0 = read('mumem.i'); 
+        }elseif(in_array($parts,array('mkva','mkvu'))){
+            $a0 = read($parts.'.i'); 
             $i = 0;
             foreach($a0 as $k2=>$v2){ 
             if($v2['deep']=='1'){ $i++; 

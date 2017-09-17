@@ -121,8 +121,8 @@ class dopFunc{
     static function pageBar($pgbar,$opbar,$opname='(null)',$jsFunc='fmSelAll'){
         $opname = $opname=='(null)' ? basLang::show('flow.dops_exeu') : $opname;
         $pgbar = "<div class='pg_bar'>$pgbar</div>";
-        $opstr = strpos($opbar,'</option>') ? "<select name='fs_do' class='w100'>$opbar</select>" : $opbar;
-        $opbar = "<div class='w180 tc right'>$opstr";
+        $opstr = strpos($opbar,'</option>') ? "<select name='fs_do' class='form-control w100'>$opbar</select>" : $opbar;
+        $opbar = "<div class='w180 tc right flgOpbar'>$opstr";
         $opbar .= ($opname ? "<input name='bsend' class='btn' type='submit' value='$opname' />" : '')."</div>";
         echo "\n<tr><td class='tc' nowrap>\n";
         if($jsFunc) echo "<input name='fs_act' type='checkbox' class='rdcb' onClick='$jsFunc(this)' /></td>";

@@ -1,5 +1,5 @@
 
--- token_turl@2017-08-05 10:00:03 -- 
+-- token_turl@2017-09-17 15:06:39 -- 
 INSERT INTO `{pre}token_turl{ext}` VALUES 
 ('bug','https://bugs.php.net/bug.php?id=74721','(def)'),
 ('bb','http://txjia.com/baby/about.asp','txjia'),
@@ -13,4 +13,5 @@ INSERT INTO `{pre}token_turl{ext}` VALUES
 ('asp','http://txjia.com/peace/txasp.htm','txjia'),
 ('git','https://github.com/peacexie/imcat','txjia'),
 ('eb','http://www.elifebike.com/page/pic.asp','(def)'),
-('psw','http://www.pswpower.com/page/pic.asp','(def)');
+('psw','http://www.pswpower.com/page/pic.asp','(def)'),
+('node','http://txjia.com/peace/wenode.htm','txjia');

@@ -11,12 +11,12 @@ $titlesub = 'Guestbook';
 {block:exmain}
 
     <h1 class="news_title">
-        {$titlesub}
+        {=$titlesub}
     </h1>
     <div class="news_rem">
       <div class="rembar"> 
-      <span class="remadd">{$titlesub}(<i id="jsid_count_{$modid}:0">0<!--,cnt_{$modid},--></i>) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;Pub</a></span> 
-      <span class="remtitle">{$titlesub}</span> 
+      <span class="remadd">{=$titlesub}(<i id="jsid_count_{=$modid}:0">0<!--,cnt_{=$modid},--></i>) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;Pub</a></span> 
+      <span class="remtitle">{=$titlesub}</span> 
       </div><!--[cache,60]-->
       {tag:nrlist=[Page][modid,$modid][keywd,0,title+detail][limit,50]}
       {:row}
@@ -25,7 +25,7 @@ $titlesub = 'Guestbook';
         <dd>
         {text($t_detail,2400)}
         <p>
-        <li class="tr">{$t_mname} &nbsp; Pub:<i class="atime">{stime($t_atime,min)} </i></li>
+        <li class="tr">{=$t_mname} &nbsp; Pub:<i class="atime">{stime($t_atime,min)} </i></li>
         {if !empty($t_reply)}<span class="fB c00F">Reply:{stime($t_etime,min)}</span>{/if}
         </p>
         </dd>

@@ -3,7 +3,7 @@
 {block:minit}{:parent}{code:"b_func/user_apply"}{/block:minit}
 
 {block:pimp}
-<script src='{PATH_VENDUI}/layer/layer.js'></script>
+<script src='{=PATH_VENDUI}/layer/layer.js'></script>
 <style type="text/css">
 
 </style>
@@ -13,21 +13,21 @@
 
 {if $user->userFlag=='Login' }
     <p class="text-danger bg-warning pa10">
-      [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
+      [{=$user->usess['uname']}] {lang(user.lon_logined)} <br>
       {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】; <br>
       {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } 
     </p>
 {elseif !empty($bsend) }
     <p class="text-danger bg-warning pa10">
-      {$show} <br>
-      {$msg} 
+      {=$show} <br>
+      {=$msg} 
     </p>
     <p class="text-danger bg-warning pa10 mt10">
       {if $ucfg['regnow']=='mail-act'}
         {if !empty($msg_em) && strpos($msg_em,'SentOK')} 
-          {lang(user.uap_loginemail)}: {$fm['memail']} {lang(user.uap_activeuser)}<br> 
+          {lang(user.uap_loginemail)}: {=$fm['memail']} {lang(user.uap_activeuser)}<br> 
         {else} 
-          {$msg_em}
+          {=$msg_em}
         {/if}
       {/if}
     </p>
@@ -40,16 +40,16 @@
 {if !empty($fappok) }
     <div class="apform">
       <p> <i>{lang(uname)}: </i>
-          <input value="{$re3['uname']}" class="form-control" />
+          <input value="{=$re3['uname']}" class="form-control" />
       </p>
       <p> <i>{lang(upass)}: </i>
-          <input value="{$fm['upass']}" class="form-control" />
+          <input value="{=$fm['upass']}" class="form-control" />
       </p>
       <p> <i>{lang(user.uap_check)}: </i>
-          <input value="{$show}" class="form-control" />
+          <input value="{=$show}" class="form-control" />
       </p>
       <p> <i>UID: </i>
-          <input value="{$re3['uid']}" class="form-control" />
+          <input value="{=$re3['uid']}" class="form-control" />
       </p>
     </div>
 {/if}
@@ -67,14 +67,14 @@
           {loop $_groups $k $v}{if $v['pid']=='users'}
           {php $cfgm = read($k); $cfgs = basElm::text2arr(@$cfgm['cfgs']); }
           {if !empty($cfgs['defgrade']) }
-          <option value="{$k}" {if $k=='company'}selected{/if}>{$v[title]}</option>
+          <option value="{=$k}" {if $k=='company'}selected{/if}>{=$v[title]}</option>
           {/if}{/if}{/loop}
         </select>
       </li>
     </ul>
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex1">{lang(uname)}</label></li>
-      <li class="col-xs-8 col-md-8"><input type="text" class="form-control" id="fm[uname]" name="fm[uname]" reg="key:2-15" url='{PATH_ROOT}/plus/ajax/cajax.php?act=userExists'></li>
+      <li class="col-xs-8 col-md-8"><input type="text" class="form-control" id="fm[uname]" name="fm[uname]" reg="key:2-15" url='{=PATH_ROOT}/plus/ajax/cajax.php?act=userExists'></li>
     </ul>
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex2">{lang(upass)}</label></li>
@@ -98,7 +98,7 @@
     {/if}
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex2">{lang(user.uap_mail)}</label></li>
-      <li class="col-xs-8 col-md-8"><input type="text" class="form-control" id="fm[memail]" name="fm[memail]" {$emajax} reg='nul:fix:email'></li>
+      <li class="col-xs-8 col-md-8"><input type="text" class="form-control" id="fm[memail]" name="fm[memail]" {=$emajax} reg='nul:fix:email'></li>
     </ul>
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex3">{lang(vcode)}</label></li>
@@ -108,14 +108,14 @@
       <li class="col-xs-12 col-md-12">
         <button type="submit" class="btn btn-primary wp100">{lang(submit)}</button>
         <input name="act" type="hidden" value="doapply" />
-        <input name="recbk" type="hidden" value="{$recbk}" />
+        <input name="recbk" type="hidden" value="{=$recbk}" />
       </li>
     </ul>
     {elseif $ucfg['regnow']=='sms-vcode' }
     <ul class="row">
       <li class="col-xs-4 col-md-4"><label for="ex2">{lang(user.uap_mobnum)}</label></li>
       <li class="col-xs-8 col-md-8">
-        <input type="text" class="form-control" id='fm_mtel' name="fm[mtel]" reg='fix:tel' onblur="chkMtel()" url='{PATH_ROOT}/plus/ajax/cajax.php?act=userExists&key=mtel'>
+        <input type="text" class="form-control" id='fm_mtel' name="fm[mtel]" reg='fix:tel' onblur="chkMtel()" url='{=PATH_ROOT}/plus/ajax/cajax.php?act=userExists&key=mtel'>
         <i id='send2nd' class="vcm1" onclick="reSend()">{lang(user.uap_forgsmscode)}</i>
       </li>
     </ul>
@@ -138,7 +138,7 @@
       <li class="col-xs-8 col-md-8">
         <input name="bsend" value="{lang(submit)}" tabindex="19830" type="submit" class="form-control btn btn-primary" />
         <input name="act" type="hidden" value="doapply" />
-        <input name="recbk" type="hidden" value="{$recbk}" />
+        <input name="recbk" type="hidden" value="{=$recbk}" />
       </li>
     </ul>
     {/if}

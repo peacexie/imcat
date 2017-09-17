@@ -20,35 +20,35 @@
       <p class="text-danger bg-warning right w350 pa10" style="margin:-10px -10px 0px 0px"> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】;  <br>
           {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
       </p>
-      [{$user->usess['uname']}] {lang(user.lon_logined)}
+      [{=$user->usess['uname']}] {lang(user.lon_logined)}
       <a href="{surl(0)}">{lang(user.pub_cuser)}</a><!--:home-login-->
     </div>
 
 {elseif !empty($remsg) }
 
-    <p class="text-danger bg-warning pa10 ma10">{$remsg}</p>
+    <p class="text-danger bg-warning pa10 ma10">{=$remsg}</p>
 
 {else}
 
   <ul class="nav nav-tabs" nav-justified>
-    <li role="presentation" onClick="funcLogin(0)" class="active"><a><i class="glyphicon glyphicon-pencil c33F"></i>{lang(user.lon_3idpw)}</a></li>
-    <li role="presentation" onClick="funcLogin(1)"><a><img src="{PATH_SKIN}/_pub/a_img/a3rd-wx.png"  height="22" />{lang(user.lon_3wechat)}</a></li>
-    <li role="presentation"><a onclick='qqLogin()'><img src="{PATH_SKIN}/_pub/a_img/a3rd-qq_7.png" height="24" /><!--{lang(user.lon_3qqcon)}--></a></li>
+    <li role="presentation" onClick="funcLogin(0)" class="active"><a><i class="fa fa-pencil c33F"></i>{lang(user.lon_3idpw)}</a></li>
+    <li role="presentation" onClick="funcLogin(1)"><a><img src="{=PATH_SKIN}/_pub/a_img/a3rd-wx.png"  height="22" />{lang(user.lon_3wechat)}</a></li>
+    <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_SKIN}/_pub/a_img/a3rd-qq_7.png" height="24" /><!--{lang(user.lon_3qqcon)}--></a></li>
   </ul>
 
   <div class="block-login">
       <div class="right w220 small">
         <p class="pa10">{lang(user.lon_noidpw)}<br>
-          <a class="btn btn-warning w130 block" href="{surl(?reg)}"><i class="glyphicon glyphicon-floppy-save"></i> {lang(user.lon_reg)}</a>
+          <a class="btn btn-warning w130 block" href="{surl(?reg)}"><i class="fa fa-floppy-save"></i> {lang(user.lon_reg)}</a>
         </p>
         <p class="pa10">{lang(user.lon_fpass)}?<br>
-          <a class="btn btn-warning w130 block" href="{surl(uio-getpw)}"><i class="glyphicon glyphicon-question-sign"></i> {$karr['getpw']}</a>
+          <a class="btn btn-warning w130 block" href="{surl(uio-getpw)}"><i class="fa fa-question-sign"></i> {=$karr['getpw']}</a>
         </p>
       </div>
 
       <div id="idx_lscan" class="left w450" style="display:none;">
           <p class="tc" id="lscan_msg">
-          <img src="{PATH_SKIN}/_pub/a_img/loadbig.gif" id="lscan_img" width="250">
+          <img src="{=PATH_SKIN}/_pub/a_img/loadbig.gif" id="lscan_img" width="250">
           </p>
           <p class="tc">{lang(user.lon_scana)}</p>
       </div>
@@ -74,7 +74,7 @@
           <i class="col-xs-8 col-md-8 tr">
           <input name="submit" value="{lang(submit)}" tabindex="19820" type="submit" class="form-control btn btn-primary" />
           <input name="act" type="hidden" value="dologin" />
-          <input name="recbk" type="hidden" value="{$recbk}" />
+          <input name="recbk" type="hidden" value="{=$recbk}" />
           </i>
         </p>
         </form>

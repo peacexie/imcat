@@ -17,14 +17,14 @@
         <p class="tc picbox uimark-pos-rel">
         <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
         {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
-        <p class="detail"><i class="price">&yen;{$t_price}元</i><i class="click">浏览{$t_click}次</i>
+        <p class="detail"><i class="price">&yen;{=$t_price}元</i><i class="click">浏览{=$t_click}次</i>
         </p>
         <p class="title clear"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
       </td> 
       {php if($i_v%$col==$col-1) echo "\n</tr>"; }
       {/row}
       <tr>
-        <td colspan="{$col}" class="pa5">
+        <td colspan="{=$col}" class="pa5">
         {php echo $_cbase['page']['bar']; }
         </td>
       </tr>

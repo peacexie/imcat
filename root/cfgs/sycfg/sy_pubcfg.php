@@ -70,8 +70,9 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl'),
-    'vendor' => array('ks-buzz','Monolog','psrlog','silex','Symfony','Zend'), //,'Spyc'
+    'vendor' => array('ks-buzz','Monolog','psrlog','silex','Spyc','Symfony','Zend'),
     'dtmp' => array('@test','@udoc','debug','update','updsvr','weixin','08exp'),
+    'vendui' => array('artEditor','ratchet','swfCopy','swplayer'),
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(
@@ -124,6 +125,15 @@ $_sy_pubcfg['skfiles'] =  array(
     'spword.imp_txt',
     //'adminer.imp_php',
     //'derun.imp_php',
+
+    'jquery-2.x.js',
+    'font-awesome.min.css',
+    'FontAwesome.otf',
+    'glyphicons-halflings-regular.eot',
+    'glyphicons-halflings-regular.svg',
+    'glyphicons-halflings-regular.ttf',
+    'glyphicons-halflings-regular.woff',
+    'glyphicons-halflings-regular.woff2',
 
 );
 

@@ -98,16 +98,14 @@ class vopTpls{
         }
     }
     
-    //type=res,show,tpl;title;0,1,
+    //type=all,show,tpl;title;0,1,
     static function etr1($type=0,$dir=''){
         global $_cbase; 
         $vcfg = glbConfig::read('vopcfg','sy'); 
         if(strlen($type)<3){ // 0,1,''
+            $_cbase['run']['tplcfg'] = $vcfg['tpl'][$dir]; // 处理伪静态使用
             $etr = PATH_PROJ.$vcfg['tpl'][$dir][1];
-            if($type){ //$full
-                $etr = $_cbase['run']['rsite'].$etr;
-            }
-            return $etr;
+            return $type ? $_cbase['run']['rsite'].$etr : $etr; //type=1 > full
         }elseif(in_array($type,array('show','tpl'))){
             return $vcfg[$type];
         }elseif($type=='title'){
@@ -118,8 +116,8 @@ class vopTpls{
     }
     
     // entry 
-    // $cb=emumem/ehlist
-    static function entry($dir='',$cb='emumem',$mode=''){
+    // $cb=enmkv/ehlist
+    static function entry($dir='',$cb='enmkv',$mode=''){
         global $_cbase;
         $dir = $dir ? $dir : $_cbase['tpl']['tpl_dir'];    
         $dir = DIR_SKIN."/$dir/_config";
@@ -145,15 +143,31 @@ class vopTpls{
         }
         return $re;
     }
-    // emumem // 针对会员中心-菜单权限
-    static function emumem($cfg,$km,$mode){
-        $re = array();
-        foreach(array('c','v') as $k) unset($cfg[$k]); //'d','m','t','first'
+    // enmkv // 针对:会员中心/管理后台-菜单权限
+    static function enmkv($cfg,$km,$mode){
+        $re = array(); 
+        foreach(array('c','v','u') as $k) unset($cfg[$k]); //'d','m','t','first'
         foreach($cfg as $ki=>$kv){ 
-            if(empty($kv) || $km=='home') continue;
             $kv = (is_array($kv) && isset($kv[0])) ? $kv[0] : $kv;
             $re["$km-$ki"] = $kv;
         } 
+        return $re;
+    }
+    // enflow // 针对:管理后台-菜单权限
+    static function enflow(){
+        global $_cbase; 
+        $re = array('dops-m'=>'','dops-a'=>'');
+        if(!empty($_cbase['mkv']['hcfg']['pmods'])){
+            foreach($_cbase['mkv']['hcfg']['pmods'] as $mod){
+                $re["$mod-m"] = '';
+                $fps = comFiles::listDir(DIR_CODE.'/flow/'.$mod); 
+                foreach($fps['file'] as $fp=>$itm){
+                    if($fp=='index.php') continue;
+                    $key = "$mod-".str_replace('.php','',$fp);
+                    $re[$key] = '';
+                } 
+            } 
+        }
         return $re;
     }
     // $mode=dynamic/static/both/all/

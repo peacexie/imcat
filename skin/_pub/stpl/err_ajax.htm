@@ -3,17 +3,17 @@
 
 ### {lang(stinc_erdbsql)}:
 
-{$dberrInfo}
+{=$dberrInfo}
   - <?php echo basDebug::runInfo(); ?>
 
 {else}
 
-### (Level:{$sLevel}) {$message}
+### (Level:{=$sLevel}) {=$message}
 
   - {lang(stinc_erbase)}:</p>
-  - Level : {$sLevel}</li>
+  - Level : {=$sLevel}</li>
   {if $this->erFile }
-  - File : {$this->erFile} (Line:{$this->erLine})
+  - File : {=$this->erFile} (Line:{=$this->erLine})
   {/if}
   - <?php echo basDebug::runInfo(); ?>
 
@@ -21,4 +21,4 @@
 
 ### {lang(stinc_ertrace)}:
 
-{$traceInfo}
+{=$traceInfo}

@@ -182,11 +182,6 @@ return array(
     'binf_nosuplocal' => '不支持本地存储。',
     'binf_suplocal' => '支持本地存储',
 
-    'home_extitle' => '通用PHP建站系统',
-    'home_exkwd' => '贴心猫,轻量免费,开源共享,PHP CMS,微信接口,IntimateCat,txmao,imcat',
-    'home_exdes' => '一款轻量、免费、共享的通用PHP网站应用系统；App服务端-PC版-手机版-微信接口一站搞定！',
-    'home_botname' => '贴心猫',
-
     'chk_envcheck' => '环境检测',
     'chk_envbaisc' => '基本环境',
     'chk_envname' => '名称',
@@ -322,6 +317,10 @@ return array(
     'setup_doing' => '正在处理',
     'setup_dosteps' => '安装进度',
     'setup_dores' => '处理结果…',
+
+    'setup_tdb_tip' => '提示',
+    'setup_tdb_ndb' => '当前数据库',
+    'setup_tdb_rst' => '安装后将重置',
 
     'fix_' => 'end',
     

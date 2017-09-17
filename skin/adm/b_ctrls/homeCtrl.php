@@ -18,6 +18,7 @@ class homeCtrl{
     function homeAct(){
         $user = $this->_cloginAct(1);
         $userstr = "<span title='".@$user->uperm['title']."(".@$user->uperm['grade'].")'>Hi:".$user->usess['uname']."!</span>";
+        $vars['user'] = $user;
         $vars['userstr'] = $userstr;
         if($mke=basReq::val('mke')){
             $reurl = comParse::urlBase64($mke,1);
@@ -32,8 +33,9 @@ class homeCtrl{
     }
 
     function uhomeAct(){
-        $user = $this->_cloginAct();
         $vars['db'] = glbDBObj::dbObj();
+        $user = $this->_cloginAct();
+        $vars['user'] = $user;
         $vars['exinfo'] = req('exinfo');
         $act = req('act');
         if($act=='update'){

@@ -23,9 +23,12 @@ class basJscss{
     // bootstrap,stpub,jstyle
     static function loadBasecss($excss){
         if(strstr($excss,'bootstrap')){
-            $jsimp = PATH_VENDUI.'/bootstrap/css/bootstrap.min.css';
-            echo "/* ------ bootstrap ------ */\n";
-            echo "@import url($jsimp);\n";
+            $arr = array('bootstrap'); // ,'font-awesome'
+            foreach ($arr as $key) {
+                $jsimp = PATH_VENDUI."/bootstrap/css/$key.min.css";
+                echo "/* ------ $key ------ */\n";
+                echo "@import url($jsimp);\n";
+            }
         }
         if(strstr($excss,'stpub')){
             echo "/* ------ stpub ------ */\n";
@@ -69,7 +72,6 @@ class basJscss{
         }elseif(strstr($exjs,'jquery')){
             if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/html5.js');
-                echo "document.write(\"$jsimp\");\n"; // html5shiv + respond
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-1.x.js');
             }else{
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-3.x.js');
@@ -77,6 +79,7 @@ class basJscss{
         }
         if(strstr($exjs,'bootcss')){
             $ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/bootstrap.min.css');
+            //$ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
         }
         if(strstr($exjs,'bootstrap')){
             $ims[] = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
@@ -84,9 +87,11 @@ class basJscss{
         if(strstr($exjs,'layer')){
             $ims[] = basJscss::jscode(0,PATH_VENDUI.'/layer/layer.js');
         }
-        foreach ($ims as $row) {
-            $dw && $row = "document.write(\"$row\");";
-            echo "$row\n";
+        if(!empty($ims)){
+            foreach ($ims as $row) {
+                $dw && $row = "document.write(\"$row\");";
+                echo "$row\n";
+            }
         }
     }
     // exjs=jspop

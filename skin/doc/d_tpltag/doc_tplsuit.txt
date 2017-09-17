@@ -87,17 +87,18 @@
 * [1] Use curly braces({}) show variables in the HTML remark:
 
 ```
-// eg: <!--{$this->tplname}-->
+// eg: <!--{=$this->tplname}-->
 // -=>Parse into: <?php echo @$this->tplname; ?>
 // -=>It should: <!--<?php echo @$this->tplname; ?>-->
-// Solve: Add special symbol like as `/`: <!--/{$this->tplname}/-->  
-// or Remark(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>) (Use ` split them)
+// Solve: Add special symbol like as `/`: <!--/{=$this->tplname}/-->  
+// or Remark(<i id="jsid_count_{=$pmod}:{=$did}">0<!--`{=$this->mod},cnt_{=$pmod}`--></i>) (Use ` split them)
 ```
 
 * [2] The variables in the double quotation marks(""):
  - While these code in the tpl pages, It will conflict
 
 ```
+// !!! This problem has been resolved in v3.9, old is:{$vname} -=> new is:{=$vname}
 eg: {php echo "userip={$_cbase['run']['userip']};"; }
 // -=>Parse into: <?php echo "userip=<?php echo @$_cbase['run']['userip']; ?>;"; ?>
 // -=>It should: <?php echo "userip=".@$_cbase['run']['userip'].";"; ?>

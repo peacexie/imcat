@@ -14,8 +14,8 @@ eimp('initCss','bootstrap,stpub;comm-mob');
 
 {block:brnav}
 <ol class="breadcrumb">
-  <li><a href="{surl($this->mod)}">{$mcfgs['title']}</a></li>
-  <li class="active">{if empty($verflag)}{$mcfgs['subs'][$skey]}{else}{$verflag}{/if}</li>
+  <li><a href="{surl($this->mod)}">{=$mcfgs['title']}</a></li>
+  <li class="active">{if empty($verflag)}{=$mcfgs['subs'][$skey]}{else}{=$verflag}{/if}</li>
 </ol>
 {/block:brnav}
 

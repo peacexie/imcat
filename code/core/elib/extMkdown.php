@@ -9,10 +9,11 @@ class extMkdown extends Parsedown{
             $text = preg_replace("/[\r|\n]{1,2} [\-|\>]{1,2} /"," <br> &nbsp; -> ",$text);    
         }
         $text = self::pdorg($text);
+        $text = preg_replace("/<li\>(\s+)<p\>([^\n]+)<\/p\>/i",'<li>\2',$text);
         if($mode==1){
-            $text = str_replace(array("<li>\n<p>"),array('<li ><p>● '),$text);
             $text = str_replace(array("<li>"),array('<li>● '),$text);
         }
+        
         return $text;
     }
     

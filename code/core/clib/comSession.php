@@ -9,7 +9,7 @@ class comSession {
         $_SESSION[self::fill($id)] = self::fill($val);
     }
     static function get($id){ 
-        return @$_SESSION[self::fill($id)];
+        return isset($_SESSION[self::fill($id)]) ? $_SESSION[self::fill($id)] : '';
     }
     // Session过滤
     static function fill($xStr){

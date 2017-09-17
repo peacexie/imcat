@@ -44,7 +44,11 @@ class vopMedia{
         }
         return $sres;
     }
-    
+
+    /*static function _exSevise($sres,$val,$mtype,$porg){
+
+    }*/
+
     static function _exCkvdo($sres,$val,$mtype,$porg){
         global $_cbase;
         $playid = $mtype.'_'.substr(basStr::filKey($val),-12,12).'_'.basKeyid::kidRand('f',8);
@@ -64,6 +68,8 @@ class vopMedia{
     static function _itmRep($org,$val,$pw,$ph){
         $re = str_replace(array('{$url}','{$w}','{$h}'),array($val,$pw,$ph),$org);
         $re = str_replace(array('{uiroot}','{$uiroot}'),PATH_VENDUI,$re);
+        $re = str_replace(array('{skroot}','{$skroot}'),PATH_SKIN,$re);
+        $re = str_replace(array('{fbname}','{$fbname}'),basename($val),$re);
         return $re; 
     }
     

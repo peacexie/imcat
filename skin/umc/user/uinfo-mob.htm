@@ -31,11 +31,11 @@ $cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
 
   <li>
   <i class="atype">{lang(user.pub_accinfo)}</i>
-  <i class="title ellipsis">{$unowstr}</i>
+  <i class="title ellipsis">{=$unowstr}</i>
   </li>
   <li>
   <i class="atype">{lang(user.uif_utype)}</i>
-  <i class="title ellipsis">{$unowtype}</i>
+  <i class="title ellipsis">{=$unowtype}</i>
   </li>
 
   {if ($user->userFlag=='Guest') }
@@ -44,16 +44,16 @@ $cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
   </li>
   <li>
   <i class="atype">{lang(user.uif_corder)}</i> 
-  <i class="title ellipsis"> <a href="{surl(chn:ocar)}">({$ordwcnt}) <a href="{surl(chn:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a> </i>
+  <i class="title ellipsis"> <a href="{surl(chn:ocar)}">({=$ordwcnt}) <a href="{surl(chn:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a> </i>
   </li>
   {else}
   <li>
   <i class="atype">{lang(user.pub_indoc)}</i>
-  <i class="title ellipsis"><a href="?mkv=indoc-iget&part=ipub">({$cnt1}) {lang(user.uif_allmsg)}&gt;&gt;</a></i>
+  <i class="title ellipsis"><a href="?mkv=indoc-iget&part=ipub">({=$cnt1}) {lang(user.uif_allmsg)}&gt;&gt;</a></i>
   </li>
   <li>
   <i class="atype">{lang(user.uif_sysmsg)}</i>
-  <i class="title ellipsis"><a href="{surl(order)}">({$ordwcnt}) {lang(user.uif_allord)}&gt;&gt;</a></i>
+  <i class="title ellipsis"><a href="{surl(order)}">({=$ordwcnt}) {lang(user.uif_allord)}&gt;&gt;</a></i>
   </li>
   {/if}
 
@@ -63,7 +63,7 @@ $cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
   </li>
   <li>
   <i class="atype">{lang(user.uif_runinfo)}</i>
-  <i class="title">{$runinfo}</i>
+  <i class="title">{=$runinfo}</i>
   </li>
   <li>
   <i class="atype">IP</i>
@@ -79,8 +79,8 @@ $cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
   foreach($ka as $k){ if(isset($_SERVER[$k])){
   ?>
   <li class="moresysinfo" style="display:none;">
-  <i>{$k}</i>
-  <i>{$_SERVER[$k]}</i>
+  <i>{=$k}</i>
+  <i>{=$_SERVER[$k]}</i>
   </li>
   <?php }} ?>
 

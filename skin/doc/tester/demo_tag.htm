@@ -36,7 +36,7 @@ info_nav [order,0,id2+id3]
 
 {php $_did = '2006-97-8axx'; }
 {tag:demo1=[One][modid,demo][join,detail][where,"m.did='$_did'"][order,etime]}
-<li><a href="{surl("demo.$t_did")}">{$v['title']} --- {stime($t_atime)} --- {$t_detail}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$v['title']} --- {stime($t_atime)} --- {=$t_detail}</a></li>
 {/tag:demo1}
 <hr>
 
@@ -44,7 +44,7 @@ info_nav [order,0,id2+id3]
 pgbar ::: test:
 {tag:demo2=[Page][modid,demo][keywd,e,title+mname][limit,3]}
 {:row}
-<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$t_title} --- {stime($t_atime)}</a></li>
 {/row}
 {php echo $_cbase['page']['bar']; }
 {/tag:demo2}
@@ -54,15 +54,15 @@ pgbar ::: test:
 $_did = 'yyyy-md-xxxx';
 {php $_did = '2006-97-8axx'; }
 {tag:demo3=[List][modid,demo][keywd,西,title+mname][where,"did='$_did'"][order,etime][limit,3]}
-<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$t_title} --- {stime($t_atime)}</a></li>
 {/tag:demo3}
 <hr>
 
 
 <ul>
-<li><a href="{surl(about,-);}">about-{$_groups['about']['title']}</a></li>
+<li><a href="{surl(about,-);}">about-{=$_groups['about']['title']}</a></li>
 {tag:about=[Type][modid,about]}
-<li><a href="{surl("about-$v[kid]")}">{$t_title}</a></li>
+<li><a href="{surl("about-$v[kid]")}">{=$t_title}</a></li>
 {/tag:about}
 </ul>
 <hr>
@@ -71,7 +71,7 @@ $_did = 'yyyy-md-xxxx';
 modid,china : sun:zx --- 
 [keywd,2][idfix,sun:p1012][idfix,sall:p1012]
 {tag:flag4=[Type][modid,china][idfix,sun:zx]}
-<li>{$t_kid},{$t_title}</li>
+<li>{=$t_kid},{=$t_title}</li>
 {/tag:flag4}
 <hr>
 
@@ -81,9 +81,9 @@ $mod = 'cargo';
 {/php}
 {tag:flag1=[Type,re1][modid,$mod][idfix,top]}
 <div>
-<li>head: mod={$mod} top</li>
+<li>head: mod={=$mod} top</li>
 row{:row}
-<li>{$re1['title']}</li>
+<li>{=$re1['title']}</li>
 {/row}/row
 </div>
 {/tag:flag1}
@@ -93,7 +93,7 @@ row{:row}
 {tag:flag2=[Type][modid,demo][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, 
+{=$t_kid}{=$t_title}, 
 {/row}
 {/tag:flag2}
 <hr>
@@ -105,7 +105,7 @@ $mod = 'cargo'; //[stype,p2012] // [where,tex_cargo::expwhr(1)] tex_cargo::expwh
 <div>
 <li><a href="?info-tag">[All]</a> # <a href="?mkv=info-tag&exp_s01=zhineng">智能</a> # <a href="?mkv=info-tag&exp_s01=net3g">3G</a></li>
 row{:row}
-<li>{$re1['title']}</li>
+<li>{=$re1['title']}</li>
 {/row}/row
 </div>
 {/tag:cargo1}
@@ -120,12 +120,12 @@ row{:row}
 <li>show(run.stamp): -------------- {show(run.stamp)}</li>
 <li>show(tplname): ---------------- {show(tplname)}</li>
 <li>show(abc.def): ---------------- {show(abc.def)}</li>
-<li>$tplname: --------------------- {$tplname}</li>
-<li>$_cbase['run']['stamp']: ------ {$_cbase['run']['stamp']}</li>
-<li>$this->mod: ------------------- {$this->mod}</li>
-<li>$this->ucfg['q']: ------------- {$this->ucfg['q']}</li>
-<li>$this->ucfg: ------------------ {$this->ucfg['mkv']}</li>
-<li>$_cbase: ---------------------- {$_cbase['sys_name']}</li>
+<li>$tplname: --------------------- {=$tplname}</li>
+<li>$_cbase['run']['stamp']: ------ {=$_cbase['run']['stamp']}</li>
+<li>$this->mod: ------------------- {=$this->mod}</li>
+<li>$this->ucfg['q']: ------------- {=$this->ucfg['q']}</li>
+<li>$this->ucfg: ------------------ {=$this->ucfg['mkv']}</li>
+<li>$_cbase: ---------------------- {=$_cbase['sys_name']}</li>
 <li>vopUrl::$ukeys['1'] ----------- {vopUrl::$ukeys['1']}</li>
 <hr>
 

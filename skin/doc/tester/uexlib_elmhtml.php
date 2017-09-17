@@ -9,9 +9,9 @@
         <li class="cls1">品牌：华为</li>
         <li class="cls1">颜色：黑/白/灰</li>
         <li class="cls1">内存：1024M</li>
-        <li class="cls1"><i>型号:</i><b class='itm-text'>{$xinghao} </b></li>
-        <li class="cls2"><i>规格<li><li></li></li>:</i><b class='itm-text'>{$guige} </b></li>
-        <li class="cls3"><i>价格:</i><b class='itm-text'>{$price}(元) 批量价</b></li>
+        <li class="cls1"><i>型号:</i><b class='itm-text'>{=$xinghao} </b></li>
+        <li class="cls2"><i>规格<li><li></li></li>:</i><b class='itm-text'>{=$guige} </b></li>
+        <li class="cls3"><i>价格:</i><b class='itm-text'>{=$price}(元) 批量价</b></li>
     </div>
     <div class="content">
         <p class="cls1">这里有很多内容……</p>

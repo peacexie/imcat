@@ -1,0 +1,86 @@
+
+
+body, html, p, div{ font:14px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
+a{ text-decoration:none; }
+i{ font-style:normal;  }
+p i.r{ float:right; color:#999; }
+.gwidth{ width:760px; display:block; margin:0px auto; clear:both; }
+.ie6{ color:#F00; background-color:#FFC; text-align:center; padding:10px 0; padding:10px 0px; }
+.clear { clear:both; }
+
+
+.nav{ text-align:center; font-size:larger; padding:20px 0 0 0; }
+.nav a{ position:relative; display:inline-block; padding:1px 3px; }
+.nav i:first-child{ display:none; }
+
+
+.head{ width:480px; height:50px; display:block; clear:both; text-align:center; margin:10px auto 10px auto; }
+.head h1{ font-size:18px; font-weight:bold; }
+.head p{ padding:0px 0px 0px 0px; margin:5px 0px 5px 0px; }
+.head img{ float:right; margin:-10px 10px 0px 10px; }
+
+
+.out{ margin:auto 10px; }
+.block{ width:100%; float:none; }
+.in{ 
+    padding:10px; margin:10px; border:1px solid #CCC; 
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 30px inset;
+    background: webkit-gradient(linear, 0% 20%, 0% 100%, from(rgb(255, 255, 255)), color-stop(0.1, rgb(243, 243, 243)), to(rgb(255, 255, 255)));
+    border-radius: 5px 20px 0px 0px;
+}
+.in h2 { width:30%; float:right; font-size:18px; font-weight:bold; text-align:center; line-height:150%; 
+    background:#FFF; padding:10px 5px; margin:0px; border-radius: 10px 10px 0 0; }
+.in h2 a{ display:block; clear:both; }
+.in h2 span{ display:block; clear:both; }
+.in h2 .tg1{ font-size:smaller; }
+.in p{ line-height:150%; padding:0px 0px 10px 0px; margin:10px 5px; border-bottom:1px dashed #CCC; }
+.in:hover, .in:hover h2{ background:#FFF; }
+
+@media only screen and (min-width:980px){
+    .out{ width:960px; margin:auto; }
+    .block{ width:50%; float:left; }
+    .in{ border-radius: 0px 0px 5px 20px; }
+    .in div{ clear:both; }
+    .in h2{ width:100%; clear:both; text-align:left; background:#F8F8F8; padding:auto 5px; }
+    .in h2 a{ display:inline; }
+    .in h2 span{ display:inline; }
+    .in h2 .tg1{ float:right; }
+    .in p{ border-top:1px dashed #CCC; border-bottom:0px; padding:10px 0px 0px 0px; }
+} /*>=1150(1200)的设备*/
+
+@media only screen and (max-width:500px){
+    .out{ width:100%; min-width:240px; max-width:480px; margin:auto; }
+    .block{ width:100%; float:none; }
+    .in{ border-radius: 0px 0px 5px 20px; }
+    .in div{ clear:both; }
+    .in h2{ display:block; width:100%; clear:both; text-align:left; background:#F8F8F8; }
+    .in h2 a{ display:inline; }
+    .in h2 span{ display:inline; }
+    .in h2 .tg1{ float:right; }
+    .in p{ border-top:1px dashed #CCC; border-bottom:0px; padding:10px 0px 0px 0px; }
+    .head{ width:100%; height:auto; margin:10px auto; }
+    .head img{ display:block; float:none; margin:auto; }
+    .head h1{ clear:both; margin:10px auto; }
+    .head p{ display:block; margin:auto 0px 20px 0px; }
+} /*<=764(768)的设备*/
+
+
+.foot{ text-align:center; clear:both; padding:20px 0; }
+.foot p{ padding:0px 0; margin:5px 0; }
+
+
+.qrcode_tip, .qrcode_pic { display:inline-block; font-style:normal; font-weight:normal; }
+.qrcode_pic {
+    position: absolute; background:#FFF; 
+    top: 23px; left: 0px; text-align:center;
+    padding:5px; border:1px solid #CCC;
+}
+
+a.qrcode_home { position:relative; }
+.qrcode_home, .qrcode_hpic { display:inline-block; font-style:normal; font-weight:normal; }
+.qrcode_hpic {
+    position: absolute; background:#FFF;
+    bottom:10px; left: -105px; text-align:center;
+    padding:5px; border:1px solid #CCC;
+}
+

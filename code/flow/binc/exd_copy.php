@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','admin/groups.php');
 
 $mod = empty($mod) ? '' : $mod;
 $type = req('type','mdata'); // mod, tabid

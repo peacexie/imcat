@@ -2,7 +2,7 @@
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<title>Hello, {$name}</title>
+<title>Hello, {=$name}</title>
 <style type='text/css'>
 .xxx{ padding:2px 3px;overflow-y:scroll;overflow-x:hidden;}
 </style>
@@ -10,9 +10,9 @@
 <!--inc:end-->
 <nav>
     <a href='{surl($this->mkv)}'>(Default)</a>
-    <a href='{surl(0)}?mkv={$this->mkv}&name=Peace'>Peace</a>
+    <a href='{surl(0)}?mkv={=$this->mkv}&name=Peace'>Peace</a>
 </nav>
-<p>Hello, {$name}!</p>
+<p>Hello, {=$name}!</p>
 <p>可用name带url参数, 如:?mkv=ctest-hello&name=YourName</p>
 <p><?php echo basDebug::runInfo(); ?></p>
 </body></html>

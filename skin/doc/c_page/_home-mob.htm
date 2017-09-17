@@ -17,9 +17,9 @@ eimp('initCss','bootstrap,stpub;comm-mob');
   </button>
   <ul class="dropdown-menu" aria-labelledby="nav_hdoc1">
     {inc:"c_pub/mmenu"}
-    <li><a href="{surl(dev:0)}" target="_blank"><i class="glyphicon glyphicon-euro"></i>中文文档</a></li>
-    <li><a href="{PATH_PROJ}/?start" target="_blank"><i class="glyphicon glyphicon-cog"></i>Start Page</a></li>
-    <li><a href="{PATH_PROJ}" target="_blank"><i class="glyphicon glyphicon-home"></i>Homepage</a></li>
+    <li><a href="{surl(dev:0)}" target="_blank"><i class="fa fa-euro"></i>中文文档</a></li>
+    <li><a href="{=PATH_PROJ}/?start" target="_blank"><i class="fa fa-cog"></i>Start Page</a></li>
+    <li><a href="{=PATH_PROJ}" target="_blank"><i class="fa fa-home"></i>Homepage</a></li>
   </ul>
   </div>
   <div class="dropdown pull-left">
@@ -32,7 +32,7 @@ eimp('initCss','bootstrap,stpub;comm-mob');
 <p class="text-center pa10">Guides ------ <br>
 Let your develop DIY!</p>
 <h1 class="home-title">
-{$_cbase['sys_name']} Manual
+{=$_cbase['sys_name']} Manual
 </h1>
 <p class="text-center bg-primary pa10">Lightweight, free, sharing ... </p>
 
@@ -56,7 +56,7 @@ Let your develop DIY!</p>
       $iver=str_replace('_','.',$k); 
     ?>
     <li>
-      <i class="right">Ver:{$iver}</i>{if is_numeric($v[0])}Pub.Date:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+      <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}Pub.Date:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
     </li>
     <?php $ik++; } ?>
   </ul>
@@ -105,9 +105,9 @@ Let your develop DIY!</p>
   ?>
   <div class="panel panel-primary">
     {loop $subs $k $v}
-    <div class="panel-heading" phdid='{$i_v}'>
-      <i class="glyphicon glyphicon-chevron-right right"></i>
-      {$_cbase['sys_name']}：{$v['title']}
+    <div class="panel-heading" phdid='{=$i_v}'>
+      <i class="fa fa-chevron-right right"></i>
+      {=$_cbase['sys_name']}：{=$v['title']}
     </div>
     <div class="panel-body">
       <?php echo $v['detail']; ?>

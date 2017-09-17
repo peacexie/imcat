@@ -236,8 +236,8 @@ class tex_indoc{ //extends tex_base
     // 是否已查看:noread,isread,0
     // tpl:<i class='tim-{val}'></i>
     static function isread($user,$did,$tpl="(val)",$flag=1){ 
-        $open = "<b class='glyphicon glyphicon-folder-open'></b> ";
-        $close = "<b class='glyphicon glyphicon-folder-close'></b> ";
+        $open = "<b class='fa fa-folder-open'></b> ";
+        $close = "<b class='fa fa-folder-close'></b> ";
         $sopen = 'style="color: #008000; font-weight : bold;"';
         $sclose = 'style="color: #ff0000; font-weight : bold;"';
         $cfg = array(

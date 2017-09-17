@@ -14,14 +14,14 @@ eimp('/_pub/a_jscss/multpic.js');
 eimp('/_pub/a_jscss/sordbar.js');
 eimp('/layer/layer.js','vendui');
 {/php} 
-<script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
+<script src="{=PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo;jsFields:cargo"></script> 
 {/block:pimp}
 
 {block:main}
     <!-- Detail Start -->
     <h1 class="pro_title">{title($title,96,$this->vars)}</h1>
     <div class="pro_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
+      点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次 &nbsp; 
       评论:<i id="cnt_nrem">0</i>条 </div>
 
     <table class="pro-resume" width="100%">
@@ -34,21 +34,21 @@ eimp('/layer/layer.js','vendui');
         <tr>
             <td class="pro-paras">
                 <p><i>品牌:</i><b class="uimark-pos-rel">{sopt($brand,brand,0,$null)}{if !empty($hinfo)}<span>{sopt($hinfo,hinfo)}</span><span class="uimark-star-icon1a"></span>{/if}</b></p>
-                <p><i>型号:</i><b class='itm-text'>{$xinghao} </b></p>
-                <p><i>规格:</i><b class='itm-text'>{$guige} </b></p>
+                <p><i>型号:</i><b class='itm-text'>{=$xinghao} </b></p>
+                <p><i>规格:</i><b class='itm-text'>{=$guige} </b></p>
                 {if !empty($fexts)}
                 {loop $fexts $f $fc}
-                    <p><i>{$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+                    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
                 {/loop}
                 {/if}
-                <p><i>价格:</i><b class='itm-text'>{$price}(元) 批量价</b></p>
+                <p><i>价格:</i><b class='itm-text'>{=$price}(元) 批量价</b></p>
             </td>
         </tr>
 
         <tr>
             <td class="pa10">
             订购数量：<input name="" type="text" value="1" class="w80"> 　
-            价格：<input name="" type="text" value="{$price}" class="w80" readonly><br />
+            价格：<input name="" type="text" value="{=$price}" class="w80" readonly><br />
             <span class="right">
             <input name="" type="button" value="+ 购物车">
             </span>
@@ -70,7 +70,7 @@ eimp('/layer/layer.js','vendui');
         <tr class='xxrem'>
             <td colspan="4" class="news_rem">        
                 <div class="rembar"> 
-                <span class="remadd">评论(<i id="jsid_count_crem:{$did}">0<!--,cnt_crem--></i>条) &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
+                <span class="remadd">评论(<i id="jsid_count_crem:{=$did}">0<!--,cnt_crem--></i>条) &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
                 <span class="remtitle">评论列表</span> 
                 </div><!--[cache,60]-->
                 {tag:dlist=[jsList][modid,crem][pid,$did][limit,10]}
@@ -79,7 +79,7 @@ eimp('/layer/layer.js','vendui');
                   <dt>{title($t_title,48,$v)} </dt>
                   <dd>
                   {text($t_detail,2400)}
-                  <p class="tr"><span>{$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+                  <p class="tr"><span>{=$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
                   </dd>
                 </dl>
                 {/row}
@@ -130,10 +130,6 @@ for(i=0;i<cfg.data.length;i++){
     str += pic;
 }
 $('#picMini').html(str);
-function mpro_vbig(e){
-    var src = $(e).attr('src');
-    $('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+v+"' onload='imgShow(this,400,300)'>");
-}
 
 </script>
 {/block:exend}

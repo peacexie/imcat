@@ -5,10 +5,11 @@ $_cbase['sys_open'] = "4";
 $_cbase['sys_pop'] = "3";
 $_cbase['msg_timea'] = "1500";
 $_cbase['sys_map'] = "baidu";
-$_cbase['sys_name'] = "贴心猫(IntimateCat)";
+$_cbase['sys_name'] = "贴心猫(TiexinCat)";
 
 $_cbase['adm_mode'] = "expert";
 $_cbase['debug']['err_mode'] = "1";
+$_cbase['close_home'] = "index";
 $_cbase['close_chn'] = "0";
 $_cbase['close_mob'] = "0";
 $_cbase['close_dev'] = "0";

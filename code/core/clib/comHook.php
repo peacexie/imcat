@@ -40,7 +40,7 @@ class comHook extends comCron{
     function init($mkv='',$tpl=''){
         $this->db = glbDBObj::dbObj();
         $this->stamp = $_SERVER["REQUEST_TIME"]; 
-        if(!tagCache::chkUpd($this->frun,$this->rgap)){
+        if(!extCache::cfGet($this->frun,$this->rgap)){
             $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=1";
             $whr .= $mkv ? " AND (hkmkv='0' OR hkmkv='$mkv')" : " AND hkmkv='0'";
             $whr .= $tpl ? " AND (hktpl='0' OR hktpl='$tpl')" : " AND hktpl='0'";

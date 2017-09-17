@@ -5,29 +5,41 @@
 eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
 eimp('initCss','bootstrap,stpub,jstyle;comm'); 
 {/php}
-<script src="{PATH_DTMP}/dset/_muadm.cfg.js"></script>
+<script src="{=PATH_DTMP}/dset/_muadm.cfg.js"></script>
 <style type='text/css'>html,body{overflow:hidden;}</style>
 </head><body>
-<div id="adf_title"> ({lang(admin.top_now)}) </div>
+<div id="adf_title">
+  ({lang(admin.top_now)}) 
+</div>
 <div id="adf_nav1">
-  <p class="inblock right">
-  <a href="?" class="cF0F">{lang(admin.top_admin)}</a>
-  <a href="{surl(chn:0)}" class="c00F" target="_blank">{lang(admin.top_front)}</a>
-  <a href="?logout" class="cF00">{lang(admin.top_exit)}</a> 
-  <a class="c999">-</a> 
-  <?php echo basLang::links("<a href='{url}' class='c666' title='{title}'>{mini}</a>"); ?>
-  </p>
+  <img class='toplogo' src="{=PATH_SKIN}/_pub/logo/imcat-40x.png">
+  <div class="dropdown pull-right">
+    <button class="btn btn-default dropdown-toggle bg-default" type="button" id="nav_mdoc1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      <span class="fa fa-user"></span>
+      <span class="fa fa-angle-double-down"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="nav_mdoc1">
+      <li class="tc"><a>{=$userstr}</a></li>
+      <li class="tc"><a>{=$user->uperm['title']}</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a href="?" class="c909"><i class="fa fa-refresh"></i> {lang(admin.adm_side)}</a></li>
+      <li><a href="?logout" class="c900"><i class="fa fa-share"></i> {lang(admin.exit_side)}</a></li>
+      <li><a href="{surl(chn:0)}" class="c009"><i class="fa fa-home"></i> {lang(admin.top_front)}</a></li>
+      <li role="separator" class="divider"></li>
+      <?php echo basLang::links("<li><a href='{url}' class='c666' title='{title}'><i class='fa fa-random'></i> {title}</a></li>"); ?>
+    </ul>
+  </div>
 </div>
 <div id="adf_left">
   <ul id='adf_copy'>
-    <li>{$userstr}</li>
-    <li><a href="?" class="cF0F">{lang(admin.adm_side)}</a> - <a href="?logout" target="_parent" class="cF00">{lang(admin.exit_side)}</a></li>
-    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {$_cbase['server']['txjia']}/)">{lang(admin.pro_name)}</li>
+    <li>{=$userstr}</li>
+    <li><a href="?" class="c909">{lang(admin.adm_side)}</a> - <a href="?logout" target="_parent" class="c900">{lang(admin.exit_side)}</a></li>
+    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {=$_cbase['server']['txjia']}/)">{lang(admin.pro_name)}</li>
     <li>Copyright&copy;Peace</li>
   </ul>
 </div>
 <div id="adf_right">
-  <iframe src="{$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
+  <iframe src="{=$mainurl}" id="adf_main" name="adf_main" class="mframe" frameBorder=0></iframe>
 </div>
 {php eimp('/~tpl/awtop.js'); }
 </body></html>

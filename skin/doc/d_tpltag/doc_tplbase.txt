@@ -34,8 +34,8 @@
 #imhead#Load-CSS/JS
 
 ```
-<link href='{PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
-<script src='{PATH_VENDUI}/layer/layer.js'></script>
+<link href='{=PATH_SKIN}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ or
 {php}
 eimp('/~tpl/cinfo.css'); // /skin/{tpldir}/b_jscss/a_jscss.css
@@ -52,14 +52,14 @@ eimp('initJs','zepto,jquery,bootcss,bootstrap,layer;comm;comm(-lang);user'); // 
     <script src='/skin/{tpldir}/b_jscss/comm-{lang}.js'></script> // {lang}=cn/en
     <script src='/skin/{tpldir}/b_jscss/user.js'></script> // {lang}=cn/en
     + (The above will mergered, And the below will Not mergered) 
-    <script src='{PATH_VENDUI}/jquery/zepto-1x.js'></script> // Just one with jquery
-    <script src='{PATH_VENDUI}/jquery/jquery-3.x.js'></script> // Auto use 1.x/3.x
-    <link href='{PATH_VENDUI}/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
-    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
-    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+    <script src='{=PATH_VENDUI}/jquery/zepto-1x.js'></script> // Just one with jquery
+    <script src='{=PATH_VENDUI}/jquery/jquery-3.x.js'></script> // Auto use 1.x/3.x
+    <link href='{=PATH_VENDUI}/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
+    <script src='{=PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs'); // in head
  -=>
-    @import url({PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
+    @import url({=PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
     + (The below will mergered, And the above will Not mergered)
     <link href='/_pub/jslib/stpub.css' type='text/css' rel='stylesheet'/>
     <link href='/_pub/a_jscss/jstyle.css' type='text/css' rel='stylesheet'/>
@@ -69,8 +69,8 @@ eimp('loadExtjs','jspop,jq_base,bootstrap,layer'); // Can put the end of body
  -=>
     <script src='/skin/_pub/jslib/jspop.js'></script>
     <script src='/skin/_pub/jslib/jq_base.js'></script>
-    <script src='{PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
-    <script src='{PATH_VENDUI}/layer/layer.js'></script>
+    <script src='{=PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
+    <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ or (Else)
 eimp('/plus/ajax/comjs.php?act=autoJQ');
 basJscss::loadJqbs('zepto',0);

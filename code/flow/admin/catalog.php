@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
-usrPerm::run('pfile','admin/catalog.php');
 
 $mod = empty($mod) ? 'demo' : $mod;
 $view = empty($view) ? 'glist' : $view;
@@ -86,7 +85,7 @@ if($view=='glist'){
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
     $opstr = basElm::setOption(lang('flow.op_op4')."\nframe|".lang('admin.cat_frame')."\nnofrm|".lang('admin.cat_xframe')."");
     $opbtn = "<input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' />";
-    echo "<td class='tr' colspan='$cspan'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>$opstr</select> $opbtn &nbsp; </td>\n";
+    echo "<td class='tr flgOpbar' colspan='$cspan'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select class='w120 form-control' name='fs_do'>$opstr</select> $opbtn &nbsp; </td>\n";
     echo "</tr>";
     glbHtml::fmt_end(array("mod|$mod"));
 

@@ -316,27 +316,11 @@ $_groups = array (
     'etab' => '0',
     'deep' => '0',
   ),
-  'sadm' => 
-  array (
-    'pid' => 'groups',
-    'title' => '设置/后台',
-    'top' => '224',
-    'etab' => '0',
-    'deep' => '0',
-  ),
   'smem' => 
   array (
     'pid' => 'groups',
     'title' => '设置/会员',
     'top' => '236',
-    'etab' => '0',
-    'deep' => '0',
-  ),
-  'suser' => 
-  array (
-    'pid' => 'groups',
-    'title' => '设置/用户',
-    'top' => '240',
     'etab' => '0',
     'deep' => '0',
   ),

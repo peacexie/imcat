@@ -19,14 +19,14 @@ $mods = array(
     {php $vcfg = glbConfig::vcfg($mod); unset($vcfg['c'],$vcfg['m'],$vcfg['d']); }
     <ul class="mod-list">
       <a href="{surl($mod,-);}"><li class="type">
-      <b class="right ext">{$mod}</b>
-      {$mod}:{$mv}
+      <b class="right ext">{=$mod}</b>
+      {=$mod}:{=$mv}
       </li></a>
       {loop $vcfg $key $val}
       {php $ktitle = tex_devs::getKeyTitle($mod,$key); }
       <a href="{surl("$mod-$key")}"><li>
-      <i class="atype">{$key}</i>
-      <i class="title ellipsis">{$ktitle}</i>
+      <i class="atype">{=$key}</i>
+      <i class="title ellipsis">{=$ktitle}</i>
       </li></a>
       {/loop}
     </ul>
@@ -48,8 +48,8 @@ $mods = array(
       </li></a>
       <?php foreach($cfgs as $key=>$val){ ?>
       <a href="{surl("tools-$key")}"><li>
-      <i class="atype">{$key}</i>
-      <i class="title ellipsis">{$val['mt']}</i>
+      <i class="atype">{=$key}</i>
+      <i class="title ellipsis">{=$val['mt']}</i>
       </li></a>
       <?php } ?>
     </ul>
@@ -62,8 +62,8 @@ $mods = array(
       </li></a>
       <?php foreach($cfgs as $key=>$val){ ?>
       <a href="{surl(uplog)}"><li>
-      <i class="atype">{$val[0]}</i>
-      <i class="title ellipsis">{$val[1]}</i>
+      <i class="atype">{=$val[0]}</i>
+      <i class="title ellipsis">{=$val[1]}</i>
       </li></a>
       <?php } ?>
     </ul>

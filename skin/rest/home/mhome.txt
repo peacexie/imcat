@@ -103,5 +103,5 @@
 * Extra-Operation
  - Token: <a href='?token'>Management/管理<a/>
  - Info: <a href='?error'>Error/错误信息<a/>
- - Old version: <a href="app.php">`apiServer/appServer`<a/>
+ - Old version: <a href="http://txmao.txjia.com/dev.php?extend-apiServer">`apiServer/appServer`<a/>
 

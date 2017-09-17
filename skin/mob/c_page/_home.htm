@@ -13,8 +13,8 @@ $msg = "手机版请用手机打开，或用Chrome,Firefox,IE10+调试！";
 glbHtml::ieLow_html(10,'LowIE',$msg);
 ?>
 <div class="divOuter hdhome">
-    <img class="logo right" src="{PATH_SKIN}/_pub/logo/imcat-40x.png" width="40" height="40">
-    <h1>{$_cbase['sys_name']}</h1>
+    <img class="logo right" src="{=PATH_SKIN}/_pub/logo/imcat-40x.png" width="40" height="40">
+    <h1>{=$_cbase['sys_name']}</h1>
 </div>
 <div class="divOuter clearfix">
 {/block:head}
@@ -31,7 +31,7 @@ glbHtml::ieLow_html(10,'LowIE',$msg);
     <div class="clear"><div>
   
   <div>
-    <p class="home-title"><a href="{surl(news)}" class="icobox right"><i class="glyphicon glyphicon-folder-open"></i></a>
+    <p class="home-title"><a href="{surl(news)}" class="icobox right"><i class="fa fa-folder-open"></i></a>
     <strong>新闻动态</strong></p>
     <ul>
         {tag:dlist2=[List][modid,news][show,1][limit,6]}
@@ -43,7 +43,7 @@ glbHtml::ieLow_html(10,'LowIE',$msg);
   </div>
 
   <div>
-    <p class="home-title"><a href="{surl(keres)}" class="icobox right"><i class="glyphicon glyphicon-folder-open"></i></a>
+    <p class="home-title"><a href="{surl(keres)}" class="icobox right"><i class="fa fa-folder-open"></i></a>
     <strong>课程资源</strong></p>
     <ul>
         {tag:dlist3=[List][modid,keres][show,1][limit,6]}

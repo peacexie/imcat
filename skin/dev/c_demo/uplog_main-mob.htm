@@ -12,9 +12,9 @@ $verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1] : $cfgs[$key][0];
   {loop $msubs $k $v}
   <div class="inn-atitle">
   <a href="#" class="right">[Top]</a>
-  <p><i class="label-primary">{$v[title]}</i></p>
+  <p><i class="label-primary">{=$v[title]}</i></p>
   </div>
-  {$v[detail]}
+  {=$v[detail]}
   {/loop}
 
 {/block:main}

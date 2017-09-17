@@ -16,10 +16,10 @@ $title = 'js标签';
 
 <div class="detail_bar">
   ::: <i id='field_test231'>123</i>
-  <br>点击a: <i id="uclick1">{$click}</i>次 ----- 
-  <br>点击b: <i id="jsid_field_news:{$did}:click">{$click}<!--,add1,uclick1,field_test231--></i>次 -----  
-  <br>修改a: <i id="jsid_field_news:{$did}:etime"></i> ----- 
-  <br>修改b: <i id="jsid_field_news:2013-ff-dcyq:etime">{$etime}</i> ----- 
+  <br>点击a: <i id="uclick1">{=$click}</i>次 ----- 
+  <br>点击b: <i id="jsid_field_news:{=$did}:click">{=$click}<!--,add1,uclick1,field_test231--></i>次 -----  
+  <br>修改a: <i id="jsid_field_news:{=$did}:etime"></i> ----- 
+  <br>修改b: <i id="jsid_field_news:2013-ff-dcyq:etime">{=$etime}</i> ----- 
   <br>统计a: <i id="jsid_count_nrem:2013-ff-dcyq">0<!--,ucount1--></i> ----- 
 </div>
 <br>测试0: <i id="xxx:2013-ff-dcyq:etime">id="xxx_:2013-ff-dcyq:etime"</i>
@@ -42,7 +42,7 @@ $title = 'js标签';
 
 {php $_did = '2006-97-8axx'; }
 {tag:demo1=[jsOne][modid,demo][join,detail][order,etime]}
-<li><a href="{surl("demo.$t_did")}">{$v['title']}</a> <br>detail: --- {stime($t_atime)} --- {$t_detail}</li>
+<li><a href="{surl("demo.$t_did")}">{=$v['title']}</a> <br>detail: --- {stime($t_atime)} --- {=$t_detail}</li>
 {/tag:demo1}
 <hr>
 
@@ -50,7 +50,7 @@ $title = 'js标签';
 pgbar ::: test:
 {tag:demo2=[jsPage][modid,demo][keywd,05,title+mname][limit,3]}
 {:row}
-<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$t_title} --- {stime($t_atime)}</a></li>
 {/row}
 {php echo $_cbase['page']['bar']; }
 {/tag:demo2}
@@ -60,15 +60,15 @@ pgbar ::: test:
 $_did = 'yyyy-md-xxxx';
 {php $_did = '2006-97-8axx'; }
 {tag:demo3=[jsList][modid,demo][keywd,西,title+mname][order,etime][limit,3]}
-<li><a href="{surl("demo.$t_did")}">{$t_title} --- {stime($t_atime)}</a></li>
+<li><a href="{surl("demo.$t_did")}">{=$t_title} --- {stime($t_atime)}</a></li>
 {/tag:demo3}
 <hr>
 
 
 <ul>
-<li><a href="{surl(about,-);}">about-{$_groups['about']['title']}</a></li>
+<li><a href="{surl(about,-);}">about-{=$_groups['about']['title']}</a></li>
 {tag:about=[jsType][modid,about]}
-<li><a href="{surl("about-$v[kid]")}">{$t_title}</a></li>
+<li><a href="{surl("about-$v[kid]")}">{=$t_title}</a></li>
 {/tag:about}
 </ul>
 <hr>
@@ -77,7 +77,7 @@ $_did = 'yyyy-md-xxxx';
 modid,china : sun:zx --- 
 [keywd,2][idfix,sun:p1012][idfix,sall:p1012]
 {tag:flag4=[jsType][modid,china][idfix,sun:zx]}
-<li>{$t_kid},{$t_title}</li>
+<li>{=$t_kid},{=$t_title}</li>
 {/tag:flag4}
 <hr>
 
@@ -87,9 +87,9 @@ $_modx1 = 'cargo';
 {/php}
 {tag:flag1=[jsType,re1][modid,$_modx1][idfix,top]}
 <div>
-<li>head: mod={$mod} top</li>
+<li>head: mod={=$mod} top</li>
 row{:row}
-<li>{$re1['title']}</li>
+<li>{=$re1['title']}</li>
 {/row}/row
 </div>
 {/tag:flag1}
@@ -99,7 +99,7 @@ row{:row}
 {tag:flag2=[jsType][modid,demo][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, 
+{=$t_kid}{=$t_title}, 
 {/row}
 {/tag:flag2}
 <hr>
@@ -111,21 +111,21 @@ Test__xxxx<br>
 {tag:test__01=[jsType][modid,topic][test1234560000,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __01
+{=$t_kid}{=$t_title}, __01
 {/row}
 {/tag:test__01}
 -----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
 {tag:test__02=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __02
+{=$t_kid}{=$t_title}, __02
 {/row}
 {/tag:test__02}
 -----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
 {tag:test__03=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __03
+{=$t_kid}{=$t_title}, __03
 {/row}
 {/tag:test__03}
 <hr>
@@ -137,21 +137,21 @@ Test__xxxx<br>
 {tag:test__11=[jsType][modid,topic][test1234560000,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __11
+{=$t_kid}{=$t_title}, __11
 {/row}
 {/tag:test__11}
 -----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
 {tag:test__12=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __12
+{=$t_kid}{=$t_title}, __12
 {/row}
 {/tag:test__12}
 -----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
 {tag:test__13=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title},  __13
+{=$t_kid}{=$t_title},  __13
 {/row}
 {/tag:test__13}
 <hr>
@@ -166,20 +166,20 @@ Test__xxxx<br>
 {tag:test__31=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __31
+{=$t_kid}{=$t_title}, __31
 {/row}
 {/tag:test__31}
 {tag:test__32=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title}, __32
+{=$t_kid}{=$t_title}, __32
 {/row}
 {/tag:test__32}
 -----------------------------------123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-<br>
 {tag:test__33=[jsType][modid,topic][test1234560001,value1234567890,ext1234567890xxx1+ext1234567890xxx2+ext000000003][idfix,top]}
 demo-top: 
 {:row}
-{$t_kid}{$t_title},  __33
+{=$t_kid}{=$t_title},  __33
 {/row}
 {/tag:test__33}
 </div>

@@ -19,9 +19,9 @@ $titlesub = $kar[$key];
 {block:exmain}
     
     <?php foreach($subs as $k=>$v){ ?>
-    <ul id="s_{$k}" class="mod-section">
-      <li class="type">{$_cbase['sys_name']} {$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
-      {$v[detail]}
+    <ul id="s_{=$k}" class="mod-section">
+      <li class="type">{=$_cbase['sys_name']} {=$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {=$v[detail]}
     </ul>
     <?php } ?>
     

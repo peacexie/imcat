@@ -27,9 +27,9 @@ eimp('initCss','bootstrap,stpub;comm;info');
 
     {loop array('about','news','cargo','topic','keres') $mod}
     <ul class="info-nav">
-      <li class="type"><a href="{surl($mod,-);}">{$mod}:{$_groups[$mod]['title']}</a></li>
+      <li class="type"><a href="{surl($mod,-);}">{=$mod}:{=$_groups[$mod]['title']}</a></li>
       {tag:about=[Type][modid,$mod][idfix,top]}
-      <li><a href="{surl("$mod-$t_kid")}">{$t_kid},{$t_title}</a></li>
+      <li><a href="{surl("$mod-$t_kid")}">{=$t_kid},{=$t_title}</a></li>
       {/tag:about}
     </ul>
     {/loop}

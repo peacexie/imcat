@@ -48,10 +48,10 @@ class Oauth{
 
     public function qq_callback(){
 		$appid = $this->recorder->readInc("appid");
-        $actik = extToken::get('qq-login-'.$appid); 
+        $actik = extCache::tkGet('qq-login-'.$appid); 
         if(empty($actik)){
             $actik = $this->qq_actoken();
-			extToken::set('qq-login-'.$appid,$actik,'72d'); // 3个月
+			extCache::tkSet('qq-login-'.$appid,$actik,'72d'); // 3个月
         }
         $this->recorder->write("access_token", $actik);
         return $actik;

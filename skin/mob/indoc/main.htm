@@ -12,7 +12,7 @@ $cfgs = array(
 <!-- // {if ($user->userFlag=='Guest')}{else}{/if} -->
 <div class="umc-mitem">
     {loop $cfgs $key $vc}
-    <h3><i>{$key}-docu</i>{$vc}：</h3>
+    <h3><i>{=$key}-docu</i>{=$vc}：</h3>
     <dl>
         <?php $where=tex_indoc::expwhr($user,"i$key",0,'no'); $recn=0; ?>
         {tag:indocs1=[List][modid,$this->mod][where,$where][show,1][limit,5]}

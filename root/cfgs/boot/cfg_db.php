@@ -3,11 +3,19 @@
 // 数据库 - 基本配置
 
 $_cfgs['db_class']   = 'mysqli'; // 数据库类(class),mysqli(推荐),pdox(用于PDO扩展),mysql(PHP5.5+不能使用)
-$_cfgs['db_host']    = 'localhost'; // 数据库主机(pdox连接不使用)
-$_cfgs['db_name']    = 'imcat_v38'; // 数据库名(pdox连接不使用) 
+  if($_SERVER["HTTP_HOST"]=='txmao.txjia.com'){
+$_cfgs['db_host']    = 'sqld.duapp.com'; // 数据库主机(pdox连接不使用)
+$_cfgs['db_name']    = 'MoyBZpUtOrBXQRVXQjyn'; // 数据库名(pdox连接不使用) 
+$_cfgs['db_port']    = '4050'; // 数据库端口，mysql默认是3306，一般不需要修改
+$_cfgs['db_user']    = '2c9e5dc8524f46558b0bfa1f8a592b98'; // 数据库用户名
+$_cfgs['db_pass']    = '48b00a2a78184fe08c830e71af7e026a'; // 数据库密码 
+  }else{
+$_cfgs['db_host']    = 'localhost'; // 127.0.0.1,localhost,数据库主机(pdox连接不使用)
+$_cfgs['db_name']    = 'txmao_main'; // 数据库名(pdox连接不使用) 
 $_cfgs['db_port']    = '3306'; // 数据库端口，mysql默认是3306，一般不需要修改
-$_cfgs['db_user']    = 'root'; // 数据库用户名
-$_cfgs['db_pass']    = ''; // 数据库密码  
+$_cfgs['db_user']    = 'peace'; // 数据库用户名
+$_cfgs['db_pass']    = '123456'; // 数据库密码
+  }
 
 // 数据库 - 高级配置
 #$_cfgs['db_dsn']  = 'mysql:host=localhost;dbname=peace_v30'; //pdox连接access使用

@@ -1,4 +1,7 @@
 
--- active_admin@2017-07-21 21:04:07 -- 
+-- active_admin@2017-09-17 15:06:38 -- 
 INSERT INTO `{pre}active_admin{ext}` VALUES 
-('7364cba8ec613cb22beea7e5e9034bb8','peace','supper','1','0','0','1500642000','2017-64-a1q5mu4-66qu864a3-59c2838d5','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36');
+('76c65970ba597435a83b766693acbf88','peace','supper','1','0','0','1505631770','2017-98-p01feg1-gtff4558y-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'),
+('0bba5fa7576ecfd1cb18ba346c5e9395','peace','supper','1','0','0','1505569915','2017-99-gg36xdb-4w5gupbvj-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'),
+('fc402800f046c884db854af46e71936f','peace','0','0','0','0','1505547117','2017-9h-g9svu12-u7kg93bp3-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'),
+('6e390a14485e52c80bdf0eebd9dfe869','peace','supper','1','0','0','1505631576','2017-9j-fjehmsa-y8b3hvchq-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36');

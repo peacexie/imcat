@@ -5,17 +5,17 @@ class usrPerm{
     
     // 
     static function issup(){
-        $user = usrBase::userObj('Admin');
-        return @$user->uperm['grade']=='supper';
+        $sessid = self::getSessid();
+        $sesstr = isset($_SESSION[$sessid]) ? $_SESSION[$sessid] : ''; ;
+        $prem = strpos($sesstr,'grade=supper'); //dump($prem);
+        return $prem;
     }    
     
     // fix : '';end;full
-    //usrPerm::run(array('pcheck,about','padd,about'));
-    //usrPerm::run('pfile','admin/groups.php');
-    static function run($key,$val='',$fix='end'){
-        if($key=='pfile'){
-            $val = str_replace(array('/','.php'),array('-',''),$val);
-        }
+    // ??? usrPerm::run(array('pcheck,about','padd,about'));
+    //usrPerm::run('mkv','admin-groups');
+    static function run($key='mkv',$val='',$fix='end'){
+        if($key=='mkv' && empty($val)) $val = basReq::val('mkv');
         $msg = self::check($key,$val); 
         if(empty($fix)){
             return $msg;
@@ -38,6 +38,9 @@ class usrPerm{
     
     // re : str, ''
     static function check($key,$val=''){
+        if($key=='mkv'){
+            $key = defined('RUN_ADMIN') ? 'mkva' : 'mkvu';
+        }
         $user = usrBase::userObj();
         if($key=='usess'){ 
             $str = comSession::get(self::getSessid()); 
@@ -45,8 +48,8 @@ class usrPerm{
             return $re;        
         }elseif(self::issup()){ 
             return ''; //超级管理员
-        }elseif(is_array($key)){
-            return self::pmArr($key);
+        //}elseif(is_array($key)){
+            //return self::pmArr($key);
         }else{
             return self::pmOne($key,$val);
         }
@@ -62,7 +65,7 @@ class usrPerm{
             return $user->$key;
         }elseif(in_array($key,array('model','grade'))){
             return $user->uperm[$key];
-        }elseif(substr($key,0,1)=='p' && isset($user->uperm[$key])){
+        }elseif(isset($user->uperm[$key])){
             return $user->uperm[$key];
         }else{
             return '';
@@ -75,8 +78,7 @@ class usrPerm{
             return '-';
         }else{ 
             $str = self::pmStr($key); 
-            if($key=='pfile' && $val=='(auto)') $val = basReq::arr('mkv'); 
-            if(strpos($str,$val)){
+            if(strpos(":,$str,",",$val,")){
                 return '';
             }else{
                 return "$key:$val";
@@ -85,7 +87,7 @@ class usrPerm{
     }
     
     // re : str, ''
-    static function pmArr($arr){
+    /*static function pmArr($arr){
         $re = '';
         foreach($arr as $v){
             $a = explode(',',"$v,");
@@ -95,7 +97,7 @@ class usrPerm{
             }
         }
         return $re; 
-    }
+    }*/
     
     // 从uperm['cfgs']中取得权限key(s)
     static function pmCfgs($cfgs='',$re='_arr'){

@@ -244,6 +244,7 @@ class glbDBObj{
     // 取得数据表的字段信息
     function fields($tab){
         $this->connect();
+        $tab = is_array($tab) ? $tab[0] : $tab;
         $a = $this->db->fields("$this->pre$tab$this->ext");
         $this->runTimer('fields');
         return $a;
@@ -273,7 +274,7 @@ class glbDBObj{
     function create($tab){
         $this->connect();
         $a = $this->db->create("{$this->pre}$tab{$this->ext}");
-        $this->runTimer('fields');
+        $this->runTimer('create');
         return $a;
     }
     //返回sql语句

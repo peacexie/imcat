@@ -62,9 +62,9 @@ $_ex_coms = array(
 * 配置本文件：_ex_digg
 * html
     <span class="right" id='diggs2'>
-    <a id="jsid_field_{$this->mod}:{$did}:diggtop" class="glyphicon glyphicon-thumbs-up c6F6 f24 hand">{$diggtop}</a>
+    <a id="jsid_field_{$this->mod}:{$did}:diggtop" class="fa fa-thumbs-up c6F6 f24 hand">{$diggtop}</a>
     &nbsp;
-    <a id="jsid_field_{$this->mod}:{$did}:diggdown" class="glyphicon glyphicon-thumbs-down cF33 f16 hand">{$diggdown}</a>
+    <a id="jsid_field_{$this->mod}:{$did}:diggdown" class="fa fa-thumbs-down cF33 f16 hand">{$diggdown}</a>
     &nbsp;
     </span>
 * 模版js：

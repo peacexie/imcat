@@ -25,8 +25,8 @@ i.red{ color:red; }
 <pre>
 * [0] 先来看效果
  - 先登录后台，否则因权限问题看不到效果。
- - 访问：<a href="{PATH_PROJ}/chn.php?adpush=load" target="1">{root}/chn.php?adpush=load</a>, 鼠标滑上产品展示区块，点[Psuh] 或 [更新信息]，可更新信息
- - 访问：<a href="{PATH_PROJ}/dev.php?mkv={$this->mkv}&adpush=load" target="1">{root}/dev.php?mkv=(mkv)&adpush=load</a>, 鼠标滑上相关区块，点[Psuh] 或 [更新信息]
+ - 访问：<a href="{=PATH_PROJ}/chn.php?adpush=load" target="1">{root}/chn.php?adpush=load</a>, 鼠标滑上产品展示区块，点[Psuh] 或 [更新信息]，可更新信息
+ - 访问：<a href="{=PATH_PROJ}/dev.php?mkv={=$this->mkv}&adpush=load" target="1">{root}/dev.php?mkv=(mkv)&adpush=load</a>, 鼠标滑上相关区块，点[Psuh] 或 [更新信息]
  
 * [1] 后台配置推送位:
  - 后台: 广告 > 手动推送 
@@ -54,9 +54,9 @@ i.red{ color:red; }
 {tag:dpush=[Push][modid,adpush][inids,cargo-push8]}
 <li class="pro">
     <img src="<?php echo comStore::revSaveDir($t_mpic);?>" height="40">
-    <a href="{$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span>
+    <a href="{=$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span>
       {if empty($t_star)}<sup class="red">●</sup>{/if}</a>
-    <div><i>价格:{$t_price}</i> <i>点击:{$t_click}</i> </div>
+    <div><i>价格:{=$t_price}</i> <i>点击:{=$t_click}</i> </div>
 </li>
 {/tag:dpush}
 </div>
@@ -64,7 +64,7 @@ i.red{ color:red; }
 <p><b>[demo-tag3]</b></p>
 <div class='adpush_obj test1box' aid='demo-tag3'>
 {tag:dpush=[Push][modid,adpush][inids,demo-tag3]}
-<li><a href="{$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span></a>
+<li><a href="{=$t_url}" target="_1"><span class="f18px">{title($t_title,96,$v)}</span></a>
 <img src="<?php echo comStore::revSaveDir($t_mpic);?>" height="24"></li>
 {/tag:dpush}
 </div>
@@ -76,7 +76,7 @@ i.red{ color:red; }
 <p><b>[demo-news5]</b></p>
 <div class='adpush_obj test1box' aid='demo-news5'>
 {loop $res['demo-news5'] $key $v}
-<li><a href="{$v['url']}" target="_1"><span class="f18px">{title($v['title'],96,$v)}</span></a>
+<li><a href="{=$v['url']}" target="_1"><span class="f18px">{title($v['title'],96,$v)}</span></a>
 {/loop}
 </div>
 

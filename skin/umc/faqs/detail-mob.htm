@@ -10,7 +10,7 @@ $bugid || $bugid = '---';
 <h1 class="news_title">{title($title,96,$this->vars)}</h1>
 <div class="news_bar">
   {lang(user.qa_pub)}:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-  {lang(user.qa_click)}:<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>{lang(user.qa_times)} 
+  {lang(user.qa_click)}:<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>{lang(user.qa_times)} 
 </div>
 <div class="news_text">
  <?php echo tex_faqs::showDetail($detail,$mdshow); ?>
@@ -20,14 +20,14 @@ $bugid || $bugid = '---';
   &nbsp; 
   <i>
   {sopt($hinfo,faqs.hinfo,0,$null)}
-  {lang(user.qa_bugid)}: {$bugid}
+  {lang(user.qa_bugid)}: {=$bugid}
   </i>
 </div>
 
 <div class="news_rem">
   <div class="rembar"> 
   <span class="remadd">
-  <!--a href="{surl(0)}?mkv={$pmod}&pid={$did}"-->{lang(user.qa_rep)}(<i id="jsid_count_{$pmod}:{$did}">0<!--`{$this->mod},cnt_{$pmod}`--></i>{lang(user.qa_cnt)})</a></span> 
+  <!--a href="{surl(0)}?mkv={=$pmod}&pid={=$did}"-->{lang(user.qa_rep)}(<i id="jsid_count_{=$pmod}:{=$did}">0<!--`{=$this->mod},cnt_{=$pmod}`--></i>{lang(user.qa_cnt)})</a></span> 
   <span class="remtitle">{lang(user.qa_relist)}</span> 
   </div><!--[cache,60]--> 
   {tag:dlist=[List][modid,$pmod][pid,$did][limit,20]}
@@ -40,7 +40,7 @@ $bugid || $bugid = '---';
     <dd>
     <?php echo tex_faqs::showDetail($t_detail,$t_mdshow); ?>
     <p class="tc">
-    <span>by: {$t_mname}</span> 
+    <span>by: {=$t_mname}</span> 
     <i class="right">
       {lang(user.qa_imid)}: {if empty($t_miuid) } --- {else}{title($t_miuid,48,$v)}{/if} 
     </i>

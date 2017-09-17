@@ -121,7 +121,7 @@ $vcfg['---'] = array('HOME','');
   </tr> 
   <tr class="tc">
     <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">贴心口袋</a></td>
-    <td><a href="http://txmao.txjia.com/">贴心猫</a></td>
+    <td><a href="http://txjia.com/peace/wenode.htm">Node微框架</a></td>
     <td><a href="http://txjia.com/peace/txbox.htm">Java盒子</a></td>
     <td><a href="http://txjia.com/peace/txasp.htm">贴心Asp</a></td>
   </tr> 

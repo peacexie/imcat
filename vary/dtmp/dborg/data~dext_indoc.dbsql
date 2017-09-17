@@ -1,5 +1,5 @@
 
--- dext_indoc@2017-07-21 21:04:07 -- 
+-- dext_indoc@2017-09-17 15:06:39 -- 
 INSERT INTO `{pre}dext_indoc{ext}` VALUES 
 ('2015-6t-dp31','~','XieYS永顺','','','','','','nosend'),
 ('2015-71-cvt1','~','XieYS永顺','','','','','','nosend'),
@@ -10,4 +10,4 @@ INSERT INTO `{pre}dext_indoc{ext}` VALUES
 ('2015-9m-dgg1','~','XieYS永顺','','','','','cseal_br','nosend'),
 ('2015-9m-dm41','~','XieYS永顺','','','','','','nosend'),
 ('2015-9m-dq21','~','XieYS永顺','','','','','cseal_tr','nosend'),
-('2016-61-nm01','~','SendXXXXX','','','','','cseal_br','email');
+('2016-61-nm01','~','SendXXXXX','','','','','cseal_bl','wechat');

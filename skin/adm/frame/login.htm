@@ -1,7 +1,9 @@
-<!DOCTYPE html><html><head>
 {php} 
 $title = basLang::show('admin.adm_center');
 $remsg = usrAdmin::opLogin($this);
+{/php}
+<!DOCTYPE html><html><head>
+{php} 
 $this->pmeta($title);
 eimp('initJs','jquery,bootstrap;comm;comm(-lang)');
 eimp('initCss','bootstrap,stpub,jstyle;comm'); 
@@ -16,17 +18,17 @@ body, input, textarea, select, button{ font-size:14px; }
 
 <div class="login-outer panel panel-primary">
     <div class="panel-heading login-head">
-        <img class="logo right" src="{PATH_SKIN}/_pub/logo/logo120x60.jpg">
+        <img class="logo right" src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg">
         <select class="form-control" id="locSetS" onchange="location.href=this.value;">
             <option value=""> En&#x21d4;中 </option>
             <?php echo basLang::links("<option value='{url}'>{title}</option>"); ?>
         </select>
-        <p>{show(sys_name)} - {$title}</p>
+        <p>{show(sys_name)} - {=$title}</p>
     </div>
         <div class="panel-body">
           <form action="?login" method="post" name="fmadm" id="fmadm" class='login'>
           {if !empty($remsg) }
-          <div class="text-warning bg-info topmsg">{$remsg}</div>
+          <div class="text-warning bg-info topmsg">{=$remsg}</div>
           {/if}
           <p class="row"> <i class="col-xs-4 col-md-4"><a class="block pt10 c333">{lang(uname)}:</a></i>
             <i class="col-xs-8 col-md-8">
@@ -40,14 +42,14 @@ body, input, textarea, select, button{ font-size:14px; }
           </p>
           <p class="row"> <i class="col-xs-4 col-md-4"><a class="block pt10 c333">{lang(vcode)}:</a></i>
             <i class="col-xs-8 col-md-8 tl">
-            <script>fsInit('fmadm');</script>
+            <script>fsInit('fmadm');</script><!--,'-207,-93' -->
             </i>
           </p>
           <p class="row"> <i class="col-xs-4 col-md-4"></i>
             <i class="col-xs-8 col-md-8 tr">
             <input name="submit" value="{lang(submit)}" tabindex="19820" type="submit" class="btn btn-primary form-control active" />
             <input name="act" type="hidden" value="dologin" />
-            <input name="recbk" type="hidden" value="{$recbk}" />
+            <input name="recbk" type="hidden" value="{=$recbk}" />
             </i>
           </p>
           </form>
@@ -77,6 +79,8 @@ body, input, textarea, select, button{ font-size:14px; }
 </body></html>
 {php}eimp('/_pub/jslib/jq_base.js');{/php}
 <script>
-winAutoMargin('topMargin');;
-$('.login-head p').width($('.topmsg').outerWidth());
+$(function(){
+    winAutoMargin('topMargin');
+    $('.login-head p').width($('.topmsg').outerWidth());
+})
 </script>

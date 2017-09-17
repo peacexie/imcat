@@ -18,13 +18,13 @@ $null3 = "";
     <?php
     $kid = str_replace(array('-'),'',$t_did);
     ?>
-  <dt onclick="fqas_show('{$kid}')">
+  <dt onclick="fqas_show('{=$kid}')">
     <b>{title($t_title,96,$v)}</b>
     <i class="right"> {stime($t_atime,min)} </i>
   </dt>
   <dd>
-    <div id="min_{$kid}"><a onclick="fqas_show('{$kid}')" class="right">[详情]</a>{text($t_detail,80,1)}…… </div>
-    <div id="max_{$kid}" style="display:none;"><a onclick="fqas_show('{$kid}')" class="right">[收起]</a> {$t_detail} &nbsp; </div>
+    <div id="min_{=$kid}"><a onclick="fqas_show('{=$kid}')" class="right">[详情]</a>{text($t_detail,80,1)}…… </div>
+    <div id="max_{=$kid}" style="display:none;"><a onclick="fqas_show('{=$kid}')" class="right">[收起]</a> {=$t_detail} &nbsp; </div>
   </dd>
   <dd class="line">&nbsp;</dd>
   {/row}

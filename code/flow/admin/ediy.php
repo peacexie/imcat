@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','(auto)'); 
 
 $_sy_nava['exdiys'] = array(
     'skin' => '/skin',

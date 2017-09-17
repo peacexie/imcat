@@ -30,7 +30,7 @@ class comCron{
     function init(){
         $this->db = glbDBObj::dbObj();
         $this->stamp = $_SERVER["REQUEST_TIME"];
-        if(!tagCache::chkUpd($this->frun,$this->rgap)){ 
+        if(!extCache::cfGet($this->frun,$this->rgap)){ 
             $whr = " exnext<'".$this->stamp."' AND enable=1 AND hkflag=0"; 
             $this->jobs = $this->db->table($this->tab)->where($whr)->select();
         } 

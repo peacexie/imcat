@@ -24,7 +24,7 @@ if($code && empty($codecheck)){
     $oauth = new wmpOauth($wecfg); 
     $actoken = $oauth->getACToken($code); 
     if(!empty($actoken['errmsg'])){
-        basMsg::show("[{$actoken['errcode']}]{$actoken['errmsg']}",'die');
+        basMsg::show("[{=$actoken['errcode']}]{=$actoken['errmsg']}",'die');
     } 
     $openid = $actoken['result']['openid'];
     $codecheck = md5($code.$openid.$authkey); 
@@ -36,7 +36,7 @@ if($code && empty($codecheck)){
         basMsg::show("验证失败，可能是重复提交！",'die');
     }
     // 防止重复操作(恶意)
-    $row = $db->table('users_uppt')->where("pptuid='{$openid}' AND pptmod='weixin'")->find();
+    $row = $db->table('users_uppt')->where("pptuid='{=$openid}' AND pptmod='weixin'")->find();
     if($row){ 
         basMsg::show("此微信号已经绑定会员！请直接登录！",'die');
     }
@@ -97,8 +97,8 @@ if($state=='dogetpw'){
         $re = wysUser::addUser($openid,$username,$password,$umod); 
         $msg = $re['msg']; //('mid'=>$mid, 'autocheck'=>$autocheck, 'msg'=>$msg);
         if($re['uid']){
-            $msg .= "<br>您的登录帐号为：{$username}。";
-            $msg .= "<br>您的登录密码为：{$password}。";
+            $msg .= "<br>您的登录帐号为：{=$username}。";
+            $msg .= "<br>您的登录密码为：{=$password}。";
         } 
         $isok = $re['autocheck']==1 ? 1 : 0;
     //2. 绑定已有帐号
@@ -125,7 +125,7 @@ if($state=='dogetpw'){
     }
 // 菜单过来 : 登录
 }elseif($state=='mlogin'){
-    $row = $db->table('users_uppt')->where("pptuid='{$openid}' AND pptmod='weixin'")->find();
+    $row = $db->table('users_uppt')->where("pptuid='{=$openid}' AND pptmod='weixin'")->find();
     if($row){ //绑定了直接登录
         usrBase::setLogin('m',$row['uname']); 
         $url = wysBasic::fmtUrl(surl('user'));

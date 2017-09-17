@@ -38,17 +38,17 @@ eimp('initCss','bootstrap,stpub;comm;home');
     {php $i_v=0; }
     {loop $res['news-push2'] $key $v}
         {if ($i_v==0) }
-        <dt class="top1"><a href="{$v['url']}">{title($v['title'],24,$v)}</a></dt>
-        <dd class="note1"> {$v['rem']} </a></dd>
+        <dt class="top1"><a href="{=$v['url']}">{title($v['title'],24,$v)}</a></dt>
+        <dd class="note1"> {=$v['rem']} </a></dd>
         {elseif ($i_v==1) }
-        <dt class="top2"><a href="{$v['url']}">{title($v['title'],24,$v)}</a></dt>
-        <dd class="note2"> {$v['rem']}</dd>
+        <dt class="top2"><a href="{=$v['url']}">{title($v['title'],24,$v)}</a></dt>
+        <dd class="note2"> {=$v['rem']}</dd>
         {/if}
     {php $i_v++; }{/loop}
     <dt class="line">&nbsp;</dt>
     </dl>
     <dl>
-        {tag:dlistn=[List][modid,news][hinfo,pindao+home+zhuanti,in][show,1][join,detail][limit,7][offset,1]}
+        {tag:dlistn=[List][modid,news][hinfo,pindao+home+zhuanti,in][show,1][join,detail][limit,7][offset,0]}
         <dd><i class="right">[{stime($t_atime,0)}] </i><a href="{surl("news.$t_did")}">{title($t_title,36,$v)}</a></dd>
         {/tag:dlistn}
     </dl>
@@ -58,8 +58,8 @@ eimp('initCss','bootstrap,stpub;comm;home');
       <ul class="home-adpic02 swiper-wrapper" id="adpic02" style="width:420px;">
         {loop $res['hpic-push5'] $key $v}
         <li class="swiper-slide">
-        <a href="{$v['url']}"><img src="{spic($v['mpic'],demo_nop300x200.jpg)}" width="400" height="300"/></a>
-        <p><a href="{$v['url']}">{title($v['title'],96,$v)}</a></p>
+        <a href="{=$v['url']}"><img src="{spic($v['mpic'],demo_nop300x200.jpg)}" width="400" height="300"/></a>
+        <p><a href="{=$v['url']}">{title($v['title'],96,$v)}</a></p>
         </li>
         {/loop}
       </ul>
@@ -76,7 +76,7 @@ eimp('initCss','bootstrap,stpub;comm;home');
     foreach($cfgs as $k=>$v){ 
       $i++; if($i>10) break; 
     ?>
-    <p><a href="{surl("dev:tools-$k")}">{$v['mt']}</a></p>
+    <p><a href="{surl("dev:tools-$k")}">{=$v['mt']}</a></p>
     <?php 
     }
     ?>
@@ -110,7 +110,7 @@ eimp('initCss','bootstrap,stpub;comm;home');
         <p class="tc uimark-pos-rel">
         <a href="<?php echo vopUrl::root($v['url']);?>"><img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' onload='imgShow(this,160,120)' /></a>
         {if !empty($v['star'])}<b class="uimark-star-icon1b"></b>{/if}</p>
-        <p class="detail"><i class="right">&yen;{$v['price']}元</i><i class="click">浏览{$v['click']}次</i>
+        <p class="detail"><i class="right">&yen;{=$v['price']}元</i><i class="click">浏览{=$v['click']}次</i>
         </p>
       </dd> 
       <dt class="title clear"><a href="<?php echo vopUrl::root($v['url']);?>">{title($v['title'],96,$v)}</a></dt>
@@ -122,8 +122,8 @@ eimp('initCss','bootstrap,stpub;comm;home');
     {tag:dlist=[List][modid,corder][limit,6]}
     <?php $item=exvOcar::ilist('coms_coitem',"ordid='$t_cid'",2); @$v=$item['data'][0]; ?>
     <p>
-      <i class="right">{sopt($t_ordstat,corder.ordstat,0,0)}</i>&middot; 单号：{$t_cid}
-      <b><a href="{surl("cargo.$v[pid]")}" target="detail">{$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">等</i>{/if}</b>
+      <i class="right">{sopt($t_ordstat,corder.ordstat,0,0)}</i>&middot; 单号：{=$t_cid}
+      <b><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">等</i>{/if}</b>
     </p>
     {/tag:dlist}
     <p class="title">订单查询</p>
@@ -138,8 +138,8 @@ eimp('initCss','bootstrap,stpub;comm;home');
 
 <table class="home-adv0" width="1200">
   <tr>
-    <td><img src="{PATH_STATIC}/media/collect/fbot-e4.jpg" width="900" height="60"></td>
-    <td width="290" align="right"><img src="{PATH_STATIC}/media/collect/fbot-e1.jpg" width="290" height="60"></td>
+    <td><img src="{=PATH_STATIC}/media/collect/fbot-e4.jpg" width="900" height="60"></td>
+    <td width="290" align="right"><img src="{=PATH_STATIC}/media/collect/fbot-e1.jpg" width="290" height="60"></td>
   </tr>
 </table>
 
@@ -201,8 +201,8 @@ $null3 = "";
 
 {inc:"c_pub/afoot"}
 
-<link href='{PATH_VENDUI}/common/swiper.min.css' type='text/css' rel='stylesheet'/>
-<script src='{PATH_VENDUI}/common/swiper.jquery.min.js'></script>
+<link href='{=PATH_VENDUI}/common/swiper.min.css' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_VENDUI}/common/swiper.jquery.min.js'></script>
 <script type="text/javascript">
 $(document).ready(function(){
   var mySwiper = new Swiper('.swiper-container', {

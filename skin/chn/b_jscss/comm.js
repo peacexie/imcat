@@ -91,3 +91,8 @@ function qrcargo_act(id,type,url){
     if(type) $('#qrcode_pic'+id).show();
     else $('#qrcode_pic'+id).hide();
 }
+
+function mpro_vbig(e){
+    var src = $(e).prop('src');
+    $('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+src+"' onload='imgShow(this,400,300)'>");
+}

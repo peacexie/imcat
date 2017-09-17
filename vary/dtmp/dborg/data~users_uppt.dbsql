@@ -1,11 +1,13 @@
 
--- users_uppt@2017-07-21 21:04:07 -- 
+-- users_uppt@2017-09-17 15:06:39 -- 
 INSERT INTO `{pre}users_uppt{ext}` VALUES 
 ('admin','system','','','0','','','0',''),
 ('master','system','','','0','','','0',''),
+('test333','weixin','test_openid','','0','','','0',''),
 ('standard:system','(standard)','3-15;2-96','ys','0','','long_full_username','0',''),
 ('standard:tel','(standard)','7-15','5880401','0','','0769-12345678','0',''),
 ('standard:qq','(standard)','5-18','94083','0','','123456789012345678','0',''),
-('standard:sweibo','(standard)','3-96','some_one@163.com','0','','','0',''),
-('ahong','weixin','12-96','123DK8vjjcn2','0','','','0',''),
-('standard:email','(standard)','8-96','ys@1.com','0','','long_full_name@long-domain.com','0','');
+('standard:sweibo','(standard)','3-96','xpigeon@163.com','0','','','0',''),
+('qq_hepingge','qq','DE4E30F9EDC99B0EBACD6CB446E921CA','220.115.158.43, 10.50.149.73','1497439768','peace','','0',''),
+('standard:email','(standard)','8-96','ys@1.com','0','','long_full_name@long-domain.com','0',''),
+('xgezi','weixin','oyDK8vjjcn2cFbxMLaMBhKEsYbCk','','0','','157.122.64.131, 14.17.37.68, 10.50.148.60','1500383839','xgezi');

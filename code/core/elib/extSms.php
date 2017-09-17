@@ -135,7 +135,7 @@ class extSms{
         $file = "debug/balance_apiwarn.wlog"; 
         comFiles::chkDirs($file,'dtmp');
         if(is_numeric($flag)){ //检查文件,多少时间(day)内修改过
-            return tagCache::chkUpd("/$file",'24h');
+            return extCache::cfGet("/$file",'24h');
         }else{ 
             $onlineip = $_cbase['run']['userip']; $data = ''; 
             if(file_exists($file)){

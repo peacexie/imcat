@@ -1,0 +1,12 @@
+
+* - jilei
+ - apiServer:                   --- ok 
+ - Tools:chrall,schulte,bezier  --- ok
+ - adminer                      --- ??? 
+ - yahei                        --- ok
+ - muma                         --- ok
+ - spword                       --- ok
+ - derun.php                    --- ???
+
+* plus/coms
+ - footer ... 

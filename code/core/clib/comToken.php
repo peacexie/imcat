@@ -57,6 +57,7 @@ class comToken{
                 glbError::show("Too many Request! Please Wait $wait(s)");
             }
         }else{ 
+            $gap = $_SERVER["REQUEST_TIME"]-1;
             $db->table('token_limit')->data($arr)->insert(0); 
         }
         return $gap;

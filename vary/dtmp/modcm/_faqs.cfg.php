@@ -6,9 +6,7 @@ $_faqs = array (
   'enable' => '1',
   'etab' => '1',
   'deep' => '1',
-  'cfgs' => 'showdef=0
-ippub=3
-iprep=60',
+  'cfgs' => 'showdef=0',
   'f' => 
   array (
     'title' => 
@@ -214,7 +212,7 @@ tip56=收藏',
       'dbtype' => 'varchar',
       'dblen' => '255',
       'dbdef' => '',
-      'vreg' => '',
+      'vreg' => 'nul:',
       'vtip' => '',
       'vmax' => '255',
       'fmsize' => '',
@@ -222,7 +220,7 @@ tip56=收藏',
       'fmtitle' => '1',
       'fmextra' => '',
       'fmexstr' => '',
-      'cfgs' => NULL,
+      'cfgs' => '',
     ),
     'bugid' => 
     array (

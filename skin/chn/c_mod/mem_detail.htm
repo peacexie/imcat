@@ -15,10 +15,10 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;umem');
   <div class="pgf_mcon">
       <h1 class="news_title">{title($company,96,$this->vars)}</h1>
       <div class="news_bar"> 添加:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-        点击<i id="jsid_field_{$this->mod}:{$uid}:click">{$click}<!--,add1--></i>次 &nbsp; 
+        点击<i id="jsid_field_{=$this->mod}:{=$uid}:click">{=$click}<!--,add1--></i>次 &nbsp; 
       </div>
       <div class="h10">&nbsp;</div>
-      <h5>一般的模板 (模板功能演示) --- {$this->tplname}</h5>
+      <h5>一般的模板 (模板功能演示) --- {=$this->tplname}</h5>
       <div class="h10">&nbsp;</div>
       <p class="tc">
       <a href="{surl($this->mod.".$uid.news")}">{title($company,96,$this->vars)} --- 新闻</a>
@@ -33,7 +33,7 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;umem');
       if($map) echo "<div class='umem-map'>$map</div>";
       ?>
       {if !empty($maddr)}
-      <li class="list">地址: <i>{$maddr}</i>&nbsp; </li>
+      <li class="list">地址: <i>{=$maddr}</i>&nbsp; </li>
       {/if}
       <div class="h10">&nbsp;</div>
       

@@ -2,12 +2,14 @@
 
 // admAFunc 
 class admAFunc{    
-    
-    static function umcVInit(){
+ 
+    static function mkvInit($mod='adm'){
         $db = glbDBObj::dbObj();
         $tabid = 'base_menu'; 
-        $mlist = vopTpls::entry('umc');
-        $dbcfg = $db->table($tabid)->where("model='mumem'")->order('pid,top,kid')->select();
+        $tpl = $mod=='mkvu' ? 'umc' : 'adm';
+        $mlist = vopTpls::entry($tpl); 
+        if($tpl=='adm') $mlist = array_merge($mlist,vopTpls::enflow()); 
+        $dbcfg = $db->table($tabid)->where("model='$mod'")->order('pid,top,kid')->select();
         $mcfg = array(); 
         foreach($dbcfg as $k=>$v){
             $mcfg[$v['kid']] = $v;
@@ -19,14 +21,14 @@ class admAFunc{
             $fm = array('pid'=>$pid,'enable'=>'1','deep'=>$deep,'note'=>$val,);
             if(isset($mcfg[$key])){
                 unset($mcfg[$key]);
-                $db->table($tabid)->data(basReq::in($fm))->where("model='mumem' AND kid='$key'")->update();  
+                $db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$key'")->update();  
             }else{ 
-                $fm = array_merge($fm,array('kid'=>$key,'title'=>'','model'=>'mumem','cfgs'=>'','top'=>'888',));
+                $fm = array_merge($fm,array('kid'=>$key,'title'=>'','model'=>$mod,'cfgs'=>'','top'=>'888',));
                 $db->table($tabid)->data(basReq::in($fm))->insert();
             }
         }
         foreach($mcfg as $key=>$val){
-            $db->table($tabid)->where("model='mumem' AND kid='$key'")->delete(); 
+            $db->table($tabid)->where("model='$mod' AND kid='$key'")->delete(); 
         } 
     }
     

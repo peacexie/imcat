@@ -35,7 +35,7 @@ $null3 = "";
           {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
           </td>
           <td class="title">
-          <a href="{surl($this->mod.".$t_uid")}">{title($t_company,96,$v)}</a>({$t_uname})
+          <a href="{surl($this->mod.".$t_uid")}">{title($t_company,96,$v)}</a>({=$t_uname})
           <i class="right">{sopt($t_grade,$this->mod,0,$null2)} &nbsp; </i>
           </td>
         </tr>
@@ -44,7 +44,7 @@ $null3 = "";
           &nbsp; &nbsp;
           {if !empty($t_grade)}<i>[{sopt($t_grade,$this->mod,0,$null3)}]</i>{/if} &nbsp; 
           {if !empty($t_ftype)}<i>[{sopt($t_ftype,ftype,0,$null3)}]</i>{/if} &nbsp; 
-          联系人:{$t_mname} &nbsp; 电话:{$t_mtel} &nbsp; [<a href="{surl($this->mod.".$t_uid")}">详情</a>]
+          联系人:{=$t_mname} &nbsp; 电话:{=$t_mtel} &nbsp; [<a href="{surl($this->mod.".$t_uid")}">详情</a>]
           </td>
         </tr>
         {/row}

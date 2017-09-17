@@ -32,17 +32,17 @@ td,th {
 <h3>用模板和类库 - 可以看到head,body等结构:示例</h3>
 
 <nav> pid: 
-  <a href='{$burl}'>[RESET]</a> |
-  <a href='{$burl}&pid=cnhn'>cnhn</a> |
-  <a href='{$burl}&pid=cngd'>cngd</a> |
-  <a href='{$burl}&pid=cngx'>cngx</a> |
+  <a href='{=$burl}'>[RESET]</a> |
+  <a href='{=$burl}&pid=cnhn'>cnhn</a> |
+  <a href='{=$burl}&pid=cngd'>cngd</a> |
+  <a href='{=$burl}&pid=cngx'>cngx</a> |
 <br> orderby: 
-  <a href='{$burl}&order=kid&pid={$pid}'>kid</a> |
-  <a href='{$burl}&order=title&pid={$pid}'>title</a> |
-  <a href='{$burl}&order=pid&pid={$pid}'>pid</a> |
+  <a href='{=$burl}&order=kid&pid={=$pid}'>kid</a> |
+  <a href='{=$burl}&order=title&pid={=$pid}'>title</a> |
+  <a href='{=$burl}&order=pid&pid={=$pid}'>pid</a> |
 <br> ordermode: 
-  <a href='{$burl}&odesc=1&pid={$pid}'>odesc=1</a> |
-  <a href='{$burl}&odesc=0&pid={$pid}'>odesc=0</a> |
+  <a href='{=$burl}&odesc=1&pid={=$pid}'>odesc=1</a> |
+  <a href='{=$burl}&odesc=0&pid={=$pid}'>odesc=0</a> |
 <br> view source-code: 
   <a href='{surl(0)}?mkv=info-coder&tpls=tester/utpl' target="_blank">查看代码</a>
 </nav>
@@ -52,7 +52,7 @@ td,th {
 <table border=1>
 {tag:demo2=[Page][modid,china][pid,$pid][where,$where][order,$order][limit,10]}
 {:row}
-<tr><td>{$t_kid}</td><td>{$t_pid}</td><td>{$t_title}</td><td>{$t_cfgs}</td></tr>
+<tr><td>{=$t_kid}</td><td>{=$t_pid}</td><td>{=$t_title}</td><td>{=$t_cfgs}</td></tr>
 {/row}
 </table>
 {php echo $_cbase['page']['bar']; }

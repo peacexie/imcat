@@ -8,7 +8,7 @@
 <ul class="sd-mkeys"> 
 
 <?php foreach($cfgs as $k=>$v){ $imkv=$k=='readme'?'uplog':"uplog-$k"; $iver=is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; ?>
-<li><a href="{surl($imkv)}">{$iver} {$v[0]}</a></li>
+<li><a href="{surl($imkv)}">{=$iver} {=$v[0]}</a></li>
 <?php } ?>
 </ul>
 

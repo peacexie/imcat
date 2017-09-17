@@ -1,6 +1,6 @@
 <?php 
 $ntpl_str = implode(',',$_cbase['run']['tpls']); 
-$ntpl_url = "?mkv=info-coder&tpls=$ntpl_str"; 
+$ntpl_url = surl(0)."?mkv=info-coder&tpls=$ntpl_str"; 
 $now_info = basDebug::runInfo();
 $now_info = str_replace(array('); Tpl:','; Upd:'),array("); Tpl:<a href='$ntpl_url' title='查看模板源代码' target='_blank'>","</a>; Upd:"),$now_info); 
 ?>
@@ -11,5 +11,5 @@ $now_info = str_replace(array('); Tpl:','; Upd:'),array("); Tpl:<a href='$ntpl_u
   <p class="copy">
   <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>; Copyright © 2011-2018 xxxxx.com All rights reserved. 粤ICP备07020797号. 
   </p>
-  <p class="info">{$now_info} </p>
+  <p class="info">{=$now_info} </p>
 </div>

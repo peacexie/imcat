@@ -21,11 +21,11 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs');
   <p class="umc_logo">&nbsp;</p>
   <div class="umc_unow tl">
     <p class="umc_msg">
-    &nbsp; {lang(user.qa_title)} --- {$_cbase['sys_name']}！ 
-    # <a href="{PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中</a>|<a href="{PATH_ROOT}/plus/ajax/redir.php?lang:en">En]</a>  
+    &nbsp; {lang(user.qa_title)} --- {=$_cbase['sys_name']}！ 
+    # <a href="{=PATH_ROOT}/plus/ajax/redir.php?lang:cn">[中</a>|<a href="{=PATH_ROOT}/plus/ajax/redir.php?lang:en">En]</a>  
     <i>
-    <a href="{surl(0)}"><b class="glyphicon glyphicon-user"></b>{lang(user.pub_cuser)}</a>
-    <a href="{surl(chn:0)}" class="cF0F" target="_blank">[{lang(user.qa_home)}]<b class="glyphicon glyphicon-home"></b></a>
+    <a href="{surl(0)}"><b class="fa fa-user"></b>{lang(user.pub_cuser)}</a>
+    <a href="{surl(chn:0)}" class="cF0F" target="_blank">[{lang(user.qa_home)}]<b class="fa fa-home"></b></a>
     </i>
     </p>
   </div>
@@ -42,7 +42,7 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs');
 <table class="cst-out">
     <tr>
         <td class="cst-title1">
-<i class="right cCCC">{lang(user.qa_more)}&gt;&gt;</i><i class="glyphicon glyphicon-book"></i> Class/分类
+<i class="right cCCC">{lang(user.qa_more)}&gt;&gt;</i><i class="fa fa-book"></i> Class/分类
         </td>
         <td class="cst-navtop">
         {php echo tex_faqs::navTop($this); }
@@ -55,13 +55,13 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs');
         {php echo tex_faqs::navSide($this); }
         </div>
         <div class="cst-title2">
-<i class="right"><a href="{surl(faqs-tag)}">{lang(user.qa_more)}&gt;&gt;</a></i><i class="glyphicon glyphicon-flag"></i> Tags/标签 
+<i class="right"><a href="{surl(faqs-tag)}">{lang(user.qa_more)}&gt;&gt;</a></i><i class="fa fa-flag"></i> Tags/标签 
         </div>
         <div class="cst-tags">
 {block:tagt}
 {if !empty($this->vars['tags']) }{php echo tex_faqs::navTags($this,$this->vars['tags']); }
 {else}{tag:tags=[List][modid,qatag][show,1][order,hotcnt][limit,24]}
-{:row}<a href="{surl(0)}?mkv=faqs--list&tag={$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
+{:row}<a href="{surl(0)}?mkv=faqs--list&tag={=$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
 {/tag:tags}{/if}
 {/block:tagt}
         </div>

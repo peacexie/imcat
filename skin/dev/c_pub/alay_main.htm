@@ -26,10 +26,10 @@ eimp('initCss','bootstrap,stpub;comm');
   </div>
   <div class="pgf_main"> 
     <div class="mod-tbar">
-    <i class="title">{$titlesub}</i>
+    <i class="title">{=$titlesub}</i>
     <i class="right">{block:exbar}
     <?php foreach($subs as $k=>$v){ $title = isset($v['title']) ? $v['title'] : $v; ?>
-    <a href="#s_{$k}" {if $sub==$k}class='act'{/if}>{= $title}</a>
+    <a href="#s_{=$k}" {if $sub==$k}class='act'{/if}>{= $title}</a>
     <?php } ?>
     {/block:exbar}</i>
     </div>

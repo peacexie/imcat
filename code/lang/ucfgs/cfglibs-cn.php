@@ -10,8 +10,10 @@ $cfgs['pubGrades'] = array(
 
 $cfgs['grset_types'] = array(
     'pmadm'=>'菜单',
-    'pmusr'=>'会员',
-    'pfile'=>'脚本',
+    'mkva'=>'入口',
+    'mkvu'=>'会员',
+    //'pmusr'=>'会员',
+    //'pfile'=>'脚本',
     'pextra'=>'附加',
 );
 

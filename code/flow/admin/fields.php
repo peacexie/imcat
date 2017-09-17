@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','admin/fields.php'); 
 
 $mod = empty($mod) ? 'docs' : $mod;
 $view = empty($view) ? 'list' : $view;

@@ -355,7 +355,7 @@ function mulStore(flag){ // local,session
         if(!canFlag) document.getElementById(id).innerHTML = msg;
     };
     // 扩展 : 最多设置保存mnum个key(如最近浏览历史记录)
-    // demo: obj.mset('{$pre}mod{$mod}','{did}',10); // ('_imcat_news','2017-3q-abcd',5); 
+    // demo: obj.mset('{=$pre}mod{=$mod}','{did}',10); // ('_imcat_news','2017-3q-abcd',5); 
     this.mset = function(keyid,nowkey,mnum){
         if(nowkey.length==0) return;
         if(!mnum) mnum = 10;

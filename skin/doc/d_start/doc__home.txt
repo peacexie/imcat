@@ -36,10 +36,10 @@ tmp...
 
 * Future/Direction
  - 1. Develop Nodejs/Python accessory project - these project will not in this case! 
- - 2. REST-API, Plan for v4.x
+ - 2. Plan for v4.x
 
 * Recent target
- - Planning for the next version : ver3.9/ver4.0
+ - Planning for the next version : ver3.10/ver4.0
  - Perfect known bugs, documentation, UI.
 
 

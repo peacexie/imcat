@@ -2,8 +2,8 @@
 
 function jsActNav(clsid){
     $('nav ul.'+clsid).toggle(300);
-    $('nav i.'+clsid).toggleClass('glyphicon-resize-full');
-    $('nav i.'+clsid).toggleClass('glyphicon-resize-small');    
+    $('nav i.'+clsid).toggleClass('fa-expand');
+    $('nav i.'+clsid).toggleClass('fa-compress');    
 }
 
 function jsactMenu(menuid){

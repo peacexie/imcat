@@ -1,4 +1,6 @@
 
--- active_online@2017-07-21 21:04:07 -- 
+-- active_online@2017-09-17 15:06:38 -- 
 INSERT INTO `{pre}active_online{ext}` VALUES 
-('3bc_is_demo_4a55241b7c55fea7069','xpigeon@163.com','cvip','0','test_cfgs','1','2147483647','192.168.1.11','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36');
+('3bc_is_demo_4a55241b7c55fea7069','xpigeon@163.com','cvip','0','test_cfgs','1','2147483647','192.168.1.11','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.116 Safari/537.36'),
+('fc402800f046c884db854af46e71936f','peace','0','0','0','0','1505547145','2017-9h-g9svu12-u7kg93bp3-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36'),
+('76c65970ba597435a83b766693acbf88','licai','instop','1','0','0','1505550091','2017-98-p01feg1-gtff4558y-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36');

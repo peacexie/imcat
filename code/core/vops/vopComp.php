@@ -105,9 +105,9 @@ class vopComp{
     // 基本php语法解析, 常量,变量,函数,php代码
     static function phpBasic($template=''){
         //常量解析
-        $template = preg_replace ( "/\{([A-Z_][A-Z0-9_]*)\}/s", "<?php echo \\1;?>", $template );    
+        $template = preg_replace ( "/\{\=([A-Z_][A-Z0-9_]*)\}/s", "<?php echo \\1;?>", $template );    
         /*将变量{$name}替换成<?php  echo $name; ?>,可以是数组 $name, $re1['title'], $this->mod, $this->ucfg['q'] */
-        $template = preg_replace("/{(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?php echo @$1; ?>", $template);//替换变量
+        $template = preg_replace("/{\=(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?php echo @$1; ?>", $template);//替换变量
         /*
         $html = preg_replace_callback(
             '(<h([1-6])>(.*?)</h\1>)',

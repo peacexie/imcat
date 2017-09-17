@@ -143,7 +143,7 @@ class basReq{
                     $ura = array($uri,'');
                 }
             }else{
-                $ura = array($_SERVER['PHP_SELF']);
+                $ura = array($_SERVER['SCRIPT_NAME']);
                 if(isset($_SERVER['argv'])){
                     $ura[] = $_SERVER['argv'][0];
                 }else{

@@ -44,20 +44,24 @@ class vopUrl{
             $mkv = $re['mkv'] = "home-$mkv";
         }
         if(strpos($mkv,'.')){ //mod.id1-xxx-id2.view
-            $a = explode('.',"$mkv.");
+            $a = explode('.',$mkv);
             $type = 'detail';
+            $f3 = isset($a[2]) && empty($a[2]); // -0, -, 结尾
+            if(empty($a[1]) || $f3){
+                vopShow::msg($re['mkv']."($type) ".basLang::show('core.vop_parerr'));
+            }
         }elseif(strpos($mkv,'-')){ //mod-type-view, mod--list, about-awhua-v2
             $a = explode('-',"$mkv"); 
             $type = empty($a[1]) ? 'mext' : 'mtype';
-            if(isset($a[2]) && empty($a[2])){ // 结尾 -0, - 
-                vopShow::msg($re['mkv'].basLang::show('core.vop_parerr'));
+            $f1 = empty($a[1]) && !in_array($a[2],array('list','so')); // mod--list
+            $f2 = in_array($a[1],self::$keepmk); // c/d/m/t/u
+            $f3 = isset($a[2]) && empty($a[2]); // -0, -, 结尾
+            if($f1 || $f2 || $f3){
+                vopShow::msg($re['mkv']."($type) ".basLang::show('core.vop_parerr'));
             }
         }else{ //mod
-            $a = array($mkv,'','');    
+            $a = array($mkv,'');    
             $type = 'mhome';
-        }
-        if(in_array($a[0],self::$keepmk) || in_array($a[1],self::$keepmk)){
-            vopShow::msg($re['mkv'].basLang::show('core.vop_parerr'));
         }
         //$mod分析
         $mod = $a[0]; $key = $a[1]; $view = empty($a[2]) ? '' : $a[2];
@@ -138,6 +142,7 @@ class vopUrl{
     // url格式化输出, 处理静态,伪静态,url优化(只在前台或生成静态,后台用跳转...)
     // paras: array, string 
     static function fout($mkv='',$type='',$host=0){ //,$ext=array()
+        global $_cbase;
         if(strpos($mkv,':')) return self::ftpl($mkv,$type,$host);
         $burl = self::burl($host); 
         if(strstr($mkv,'?')){ 
@@ -164,6 +169,13 @@ class vopUrl{
             $view = empty($view) ? '' : "$type$view";
             $mkv = "$mod$key$view";
             $url = $burl."?$mkv";
+            // 处理伪静态
+            if(!empty($_cbase['run']['tplcfg'][2])){
+                $url = str_replace('.php?', $_cbase['run']['tplcfg'][2], $url);
+            }
+            if(!empty($_cbase['run']['tplcfg'][3])){
+                $url .= $_cbase['run']['tplcfg'][3];
+            }
         }
         $url = self::bind($url);
         return $url;
@@ -173,6 +185,14 @@ class vopUrl{
     static function burl($host=0){ 
         global $_cbase;
         $dir = $_cbase['tpl']['tpl_dir'];
+        
+        /*
+        $vcfg = glbConfig::read('vopcfg','sy'); 
+        $burl = PATH_PROJ.$vcfg['tpl'][$dir][1];
+        if($host){ //$full
+            $burl = $_cbase['run']['rsite'].$burl;
+        }*/
+
         $burl = vopTpls::etr1($host,$dir);
         return $burl;
     }

@@ -10,8 +10,8 @@ $null3 = "";
 {/block:init}
 
 {block:pimp}
-<script src="{PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
-<script src='{PATH_SKIN}/_pub/a_jscss/sordbar.js?_a=1'></script>
+<script src="{=PATH_ROOT}/plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
+<script src='{=PATH_SKIN}/_pub/a_jscss/sordbar.js?_a=1'></script>
 {/block:pimp}
 
 {block:main}
@@ -25,14 +25,14 @@ $null3 = "";
         <p class="tc picbox uimark-pos-rel">
         <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='100%' height='120' onload="imgShow(this,'100%',120)" />
         {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
-        <p class="detail"><i class="price">&yen;{$t_price}元</i><i class="click">浏览{$t_click}次</i>
+        <p class="detail"><i class="price">&yen;{=$t_price}元</i><i class="click">浏览{=$t_click}次</i>
         </p>
         <p class="title clear"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
       </td> 
       {php if($i_v%$col==$col-1) echo "\n</tr>"; }
       {/row}
       <tr>
-        <td colspan="{$col}" class="pa5">
+        <td colspan="{=$col}" class="pa5">
         {php echo $_cbase['page']['bar']; }
         </td>
       </tr>
@@ -66,7 +66,7 @@ $null3 = "";
 <script>
 
 var s,linktpl = "<a href='(url)' class='(act)'>(title)</a>"; 
-sordb_init('{$this->mod}','{$this->key}',0,'stype:brand,exp_*',linktpl);
+sordb_init('{=$this->mod}','{=$this->key}',0,'stype:brand,exp_*',linktpl);
 var atype = sordb_cfgs.slay.split(','), amtype = atype.length>=0 ? atype[0] : '(null)'; 
 
 s = sordb_relat(0,'brand-relpb-'+atype[atype.length-1],'act'); sordb_setLinks('sobrand',s);

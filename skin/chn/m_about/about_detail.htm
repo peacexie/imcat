@@ -9,7 +9,7 @@
     </div>
     <h1 class="news_title">{title($title,96,$this->vars)}</h1>
     <div class="news_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
-      点击<i id="jsid_field_{$this->mod}:{$did}:click">{$click}<!--,add1--></i>次 &nbsp; 
+      点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次 &nbsp; 
       </div>
     <div class="news_text"> {html($detail)} </div>
     <div class="clear"></div>

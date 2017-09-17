@@ -3,29 +3,29 @@
 
   <div class="dropdown pull-right">
     <button class="btn btn-primary dropdown-toggle bg-primary" type="button" id="nav_mdoc1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <span class="glyphicon glyphicon-list"></span>
+      <span class="fa fa-list"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_mdoc1">
       {inc:"c_pub/mmenu"}
-      <li><a href="{surl(0)}"><i class="glyphicon glyphicon-heart"></i> 文档首页</a></li>
-      <li><a href="{surl(doc:0)}" target="_blank"><i class="glyphicon glyphicon-euro"></i> English</a></li>
-      <li><a href="{PATH_PROJ}" target="_blank"><i class="glyphicon glyphicon-home"></i> 总首页</a></li>
+      <li><a href="{surl(0)}"><i class="fa fa-heart"></i> 文档首页</a></li>
+      <li><a href="{surl(doc:0)}" target="_blank"><i class="fa fa-euro"></i> English</a></li>
+      <li><a href="{=PATH_PROJ}" target="_blank"><i class="fa fa-home"></i> 总首页</a></li>
     </ul>
   </div>
 
   <div class="dropdown pull-left">
     <button class="btn btn-primary dropdown-toggle bg-primary" type="button" id="nav_msub2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      {$mcfgs['title']}
+      {=$mcfgs['title']}
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_msub2">
       {if $this->mod=='uplog'}
         <?php foreach($cfgs as $k=>$v){ $imkv=$k=='readme'?'uplog':"uplog-$k"; $iver=is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; ?>
-        <li><a {if ($this->key==$k)||($k=='readme'&&$this->key=='') }class="c00F"{/if} href="{surl($imkv)}">{$iver} {$v[0]}</a></li>
+        <li><a {if ($this->key==$k)||($k=='readme'&&$this->key=='') }class="c00F"{/if} href="{surl($imkv)}">{=$iver} {=$v[0]}</a></li>
         <?php } ?>
       {else}
         {loop $mcfgs['subs'] $k $v}
-        <li><a {if ($this->key==$k)||($k=='home'&&$this->key=='') }class="c00F"{/if} href='{surl("$this->mod".($k=="home"?"":"-$k"))}' {if in_array($k,$mcfgs['blanks'])}target='_blank'{/if}>{$v}</a></li>
+        <li><a {if ($this->key==$k)||($k=='home'&&$this->key=='') }class="c00F"{/if} href='{surl("$this->mod".($k=="home"?"":"-$k"))}' {if in_array($k,$mcfgs['blanks'])}target='_blank'{/if}>{=$v}</a></li>
         {/loop}
       {/if}
       {if $this->mod=='tpltag'}

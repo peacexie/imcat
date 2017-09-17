@@ -1,6 +1,5 @@
 <?php
-(!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','(auto)'); 
+(!defined('RUN_INIT')) && die('No Init'); 
 
 $view = empty($view) ? 'list' : $view;
 $fs_do = req('fs_do');

@@ -32,23 +32,17 @@ class wmpBasic{
         if(!empty($_cbase['weixin']['actiks'][$this->cfg['appid']])){
             return $_cbase['weixin']['actiks'][$this->cfg['appid']];
         }
-        $cfile = wysBasic::getCfpath($this->cfg['appid'], 'actik'); 
-        $upath = tagCache::chkUpd($cfile,$this->act_life,0);
-        if($upath){ 
-            $data = @comFiles::get($cfile);
+        $data = extCache::tkGet('weinxin-'.$this->cfg['appid']);
+        if(!empty($data)){ 
             $save = 0;
         }else{
             $url = sprintf($this->act_url,$this->cfg['appid'],$this->cfg['appsecret']); 
             $data = comHttp::doGet($url,3); 
-            $databak = $data; 
+            $data = wysBasic::jsonDecode($data,$this->act_url); 
             $save = 1;
         } 
-        $data = wysBasic::jsonDecode($data,$this->act_url); 
-        /*if(!empty($data['errcode'])){
-            return wysBasic::debugError($data['errcode'],$data,$url,1);
-        }*/
         if($save && !empty($data['access_token'])){ 
-            $data && comFiles::put($cfile,$databak);
+            extCache::tkSet('weinxin-'.$this->cfg['appid'],$data,$this->act_life);
         }
         if(empty($data['access_token'])){ //一个进程中只取一次,保存供后续使用 //  && !empty($data['access_token'])
             $_cbase['weixin']['actiks'][$this->cfg['appid']] = @$data['access_token'];

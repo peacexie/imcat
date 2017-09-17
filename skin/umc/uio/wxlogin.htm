@@ -20,18 +20,18 @@
   <li>
   <i class="atype">会员类型</i>
   <i class="title"><select name="umod" id="umod">
-{loop $umods $mch $title}<?php if(in_array($mch,array('adminer','inmem'))){continue;} ?><option value="{$mch}">{$title}</option>{/loop}
+{loop $umods $mch $title}<?php if(in_array($mch,array('adminer','inmem'))){continue;} ?><option value="{=$mch}">{=$title}</option>{/loop}
 </select></i>
   </li>
   
   <li>
   <i class="atype">用户名</i>
-  <i class="title"><input type="text" autocomplete="off" placeholder="请输入用户名"  id="username" name="username" value="{$mnamed}" rule="text" must="1" min="3" max="15" warn="用户名应为3-15个字节！"/></i>
+  <i class="title"><input type="text" autocomplete="off" placeholder="请输入用户名"  id="username" name="username" value="{=$mnamed}" rule="text" must="1" min="3" max="15" warn="用户名应为3-15个字节！"/></i>
   </li>
   
   <li>
   <i class="atype">密码</i>
-  <i class="title"><input type="text" autocomplete="off" placeholder="请输入密码"  id="password" name="password" value="{$mpassd}" rule="text" must="1" warn="密码空或包含非法字符（不能用全0作密码）！" /></i>
+  <i class="title"><input type="text" autocomplete="off" placeholder="请输入密码"  id="password" name="password" value="{=$mpassd}" rule="text" must="1" warn="密码空或包含非法字符（不能用全0作密码）！" /></i>
   </li>
   
   <li>
@@ -42,7 +42,7 @@
 </ul>
 {loop $karr $k}
 <?php if(in_array($k,array('uinfo'))){continue;} ?>
-<input type="hidden" name="{$k}"  value="<?php echo $$k; ?>" />
+<input type="hidden" name="{=$k}"  value="<?php echo $$k; ?>" />
 {/loop}
 </form>
 
@@ -53,8 +53,8 @@ function setActType(e){
     if(!e) e = document.getElementById('actys1');
     if(e.value=='add'){
         $('#weixin_login').val('添加账号');
-        $('#username').val('{$mnamed}');
-        $('#password').val('{$mpassd}');
+        $('#username').val('{=$mnamed}');
+        $('#password').val('{=$mpassd}');
         $('#setmchid').show();
     }else{
         $('#weixin_login').val('绑定账号');

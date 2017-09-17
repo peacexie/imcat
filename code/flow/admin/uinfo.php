@@ -1,6 +1,5 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
-usrPerm::run('pfile','(auto)'); 
 
 $view = req('view','uinfo'); 
 $bspw = req('bspw');

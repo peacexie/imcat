@@ -30,7 +30,8 @@ $_ex_vjump['langs'] = array(
 // redir配置
 $_ex_vjump['redir'] = array(
     'yscode' =>  "http://yscode.txjia.com/", 
-    'baidu' =>  'https://www.baidu.com/', 
+    'asp' =>  'http://txjia.com/peace/txasp.htm', 
+    'box' =>  'http://txjia.com/peace/txbox.htm', 
 );
 
 

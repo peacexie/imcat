@@ -67,7 +67,7 @@ if($view=='list'){
         }
         $pg = $dop->pg->show($idfirst,$idend); 
         $op = basElm::setOption("del,".lang('flow.dops_del').";".($cv->set_opts('ordstat'))."",'',lang('flow.op0_bacth')); //\ndnow|删除当前
-        dopFunc::pageBar($pg." &nbsp; <a href='$aurl[1]&view=clear'>".lang('flow.dops_clear')."</a>",$op);
+        dopFunc::pageBar($pg,$op); // ." <a class='btn' href='$aurl[1]&view=clear'>".lang('flow.dops_clear')."</a>"
     }else{
         echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
     }

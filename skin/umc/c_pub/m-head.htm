@@ -15,31 +15,31 @@ if(empty($sbtitle)){
 
   <div class="dropdown pull-right">
     <button class="btn btn-info dropdown-toggle bg-primary" type="button" id="nav_mdoc1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <span class="glyphicon glyphicon-th-list"></span>
+      <span class="fa fa-th-list"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_mdoc1">
-        <li><a href="{surl(0)}"><i class='glyphicon glyphicon-flag'></i> {lang(user.pub_cuser)}</a></li>
-        <li><a href="{surl(order)}"><i class='glyphicon glyphicon-flag'></i> {lang(user.pub_order)}</a></li>
+        <li><a href="{surl(0)}"><i class='fa fa-flag'></i> {lang(user.pub_cuser)}</a></li>
+        <li><a href="{surl(order)}"><i class='fa fa-flag'></i> {lang(user.pub_order)}</a></li>
         <!--li><a href="{surl(indoc)}">{lang(user.pub_idoc)}</a></li-->
-        <li><a href="{surl(faqs)}"><i class='glyphicon glyphicon-flag'></i> {lang(user.pub_faqs)}</a></li>
+        <li><a href="{surl(faqs)}"><i class='fa fa-flag'></i> {lang(user.pub_faqs)}</a></li>
         <li role="separator" class="divider"></li>
         {if $user->userFlag=='Login' }
-        <li><a href="?uio-logout"><i class='glyphicon glyphicon-user'></i> {lang(user.lon_logout)}</a></li>
+        <li><a href="?uio-logout"><i class='fa fa-user'></i> {lang(user.lon_logout)}</a></li>
         {else}
-        <li><a href="{surl(?login)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_login)}</a></li>
-        <li><a href="{surl(?reg)}"><i class='glyphicon glyphicon-user'></i> {lang(user.nv2_reg)}</a></li>
+        <li><a href="{surl(?login)}"><i class='fa fa-user'></i> {lang(user.nv2_login)}</a></li>
+        <li><a href="{surl(?reg)}"><i class='fa fa-user'></i> {lang(user.nv2_reg)}</a></li>
         {/if}
         <li role="separator" class="divider"></li>
-        <?php echo basLang::links("<li><a href='{url}' title='{title}'><i class='glyphicon glyphicon-random'></i> {title}</a></li>"); ?>
-        <li><a href="{PATH_PROJ}" target="_blank"><i class='glyphicon glyphicon-home'></i> {lang(user.lon_allhome)}</a>
+        <?php echo basLang::links("<li><a href='{url}' title='{title}'><i class='fa fa-random'></i> {title}</a></li>"); ?>
+        <li><a href="{=PATH_PROJ}" target="_blank"><i class='fa fa-home'></i> {lang(user.lon_allhome)}</a>
         </li>
     </ul>
   </div>
 
     <div class="dropdown pull-left">
       <button class="btn btn-info dropdown-toggle" type="button" id="nav_msub2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        {$mdtitle}
-        <span class="glyphicon glyphicon-import"></span>
+        {=$mdtitle}
+        <span class="fa fa-import"></span>
       </button>
       <ul class="dropdown-menu" aria-labelledby="nav_msub2">
             <?php if(in_array($this->key,array('apply','login','getpw'))){ ?>
@@ -48,7 +48,7 @@ if(empty($sbtitle)){
             {else}
             <li><a href="{surl(?login)}">{lang(user.nv2_login)}</a></li>
             <li><a href="{surl(?reg)}">{lang(user.lon_reg)}</a></li>
-            <li><a href="{surl(uio-getpw)}">{$karr['getpw']}</a></li>
+            <li><a href="{surl(uio-getpw)}">{=$karr['getpw']}</a></li>
             {/if}
             <?php }elseif($this->mod=='user'){ ?>
             <li><a href="{surl($this->mod)}">{lang(user.pub_accinfo)}</a></li>

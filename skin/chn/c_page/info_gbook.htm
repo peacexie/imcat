@@ -21,8 +21,8 @@ eimp('/layer/layer.js','vendui');
     <div class="h10">&nbsp;</div>
     <div class="sd-so01">
     <form method="get" action="{surl(0:0)}">
-    <input name="mkv" type="hidden" value="{$this->mkv}">
-    <input name="pid" type="hidden" value="{$pid}">
+    <input name="mkv" type="hidden" value="{=$this->mkv}">
+    <input name="pid" type="hidden" value="{=$pid}">
     <input name="keywd" type="text" id="keywd" class="w150" />
     <input type="submit" id="sobtn" value="搜索" />
     </form>
@@ -44,11 +44,11 @@ eimp('/layer/layer.js','vendui');
   </div>
   <div class="pgf_mcon"> 
     <h1 class="news_title">
-        {$mtitle}
+        {=$mtitle}
     </h1>
     <div class="news_rem">
       <div class="rembar"> 
-      <span class="remadd">{$mtitle}(<i id="jsid_count_{$modid}:0">0</i>条) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;发布</a></span> 
+      <span class="remadd">{=$mtitle}(<i id="jsid_count_{=$modid}:0">0</i>条) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;发布</a></span> 
       <span class="remtitle">评论列表</span> 
       </div><!--[cache,60]-->
       {tag:nrlist=[Page][modid,$modid][keywd,0,title+detail][limit,50]}
@@ -58,7 +58,7 @@ eimp('/layer/layer.js','vendui');
         <dd>
         {text($t_detail,2400)}
         <p>
-        <li class="tr">{$t_mname} &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></li>
+        <li class="tr">{=$t_mname} &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></li>
         {if !empty($t_reply)}<span class="fB c00F">回复：{stime($t_etime,min)}</span>{/if}
         </p>
         </dd>

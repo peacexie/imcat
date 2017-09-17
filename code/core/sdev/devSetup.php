@@ -287,7 +287,7 @@ class devSetup{
         }
         glbCUpd::upd_relat();
         glbCUpd::upd_menus('muadm');//menua
-        admAFunc::umcVInit();
+        admAFunc::mkvInit();
         glbCUpd::upd_grade();
     }
 

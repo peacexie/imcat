@@ -16,24 +16,24 @@ div.main p.150 { line-height:150%; }
 
 {block:main}
 
-<form action="?mkv={$this->mkv}" method="post" name="fmgetpw" id="fmgetpw">
+<form action="?mkv={=$this->mkv}" method="post" name="fmgetpw" id="fmgetpw">
   {if $user->userFlag=='Login' }
   <p class="text-danger bg-warning pa10">
-      [{$user->usess['uname']}] {lang(user.lon_logined)} <br>
+      [{=$user->usess['uname']}] {lang(user.lon_logined)} <br>
       {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】; <br>
       {lang(user.lon_touto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); } 
   </p>
   {elseif !empty($remsg) }
   <div class="text-info bg-info pa10 ma10">
-      {$remsg}
+      {=$remsg}
   </div>
   {elseif !empty($emid) }
   <p class="pa10 ma10 tc">
     {if is_array($emres)}
-    	你的帐号为: {$emres[2]} <br/>
-        密码重置为: `<span class="c00F bold">{$emres['pass']}</span>`
+    	你的帐号为: {=$emres[2]} <br/>
+        密码重置为: `<span class="c00F bold">{=$emres['pass']}</span>`
     {else}
-    	{$emres}
+    	{=$emres}
     {/if}
   </p>
   
@@ -63,7 +63,7 @@ div.main p.150 { line-height:150%; }
         <i class="col-xs-8 col-md-8 tl">
         <input name="submit" value="{lang(user.gtp_send)}" tabindex="19820" type="submit" class="form-control btn btn-primary" />
         <input name="act" type="hidden" value="dogetpw" />
-        <input name="recbk" type="hidden" value="{$recbk}" />
+        <input name="recbk" type="hidden" value="{=$recbk}" />
         </i>
       </p>
 
@@ -76,7 +76,7 @@ div.main p.150 { line-height:150%; }
     </div>
     <div class="login">
       <p class="tc" id="lscan_msg">
-      <img src="{PATH_SKIN}/_pub/a_img/loadbig.gif" id="lscan_img" width="180">
+      <img src="{=PATH_SKIN}/_pub/a_img/loadbig.gif" id="lscan_img" width="180">
       </p>
     </div>
     <div class="clear"></div>

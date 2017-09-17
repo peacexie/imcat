@@ -1,0 +1,125 @@
+{php}
+$isMobile = basEnv::isMobile();
+$_cbase['tpl']['tpl_dir'] = 'chn';
+$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub']); 
+if($isMobile) unset($vcfg['adm']); 
+$title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
+$icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
+    'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode
+{/php}
+<!doctype html>
+<html>
+<head>
+{php}
+glbHtml::page('init');
+eimp('initJs','jquery;comm;/_pub/rhome/funcs');
+eimp('initCss','bootstrap,stpub;/_pub/rhome/style'); 
+{/php}
+<title>{=$title} - A general PHP+Msql web site system!</title>
+<meta name='keywords' content='贴心猫(IntimateCat):IntimateCat, Lightweight, free, sharing, PHPCMS, txmao, imcat'>
+<meta name='description' content='贴心猫(IntimateCat)A general PHP+Msql web site system! Include ApiServer/PC/Mobile Views, pay/map/wechat APIs!'>
+<base target="_blank"/>
+</head>
+<body>
+
+<!--[if lt IE 9]>
+<p class='gwidth ie6'>浏览器版本太低，不支持HTML5，浏览效果可能不正常！</p>
+<![endif]-->
+
+<div class="nav">
+{loop $vcfg $k $v}
+<i class="cCCC">●</i> <a href="{=PATH_PROJ}{=$v[1]}" class="qrcode_tip"><b
+  class="fa fa-{=$icons[$k]}"></b> <?php echo basLang::pick(0,$v[0]); ?><i 
+  class="qrcode_pic" id="qrcode_pic{=$k}" style="display:none;"></i></a>
+{/loop}
+</div>
+
+<div class="head">
+    <a href="?" target="_self"><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60"></a>
+    <h1>{=$title}</h1>
+    <p>A general web site system!</p>
+</div>
+
+<div class="out">
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">tpl,tag</span>Template/Tag</h2>
+    <div>
+        <p>Template: Template-Inherit,Template-Include,Out-group Share</p>
+        <p>Mobile adaptation: PC/Mobile Bind Different templates</p>
+        <p>4x4x2Tags: 4-Type, 4-Data,2-State</p>
+        <p>4-Type: List, Page, Single Row, Type-List</p>
+        <p>4-Data: doc/info,Interactive/comment, User/member, Ad/link</p>
+        <p>2-State: html Common tag, js dynamic tag</p>
+    </div>
+</div></div>
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">Extensible</span>(Existing)View Group</h2>
+    <div>
+        <p><i class="r"><a href="./root/run/adm.php">adm</a></i>Admin: Your website just for your, And it's controlled by you!</p>
+        <p><i class="r"><a href="./root/run/rest.php">rest</a></i>REST-API: Apply data for App/Api</p>
+        <p><i class="r"><a href="./chn.php">chn</a></i>Classic PC version: The main display and Demonstration version</p>
+        <p><i class="r"><a href="./doc.php">doc</a></i>Manual and Guides</p>
+        <p><i class="r"><a href="./mob.php">mob</a></i>Mobile: View in mobile phone</p>
+        <p><i class="r"><a href="./root/run/umc.php">umc</a></i>User: User:Order/Docs/Faqs</p>
+    </div>
+</div></div>
+
+<div class="clear"></div>
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">module/lang</span>Module/Multi-lang</h2>
+    <div>
+        <p><i class="r">+Extensible</i>Docu/info. (default): Product / news / project / course resources / demo-info / inner-docu / qa system</p>
+        <p><i class="r">+Extensible</i>User/member (default): enterprise / government / organization / personal / Administrator</p>
+        <p><i class="r">+Extensible</i>Types/series: Local-Towns / Province / World-country / brand / industry / nationality / Department / grade / course and so on ...</p>
+        <p><i class="r">+Extensible</i>Ftp-store/Sphinx/Wechat/SMS/ip-Address/Map/Pay</p>
+        <p><i class="r">+Extensible</i>Multi-lang: include Chinese and English packs (since v3.3+)
+           Can use lang-tags in php-files, tpl-files and js-files
+        </p>
+    </div>
+</div></div>
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">theory/feature</span>Theory/Features</h2>
+    <div>
+        <p> Open Source: respect for copyright, sharing technology, and strive to build a safty, harmonious and efficient web application system!</p>
+        <p>Follow the MIT License (MIT); sharing in various legal purposes!</p>
+        <p>To the application oriented, not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!</p>
+        <p>Features: Details store in file, MKV routing, Related categories, Cache, Static...</p>
+        <p>Customizable : module / field / parameter / Types/series / lang-packs ... </p>
+        <!--p>Light and simple : You can use it as a KIT-Tools!</p-->
+    </div>
+</div></div>
+
+</div><!--end.out-->
+
+<div class="foot">
+<p>
+    <span>[<a href="?start">Start</a>] # </span>
+    <?php echo basLang::links("<a href='{url}' target='_self'>{title}</a> # "); ?>
+    <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>
+    <span> # <a href="mailto:xpigeon#163.com">E-mail</a> 
+    # [<a class="qrcode_home" _url='{=PATH_PROJ}'>Scan<i class="qrcode_hpic" id="qrcode_pichome" style="display:none;"></i></a>] </span>
+</p>
+<p>贴心猫(IntimateCat) Copyright © MIT</p>
+</div>
+
+<script type="text/javascript">
+var _burl = '{=$_cbase['run']['rsite']}';
+var _ismb = <?php echo $isMobile ? 1 : 0; ?>;
+$(function(){ 
+    if(_ismb){
+        $('.vnote p').hide();
+        setTimeout('tipActs()',500); 
+        $('.foot span').hide();
+    }else{
+        qrActs();
+    }
+});
+</script>
+
+</body>
+</html>
+

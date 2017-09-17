@@ -1,75 +1,62 @@
 
 
-打包更轻松，扩展更灵活
+--------
 
-------------------------------------------------------------------------------
+#bg#基本信息
 
-* cache
- - _rlock_cron
- - _faqs_types
- - chkUpd($file,$ctime=30,$bdir='dtmp') 
-   -> extCache::cfGet($file,$ctime,$bdir);
+* 本次发布概述
+ - 同步发布扩展模块，打包更轻松，扩展更灵活！
+ - 添加：伪静态部署
+ - 同步发布Nodejs辅助系统，打造Web应用生态圈！
 
-* 
- - http://www.topthink.com/user/product_add.html
-
-* docs/funcs 功能模块
-
-* adm-CSS
- - admJsClick('adminer'), this,&view=form    --- ok
- - http://www.cssmoban.com/
+* 基本信息：
+ - 发布日期：2017.09.30,(2017-09-30)
+ - rar-大小: [core]1.49 MB, [full]3.75 MB(core+vendor)
 
 
-* prem 权限
+#detail#更新事项
 
-* plus/coms
- - footer ... 
+* REST-API：发布正式版
 
-------------------------------------------------------------------------------
+* 同步发布扩展模块：
+ -> 打包更轻松，扩展更灵活！
 
-* pager 分页                    --- ok
+* 同步发布Nodejs辅助系统，打造Web应用生态圈！
 
-* robots.txt                    --- ok
+* 图标：更新图标组件，后台菜单添加自定义图标设置
 
-* demodir                       --- ok 
+* 增加：伪静态部署
 
-* - jilei
- - apiServer:                   --- ok 
- - Tools:chrall,schulte,bezier  --- ok
- - adminer                      --- ??? 
- - yahei                        --- ok
- - muma                         --- ok
- - spword                       --- ok
- - derun.php                    --- ???
+* 增强：扩展缓存
 
-* cache                         --- ok
- - 增强缓存扩展
+* 改善：权限设置
 
-* 扩展下载/extend               --- ok
- - demo 
- - xxx
+* 增加：短链接接口(内部使用)
 
-* map                           --- ok
- - baidu地图           
-         
-* 静态 7-11 ~ 18                --- ok 
-           
-* jq-3                          --- ok 
-           
-* win/model                     --- ok 
- - (del)jq_win.js             
-           
-* tokenStore                    --- ok 
-             
-* REST-API 正式                 --- ok (实际当中完善)
-            
-* wxlogin                       --- ok 
- - 'm' => 'm_user/uhome',
- - 'wxlogin' => 'm_user/wxlogin',
- - 'wxlocal' => 'm_user/wxlocal',
- - wex_menu_ys
+* 调整模板，后台部分UI，使用bootstrap模态框
 
-* umc ...                       --- ok 
- - home,user,help,uio
+* 修正：
+ -> 分页跳转
+ -> 一些已知bug
 
-------------------------------------------------------------------------------
+
+#up38#更新指引
+
+* 方式1. 安装新系统，导入旧数据 (建议)
+ - 先安装新系统，再导入旧数据；
+
+* 方式2. 自带升级程序升级
+ - 注意系统菜单表，增加了 图标字段
+
+
+#tips#提示/参考
+
+* Rewrite配置(Apache/Nginx/iis7+)
+ -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
+
+* idea：贴心猫(IntimateCat)开发者自白书
+ -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9a-f3a1
+
+* 贴心扩展[Extend]
+ -> http://txmao.txjia.com/dev.php?extend
+

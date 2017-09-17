@@ -4,7 +4,7 @@ include dirname(__FILE__).'/_defCtrl.php';
 */ 
 class bincCtrl extends _defCtrl{
 	
-    private $skacts = array('exd_inc1','act_ops','_pub_cfgs');
+    public $skacts = array('exd_inc1','act_ops','_pub_cfgs');
 
     function __construct($ucfg=array(),$vars=array()){ 
         parent::__construct($ucfg,$vars);

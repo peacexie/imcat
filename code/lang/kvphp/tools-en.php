@@ -182,11 +182,6 @@ return array(
     'binf_nosuplocal' => 'Local storage is not supported',
     'binf_suplocal' => 'Support local storage',
 
-    'home_extitle' => 'A general PHP+Msql web site system!',
-    'home_exkwd' => 'IntimateCat, Lightweight, free, sharing, PHPCMS, txmao, imcat',
-    'home_exdes' => 'A general PHP+Msql web site system! Include ApiServer/PC/Mobile Views, pay/map/wechat APIs!',
-    'home_botname' => 'IntimateCat',
-
     'chk_envcheck' => 'Env.Check',
     'chk_envbaisc' => 'Basic',
     'chk_envname' => 'Title',
@@ -322,6 +317,10 @@ return array(
     'setup_doing' => 'Processing...',
     'setup_dosteps' => 'Setup Progress',
     'setup_dores' => 'Setup Result...',
+
+    'setup_tdb_tip' => 'Tips',
+    'setup_tdb_ndb' => 'NOW DB is',
+    'setup_tdb_rst' => 'It will reset after setup',
 
     'fix_' => 'end',
 

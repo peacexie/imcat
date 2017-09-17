@@ -79,6 +79,8 @@ class glbHtml{
     }
     // form+table:头
     static function fmt_head($fmid,$fmact,$tbcss='',$win='',$tbbrd=1){
+        global $_cbase; 
+        if($tbcss=='tblist') $_cbase['run']['tabResize'] = 1;
         $fmact = basReq::getURep($fmact,'recbk');
         echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
         $recbk = basReq::val('recbk','');
@@ -88,6 +90,7 @@ class glbHtml{
     }    
     // form+table:(end):结束
     static function fmt_end($data='',$tabend='</table>'){
+        global $_cbase; 
         if(!$data){ echo "\n$tabend</form>"; return; }
         if(is_array($data)){
             $arr = $data;
@@ -101,6 +104,10 @@ class glbHtml{
             $str .= "\n<input name='$itm[0]' type='hidden' value='$itm[1]' />";
         }
         echo "$str$tabend</form>";
+        // utabResize
+        if(!empty($_cbase['run']['tabResize'])){
+            echo basJscss::imp('/_pub/a_jscss/resizeCols.js');
+        }
     }
     
     // form:(增加/修改):一行

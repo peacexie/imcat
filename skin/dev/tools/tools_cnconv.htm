@@ -34,12 +34,12 @@ eimp('/plus/ajax/comjs.php?act=jfcfgTab');
 
 ?>
 
-<h4 class="tl">### {$title}说明：</h4>
+<h4 class="tl">### {=$title}说明：</h4>
 <p>汉字拼音转化，支持9100多个汉字，包含了2500各常用字，1000各次常用字；原始信息采集于网络。</p>
 <p>汉字简繁转化，支持2359对简繁汉字；原始信息采集于网络如维基百科等。</p>
-<p>{$title} 支持js，php转化！ @整理/整合 by Peace（QQ:8089-3510 , E-mail:xpigeon#163.com）</p>
+<p>{=$title} 支持js，php转化！ @整理/整合 by Peace（QQ:8089-3510 , E-mail:xpigeon#163.com）</p>
 
-<form action="{$ufix}" method="post">
+<form action="{=$ufix}" method="post">
   <h4 class="tl">### PHP Convert: (用时:<span id="time1"><?php echo $timer; ?></span>)</h4>
   string:
   <input name="str" type="text" id="str" value="<?php echo $str; ?>" size="64" />
