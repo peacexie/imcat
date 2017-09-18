@@ -113,8 +113,8 @@ class fldEdit{
             foreach(array('text','mediumtext','nodb','file') as $dk){ unset($dbtypes[$dk]); }
             $opts = basElm::setOption($dbtypes,$oldval,basLang::show('admin.fe_dbtype'));
         }
-        $dblen = isset($flen) ? $flen : (empty($this->cfg['dblen']) ? '0' : $this->cfg['dblen']);
-        @$dbdef = strlen($this->cfg['dbdef']) ? $this->cfg['dbdef'] : '';    
+        $dblen = isset($flen) ? $flen : (empty($this->cfg['dblen']) ? ($this->cfg['dbtype']=='varchar' ? 12 : '0') : $this->cfg['dblen']);
+        @$dbdef = strlen($this->cfg['dbdef']) ? $this->cfg['dbdef'] : '';
         $row = "\n<select name='fm[dbtype]' class='w150' reg='str:1-255'>$opts</select>"; //$dise = "disabled='disabled'";
         $row .= " &nbsp;&nbsp; ".basLang::show('admin.fe_len')."<input name='fm[dblen]' type='text' value='$dblen' class='txt w40' maxlength='5' reg='n+i' tip='".basLang::show('admin.fe_num25')."' id='fm[dblen]'/>";
         $row .= "<br><input name='fm[dbdef]' type='text' value='$dbdef' class='txt w150' maxlength='48' id='fm[dbdef]' />";

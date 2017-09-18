@@ -3,7 +3,7 @@
 .cst-out { width: 960px; margin: 10px auto; border:1px solid #CCC; background-color: #F3F3F3; border-collapse:inherit; 
   border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
 .cst-out td { font-size:14px; vertical-align:top; padding:0px; margin:0px; }
-.cst-title1, .cst-title2 { text-align:left; width:200px; line-height:30px; font-size:16px; padding:3px 8px 3px 3px; 
+.cst-out .cst-title1, .cst-out .cst-title2 { text-align:left; width:200px; line-height:30px; font-size:16px; padding:3px 8px; 
   background: #D8D8D8; }
 .cst-title1 i, .cst-title2 i { font-size:12px; }
 .cst-title2, { border-top:1px solid #666; }

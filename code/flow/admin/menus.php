@@ -178,7 +178,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:2-12' $vstr />$ienable");
         }
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21245')."' />$itop");
-        $iconstr = empty($r['icon']) ? '(null)' : "<i class='fa fa-".$r['icon']."'></i>";
+        $iconstr = empty($fm['icon']) ? '(null)' : "<i class='fa fa-".$fm['icon']."'></i>";
         $iconstr = " <a href='".PATH_VENDUI."/bootstrap/FontAwesome.htm' target='_blank'>$iconstr</a>";
         glbHtml::fmae_row('Icon',"<input name='fm[icon]' type='text' value='$fm[icon]' class='txt w150' maxlength='12' reg='tit:0-48' />$iconstr");
         glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea>

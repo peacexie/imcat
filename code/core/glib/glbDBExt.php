@@ -20,7 +20,8 @@ class glbDBExt{
             if(isset($cols[$cid])) $sql.= " CHANGE `$cid` ";
             else                   $sql.= " ADD ";     
             if(empty($r) && !empty($cfg)) $r = $cfg;
-            $sql.= " `$cid` $r[dbtype]".($r['dbtype']=='varchar' ? "($r[dblen])" : ''); 
+            $dblen = intval($r['dblen']);
+            $sql.= " `$cid` $r[dbtype]".($r['dbtype']=='varchar' ? ($dblen>0?"($dblen)":'(12)') : ''); 
             $sql.= (strpos("($r[vreg]",'nul:') ? " NULL " : ' NOT NULL '); 
             //$sql.= (empty($r['dbdef']) ? "" : " DEFAULT '$r[dbdef]' "); 
             if(strstr($r['dbtype'],'char')){

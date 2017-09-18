@@ -35,14 +35,12 @@ function lang($mk, $val=''){
 function read($file,$dir='modcm'){
     // $file:支持格式:news.i
     if(strpos($file,'.')){
-        $tmp = explode('.',$file);
-        $file = $tmp[0];
-        $flag = 1;
+        $t = explode('.',$file);
+        $re = glbConfig::read($t[0],$dir);
+        return isset($re[$t[1]]) ? $re[$t[1]] : $re;
     }else{
-        $flag = 0;
+        return glbConfig::read($file,$dir);
     }
-    $res = glbConfig::read($file,$dir);
-    return ($flag && isset($res[$tmp[1]])) ? $res[$tmp[1]] : $res;
 }
 // req(获得get/post参数)
 function req($key,$def='',$type='Title',$len=255){
