@@ -15,9 +15,8 @@ hr{ clear:both; }
         
 <nav>
     {loop $arr $key}
-    <li><a href='?ctest-{=$key}' target=_blank>ctest-{=$key}<a/></li>
+    <li><a href='{surl("ctest-$key")}' target=_blank>ctest-{=$key}<a/></li>
     {/loop}
-    <li><a href='?ctest.{=$key}' target=_blank>ctest.{=$key}<a/></li>
 </nav>
 <hr>
 

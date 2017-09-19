@@ -39,7 +39,7 @@ class tagPage extends tagList{
         }else{
             $burl = basReq::getUri(-1,'','page|prec|ptype|pkey'); 
             $burl = strstr($burl,'mkv=') ? $burl : str_replace('.php?','.php?mkv=',$burl);     
-        }
+        } 
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";
         $_cbase['page']['prec'] = $pg->prec; 
     }

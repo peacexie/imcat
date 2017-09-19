@@ -14,8 +14,8 @@ class comParse{
     // 适合把中文用base64编码用于url传输(比url编码短,且都是安全字符),获取时用这个来解码
     // $s : 原字符串, 支持数组
     // $de : 0-编码, 1-解码, a-解码返回数组
-    static function urlBase64($s,$de=0,$type='mkv'){
-        $a2 = $type=='mkv' ? ".-" : "_~"; //《!()+,-.;@^_`~》安全13个
+    static function urlBase64($s,$de=0,$chrs=''){
+        $a2 = $chrs ? $chrs : "-_"; // "-_" , ".~"; //《!()+,-.;@^_`~》安全13个
         if(is_array($s)) $s = basElm::arr2text($s,"\n",'=');
         if($de){
             $s = str_pad(strtr($s,$a2,"+/"),strlen($s)%4,'=',STR_PAD_RIGHT);

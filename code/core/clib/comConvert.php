@@ -91,7 +91,7 @@ class comConvert{
         $nn = 4; $key = md5($key); $res = '';
         $keya = md5(substr($key,0,16)); $keyb = md5(substr($key,16,16));
         if($de){
-            $str = str_replace(array('.','_',),array('+','/',),$str);
+            $str = str_replace(array('-','_',),array('+','/',),$str);
             $keyc = substr($str,0,$nn);
             $ckey = $keya.md5($keya.$keyc); $ckn = strlen($ckey);
             $str =  base64_decode(substr($str,$nn));
@@ -122,7 +122,7 @@ class comConvert{
             return '';
         }else{
             $res = base64_encode($res); 
-            return $keyc.str_replace(array('+','/','='),array('.','_',''),$res);
+            return $keyc.str_replace(array('+','/','='),array('-','_',''),$res);
         }
     }
     
