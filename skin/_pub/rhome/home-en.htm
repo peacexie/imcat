@@ -1,46 +1,13 @@
-{php}
-$isMobile = basEnv::isMobile();
-$_cbase['tpl']['tpl_dir'] = 'chn';
-$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub']); 
-if($isMobile) unset($vcfg['adm']); 
-$title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
-$icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
-    'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode
-{/php}
-<!doctype html>
-<html>
-<head>
-{php}
-glbHtml::page('init');
-eimp('initJs','jquery;comm;/_pub/rhome/funcs');
-eimp('initCss','bootstrap,stpub;/_pub/rhome/style'); 
-{/php}
-<title>{=$title} - A general PHP+Msql web site system!</title>
+{imp:"_pub:rhome/layout"}
+
+{block:head}
+{php} $resume = 'A general PHP+Msql web site system!'; {/php}
+<title>{=$title} - {=$resume}</title>
 <meta name='keywords' content='贴心猫(IntimateCat):IntimateCat, Lightweight, free, sharing, PHPCMS, txmao, imcat'>
 <meta name='description' content='贴心猫(IntimateCat)A general PHP+Msql web site system! Include ApiServer/PC/Mobile Views, pay/map/wechat APIs!'>
-<base target="_blank"/>
-</head>
-<body>
+{/block:head}
 
-<!--[if lt IE 9]>
-<p class='gwidth ie6'>浏览器版本太低，不支持HTML5，浏览效果可能不正常！</p>
-<![endif]-->
-
-<div class="nav">
-{loop $vcfg $k $v}
-<i class="cCCC">●</i> <a href="{=PATH_PROJ}{=$v[1]}" class="qrcode_tip"><b
-  class="fa fa-{=$icons[$k]}"></b> <?php echo basLang::pick(0,$v[0]); ?><i 
-  class="qrcode_pic" id="qrcode_pic{=$k}" style="display:none;"></i></a>
-{/loop}
-</div>
-
-<div class="head">
-    <a href="?" target="_self"><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60"></a>
-    <h1>{=$title}</h1>
-    <p>A general web site system!</p>
-</div>
-
-<div class="out">
+{block:inner}
 
 <div class="block"><div class="in">
     <h2><span class="tg1">tpl,tag</span>Template/Tag</h2>
@@ -76,8 +43,7 @@ eimp('initCss','bootstrap,stpub;/_pub/rhome/style');
         <p><i class="r">+Extensible</i>Types/series: Local-Towns / Province / World-country / brand / industry / nationality / Department / grade / course and so on ...</p>
         <p><i class="r">+Extensible</i>Ftp-store/Sphinx/Wechat/SMS/ip-Address/Map/Pay</p>
         <p><i class="r">+Extensible</i>Multi-lang: include Chinese and English packs (since v3.3+)
-           Can use lang-tags in php-files, tpl-files and js-files
-        </p>
+           Can use lang-tags in php-files, tpl-files and js-files</p>
     </div>
 </div></div>
 
@@ -93,33 +59,4 @@ eimp('initCss','bootstrap,stpub;/_pub/rhome/style');
     </div>
 </div></div>
 
-</div><!--end.out-->
-
-<div class="foot">
-<p>
-    <span>[<a href="?start">Start</a>] # </span>
-    <?php echo basLang::links("<a href='{url}' target='_self'>{title}</a> # "); ?>
-    <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>
-    <span> # <a href="mailto:xpigeon#163.com">E-mail</a> 
-    # [<a class="qrcode_home" _url='{=PATH_PROJ}'>Scan<i class="qrcode_hpic" id="qrcode_pichome" style="display:none;"></i></a>] </span>
-</p>
-<p>贴心猫(IntimateCat) Copyright © MIT</p>
-</div>
-
-<script type="text/javascript">
-var _burl = '{=$_cbase['run']['rsite']}';
-var _ismb = <?php echo $isMobile ? 1 : 0; ?>;
-$(function(){ 
-    if(_ismb){
-        $('.vnote p').hide();
-        setTimeout('tipActs()',500); 
-        $('.foot span').hide();
-    }else{
-        qrActs();
-    }
-});
-</script>
-
-</body>
-</html>
-
+{/block:inner}

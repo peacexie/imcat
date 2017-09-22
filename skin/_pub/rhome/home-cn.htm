@@ -1,46 +1,13 @@
-{php}
-$isMobile = basEnv::isMobile();
-$_cbase['tpl']['tpl_dir'] = 'chn';
-$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub']); 
-if($isMobile) unset($vcfg['adm']); 
-$title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
-$icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
-    'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode
-{/php}
-<!doctype html>
-<html>
-<head>
-{php}
-glbHtml::page('init');
-eimp('initJs','jquery;comm;/_pub/rhome/funcs');
-eimp('initCss','bootstrap,stpub;/_pub/rhome/style'); 
-{/php}
-<title>{=$title} - 通用PHP建站系统</title>
+{imp:"_pub:rhome/layout"}
+
+{block:head}
+{php} $resume = '通用PHP建站系统'; {/php}
+<title>{=$title} - {=$resume}</title>
 <meta name='keywords' content='贴心猫(IntimateCat):贴心猫,轻量免费,开源共享,PHP CMS,微信接口,IntimateCat,txmao,imcat'>
 <meta name='description' content='贴心猫(IntimateCat)一款轻量、免费、共享的通用PHP网站应用系统；App服务端-PC版-手机版-微信接口一站搞定！'>
-<base target="_blank"/>
-</head>
-<body>
+{/block:head}
 
-<!--[if lt IE 9]>
-<p class='gwidth ie6'>浏览器版本太低，不支持HTML5，浏览效果可能不正常！</p>
-<![endif]-->
-
-<div class="nav">
-{loop $vcfg $k $v}
-<i class="cCCC">●</i> <a href="{=PATH_PROJ}{=$v[1]}" class="qrcode_tip"><b
-  class="fa fa-{=$icons[$k]}"></b> <?php echo basLang::pick(0,$v[0]); ?><i 
-  class="qrcode_pic" id="qrcode_pic{=$k}" style="display:none;"></i></a>
-{/loop}
-</div>
-
-<div class="head">
-    <a href="?" target="_self"><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60"></a>
-    <h1>{=$title}</h1>
-    <p>通用PHP建站系统</p>
-</div>
-
-<div class="out">
+{block:inner}
 
 <div class="block"><div class="in">
     <h2><span class="tg1">tpl,tag</span>模板/标签</h2>
@@ -75,7 +42,8 @@ eimp('initCss','bootstrap,stpub;/_pub/rhome/style');
         <p><i class="r">+无限扩展</i>用户/会员: 企业会员/政府机构/非盈利组织/个人会员/管理员</p>
         <p><i class="r">+无限扩展</i>类别/系列: 镇区/省市/国家/品牌/行业/民族/部门/年级/课程…</p>
         <p><i class="r">+无限扩展</i>Ftp存储/Sphinx检索/微信/短信/ip地址/地图/支付</p>
-        <p><i class="r">+自定义添加</i>多语言: 默认中英两种语言包（自v3.3+开始），语言包覆盖php脚本，html模板，js文件。</p>
+        <p><i class="r">+自定义添加</i>多语言: 默认中英两种语言包（自v3.3+开始），
+        语言包覆盖php脚本，html模板，js文件。</p>
     </div>
 </div></div>
 
@@ -91,33 +59,4 @@ eimp('initCss','bootstrap,stpub;/_pub/rhome/style');
     </div>
 </div></div>
 
-</div><!--end.out-->
-
-<div class="foot">
-<p>
-    <span>[<a href="?start">Start</a>] # </span>
-    <?php echo basLang::links("<a href='{url}' target='_self'>{title}</a> # "); ?>
-    <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>
-    <span> # <a href="mailto:xpigeon#163.com">E-mail</a> 
-    # [<a class="qrcode_home" _url='{=PATH_PROJ}'>Scan<i class="qrcode_hpic" id="qrcode_pichome" style="display:none;"></i></a>] </span>
-</p>
-<p>贴心猫(IntimateCat) Copyright © MIT</p>
-</div>
-
-<script type="text/javascript">
-var _burl = '{=$_cbase['run']['rsite']}';
-var _ismb = <?php echo $isMobile ? 1 : 0; ?>;
-$(function(){ 
-    if(_ismb){
-        $('.vnote p').hide();
-        setTimeout('tipActs()',500); 
-        $('.foot span').hide();
-    }else{
-        qrActs();
-    }
-});
-</script>
-
-</body>
-</html>
-
+{/block:inner}

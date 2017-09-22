@@ -16,7 +16,12 @@ if(!empty($user->uinfo['uid'])){
 ?>
 {/block:init}
 
+{block:pimp}{php}
+eimp('/_pub/jslib/jspop.js');
+{/php}{/block:pimp}
+
 {block:action}
+
 <div class="umc-mitem">
 <h3><i>edit information</i>{lang(user.pub_einfo)}: </h3>
 <?php 

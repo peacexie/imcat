@@ -127,13 +127,7 @@ $_sy_pubcfg['skfiles'] =  array(
     //'derun.imp_php',
 
     'jquery-2.x.js',
-    'font-awesome.min.css',
-    'FontAwesome.otf',
-    'glyphicons-halflings-regular.eot',
-    'glyphicons-halflings-regular.svg',
-    'glyphicons-halflings-regular.ttf',
-    'glyphicons-halflings-regular.woff',
-    'glyphicons-halflings-regular.woff2',
-
+    'fontawesome-webfont.svg',
+    
 );
 

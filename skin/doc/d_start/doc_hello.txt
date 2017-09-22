@@ -62,7 +62,7 @@
  - # Integrated case: read database and pager
  - http://txmao.txjia.com/skin/dev/tester/step_ufile.php
  - # Official intimate tools:
- - http://txmao.txjia.com/dev.php?tools-index
+ - http://txmao.txjia.com/dev.php?tools
  - # Class library function list:
  - http://txmao.txjia.com/dev.php?start-class
 
