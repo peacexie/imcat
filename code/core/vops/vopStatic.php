@@ -12,6 +12,7 @@ class vopStatic{
             '3'=> "{detail}",
         );
         $tpl = empty($cfg['i'][$type]['cfgs']) ? $dtpl[$cfg['etab']] : $cfg['i'][$type]['cfgs']; 
+        if(!strpos($tpl,'target')) $tpl = str_replace('<a',"<a target='_blank'",$tpl);
         $data = ''; $rep = array('title','url','mpic','detail');
         $list = glbDBObj::dbObj()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
         if($list){

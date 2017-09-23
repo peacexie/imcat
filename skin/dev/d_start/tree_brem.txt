@@ -29,6 +29,7 @@
 │  ├─dev : 开发文档
 │  ├─doc : Guides
 │  ├─mob : 手机版
+│  ├─rest : REST-API
 │  ├─umc : 会员中心
 │  └─_pub : 公用css,js,logo等
 ├─ures : 上传资源附件目录; 
