@@ -11,7 +11,7 @@
 
 * Basic-Info:
  - Release: 2017.09.30,(2017-09-30)
- - rar-Size: [core]1.35 MB, [full]3.8 MB(core+vendor)
+ - rar-Size: [core]1.26 MB, [full]3.59 MB(core+vendor)
 
 
 #detail#ChangeLog

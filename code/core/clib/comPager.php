@@ -99,7 +99,7 @@ class comPager{
             }else{
                 $order = ' ORDER BY '.$this->order.($this->odesc ? ' DESC' : '');
                 $this->sql[0] = $sfrom.$where.$order.$limit;
-            } 
+            }
             return $this->sql[0];
         }
     }

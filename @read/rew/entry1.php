@@ -7,7 +7,7 @@ $base = $_SERVER['SCRIPT_NAME'];
 $base = substr($base,0,strrpos($base,'/')); 
 
 $nav = '';
-$arr = array('/entry1.php','/entry1.php?hi=Test1!','/entry1.php/pinfo?query','/entry1/news.id1234','/entry1/news-subx','/entry1/news-a?hi=abc');
+$arr = array('/entry1.php','/entry1.php?hi=Test1!','/entry1.php/pinfo?q=hi','/entry1/news.id1234','/entry1/news-subx','/entry1/news-a?hi=abc');
 foreach ($arr as $key) {
     $nav .= " # <a href='$base$key'>$key</a>\n";
 }
@@ -42,6 +42,7 @@ $tab = array(
     'REQUEST_URI', 'QUERY_STRING', 
     'REDIRECT_URL', 'REDIRECT_QUERY_STRING', 
     'ORIG_PATH_INFO', 'REDIRECT_PATH_INFO', 
+    'argv', 
 );
 echo "<pre>";
 foreach ($tab as $key){

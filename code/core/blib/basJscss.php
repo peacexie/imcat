@@ -167,22 +167,25 @@ class basJscss{
         echo "\n_cbase.sys_map = '".@$_cbase['sys_map']."';";
         echo "\n";
         
-        if(!empty($_GET['user'])){
+        $fuser = empty($_GET['user']) ? 0 : $_GET['user'];
+        if($fuser){
             echo "\n// js Member/Admin"; 
             echo "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
-            $user = usrBase::userObj('Member');
+            $user = usrBase::userObj($fuser==1 ? 'Member' : 'Admin');
             if(!empty($user)){
-                echo "\n_minfo.userType = '".$user->userType."';";
-                echo "\n_minfo.userFlag = '".$user->userFlag."';";
-                echo "\n_minfo.uname = '".$user->usess['uname']."';";
-                echo "\n_mperm.title = '".@$user->uperm['title']."';";
-            }
-            $user = usrBase::userObj('Admin');
-            if(!empty($user)){
-                echo "\n_miadm.userType = '".$user->userType."';";
-                echo "\n_miadm.userFlag = '".$user->userFlag."';";
-                echo "\n_miadm.uname = '".$user->usess['uname']."';";
-                echo "\n_mpadm.title = '".@$user->uperm['title']."';";
+                if($fuser==1){
+                    echo "\n_minfo.userType = '".$user->userType."';";
+                    echo "\n_minfo.userFlag = '".$user->userFlag."';";
+                    echo "\n_minfo.uname = '".$user->usess['uname']."';";
+                    echo "\n_mperm.title = '".@$user->uperm['title']."';";
+                    echo "\n_mperm.menus = ':,".@$user->uperm['pmusr'].",';";
+                }else{
+                    echo "\n_miadm.userType = '".$user->userType."';";
+                    echo "\n_miadm.userFlag = '".$user->userFlag."';";
+                    echo "\n_miadm.uname = '".$user->usess['uname']."';";
+                    echo "\n_mpadm.title = '".@$user->uperm['title']."';";
+                    echo "\n_mpadm.menus = ':,".@$user->uperm['pmadm'].",';";
+                }
             }
         } 
         echo "\n";
@@ -207,7 +210,7 @@ class basJscss{
                 $exp = "&tpldir=$tpldir&lang=$lang";
                 $mod = 'css';
             }else{ // initJs/loadExtjs
-                $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?'&user=1':'') : '';
+                $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?"&user=$mod":'') : '';
                 $mod = 'js'; 
             }
             $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";

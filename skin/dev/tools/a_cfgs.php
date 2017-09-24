@@ -57,13 +57,13 @@ $cfgs = array(
 $cfgs_ext = array(
 
     'bezier' => array(
-        'mt' => '贝塞尔曲线',
-        'url' => 'http://txjia.com/peace/tip/effect/bezier.htm',
+        'mt' => 'Node.js微框架',
+        'url' => 'http://txjia.com/peace/wenode.htm',
     ),
 
     'schulte' => array(
-        'mt' => '舒尔特方格',
-        'url' => 'http://txjia.com/peace/tip/effect/schulte.htm',
+        'mt' => '近7天地震',
+        'url' => 'http://txmao.txjia.com/root/plus/yscode/dizhen.php',
     ),
 
 );

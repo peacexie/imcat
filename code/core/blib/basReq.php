@@ -130,36 +130,16 @@ class basReq{
         return $data;  
     }
     
-    //获取REQUEST_URI
+    //获取 url并替换参数
     //re:第几个参数,-2:array;-1:full; 
     static function getUri($re=-1,$ura='',$skip=''){
-        if(!$ura){
-            /*if(isset($_SERVER['REQUEST_URI'])){
-                $uri = $_SERVER['REQUEST_URI'];
-                if(strpos($uri,'?')>0){
-                    $pos = strpos($uri,'?');
-                    $ura = array(substr($uri,0,$pos),substr($uri,$pos));
-                }else{
-                    $ura = array($uri,'');
-                }
-            }else{*/
-                $ura = array($_SERVER['SCRIPT_NAME']);
-                if(isset($_SERVER['argv'])){
-                    $ura[] = $_SERVER['argv'][0];
-                }else{
-                    $ura[] = $_SERVER['QUERY_STRING'];
-                }
-            //}    
-        }elseif(is_string($ura)){
-            $ura = explode('?',"$ura");
-        }
-        if(!strstr($ura[1],'?')) $ura[1] = "?$ura[1]";
-        if($ura[1]&&$skip){ //《"&<>》HTML《:/?=&#%》URL《\/*?"<>|》FILE
-            $ura[1] = preg_replace("/[\?|\&]($skip)=[^\f\n\r\t\v\&\#]{0,80}/i",'',$ura[1]);    
-        }
+        $ura = $ura ? explode('?',$ura) : array($_SERVER['SCRIPT_NAME'],$_SERVER['QUERY_STRING']);
+        $ura[1] && $ura[1] = '?'.$ura[1];
+        $skip && $ura[1] = preg_replace("/[\?|\&]($skip)=[^\f\n\r\t\v\&\#]{0,80}/i",'',$ura[1]);
+        //《"&<>》HTML《:/?=&#%》URL《\/*?"<>|》FILE
         if($re==-2) return $ura;
         elseif($re==-1) return implode($ura);
-        elseif(isset($ura[$re])) return $ura[$re]; //'http://'.$_SERVER['HTTP_HOST'].
+        elseif(isset($ura[$re])) return $ura[$re];
         else return '';
     }
     static function getURep($url,$key,$val=''){

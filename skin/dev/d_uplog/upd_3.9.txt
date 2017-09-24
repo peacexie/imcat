@@ -11,7 +11,7 @@
 
 * 基本信息：
  - 发布日期：2017.09.30,(2017-09-30)
- - rar-大小: [core]1.49 MB, [full]3.75 MB(core+vendor)
+ - rar-大小: [core]1.26 MB, [full]3.59 MB(core+vendor)
 
 
 #detail#更新事项

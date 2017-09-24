@@ -22,7 +22,7 @@ class tagPage extends tagList{
         $where = $this->whrStr; 
         $pg = new comPager($sfrom,$where,$this->sqlArr['limit'],"m.".$this->sqlArr['order']); 
         $pg->set('odesc',$this->sqlArr['odesc']); 
-        $pg->set('opkey',$this->sqlArr['ordef']==$this->sqlArr['order'] ? 1 : 0); 
+        $pg->set('opkey',(!empty($this->exFld2)&&$this->exFld2==$this->sqlArr['order']) ? 1 : 0); 
         $this->re = $pg->exe(); 
         $this->sqlAll = $pg->sql; 
         $idfirst = ''; $idend = '';

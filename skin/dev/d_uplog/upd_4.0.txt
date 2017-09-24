@@ -1,31 +1,49 @@
 
 
+
+### perm (pfile -=> pmkv)
+ - menu-perm
+
+* comConvert::impData()
+
+ - devSetup::ins1Data()
+
+* 组装
+ - css : bootcss
+ - js : jq
+ - icon : font-awesome
+
+
+* dgfp + font-awesome + boot
+http://www.bootcss.com/p/font-awesome/
+
+
+
+* Extend
+ - fontawesome-webfont.svg
+ - doc, dev
+
+
 setup ... mins
 
 field : 长度为0错误   - ok ? test
 scan : 扫码
-menu : 修改 null      - ok 
 
 
 * jilei
  - 数据:采集/分享/同步/导入
  - mods:公文
  - 后台-install
+ - adminer                      --- ??? 
+ - derun.php                    --- ???
 
 * big-files
- - fontawesome-webfont.svg : 434K
- - adminer.imp_php : 427
- - spword.imp_txt : 340
- - SewisePlayer.swf : 209
+ - fontawesome-webfont.svg : 434K  - ok
+ - adminer.imp_php : 427           - x
+ - spword.imp_txt : 340            - ok
+ - SewisePlayer.swf : 209          - ok
 
-* - jilei
- - apiServer:                   --- ok 
- - Tools:chrall,schulte,bezier  --- ok
- - adminer                      --- ??? 
- - yahei                        --- ok
- - muma                         --- ok
- - spword                       --- ok
- - derun.php                    --- ???
+
 
 * plus/coms
  - footer ... 
