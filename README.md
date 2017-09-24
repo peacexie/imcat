@@ -85,9 +85,6 @@ V3.9升级中…… 此期间请使用v3.8
   - Nodejs Mini Framework  
   - -> http://txjia.com/peace/wenode.htm
 
-  - Rewrite-Config(Apache/Nginx/iis7+)  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
-
 --- --- --- --- --- --- --- --- --- 
 
 贴心猫(Intimate) 是以PHP+MySQL架构设计的通用网站系统，简约、实用、轻量、开源。
@@ -155,6 +152,3 @@ V3.9升级中…… 此期间请使用v3.8
 
   - Nodejs微框架  
   - -> http://txjia.com/peace/wenode.htm
-
-  - Rewrite配置(Apache/Nginx/iis7+)  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
