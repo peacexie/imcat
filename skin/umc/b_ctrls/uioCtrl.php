@@ -32,5 +32,8 @@ class uioCtrl{
     function applyAct(){
         if($this->newtpl) return array('newtpl'=>$this->newtpl);
     }
+    /*function tipsAct(){
+        if($this->newtpl) return array('newtpl'=>$this->newtpl);
+    }*/
 
 }

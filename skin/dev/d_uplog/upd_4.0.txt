@@ -1,5 +1,10 @@
 
 
+https://summernote.org/getting-started/#installation
+Summernote - Super Simple WYSIWYG editor
+
+Summernote may be freely distributed under the MIT license.
+
 
 ### perm (pfile -=> pmkv)
  - menu-perm
@@ -18,10 +23,6 @@
 http://www.bootcss.com/p/font-awesome/
 
 
-
-* Extend
- - fontawesome-webfont.svg
- - doc, dev
 
 
 setup ... mins

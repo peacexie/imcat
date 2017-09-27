@@ -13,8 +13,8 @@ class autoLoad_ys{
     
     static $upath = array();
     
-    // autoLoad_ys::ureg('/adpt/wechat'); //code目录下
-    // autoLoad_ys::ureg('/a3rd/wechat',0); //root目录下
+    // autoLoad_ys::ureg('/adpt/cache'); //code目录下
+    // autoLoad_ys::ureg('/a3rd/udir',0); //root目录下
     static function ureg($upath,$pcode=1){
         $key = $pcode ? 'code' : 'root';
         if(empty(self::$upath[$key]) || !in_array($upath,self::$upath[$key])){ 
@@ -24,8 +24,9 @@ class autoLoad_ys{
     }
     static function uload($name){ 
         foreach(self::$upath as $key=>$kpath){ 
+            $base = $key=='code' ? DIR_CODE : DIR_ROOT;
             foreach($kpath as $path){ 
-                self::doinc($path."/$name.php",constant("DIR_".uppercase($key)));
+                self::doinc($path."/$name.php",$base);
             }
         }
     }

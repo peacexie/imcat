@@ -35,7 +35,7 @@ $_cfgs['acmap'] =  array(
     //'mTest1' => '/Vdemo/dir1/mapTest1.php',
     //'dir\\Name' => '/dir/Name.php',
     // === 以下:core的类库:
-    // 1. 如果不复合自动加载,请到这里注册;
-    // 2. 如果复合自动加载; 在这里列表出来可以提高一点点速度; 建议不用列表到这里.
+    // 1. 如果不符合自动加载,请到这里注册;
+    // 2. 如果符合自动加载,建议不用列表到这里.
     //'basArray' => '~/core/blib/basArray.php',
 );

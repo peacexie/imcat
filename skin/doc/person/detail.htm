@@ -9,6 +9,7 @@
 $mcfg = glbConfig::read($this->mod);
 {/php}
 {loop $mcfg['f'] $key $fv}
+<?php if(in_array($key,array('mtel','memail'))) $$key=basStr::subReplace($$key) ?>
 <p>{=$fv['title']}({=$key}) = `<?php echo $$key; ?>`;</p>
 {/loop}
 {/block:cmain}

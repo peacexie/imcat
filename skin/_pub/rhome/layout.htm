@@ -2,7 +2,7 @@
 $isMobile = basEnv::isMobile();
 $_cbase['tpl']['tpl_dir'] = 'chn';
 $vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub']); 
-if($isMobile) unset($vcfg['adm']); 
+if($isMobile) unset($vcfg['chn']); 
 $title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
 $icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
     'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode

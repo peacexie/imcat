@@ -62,6 +62,3 @@
 
 * Nodejs Mini Framework
  -> http://txjia.com/peace/wenode.htm
-
-* Rewrite-Config(Apache/Nginx/iis7+)
- -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1

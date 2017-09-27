@@ -8,7 +8,7 @@
 <ul class="sd-mkeys"> 
 
 <?php
-$cvs = tex_base::cutvers($cfgs,2,$key);
+$cvs = tex_base::cutvers($cfgs,5,$key);
 foreach($cfgs as $k=>$v){ if(in_array($k,$cvs)){ 
 $imkv = $k=='readme' ? 'uplog' : "uplog-$k"; 
 $iver = is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; 

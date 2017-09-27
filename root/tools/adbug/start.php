@@ -45,7 +45,7 @@ if(!empty($umsg)){
   die();
 }
 echo glbHtml::ieLow_html();
-basLang::shead($_cbase['sys_name'].' - '.lang('tools.start_title'));
+basLang::shead($_cbase['sys_name'].' - '.lang('tools.start_title').' - v'.$_cbase['sys']['ver']);
 ?>
 
 <?php
