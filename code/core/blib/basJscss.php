@@ -3,6 +3,14 @@
 // basJscss类
 class basJscss{    
 
+    // bootstrap-Skin处理
+    static function bootSkin(){
+        global $_cbase;
+        $bskin = empty($_cbase['sys']['bskin']) ? 'min' : $_cbase['sys']['bskin'];
+        $bsfile = "bootstrap.$bskin.css";
+        return $bsfile;
+    }
+
     // jspop,jq_base,bootstrap,layer
     static function loadExtjs($exjs){
         if(strstr($exjs,'jspop')){
@@ -23,12 +31,12 @@ class basJscss{
     // bootstrap,stpub,jstyle
     static function loadBasecss($excss){
         if(strstr($excss,'bootstrap')){
-            $arr = array('bootstrap'); // ,'font-awesome'
-            foreach ($arr as $key) {
-                $jsimp = PATH_VENDUI."/bootstrap/css/$key.min.css";
-                echo "/* ------ $key ------ */\n";
-                echo "@import url($jsimp);\n";
-            }
+            $jsimp = PATH_VENDUI."/bootstrap/css/".self::bootSkin();
+            echo "/* ------ bootstrap ------ */\n";
+            echo "@import url($jsimp);\n";
+            $jsimp = PATH_VENDUI."/bootstrap/css/font-awesome.min.css";
+            echo "/* ------ font-awesome ------ */\n";
+            echo "@import url($jsimp);\n";
         }
         if(strstr($excss,'stpub')){
             echo "/* ------ stpub ------ */\n";
@@ -78,8 +86,8 @@ class basJscss{
             }
         }
         if(strstr($exjs,'bootcss')){
-            $ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/bootstrap.min.css');
-            //$ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
+            $ims[] = basJscss::csscode(0,PATH_VENDUI."/bootstrap/css/".self::bootSkin());
+            $ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
         }
         if(strstr($exjs,'bootstrap')){
             $ims[] = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
@@ -207,7 +215,8 @@ class basJscss{
             $lang = $_cbase['sys']['lang'];
             $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
             if($path=='initCss'){
-                $exp = "&tpldir=$tpldir&lang=$lang";
+                $bskin = empty($_cbase['sys']['bskin']) ? 'min' : $_cbase['sys']['bskin'];
+                $exp = "&tpldir=$tpldir&lang=$lang&bskin=$bskin";
                 $mod = 'css';
             }else{ // initJs/loadExtjs
                 $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?"&user=$mod":'') : '';

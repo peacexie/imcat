@@ -1,5 +1,9 @@
 
 
+.cCCC, a.cCCC:link, a.cCCC:visited {
+    color: #CCC;
+}
+
 body, html, p, div{ font:14px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
 a{ text-decoration:none; }
 i{ font-style:normal;  }
@@ -14,8 +18,8 @@ p i.r{ float:right; color:#999; }
 .nav i:first-child{ display:none; }
 
 
-.head{ width:480px; height:50px; display:block; clear:both; text-align:center; margin:10px auto 10px auto; }
-.head h1{ font-size:18px; font-weight:bold; }
+.head{ width:480px; height:55px; display:block; clear:both; text-align:center; margin:10px auto 10px auto; }
+.head h1{ font-size:18px; font-weight:bold; padding:0px 0px; margin:15px 0px 5px 0px; }
 .head p{ padding:0px 0px 0px 0px; margin:5px 0px 5px 0px; }
 .head img{ float:right; margin:-10px 10px 0px 10px; }
 
@@ -41,7 +45,7 @@ p i.r{ float:right; color:#999; }
     .block{ width:50%; float:left; }
     .in{ border-radius: 0px 0px 5px 20px; }
     .in div{ clear:both; }
-    .in h2{ width:100%; clear:both; text-align:left; background:#F8F8F8; padding:auto 5px; }
+    .in h2{ width:96%; clear:both; text-align:left; background:#F8F8F8; padding:10px 10px; }
     .in h2 a{ display:inline; }
     .in h2 span{ display:inline; }
     .in h2 .tg1{ float:right; }
@@ -53,7 +57,7 @@ p i.r{ float:right; color:#999; }
     .block{ width:100%; float:none; }
     .in{ border-radius: 0px 0px 5px 20px; }
     .in div{ clear:both; }
-    .in h2{ display:block; width:100%; clear:both; text-align:left; background:#F8F8F8; }
+    .in h2{ display:block; width:96%; clear:both; text-align:left; background:#F8F8F8; }
     .in h2 a{ display:inline; }
     .in h2 span{ display:inline; }
     .in h2 .tg1{ float:right; }
@@ -83,4 +87,3 @@ a.qrcode_home { position:relative; }
     bottom:10px; left: -105px; text-align:center;
     padding:5px; border:1px solid #CCC;
 }
-

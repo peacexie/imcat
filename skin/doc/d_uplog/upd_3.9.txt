@@ -10,7 +10,7 @@
  - Synchronous publishing Nodejs Auxiliary system, Build Web application ecosystem!
 
 * Basic-Info:
- - Release: 2017.09.30,(2017-09-30)
+ - Release: Celebration with the National Day: 2017.10.05,(2017-10)
  - rar-Size: [core]1.26 MB, [full]3.59 MB(core+vendor)
 
 

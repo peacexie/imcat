@@ -10,11 +10,10 @@ $icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
 <!doctype html>
 <html>
 <head>
-{php}
-glbHtml::page('init');
-eimp('initJs','jquery;comm;/_pub/rhome/funcs');
-eimp('initCss','bootstrap,stpub;/_pub/rhome/style'); 
-{/php}
+{php}glbHtml::page('init');
+eimp('initJs','jquery;comm;/_pub/rhome/funcs');{/php}
+<link href='{=PATH_VENDUI}/bootstrap/css/font-awesome.min.css' type='text/css' rel='stylesheet'/>
+<link href='{=PATH_SKIN}/_pub/rhome/style.css' type='text/css' rel='stylesheet'/>
 {block:head}{/block:head}
 <base target="_blank"/>
 </head>

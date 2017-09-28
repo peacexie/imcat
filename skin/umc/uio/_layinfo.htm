@@ -15,7 +15,10 @@ p.nav a{ display:inline-block; padding:2px 3px; margin:3px 3px 0px 3px; border: 
     p.nav img{ float:right; vertical-align:middle; border:1px solid #DDD; border-radius:5px; }
 }
 {/block:hdcss}</style>
-</head><body class="divOuter"> 
+</head><body> 
+
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+<div class="divOuter"> 
 
 <div class='header'>
     <p class="nav">
@@ -36,5 +39,8 @@ $rinfo = basDebug::runInfo();
 <div class='footer'>
   <p>{=$rinfo}</p>  
 </div>
+</div>
+
+<script>winAutoMargin('topMargin');</script>
 
 </body></html>

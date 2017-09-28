@@ -8,6 +8,7 @@ $excss = basReq::val('excss');
 $tpldir = basReq::val('tpldir'); 
 $lang = basReq::val('lang',$_cbase['sys']['lang']);
 $mkv = basReq::val('mkv');
+$bskin = basReq::val('bskin');
 glbHtml::head($excss ? 'css' : 'js');
 
 if(strstr($act,'initJs')){ // header
