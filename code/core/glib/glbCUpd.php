@@ -45,6 +45,7 @@ class glbCUpd{
             $v['grade'] = $v['kid'];
             $dfs = array('top','enable','note','aip','atime','auser','eip','etime','euser');
             foreach($dfs as $fk) unset($v[$fk]);
+            foreach($v as $vk=>$vv) if(!$vv) $v[$vk] = '';
             $arr[$v['kid']] = $v;
             //self::upd_ipfile($arr[$v['kid']]);
         }
@@ -227,7 +228,7 @@ class glbCUpd{
                 }
                 if($v1['deep']=='1'){
                     $icon = " <i class='fa fa-".(empty($v1['icon']) ? self::$_icons[1] : $v1['icon'])."'></i>";
-                    $s1 .= "<a onclick=\"admSetTab('$k1')\">$icon $v1[title]</a>";
+                    $s1 .= "<a class=\"atm_$k1\" onclick=\"admSetTab('$k1')\">$icon $v1[title]</a>";
                     $js1 .= ",$k1";
                     $js2 .= ",$v1[title]";
                     $js3 .= ",$v1[icon]";

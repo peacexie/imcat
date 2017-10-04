@@ -3,6 +3,28 @@
 // admAFunc 
 class admAFunc{    
  
+    static function mkvIperm($muid,$mprm){
+        $db = glbDBObj::dbObj();
+        $mprm = ":,$mprm,";
+        $pmarr = array();
+        $arr = $db->table('base_menu')->where("model='$muid' AND enable='1'")->order('deep,top')->select();
+        foreach($arr as $k=>$row){
+            if(!empty($row['cfgs']) &&strpos($mprm,','.$row['kid'].',')){
+                preg_match_all("/mkv\=([\w|\-]+)/", $row['cfgs'], $ms);
+                if(!empty($ms[1])){
+                    foreach($ms[1] as $mv){
+                        if(!in_array($mv,$pmarr)){
+                            $pmarr[] = $mv;
+                        }
+                    }
+                }
+            }else{
+                //echo $row['kid'].':flag<br>';
+            }
+        }
+        return implode(',',$pmarr);
+    }
+
     static function mkvInit($mod='adm'){
         $db = glbDBObj::dbObj();
         $tabid = 'base_menu'; 

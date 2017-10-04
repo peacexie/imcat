@@ -100,6 +100,7 @@ $_sy_pubcfg['skfiles'] =  array(
     '_china.cfg_php',
     '_world.cfg_php',
     'CN-tab.php', // static:/media/iptabs/
+    'CN-tv2.php', 
     'haibao.jpg', // static:/media/cover/
     '100-gushi.jpg', // static:/file_demo1/
     'cacert.pem', // vendor:/a3rd/alipay_class/

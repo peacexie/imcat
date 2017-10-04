@@ -1,4 +1,4 @@
 
--- plus_smcharge@2017-09-17 15:06:39 -- 
+-- plus_smcharge@2017-10-04 15:31:23 -- 
 INSERT INTO `{pre}plus_smcharge{ext}` VALUES 
 ('1','1','0','1','1','0','1');

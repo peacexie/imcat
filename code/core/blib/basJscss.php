@@ -180,20 +180,24 @@ class basJscss{
             echo "\n// js Member/Admin"; 
             echo "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
             $user = usrBase::userObj($fuser==1 ? 'Member' : 'Admin');
+            $imenu = '';
             if(!empty($user)){
-                if($fuser==1){
-                    echo "\n_minfo.userType = '".$user->userType."';";
-                    echo "\n_minfo.userFlag = '".$user->userFlag."';";
-                    echo "\n_minfo.uname = '".$user->usess['uname']."';";
-                    echo "\n_mperm.title = '".@$user->uperm['title']."';";
-                    echo "\n_mperm.menus = ':,".@$user->uperm['pmusr'].",';";
-                }else{
-                    echo "\n_miadm.userType = '".$user->userType."';";
-                    echo "\n_miadm.userFlag = '".$user->userFlag."';";
-                    echo "\n_miadm.uname = '".$user->usess['uname']."';";
-                    echo "\n_mpadm.title = '".@$user->uperm['title']."';";
-                    echo "\n_mpadm.menus = ':,".@$user->uperm['pmadm'].",';";
+                $mifix = $fuser==1 ? '_minfo' : '_miadm';
+                $mpfix = $fuser==1 ? '_mperm' : '_mpadm';
+                $menuk = $fuser==1 ? 'pmusr' : 'pmadm';
+                if(!empty($user->uperm['impid'])){ // 继承菜单
+                    $grades = glbConfig::read('grade','dset');
+                    if(isset($grades[$user->uperm['impid']])){
+                        $imenu = $grades[$user->uperm['impid']][$menuk];
+                    }
                 }
+                echo "\n$mifix.userType = '".$user->userType."';";
+                echo "\n$mifix.userGrade = '".@$user->uperm['grade']."';"; 
+                echo "\n$mifix.userFlag = '".$user->userFlag."';";
+                echo "\n$mifix.uname = '".@$user->usess['uname']."';";
+                echo "\n$mpfix.title = '".@$user->uperm['title']."';";
+                echo "\n$mpfix.menus = ':,".@$user->uperm[$menuk].",$imenu,';";
+                echo "\n$mpfix.defmu = '".@$user->uperm['defmu']."';";
             }
         } 
         echo "\n";

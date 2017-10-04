@@ -25,8 +25,8 @@ $_adpic = array (
       'title' => '[顶]620x60',
       'deep' => '2',
       'frame' => '0',
-      'char' => '[',
-      'cfgs' => '<a href=\'{url}\'><img src=\'{mpic}\' width=\'620\' height=\'60\' name=\'{title}\' alt=\'{title}\' /></a>',
+      'char' => '_',
+      'cfgs' => '<a href=\'{url}\' target=\'_blank\'><img src=\'{mpic}\' width=\'620\' height=\'60\' name=\'{title}\' alt=\'{title}\' /></a>',
     ),
     'a2014' => 
     array (
@@ -35,8 +35,8 @@ $_adpic = array (
       'title' => '[上]850x80',
       'deep' => '2',
       'frame' => '0',
-      'char' => '[',
-      'cfgs' => '<a href=\'{url}\'><img src=\'{mpic}\' width=\'800\' height=\'80\' name=\'{title}\' alt=\'{title}\' /></a>',
+      'char' => '_',
+      'cfgs' => '<a href=\'{url}\' target=\'_blank\'><img src=\'{mpic}\' width=\'800\' height=\'80\' name=\'{title}\' alt=\'{title}\' /></a>',
     ),
     'apinn' => 
     array (

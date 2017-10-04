@@ -1,9 +1,7 @@
 
-* During 2017-09-17 ~ 2017-09-30 
-V3.9 Upgrading... Please use v3.8 in this time
-
-* 2017-09-17 ~ 2017-09-30 期间 
-V3.9升级中…… 此期间请使用v3.8
+* 贴心猫(IntimateCat) V3.9(Alpha)
+* Alpha版本，不要用于正式版本…… 此期间请使用v3.8
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!... Please use v3.8 in this time
 
 --- --- --- --- --- --- --- --- --- 
 

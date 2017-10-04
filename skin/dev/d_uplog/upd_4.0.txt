@@ -1,15 +1,22 @@
 
 
+* perm (pfile -=> pmkv)
+ - menu-perm
 
+
+* 权限继承
+
+* 应用模块：商城，博客
+
+* book : w3cschool.cn
+
+------------------------------ 
 
 https://summernote.org/getting-started/#installation
 Summernote - Super Simple WYSIWYG editor
 
 Summernote may be freely distributed under the MIT license.
 
-
-### perm (pfile -=> pmkv)
- - menu-perm
 
 * comConvert::impData()
 

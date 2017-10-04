@@ -252,14 +252,6 @@ $_groups = array (
     'etab' => '1',
     'deep' => '1',
   ),
-  'groups' => 
-  array (
-    'pid' => 'groups',
-    'title' => '群组/模块',
-    'top' => '106',
-    'etab' => '0',
-    'deep' => '0',
-  ),
   'docs' => 
   array (
     'pid' => 'groups',
@@ -297,6 +289,14 @@ $_groups = array (
     'pid' => 'groups',
     'title' => '分类/组系',
     'top' => '148',
+    'etab' => '0',
+    'deep' => '0',
+  ),
+  'groups' => 
+  array (
+    'pid' => 'groups',
+    'title' => '群组/模块',
+    'top' => '208',
     'etab' => '0',
     'deep' => '0',
   ),
@@ -340,21 +340,21 @@ $_groups = array (
     'etab' => '1',
     'deep' => '3',
   ),
-  'mumem' => 
+  'mkva' => 
   array (
     'pid' => 'menus',
-    'title' => '会员菜单',
-    'top' => '140',
+    'title' => '管理MKV',
+    'top' => '130',
     'etab' => '1',
     'deep' => '2',
   ),
-  'mupfile' => 
+  'mkvu' => 
   array (
     'pid' => 'menus',
-    'title' => '权限脚本',
-    'top' => '148',
+    'title' => '会员MKV',
+    'top' => '140',
     'etab' => '1',
-    'deep' => '1',
+    'deep' => '2',
   ),
   'mupext' => 
   array (

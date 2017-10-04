@@ -36,3 +36,14 @@ function stsetLink(e){
     url = url+'&limit='+limit+'&offset='+offset+'';
     return winOpen(url,e.innerHTML);
 }
+
+function impmset(efm){
+    if(!impstr) return;
+    var pms = '(,'+impstr+',';
+    $("input[name='fm[prmcb][]']").each(function(i, el) {
+        var v = $(el).val();
+        if(pms.indexOf(v)>0){
+            $(el).attr('checked','true').attr('disabled','true');
+        }
+    }); 
+}

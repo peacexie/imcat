@@ -66,7 +66,15 @@ class usrPerm{
         }elseif(in_array($key,array('model','grade'))){
             return $user->uperm[$key];
         }elseif(isset($user->uperm[$key])){
-            return $user->uperm[$key];
+            $pmstr = $user->uperm[$key];
+            if(!empty($user->uperm['impid'])){
+                $k2 = $user->uperm['impid'];
+                $grades = glbConfig::read('grade','dset');
+                if(isset($grades[$k2])){
+                    $pmstr .= ','.$grades[$k2][$key];
+                }
+            }
+            return $pmstr;
         }else{
             return '';
         }

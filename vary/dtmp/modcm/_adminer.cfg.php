@@ -135,6 +135,11 @@ $_adminer = array (
       'kid' => 'ainfo',
       'title' => '信息管理员',
     ),
+    'aiadm' => 
+    array (
+      'kid' => 'aiadm',
+      'title' => '信息主管',
+    ),
     'auser' => 
     array (
       'kid' => 'auser',

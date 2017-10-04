@@ -1,5 +1,5 @@
 
--- dext_votes@2017-09-17 15:06:39 -- 
+-- dext_votes@2017-10-04 15:31:23 -- 
 INSERT INTO `{pre}dext_votes{ext}` VALUES 
 ('2016-bu-gac1','<p>\r\n	<strong>测试投票规则：</strong> \r\n</p>\r\n<p>\r\n	<span style=\"line-height:1.5;\"><span> </span></span> \r\n</p>\r\n<p>\r\n	1.【怎样投票】这里是中国XX网投票页面。勾选候选人姓名旁的方框，在页面底部提取并正确输入验证码，提交投票。\r\n</p>\r\n<p>\r\n	2.【温馨提示】因投票人数众多，验证码读取与投票提交需要一定时间，请耐心等候，若失败请刷新页面。\r\n</p>\r\n<p>\r\n	3.【有效认定】根据活动规则，每个IP每天投票总量限50票，超过此限的投票，系统将视为无效。\r\n</p>\r\n<p>\r\n	4.【活动秩序】严禁采取技术性手段刷票舞弊，一经查实，将取消候选人当月得票成绩和入选资格。\r\n</p>\r\n<p>\r\n	<br />\r\n</p>','','','','','',''),
 ('2016-bu-phv1','<p>\r\n	<span style=\"line-height:1.5;\">围绕：完善美工和细节/</span><span style=\"line-height:1.5;\">加强中文文档</span><span>/</span><span style=\"line-height:1.5;\">加强英文文档</span><span>/</span><span style=\"line-height:1.5;\">支持Sqlite+免安装</span><span>/</span><span style=\"line-height:1.5;\">增加Sphinx检索</span><span>/</span><span style=\"line-height:1.5;\">用TP3.2重构系统 等投票。</span> \r\n</p>\r\n<p>\r\n	一个IP一天只能投一次<span>，</span><span>一次</span><span>最多选3个<span>。</span></span> \r\n</p>','','','','','','');

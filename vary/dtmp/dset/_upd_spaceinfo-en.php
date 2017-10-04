@@ -2,19 +2,19 @@
 $data = array (
   'db' => 
   array (
-    'idx' => '332.00 (KB) ',
-    'free' => '1.25 (KB) ',
-    'data' => '449.15 (KB) ',
+    'idx' => '341.00 (KB) ',
+    'free' => '7.73 (KB) ',
+    'data' => '456.58 (KB) ',
   ),
   'dir' => 
   array (
-    'main' => '3.08 (MB) ',
-    'vary' => '1.75 (MB) ',
-    'vimp' => '12.65 (MB) ',
+    'main' => '3.06 (MB) ',
+    'vary' => '2.11 (MB) ',
+    'vimp' => '12.23 (MB) ',
     'html' => '1.37 (MB) ',
     'ures' => '1.53 (MB) ',
   ),
   'total' => 30,
-  'sum' => '20.82 (MB) ',
+  'sum' => '20.73 (MB) ',
 )
 ?>

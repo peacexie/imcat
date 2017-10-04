@@ -92,7 +92,7 @@ if($view=='glist'){
         }else{
             $fm = $db->table($tabid)->where("kid='$kid'")->find();
         }
-        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','cfgs'=>'',);
+        $def = array('kid'=>'','title'=>'','top'=>'888','defmu'=>'','impid'=>'','enable'=>'1','note'=>'','cfgs'=>'',);
         foreach($def as $k=>$v){
             if(!isset($fm[$k])) $fm[$k] = $v;
         }
@@ -108,12 +108,27 @@ if($view=='glist'){
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:4-12' $vstr />$ienable");
         }
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
+        
+        $imops = $cfg['i']; unset($imops[$kid]); 
+        $mucfg = read('muadm'); $muops = $mucfg['i']; $muops = comTypes::getSubs($muops,'0','1');
+        $defmu = " &nbsp; 默认菜单<select id='fm[defmu]' name='fm[defmu]' class='w100'>".basElm::setOption($muops,$fm['defmu'])."</select>";
+        glbHtml::fmae_row('继承权限',"<select id='fm[impid]' name='fm[impid]' class='w100'>".basElm::setOption($imops,$fm['impid'])."</select>$defmu"); 
+        
         glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>".lang('flow.fl_cfgtip'));
         glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","kid|".(empty($kid) ? '_isadd_' : $kid)));
     }
 
+}elseif($view=='init'){
+    $row = $db->table($tabid)->where("kid='$kid'")->find();
+    $muid = $parts=='mkva' ? 'muadm' : 'muser';
+    $mprm = $parts=='mkva' ? $row['pmadm'] : $row['pmusr'];
+    $pmstr = admAFunc::mkvIperm($muid,$mprm);
+    $pmstr = $row[$parts].','.$pmstr;
+    $db->table($tabid)->data("$parts='$pmstr'")->where("kid='$kid'")->update();
+    //dump($pmstr);
+    echo basJscss::Alert(lang('flow.msg_upd'),'prClose',$aurl[1]);
 }elseif($view=='set'){
 
     $parts = req('parts','pmod'); 
@@ -130,9 +145,20 @@ if($view=='glist'){
         foreach($pcfg1 as $k=>$v) { $lpart1 .= "<a href='?mkv=$mkv&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
         $pcfg2 = basLang::ucfg('cfglibs.grset_types');  
         foreach($pcfg2 as $k=>$v) { $lpart2 .= "<a href='?mkv=$mkv&mod=$mod&view=set&kid=$kid&parts=$k' ".(($parts==$k) ? 'class="cur"' : '').">$v</a> | "; }
-        glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$title]".lang('admin.grd_pedit')."","$lpart1<br>$lpart2",40); //-
+        $sinit = "";
+        if(in_array($parts,array('mkva','mkvu'))){
+            $sinit = "<a href='?mkv=$mkv&mod=$mod&view=init&kid=$kid&parts=$parts' target='_blank' onclick='return winOpen(this,\"Init\");'>Init-Mkv:From-Menu</a><br>";
+        }
+        glbHtml::tab_bar("$sinit$lnkbak<span class='span ph5'>|</span>[$title]".lang('admin.grd_pedit')."","$lpart1<br>$lpart2",40); //-
         glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-        $pmstr = $row[$parts];
+        $pmstr = $row[$parts]; 
+        $impid = $row['impid']; $impstr = '';
+        if($impid){
+            $row2 = $db->table($tabid)->where("kid='$impid'")->find();
+            if(!empty($row2[$parts])){
+                $impstr = $row2[$parts]; 
+            }
+        }
         if(in_array($parts,array('pmod','padd','pdel','pcheck'))){
             $a0 = array('docs','coms','users','advs','plus');
             foreach($a0 as $k){
@@ -196,6 +222,9 @@ if($view=='glist'){
         }
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),in_array($parts,array('pmadm','pmusr')) ? ($parts=='pmusr' ? '20' : 25) : 15);
         glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","","kid|".(empty($kid) ? '_isadd_' : $kid)));
+        $js = "var impstr='$impstr'; impmset('fm[prmcb][]');"; // fmlist,fm[prmcb][]
+        echo basJscss::jscode($js);
+
     }
 }
 
