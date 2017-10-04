@@ -29,7 +29,9 @@
 
 * Improve: Extend-Cache
 
-* Improve: Perm-setting
+* Improve: Perm-function
+ - Improve: Perm-Set/Check
+ - Add: Perm-Inherit
 
 * Add: Short-Link API(use internally)
 

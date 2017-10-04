@@ -1,0 +1,124 @@
+
+<div>
+<?php 
+if($act=='cmpdata'){ 
+ $data = updAdmin::ddData($upc); 
+ $ntab = req('ntab');
+ if($ntab){
+  $rec = updAdmin::ddComp($data,$ntab); 
+ }
+?>
+<p>{lang(tools.upc_tupd_cfgp)}</p>
+<table border="1" class="cmpfile">
+  <tr>
+    <td colspan="2" class="tnav"><?php echo @$data['tnav']; ?></td>
+  </tr>
+  <?php if(!empty($ntab)){ ?>
+  <tr>
+    <th width="50%" class="ntab tr">{lang(tools.upc_nowdeel)}: </th>
+    <th class="ntab tl">Table [<?php echo $ntab; ?>]</th>
+  </tr>
+  <?php } ?>
+  <?php if(!empty($rec['new'])){ ?>
+  <tr>
+    <th valign="top"><?php echo $ntab; ?> {lang(tools.upc_editcfg)}</th>
+    <td align="right" valign="top">[<?php echo $rec['ne']; ?>] {lang(tools.upc_recs)}</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['new']; ?></ol></td>
+    <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['old']; ?></ol></td>
+  </tr>
+  <tr>
+    <td colspan="2" class="pa10">{lang(tools.upc_runsql)}: 
+    <div class="esql"><?php echo $data['repsql']; ?>
+    <br> --end-- </div>
+    </td>
+  </tr>
+  <?php }if(!empty($rec['add'])){ ?>
+  <tr>
+    <th>{lang(tools.upc_addcfg)}</th>
+    <td align="right">[<?php echo $rec['na']; ?>] {lang(tools.upc_recs)}</td>
+  </tr>
+  <tr>
+    <td colspan="2"><div class="esql"><?php echo $rec['add']; ?></div></td>
+  </tr>
+  <?php }if(empty($data['tnum'])){ ?>
+  <tr>
+    <td width="50%">{lang(tools.upc_endtb)}</td>
+    <td align="center"><a href='?step=db_data'>[{lang(tools.upc_next)}]</a></td>
+  </tr>
+  <?php }elseif(!empty($ntab)){ ?>
+  <?php if(empty($rec['add']) && empty($rec['new'])){ ?>
+  <tr>
+    <td>{lang(tools.upc_noupd)}: </td>
+    <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>{lang(tools.upc_nxtab)}</a></td>
+  </tr>
+  <?php }elseif(!empty($rec['add']) && !empty($rec['new'])){ ?>
+  <tr>
+    <td valign="top"><span class='cF00'>{lang(tools.upc_addcfg)}</span>{lang(tools.upc_tpadd1)}</td>
+    <td align="center" valign="top"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>{lang(tools.upc_onlyadd)}</a></td>
+  </tr>
+  <tr>
+    <td valign="top"><span class='c00F'>{lang(tools.upc_editcfg)}</span>{lang(tools.upc_tpedit1)}</td>
+    <td align="center" valign="top"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=rep'>{lang(tools.upc_bothae)}</a></td>
+  </tr>
+  <?php }elseif(!empty($rec['new'])){ ?>
+  <tr>
+    <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=rep'>{lang(tools.upc_updsql)}</a></td>
+    <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>{lang(tools.upc_updall)}</a></td>
+  </tr>
+ <?php }elseif(!empty($rec['add'])){ ?>
+  <tr>
+    <td valign="top">{lang(tools.upc_updntab)}: </td>
+    <td align="center"><a href='?act=cmpdata&ntab=<?php echo @$ntab; ?>&nact=add'>{lang(tools.upc_caddcfg)}</a></td>
+  </tr>
+  <?php } ?>
+ <?php }else{ ?>
+  <tr>
+    <td width="50%">{lang(tools.upc_f1t9)}</td>
+    <td align="center">{lang(tools.upc_rbsend)}</td>
+  </tr>
+  <?php } ?>
+</table>
+<?php }elseif($act=='cmpfile'){ $rec = updAdmin::compFile($upc); ?>
+<p>{lang(tools.upc_tupd_comp)}</p>
+<table border="1" class="cmpfile">
+  <tr>
+    <td valign="top"><?php echo req('file','','Html'); ?></td>
+    <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['new']; ?></ol></td>
+    <td width="50%" valign="top"><ol class="cmpfile"><?php echo @$rec['old']; ?></ol></td>
+  </tr>
+  <tr>
+    <td valign="top"><span class='cF00'>{lang(tools.upc_lred)}</span>{lang(tools.upc_tip21)}</td>
+    <td valign="top"><span class='cF00'>{lang(tools.upc_rred)}</span>{lang(tools.upc_tip22)}</td>
+  </tr>
+  <tr>
+    <td valign="top"><span class='c00F'>{lang(tools.upc_blue)}</span>{lang(tools.upc_tip23)}</td>
+    <td valign="top">{lang(tools.upc_eupd1)}</td>
+  </tr>
+</table>
+<?php }elseif($act=='cmptable'){ $rec = updAdmin::compTable($upc); ?>
+<p>{lang(tools.upc_tupd_cdb)}</p>
+<table border="1" class="cmpfile">
+  <tr>
+    <td valign="top"><?php echo req('tab','','Html'); ?></td>
+    <td align="right" valign="top">Old[<?php echo $rec['per']; ?>%]</td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top"><ul class="cmpfile"><?php echo @$rec['new']; ?></ul></td>
+    <td width="50%" valign="top"><ul class="cmpfile"><?php echo @$rec['old']; ?></ul></td>
+  </tr>
+  <tr>
+    <td valign="top"><span class='cF00'>{lang(tools.upc_lred)}</span>{lang(tools.upc_tip31)}</td>
+    <td valign="top"><span class='cF00'>{lang(tools.upc_blue)}</span>{lang(tools.upc_tip32)}</td>
+  </tr>
+  <tr>
+    <td valign="top"><span class='c00F'>{lang(tools.upc_rred)}</span>>{lang(tools.upc_tip33)}</td>
+    <td valign="top">{lang(tools.upc_eupd2)}</td>
+  </tr>
+</table>
+<?php } ?>
+</div>

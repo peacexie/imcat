@@ -3,9 +3,6 @@
 * perm (pfile -=> pmkv)
  - menu-perm
 
-
-* 权限继承
-
 * 应用模块：商城，博客
 
 * book : w3cschool.cn
@@ -30,8 +27,6 @@ Summernote may be freely distributed under the MIT license.
 
 * dgfp + font-awesome + boot
 http://www.bootcss.com/p/font-awesome/
-
-
 
 
 setup ... mins

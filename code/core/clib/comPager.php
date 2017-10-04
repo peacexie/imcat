@@ -42,7 +42,8 @@ class comPager{
         foreach($a as $k){
             if(isset($_GET[$k])){ 
                 $__v = basReq::val($k,'Key',24); 
-                if(in_array($k,array('page','prec',))) $__v = max(0,intval($__v));
+                if(in_array($k,array('page',))) $__v = max(1,intval($__v));
+                if(in_array($k,array('prec',))) $__v = max(0,intval($__v));
                 $this->$k = $__v;
             }
         }

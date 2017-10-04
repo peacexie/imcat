@@ -1,0 +1,53 @@
+
+<?php include DIR_ROOT.'/tools/setup/_head.htm'; ?>
+<h2 class="tc pv5">{lang(tools.upi_title)}</h2>
+
+<div>
+<p>{lang(tools.upi_updnav)}</p>
+<table width="100%" border="1" class="tblist">
+  <?php if($cfg['res']['res']==FLAGNO){ ?>
+  <tr class="tc">
+    <td class="msg">{lang(tools.upi_tipcfg)}</td>
+    <td>{lang(tools.upi_tips)}</td>    
+  </tr>  
+  <tr class="tc">
+    <td class="msg"><?php echo $cfg['res']['info']; ?></td>
+    <td><?php echo $cfg['res']['res']; ?></td>    
+  </tr>  
+  <?php }else{ ?>
+  <tr class="tc">
+    <td>{lang(tools.upi_dbstrucp)}</td>
+    <td class="tc">
+<a href="?act=cpcfg">{lang(tools.upi_initcache)}</a>
+# <a href="?act=cptables">{lang(tools.upi_adtabs)}</a>
+# <a href="?act=cpfields">{lang(tools.upi_efields)}</a>
+# <a href="?act=cpindexs">{lang(tools.upi_adindex)}</a>    
+    </td>
+  </tr>
+  <tr class="tc">
+    <td><a href="?act=sqlins&ano=0">{lang(tools.upi_impsql)}(INSERT)</a></td>
+    <td><?php echo str_replace('{a}','sqlins',$nav); ?> #</td>
+  </tr>
+  <tr class="tc">
+    <td><a href="?act=sqlrep&ano=0">{lang(tools.upi_impsql)}L(REPLACE)</a></td>
+    <td><?php echo str_replace('{a}','sqlrep',$nav); ?> #</td>
+  </tr> 
+  <tr class="tc">
+    <td>{lang(tools.upi_dblink)}</td>
+    <td class="tc">
+<a href="<?php echo PATH_ROOT ?>/" target="_blank">[Home]</a>
+# <a href="<?php echo PATH_ROOT ?>/run/adm.php?mkv=admin-db_act&view=rem&view=Export" target="_blank">{lang(tools.upi_dbstru)}</a>
+# <a href="<?php echo PATH_ROOT ?>/tools/adbug/dbadm.php?db=<?php echo @$cfg['new']['db_name']; ?>" target="_blank">{lang(tools.upi_dbadm)}</a>
+# <a href="<?php echo PATH_ROOT ?>/tools/adbug/binfo.php?login">{lang(tools.upi_login)}</a>
+# <a href="<?php echo PATH_ROOT ?>/run/adm.php" target="_blank">[Admin]</a>    
+    </td>
+  </tr>
+  <tr class="tc">
+    <td>{lang(tools.upi_impnote)}</td>
+    <td>{lang(tools.upi_orview)}[<a href="<?php echo $_cbase['server']['txmao']; ?>/dev.php?uplog#s_import" target="_blank">{lang(tools.upi_impnote)}</a>]
+    </td>
+  </tr>
+  
+  <?php } ?>  
+</table>
+</div>
