@@ -18,7 +18,7 @@ $titlesub = '留言反馈';
       <span class="remadd">{=$titlesub}(<i id="jsid_count_{=$modid}:0">0<!--,cnt_{=$modid},--></i>条) &nbsp; <a {php vopCell::vOpen($modid); }>&gt;&gt;发布</a></span> 
       <span class="remtitle">{=$titlesub}</span> 
       </div><!--[cache,60]-->
-      {tag:nrlist=[Page][modid,$modid][keywd,0,title+detail][limit,50]}
+      {tag:nrlist=[Page][modid,$modid][keywd,0,title+detail][limit,20]}
       {:row}
       <dl>
         <dt>{title($t_title,48,$v)} </dt>

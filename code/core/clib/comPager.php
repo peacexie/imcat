@@ -140,7 +140,7 @@ class comPager{
     }
     
     function links(){
-        $pcnt = $this->pcnt;
+        $pcnt = intval($this->pcnt);
         $a = array(); 
         $sFirst = '<span class="fa fa-fast-backward"></span>';
         $sPrev = '<span aria-hidden="true">&laquo;</span>';
@@ -154,6 +154,7 @@ class comPager{
         $a['next']  = "<li><a class='disabled'>$sNext</a></li>";
         $a['last']  = "<li><a class='disabled'>$sLast</a></li>";
         $a['total'] = "<li class='pg_total'><a class='disabled'>$this->prec</a></li>";
+        if($pcnt<=1) return $a;
         if($this->page==$pcnt){
             $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
             $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";

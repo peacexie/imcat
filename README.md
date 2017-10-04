@@ -44,7 +44,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v3.9 ChangeLog】 (2017.09)
+### 【v3.9 ChangeLog】 (2017.10)
 
 * REST-API: GA-Version
 
@@ -59,7 +59,9 @@
 
 * Improve: Extend-Cache
 
-* Improve: Perm-setting
+* Improve: Perm-function
+  - Improve: Perm-Set/Check
+  - Add: Perm-Inherit
 
 * Add: Short-Link API(use internally)
 
@@ -112,7 +114,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v3.9更新日志】(2017.09)
+### 【v3.9更新日志】(2017.10)
 
 * REST-API：发布正式版
 
@@ -127,7 +129,9 @@
 
 * 增强：扩展缓存
 
-* 改善：权限设置
+* 改善权限功能
+  - 改善：权限判断，设置
+  - 增加：权限继承
 
 * 增加：短链接接口(内部使用)
 
