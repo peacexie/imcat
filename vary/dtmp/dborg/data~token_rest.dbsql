@@ -1,4 +1,4 @@
 
--- token_rest@2017-10-04 15:31:23 -- 
+-- token_rest@2017-10-05 18:17:56 -- 
 INSERT INTO `{pre}token_rest{ext}` VALUES 
 ('test','imcat@txjia','8ca052805f7a60fa20b4a69.iaw7EyA9Qj6XKtZ','~testmod~=table,list,add,edit,del,check;\r\ndemo=table,list,check;\r\nchina=table,list,check;','2131069309','0','0','2');

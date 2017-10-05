@@ -397,25 +397,6 @@ CREATE TABLE `{pre}bext_fields{ext}` (
   PRIMARY KEY (`model`,`kid`,`catid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `{pre}bext_mins{ext}`;
-CREATE TABLE `{pre}bext_mins{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `title` varchar(24) NOT NULL DEFAULT '',
-  `top` int(11) NOT NULL DEFAULT '888',
-  `mods` text NOT NULL,
-  `files` varchar(24) NOT NULL DEFAULT 'dbsql,php',
-  `state` varchar(12) NOT NULL DEFAULT '',
-  `api` varchar(255) NOT NULL DEFAULT '(system)',
-  `note` varchar(255) NOT NULL DEFAULT '',
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`kid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `{pre}bext_paras{ext}`;
 CREATE TABLE `{pre}bext_paras{ext}` (
   `kid` varchar(24) NOT NULL,

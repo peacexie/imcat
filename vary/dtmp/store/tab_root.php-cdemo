@@ -158,7 +158,7 @@ return array (
   'plus/api/ocar.php' => '447282f513a11ab9c614038c3e904257',
   'plus/api/thumb.php' => '298c7fe9b9208fd03f76192fa56e36f8',
   'plus/api/types.php' => 'cf2ac82aeac45a0f46dd3b4d903a6d6f',
-  'plus/api/update.php' => 'd95f7cc32f5a03479be13eb1cb495ab3',
+  'plus/api/update.php' => '97e1ee024346352cc9d4b26ca53fdb9f',
   'plus/api/userc.php' => '6d1517addffbbf2820a0e3bf9199d880',
   'plus/api/vjump.php' => '4f45f3a63b4e87d783bba944f6596fc0',
   'plus/api/wechat.php' => '1b601aa3f725c1260c7c53b107134a02',

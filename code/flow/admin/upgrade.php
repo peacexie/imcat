@@ -53,50 +53,13 @@ if($mod=='upvnow'){
         <a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>".lang('admin.upg_impstart')."</a>
     </td></tr>\n";
 
+}elseif($mod=='extend'){
+    echo "\n<tr><th class='tc'>$mtitle </th>\n<th>Extend</th></tr>\n";
+    echo "\n<tr><td colspan=2><iframe src='".PATH_PROJ."/dev.php?extend' width='100%' height='480' frameBorder=0></iframe></td></tr>\n";
+    $out = "<a href='http://txmao.txjia.com/dev/extend.htm' target='_blank' class='center'>More...</a>";
+    echo "\n<tr><td class='tl'></td>\n<td class='tc'>$out</td></tr>\n";
 }elseif($mod=='install'){
 
-    $list = comFiles::listDir(DIR_DTMP.'/update/','file');
-    $msg = '(null)'; 
-    $oflink = "<a href='".PATH_ROOT."/tools/setup/upvimp.php' target='_blank' class='f18 fB'>$link</a>";
-
-    if($step=='set'){
-        echo "\n<tr><th class='tc'>$mtitle: </th>\n<th>Actions</th></tr>\n";
-        $icfg = updInfo::minsList($kid); 
-        $iu2 = implode('<br>',$icfg['abtn']); 
-        $notes = strlen($icfg['notes'])>12 ? $icfg['notes'] : '-';
-        echo "\n<tr><td><b>ins~$kid.php</b>$icfg[slist]</td>\n<td class='tc'>Will...<br>$iu2</td></tr>\n";
-        $bak = "$notes <a href='$burl' class='right'>GoBack</a>";
-        echo "\n<tr><td class='tl'>$bak</td>\n<td class='tc'>$oflink</td></tr>\n";
-    }else{ //init
-        $list = updInfo::minsTable();
-        echo "\n<tr class='tc'><th>ID</th>";
-        echo "<th>Title</th>";
-        echo "<th>Files</th>"; 
-        echo "<th>Api</th>"; 
-        echo "<th>Action</th>";
-        foreach ($list as $kid => $v) {
-            if(file_exists(DIR_DTMP."/update/ins~$kid.php")){
-                $ins = "<a href='$burl$kid&step=set'>Install/Update</a>";
-            }else{
-                $url = PATH_ROOT."/plus/api/update.php?act=fatch&kid=$kid";
-                $ins = "<a class='cF0F' href='$url' ".vopCell::vOpen(0).">Fatch Files...</a>";
-            }
-            $files = updInfo::minsDUrls($v['api'],$kid,$v['files']);
-            $itmes = updInfo::minsSMods($v['mods']);
-            $ires = '';
-            foreach ($itmes as $k=>$itme) {
-                $ires .= "[$k] ".implode('; ',$itme)."<br>\n";
-            }
-            echo "\n<tr class='tc'><td rowspan=2>$kid</td>";
-            echo "<td>$v[title]</td>";
-            echo "<td>$files</td>"; 
-            echo "<td>$v[api]</td>"; 
-            echo "<td>$ins</td>";
-            echo "</tr>\n<tr><td colspan=4 class='h100' style='line-height:120%;background:#EEE;'>$ires</td></tr>";
-        } 
-        $init = "<a href='".PATH_ROOT."/plus/api/update.php?act=fatch' ".vopCell::vOpen().">Update-Init</a>";
-        echo "\n<tr class='tc'><th>Message</th><th colspan=2>$msg</th><th>$init</th><th>$oflink</th></tr>\n";
-    }
 }
 
 if(in_array($mod,array('upvnow','import'))){

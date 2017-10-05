@@ -31,7 +31,8 @@ $cfgs['envdiy'] = array(
 $cfgs['upd_vers'] = array( 
     'admin/upgrade&mod=upvnow' => '升级当前系统',
     'admin/upgrade&mod=import' => '导入旧版数据',
-    'admin/upgrade&mod=install' => '安装更新模块',
+    //'admin/upgrade&mod=install' => '安装更新模块',
+    'admin/upgrade&mod=extend' => '贴心扩展[Extend]',
 );
 
 $cfgs['cron_plan'] = array(

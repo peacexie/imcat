@@ -108,7 +108,6 @@ class devScan{
         $files = comFiles::listDir($dir,'file');
         if(empty($files)) return;
         foreach ($files as $file => $value) {
-            if(strpos($file,'~bext_mins')) unlink("$dir/$file");
             if(strpos($file,'gbak~')===0) unlink("$dir/$file");
         }
     }

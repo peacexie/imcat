@@ -57,9 +57,9 @@ if($act=='nav'){
 }elseif($act=='client'){
     $data = updInfo::getClientInfo();
     echo "document.write('".basJscss::jsShow($data, 0)."');";
-}elseif($act=='table'){ //mins-server
+/*}elseif($act=='table'){ //mins-server
     $data = updInfo::minsTable();
-    echo comParse::jsonEncode($data);
+    echo comParse::jsonEncode($data);*/
 }elseif($act=='down'){ //mins-server
     $aud = req('aud');
     $kid = req('kid'); //*.dbins/php/html/htm
@@ -69,8 +69,8 @@ if($act=='nav'){
     }else{
         echo comFiles::get($fp);
     }
-}elseif($act=='fatch'){ //mins-client
+/*}elseif($act=='fatch'){ //mins-client
     $data = updInfo::minsFatch(); 
     $data = empty($data) ? 'Null:Update' : $data;
-    dump($data);
+    dump($data);*/
 }

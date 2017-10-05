@@ -45,7 +45,7 @@ return array(
         'base_catalog'=>'(系统)栏目表', 'base_fields'=>'(系统)字段配置表', 'base_grade'=>'(系统)用户等级表', 
         'base_menu'=>'(系统)菜单表', 'base_model'=>'(系统)[群组/模块]表', 'base_paras'=>'(系统)参数表', 
         'bext_dbdict'=>'(扩展)数据库词典表', 'bext_relat'=>'(扩展)类别关联表', 'bext_fields'=>'(扩展)类别字段表', 
-        'bext_paras'=>'(扩展)参数表', 'bext_cron'=>'(扩展)计划任务表', 'bext_mins'=>'(扩展)模块安装表', 
+        'bext_paras'=>'(扩展)参数表', 'bext_cron'=>'(扩展)计划任务表',  
         
         'exd_crawl'=>'(数据)采集表', 'exd_crlog'=>'(数据)采集记录', 
         'exd_oilog'=>'(数据)导入表', 'exd_oimp'=>'(数据)导入记录', 
@@ -62,7 +62,8 @@ return array(
         'plus_emsend'=>'(邮件)发送记录', 'plus_paylog'=>'(支付)历史记录', 'plus_sphinx'=>'(Sphinx)MaxID', 
         'plus_smcharge'=>'(短信)充值记录', 'plus_smsend'=>'(短信)发送记录', 
 
-        'token_limit'=>'Token频率限制', 'token_rest'=>'Token账户', 'token_store'=>'Token存储(外部)', 
+        'token_limit'=>'Token频率限制', 'token_rest'=>'Token账户', 
+        'token_store'=>'Token存储(外部)', 'token_turl'=>'Token短链接', 
         
         'wex_apps'=>'(微信)配置表', 'wex_menu'=>'(微信)菜单表', 'wex_keyword'=>'(微信)关键字表', 'wex_qrcode'=>'(微信)二维码表', 
         'wex_locate'=>'(微信)地理位置表', 'wex_msgget'=>'(微信)接收信息', 'wex_msgsend'=>'(微信)发送信息',

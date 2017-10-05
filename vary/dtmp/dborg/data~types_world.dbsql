@@ -1,5 +1,5 @@
 
--- types_world@2017-10-04 15:31:23 -- 
+-- types_world@2017-10-05 18:17:56 -- 
 INSERT INTO `{pre}types_world{ext}` VALUES 
 ('sc','world','0','塞舌尔','632','1','1','0','S','ename=Seychelles\ntelc=248\ntime=-4','','','','','','','0','','','0',''),
 ('sn','world','0','塞内加尔','656','1','1','0','S','ename=Senegal\ntelc=221\ntime=-8','','','','','','','0','','','0',''),

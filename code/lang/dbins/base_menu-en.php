@@ -179,5 +179,5 @@ return array(
   'Latest',
   'Essence',
   'Hot',
-  'Ins.',
+  'Extend',
 );

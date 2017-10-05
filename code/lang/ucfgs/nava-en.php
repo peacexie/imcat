@@ -32,6 +32,7 @@ $cfgs['upd_vers'] = array(
     'admin/upgrade&mod=upvnow' => 'Update Now System',
     'admin/upgrade&mod=import' => 'Import Old Data',
     'admin/upgrade&mod=install' => 'Install/Update Model',
+    'admin/upgrade&mod=extend' => 'Extend[贴心扩展]',
 );
 
 $cfgs['cron_plan'] = array(
