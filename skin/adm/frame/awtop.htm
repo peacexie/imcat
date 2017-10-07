@@ -34,7 +34,9 @@ eimp('initCss','bootstrap,stpub,jstyle;comm');
   <ul id='adf_copy'>
     <li>{=$userstr}</li>
     <li><a href="?" class="c909">{lang(admin.adm_side)}</a> - <a href="?logout" target="_parent" class="c900">{lang(admin.exit_side)}</a></li>
-    <li id="adf_logo" title="Peace(QQ:80893510, Email:xpigeon@163.com, {=$_cbase['server']['txjia']}/)">{lang(admin.pro_name)}</li>
+    <li id="adf_logo" title="{lang(admin.pro_name)}, Peace(QQ:80893510, Email:xpigeon@163.com)">
+      <a href="{=$_cbase['server']['txmao']}" target="_blank"><img src="{=PATH_SKIN}/_pub/logo/logo088x31.jpg" width="88" height="31"></a>
+    </li>
     <li>Copyright&copy;Peace</li>
   </ul>
 </div>

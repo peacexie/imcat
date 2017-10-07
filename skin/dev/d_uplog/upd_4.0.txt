@@ -1,8 +1,6 @@
 
-if(strpos($file,'~bext_mins')) unlink("$dir/$file");
 
-* perm (pfile -=> pmkv)
- - menu-perm
+
 
 * 应用模块：商城，博客
 
@@ -15,10 +13,6 @@ Summernote - Super Simple WYSIWYG editor
 
 Summernote may be freely distributed under the MIT license.
 
-
-* comConvert::impData()
-
- - devSetup::ins1Data()
 
 * 组装
  - css : bootcss
@@ -39,7 +33,7 @@ scan : 扫码
 * jilei
  - 数据:采集/分享/同步/导入
  - mods:公文
- - 后台-install / setup ... mins / extend
+ - 后台-install /                 - ok
  - adminer                      --- ??? 
  - derun.php                    --- ???
 

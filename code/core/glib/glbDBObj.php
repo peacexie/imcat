@@ -34,7 +34,7 @@ class glbDBObj{
         $_cbase['run']['qstart'] = microtime(1); //分析Start
         if(!is_object($this->db)){ //$this->db不是对象，则连接数据库
               $class = 'db_'.$this->class;
-              require DIR_CODE."/adpt/dbdrv/{$class}.php";
+              require_once DIR_CODE."/adpt/dbdrv/{$class}.php";
               $this->db = new $class();//连接数据库
               $this->db->connect($this->config) ;
         }

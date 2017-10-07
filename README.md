@@ -1,7 +1,6 @@
 
-* 贴心猫(IntimateCat) V3.9(Alpha)
-* Alpha版本，不要用于正式版本…… 此期间请使用v3.8
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!... Please use v3.8 in this time
+* 贴心猫(IntimateCat) V3.9
+* Release: 2017.10.07
 
 --- --- --- --- --- --- --- --- --- 
 

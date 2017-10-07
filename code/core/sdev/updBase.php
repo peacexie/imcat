@@ -59,7 +59,7 @@ class updBase{
         $dcfg = array('code'=>DIR_CODE,'root'=>DIR_ROOT);
         if(empty($iscmp)){// copy
             self::$copys = array(
-                'cfgs/sycfg/sy_updvnow.php' => 'code',
+                'cfgs/sycfg/sy_updvnow.php' => 'root',
             );
             foreach(self::$copys as $k=>$part){
                 $pnew = $path."/$part/$k"; 
@@ -69,9 +69,9 @@ class updBase{
         }else{// comp
             $re['comp'] = '<br>'.basLang::show('updbase_compare');  
             self::$comps = array(
-                'cfgs/boot/cfg_load.php' => 'code',
-                'cfgs/boot/const.cfg.php' => 'code',
-                'cfgs/boot/_paths.php' => 'code',
+                'cfgs/boot/cfg_load.php' => 'root',
+                'cfgs/boot/const.cfg.php' => 'root',
+                'cfgs/boot/_paths.php' => 'root',
             );
             foreach(self::$comps as $k=>$part){
                 $re['comp'] .= " : <a href='?act=cmpfile&file=$k&part=$part' target=x>".basename($k)."</a>";

@@ -76,7 +76,7 @@ p.err{ font-size:18px; padding:10px; }
 #adf_left { width:180px; font-size:14px; float:left; border-right:3px solid #999999; overflow-x:hidden; overflow-y:scroll;  }
 #adf_right { min-width:480px; margin:0px 0px 0px 182px; padding:0px 0px 0px 0px; }
 #adf_copy { text-align:center; font-size:12px; padding:5px 1px 0px 1px; margin:5px 5px 10px 5px; }
-#adf_logo { color:#555; text-align:left; padding:19px 0 0 53px; list-style:none; background-image:url(../../../skin/_pub/logo/logo088x31.jpg); background-position:12px 3px; background-repeat:no-repeat; }
+#adf_logo { text-align:center; padding:5px; list-style:none; }
 
 ul.adf_mnu2 { padding:3px auto 0px auto; margin:0px auto 10px auto; }
 
