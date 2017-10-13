@@ -1,9 +1,10 @@
 {imp:"tools/b_lay"}<!--继承父模板-->
 
 {block:extop}{:parent}<?php
+$uip = req('uip'); 
+if(empty($_SERVER['HTTP_USER_AGENT']) || basEnv::isRobot() && $uip) { glbHtml::httpStatus(404); die(); }
 $title = 'IP转化地址类（IPv4）';
 $api = req('api',$_cbase['ucfg']['ipapi']); 
-$uip = req('uip');
 $ufix = surl()."?mkv=".$this->mkv;
 $vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
 
@@ -15,7 +16,11 @@ if(strstr($act,'down')){
 }
 ?>{/block:extop}
 
-{block:eximp}{/block:eximp}
+{block:eximp}{if empty($uip)}
+<meta name="robots" content="index,nofollow" />
+{else}
+<meta name="robots" content="noindex,nofollow" />
+{/if}{/block:eximp}
 
 {block:exbody}
 <div class="tools_outer">
@@ -35,18 +40,21 @@ echo " # <a href='$ufix&api=Local'>Local</a>\n";
 echo " # <a href='$ufix&api=Sina'>Sina</a>\n";
 echo " # <a href='$ufix&api=Pcoln'>Pcoln</a>\n";
 echo " # <a href='$ufix&api=Taobao'>Taobao</a>\n";
+echo " # <a href='$ufix&api=Api'>IP-Api</a>\n";
 echo " # <a href='$ufix&api=Ip138'>Ip138</a>\n";
 echo " # <a href='$ufix&api=S1616'>S1616</a>\n";
 echo " # <a href='$ufix&api=Baidu'>Baidu</a>\n";
 if($uip){
     $addr = $ipObj->addr($uip);
     echo "<br>\n您的查询为： ($api) : $uip -=> $addr";
+    echo "<br>\n".extIPAddr::inArea('CN', $uip);
+    die();
 }
 ?></p>
 
 <h4 class="tl">### 随机IPs 演示：</h4>
 <p><?php
-for($i=0;$i<5;$i++){
+for($i=0;$i<3;$i++){
     $ipx = tex_tools::rndIP();
     $addr = $ipObj->addr($ipx);
     echo "$ipx : $addr<br>\n"; 
@@ -54,10 +62,11 @@ for($i=0;$i<5;$i++){
 ?></p>
 
 <h4 class="tl">### 测试IPs：------ 点击IP测试，或url中输入ip测试 </h4>
-<p><?php
-for($i=0;$i<5;$i++){
+<p id='iptab'><?php
+$tab = '';
+for($i=0;$i<3;$i++){
     $ipx = tex_tools::rndIP();
-    echo " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\n"; 
+    $tab .= " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\\n"; 
 }
 ?></p>
 
@@ -72,11 +81,11 @@ for($i=0;$i<5;$i++){
  * 以上各接口提供方。<br>
  * @整理/整合 by Peace（QQ:8089-3510 , E-mail:xpigeon#163.com）<br>
  * @问题：目前都是基于IPv4，IPv6怎么办？
- * <?=extIPAddr::inArea('CN', $uip)?>
 </p>
 
 <?php 
 $_cbase['tpl']['tplpend'] = "/*no js*/\n";
+echo basJscss::jscode("$('#iptab').html(\"$tab\");");
 ?>
     
 </div>

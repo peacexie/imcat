@@ -14,7 +14,7 @@ $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'en'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = '0v39_'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = '00v39_'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
@@ -49,7 +49,7 @@ $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 
 //用户自定义配置
 $_cbase['ucfg']['vimg']  = 'K'; // 0,H,K
-$_cbase['ucfg']['ipapi'] = 'ip138'; // 默认IP地址接口, sina,taobao,pcoln,s1616
+$_cbase['ucfg']['ipapi'] = 'sina'; // 默认IP地址接口, sina,taobao,pcoln,s1616
 #$_cbase['ucfg']['czip']  = '0'; // zlib,gzip,0(不用了)
 $_cbase['ucfg']['guid'] = 'Cook'; // UIP,Sess,Cook
 $_cbase['ucfg']['city'] = '东莞'; //本地城市,订单算运费用

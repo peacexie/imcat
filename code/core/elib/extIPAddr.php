@@ -34,9 +34,7 @@ class extIPAddr{
         if(!preg_match("/\b(((?!\d\d\d)\d+|1\d\d|2[0-4]\d|25[0-5])(\b|\.)){4}/", $ip)) {
             return 'IP Error';
         }
-        //检查内网ip地址  10.0.0.0~10.255.255.255,  172.16.0.0~172.31.255.255,  192.168.0.0~192.168.255.255
-        $na = explode('.',$ip);
-        if($na[0] == 10 || $na[0] == 127 || ($na[0] == 192 && $na[1] == 168) || ($na[0] == 172 && ($na[1] >= 16 && $na[1] <= 31))){
+        if(basEnv::isLocal($ip)){
             return 'LAN'; //Local Area Network
         }
         $ipa = new $this->class();
@@ -98,15 +96,10 @@ class extIPAddr{
         return $ip;
     }
 
-    // isLocal
-    static function isLocal($ip, $isIntra=0){
-        return basEnv::isLocal($ip);
-    }
-
     // local,intra,ipv6,in.Code,unknow,
     static function inArea($area='CN', $ip=''){
         $ip || $ip = comSession::getUIP();
-        if(self::isLocal($ip)) return 'local';
+        if(basEnv::isLocal($ip)) return 'local';
         if(strpos("($ip)",':')) return 'ipv6';
         $ip3 = self::ipParts($ip, 'arr');
         $str3 = "$ip3[0].$ip3[1].$ip3[2]";

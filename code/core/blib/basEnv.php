@@ -132,14 +132,11 @@ class basEnv{
     // ---- 用户信息 判断 --------------------------------------- 
     
     // 是否搜索引擎来访
-    static function isRobot($user_agent=''){
+    static function isRobot($uastr=''){
         $rbt = glbConfig::read('uachk','sy');
         $kw_spiders = $rbt['spname'];
-        $kw_browsers = $rbt['browsers'];
-        $user_agent || $user_agent = self::userAG();
-        if(preg_match("/($kw_browsers)/i",$user_agent)){ 
-            return false;
-        }elseif(preg_match("/($kw_spiders)/i",$user_agent)) return true;
+        $uastr || $uastr = self::userAG();
+        if(preg_match("/($kw_spiders)/i",$uastr)) return true;
         return false;
     }
 
@@ -165,8 +162,8 @@ class basEnv{
             return true;
         }
         $rbt = glbConfig::read('uachk','sy');
-        $kw_spkeywd = $rbt['spkeywd'];
-        if(preg_match("/($kw_spkeywd)/i", $_SERVER['HTTP_USER_AGENT'])){
+        $kw_mobkeys = $rbt['mobkeys'];
+        if(preg_match("/($kw_mobkeys)/i", $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }
         if(isset($_SERVER['HTTP_ACCEPT'])){ //协议法，因为有可能不准确，放到最后判断
@@ -231,11 +228,15 @@ class basEnv{
         $_cbase['run']['roots'] = "$http://$host".PATH_ROOT; 
     }
 
+    // 检查内网ip地址
     static function isLocal($ip=''){
-        $ip || $ip = self::userIP(); //$_SERVER['REMOTE_ADDR'];
-        if(strpos($ip,'.')){ // IPv4
-            $p1 = intval($ip);
-            return in_array($p1,array('10','127','192'));
+        $ip || $ip = self::userIP();
+        if(strpos($ip,'.')){ // IPv4:
+            $pa = explode('.',$ip);
+            $f1 = in_array($pa[0],array('10','127')); // 10.*, 127.*
+            $f2 = $pa[0]=='192' && ($pa[1]=='168'); // 192.168.*
+            $f3 = $pa[0]=='172' && ($pa[1]>='16' && $pa[1]<='31'); // 172.16.* ~ 172.31.*
+            return $f1 || $f2 || $f3;
         }elseif(strpos($ip,':')){ // IPv6
             $arr = explode(':',$ip);
             return in_array($arr[0],array('FE80','FEC0'));

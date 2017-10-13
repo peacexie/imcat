@@ -5,6 +5,8 @@
 
 User-agent: *
 
+Disallow: /root/plus/ajax/comjs.php
+
 Disallow: /@read/
 Disallow: /code/
 

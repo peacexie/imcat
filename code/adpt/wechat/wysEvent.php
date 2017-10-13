@@ -56,7 +56,10 @@ class wysEvent extends wmpMsgresp{
     
     // 用户已关注时,扫描带参数二维码的事件推送
     function reScanBase(){ 
-        if(!in_array(strlen($this->eventKey),array(5,10))){ die(''); }
+        if(!in_array(strlen($this->eventKey),array(5,10))){ 
+            if(empty($this->eventKey)) return $this->reSubscribeBase();
+            die($this->remText("您好，eventKey=`".$this->eventKey."`")); 
+        }
         $this->qrInfo = $this->getQrinfo($this->eventKey); 
         $modKey = ucfirst(strtolower($this->qrInfo['smod'])); 
         if(empty($modKey)){
