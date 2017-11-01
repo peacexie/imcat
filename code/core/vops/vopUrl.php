@@ -1,38 +1,39 @@
 <?php
-/*
-mod-type-view
-mod.kid.view
-mkv --=> tpl
-*/
+
 // Url 类
 class vopUrl{    
     
     static $params = array('mkv','mod','key','view','type','hcfg','vcfg');
-    static $keepmk = array('c','d','m','t','u');
+    static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext,first
     
     // get/url初始数据
     static function iget($q=''){
         global $_cbase;
-        $re = array(); 
-        $q = strlen($q)==0 ? (empty($_SERVER['QUERY_STRING'])?'':$_SERVER['QUERY_STRING']) : $q; //可能为0
+        $q = empty($q) ? (isset($_SERVER['QUERY_STRING'])?$_SERVER['QUERY_STRING']:'') : $q;
+        if(in_array($q,array('0','home'))){ // 0, home, 
+            vopShow::msg("a:[$q]:".basLang::show('vop_parerr'));
+        }
         if(empty($q) || $q=='home'){
             $ua = array();
             $mkv = 'home';
         }elseif(strpos($q,'=')){ 
             parse_str($q,$ua); 
             $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
-            //about-profile&ext=2015-9d-d4k1 ??? 
-            //$mkv = empty($ua['mkv']) ? key($ua) : $mkv = $ua['mkv'];
         }else{ //无=且不为空 
             $ua = array('mkv'=>$q);
             $mkv = $q;    
         }
-        if(isset($_cbase['route'][$mkv])){
-            $mkv = $_cbase['route'][$mkv];
+        $re1 = preg_match("/^[A-Za-z0-9]{1}\w*$/",$mkv); // modid
+        $re2 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv); // modid-type, dop-a
+        $re3 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv);
+        $re4 = preg_match("/^[A-Za-z0-9]{1}\w*\-\-(so|list)+$/",$mkv); // modid--list
+        $re5 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*$/",$mkv); // mod.ab-12
+        $re6 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*\.[A-Za-z0-9]{1}\w*$/",$mkv);
+        $ra1 = preg_match("/^home\-/",$mkv) || preg_match("/(\-|\_)$/",$mkv);
+        if(!($re1 || $re2 || $re3 || $re4 || $re5 || $re6) || $ra1){
+            glbError::show("b:[$mkv]:".basLang::show('vop_parerr'));
         }
-        $re['q'] = $q;
-        $re['mkv'] = $mkv; 
-        $re['ua'] = $ua;
+        $re = array('q'=>$q, 'mkv'=>$mkv, 'ua'=>$ua);
         return $re;
     }
     
@@ -40,28 +41,25 @@ class vopUrl{
     static function imkv($re,$remod=0){
         $hcfg = glbConfig::vcfg('home'); 
         $mkv = $re['mkv']; $type = ''; $vcfg = array();
+        /*if(strpos($mkv,'-') && in_array(str_replace('-','/',$mkv),$hcfg)){
+            vopShow::msg("d:[$mkv]:".basLang::show('vop_parerr'));
+        }// ?login -=>别名 ?uio-login */
         if(isset($hcfg[$mkv])){
             $mkv = $re['mkv'] = "home-$mkv";
-        }
+        } // ??? 'reg' => 'uio/apply',
         if(strpos($mkv,'.')){ //mod.id1-xxx-id2.view
             $a = explode('.',$mkv);
             $type = 'detail';
-            $f3 = isset($a[2]) && empty($a[2]); // -0, -, 结尾
-            if(empty($a[1]) || $f3){
-                vopShow::msg($re['mkv']."($type) ".basLang::show('core.vop_parerr'));
-            }
         }elseif(strpos($mkv,'-')){ //mod-type-view, mod--list, about-awhua-v2
             $a = explode('-',"$mkv"); 
             $type = empty($a[1]) ? 'mext' : 'mtype';
-            $f1 = empty($a[1]) && !in_array($a[2],array('list','so')); // mod--list
-            $f2 = in_array($a[1],self::$keepmk); // c/d/m/t/u
-            $f3 = isset($a[2]) && empty($a[2]); // -0, -, 结尾
-            if($f1 || $f2 || $f3){
-                vopShow::msg($re['mkv']."($type) ".basLang::show('core.vop_parerr'));
-            }
         }else{ //mod
             $a = array($mkv,'');    
             $type = 'mhome';
+        }
+        $re2 = in_array($a[1],self::$keepmk);
+        if(in_array($a[1],self::$keepmk)){
+            vopShow::msg("c:[$mkv]:".basLang::show('vop_parerr'));
         }
         //$mod分析
         $mod = $a[0]; $key = $a[1]; $view = empty($a[2]) ? '' : $a[2];
@@ -73,7 +71,7 @@ class vopUrl{
     // tpl/key分析
     static function itpl($re){
         foreach(self::$params as $k) $$k = $re[$k]; 
-        $tpl = ''; $dsub = $type; // mhome,mext(sub),detail
+        $tpl = ''; $dsub = $type;
         $cfg = array();
         if($type=='mtype'){ 
             $dsub = $key;
@@ -91,14 +89,21 @@ class vopUrl{
         }elseif(isset($vcfg['m'])){ // mext,mhome
             $cfg = $vcfg['m']; 
         }
-        if($view && isset($cfg[$view])){ 
-            $tpl = $cfg[$view]; 
-        }else{ //if(!empty($cfg))
+        if($view){
+            if(isset($cfg[$view])){
+                $tpl = $cfg[$view];
+            }elseif(empty($cfg[1]) && in_array($view,array('so','list'))){
+                $tpl = '';
+            }else{
+                glbError::show("i:[-$view]:".basLang::show('vop_parerr'));
+            }
+        }else{
             $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; 
         }
         if(empty($tpl)){
             $_groups = glbConfig::read('groups'); 
-            $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],array('docs','coms','users')); // types, advs,
+            $mod4 = array('docs','coms','users'); // types, advs,
+            $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],$mod4); 
             if($ina4 || in_array($mod,$re['hcfg']['c']['extra'])){ 
                 $tpl = "$mod/$dsub"; 
             }
@@ -117,7 +122,8 @@ class vopUrl{
             $re['tplname'] = $re['hcfg']['m'];
         }else{ 
             $re['vcfg'] = glbConfig::vcfg($re['mod']); 
-            if($re['type']=='mhome' && isset($re['vcfg']['m']) && $re['vcfg']['m']=='first') self::ifirst($re['mod']); //first跳转
+            if($re['type']=='mhome' && isset($re['vcfg']['m']) && $re['vcfg']['m']=='first')
+                self::ifirst($re['mod']); //first跳转
             $re = self::itpl($re);
         }
         empty($re['hcfg']['u']) || $re['u'] = $re['hcfg']['u']; //自定义参数
@@ -132,10 +138,15 @@ class vopUrl{
         if($re=='key'){
             return $key;
         }elseif(defined('RUN_STATIC')){
-            return "[$mod]-[$mod-$key]".basLang::show('core.vop_st301dir');
+            return "[301]-[$mod-$key]".basLang::show('core.vop_st301dir');
         }else{
-            header("Location:?$mod-$key"); 
-            die();
+            if(!$key){
+                $url = "Error:[$mod-$key]";
+            }else{
+                $url = (self::fout("$mod-$key"));
+                header("Location:?$mod-$key");
+            }
+            die($url);
         }
     }
 
@@ -145,30 +156,24 @@ class vopUrl{
         global $_cbase;
         if(strpos($mkv,':')) return self::ftpl($mkv,$type,$host);
         $burl = self::burl($host); 
-        if(strstr($mkv,'?')){ 
-            return $burl .= "$mkv";
-        }
         //mkv分析
         if(strlen($mkv)<3) return self::bind($burl); //首页
         $type || $type = strpos($mkv,'.') ? '.' : '-';
-        $a = explode($type,"$mkv$type$type");    
+        $a = explode($type,"$mkv$type$type");
         $mod = $a[0]; $key = $a[1]; $view = $a[2];
         $key = $key=='first' ? self::ifirst($mod,'key') : $key;
         $mcfg = glbConfig::vcfg($mod);
         $vmode = @$mcfg['c']['vmode']; $url = '';
         //close,static
         if($vmode=='close') return '#close#'.$mkv;
-        if($vmode=='static'){ // && empty($view)
+        if($vmode=='static'){
             $vext = empty($view) ? '' : ".$view";
             $ust = '/'.vopStatic::getPath($mod,$key.$vext,0);
             $url = file_exists(DIR_HTML.$ust) ? PATH_HTML.$ust : '';
         }
         //动态
         if(empty($url)){
-            $key = empty($key) ? '' : "$type$key";
-            $view = empty($view) ? '' : "$type$view";
-            $mkv = "$mod$key$view";
-            $url = $burl."?$mkv";
+            $url = $burl.'?'.(strpos($mkv,'-first') ? "$mod-$key": $mkv);
             // 处理伪静态
             if(!empty($_cbase['run']['tplcfg'][2])){
                 $url = str_replace('.php?', $_cbase['run']['tplcfg'][2], $url);
@@ -184,16 +189,12 @@ class vopUrl{
     //base-url
     static function burl($host=0){ 
         global $_cbase;
-        $dir = $_cbase['tpl']['tpl_dir'];
-        
-        /*
+        $dir = $_cbase['tpl']['tpl_dir']; 
         $vcfg = glbConfig::read('vopcfg','sy'); 
         $burl = PATH_PROJ.$vcfg['tpl'][$dir][1];
         if($host){ //$full
             $burl = $_cbase['run']['rsite'].$burl;
-        }*/
-
-        $burl = vopTpls::etr1($host,$dir);
+        }
         return $burl;
     }
     

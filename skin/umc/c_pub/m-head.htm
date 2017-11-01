@@ -26,8 +26,8 @@ if(empty($sbtitle)){
         {if $user->userFlag=='Login' }
         <li><a href="?uio-logout"><i class='fa fa-user'></i> {lang(user.lon_logout)}</a></li>
         {else}
-        <li><a href="{surl(?login)}"><i class='fa fa-user'></i> {lang(user.nv2_login)}</a></li>
-        <li><a href="{surl(?reg)}"><i class='fa fa-user'></i> {lang(user.nv2_reg)}</a></li>
+        <li><a href="{surl(login)}"><i class='fa fa-user'></i> {lang(user.nv2_login)}</a></li>
+        <li><a href="{surl(reg)}"><i class='fa fa-user'></i> {lang(user.nv2_reg)}</a></li>
         {/if}
         <li role="separator" class="divider"></li>
         <?php echo basLang::links("<li><a href='{url}' title='{title}'><i class='fa fa-random'></i> {title}</a></li>"); ?>
@@ -46,8 +46,8 @@ if(empty($sbtitle)){
             {if $user->userFlag=='Login' }
             <li><a href="?uio-logout">{lang(user.lon_logout)}</a></li>
             {else}
-            <li><a href="{surl(?login)}">{lang(user.nv2_login)}</a></li>
-            <li><a href="{surl(?reg)}">{lang(user.lon_reg)}</a></li>
+            <li><a href="{surl(login)}">{lang(user.nv2_login)}</a></li>
+            <li><a href="{surl(reg)}">{lang(user.lon_reg)}</a></li>
             <li><a href="{surl(uio-getpw)}">{=$karr['getpw']}</a></li>
             {/if}
             <?php }elseif($this->mod=='user'){ ?>

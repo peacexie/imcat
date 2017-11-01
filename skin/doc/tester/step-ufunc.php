@@ -1,5 +1,5 @@
 <?php
-include dirname(__FILE__).'/step_ucfg.php'; 
+include dirname(__FILE__).'/step-ucfg.php';
 
 $pid = req('pid'); 
 $order = req('order','kid');
@@ -13,12 +13,16 @@ $pg = new comPager($sfrom,$where,10,"$order");
 $pg->set('opkey',$opkey);
 $rs = $pg->exe(); 
 
+glbHtml::page('db,翻页:演示2');
+
+eimp('initJs','jquery');
+eimp('initCss','bootstrap,stpub,comm');
+
+glbHtml::page('body');
 ?>
-<!DOCTYPE html><html><head>
-<?php glbHtml::page('init'); ?>
-<title>db,翻页:演示1</title>
-<link href="<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css" rel="stylesheet" type="text/css"/>
-<link href='<?php echo PATH_VENDUI; ?>/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
+
+<?php include DIR_SKIN."/doc/tester/tester-nav.htm"; ?>
+
 <style type="text/css">
 body,nav,div {
     padding:5px;
@@ -30,14 +34,9 @@ p { text-align:left; margin:auto; }
 td,th {
     padding:2px;
 }
-input { background:#CCC; /*不可用*/ }
 </style>
-</head>
-<body>
 
-<?php include DIR_SKIN."/doc/tester/tester_nav.htm"; ?>
-
-<h3>用基本类库 - 只用系统类库,不用模板调用:示例</h3>
+<h3>多用点类库 - 还是不用模板调用:示例</h3>
 
 <nav> pid: 
   <a href='?'>[RESET]</a> |
@@ -52,7 +51,7 @@ input { background:#CCC; /*不可用*/ }
   <a href='?odesc=1&pid=<?php echo $pid; ?>'>odesc=1</a> |
   <a href='?odesc=0&pid=<?php echo $pid; ?>'>odesc=0</a> |
 <br> view source-code: 
-  <a href='<?php echo surl(0)."?mkv=info-coder&tpls=tester/ufile.php"; ?>' target="_blank">查看代码</a>
+  <a href='<?php echo surl(0)."?mkv=info-coder&tpls=tester/ufunc.php"; ?>' target="_blank">查看代码</a>
 </nav>
 
 <hr />
@@ -73,5 +72,9 @@ echo "<div class='pg_bar'>".$pg->show($idfirst,$idend)."</div>";
 
 ?>
 
-</body>
-</html>
+<hr />
+
+<?php
+echo(basDebug::runInfo());
+glbHtml::page('end');
+?>

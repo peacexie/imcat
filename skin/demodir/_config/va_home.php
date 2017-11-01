@@ -19,6 +19,8 @@ $_va_home = array(
     
     //mod.home模块首页模板
     'm' => 'c_page/_home',
+    //'login' => 'uio/login',
+    //'reg' => 'uio/apply',
 
     'u' => array(), // 自定义参数
 

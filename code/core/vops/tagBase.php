@@ -43,7 +43,7 @@ class tagBase{
     function setModid(){
         $para = $this->p1Cfg('modid');
         if(empty($para)){
-            $modid = $this->mod; //ucfg['mod']; //vopUrl::imkv(vopUrl::iget());
+            $modid = $this->mod;
         }else{
             $modid = $para[1];
             if(isset($para[2])){
@@ -93,36 +93,8 @@ class tagBase{
     // Join (目前仅支持一个join)
     // [join,detail]      -=>  INNER JOIN dext_news    d ON d.did=m.did 
     function pJoin(){ 
-        //$_groups = glbConfig::read('groups');
-        //$mod = $this->modid;
-        //$pid = $_groups[$mod]['pid'];
         $cfg = $this->p1Cfg('join');
-        $this->jonArr = $cfg; 
-        /*
-        $join = ''; 
-        if(empty($cfg[1])){ 
-            $join = '';
-            $cid = 0;
-        }elseif($cfg[1]=='detail' && in_array($pid,array('docs','users'))){
-            $char = substr($pid,0,1);
-            $join = 'INNER JOIN '.glbDBExt::getTable($mod,1)." d ON d.{$char}id=m.{$char}id";
-            $cid = 2; 
-        }elseif(isset($_groups[$cfg[1]])){ //pid
-            $join = 'INNER JOIN '.glbDBExt::getTable($cfg[1]).' p ON p.'.$cfg[2].'=m.pid';
-            $cid = 3;
-        }elseif(!empty($cfg[1])){
-            $join = $cfg[1];
-            $cid = 2;
-        }
-        $cols = empty($cfg[$cid]) ? '*' : str_replace('+',',',$cfg[$cid]);
-        //分析
-        if($join){ 
-            $a = explode(' ',$join);
-            $a['fields'] = $cols;
-            $a['full'] = str_replace($a[2],glbDBObj::dbObj()->table($this->sqlArr['tabid'],2),$join);
-            $this->jonArr = $a; 
-        }*/
-
+        $this->jonArr = $cfg;
     }
     
     // [order,0,kid1+f02+f03]
@@ -154,12 +126,12 @@ class tagBase{
         $cfg = $this->p1Cfg('stype'); 
         if(empty($cfg)) return;
         //优先取标签属性,再去url的stype
-        $stype = empty($cfg[1]) ? vopUrl::umkv('key','stype') : $cfg[1]; 
+        $stype = empty($cfg[1]) ? vopUrl::umkv('key','stype') : $cfg[1];
         if(empty($stype)) return;
         $_groups = glbConfig::read('groups'); 
         $pid = $_groups[$this->modid]['pid'];
         if($stype && in_array($pid,array('docs','advs'))){
-            $sql = basSql::whrTree($this->mcfg['i'],'m.catid',$stype); 
+            $sql = basSql::whrTree($this->mcfg['i'],'m.catid',$stype);
             $this->whrArr[] = $sql ? substr($sql,5) : '';
         }elseif($stype && in_array($pid,array('users'))){
             $this->whrArr[] = "m.grade='$stype'";

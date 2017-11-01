@@ -73,24 +73,29 @@ class basLang{
         }
     }    
     
-    // 前置处理,ucfg.lang
+    // 前置处理: ucfg.lang, ucfg.skin ============================================= 
+
     // $_cbase['ucfg']['lang'] = '(auto)'; 
     static function auto(){
         global $_cbase; 
-        if(empty($_cbase['ucfg']['lang'])) return;
-        if($_cbase['ucfg']['lang']=='(auto)'){
-            $ulang = basReq::val('lang');
-            if(!empty($ulang)){
-                $_cbase['sys']['lang'] = $ulang;
-                return;
-            }
+        //if(empty($_cbase['ucfg']['lang'])) return;
+        if(!empty($_cbase['ucfg']['lang']) && $_cbase['ucfg']['lang']=='(auto)'){
             $lang = comCookie::oget('lang');
             if(!empty($lang)){
                 $_cbase['sys']['lang'] = $lang;
+            }elseif(empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
+                $_cbase['sys']['lang'] = 'cn';
+            }else{
+                $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+                $_cbase['sys']['lang'] = $lang=='zh' ? 'cn' : 'en';
+            }
+        }
+        if(!empty($_cbase['ucfg']['skin']) && $_cbase['ucfg']['skin']=='(auto)'){
+            $skin = comCookie::oget('skin');
+            if(!empty($skin)){
+                $_cbase['sys']['skin'] = $skin;
                 return;
             }
-            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
-            $_cbase['sys']['lang'] = $lang=='zh' ? 'cn' : 'en';
         } 
     }
 
@@ -115,23 +120,17 @@ class basLang{
     }    
     // sopts
     static function sopts($def='',$img=1){
-        global $_cbase;
-        $flag = isset($_cbase['ucfg']['lang']) ? $_cbase['ucfg']['lang'] : '(auto)';
-        if($flag!='(auto)'){
-            $langs = glbConfig::read('vopcfg','sy');
-            $langs = $langs['langs'];
-            $cfgs[$flag] = $langs[$flag];
-        }else{
-            $cfgs = array();
+        global $_cbase; 
+        $lang = $_cbase['sys']['lang'];
+        if(empty($_cbase['ucfg']['lang'])){
+            $cfgs = glbConfig::read('vopcfg','sy');
+            $ops = "<option value=''> ".$cfgs['langs'][$lang][0]." </option>";
+        }else{ // <!-- <>◇/↔/⇔/&#x21d4; <i>«»<i> -->
+            $ops = "<option value=''> En<>中 </option>";
+            $ops .= basLang::links("<option value='{url}'>{title}</option>",array());
         }
         $img = $img ? '<img src="'.PATH_SKIN.'/_pub/logo/imcat-40x.png" width="40" height="40">' : '';
-        echo '<p>';
-        echo '    '.$img;
-        echo '    <select id="locSetS" onchange="location.href=this.value;">';
-        echo '    <option value=""> En<>中 </option>'; //  <!-- <>◇/↔/⇔/&#x21d4; <i>«»<i> -->
-        echo '    '.basLang::links("<option value='{url}'>{title}</option>",$cfgs);
-        echo '    </select>';
-        echo '</p>';
+        echo "<p>$img<select id='locSetS' onchange='location.href=this.value;'>$ops</select></p>";
     }
     // shead
     static function shead($title){

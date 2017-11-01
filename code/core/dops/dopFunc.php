@@ -2,6 +2,22 @@
 // dopFunc : 基本操作 static函数
 class dopFunc{    
 
+    // 得到`默认模型`ID
+    static function getDefmod($tab=''){
+        $groups = glbConfig::read('groups');
+        if($mod=basReq::val('mod')){
+            return $mod;
+        }elseif(isset($groups['news'])){
+            return 'news';
+        }elseif(isset($groups['cargo'])){
+            return 'cargo';
+        }elseif(isset($groups['about'])){
+            return 'about';
+        }else{
+           return 'demo'; 
+        }
+    }
+
     // 得到`字段存文件`的内容
     static function getFsval($mod,$kid,$fid='cfile'){
         $cfdir = comStore::getResDir($mod,$kid,1,0)."/fs_$fid.data";

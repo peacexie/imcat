@@ -94,7 +94,7 @@ class safComm{ // extends safBase
             $css2 = basReq::val('css2','fs_vimg');
             $senc = comConvert::sysEncode($sform,$stamp,$len2); 
             $vstr = "maxlength='5' reg='vimg:3-5' tip='".basLang::show('core.safcomm_vcode')."' url='".PATH_ROOT."/plus/ajax/cajax.php?act=chkVImg&mod={$fmid}&key={$senc}'";
-            $restr .= "<input id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus=\\\"fsCode('{$fmid}',0,'$pos')\\\" $vstr />";
+            $restr .= "<input placeholder='".basLang::show('vcode')."' id='{$fmid}_{$senc}' name='{$fmid}_{$senc}' tabindex='$tabi' type='text' class='$css1' onFocus=\\\"fsCode('{$fmid}',0,'$pos')\\\" $vstr />";
             $restr .= "<samp id='{$fmid}_vBox' class='$css2' style='display:none'></samp>"; //samp,span, style='width:50px;'
             return $restr;
         }else{

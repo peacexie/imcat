@@ -104,7 +104,7 @@
 解决1：用原始的点(.)连接字符串：{php echo "userip=".@$_cbase['run']['userip'].";"; }
 解决2：对大块PHP代码，不需要模板解析，可用如下类似语法包含文件：
 {php include_once vopTpls::pinc('m_tppart/tpfile'); } 
-或：{code:"dev:tools/a_cfgs"}
+或：{code:"dev:tools/a-cfgs"}
 -=> 相当于inc文件（此方式不会使用模板解析）：
 {当前模板}/m_tppart/tpfile.php 
 ```

@@ -18,6 +18,8 @@ $_va_home = array(
     
     //mod.home模块首页模板
     'm' => 'user/home',
-    
+    'login' => 'uio/login',
+    'reg' => 'uio/apply',
+
 );
     

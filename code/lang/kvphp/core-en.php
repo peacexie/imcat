@@ -107,7 +107,7 @@ return array(
     'updinfo_st7day' => '7 Days',
     'updinfo_stall' => 'All',
 
-    'safcomm_vcode' => 'Click input box then show Verification<br>ignore uppercase/lowercase', 
+    'safcomm_vcode' => 'Click input box then show Captcha<br>ignore uppercase/lowercase', 
     'rule_uname' => '3~16 bit,letter first<br>allow letter/number/underline',
     'rule_upass' => '6~15 bit',
     'ie_low' => 'Your IE is too old! Its time for Change you browser, Like:Chrome,Firefox,IE{val}+!',
@@ -119,7 +119,7 @@ return array(
     'pub_title' => 'Pub',
     'no_rank' => '- No Rank -',
     'upd_comp' => 'Compare',
-    'safcomm_vcoderr' => 'vCode Error!',
+    'safcomm_vcoderr' => 'Captcha Error!',
     'devbase_clsrepeat' => 'Class Repeat',
 
     'kid_minlen' => 'Please input {val}+ bits!',
@@ -179,7 +179,7 @@ return array(
 
     'uname' => 'Username',
     'upass' => 'Password',
-    'vcode' => 'AuthCode',
+    'vcode' => 'Captcha',
     'submit' => 'Submit',
 
     /*/ pager

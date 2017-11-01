@@ -26,5 +26,7 @@ if(empty($_cbase['run']['outer'])){
     basEnv::runCbase(); // (*)前置处理,运行时常用变量
     basEnv::runSkips(); // 处理skips
     safComm::urlQstr7(); // QUERY-7参数检测 
-    basLang::auto(); // 自动语言配置
+    if(!empty($_cbase['ucfg'])){
+        basLang::auto(); // 自动语言/皮肤配置
+    }
 } 

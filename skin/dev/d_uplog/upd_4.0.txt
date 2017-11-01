@@ -20,6 +20,8 @@ Summernote - Super Simple WYSIWYG editor
 Summernote may be freely distributed under the MIT license.
 
 
+* skin
+
 * 组装
  - css : bootcss
  - js : jq

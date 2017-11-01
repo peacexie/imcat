@@ -1,9 +1,9 @@
-{imp:"tools/b_lay"}<!--继承父模板-->
+{imp:"tools/a-lay"}<!--继承父模板-->
 
 {block:extop}{:parent}<?php
 $title = '中文分词，关键词提取';
 $ufix = surl()."?mkv=".$this->mkv;
-$file = vopTpls::pinc('tools/a_chun');
+$file = vopTpls::pinc('tools/a-chun');
 $data = comFiles::get($file);
 $words = extSpword::main($data,30);
 ?>{/block:extop}

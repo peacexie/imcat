@@ -28,19 +28,30 @@ class exvJump{
         }
     }
 
-    // lang:cn:&recbl=redir
-    function doLang($lang){
+    // /ajax/redir.php?skin:blue:&recbk=redir
+    function doSkin($skin){
         $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
-        //$lang = $mkv;
-        $flang = DIR_CODE."/lang/kvphp/core-$lang.php";
-        file_exists($flang) && comCookie::oset('lang',$lang,30*86400); 
+        $file = DIR_VENDUI."/bootstrap/css/bootstrap.$skin.css";
+        file_exists($file) && comCookie::oset('skin',$skin,30*86400);
         if($recbk && !strpos($recbk,'plus/ajax/redir.php')){
             header("Location: $recbk");
         }else{
-            die("::$flang:$recbk::");
+            die("::$file:$recbk::");
         }
     }
-    // /root/plus/ajax/redir.php?advs:encode
+
+    // /ajax/redir.php?lang:cn:&recbk=redir
+    function doLang($lang){
+        $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
+        $file = DIR_CODE."/lang/kvphp/core-$lang.php";
+        file_exists($file) && comCookie::oset('lang',$lang,30*86400); 
+        if($recbk && !strpos($recbk,'plus/ajax/redir.php')){
+            header("Location: $recbk");
+        }else{
+            die("::$file:$recbk::");
+        }
+    }
+    // /ajax/redir.php?advs:encode
     function doAdvs($encode){
         $mkv = explode(',',comConvert::sysBase64($encode,'de'));
         $mod = $mkv[0];
@@ -54,7 +65,7 @@ class exvJump{
             header("Location: $url");    
         }
     }
-    // /root/plus/ajax/redir.php?news.2015-a1-fhh1
+    // /ajax/redir.php?news.2015-a1-fhh1
     // /index.php?indoc.1234-56-7890
     function doMods($mod,$kid){
         $mods = array('indoc');
@@ -168,7 +179,10 @@ class exvJump{
         }
         return $key && isset(self::$jcfg[$key]) ? self::$jcfg[$key] : self::$jcfg;
     }
-    // tiny-url:设置一个短url地址
+
+    // tiny-url-短链接相关 ======================================== 
+
+    // 设置一个短url地址
     // 利用保留字符做前缀:iloz:用于特殊场合
     static function tuSet($url,$pre='',$n=0){
         $db = glbDBObj::dbObj();
@@ -188,7 +202,7 @@ class exvJump{
             return $kid;
         }
     }
-    // tiny-url:查询一个短url地址
+    // 查询一个短url地址
     static function tuGet($kid,$dir=0){
         $db = glbDBObj::dbObj();
         $row = $db->table('token_turl')->where("kid='$kid'")->find();

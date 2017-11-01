@@ -2,7 +2,7 @@
 (!defined('RUN_INIT')) && die('No Init');
 define('RUN_DOPA',1);
 
-$mod = empty($mod) ? 'demo' : $mod;
+$mod = dopFunc::getDefmod();
 $view = empty($view) ? 'list' : $view;
 $_cfg = read($mod); 
 

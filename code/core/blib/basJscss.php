@@ -1,15 +1,7 @@
 <?php
 
 // basJscss类
-class basJscss{    
-
-    // bootstrap-Skin处理
-    static function bootSkin(){
-        global $_cbase;
-        $bskin = empty($_cbase['sys']['bskin']) ? 'min' : $_cbase['sys']['bskin'];
-        $bsfile = "bootstrap.$bskin.css";
-        return $bsfile;
-    }
+class basJscss{
 
     // jspop,jq_base,bootstrap,layer
     static function loadExtjs($exjs){
@@ -29,9 +21,9 @@ class basJscss{
         }
     }
     // bootstrap,stpub,jstyle
-    static function loadBasecss($excss){
+    static function loadBasecss($excss,$skin=''){
         if(strstr($excss,'bootstrap')){
-            $jsimp = PATH_VENDUI."/bootstrap/css/".self::bootSkin();
+            $jsimp = PATH_VENDUI."/bootstrap/css/bootstrap.".($skin ? $skin : 'min').".css";
             echo "/* ------ bootstrap ------ */\n";
             echo "@import url($jsimp);\n";
             $jsimp = PATH_VENDUI."/bootstrap/css/font-awesome.min.css";
@@ -72,7 +64,7 @@ class basJscss{
         }
     }
     // zepto,jquery,bootstrap,layer
-    static function loadJqbs($exjs,$dw=1){
+    static function loadJqbs($exjs,$dw=1,$skin=''){
         if(empty($exjs)) return;
         global $_cbase;
         if(strstr($exjs,'zepto')){ // 需要自行添加如下zepto文件
@@ -86,7 +78,7 @@ class basJscss{
             }
         }
         if(strstr($exjs,'bootcss')){
-            $ims[] = basJscss::csscode(0,PATH_VENDUI."/bootstrap/css/".self::bootSkin());
+            $ims[] = basJscss::csscode(0,PATH_VENDUI."/bootstrap/css/bootstrap.".($skin ? $skin : 'min').".css");
             $ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
         }
         if(strstr($exjs,'bootstrap')){
@@ -216,11 +208,12 @@ class basJscss{
         global $_cbase; 
         $tpldir = empty($_cbase['tpl']['tpl_dir']) ? '' : $_cbase['tpl']['tpl_dir'];
         if(in_array($path,array('initCss','initJs','loadExtjs'))){
-            $lang = $_cbase['sys']['lang'];
+            $lang = empty($_cbase['sys']['lang']) ? '' : $_cbase['sys']['lang'];
+            $skin = empty($_cbase['sys']['skin']) ? '' : $_cbase['sys']['skin'];
             $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
             if($path=='initCss'){
-                $bskin = empty($_cbase['sys']['bskin']) ? 'min' : $_cbase['sys']['bskin'];
-                $exp = "&tpldir=$tpldir&lang=$lang&bskin=$bskin";
+                $skin = empty($_cbase['sys']['skin']) ? 'min' : $_cbase['sys']['skin'];
+                $exp = "&tpldir=$tpldir&lang=$lang&skin=$skin";
                 $mod = 'css';
             }else{ // initJs/loadExtjs
                 $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?"&user=$mod":'') : '';

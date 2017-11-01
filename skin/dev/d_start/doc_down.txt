@@ -2,14 +2,15 @@
 
 #down#下载程序包
 
-* Github：
+* 国内码云(Gitee)/国际Github：
+ - https://gitee.com/mirrors/TiexinCat
  - https://github.com/peacexie/imcat
  - 遵循`MIT License`开源协议
 
 * 整站下载：
- - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
  - [chinaz.站长下载] http://down.chinaz.com/soft/38424.htm
- - [admin5.站长下载] http://down.admin5.com/php/130751.html
+ - [admin5.A5下载] http://down.admin5.com/php/130751.html
+ - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
 
 * yscode分包(main/vary/vimp)下载：
  - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 

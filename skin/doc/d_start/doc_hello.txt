@@ -60,7 +60,7 @@
  - comFiles(file-operation)/comConvert(encryption)
  - comImage(Image-process)/comVCode(verification-code)/exaCSeal(image-seal)
  - # Integrated case: read database and pager
- - http://txmao.txjia.com/skin/dev/tester/step_ufile.php
+ - http://txmao.txjia.com/skin/dev/tester/step-ufile.php
  - # Official intimate tools:
  - http://txmao.txjia.com/dev.php?tools
  - # Class library function list:

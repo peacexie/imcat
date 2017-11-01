@@ -13,11 +13,11 @@ $_ve_tester = array(
     //'t' => 'c_mod/{mod}_one', //about,alink
 
     //'hello' => 'd_tpltag/demo_hello', 
-    'hello' => 'tester/demo_hello', 
-    'demotag' => 'tester/demo_tag', 
-    'demotjs' => 'tester/demo_tjs', 
-    'adpush' => 'tester/demo_adpush', 
-    'sphinx' => 'tester/demo_sphinx', 
+    'hello' => 'tester/demo-hello', 
+    'demotag' => 'tester/demo-tag', 
+    'demotjs' => 'tester/demo-tjs', 
+    'adpush' => 'tester/demo-adpush', 
+    'sphinx' => 'tester/demo-sphinx', 
     'step_utpl' => 'tester/step_utpl', 
     'step_imtpl' => 'tester/step_imtpl', 
 );

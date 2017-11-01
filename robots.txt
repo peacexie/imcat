@@ -1,28 +1,21 @@
 #
-# robots.txt for txmao
-# Version 3.8
+# robots.txt for IntimateCat
+# Version 4.0
 #
 
+User-Agent: SomeSpider
+Disallow: /
+
 User-agent: *
-
-Disallow: /root/plus/ajax/comjs.php
-
-Disallow: /@read/
-Disallow: /code/
-
-Disallow: /root/a3rd/
-Disallow: /root/cfgs/
-Disallow: /root/plus/
-Disallow: /root/tools/
-
-Disallow: /root/run/adm.php
-Disallow: /root/run/app.php
-
-Disallow: /skin/
-Disallow: /ures/
-Disallow: /vary/
-Disallow: /vimp/static/
-Disallow: /vimp/vendor/
-Disallow: /vimp/vendui/
-
+Allow: /chn.php
+Allow: /dev*
+Allow: /doc*
+Allow: /index.php
+Allow: /mob.php
+Allow: /root/run/rest.php
+Allow: /root/run/umc.php?faq*
+Allow: /html/
 Allow: /skin/_pub/logo/
+Allow: /ures/
+Allow: /vimp/static/
+Disallow: /

@@ -9,7 +9,7 @@ if($qstr=='FixProot' && $proot!=PATH_PROJ){
   $qstr = $fixres ? 'FixPrOkey' : 'FixPrError';
   $fmsg = devRun::prootMsg($proot, $qstr);
 }else{
-  $qstr = 'start';
+  //$qstr = 'start';
 }
 if(!in_array($qstr,array('FixPrError','FixPrOkey')) && $proot!=PATH_PROJ){ 
   header("Location:start.php?FixProot"); 
@@ -104,6 +104,7 @@ for($i=1;$i<$tm;$i++){
   $vcfg[$i] = array('','-');
 }
 $vcfg['---'] = array('HOME','');
+$scfg = array('min','cerulean','flatly','superhero'); // ,'(ull)'
 ?>
 
   <p class="title">CMS<?php lang('tools.start_cmsentry',0) ?></p>
@@ -124,7 +125,20 @@ $vcfg['---'] = array('HOME','');
     <td><a href="http://txjia.com/peace/wenode.htm">Node微框架</a></td>
     <td><a href="http://txjia.com/peace/txbox.htm">Java盒子</a></td>
     <td><a href="http://txjia.com/peace/txasp.htm">贴心Asp</a></td>
-  </tr> 
+  </tr>
+  <?php if($qstr=='skin'){ ?>
+  <tr class="tc">
+    <td>Skin(s)</td>
+    <td>-</td>
+    <td>-</td>
+    <td><a href="#">--</a></td>
+  </tr>
+  <tr class="tc">
+   <?php foreach($scfg as $k){ ?>
+    <td width="25%"><a href="<?php echo PATH_ROOT; ?>/plus/ajax/redir.php?skin:<?php echo $k; ?>" target='_self'><?php echo $k; ?></a></td>
+   <?php } ?>
+  </tr>
+  <?php } ?>
   </table>
 
   <table width="100%" border="1" class="tblist">

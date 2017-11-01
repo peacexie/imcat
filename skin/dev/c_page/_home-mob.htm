@@ -43,59 +43,60 @@ eimp('initCss','bootstrap,stpub;comm-mob');
 
   {code:"d_uplog/a_cfgs"}
   <ul class="nav nav-tabs">
-    <li role="presentation" class="active"><a>版本</a></li>
-    <li role="presentation"><a>资讯</a></li>
-    <li role="presentation"><a>导航</a></li>
+    <li role="presentation" class="active" href="#vers" data-toggle="tab"><a>版本</a></li>
+    <li role="presentation"><a href="#news" data-toggle="tab">资讯</a></li>
+    <li role="presentation"><a href="#bnav" data-toggle="tab">导航</a></li>
   </ul>
-  <ul class="home-block">
-    <?php 
-      $ik = 0; $imax = 6;
-      foreach($cfgs as $k=>$v){ 
-      if($ik>=$imax) continue; 
-      if(in_array($k,array('readme','2_x'))) continue; 
-      $iver=str_replace('_','.',$k); 
-    ?>
-    <li>
-      <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}发布日期:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
-    </li>
-    <?php $ik++; } ?>
-  </ul>
-  <ul class="home-block hide">
-    {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
-    <li>
-      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
-    </li>
-    {/tag:tlist3}
-    {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
-    <li>
-      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
-    </li>
-    {/tag:tlist2}
-    {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
-    <li>
-      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
-    </li>
-    {/tag:tlist1}
-  </ul>
-  <ul class="row home-block hide" id='home-bnav'>
+  <div class="tab-content">
+    <ul class="home-block tab-pane fade in active" id='vers'>
+      <?php 
+        $ik = 0; $imax = 6;
+        foreach($cfgs as $k=>$v){ 
+        if($ik>=$imax) continue; 
+        if(in_array($k,array('readme','2_x'))) continue; 
+        $iver=str_replace('_','.',$k); 
+      ?>
+      <li>
+        <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}发布日期:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+      </li>
+      <?php $ik++; } ?>
+    </ul>
+    <ul class="home-block tab-pane fade" id="news">
+      {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
+      <li>
+        <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+      </li>
+      {/tag:tlist3}
+      {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
+      <li>
+        <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+      </li>
+      {/tag:tlist2}
+      {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
+      <li>
+        <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+      </li>
+      {/tag:tlist1}
+    </ul>
+    <ul class="row home-block tab-pane fade" id='bnav'>
 
-    <li class="col-xs-4 col-md-4"><a href="{surl(start)}" type="button" class="btn btn-default">快速开始</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(tpltag)}" type="button" class="btn btn-default">模板标签</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(dev2nd)}" type="button" class="btn btn-default">二次开发</a></li>
-    
-    <li class="col-xs-4 col-md-4"><a href="{surl(advset)}" type="button" class="btn btn-default">系统参数</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(info-help)}" type="button" class="btn btn-default">捐赠贡献</a></li> 
-    <li class="col-xs-4 col-md-4"><a href="{surl(tools)}" type="button" class="btn btn-default" target="_blank">贴心工具</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(start)}" type="button" class="btn btn-default">快速开始</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(tpltag)}" type="button" class="btn btn-default">模板标签</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(dev2nd)}" type="button" class="btn btn-default">二次开发</a></li>
+      
+      <li class="col-xs-4 col-md-4"><a href="{surl(advset)}" type="button" class="btn btn-default">系统参数</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(info-help)}" type="button" class="btn btn-default">捐赠贡献</a></li> 
+      <li class="col-xs-4 col-md-4"><a href="{surl(tools)}" type="button" class="btn btn-default" target="_blank">贴心工具</a></li>
 
-    <li class="col-xs-4 col-md-4"><a href="{surl(doc:tester)}" type="button" class="btn btn-default" target="_blank">测试代码</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(umc:faqs)}" type="button" class="btn btn-default" target="_blank">[问答]</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(mob:votes)}" type="button" class="btn btn-default" target="_blank">[投票]</a></li>
-    
-    <li class="col-xs-4 col-md-4"><a href="{surl(info)}" type="button" class="btn btn-default" target="_blank">[导航]</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(umc:?login)}" type="button" class="btn btn-default" target="_blank">[登录]</a></li>
-    <li class="col-xs-4 col-md-4"><a href="{surl(umc:?reg)}" type="button" class="btn btn-default" target="_blank">[注册]</a></li>
-  </ul>
-
+      <li class="col-xs-4 col-md-4"><a href="{surl(doc:tester)}" type="button" class="btn btn-default" target="_blank">测试代码</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(umc:faqs)}" type="button" class="btn btn-default" target="_blank">[问答]</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(mob:votes)}" type="button" class="btn btn-default" target="_blank">[投票]</a></li>
+      
+      <li class="col-xs-4 col-md-4"><a href="{surl(info)}" type="button" class="btn btn-default" target="_blank">[导航]</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(umc:?login)}" type="button" class="btn btn-default" target="_blank">[登录]</a></li>
+      <li class="col-xs-4 col-md-4"><a href="{surl(umc:?reg)}" type="button" class="btn btn-default" target="_blank">[注册]</a></li>
+    </ul>
+  </div>
 
   <div class="h15">&nbsp;</div>
   <?php
@@ -106,7 +107,7 @@ eimp('initCss','bootstrap,stpub;comm-mob');
   <div class="panel panel-primary">
     {loop $subs $k $v}
     <div class="panel-heading" phdid='{=$i_v}'>
-      <i class="fa fa-chevron-right right"></i>
+      <i class="fa fa-chevron-down right"></i>
       {=$_cbase['sys_name']}：{=$v['title']}
     </div>
     <div class="panel-body">
@@ -120,26 +121,5 @@ eimp('initCss','bootstrap,stpub;comm-mob');
 </div>
 {inc:"c_pub/mfoot"}
 </body></html>
-
-
-<script>
-
-var tipno = 0; showTip1(0);
-var tplay = setInterval(showNext,3700);
-$('.panel-heading').click(function(){
-  clearInterval(tplay);
-  var id = $(this).attr('phdid');
-  showTip1(id);  
-});
-
-$('.nav-tabs li').click(function(){
-  var id = $(this).index();
-  $('.nav-tabs li').removeClass('active');
-  $(this).addClass('active');
-  $('.home-block').addClass('hide');
-  $('.home-block').eq(id).removeClass('hide');
-});
-
-</script>
 
 <!--`{php echo basDebug::runInfo(); }`-->

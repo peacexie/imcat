@@ -163,6 +163,9 @@ class basEnv{
         }
         $rbt = glbConfig::read('uachk','sy');
         $kw_mobkeys = $rbt['mobkeys'];
+        if(empty($_SERVER['HTTP_USER_AGENT'])){
+            return false; // robots
+        }
         if(preg_match("/($kw_mobkeys)/i", $_SERVER['HTTP_USER_AGENT'])){
             return true;
         }

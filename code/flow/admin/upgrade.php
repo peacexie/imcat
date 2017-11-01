@@ -55,7 +55,7 @@ if($mod=='upvnow'){
 
 }elseif($mod=='extend'){
     echo "\n<tr><th class='tc'>$mtitle </th>\n<th>Extend</th></tr>\n";
-    echo "\n<tr><td colspan=2><iframe src='".PATH_PROJ."/dev.php?extend' width='100%' height='480' frameBorder=0></iframe></td></tr>\n";
+    echo "\n<tr><td colspan=2><iframe src='http://txmao.txjia.com/dev/extend.htm' width='100%' height='480' frameBorder=0></iframe></td></tr>\n";
     $out = "<a href='http://txmao.txjia.com/dev/extend.htm' target='_blank' class='center'>More...</a>";
     echo "\n<tr><td class='tl'></td>\n<td class='tc'>$out</td></tr>\n";
 }elseif($mod=='install'){

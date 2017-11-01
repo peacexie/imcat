@@ -93,7 +93,10 @@ class basElm{
         if(!empty($extf)){ $text = str_replace($extf,"\n",$text); }
         $text = str_replace(array("\r\n","\r"),"\n",$text);
         $text = str_replace(array("\n\n\n\n","\n\n\n","\n\n"),"\n",$text);
-        if($rea) $text = explode("\n",$text);
+        if($rea){
+            $text = explode("\n",$text);
+            $text = array_filter($text);
+        }
         return $text;
     }
 

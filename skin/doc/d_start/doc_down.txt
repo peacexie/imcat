@@ -2,14 +2,15 @@
 
 #down#Download
 
-* Github: 
+* Github.com/Gitee.com：
  - https://github.com/peacexie/imcat
+ - https://gitee.com/mirrors/TiexinCat
  - Follow the `MIT License` open source protocol
 
 * Down at out sites: 
- - [pan.baidu.com] http://pan.baidu.com/share/home?uk=3191979020 Down File: txmao-all.rar
  - [chinaz.com] http://down.chinaz.com/soft/38424.htm
  - [admin5.com] http://down.admin5.com/php/130751.html
+ - [pan.baidu.com] http://pan.baidu.com/share/home?uk=3191979020 Down File: txmao-all.rar
 
 * Down split .rar parts(main/vary/vimp):
  - [pan.baidu.com] http://pan.baidu.com/share/home?uk=3191979020 

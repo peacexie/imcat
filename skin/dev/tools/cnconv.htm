@@ -1,4 +1,4 @@
-{imp:"tools/b_lay"}<!--继承父模板-->
+{imp:"tools/a-lay"}<!--继承父模板-->
 
 {block:extop}{:parent}<?php
 $title = '简繁/拼音:转化类';
@@ -24,6 +24,11 @@ if(strstr($act,'down')){
 eimp('/plus/ajax/comjs.php?act=pycfgTab');
 eimp('/plus/ajax/comjs.php?act=jfcfgTab');
 ?>
+<style type="text/css">
+input{ width:80%; }
+@media (max-width:768px){input{width:80%;}}
+@media (max-width:425px){input{width:100%;}}
+</style>
 {/block:eximp}
 
 {block:exbody}

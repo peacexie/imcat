@@ -1,7 +1,7 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
 
-$mod = empty($mod) ? 'demo' : $mod;
+$mod = dopFunc::getDefmod();
 $view = empty($view) ? 'glist' : $view;
 $pid = empty($pid) ? '0' : $pid;
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod1@catalog.php');

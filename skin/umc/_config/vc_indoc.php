@@ -9,7 +9,7 @@ $_vc_indoc = array(
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
     ),
     
-    'm' => 'indoc/main',
+    'm' => 'indoc/mhome',
     'd' => 'indoc/detail',
     //'t' => 'indoc/list', //my
     

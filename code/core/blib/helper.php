@@ -80,3 +80,5 @@ function cmod($key=''){
 function eimp($type,$base='',$user=0){
     echo basJscss::imp($type,$base,$user);
 }
+
+// user-function

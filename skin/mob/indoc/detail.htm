@@ -1,6 +1,7 @@
 {imp:"c_page/lay_comm"}<!--继承父模板-->
 
 {block:init}<?php
+$user = usrBase::userObj('Member'); 
 vopTpls::pinc('umc:tex_indoc');
 if($res=tex_indoc::noperm($user,$this->vars)){
     basMsg::show("没有权限查看:[$res]",'die');

@@ -8,16 +8,16 @@ $excss = basReq::val('excss');
 $tpldir = basReq::val('tpldir'); 
 $lang = basReq::val('lang',$_cbase['sys']['lang']);
 $mkv = basReq::val('mkv');
-$bskin = basReq::val('bskin');
+$skin = basReq::val('skin');
 glbHtml::head($excss ? 'css' : 'js');
 
 if(strstr($act,'initJs')){ // header
-    basJscss::loadJqbs($exjs); // zepto,jquery,bootcss,bootstrap,layer
+    basJscss::loadJqbs($exjs,1,$skin); // zepto,jquery,bootcss,bootstrap,layer
     basJscss::loadCfgjs($exjs,$tpldir,$lang,$mkv); // jspop
     basJscss::loadTabs($exjs,$tpldir,$lang,'.js'); // xxx;comm;home
 }
 if(strstr($act,'initCss')){ // header
-    basJscss::loadBasecss($excss); // bootstrap,stpub,jstyle
+    basJscss::loadBasecss($excss,$skin); // bootstrap,stpub,jstyle
     basJscss::loadTabs($excss,$tpldir,$lang,'.css'); // xxx;comm;home
 }
 if(strstr($act,'loadExtjs')){ // footer
