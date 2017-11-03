@@ -8,6 +8,7 @@ $_va_home = array(
         'vmode' => 'dynamic', //dynamic,catch,close
         'stexp' => '2h', //30,60,3h,6h,12h,24h,7d
         'stext' => '-u.htm', 
+        'tmfix' => '-mob', // 移动适配-模板后缀
         '_tabCtrl' => array('homeCtrl','userCtrl','uioCtrl'),
         //'_defCtrl' => '_defCtrl', 
         'pskip' => array('home','faqs','uio',), //umc-不需要登录模型
