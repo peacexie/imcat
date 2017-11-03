@@ -15,6 +15,7 @@ div.main p.150 { line-height:150%; }
 {/block:hdcss}
 
 {block:main}
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
 
 <form action="?mkv={=$this->mkv}" method="post" name="fmgetpw" id="fmgetpw">
   {if $user->userFlag=='Login' }
@@ -101,6 +102,7 @@ function fshowQrcode(){ // 缓存,更新...
         clearTimeout(iTime);
     });
 }
+winAutoMargin('topMargin');
 </script>
 
 {/block:main}
