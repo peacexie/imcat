@@ -13,9 +13,11 @@ Allow: /doc*
 Allow: /index.php
 Allow: /mob.php
 Allow: /root/run/rest.php
-Allow: /root/run/umc.php?faq*
+Allow: /root/run/umc.php*faq*
 Allow: /html/
 Allow: /skin/_pub/logo/
 Allow: /ures/
 Allow: /vimp/static/
-Disallow: /
+Allow: /$
+Disallow: /*?*
+Disallow: /*/*
