@@ -10,13 +10,19 @@ class vopUrl{
     static function iget($q=''){
         global $_cbase;
         $q = empty($q) ? (isset($_SERVER['QUERY_STRING'])?$_SERVER['QUERY_STRING']:'') : $q;
+        $uri = $_SERVER['REQUEST_URI']; // /dev/mkv.htm?api=Local
+        if(strpos($uri,'.htm?') || strpos($uri,'.html?')){
+            $tmp = parse_url($uri);
+            $q = "mkv=$q&".$tmp['query'];
+            parse_str($q, $_GET); 
+        }
         if(in_array($q,array('0','home'))){ // 0, home, 
             vopShow::msg("a:[$q]:".basLang::show('vop_parerr'));
         }
         if(empty($q) || $q=='home'){
             $ua = array();
             $mkv = 'home';
-        }elseif(strpos($q,'=')){ 
+        }elseif(strpos($q,'=')){
             parse_str($q,$ua); 
             $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
         }else{ //无=且不为空 
