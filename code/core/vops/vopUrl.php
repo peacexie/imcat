@@ -29,16 +29,22 @@ class vopUrl{
             $ua = array('mkv'=>$q);
             $mkv = $q;    
         }
+        /*
         $re1 = preg_match("/^[A-Za-z0-9]{1}\w*$/",$mkv); // modid
         $re2 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv); // modid-type, dop-a
         $re3 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv);
         $re4 = preg_match("/^[A-Za-z0-9]{1}\w*\-\-(so|list)+$/",$mkv); // modid--list
         $re5 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*$/",$mkv); // mod.ab-12
         $re6 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*\.[A-Za-z0-9]{1}\w*$/",$mkv);
+        */
+        $re1 = preg_match("/^\w+$/",$mkv); // modid
+        $re2 = preg_match("/^\w+\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
+        $re4 = preg_match("/^\w+\-\-(so|list)$/",$mkv); // modid--list
+        $re5 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
         $ra1 = preg_match("/^home\-/",$mkv) || preg_match("/(\-|\_)$/",$mkv);
-        if(!($re1 || $re2 || $re3 || $re4 || $re5 || $re6) || $ra1){
+        if(!($re1 || $re2 || $re4 || $re5) || $ra1){
             glbError::show("b:[$mkv]:".basLang::show('vop_parerr'));
-        }
+        } // (so|list)+, ([\w-])*
         $re = array('q'=>$q, 'mkv'=>$mkv, 'ua'=>$ua);
         return $re;
     }
@@ -213,6 +219,9 @@ class vopUrl{
     //format指定tpl下的url
     static function ftpl($str,$type='',$host=0){
         global $_cbase;
+        if(!empty($_cbase['run']['tplcfg'])){
+            $cfgold = $_cbase['run']['tplcfg']; // ??? 切换当中怎么这个变了?
+        }
         $tplold = $_cbase['tpl']['tpl_dir'];
         $a = explode(':',$str);
         $ck = vopTpls::check($a[0],0);
@@ -220,6 +229,9 @@ class vopUrl{
         $a[0] && vopTpls::set($a[0]);
         $path = self::fout($a[1],$type,$host);
         $a[0] && vopTpls::set($tplold);
+        if(!empty($cfgold)){
+            $_cbase['run']['tplcfg'] = $cfgold; // ??? vopTpls::etr1(使用...)
+        }
         return $path;
     }
     //format指定mod下的第一个类别的url
