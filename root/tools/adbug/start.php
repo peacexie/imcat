@@ -1,4 +1,8 @@
 <?php
+if(file_exists(dirname(__FILE__).'/start-360.php')){
+  include(dirname(__FILE__).'/start-360.php');
+  die();
+}
 require dirname(dirname(__FILE__)).'/adbug/_config.php';
 
 $qstr = @$_SERVER['QUERY_STRING'];

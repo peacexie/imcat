@@ -4,7 +4,7 @@
 class vopUrl{    
     
     static $params = array('mkv','mod','key','view','type','hcfg','vcfg');
-    static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext,first
+    static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext
     
     // get/url初始数据
     static function iget($q=''){
@@ -16,7 +16,7 @@ class vopUrl{
             $q = "mkv=$q&".$tmp['query'];
             parse_str($q, $_GET); 
         }
-        if(in_array($q,array('0','home'))){ // 0, home, 
+        if(in_array($q,array('0','home'))){
             vopShow::msg("a:[$q]:".basLang::show('vop_parerr'));
         }
         if(empty($q) || $q=='home'){
@@ -29,22 +29,13 @@ class vopUrl{
             $ua = array('mkv'=>$q);
             $mkv = $q;    
         }
-        /*
-        $re1 = preg_match("/^[A-Za-z0-9]{1}\w*$/",$mkv); // modid
-        $re2 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv); // modid-type, dop-a
-        $re3 = preg_match("/^[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*\-[A-Za-z0-9]{1}\w*$/",$mkv);
-        $re4 = preg_match("/^[A-Za-z0-9]{1}\w*\-\-(so|list)+$/",$mkv); // modid--list
-        $re5 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*$/",$mkv); // mod.ab-12
-        $re6 = preg_match("/^[A-Za-z0-9]{1}\w*\.[A-Za-z0-9]{1}([\w-])*\.[A-Za-z0-9]{1}\w*$/",$mkv);
-        */
-        $re1 = preg_match("/^\w+$/",$mkv); // modid
+        $re1 = preg_match("/^\w+(\-\-(so|list))?$/",$mkv); // modid, (--list)
         $re2 = preg_match("/^\w+\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
-        $re4 = preg_match("/^\w+\-\-(so|list)$/",$mkv); // modid--list
-        $re5 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
-        $ra1 = preg_match("/^home\-/",$mkv) || preg_match("/(\-|\_)$/",$mkv);
-        if(!($re1 || $re2 || $re4 || $re5) || $ra1){
-            glbError::show("b:[$mkv]:".basLang::show('vop_parerr'));
-        } // (so|list)+, ([\w-])*
+        $re3 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
+        $re9 = preg_match("/(^home\-)|((\-|\_)$)/",$mkv);
+        if(!($re1 || $re2 || $re3) || $re9){
+            vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr'));
+        }
         $re = array('q'=>$q, 'mkv'=>$mkv, 'ua'=>$ua);
         return $re;
     }
@@ -53,16 +44,14 @@ class vopUrl{
     static function imkv($re,$remod=0){
         $hcfg = glbConfig::vcfg('home'); 
         $mkv = $re['mkv']; $type = ''; $vcfg = array();
-        /*if(strpos($mkv,'-') && in_array(str_replace('-','/',$mkv),$hcfg)){
-            vopShow::msg("d:[$mkv]:".basLang::show('vop_parerr'));
-        }// ?login -=>别名 ?uio-login */
+        // ?login -=>别名 ?uio-login // 都可访问
         if(isset($hcfg[$mkv])){
             $mkv = $re['mkv'] = "home-$mkv";
-        } // ??? 'reg' => 'uio/apply',
-        if(strpos($mkv,'.')){ //mod.id1-xxx-id2.view
+        }
+        if(strpos($mkv,'.')){ //mod.y-md-88.view
             $a = explode('.',$mkv);
             $type = 'detail';
-        }elseif(strpos($mkv,'-')){ //mod-type-view, mod--list, about-awhua-v2
+        }elseif(strpos($mkv,'-')){ //mod-type-view, --list, -awhua-v2
             $a = explode('-',"$mkv"); 
             $type = empty($a[1]) ? 'mext' : 'mtype';
         }else{ //mod
@@ -85,7 +74,7 @@ class vopUrl{
         foreach(self::$params as $k) $$k = $re[$k]; 
         $tpl = ''; $dsub = $type;
         $cfg = array();
-        if($type=='mtype'){ 
+        if($type=='mtype'){
             $dsub = $key;
             if(isset($vcfg[$key])){
                 $cfg = $vcfg[$key];
@@ -107,7 +96,7 @@ class vopUrl{
             }elseif(empty($cfg[1]) && in_array($view,array('so','list'))){
                 $tpl = '';
             }else{
-                glbError::show("i:[-$view]:".basLang::show('vop_parerr'));
+                vopShow::msg("d:[-$view]:".basLang::show('vop_parerr'));
             }
         }else{
             $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; 
@@ -118,10 +107,10 @@ class vopUrl{
             $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],$mod4); 
             if($ina4 || in_array($mod,$re['hcfg']['c']['extra'])){ 
                 $tpl = "$mod/$dsub"; 
-            }
+            } // else /doc.php?ctest(modCtrl扩展) 
         }
         // 处理{mod}
-        $re['tplname'] = str_replace('{mod}',$mod,$tpl);
+        $re['tplname'] = str_replace('{mod}',$mod,$tpl); 
         return $re;
     }
 
@@ -173,9 +162,12 @@ class vopUrl{
         $type || $type = strpos($mkv,'.') ? '.' : '-';
         $a = explode($type,"$mkv$type$type");
         $mod = $a[0]; $key = $a[1]; $view = $a[2];
-        $key = $key=='first' ? self::ifirst($mod,'key') : $key;
         $mcfg = glbConfig::vcfg($mod);
         $vmode = @$mcfg['c']['vmode']; $url = '';
+        if(empty("$key$view") && isset($mcfg['m']) && $mcfg['m']=='first'){
+            $key = self::ifirst($mod,'key');
+            $mkv .= "-$key";
+        }
         //close,static
         if($vmode=='close') return '#close#'.$mkv;
         if($vmode=='static'){
@@ -185,7 +177,7 @@ class vopUrl{
         }
         //动态
         if(empty($url)){
-            $url = $burl.'?'.(strpos($mkv,'-first') ? "$mod-$key": $mkv);
+            $url = $burl.'?'.$mkv;
             // 处理伪静态
             if(!empty($_cbase['run']['tplcfg'][2])){
                 $url = str_replace('.php?', $_cbase['run']['tplcfg'][2], $url);

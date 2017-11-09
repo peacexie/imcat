@@ -13,7 +13,7 @@ $_va_home = array(
         'pmods' => array('admin','apis','awex','binc',), // 权限模块
         'close' => array(),
         'imcfg' => array(),
-        'extra' => array(), 
+        'extra' => array(), // 'frame',扩展模块
     ),
     
     //mod.home模块首页模板

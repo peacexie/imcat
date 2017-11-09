@@ -5,6 +5,16 @@ set_time_limit(300);
 $act = req('act','');
 $part = $ntpl = req('part','');
 
+if($act=='testMkvs'){ 
+  require dirname(__FILE__).'/cscan-testMkvs.php';
+  foreach ($mkvs[$part] as $url) {
+    echo "\n<div style='width:50%;float:left;margin-bottom:20px;'>\n";
+    echo "<a href='".PATH_PROJ."$url'><b>$url</b></a>\n";
+    echo "<iframe src='".PATH_PROJ."$url' width='100%' height='300'></iframe></div>\n";
+  }
+  die();
+}
+
 glbHtml::page("Check/Scan");
 eimp('/_pub/a_jscss/cinfo.css');
 eimp('/_pub/jslib/jsbase.js');
@@ -133,6 +143,8 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
      <!--# <a href='?act=openDowns&part=1'>openDowns</a>-->
      # <a href='?act=scanDblang&part='>scanDblang</a>
      # <a href='cbaidu.php'>scanBaidu</a>
+     # <a href='?act=testMkvs&part=ok' target="_blank">okMkvs</a>
+     # <a href='?act=testMkvs&part=ng' target="_blank">ngMkvs</a>
      #
     </td>
   </tr> 
