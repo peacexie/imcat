@@ -13,7 +13,7 @@ class vopStatic{
         );
         $tpl = empty($cfg['i'][$type]['cfgs']) ? $dtpl[$cfg['etab']] : $cfg['i'][$type]['cfgs']; 
         if(!strpos($tpl,'target')) $tpl = str_replace('<a',"<a target='_blank'",$tpl);
-        $data = ''; $rep = array('title','url','mpic','detail');
+        $data = ''; $rep = array('title','color','url','mpic','detail');
         $list = glbDBObj::dbObj()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
         if($list){
             foreach($list as $r){
@@ -60,6 +60,7 @@ class vopStatic{
         if($list){
             foreach($list as $r){
                 $caid = $r['catid'];
+                if(!isset($cfg['i'][$caid])) break;
                 $ditm = self::advType($mod,$caid);
                 $data .= "[$caid]-{$cfg['i'][$caid]['title']}:::<br>$ditm <hr class='ma10 cF0F'> ";
             }

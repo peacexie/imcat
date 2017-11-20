@@ -1,5 +1,6 @@
 <?php
-$mdtitle = empty($mdtitle) ? $_groups[$this->mod]['title'] : $mdtitle;
+if($this->mod=='uio'){ $mdtitle = 'User'; }
+$mdtitle = empty($mdtitle) ? @$_groups[$this->mod]['title'] : $mdtitle;
 if(empty($sbtitle)){
     if($this->type=='detail'){
         $sbtitle = $mdtitle."详情";

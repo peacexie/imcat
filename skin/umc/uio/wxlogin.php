@@ -24,7 +24,7 @@ if($code && empty($codecheck)){
     $oauth = new wmpOauth($wecfg); 
     $actoken = $oauth->getACToken($code); 
     if(!empty($actoken['errmsg'])){
-        basMsg::show("[{=$actoken['errcode']}]{=$actoken['errmsg']}",'die');
+        basMsg::show("[{$actoken['errcode']}]{$actoken['errmsg']}",'die');
     } 
     $openid = $actoken['result']['openid'];
     $codecheck = md5($code.$openid.$authkey); 

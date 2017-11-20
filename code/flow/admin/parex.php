@@ -21,7 +21,7 @@ if(empty($dialog)){
 }
 if($view=='upd'){
     
-    $keys = array('pid','title','detail','numa','numb','cfgs','note','cfgs');
+    $keys = array('pid','title','detail','numa','numb','cfgs','note');
     foreach ($lnav as $row) {
         $pid = $row['kid']; $arr = array();
         $list = $db->table($tabid)->where("pid='$pid' AND enable='1'")->order('top')->select(); 
