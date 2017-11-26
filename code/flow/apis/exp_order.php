@@ -96,7 +96,7 @@ if($view=='list'){
         } // paymode_, numa,  附加金额
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
 
-        $cfgs = strstr($pid,'paymode_') ? "".lang('admin.ord_icon')."<input name='fm[cfgs]' type='text' value='$fm[cfgs]' class='txt w150' maxlength='12' tip='".lang('admin.ord_icocss')."' />" : '';
+        $cfgs = strstr($pid,'paymode_') ? "".lang('flow.ord_icon')."<input name='fm[cfgs]' type='text' value='$fm[cfgs]' class='txt w150' maxlength='12' tip='".lang('flow.ord_icocss')."' />" : '';
         glbHtml::fmae_row(lang('flow.ord_extfee'),"<input name='fm[numa]' type='text' value='$fm[numa]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  /> &nbsp; $cfgs");
 
         glbHtml::fmae_row(lang('flow.exp_detail'),"<textarea name='fm[detail]' rows='8' cols='50' wrap='off'>$fm[detail]</textarea>");

@@ -20,7 +20,7 @@ class vopCell{
                 'val' => $vre,
                 'org' => $vars[$k],
             );
-        }     
+        }
         return $re;
     }
     

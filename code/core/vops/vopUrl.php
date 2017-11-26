@@ -203,7 +203,11 @@ class vopUrl{
     }
     
     //还原root路径
-    static function root($val){ 
+    static function root($val){
+        $reps = glbConfig::read('repath', 'ex');
+        if(!empty($reps['att'])){
+            $val = str_replace(array_keys($reps['att']), array_values($reps['tpl']), $val);
+        }
         $re = comStore::revSaveDir($val);
         $re = str_replace('{PATH_PROJ}',PATH_PROJ,$re);
         return $re;
