@@ -185,8 +185,8 @@ class dopUser extends dopBase{
         $newpass = comConvert::sysPass($uname,$pwnew,$mod);
         if(empty($pwnew) || $pwnew!==$pwrep){
             $remsg = basLang::show('du_noteq');
-        }elseif($this->db->table("users_uacc")->where("uname='$uname' AND upass='$oldpass'")->find()){
-            $this->db->table("users_uacc")->data(array('upass'=>$newpass))->where("uname='$uname'")->update();
+        }elseif(db()->table("users_uacc")->where("uname='$uname' AND upass='$oldpass'")->find()){
+            db()->table("users_uacc")->data(array('upass'=>$newpass))->where("uname='$uname'")->update();
             $remsg = basLang::show('du_editok');
         }else{
             $remsg = basLang::show('du_erold');
