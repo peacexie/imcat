@@ -1,0 +1,35 @@
+<?php
+include vopTpls::pinc('b_func/book');
+$cfgs = devTopic::cfg2arr($clist);
+?>
+<!doctype html>
+<html><head>
+<?php $this->pmeta();?>
+<?php eimp('/~tpl/book.css'); ?>
+</head><body>
+
+<h1 class="title">{=$title}</h1>
+
+<ul class="list">
+    {loop $cfgs $k1 $v1}
+    <li class='lv1'><span class='right'>{=$k1}</span>&hearts; {=$v1}</li>
+    <?php 
+    $list = db()->table('topic_items')->where("did='$did' AND part='$k1'")->order('top,dno')->select();
+    if(!empty($list)){ 
+    foreach($list as $k2=>$v2){ $dno = $v2['dno'];
+    ?>
+    <a href='{surl("topic.$did.$dno")}'><li class=''><span class='right'>-</span>{=$v2['title']}</li></a>
+    <?php } } ?>
+    {/loop}
+</ul>
+
+<footer>
+    贴心猫/IntimateCat 文档专题
+    <span>模板 : <a href="{surl(0)}?mkv=info-coder&tpls={=$this->tplname}" target="_blank">{=$this->tplname}</a></span>
+    <span><a href='{surl("topic.$did.cfgs")}'>配置查看</a></span>
+</footer>
+
+</body></html>
+<?php 
+$_cbase['tpl']['tplpend'] = '~';
+?>

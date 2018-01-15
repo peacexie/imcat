@@ -1,0 +1,56 @@
+{imp:"u_topic/exdemo/topb~frame"}
+
+{block:infos}
+
+<?php $fcfg = devTopic::cfg2arr($cvote); $no=0; ?>
+<ul class="nav nav-tabs">
+    <?php 
+    foreach($fcfg as $k2=>$title){ 
+        if(devTopic::skip($k2)) continue;
+    ?>
+    <li {if empty($no)}class="active"{/if}><a href="#{=$k2}" data-toggle="tab">{=$title}</a></li>
+    <?php $no++; } ?>
+</ul>
+
+<div class="tab-content">
+<?php
+$no=0;
+foreach ($fcfg as $k2=>$title) { 
+if(devTopic::skip($k2)) continue;
+echo "<div class='tab-pane fade ".(empty($no) ? ' in active' : '')."' id='$k2'>";
+$lists = devTopic::fmtList($this->key,$k2);
+?>
+    <?php foreach($lists as $ti=>$tv){ $mpic=comStore::revSaveDir($tv['mpic']); ?>
+    <div class="topic-post">
+        
+        <h2 class="topic-post-title">
+        {if !empty($tv['jump'])}<a href="{=$tv['jump']}" target="_blank">{/if}
+            {title($tv['title'],60,$tv)}
+        </a>
+        </h2>
+        <img src="{=$mpic}" class="icon1" alt="{=$tv['mpic']}">
+        <p class="topic-post-meta">
+            <a onclick="voteWin('{=$did}','{=$tv['dno']}')">投票</a>
+            <span id="v_{=$did}_{=$tv['dno']}">[{=$tv['vote']}]票</span>
+            <a href='{surl("topic.$did.$k2")}#{=$tv[dno]}'>查看</a>
+            <?php if(!empty($tv['utags'])){ foreach ($tv['utags'] as $k1=>$v1) { ?>
+            &nbsp; {=$k1}:{=$v1}
+            <?php } }else{ echo $tv['tags']; } ?>
+        </p>
+        <p class="remark">
+            {text($tv['detail'],1500,1)} 
+        </p>
+    </div><!-- /.blog-post -->
+    <?php } ?>
+<?php echo "</div>"; $no++; } ?>
+</div>
+
+<?php
+echo eimp('/layer/layer.js','vendui');
+echo eimp('/~tpl/vote.js');
+?>
+<script>var enc='';</script>
+
+{/block:infos}
+
+{block:init}<?php devTopic::voteCook();?>{/block:init}

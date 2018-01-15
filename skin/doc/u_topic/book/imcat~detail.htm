@@ -1,0 +1,44 @@
+<?php
+include vopTpls::pinc('b_func/book');
+$data = bookData($did,$this->view);
+$info = bookNav2($data,$clist);
+$info[1] = 'a'; $info[2] = 'b';
+?>
+<!doctype html>
+<html><head>
+<?php $this->pmeta();?>
+<?php eimp('/~tpl/book.css'); ?>
+<script src="{=PATH_VENDUI}/jquery/jquery-3.x.js"></script>
+</head><body>
+
+<nav>
+    <span class="wp2 left"><?=$info['prev']?></span>
+    <span class="wpc"><a href="{surl("topic.$did")}">目录</a></span>
+    <span class="wp2 right"><?=$info['next']?></span>
+    <p><span class="act">Html</span> # <span>Makedown</span></p>
+</nav>
+
+<h1 class="title">{=$data['title']}</h1>
+
+<pre id="odoc"><?=$data['detail']?></pre>
+
+<div class="out" style="display:none;">
+    <textarea id="text" wrap="off"></textarea>
+</div>
+
+<div class="out">
+    <div id="html"></div>
+</div>
+
+<footer style="margin-top:0px">
+    贴心猫/IntimateCat 文档专题
+    <span>模板 : <a href="{surl(0)}?mkv=info-coder&tpls={=$this->tplname}" target="_blank">{=$this->tplname}</a></span>
+    <span><a href="{surl("topic.$did")}">目录</a></span>
+</footer>
+
+</body></html>
+<script src="{=PATH_VENDUI}/jquery/jq-marked.js"></script>
+<?php 
+$_cbase['tpl']['tplpend'] = '~';
+eimp('/~tpl/book.js'); 
+?>
