@@ -10,7 +10,7 @@ class admPFunc{
         foreach($pmods as $pmod){
         foreach($_groups as $k=>$v){
             if($v['pid']==$pmod){
-                if($pid!=$v['pid'] && count($pmods>1)){
+                if($pid!=$v['pid'] && count($pmods)>1){
                     $a["^group^$v[pid]"] = "$v[pid]-{$_groups[$v['pid']]['title']}";
                 }
                 $a[$k] = "[$k]$v[title]";

@@ -20,7 +20,7 @@ if($parts=='temp'){
     }
     $ufix = comStore::getResDir($mod,$kid,0);
     
-}elseif(isset($cfg_dirs[$dir])){ //
+}elseif(isset($cfg_dirs[$dir])){
     $cfg = $cfg_dirs[$dir]; 
     $rcfgs = array(
         'skin' => array(DIR_SKIN,PATH_SKIN),
@@ -38,7 +38,8 @@ $dmsg = ''; //处理删除
 $_admPerm = usrPerm::check('pextra','edtadm'); $_admPerm = !$_admPerm;
 $_upPerm = usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $_delPath = in_array($parts,array('temp','now',));
-$_upPath = in_array($parts,array('temp',));
+$_upPath = in_array($parts,array('temp'));
+$_upPath = in_array($parts,array('temp')) || ($parts=='files' && usrPerm::issup());
 if($dfile && $_admPerm && $_delPath){
     if(strstr($dfile,'./')) glbError::show('Error Path.');
     @$dre = unlink($rdir.$dfile); 
@@ -173,6 +174,8 @@ foreach($re['file'] as $fnm=>$v){
         <option value="auto"><?php lang('plus.fv_atuoname',0); ?></option>
         <option value="keep"><?php lang('plus.fv_orgname',0); ?></option>
       </select>
+      <input name="_parts" type="hidden" value="<?=$parts?>">
+      <input name="_dir" type="hidden" value="<?=$ufix?>">
       <!--input name="recbk" type="hidden" value="refview"-->
       <input name="btUpload" type=submit id="btUpload" value="<?php lang('plus.fv_upload',0); ?>"></td>
     </tr>

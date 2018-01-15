@@ -180,6 +180,7 @@ class basKeyid{
         return $sTmp;
     } 
     
+    // 0bb38d5cbadd
     static function kidAuto($xN=24){
         $str = date("Ymd"); 
         $sy = substr($str,0,4);
@@ -194,6 +195,15 @@ class basKeyid{
         return $str;
     }
     
+    // 1y1-xhc3w (2017-1229-...)
+    static function kidY3x5(){
+        $y3 = basKeyid::fmtBase32('',date('Y'),32,3);
+        //$t5 = ((date('m')-1)*31+date('d'))*86400+date('H')*3600+date('i')*60+date('s');
+        $t5 = strtotime(date('Y-m-d H:i:s')) - strtotime(date('Y').'-01-01');
+        $x5 = basKeyid::fmtBase32('',$t5,32,5); 
+        return "$y3-$x5";
+    }
+
     static function kidNext($kTab,$xOld,$xMin,$xStep,$mLen=5){
         $ktabs = $kTab=='' ? KEY_TAB32 : $kTab; 
         $nLen = strlen($xMin);

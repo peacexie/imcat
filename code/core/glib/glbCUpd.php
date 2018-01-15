@@ -334,5 +334,21 @@ class glbCUpd{
         }
         $icfg['pfile'] = str_replace(array(',,,',',,'),',',"$pfile,");
     }*/
+
+    // 
+    static function upd_parex($pid){
+        $db = glbDBObj::dbObj();
+        $tabid = 'bext_paras';
+        $keys = array('pid','title','detail','numa','numb','cfgs','note');
+        $arr = array();
+        $list = $db->table($tabid)->where("pid='$pid' AND enable='1'")->order('top')->select(); 
+        foreach($list as $v){ 
+            $kid = str_replace('-','_',$v['kid']);
+            foreach($keys as $k){
+                $arr[$kid][$k] = $v[$k];
+            }
+        }
+        if(!empty($arr)) glbConfig::save($arr,"parex_$pid",'dset');
+    }
     
 }

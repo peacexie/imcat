@@ -123,7 +123,7 @@ function fsCode(fmid,reLoad,pos){
     var box = $('#'+fmid+'_vBox');
     if($(box).html().length<24){
       var img = '<samp class="fs_vimg_span" style="">';
-      img += '<img id="'+fmid+'_vimg" src="'+_cbase.run.rskin+'/_pub/a_img/blank.gif" onclick=\'fsCode("'+fmid+'","reLoad")\' title="'+lang('jcore.vcode_upd')+'" />';
+      img += '<img id="'+fmid+'_vimg" src="'+_cbase.run.rskin+'/_pub/a_img/blank.gif" onclick=\'fsCode("'+fmid+'","reLoad","'+pos+'")\' title="'+lang('jcore.vcode_upd')+'" />';
       img += '<samp class="fs_vimg_close" onclick=\'jeShow("'+fmid+'_vBox")\' title="'+lang('jcore.hide')+'">[X]</samp></samp>';
       $(box).html(img); 
       reLoad = 1;

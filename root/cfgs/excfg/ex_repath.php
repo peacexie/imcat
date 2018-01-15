@@ -3,14 +3,15 @@
 // $_pub, 公共替换路径 ------------------------
 $_pub = array();
 
-// 自定义[cdn-swplayer]路径
-#$_pub['{outSwplayerPath}/'] = 'http://cdn_d/vimp/vendui/swplayer/'; 
+// 自定义(公共)路径
+#$_pub['{outSwplayerPath}/'] = 'http://cdn_d/vimp/vendui/swplayer/';  
 
 // $_att, 附件替换路径; ------------------------
 $_att = array();
 
 // 旧版asp附件路径
-#$_att['{oldAspUpfile}/'] = 'http://old.abc_d.com/upload/'; 
+$_att['{oldUpic}/'] = 'http://127.0.0.1/peace/pswpower/2017/upfile/dtpic/';
+$_dir['{oldUpic}/'] = 'E:/Peace/webs/peace/pswpower/2017/upfile/dtpic/'; 
 
 // $_tpl, 模板替换路径; ------------------------
 $_tpl = array();
@@ -23,6 +24,8 @@ $_tpl = array();
 // 替换路径
 $_ex_repath['att'] = $_pub + $_att;
 $_ex_repath['tpl'] = $_pub + $_tpl; 
+$_ex_repath['dir'] = $_dir; 
+
 
 /*
 src="{stcroot}/media/collect/y_col1.gif" 

@@ -10,13 +10,6 @@
 * Down at out sites: 
  - [chinaz.com] http://down.chinaz.com/soft/38424.htm
  - [admin5.com] http://down.admin5.com/php/130751.html
- - [pan.baidu.com] http://pan.baidu.com/share/home?uk=3191979020 Down File: txmao-all.rar
-
-* Down split .rar parts(main/vary/vimp):
- - [pan.baidu.com] http://pan.baidu.com/share/home?uk=3191979020 
- - txmao-main.rar [main]  (include:code/root) libs,flow scripts,confgs,tpl,entry files
- - txmao-vary.rar [vary]  Variable dynamic file (cache, HTML, upload resource)
- - txmao-vimp.rar [vimp]  Import third party components (static figure, third party components)
 
 * Tips:
  - Other download addresses, are collected by the third party, the update is relatively slow;
@@ -26,8 +19,8 @@
 #check#Environmental
 
 * PHP Environmental: 
- - PHP5.3 ~ PHP7.1 (It can run Under php5.2 temporary, But we do NOT guarantee compatible with php5.2)
- - Recommend: PHP5.4 ~ PHP7.0
+ - PHP5.3 ~ PHP7.2 (It can run Under php5.2 temporary, But we do NOT guarantee compatible with php5.2)
+ - Recommend: PHP5.4 ~ PHP7.1
  
 * Mysql Environmental:
  - mysql5.x+

@@ -86,7 +86,7 @@ class glbHtml{
         $recbk = basReq::val('recbk','');
         $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
         echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
-        echo "<table border='$tbbrd' class='$tbcss'>\n"; 
+        echo "<table border='$tbbrd' class='table $tbcss'>\n"; 
     }    
     // form+table:(end):结束
     static function fmt_end($data='',$tabend='</table>'){

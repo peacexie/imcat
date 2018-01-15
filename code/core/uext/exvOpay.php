@@ -157,6 +157,30 @@ class exvOpay{
         basDebug::bugLogs('opay',$data,'detmp','db');
     }
 
+    static function payDebug($fk, $fid=8){ 
+        $cfgs = array('_GET','_POST');
+        $logs = "";
+        foreach ($cfgs as $k1) {
+            $logs .= "    [$k1]\n";
+            $v1 = $GLOBALS[$k1];
+            if(empty($v1)){
+                $logs .= "(null)\n";
+            }else{
+                foreach($v1 as $k2=>$v2){
+                    $v2 = is_array($v2) ? json_encode($v2,1) : $v2;
+                    $logs .= "$k2=[$v2]\n";
+                }
+            }
+
+        }
+        // fid: 
+        if(is_numeric($fid) && $fid<100){
+            $dno = (date('d')-1)/$fid; 
+            $fid = date('m').(floor($dno)+1);
+        }
+        basDebug::bugLogs($fk,$logs,"$fk-$fid.log",'file');
+    }
+
 /*
  
 */

@@ -20,11 +20,11 @@ if($view=='glist'){
                 if($fs_do=='upd'){ 
                     $db->table($tabid)->data(basReq::in($fm[$id]))->where("kid='$id'")->update(); 
                 }elseif($fs_do=='del'){ 
-                     $msg = admAFunc::modCopy($mod, $tabid, 'is_del', $id);
+                    $msg = admAFunc::modCopy($mod, $tabid, 'is_del', $id);
                 }elseif($fs_do=='show'){ 
-                     $db->table($tabid)->data(array('enable'=>'1'))->where("kid='$id'")->update();  
+                    $db->table($tabid)->data(array('enable'=>'1'))->where("kid='$id'")->update();  
                 }elseif($fs_do=='stop'){ 
-                     $db->table($tabid)->data(array('enable'=>'0'))->where("kid='$id'")->update(); 
+                    $db->table($tabid)->data(array('enable'=>'0'))->where("kid='$id'")->update(); 
                 }
                 if($mod!='groups' && $fs_do!='del') glbCUpd::upd_model($id);
             }

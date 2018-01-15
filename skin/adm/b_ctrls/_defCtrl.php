@@ -54,13 +54,14 @@ class _defCtrl{
             $cv = $dop->cv;
             require $full;
         }
-        echo "\n<!--inc:end-->\n<p>"; 
+        echo "\n<!--inc:end-->\n"; 
         eimp('/_pub/jslib/jq_base.js');
         eimp('/layer/layer.js','vendui');
         eimp('/bootstrap/js/bootstrap.min.js','vendui');
         // footer
-        if($_cbase['debug']['err_mode']) echo basDebug::runInfo();
-        echo "</p>\n";
+        if($_cbase['debug']['err_mode']){
+            echo "<p>".basDebug::runInfo()."</p>\n";
+        }
         echo "</body></html>\n";
         echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n";
         die(); //return array('tplnull'=>1);

@@ -97,7 +97,7 @@ class vopCell{
     // 还原cPic路径,处理无图,处理缩略图
     // $def=demo_nop300x200.jpg
     // $resize=160x120
-    static function cPic($val,$def='',$resize=0){ 
+    static function cPic($val,$def='',$resize=0){
         if(empty($val) && $def) return PATH_STATIC."/icons/basic/$def";
         // 不需要缩略图直接返回
         if(empty($resize)) return vopUrl::root($val);
@@ -110,9 +110,8 @@ class vopCell{
         $scfg = read('store.resize','ex'); 
         if(strpos($scfg,$resize)>0){
             $val = comImage::thpic($val,$resize); // 处理缩略图
-        }else{ // 缩略图规格不正确
-            $val = vopUrl::root($val);
-        }
+        } // else{} // 缩略图规格不正确
+        $val = vopUrl::root($val);
         return $val;
     }
     
@@ -159,7 +158,8 @@ class vopCell{
                     break;
                 }
             }
-        } 
+        }
+        if(is_array($val)){ return ''; }
         $len = empty($len) ? 0 : intval($len);
         if($nobr){
             $val = basStr::filHText($val,$len);

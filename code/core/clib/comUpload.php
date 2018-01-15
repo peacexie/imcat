@@ -188,9 +188,15 @@ class comUpload
     // 重命名文件
     private function getFullName()
     {
-        $folder = comStore::getTmpDir();
+        $_parts = req('_parts'); 
+        $_dir = req('_dir'); 
+        $ndir = in_array($_parts,array('files')) && usrPerm::issup();
+        if($ndir){
+            $folder = DIR_STATIC.'/'.$_dir;
+        }else{
+            $folder = comStore::getTmpDir();
+        } //dump($folder);
         return $folder . '/' . $this->getFileName();
-
     }
 
     // 获取文件名

@@ -9,7 +9,7 @@ if($act=='iadd'){ //添加物品
     $msg = exvOcar::iadd($unqid,$user);
 }elseif($act=='iedit'){ //修改数量
     $ordcnt = req('ordcnt',1,'N');
-    $db->table($tabid)->data(array('ordcnt'=>$ordcnt))->where("$where AND cid='$cid'")->update(); 
+    $db->table($tabid)->data(array('ordcnt'=>$ordcnt))->where("$where AND cid='$cid'")->update(0); 
     die(basMsg::show("修改成功！",'Redir',surl($this->mkv),1));    
 }elseif($act=='idel'){ //删除物品
     $db->table($tabid)->where("$where AND cid='$cid'")->delete();

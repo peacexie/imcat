@@ -25,6 +25,13 @@ class extEmail{
         if($this->type=='phpmailer'){
             require DIR_VENDOR.'/PHPMailer/PHPMailerAutoload.php';
             $this->umail = new PHPMailer(true); 
+            $this->umail->SMTPOptions = array(  
+                'ssl' => array(  
+                    'verify_peer' => false,  
+                    'verify_peer_name' => false,  
+                    'allow_self_signed' => true,  
+                )  
+            );
             $this->umail->IsSMTP(); 
             $this->umail->CharSet = 'UTF-8'; //设置邮件的字符编码，这很重要，不然中文乱码 
             $this->umail->SMTPAuth = true; //开启认证 

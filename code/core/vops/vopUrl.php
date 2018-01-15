@@ -87,6 +87,9 @@ class vopUrl{
             }
         }elseif($type=='detail'){
             $cfg = empty($vcfg['d']) ? '' : $vcfg['d'];
+            if(!empty($view) && isset($vcfg['d']['v'])){
+                $cfg[$view] = $vcfg['d']['v'];
+            }
         }elseif(isset($vcfg['m'])){ // mext,mhome
             $cfg = $vcfg['m']; 
         }
@@ -204,10 +207,6 @@ class vopUrl{
     
     //还原root路径
     static function root($val){
-        $reps = glbConfig::read('repath', 'ex');
-        if(!empty($reps['att'])){
-            $val = str_replace(array_keys($reps['att']), array_values($reps['tpl']), $val);
-        }
         $re = comStore::revSaveDir($val);
         $re = str_replace('{PATH_PROJ}',PATH_PROJ,$re);
         return $re;

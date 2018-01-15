@@ -11,7 +11,7 @@ tmp...
 
 #func#Functions
 
-* Support: PHP5.2~PHP7.1/ custom module / custom field / custom parameter / custom classification
+* Support: PHP5.2~PHP7.2/ custom module / custom field / custom parameter / custom classification
 * Data&share / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Other: Ftp store/Sphinx search/planning tasks / user points / template inherit / tag cache /js tags / field content save to file
@@ -35,12 +35,12 @@ tmp...
 #sysbug#Problems
 
 * Future/Direction
- - 1. Develop Nodejs/Python accessory project - these project will not in this case! 
- - 2. Plan for v4.x
+ - 1. Wechat-activity
+ - 2. Develop Nodejs/Python accessory project - these project will not in this case! 
 
 * Recent target
- - Planning for the next version : ver3.10/ver4.0
- - Perfect known bugs, documentation, UI.
+ - App-systems : Shopping-System/Blog
+ - Planning for the next version
 
 
 #declare#Idea statement

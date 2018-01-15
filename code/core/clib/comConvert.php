@@ -117,7 +117,7 @@ class comConvert{
         }
         if($de){
             if(substr($res,0,10)==0 || substr($res,0,10)-$_SERVER["REQUEST_TIME"]>0) {
-                return unserialize(substr($res,26));
+                return @unserialize(substr($res,26));
             }
             return '';
         }else{

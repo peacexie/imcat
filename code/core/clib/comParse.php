@@ -8,9 +8,7 @@
 
 // 编码转化,加密类
 class comParse{    
-    
-    // base64,其它 -------------------------------------------------- 
-    
+
     // 适合把中文用base64编码用于url传输(比url编码短,且都是安全字符),获取时用这个来解码
     // $s : 原字符串, 支持数组
     // $de : 0-编码, 1-解码, a-解码返回数组
@@ -44,8 +42,7 @@ class comParse{
         return $str;
     }
     
-    // json -------------------------------------------------- 
-    
+    // csv 
     static function csvGets($file) {
         $handle = fopen($file,'r'); 
         $arr = array();
@@ -55,7 +52,6 @@ class comParse{
         fclose($handle); 
         return $arr;
     }
-
     static function csvPuts($file, $data) {
         $handle = fopen($file, 'r+');
         foreach ($data as $line) {
@@ -64,8 +60,7 @@ class comParse{
         fclose($handle);
     }
 
-    // xml(node) -------------------------------------------------- 
-    
+    // xml(node) 
     static function nodeParse($data,$cset='') {
         if(is_string($data)){
             $hfix = $cset ? "<?xml version='1.0' encoding='$cset'?>" : '';
@@ -75,8 +70,6 @@ class comParse{
         $arr = json_decode($json, true);
         return $arr;
     }
-    
-    // json -------------------------------------------------- 
     
     // 将数组转换为JSON字符串（兼容中文）
     static function jsonEncode($array) {        
@@ -92,14 +85,25 @@ class comParse{
         $arr = json_decode($str,1);
         return $arr;
     }
-    
-    // serialize -------------------------------------------------- 
-    
+
     // 反序列化（将某些特殊字符的utf8编码转为asc码解析）不建议使用原生的unserialize。
     static function serEncode($str) { 
         $str = str_replace("\r", "", $str);
         $str = preg_replace('!s:(\d+):"(.*?)";!se', '"s:".strlen("$2").":\"$2\";"', $str ); 
         return unserialize($str); 
+    }
+
+    // unicode 
+    static function uniDecode($str, $type='u'){
+        if($type=='u'){ // '\u4E00'
+            $reg = '/\\\\u([0-9a-f]{4})/i';
+        }else{ // '&#x4E00'
+            $reg = '/\&\#x([0-9a-f]{4})\;/i';
+        }
+        $str = preg_replace_callback($reg, function($match){
+            return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UCS-2BE');
+        }, $str);
+        return $str;
     }
 
 }

@@ -21,7 +21,7 @@
     <ul class="dropdown-menu" aria-labelledby="nav_msub2">
       <?php
       if($this->mod=='uplog'){
-      $cvs = tex_base::cutvers($cfgs,2,$key);
+      $cvs = tex_base::cutvers($cfgs,3,$key);
       foreach($cfgs as $k=>$v){ if(in_array($k,$cvs)){ 
       $imkv = $k=='readme' ? 'uplog' : "uplog-$k"; 
       $iver = is_numeric($v[0])?"ver:".str_replace('_','.',$k):''; 

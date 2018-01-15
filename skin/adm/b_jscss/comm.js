@@ -27,6 +27,30 @@ function setEdit(disfms,hdrows,fmfix){
      }
 }
 
+// var tpl = "<a href='?mkv=dops-a&mod=topic&did={id}&view=cfgs' target='_blank'>资料管理</a>";
+// setColstr('tblist',-2,'资料管理',tpl);
+function setColstr(tabid,cno,title,tpls,flag){
+    var tab = $('.tblist')[0];
+    var trs = $(tab).find('tr');
+    var ths = $(tab).find('tr:first th');
+    if(cno<0) cno = ths.length+cno;
+    if(flag){
+        $(ths).eq(cno).append(flag+title);
+    }else{
+        $(ths).eq(cno).html(title);
+    }
+    for(var i=1;i<trs.length;i++){
+        var id = $(trs[i]).find('input:first').prop('name');
+        id = id.replace('fs[','').replace(']',''); //jsLog(id);
+        var val = tpls.replace('{id}',id);
+        if(flag){
+            $(trs[i]).find('td').eq(cno).append(flag+val);
+        }else{
+            $(trs[i]).find('td').eq(cno).html(val);
+        }
+    }
+} 
+
 function stsetLink(e){
     var url = $(e).prop('href'); 
     //var type = $("input[name='mtype']:checked").val();

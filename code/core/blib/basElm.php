@@ -64,8 +64,9 @@ class basElm{
         return $s;
     }
     // form: text2arr
-    static function text2arr($text){ 
-        $_groups = glbConfig::read('groups'); 
+    static function text2arr($text){
+        $_groups = glbConfig::read('groups');
+        $text = is_array($text) ? $text : trim($text);
         if(is_array($text)){
             if(isset($text['title']) && !empty($text['cfgs'])) return self::text2arr($text['cfgs']);
             return $text;
@@ -77,9 +78,9 @@ class basElm{
             foreach($rei as $k=>$v){ 
                 $re[$k] = $v['title'];
             }
-        }elseif(strstr($text,'bext_paras.')){ //bext_paras.logmode_cn[.userkey]
+        }elseif(preg_match("/^bext_paras\.\w+$/",$text)){ //bext_paras.logmode_cn
             $re = glbDBExt::getExtp(substr($text,11));
-        }elseif(strpos($text,'.') && !(strpos($text,"\n")||strpos($text,"\r"))){ //corder.ordstat
+        }elseif(preg_match("/^\w+\.\w+$/",$text)){ //corder.ordstat
             $t = explode('.',$text);
             $mcfg = glbConfig::read($t[0]); 
             $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);

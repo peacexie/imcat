@@ -10,13 +10,6 @@
 * 整站下载：
  - [chinaz.站长下载] http://down.chinaz.com/soft/38424.htm
  - [admin5.A5下载] http://down.admin5.com/php/130751.html
- - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 下载：txmao-all.rar文件
-
-* yscode分包(main/vary/vimp)下载：
- - [百度云-网盘] http://pan.baidu.com/share/home?uk=3191979020 
- - txmao-main.rar [main包]  (包含code/root目录) 类库,流程代码,配置,模版,入口脚本等
- - txmao-vary.rar [vary包]  可变动态文件(缓存,html,上传资源)
- - txmao-vimp.rar [vimp包]  导入第三方组件(静态图,第三方组件)
 
 * 提示：
  - 其他下载地址，均为第三方自动收录，更新比较慢；
@@ -26,8 +19,8 @@
 #check#环境需求
 
 * PHP环境：
- - PHP5.3 ~ PHP7.1 (php5.2暂时可用,但不保证后续还特意兼容php5.2)
- - 推荐：PHP5.4 ~ PHP7.0
+ - PHP5.3 ~ PHP7.2 (php5.2暂时可用,但不保证后续还特意兼容php5.2)
+ - 推荐：PHP5.4 ~ PHP7.1
  
 * Mysql数据库服务器：
  - mysql5.x+

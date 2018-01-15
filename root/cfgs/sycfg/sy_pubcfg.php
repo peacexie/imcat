@@ -128,7 +128,10 @@ $_sy_pubcfg['skfiles'] =  array(
     //'derun.imp_php',
 
     'jquery-2.x.js',
-    'fontawesome-webfont.svg',
+    'fontawesome-webfont.svg', // format('svg'); /* iOS 4.1- */
+    'bootstrap.cerulean.css',
+    'bootstrap.flatly.css',
+    'bootstrap.superhero.css',
     
 );
 

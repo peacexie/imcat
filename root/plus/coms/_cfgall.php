@@ -9,7 +9,7 @@ $lang = $_cbase['sys']['lang'];
 $_groups = read('groups');
 $db = db(); 
 
-safComm::urlFrom();
+//safComm::urlFrom();
 extract(basReq::sysVars());
 $aurl = basReq::getUri(-2);
 

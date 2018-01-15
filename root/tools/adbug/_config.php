@@ -3,7 +3,7 @@
 //$_cbase['tpl']['tpl_dir'] = 'adm';    
 //$_cbase['run']['outer'] = 1;
 //$_cbase['skip']['_sess_'] = true;
-if(!session_id()) session_start();
+if(!session_id()) @session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
 include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
 include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';

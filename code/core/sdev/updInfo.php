@@ -47,17 +47,18 @@ class updInfo{
             // ● 当前版本：3.0.2015.1225（官方版本：3.0.2015.1225）
             $surl = $_cbase['server']['txmao']."/root/plus/api/update.php";
             $nver = $_cbase['sys']['ver']; 
-            $sver = comHttp::doGet("$surl?act=version",8); 
-            $sdata = comHttp::doGet("$surl?act=server",8);
+            $sver = comHttp::doGet("$surl?act=version",2); 
+            $sdata = comHttp::doGet("$surl?act=server",2);
             $linkb = "● ".basLang::show('updinfo_nowver')."V{$nver}"; 
             $slang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2)=='zh' ? 'dev' : 'doc';
             $linkr = "<a href='".$_cbase['server']['txmao']."/$slang.php?start' target='_blank' title='".basLang::show('updinfo_viewdown')."'>V$sver</a>";
             if(strstr($sdata,'<br>● <a') && strlen($sver)>=3 && strlen($sver)<=18){ 
                 $data = "{$linkb}".basLang::show('updinfo_remver',$linkr)."\n$sdata";
+                comFiles::put(DIR_DTMP.$nf,$data);
             }else{
-                $data = "{$linkb}".basLang::show('updinfo_remerr')."\n";
+                //$data = "{$linkb}".basLang::show('updinfo_remerr')."\n";
+                $data = comFiles::get(DIR_DTMP.$nf);
             }
-            comFiles::put(DIR_DTMP.$nf,$data);
         }
         return $data;
     }    

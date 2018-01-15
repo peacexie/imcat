@@ -173,6 +173,12 @@ class comStore{
             $res = '{'.$key.'root}'.substr($res,strlen($cfg[1]));
             $str = str_replace($v,$res,$str);
         }
+        $reps = glbConfig::read('repath', 'ex');
+        foreach (array('att','tpl') as $k0) {
+            if(!empty($reps[$k0])){
+                $str = str_replace(array_values($reps[$k0]), array_keys($reps[$k0]), $str);
+            }
+        }
         return $str;
     }
     
@@ -205,6 +211,12 @@ class comStore{
             if(in_array($ck,array('tpl','tpc','ctpl','code'))) continue;
             $path = $part=='dir' ? $itm[0] : $itm[1];
             $str = str_replace(array('{'.$ck.'root}','{$'.$ck.'root}'),$path,$str); 
+        }
+        $reps = glbConfig::read('repath', 'ex');
+        foreach (array('att','tpl') as $k0) {
+            if(!empty($reps[$k0])){
+                $str = str_replace(array_keys($reps[$k0]), array_values($reps[$k0]), $str);
+            }
         }
         return $str;
     }

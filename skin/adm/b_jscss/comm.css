@@ -162,3 +162,6 @@ form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
 /* #locSetS { background-clip:padding-box; } select*/
 
 .flgOpbar .form-control{ display:inline-block; }
+@media only screen and (max-width:620px){
+    .flgOpbar{ display:block; float:none; }
+}

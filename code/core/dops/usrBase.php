@@ -83,7 +83,7 @@ class usrBase{
         if(in_array($upass,$simpass)) return 'SimPass'; 
         if($this->userFlag=='Error') return 'Forbid';
         if($this->userFlag=='Login') return 'isLogin'; 
-        $uname = basStr::filKey($uname,'_'); 
+        $uname = basStr::filKey($uname,'_.-@'); // email
         $this->uinfo = $this->uget_minfo($uname,$upass); 
         if(empty($this->uinfo['show'])) return 'noChecked'; 
         if($this->uinfo['grade']=='isStopped') return 'isStopped'; //grade=xstop处理???

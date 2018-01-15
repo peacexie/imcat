@@ -107,6 +107,12 @@ $cfgs['orden'] = array(
     'apis/exp_order&pid=timmode_en' => 'Receive Time',
     'apis/exp_order&pid=logmode_en' => 'Logistics Mode',
 );
+$cfgs['downs'] = array(
+    'apis/exp_down&pid=down_speci' => '规格',
+    'apis/exp_down&pid=wechat_gift' => '礼品',
+    'apis/exp_down&pid=user_xxx2' => 'xxx2',
+    'apis/exp_down&pid=user_xxx3' => 'xxx3',
+);
 
 $cfgs['ordnav'] = array(
     'dops/a&mod=corder' => '订单管理',

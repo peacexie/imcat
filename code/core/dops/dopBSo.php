@@ -162,6 +162,7 @@ class dopBSo{
         echo "\n<input name='mod' type='hidden' value='$mod' />";
         echo "\n<input name='view' type='hidden' value='".basReq::val('view')."' />";
         echo "\n<input name='pid' type='hidden' value='".basReq::val('pid')."' />";
+        echo "\n<input name='did' type='hidden' value='".basReq::val('did')."' />";
         echo "\n<input name='part' type='hidden' value='".basReq::val('part')."' />";
         echo "\n<input name='act' type='hidden' value='".basReq::val('act')."' />";
         foreach($khid as $k=>$v){

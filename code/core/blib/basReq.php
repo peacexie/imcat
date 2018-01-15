@@ -75,7 +75,7 @@ class basReq{
        case "Key" : 
        case "Title" : 
           $Tmp = basStr::cutCount($data,$len);
-          $Tmp = $type=='Title' ? basStr::filTitle($Tmp) : basStr::filKey($Tmp,'-._@');
+          $Tmp = $type=='Title' ? basStr::filTitle($Tmp) : basStr::filKey($Tmp,'_.-@');
           $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
           return $Tmp; break; 
        case "Safe4" : 

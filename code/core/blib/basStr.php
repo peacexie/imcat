@@ -259,7 +259,7 @@ class basStr{
         }
     }
     // 避免重复转utf-8，只转需要转的文档
-    static private function isConv($str = ''){
+    static function isConv($str = ''){
         if(!$str) return FALSE;
         if(mb_detect_encoding($str,'UTF-8',TRUE) == 'UTF-8') return FALSE; //本就是UTF8的编码
         return TRUE;    

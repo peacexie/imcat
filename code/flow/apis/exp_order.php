@@ -25,7 +25,7 @@ if($view=='list'){
                 }
             }
         }
-        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&flag=v1");
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=$mod&pid=$pid&flag=v1");
     }
 
     $linka = admPFunc::fileNav($pid,'ordcn'); $gname = admPFunc::fileNavTitle($pid,'ordcn');
@@ -53,7 +53,7 @@ if($view=='list'){
     echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
     echo "<td class='tr' colspan='6'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption(lang('flow.op_op4'))."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
     echo "</tr>";
-    glbHtml::fmt_end(array("mod|$mod"));
+    glbHtml::fmt_end(array("mod|$mod","pid|$pid"));
     
 }elseif($view=='form'){
     
@@ -80,7 +80,7 @@ if($view=='list'){
         }else{
             $kid = '';
         }
-        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','detail'=>'','cfgs'=>'','numa'=>'0');
+        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','detail'=>'','cfgs'=>'','numa'=>'0','numb'=>'0');
         foreach($def as $k=>$v){ if(!isset($fm[$k])) $fm[$k] = $v; }
 
         $ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
@@ -94,10 +94,11 @@ if($view=='list'){
             $vstr = "tip='".lang('admin.fad_uid41258')."'"; //url='".PATH_ROOT."/plus/ajax/cajax.php?act=modExists' 
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$did' class='txt w150' maxlength='12' reg='key:4-12' $vstr />$ienable");
         } // paymode_, numa,  附加金额
-        glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
+        glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='48' reg='str:2-48' tip='".lang('admin.fad_tip21246')."'  />$itop");
 
-        $cfgs = strstr($pid,'paymode_') ? "".lang('flow.ord_icon')."<input name='fm[cfgs]' type='text' value='$fm[cfgs]' class='txt w150' maxlength='12' tip='".lang('flow.ord_icocss')."' />" : '';
-        glbHtml::fmae_row(lang('flow.ord_extfee'),"<input name='fm[numa]' type='text' value='$fm[numa]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  /> &nbsp; $cfgs");
+        $numb = "扩展(整数)：<input name='fm[numb]' type='text' value='$fm[numb]' class='txt w40' maxlength='12' tip='".lang('flow.ord_icocss')."' />";
+        glbHtml::fmae_row('数字',"运费倍率：<input name='fm[numa]' type='text' value='$fm[numa]' class='txt w40' maxlength='5' reg='n+d' tip='".lang('admin.fad_tip25num')."'  /> &nbsp; $numb");
+        glbHtml::fmae_row(lang('flow.ord_icon'),"<input name='fm[cfgs]' type='text' value='$fm[cfgs]' class='txt w150' maxlength='12' tip='".lang('flow.ord_icocss')."' />");
 
         glbHtml::fmae_row(lang('flow.exp_detail'),"<textarea name='fm[detail]' rows='8' cols='50' wrap='off'>$fm[detail]</textarea>");
         glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");

@@ -7,14 +7,14 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 
 // 系统参数
 $_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
-$_cbase['sys']['ver']     = '3.9'; // 版本号
+$_cbase['sys']['ver']     = '4.0'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'en'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = '00v39_'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = '00v40_'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
@@ -70,6 +70,8 @@ $_cbase['weixin']['tplidIndoc'] = 'u6DK6CKG8TnCFGaOwglBPUPa_UvE3nwpQU-k8kP1YpA';
 
 // indoc
 $_cbase['indoc']['debug'] = true; 
+// topic
+$_cbase['topic']['tpldir'] = '/doc/u_topic'; 
 
 // 3aks
 $_cbase['3aks']['baiduip'] = '3GGtGlCtbAGa1GYK70XFX2Rb'; //百度IP

@@ -13,7 +13,7 @@ class dopExtra extends dopBase{
         parent::__construct($cfg,$tab);
         if(isset($cfg['typfid'])) $this->typfid = $this->so->typfid = 'catid';
         $this->soset($cfg);
-        $this->order  = $this->so->order  = basReq::val('order','atime');
+        $this->order = $this->so->order = empty($cfg['order']) ? basReq::val('order','atime') : $cfg['order'];
     }
     // 翻页条,批量操作
     function pgbar($idfirst,$idend,$ops="(null)"){

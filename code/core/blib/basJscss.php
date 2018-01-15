@@ -59,7 +59,7 @@ class basJscss{
                     $imp = str_replace('(-lang)',"-$lang",$imp);
                 }
                 $imp = (in_array(substr($imp,0,6),array('/plus/','/tools'))?DIR_ROOT:DIR_SKIN).$imp;
-                require $imp;
+                if(file_exists($imp)) require $imp; 
             }
         }
     }

@@ -68,8 +68,14 @@ class comImage{
         $size = explode('x',$resize); 
         $orgd = str_replace(array('{uresroot}','{staticroot}'),array(DIR_URES,DIR_STATIC),$val);
         $orgp = str_replace(array('{uresroot}','{staticroot}'),array(PATH_URES,PATH_STATIC),$val);
-        $objd = str_replace(array('.'),array("-$resize."),$orgd);
-        $objp = str_replace(array('.'),array("-$resize."),$orgp);
+        $ext = strrchr($val,'.');
+        $objd = str_replace($ext,"-$resize$ext",$orgd);
+        $objp = str_replace($ext,"-$resize$ext",$orgp);
+        $redir = read('repath.dir','ex'); 
+        if(!empty($redir)){
+            $orgd = str_replace(array_keys($redir),array_values($redir),$orgd); 
+            $objd = str_replace(array_keys($redir),array_values($redir),$objd); 
+        }
         if(file_exists($orgd)){ // local
             $res = comImage::thumb($orgd,$objd,$size[0],$size[1]);
             return $res ? $objp : $orgp;
