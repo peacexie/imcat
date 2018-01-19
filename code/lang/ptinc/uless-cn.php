@@ -10,6 +10,7 @@ $note  = "格式1:选项值=选项标题,一行一个;\n";
 $note .= "格式2:模型id(栏目/类别);\n";
 $note .= "格式3:pid:\"cnhn\",w:640;\n";
 $note .= "格式4:bext_paras.logmode_cn, 取bext_paras资料;\n";
+$note .= "格式5:`class::method(p1,p2...)`;\n";
 $note .= "[选择数组]配置规范:\n";
 $note .= "*. [下拉选择][多选框][单选按钮]格式1或2或3:\n";
 $note .= "*. [开窗单选][开窗多选]格式3:";

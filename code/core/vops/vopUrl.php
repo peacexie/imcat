@@ -167,7 +167,7 @@ class vopUrl{
         $mod = $a[0]; $key = $a[1]; $view = $a[2];
         $mcfg = glbConfig::vcfg($mod);
         $vmode = @$mcfg['c']['vmode']; $url = '';
-        if(empty("$key$view") && isset($mcfg['m']) && $mcfg['m']=='first'){
+        if(empty($key) && empty($view) && isset($mcfg['m']) && $mcfg['m']=='first'){
             $key = self::ifirst($mod,'key');
             $mkv .= "-$key";
         }

@@ -8,10 +8,17 @@ $_pub = array();
 
 // $_att, 附件替换路径; ------------------------
 $_att = array();
+$_dir = array();
 
 // 旧版asp附件路径
-$_att['{oldUpic}/'] = 'http://127.0.0.1/peace/pswpower/2017/upfile/dtpic/';
-$_dir['{oldUpic}/'] = 'E:/Peace/webs/peace/pswpower/2017/upfile/dtpic/'; 
+/*
+if($_SERVER["HTTP_HOST"]=='psw.txjia.com'){
+    $_att['{oldUpic}/'] = 'http://127.0.0.1/peace/pswpower/2017/upfile/dtpic/';
+    $_dir['{oldUpic}/'] = 'E:/Peace/webs/peace/pswpower/2017/upfile/dtpic/';
+}else{
+    $_att['{oldUpic}/'] = 'http://www.pswpower.com/upfile/dtpic/';
+    $_dir['{oldUpic}/'] = '/upfile/dtpic/';
+}*/
 
 // $_tpl, 模板替换路径; ------------------------
 $_tpl = array();

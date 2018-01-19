@@ -10,6 +10,7 @@ $note  = "Fmt1:val=title,each item a line;\n";
 $note .= "Fmt2:ModId(Catalog/Types);\n";
 $note .= "Fmt3:pid:\"cnhn\",w:640;\n";
 $note .= "Fmt4:bext_paras.logmode_cn, get cfgs from bext_paras;\n";
+$note .= "Fmt5:`class::method(p1,p2...)`;\n";
 $note .= "[options array]config as below:\n";
 $note .= "*. [Select][Checkbox][Radio]Fmt1/2/3:\n";
 $note .= "*. [WinPick][WinPick-Multi]Fmt3:";

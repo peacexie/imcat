@@ -3,13 +3,15 @@
 // Element基本html元素类
 class basElm{    
 
-    // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号,|=分开键值
+    // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
     static function setOption($cfgs,$val='',$title='-(def)-'){
         $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
         if(is_string($cfgs)){
-            $cfgs = str_replace(array(';','|',','),array("\n",'=','='),$cfgs);
-            $cfgs = self::text2arr($cfgs); 
+            if(!strpos($cfgs,'(')){ // 排除:class::func(pa,p2,..)
+                $cfgs = str_replace(array(';','|',','),array("\n",'=','='),$cfgs);
+            }
+            $cfgs = self::text2arr($cfgs);
         }
         if($title) $cfgs = array(''=>$title) + $cfgs; 
         $str = '';
@@ -84,6 +86,14 @@ class basElm{
             $t = explode('.',$text);
             $mcfg = glbConfig::read($t[0]); 
             $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
+        }elseif(preg_match("/^(\w+)\::(\w+)\(([\w\,]{0,24})\)$/",$text)){
+            preg_match("/^(\w+)\::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);
+            $class = $ma[1]; $method = $ma[2]; 
+            $pa = explode(',',$ma[3].',,,,');
+            foreach ($pa as $pk=>$pv) {
+                $pa[$pk] = strlen($pa[$pk])>0 ? $pa[$pk] : null;
+            } // class::func(pa,p2,..)
+            $re = $class::$method($pa[0],$pa[1],$pa[2],$pa[3],$pa[4],$pa[5]);
         }else{
             $text = str_replace(array(' ',"\n","\r"),array('','&','&'),$text);
             parse_str($text, $re);
