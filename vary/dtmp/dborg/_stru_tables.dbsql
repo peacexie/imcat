@@ -403,8 +403,8 @@ CREATE TABLE `{pre}bext_paras{ext}` (
   `pid` varchar(12) NOT NULL,
   `title` varchar(24) NOT NULL DEFAULT '',
   `detail` text,
-  `numa` int(11) NOT NULL DEFAULT '0',
-  `numb` int(11) NOT NULL DEFAULT '0',
+  `numa` float NOT NULL DEFAULT '0',
+  `numb` float NOT NULL DEFAULT '0',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
   `cfgs` varchar(255) NOT NULL DEFAULT '',
@@ -890,10 +890,15 @@ CREATE TABLE `{pre}dext_topic{ext}` (
   `seo_key` varchar(255) NOT NULL,
   `seo_des` varchar(255) NOT NULL,
   `seo_tag` varchar(255) NOT NULL,
-  `rel_user` text,
-  `rel_pic` text,
-  `rel_doc` text,
-  `rel_vdo` varchar(255) DEFAULT NULL,
+  `ctext` text,
+  `chtml` text,
+  `cpics` text,
+  `cmedia` text,
+  `clist` text,
+  `cvote` text,
+  `crels` text,
+  `cexts` text,
+  `tplname` varchar(24) NOT NULL DEFAULT '',
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1122,7 +1127,6 @@ CREATE TABLE `{pre}docs_topic{ext}` (
   `top` int(11) NOT NULL DEFAULT '888',
   `color` varchar(12) NOT NULL,
   `click` int(11) NOT NULL DEFAULT '0',
-  `rel_pset` text NOT NULL,
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1614,6 +1618,65 @@ CREATE TABLE `{pre}token_turl{ext}` (
   UNIQUE KEY `url` (`url`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}topic_form{ext}`;
+CREATE TABLE `{pre}topic_form{ext}` (
+  `kid` varchar(24) NOT NULL,
+  `kno` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `detail` text,
+  `mname` varchar(24) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(255) NOT NULL DEFAULT '',
+  `mtags` varchar(255) NOT NULL DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '0',
+  `part` varchar(24) NOT NULL DEFAULT '' COMMENT 'topic,news...',
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `pno` varchar(24) NOT NULL DEFAULT '',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`kid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}topic_items{ext}`;
+CREATE TABLE `{pre}topic_items{ext}` (
+  `did` varchar(24) NOT NULL,
+  `dno` varchar(24) NOT NULL DEFAULT '',
+  `part` varchar(24) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL,
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `jump` varchar(255) NOT NULL DEFAULT '',
+  `detail` mediumtext,
+  `tags` mediumtext,
+  `show` tinyint(4) NOT NULL DEFAULT '1',
+  `top` int(11) NOT NULL DEFAULT '888',
+  `vote` int(11) NOT NULL DEFAULT '0',
+  `click` int(11) NOT NULL DEFAULT '0',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`did`,`dno`),
+  KEY `did` (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}topic_votes{ext}`;
+CREATE TABLE `{pre}topic_votes{ext}` (
+  `kid` varchar(24) NOT NULL,
+  `kno` int(11) NOT NULL DEFAULT '0',
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `dno` varchar(24) NOT NULL DEFAULT '',
+  `uid` varchar(255) NOT NULL DEFAULT '',
+  `cnt` int(11) NOT NULL DEFAULT '1',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `aua` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`kid`),
+  KEY `did` (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}types_auto{ext}`;
 CREATE TABLE `{pre}types_auto{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
@@ -1833,7 +1896,7 @@ CREATE TABLE `{pre}types_world{ext}` (
   `note` varchar(255) NOT NULL,
   `telc` varchar(12) DEFAULT '',
   `timed` varchar(12) DEFAULT '',
-  `ename` varchar(12) DEFAULT '',
+  `ename` varchar(48) DEFAULT '',
   `acode` varchar(12) DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',

@@ -1,9 +1,9 @@
 
 * During 2018-01-13 ~ 2018-01-21
-v4.0 Upgrading... Please use/down v3.9
+v4.0 Beta Upgrading... Please use/down v3.9
 
 * 2018-01-13 ~ 2018-01-21 期间 
-v4.0升级中…… 请使用/下载 v3.9
+v4.0 Beta 升级中…… 请使用/下载 v3.9
 
 --- --- --- --- --- --- --- --- --- 
 

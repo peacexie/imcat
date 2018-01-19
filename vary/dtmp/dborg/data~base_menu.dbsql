@@ -1,5 +1,5 @@
 
--- base_menu@2017-10-05 18:17:55 -- 
+-- base_menu@2018-01-19 21:57:59 -- 
 INSERT INTO `{pre}base_menu{ext}` VALUES 
 ('m1info','muadm','0','资讯','bullhorn','320','1','1','','新闻,资讯','','0','','127.0.0.1','1507099250','peace'),
 ('m1012','muadm','0','演示','list-alt','112','1','1','','演示菜单,扩展','','0','','127.0.0.1','1507099250','peace'),
@@ -16,7 +16,7 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3grade','muadm','m2stru','等级权限设置','','160','1','3','?mkv=admin-grade','','','0','','','0',''),
 ('mp012','mupfile','0','核心架构','','124','1','1','admin/groups=根模块架设\r\nadmin/catalog=栏目管理\r\nadmin/fields=字段配置\r\nadmin/grade=等级权限设置\r\nadmin/menus=菜单导航配置\r\nadmin/paras=全局参数\r\nadmin/types=类别管理\r\n','','','0','','','0',''),
 ('mp016','mupfile','0','插件接口','','128','1','1','','','','0','','','0',''),
-('m3favor','muadm','m2fav','收藏帮助','','240','1','3','网址收藏(!)?mkv=dops-a&mod=adfavor&view=vself\r\n帮助(!){$root}/dev.php(!)blank','','','0','','','0',''),
+('m3favor','muadm','m2fav','收藏帮助','','240','1','3','网址收藏(!)?mkv=dops-a&mod=adfavor&view=vself\r\n帮助(!)http://txmao.txjia.com/dev.php(!)blank','','','0','','127.0.0.1','1507355108','peace'),
 ('mp028','mupfile','0','工具应用','','196','1','1','','','','0','','','0',''),
 ('mp020','mupfile','0','信息中心','','132','1','1','','','','0','','','0',''),
 ('mp024','mupfile','0','会员相关','','132','1','1','','','','0','','','0',''),
@@ -47,14 +47,14 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3share','muadm','m2data','分享同步','','128','1','3','数据分享(!)?mkv=apis-exd_share\r\n同步(!)?mkv=apis-exd_psyn','','','0','','','0',''),
 ('m3plan','muadm','m2data','计划任务','','124','1','3','计划任务(!)?mkv=apis-cron_plan\r\n积分(!)?mkv=apis-jifen_plan','','','0','','','0',''),
 ('m3catch','muadm','m2sys','缓存静态','','124','1','3','系统缓存(!)?mkv=admin-update\r\n静态(!)?mkv=admin-static','','','0','','','0',''),
-('m3pro','muadm','m2pro','产品管理','','240','1','3','产品管理(!)?mkv=dops-a&mod=cargo\r\n增加(!)cargo(!)jsadd','','','0','','','0',''),
+('m3pro','muadm','m2pro','产品管理','','240','1','3','产品管理(!)?mkv=dops-a&mod=cargo\r\n增加(!)cargo(!)jsadd','','','0','','127.0.0.1','1511272489','peace'),
 ('m3apimail','muadm','m2api','邮件接口','','136','1','3','邮件记录(!)?mkv=apis-mail_logs\r\n接口(!)?mkv=apis-mail_logs&view=vcfgs','','','0','','','0',''),
 ('m3self','muadm','m2sys','个人资料','','128','1','3','个人资料(!)?mkv=admin-uinfo\r\n密码(!)?mkv=admin-uinfo&view=passwd','','','0','','','0',''),
 ('m3058','muadm','m2user','个人会员','','888','1','3','个人会员(!)?mkv=dops-a&mod=person\r\n添加(!)person(!)jsadd','','','0','','','0',''),
 ('m3060','muadm','m2user','企业会员','','888','1','3','企业会员(!)?mkv=dops-a&mod=company\r\n添加(!)company(!)jsadd','','','0','','','0',''),
 ('m3062','muadm','m2user','政府机构','','888','1','3','政府机构(!)?mkv=dops-a&mod=govern\r\n添加(!)govern(!)jsadd','','','0','','','0',''),
 ('m3064','muadm','m2user','非盈利组织','','888','1','3','非盈利组织(!)?mkv=dops-a&mod=organize\r\n添加(!)organize(!)jsadd','','','0','','','0',''),
-('m3order','muadm','m2pro','产品订单','','120','1','3','订单管理(!)?mkv=dops-a&mod=corder\r\n评论(!)?mkv=dops-a&mod=crem','','','0','','','0',''),
+('m3order','muadm','m2pro','产品订单','','120','1','3','订单管理(!)?mkv=dops-a&mod=corder\r\n评论(!)?mkv=dops-a&mod=crem','','','0','','127.0.0.1','1511272489','peace'),
 ('mpsession','mupext','0','Session权限','','888','1','1','pstools=调试工具\r\npsdev=开发工具','','','0','','','0',''),
 ('mpuptypes','mupext','0','上传类型','','888','1','1','image=图片上传\r\nflash=Flash上传\r\nmedia=媒体上传\r\nfile=文档上传','','','0','','','0',''),
 ('m2res','muadm','m1main','课程资源','','320','1','2','','','','0','','','0',''),
@@ -62,7 +62,7 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m2pro','muadm','m1main','产品订单','','240','1','2','','','','0','','','0',''),
 ('m1coms','muadm','0','互动','commenting-o','420','1','1','','论坛,公文','','0','','127.0.0.1','1507099250','peace'),
 ('m2faqs','muadm','m1coms','问答系统','','240','1','2','','','','0','','127.0.0.1','1479815451','peace'),
-('m3cset','muadm','m2pro','分类设置','','360','1','3','产品分类(!)?mkv=admin-catalog&mod=cargo(!)frame\r\n设置(!)?mkv=apis-exp_order','','','0','','','0',''),
+('m3cset','muadm','m2pro','分类设置','','360','1','3','产品分类(!)?mkv=admin-catalog&mod=cargo(!)frame\r\n设置(!)?mkv=apis-exp_order','','','0','','127.0.0.1','1511272489','peace'),
 ('m3kres','muadm','m2res','课程资源','','120','1','3','课程资源(!)?mkv=dops-a&mod=keres\r\n增加(!)keres(!)jsadd','','','0','','','0',''),
 ('m3keres','muadm','m2res','评论设置','','888','1','3','资源评论(!)?mkv=admin-catalog&mod=keres(!)\r\n栏目(!)?mkv=admin-catalog&mod=keres(!)frame','','','0','','','0',''),
 ('m2topic','muadm','m1info','专题新闻','','640','1','2','','','','0','','','0',''),
@@ -175,4 +175,5 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3b1','muadm','m2test2','品牌介绍','','888','1','3','','','127.0.0.1','1507099056','peace','127.0.0.1','1507099218','peace'),
 ('m3b2','muadm','m2test2','中国政区','','888','1','3','','','127.0.0.1','1507099073','peace','127.0.0.1','1507099225','peace'),
 ('m2test1','muadm','m1012','演示样例','','888','1','2','','','127.0.0.1','1507099140','peace','','0',''),
-('m2test2','muadm','m1012','类别详情','','888','1','2','','','127.0.0.1','1507099160','peace','','0','');
+('m2test2','muadm','m1012','类别详情','','888','1','2','','','127.0.0.1','1507099160','peace','','0',''),
+('m3down','muadm','m2pro','规格下载','','420','1','3','规格书(!)?mkv=apis-exp_down&pid=down_speci\r\n自定义(!)?mkv=apis-exp_down&pid=down_user1','','127.0.0.1','1511272339','peace','127.0.0.1','1511272489','peace');

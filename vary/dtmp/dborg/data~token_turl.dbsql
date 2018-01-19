@@ -1,5 +1,5 @@
 
--- token_turl@2017-10-05 18:17:56 -- 
+-- token_turl@2018-01-19 21:58:00 -- 
 INSERT INTO `{pre}token_turl{ext}` VALUES 
 ('bug','https://bugs.php.net/bug.php?id=74721','(def)'),
 ('bb','http://txjia.com/baby/about.asp','txjia'),
