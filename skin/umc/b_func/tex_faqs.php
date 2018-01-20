@@ -124,6 +124,7 @@ class tex_faqs{ //extends tex_base
         $stats = self::statTypes($act='get');
         $str = "<a href='".surl('faqs')."' id='qas__allt'><i class='right'>".$stats['_allt']."</i>".lang('user.exf_alltype')."</a>";
         $arr = array('_allt'=>lang('user.exf_alltype'));
+        if(empty($mcfg['i'])) return $re=='html' ? $str : $arr;
         foreach($mcfg['i'] as $key=>$val){
             $cnts = "<i class='right'>".(empty($stats[$key]) ? 0 : $stats[$key])."</i>";
             $str .= "<a href='".surl("faqs-$key")."' id='qas_$key'>$cnts$val[title]</a>";

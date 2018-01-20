@@ -23,7 +23,7 @@ $mcfg = read('faqs');
 $ucfg = array('_allt'=>lang('flow.qa_alltype'),'_tags'=>lang('flow.qa_alltag'),);
 $cfgs = tex_faqs::statTypes();
 foreach($cfgs as $key=>$v){
-    $title = isset($ucfg[$key]) ? $ucfg[$key] : $mcfg['i'][$key]['title'];
+    $title = isset($ucfg[$key]) ? $ucfg[$key] : @$mcfg['i'][$key]['title'];
     $link = isset($ucfg[$key]) ? " &nbsp; -=> <a href='?mkv=$mkv&view=$view&act=$key'>".lang('flow.qa_reset')."</a>" : '';
     echo "\n<tr><td class='tc w150'>{$title}: </td>\n<td>$cfgs[$key] [$key] $link </td></tr>\n";
 }

@@ -72,8 +72,9 @@ class comParse{
     }
     
     // 将数组转换为JSON字符串（兼容中文）
-    static function jsonEncode($array) {        
-        $json = json_encode($array, JSON_UNESCAPED_UNICODE); 
+    static function jsonEncode($array) {
+        $pmj = defined('JSON_UNESCAPED_UNICODE') ? JSON_UNESCAPED_UNICODE : 0;
+        $json = @json_encode($array, $pmj); 
         // JSON_UNESCAPED_UNICODE:PHP>=5.4生效
         $json = str_replace("\"},\"","\"}\n,\"",$json);
         $json = str_replace(",\",\"",",\"\n,\"",$json);
