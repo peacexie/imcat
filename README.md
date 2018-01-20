@@ -65,8 +65,8 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
   - Add: Custom Path replacement configuration, See file: /cfgs/excfg/ex_repath
 
 * Fix: 
-  -> Some notice in php7.2
-  -> Some bugs
+  - Some notice in php7.2
+  - Some bugs
 
 --- --- --- --- --- --- --- --- --- 
 
