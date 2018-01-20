@@ -17,7 +17,7 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
 
 ### 【Functions】
 
-* Support: PHP5.3~PHP7.1 / custom module / custom field / custom parameter / custom classification
+* Support: PHP5.3~PHP7.2 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [IntimateCat(贴心猫)](http://txmao.txjia.com/)
@@ -26,7 +26,7 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.3 ~ PHP7.1 (Recommend: PHP5.4 ~ PHP7.0)
+  - PHP5.3 ~ PHP7.2 (Recommend: PHP5.4 ~ PHP7.1)
   - mysql5.0+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -46,46 +46,27 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v3.9 ChangeLog】 (2017.10)
+### 【v4.0 ChangeLog】 (2018.01)
 
-* REST-API: GA-Version
+* topic Extended：
+  - No matter how big/complex the thing, It's just a special topic to deal with it!
+  - It can Extended subpage freely;
+  - Image-text mix typesetting, personage/company presentation, electronic documents/books... We just can use a special topic to show it!
+  - The topic built-in vote-system, the old vote model, we'll move it into extend package.
+  - Demo: http://txmao.txjia.com/doc/topic.htm
 
-* Synchronous publishing Extend model:
-  - It's easier to pack and more flexible to extend!
+* Add: Skin(theme) Switch：
+  - Based on bootstrap skin
+  - Please download the skin css：https://bootswatch.com/
+  - Config See to: /vimp/vendui/bootstrap/css/notes.txt
 
-* Synchronous publishing Nodejs Auxiliary system, Build Web application ecosystem!
-
-* Icon: Update incon kit, Add menu-icon in admin
-
-* Add: Pseudo static deployment
-
-* Improve: Extend-Cache
-
-* Improve: Perm-function
-  - Improve: Perm-Set/Check
-  - Add: Perm-Inherit
-
-* Add: Short-Link API(use internally)
-
-* Adjusting template, Admin-UI, use bootstrap model
+* Improve:
+  - Improve: Compatibility parameters after pseudo-static url. eg. /dev/mkv.htm?api=Local
+  - Add: Custom Path replacement configuration, See file: /cfgs/excfg/ex_repath
 
 * Fix: 
-  - Page-jump
-  - Some bugs
-
-* Links & Reference
-
-  - Rewrite Config(Apache/Nginx/iis7+)  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
-
-  - idea: 贴心猫(IntimateCat)Developer confession  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9a-f3a1
-
-  - Extend[贴心扩展]  
-  - -> http://txmao.txjia.com/dev.php?extend
-
-  - Nodejs Mini Framework  
-  - -> http://txjia.com/peace/wenode.htm
+  -> Some notice in php7.2
+  -> Some bugs
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -96,12 +77,17 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
 
 ### 【功能介绍】
 
-* 支持：PHP5.3~PHP7.1/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
+* 支持：PHP5.3~PHP7.2/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
 * 模型：问答系统/内部公文/商品展销/新闻/专题/课程资源/样例文档/用户
 * 接口：REST-API/Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
 
 
 ### 【安装提示】
+
+* 环境需求
+  - PHP5.3 ~ PHP7.2 (推荐: PHP5.4 ~ PHP7.1)
+  - mysql5.0+
+  - 扩展: MySQLi/MySQL, GD2, curl
 
 * 设置站点相对目录；
   - 文件：/root/cfgs/boot/_paths.php 设置PATH_PROJ值为站点相对目录如：“/txmao”或 根目录用“”(空)等；
@@ -116,43 +102,24 @@ v4.0 Beta 升级中…… 请使用/下载 v3.9
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v3.9更新日志】(2017.10)
+### 【v4.0更新日志】(2018.01)
 
-* REST-API：发布正式版
+* topic 扩展专题：
+  - 再大的一件事，就是一个专题搞定的事！
+  - 专题随意扩展专题子页面；
+  - 图文混排，人物/公司专题介绍，电子文档/书籍……都可一个专题搞定！
+  - 专题集成投票，之前的独立投票，后续可能整理成扩展包分离出去。
+  - 演示：http://txmao.txjia.com/doc/topic.htm
 
-* 同步发布扩展模块：
-  - 打包更轻松，扩展更灵活！
+* 增加 皮肤(主题)切换：
+  - 基于bootstrap界面风格
+  - 自行下载主题css：https://bootswatch.com/
+  - 配置参考：/vimp/vendui/bootstrap/css/notes.txt
 
-* 同步发布Nodejs辅助系统，打造Web应用生态圈！
-
-* 图标：更新图标组件，后台菜单添加自定义图标设置
-
-* 增加：伪静态部署
-
-* 增强：扩展缓存
-
-* 改善权限功能
-  - 改善：权限判断，设置
-  - 增加：权限继承
-
-* 增加：短链接接口(内部使用)
-
-* 调整模板，后台部分UI，使用bootstrap模态框
+* 增强：
+  - 改进：兼容伪静态?后的参数如：/dev/mkv.htm?api=Local
+  - 增加：自定义路径替换配置 见文件：/cfgs/excfg/ex_repath
 
 * 修正：
-  - 分页跳转
+  - php7.2 下几处警告错误
   - 一些已知bug
-
-* 相关连接/配置参考
-
-  - Rewrite配置(Apache/Nginx/iis7+)  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
-
-  - idea：贴心猫(IntimateCat)开发者自白书  
-  - -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9a-f3a1
-
-  - 贴心扩展[Extend]  
-  - -> http://txmao.txjia.com/dev.php?extend
-
-  - Nodejs微框架  
-  - -> http://txjia.com/peace/wenode.htm

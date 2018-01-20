@@ -9,8 +9,8 @@
  - [version tag] (The previous version is `3.9`) What's called this version? `3.10` or `4.0`?
 
 * Basic-Info:
- - Release: 2018.xx.05,(2018-xx)
- - rar-Size: [core]1.26 MB, [full]3.59 MB(core+vendor)
+ - Release: 2018.01.13,(2018-01-21)
+ - rar-Size: [core]1.30 MB, [full]3.66 MB(core+vendor)
 
 
 #detail#ChangeLog
@@ -20,12 +20,12 @@
  - It can Extended subpage freely;
  - Image-text mix typesetting, personage/company presentation, electronic documents/books... We just can use a special topic to show it!
  - The topic built-in vote-system, the old vote model, we'll move it into extend package.
- - Demo: xxx 
+ - Demo: http://txmao.txjia.com/doc/topic.htm
 
 * Add: Skin(theme) Switch：
  - Based on bootstrap skin
- - Please download the skin css
- - See to: xxx
+ - Please download the skin css：https://bootswatch.com/
+ - Config See to: /vimp/vendui/bootstrap/css/notes.txt
 
 * Improve:
  - Improve: Compatibility parameters after pseudo-static url. eg. /dev/mkv.htm?api=Local

@@ -1,0 +1,28 @@
+
+* 自行下载基于bootstrap的主题
+  - 下载地址：https://bootswatch.com/
+
+* 保存文件格式
+  - 默认文件为: bootstrap.min.css
+  - 自定义：bootstrap.cerulean.css
+  - 自定义：bootstrap.flatly.css
+  - 自定义：bootstrap.superhero.css
+
+* 入口文件配置
+
+```
+    //$_cbase['sys']['skin'] = 'flatly'; // 指定皮肤(或不要默认`min`,或使用下一行)
+    //$_cbase['ucfg']['skin'] = '(auto)'; // 可切换皮肤, 默认`min`, 
+```
+
+* 主题切换
+  - _cbase.ucfg.skin = (auto) 时；
+  - 类似如下链接切换
+  - 切换后，自动回到当前页
+
+```
+    - <a href="/root/plus/ajax/redir.php?skin:min" target='_self'>min</a>
+    - <a href="/root/plus/ajax/redir.php?skin:cerulean" target='_self'>cerulean</a>
+    - <a href="/root/plus/ajax/redir.php?skin:flatly" target='_self'>flatly</a>
+    - <a href="/root/plus/ajax/redir.php?skin:superhero" target='_self'>superhero</a>
+```
