@@ -142,10 +142,14 @@ class tex_faqs{ //extends tex_base
             $arr = array();
             $act = 'upd';
         }
-        $tabfull = "{$db->pre}docs_faqs{$db->ext}"; 
+        $tbfaqs = "{$db->pre}docs_faqs{$db->ext}"; 
+        $tbcate = "{$db->pre}base_catalog{$db->ext}"; 
         $arr['_tags'] = $db->table('coms_qatag')->where("`show`='1'")->count(); 
         $arr['_allt'] = $db->table('docs_faqs')->where("`show`='1'")->count(); 
-        $q = $db->query("SELECT catid,count(*) as cnt FROM $tabfull WHERE `show`='1' GROUP BY catid"); 
+        //$sql = "SELECT catid,count(*) as cnt FROM $tbfaqs WHERE `show`='1' GROUP BY catid";
+        $sub = "(SELECT COUNT(did) AS cnt FROM $tbfaqs WHERE catid =c.kid  LIMIT 1) AS cnt";
+        $sql = "SELECT c.kid,$sub FROM $tbcate c WHERE ( c.model='faqs' ) ";
+        $q = $db->query($sql); // ORDER BY top DESC;
         foreach($q as $k=>$v) 
             $arr[$v['catid']] = $v['cnt'];
         if($act=='upd') 

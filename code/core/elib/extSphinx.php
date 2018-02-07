@@ -141,4 +141,19 @@ $sphinx->setFilter(‘tagid’, array(3));
 $sphinx->setFilter(‘tagid’, array(4));
 设置三个filter是标示，要同时满足2,3,4三个属性值才符合，这里是and关系。
 
+
+// 设置扩展匹配模式 http://blog.csdn.net/u013699800/article/details/48316841
+$sphinx->SetMatchMode ( "SPH_MATCH_EXTENDED2" );
+//查询中使用条件语句，字段用@开头，搜索内容包含测试，toid等于1的邮件：
+$result = $sphinx->query('@content (测试) & @toid =1', '*');
+//用括号和&（与）、|、（或者）、-（非，即!=）设置更复杂的条件
+$result = $sphinx->query('(@content (测试) & @subject =呃) | (@fromid -(100))', '*');
+//更多语法请查看官方文档匹配模式的说明
+
+https://www.cnblogs.com/redleaf1995/p/3831522.html
+http://sphinxsearch.com/docs/current.html#extended-syntax
+@title hello @body world
+@(title,body) hello world
+
+
 */

@@ -142,7 +142,7 @@ class dopBCv{
             //$va = explode(',',$val); 
             $re = "";
             foreach($arr as $k=>$v){
-                $re .= "\nset_$k|".basLang::show('core.bcv_set')."($k)$v";
+                $re .= "\nset_$k|".basLang::show('core.bcv_set')."`$k`$v";
             }
 
         return $re; 

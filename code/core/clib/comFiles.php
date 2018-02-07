@@ -67,6 +67,21 @@ class comFiles{
         return array('type'=>$type,'icon'=>$icon); //'unknow';
     }
 
+    // glob效率比readdir低
+    static function listFast($dir){
+        $re = array(); 
+        $list = glob(str_replace('//','/',"$dir/*"));
+        foreach ($list as $file) {
+            if($file=='.'||$file=='..') continue;
+            if(is_dir($file)){ //不用:file_exists
+                $re = array_merge($re,self::listFast($file));
+            }else{
+                $re[] = $file;
+            }
+        }
+        return $re;
+    }
+
     static function listScan($dir,$sub='',$skips=array()){
         $re = array(); $mCount = 1200;
         $handle = opendir($dir);

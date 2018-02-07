@@ -49,12 +49,13 @@ class usrAdmin extends usrBase{
         $user = usrBase::userObj('Admin');
         $act = basReq::val('act');
         if($act=='dologin'){ 
-            $re2 = safComm::formCAll('fmadm'); 
+            $fm = $_POST['fm'];
+            $re2 = safComm::formCAll('fmadm');
+            basDebug::bugLogs('adm-login',empty($re2[0])?$fm['uname'].':OK':$re2[0],'syact','db');
             if(empty($re2[0])){ 
-                $fm = $_POST['fm'];
                 $res = $user->login($fm['uname'],$fm['upass']);
                 $remsg = $res[0]=='OK' ? '' : $res[1];
-                $remsg || header('Location:'."?");    
+                $remsg || header('Location:'."?");
             }else{
                 $remsg = basLang::show('admin.oplogin_vform_err');    
             } 

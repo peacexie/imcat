@@ -176,15 +176,22 @@ class basStr{
     }
     // *** Account过滤帐号
     static function filKey($str,$ext='_'){
-       $re = '';
-       if(strlen($str)){ //$str=0
-           $tmp = KEY_NUM10.KEY_CHR26.$ext; //-._@
-           $tab = strtoupper($tmp).strtolower($tmp); 
-           for($i=0;$i<strlen($str);$i++) { 
-               if(strstr($tab,substr($str,$i,1))) $re .= substr($str,$i,1);
-           }
-       }
-       return $re;
+        $url = array(
+            'url' => FILTER_SANITIZE_URL,
+            'email' => FILTER_SANITIZE_EMAIL,
+        );
+        if(isset($url[$ext])){
+            return filter_var($str, $url[$ext]);
+        }
+        $re = '';
+        if(strlen($str)){ //$str=0
+            $tmp = KEY_NUM10.KEY_CHR26.$ext; //-._@
+            $tab = strtoupper($tmp).strtolower($tmp); 
+            for($i=0;$i<strlen($str);$i++) { 
+                if(strstr($tab,substr($str,$i,1))) $re .= substr($str,$i,1);
+            }
+        } 
+        return $re;
     }
     // *** Safe4过滤标题
     static function filSafe4($xStr,$exa=array('%')){
@@ -246,8 +253,11 @@ class basStr{
         }
         
     }
+    static function isUrl($url) {
+        return filter_var($email, FILTER_VALIDATE_URL);
+    }
     static function isMail($email) {
-        return strlen($email) > 6 && preg_match("/^[\w\-\.]+@[\w\-\.]+(\.\w{2,3})+$/", $email);
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
     // 检查字符串是否是UTF8编码,是返回true,否则返回false
     static function isUtf8($str,$re='T/F'){

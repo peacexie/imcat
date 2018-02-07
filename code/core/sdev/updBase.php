@@ -248,7 +248,6 @@ class updBase{
             $key = "{$sub}$file";
             $fp = "$dir/$file";
             if(is_dir($fp)){
-                if(empty($sub) && in_array($file,self::$skipdirs)) continue;
                 $re = array_merge($re,self::listDir($fp,"$sub$file/")); 
             }else{
                 $re[$key] = md5_file($fp);
