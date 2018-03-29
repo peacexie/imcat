@@ -8,7 +8,7 @@ function js_cklogin(id){
         if(uname.length>9){
             uname = uname.substr(0,6)+'...'+uname.substr(-3,3);
         }
-        sinf = '<span class="uname" title="'+_mperm.title+'">'+uname+'</span> 您好！<br><a href="'+umc_url+'?mkv=user-login&act=doout&recbk=ref" target="_blank">登出…</a>';
+        sinf = '<span class="uname" title="'+_mperm.title+'">'+uname+'</span> 您好！<br><a href="'+umc_url+'?mkv=uio-login&act=doout&recbk=ref" target="_blank">登出…</a>';
     }
     if(_miadm.userFlag=='Login'){ 
         ainf = '<a class="cF0F" href="'+_cbase.run.roots+'/run/adm.php?logout" target="_blank" title="登出:'+_mpadm.title+'">登出:'+_miadm.uname+'</a>';

@@ -52,7 +52,11 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs');
     <tr>
         <td>
         <div class="cst-types">
-        {php echo tex_faqs::navSide($this); }
+            <?php $cts = extCache::tkGet('faqs_types',1); ?>
+            <a href="{surl(faqs)}" id='qas__allt'><i class='right'><?=isset($cts['_allt'])?$cts['_allt']:0?></i>{lang(user.exf_alltype)}</a>
+            {tag:cats=[Type,u][modid,faqs][idfix,top]}
+            <a href="{surl("faqs-$t_kid")}" id='qas_{=$t_kid}'><i class='right'><?=isset($cts[$t_kid])?$cts[$t_kid]:0?></i>{=$t_title}</a>
+            {/tag:cats}
         </div>
         <div class="cst-title2">
 <i class="right"><a href="{surl(faqs-tag)}">{lang(user.qa_more)}&gt;&gt;</a></i><i class="fa fa-flag"></i> Tags/标签 

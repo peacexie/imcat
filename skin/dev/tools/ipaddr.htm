@@ -2,7 +2,9 @@
 
 {block:extop}{:parent}<?php
 $uip = req('uip'); 
-if(empty($_SERVER['HTTP_USER_AGENT']) || basEnv::isRobot() && $uip) { glbHtml::httpStatus(404); die(); }
+if($uip){
+  if(empty($_SERVER['HTTP_USER_AGENT']) || basEnv::isRobot()) { glbHtml::httpStatus(404); die(); }
+}
 $title = 'IP转化地址类（IPv4）';
 $api = req('api',$_cbase['ucfg']['ipapi']); 
 $ufix = surl($this->mkv);
@@ -83,6 +85,7 @@ for($i=0;$i<3;$i++){
 $_cbase['tpl']['tplpend'] = "/*no js*/\n";
 $js = "$('#iptab').html(\"$tab\");\n";
 $js .= "$('#idapi').html(\"$astr\");";
+$js = str_replace('<a href=','<"+"a "+"hr"+"ef=',$js);
 echo basJscss::jscode($js);
 ?>
     

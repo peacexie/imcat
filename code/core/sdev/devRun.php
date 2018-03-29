@@ -286,7 +286,17 @@ class devRun{
             }
         }
     }
-    
+
+    // 超时测试, self::runMTask($inpval)
+    static function runMTask($max,$start=0){
+        if(!$start) $start = $now = microtime(1);
+        while(($now-$start)<$max){
+            sleep(1);
+            $now = microtime(1);
+        }
+        return "\n run-Test($max)s; ".date('H:i:s',$start)."~".date('H:i:s',$now)." ";
+    }
+
     static function bomScan($bomroot,$rsub='',$flag=0) {  
         if(empty($rsub)) return;
         static $frstr,$bonum; 

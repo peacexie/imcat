@@ -74,8 +74,7 @@ class comParse{
     // 将数组转换为JSON字符串（兼容中文）
     static function jsonEncode($array) {
         $pmj = defined('JSON_UNESCAPED_UNICODE') ? JSON_UNESCAPED_UNICODE : 0;
-        $json = @json_encode($array, $pmj); 
-        // JSON_UNESCAPED_UNICODE:PHP>=5.4生效
+        $json = @json_encode($array, $pmj); // JSON_UNESCAPED_UNICODE:PHP>=5.4生效
         $json = str_replace("\"},\"","\"}\n,\"",$json);
         $json = str_replace(",\",\"",",\"\n,\"",$json);
         return $json;
@@ -90,7 +89,10 @@ class comParse{
     // 反序列化（将某些特殊字符的utf8编码转为asc码解析）不建议使用原生的unserialize。
     static function serEncode($str) { 
         $str = str_replace("\r", "", $str);
-        $str = preg_replace('!s:(\d+):"(.*?)";!se', '"s:".strlen("$2").":\"$2\";"', $str ); 
+        #$str = preg_replace('!s:(\d+):"(.*?)";!se', '"s:".strlen("$2").":\"$2\";"', $str);
+        $str = preg_replace_callback('/s:(\d+):"(.*?)";/s', function ($matches) { 
+            return 's:'.strlen($matches[2]).':"'.$matches[2].'";';
+        }, $str);
         return unserialize($str); 
     }
 

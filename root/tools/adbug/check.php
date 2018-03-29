@@ -117,6 +117,7 @@ if($act=='check'){
   <select name="inptype" onChange="setInpval(this)" style="width:200px;">
     <option value="">---<?php lang('tools.chk_pick1',0); ?>---</option>
     <option value="memory"><?php lang('tools.chk_cmemory',0); ?></option>
+    <option value="timeout">run: 60s --- Long-Task</option>
     <option value="funcs"><?php lang('tools.chk_cfunc',0); ?></option>
   </select>
   <input name="inpval" type="text" id="inpval" value="<?php echo $inpval; ?>" style="width:100px;"/>
@@ -125,6 +126,7 @@ if($act=='check'){
 function setInpval(e){
   var type = e.value,res = '';
   if(type=='memory')  res = 32;
+  if(type=='timeout')  res = 60;
   if(type=='funcs')  res = 'phpinfo';
   document.getElementById('inpval').value = res;
 }
@@ -136,6 +138,11 @@ function setInpval(e){
   <tr>
     <td class="tc">Memory Test</td>
     <td class="tc" colspan="3"><?php echo devRun::runMemory($inpval); ?></td>
+  </tr>
+  <?php } if($inptype=='timeout'){ ?>
+  <tr>
+    <td class="tc">Long-Task</td>
+    <td class="tc" colspan="3"><?php echo devRun::runMTask($inpval); ?></td>
   </tr>
   <?php } if($inptype=='funcs'){ ?>
   <tr>
