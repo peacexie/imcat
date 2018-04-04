@@ -1,5 +1,5 @@
 
--- wex_keyword@2018-01-19 21:58:00 -- 
+-- wex_keyword@2018-04-04 22:04:09 -- 
 INSERT INTO `{pre}wex_keyword{ext}` VALUES 
 ('2015-c4-d0pp5e1','follow_autoreply_info','','自定义[follow_autoreply_info]关注欢迎信息(peace)','','','88','wx20b06b3c8d4e2a46','','0','','','0',''),
 ('2015-c4-d0pp5g5','新闻','','为您推荐[news]新闻中心-p','','{root}/mob.php?news','88','wx20b06b3c8d4e2a46','','0','','','0',''),

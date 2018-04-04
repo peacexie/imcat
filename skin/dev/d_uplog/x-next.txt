@@ -1,0 +1,63 @@
+
+------------------------------ 
+
+
+* 应用模块：商城
+
+* 应用模块：博客
+ - blog
+ - blrem
+
+### Editor
+
+ - https://summernote.org/getting-started/#installation
+ - Summernote - Super Simple WYSIWYG editor
+
+ - Summernote may be freely distributed under the MIT license.
+
+### wechat现场
+
+* wechat现场
+ - 签到+模版消息
+ - 投票+认证
+ - 抽奖+礼品
+
+* 活动 weact
+ - kid, subject, thumb
+
+* 签到 wesign
+ - kid, pid, openid, thumb, ngift(1,2,3,88,99,100,0),
+ - 8-谢谢参入, 7-安慰奖, 6,5,4-自定义
+ - 3,2,1:奖
+ - 9-特等奖, 0-未参入
+
+
+------------------------------ 
+
+
+
+* jilei
+ - 清理公文:
+
+
+* big-files
+ - fontawesome-webfont.svg : 434K  - ok
+ - adminer.imp_php : 427           - x
+ - spword.imp_txt : 340            - ok
+ - SewisePlayer.swf : 209          - ok
+
+
+
+* plus/coms
+ - footer ... 
+
+------------------------------ 
+
+# composer
+
+# 路由
+
+# x 静态
+
+# x js标签
+

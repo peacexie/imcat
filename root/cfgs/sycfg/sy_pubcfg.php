@@ -127,7 +127,7 @@ $_sy_pubcfg['skfiles'] =  array(
     //'adminer.imp_php',
     //'derun.imp_php',
 
-    'jquery-2.x.js',
+    //'jquery-2.x.js',
     'fontawesome-webfont.svg', // format('svg'); /* iOS 4.1- */
     'bootstrap.cerulean.css',
     'bootstrap.flatly.css',

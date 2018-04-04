@@ -5,7 +5,7 @@ $ocfgs = read('outdb','ex');
 
 if(in_array($view,array('list','set'))){
     $lnkadd = admPFunc::fileNav($view,'exd_share');
-    $links = admPFunc::fileNav($file,'exd_psyn');
+    $links = admPFunc::fileNav($file,'exd_crsh');
     glbHtml::tab_bar("[".lang('flow.sh_title')."]<span class='span ph5'>#</span>$lnkadd","$links",50);
 }
 

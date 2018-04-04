@@ -4,9 +4,6 @@ echo basJscss::jscode("var _pbase={}; _pbase.rdmob=1;")."\n";
 $this->pmeta();
 eimp('initJs','jspop,jquery;comm;/_pub/a_jscss/multpic;/_pub/a_jscss/sordbar',1);
 eimp('initCss','bootstrap,stpub;comm');
-if(!preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
-	eimp('/jquery/jq-migrate-3.0.0.min.js','vendui');
-} // 兼容包,fix:prettyPhoto不支持jq3
 $fexts = vopCell::exFields($this->mod,$catid);
 $null = "<span class='cCCC'>------</span>";
 {/php} 

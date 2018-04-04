@@ -1,0 +1,37 @@
+{block:init}{inc:"umc:c_pub/c-init"}<?php
+vopTpls::pinc('tex_faqs');
+$tag = req('tag');
+$keywd = req('keywd');
+?>{/block:init}
+<!DOCTYPE html><html><head>
+{block:pmeta}{php $this->pmeta(); }{/block:pmeta}
+{php}
+eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob)'); 
+{/php}
+{block:pimp}{/block:pimp}
+</head><body> 
+
+{block:head}{inc:"umc:c_pub/m-head"}{/block:head}
+
+{block:brnav}
+<ol class="breadcrumb">
+  <li><a href="{surl($this->mod)}">{=$mdtitle}</a></li>
+  <li class="active">{=$sbtitle}</li>
+</ol>
+{/block:brnav}
+
+{block:main}
+<div class="pgf_main">
+      [inc:"umc:c_pub/mnews_detail"]
+    <div class="clear"></div>
+</div>
+{/block:main}
+
+{block:foot}{inc:"umc:c_pub/m-foot"}{/block:foot}
+
+</body></html>
+
+{block:exend}{/block:exend}
+<!--`{php echo basDebug::runInfo(); }`-->
+

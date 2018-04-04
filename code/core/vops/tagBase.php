@@ -61,6 +61,9 @@ class tagBase{
     function setFrom(){ 
         $_groups = glbConfig::read('groups');
         $mod = $this->modid;
+        if(empty($_groups[$mod])){ 
+            glbError::show("{$mod} NOT Found!",0); 
+        }
         if($_groups[$mod]['pid']=='docs'){
             $tabid = 'docs_'.$mod;
             $ordef = $fpk = 'did';

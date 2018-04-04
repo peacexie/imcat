@@ -2,7 +2,7 @@
 /*
 单个模板扩展函数
 */ 
-class tex_indoc{ //extends tex_base
+class tex_indoc{
     
     #protected $prop1 = array();
     static $ncfgs = array();

@@ -1,0 +1,86 @@
+﻿{imp:"u_topic/exdemo/topb~frame"}
+
+{block:infos}
+
+<?php
+$db = db();
+$rows = $db->table('topic_form')->where("did='$did'")->limit(10)->order('kid DESC')->select(); 
+$tmps = $db->table('topic_items')->where("did='$did'")->select();
+$datas = array(); foreach ($tmps as $kd=>$vd) { $datas[$vd['dno']]=$vd; }
+$fcfg = devTopic::cfg2arr($cform);
+?>
+<ul class="nav nav-tabs">
+    <li class=""><a href='{surl("topic.$did")}'>报名表单</a></li>
+    <li class="active"><a>最近报名</a></li>
+</ul>
+
+<div class="tab-content">
+<div class='tab-pane fade in active' id='suform'>
+    <?php foreach ($rows as $row){ ?>
+    <div class="topic-post">
+        <p class="items row">
+            <label class="col-sm-4 col-xs-12 fB">
+                昵称/手机号
+            </label>
+            <label class="col-sm-8 col-xs-12">
+                {=$row['mname']}, {=$row['mtel']}
+            </label>
+        </p>
+        <?php 
+        $vals = json_decode($row['detail'],1); 
+        foreach ($fcfg as $k2=>$title){ 
+            $vk2 = isset($vals[$k2]) ? $vals[$k2] : '';
+            if(devTopic::skip($k2)) continue;
+            if(!isset($datas[$k2])) continue;
+            $data = $datas[$k2];
+            $tmps = json_decode($data['detail'],1); 
+            $flags = $tmps['flags']; $des = $tmps['des'];
+            $names = basElm::line2arr($tmps['name'], 'kv');
+            $tags = basElm::line2arr($data['tags'], 'kv');
+            // dump($flags); dump($des);*/
+        ?>
+        <p class="items row">
+            <label class="col-sm-4 col-xs-12 fB">
+                {=$title} ({=$k2})
+            </label>
+            <label class="col-sm-8 col-xs-12">
+                <?php 
+                if(strstr($flags,'m,')){
+                    $tmp = '';
+                    foreach($names as $k3=>$v3){ if(strstr($vk2,$k3)){
+                        $tmp .= (empty($tmp)?'':', ').$v3;
+                    } }
+                    echo $tmp ? $tmp : '-';
+                }elseif(strstr($flags,'s,')){
+                    echo $vk2 ? $vk2 : '-';
+                }else{
+                    echo $vk2 ? $vk2 : '-';
+                } ?>
+            </label>
+        </p>
+        <?php } ?>
+        <p class="remark tr">
+            {=$row['aip']} @ {stime($row['atime'],min)}
+        </p>
+    </div><!-- /.blog-post -->
+    <?php } ?>
+    <div class="topic-post">
+
+    </div><!-- /.blog-post -->
+
+</div>
+</div>
+
+<p>表单太丑？就知道你不要用现成的模板…所有呢？另外写模板自己调css吧！</p>
+
+<?php
+echo eimp('/layer/layer.js','vendui');
+echo eimp('/~tpl/vote.js');
+?>
+<script>
+var enc='';
+</script>
+
+{/block:infos}
+
+{block:init}<?php devTopic::voteCook();?>{/block:init}

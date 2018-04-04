@@ -22,7 +22,7 @@ $subs = tex_base::docer('d_start/doc__home');
     <div class="right">
     <i><a href="{surl(doc:tester)}" target="_blanlk">测试代码</a></i>
     <i><a href="{surl(demo)}" target="_blanlk">演示文档</a></i>
-    <i><a href="{surl(doc:topic)}" target="_blank">演示专题</a></i>
+    <i><a href="{surl(chn:topic)}" target="_blank">演示专题</a></i>
     </div>
 
     <i class="act">贴心猫概况</i>
@@ -48,16 +48,13 @@ $subs = tex_base::docer('d_start/doc__home');
     
     {code:"d_uplog/a_cfgs"}
     <?php 
-      $ik = 0; $imax = 8;
       foreach($cfgs as $k=>$v){ 
-      if($ik>=$imax) continue; 
-      if(in_array($k,array('readme','2_x'))) continue; 
-      $iver=str_replace('_','.',$k); 
+      if(in_array($k,array('readme'))) continue;
     ?>
     <p>
-      <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}发布日期:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+      <i class="right">{=$v[0]}</i><a href="{surl("uplog-$k")}">{=$v[1]} 更新日志</a>
     </p>
-    <?php $ik++; } ?>
+    <?php } ?>
     
     <p class="title">系统资讯</p>
     

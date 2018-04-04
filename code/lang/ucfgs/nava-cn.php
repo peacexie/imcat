@@ -46,18 +46,13 @@ $cfgs['cron_jifen'] = array(
     'apis/jifen_plan&pid=jifen_logs' => '积分记录',
 );
 
-$cfgs['exd_psyn'] = array(
+$cfgs['exd_crsh'] = array(
+    'apis/exd_crawl' => '数据采集',
     'apis/exd_share' => '数据分享',
-    'apis/exd_psyn' => '数据同步',
 );
 $cfgs['exd_share'] = array(
     'apis/exd_share&view=list' => '分享DIY',
     'apis/exd_share&view=set' => '分享配置',
-);
-
-$cfgs['exd_oimp'] = array(
-    'apis/exd_oimp' => '数据导入',
-    'apis/exd_crawl' => '数据采集',
 );
 
 $cfgs['seo_push'] = array( 

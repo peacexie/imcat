@@ -1,0 +1,49 @@
+
+
+.c999,a.c999:link,a.c999:visited{color:#999}
+.cCCC,a.cCCC:link,a.cCCC:visited{color:#CCC}
+
+.cF00,a.cF00:link,a.cF00:visited{color:#F00}
+.cF0F,a.cF0F:link,a.cF0F:visited{color:#F0F}
+
+.tc{ text-align:center; }
+
+
+a{ text-decoration:none; }
+a:hover { text-decoration:underline; }
+a.cur { }
+
+.left{ display:inline-block; float:left; }
+.right{ display:inline-block; float:right; }
+
+.list, .listh, .out, .h2, nav, footer{ max-width:780px; margin:auto; }
+.list{ padding-left:0px; }
+.list li{ list-style:none; padding:5px; margin:5px; }
+.list li.subt{ text-align:center; }
+.list li.subt b{ font-weight:bold; color:#333; }
+.list li.lv1{ font-weight:bold; padding-top:15px; border-top:1px solid #CCC; }
+.list li.lv1:before{ content:''; }
+.list span{ font-size:smaller; color:#CCC; }
+
+.title{ max-width:780px; font-size:18px; text-align:center; background:#DDD; padding:15px 5px; margin:15px auto;  }
+.subh2{ max-width:780px; font-size:16px; text-align:center; padding:15px 5px; margin:25px auto 15px auto; border-bottom:1px dashed #CCC; }
+
+.wpc{ width:15%; padding:0 3%; }
+.wp2{ width:39%; }
+
+nav{ display:block; text-align:center; padding:5px 5px; margin:10px auto; border-bottom:1px solid #CCC; }
+nav span{ text-align:center; }
+nav a { height:21px; overflow:hidden; display:inline-block; text-overflow:ellipsis; }
+nav p{ clear:both; }
+nav p span{ cursor:pointer; }
+nav p span.act{ color:#F00; }
+
+footer{ color:#999; text-align:center; padding-top:15px; margin:25px auto; border-top:1px solid #DDD; }
+footer>span{ display:inline-block; }
+footer>span:first-of-type{ padding:0 15px; }
+
+#odoc{ display:none; }
+#text{ width:100%; }
+#html{  }
+pre{ overflow-x:auto; padding:5px; border:1px solid #CCC; }
+

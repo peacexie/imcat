@@ -1,7 +1,7 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
-require DIR_SKIN.'/umc/b_func/tex_faqs.php';
+require DIR_SKIN.'/chn/b_func/tex_faqs.php';
 
 $tabid = 'bext_paras';
 $view = empty($view) ? 'uset' : $view;

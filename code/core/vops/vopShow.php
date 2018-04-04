@@ -230,7 +230,7 @@ class vopShow{
     // unset
     function tagEnd($tname=''){}
     //模板赋值
-    function xxx_set($name, $value = '') {}
+    function set($name, $value=''){}
 
     // msg分析
     static function msg($msg=''){

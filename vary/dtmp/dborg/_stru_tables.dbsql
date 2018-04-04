@@ -748,43 +748,6 @@ CREATE TABLE `{pre}coms_trem{ext}` (
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `{pre}coms_votei{ext}`;
-CREATE TABLE `{pre}coms_votei{ext}` (
-  `cid` varchar(24) NOT NULL,
-  `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
-  `detail` text NOT NULL,
-  `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
-  `vcnt` int(11) NOT NULL,
-  `mpic` varchar(255) DEFAULT NULL,
-  `vno` varchar(12) NOT NULL,
-  `vtop` int(11) NOT NULL,
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}coms_votep{ext}`;
-CREATE TABLE `{pre}coms_votep{ext}` (
-  `cid` varchar(24) NOT NULL,
-  `cno` int(11) NOT NULL DEFAULT '0',
-  `detail` text NOT NULL,
-  `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `{pre}dext_about{ext}`;
 CREATE TABLE `{pre}dext_about{ext}` (
   `did` varchar(24) NOT NULL,
@@ -896,22 +859,10 @@ CREATE TABLE `{pre}dext_topic{ext}` (
   `cmedia` text,
   `clist` text,
   `cvote` text,
+  `cform` text,
   `crels` text,
   `cexts` text,
   `tplname` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}dext_votes{ext}`;
-CREATE TABLE `{pre}dext_votes{ext}` (
-  `did` varchar(24) NOT NULL,
-  `detail` mediumtext,
-  `author` varchar(255) NOT NULL DEFAULT '',
-  `source` varchar(255) NOT NULL DEFAULT '',
-  `seo_key` varchar(255) NOT NULL DEFAULT '',
-  `seo_des` varchar(255) NOT NULL DEFAULT '',
-  `seo_tag` varchar(255) NOT NULL DEFAULT '',
-  `rel_doc` text,
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1136,30 +1087,6 @@ CREATE TABLE `{pre}docs_topic{ext}` (
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `{pre}docs_votes{ext}`;
-CREATE TABLE `{pre}docs_votes{ext}` (
-  `did` varchar(24) NOT NULL,
-  `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL DEFAULT '',
-  `hinfo` varchar(12) DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `mpic` varchar(255) NOT NULL DEFAULT '',
-  `jump` varchar(255) NOT NULL DEFAULT '',
-  `show` tinyint(4) NOT NULL DEFAULT '1',
-  `color` varchar(12) NOT NULL,
-  `click` int(11) NOT NULL DEFAULT '0',
-  `vstart` int(11) NOT NULL,
-  `vend` int(11) NOT NULL,
-  `vmode` int(11) NOT NULL DEFAULT '1',
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 DROP TABLE IF EXISTS `{pre}exd_crawl{ext}`;
 CREATE TABLE `{pre}exd_crawl{ext}` (
   `kid` varchar(24) NOT NULL,
@@ -1208,90 +1135,6 @@ CREATE TABLE `{pre}exd_crlog{ext}` (
   KEY `kid` (`kid`),
   KEY `sysid` (`sysid`),
   KEY `outid` (`outurl`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}exd_oilog{ext}`;
-CREATE TABLE `{pre}exd_oilog{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `kno` tinyint(4) NOT NULL DEFAULT '0',
-  `sysid` varchar(24) NOT NULL DEFAULT '',
-  `outid` varchar(255) NOT NULL DEFAULT '',
-  `ouint` int(11) NOT NULL DEFAULT '0',
-  `done` tinyint(4) NOT NULL DEFAULT '0',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  KEY `kid` (`kid`),
-  KEY `sysid` (`sysid`),
-  KEY `outid` (`outid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}exd_oimp{ext}`;
-CREATE TABLE `{pre}exd_oimp{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `kno` tinyint(4) NOT NULL DEFAULT '0',
-  `title` varchar(24) NOT NULL DEFAULT '',
-  `top` int(11) NOT NULL DEFAULT '0',
-  `odb` varchar(24) NOT NULL DEFAULT '',
-  `osql` varchar(255) NOT NULL DEFAULT '',
-  `kname` varchar(255) NOT NULL DEFAULT '',
-  `ktype` varchar(255) NOT NULL DEFAULT '' COMMENT 'int,val',
-  `kval` varchar(255) NOT NULL DEFAULT '',
-  `kint` int(11) NOT NULL DEFAULT '0',
-  `ktime` varchar(24) NOT NULL DEFAULT '',
-  `mod` varchar(12) NOT NULL DEFAULT '',
-  `limit` int(11) NOT NULL DEFAULT '0',
-  `fskip` varchar(255) NOT NULL DEFAULT '',
-  `fdefs` varchar(255) NOT NULL DEFAULT '',
-  `enable` tinyint(4) NOT NULL DEFAULT '0',
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`kid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}exd_pslog{ext}`;
-CREATE TABLE `{pre}exd_pslog{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `kno` tinyint(4) NOT NULL DEFAULT '0',
-  `sysid` varchar(24) NOT NULL DEFAULT '',
-  `outid` varchar(24) NOT NULL DEFAULT '',
-  `done` tinyint(4) NOT NULL DEFAULT '0',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  KEY `kid` (`kid`),
-  KEY `sysid` (`sysid`),
-  KEY `outid` (`outid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}exd_psyn{ext}`;
-CREATE TABLE `{pre}exd_psyn{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `kno` tinyint(4) NOT NULL DEFAULT '0',
-  `title` varchar(24) NOT NULL DEFAULT '',
-  `top` int(11) NOT NULL DEFAULT '0',
-  `api` varchar(255) NOT NULL DEFAULT '',
-  `mod` varchar(12) NOT NULL DEFAULT '',
-  `stype` varchar(12) NOT NULL DEFAULT '',
-  `limit` int(11) NOT NULL DEFAULT '100',
-  `fskip` varchar(255) NOT NULL DEFAULT '',
-  `fdefs` varchar(255) NOT NULL DEFAULT '',
-  `enable` tinyint(4) NOT NULL DEFAULT '0',
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`kid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}exd_sfield{ext}`;
@@ -1622,22 +1465,14 @@ DROP TABLE IF EXISTS `{pre}topic_form{ext}`;
 CREATE TABLE `{pre}topic_form{ext}` (
   `kid` varchar(24) NOT NULL,
   `kno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `detail` text,
   `mname` varchar(24) NOT NULL DEFAULT '',
   `mtel` varchar(24) NOT NULL DEFAULT '',
-  `memail` varchar(255) NOT NULL DEFAULT '',
-  `mtags` varchar(255) NOT NULL DEFAULT '',
+  `detail` text,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `part` varchar(24) NOT NULL DEFAULT '' COMMENT 'topic,news...',
-  `pid` varchar(24) NOT NULL DEFAULT '',
-  `pno` varchar(24) NOT NULL DEFAULT '',
+  `did` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
+  `auser` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`kid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1658,7 +1493,7 @@ CREATE TABLE `{pre}topic_items{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`,`dno`),
+  UNIQUE KEY `did_dno` (`did`,`dno`),
   KEY `did` (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

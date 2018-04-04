@@ -4,25 +4,40 @@
 {php}
 eimp('initJs','jquery;comm',1);
 eimp('initCss','bootstrap,stpub;comm;info'); 
+
+// 参数
+$mods = array('company','govern','organize');
+$mod = req('mod');
+$mod = in_array($mod, $mods) ? $mod : 'company';
+$ftype = req('ftype');
+// 分页
+$sfrom = "uid,company,ftype,map FROM users_{$mod}_ys ";
+$where = "`show`=1 AND map>'0' ".($ftype ? " AND ftype='$ftype' " : ''); 
+$pg = new comPager($sfrom,$where,2,"atime"); 
+$pg->set('opkey','0');
+$rs = $pg->exe(); 
+// 数据
+$items = array(); $idfirst = ''; $idend = '';
+if($rs){
+foreach($rs as $row){
+    $info = array('uid'=>$row['uid'], 'title'=>$row['company']);
+    $map = explode(',',$row['map']);
+    $items[] = $info + $map;  
+}}
+$ubase = basReq::getUri(-1,'','page|prec|ptype|pkey');
+if(!strstr($ubase,'mkv=')) $ubase = str_replace('?','?mkv=',$ubase);
+$pabar = $pg->show($idfirst,$idend,'',$ubase);
+
 {/php}
 <style type="text/css">
-#allmap {width:98%; height:400px;overflow: hidden;margin:0;font-family:"微软雅黑";}
+#allmap {width:98%; height:600px;overflow: hidden;margin:0;font-family:"微软雅黑";}
 label { max-width:none; opacity:0.7; border:1px dotted #CCC; border-radius:3px; }
 </style>
-<script src="http://api.map.baidu.com/api?v=2.0&ak=3GGtGlCtbAGa1GYK70XFX2Rb"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&ak={=$_cbase['3aks']['baiduip']}"></script>
 </head><body>
+
 <?php
-$items = array();
-$mods = array('company','organize','govern');
-foreach($mods as $mod){
-    $users = db()->table("users_$mod")->where("`show`=1 AND map>'0'")->select();
-    foreach($users as $row){
-      $info = array('uid'=>$row['uid'], 'title'=>$row['company']);
-      $map = explode(',',$row['map']);
-      $items[] = $info + $map;
-    }
-}
-//dump($items);
+
 ?>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
@@ -37,13 +52,23 @@ foreach($mods as $mod){
     <div class="info-tbar">
     <i>商家地图</i>
     <i class="right">
-    <a href="#">子标题(类别)有没有</a>
+        {php}
+            foreach($mods as $xmod){
+                echo "<a href='?mkv={$this->mkv}&mod=$xmod'>$xmod</a>";
+            }
+        {/php}
     </i>
     </div>
+        类别
+        {tag:utab=[Type][modid,ftype][limit,88]}
+            &middot; <a href="?mkv={=$this->mkv}&ftype={=$t_kid}">{=$t_title}</a>
+        {/tag:utab}
     
     <!--main_start-->
     <div id="allmap">-</div>
     <!--main_end-->
+
+    <div class='pg_bar'>{=$pabar}</div>
       
     <div class="clear"></div>
   </div>

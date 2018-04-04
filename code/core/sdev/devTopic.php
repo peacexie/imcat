@@ -58,9 +58,11 @@ class devTopic{
                 $act = $view=='crels' ? 'cF00' : '';
                 $nav .= "<li $icls><a href='$burl=crels' class='$act'>相关信息</a></li>\n";
             }
-            if(!empty($xfm['csurv'])){
-                $act = $view=='csurv' ? 'cF00' : '';
-                $nav .= "<li $icls><a href='$burl=csurv' class='$act'>调查列表</a></li>\n";
+            if(!empty($xfm['cform'])){
+                $act = $view=='cform' ? 'cF00' : '';
+                $nav .= "<li $icls><a href='$burl=cform' class='$act'>表单项</a></li>\n";
+                $act = $view=='formd' ? 'cF00' : '';
+                $nav .= "<li $icls><a href='$burl=formd' class='$act'>表单数据</a></li>\n";
             }
             $nav .= "</ul>\n<ul class='clear'><li $icls><b>图文&媒体</b></li>\n";
             foreach (array('ctext','chtml','cpics','cmedia') as $key) {

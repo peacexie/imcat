@@ -2,7 +2,7 @@
   <p class="pgf_logo"> <a href="{=PATH_PROJ}/"><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60" alt="{=$_cbase[sys_name]}(LOGO)" /></a> </p>
   <p class="pgf_topbar">
     {if !cmod('indoc')}<b class="qrcode_tip"><a href="{surl(umc:indoc)}" target="_blank">公文</a></b>{/if}
-    {if !cmod('faqs')}<b class="qrcode_tip"><a href="{surl(umc:faqs)}" target="_blank">问答</a></b>{/if}
+    {if !cmod('faqs')}<b class="qrcode_tip"><a href="{surl(chn:faqs)}" target="_blank">问答</a></b>{/if}
     <b class="qrcode_tip"><a href="{surl(tools)}" target="_blank">贴心工具</a></b>
     <i class="notice">{=$_cbase['sys_name']} V{=$_cbase['sys']['ver']} --- 使用手册，指点迷津；开发文档，DIY！</i>
   </p>

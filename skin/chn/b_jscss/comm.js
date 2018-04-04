@@ -1,5 +1,6 @@
 function js_cklogin(id){
     var sinf, ainf='';
+    if (typeof(_minfo)=="undefined") return;
     if(_minfo.userFlag=='Guest'){
         var uname = 'Guest';
         sinf = '<span class="uname">'+uname+'</span> 您好！<br><a href="'+umc_url+'?logout&recbk=ref">马上登陆…</a>';
@@ -23,6 +24,16 @@ function js_cklogin(id){
     if(!id) id = 'top_cklogin';
     if(id) $('#'+id).html("<span class='ainf'>"+ainf+"</span>"+sinf);
     return sinf+ainf;
+}
+
+
+// qas_(id/key), qat_(id/key)
+function jsactMfaqs(){
+    var e = jsElm.jeID('qas_'+qas_id); 
+    if(e) e.className = 'act';
+    var e = jsElm.jeID('qat_'+qat_id); 
+    if(e) e.className = 'act';
+    //else jsElm.jeID('qat_all').className = 'act';
 }
 
 function jsactMenu(menuid){

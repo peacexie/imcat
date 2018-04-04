@@ -56,8 +56,8 @@ $fcfgs = array(
         v_lpx1_tags=区域,价格,特色1,特色2'
     ),
 
-    'csurv' => array( # survey
-        'title' => '调查列表',
+    'cform' => array( # form
+        'title' => '表单项',
         'g' => 'c',
         'v_part1=来自哪里(单选),s
         v_part2=兴趣爱好(多选),m

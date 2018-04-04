@@ -3,23 +3,28 @@
 {block:extop}
 {code:"d_uplog/a_cfgs"}
 <?php 
+$_bkey = $this->key ? 'vlog' : 'home'; 
+$file = empty($this->key) ? 'readme' : "v".intval($this->key).'.x';
 $key = empty($this->key) ? 'readme' : $this->key;
-$flog = @$cfgs[$key][1];
-$subs = tex_base::docer("d_uplog/upd_$flog"); 
+$subs = tex_base::docer("d_uplog/$file");
 if(empty($subs)){ $this->msg('Has NOT Release!'); }
 $sub = req('sub',''); 
-$verflag = is_numeric($cfgs[$key][0]) ? "V".$cfgs[$key][1] : $cfgs[$key][0];
+$verflag = $cfgs[$key][1];
 $titlesub = $titletop = $verflag; 
 $titlesub = $_cbase['sys_name'].' '.$titlesub;
 ?>
 {/block:extop}
 
-{block:exbar}{/block:exbar}
+{block:exbar}
+    <?php foreach($subs as $k=>$v){ $title = $_bkey=='home' ? $v['title'] : $k; ?>
+    <a href="#s_{=$k}">{=$title}</a>
+    <?php } ?>
+{/block:exbar}
 
 {block:exmain}
     
     <?php foreach($subs as $k=>$v){ ?>
-    <ul id="s_{=$k}" class="mod-section">
+    <ul id="s_{=$k}" class="mod-section mod-uplog">
       <li class="type">{=$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
       {=$v[detail]}
     </ul>

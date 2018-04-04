@@ -1,5 +1,5 @@
 
--- base_menu@2018-01-19 21:57:59 -- 
+-- base_menu@2018-04-04 22:04:08 -- 
 INSERT INTO `{pre}base_menu{ext}` VALUES 
 ('m1info','muadm','0','资讯','bullhorn','320','1','1','','新闻,资讯','','0','','127.0.0.1','1507099250','peace'),
 ('m1012','muadm','0','演示','list-alt','112','1','1','','演示菜单,扩展','','0','','127.0.0.1','1507099250','peace'),
@@ -42,9 +42,9 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3apisms','muadm','m2api','短信接口','','124','1','3','短信发送(!)?mkv=apis-sms_send\r\n记录(!)?mkv=apis-sms_logs','','','0','','','0',''),
 ('m2data','muadm','m1tool','数据工具','','128','1','2','','','','0','','','0',''),
 ('m2api','muadm','m1adm','插件/接口','code-fork','140','1','2','','','','0','','127.0.0.1','1504344490','peace'),
-('m3data','muadm','m2data','采集导入','','132','1','3','数据导入(!)?mkv=apis-exd_oimp\r\n采集(!)?mkv=apis-exd_crawl','','','0','','','0',''),
+('m3data','muadm','m2data','数据采集','','132','1','3','数据采集(!)?mkv=apis-exd_crawl\r\n增加(!)?mkv=apis-exd_crawl&view=form','','','0','','127.0.0.1','1522497020','peace'),
 ('m3seo','muadm','m2data','优化推送','','136','1','3','SEO优化(!)?mkv=apis-seo_push\r\n推送(!)?mkv=apis-seo_push&pid=seo_pset','','','0','','','0',''),
-('m3share','muadm','m2data','分享同步','','128','1','3','数据分享(!)?mkv=apis-exd_share\r\n同步(!)?mkv=apis-exd_psyn','','','0','','','0',''),
+('m3share','muadm','m2data','数据分享','','128','1','3','数据分享(!)?mkv=apis-exd_share\r\n设置(!)?mkv=apis-exd_share&view=set','','','0','','127.0.0.1','1522496973','peace'),
 ('m3plan','muadm','m2data','计划任务','','124','1','3','计划任务(!)?mkv=apis-cron_plan\r\n积分(!)?mkv=apis-jifen_plan','','','0','','','0',''),
 ('m3catch','muadm','m2sys','缓存静态','','124','1','3','系统缓存(!)?mkv=admin-update\r\n静态(!)?mkv=admin-static','','','0','','','0',''),
 ('m3pro','muadm','m2pro','产品管理','','240','1','3','产品管理(!)?mkv=dops-a&mod=cargo\r\n增加(!)cargo(!)jsadd','','','0','','127.0.0.1','1511272489','peace'),
@@ -102,9 +102,6 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m2else','muadm','m1coms','其他互动','','960','1','2','','','','0','','127.0.0.1','1479815451','peace'),
 ('m3gbook','muadm','m2else','网站留言管理','','240','1','3','?mkv=dops-a&mod=gbook','','','0','','','0',''),
 ('user-mbind','mkvu','user-m','会员绑定','','888','1','2','','user/mbind','','0','','127.0.0.1','1507022174','peace'),
-('m2vote','muadm','m1coms','投票管理','','360','1','2','','','127.0.0.1','1479793536','peace','127.0.0.1','1479822741','peace'),
-('m3voip','muadm','m2vote','选项记录','','136','1','3','<a href=\"?mkv=dops-a&mod=votei\">投票选项</a> \r\n- <a href=\"?mkv=dops-a&mod=votep\">记录</a>','','','0','','127.0.0.1','1479796890','peace'),
-('m3vtadm','muadm','m2vote','管理发布','','124','1','3','投票管理(!)?mkv=dops-a&mod=votes\r\n发布(!)votes(!)jsadd','','','0','','127.0.0.1','1480679102','peace'),
 ('m3notea','muadm','m2else','站务笔记管理','','888','1','3','笔记管理(!)?mkv=dops-a&mod=notea\r\n发布(!)notea(!)jsadd','','220.115.158.76, 10.50.148.56','1496145801','peace','220.115.158.76, 10.50.148.55','1496145822','peace'),
 ('home-help','mkva','home-m','帮组','','888','1','2','','frame/help','127.0.0.1','1507021581','peace','127.0.0.1','1507022329','peace'),
 ('dops-m','mkva','0','数据操作','','888','1','1','','','127.0.0.1','1507021581','peace','127.0.0.1','1507022239','peace'),

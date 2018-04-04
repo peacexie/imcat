@@ -243,3 +243,6 @@ div.bdsharebuttonbox {  }
 .pg_bar{ margin:auto; text-align:center; }
 .pg_bar .pagination li a{ margin:0 5px; }
 .pg_bar .pagination li input{ width:60px; }
+
+.mod-uplog h2{ font-size:16px; border-top:2px solid #CCC; padding:10px 0; margin:10px; border-bottom:1px dotted; }
+.mod-uplog h2:first-of-type{ border-top:0px; }

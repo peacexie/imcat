@@ -2,7 +2,7 @@
 /*
 单个模板扩展函数
 */ 
-class tex_devs{ //extends tex_base
+class tex_devs{
     
     static $dcfg = array('basic','main',); //'base','frame'
     static $data = array();

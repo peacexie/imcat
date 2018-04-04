@@ -22,6 +22,7 @@ $mkvs['ok'] = array(
 '/dev/start.htm',
 '/dev/uplog-3_9.htm',
 '/dev/tools-ipaddr.htm?api=Local',
+'/dev/tools-ipaddr.htm?api=Pcoln',
 
 '/dev/extend.htm',
 '/dev/extend-apiServer.htm',

@@ -1,0 +1,29 @@
+{imp:"faqs/a-layout"}<!--模板继承-->
+
+{block:main}<?php
+$whrs = tex_faqs::expwhr($this); 
+$whr = $whrs[0]; $ord = $whrs[1];
+?>
+<dl>
+{tag:qas=[Page][modid,faqs][where,$whr][order,$ord][show,1][limit,10]}
+    {:row}
+    <dt>{if !empty($t_hinfo) }<b class="fa fa-leaf"></b> {/if}<a href="{surl("faqs.$t_did")}">{title($t_title,240,$v)}</a></dt>
+    <dd><i>{stime($t_atime,min)}</i>
+    <span class="right">{lang(user.qa_rep)}:<i id="jsid_count_qarep:{=$t_did}">0<!--`faqs`--></i> &nbsp; &nbsp; {lang(user.qa_view)}:{=$t_click}  {if !empty($t_catid) } &nbsp; &nbsp; {lang(user.qa_type)}:<a href="{surl("faqs-$t_catid")}">{sopt($t_catid,$this->mod,1,0)}</a>{/if}</span>
+    <div  class="cst-tag1">{php echo tex_faqs::navTags($this,$t_tags); }</div>
+    </dd>
+    {/row}
+    <dd>
+    <?php 
+    if($_cbase['page']['prec']){ echo $_cbase['page']['bar']; }
+    else{ echo "<dt class='ma10 tc' >".lang('user.qa_nodata')."</dt>"; }
+    ?>
+    </dd>
+{/tag:qas}
+</dl>{/block:main}
+
+{block:uend}{:parent}{php}
+$jstr = tex_faqs::ejsCfgs($this); 
+echo "<script>$jstr</script>"; 
+{/php}{/block:uend}
+

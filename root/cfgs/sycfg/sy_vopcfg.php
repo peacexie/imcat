@@ -23,19 +23,21 @@ $_sy_vopcfg['tpl'] = array(
     ),
     'chn' => array(
         '经典版',  
-        '/chn.php'
+        '/chn.php',
+        '/', // 伪静态配置：把`.php?` ->替换为 `/`
+        '.htm', // 伪静态后缀
     ), 
     'dev' => array(
         '文档版',  
         '/dev.php',
-        //'/', // 伪静态配置：把`.php?` ->替换为 `/`
-        //'.htm', // 伪静态后缀
+        '/', // 伪静态配置：把`.php?` ->替换为 `/`
+        '.htm', // 伪静态后缀
     ), 
     'doc' => array(
         'Manual', 
         '/doc.php',
-        //'/', // 伪静态配置：把`.php?` ->替换为 `/`
-        //'.htm', // 伪静态后缀
+        '/', // 伪静态配置：把`.php?` ->替换为 `/`
+        '.htm', // 伪静态后缀
     ), 
     'mob' => array(
         array('cn'=>'手机版', 'en'=>'Mobile'),  
@@ -60,11 +62,11 @@ $_sy_vopcfg['tpl'] = array(
 
 // 各模块展示show
 $_sy_vopcfg['show'] = array( 
-    //'chn' => array('',''), 
-    'doc' => array('topic'),
+    //'chn' => array('',''), // topic,faqs
+    //'doc' => array(''),
     'dev' => array('demo'), 
-    'umc' => array('indoc','faqs'), 
-    'mob' => array('votes'),
+    'umc' => array('indoc'), 
+    //'mob' => array('votes'),
     '_defront_' => 'chn', //默认展示模板
     '_deadmin_' => 'adm', //默认管理模板
     '_hidden_' => array('adminer','inmem'), //无展示模块

@@ -50,16 +50,13 @@ eimp('initCss','bootstrap,stpub;comm-mob');
   <div class="tab-content">
     <ul class="home-block tab-pane fade in active" id='vers'>
       <?php 
-        $ik = 0; $imax = 6;
-        foreach($cfgs as $k=>$v){ 
-        if($ik>=$imax) continue; 
-        if(in_array($k,array('readme','2_x'))) continue; 
-        $iver=str_replace('_','.',$k); 
+      foreach($cfgs as $k=>$v){ 
+      if(in_array($k,array('readme'))) continue;
       ?>
       <li>
-        <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}发布日期:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+        <i class="right">{=$v[0]}</i><a href="{surl("uplog-$k")}">{=$v[1]} 更新日志</a>
       </li>
-      <?php $ik++; } ?>
+      <?php } ?>
     </ul>
     <ul class="home-block tab-pane fade" id="news">
       {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}

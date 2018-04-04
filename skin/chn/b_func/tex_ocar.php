@@ -2,7 +2,7 @@
 /*
 
 */ 
-class tex_ocar{ //extends tex_base
+class tex_ocar{
     
     #protected $prop1 = array();
     

@@ -1,12 +1,4 @@
 
-// qas_(id/key), qat_(id/key)
-function jsactMfaqs(){
-    var e = jsElm.jeID('qas_'+qas_id); 
-    if(e) e.className = 'act';
-    var e = jsElm.jeID('qat_'+qat_id); 
-    if(e) e.className = 'act';
-    //else jsElm.jeID('qat_all').className = 'act';
-}
 
 function jsactMenu(menuid){
     var e = jsElm.jeID('idf_'+cm); 

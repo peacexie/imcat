@@ -74,7 +74,7 @@ class basJscss{
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/html5.js');
                 $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-1.x.js');
             }else{
-                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-3.x.js');
+                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
             }
         }
         if(strstr($exjs,'bootcss')){

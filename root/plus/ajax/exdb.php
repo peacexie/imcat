@@ -24,7 +24,7 @@ $job = req('job');
 
 
 /*
-
+2018-03-31#del#oimp,psyn
 */
 
 
@@ -33,17 +33,17 @@ $exd = new exdFunc($mod);
 if(in_array($act,array('pull','show'))){ 
     $res = $exd->$method();
     echo $res;
-}elseif(in_array($act,array('oimp','crawl')) && !empty($debug)){
+}elseif(in_array($act,array('crawl')) && !empty($debug)){ // 'oimp',
     $jcfg = exdBase::getJCfgs($act,$job);
     $method = "{$method}_Debug";
     $res = $exd->$method($jcfg,$debug); 
     $exd->showBug($res,$exd,$debug);
-}elseif(in_array($act,array('oimp','crawl')) && !empty($sysid)){
+}elseif(in_array($act,array('crawl')) && !empty($sysid)){ // 'oimp',
     $jcfg = exdBase::getJCfgs($act,$job);
     $method = "{$method}_Update";
     $res = $exd->$method($jcfg,$sysid); 
     $exd->showRes($res);
-}elseif(in_array($act,array('psyn','oimp','crawl'))){
+}elseif(in_array($act,array('crawl'))){ // 'psyn','oimp',
     $jcfg = exdBase::getJCfgs($act,$job);
     $res = $exd->$method($jcfg);
     $exd->showRes($res);

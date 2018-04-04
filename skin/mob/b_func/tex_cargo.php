@@ -2,7 +2,7 @@
 /*
 单个模板扩展函数
 */ 
-class tex_cargo{ //extends tex_base
+class tex_cargo{
     
     #protected $prop1 = array();
     

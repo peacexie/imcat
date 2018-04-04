@@ -119,36 +119,5 @@ class tex_base{
         return $data;
     }
     
-    static function cutvers($arr='',$cnt=0,$ak=''){ 
-        global $_cbase;
-        $len = count($arr); 
-        $a1 = array_slice($arr,0,$cnt); 
-        $a2 = array_slice($arr,$len-$cnt,$cnt); 
-        $no = 0;
-        foreach ($arr as $key => $val) {
-            if($ak==$key){
-                break;
-            }else{
-                $no++;
-            }
-        }
-        $min = $no-$cnt-1; if($min<0) $min=0; 
-        $max = $no+$cnt+1; if($max>$len-1) $max=$len-1;
-        $_cbase['run']['verkeys'] = ',';
-        if($min>$cnt){
-            $tmp = array_slice($arr,$min,1);
-            $tmp = array_keys($tmp);
-            $_cbase['run']['verkeys'] .= '('.$tmp[0].')';
-        }
-        if($max<$len-$cnt){
-            $tmp = array_slice($arr,$max,1);
-            $tmp = array_keys($tmp);
-            $_cbase['run']['verkeys'] .= $tmp[0].',';
-        }
-        $a3 = array_slice($arr,$min,$max-$min+1);
-        $re = array_merge(array_keys($a1),array_keys($a2),array_keys($a3));
-        $re = array_unique($re);
-        return $re;
-    }
-        
+
 }

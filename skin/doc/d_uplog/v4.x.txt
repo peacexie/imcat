@@ -1,0 +1,77 @@
+
+
+#v4.1# (2018.04)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.1
+ - Release date: 2018.04~(2018-05)
+ - rar-size: [core]1.20 MB, [full]3.66 MB(core+vendor)
+
+
+## ChangeLog
+
+* [Topic-extend]A: [Add] Free form system
+ - Such as questionnaire ( single-selection, multiple-selection, input, short-answer);
+ - Or a simple name-tel collect form.
+
+* [Topic-extend]B: [Improve] E-book template
+ - Single page article display
+ - Multi page article display
+ - Chapter-subchapter display
+
+* [Improve] Maps for users
+
+* [Bugfix]
+ - Changelog adjusted in Demo-site
+ - Some notice in php7.2
+
+* [Sister-System]
+ - (Python)Wepy, Mini framework for Crawler
+ - https://github.com/peacexie/python
+
+* [Clear/Move]
+ - Data import: replace with REST-API or write code separately.
+ - Data synchronization: replace with REST-API or write code separately.
+ - Clean vote: use the `Free form system` of topic instead.
+ - Move: Move topic/faqs to `chn` (view group)
+
+
+#v4.0# (2018.01)
+
+
+## Basic-Info
+
+* Resume
+ - [topic] No matter how big/complex the thing, It's just a special topic to deal with it!
+ - [version tag] (The previous version is `3.9`) What's called this version? `3.10` or `4.0`?
+
+* Basic-Info:
+ - Release: 2018.01.13,(2018-01-21)
+ - rar-Size: [core]1.30 MB, [full]3.66 MB(core+vendor)
+
+
+## ChangeLog
+
+* topic Extended: 
+ - No matter how big/complex the thing, It's just a special topic to deal with it!
+ - It can Extended subpage freely;
+ - Image-text mix typesetting, personage/company presentation, electronic documents/books... We just can use a special topic to show it!
+ - The topic built-in vote-system, the old vote model, we'll move it into extend package.
+ - Demo: http://txmao.txjia.com/doc/topic.htm
+
+* Add: Skin(theme) Switch: 
+ - Based on bootstrap skin
+ - Please download the skin css: https://bootswatch.com/
+ - Config See to: /vimp/vendui/bootstrap/css/notes.txt
+
+* Improve:
+ - Improve: Compatibility parameters after pseudo-static url. eg. /dev/mkv.htm?api=Local
+ - Add: Custom Path replacement configuration, See file: /cfgs/excfg/ex_repath
+
+* Fix: 
+ -> Some notice in php7.2
+ -> Some bugs
+

@@ -30,7 +30,7 @@ if($did){
 if($view=='clear'){
     $msg = lang('flow.dops_clearok');
     /*if($mod=='coitem'){
-        $pids = glbDBExt::getKids('corder','title','1=1'); 
+        $pids = glbDBExt::getKids('xxxcorder','title','1=1'); 
         $db->table($dop->tbid)->where("ordid NOT IN($pids)")->delete(); 
     }else{
         $db->table($dop->tbid)->where("atime<'".($_cbase['run']['stamp']-3*86400)."'")->delete(); 
@@ -38,7 +38,55 @@ if($view=='clear'){
     $view = 'list';
 }
 
-if($act=='iform'){
+if($view=='formd'){
+
+    echo $navStr; 
+    $cfg = array(
+        'sofields'=>array('mname','mtel','detail'),
+        'soorders'=>array(
+            'atime' => '操作时间(降)',
+            'atime-a' => '操作时间(升)',
+        ),
+        'soarea'=>array(),
+        'kid'=>$mod,
+    );
+    $dop = new dopExtra('topic_form',$cfg); 
+    // 删除操作
+    if(!empty($bsend)){
+        require dirname(dirname(__FILE__)).'/binc/act_ops.php';
+    } 
+    $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
+    $dop->sobar("表单数据$umsg",40,array());
+    // 清理操作
+    if(!empty($bsend)&&$fs_do=='dnow'){
+        $msg = $dop->opDelnow();
+        basMsg::show($msg,'Redir',"?mkv=$mkv&mod=topic&did=$did&view=formd&flag=v1");
+    }
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
+    echo "<th>".lang('flow.title_select')."</th>";
+    echo "<th>mname</th><th>mtel</th><th>time</th><th>ip</th><th>Edit</th>";
+    echo "</tr>\n";
+    $idfirst = ''; $idend = '';
+    if($rs=$dop->getRecs()){ 
+        foreach($rs as $r){ 
+          $kid = $idend = $r['kid'];
+          if(empty($idfirst)) $idfirst = $kid;
+          echo "<tr>\n".$cv->Select($kid); 
+              $detail = $r['detail'];
+              echo "<td class='tl'>$r[mname]</td>\n";
+              echo "<td class='tc'>$r[mtel]</td>\n";
+              echo "<td class='tc'>".date('m-d H:i:s',$r['atime'])."</td>\n";
+              echo "<td class='tc'><input type='text' value='$r[aip]' class='txt w120'/></td>\n";
+              echo "<td class='tc'>Edit</td>\n";
+          echo "</tr>\n<tr>\n<td colspan=6><textarea class='wp100' rows=2>$detail</textarea></td></tr>\n";
+        }
+        $dop->pgbar($idfirst,$idend);
+    }else{
+        echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
+    }    
+    glbHtml::fmt_end(array("mod|$mod","part|$part"));
+
+}elseif($view=='iform'){
 
     if(!empty($bsend)){
         $fmv = $_POST['fm'];
@@ -189,7 +237,7 @@ if($act=='iform'){
         $jsc .= "$('#{$k2}Tpl').append(tpl.replace(/r_keys/g,'{$k2}'));mitmInit('{$k2}');\n";
     }
     glbHtml::fmae_send('bsend',lang('flow.dops_send'));
-    glbHtml::fmt_end(array("mod|$mod","did|$did"));
+    glbHtml::fmt_end(array("mod|topic","did|$did"));
     echo "
         <script id='itmTpl' type='text/html'>
         <div style='padding:5px; margin:5px; border:1px solid #CCC;'>
@@ -204,12 +252,12 @@ if($act=='iform'){
         });</script>
     ";
 
-}elseif($view=='csurv'){
+}elseif($view=='cform'){
 
     if(!empty($bsend)){
-        $csurv = $_POST['csurv'];
+        $cform = $_POST['cform'];
         $tags = $_POST['tags'];
-        foreach ($csurv as $k2 => $rows) {
+        foreach ($cform as $k2 => $rows) {
             $fmv = array();
             $fmv['did'] = $did;
             $fmv['dno'] = $fmv['part'] = $k2;
@@ -222,22 +270,25 @@ if($act=='iform'){
     }
 
     echo $navStr; 
+    $tmps = $db->table($tbexd)->where("did='$did'")->select(); # AND dno='$k2'
+    $datas = array();
+    foreach ($tmps as $kd=>$vd) { $datas[$vd['dno']]=$vd; }
     echo "<script src='".PATH_SKIN."/adm/b_jscss/finps.js'></script>";
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-    echo "<tr><th>调查项目/标记</th><th>选项</th><th>票数</th><th>描述</th></tr>";
+    echo "<tr><th>表单项目/标记</th><th>选项</th><th>票数</th><th>描述</th></tr>";
     $jsb = $jsc = "";
     foreach ($fcfg as $k2=>$title) {
         if(devTopic::skip($k2)) continue; 
-        $data = $db->table($tbexd)->where("did='$did' AND dno='$k2'")->find();
+        $data = isset($datas[$k2]) ? $datas[$k2] : array('detail'=>'', 'tags'=>'');
         $row = json_decode($data['detail'],1); 
-        $flags = "<input type='text' class='wp80' name='csurv[$k2][flags]' value='{$row['flags']}' placeholder='如: `s,must`, `m,` '>";
+        $flags = "<input type='text' class='wp80' name='cform[$k2][flags]' value='{$row['flags']}' placeholder='如: `s,must`, `m,` '>";
         echo "<tr><td class='tc'>$title<br>($k2)<br>$flags</td>";
-        echo "<td><textarea class='wp100' name='csurv[$k2][name]' rows=6 wrap='off'>{$row['name']}</textarea></td>";
+        echo "<td><textarea class='wp100' name='cform[$k2][name]' rows=6 wrap='off'>{$row['name']}</textarea></td>";
         echo "<td><textarea class='wp100' name='tags[$k2]'  rows=6 wrap='off'>{$data['tags']}</textarea></td>";
-        echo "<td><textarea class='wp100' name='csurv[$k2][des]'  rows=6 wrap='off'>{$row['des']}</textarea></td>";
+        echo "<td><textarea class='wp100' name='cform[$k2][des]'  rows=6 wrap='off'>{$row['des']}</textarea></td>";
         echo "</tr>\n";
     }
-    $msg = '标记说明: `s,m,i,a`分别表示`单选,多选,填空,问答`,`must`表示比选项,';
+    $msg = '标记说明: `s,m,i,a,` 分别表示 `单选,多选,填空,问答`, `must` 表示必选项,';
     glbHtml::fmae_send('bsend',lang('flow.dops_send'),0,"tc' colspan=2>$msg<td class=tc></td");
     glbHtml::fmt_end(array("mod|$mod","did|$did"));
 

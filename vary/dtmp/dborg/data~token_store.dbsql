@@ -1,7 +1,4 @@
 
--- token_store@2017-08-05 10:00:03 -- 
+-- token_store@2018-04-04 22:04:09 -- 
 INSERT INTO `{pre}token_store{ext}` VALUES 
-('qq-login','abc506dfe180-999-a6bbf7d65ce123','1234567890','1'),
-('faqs_types','{\"_tags\":\"8\",\"_allt\":\"4\",\"qacom\":\"1\",\"qapub\":\"1\",\"qareg\":\"2\"}','1501422113','1501420313'),
-('qq-login-101403529','','0','1501502001'),
-('weinxin-wx3b915d8db305b742','{\"access_token\":\"poKt7_sFP48XszWXRwwnnhRZ6B1yiMB2Pn3oQkTBc2UIvJDaowTsq-lN218JCnDW1-n_OQVubhAxWDBnnhkz-W3RBijLTE34dXaajTvbnpwo_ms_fuwjTGC_dpaQJfr7FUCjAGAQFN\",\"expires_in\":7200}','1501768359','1501762959');
+('weinxin-wx20b06b3c8d4e2a46','{\"access_token\":\"8_0Xj1NAZm1aA80ugdT8UIALBsYH8Rwlcgzy6YSmhZeNIGpo8kInIgJksnyqgWEDbsLyHLF30JKoExQufsus9xPIkzQKRDFgitbXquP6FtOZ20iyMCB8G_A4HpIDicmBF-ROZLleAUdWMZ5xTFHLSdAFANRY\",\"expires_in\":7200}','1522855620','1522850220');

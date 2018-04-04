@@ -2,7 +2,7 @@
 /*
 单个模板扩展函数
 */ 
-class tex_user{ //extends tex_base
+class tex_user{
     
     #protected $prop1 = array();
 

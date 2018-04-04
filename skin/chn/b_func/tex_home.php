@@ -2,7 +2,7 @@
 /*
 单个模板扩展类
 */ 
-class tex_home{ //extends tex_base
+class tex_home{
     
     protected $xxx = array();
     

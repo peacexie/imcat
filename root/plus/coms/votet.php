@@ -1,9 +1,6 @@
 <?php 
-/*
-if(empty($_GET)){
-    $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx1234&redirect_uri=http%3A%2F%2Fxx.d.com%2Fwap%2Fvote%2Fvop.html&response_type=code&scope=snsapi_base#wechat_redirect';
-    header('location:'.$url);
-}*/
+
+# vote-topic : for:topic
 
 require dirname(__FILE__).'/_cfgall.php'; 
 
@@ -119,19 +116,5 @@ $data['msg'] = '投票成功!';
 die(out($data,'jsonp'));
 
 /*
-
-    $GtSdk = new GeetestLib();
-    $result = $GtSdk->validate($geetest_challenge, $geetest_validate, $geetest_seccode);
-    if ($result != TRUE) msgShow('验证码错误',61);
-
-* vote-flow    --- ok
-* book         --- ...
-* 图文混排
-* demo-data
-
-9/16 = 0.5625
-
 欧阳司马,,东郭西门,,诸葛司徒
-丁,方,广,卜,万
-
 */

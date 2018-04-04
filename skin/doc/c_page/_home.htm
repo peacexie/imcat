@@ -22,7 +22,7 @@ $subs = tex_base::docer('d_start/doc__home');
     <div class="right">
     <i><a href="{surl(doc:tester)}" class="c66F" target="_blanlk">TestCode</a></i>
     <i><a href="{surl(demo)}">Demo-Article</a></i>
-    <i><a href="{surl(doc:topic)}" target="_blank">Demo-Topic</a></i>
+    <i><a href="{surl(chn:topic)}" target="_blank">Demo-Topic</a></i>
     </div>
 
     <i class="act">IntimateCat Resume</i>
@@ -47,9 +47,12 @@ $subs = tex_base::docer('d_start/doc__home');
     <td valign="top" class="topic">
     
     {code:"d_uplog/a_cfgs"}
-    <?php foreach($cfgs as $k=>$v){ if(in_array($k,array('readme','2_x'))) continue; $iver=str_replace('_','.',$k); ?>
+    <?php 
+      foreach($cfgs as $k=>$v){ 
+      if(in_array($k,array('readme'))) continue;
+    ?>
     <p>
-      <i class="right">Ver:{=$iver}</i>{if is_numeric($v[0])}Pub.Date:{/if} <a href="{surl("uplog-$k")}"><?php echo $v[0]; ?></a>
+      <i class="right">{=$v[0]}</i><a href="{surl("uplog-$k")}">{=$v[1]} Changelog</a>
     </p>
     <?php } ?>
 

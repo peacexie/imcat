@@ -1,5 +1,5 @@
 
--- bext_relat@2018-01-19 21:57:59 -- 
+-- bext_relat@2018-04-04 22:04:08 -- 
 INSERT INTO `{pre}bext_relat{ext}` VALUES 
 ('relyc','ygrade','course','年级»课程','222','1','bb3=,bbsay,bbco,bbca,bbmu,bbsp,bbar,\nbb1=,bbsay,bbco,bbmu,bbsp,\nbb2=,bbsay,bbco,bbmu,bbsp,bbar,\nnj1=,yuwen,shuxue,\nzkjsj=,c2012,c2014,c2016,c2020,c2022,c2024,c2026,c2028,c2030,c2032,\nzkwuliu=,c2012,c2014,c2016,c2018,c2020,c2022,c2024,c2066,c2068,c2070,c2072,c2074,c2076,c2078,c2080,\nzkxinwen=,c2012,c2014,c2016,c2018,c2020,c2022,c2024,c2034,c2036,c2038,\nzkjzh=,c2012,c2014,c2016,c2018,c2020,c2022,c2024,c2054,c2056,c2058,c2060,c2062,c2064,\nzkxinli=,c2012,c2014,c2016,c2018,c2020,c2022,c2044,c2046,c2048,c2050,c2052,\ngao1=,yuwen,shuxue,yinyu,wuli,huaxue,shengwu,dili,zhengzhi,lishi,diannao,yinyue,tiyu,meishu,\n','年级下的课程','','0','','','0',''),
 ('relpb','cargo','brand','产品»品牌','888','1','p2012=,huawei,konka,tcl,zhongxing,xiaomi,\np2018=,\np2016=,\np2022=,\nc2020=,aimo,bailian,\nc2018=,aimo,bailian,\np2024=,gree,haier,konka,tcl,chong,\np2026=,gree,haier,midea,kelon,konka,\nc2026=,gree,haier,midea,kelon,chong,\n','产品下的品牌','','0','','','0','');

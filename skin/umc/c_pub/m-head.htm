@@ -19,16 +19,16 @@ if(empty($sbtitle)){
       <span class="fa fa-th-list"></span>
     </button>
     <ul class="dropdown-menu" aria-labelledby="nav_mdoc1">
-        <li><a href="{surl(0)}"><i class='fa fa-flag'></i> {lang(user.pub_cuser)}</a></li>
-        <li><a href="{surl(order)}"><i class='fa fa-flag'></i> {lang(user.pub_order)}</a></li>
+        <li><a href="{surl(umc:0)}"><i class='fa fa-flag'></i> {lang(user.pub_cuser)}</a></li>
+        <li><a href="{surl(umc:order)}"><i class='fa fa-flag'></i> {lang(user.pub_order)}</a></li>
         <!--li><a href="{surl(indoc)}">{lang(user.pub_idoc)}</a></li-->
-        <li><a href="{surl(faqs)}"><i class='fa fa-flag'></i> {lang(user.pub_faqs)}</a></li>
+        <li><a href="{surl(chn:faqs)}"><i class='fa fa-flag'></i> {lang(user.pub_faqs)}</a></li>
         <li role="separator" class="divider"></li>
         {if $user->userFlag=='Login' }
-        <li><a href="?uio-logout"><i class='fa fa-user'></i> {lang(user.lon_logout)}</a></li>
+        <li><a href="{surl(umc:0)}?uio-logout"><i class='fa fa-user'></i> {lang(user.lon_logout)}</a></li>
         {else}
-        <li><a href="{surl(login)}"><i class='fa fa-user'></i> {lang(user.nv2_login)}</a></li>
-        <li><a href="{surl(reg)}"><i class='fa fa-user'></i> {lang(user.nv2_reg)}</a></li>
+        <li><a href="{surl(umc:login)}"><i class='fa fa-user'></i> {lang(user.nv2_login)}</a></li>
+        <li><a href="{surl(umc:reg)}"><i class='fa fa-user'></i> {lang(user.nv2_reg)}</a></li>
         {/if}
         <li role="separator" class="divider"></li>
         <?php echo basLang::links("<li><a href='{url}' title='{title}'><i class='fa fa-random'></i> {title}</a></li>"); ?>

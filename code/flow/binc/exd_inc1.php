@@ -5,7 +5,7 @@ if(in_array($view,array('list','fields','urlset','urlist','loglist'))){ //'fdefs
     $jname = $tabid=='exd_crawl' ? lang('flow.ei_cwraldata') : lang('flow.ei_impdata');
     $lnkadd = "<a href='$aurl[1]&view=form' onclick='return winOpen(this,\"".lang('flow.dops_add')."[$jname]\");'>".lang('flow.fl_addtitle')."&gt;&gt;</a>";
     $lnkre = "<a href='$aurl[1]&view=list'>&lt;&lt;".lang('flow.ei_back')."</a>";
-    $links = admPFunc::fileNav($file,'exd_oimp');
+    $links = admPFunc::fileNav($file,'exd_crsh');
     glbHtml::tab_bar("[$jname]".lang('flow.ei_paln')."<span class='span ph5'>|</span>".($view=='list' ? $lnkadd : $lnkre),"$links",50);
 }
 

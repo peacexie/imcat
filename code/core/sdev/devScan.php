@@ -50,7 +50,7 @@ class devScan{
         $logtabs = array(
             'logs_dbsql','logs_syact','logs_detmp','logs_jifen',
             'plus_smsend','plus_emsend','plus_paylog',
-            'exd_crlog','exd_oilog','exd_pslog','xtest_keyid',
+            'exd_crlog','xtest_keyid', // 'exd_oilog','exd_pslog',
         );
         foreach($logtabs as $tab){
             $db->table($tab)->where("atime<'".$stnow."'")->delete();

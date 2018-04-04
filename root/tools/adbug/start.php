@@ -127,8 +127,8 @@ $scfg = array('min','cerulean','flatly','superhero'); // ,'(ull)'
   <tr class="tc">
     <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">贴心口袋</a></td>
     <td><a href="http://txjia.com/peace/wenode.htm">Node微框架</a></td>
+    <td><a href="http://txmao.txjia.com/chn/topic.2018-3j-g9b1.htm">微爬(Wepy)</a></td>
     <td><a href="http://txjia.com/peace/txbox.htm">Java盒子</a></td>
-    <td><a href="http://txjia.com/peace/txasp.htm">贴心Asp</a></td>
   </tr>
   <?php if($qstr=='skin'){ ?>
   <tr class="tc">

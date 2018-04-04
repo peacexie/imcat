@@ -68,3 +68,6 @@ a.cur { color:#C00; }
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.mod-uplog h2{ font-size:16px; border-top:2px solid #CCC; padding:10px 0; margin:10px; border-bottom:1px dotted; }
+.mod-uplog h2:first-of-type{ border-top:0px; }
