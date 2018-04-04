@@ -44,7 +44,7 @@ if($act=='iform'){
         $fmv = $_POST['fm'];
         $tags = basReq::arr('tags','Html');
         if(!empty($tags)){
-            $fmv['tags'] = json_encode($tags);
+            $fmv['tags'] = comParse::jsonEncode($tags);
         }
         $fmv = devTopic::moveTmpFiles($fmv,'topic',$did);
         if(!empty($isadd)){ // basReq::in()
@@ -155,10 +155,10 @@ if($act=='iform'){
             $fmv['dno'] = $fmv['part'] = $k2;
             $fmv['title'] = $fcfg[$k2];
             $data = array();
-            foreach ($rows as $k3 => $rows) {
-                $data[] = $rows;
+            foreach ($rows as $k3 => $row) {
+                $data[] = $row;
             }
-            $fmv['detail'] = empty($data) ? '' : json_encode($data);
+            $fmv['detail'] = empty($data) ? '' : comParse::jsonEncode($data);
             $db->table($tbexd)->data(in($fmv))->replace(0); 
         }
     }
@@ -175,6 +175,7 @@ if($act=='iform'){
         $rows = json_decode($data['detail'],1); 
         if(!empty($rows )){
         foreach ($rows as $key => $row) {
+            if(empty($row['name'])&&empty($row['url'])) continue;
             echo "
                 <div style='padding:5px; margin:5px; border:1px solid #CCC;'>
                 名称: <input type='text' class='wp80' name='crels[$k2][$key][name]' value='{$row['name']}'><br>
@@ -202,6 +203,43 @@ if($act=='iform'){
             $jsc
         });</script>
     ";
+
+}elseif($view=='csurv'){
+
+    if(!empty($bsend)){
+        $csurv = $_POST['csurv'];
+        $tags = $_POST['tags'];
+        foreach ($csurv as $k2 => $rows) {
+            $fmv = array();
+            $fmv['did'] = $did;
+            $fmv['dno'] = $fmv['part'] = $k2;
+            $fmv['title'] = $fcfg[$k2];
+            $data = $rows;
+            $fmv['detail'] = empty($data) ? '' : comParse::jsonEncode($data);
+            $fmv['tags'] = $tags[$k2];
+            $db->table($tbexd)->data(in($fmv))->replace(0); 
+        }
+    }
+
+    echo $navStr; 
+    echo "<script src='".PATH_SKIN."/adm/b_jscss/finps.js'></script>";
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
+    echo "<tr><th>调查项目/标记</th><th>选项</th><th>票数</th><th>描述</th></tr>";
+    $jsb = $jsc = "";
+    foreach ($fcfg as $k2=>$title) {
+        if(devTopic::skip($k2)) continue; 
+        $data = $db->table($tbexd)->where("did='$did' AND dno='$k2'")->find();
+        $row = json_decode($data['detail'],1); 
+        $flags = "<input type='text' class='wp80' name='csurv[$k2][flags]' value='{$row['flags']}' placeholder='如: `s,must`, `m,` '>";
+        echo "<tr><td class='tc'>$title<br>($k2)<br>$flags</td>";
+        echo "<td><textarea class='wp100' name='csurv[$k2][name]' rows=6 wrap='off'>{$row['name']}</textarea></td>";
+        echo "<td><textarea class='wp100' name='tags[$k2]'  rows=6 wrap='off'>{$data['tags']}</textarea></td>";
+        echo "<td><textarea class='wp100' name='csurv[$k2][des]'  rows=6 wrap='off'>{$row['des']}</textarea></td>";
+        echo "</tr>\n";
+    }
+    $msg = '标记说明: `s,m,i,a`分别表示`单选,多选,填空,问答`,`must`表示比选项,';
+    glbHtml::fmae_send('bsend',lang('flow.dops_send'),0,"tc' colspan=2>$msg<td class=tc></td");
+    glbHtml::fmt_end(array("mod|$mod","did|$did"));
 
 }elseif(in_array($view,array('ctext','chtml','cpics','cmedia'))){
 

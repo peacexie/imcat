@@ -182,7 +182,7 @@ class basSql{
     }
 
     static function sqlite_insbatch($data) {
-        $data = basElm::line2arr($data,1); 
+        $data = basElm::line2arr($data,0); 
         $re = $head = ""; 
         foreach ($data as $val) {
             if(strlen($val)<12) continue;

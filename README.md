@@ -1,6 +1,8 @@
 
-* 贴心猫(IntimateCat) v4.0
-* Release: 2018.01
+* 贴心猫(IntimateCat) v4.1-dev
+* pre-Release: 2018.04~2018.05
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION! PLEASE USE v4.0 instead.
+* 此为开发版，不要用于生产环境，请先用 v4.0。
 
 --- --- --- --- --- --- --- --- --- 
 

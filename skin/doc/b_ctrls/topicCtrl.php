@@ -18,14 +18,16 @@ class topicCtrl{
         $m = $this->ucfg['mod'];
         $k = $this->ucfg['key'];
         $v = $this->ucfg['view'];
-        if(empty($this->vars['tplname'])){
+        if($v=='cfgs' && $this->ucfg['type']=='detail'){
+            $tpl = 'u_topic/book/all~cfgs'; // book/all~cfgs
+        }elseif(empty($this->vars['tplname'])){
             $tpl = $this->ucfg['tplname'];
         }else{
             $dir = "/{$_cbase['tpl']['tpl_dir']}/u_topic";
             $tpl = $this->vars['tplname'];
             if($v){
                 if(file_exists(DIR_SKIN."$dir/$tpl~$v.htm")){
-                    $tpl = "$tpl~$v";
+                    $tpl = "$tpl~$v"; // book/
                 }else{
                     $tpl = "$tpl~detail";
                 }

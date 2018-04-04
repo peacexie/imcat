@@ -24,7 +24,7 @@ class devTopic{
                 $row['urels'] = @json_decode($data['detail'],1); 
             }else{
                 $tmp = comStore::revSaveDir($row['detail']); 
-                $row['upics'] = basElm::line2arr($tmp,1,";");
+                $row['upics'] = basElm::line2arr($tmp,0,";");
             }
         } //print_r($row);
         return $row;
@@ -57,6 +57,10 @@ class devTopic{
             if(!empty($xfm['crels'])){
                 $act = $view=='crels' ? 'cF00' : '';
                 $nav .= "<li $icls><a href='$burl=crels' class='$act'>相关信息</a></li>\n";
+            }
+            if(!empty($xfm['csurv'])){
+                $act = $view=='csurv' ? 'cF00' : '';
+                $nav .= "<li $icls><a href='$burl=csurv' class='$act'>调查列表</a></li>\n";
             }
             $nav .= "</ul>\n<ul class='clear'><li $icls><b>图文&媒体</b></li>\n";
             foreach (array('ctext','chtml','cpics','cmedia') as $key) {

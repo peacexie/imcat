@@ -24,7 +24,7 @@ class extSeo{
             'daily'=>'Y-m-d','monthly'=>'Y-m','yearly'=>'Y',
             'always'=>'Y-m-d H:i:s','weekly'=>'Y-m-d',
         ); 
-        $a = basElm::line2arr($jcfg['note'],1,';'); $fdata = ''; 
+        $a = basElm::line2arr($jcfg['note'],0,';'); $fdata = ''; 
         foreach($a as $tmp){
             if(empty($tmp)) continue;
             $b = explode(',',$tmp); //cargo,100,chn,monthly,0.7

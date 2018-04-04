@@ -100,15 +100,29 @@ class basElm{
         } 
         return $re;
     }
-    static function line2arr($text,$rea=1,$extf=''){ 
+    // re: 0:直接返回, kv:key=val, text:字符串
+    static function line2arr($text,$re=0,$extf=''){ 
         if(!empty($extf)){ $text = str_replace($extf,"\n",$text); }
         $text = str_replace(array("\r\n","\r"),"\n",$text);
         $text = str_replace(array("\n\n\n\n","\n\n\n","\n\n"),"\n",$text);
-        if($rea){
-            $text = explode("\n",$text);
-            $text = array_filter($text);
-        }
-        return $text;
+        $text = explode("\n",$text);
+        $text = array_filter($text);
+        if(!$re) return $text; // 直接返回数组
+        if($re=='text') return implode("\n", $text); // 返回文本
+        // kv:key=val //  返回键值对数组
+        $res = array(); 
+        foreach ($text as $row) {
+            $row = trim($row);
+            $pos = strpos($row,'=');
+            if($pos>0){
+                $key = trim(substr($row,0,$pos));
+                $res[$key] = trim(substr($row,$pos+1));
+            }else{
+                $key = preg_replace('/\s/', '', $row);
+                $res[$key] = $row;
+            }
+        } // print_r($res);
+        return $res;
     }
 
     // 格式化标签

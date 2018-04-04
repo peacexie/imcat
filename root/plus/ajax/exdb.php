@@ -38,7 +38,7 @@ if(in_array($act,array('pull','show'))){
     $method = "{$method}_Debug";
     $res = $exd->$method($jcfg,$debug); 
     $exd->showBug($res,$exd,$debug);
-}elseif(in_array($act,array('oimp','crawl','crawl')) && !empty($sysid)){
+}elseif(in_array($act,array('oimp','crawl')) && !empty($sysid)){
     $jcfg = exdBase::getJCfgs($act,$job);
     $method = "{$method}_Update";
     $res = $exd->$method($jcfg,$sysid); 
