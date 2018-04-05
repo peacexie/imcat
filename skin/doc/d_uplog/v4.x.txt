@@ -8,7 +8,7 @@
 * Basic-Info:
  - version: v4.1
  - Release date: 2018.04~(2018-05)
- - rar-size: [core]1.20 MB, [full]3.66 MB(core+vendor)
+ - rar-size: [core]1.30 MB, [full]3.70 MB(core+vendor)
 
 
 ## ChangeLog

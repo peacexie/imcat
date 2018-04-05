@@ -1,8 +1,6 @@
 
-* 贴心猫(IntimateCat) v4.1-dev
+* 贴心猫(IntimateCat) v4.1-ca1
 * pre-Release: 2018.04~2018.05
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION! PLEASE USE v4.0 instead.
-* 此为开发版，不要用于生产环境，请先用 v4.0。
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -45,27 +43,32 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.0 ChangeLog】 (2018.01)
+### 【v4.1 ChangeLog】 (2018.04)
 
-* topic Extended：
-  - No matter how big/complex the thing, It's just a special topic to deal with it!
-  - It can Extended subpage freely;
-  - Image-text mix typesetting, personage/company presentation, electronic documents/books... We just can use a special topic to show it!
-  - The topic built-in vote-system, the old vote model, we'll move it into extend package.
-  - Demo: http://txmao.txjia.com/doc/topic.htm
-
-* Add: Skin(theme) Switch：
-  - Based on bootstrap skin
-  - Please download the skin css：https://bootswatch.com/
-  - Config See to: /vimp/vendui/bootstrap/css/notes.txt
-
-* Improve:
-  - Improve: Compatibility parameters after pseudo-static url. eg. /dev/mkv.htm?api=Local
-  - Add: Custom Path replacement configuration, See file: /cfgs/excfg/ex_repath
-
-* Fix: 
+* [Topic-extend]A: [Add] Free form system
+  - Such as questionnaire ( single-selection, multiple-selection, input, short-answer);
+  - Or a simple name-tel collect form.
+ 
+*  [Topic-extend]B: [Improve] E-book template
+  - Single page article display
+  - Multi page article display
+  - Chapter-subchapter display
+ 
+*  [Improve] Maps for users
+ 
+*  [Bugfix]
+  - Changelog adjusted in Demo-site
   - Some notice in php7.2
-  - Some bugs
+ 
+*  [Sister-System]
+  - (Python)Wepy, Mini framework for Crawler
+  - https://github.com/peacexie/python
+ 
+*  [Clear/Move]
+  - Data import: replace with REST-API or write code separately.
+  - Data synchronization: replace with REST-API or write code separately.
+  - Clean vote: use the `Free form system` of topic instead.
+  - Move: Move topic/faqs to `chn` (view group)
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -101,24 +104,29 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.0更新日志】(2018.01)
+### 【v4.1更新日志】(2018.04)
 
-* topic 扩展专题：
-  - 再大的一件事，就是一个专题搞定的事！
-  - 专题随意扩展专题子页面；
-  - 图文混排，人物/公司专题介绍，电子文档/书籍……都可一个专题搞定！
-  - 专题集成投票，之前的独立投票，后续可能整理成扩展包分离出去。
-  - 演示：http://txmao.txjia.com/doc/topic.htm
-
-* 增加 皮肤(主题)切换：
-  - 基于bootstrap界面风格
-  - 自行下载主题css：https://bootswatch.com/
-  - 配置参考：/vimp/vendui/bootstrap/css/notes.txt
-
-* 增强：
-  - 改进：兼容伪静态?后的参数如：/dev/mkv.htm?api=Local
-  - 增加：自定义路径替换配置 见文件：/cfgs/excfg/ex_repath
-
-* 修正：
-  - php7.2 下几处警告错误
-  - 一些已知bug
+* [专题扩展]之一：[增加]自由表单
+  - 可以是调查类：单选，多选，填空，简答
+  - 当然可以是简单的报名类……
+ 
+*  [专题扩展]之二：[完善]电子书模板
+  - 单页文章展示
+  - 多页文章展示
+  - 按章节目录展示
+ 
+*  [完善]前台商家地图调用
+ 
+*  [修正]
+  - 调整更新发布记录（演示站）
+  - php7.0+下的几处小兼容问题
+ 
+*  [贴心组合]
+  - Python微爬，辅助系统发布
+  - https://github.com/peacexie/python
+ 
+*  [清理/移动]
+  - 数据导入：使用REST-API替代，或单独写代码
+  - 数据同步：使用REST-API替代，或单独写代码
+  - 清理投票：使用专题的表单替代更自由
+  - 移动：专题/问答：移动到 chn 分组下显示
