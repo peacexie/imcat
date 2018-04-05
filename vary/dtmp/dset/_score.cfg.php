@@ -9,7 +9,6 @@ $_cbase['sys_name'] = "贴心猫(IntimateCat)";
 
 $_cbase['adm_mode'] = "expert";
 $_cbase['debug']['err_mode'] = "1";
-$_cbase['close_home'] = "index";
 $_cbase['close_chn'] = "0";
 $_cbase['close_mob'] = "0";
 $_cbase['close_dev'] = "0";

@@ -10,8 +10,8 @@ $_prcore = array (
   array (
     'sys_editor' => 
     array (
-      'kid' => 'sys_editor',
       'title' => '系统编辑器',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -23,20 +23,17 @@ $_prcore = array (
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
+      'key' => 'sys_editor',
       'cfgs' => 'kind=KindEditor
 ue=UEditor
 um=UEMini
 ck=CKEditor
 xh=xhEditor',
-      'key' => 'sys_editor',
-      'val' => 'kind',
     ),
     'sys_open' => 
     array (
-      'kid' => 'sys_open',
       'title' => 'open开窗方式',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -48,17 +45,14 @@ xh=xhEditor',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '4=4)layer@sentsin.com(推荐)
-1=1)Js/Bootstrap.modal',
       'key' => 'sys_open',
-      'val' => '4',
+      'cfgs' => '4=4)layer@sentsin.com(推荐)
+1=1)Js/window.open',
     ),
     'sys_pop' => 
     array (
-      'kid' => 'sys_pop',
       'title' => 'pop开窗方式',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -70,17 +64,14 @@ xh=xhEditor',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '4=4)layer@sentsin.com
-1=1)JQ/Bootstrap.modal(推荐)',
       'key' => 'sys_pop',
-      'val' => '3',
+      'cfgs' => '4=4)layer@sentsin.com
+3=3)JQ/tipsWindown(推荐)',
     ),
     'msg_timea' => 
     array (
-      'kid' => 'msg_timea',
       'title' => '提示停留时间',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'int',
@@ -92,16 +83,12 @@ xh=xhEditor',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
       'key' => 'msg_timea',
-      'val' => '1500',
     ),
     'sys_map' => 
     array (
-      'kid' => 'sys_map',
       'title' => '地图API',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'select',
       'dbtype' => 'varchar',
@@ -113,17 +100,14 @@ xh=xhEditor',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
+      'key' => 'sys_map',
       'cfgs' => 'baidu=百度
 google=Google',
-      'key' => 'sys_map',
-      'val' => 'baidu',
     ),
     'sys_name' => 
     array (
-      'kid' => 'sys_name',
       'title' => '站点名称',
+      'enable' => '1',
       'etab' => '0',
       'type' => 'input',
       'dbtype' => 'varchar',
@@ -135,11 +119,7 @@ google=Google',
       'fmsize' => '',
       'fmline' => '1',
       'fmtitle' => '0',
-      'fmextra' => '',
-      'fmexstr' => '',
-      'cfgs' => '',
       'key' => 'sys_name',
-      'val' => '贴心猫(IntimateCat)',
     ),
   ),
 );
