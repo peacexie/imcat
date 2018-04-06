@@ -4,7 +4,7 @@
 $_sy_nava['exdiys'] = array(
     'skin' => '/skin',
     'cfgs' => '/root/cfgs',
-    'dtmp' => '', // 与`admin/files`gonge功能重复
+    //'dtmp' => '', // 与`admin/files`gonge功能重复
     'runs' => 'vopcfg',
 ); 
 

@@ -48,9 +48,8 @@ return array(
         'bext_paras'=>'(ex)Params', 'bext_cron'=>'(ex)Task Plan', 
         
         'exd_crawl'=>'(data)Crawl', 'exd_crlog'=>'(data)Crawl Log', 
-        'exd_oilog'=>'(data)Import', 'exd_oimp'=>'(data)Import Log', 
-        'exd_pslog'=>'(data)SynParent', 'exd_psyn'=>'(data)Syn Log', 
-        'exd_sfield'=>'(data)Fields set',  
+        'exd_sfield'=>'(data)Fields set', 
+        'topic_form'=>'(Topic-Extra)From-Data', 'topic_items'=>'(Topic-Extra)Sub-Pages', 'topic_votes'=>'(Topic-Extra)Votes-Logs', 
         
         'init_advs'=>'(init)[Advs]', 'init_coms'=>'(init)[Comms]', 'init_dext'=>'(init)[Docs]Extra', 
         'init_docs'=>'(init)[Docs]Main', 'init_types'=>'(init)[Types]', 'init_users'=>'(init)[Users]', 

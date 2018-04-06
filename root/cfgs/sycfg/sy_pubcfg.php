@@ -70,8 +70,8 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl'),
-    'vendor' => array('ks-buzz','Monolog','psrlog','silex','Spyc','Symfony','Zend'),
-    'dtmp' => array('@test','@udoc','debug','update','updsvr','weixin','08exp'),
+    'vendor' => array('Monolog','psrlog','silex','Spyc'),
+    'dtmp' => array('@test','@udoc','debug','update','weixin'),
     'vendui' => array('artEditor','ratchet','swfCopy','swplayer'),
 );
 //8. skip-files

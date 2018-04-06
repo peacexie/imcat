@@ -48,9 +48,8 @@ return array(
         'bext_paras'=>'(扩展)参数表', 'bext_cron'=>'(扩展)计划任务表',  
         
         'exd_crawl'=>'(数据)采集表', 'exd_crlog'=>'(数据)采集记录', 
-        'exd_oilog'=>'(数据)导入表', 'exd_oimp'=>'(数据)导入记录', 
-        'exd_pslog'=>'(数据)同步表', 'exd_psyn'=>'(数据)同步记录', 
         'exd_sfield'=>'(数据)字段配置',  
+        'topic_form'=>'(专题扩展)表单数据', 'topic_items'=>'(专题扩展)分页内容', 'topic_votes'=>'(专题扩展)投票记录', 
         
         'init_advs'=>'(初始)[广告]表', 'init_coms'=>'(初始)[互动]表', 'init_dext'=>'(初始)[文档]扩展表', 
         'init_docs'=>'(初始)[文档]主表', 'init_types'=>'(初始)[分类]表', 'init_users'=>'(初始)[会员]表', 

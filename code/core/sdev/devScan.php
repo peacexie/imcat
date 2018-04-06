@@ -203,7 +203,6 @@ class devScan{
         $skip = isset($cfgs['skip']['dtmp']) ? $cfgs['skip']['dtmp'] : array();
         comFiles::copyDir(DIR_DTMP,"$pdir/dtmp",$skip,$cfgs['skfiles']);
         foreach($skip as $dir){
-            if(in_array($dir,array('updsvr','08exp'))) continue;
             mkdir("$pdir/dtmp/$dir");
         }
     }

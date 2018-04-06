@@ -16,7 +16,7 @@ $cfgs['exdiys'] = array(
     //'admin/ediy&part=exdiy&dkey=tpls' => '模板配置',
     'admin/ediy&part=exdiy&dkey=skin' => '模板配置',
     'admin/ediy&part=exdiy&dkey=cfgs' => '系统参数',
-    'admin/ediy&part=exdiy&dkey=dtmp' => 'dtmp参数',
+    //'admin/ediy&part=exdiy&dkey=dtmp' => 'dtmp参数',
     'admin/ediy&part=exdiy&dkey=runs' => '入口配置',
 ); 
 
