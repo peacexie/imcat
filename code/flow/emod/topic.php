@@ -38,7 +38,42 @@ if($view=='clear'){
     $view = 'list';
 }
 
-if($view=='formd'){
+if($act=='iform'){
+
+    if(!empty($bsend)){
+        $fmv = $_POST['fm'];
+        $tags = basReq::arr('tags','Html');
+        if(!empty($tags)){
+            $fmv['tags'] = comParse::jsonEncode($tags);
+        }
+        $fmv = devTopic::moveTmpFiles($fmv,'topic',$did);
+        if(!empty($isadd)){ // basReq::in()
+            $fmv['did'] = $did; 
+            $fmv['dno'] = in_array($view,array('clist','cvote')) ? devTopic::getDno($did) : $part; 
+            $fmv['part'] = $part; 
+            $db->table($tbexd)->data(in($fmv))->insert('e'); 
+            $actm = lang('flow.dops_add');
+        }else{ // replace
+            $db->table($tbexd)->data(in($fmv))->where("did='$did' AND dno='$dno'")->update('e');
+            $actm = lang('flow.dops_edit');
+        }
+        $dop->svEnd($did); //静态情况等
+        basMsg::show("$actm".lang('flow.dops_ok'),'Redir');
+    }else{
+        if(!empty($did) && !empty($dno)){
+            $fmv = $db->table($tbexd)->where("did='$did' AND dno='$dno'")->find();
+            $isadd = 0;
+        }else{
+            $fmv = array();
+            $isadd = 1;
+        }
+        glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
+        devTopic::fmlist($fmv,$fme,$view,$part,$fmv); // fields
+        glbHtml::fmae_send('bsend',lang('flow.dops_send'));
+        glbHtml::fmt_end(array("mod|$mod","did|$did","isadd|$isadd"));
+    }
+
+}elseif($view=='formd'){
 
     echo $navStr; 
     $cfg = array(
@@ -85,41 +120,6 @@ if($view=='formd'){
         echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
     }    
     glbHtml::fmt_end(array("mod|$mod","part|$part"));
-
-}elseif($view=='iform'){
-
-    if(!empty($bsend)){
-        $fmv = $_POST['fm'];
-        $tags = basReq::arr('tags','Html');
-        if(!empty($tags)){
-            $fmv['tags'] = comParse::jsonEncode($tags);
-        }
-        $fmv = devTopic::moveTmpFiles($fmv,'topic',$did);
-        if(!empty($isadd)){ // basReq::in()
-            $fmv['did'] = $did; 
-            $fmv['dno'] = in_array($view,array('clist','cvote')) ? devTopic::getDno($did) : $part; 
-            $fmv['part'] = $part; 
-            $db->table($tbexd)->data(in($fmv))->insert('e'); 
-            $actm = lang('flow.dops_add');
-        }else{ // replace
-            $db->table($tbexd)->data(in($fmv))->where("did='$did' AND dno='$dno'")->update('e');
-            $actm = lang('flow.dops_edit');
-        }
-        $dop->svEnd($did); //静态情况等
-        basMsg::show("$actm".lang('flow.dops_ok'),'Redir');
-    }else{
-        if(!empty($did) && !empty($dno)){
-            $fmv = $db->table($tbexd)->where("did='$did' AND dno='$dno'")->find();
-            $isadd = 0;
-        }else{
-            $fmv = array();
-            $isadd = 1;
-        }
-        glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-        devTopic::fmlist($fmv,$fme,$view,$part,$fmv); // fields
-        glbHtml::fmae_send('bsend',lang('flow.dops_send'));
-        glbHtml::fmt_end(array("mod|$mod","did|$did","isadd|$isadd"));
-    }
 
 }elseif($view=='list'){
 
