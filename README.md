@@ -49,22 +49,22 @@
   - Such as questionnaire ( single-selection, multiple-selection, input, short-answer);
   - Or a simple name-tel collect form.
  
-*  [Topic-extend]B: [Improve] E-book template
+* [Topic-extend]B: [Improve] E-book template
   - Single page article display
   - Multi page article display
   - Chapter-subchapter display
  
-*  [Improve] Maps for users
+* [Improve] Maps for users
  
-*  [Bugfix]
+* [Bugfix]
   - Changelog adjusted in Demo-site
   - Some notice in php7.2
  
-*  [Sister-System]
+* [Sister-System]
   - (Python)Wepy, Mini framework for Crawler
   - https://github.com/peacexie/python
  
-*  [Clear/Move]
+* [Clear/Move]
   - Data import: replace with REST-API or write code separately.
   - Data synchronization: replace with REST-API or write code separately.
   - Clean vote: use the `Free form system` of topic instead.
@@ -110,22 +110,22 @@
   - 可以是调查类：单选，多选，填空，简答
   - 当然可以是简单的报名类……
  
-*  [专题扩展]之二：[完善]电子书模板
+* [专题扩展]之二：[完善]电子书模板
   - 单页文章展示
   - 多页文章展示
   - 按章节目录展示
  
-*  [完善]前台商家地图调用
+* [完善]前台商家地图调用
  
-*  [修正]
+* [修正]
   - 调整更新发布记录（演示站）
   - php7.0+下的几处小兼容问题
  
-*  [贴心组合]
+* [贴心组合]
   - Python微爬，辅助系统发布
   - https://github.com/peacexie/python
  
-*  [清理/移动]
+* [清理/移动]
   - 数据导入：使用REST-API替代，或单独写代码
   - 数据同步：使用REST-API替代，或单独写代码
   - 清理投票：使用专题的表单替代更自由

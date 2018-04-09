@@ -32,8 +32,7 @@ class vopUrl{
         $re1 = preg_match("/^\w+(\-\-(so|list))?$/",$mkv); // modid, (--list)
         $re2 = preg_match("/^\w+\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
         $re3 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
-        $re9 = preg_match("/(^home\-)|((\-|\_)$)/",$mkv);
-        if(!($re1 || $re2 || $re3) || $re9){
+        if(!($re1 || $re2 || $re3) || preg_match("/(^home\-)|((\-|\_)$)/",$mkv)){
             vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr'));
         }
         $re = array('q'=>$q, 'mkv'=>$mkv, 'ua'=>$ua);
@@ -58,8 +57,9 @@ class vopUrl{
             $a = array($mkv,'');    
             $type = 'mhome';
         }
+        $re1 = preg_match("/^[a-z0-9]{1}\_/",$a[0]); // 预留前缀:x_
         $re2 = in_array($a[1],self::$keepmk);
-        if(in_array($a[1],self::$keepmk)){
+        if($re1 || $re2){
             vopShow::msg("c:[$mkv]:".basLang::show('vop_parerr'));
         }
         //$mod分析
@@ -105,12 +105,7 @@ class vopUrl{
             $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; 
         }
         if(empty($tpl)){
-            $_groups = glbConfig::read('groups'); 
-            $mod4 = array('docs','coms','users'); // types, advs,
-            $ina4 = isset($_groups[$mod]) && in_array($_groups[$mod]['pid'],$mod4); 
-            if($ina4 || in_array($mod,$re['hcfg']['c']['extra'])){ 
-                $tpl = "$mod/$dsub"; 
-            } // else /doc.php?ctest(modCtrl扩展) 
+            $tpl = "$mod/$dsub"; // $re['hcfg']['c']['extra']
         }
         // 处理{mod}
         $re['tplname'] = str_replace('{mod}',$mod,$tpl); 
@@ -158,7 +153,7 @@ class vopUrl{
     // paras: array, string 
     static function fout($mkv='',$type='',$host=0){ //,$ext=array()
         global $_cbase;
-        if(strpos($mkv,':')) return self::ftpl($mkv,$type,$host);
+        if(strpos($mkv,':')) return self::gtpl($mkv,$type,$host);
         $burl = self::burl($host); 
         //mkv分析
         if(strlen($mkv)<3) return self::bind($burl); //首页
@@ -211,8 +206,8 @@ class vopUrl{
         $re = str_replace('{PATH_PROJ}',PATH_PROJ,$re);
         return $re;
     }
-    //format指定tpl下的url
-    static function ftpl($str,$type='',$host=0){
+    //指定分组(tpl)下的url
+    static function gtpl($str,$type='',$host=0){
         global $_cbase;
         if(!empty($_cbase['run']['tplcfg'])){
             $cfgold = $_cbase['run']['tplcfg']; // ??? 切换当中怎么这个变了?

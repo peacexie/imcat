@@ -47,7 +47,7 @@ if($view=='list'){
             <p class='tc f18'>
             <a href='$cronurl?static=home&tpldir=$ntpl&act=add' class='f18 fB' onclick='return winOpen(this);'>".lang('admin.st_crpage')."</a> #
             <a href='$cronurl?static=home&tpldir=$ntpl&act=del' class='f18 fB' onclick='return winOpen(this);'>".lang('admin.st_depage')."</a> # 
-            <a href='".vopUrl::ftpl("$ntpl:0")."' target='_blank' class='f18 fB' target='_blank'>".lang('admin.st_vres')."</a>
+            <a href='".vopUrl::fout("$ntpl:0")."' target='_blank' class='f18 fB' target='_blank'>".lang('admin.st_vres')."</a>
             </p>
         </td></tr>\n";
 
@@ -64,7 +64,7 @@ if($view=='list'){
             </p>";
         if(!empty($mcfgs['pid']) && in_array($mcfgs['pid'],array('docs','users'))){
             $recs = $db->table("{$mcfgs['pid']}_$nmod")->count();
-            echo "\n<p class='right ph20'><a href='".vopUrl::ftpl("$ntpl:0")."?$nmod' target='_blank' class='f18 fB'>".lang('admin.st_dmhome')."</a></p>
+            echo "\n<p class='right ph20'><a href='".vopUrl::fout("$ntpl:0")."?$nmod' target='_blank' class='f18 fB'>".lang('admin.st_dmhome')."</a></p>
             <p>
             &nbsp; ● ".lang('admin.st_dstatic').": ".lang('admin.st_allrecs',$recs)."
             <input name='limit' type='text' value='20' class='w40' maxlength='3'>".lang('admin.st_batnum')." &nbsp; 
