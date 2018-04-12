@@ -125,13 +125,21 @@ class devSetup{
             $jstr .= "$k='$v', ";
         }
         if($nstep==5 || self::isSetuped()){
-            basMsg::show(basLang::show('devsetup_deltip')."<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]".basLang::show('devsetup_dt1')."<br>_setup_step.txt ".basLang::show('devsetup_dt2')." _setup_lock.txt".basLang::show('devsetup_dt3')."",'die');
+            $msg = basLang::show('devsetup_deltip');
+            $msg .= "<br>[".basDebug::hidInfo(DIR_DTMP)."/store/]".basLang::show('devsetup_dt1');
+            $msg .= "<br>_setup_step.txt ".basLang::show('devsetup_dt2');
+            $msg .= " _setup_lock.txt".basLang::show('devsetup_dt3');
+            basMsg::show($msg, 'die');
         }
         $pvInfo = devRun::verPHP(); //定义了FLAGYES/FLAGNO常量
         $jstr .= "\nfYES='".FLAGYES."',\nfNO='".FLAGNO."',";
-        $jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? basLang::show('devsetup_donen') : basLang::show('devsetup_nosetup'))."',";
+        $jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? lang('devsetup_donen') : lang('devsetup_nosetup'))."',";
         
         $files = comFiles::listDir(DIR_DTMP.'/dborg'); 
+        if(empty($files)){
+            $msg = 'NOT found init setup data in `'.PATH_DTMP.'/dborg/`';
+            glbError::show($msg);
+        }
         $all_tabs = array_keys($files['file']); 
         $demo_tabs = self::$demo_tabs;
         $base_tabs = array();
@@ -224,8 +232,8 @@ class devSetup{
         $rcfg['safe_js']    = 'js';    for($i=0;$i<5;$i++) $rcfg['safe_js']    .= '-'.basKeyid::kidRand('f',5);
         $rcfg['safe_other'] = 'other'; for($i=0;$i<5;$i++) $rcfg['safe_other'] .= '-'.basKeyid::kidRand('f',5);
         $rcfg['safe_safil'] = 'safil'; for($i=0;$i<5;$i++) $rcfg['safe_safil'] .= '-'.basKeyid::kidRand('f',5);
-        $rcfg['safe_rnum']  = basKeyid::kidRand('0',24);
         $rcfg['safe_adminer'] = 'adm'; for($i=0;$i<5;$i++) $rcfg['safe_adminer'] .= '-'.basKeyid::kidRand('fs3',5);
+        $rcfg['safe_rnum']  = basKeyid::kidRand('0',24);
         $rcfg['safe_safix']  = '_'.basKeyid::kidRand('0',3);
         $rcfg['safe_rndtab']  = basKeyid::kidRTable('f');
         $rcfg['tout_admin']  = 1;

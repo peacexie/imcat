@@ -6,7 +6,6 @@ $_va_home = array(
 
     'c' => array(
         'vmode' => 'dynamic', //dynamic,catch,close
-        '_tabCtrl' => array('homeCtrl'),
         '_defCtrl' => '_defCtrl', 
         /*
         'close' => '0', //0,1

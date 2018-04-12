@@ -98,7 +98,7 @@ class vopShow{
             $aex = new $class($this->ucfg,$this->vars);
             $method = empty($this->key) ? 'homeAct' : ($this->type=='detail' ? '_detailAct' : $this->key.'Act');
             if(method_exists($aex,$method)){
-                //$method = $method();
+                //$method = $method;
             }elseif($this->type=='mtype' && method_exists($aex,'_defAct')){
                 $method = '_defAct';
             }else{

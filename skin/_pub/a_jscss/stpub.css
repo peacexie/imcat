@@ -46,7 +46,9 @@
 .h10{line-height:10px;}.h12{line-height:12px;}.h15{line-height:15px;}.h18{line-height:18px;}.h20{line-height:20px;}.h25{line-height:25px;}
 .h30{line-height:30px;}.h35{line-height:35px;}.h40{line-height:40px;}.h45{line-height:45px;}.h50{line-height:50px;}
 /* width */
-.wp10{width:10%;}.wp15{width:15%;}.wp20{width:20%;}.wp25{width:25%;}.wp30{width:30%;}.wp40{width:40%;}.wp50{width:50%;}.wp60{width:60%;}.wp70{width:70%;}.wp80{width:80%;}.wp90{width:90%;}.wp100{width:100%;}
+.wp10{width:10%;}.wp15{width:15%;}.wp20{width:20%;}.wp25{width:25%;}.wp30{width:30%;}.wp40{width:40%;}
+.wp50{width:50%;}.wp60{width:60%;}.wp70{width:70%;}.wp80{width:80%;}.wp90{width:90%;}.wp100{width:100%;}
+.wp33{width:33.3%;} .cel24{width:25%;} @media only screen and (max-width:426px){.cel24{width:50%;}}
 .w5{width:5px;}.w10{width:10px;}.w15{width:15px;}.w20{width:20px;}.w25{width:25px;}.w30{width:30px;}.w35{width:35px;}.w40{width:40px;}.w45{width:45px;}
 .w50{width:50px;}.w55{width:55px;}.w60{width:60px;}.w65{width:65px;}.w70{width:70px;}.w75{width:75px;}.w80{width:80px;}.w85{width:85px;}.w90{width:90px;}.w95{width:95px;}
 .w100{width:100px;}.w105{width:105px;}.w110{width:110px;}.w115{width:115px;}.w120{width:120px;}.w125{width:125px;}.w130{width:130px;}.w135{width:135px;}.w140{width:140px;}.w145{width:145px;}
@@ -96,7 +98,7 @@
 /* peace.color.end */
 
 /* Logo */
-.txcode_logopub { width:40px; height:40px; background-image:url(../../../skin/_pub/logo/imcat-40x.png); }
+.txcode_logopub { width:40px; height:40px; background-image:url(../logo/imcat-40x.png); }
 /* Public */
 .bold{ font-weight:bold}
 .tl{text-align:left;}
@@ -143,7 +145,7 @@
 .pagination>li>a{ margin:0 2px; }
 .pagination>li>input{ width:50px; text-align:center; float:left; }
 /* --- */
-.fldicon{ height:20px; background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; 
+.fldicon{ height:20px; background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; 
   display:inline-block; cursor:pointer; vertical-align:middle; margin:1px 2px; border:0px solid #999; }
 .fcolor{ width:16px; background-position:-2px -71px; }
 .fdate{ width:16px; background-position:-2px -46px; }
@@ -156,7 +158,7 @@
 .tree_d3{ display:block; padding-left:30px; } 
 .tree_d4{ display:block; padding-left:45px; } 
 .tree_d5{ display:block; padding-left:60px; } 
-.tree_bg{ background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; display:inline-block; border:0px solid #999; }
+.tree_bg{ background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; display:inline-block; border:0px solid #999; }
 .tree_dA{ background-position:-2px -132px; height:18px; width:18px; vertical-align:middle; cursor:pointer;}
 .tree_dC{ background-position:-2px -156px; height:18px; width:18px; vertical-align:middle; }    
 
@@ -167,12 +169,12 @@
 /*.divcss5{height: expression_r(this.height> 500 ? 500 :true);  max-height:500px;} */
 .wpop_step { width:expression_r(this.height>60?60:true);max-width:60px; height:16px; line-height:16px; vertical-align:middle; overflow:hidden; display:inline-block; padding:0px 5px 0px 0px; margin:0px; }
 /* wpop */
-input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; cursor:pointer; }
+input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; cursor:pointer; }
 .wpop_in2{ background:#FFF; border:1px solid #CCC; padding:3px; }
 .wpop_out{ display:inline-block; }
 .wpop_in{ display:inline-block; background:#FFF; border:1px solid #CCC; padding:3px; }
 .wpop_iframe { z-index:-1; position:absolute; filter:alpha(opacity=0); -moz-opacity:0; }
-.wpop_open{ height:18px; width:14px; background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; background-position:-2px -132px;
+.wpop_open{ height:18px; width:14px; background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; background-position:-2px -132px;
   display:inline-block; cursor:pointer; vertical-align:middle; margin:1px 1px; border:0px solid #999; }
 .wpop_chrdiv{ padding:3px 3px 5px 3px; } 
 .wpop_chrspan{ display:inline-block; color:#00C;font-weight:bold; padding:0px 5px 0px 0px; } 

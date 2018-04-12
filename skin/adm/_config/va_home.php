@@ -6,7 +6,6 @@ $_va_home = array(
 
     'c' => array(
         'vmode' => 'dynamic', //dynamic,catch,close
-        '_tabCtrl' => array('homeCtrl','bincCtrl'),
         '_defCtrl' => '_defCtrl', 
         //'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
         //'stext' => '-a.htm',

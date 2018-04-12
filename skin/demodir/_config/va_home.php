@@ -6,8 +6,6 @@ $_va_home = array(
 
     'c' => array(
         'vmode' => 'dynamic', //dynamic,catch,close
-        '_tabCtrl' => array('bcdCtrl','efgCtrl'),
-        '_tabCtrl' => array('ctestCtrl'),
         'stexp' => '2h', //30,60,3h,6h,12h,24h,7d
         'stext' => '-d.htm',
         //'pmods' => array('abc',), // 权限模块

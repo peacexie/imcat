@@ -1,19 +1,48 @@
 
+
+
+
+
+
+<select name="archivenew[wentileixing]">
+1-看房,2-买房,3-收楼,4-装修,5-入住
+</select>
+
+
+
+### Editor
+
+* proj
+ - https://summernote.org/getting-started/#installation
+ - Summernote - Super Simple WYSIWYG editor
+ - Summernote may be freely distributed under the MIT license.
+
+* 编辑器
+ - https://www.cnblogs.com/stitchgogo/p/6943917.html
+
 ------------------------------ 
 
+# del-extra : url路由 : 
+
+# del-_tabCtrl : _tabCtrl
+
+# chn，adm，
+
+# 上传，表单，编辑器
+
+# composer
+
+# del 静态
+# ID - 风格 2017-9a-f3a1
+# del js标签
+
+------------------------------ 
 
 * 应用模块：商城
 
 * 应用模块：博客
  - blog
  - blrem
-
-### Editor
-
- - https://summernote.org/getting-started/#installation
- - Summernote - Super Simple WYSIWYG editor
-
- - Summernote may be freely distributed under the MIT license.
 
 ### wechat现场
 
@@ -31,33 +60,10 @@
  - 3,2,1:奖
  - 9-特等奖, 0-未参入
 
-
 ------------------------------ 
-
-
-
-* jilei
- - 清理公文:
-
-
-* big-files
- - fontawesome-webfont.svg : 434K  - ok
- - adminer.imp_php : 427           - x
- - spword.imp_txt : 340            - ok
- - SewisePlayer.swf : 209          - ok
-
 
 
 * plus/coms
  - footer ... 
 
 ------------------------------ 
-
-# composer
-
-# 路由
-
-# x 静态
-
-# x js标签
-

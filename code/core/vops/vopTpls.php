@@ -228,14 +228,14 @@ class vopTpls{
         $hcfg = $_cbase['mkv']['hcfg'];
         $tpdir = DIR_SKIN.'/'.$_cbase['tpl']['tpl_dir'];
         $arr = array(); 
-        if(!empty($hcfg['_tabCtrl']) && in_array($mod.'Ctrl',$hcfg['_tabCtrl'])) $arr[] = $mod.'Ctrl';
+        $arr[] = $mod.'Ctrl';
         if(!empty($hcfg['_defCtrl'])) $arr[] = $hcfg['_defCtrl'];
         foreach ($arr as $class) {
             $fp = $tpdir."/b_ctrls/$class.php";
-            //if(file_exists($fp)){
-            include_once $fp;
-            return $class;
-            //}
+            if(file_exists($fp)){
+                include_once $fp;
+                return $class;
+            }
         }
         return 0;
     }
