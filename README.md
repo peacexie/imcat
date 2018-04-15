@@ -1,6 +1,6 @@
 
-* 贴心猫(IntimateCat) v4.1-ca1
-* pre-Release: 2018.04~2018.05
+* 贴心猫(IntimateCat) v4.1
+* Release: 2018.04
 
 --- --- --- --- --- --- --- --- --- 
 
