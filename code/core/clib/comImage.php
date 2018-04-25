@@ -65,25 +65,34 @@ class comImage{
     // http://img.domain.com/imcat/demo/abc.jpg
     // {ures}/demo/abc.jpg
     static function thpic($val,$resize){
-        $size = explode('x',$resize); 
+        // 还原完整路径
         $orgd = str_replace(array('{uresroot}','{staticroot}'),array(DIR_URES,DIR_STATIC),$val);
         $orgp = str_replace(array('{uresroot}','{staticroot}'),array(PATH_URES,PATH_STATIC),$val);
+        $repath = read('repath','ex');
+        $redir = empty($repath['dir']) ? array() : $repath['dir'];
+        $reatt = empty($repath['att']) ? array() : $repath['att'];
+        if(!empty($redir)){
+            $orgd = str_replace(array_keys($redir),array_values($redir),$orgd); 
+        }
+        if(!empty($reatt)){
+            $orgp = str_replace(array_keys($reatt),array_values($reatt),$orgp); 
+        }
+        // 目标路径
         $ext = strrchr($val,'.');
         $objd = str_replace($ext,"-$resize$ext",$orgd);
         $objp = str_replace($ext,"-$resize$ext",$orgp);
-        $redir = read('repath.dir','ex'); 
-        if(!empty($redir)){
-            $orgd = str_replace(array_keys($redir),array_values($redir),$orgd); 
-            $objd = str_replace(array_keys($redir),array_values($redir),$objd); 
-        }
-        if(file_exists($orgd)){ // local
+        if(strpos($objp,'://')>0){ // out-cdn/ftp:根据具体情况修改了...
+            if(strpos($orgp,PATH_URES)===false) return $orgp; // http://img.xcdn.com/dir/file.ext
+            $scfg = glbConfig::read('store','ex');
+            if(!isset($scfg[$scfg['type']]['cut_ures'])) return $orgp;
+            $cutp = $scfg[$scfg['type']]['cut_ures']; // http://domain.com/cut.php?
+            return str_replace(array("(size)","(img)"),array($resize,$orgp),$cutp); 
+        }elseif(file_exists($objd)){ // 有缩略图
+            return $objp;
+        }elseif(file_exists($orgd)){ // (本地)有原图片,
+            $size = explode('x',$resize);
             $res = comImage::thumb($orgd,$objd,$size[0],$size[1]);
             return $res ? $objp : $orgp;
-        }elseif(strpos($orgp,'://')>0 && strpos($orgp,PATH_URES)===0){ // ftp http://img.domain...
-            $scfg = glbConfig::read('store','ex');
-            $cutp = $scfg[$scfg['type']]['cut_ures']; // http://domain.com/cut.php?
-            $orgp = str_replace(array('{uresroot}','{staticroot}'),'',$val); 
-            return str_replace(array("(size)","(img)"),array($resize,$orgp),$cutp); 
         }
         return $orgp;
     }
