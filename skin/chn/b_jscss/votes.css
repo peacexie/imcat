@@ -1,9 +1,0 @@
-
-.vote-img{ position:relative; }
-.vote-img img{ position:absolute; display:none; top:0; z-index:99; }
-.vote-bar{ height:18px; line-height:18px; background:#336;
-  border-top-right-radius:5px; border-bottom-right-radius:5px; }
-
-.vote-order .head{ background:#EEE;border-bottom:1px solid #666; }
-.vote-order tr.act td{ color:#00F; background:#FFC; }
-.vote-order .foot{ border-top:1px solid #666; }

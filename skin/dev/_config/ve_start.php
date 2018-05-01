@@ -7,7 +7,6 @@ $_ve_start = array(
     'c' => array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
-        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     'm' => 'c_demo/start_main',
     //'d' => 'c_mod/{mod}_detail',

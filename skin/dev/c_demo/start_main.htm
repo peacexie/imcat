@@ -28,17 +28,4 @@ $titlesub = empty($kar[$key]) ? $key : $kar[$key];
     </ul>
     <?php } ?>
 
-{if empty($this->key)}
-<script>
-$(document).ready(function(){
-    $('a').each(function(i, e) {
-        var url = $(e).attr("href"); 
-        if(url.indexOf('://')>0) $(e).attr("target",'_blank');
-    });
-});
-</script>
-{/if}
-
 {/block:exmain}
-
-{block:exside}{inc:"c_demo/start_aside"}{/block:exside}

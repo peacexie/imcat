@@ -1,5 +1,4 @@
 <?php
-(!defined('RUN_INIT')) && die('No Init');
 
 // 项目(project): 访问相对根路径：注意：在根目录设置是空字符串,而不是/，非根目录前面以/开头,后面不要/
 define('PATH_PROJ', ''); 

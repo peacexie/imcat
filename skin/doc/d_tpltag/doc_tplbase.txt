@@ -13,7 +13,7 @@
  - If some bolck code NOT in the NOT set of tpl, use the flag `dir:`, eg: {code:"dev:tools/a-cfgs"}
 
 * Cross template-Include: Public-Tpl/Public-Code
- - Public-Tpl-Include : {inc:"chn:c_pub/inc_blinks"} -=> inc-file: {tpls}/chn/c_pub/inc_blinks.htm
+ - Public-Tpl-Include : {inc:"chn:c_pub/inc-blinks"} -=> inc-file: {tpls}/chn/c_pub/inc-blinks.htm
  - Public-Code-Include : {code:"dev:tools/a-cfgs"} -=> inc-file: {tpls}/dev/tools/a-cfgs.php
 
 

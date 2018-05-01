@@ -54,12 +54,35 @@
 <script src="./photoswipe.user.js?v22"></script>
 <script>
 $(function(){
-	// fmt
-	var html = $('.pics-gallery').html();
-	$('.pics-gallery').html(pswpFmt(html));
-	// deel
-	$('.pswp').html(pswpHtml);
-	pswpInit('.pics-gallery');
+
+    // 获取宽高,供图片轮播使用
+    var imgs=$(".pics-gallery img"), imgn=$(imgs).length, iloaded=0;
+    $(imgs).one('load', function() {
+        var img = new Image(); 
+        img.src = this.src; 
+        var zw = img.width, zh = img.height;
+        $(this).attr('zw',zw);
+        $(this).attr('zh',zh);
+        iloaded++;
+    }).each(function() {
+        if(this.complete) $(this).load();
+    });
+
+    // 等待加载完再Init图片轮播
+    var imgpInit = function(){
+        if(iloaded==imgn){
+            // fmt
+            var html = $('.pics-gallery').html();
+            $('.pics-gallery').html(pswpFmt(html));
+            // deel
+            $('.pswp').html(pswpHtml);
+            pswpInit('.pics-gallery');
+        }else{
+            setTimeout(imgpInit, 300);
+        }
+    }
+    setTimeout(imgpInit, 300);
+
 });
 </script>
 

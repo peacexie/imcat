@@ -58,16 +58,6 @@ $_adfavor = array (
       'char' => 'C',
       'cfgs' => '',
     ),
-    'af2032' => 
-    array (
-      'kid' => 'af2032',
-      'pid' => 'afadmin',
-      'title' => '临时收藏',
-      'deep' => '2',
-      'frame' => '0',
-      'char' => 'L',
-      'cfgs' => '',
-    ),
     'afauser' => 
     array (
       'kid' => 'afauser',

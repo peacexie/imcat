@@ -1,106 +1,22 @@
 /* CSS Document */
 
 
-.umc-mitem{ width:780px; margin:0 auto 0 auto; }
-
-.umc-mitem dl{ height:auto; }
-.umc-mitem h3 { color:#06F; font-size:larger; text-align:left;
-    padding:5px 0 5px 80px; clear:both;
-    background-image:url(../../../skin/_pub/a_img/line-blue.png);
-    background-repeat:repeat-x;
-    border-bottom:1px solid #a1dbff;
-}
-.umc-mitem h3 i{ color:#999; font-style:normal; float:right; font-size:x-small; padding-right:10px; }
-.umc-mitem dt, .umc-mitem dd { line-height:150%; height:32px; display:inline-block; padding:3px; 0px; margin:3px 0px; border-bottom:1px dashed #CCC; }
-.umc-mitem dt { width:120px; float:left; margin:3px 10px 3px 15px; font-weight:normal; }
-.umc-mitem dd { width:620px; float:left; }
-.umc-mitem dd.msg{ width:100%; display:block; text-align:center; color:#F00; padding:20px 5px 30px 5px; border-bottom:1px dashed #CCC; }
-.umc-mitem dt.list { width:420px; }
-.umc-mitem dd.list { width:320px; font-size:small; text-align:right; }
-
-.umc_cprint { width:770px; margin:0px auto; font-size:medium; }
-.umc_cont { width:960px; margin:0px auto; font-size:medium; }
-.umc_logo { width:120px; height:60px; float:right; display:inline-block; margin:5px 10px 0px 10px; 
-    background: url(../../../skin/_pub/logo/logo120x60.jpg); 
-    border:0px solid #3A6EA5; border-radius: 3px; 
-}
-.umc_msg { margin: 5px; }
-.umc_msg a{ display:inline-block; padding:0px 5px; }
-.umc_msg i { font-style:normal; float: right; display: inline-block; padding-right:20px; }
-.umc_nav1 { font-size:large; font-weight:normal; padding:5px 10px 5px 10px; }
-.umc_nav1 input, .umc_nav1 select{ font-size:small; font-weight:normal; }
-.umc_nav1 select{ padding:2px; }
-.umc_nav1 a { display:inline-block; padding:1px 5px; }
-.umc_nav1 a.act { color:#F00; background:#FFF; }
-.umc_mtip { float:right; display:inline-block; color:#134D9D; margin:10px 10px auto 10px; }
-.umc_nav2 { padding:10px 10px 10px 1px; margin-bottom:10px; 
-    background-image:url(../../../skin/_pub/a_img/line-blue.png);
-    background-position:0px -40px;
-    border-top:1px dashed #CCC; 
-    border-bottom:1px solid #99F; 
-}
-.umc_nav2 a { display:inline-block; padding:1px 5px; } 
-.umc_nav2 a.act { font-weight:normal; border:1px solid #03C; }
-.umc_nav2 i, .umc_nav2 b { color:#999; font-style:normal; display:inline-block; padding:0px 10px 0px 30px; }
-.umc_nav2 b { font-weight:normal; padding:0px 10px 0px 10px; }
-
-.umc_navh { width:960px; margin:0px auto; padding:10px 10px 0px 1px; border-top:1px solid #CCC; }
-
-.umc_flink { text-align:center; padding:10px 0 5px 0; border-top:1px solid #CCC; }
-.umc_flink a { display:inline-block; padding:0px 5px; } 
-.umc_finfo { text-align:center; font-size:smaller; padding:0px 0 0px 0; }
-
-.umc_head{
-    background-image:url(../../../skin/_pub/a_img/line-blue.png);
-    background-position:0px -80px;
-    padding:5px 0px 5px 0px;
-}
-.umc_foot{
-    background: #DDD;
-    padding:0px 0px 10px 0px;
-}
-
-.tblist td{ padding:2px 1px; font-size:14px; }
-.tblist th{ padding:2px 1px; font-size:14px; font-weight:normal; }
-.ordtitle { background:#EEE; }
-
-
-
-.cst-out { width: 960px; margin: 10px auto; border:1px solid #CCC; background-color: #F3F3F3; border-collapse:inherit; 
-  border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; }
-.cst-out td { font-size:14px; vertical-align:top; padding:0px; margin:0px; }
-.cst-out .cst-title1, .cst-out .cst-title2 { text-align:left; width:200px; line-height:30px; font-size:16px; padding:3px 8px; 
-  background: #D8D8D8; }
-.cst-title1 i, .cst-title2 i { font-size:12px; }
-.cst-title2, { border-top:1px solid #666; }
-.cst-navtop { text-align:left; width:760px; padding:0px; margin:0px; border-left:1px solid #E0E0E0;
- background: #eaeaea; background: -webkit-gradient(linear, left top, left bottom, from(#F4F4F4), to(#E5E5E5), color-stop(0.1, #F3F3F3), color-stop(0.5, #ECECEC), color-stop(0.9, #E8E8E8), color-stop(1.0, #E5E5E5)); background-image: -moz-linear-gradient(top, #F3F3F3 10%, #ECECEC 50%, #E8E8E8 90%, #E5E5E5 100%); }
-td.cst-navtop a { display: inline-block; height: 35px; line-height: 35px; padding: 0px 18px; margin:0px; border-right:1px solid #CCC; }
-td.cst-navtop a.act, .cst-navtop a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
-td.cst-main { background: #FFF; padding:15px; border-left:1px solid #E0E0E0; }
-td.cst-main dt{ margin:2px 0px 3px 0px; }
-td.cst-main dd { padding:0px 0px 10px 0px; margin:0px 0px 10px 0px; border-bottom:1px solid #DDD; }
-td.cst-footer { font-size:x-small; text-align:center; background: #EBEBEB; padding:8px 20px; border-top:1px solid #DDD; }
-.cst-types { background: #F4F4F4; padding:0 0 10px 0; }
-.cst-types a { display:block; padding:8px 10px; border-bottom:1px solid #CCC; }
-.cst-types a.act, .cst-types a:hover { background: #FFF; color: #F00; border-left:2px solid #0f0; }
-.cst-types a i { display:inline-block; font-size:small; color:#999; padding:0px 0px 0px 3px; }
-.cst-tags { background: #F4F4F4; padding:10px 0 0 0px; }
-.cst-tags a { display:inline-block; background: #EBEBEB; padding:5px; margin:0px 2px 10px 7px; border:1px solid #DDD; }
-.cst-tags a.act, .cst-tags a:hover { color: #F00; background:#FFF; }
-div.cst-tag1 { background: #F4F4F4; padding:0; margin:5px 0; }
-div.cst-tag1 a { display:inline-block; background: #EBEBEB; padding:2px 5px; margin:0px 10px 0 0; border:1px solid #DDD; }
+div.cst-tag1 { margin-right:-30px; }
+div.cst-tag1 a, .cst-tags dt { display:inline-block; background: #EBEBEB; padding:2px 5px; margin:0px 10px 10px 0; border:1px solid #DDD; }
 div.cst-tag1 a.act, div.cst-tag1 a:hover { color: #F00; background:#FFF; }
 
-i.sct-qa-icon { margin:0px 0 0 0; padding:0px 0px; border:0px solid #FFF; }
-dl.sct-qa-tags { }
-dl.sct-qa-tags dt{ float:left; font-weight:normal; display:inline-block; background: #F4F4F4; padding:2px 10px; margin:0px 10px 10px 0; border:1px solid #DDD; }
-dl.sct-qa-tags dt:hover { color: #F00; background:#FFF; }
+.sct-qa-tags { margin:20px -15px 0 0; }
+.sct-qa-tags dt{ float:left; font-weight:normal; display:inline-block; background: #F4F4F4; padding:2px 10px; margin:0px 10px 10px 0; border:1px solid #DDD; }
+.sct-qa-tags dt:hover { color: #F00; background:#FFF; }
 
-.news_rem .rembar { margin: 10px 0px; }
-.news_rem dl dt { font-weight:normal; border-bottom:1px dashed #DDD; }
-.news_rem dl dt span { font-weight:normal; }
+.qalist .rembar { margin: 10px 0px; }
+.qalist dt { font-weight:normal; padding:10px 0; }
+.qalist dt span { font-weight:normal; }
+.qalist dd { padding:0px 0px 10px 0px; border-bottom:1px dashed #DDD; }
+.qalist div.cst-tag1 a{ padding-bottom:1px; margin-bottom:1px; }
 
+
+.news_title{ padding:10px; margin:10px 0 0 0; }
 .news_text h1, .news_text h2, .news_rem h1, .news_rem h2{ text-align:center; color:#036; }
 .news_text h1, .news_rem h1{ font-size:24px; background:#EEE; }
 .news_text h2, .news_rem h2{ font-size:18px; }

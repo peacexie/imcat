@@ -80,7 +80,7 @@ class devScan{
         }
         comFiles::delDir(DIR_CTPL."/_vinc",0);
         comFiles::delDir(DIR_CTPL."/_tagc",0);
-        comFiles::delDir(DIR_CTPL."/demodir",0);
+        comFiles::delDir(DIR_CTPL."/demo",0);
     }
     
     // rstTabcode()

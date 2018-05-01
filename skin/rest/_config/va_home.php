@@ -8,12 +8,10 @@ $_va_home = array(
         'vmode' => 'dynamic', //dynamic,catch,close
         '_defCtrl' => '_defCtrl', 
         /*
-        'close' => '0', //0,1
         'debug' => '1', //0,1
         'dmacc' => array('127.0.0.1','yscode.txjia.com'),
         'stexp' => '30', //30,60,3h,6h,12h,24h,7d
         */
-        'close' => array(),
         'imcfg' => array(),
         'extra' => array('home'),
     ),

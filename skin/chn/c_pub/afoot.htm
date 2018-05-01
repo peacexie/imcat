@@ -1,10 +1,14 @@
-<div class="pgf_w pgf_footer">
-  <p class="pgf_blink">
-  <a href="{surl(0)}">[首页]</a>
-  {tag:about=[Type][modid,about]}
-  <a id="idf_{=$t_kid}" href="{surl("about-$v[kid]")}">{=$t_title}</a>
-  {/tag:about}
-  <a id="idf_info" href="{surl(info);}">[导航]</a>
+
+<div class="foot">
+  <p class="fnav">
+    <a href="{surl(about)}">关于</a>
+    <a href="https://github.com/peacexie/imcat" target="_g">GitHub</a>
+
+    <a id="idf_info" href="{surl(info);}">导航</a>
+
+    <a href="{surl(info-indep)}">部门</a>
+    <a href="{surl(info-gbook)}">反馈</a>
+
   </p>
   <p class="note">
   提示:`/chn.php`入口数据仅为演示功能，不构成任何交易凭证,也不承担相关风险和责任！ 
@@ -14,3 +18,7 @@
   </p>
   <p class="info">{php echo basDebug::runInfo(); }</p>
 </div>
+
+
+</div>
+

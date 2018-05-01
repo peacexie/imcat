@@ -1,29 +1,57 @@
-<div class="pgf_menu">
-  <ul class="pgf_m1f">
-    <li id="idf_home"><a href="{surl(0)}" target="_self">[Home]</a></li>
 
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_start"><a href="{surl(start)}">FastStart</a></li>
-    <li id="idf_uplog"><a href='<?php tex_base::uplog_furl() ?>'>Publish</a></li>
+  <nav class="navbar navbar-default"><!--default,inverse-->
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{surl(0)}">IntimateCat</a>
+      </div>
 
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_tpltag"><a href="{surl(tpltag)}">Tpl/Tag</a></li>
-    <li id="idf_dev2nd"><a href="{surl(dev2nd)}">Develop</a></li>
-    <li id="idf_advset"><a href="{surl(advset)}">Setting</a></li>
-    
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_yyy1"><a href="{surl(dev:extend)}" target="_blank">Extends</a></li>
-    <li id="idf_yyy2"><a href="{surl(dev:tools)}" target="_blank">Tools</a></li>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
 
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_help"><a href="{surl(info-help)}">Help</a></li>
-    <li id="idf_service"><a href="{surl(info-service)}">Service</a></li>
-    <li id="idf_gbook"><a href="{surl(info-gbook)}">Feedback</a></li>
-  </ul>
-  <ul class="pgf_m1b">
-    <li id="idf_snav"><a id="idf_info" href="{surl(info)}">[SiteMap]</a></li>
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_login"><a href="{surl(umc:login)}">[Login]</a></li>
-    <li id="idf_apply"><a href="{surl(umc:reg)}">[Reg]</a></li>
-  </ul>
-</div>
+          <li id="idf_uplog"><a href='<?php tex_base::uplog_furl() ?>'>Release</a></li>
+          <li id="idf_start"><a href="{surl(start)}">FastStart</a></li>
+
+          <li id="idf_tpltag"><a href="{surl(tpltag)}">Tpl/Tag</a></li>
+          <li id="idf_dev2nd"><a href="{surl(dev2nd)}">Develop</a></li>
+          <li id="idf_advset"><a href="{surl(advset)}">Setting</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-gear"></span> 工具 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="idf_yyy1"><a href="{surl(dev:extend)}" target="_blank">Extends</a></li>
+              <li id="idf_yyy2"><a href="{surl(dev:tools)}" target="_blank">Tools</a></li>
+              <li role="separator" class="divider"></li>
+              <li id="idf_help"><a href="{surl(info-help)}">Contribution</a></li>
+              <li id="idf_service"><a href="{surl(info-service)}">Service</a></li>
+              <li id="idf_gbook"><a href="{surl(info-gbook)}">Feedback</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-user-circle"></span> User <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="idf_umc"><a href="{surl(umc:0)}" target="_blank">[User-Center]</a></li>
+              <li role="separator" class="divider"></li>
+              <li id="idf_login"><a href="{surl(umc:0)}" target="_blank">[Login]</a></li>
+              <li id="idf_apply"><a href="{surl(umc:reg)}" target="_blank">[Reg]</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+

@@ -9,10 +9,11 @@ var pswpTpl = '\
 ';
 
 var pswpFmt = function(html) {
-	html = html.replace(/<img.*?src=["\']?([^"\'\s]*)["\']?[^>]*>/ig, function(m, p) {
-		return pswpTpl.replace(/\{img\}/g,p);
-	});
-	return html;
+    html = html.replace(/<img.*?src="([^"]+)"[^>]*zw="(\d+)" zh="(\d+)".*?>/ig, function(m,p,zw,wh) {
+        //console.log(m+':'+p,zw,wh);
+        return pswpTpl.replace(/\{img\}/g,p).replace('640x480',zw+'x'+wh);
+    });
+    return html;
 }
 
 var pswpHtml = '\

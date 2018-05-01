@@ -11,7 +11,6 @@ $_va_home = array(
         'tmfix' => '-mob', // 移动适配-模板后缀
         //'_defCtrl' => '_defCtrl', 
         'pskip' => array('home','uio',), //umc-不需要登录模型
-        'close' => array(),
         'imcfg' => array(),
         'extra' => array('user','order','uio'),
     ),

@@ -67,9 +67,9 @@ class vopShow{
         if(!empty($this->tplnull)){
             return ''; // 不要后续模板显示-直接返回
         }
-        if(empty($this->tplname) || is_string($this->vars)){
-            $msgk = @$this->ucfg['vcfg']['vmode']=='close' ? 'closemod' : 'parerr';
-            $ermsg = empty($this->tplname) ? "$this->mkv:".basLang::show("core.vop_$msgk") : $this->vars;
+        if(empty($this->tplname) || is_string($this->vars) || $this->ucfg['vcfg']['vmode']=='close'){
+            $msgk = $this->ucfg['vcfg']['vmode']=='close' ? 'closemod' : 'parerr';
+            $ermsg = is_string($this->vars) ? $this->vars : "$this->mkv:".basLang::show("core.vop_$msgk");
             $this->msg($ermsg);
             return ''; // 返回空,终止操作
         }
@@ -126,7 +126,7 @@ class vopShow{
         }
     }
     // 扩展模板
-    function extTpl() { 
+    function extTpl() {
         global $_cbase; 
         $vars = $this->vars;
         $tplname = &$this->tplname; 
@@ -137,7 +137,7 @@ class vopShow{
             $cfgs = '';
             if(isset($vars['grade'])){
                 $mcfgs = glbConfig::read('grade','dset');
-                $cfgs = $mcfgs[$vars['grade']];
+                $cfgs = isset($mcfgs[$vars['grade']]) ? $mcfgs[$vars['grade']] : '';
             }elseif(isset($vars['catid'])){
                 $mcfgs = glbConfig::read($this->mod);
                 $cfgs = $mcfgs['i'][$vars['catid']];
@@ -146,11 +146,11 @@ class vopShow{
             if(!empty($cfgs['tplname'.$this->view])){
                 $tplname = $cfgs['tplname'.$this->view];
             } 
-        } 
+        }
         if(!empty($this->ucfg['vcfg']['tmfix']) && basEnv::isMobile()){
             $tmfix = $this->ucfg['vcfg']['tmfix']; 
             $_cbase['run']['tmfix'] = $tmfix; // -mob标记用于css,js后缀
-            $tplname .= $tmfix; 
+            $tplname .= $tmfix;
         }
     }
     //GetVars

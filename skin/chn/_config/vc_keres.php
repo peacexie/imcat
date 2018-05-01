@@ -12,17 +12,14 @@ $_vc_keres = array(
     
     //mod.home模块首页
     'm' => array(
-        '0' => 'c_mod/news_home', //首页(key=0,first; val=list,home
-        'list' => 'c_mod/keres_list', //搜索
+        '0' => 'news/mhome', //首页,news/mtype
+        'list' => 'news/keres-list', //搜索,news/mtype
     ), 
     
     //详情页
-    'd' => 'c_mod/keres_detail',
+    'd' => 'news/keres-detail',
     
     //类别页
-    't' => 'c_mod/keres_list',
-    
-    //单个类别(模板)
-    #'serv' => 'c_mod/{mod}_serv', //服务内容
+    't' => 'news/keres-list',
 
 );

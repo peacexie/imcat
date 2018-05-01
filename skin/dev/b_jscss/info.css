@@ -1,6 +1,6 @@
 /* CSS Document */
 
-.info-nav { width: 218px; height: 210px; overflow: hidden; float: left; line-height: 100%; 
+.info-nav { width: 272px; height: 210px; overflow: hidden; float: left; line-height: 100%; 
   padding: 10px; margin: 0px 10px 10px 0px; border: 1px solid #999; }
 
 .info-nav .type { font-weight: bold; font-style: normal; text-align: center; display: block; 
@@ -28,13 +28,3 @@ p.type-item a {
 .info-tbar i { font-style: normal; }
 .info-tbar i.title { }
 .info-tbar i a { display: inline-block; padding: 0px 5px; }
-
-.info-indep { width: 447px; height: 190px; overflow-y:scroll; line-height: 100%; float: left; 
-  padding: 10px; margin: 0px 10px 10px 0px; border: 1px solid #999; }
-.info-indep .type { font-weight: bold; font-style: normal; text-align: center; display: block; 
-  padding: 0px 0px 5px 0px; margin: 0px 0px 5px 0px; border-bottom: 1px solid #CCC; }
-.info-indep .title { font-style: normal; display: block; padding: 3px 0px 3px 0px; }
-.info-indep i.atime, .info-indep i.click { display: inline-block; padding: 0px 2px; }
-
-.info-indep li { padding:3px; }
-.info-indep li i { font-style:normal; color:#666; }

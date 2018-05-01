@@ -25,7 +25,7 @@
 ├─skin : 模板(每套模版一个子目录)及前端常用js,css等; 
 │  ├─adm : 后台管理
 │  ├─chn : 中文版
-│  ├─demodir : 演示目录
+│  ├─demo : 演示目录
 │  ├─dev : 开发文档
 │  ├─doc : Guides
 │  ├─mob : 手机版
@@ -45,4 +45,5 @@
  - /code/adpt/wechat/ 微信接口类库
  - /code/adpt/weuser/ 微信接口(扩展)类库
  - /root/a3rd/ 第三方支付,登录(含类库,配置,入口文件)
+ - /skin 目录名使用 template 或 view 是否更好些?
 

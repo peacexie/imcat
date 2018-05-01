@@ -15,6 +15,8 @@ a{ color:#134D9D; text-decoration:none; cursor:pointer; }
 a:hover { text-decoration:underline; cursor:pointer; }
 a.cur { color:#C00; }
 
+.cel24{display:inline-block;width:25%;float:left;padding:0;margin:0} 
+@media only screen and (max-width:480px){.cel24{width:50%;}}
 
 .LowIE { width:80%; text-align:center; color:#F00; background:#FCC padding:10px; margin:10px auto; }
 

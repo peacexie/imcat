@@ -195,15 +195,6 @@ function jeSize(xID){
 function jePos(obj) { 
     var pos = $('#'+obj).offset();
     return [pos.left,pos.top];
-    var obj = jsElm.jeID(obj); 
-    if (obj == null) return null; 
-    var posLeft = obj.offsetLeft; 
-    var posTop = obj.offsetTop; 
-    //while (obj != null && obj.offsetParent != null && obj.offsetParent.tagName != "BODY") { 
-        //posLeft = posLeft + obj.offsetParent.offsetLeft; 
-        //posTop = posTop + obj.offsetParent.offsetTop; 
-    //} 
-    return [posLeft,posTop]; 
 }; 
 
 function isObj(obj,type){ 

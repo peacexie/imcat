@@ -11,15 +11,18 @@ $_vc_topic = array(
     ),
     
     //mod.home模块首页
-    'm' => 'u_topic/_index/home', 
+    'm' => array(
+        '0' => 'news/mhome', //首页,news/mtype
+        'list' => 'news/mext', //搜索,news/mtype
+    ), 
     
     //详情页
     'd' => array(
-        '0' => 'u_topic/_index/detail',
-        'v' => 'u_topic/_index/detail',
+        '0' => 'topic/_index/detail',
+        'v' => '', // mod.kid.* 
     ),
-    
+
     //类别页
-    't' => 'u_topic/_index/home',
+    't' => 'news/keres-list',
 
 );

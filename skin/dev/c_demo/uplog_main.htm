@@ -10,7 +10,8 @@ $subs = tex_base::docer("d_uplog/$file");
 if(empty($subs)){ $this->msg('还未发布！'); }
 $sub = req('sub',''); 
 $verflag = $cfgs[$key][1];
-$titlesub = $titletop = $verflag; 
+$titlesub = $titletop = '版本发布';
+$titletop .= ' '.$verflag; ;
 $titlesub = $_cbase['sys_name'].' '.$titlesub;
 ?>
 {/block:extop}
@@ -31,17 +32,4 @@ $titlesub = $_cbase['sys_name'].' '.$titlesub;
     <div class="h10">&nbsp;</div>
     <?php } ?>
 
-{if empty($this->key)}
-<script>
-$(document).ready(function(){
-    $('a').each(function(i, e) {
-        var url = $(e).attr("href"); 
-        if(url.indexOf('://')>0) $(e).attr("target",'_blank');
-    });
-});
-</script>
-{/if}
-
 {/block:exmain}
-
-{block:exside}{inc:"c_demo/uplog_aside"}{/block:exside}

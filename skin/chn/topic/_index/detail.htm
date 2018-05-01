@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{php}
+$this->pmeta();
+eimp('initJs','jquery;bootstrap;comm',1);
+eimp('initCss','bootstrap,stpub;comm;topic');
+{/php}
+</head>
+
+<body>
+
+{inc:"topic/_index/_head"}
+
+<div class="topic-header">
+    <h1 class="topic-title">{title($title,96,$this->vars)}</h1>
+
+            <p class="topic-post-meta">
+                {stime($atime,min)} 
+                点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次
+                &nbsp;模板:{=$this->tplname}
+            </p>
+</div>
+
+<div class="row">
+
+    <div class="col-sm-9 topic-main">
+
+        <div class="topic-post">
+            {html($detail)}
+        </div><!-- /.blog-post -->
+
+        <nav>
+            <ul class="pager">
+              <li><a href="{surl(topic)}">&lt;Topic</a></li>
+            </ul>
+        </nav>
+
+    </div><!-- /.blog-main -->
+
+    <div class="col-sm-3 topic-sidebar">
+        {inc:"topic/_index/_side1"}
+        <div class="sidebar-module">
+            <h4>其他专题</h4>
+            <ol class="list-unstyled">
+                {tag:hinfs=[List][modid,$this->mod][show,1][limit,10]}
+                <li><a href='{surl($this->mod.".$t_did")}'>{title($t_title,200,$v)}</a></li>
+                {/tag:hinfs}
+            </ol>
+        </div>
+        {inc:"topic/_index/_side2"}
+
+    </div><!-- /.blog-sidebar -->
+</div><!-- /.row -->
+
+{inc:"topic/_index/_foot"}
+
+</body>
+</html>

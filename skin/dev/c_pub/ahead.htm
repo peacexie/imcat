@@ -1,24 +1,17 @@
-<div class="pgf_w pgf_header">
-  <p class="pgf_logo"> <a href="{=PATH_PROJ}/"><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" width="120" height="60" alt="{=$_cbase[sys_name]}(LOGO)" /></a> </p>
-  <p class="pgf_topbar">
-    {if !cmod('faqs')}<b class="qrcode_tip"><a href="{surl(chn:faqs)}" target="_blank">问答</a></b>{/if}
-    <b class="qrcode_tip"><a href="{surl(tools)}" target="_blank">贴心工具</a></b>
-    <i class="notice">{=$_cbase['sys_name']} V{=$_cbase['sys']['ver']} --- 使用手册，指点迷津；开发文档，DIY！</i>
-  </p>
-  <p class="pgf_mtop h180">
-  轻量、免费、共享：<br>通用PHP网站应用系统！
-  </p>
-  <p class="pgf_lang">
-    <select class="w200" onchange="location.href=this.value;">
-      <option value='' selected>当前 : 中文文档</option>
-      <option value='{=PATH_ROOT}/plus/ajax/redir.php?lang:en&recbk={surl(doc:0)}'>Jump to : English Manual</option>
-    </select>
-    <select class="w200" onchange="location.href=this.value;">
-      <option>- 贴心家族 -</option>
-      <option value='http://yscode.txjia.com/tools/screen.htm'>贴心口袋</option>
-      <option value='http://txjia.com/peace/txbox.htm'>Java盒子</option>
-      <option value='http://txjia.com/peace/txasp.htm'>贴心Asp</option>
-    </select>
-  </p>
 
-</div>
+<div class="container">
+
+  <div class="head-link">
+    <b class="btn btn-default qrcode_tip hid480" onMouseOver="qrurl_act(1,1,1)" onMouseOut="qrurl_act(1,0)">手机版<i class="qrcode_pic" id="qrcode_pic1" style="display:none;"></i></b>
+    <b class="btn btn-default"><a href="{surl(dev:0)}" target="_blank">文档</a></b>
+    <b class="btn btn-default"><a href="{surl(doc:0)}" target="_blank">Docu.</a></b>
+  </div>
+
+
+  <div class="page-header">
+    <h1 class="head-h1">
+      <a href="{=PATH_PROJ}" style=""><img src="{=PATH_SKIN}/_pub/logo/logo120x60.jpg" height="54" alt="{=$_cbase[sys_name]}(LOGO)" class="ph10" /></a>
+      <small class="f16">{=$_cbase['sys_name']} v{=$_cbase['sys']['ver']} --- 使用手册，指点迷津；开发文档，DIY！</small>
+    </h1>
+  </div>
+

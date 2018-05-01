@@ -87,7 +87,7 @@ E:.
     │  ├─m_about
     │  ├─m_ocar
     │  └─_config
-    ├─demodir
+    ├─demo
     │  ├─b_ctrls
     │  ├─b_func
     │  ├─b_img

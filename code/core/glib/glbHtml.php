@@ -13,7 +13,7 @@ class glbHtml{
             echo "</body></html>\n";
         }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
-            if($mod=='viewport' && empty($ext)) $ext = 'width=device-width, initial-scale=1';
+            if($mod=='viewport' && empty($ext)) $ext = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';
             echo "<meta name='$mod' content='$ext'>\n"; 
         }elseif($mod=='init'){
             echo "<meta charset='".$_cbase['sys']['cset']."'>\n";

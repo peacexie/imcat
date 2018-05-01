@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php}
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub;comm');
+$null = "所有类别";
+{/php} 
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="row">
+  <div class="col-md-9">
+
+      <div class="news-tbar">
+      <i>
+        <a href="{surl($this->mod)}">新闻动态</a>
+        - {sopt($this->key,$this->mod,0,$null)}
+      </i>
+      <i class="hidden-xs right">
+      <a href="{surl($this->mod)}">[所有]</a>
+      {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+      <a href='{surl($this->mod."-$t_kid")}'>{title($t_title,32,$u)}</a>
+      {/tag:tp}
+      </i>
+      </div>
+      {inc:"news/n-list"}
+      <div class="clear"></div>
+
+  </div>
+  <div class="col-md-3">
+    {inc:"news/b-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"} 
+</body></html>

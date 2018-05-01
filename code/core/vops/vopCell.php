@@ -161,12 +161,8 @@ class vopCell{
         }
         if(is_array($val)){ return ''; }
         $len = empty($len) ? 0 : intval($len);
-        if($nobr){
-            $val = basStr::filHText($val,$len);
-        }else{
-            $val = strip_tags($val); 
-        }
-        $val = nl2br($val);
+        $val = basStr::filHText($val,$len);
+        if(!$nobr){ $val = nl2br($val);}
         return $val;
     }
     

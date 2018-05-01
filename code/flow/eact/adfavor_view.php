@@ -7,27 +7,29 @@ $mtab = 'advs_adfavor';
 $stype = empty($stype) ? req('stype','afadmin') : $stype;
 $actstr = empty($actstr) ? @$mcfg['i'][$stype]['title'] : $actstr;
  
-$stsub = array(); $stids = "'0'";
-$nav = "\n<table border='1' class='tbdata favor'><tr>";
+$stsub = $titles = array(); $stids = "'0'";
+//$nav = "\n<div class='row'>";
 foreach($mcfg['i'] as $ik=>$iv){
     if($iv['pid']==$stype){ 
         $stsub[$ik] = $iv;
-        $nav .= "\n<th width='%'><li class='right c999'>$actstr</li><li class='left'>$iv[title]</li></th>"; 
+        $titles[$ik] = "\n<li class='list-group-item'><div class='right c999'>$actstr</div>$iv[title]</li>\n"; 
         $stids .= ",'$ik'";
     }
 }
-$nav .= "</tr><tr>"; $nw = count($stsub)==0 ? 100 : 100/count($stsub);
-$nav = str_replace("width='%'","width='$nw%'",$nav); 
+//$nav .= "</div>\n<div class='row'>"; $nw = count($stsub)==0 ? 100 : 100/count($stsub);
+//$nav = str_replace("width='%'","width='$nw%'",$nav); 
 
 $list = $db->table($mtab)->where("catid IN($stids) $whrself AND `show`='1'")->order('top')->select();
+echo "<div class='row'>";
 if(!empty($list)){
-    echo "<div class='h05'>&nbsp;</div>\n$nav";
+    //echo "<div class='h05'>&nbsp;</div>\n";
     foreach($stsub as $ik=>$iv){
-        echo "\n<td valign='top'>";
+        echo "\n<div class='col-md-3'>";
+        echo "<ul class='list-group'>$titles[$ik]\n";
         foreach($list as $v2){ if($v2['catid']==$ik){
-            echo "<li><a href='$v2[url]' target='_blank'>$v2[title]</a></li>"; 
+            echo "<li class='list-group-item'><a href='$v2[url]' target='_blank'>$v2[title]</a></li>\n"; 
         }}
-        echo "</td>"; 
+        echo "</ul></div>"; 
     }
 }
-echo "\n</tr></table>";
+echo "\n</div>";

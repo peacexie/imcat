@@ -3,7 +3,8 @@
 // Cache - 读写
 class glbConfig{    
 
-    public static $_CACHES_YS = array();//将读取过的缓存暂存可重用
+    public static $_CACHES_YS = array(); // 将读取过的缓存暂存可重用
+    public static $_CACHES_VC = array(); // skin/_confg/_* 缓存
 
     // 获取自由参数: 
     // part.item.key ('parnav.group_a.title');
@@ -48,23 +49,18 @@ class glbConfig{
             $key = "_{$dir}_$file";
             $file = "/cfgs".($dir=='sy' ? "/sycfg" : "/excfg")."/".substr($key,1).".php";
             $base = DIR_ROOT;
-        }elseif(in_array($dir,array('va','vc','ve'))){
-            $tpldir = $_cbase['tpl']['tpl_dir'];
-            $key = "{$tpldir}_$file"; $kk = "_{$dir}_$file"; 
-            $file = vopTpls::pinc("_config/{$dir}_$file",'',0); 
-            $base = DIR_SKIN;
         }
         $file = "$base$file"; 
         $ck = "{$dir}_$key";
         if(!isset(self::$_CACHES_YS[$ck])){
             if(file_exists($file)){ // inc大文件，其实很占时间
                 require $file; 
+                $tmp = self::$_CACHES_YS[$ck] = isset($kk) ? $$kk : $$key;
+                if(is_array($tmp) && (!empty($tmp['i'])) && is_string($tmp['i'])){
+                     self::$_CACHES_YS[$ck]['i'] = self::tmpItems($modid);
+                }
             }else{ 
-                return array();
-            }
-            $tmp = self::$_CACHES_YS[$ck] = isset($$kk) ? $$kk : $$key; 
-            if(is_array($tmp) && (!empty($tmp['i'])) && is_string($tmp['i'])){
-                 self::$_CACHES_YS[$ck]['i'] = self::tmpItems($modid);
+                self::$_CACHES_YS[$ck] = array();
             }
         }
         return self::$_CACHES_YS[$ck];
@@ -116,39 +112,48 @@ class glbConfig{
         }
     }
     
-    //$_vc = vcfg('home'); //'news'
-    static function vcfg($mod){ 
-        global $_cbase;
-        $tpldir = $_cbase['tpl']['tpl_dir'];
-        $renull['c']['vmode'] = 'close';
-        $renull['m'] = '';
-        if(empty($tpldir)) return $renull;
-        $key = "{$tpldir}_$mod"; //检查缓存
-        if(isset(self::$_CACHES_YS[$key])) return self::$_CACHES_YS[$key];
-        $_groups = self::read('groups'); 
-        if(!file_exists(vopTpls::pinc('_config/va_home'))) return array();
-        $hcfgs = self::read('home','va'); 
-        if($mod=='home'){ //首页
-            $re = $hcfgs;
-        }elseif(in_array($mod,$hcfgs['c']['close'])){ //关闭模块
-            $re = $renull; 
-        }elseif(isset($hcfgs['c']['imcfg'][$mod])){ 
-            $re = self::read($hcfgs['c']['imcfg'][$mod],'vc'); //导入模块
-        }elseif(in_array($mod,$hcfgs['c']['extra'])){ //扩展模块
-            $re = self::read($mod,'ve');             
-        }elseif(file_exists(vopTpls::pinc("_config/vc_$mod"))){ //常规模块
-            $re = self::read($mod,'vc'); 
-        }elseif(isset($_groups[$mod]) && $_groups[$mod]['pid']=='docs'){ //默认文档处理,(按va_docs)
-            $re = self::read('docs','va');  
-        }else{ //没有找到规则-当做关闭
-            $renull['c']['vmode'] = 'dynamic';
-            $re = $renull;    
-        } 
-        $re['c']['etr'] = vopTpls::etr1(0,$tpldir);
-        if(isset($re['c']['vmode']) && $re['c']['vmode']=='static' && empty($re['c']['stext'])){ 
-            $re['c']['stext'] = $hcfgs['c']['stext']; //模块未设置后缀,则继承home的后缀
+    static function vinc($dir, $mkey='', $mex=''){
+        if($mkey=='home' && !file_exists(DIR_SKIN."/$dir/_config/va_home.php")){
+            $cfgs = self::read('home','sy'); 
+        }else{
+            $file = DIR_SKIN."/$dir/_config/{$mex}_$mkey.php";
+            require $file; 
+            $kk = "_{$mex}_$mkey"; 
+            $cfgs = $$kk;
         }
-        self::$_CACHES_YS[$key] = $re;
+        if($mkey=='home'){
+            $cfgs['null'] = array('c'=>array('vmode'=>'dynamic'),'m'=>'');
+        }
+        $cfgs['c']['etr'] = vopTpls::etr1(0, $dir);
+        return $cfgs;
+    }
+
+    //$_vc = vcfg('home'); //'news'
+    static function vcfg($mod){
+        global $_cbase;
+        $dir = $_cbase['tpl']['tpl_dir'];
+        $key = "{$dir}/$mod"; //检查缓存
+        if(isset(self::$_CACHES_VC[$key])) return self::$_CACHES_VC[$key];
+        $_groups = self::read('groups'); 
+        $hcfgs = self::vinc($dir, 'home', 'va'); 
+        $hc = $hcfgs['c']; $re = $hcfgs['null']; // 默认动态
+        if($mod=='home'){ //首页
+            self::$_CACHES_VC[$key] = $hcfgs;
+            return $hcfgs;
+        }elseif(isset($hc['imcfg'][$mod])){ 
+            $re = self::vinc($dir, $hc['imcfg'][$mod],'vc'); //导入模块
+        }elseif(in_array($mod,$hc['extra'])){ //扩展模块
+            $re = self::vinc($dir, $mod,'ve');             
+        }elseif(file_exists(vopTpls::pinc("_config/vc_$mod"))){ //常规模块
+            $re = self::vinc($dir, $mod,'vc');   
+        }
+        $a = array('vmode','stext','stexp');
+        foreach ($a as $k) { // 模块未设置,则继承home的设置
+            if(!isset($re['c'][$k]) && isset($hc[$k])){
+                $re['c'][$k] = $hc[$k];
+            }
+        }
+        self::$_CACHES_VC[$key] = $re;
         return $re;
     }
 

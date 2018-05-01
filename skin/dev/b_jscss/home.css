@@ -1,28 +1,21 @@
 /* CSS Document */
 
-.pgf_mid_home { width:973px; margin:0px auto; background:url(../../../skin/_pub/a_img/box1_h.png) repeat-y 600px 0; border:1px solid #3A6EA5; border-radius:3px; }
+.home-tipn {}
+.home-tipn i, .home-tipn b { font-style:normal; display:inline-block; padding:0px 10px; }
+.home-tipn ul { width:49%; height:200px; display:inline-block; float:left; overflow-y:scroll; margin:0 0 20px 0; border:1px dashed #CCC; }
+.home-tipn ul.right { float:right; }
+.home-tipn ul:hover { border:1px solid #66F; }
+.home-tipn li { padding:3px 3px 3px 10px; }
+.home-tipn li.title { font-weight:bold; text-align:center; padding:5px; margin:0px 0px 10px 0px; border-bottom:1px dashed #CCC; }
 
-table.home-tipn { width:1200px; margin:0px auto 10px auto; }
-table.home-tipn td { padding:10px; border:1px solid #CCC; }
-table.home-tipn i, table.home-tipn b { font-style:normal; display:inline-block; padding:0px 10px; }
-table.home-tipn td.bar1 { cursor:pointer; background:#EEE; }
-table.home-tipn td.bar1 i.act, table.home-tipn td.bar1 i:hover { color:#F00; background:#FFF; }
-table.home-tipn td.bar2 { width:300px; background:#EEE; }
-table.home-tipn td.bar2 i.act, table.home-tipn td.bar2 i:hover { color:#F00; background:#FFF; }
-table.home-tipn td.tipn { padding:10px 0px 0px 12px; }
-table.home-tipn ul { width:431px; height:180px; display:block; float:left; overflow-y:scroll; padding:0px; margin:0px 10px 10px 0px; border:1px dashed #CCC; }
-table.home-tipn ul.right { margin:0px 0px 10px 0px; }
-table.home-tipn ul:hover { border:1px solid #66F; }
-table.home-tipn li { padding:3px 10px; }
-table.home-tipn li.title { font-weight:bold; text-align:center; padding:5px; margin:0px 0px 10px 0px; border-bottom:1px dashed #CCC; }
-table.home-tipn td.topic { padding:10px 1px 5px 10px; }
-table.home-tipn td.topic p { line-height:140%; padding:4px 1px; margin:1px 0px 1px 0px; border-bottom:1px dotted #CCC; }
-table.home-tipn td.topic p.title { text-align:center; padding:5px; margin:15px 0px 10px 0px; background:#EEE; border:1px solid #CCC; }
-table.home-tipn td.topic i { padding:0px 5px 0px 5px; }
+@media only screen and (max-width:992px){
+    .home-tipn ul { width:100%; display:block; float:none; }
+    .home-tipn ul.right { width:100%; display:block; float:none; }
+}
 
-table.home-adv0 { width:1200px; margin:0px auto 10px auto; }
-table.home-links { width:1200px; margin:0px auto 10px auto; border:1px solid #CCC; }
-table.home-links td { width:10%; text-align:center; background:#EEE; padding:3px 0px; border:1px dotted #CCC; }
-
-.tipn ul ul, .tipn ul ul:hover{ overflow:hidden; border:0px; }
-.tipn ul{ overflow-x:hidden; }
+.side p {
+    line-height: 150%;
+    padding: 5px 1px;
+    margin: 1px 0px 1px 0px;
+    border-bottom: 1px dotted #CCC;
+}

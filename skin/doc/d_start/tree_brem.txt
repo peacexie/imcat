@@ -25,7 +25,7 @@
 ├─skin : tpls(Eache set of tpl has a sub dir) include js,css 
 │  ├─adm : Admin Center
 │  ├─chn : 中文版
-│  ├─demodir : Demo dir
+│  ├─demo : Demo dir
 │  ├─dev : 开发文档
 │  ├─doc : Guides
 │  ├─mob : Mobile
@@ -44,4 +44,5 @@
  - /code/adpt/wechat/ Common Wechat Libs
  - /code/adpt/weuser/ Extra Wechat Libs
  - /root/a3rd/ 3nd Pay/Login Apis(Libs,Settings,Entry Files)
+ - /skin The dir-name called `template` or `view` would be better.
 

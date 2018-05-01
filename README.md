@@ -1,6 +1,10 @@
 
-* 贴心猫(IntimateCat) v4.1
-* Release: 2018.04
+
+
+* 贴心猫(IntimateCat) v4.2 Beta
+
+* v4.2 Upgrading... Please use/down v4.1
+* v4.2 升级中…… 请使用/下载 v4.1
 
 --- --- --- --- --- --- --- --- --- 
 

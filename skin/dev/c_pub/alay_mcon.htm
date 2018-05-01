@@ -7,26 +7,28 @@ $titlesub = '子标题';
 {/block:extop}
 {php $this->pmeta($titletop); }
 {block:eximp}{php}
-eimp('initJs','jquery;comm',1);
+eimp('initJs','jquery,bootstrap;comm',1);
 eimp('initCss','bootstrap,stpub;comm');
 eimp('/layer/layer.js','vendui');
 {/php}{/block:eximp}
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
-<div class="pgf_mid">
-  <div class="pgf_side">
+
+<div class="row">
+  <div class="col-md-9">
     <!--side_start-->
-    {block:exside}side_info{/block:exside}
+    {block:exmain}main_info{/block:exmain}
     <!--side_end-->
   </div>
-  <div class="pgf_mcon"> 
+  <div class="col-md-3">
     <!--main_start-->
-    {block:exmain}main_info{/block:exmain}
+    {block:exside}side_info{/block:exside}
     <!--main_end-->
     <div class="clear"></div>
   </div>
 </div>
+
 {inc:"c_pub/afoot"}
 {block:exfoot}{/block:exfoot}
 </body></html>

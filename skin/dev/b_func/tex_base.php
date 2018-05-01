@@ -30,11 +30,10 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext'];
-        $base || $base = basEnv::isMobile() ? 'jstag' : 'jstag,menu,aheight';
+        $base || $base = basEnv::isMobile() ? 'jstag' : 'jstag,menu';
         $js = "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
-        strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
         echo basJscss::jscode("\n$js")."\n";
     }

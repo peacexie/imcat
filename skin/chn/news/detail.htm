@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php}
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub;comm');
+eimp('/layer/layer.js','vendui');
+{/php} 
+
+</head><body> 
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="row">
+  <div class="col-md-9">
+
+    <ol class="breadcrumb">
+      <li><a href="{surl(0)}">贴心猫(IntimateCat)</a></li>
+      <li><a href="{surl(news)}">新闻</a></li>
+      <li class="active">详情</li>
+    </ol>
+
+    {inc:"news/n-detail"}
+  </div>
+  <div class="col-md-3">
+    {inc:"news/b-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"}
+</body></html>

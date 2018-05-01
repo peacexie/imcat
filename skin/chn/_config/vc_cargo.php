@@ -12,15 +12,15 @@ $_vc_cargo = array(
     
     //mod.home模块首页
     'm' => array(
-        '0' => 'c_mod/cargo_list', //首页(key=0,first; val=list,home
-        'list' => 'c_mod/cargo_list', //搜索
+        '0' => 'cargo/cargo-list', //首页(key=0,first; val=list,home
+        'list' => 'cargo/cargo-list', //搜索
     ), 
     
     //详情页
-    'd' => 'c_mod/cargo_detail',
+    'd' => 'cargo/cargo-detail',
     
     //类别页
-    't' => 'c_mod/cargo_list',
+    't' => 'cargo/cargo-list',
     
     //单个类别(模板)
     #'serv' => 'c_mod/{mod}_serv', //服务内容

@@ -1,25 +1,71 @@
-<div class="pgf_menu">
-  <ul class="pgf_m1f">
-    <li id="idf_home"><a href="{surl(0)}" target="_self">[首页]</a></li>
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_news"><a href="{surl(news)}">新闻</a></li>
-    <li id="idf_cargo"><a href="{surl(cargo)}">商品</a></li>
-    <li id="idf_keres"><a href="{surl(keres)}">资源</a></li>
-    <li id="idf_topic"><a href="{surl(topic)}">专题</a></li>
-    <li id="idf_faqs"><a href="{surl(faqs)}">问答</a></li>
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_snav"><a href="{surl(info)}">导航</a></li>
-    <li id="idf_indep"><a href="{surl(info-indep)}">部门</a></li>
-    <li id="idf_gbook"><a href="{surl(info-gbook)}">反馈</a></li>
-    <!--li id="idf_indoc" class="gray">内部公文</li-->
-  </ul>
-  <ul class="pgf_m1b">
-    <li id="idf_company"><a href="{surl(company)}">企业</a></li>
-    <li id="idf_organize"><a href="{surl(organize)}">组织</a></li>
-    <li id="idf_govern"><a href="{surl(govern)}">机构</a></li>
-    <li id="idf_umap"><a href="{surl(info-umap)}">地图</a></li>
-    <li id="idf_xxx" class="gray">&nbsp;</li>
-    <li id="idf_login"><a href="{surl(umc:login)}">[登录]</a></li>
-    <li id="idf_apply"><a href="{surl(umc:reg)}">[注册]</a></li>
-  </ul>
-</div>
+
+<?php
+$user = usrBase::userObj('Member'); 
+$uname = $user->usess['uname'];
+$uname = empty($uname) ? 'Guest' : basStr::cutWidth($uname,12);
+$isup = usrPerm::issup();
+?>
+
+  <nav class="navbar navbar-default"><!--default,inverse-->
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{surl(0)}">贴心猫</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+
+          <li id="idf_news"><a href="{surl(news)}">新闻</a></li>
+          <li id="idf_cargo"><a href="{surl(cargo)}">商品</a></li>
+          <li id="idf_keres"><a href="{surl(keres)}">资源</a></li>
+          <li id="idf_topic"><a href="{surl(topic)}">专题</a></li>
+          <li id="idf_faqs"><a href="{surl(faqs)}">问答</a></li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-users"></span> 会员 <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="idf_company"><a href="{surl(company)}">企业</a></li>
+              <li id="idf_organize"><a href="{surl(organize)}">组织</a></li>
+              <li id="idf_govern"><a href="{surl(govern)}">机构</a></li>
+              <li role="separator" class="divider"></li>
+              <li id="idf_umap"><a href="{surl(info-umap)}">地图</a></li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="fa fa-user-circle"></span> {=$uname} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="idf_shopcar"><a href="{surl(ocar)}">我的购物车<span id="top_scnt"></span></a></li>
+              {if $user->userFlag=='Login'} 
+              <li id="idf_logout"><a href="{surl(umc:0)}?uio-logout&recbk=ref">[登出]</a></li>
+              <li id="idf_umc"><a href="{surl(umc:0)}">[会员中心]</a></li>
+              {else}
+              <li role="separator" class="divider"></li>
+              <li id="idf_login"><a href="{surl(umc:0)}">[登录]</a></li>
+              <li id="idf_apply"><a href="{surl(umc:reg)}">[注册]</a></li>
+              {/if}
+              {if $isup}
+              <li role="separator" class="divider"></li>
+              <li id="idf_login"><a class="cF0F" href="{surl(adm:0)}?logout&recbk=ref" target="_blank" title="登出超管">登出:Admin</a></li>
+              {/if}
+            </ul>
+          </li>
+
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+

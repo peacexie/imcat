@@ -31,12 +31,11 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext'];
-        $base || $base = basEnv::isMobile() ? 'jstag' : 'jcron,jstag,menu,aheight';
+        $base || $base = basEnv::isMobile() ? 'jstag' : 'jcron,jstag,menu';
         $js = "";
         strstr($base,'jcron') && $js .= "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
-        strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
         echo basJscss::jscode("\n$js")."\n";
     }
@@ -80,20 +79,6 @@ class tex_base{
             $re[$key]['detail'] = self::filter($b[1]);
         } 
         return $re;
-    }
-    
-    static function lister($key=''){ 
-        $path = vopTpls::path('tpl',1)."/tester/"; 
-        $re = comFiles::listDir($path);
-        $re = $re['file']; $re2 = array();
-        foreach($re as $k=>$v){
-            if(empty($key) && substr($k,0,1)=='u'){
-                $re2[] = str_replace(array('.php'),array(''),$k);
-            }elseif(strstr($k,"u{$key}_")){
-                $re2[] = str_replace(array('.php'),array(''),$k);
-            }
-        } 
-        return $re2;
     }
     
     static function filter($str){ 

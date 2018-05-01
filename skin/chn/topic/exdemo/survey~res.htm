@@ -1,0 +1,71 @@
+{imp:"topic/exdemo/topb~frame"}
+
+{block:infos}
+
+<?php
+$db = db();
+$tmps = $db->table('topic_items')->where("did='$did'")->select();
+$datas = array(); foreach ($tmps as $kd=>$vd) { $datas[$vd['dno']]=$vd; }
+$fcfg = devTopic::cfg2arr($cform);
+?>
+<ul class="nav nav-tabs">
+    <li class=""><a href='{surl("topic.$did")}'>调查表单</a></li>
+    <li class="active"><a>查看结果</a></li>
+</ul>
+
+<div class="tab-content">
+<div class='tab-pane fade in active' id='suform'>
+    <?php foreach ($fcfg as $k2=>$title){ 
+        if(devTopic::skip($k2)) continue;
+        if(!isset($datas[$k2])) continue;
+        $data = $datas[$k2];
+        $tmps = json_decode($data['detail'],1); 
+        $flags = $tmps['flags']; $des = $tmps['des'];
+        $names = basElm::line2arr($tmps['name'], 'kv');
+        $tags = basElm::line2arr($data['tags'], 'kv');
+        // dump($flags); dump($des);
+        if(strstr($flags,'s,') || strstr($flags,'m,')){
+            $as=array_sum($tags); $am=max($tags);
+    ?>
+    <div class="topic-post">
+        <h2 class="topic-post-title">
+        {=$title} ({=$k2})
+        </h2>
+        <p class="ires">
+            <?php
+            foreach ($names as $k3=>$v3){
+                $ap = $am ? round($tags[$k3]/$am*100,2) : 0;
+                $ar = $as ? round($tags[$k3]/$as*100,2) : 0;
+            ?>
+            <label>
+                {=$v3} ({=$tags[$k3]},{=$ap}%)
+                <b><a style="width:{=$ap}%;">&nbsp;</a></b>
+            </label>
+            <?php } ?>
+        </p>
+    </div><!-- /.blog-post -->
+    <?php } } ?>
+    <div class="topic-post">
+        <p class="items row">
+            <label class="col-sm-6 col-xs-12">
+                Back
+            </label>
+            <label class="col-sm-6 col-xs-12">
+                <a href="{surl("topic.$did")}" class="btn btn-info">返回</a>
+            </label>
+        </p>
+    </div><!-- /.blog-post -->
+</div>
+</div>
+
+<p>图表太丑？<a href="http://echarts.baidu.com/echarts2/doc/example.html" target="_1">使用ECharts吧！</a></p>
+
+<?php
+echo eimp('/layer/layer.js','vendui');
+echo eimp('/~tpl/vote.js');
+?>
+<script>var enc='';</script>
+
+{/block:infos}
+
+{block:init}<?php devTopic::voteCook();?>{/block:init}

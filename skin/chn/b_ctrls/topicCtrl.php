@@ -19,11 +19,11 @@ class topicCtrl{
         $k = $this->ucfg['key'];
         $v = $this->ucfg['view'];
         if($v=='cfgs' && $this->ucfg['type']=='detail'){
-            $tpl = 'u_topic/book/all~cfgs'; // book/all~cfgs
+            $tpl = 'topic/book/all~cfgs'; // book/all~cfgs
         }elseif(empty($this->vars['tplname'])){
             $tpl = $this->ucfg['tplname'];
         }else{
-            $dir = "/{$_cbase['tpl']['tpl_dir']}/u_topic";
+            $dir = "/{$_cbase['tpl']['tpl_dir']}/topic";
             $tpl = $this->vars['tplname'];
             if($v){
                 if(file_exists(DIR_SKIN."$dir/$tpl~$v.htm")){
@@ -32,7 +32,7 @@ class topicCtrl{
                     $tpl = "$tpl~detail";
                 }
             } // ?topic.2015-9c-p481.vtechs/7awse21
-            $tpl = 'u_topic/'.$tpl; 
+            $tpl = 'topic/'.$tpl; 
         } //echo "(($tpl))";  
         $re['newtpl'] = $tpl; // 模板
         return $re;
@@ -40,7 +40,7 @@ class topicCtrl{
 
     // _defAct
     function xxx_defAct(){
-        $re['newtpl'] = 'u_topic/_index/stype'; // 模板
+        $re['newtpl'] = 'topic/_index/stype'; // 模板
         return $re;
     }
     

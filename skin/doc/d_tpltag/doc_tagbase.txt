@@ -18,8 +18,8 @@
 <a href="{surl(umc:reg)}">[Register]</a>
 {surl(news.2016-12-abcd,0,1)} //Full-Url
 {surl(dev:news.2016-12-abcd,0,1)} //Full-Url
-{if cmod('votes')}Votes is Closed!{/if}
-{if !cmod('votes')}<a href="{surl(mob:votes)}" target="_blank">Votes</a>{/if}
+{if !smod('votes')}Votes is Closed!{/if}
+{if smod('votes')}<a href="{surl(mob:votes)}" target="_blank">Votes</a>{/if}
 
 ```
 

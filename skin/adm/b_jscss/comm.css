@@ -5,8 +5,8 @@ body{ background:#FFF; border:0px; padding:0px; margin:0px; }
 body, td, input, textarea, select, button{ color:#333; line-height:150%; font:12px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
 ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%; margin:0; padding:0; }
 li{ list-style:none; }
-.mobbody{ padding:2px 3px;overflow-y:scroll; }
-.pcbody{ padding:2px 3px;overflow-y:scroll; overflow-x:hidden; }
+.mobbody, .pcbody{ line-height:180%; padding:2px 3px;overflow-y:scroll; }
+.pcbody{ overflow-x:hidden; }
 
 a img{ border:none; }
 table{ border-collapse:collapse;}
@@ -97,9 +97,10 @@ ul.adf_mnu2 li a:hover{ color:#F00; }
 .mpic_out select { width:100%; }
 .mpic_out i.seltype select { width:120px; }
 
-.uh-space { width:100%; border:0px solid #CCC; }
-.uh-space td { text-align:center; padding:1px 2px; margin:0px; border:1px dashed #CCC; }
-.favor li{ height:21px; overflow:visible; line-height:100%; padding:3px 0 3px 3px; }
+.uh-space { width:100%; margin-bottom:5px; border:0px solid #CCC; }
+.uh-space td { text-align:center; border:1px dashed #CCC; white-space:nowrap; }
+.uh-sys{}
+.panel-body { line-height:200%; }
 
 .idShow {
   width:380px; height:250px;

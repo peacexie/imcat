@@ -1,4 +1,0 @@
-
--- token_store@2018-04-04 22:04:09 -- 
-INSERT INTO `{pre}token_store{ext}` VALUES 
-('weinxin-wx20b06b3c8d4e2a46','{\"access_token\":\"8_0Xj1NAZm1aA80ugdT8UIALBsYH8Rwlcgzy6YSmhZeNIGpo8kInIgJksnyqgWEDbsLyHLF30JKoExQufsus9xPIkzQKRDFgitbXquP6FtOZ20iyMCB8G_A4HpIDicmBF-ROZLleAUdWMZ5xTFHLSdAFANRY\",\"expires_in\":7200}','1522855620','1522850220');

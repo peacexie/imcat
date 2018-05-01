@@ -8,7 +8,6 @@ $_ve_uplog = array(
     'c' => array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
-        'tmfix' => '-mob', // 移动适配-模板后缀
     ),
     'm' => 'c_demo/uplog_main',
     'd' => 'c_demo/uplog_main',

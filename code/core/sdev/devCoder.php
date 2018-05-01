@@ -96,4 +96,55 @@ class devCoder{
         return [$line,$data,$msg];
     }
 
+    // static-analyse : 静态文件分析 : 扫描obj_dir中的资源,是否在from_dirs中使用
+    static function stScan($obj_dir, $obj_bak, $obj_fix, $from_dirs){
+        $act = req('act');
+        $res = $froms = [];
+        // 
+        $ftabs = comFiles::listDir(BDIR.$obj_dir,'file');
+        $files = array_keys($ftabs); //dump($files);
+        // 
+        foreach ($from_dirs as $dir) {
+            $ftabs = comFiles::listDir(BDIR.$dir,'file');
+            foreach ($ftabs as $file=>$row) {
+                $fp = "$dir/$file";
+                $froms[$fp] = comFiles::get(BDIR.$fp);
+            }
+        } //dump(array_keys($froms));
+        // 
+        foreach ($files as $file) {
+            $fchk = "$obj_fix/$file";
+            $fcnt = 0;
+            foreach ($froms as $fp=>$fdata) {
+                if(strpos($fdata,$fchk)>0){
+                    $fcnt++; continue;
+                }
+            }
+            $fk = str_pad($file.' ',24,"-");
+            $res[$fk] = "($fcnt)".($fcnt ? " : " : " --- --- del : ").filesize(BDIR."$obj_dir/$file");
+            if(!$fcnt && $act=='move'){
+                rename(BDIR."$obj_dir/$file", BDIR."$obj_bak/$file");
+            }
+        }
+        return $res;
+    }
+
 }
+
+/*
+define('BDIR', 'E:/www/house');
+
+$odir = '/public/static/site/img-house';
+$obak = '/public/static/site/img-hbak';
+$ofix = '/img-house';
+
+$froms = [
+    '/public/static/site/css',
+    '/public/static/site/js',
+    '/application/index/view/house',
+    '/application/index/view/public',
+];
+
+$res = devCoder::stScan($odir, $obak, $ofix, $froms);
+dump($res);
+*/

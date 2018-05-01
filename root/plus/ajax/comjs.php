@@ -32,7 +32,7 @@ if(strstr($act,'autoJQ')){
             require DIR_VENDUI.'/jquery/html5.js'; // html5shiv + respond
             require DIR_VENDUI.'/jquery/jquery-1.x.js';
         }else{
-            require DIR_VENDUI.'/jquery/jquery-3.x.js';
+            require DIR_VENDUI.'/jquery/jquery-2.x.js';
         }
     }
 }

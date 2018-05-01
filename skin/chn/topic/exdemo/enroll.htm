@@ -1,0 +1,111 @@
+﻿{imp:"topic/exdemo/topb~frame"}
+
+{block:infos}
+
+<?php
+$db = db();
+$tmps = $db->table('topic_items')->where("did='$did'")->select();
+$datas = array(); foreach ($tmps as $kd=>$vd) { $datas[$vd['dno']]=$vd; }
+$fcfg = devTopic::cfg2arr($cform);
+$vsel = $vmul = $varea = $vinp = '';
+$vtab = '"fm_mname_":"昵称","fm_mtel_":"手机号"';
+?>
+<ul class="nav nav-tabs">
+    <li class="active"><a>报名表单</a></li>
+    <li class=""><a href='{surl("topic.$did.res")}'>最近报名</a></li>
+</ul>
+
+<div class="tab-content">
+<form action="{=PATH_ROOT}?login" method="" name="topfm" id="topfm">
+<div class='tab-pane fade in active' id='suform'>
+    <?php foreach ($fcfg as $k2=>$title){ 
+        if(devTopic::skip($k2)) continue;
+        if(!isset($datas[$k2])) continue;
+        $data = $datas[$k2];
+        $tmps = json_decode($data['detail'],1); 
+        $flags = $tmps['flags']; $des = $tmps['des'];
+        $names = basElm::line2arr($tmps['name'], 'kv');
+        $tags = basElm::line2arr($data['tags'], 'kv');
+        if(strstr($flags,'must')){
+            $istr = "detail[$k2]";
+            if(strstr($flags,'s,')){ $vsel .= ",$istr"; }
+            elseif(strstr($flags,'m,')){ $vmul .= ",$istr".'[]'; }
+            elseif(strstr($flags,'a,')){ $varea .= ",$istr"; }
+            else{ $vinp .= ",$istr"; }
+            $vtab .= ',"'.str_replace(array('[',']'),'_',$istr).'":"'.$title.'"';
+        } // dump($flags); dump($des);
+    ?>
+    <div class="topic-post">
+        <h2 class="topic-post-title">
+        {=$title} ({=$k2})
+        </h2>
+        <p class="items row">
+            <?php if(strstr($flags,'s,') || strstr($flags,'m,')){ ?>
+            <?php foreach ($names as $k3=>$v3){ ?>
+            <label class="col-sm-6 col-xs-12">
+                <?php if(strstr($flags,'s,')){ ?>
+                <input class="" name="detail[{=$k2}]" type="radio" value="{=$k3}">
+                <?php }else{ ?>
+                <input class="" name="detail[{=$k2}][]" type="checkbox" value="{=$k3}">
+                <?php } ?>
+                {=$v3}({=$tags[$k3]})
+            </label>
+            <?php } }elseif(strstr($flags,'a,')){ ?>
+            <textarea class="form-control" name="detail[{=$k2}]" rows="5"></textarea>
+            <?php }else{ ?>
+            <input class="form-control" name="detail[{=$k2}]" type="text">
+            <?php } ?>
+        </p>
+        <p class="remark">
+            {if !empty($des)} {=$des} {/if} flags={=$flags}
+        </p>
+    </div><!-- /.blog-post -->
+    <?php } ?>
+    <div class="topic-post">
+        <h2 class="topic-post-title">
+        昵称/手机号
+        </h2>
+        <p class="items row">
+            <label class="col-sm-6 col-xs-12">
+                <input class="form-control" name="fm[mname]" type="text" placeholder="昵称">
+            </label>
+            <label class="col-sm-6 col-xs-12">
+                <input class="form-control" name="fm[mtel]" type="text" placeholder="手机号">
+            </label>
+        </p>
+    </div><!-- /.blog-post -->
+    <div class="topic-post">
+        <h2 class="topic-post-title">
+        验证码/提交收工
+        </h2>
+        <p class="items row">
+            <label class="col-sm-6 col-xs-12">
+                <script>fsInit('topfm');</script>
+            </label>
+            <label class="col-sm-6 col-xs-12">
+                <input name="bsend" class="btn btn-primary" type="button" onclick="formWin('topfm','{=$did}')" value="提交收工">
+            </label>
+        </p>
+    </div><!-- /.blog-post -->
+</div>
+</form>
+</div>
+
+<p>表单太丑？就知道你不要用现成的模板…所有呢？另外写模板自己调css吧！</p>
+
+<?php
+echo eimp('/layer/layer.js','vendui');
+echo eimp('/~tpl/vote.js');
+?>
+<script>
+var enc='';
+var vtab={{=$vtab}};
+var vsel='{=$vsel}';
+var vmul='{=$vmul}';
+var varea='{=$varea}';
+var vinp='{=$vinp},fm[mname],fm[mtel]';
+</script>
+
+{/block:infos}
+
+{block:init}<?php devTopic::voteCook();?>{/block:init}

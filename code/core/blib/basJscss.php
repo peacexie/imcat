@@ -167,32 +167,6 @@ class basJscss{
         echo "\n_cbase.sys_map = '".@$_cbase['sys_map']."';";
         echo "\n";
         
-        $fuser = empty($_GET['user']) ? 0 : $_GET['user'];
-        if($fuser){
-            echo "\n// js Member/Admin"; 
-            echo "\nvar _minfo={}, _mperm={}, _miadm={}, _mpadm={}; ";
-            $user = usrBase::userObj($fuser==1 ? 'Member' : 'Admin');
-            $imenu = '';
-            if(!empty($user)){
-                $mifix = $fuser==1 ? '_minfo' : '_miadm';
-                $mpfix = $fuser==1 ? '_mperm' : '_mpadm';
-                $menuk = $fuser==1 ? 'pmusr' : 'pmadm';
-                if(!empty($user->uperm['impid'])){ // 继承菜单
-                    $grades = glbConfig::read('grade','dset');
-                    if(isset($grades[$user->uperm['impid']])){
-                        $imenu = $grades[$user->uperm['impid']][$menuk];
-                    }
-                }
-                echo "\n$mifix.userType = '".$user->userType."';";
-                echo "\n$mifix.userGrade = '".@$user->uperm['grade']."';"; 
-                echo "\n$mifix.userFlag = '".$user->userFlag."';";
-                echo "\n$mifix.uname = '".@$user->usess['uname']."';";
-                echo "\n$mpfix.title = '".@$user->uperm['title']."';";
-                echo "\n$mpfix.menus = ':,".@$user->uperm[$menuk].",$imenu,';";
-                echo "\n$mpfix.defmu = '".@$user->uperm['defmu']."';";
-            }
-        } 
-        echo "\n";
 		// ***** 加载Base.js *****
 		require DIR_SKIN.'/_pub/jslib/jsbase.js';
 		require DIR_SKIN.'/_pub/jslib/jsbext.js';
@@ -216,7 +190,7 @@ class basJscss{
                 $exp = "&tpldir=$tpldir&lang=$lang&skin=$skin";
                 $mod = 'css';
             }else{ // initJs/loadExtjs
-                $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv".($mod?"&user=$mod":'') : '';
+                $exp = $path=='initJs' ? "&tpldir=$tpldir&lang=$lang&mkv=$mkv" : '';
                 $mod = 'js'; 
             }
             $path = "/plus/ajax/comjs.php?act=$path$exp&ex$mod=$base";

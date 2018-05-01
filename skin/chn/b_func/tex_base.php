@@ -21,15 +21,13 @@ class tex_base{
         $tpl = cfg('tpl');
         $base = $tpl['tplpend'];
         $ext = $tpl['tplpext']; 
-        $base || $base = 'jstag,menu,cklogin,fanyi,aheight';
-        $js = "var ocar_url = '".surl('ocar')."';\n";
-        $js .= "var umc_url = '".surl('umc:0')."';\n";
+        $base || $base = 'jstag,menu,caritems,fanyi';
+        $js = "";
         $js .= "setTimeout(\"jcronRun()\",3700);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
-        strstr($base,'cklogin') && $js .= "js_cklogin();\n";
+        strstr($base,'caritems') && $js .= "js_caritems();\n";
         strstr($base,'fanyi') && $js .= "js_i18nbar();\n";
-        strstr($base,'aheight') && $js .= "js_aheight();\n";
         $ext && $js .= "$ext;\n";
         echo basJscss::jscode("\n$js")."\n";
     }

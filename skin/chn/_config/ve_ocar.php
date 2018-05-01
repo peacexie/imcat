@@ -8,8 +8,8 @@ $_ve_ocar = array(
         'vmode' => 'dynamic', //dynamic,close,static
         'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
     ),
-    'm'        => 'm_ocar/ocar_items', //
-    'checkout' => 'm_ocar/ocar_checkout', //
-    'invoce'   => 'm_ocar/ocar_invoce', //
+    'm'        => 'cargo/ocar-items', //
+    'checkout' => 'cargo/ocar-checkout', //
+    'invoce'   => 'cargo/ocar-invoce', //
     
 );

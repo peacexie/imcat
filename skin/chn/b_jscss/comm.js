@@ -1,40 +1,23 @@
-function js_cklogin(id){
-    var sinf, ainf='';
-    if (typeof(_minfo)=="undefined") return;
-    if(_minfo.userFlag=='Guest'){
-        var uname = 'Guest';
-        sinf = '<span class="uname">'+uname+'</span> 您好！<br><a href="'+umc_url+'?logout&recbk=ref">马上登陆…</a>';
-    }else{
-        var uname = _minfo.uname;
-        if(uname.length>9){
-            uname = uname.substr(0,6)+'...'+uname.substr(-3,3);
-        }
-        sinf = '<span class="uname" title="'+_mperm.title+'">'+uname+'</span> 您好！<br><a href="'+umc_url+'?mkv=uio-login&act=doout&recbk=ref" target="_blank">登出…</a>';
-    }
-    if(_miadm.userFlag=='Login'){ 
-        ainf = '<a class="cF0F" href="'+_cbase.run.roots+'/run/adm.php?logout" target="_blank" title="登出:'+_mpadm.title+'">登出:'+_miadm.uname+'</a>';
-    }
+function js_caritems(id){
     if(typeof(ocar_items)=="undefined"){
         var citems = getCookie('ocar_items');
     }else{
         var citems = ocar_items;
     }
-    citems = citems ? citems : 0; 
-    ainf += '<br><a class="cF0F" href="'+ocar_url+'">购物车('+citems+')</a>';
-    if(!id) id = 'top_cklogin';
-    if(id) $('#'+id).html("<span class='ainf'>"+ainf+"</span>"+sinf);
-    return sinf+ainf;
+    if(!citems) citems = 0;
+    $('#top_scnt').html('('+(citems?citems:0)+')');
 }
 
 
 // qas_(id/key), qat_(id/key)
+/*
 function jsactMfaqs(){
     var e = jsElm.jeID('qas_'+qas_id); 
     if(e) e.className = 'act';
     var e = jsElm.jeID('qat_'+qat_id); 
     if(e) e.className = 'act';
     //else jsElm.jeID('qat_all').className = 'act';
-}
+}*/
 
 function jsactMenu(menuid){
     if(_cbase.jsrun.menuid){
@@ -44,25 +27,13 @@ function jsactMenu(menuid){
         menuid = a[0];
     }
     var e = jsElm.jeID('idf_'+menuid); 
-    if(e) e.className = 'act';
+    if(e) e.className = 'active';
 }
 
 function js_i18nbar(){ 
     jQuery.getScript(_cbase.run.rskin+'/_pub/a_jscss/i18nbar.js',function(){ 
         i18nb_mui('Chinese','i18nb_obj','i18nb_api','i18nb_btn'); 
     });
-}
-
-function js_aheight(){ 
-    if($('.pgf_side2').html()){
-        if($('.pgf_mcon2').height()+20>$('.pgf_mid2').height()){
-            $('.pgf_mid2').height($('.pgf_mcon2').height()+20); 
-        }        
-    }else{
-        if($('.pgf_side').height()>$('.pgf_mid').height()){
-            $('.pgf_mid').height($('.pgf_side').height()); 
-        }
-    }
 }
 
 // <b class="qrcode_tip" onMouseOver="qrurl_act(id,1)" onMouseOut="qrurl_act(id,0)">扫码<i class="qrcode_pic"></i></b

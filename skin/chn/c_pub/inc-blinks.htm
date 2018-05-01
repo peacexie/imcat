@@ -1,0 +1,29 @@
+
+<div class="row">
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://txjia.com/peace/txbox.htm" target="_blank">贴心Java盒子</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://www.elifebike.com" target="_blank">Elifebike</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="{=$_cbase['server']['txjia']}/kgfood/" target="_blank">科冠食品</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://down.admin5.com/php/130751.html" target="_blank">贴心猫-A5源码</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://www.pswpower.com" target="_blank">pswpower</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://txjia.com/peace/txasp.htm" target="_blank">贴心Asp系统</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="http://txjia.com/peace/wenode.htm" target="_blank">Node.js微框架</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="{=$_cbase['server']['txcode']}/tools/screen.htm">贴心口袋</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="https://txjia2.taobao.com/" target="_blank">越乐家装(淘宝)</a></div>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="{=$_cbase['server']['txjia']}/tip/" target="_blank">贴心代码</a></div>
+
+    {code:"dev:tools/a-cfgs"}
+    <?php 
+    $i = 0;
+    foreach($cfgs as $k=>$v){ 
+        $i++; if($i>10) break; 
+    ?>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="{surl("dev:tools-$k")}">{=$v['mt']}</a></div>
+    <?php 
+    }
+    if($i<10){ foreach($cfgs_ext as $k=>$v){ 
+    ?>
+    <div class="col-md-2 col-sm-3 col-xs-4 celp50"><a href="{=$v['url']}" target="_blank">{=$v['mt']}</a></div>
+    <?php 
+    } }
+    ?>
+</div>

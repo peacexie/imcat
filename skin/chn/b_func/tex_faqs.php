@@ -99,9 +99,10 @@ class tex_faqs{
     }
     
     static function navTop($obj,$re='html'){ 
-        $mcfg = read('faqs'); 
+        $mcfg = read('faqs');
         $cfg = basLang::ucfg('cfgbase.ucfaqn4');
         $tag = req('tag');
+        $view = req('view');
         $tag && $cfg['tag'] .= ":$tag";
         $str = '';
         foreach($cfg as $key=>$val){
@@ -114,14 +115,25 @@ class tex_faqs{
             }else{
                 $url = $key=='new' ? surl('faqs') : surl("faqs-$key");
             }
-            $str .= "<a href='$url' id='qat_$key'>$val</a>";
+            if($obj->key==$key || $view==$key){
+                $act = "class='active'";
+            }elseif($tag && $key=='tag'){
+                $act = "class='active'";
+            }elseif(empty($obj->key) && $key=='new'){
+                $act = "class='active'";
+            }elseif(isset($mcfg['i'][$obj->key]) && $key=='new'){
+                $act = "class='active'";
+            }else{
+                $act = "";
+            } // 
+            $str .= "<li $act><a href='$url' id='qat_$key'>$val</a></li>";
         }
         return $str;
     }
     
     static function navSide($obj,$re='html'){ 
         $mcfg = read('faqs'); 
-        $stats = self::statTypes($act='get');
+        $stats = self::statTypes('get');
         $str = "<a href='".surl('faqs')."' id='qas__allt'><i class='right'>".$stats['_allt']."</i>".lang('user.exf_alltype')."</a>";
         $arr = array('_allt'=>lang('user.exf_alltype'));
         if(empty($mcfg['i'])) return $re=='html' ? $str : $arr;
@@ -136,7 +148,6 @@ class tex_faqs{
     // 统计类别下的问答
     static function statTypes($act='get'){ 
         $db = db(); 
-        $file = "/store/_faqs_types.cfg.php";
         $arr = extCache::tkGet('faqs_types',1);
         if(!is_array($arr) || empty($arr['_allt'])){
             $arr = array();

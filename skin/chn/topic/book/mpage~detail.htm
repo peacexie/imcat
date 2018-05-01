@@ -1,0 +1,55 @@
+<?php
+include vopTpls::pinc('b_func/book');
+$cfgs = devTopic::cfg2arr($clist);
+$subt = '';
+?>
+<!doctype html>
+<html><head>
+<?php $this->pmeta();?>
+<?php eimp('/~tpl/book.css'); ?>
+</head><body>
+
+<h1 class="title">{=$title}</h1>
+
+<ul class="list">
+    <li class='lv1'><span class='right'><a href="{surl("topic.$did")}">返回</a></span>&hearts; 目录</li>
+    {loop $cfgs $k1 $v1}
+    {if $k1==$this->view} <?php $subt=$v1;?>
+    <a xxx-href='#'><li class="cF00"><span class='right'>-</span>{=$v1}</li></a>
+    {else}
+    <a href='{surl("topic.$did.$k1")}'><li class=''><span class='right'>-</span>{=$v1}</li></a>
+    {/if}
+    {/loop}
+</ul>
+
+<h1 class="title">{=$subt}</h1>
+
+<?php 
+$list = db()->table('topic_items')->where("did='$did' AND part='{$this->view}'")->order('top,dno')->select();
+if(!empty($list)){ 
+foreach($list as $k2=>$row){
+?>
+    <h2 class="subh2" id="row{=$row['dno']}">
+        <a href='#' class='right'>Top</a>
+        {=$row['title']}
+    </h2>
+    <div class="out">
+        <?=extMkdown::pdorg($row['detail'])?>
+    </div>
+<?php } } ?>
+
+<footer>
+    <p class="tc">
+    <a href="{surl("topic.$did")}">返回:{=$title}</a>
+    #
+    <a href="{surl(topic)}">更多专题</a>
+    </p>
+    (Markdown)多页专题-目录
+    <span>模板 : {=$this->tplname}</span>
+    <span><a href='{surl("topic.$did.cfgs")}'>配置查看</a></span>
+</footer>
+
+</body></html>
+<?php 
+$_cbase['tpl']['tplpend'] = '~';
+?>

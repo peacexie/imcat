@@ -1,0 +1,36 @@
+<?php
+include vopTpls::pinc('b_func/book');
+?>
+<!doctype html>
+<html><head>
+<?php $this->pmeta();?>
+<?php eimp('/~tpl/book.css'); ?>
+<script src="{=PATH_VENDUI}/jquery/jquery-3.x.js"></script>
+</head><body>
+
+<h1 class="title">{=$title}</h1>
+
+<?php
+include(DIR_CODE.'/lang/pubs/fcfgs.php');
+?>
+<?php foreach($fcfgs as $key=>$cfg){ $icfg=$$key; if(!empty($$key)){ ?>
+<div class="out">
+    <h4>{=$key}-{=$cfg['title']} : 配置查看</h4>
+    <textarea style='width:100%'; rows='8' wrap='off' />{=$icfg}</textarea>
+</div>
+<?php } } ?>
+
+<nav>
+   <p>
+    <a href="{surl("topic.$did")}">返回:{=$title}</a>
+    #
+    <a href="{surl(topic)}">更多专题</a>
+   </p>
+</nav>
+
+{inc:"topic/_index/_foot"}
+
+</body></html>
+<?php 
+$_cbase['tpl']['tplpend'] = '~';
+?>

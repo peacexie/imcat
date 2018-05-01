@@ -32,11 +32,11 @@ $_adpic = array (
     array (
       'kid' => 'a2014',
       'pid' => 'aphom',
-      'title' => '[上]850x80',
+      'title' => '[上]750x80',
       'deep' => '2',
       'frame' => '0',
       'char' => '_',
-      'cfgs' => '<a href=\'{url}\' target=\'_blank\'><img src=\'{mpic}\' width=\'800\' height=\'80\' name=\'{title}\' alt=\'{title}\' /></a>',
+      'cfgs' => '<a href=\'{url}\' target=\'_blank\'><img src=\'{mpic}\' width=\'750\' height=\'80\' name=\'{title}\' alt=\'{title}\' /></a>',
     ),
     'apinn' => 
     array (

@@ -13,7 +13,7 @@
  - 如果包含其他模板的区块，则加上`dir:`标记如：{code:"dev:tools/a-cfgs"}
 
 * 跨模版包含:公共区块/代码区块
- - 包含公共模版区块：{inc:"chn:c_pub/inc_blinks"} -=> inc文件：{tpls}/chn/c_pub/inc_blinks.htm
+ - 包含公共模版区块：{inc:"chn:c_pub/inc-blinks"} -=> inc文件：{tpls}/chn/c_pub/inc-blinks.htm
  - 包含其它模版区块：{code:"dev:tools/a-cfgs"} -=> inc文件：{tpls}/dev/tools/a-cfgs.php
 
 

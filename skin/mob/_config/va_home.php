@@ -9,7 +9,6 @@ $_va_home = array(
         'vmode' => 'dynamic', //dynamic,catch,close
         'stexp' => '2h', //30,60,3h,6h,12h,24h,7d
         'stext' => '.htm',
-        'close' => array('topic','demo','about'),
         'imcfg' => array(),
         'extra' => array('home','user'), 
     ),

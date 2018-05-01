@@ -50,18 +50,22 @@ if($view=='list'){
     
     if(!empty($bsend)){
         $dop->svPrep(); 
+        //$org = $dop->fmv;
+        $dop->fmv = basReq::in($dop->fmv);
+        $dop->fmv['mpic'] = $fm['mpic'];
+        $dop->fmv['detail'] = $fm['detail'];
         if(!empty($isadd)){ 
             $dop->svAKey();
             $dop->svPKey('add');
-            $dop->fmv['mpic'] = $fm['mpic'];
-            $db->table($dop->tbid)->data(basReq::in($dop->fmv))->insert(); 
+            //$dop->fmv['mpic'] = $fm['mpic'];
+            $db->table($dop->tbid)->data($dop->fmv)->insert(); 
             $actm = lang('flow.dops_add');
             $aid = $dop->fmv['aid'];
         }else{ 
             $aid = $dop->svEKey();
             $dop->svPKey('edit');
-            $dop->fmv['mpic'] = $fm['mpic'];
-            $db->table($dop->tbid)->data(basReq::in($dop->fmv))->where("aid='$aid'")->update();
+            //$dop->fmv['mpic'] = $fm['mpic'];
+            $db->table($dop->tbid)->data($dop->fmv)->where("aid='$aid'")->update();
             $actm = lang('flow.dops_edit');
         }
         basMsg::show("$actm".lang('flow.dops_ok'));    

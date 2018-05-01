@@ -1,0 +1,49 @@
+{imp:"about/about-alayout"}<!--模板继承-->
+
+{block:mcont}
+    <div class="about-tbar">
+    <i>关于我们</i>
+    <i class="right">
+     {sopt($this->key,$this->mod,0,$null)} &gt;&gt;
+    </i>
+    </div>
+
+    <div class="row pro-table">
+      {tag:dlist=[Page][modid,$this->mod][show,1][stype][hinfo][keywd][limit,12]}
+      {:row}
+      <div class="col-md-4 pv15">
+        <p class="tc uimark-pos-rel">
+        <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+        {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
+        <p class="detail"><i class="price">&yen;{=$t_price}元</i><i class="click">浏览{=$t_click}次</i>
+        </p>
+        <p class="title clear"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
+      </div> 
+      {/row}
+      <div class="pa10">
+        {php echo $_cbase['page']['bar']; }
+      </div>
+      {/tag:dlist}
+    </div>  
+    
+{/block:mcont}
+ 
+
+        <div class="row home-tabpro">
+        <!--list_start-->
+        <?php $_i=0; ?>
+        {loop $res['cargo-push8'] $key $v}
+        <?php $_i++; if($_i==4){ echo "<div class='h20 clear'>&nbsp;</div>"; } ?>
+        <dl class="col-md-4">
+          <dd>
+            <p class="tc uimark-pos-rel">
+            <a href="<?php echo vopUrl::root($v['url']);?>"><img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' class="img-thumbnail" onload='imgShow(this,160,120)' /></a>
+            {if !empty($v['star'])}<b class="uimark-star-icon1b"></b>{/if}</p>
+            <p class="detail"><i class="right">&yen;{=$v['price']}元</i><i class="click">浏览{=$v['click']}次</i>
+            </p>
+          </dd> 
+          <dt class="title clear"><a href="<?php echo vopUrl::root($v['url']);?>">{title($v['title'],96,$v)}</a></dt>
+        </dl>
+        {/loop}
+        <!--list_end-->
+        </div>

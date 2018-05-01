@@ -11,20 +11,16 @@ $titlesub = '子标题';
 ?>{/block:extop}
 {php $this->pmeta($titletop); }
 {php}
-eimp('initJs','jquery;comm');
+eimp('initJs','jquery,bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm');
 {/php}
 {block:eximp}{/block:eximp}
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
-<div class="pgf_mid">
-  <div class="pgf_side">
-    <!--side_start-->
-    {block:exside}side_info{/block:exside}
-    <!--side_end-->
-  </div>
-  <div class="pgf_main"> 
+
+<div class="row">
+  <div class="col-md-9">
     <div class="mod-tbar">
     <i class="title">{=$titlesub}</i>
     <i class="right">{block:exbar}
@@ -36,9 +32,16 @@ eimp('initCss','bootstrap,stpub;comm');
     <!--main_start-->
     {block:exmain}main_info{/block:exmain}
     <!--main_end-->
-    <div class="clear"></div>
+  </div>
+  <div class="col-md-3">
+    <!--main_start-->
+    <div class="left-15">
+        {inc:"c_pub/aside"}
+    </div>
+    <!--main_end-->  
   </div>
 </div>
+
 {inc:"c_pub/afoot"}
 {block:exfoot}{/block:exfoot}
 </body></html>

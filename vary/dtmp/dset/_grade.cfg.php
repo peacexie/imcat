@@ -199,8 +199,8 @@ upsizes=960000',
     'pdel' => '',
     'pcheck' => '',
     'pextra' => 'edtlist,edtup,edtadm',
-    'cfgs' => 'tplname=c_mod/mem_detailvip
-tplnamenews=c_mod/mem_ulstvip',
+    'cfgs' => 'tplname=corp/mem-detailvip
+tplnamenews=corp/mem-ulstvip',
     'grade' => 'cvip',
   ),
   'cstop' => 

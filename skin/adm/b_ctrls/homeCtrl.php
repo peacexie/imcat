@@ -39,7 +39,7 @@ class homeCtrl{
         $vars['exinfo'] = req('exinfo');
         $act = req('act');
         if($act=='update'){
-          $arr = array('client-cn','client-en','server-cn','server-en'); 
+          $arr = array('server-cn','server-en'); // 'client-cn','client-en',
           foreach($arr as $key){ @unlink(DIR_DTMP."/dset/_upd_$key.htm"); }
         }elseif($act=='modstat'){
           $arr = array('modstat-cn','modstat-en'); 

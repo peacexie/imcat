@@ -10,7 +10,8 @@ $subs = tex_base::docer("d_uplog/$file");
 if(empty($subs)){ $this->msg('Has NOT Release!'); }
 $sub = req('sub',''); 
 $verflag = $cfgs[$key][1];
-$titlesub = $titletop = $verflag; 
+$titlesub = $titletop = 'Release';
+$titletop .= ' '.$verflag; ;
 $titlesub = $_cbase['sys_name'].' '.$titlesub;
 ?>
 {/block:extop}
@@ -25,22 +26,9 @@ $titlesub = $_cbase['sys_name'].' '.$titlesub;
     
     <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{=$k}" class="mod-section mod-uplog">
-      <li class="type">{=$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
+      <li class="type">{=$k}{=$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
       {=$v[detail]}
     </ul>
     <?php } ?>
 
-{if empty($this->key)}
-<script>
-$(document).ready(function(){
-    $('a').each(function(i, e) {
-        var url = $(e).attr("href"); 
-        if(url.indexOf('://')>0) $(e).attr("target",'_blank');
-    });
-});
-</script>
-{/if}
-
 {/block:exmain}
-
-{block:exside}{inc:"c_demo/uplog_aside"}{/block:exside}

@@ -24,7 +24,7 @@ class devBuild{
         if(is_numeric($dir) || is_numeric($front)){
             return basLang::show('devapp_dfnum');
         }
-        $exa = array('demodir','front','home','info');
+        $exa = array('demo','front','home','info');
         if(in_array($dir,$exa) || in_array($front,$exa)){
             return basLang::show('devapp_dfues');    
         }
@@ -36,7 +36,7 @@ class devBuild{
         if(empty($groups[$mod]['pid']) || $groups[$mod]['pid']!='docs'){
             return basLang::show('devapp_dataerr');
         }
-        self::cdir(DIR_SKIN."/demodir", DIR_SKIN."/$dir", $mod);
+        self::cdir(DIR_SKIN."/demo", DIR_SKIN."/$dir", $mod);
         self::cfiles($dir, $front, $mod);
         return 'OK'; //"<input type='text' value='dir=$dir,front=$front,mod=$mod' class='disc'>";
     }
@@ -66,8 +66,8 @@ class devBuild{
     static function cfiles($dir, $front, $mod){ 
         $title = basReq::val('title',"{$dir}App");
         // front
-        $data = comFiles::get(DIR_ROOT.'/run/front.php');
-        $data = str_replace(array("'demodir'","dirname(__FILE__).'/_init.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_init.php'"),$data);
+        $data = comFiles::get(DIR_ROOT.'/run/demo.php');
+        $data = str_replace(array("'demo'","dirname(__FILE__).'/_init.php'"),array("'$dir'","dirname(__FILE__).'/root/run/_init.php'"),$data);
         comFiles::put(DIR_PROJ."/$front.php", $data);
         // vopcfg
         $data = comFiles::get(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php');

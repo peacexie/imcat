@@ -72,7 +72,7 @@ $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl'),
     'vendor' => array('Monolog','psrlog','silex','Spyc'),
     'dtmp' => array('@test','@udoc','debug','update','weixin'),
-    'vendui' => array('artEditor','ratchet','swfCopy','swplayer'),
+    'vendui' => array('artEditor','swplayer'),
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(

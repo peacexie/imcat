@@ -18,8 +18,8 @@
 <a href="{surl(umc:reg)}">[注册]</a>
 {surl(news.2016-12-abcd,0,1)} //完整地址
 {surl(dev:news.2016-12-abcd,0,1)} //完整地址 
-{if cmod('votes')}投票已关闭{/if}
-{if !cmod('votes')}<a href="{surl(mob:votes)}" target="_blank">投票系统</a>{/if}
+{if !smod('votes')}投票已关闭{/if}
+{if smod('votes')}<a href="{surl(mob:votes)}" target="_blank">投票系统</a>{/if}
 
 ```
 

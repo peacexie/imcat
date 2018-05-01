@@ -10,7 +10,6 @@ $_va_home = array(
         //'stexp' => '12h', //30,60,3h,6h,12h,24h,7d
         //'stext' => '-a.htm',
         'pmods' => array('admin','apis','awex','binc',), // 权限模块
-        'close' => array(),
         'imcfg' => array(),
         'extra' => array(), // 'frame',扩展模块
     ),
@@ -24,3 +23,4 @@ $_va_home = array(
     'help'  => 'frame/help',
  
 );
+

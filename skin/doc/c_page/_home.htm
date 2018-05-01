@@ -3,7 +3,7 @@
 {php glbHtml::page('keywords',lang('tools.home_exkwd')); }
 {php glbHtml::page('description',lang('tools.home_exdes')); }
 {php}
-eimp('initJs','jquery;comm');
+eimp('initJs','jquery,bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm;home');
 {/php} 
 </head><body>
@@ -14,75 +14,72 @@ eimp('initCss','bootstrap,stpub;comm;home');
 $null2 = "<span class='cCCC'>------</span>";
 $null3 = "";
 $col = 2; $i_v = 0;
-$subs = tex_base::docer('d_start/doc__home'); 
+$subs = tex_base::docer('d_start/doc__home');
 ?>
-<table class="home-tipn" width="1200">
-  <tr>
-    <td valign="top" class="bar1">
-    <div class="right">
-    <i><a href="{surl(doc:tester)}" class="c66F" target="_blanlk">TestCode</a></i>
-    <i><a href="{surl(demo)}">Demo-Article</a></i>
-    <i><a href="{surl(chn:topic)}" target="_blank">Demo-Topic</a></i>
-    </div>
 
-    <i class="act">IntimateCat Resume</i>
-
-    </td>
-    <td valign="top" class="bar2">
-    <i class="right"><a href="{surl(uplog)}">Pub Logs&gt;&gt;</a></i>
-    <i class="act">Publish</i>
-    </td>
-  </tr>
-  <tr>
-    <td valign="top" class="tipn">
+<div class="row">
+  <div class="col-md-9">
     <!--main_start-->
+    <div class="home-tipn">
     <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{=$k}" class="{php if($i_v%$col==$col-1) echo "right";}">
       <li class="title">{=$_cbase['sys_name']}：{=$v[title]}</li>
       <?php echo str_replace(array("<ul>","</ul>"),array('',''),$v['detail']); ?>
     </ul>
     <?php $i_v++; } ?>
+    </div>
     <!--main_end-->  
-    </td>
-    <td valign="top" class="topic">
-    
-    {code:"d_uplog/a_cfgs"}
-    <?php 
-      foreach($cfgs as $k=>$v){ 
-      if(in_array($k,array('readme'))) continue;
-    ?>
-    <p>
-      <i class="right">{=$v[0]}</i><a href="{surl("uplog-$k")}">{=$v[1]} Changelog</a>
-    </p>
-    <?php } ?>
+  </div>
+  <div class="col-md-3">
+      <div class="panel panel-default left-15">
+        <div class="panel-heading">Pub Logs</div>
+        <div class="panel-body side">
+          {code:"d_uplog/a_cfgs"}
+          <?php 
+            foreach($cfgs as $k=>$v){ 
+            if(in_array($k,array('readme'))) continue;
+          ?>
+          <p>
+            <i class="right">{=$v[0]}</i><a href="{surl("uplog-$k")}">{=$v[1]} Changelog</a>
+          </p>
+          <?php } ?>
+          <p class="tc">
+            <a href="{surl(start)}" target="_blank">=== Fast : Start ===</a>
+          </p>
+        </div>
+        <div class="panel-heading">System. News</div>
+        <div class="panel-body side">
+          {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
+          <p>
+            <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
+          </p>
+          {/tag:tlist3}
+          
+          {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
+          <p>
+            <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
+          </p>
+          {/tag:tlist2}
+          {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
+          <p>
+            <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
+          </p>
+          {/tag:tlist1} 
+        </div>
+      </div>
+  </div>
 
-    <p class="title">System. News</p>
-    
-    <!`--{surl(news-nsystem)}`-->
-    {tag:tlist3=[List][modid,news][stype,nsystem][show,1][limit,2]}
-    <p>
-      <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}">{title($t_title,45,$v)}</a>
-    </p>
-    {/tag:tlist3}
-    
-    {tag:tlist2=[List][modid,demo][stype,d1016][show,1][limit,2]}
-    <p>
-      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
-    </p>
-    {/tag:tlist2}
-    {tag:tlist1=[List][modid,demo][stype,d1018][show,1][limit,2]}
-    <p>
-      <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("demo.$t_did")}">{title($t_title,45,$v)}</a>
-    </p>
-    {/tag:tlist1} 
-    <p class="tc">
-      <a href="{surl(start)}" target="_blank">=== Fast : Start ===</a>
-    </p>
-    </td>
-  </tr>
-</table>
+</div>
 
-{inc:"chn:c_pub/inc_blinks"}
+<!--
+    <div class="right">
+    <i><a href="{surl(doc:tester)}" class="c66F" target="_blanlk">TestCode</a></i>
+    <i><a href="{surl(demo)}">Demo-Article</a></i>
+    <i><a href="{surl(chn:topic)}" target="_blank">Demo-Topic</a></i>
+    </div>
+-->
+
+{inc:"chn:c_pub/inc-blinks"}
 
 {inc:"c_pub/afoot"}
 

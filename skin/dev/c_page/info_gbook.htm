@@ -1,4 +1,4 @@
-{imp:"c_pub/alay_mcon"}<!--继承父模板-->
+{imp:"c_pub/alay_main"}<!--继承父模板-->
 
 {block:extop}
 <?php
@@ -7,6 +7,8 @@ $titletop = '留言反馈';
 $titlesub = '留言反馈';
 ?>
 {/block:extop}
+
+{block:exbar}{:clear}{/block:exbar}
 
 {block:exmain}
 
@@ -40,8 +42,6 @@ $titlesub = '留言反馈';
     </div>
     
 {/block:exmain}
-
-{block:exside}{inc:"c_page/info_side"}{/block:exside}
 
 {block:exfoot}
 <script>_cbase.jsrun.menuid='gbook';</script>
