@@ -1,5 +1,5 @@
 
--- bext_paras@2018-05-01 18:25:15 -- 
+-- bext_paras@2018-05-01 18:40:01 -- 
 INSERT INTO `{pre}bext_paras{ext}` VALUES 
 ('aliwapdir','paymode_cn','支付宝手机支付','支付宝帐号：xxx3@domain.com','23','0','160','1','zfb.jpg','note,123','','0','','','0',''),
 ('alidirect','paymode_cn','支付宝即时到账','支付宝帐号：xxx1@domain.com','23','0','140','1','zfb.jpg','note,123','','0','','','0',''),
@@ -34,7 +34,7 @@ INSERT INTO `{pre}bext_paras{ext}` VALUES
 ('baidu_push.txt','seo_sitemap','百度主动推送','','0','0','888','1','(url)','news,100,chn\r\ncargo,100,chn\r\ntopic,100,chn','','0','','','0',''),
 ('google_map.xml','seo_sitemap','Google站点地图','<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<urlset>\r\n(*)\r\n</urlset>','0','0','888','1','<url>\r\n<loc>(url)</loc>\r\n<lastmod>(time)</lastmod>\r\n<changefreq>(freq)</changefreq>\r\n<priority>(priority)</priority>\r\n</url>','news,100,chn,monthly,0.5\r\ncargo,100,chn,monthly,0.7\r\ntopic,100,chn,monthly,0.8','','0','','','0',''),
 ('push_time','seo_push','最后推送时间','','0','0','888','0','','','','0','','','0',''),
-('push_token','seo_push','推送token','6FEFyKpfT8pEf2fK','0','0','240','0','','','','0','','','0',''),
+('push_token','seo_push','推送token','4XOXmYrdJ6sOd4dY','0','0','240','0','','','','0','','','0',''),
 ('mobilesms','indoc_tpl','手机短信模板','您收到了 {from} 发来的公文：\r\n《<a href=\"{url}\">{title}</a>》；\r\n请点击查看。','0','0','888','1','','','','0','','','0',''),
 ('weixinsms','indoc_tpl','微信通知模板','您收到了 {from} 发来的公文：\r\n《<a href=\"{url}\">{title}</a>》；\r\n请点击查看。','0','0','888','1','','','','0','','','0',''),
 ('indoc_tpl','parnav','通知模板','','0','0','148','1','','','127.0.0.1','1475664744','peace','127.0.0.1','1475667732','peace'),
