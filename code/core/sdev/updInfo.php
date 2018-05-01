@@ -65,17 +65,24 @@ class updInfo{
 
     // SysInfo sys
     static function getModStat(){
+        $_groups = glbConfig::read('groups');
         $nf = self::getLangFile(self::$modstat_file);
         $data = self::getCacheData($nf,'stat','array');
         if(empty($data)){
             $mcfgs = self::getModConfigs(); // ● [订单] 当天:11，3天:44，总计:99
             $tcfgs = self::getTimeConfigs();
             $data = array();
-            foreach($mcfgs as $pmod=>$mods){foreach($mods as $mod){foreach($tcfgs as $tk=>$tv){
-                $key = "{$mod}_$tk";
-                $whr = "atime>='$tv'";
-                $data[$key] = glbDBObj::dbObj()->table("{$pmod}_$mod")->where($whr)->count();
-            }}}
+            //foreach($mcfgs as $pid=>$mods){foreach($mods as $mod){
+            foreach($_groups as $mod=>$row){ 
+                $pid = $row['pid'];
+                if(isset($mcfgs[$pid]) && !in_array($mod,$mcfgs[$pid])){
+                    foreach($tcfgs as $tk=>$tv){
+                        $key = "{$mod}_$tk";
+                        $whr = "atime>='$tv'";
+                        $data[$key] = glbDBObj::dbObj()->table("{$pid}_$mod")->where($whr)->count();
+                    }
+                }
+            }
             $dstr = var_export($data,1);
             $dstr = "<?php\n\$data = $dstr\n?>";
             comFiles::put(DIR_DTMP.$nf,$dstr);
@@ -134,7 +141,7 @@ class updInfo{
         $str = "\n<tr><td>".basLang::show('updinfo_allspace')."</td><td colspan=8 class='tc'>{$data['total']}M ".basLang::show('updinfo_uesspace',$data['sum'])."</td>";
         $str .= "<td colspan=2><a href='?mkv=uhome&act=uspace'>".basLang::show('updinfo_upd')."</a></td></tr>\n";
         foreach($data['dir'] as $key=>$val){
-            $s1 .= "<td width='15%' colspan=2>$key</td>";
+            $s1 .= "<td colspan=2>$key</td>";
             $s2 .= "<td colspan=2>$val</td>";
         }
         $str .= "<tr><td rowspan=2>".basLang::show('updinfo_dir')."</td>$s1</tr>\n<tr>$s2</tr>\n";
@@ -142,17 +149,18 @@ class updInfo{
         foreach($data['db'] as $key=>$val){
             $str .= "<td colspan=3>$key=$val</td>";
         }
-        $str .= "</tr>"; // <td></td>
+        $str .= "</tr>";
         echo $str;
     }
 
     // showSysInfo
     static function showModStat($key){
         $_groups = glbConfig::read('groups');
-        $data = self::getModStat(); 
         $mcfgs = self::getModConfigs();
+        $data = self::getModStat();
         $tcfgs = self::getTimeConfigs();
-        foreach($mcfgs[$key] as $mod){ 
+        foreach($_groups as $mod=>$row){ 
+            if($row['pid']!=$key || in_array($mod,$mcfgs[$key])) continue; //
             $link = "<a href='?mkv=dops-a&mod=$mod'>{$_groups[$mod]['title']}</a>";
             $v = array();
             foreach($tcfgs as $tk=>$tv){
@@ -172,6 +180,16 @@ class updInfo{
     // getModConfigs
     static function getModConfigs(){
         $mcfgs = glbConfig::read('modstat','sy');
+        //$_groups = glbConfig::read('groups');
+        /*
+        
+        $re = array();
+        foreach($mcfgs as $pid=>$skips){ foreach($_groups as $mod=>$row){
+            if($row['pid']==$pid && !in_array($mod,$skips)){
+                $re[$pid][] = $mod;
+            }
+        } } //dump($re);
+        */
         return $mcfgs;
     }
     // getCacheData
