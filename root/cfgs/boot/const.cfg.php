@@ -36,7 +36,7 @@ $_cbase['debug']['db_time'] = '100'; //0,10,100
 
 //模板配置 
 $_cbase['tpl']['tpl_ext'] = '.htm'; //模板后缀，建议为：[.htm]
-$_cbase['tpl']['tpc_on']  = 1; //是否开启模板缓存，true开启,false不开启 
+$_cbase['tpl']['tpc_on']  = 0; //是否开启模板缓存，true开启,false不开启 
 $_cbase['tpl']['tpc_ext'] = '.cac_php'; //模板缓存后缀,一般不需要修改 
 $_cbase['tpl']['no_static'] = '(adm)'; //,umc
 $_cbase['tpl']['def_static'] = 'chn';
