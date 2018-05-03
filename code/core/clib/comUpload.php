@@ -22,7 +22,7 @@ class comUpload
      * @param array $config 配置项
      * @param type upload/remote/base64
      */
-    function __construct($fileField, $config, $type = "upload")
+    function __construct($fileField, $config, $type="upload")
     {
         $this->stateMap = basLang::ucfg('cfglibs.upload');
         $this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $this->stateMap['ERROR_TYPE_NOT_ALLOWED'];
@@ -78,7 +78,7 @@ class comUpload
         if ( !move_uploaded_file( $file[ "tmp_name" ] , $this->fullName ) ) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
         }else{
-            $this->stateInfo = $this->stateMap[0];
+            $this->upEnd();
         }
     }
 
@@ -104,7 +104,7 @@ class comUpload
         if (!(comFiles::put($this->fullName, $img))) { //移动失败
             $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
         } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
+            $this->upEnd();
         }
 
     }
@@ -162,9 +162,18 @@ class comUpload
         if (!(comFiles::put($this->fullName, $img))) { //移动失败
             $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
         } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
+            $this->upEnd();
         } 
 
+    }
+
+    // 上传End
+    private function upEnd()
+    {
+        $this->stateInfo = $this->stateMap[0];
+        if(in_array($this->fileType,array('.jpg','.jpeg'))){
+            comImage::compress($this->fullName);
+        }
     }
 
     // 上传错误检查

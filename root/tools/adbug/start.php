@@ -31,9 +31,12 @@ unset($vcfg['_pub']);
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
 eimp('/_pub/a_jscss/cinfo.css');
 eimp('/_pub/jslib/jsbase.js');
+glbHtml::page('aumeta');
 ?>
 <base target="_blank"/>
-</head><body class="divOuter">
+</head>
+
+<body class="divOuter">
 
 <?php 
 

@@ -12,7 +12,7 @@ if($view=='list'){
 		require(dopFunc::modAct($_scdir,'list_do',$mod,$dop->type));
 	} //$dop->whrstr = " AND "; $_mpid,
     if(!empty($bsend)){
-        $dop->whrstr = $whrself; 
+        $dop->whrstr = empty($whrself) ? '' : $whrself; 
     }
 	require(dopFunc::modAct($_scdir,'list_show',$mod,$dop->type));
 	

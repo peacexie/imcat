@@ -2,6 +2,58 @@
 //图像:缩略图/水印处理
 class comImage{
 
+    // 压缩一个图片目录
+    public static function compdir($dir='', $size=500, $max=2400){
+        $res = array();
+        $lists = comFiles::listScan($dir);
+        foreach ($lists as $file=>$row) {
+            if(strpos($file,'.jpg') && $row[1]>$size*1024){
+                $full = "$dir/$file";  
+                $res[] = self::compcut($full, $max);
+                self::compress($full, 75);
+            }
+        }
+        return $res;
+    }
+
+    // 限制图片大小, 针对jpg
+    public static function compcut($full, $max=2400){
+        $info = self::info($full);
+        if($info['width']>$max || $info['height']>$max){
+            if($info['width']>$info['height']){
+                $h = $info['height']*$max/$info['width'];
+                $w = $max;
+            }else{
+                $w = $info['width']*$max/$info['height'];
+                $h = $max;
+            }
+            self::thumb($full, $full, $w, $h); 
+        }
+        return $info;
+    }
+
+    # 压缩图片, JPEG支持好，PNG良好，GIF不支持
+    public static function compress($target, $quality=75){
+        if($srcInfo = @getimagesize($target)){
+            switch ($srcInfo[2]){
+                case 1:
+                    break;
+                case 2:
+                    $srcim =imagecreatefromjpeg($target);
+                    imagejpeg($srcim,$target,$quality);
+                    break;
+                case 3:
+                    $srcim =imagecreatefrompng($target);
+                    $pngQuality = ($quality - 100) / 11.111111;
+                    $pngQuality = round(abs($pngQuality));
+                    imagepng($srcim,$target,$pngQuality);
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+    
     /** 取得图像信息
      * @param string $image 图像文件名
      * @return mixed
@@ -91,7 +143,7 @@ class comImage{
             return $objp;
         }elseif(file_exists($orgd)){ // (本地)有原图片,
             $size = explode('x',$resize);
-            $res = comImage::thumb($orgd,$objd,$size[0],$size[1]);
+            $res = self::thumb($orgd,$objd,$size[0],$size[1]);
             return $res ? $objp : $orgp;
         }
         return $orgp;

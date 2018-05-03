@@ -11,6 +11,10 @@ class glbHtml{
             if(empty($_cbase['run']['headed'])) self::page('');
             if(strlen($ext)>12) echo "$ext\n";
             echo "</body></html>\n";
+        }elseif($mod=='aumeta'){ // 去掉/修改:author-meta标签在这里
+            $austr = "Peace(xieys), QQ:80893510, mail:xpigeon#163.com";
+            $auweb = "//txmao.txjia.com/, //github.com/peacexie/imcat";
+            echo "<meta name='author' content='$austr, $auweb, 贴心猫(IntimateCat)'>\n";
         }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';
@@ -19,7 +23,6 @@ class glbHtml{
             echo "<meta charset='".$_cbase['sys']['cset']."'>\n";
             echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";
             self::page('viewport'); 
-            // 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！
             if($ext) self::page('robots'); 
             if(empty($iex)) echo "<link rel='shortcut icon' href='".PATH_SKIN."/_pub/logo/favicon.ico' />\n";
         }else{ //head
