@@ -164,7 +164,7 @@
 .pagination>li>a{ margin:0 2px; }
 .pagination>li>input{ width:50px; text-align:center; float:left; }
 /* --- */
-.fldicon{ height:20px; background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; 
+.fldicon{ height:20px; background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; 
   display:inline-block; cursor:pointer; vertical-align:middle; margin:1px 2px; border:0px solid #999; }
 .fcolor{ width:16px; background-position:-2px -71px; }
 .fdate{ width:16px; background-position:-2px -46px; }
@@ -177,7 +177,7 @@
 .tree_d3{ display:block; padding-left:30px; } 
 .tree_d4{ display:block; padding-left:45px; } 
 .tree_d5{ display:block; padding-left:60px; } 
-.tree_bg{ background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; display:inline-block; border:0px solid #999; }
+.tree_bg{ background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; display:inline-block; border:0px solid #999; }
 .tree_dA{ background-position:-2px -132px; height:18px; width:18px; vertical-align:middle; cursor:pointer;}
 .tree_dC{ background-position:-2px -156px; height:18px; width:18px; vertical-align:middle; }    
 
@@ -188,12 +188,12 @@
 /*.divcss5{height: expression_r(this.height> 500 ? 500 :true);  max-height:500px;} */
 .wpop_step { width:expression_r(this.height>60?60:true);max-width:60px; height:16px; line-height:16px; vertical-align:middle; overflow:hidden; display:inline-block; padding:0px 5px 0px 0px; margin:0px; }
 /* wpop */
-input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; cursor:pointer; }
+input.wpop_icon, input.wpop_icon:hover, input.wpop_icon:focus { background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; cursor:pointer; }
 .wpop_in2{ background:#FFF; border:1px solid #CCC; padding:3px; }
 .wpop_out{ display:inline-block; }
 .wpop_in{ display:inline-block; background:#FFF; border:1px solid #CCC; padding:3px; }
 .wpop_iframe { z-index:-1; position:absolute; filter:alpha(opacity=0); -moz-opacity:0; }
-.wpop_open{ height:18px; width:14px; background-image:url(../a_img/ficon.gif); background-repeat:no-repeat; background-position:-2px -132px;
+.wpop_open{ height:18px; width:14px; background-image:url(../../../skin/_pub/a_img/ficon.gif); background-repeat:no-repeat; background-position:-2px -132px;
   display:inline-block; cursor:pointer; vertical-align:middle; margin:1px 1px; border:0px solid #999; }
 .wpop_chrdiv{ padding:3px 3px 5px 3px; } 
 .wpop_chrspan{ display:inline-block; color:#00C;font-weight:bold; padding:0px 5px 0px 0px; } 
