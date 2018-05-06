@@ -1,22 +1,21 @@
 #
 # robots.txt for IntimateCat
-# Version 4.1
+# Version 4.2
 #
 
 User-Agent: SomeSpider
 Disallow: /
 
 User-agent: *
-Allow: /chn*
-Allow: /dev*
-Allow: /doc*
-Allow: /index.php
-Allow: /mob.php
+
+Allow: /root/run/demo.php
 Allow: /root/run/rest.php
-Allow: /html/
 Allow: /skin/_pub/logo/
-Allow: /ures/
 Allow: /vimp/static/
-Allow: /$
-Disallow: /*?*
-Disallow: /*/*
+
+Disallow: /@read/
+Disallow: /code/
+Disallow: /root/
+Disallow: /skin/
+Disallow: /vary/
+Disallow: /vimp/
