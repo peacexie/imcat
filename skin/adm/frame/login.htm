@@ -59,6 +59,7 @@ body, input, textarea, select, button{ font-size:14px; }
             <p class="bg-info pa10 pm10">{lang(admin.tip_logim)}</p>
             <ul>
               <?php basLang::inc('admin','adminread'); ?>
+              <li>Server-IP: `<?=empty($_SERVER['SERVER_ADDR'])?$_SERVER['LOCAL_ADDR']:$_SERVER['SERVER_ADDR']?>`.</li>
             </ul>
           </div> 
 

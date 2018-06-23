@@ -1,0 +1,68 @@
+/*
+* by peace
+*/
+
+
+.container{ max-width:980px; }
+.navbar{ margin-top:20px; }
+
+
+.mfoot{ 
+    clear:both; text-align:center; background:#EEE;
+    padding:5px 0px; margin:20px auto;
+    border-top:1px solid #CCC;
+    border-bottom-left-radius:6px;
+    border-bottom-right-radius:6px;
+}
+.mfoot p{ padding:10px; }
+.mfoot span{ display:inline-block; margin:0 5px; }
+
+
+.mpic { padding:10px 20px 0 20px; }
+.mpic img{ max-width:450px; }
+@media only screen and (max-width:520px) { .mpic img{ width:100%; } }
+.mpic p{ color:#999; }
+.mpic h1{ padding:10px 0; }
+
+.mtext { padding:10px 20px 0 20px; }
+@media only screen and (max-width:992px) { .mtext{ margin-top:20px; } }
+.mtext p{ font-size:large; color:#666; text-align:left; margin-bottom:10px; }
+
+
+.mword>div { display:block; clear:both; }
+.mword .lists{ min-height:180px; max-height:300px; overflow-y:scroll; padding:10px; margin-top:10px; }
+
+
+.mflower{ text-align:center; }
+.mflower img{ max-width:240px; margin:10px auto; }
+
+
+.mb10 { color:#666; margin-bottom:10px; }
+
+
+.mdetail .title{ text-align:center; font-size:xx-large; padding:5px 0; margin:5px auto; }
+.mdetail .bar { background:#EEE; padding:5px 10px; margin:5px 0px 20px 0px; border:1px solid #CCC; }
+.mdetail .bar span{ display:inline-block; }
+.mdetail .bar i, .mdetail .bar b{ font-style:normal; font-weight:normal; }
+
+.mdetail .text h1, .mdetail .text h2{ text-align:center; color:#036; }
+.mdetail .text h1{ font-size:24px; background:#EEE; }
+.mdetail .text h2{ font-size:18px; }
+
+.mdetail .text h3, .mdetail .text h4{ text-align:left; color:#036; font-weight:bolder; padding:5px 0px; }
+.mdetail .text h3{ font-size:16px; }
+.mdetail .text h4{ font-size:14px; }
+.mdetail .text h3:before{ content:"◎◎ "; color:#036; }
+.mdetail .text h4:before{ content:"◙ ◙ ◙ ◙ "; color:#036; } 
+
+.mdetail .text h5, .mdetail .text h5{ font-weight:bolder; }
+
+.mdetail .text ul{ margin:10px 0px; }
+.mdetail .text ul, .mdetail .text li{ list-style:disc inside; }
+.mdetail .text li ul{ margin:0px 20px 10px 40px; }
+.mdetail .text li ul li{ list-style:circle; }
+
+.mdetail .pics{ }
+.mdetail .pics img{ max-height:120px; }
+.mdetail .mhpica{ height:130px; margin-bottom:20px; }
+.mdetail .mhpicb{ height:150px; margin-bottom:20px; }

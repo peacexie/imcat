@@ -1,0 +1,48 @@
+
+<div class="container">
+
+<nav class="navbar navbar-default"><!--default,inverse-->
+<div class="container-fluid">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <b class="navbar-brand">{=$title}</b>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li id='m_home' class="active"><a href="#"><span class="fa fa-home"></span> 封面 </a></li>
+            <li id='m_gift'><a href="#gift"><span class="fa fa-gift"></span> 留言 </a></li> 
+            {if $this->view}
+            <li id='m_detail'><a href="#file"><span class="fa fa-file-text"></span> 详情 </a></li>
+            <li id='m_return'><a href='{surl("topic.$did")}#list'><span class="fa fa-mail-reply"></span> 返回 </a></li>
+            {else}
+            <li id='m_arts'><a href="#list"><span class="fa fa-list"></span> 忆文 </a></li>
+            <li id='m_pics'><a href="#image"><span class="fa fa-image"></span> 忆图 </a></li>
+            {/if}  
+        </ul>
+    
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="fa fa-link"></span> 链接 
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{surl(topic)}" target="_blank">专题</a></li>
+                    <li><a href="{surl(doc:0)}" target="_blank">Document</a></li>
+                    <li><a href="{surl(dev:0)}" target="_blank">文档</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="http://txmao.txjia.com/" target="_blank">贴心猫-首页</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+
+</div><!-- /.container-fluid -->
+</nav>

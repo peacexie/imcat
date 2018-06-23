@@ -1,7 +1,7 @@
 {php}
 $isMobile = basEnv::isMobile();
 $_cbase['tpl']['tpl_dir'] = 'chn';
-$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub']); 
+$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub'],$vcfg['adm'],$vcfg['demo']); 
 if($isMobile) unset($vcfg['chn']); 
 $title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
 $icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',

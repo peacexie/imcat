@@ -330,9 +330,8 @@ function jsTime(flag,end){
 // jsRnd
 function jsRnd(flag,iMax){
     if(iMax) return Math.floor(flag+Math.random()*(iMax-flag));
-    if(!flag) flag = '_r';
     var r = new Date().getTime(); //Math.random();
-    var s = flag+'='+r;
+    var s = flag ? flag+'='+r : '_r='+r
     try{ s += '&lang='+_cbase.sys.lang; }
     catch(ex){ }
     return s;
