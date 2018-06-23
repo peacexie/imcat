@@ -32,7 +32,7 @@ if($fmc){
     );
     $db->table($tbid)->data($data)->where($pwhr)->update(); 
 }else{
-    $kar = glbDBExt::dbAutID($tbid,'yyyy-md-','31');
+    $kar = glbDBExt::dbAutID($tbid);
     $data = array(
         'aip' => $_cbase['run']['userip'],
         'atime' => $_cbase['run']['stamp'],

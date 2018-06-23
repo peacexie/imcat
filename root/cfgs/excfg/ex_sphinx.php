@@ -10,7 +10,7 @@ $_ex_sphinx['cfgs'] = array(
 $_ex_sphinx['index'] = array(
     // 模型 => sphinx索引
     'test1' => 'test1',
-    //'demo' => 'index_imcat_demo_main,index_imcat_demo_delta',
+    //'demo' => '', //index_imcat_demo_main,index_imcat_demo_delta
     'news' => '',
     'cargo' => '',
 );

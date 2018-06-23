@@ -98,7 +98,7 @@ if($row1 && $row1['atime']>$gaptm){
     $data = array('cnt'=>$row1['cnt']+1,'atime'=>time());
     $db->table('topic_votes')->data($data)->where("$whrsub AND dno='$vid'")->update(0);
 }else{
-    $kar = glbDBExt::dbAutID('topic_votes','yyyy-md-','31');
+    $kar = glbDBExt::dbAutID('topic_votes');
     $data = array(
         'kid'=>$kar[0],'kno'=>$kar[1],
         'did'=>$did,'dno'=>$vid,'uid'=>$uid,

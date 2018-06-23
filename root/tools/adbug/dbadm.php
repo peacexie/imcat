@@ -10,3 +10,4 @@ if(file_exists(dirname(__FILE__).'/start-360.php')){
 //session_destroy();
 $_locfp = '/ximp/files/adminer.imp_php';
 require DIR_STATIC.$_locfp;
+

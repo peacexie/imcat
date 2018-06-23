@@ -107,7 +107,7 @@ if($row1){
         }
         $dvote[$k2] = $dvk2;
     }
-    $kar = glbDBExt::dbAutID('topic_form','yyyy-md-','31');
+    $kar = glbDBExt::dbAutID('topic_form');
     $data = array(
         'kid'=>$kar[0],'kno'=>$kar[1],'did'=>$did,
         'aip'=>$ipstr,'atime'=>time(),'auser'=>$uid,

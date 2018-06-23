@@ -43,10 +43,7 @@ $_cfgs['pal']['sandbox'] = false;
 
 $_cfgs['qqconn']['appid']    = "yourappid"; 
 $_cfgs['qqconn']['appkey']    = "yourappkey";
-$_cfgs['qqconn']['callback'] = "http://your domain/oauth/get_access_token.php";
-$_cfgs['qqconn']['scope']       = 'get_user_info';
-$_cfgs['qqconn']['errorReport'] = true;
-$_cfgs['qqconn']['storageType'] = 'file';
+$_cfgs['qqconn']['callback'] = "http://your domain/oauth/get_access_token.php";  
 
 ### testapi: =======================================================================
 
