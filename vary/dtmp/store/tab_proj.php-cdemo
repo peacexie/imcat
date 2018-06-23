@@ -6,6 +6,6 @@ return array (
   'doc.php' => '1af317c41bdbcb220107090c8f4492e1',
   'index.php' => '6fe1525fa9f55edc55666462106bb187',
   'mob.php' => 'd391bd8ea7f1c9adb4f2a21e9ebeb84a',
-  'robots.txt' => '509da372c93a19cea6b08cac625c5a62',
+  'robots.txt' => '0d44f69e79d5da3b5898ffd8fdc92ddb',
   'web.config' => '096d3e19f34a77563d8b9545203fad40',
 ); 

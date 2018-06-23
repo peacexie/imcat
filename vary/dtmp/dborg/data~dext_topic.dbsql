@@ -1,5 +1,5 @@
 
--- dext_topic@2018-05-01 17:43:17 -- 
+-- dext_topic@2018-06-23 12:07:52 -- 
 INSERT INTO `{pre}dext_topic{ext}` VALUES 
 ('2015-72-83m1','~','','','HTML5','','HTML5','','','','','','','','','',''),
 ('2015-9c-j571','~','','','','','','','','','','','','','','',''),
@@ -17,6 +17,7 @@ INSERT INTO `{pre}dext_topic{ext}` VALUES
 ('2017-ck-n5a1','~','','','','','','','','','','','','','','','exdemo/resume'),
 ('2017-cm-mn61','~','','','','','','','','','','zhjia=特聘[砖]家\r\nzhjia_tags=英文名,专业,学历,国籍\r\nwaiji=外籍串客\r\njiabing=获奖嘉宾\r\nqiye=获奖企业','','','','','exdemo/lists'),
 ('2017-cm-nqr1','~','','','','','','','','','','','sales=业务员评选\r\ntechs=技术员评选\r\nlpx1=楼盘X1评选\r\nlpx1_tags=区域,价格,特色1,特色2','','','vote_begtm=2015-12-29\r\nvote_endtm=2018-01-03 12:00:00\r\nvote_allowip=127.0.0.1\r\nvote_stopip=127.0.2.1\r\nvote_alloua=\r\nvote_stopua=Bot|Crawl|Spider\r\nvote_gaptm=30\r\nvote_items=3','exdemo/votes'),
-('2017-cp-mq61','~','','','','','','start=开篇语\r\nend=结束语','','','','ch12=基础&入门\r\nch18=参数&配置\r\nch24=模板&标签\r\nch30=错误&调试\r\nch36=杂项&扩展','vh18=SSS','fh18=SSS','links=相关链接','ver=v1.1\r\ndate=2018-03-25\r\nsubtitle=继续爬：完善多进程采集','book/chapt'),
+('2017-cp-mq61','~','','','','','','start=开篇语\r\nend=结束语','','pica=图组1\r\npicb=图组2','','ch12=基础&入门\r\nch18=参数&配置\r\nch24=模板&标签\r\nch30=错误&调试\r\nch36=杂项&扩展','vh18=SSS','fh18=SSS','links=相关链接','ver=v1.1\r\ndate=2018-03-25\r\nsubtitle=继续爬：完善多进程采集','memory/c-def'),
 ('2018-3x-p6a1','~','','','','','','start=开篇语\r\nend=结束语\r\ntip=投票提示','','','','','','age=年龄\r\nlen=身高\r\nwed=婚否\r\nsalary=月薪\r\nfrom=来自哪里\r\nfavor=兴趣爱好\r\nword=您的口号\r\nthink=您的想法','links=相关链接','vote_begtm=2015-12-29\r\nvote_endtm=2018-05-03 12:00:00\r\nvote_allowip=127.0.0.1\r\nvote_stopip=127.0.2.1\r\nvote_alloua=\r\nvote_stopua=Bot|Crawl|Spider\r\nvote_gaptm=30\r\nvote_items=3','exdemo/survey'),
-('2018-3y-ndj1','~','','','','','','','','','','','','obj=参加项目\r\nkech=参加课程\r\nnum=参加人数\r\nrem=备注','','vote_begtm=2015-12-29\r\nvote_endtm=2018-05-03 12:00:00\r\nvote_allowip=127.0.0.1\r\nvote_stopip=127.0.2.1\r\nvote_alloua=\r\nvote_stopua=Bot|Crawl|Spider\r\nvote_gaptm=30\r\nvote_items=3','exdemo/enroll');
+('2018-3y-ndj1','~','','','','','','','','','','','','obj=参加项目\r\nkech=参加课程\r\nnum=参加人数\r\nrem=备注','','vote_begtm=2015-12-29\r\nvote_endtm=2018-05-03 12:00:00\r\nvote_allowip=127.0.0.1\r\nvote_stopip=127.0.2.1\r\nvote_alloua=\r\nvote_stopua=Bot|Crawl|Spider\r\nvote_gaptm=30\r\nvote_items=3','exdemo/enroll'),
+('2018-57-nfq1','~','','','','','','cover=封面\r\nflower=送花','','pic1=图2018\r\npic2=1990年前\r\npic3=1990-2000\r\npic4=2000-1017','','arcs=忆文','','word=留言','','','memory/c-null');

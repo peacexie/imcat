@@ -2,7 +2,7 @@
 DROP TABLE IF EXISTS `{pre}active_admin{ext}`;
 CREATE TABLE `{pre}active_admin{ext}` (
   `sid` varchar(255) NOT NULL,
-  `uname` varchar(24) NOT NULL DEFAULT '',
+  `uname` varchar(96) NOT NULL DEFAULT '',
   `grade` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `cfgs` text,
@@ -16,7 +16,7 @@ CREATE TABLE `{pre}active_admin{ext}` (
 DROP TABLE IF EXISTS `{pre}active_online{ext}`;
 CREATE TABLE `{pre}active_online{ext}` (
   `sid` varchar(255) NOT NULL,
-  `uname` varchar(24) NOT NULL DEFAULT '',
+  `uname` varchar(96) NOT NULL DEFAULT '',
   `grade` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `cfgs` text,
@@ -1285,8 +1285,8 @@ CREATE TABLE `{pre}init_users{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uid`),
-  KEY `uname` (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}logs_dbsql{ext}`;
@@ -1787,7 +1787,8 @@ CREATE TABLE `{pre}users_adminer{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_company{ext}`;
@@ -1819,7 +1820,8 @@ CREATE TABLE `{pre}users_company{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_govern{ext}`;
@@ -1851,7 +1853,8 @@ CREATE TABLE `{pre}users_govern{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_inmem{ext}`;
@@ -1873,7 +1876,8 @@ CREATE TABLE `{pre}users_inmem{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_organize{ext}`;
@@ -1905,7 +1909,8 @@ CREATE TABLE `{pre}users_organize{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_person{ext}`;
@@ -1927,7 +1932,8 @@ CREATE TABLE `{pre}users_person{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`)
+  PRIMARY KEY (`uname`),
+  UNIQUE KEY `uid` (`uid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_uacc{ext}`;
