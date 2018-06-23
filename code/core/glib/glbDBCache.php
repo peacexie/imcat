@@ -11,14 +11,13 @@ class glbDBCache extends glbDBObj{
     //执行原生sql语句，如果sql是查询语句，返回二维数组
     function query($sql,$func=''){ 
         if(empty($sql)) return false;
-        $this->sql=$sql;
+        $this->sql = $sql;
         //判断当前的sql是否是查询语句
         if($func){
             return parent::query($sql,$func);
         }elseif(strpos(trim(strtolower($sql)),'select')===0){ 
-            $data=array();
             //读取缓存
-            $data=$this->_dcGet();
+            $data = $this->_dcGet();
             if(!empty($data)){ return $data; }
             //没有缓存，则查询数据库
             $this->connect();
@@ -33,10 +32,10 @@ class glbDBCache extends glbDBObj{
 
     //统计行数
     function count(){ // SELECT $func($field) AS $field FROM $tab WHERE kid='$job'
-        $table=$this->options['table'];//当前表
-        $field='count(*)';//查询的字段
-        $where=$this->_parseCond();//条件
-        $this->sql="SELECT $field FROM $table $where";
+        $table = $this->opts['table'];//当前表
+        $field = 'count(*)';//查询的字段
+        $where = $this->_parseCond();//条件
+        $this->sql = "SELECT $field FROM $table $where";
         //读取缓存
         $re = $this->_dcGet();
         if(!empty($re)){ return $re; }
@@ -49,14 +48,14 @@ class glbDBCache extends glbDBObj{
 
     //只查询一条信息，返回一维数组    
     function find(){
-        $table=$this->options['table'];//当前表
-        $field=$this->options['field'];//查询的字段
-        $this->options['limit']=1;//限制只查询一条数据
-        $where=$this->_parseCond();//条件
-        $this->options['field']='*';//设置下一次查询时，字段的默认值
-        $this->sql="SELECT $field FROM $table $where";
+        $table = $this->opts['table'];//当前表
+        $field = $this->opts['field'];//查询的字段
+        $this->opts['limit']=1;//限制只查询一条数据
+        $where = $this->_parseCond();//条件
+        $this->opts['field'] = '*';//设置下一次查询时，字段的默认值
+        $this->sql = "SELECT $field FROM $table $where";
         //读取缓存
-        $data=$this->_dcGet();
+        $data = $this->_dcGet();
         if(!empty($data)){ return $data; }
         $this->connect();
         $data = $this->db->row($this->sql);
@@ -67,14 +66,13 @@ class glbDBCache extends glbDBObj{
 
     //查询多条信息，返回数组
     function select(){
-        $table=$this->options['table'];//当前表
-        $field=$this->options['field'];//查询的字段
-        $where=$this->_parseCond();//条件
-        $this->options['field']='*';//设置下一次查询时，字段的默认值
-        $this->sql="SELECT $field FROM $table $where";
-        $data=array();
+        $table = $this->opts['table'];//当前表
+        $field = $this->opts['field'];//查询的字段
+        $where = $this->_parseCond();//条件
+        $this->opts['field'] = '*';//设置下一次查询时，字段的默认值
+        $this->sql = "SELECT $field FROM $table $where";
         //读取缓存
-        $data=$this->_dcGet();
+        $data = $this->_dcGet();
         if(!empty($data)){ return $data; }
         //没有缓存，则查询数据库
         $this->connect();
@@ -104,7 +102,7 @@ class glbDBCache extends glbDBObj{
     //读取缓存
     function _dcGet(){
         $key = $this->_dcKey();
-        unset($this->options['cache']);
+        unset($this->opts['cache']);
         $data = $key ? $this->cache->get($key) : '';
         if(!empty($data)){
             return $data;
@@ -116,7 +114,7 @@ class glbDBCache extends glbDBObj{
     //写入缓存
     private function _dcPut($data){
         $key = $this->_dcKey(0);
-        unset($this->options['cache']);
+        unset($this->opts['cache']);
         if($key){
             $exp = $this->_dcKey('(exp)');
             return $this->cache->set($key[0],$data,$key[1]);
@@ -124,7 +122,7 @@ class glbDBCache extends glbDBObj{
         return false;    
     }
     private function _dcKey($resql=1){
-        $expire = isset($this->options['cache']) ? $this->options['cache'] : $this->config['dc_exp'];
+        $expire = isset($this->opts['cache']) ? $this->opts['cache'] : $this->config['dc_exp'];
         if(empty($expire)) return false; // 缓存时间为0，不读取缓存
         if(!$this->_dcInit()){
             return false;  
@@ -144,5 +142,10 @@ class glbDBCache extends glbDBObj{
         $sql = str_replace($arr1,$arr2,$this->sql);
         return $resql ? $sql : array($sql,$expire);
     }
-
+    //删除数据库缓存
+    function clear(){
+        if($this->config['dc_on'])
+            return $this->cache->clear();
+        return false;
+    }
 }

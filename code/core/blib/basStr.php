@@ -281,8 +281,8 @@ class basStr{
         $char = empty($char) ? '*' : $char;
         if(strpos($str,'@')>0){
             $a = explode('@',$str);
-            $suf = '@'.$a[1];
-            $str = $a[0];
+            $suf = '@*'.substr($a[1],strrpos($a[1],'.'));
+            $str = $a[0];;
         }else{
             $suf = '';
         }

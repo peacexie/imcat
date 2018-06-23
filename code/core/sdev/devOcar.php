@@ -4,8 +4,8 @@
 class devOcar{    
 
     static function areaOpts($def='',$re='html'){
-        $html = comFiles::get(DIR_SKIN.'/_pub/stpl/psw-areas.htm');
-        if($re=='arr'){ // <option value='Taiwan'>Taiwan</option>
+        $html = comFiles::get(DIR_SKIN.'/_pub/stpl/psw-ships.htm');
+        if($re=='arr'){ // psw-areas.htm,psw-ships.htm
             preg_match_all("/='([\w\-\ ]+)'/", $html, $ma);
             $res = array(); unset($ma[1][0]);
             foreach ($ma[1] as $val) {
@@ -209,7 +209,7 @@ class devOcar{
         if($rem=='SentOK'){
             $msg = "Send Order Notice Mail [SentOK]";
         }else{
-            $msg = "Send Order Notice Mail ($rem)";
+            $msg = "Send Mail Error ($rem)";
         }
         // $mail->slog(1,$cfgs);
         // mail-end

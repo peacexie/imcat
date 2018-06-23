@@ -12,7 +12,8 @@ class usrMember extends usrBase{
 
     //
     function login($uname='',$upass='',$ck=0){
-        $re1 = $this->check_login($uname,$upass); 
+        $re1 = $this->check_login($uname,$upass); //dump($re1); 
+        //$re1 = $this->remote($uname,$upass,$re1);
         $re2 = $this->login_msg($re1);
         if($re1=='OK'){ //Session
             //$this->setSess();
@@ -31,6 +32,35 @@ class usrMember extends usrBase{
         return $re1;
     }
     
+    function remote($uname,$upass,$re1){
+        $db = glbDBObj::dbObj();
+        //$_f = $re1=='noChecked' || is_numeric($re1);
+        if($re1!='noChecked') return $re1; // 非账号密码出错
+        $ubase = $db->table('users_uacc')->where("uname='$uname'")->find(); 
+        if(!empty($ubase)){
+            return $re1;
+        }
+        $epw = MD5_Mem("$upass$uname");
+        $epw = substr($epw,0,16).strrev(substr($epw,16));
+        #Left(MemPW,16)&StrReverse(Mid(MemPW,17))
+        $url = "http://www.xxx.com/member/mcapi.asp?MemID=$uname&MemPW=$epw";
+        $data = comHttp::doGet($url);
+        $data = str_replace("'", '"', $data);
+        $data = json_decode($data,1); //dump($data);
+        if(count($data)<5) return $re1;
+        $re = self::addUser('person',$uname,$upass,$data['MemName'],$data['MemMobile'],$data['MemEmail']);
+        if(empty($re['uid'])) return $re1;
+        $tmp = explode('^', $data['MemFrom']); //dump($tmp);
+        $detail = array(
+            'mphone'=>$data['MemMobile'], 'mtel'=>$data['MemTel'], 'memail'=>$data['MemEmail'],
+            'maddr'=>$tmp[2], 'maddr2'=>$tmp[3], 'mcity'=>$tmp[4], 
+            'mprovince'=>$tmp[5], 'mpcode'=>$tmp[6], 'mstate'=>$tmp[8], 
+            'mtitle'=>($data['MemMobile']=='F'?'Miss':'Mr'), 
+        );
+        $db->table('users_person')->data($detail)->where("uid='{$re['uid']}'")->update();
+        return $this->check_login($uname,$upass);
+    }
+
     // mod,uname,upass; mname,mtel,memail; company,uid,grade,check
     static function addUser($mod,$uname,$upass,$mname='',$mtel='',$memail='',$excfg=array()){ 
         $arr = array('uname','mname','mtel','memail'); foreach($arr as $k){ $$k = basStr::filTitle($$k); }
@@ -59,6 +89,7 @@ class usrMember extends usrBase{
         $db->table('users_uacc')->data($acc+$dataex)->insert(); 
         $umd = array('uid'=>$uid,'uname'=>$uname,'grade'=>$grade,'mname'=>$mname,'mtel'=>$mtel,'memail'=>$memail,'show'=>$show,);
         if(isset($md['f']['company']) && isset($excfg['company'])) $umd['company'] = $excfg['company']; 
+        if(isset($md['f']['mstate']) && isset($excfg['mstate'])) $umd['mstate'] = $excfg['mstate']; 
         $db->table("users_$mod")->data($umd+$dataex)->insert();
         $re = array('uid'=>$uid,'grade'=>$grade,'check'=>$show,'uname'=>$uname,'defgrade'=>$defgrade,);
         comJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname,'defgrade'=>$defgrade)),'add','User-Reg');
@@ -80,7 +111,7 @@ class usrMember extends usrBase{
     static function addUid($uid=''){ 
         $tabid = 'users_uacc'; $key = "uid";
         if(empty($uid)){
-            $kar = glbDBExt::dbAutID($tabid,'yyyy-md-','31');
+            $kar = glbDBExt::dbAutID($tabid);
             $uid = $kar[0]; $uno = $kar[1];    
         }else{
             $uno = '1';    

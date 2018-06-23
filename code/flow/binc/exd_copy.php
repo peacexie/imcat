@@ -22,7 +22,7 @@ if(!empty($bsend)){
 
     $tabid = glbDBExt::getTable($mod);
     if($type=='mdata'){
-        $kids = glbDBExt::dbAutID($tabid,'yyyy-md-','31');
+        $kids = glbDBExt::dbAutID($tabid);
         $kidnew = $kids[0];
     }else{
         $kidnew = "{$kid}_".basKeyid::kidRand('0',5);

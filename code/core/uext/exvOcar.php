@@ -3,7 +3,53 @@
 // Ocar相关函数
 // 各模版公用
 class exvOcar{
-    
+
+    static $account = "<clientid>E000193WS</clientid><authtoken>XErFHPQIzva24WY7nTuS</authtoken>";
+
+    static function shipPrice($to, $weight){
+        $s_data = '<?xml version="1.0" encoding="utf-8"?>';
+        $s_data .= '<GePriceServiceRequest>'; 
+        $s_data .= self::$account; 
+        $s_data .= "<country>".strtoupper($to)."</country>"; 
+        $s_data .= "<rweight>$weight</rweight>"; 
+        $s_data .= '</GePriceServiceRequest>'; 
+        $api = 'http://hm.kingtrans.cn/APIPrice?action=getPrice';
+        if(strstr($_SERVER["HTTP_HOST"],'test.com')){
+            $res = file_get_contents(DIR_PROJ.'/@read/ship-fee.xml');
+            usleep(400123); //die($res);
+        }else{
+            $res = comHttp::curlCrawl($api, 'xml='.urldecode($s_data), 8);
+        }
+        $res = preg_replace("/<note[\s\S]*?<\/note>/i", "", $res);
+        $xml = simplexml_load_string($res);
+        $json = json_encode($xml);
+        $jarr = json_decode($json, true);
+        $res = array();
+        foreach ($jarr['Price'] as $k=>$row){
+            unset($row['note']);
+            $res[$row['channelid']] = $row;
+        }
+        return $res;
+    }
+
+    static function shipTabs(){
+        $api = 'http://hm.kingtrans.cn/PostOrderInterface?method=searchChannel';
+        $s_data = '<?xml version="1.0" encoding="utf-8"?>';
+        $s_data .= '<CreateAndPreAlertOrderService>';
+        $s_data .= self::$account;
+        $s_data .= '</CreateAndPreAlertOrderService>';
+        $header = "Content-type: text/xml";
+        $res = comHttp::curlCrawl($api, $s_data, 5, $header);
+        $xml = simplexml_load_string($res);
+        $json = json_encode($xml);
+        $jarr = json_decode($json, true);
+        $res = array();
+        foreach ($jarr['channelid'] as $k=>$key){
+            $res[$key] = array('en'=>'','cn'=>$jarr['channelname'][$k]); 
+        }
+        return $res;
+    }
+
     static function shipfee($from,$to,$weight){ 
         $weight || $weight = 0.1;
         $from = self::shipfix($from); 
@@ -119,24 +165,55 @@ class exvOcar{
         return $res;
     }
     
-    static function oadd($unqid,$user){ 
+    static function oadd($unqid,$user){
         $db = glbDBObj::dbObj();
         $fm = basReq::arr('fm');
-        $kar = glbDBExt::dbAutID('coms_corder','yyyy-md-','32');
-        $fm['cid'] = $fm['title'] = $kar[0]; 
+        if(empty($fm['feetotle']) || empty($fm['ordcnt'])){
+            die('Error Order-Data, Please try again!');
+        }
+        $kar = glbDBExt::dbAutID('coms_corder', date('Y-m')>'2018-06'?'md2':'md3');
+        $fm['title'] = $fm['cid'] = $kar[0]; 
+        //$fm['title'] = '-';
         $fm['cno'] = $kar[1];
-        $fm['ordstat'] = 'new';
-        $fm['auser'] = @$user->uinfo['uname'];
-        $fm['eip'] = comConvert::sysEncode(@$fm['atime'].$unqid);
+        $fm['ordstat'] = 'New';
+        // bing-user : memail,mpass
+        /*
+        $fu = basReq::arr('fu');
+        $mtel = $fm['mtel'];
+        $fm['memail'] = $fm['auser'] = $memail = $fu['memail'];
+        if(!empty($memail) && !empty($fu['mpass'])){
+            $encpw = comConvert::sysPass($memail,$fu['mpass'],'person');
+            $rea = $db->table('users_uacc')->where("uname='$memail'")->find(); 
+            if(empty($rea)){ // add-user
+                $re3 = usrMember::addUser('person',$memail,$fu['mpass'],$memail,$mtel,$memail,array());
+                $fm['ordstps'] = "Add User($memail)";
+                //auto-login
+            }elseif($encpw==$rea['upass']){ // user-ok
+                $fm['ordstps'] = "Bind User($memail)";
+                $db->table('users_person')->data(array('mtel'=>$mtel))->where("uid='$memail'")->update(0);
+                //auto-login
+            }else{ // error!
+                $fm['auser'] = "($unqid)";
+                $fm['ordstps'] = "Error User($memail)";
+            }
+        }elseif(!empty($user->uinfo['uname'])){
+            $fm['auser'] = $user->uinfo['uname'];
+            $fm['ordstps'] = "Logined User($memail)";
+        }else{
+            $fm['auser'] = "($unqid)";
+            $fm['ordstps'] = "Guest(-)";
+        }*/
+        $fm['auser'] = empty($user->uinfo['uname']) ? "($unqid)" : $user->uinfo['uname'];
+        $fm['eip'] = comConvert::sysEncode(time().$unqid);
         // 加数据
-        $db->table('coms_corder')->data(basReq::in($fm))->insert();
+        $db->table('coms_corder')->data(basReq::in($fm))->insert('a');
         // 转数据
         $db->table('coms_cocar')->data(array('ordid'=>$fm['cid'],'eip'=>$fm['eip']))->where("ordid='$unqid'")->update();
         $db->query("INSERT INTO {$db->pre}coms_coitem{$db->ext} SELECT * FROM {$db->pre}coms_cocar{$db->ext} WHERE ordid='{$fm['cid']}'");
         $db->table('coms_cocar')->where("ordid='{$fm['cid']}'")->delete();
         // 重置状态
         comCookie::oset('ocar_items',0);
-        return array('ordid'=>$fm['cid'],'enc'=>$fm['eip']);
+        return array('ordid'=>$fm['cid'],'feetotle'=>@$fm['feetotle'],'enc'=>$fm['eip']);
     }
     
     static function odel($ordid){ 
@@ -158,41 +235,57 @@ class exvOcar{
     
     static function iadd($unqid,$user){ 
         $db = glbDBObj::dbObj();
-        $fm['cid'] = basReq::val('cid');
+        //$fm['cid'] = basReq::val('cid');
         $fm['pid'] = basReq::val('pid');
         $fm['ordid'] = $unqid;
         $fm['ordcnt'] = basReq::val('ordcnt','0','N');
         $fm['ordprice'] = basReq::val('ordprice','0','N');
-        $fm['title'] = basReq::val('title','');
+        $fm['title'] = basReq::val('title');
         $fm['ordweight'] = basReq::val('ordweight','0','N');
-        $kar = glbDBExt::dbAutID('coms_cocar','yyyy-md-','32');
+        //$fm['ordvolume'] = basReq::val('ordvolume','0','N');
+        //$fm['weight2'] = basReq::val('weight2','0','N');
+        //$fm['freeship'] = basReq::val('freeship','0','N');
+        $cfgs = basReq::arr('cfgs','Html');
+        $fm['detail'] = basReq::in(json_encode($cfgs));
+        $kar = glbDBExt::dbAutID('coms_cocar');
         $fm['cid'] = $kar[0]; 
         $fm['cno'] = $kar[1];
         $fm['auser'] = @$user->uinfo['uname'];
         if($db->table('coms_cocar')->where("ordid='$unqid' AND pid='$fm[pid]'")->find()){
-            $msg = "该商品已经在购物车！";
+            $msg = "Item exists already!";
         }else{
-            $db->table('coms_cocar')->data(basReq::in($fm))->insert();
-            $msg = $fm['title'].' : 添加成功！'; 
+            $res = $db->table('coms_cocar')->data($fm)->insert('a');
+            if($res){
+                $msg = $fm['title'].' : Add to car OK!';
+            }else{
+                $msg = "Error, Please try again!";
+                //$db->table('coms_cocar')->where("ordid='$unqid' AND pid='$fm[pid]'")->delete();
+            }
         }
         return $msg;
     }
     
     static function ilist($tabid,$where,$limit=99){ 
         $list = glbDBObj::dbObj()->table($tabid)->where($where)->limit($limit)->select();
-        $data = array(); $afee = 0.00; $aweight = 0.00; $acnt = 0;
+        $data = array(); $aweight2 = 0.0; $freeship = 1;
+        $afee = 0.0; $aweight = 0.0; $avolume = 0.0; $acnt = 0; 
         if($list){ foreach($list as $i=>$r){ 
             $r['i'] = $i+1;
             $r['ifee'] = $r['ordcnt']*$r['ordprice'];
             $afee += $r['ifee'];
             $aweight += $r['ordweight'];
+            //$avolume += $r['ordvolume'];
+            //$aweight2 += max($r['ordweight'],$r['weight2']);
             $acnt += $r['ordcnt'];
             $r['ifee'] = basReq::fmtNum($r['ifee']);
             $r['ordprice'] = basReq::fmtNum($r['ordprice']);
             $r['ordweight'] = basReq::fmtNum($r['ordweight']);
+            if(empty($r['freeship'])) $freeship = 0;
             $data[] = $r;
         } } 
-        return array('data'=>$data,'sum'=>array('afee'=>basReq::fmtNum($afee),'acnt'=>$acnt,'aweight'=>$aweight));
+        $sum = array('afee'=>basReq::fmtNum($afee),
+            'acnt'=>$acnt,'aweight'=>$aweight,'freeship'=>$freeship);
+        return array('data'=>$data,'sum'=>$sum);
     }
     
     

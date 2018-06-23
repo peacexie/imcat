@@ -91,7 +91,7 @@ class vopComp{
             $k1 = "{block:$key}"; $k2 = "{/block:$key}";
             $blk1 = basElm::getPos($stpl,array($k1,$k2));
             $blkp = basElm::getPos($layout,array($k1,$k2));
-            if($blk1=='{:clear}'){ 
+            if($blk1=='{:clear}'){
                 $layout = str_replace("$k1{$blkp}$k2", "", $layout);
             }elseif(!empty($blk1)){ 
                 if(strlen($blkp)>6 && strstr($blk1,'{:parent}')) $blk1 = str_replace("{:parent}", $blkp, $blk1);

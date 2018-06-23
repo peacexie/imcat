@@ -16,17 +16,13 @@ class basSql{
     static function logData($type='a',$ip='',$time=0,$user=''){ 
         global $_cbase;
         $run = $_cbase['run'];
-        $unow = usrBase::userObj();
+        //$unow = usrBase::userObj();
         $cfg = array(
-            'ip' => $ip ? $ip : $run['userip'],
-            'time' => $time ? $time : $run['stamp'],
-            'user' => $user ? $user : @$unow->uinfo['uname'],
+            $type.'ip' => $ip ? $ip : $run['userip'],
+            $type.'time' => $run['stamp'],
+            $type.'user' => empty($run['uname']) ? '(Guest)' : $run['uname'],
         );
-        $re = array();
-        foreach($cfg as $k=>$v){
-            $re["$type$k"] = $v;    
-        }
-        return $re;
+        return $cfg;
     }
     
     // 2013-12-31; 5(天)

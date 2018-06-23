@@ -88,8 +88,8 @@ class devRun{
         // 重置辅助调试工具账号密码
         if(!file_exists($fpath=DIR_DTMP.self::$sfixidpw)){
             $cfgs = glbConfig::read('pubcfg','sy');
-            $key = 'cfgs/boot/cfg_adbug.php';
-            $rep = $cfgs['cdemo']["code/$key"];
+            $key = 'cfgs/boot/cfg_adbug.php'; 
+            $rep = $cfgs['cdemo']["root/$key"];
             $data = comFiles::get(DIR_ROOT."/$key-cdemo");
             $data = str_replace($rep[0],$rep[1],$data);
             comFiles::put(DIR_ROOT."/$key",$data);

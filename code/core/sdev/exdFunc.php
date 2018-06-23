@@ -61,7 +61,7 @@ class exdFunc extends exdBase{
                 if(!$this->db->table("exd_crlog")->where("kid='{$jcfg['kid']}' AND omd5='$omd5'")->find()){
                     $re['ok']++;
                     $drow = exdCrawl::ugetRow($jcfg,$cfields,$url);
-                    $defid = basKeyid::kidTemp('hms',empty($drow['atime']) ? '' : $drow['atime']);
+                    $defid = basKeyid::kidTemp('',empty($drow['atime']) ? '' : $drow['atime']);
                     $kar = $this->getJKid($defid); 
                     $kid = $kar[0]; $kno = $kar[1]; 
                     $drow[$this->mkid] = $kid;

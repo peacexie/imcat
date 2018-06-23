@@ -10,20 +10,14 @@ class glbDBObj{
     public $sql = '';//sql语句，主要用于输出构造成的sql语句
     public $pre = '';//表前缀，主要用于在其他地方获取表前缀
     public $ext = '';//表后缀，主要用于在其他地方获取表后缀
-    public $data = array();// 数据信息  
-    public $nolog = array(
-        'active_admin', 'active_online', 'active_session',
-        'logs_dbsql', 'logs_detmp', 'logs_jifen', 'logs_syact',
-        'wex_qrcode', 'wex_msgget', 'wex_locate',
-    );
-    public $options = array(); // 查询表达式参数
+    public $data = array();// 数据信息
+    public $otps = array(); // 查询表达式参数
     static $uobj = array(); //实例化的前数据对象
 
     function __construct($config=array()){
         $this->config = empty($config) ? self::getCfg() : $config;
-        $this->options['field'] = '*';//默认查询字段
-        $this->class = $this->config['db_class']; //PHP5.5不支持mysql扩展,use mysqli or PDO instead
-        if($this->class=='mysql' && strnatcmp(PHP_VERSION, '5.5.0')>=0) $this->class = 'mysqli'; 
+        $this->otps['field'] = '*';//默认查询字段
+        $this->class = $this->config['db_class'];
         $this->pre = $this->config['db_prefix'];//数据表前缀
         $this->ext = $this->config['db_suffix'];//数据表后缀
     }
@@ -31,12 +25,12 @@ class glbDBObj{
     //连接数据库
     function connect(){ 
         global $_cbase;
-        $_cbase['run']['qstart'] = microtime(1); //分析Start
         if(!is_object($this->db)){ //$this->db不是对象，则连接数据库
-              $class = 'db_'.$this->class;
-              require_once DIR_CODE."/adpt/dbdrv/{$class}.php";
-              $this->db = new $class();//连接数据库
-              $this->db->connect($this->config) ;
+            $_cbase['run']['qstart'] = microtime(1); //分析Start
+            $class = 'db_'.$this->class;
+            require_once DIR_CODE."/adpt/dbdrv/{$class}.php";
+            $this->db = new $class();//连接数据库
+            $this->db->connect($this->config);
         }
     }
 
@@ -63,7 +57,7 @@ class glbDBObj{
         }
     }
 
-    function runChkbug($_cbase,$mode){
+    function runChkbug($_cbase, $mode){
         if(!strpos($_cbase['debug']['db_acts'],$mode)) return 0;
         $indefine = 0;
         foreach($_cbase['debug']['db_area'] as $key){
@@ -81,43 +75,37 @@ class glbDBObj{
         }
         return ($__noid>=960) ? 0 : $__noid;
     }
-    
-    //设置表，$nofix为true的时候，不加上默认的表前缀
-    function table($table,$nofix=false){
-        $full = '`'.$this->pre.$table.$this->ext.'`';
-        if($nofix===2){ 
-            return $full;
-        }elseif($nofix){
-            $this->options['table'] = '`'.$table.'`';
-        }else{
-            $this->options['bare_tab'] = $table;
-            $this->options['table'] = $full;
-        }
-        return $this;
-    }
 
     //回调方法，连贯操作的实现
-    function __call($method,$args) {
-        $method=strtolower($method);
+    function __call($method, $args) {
+        $method = strtolower($method);
         if(in_array($method,array('field','data','where','groups','having','order','limit','cache'))){
-            $this->options[$method] =$args[0];//接收数据
-            return $this;//返回对象，连贯查询
+            $this->otps[$method] = $args[0]; //接收数据
+            return $this; //返回对象，连贯查询
         }else{
             glbError::show($method.':No Found.');
         }
     }
+    
+    //设置表，$nofix为true的时候，不加上默认的表前缀
+    function table($table, $nofix=false){
+        $full = '`'.$this->pre.$table.$this->ext.'`';
+        if($nofix===2){ 
+            return $full;
+        }elseif($nofix){
+            $this->otps['table'] = '`'.$table.'`';
+        }else{
+            $this->otps['bare_tab'] = $table;
+            $this->otps['table'] = $full;
+        }
+        return $this;
+    }
 
     //执行原生sql语句，如果sql是查询语句，返回二维数组
-    function query($sql,$func=''){ 
-        if(empty($sql)) return false;
-        $this->sql=$sql;
-        $this->connect();
+    function query($sql){ 
+        $this->sql = $sql;
         //判断当前的sql是否是查询语句
-        if($func){
-            $query = $this->$func($this->sql,'qOther');
-            return $query;
-        }elseif(strpos(trim(strtolower($sql)),'select')===0){ 
-            $data=array();
+        if(strpos(trim(strtolower($sql)),'select')===0){ 
             $data = $this->db->arr($this->sql);
             $this->runTimer('qSelect');
             return $data;
@@ -128,34 +116,20 @@ class glbDBObj{
     }
 
     //执行sql语句
-    function run($sql,$act=''){ 
+    function run($sql, $act=''){ 
         global $_cbase;
-        $isDemo = empty($_cbase['run']['isDemo']) ? 0 : $_cbase['run']['isDemo'];
-        if(!empty($isDemo)){ 
-            $tab1 = '`'.$this->pre.'active_online'.$this->ext.'`';
-            $tab2 = '`'.$this->pre.'active_admin'.$this->ext.'`';
-            if(in_array($this->options['table'],array($tab1,$tab2))){ 
-                //echo 'session';
-            }elseif(defined('RUN_JSHOW')){
-                //echo 'RUN_JSHOW';
-            }elseif(!empty($isDemo)){
-                //echo 'skipDemo';
-            }else{ 
-                die('<h1>Can NOT run in DEMO Site!</h1>');
-            }
-        }
+        $this->sql = $sql;
         $re = $this->db->run($this->sql);
         $this->runTimer($act);
         return $re;
     }
 
     //统计行数
-    function count(){ // SELECT $func($field) AS $field FROM $tab WHERE kid='$job'
-        $table=$this->options['table'];//当前表
-        $field='count(*)';//查询的字段
-        $where=$this->_parseCond();//条件
-        $this->sql="SELECT $field FROM $table $where";
-        $this->connect();            
+    function count(){
+        $table = $this->otps['table'];//当前表
+        $field = 'count(*)';//查询的字段
+        $where = $this->_parseCond();//条件
+        $this->sql="SELECT $field FROM $table $where";          
         $re = $this->db->val($this->sql);
         $this->runTimer('count');
         return $re;
@@ -163,14 +137,13 @@ class glbDBObj{
 
     //只查询一条信息，返回一维数组    
     function find(){
-        $table=$this->options['table'];//当前表
-        $field=$this->options['field'];//查询的字段
-        $this->options['limit']=1;//限制只查询一条数据
-        $where=$this->_parseCond();//条件
-        $this->options['field']='*';//设置下一次查询时，字段的默认值
+        $table = $this->otps['table'];//当前表
+        $field = $this->otps['field'];//查询的字段
+        $this->otps['limit']=1;//限制只查询一条数据
+        $where = $this->_parseCond();//条件
+        $this->otps['field']='*';//设置下一次查询时，字段的默认值
         $this->sql="SELECT $field FROM $table $where";
         $data = array();
-        $this->connect();
         $data = $this->db->row($this->sql);
         $this->runTimer('find');
         return $data;
@@ -178,14 +151,12 @@ class glbDBObj{
 
     //查询多条信息，返回数组
     function select(){
-        $table=$this->options['table'];//当前表
-        $field=$this->options['field'];//查询的字段
-        $where=$this->_parseCond();//条件
-        $this->options['field']='*';//设置下一次查询时，字段的默认值
-        $this->sql="SELECT $field FROM $table $where";
-        $data=array();
-        //没有缓存，则查询数据库
-        $this->connect();
+        $table = $this->otps['table'];//当前表
+        $field = $this->otps['field'];//查询的字段
+        $where = $this->_parseCond();//条件
+        $this->otps['field'] = '*';//设置下一次查询时，字段的默认值
+        $this->sql = "SELECT $field FROM $table $where";
+        $data = array();
         $data = $this->db->arr($this->sql);
         $this->runTimer('select');
         return $data;
@@ -193,10 +164,9 @@ class glbDBObj{
 
     //插入数据
     function insert($log='a') {
-        $table=$this->options['table'];//当前表
-        $data=$this->_parseData('add',$log);//要插入的数据
-        $this->sql="INSERT INTO $table $data" ;
-        $this->connect();
+        $table = $this->otps['table'];//当前表
+        $data = $this->_parseData('add',$log);//要插入的数据
+        $this->sql = "INSERT INTO $table $data";
         $this->run($this->sql,'insert');
         if($this->db->affRows){
             $id = $this->db->lastID;
@@ -207,10 +177,9 @@ class glbDBObj{
 
     //替换数据
     function replace($log='a') {
-        $table=$this->options['table'];//当前表
-        $data=$this->_parseData('add',$log);//要插入的数据
+        $table = $this->otps['table'];//当前表
+        $data = $this->_parseData('add',$log);//要插入的数据
         $this->sql="REPLACE INTO $table $data" ;
-        $this->connect();
         $this->run($this->sql,'replace');
         if($this->db->affRows){
             return  $this->db->lastID;
@@ -220,30 +189,27 @@ class glbDBObj{
 
     //修改更新
     function update($log='e'){ 
-        $table=$this->options['table'];//当前表
-        $data=$this->_parseData('save',$log);//要更新的数据
-        $where=$this->_parseCond();//更新条件
+        $table = $this->otps['table'];//当前表
+        $data = $this->_parseData('save',$log);//要更新的数据
+        $where = $this->_parseCond();//更新条件
         if(empty($where)) return false;    //修改条件为空时，则返回false，避免不小心将整个表数据修改了
-        $this->sql="UPDATE $table SET $data $where" ;
-        $this->connect();
+        $this->sql = "UPDATE $table SET $data $where" ;
         $this->run($this->sql,'update');
         return $this->db->affRows;
     }
 
     //删除
     function delete(){
-        $table=$this->options['table'];//当前表
-        $where=$this->_parseCond();//条件
+        $table = $this->otps['table'];//当前表
+        $where = $this->_parseCond();//条件
         if(empty($where)) return false;    //删除条件为空时，则返回false，避免数据不小心被全部删除
-        $this->sql="DELETE FROM $table $where";
-        $this->connect();
+        $this->sql = "DELETE FROM $table $where";
         $this->run($this->sql,'delete');
         return $this->db->affRows;
     }
 
     // 取得数据表的字段信息
     function fields($tab){
-        $this->connect();
         $tab = is_array($tab) ? $tab[0] : $tab;
         $a = $this->db->fields("$this->pre$tab$this->ext");
         $this->runTimer('fields');
@@ -252,7 +218,6 @@ class glbDBObj{
 
     // 取得数据库的表信息
     function tables($info=0){
-        $this->connect();
         $a = $info ? $this->db->tabinfo() : $this->db->tables();
         $this->runTimer('tables'); 
         $tab = array();
@@ -272,7 +237,6 @@ class glbDBObj{
 
     // 取得创建表sql
     function create($tab){
-        $this->connect();
         $a = $this->db->create("{$this->pre}$tab{$this->ext}");
         $this->runTimer('create');
         return $a;
@@ -285,103 +249,88 @@ class glbDBObj{
     function quoteSql($sql){
         return $this->db->quoteSql($sql);
     }
-    //删除数据库缓存
-    function clear(){
-        if($this->config['dc_on'])
-            return $this->cache->clear();
-        return false;
-    }
 
     //解析数据,添加数据时$type=add,更新数据时$type=save
-    public function _parseData($type,$log='') {
-        if((!isset($this->options['data']))||(empty($this->options['data']))){
-            unset($this->options['data']);    //清空$this->options['data']数据
-            return false;
+    public function _parseData($type, $log='') {
+        if(empty($this->otps['data'])){
+            die("Error, Null-Data!");
         }
         //如果数据是字符串，直接返回
-        if(is_string($this->options['data'])){
-            $data=$this->options['data'];
-            unset($this->options['data']);    //清空$this->options['data']数据
-            return $data;
+        if(is_string($this->otps['data'])){
+            return $this->otps['data'];
         }
-        if($log && !in_array($this->options['bare_tab'],$this->nolog)){
+        $arfix = array('advs_','base','bext','coms_','docs_','types','users');
+        if($log && in_array(substr($this->otps['bare_tab'],0,5), $arfix)){
             $dlog = basSql::logData($log);
-            if(!empty($this->options['data'])) $this->options['data'] = array_merge($dlog,$this->options['data']);
+            $this->otps['data'] = array_merge($dlog, $this->otps['data']);
         }
         switch($type){
             case 'add':
                 $data=array();
-                $data['key']="";
-                $data['value']="";
-                if(!empty($this->options['data'])){
-                    foreach($this->options['data'] as $key=>$value){
-                        $data['key'].="`$key`,";
-                        $data['value'].="'$value',";
-                    }
+                $data['key'] = "";
+                $data['value'] = "";
+                foreach($this->otps['data'] as $key=>$value){
+                    $data['key'] .= "`$key`,";
+                    $data['value'] .= "'$value',";
                 }
-                $data['key']=substr($data['key'], 0,-1);//去除后面的逗号
-                $data['value']=substr($data['value'], 0,-1);//去除后面的逗号
-                unset($this->options['data']);    //清空$this->options['data']数据
+                $data['key'] = substr($data['key'], 0,-1);//去除后面的逗号
+                $data['value'] = substr($data['value'], 0,-1);//去除后面的逗号
                 return " (".$data['key'].") VALUES (".$data['value'].") ";
                 break;
             case 'save':
-                $data="";
-                if(!empty($this->options['data'])){
-                    foreach($this->options['data'] as $key=>$value){
-                        $data.="`$key`='$value',";
-                    }
+                $data = "";
+                foreach($this->otps['data'] as $key=>$value){
+                    $data .= "`$key`='$value',";
                 }
-                $data=substr($data, 0,-1);    //去除后面的逗号
-                unset($this->options['data']);    //清空$this->options['data']数据
+                $data = substr($data, 0,-1);    //去除后面的逗号
                 return $data;
                 break;
             default:
-                unset($this->options['data']);    //清空$this->options['data']数据
                 return false;
         }        
     }
 
     //解析sql查询条件
     public function _parseCond() {
-        $condition="";
+        $cond = ""; 
         //解析where()方法
-        if(!empty($this->options['where'])){
-            $condition=" WHERE ";
-            if(is_string($this->options['where'])){
-                $condition.=$this->options['where'];
-            }else if(is_array($this->options['where'])){
-                    foreach($this->options['where'] as $key=>$value){
-                         $condition.=" `$key`='$value' AND ";
+        if(!empty($this->otps['where'])){
+            $cond = " WHERE ";
+            if(is_string($this->otps['where'])){
+                $cond .= $this->otps['where'];
+            }else if(is_array($this->otps['where'])){
+                    foreach($this->otps['where'] as $key=>$value){
+                         $cond .= " `$key`='$value' AND ";
                     }
-                    $condition=substr($condition, 0,-4);    
+                    $cond = substr($cond, 0,-4);    
             }else{
-                $condition="";
+                $cond = "";
             }
-            unset($this->options['where']);//清空$this->options['where']数据
+            unset($this->otps['where']);//清空$this->otps['where']数据
         }
-        if(!empty($this->options['groups'])&&is_string($this->options['groups'])){
-            $condition.=" GROUP BY ".$this->options['groups'];
-            unset($this->options['groups']);
+        if(!empty($this->otps['groups'])&&is_string($this->otps['groups'])){
+            $cond .= " GROUP BY ".$this->otps['groups'];
+            unset($this->otps['groups']);
         }
-        if(!empty($this->options['having'])&&is_string($this->options['having'])){
-            $condition.=" HAVING ".$this->options['having'];
-            unset($this->options['having']);
+        if(!empty($this->otps['having'])&&is_string($this->otps['having'])){
+            $cond .= " HAVING ".$this->otps['having'];
+            unset($this->otps['having']);
         }
-        if(!empty($this->options['order'])&&is_string($this->options['order'])){
-            $condition.=" ORDER BY ".$this->options['order'];
-            unset($this->options['order']);
+        if(!empty($this->otps['order'])&&is_string($this->otps['order'])){
+            $cond .= " ORDER BY ".$this->otps['order'];
+            unset($this->otps['order']);
         }
-        if(!empty($this->options['limit'])&&(is_string($this->options['limit'])||is_numeric($this->options['limit']))){
-            $condition.=" LIMIT ".$this->options['limit'];
-            unset($this->options['limit']);
+        if(!empty($this->otps['limit'])&&(is_string($this->otps['limit'])||is_numeric($this->otps['limit']))){
+            $cond .= " LIMIT ".$this->otps['limit'];
+            unset($this->otps['limit']);
         }
-        if(empty($condition))
+        if(empty($cond))
             return "";
-        return $condition;
+        return $cond;
     }
     
     // 
-    static function dbObj($config=array(),$catch=0){ 
+    static function dbObj($config=array(), $catch=0){ 
         if(empty($config)){
             $key = 'db0_main';
         }elseif(is_string($config)){ // `user`

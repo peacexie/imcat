@@ -34,7 +34,10 @@ class extEmail{
             );
             $this->umail->IsSMTP(); 
             $this->umail->CharSet = 'UTF-8'; //设置邮件的字符编码，这很重要，不然中文乱码 
-            $this->umail->SMTPAuth = true; //开启认证 
+            $this->umail->SMTPAuth = true; //开启认证
+            if(!empty($this->cfg['ssl'])){
+                $this->umail->SMTPSecure = 'ssl'; // 加密
+            }
             $this->umail->Host = $this->cfg['smtp']; 
             $this->umail->Port = $this->cfg['port']; 
             $this->umail->Username = $this->cfg['user']; 
@@ -69,6 +72,12 @@ class extEmail{
                     }
                 }else{
                     $this->umail->AddAddress($to); 
+                }
+                if(!empty($this->cfg['cc'])){
+                    $this->umail->addCC($this->cfg['cc']);
+                }
+                if(!empty($this->cfg['re_addr'])){
+                    $this->umail->addReplyTo($this->cfg['re_addr'], $this->cfg['re_name']);
                 }
                 $this->umail->Subject = $title;
                 $this->umail->Body = $detail; 

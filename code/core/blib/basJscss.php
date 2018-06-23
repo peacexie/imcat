@@ -205,9 +205,7 @@ class basJscss{
         }
         if(strpos($_cbase['run']['jsimp'],$path)){ return ''; }
         $_cbase['run']['jsimp'] .= "$path,";
-        if(empty($_cbase['tpl']['tpc_on'])){
-            $path .= (strpos($path,'?') ? '&' : '?').'_'.$_SERVER["REQUEST_TIME"].'=1';
-        }
+        $path .= (strpos($path,'?') ? '&' : '?').'_r='.$_cbase['sys']['ver'];
         $method = $mod ? "{$mod}code" : (strpos($path,'.css') ? 'css' : 'js').'code'; 
         return self::$method('',$base.$path)."\n"; 
     }

@@ -126,7 +126,7 @@ class dopBSo{
                 $imod = glbConfig::read($cfgs); 
                 $this->whrstr .= basSql::whrTree($imod['i'],$key,$val);    
             }elseif($ftype=='select' && $cfgs){
-                $this->whrstr .= " AND $key='$val'";    
+                $this->whrstr .= " AND $key='$val'";
             }elseif($ftype=='cbox' && $cfgs){
                 $this->whrstr .= " AND $key LIKE '%$val%'";
             }  
@@ -135,8 +135,12 @@ class dopBSo{
     }
     // 搜索项-Show()
     function Show($w=70){ 
+        $val = basReq::val('show');
         $item = basElm::setOption("s1=".basLang::show('flow.op_show')."\ns0=".basLang::show('flow.op_hide')."",@$val,basLang::show('flow.op0_show')); 
         $str = "\n<select name='show' class='w$w'>$item</select>";
+        if(strlen($val)==2){
+            $this->whrstr .= " AND `show`='".str_replace('s','',$val)."'";
+        }
         return $str;
     }
     // 搜索项-排序

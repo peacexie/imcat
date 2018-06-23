@@ -166,16 +166,26 @@ class vopCell{
         return $val;
     }
     
-    // full: min,full,dm,,
+    // full: min,full,dm,auto,
     // null: -
-    static function cTime($val='',$fmt='full',$null=array()){
+    static function cTime($val='',$fmt='auto',$null=''){
+        $val = intval($val);
+        if(empty($val)){
+            return empty($null) ? '-' : $null;
+        }
+        $stamp = $_SERVER["REQUEST_TIME"];
+        if($fmt=='auto' && $stamp-$val<86400){
+            $fmt = 'H:i:s';
+        }elseif($fmt=='auto' && $stamp-$val<604800){ // 7*86400
+            $fmt = 'm-d H:i';
+        }elseif($fmt=='auto'){
+            $fmt = 'Y-m-d';
+        }
         $fmt = empty($fmt) ? 'Y-m-d' : $fmt;
         $fmt=='min' && $fmt = 'Y-m-d H:i';
         $fmt=='full' && $fmt = 'Y-m-d H:i:s';
         $fmt=='dm' && $fmt = 'm-d H:i';
-        $null = empty($null) ? '-' : $null;
-        $re = empty($val) ? $null : date($fmt,$val); 
-        return $re;
+        return date($fmt,$val);
     }
     
     // split: [0]: 默认自动彩色显示 

@@ -155,7 +155,7 @@ class exdBase{
     // getKid
     function getJKid($kid=''){
         $tabid = $this->mpid=='users' ? $this->tbext : $this->tbid;
-        $kar = glbDBExt::dbAutID($tabid,'yyyy-md-','32',$kid);
+        $kar = glbDBExt::dbAutID($tabid);
         return $kar;
     }
     

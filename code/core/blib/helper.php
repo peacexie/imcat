@@ -112,3 +112,19 @@ function eimp($type,$base='',$user=0){
 } }
 
 // user-function
+
+if(!function_exists('subRep')){ 
+function subRep($str){
+    $sup = usrPerm::issup();
+    $user = usrBase::userObj('Member');
+    $mem = $user->userFlag=='Login';
+    return ($sup||$mem) ? $str : basStr::subReplace($str); 
+} }
+
+# $sPUser = MemPW.MemID
+if(!function_exists('MD5_Mem')){ 
+function MD5_Mem($sPUser){
+    $sk = '0BA8C000-1111-2222-3333-PEACE0ASP444';
+    $enc = md5($sPUser.strtolower($sk));
+    return $enc;
+} }

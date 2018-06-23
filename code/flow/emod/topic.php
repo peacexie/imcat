@@ -86,10 +86,27 @@ if($act=='iform'){
         'kid'=>$mod,
     );
     $dop = new dopExtra('topic_form',$cfg); 
+    //dump($dop->so->whrstr);
+    $dop->so->whrstr .= " AND `did`='$did'";
     // 删除操作
     if(!empty($bsend)){
-        require dirname(dirname(__FILE__)).'/binc/act_ops.php';
-    } 
+        if(empty($fs_do)) $msg = lang('flow.dops_setop');
+        if(empty($fs)) $msg = lang('flow.dops_setitem');
+        $cnt = 0; 
+        if(empty($msg)){
+            foreach($fs as $id=>$v){ //echo "did='$did' AND kid='$id'<br>";
+                if($fs_do=='del'){ 
+                    $db->table('topic_form')->where("did='$did' AND kid='$id'")->delete(); 
+                }elseif($fs_do=='upd'){ // ?
+                    $db->table('topic_form')->data(basReq::in($fm[$id]))->where("did='$did' AND kid='$id'")->update(0);
+                }elseif($fs_do=='chk1' || $fs_do=='chk0'){ 
+                    $data = array('show'=>$fs_do=='chk0'?0:1);
+                    $db->table('topic_form')->data($data)->where("did='$did' AND kid='$id'")->update(0);
+                }
+                $cnt++;
+            } 
+        }        
+    }
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     $dop->sobar("表单数据$umsg",40,array());
     // 清理操作
@@ -99,7 +116,7 @@ if($act=='iform'){
     }
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th>";
-    echo "<th>mname</th><th>mtel</th><th>time</th><th>ip</th><th>Edit</th>";
+    echo "<th>mname</th><th>mtel</th><th>time</th><th>ip</th><th>V</th><th>Edit</th>";
     echo "</tr>\n";
     $idfirst = ''; $idend = '';
     if($rs=$dop->getRecs()){ 
@@ -108,14 +125,16 @@ if($act=='iform'){
           if(empty($idfirst)) $idfirst = $kid;
           echo "<tr>\n".$cv->Select($kid); 
               $detail = $r['detail'];
+              $chk = $r['show'] ? 'Y' : 'N';
               echo "<td class='tl'>$r[mname]</td>\n";
               echo "<td class='tc'>$r[mtel]</td>\n";
               echo "<td class='tc'>".date('m-d H:i:s',$r['atime'])."</td>\n";
               echo "<td class='tc'><input type='text' value='$r[aip]' class='txt w120'/></td>\n";
+              echo "<td class='tc'>$chk</td>\n"; // edit
               echo "<td class='tc'>Edit</td>\n";
-          echo "</tr>\n<tr>\n<td colspan=6><textarea class='wp100' rows=2>$detail</textarea></td></tr>\n";
+          echo "</tr>\n<tr>\n<td colspan=6><textarea name='fm[$kid][detail]' class='wp100' rows=2>$detail</textarea></td></tr>\n";
         }
-        $dop->pgbar($idfirst,$idend);
+        $dop->pgbar($idfirst,$idend,"del|删除\nupd|更新\nchk1|显示\nchk0|隐藏"); // 
     }else{
         echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
     }    
@@ -327,14 +346,17 @@ if($act=='iform'){
         if(empty($fs)) $msg = lang('flow.dops_setitem');
         $cnt = 0; 
         if(empty($msg)){
-          foreach($fs as $id=>$v){ 
-              if($fs_do=='del'){ 
+            foreach($fs as $id=>$v){ 
+                if($fs_do=='del'){ 
                     $db->table($tbexd)->where("did='$did' AND dno='$id'")->delete(); 
-              }elseif($fs_do=='upd'){ 
+                }elseif($fs_do=='upd'){ 
                     $db->table($tbexd)->data(basReq::in($fm[$id]))->where("did='$did' AND dno='$id'")->update();
-              }
-              $cnt++;
-          } 
+                }elseif($fs_do=='chk1' || $fs_do=='chk0'){ 
+                    $data = array('show'=>$fs_do=='chk0'?0:1);
+                    $db->table($tbexd)->data($data)->where("did='$did' AND dno='$id'")->update();
+                }
+                $cnt++;
+            } 
         }
     }
 
@@ -360,7 +382,7 @@ if($act=='iform'){
     $dop->sobar($dop->msgBar($msg,$lnkadd),30,$cfg['soorders']);
 
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-    echo "<th>选择</th><th>标题</th><th class='hidden-xs'>图片</th><th class='hidden-xs'>top</th><th class='hidden-xs'>vote</th><th>修改</th></tr>\n";
+    echo "<th>选择</th><th>标题</th><th class='hidden-xs'>图片</th><th class='hidden-xs'>top</th><th class='hidden-xs'>vote</th><th>审</th><th>修改</th></tr>\n";
     $idfirst = ''; $idend = '';
     if($rs=$dop->getRecs()){ 
         foreach($rs as $r){ 
@@ -372,15 +394,17 @@ if($act=='iform'){
             $lnkset = $dop->cv->Url('修改',0,$lnkurl,"修改资料");
             $top = "<input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' />\n";
             $vote = "<input name='fm[$kid][vote]' type='text' value='$r[vote]' class='txt w40' />\n";
+            $chk = $r['show'] ? 'Y' : 'N';
             echo "<tr>\n".$cv->Select($kid);
             echo "<td class='tc'>$title</td>\n";
             echo "<td class='tc hidden-xs'>$mpic</td>\n";
             echo "<td class='tc hidden-xs'>$top</td>\n"; // edit
             echo "<td class='tc hidden-xs'>$vote</td>\n"; // edit
+            echo "<td class='tc'>$chk</td>\n"; // edit
             echo "<td class='tc'>$lnkset</td>\n"; // ".date('Y-m-d H:i',$r['etime'])."
             echo "</tr>";
         }
-        $dop->pgbar($idfirst,$idend,"del|删除\nupd|更新"); // 
+        $dop->pgbar($idfirst,$idend,"del|删除\nupd|更新\nchk1|显示\nchk0|隐藏"); // 
     }else{
         echo "\n<tr><td class='tc' colspan='15'>".lang('flow.dops_nodata')."</td></tr>\n";
     }

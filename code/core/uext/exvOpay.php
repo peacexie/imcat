@@ -178,7 +178,7 @@ class exvOpay{
             $dno = (date('d')-1)/$fid; 
             $fid = date('m').(floor($dno)+1);
         }
-        basDebug::bugLogs($fk,$logs,"$fk-$fid.log",'file');
+        basDebug::bugLogs($fk,$logs,"$fk-$fid.txt",'file');
     }
 
 /*

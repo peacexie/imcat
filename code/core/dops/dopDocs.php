@@ -66,7 +66,7 @@ class dopDocs extends dopBase{
     // opCopy。
     function opCopy($id){ //docs,users
         // get-kid
-        $kar = glbDBExt::dbAutID($this->tbid,$this->kfix,$this->ktmp);
+        $kar = glbDBExt::dbAutID($this->tbid);
         $kid = $kar[0]; $kno = $kar[1];    
         // insert-2
         foreach(array($this->tbid, $this->tbext) as $tabid){

@@ -86,15 +86,11 @@ class glbDBExt{
       *** 数据库相关函数 
     - db前缀
     - by Peace(XieYS) 2012-07-23
-    落伍 - 今日: 20,375 |昨日: 60,851 |帖子: 44,262,754 |会员: 892,782
-    4(0001~9999)   + (A001~YYYY)   + (00000~YYYYY)   =  10K + 700K + 32-1)M
-    5(00001~99999) + (A0001~YYYYY) + (000000~YYYYYY) = 100K +  22M + 1000)M
     ***************************************************************************** */
-    // db, tab, n; $tmp(4,6,3.4,5.6)
-    // y,m,d: 2013-md01 / 2013m-dh001 / 2013-md-h001
-    static function dbAutID($tab='utest_keyid',$fix='yyyy-md-',$tmp='6',$key='',$n=0){
+    // tab, $tmp(md2,md3,mdh),max,
+    static function dbAutID($tab='utest_keyid',$tmp='max',$n=0){
         $db = glbDBObj::dbObj();
-        $kno = 0;
+        $tabf = $db->pre.$tab.$db->ext;
         $tfix = substr($tab,0,5); 
         if(in_array($tfix,array('docs_','coms_','advs_','users'))){
             $tkey = substr($tfix,0,1).'id';
@@ -103,38 +99,20 @@ class glbDBExt{
             $tkey = 'kid'; 
             $tno = 'kno';
         }
-        $cid = $tno; 
-        $tmpbak = $tmp;
-        if(strpos('(,6,7,3.4,4.5,5.6,)',",$tmp,")){ 
-            $kid = basKeyid::kidTemp($tmp);
-        }elseif($key){ 
-            $len = $n>10 ? strlen($n)-1+2 : 2;
-            $kno = substr($key,8,3).basKeyid::kidRand('',$len);  
-            $kid = substr($key,0,8).$kno; 
-        }else{ //4,5,22,23,32,12,13,14,
-            if(strpos('(,22,23,31,32,)',",$tmp,")){
-                $ktmp = in_array($tmp,array('31','32')) ? basKeyid::kidTemp('hms') : basKeyid::kidTemp('hm');
-                $tmp = substr($tmp,1,1);
-            }elseif(strpos('(,13,14,)',",$tmp,")){
-                $ktmp = basKeyid::kidTemp('h');
-                $tmp = substr($tmp,1,1);
-            }else{ // 2013-md
-                $ktmp = basKeyid::kidTemp('0').'-';
-            }
-            $tabf = $db->pre.$tab.$db->ext;
-            $mdb = $db->query("SELECT max($tno) as $tno FROM $tabf WHERE $tkey like '$ktmp%'"); 
-            $min = str_repeat('0',$tmp-1).'1'; 
-            if(empty($mdb[0][$tno])){ 
-                $max = $min; 
-            }else{
-                $max = $mdb[0][$tno]; 
-                $max = basKeyid::kidNext('',$max,$min,1,8);
-            }
-            $kid = $ktmp.$max; 
-            $kno = $max; 
+        $ktmp = basKeyid::kidTemp($tmp); // 2018-mdh-1233
+        if($tmp=='max'){
+            $kno = 1;
+            $kid = $ktmp;
+        }else{
+            $pdb = substr($ktmp,0,strrpos($ktmp,'-')).'%';
+            $mdb = $db->query("SELECT max($tno) as $tno FROM $tabf WHERE $tkey LIKE '$pdb'");
+            $kno = empty($mdb[0][$tno]) ? 1 : ($mdb[0][$tno]+1) % 99;
+            $kfix = $kno<10 ? '0'.$kno : $kno;
+            $kid = substr($ktmp,0,strlen($ktmp)-2).$kfix;
         }
-        $rec = $db->table($tab)->where("$tkey LIKE '$kid%'")->find(); 
-        if($rec) return self::dbAutID($tab,$fix,$tmpbak,$kid,$n+1);    
+        if($n) $kid = substr($kid,0,strlen($kid)-2).basKeyid::kidRand('k',2);
+        $rec = $db->table($tab)->where("$tkey='$kid%'")->find();
+        if($rec) return self::dbAutID($tab,$tmp,$n+1);
         else return array($kid,$kno);
     }
 

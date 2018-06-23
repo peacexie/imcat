@@ -178,11 +178,11 @@ class devData{
     }    
     
     // data1Exp("/dborg/data~",'base_fields'); 导出单个表数据到文件
-    static function data1ExpInsert($path,$tab,$dbcfg=array(),$pfull=0){
+    static function data1ExpInsert($path,$tab,$dbcfg=array(),$pfull=0,$where=''){
         $db = db($dbcfg);
         $tabfull = $db->pre.$tab.$db->ext; 
         $path = $pfull ? $path : DIR_DTMP.$path;
-        $list = $db->table($tab)->select(); 
+        $list = $db->table($tab)->where($where)->select();
         if($list){ //分块未考虑... 
             $shead = devBase::_tabHead($tab); $i = 0; 
             $fp = fopen(str_replace("\\","/",$path."$tab.dbsql"), 'w');

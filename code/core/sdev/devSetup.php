@@ -259,7 +259,7 @@ class devSetup{
     static function setDbname(){
         $tm = $_SERVER["REQUEST_TIME"]; $h = date('H');
         if($h<6) $tm = $tm+8*3600; if($h>18) $tm = $tm-8*3600;
-        $md = substr(basKeyid::kidTemp('0'),0,7);
+        $md = substr(basKeyid::kidTemp(),0,7);
         $dbname = "catv".cfg('sys.ver')."_".$md;
         $dbname = str_replace(array('.','-'),array('',''),$dbname);
         return $dbname;

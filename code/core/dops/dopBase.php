@@ -93,7 +93,7 @@ class dopBase{
         $_key = $this->cfg['pid']=='users' ? 'uid' : $this->_kid;
         $val = @$this->fmo[$_key];  
         if(empty($val)){ 
-            $kar = glbDBExt::dbAutID($tabid,$this->kfix,$this->ktmp);
+            $kar = glbDBExt::dbAutID($tabid);
             $kid = $kar[0]; $kno = $kar[1];
             $dis = "class='txt w180'";
         }else{
@@ -157,7 +157,7 @@ class dopBase{
             }
         }
         if(empty($kid) || empty($kno)){
-            $kar = glbDBExt::dbAutID($tabid,$this->kfix,$this->ktmp);
+            $kar = glbDBExt::dbAutID($tabid);
             $kid = $kar[0]; $kno = $kar[1];    
         }
         $this->fmv[$_key] = $kid;    

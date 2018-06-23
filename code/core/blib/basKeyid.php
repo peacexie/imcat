@@ -136,8 +136,8 @@ class basKeyid{
     }
     
     // *** 摸版ID
-    // YYYY,YY,MM,DD,MD; HNSX,HNS
-    static function kidTemp($xFmt='(def)',$xTime=''){
+    // md2,md3,mdh,5.5,0
+    static function kidTemp($xFmt='md2',$xTime=''){
         $ktab32 = str_replace('e','',KEY_TAB32).'z';
         $sTmp = strtolower($xFmt); 
         if(empty($xTime)){
@@ -149,35 +149,23 @@ class basKeyid{
             $sTime = date("His",$xTime);
         } 
         $y4 = date("Y",strtotime($sDate)); 
-        $md = $ktab32{substr($sDate,4,2)}.$ktab32{substr($sDate,6,2)}; 
+        $md2 = $ktab32{substr($sDate,4,2)}.$ktab32{substr($sDate,6,2)}; 
+        $md3 = $ktab32{substr($sDate,4,2)}.substr($sDate,6,2); 
         $h = $ktab32{substr($sTime,0,2)}; 
-        $m = $ktab32{intval(substr($sTime,2,2)/2)+1};
-        $s9 = substr($sTime,2,4).substr(microtime(),2,6); 
-        $s6 = ''; for($i=0;$i<7;$i=$i+3) $s6 .= self::fmtBase32('',substr($s9,$i,3),32,2,'');
-        if($xFmt=='0'){                           //2012-md
-            $sTmp = "$y4-$md";
-        }elseif($xFmt=='m-dh'){                   //2012m-dh
-            $sTmp = "$y4".substr($md,0,1)."-".substr($md,1,1)."$h";
-        }elseif($xFmt=='h'){                      //2012-9B-F
-            $sTmp = "$y4-$md-$h";
-        }elseif($xFmt=='hm'){                     //2012-9C-GC                
-            $sTmp = "$y4-$md-$h$m";
-        }elseif($xFmt=='hms'){                    //2012-9C-GCD
-            $ms = floor((substr($sTime,2,2)*60+substr($sTime,4,2))/4)+1; //3600-1
-            $sTmp = "$y4-$md-$h".self::fmtBase32($ktab32,$ms,32,2,'');
-        }elseif($xFmt=='3.4'){                    //2012-9D-H33.AVEX 
-            $ms = floor((substr($sTime,2,2)*60+substr($sTime,4,2))/4)+1;  
-            $sTmp = "$y4-$md-$h".self::fmtBase32($ktab32,$ms,32,2,'').'.'.substr($s6,2,4);
-        }elseif($xFmt=='4.5'){                    //2012-9F-F289.06999
-            $sTmp = "$y4-$md-$h".substr($s9,0,3).".".substr($s9,3,5);
-        }elseif($xFmt=='5.6'){                    //2012-9G-H1230.756894
-            $sTmp = "$y4-$md-$h".substr($s9,0,4).".".substr($s9,4,6);
-        }elseif(strpos(',4,5,6,7,',"$xFmt,")){  //2012-7H-DTX...
-            $sTmp = "$y4-$md-$h".substr($s6,0,$xFmt-1);
-        }else{                                    //2012-7K-DTX0PBD
-            $sTmp = "$y4-$md-$h".$s6;
-        }
-        return $sTmp;
+        $ms = 60 * substr($sTime,2,2) + substr($sTime,4,2);
+        $s3 = substr(microtime(),2,3);
+        $ms = self::fmtBase32('', intval($ms/4), 32, 2, '');
+        $s3 = self::fmtBase32('', $s3, 32, 2, '');
+        if(!$xFmt){ // 0
+            return array($y4,$md2,$md3,$h,$ms,$s3);
+        }elseif($xFmt=='md3'){ // md3
+            return "$y4-$md3-$h$ms".substr($s3,0,1);
+        }elseif($xFmt=='mdh'){ // mdh
+            return "$y4-$md2$h-$ms".substr($s3,0,2);
+        }elseif($xFmt=='5.5'){ // 5.5(18613-pdy05)
+            return date('y')."$md3-$h$ms".substr($s3,0,2);             
+        } // md2
+        return "$y4-$md2-$h$ms".substr($s3,0,1);
     } 
     
     // 0bb38d5cbadd

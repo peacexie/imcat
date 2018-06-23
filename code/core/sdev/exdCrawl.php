@@ -155,7 +155,7 @@ class exdCrawl{
         $info = $up->getFileInfo(); 
         if($info['state']=='SUCCESS'){
             $mod = basReq::val('mod'); $mod || $mod='crawl';
-            $ure = comStore::moveTmpDir($info['url'],$mod,basKeyid::kidTemp('hms'),0);
+            $ure = comStore::moveTmpDir($info['url'],$mod,basKeyid::kidTemp(''),0);
         }else{
             $ure = '';    
         } 
