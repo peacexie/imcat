@@ -27,7 +27,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.3 ~ PHP7.2 (Recommend: PHP5.4 ~ PHP7.1)
+  - PHP5.3 ~ PHP7.2 (Recommend: PHP5.4 ~ PHP7.2)
   - mysql5.0+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -47,32 +47,25 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.1 ChangeLog】 (2018.04)
+### 【v4.1 ChangeLog】 (2018.07)
 
-* [Topic-extend]A: [Add] Free form system
-  - Such as questionnaire ( single-selection, multiple-selection, input, short-answer);
-  - Or a simple name-tel collect form.
- 
-* [Topic-extend]B: [Improve] E-book template
-  - Single page article display
-  - Multi page article display
-  - Chapter-subchapter display
- 
-* [Improve] Maps for users
- 
-* [Bugfix]
-  - Changelog adjusted in Demo-site
-  - Some notice in php7.2
- 
-* [Sister-System]
-  - (Python)Wepy, Mini framework for Crawler
-  - https://github.com/peacexie/python
- 
-* [Clear/Move]
-  - Data import: replace with REST-API or write code separately.
-  - Data synchronization: replace with REST-API or write code separately.
-  - Clean vote: use the `Free form system` of topic instead.
-  - Move: Move topic/faqs to `chn` (view group)
+* Revised/Optimize template, Enhance mobile adaption, Streamline and optimize foreground configuration;d
+  - Move [Topic/Faqs] to `chn` Group
+  - Streamline template configs : `_config/va_home.php` > `[extra/_tabCtrl]` , It can checks automatic; 
+
+* Add template for `solemn/serious/memory`;
+
+* Fix: Repeat generate thumbnails;
+
+* Fix: One error in Db-Operation;
+
+* Optimize the home page, Show friendly some models that do not exist;
+
+* [Related news]
+  - The shop-store system basic on IntimateCat, It's published and it works OK!
+  - Brother-product `Wepy(python)`, It used in work(for info-gather)！
+  - We move IntimateCat from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
+
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -108,29 +101,22 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.1更新日志】(2018.04)
+### 【v4.1更新日志】(2018.07)
 
-* [专题扩展]之一：[增加]自由表单
-  - 可以是调查类：单选，多选，填空，简答
-  - 当然可以是简单的报名类……
- 
-* [专题扩展]之二：[完善]电子书模板
-  - 单页文章展示
-  - 多页文章展示
-  - 按章节目录展示
- 
-* [完善]前台商家地图调用
- 
-* [修正]
-  - 调整更新发布记录（演示站）
-  - php7.0+下的几处小兼容问题
- 
-* [贴心组合]
-  - Python微爬，辅助系统发布
-  - https://github.com/peacexie/python
- 
-* [清理/移动]
-  - 数据导入：使用REST-API替代，或单独写代码
-  - 数据同步：使用REST-API替代，或单独写代码
-  - 清理投票：使用专题的表单替代更自由
-  - 移动：专题/问答：移动到 chn 分组下显示
+* 改版优化模板，增强移动适配，精简优化前台配置
+  - 移动[专题/问答]至 `chn` 分组
+  - 精简模板中 `_config/va_home.php` > `[extra/_tabCtrl]` 配置，可自动检测
+
+* 增加`庄重严肃·追忆`专题模板
+
+* 修正：前台重复生成缩略图
+
+* 修正：一处数据库操作错误;
+
+* 优化首页，对一些不存在的模型，怎加判断并提示
+
+* [相关喜讯]
+  - 由贴心猫二次开发的外贸商城系统，运营上线！
+  - 贴心组合-Python微爬，辅助系统应用于工作中的采集！
+  - 因BAE(基础版)下线停服，贴心猫 至“云虚拟主机BCH”下！
+
