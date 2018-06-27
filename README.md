@@ -1,7 +1,7 @@
 
 
 
-* 贴心猫(IntimateCat) v4.2 Beta
+* 贴心猫(IntimateCat) v4.2 CA
 
 * v4.2 Upgrading... Please use/down v4.1
 * v4.2 升级中…… 请使用/下载 v4.1
@@ -47,7 +47,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.1 ChangeLog】 (2018.07)
+### 【v4.2 ChangeLog】 (2018.07)
 
 * Revised/Optimize template, Enhance mobile adaption, Streamline and optimize foreground configuration;d
   - Move [Topic/Faqs] to `chn` Group
@@ -101,7 +101,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.1更新日志】(2018.07)
+### 【v4.2更新日志】(2018.07)
 
 * 改版优化模板，增强移动适配，精简优化前台配置
   - 移动[专题/问答]至 `chn` 分组
