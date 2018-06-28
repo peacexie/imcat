@@ -180,16 +180,6 @@ class updInfo{
     // getModConfigs
     static function getModConfigs(){
         $mcfgs = glbConfig::read('modstat','sy');
-        //$_groups = glbConfig::read('groups');
-        /*
-        
-        $re = array();
-        foreach($mcfgs as $pid=>$skips){ foreach($_groups as $mod=>$row){
-            if($row['pid']==$pid && !in_array($mod,$skips)){
-                $re[$pid][] = $mod;
-            }
-        } } //dump($re);
-        */
         return $mcfgs;
     }
     // getCacheData

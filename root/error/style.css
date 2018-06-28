@@ -1,0 +1,36 @@
+
+html,  body,  ol,  dl,  dd,  dt,  p,  h1,  h2,  h3,  h4,  h5,  h6,  form,  img { margin: 0; padding: 0; }
+img { border: none; }
+body { color: #333; font: 14px/20px 'Microsoft Yahei', 'Simsun', 'Arial', sans-serif; background-color: #fff; }
+.clearfix:after { content: "."; display: block; height: 0; visibility: hidden; clear: both; }
+.clearfix { zoom: 1; }
+.clearit { clear: both; height: 0; font-size: 0; overflow: hidden; }
+a,  a:link { color: #0d99ff; text-decoration: none; }
+a:visited { color: #0d99ff; }
+a:hover,  a:active,  a:focus { color: #0d99ff; text-decoration: none; }
+.main { margin:30px auto; width:90%; max-width:960px; min-height:300px; position: relative; }
+.main .logo{ float:right; margin:20px; }
+@media only screen and (max-width:500px){
+    .main .logo{ float:none; text-align:center; margin:10px; }
+} /*<=xxx*/
+.main .border { position: absolute; }
+.main .top-border,  .main .bottom-border { height: 5px; width: 100%; border:5px solid #CCC; z-index: 1; }
+.main .bottom-border { bottom: 0; }
+.main .left-border,  .main .right-border { width: 5px; height: 100%; border:5px solid #CCC; }
+.main .right-border { right: -10px; }
+.main .content { padding:25px; }
+.main .content h1 { font-size:24px; font-weight: bold; line-height:100%; color: #1ab76a; padding:10px 0; }
+.main .content h2 { font-size: 14px; font-weight: normal; line-height: 20px; color: #1ab76a; }
+.main .line { left: 6px; top: 0; position: absolute; width: 3px; height: 100%; background-color: #f0aa08; }
+.main .line .top,  .main .line .bottom { position: absolute; display: block; left: 0; width: 3px; }
+.main .line .top { top: -5px; height: 20px; }
+.main .line .bottom { bottom: -5px; height: 80px; }
+.main .intruduction { }
+.main .intruduction p.title { color: #6f6f6f; padding: 14px 0; }
+.main .footer { margin-top:15px; border-top: 1px solid #f1f1f1; }
+.main .footer p { color: #6f6f6f; text-align:center; padding:10px 0; }
+.main .footer li { padding:5px 0; }
+.main .footer .links a { }
+.main .footer .links span { margin-left: 30px; color: #999999; }
+
+#secs { font-size:larger; color:#F0F; }

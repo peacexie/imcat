@@ -1,8 +1,21 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
 
+$part = req('part','syscache'); //opcache,xxx
+$act = req('act','view'); // view, clear
+$msg = "$part : $act";
+
+$gap = "<span class='span ph5'>|</span>";
+$bar = "<a href='?mkv=admin-update'>Syscache</a> ### \n";
+$bar .= "<a href='?mkv=admin-update&part=opcache'>Opcache</a>\n";
+$bar .= " : <a href='?mkv=admin-update&part=opcache&act=delete'>Clear</a>\n";
+glbHtml::tab_bar($msg,$bar,25); // ($title,$cont,$w1=25,$css2='tc')
+
+# ----------------------- 
+
 $parts = empty($parts) ? 'cache' : $parts;
 $cfg = basLang::ucfg('cfgbase.admupd'); 
+
 
 $gbar = ''; $ggap = ''; // class='cur,
 foreach($cfg as $k=>$v){ 
@@ -16,7 +29,17 @@ foreach($g0 as $k=>$v){
     $g1[$v['kid']] = $v;
 }
 
-if(empty($bsend)){
+if($part=='opcache'){
+    if(!function_exists('opcache_get_status')){
+        echo "<p class='f18 tc'>Opcache Disabled! Please set your php.ini</p>";
+    }elseif($act=='view'){
+        dump(opcache_get_status());
+    }elseif($act=='delete'){
+        opcache_reset();
+        echo "<p>Clean Opcache OK!</p>";
+        dump(opcache_get_status()); 
+    }
+}elseif(empty($bsend)){
     $str1 = ''; $ti = 0;
     foreach($g1 as $k=>$v){
         if($v['pid']=='types'){

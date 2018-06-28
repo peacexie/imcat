@@ -1,5 +1,39 @@
 
 
+#v4.2# (2018.07)
+
+
+## Basic-Info:
+
+* Basic-Info:
+ - version: v4.2
+ - Release date: 2018.06~(2018-07)
+ - rar-size: [core]1.28 MB, [full]3.68 MB(core+vendor)
+
+
+## ChangeLog
+
+* Revised/Optimize template, Enhance mobile adaption, Streamline and optimize foreground configuration;d
+ - Move [Topic/Faqs] to `chn` Group
+ - Streamline template configs : _config/va_home.php > [extra/_tabCtrl] , It can checks automatic; 
+
+* Add template for `solemn/serious/memory`;
+
+* Add `Opcache` Management(Clear)
+
+* Fix: Repeat generate thumbnails;
+
+* Fix: One error in Db-Operation;
+
+* Optimize the home page, Show friendly some models that do not exist;
+
+* [Related news]
+ - The shop-store system basic on IntimateCat, It's published and it works OK!
+ - Brother-product `Wepy(python)`, It used in work(for info-gather)！
+ - We move IntimateCat from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
+
+
+
 #v4.1# (2018.04)
 
 

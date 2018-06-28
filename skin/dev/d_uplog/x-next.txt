@@ -1,6 +1,54 @@
 
 
 
+CanPHP框架(简称CP)，是一个简单、自由、实用、高效的php框架。
+CanPHP框架以面向应用为主，不纠结于OOP，不纠结于MVC，不纠结于设计模式，不拘一格，
+力求简单快速优质的完成项目开发，是中小型项目开发首选php框架。 
+
+CanPHP框架(CP) 2.0 升级日志
+1、重构了数据库层，内置数据过滤，支持数据库分布式
+2、重构缓存层，支持file、memcache等缓存
+3、重构模版引擎，扩展更灵活
+
+
+* 定位
+ - 框架/CMS
+ - 
+
+
+--------------------------
+
+* comCookie
+ - $_cbase['sys']['tmzone']*3600
+ - Do NOT refresh this page! --- 'vsms4'
+
+
+v4.2 # topic - blank ...   --- ok 
+ - pics-show - inpage
+
+
+v4.2 # Editor/编辑器
+
+ - https://summernote.org/getting-started/#installation
+ - Summernote - Super Simple WYSIWYG editor
+ - Summernote may be freely distributed under the MIT license.
+ - https://www.cnblogs.com/stitchgogo/p/6943917.html
+
+v4.3 # umc-css
+
+v4.3 # tag-tools
+
+v4.3 # tools-css
+
+------------------------------ 
+
+
+cat_vary
+
+
+* show - 搜索修正
+
+# open, vcode
 
 # xxx
  - robots
@@ -16,15 +64,8 @@
 
 v4.2
 
-# 精简配置
- - del-extra : url路由 : 
- - del-_tabCtrl : _tabCtrl
 
-# chn.php : 统一: 专题/问答 调用风格，增强移动适配
 
-# 增强首页系统模型判断
-
-# 修正：可能出现重复生成缩略图
 
 -------------------------
 
@@ -53,20 +94,8 @@ v4.2
 
 # umc            --- ... 
 
--------------------------
-
-### Editor/编辑器
-
-* proj
- - https://summernote.org/getting-started/#installation
- - Summernote - Super Simple WYSIWYG editor
- - Summernote may be freely distributed under the MIT license.
- - https://www.cnblogs.com/stitchgogo/p/6943917.html
-
 ------------------------------ 
 
-
------------------------------- 
 
 * plus/coms
  - footer ... 

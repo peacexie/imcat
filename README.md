@@ -55,6 +55,8 @@
 
 * Add template for `solemn/serious/memory`;
 
+* Add `Opcache` Admin-Management(Clear)
+
 * Fix: Repeat generate thumbnails;
 
 * Fix: One error in Db-Operation;
@@ -108,6 +110,8 @@
   - 精简模板中 `_config/va_home.php` > `[extra/_tabCtrl]` 配置，可自动检测
 
 * 增加`庄重严肃·追忆`专题模板
+
+* 增加`Opcache`后台管理（清理）
 
 * 修正：前台重复生成缩略图
 
