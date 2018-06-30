@@ -21,7 +21,7 @@
 * Support: PHP5.3~PHP7.2 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
-* Demo Website: [IntimateCat(贴心猫)](http://txmao.txjia.com/)
+* Demo Website: [IntimateCat(贴心猫)](http://imcat.txjia.com/)
 
 
 ### 【Setup】
@@ -34,7 +34,7 @@
 * Set the relative path of the site: 
   - all files will be placed on the site of any directory; 
   - In file: /root/cfgs/boot/_paths.php Set Param: PATH_PROJ; 
-  - The value of PATH_PROJ is the relative path of the site, eg:['/txmao'] or root [''](empty string)
+  - The value of PATH_PROJ is the relative path of the site, eg:['/imcat'] or root [''](empty string)
   - For the first time, It will automatically correct the project path, so you can omit the operation
 
 * Edit DB-Config(It can be edited while installing, advice you config manually) 
@@ -91,7 +91,7 @@
   - 扩展: MySQLi/MySQL, GD2, curl
 
 * 设置站点相对目录；
-  - 文件：/root/cfgs/boot/_paths.php 设置PATH_PROJ值为站点相对目录如：“/txmao”或 根目录用“”(空)等；
+  - 文件：/root/cfgs/boot/_paths.php 设置PATH_PROJ值为站点相对目录如：“/imcat”或 根目录用“”(空)等；
   - （首次安装使用会自动更正项目路径，所以可省略上述操作）
 
 * 修改数据库配置：
