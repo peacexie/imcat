@@ -11,5 +11,5 @@
 * 下载解压
 * 把文件复制到：【{vimp/static}/ximp/utabs/ip_qqwry.dat】
 * Local 接口
-* 效果：http://txmao.txjia.com/dev.php?tools-ipaddr
+* 效果：http://imcat.txjia.com/dev.php?tools-ipaddr
 

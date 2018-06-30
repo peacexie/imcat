@@ -76,7 +76,7 @@ submit: 19820/19830
 
 * Url 应该要多长？
  - 文章 : [`前端要给力之：URL应该有多长？`](http://blog.csdn.net/aimingoo/article/details/6081964)
- - 本系统url样例 : http://txmao.txjia.com/chn.php?news.2015-9g-mvp1
+ - 本系统url样例 : http://imcat.txjia.com/chn.php?news.2015-9g-mvp1
  - 本系统静态url : http://www.my_domain.com/html/news/yyyy/md-6789.html
 
 * 前端要给力之：URL应该有多长？

@@ -18,7 +18,7 @@
  - <a href="{rmain}/?kd" >kd</a> -  <a href="http://yscode.txjia.com/tools/screen.htm">贴心口袋</a>
  - <a href="{rmain}/?dg" >dg</a> -  <a href="http://www.weather.com.cn/weather/101281601.shtml">东莞天气</a>
  - <a href="{rmain}/?kg" >kg</a> -  <a href="http://www.txjia.com/kgfood/vgb/about.asp">科冠食品</a>
- - <a href="{rmain}/?cat">cat</a> - <a href="http://txmao.txjia.com/dev.php">贴心猫</a>
+ - <a href="{rmain}/?cat">cat</a> - <a href="http://imcat.txjia.com/dev.php">贴心猫</a>
  - <a href="{rmain}/?box">box</a> - <a href="http://txjia.com/peace/txbox.htm">贴心Java盒子</a>
  - <a href="{rmain}/?asp">asp</a> - <a href="http://txjia.com/peace/txasp.htm">贴心ASP</a>
  - <a href="{rmain}/?git">git</a> - <a href="https://github.com/peacexie/imcat">贴心猫@github</a>

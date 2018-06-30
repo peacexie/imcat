@@ -20,7 +20,7 @@
 * 多项目设置
  - 修改配置：xxx/cfgs/sycfg/sy_vopcfg.php
  - 和 xxx/cfgs/boot/_paths.php
- - 相关资料：`整套模版` http://txmao.txjia.com/dev.php?tpltag-tplsuit
+ - 相关资料：`整套模版` http://imcat.txjia.com/dev.php?tpltag-tplsuit
 
 
 #files#文件结构图

@@ -33,14 +33,14 @@
 #docs#相关文档
 
 * 更多精彩，由你发现! 推荐以下文章：
- - 模板示例 : hello测试+ # http://txmao.txjia.com/doc.php?tester-hello
- - 模板 : 模板步步高 # http://txmao.txjia.com/doc.php?tester-step_imtpl
- - MVC ? 控制器-操作 # http://txmao.txjia.com/doc.php?ctest
- - MKV - 模板数据展示 # http://txmao.txjia.com/doc.php?umod
+ - 模板示例 : hello测试+ # http://imcat.txjia.com/doc.php?tester-hello
+ - 模板 : 模板步步高 # http://imcat.txjia.com/doc.php?tester-step_imtpl
+ - MVC ? 控制器-操作 # http://imcat.txjia.com/doc.php?ctest
+ - MKV - 模板数据展示 # http://imcat.txjia.com/doc.php?umod
 
 * 模板视图
  - 模板视图 见每套模板目录下子目录中的`*.htm`文件
- - 文档见`模板标签`：http://txmao.txjia.com/dev.php?tpltag
+ - 文档见`模板标签`：http://imcat.txjia.com/dev.php?tpltag
 
 
 #tools#工具类库
@@ -61,11 +61,11 @@
  - comFiles(文件操作)/comConvert(加密转化)
  - comImage(图片处理)/comVCode(验证码)/exaCSeal(印章)
  - # 综合案例：读取数据库列表分页显示，
- - http://txmao.txjia.com/skin/doc/tester/step-ufile.php
+ - http://imcat.txjia.com/skin/doc/tester/step-ufile.php
  - # 官方贴心工具：
- - http://txmao.txjia.com/dev.php?tools
+ - http://imcat.txjia.com/dev.php?tools
  - # 类库函数集合：
- - http://txmao.txjia.com/dev.php?start-class
+ - http://imcat.txjia.com/dev.php?start-class
 
 * 个人案例
  - 本人用本系统，作为如下工具使用（包含但不限于）

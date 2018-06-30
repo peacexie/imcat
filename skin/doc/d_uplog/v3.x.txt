@@ -55,13 +55,13 @@
 ## Tips / reference
 
 * Rewrite Config(Apache/Nginx/iis7+)
- -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
+ -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
 
 * idea: 贴心猫(IntimateCat)Developer confession
- -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9a-f3a1
+ -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
 
 * Extend[贴心扩展]
- -> http://txmao.txjia.com/dev.php?extend
+ -> http://imcat.txjia.com/dev.php?extend
 
 * Nodejs Mini Framework
  -> http://txjia.com/peace/wenode.htm
@@ -91,9 +91,9 @@
 * Add: 
  -> This system: Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
  -> Add: `Controller-Action`-style Extending templates and displaying data
- -> see: http://txmao.txjia.com/doc.php?ctest
+ -> see: http://imcat.txjia.com/doc.php?ctest
  -> Add: `mkvRouter-Tpl`-style Show data direct, skip complex tpl config:
- -> see: http://txmao.txjia.com/doc.php?umod
+ -> see: http://imcat.txjia.com/doc.php?umod
 
 * Add: Web admin notes
  -> It's just a guestbook for admin, before the ASP system appeared.
@@ -552,9 +552,9 @@ tplnamenews=c_mod/mem_ulst）
 ## 3.2-, No English Version
 
 * There are No English Version for v3.0, v3.1, v3.2
-* v3.0: See http://txmao.txjia.com/dev.php?uplog-3_2
-* v3.2: See http://txmao.txjia.com/dev.php?uplog-3_1
-* v3.2: See http://txmao.txjia.com/dev.php?uplog-3_0
+* v3.0: See http://imcat.txjia.com/dev.php?uplog-3_2
+* v3.2: See http://imcat.txjia.com/dev.php?uplog-3_1
+* v3.2: See http://imcat.txjia.com/dev.php?uplog-3_0
 
 
 ## 2.0-, Is Only ASP Version

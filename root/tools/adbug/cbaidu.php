@@ -39,7 +39,7 @@ kw=<input type="text" name="kw" id="kw" value="<?php echo $kw; ?>" size="8">
 <a href="?d=txjia.com&kw=">txjia.com</a> : 
 <a href="?d=txjia.com&kw=贴心猫">贴心猫</a> : 
 <a href="?d=txjia.com&kw=IntimateCat">IntimateCat</a> : 
-<a href="?d=txmao.txjia.com">txmao.txjia.com</a> - 
+<a href="?d=imcat.txjia.com">imcat.txjia.com</a> - 
 <a href="?d=yscode.txjia.com">yscode.txjia.com</a> # 
 <a href="?d=dg.gd.cn">dg.gd.cn</a> - 
 <a href="?d=elifebike.com">elifebike.com</a> -

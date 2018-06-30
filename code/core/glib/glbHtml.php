@@ -12,7 +12,7 @@ class glbHtml{
             if(strlen($ext)>12) echo "$ext\n";
             echo "</body></html>\n";
         }elseif($mod=='aumeta'){ // 去掉/修改:author-meta标签在这里
-            $auweb = "http://txmao.txjia.com, https://github.com/peacexie/imcat";
+            $auweb = "http://imcat.txjia.com, https://github.com/peacexie/imcat";
             echo "<meta name='author' content='$auweb, 贴心猫(IntimateCat)'>\n";
         }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';

@@ -94,7 +94,7 @@
  - It can Extended subpage freely;
  - Image-text mix typesetting, personage/company presentation, electronic documents/books... We just can use a special topic to show it!
  - The topic built-in vote-system, the old vote model, we'll move it into extend package.
- - Demo: http://txmao.txjia.com/doc/topic.htm
+ - Demo: http://imcat.txjia.com/doc.php?topic
 
 * Add: Skin(theme) Switch: 
  - Based on bootstrap skin

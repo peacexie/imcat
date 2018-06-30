@@ -10,7 +10,7 @@ En<?php echo $uarr['hname'] ?>
 <li>First time, please see the [<a href='<?php echo surl('uio') ?>' target="_blank">help-page</a>] >>> </li>
 <li>Account number >=2 bit, Password >=5 bit </li>
 <li>authentication code , such as error, please refresh </li>
-<li>Technical support: Peace(txmao.txjia.com).</li>
+<li>Technical support: Peace(imcat.txjia.com).</li>
 
 <?php break;case 'adminread': ?>
 
@@ -18,7 +18,7 @@ En<?php echo $uarr['hname'] ?>
 <li>First time, please see the [<a href='?help' target="_blank">help-page</a>] >>> </li>
 <li>Account number >=2 bit, Password >=5 bit </li>
 <li>authentication code , such as error, please refresh </li>
-<li>Technical support: Peace(txmao.txjia.com).</li>
+<li>Technical support: Peace(imcat.txjia.com).</li>
 
 <?php break;case 'xxx': ?>  
 

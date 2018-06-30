@@ -63,7 +63,7 @@ $cfgs_ext = array(
 
     'schulte' => array(
         'mt' => '近7天地震',
-        'url' => 'http://txmao.txjia.com/root/plus/yscode/dizhen.php',
+        'url' => 'http://imcat.txjia.com/root/plus/yscode/dizhen.php',
     ),
 
 );

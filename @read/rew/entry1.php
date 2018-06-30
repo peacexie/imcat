@@ -27,7 +27,7 @@ $nav = str_replace(array('>/entry1.php/','>/entry2.php/','>/entry1/','>/entry2/'
 </html>
 
 <p>Rewrite配置参考</p>
-<a href='http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1'>Rewrite配置(Apache/Nginx/iis7+)参考</a>
+<a href='http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1'>Rewrite配置(Apache/Nginx/iis7+)参考</a>
 
 <nav>
     <p>nav: Rewrite TEST Links</p>

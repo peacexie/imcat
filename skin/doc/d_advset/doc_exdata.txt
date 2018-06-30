@@ -45,7 +45,7 @@
 
 #fields#提取规则
 
-* [远程页示例](http://txmao.txjia.com/root/skin/dev/tester/uexlib_elmhtml.php)，
+* [远程页示例](http://imcat.txjia.com/root/skin/dev/tester/uexlib_elmhtml.php)，
   请自行“查看Html源代码”了解html结构。
 
 * 提取原始内容规则有5中模式：

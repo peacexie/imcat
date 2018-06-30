@@ -33,14 +33,14 @@
 #docs#Articles
 
 * More exciting, found by you! recommend the following articles:
- - Tpl-Demo : hello-Test+ # http://txmao.txjia.com/doc.php?tester-hello
- - Tpl : Step by Step # http://txmao.txjia.com/doc.php?tester-step_imtpl
- - MVC ? Ctrl-Act # http://txmao.txjia.com/doc.php?ctest
- - MKV - Tpl-Data-Show # http://txmao.txjia.com/doc.php?umod
+ - Tpl-Demo : hello-Test+ # http://imcat.txjia.com/doc.php?tester-hello
+ - Tpl : Step by Step # http://imcat.txjia.com/doc.php?tester-step_imtpl
+ - MVC ? Ctrl-Act # http://imcat.txjia.com/doc.php?ctest
+ - MKV - Tpl-Data-Show # http://imcat.txjia.com/doc.php?umod
 
 * Tpl-View
  - Tpl-View, see sub-dirs in the skin dir(the `*.htm` files),
- - see : `Tpl-tag`: http://txmao.txjia.com/dev.php?tpltag
+ - see : `Tpl-tag`: http://imcat.txjia.com/dev.php?tpltag
 
 
 #tools#Tools-Classes
@@ -60,11 +60,11 @@
  - comFiles(file-operation)/comConvert(encryption)
  - comImage(Image-process)/comVCode(verification-code)/exaCSeal(image-seal)
  - # Integrated case: read database and pager
- - http://txmao.txjia.com/skin/dev/tester/step-ufile.php
+ - http://imcat.txjia.com/skin/dev/tester/step-ufile.php
  - # Official intimate tools:
- - http://txmao.txjia.com/dev.php?tools
+ - http://imcat.txjia.com/dev.php?tools
  - # Class library function list:
- - http://txmao.txjia.com/dev.php?start-class
+ - http://imcat.txjia.com/dev.php?start-class
 
 * Personal Case
  - 本人用本系统，作为如下工具使用 (including but not limited to)

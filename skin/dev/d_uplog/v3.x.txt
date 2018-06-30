@@ -52,13 +52,13 @@
 ## 提示/参考
 
 * Rewrite配置(Apache/Nginx/iis7+)
- -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9h-4bq1
+ -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
 
 * idea：贴心猫(IntimateCat)开发者自白书
- -> http://txmao.txjia.com/root/run/umc.php?faqs.2017-9a-f3a1
+ -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
 
 * 贴心扩展[Extend]
- -> http://txmao.txjia.com/dev.php?extend
+ -> http://imcat.txjia.com/dev.php?extend
 
 * Nodejs微框架
  -> http://txjia.com/peace/wenode.htm
@@ -88,9 +88,9 @@
 * 增加：模板显示控制功能
  -> 体现：不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！的设计思想!
  -> 增加：`控制器-操作` 模式扩展模板和显示数据:
- -> 见：http://txmao.txjia.com/doc.php?ctest
+ -> 见：http://imcat.txjia.com/doc.php?ctest
  -> 增加：`mkv路由-模板` 模式直接显示数据，无需复杂的config配置:
- -> 见：http://txmao.txjia.com/doc.php?umod
+ -> 见：http://imcat.txjia.com/doc.php?umod
 
 * 增加：站务笔记
  -> 其实就是一个管理员自己在后台给自己留言或作笔记的小功能，之前在asp系统中出现过。

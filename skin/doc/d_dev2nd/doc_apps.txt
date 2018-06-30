@@ -20,7 +20,7 @@
 * Multi-Set
  - Edit Config: xxx/cfgs/sycfg/sy_vopcfg.php
  - And xxx/cfgs/boot/_paths.php
- - Related-Info.: `Suit Tpl` http://txmao.txjia.com/doc.php?tpltag-tplsuit
+ - Related-Info.: `Suit Tpl` http://imcat.txjia.com/doc.php?tpltag-tplsuit
 
 
 #files#Files-Structure

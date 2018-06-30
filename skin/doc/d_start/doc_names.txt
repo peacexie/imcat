@@ -34,7 +34,7 @@
 
 * m: model
  - The models(news,build) are defined at backend;
- - It can also be a custom model, Please see this entry `http://txmao.txjia.com/doc.php`:
+ - It can also be a custom model, Please see this entry `http://imcat.txjia.com/doc.php`:
  - ?start The home of `FastStart`(custom model)
 
 * k: It stands for column id or detail id or custom-sub id

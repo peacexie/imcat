@@ -14,14 +14,14 @@
 #free#Free resources
 
 * Free resources(Self-help)
- - Chinese document：http://txmao.txjia.com/dev.php
- - English document：http://txmao.txjia.com/doc.php
- - Faq System：http://txmao.txjia.com/root/run/umc.php?faqs
+ - Chinese document：http://imcat.txjia.com/dev.php
+ - English document：http://imcat.txjia.com/doc.php
+ - Faq System：http://imcat.txjia.com/chn.php?faqs
 
 * Friends exchange (mutual aid)
  - See: the topic : `[Good news] 二次开发/定制 供需说明`
- - http://txmao.txjia.com/root/run/umc.php?faqs.2017-3b-n5b1
- - Casual say(message/complaints) http://txmao.txjia.com/dev.php?info-gbook
+ - http://imcat.txjia.com/chn.php?faqs.2017-3b-n5b1
+ - Casual say(message/complaints) http://imcat.txjia.com/dev.php?info-gbook
  - QQ-Group：607070548
 
 

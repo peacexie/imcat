@@ -10,5 +10,5 @@
 
 * 下载解压
 * 把文件复制到：【{vimp/static}/media/fonts/simkai.ttf】
-* 效果：http://txmao.txjia.com/dev.php?tools-seal
+* 效果：http://imcat.txjia.com/dev.php?tools-seal
 

@@ -94,7 +94,7 @@
  - 专题随意扩展专题子页面；
  - 图文混排，人物/公司专题介绍，电子文档/书籍……都可一个专题搞定！
  - 专题集成投票，之前的独立投票，后续可能整理成扩展包分离出去。
- - 演示：http://txmao.txjia.com/doc/topic.htm
+ - 演示：http://imcat.txjia.com/doc/topic.htm
 
 * 增加 皮肤(主题)切换：
  - 基于bootstrap界面风格

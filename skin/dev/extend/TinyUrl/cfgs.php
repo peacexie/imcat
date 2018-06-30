@@ -5,7 +5,7 @@ return array(
     'title' => '短链接',
     'type' => 'exfun',
     // 模块-exmod, 功能-exfun, 代码-excode, Bug修正-bfix, 其它-else
-    'durl' => 'http://txmao.txjia.com/dev.php?start', // down-url
+    'durl' => 'http://imcat.txjia.com/dev.php?start', // down-url
     'size' => '5KB', // Unit:KB  
     'ver' => 'v3.9+', // version, eg: v3.8+
     'thumb' => '',

@@ -10,7 +10,7 @@
 <li>第一次使用，请查看 《<a href='<?php echo surl('uio') ?>' target="_blank">管理帮助文件</a>》>>>；</li>
 <li>帐号密码区分大小写;帐号>=2位,密码>=5位；</li>
 <li>认证码不分大小写,如错误,请刷新登陆；</li>
-<li>技术支持: Peace(txmao.txjia.com).</li>
+<li>技术支持: Peace(imcat.txjia.com).</li>
 
 <?php break;case 'adminread': ?> 
 
@@ -18,7 +18,7 @@
 <li>第一次使用，请查看 《<a href='?help' target="_blank">管理帮助文件</a>》>>>；</li>
 <li>帐号密码区分大小写;帐号>=2位,密码>=5位；</li>
 <li>认证码不分大小写,如错误,请刷新登陆；</li>
-<li>技术支持: Peace(txmao.txjia.com).</li>
+<li>技术支持: Peace(imcat.txjia.com).</li>
 
 <?php break;case 'xxx': ?>  
 
