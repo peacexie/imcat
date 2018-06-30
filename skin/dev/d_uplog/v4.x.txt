@@ -21,6 +21,8 @@
 
 * 增加`Opcache`管理（清理）
 
+* 贴心猫(IntimateCat)更改域名：txmao.txjia.com -=> imcat.txjia.com
+
 * 修正：前台重复生成缩略图
 
 * 修正：一处数据库操作错误;

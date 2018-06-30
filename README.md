@@ -57,6 +57,8 @@
 
 * Add `Opcache` Admin-Management(Clear)
 
+* IntimateCat change the domain: txmao.txjia.com -=> imcat.txjia.com
+
 * Fix: Repeat generate thumbnails;
 
 * Fix: One error in Db-Operation;
@@ -112,6 +114,8 @@
 * 增加`庄重严肃·追忆`专题模板
 
 * 增加`Opcache`后台管理（清理）
+
+* 贴心猫(IntimateCat)更改域名：txmao.txjia.com -=> imcat.txjia.com
 
 * 修正：前台重复生成缩略图
 

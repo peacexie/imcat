@@ -21,6 +21,8 @@
 
 * Add `Opcache` Management(Clear)
 
+* IntimateCat change the domain: txmao.txjia.com -=> imcat.txjia.com
+
 * Fix: Repeat generate thumbnails;
 
 * Fix: One error in Db-Operation;
