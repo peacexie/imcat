@@ -6,9 +6,9 @@
 ### 子域名跳主域名设置
 $_sy_domain['subDirs'] = array(
     #'www.txjia.com' => 'txjia.com', //不要www.域名跳转
-    #'tiexinmao.duapp.com' => 'txmao.txjia.com', //跳转到主域名
+    #'tiexinmao.duapp.com' => 'imcat.txjia.com', //跳转到主域名
     #'127.0.0.1' => '127.0.0.1', //测试
-    'imcat.txjia.com' => 'txmao.txjia.com',
+    'txmao.txjia.com' => 'imcat.txjia.com',
 ); //dir-跳转
 
 

@@ -43,7 +43,7 @@ $_cbase['tpl']['def_static'] = 'chn';
 $_cbase['tpl']['mob_tpls'] = '(mob)'; //,app
 
 // server
-$_cbase['server']['txmao']  = 'http://txmao.txjia.com'; //txmao首页{svrtxmao}
+$_cbase['server']['txmao']  = 'http://imcat.txjia.com'; //txmao首页{svrtxmao}
 $_cbase['server']['txcode'] = 'http://yscode.txjia.com'; //txcode首页{svrtxcode}
 $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 
