@@ -1,4 +1,4 @@
 
 -- dext_news@2013-04-05 06:07:08 -- 
 INSERT INTO `{pre}dext_news{ext}` (`did`, `detail`, `author`, `source`, `seo_key`, `seo_des`, `seo_tag`, `rel_doc`) VALUES
-('2013-45-6789','贴心猫(IntimateCat)，测试新闻！','Peace','','测试','测试新闻','测试','');
+('2013-45-6789','贴心猫(IntimateCat)，<b>测试</b>新闻！','Peace','','测试','测试新闻','测试','');
