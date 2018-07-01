@@ -1,5 +1,5 @@
 
--- coms_gbook@2018-06-23 12:07:52 -- 
+-- coms_gbook@2018-07-01 15:04:55 -- 
 INSERT INTO `{pre}coms_gbook{ext}` VALUES 
 ('2017-2f-fgp1','1','adad','adadad阿达大大大都试试','adada','231231313','','','','','1','t124','欢迎测试！','123.122.130.145, 10.50.149.73','1487053975','peace','123.122.130.145, 10.50.149.73','1487053975','peace'),
 ('2017-2f-fgv1','1','adad','&lt;iframe src=\"data:text/html,&lt;script&gt;alert(1)</script&gt;\"></iframe> Chrome><img/src=x on\r\nerror=alert(2001)><\r\n<p><img src=\"1\" on\r\nerror=\"alert(1212)\"/></p>','adasda','12312313','','','','','1','t124','欢迎，也接受各种测试！','123.122.130.145, 10.50.149.13','1487054006','peace','123.122.130.145, 10.50.149.13','1487054006','peace'),
