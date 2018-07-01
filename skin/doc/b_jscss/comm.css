@@ -12,6 +12,7 @@ a.cur { color: #C00; }
 .head-link{ float:right; padding-top:10px; white-space:nowrap; }
 .head-h1{ height:57px; white-space:nowrap; }
 .head-h1 small{ overflow:hidden; text-overflow:ellipsis; }
+@media only screen and (max-width:540px){ .head-h1 small span{ display:none; } }
 
 .foot { width:100%; max-width:1140px; margin:20px auto; padding: 10px 0px; clear: both; text-align: center; background-image: url(../../../skin/_pub/a_img/dg.gd.png); background-position: 0px -140px; }
 .foot p.note, .foot p.copy, .foot p.info { font-size:small; color:#666; }

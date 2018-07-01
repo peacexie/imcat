@@ -23,6 +23,8 @@ if($act=='nav'){
     foreach (array(1,2) as $no) {
         exvFunc::navShow($nav[$no],'act');
     }
+}elseif($act=='aumeta'){ 
+    glbHtml::page('aumeta');
 // multi/cloude/license
 }elseif($act=='mscfg'){ 
     $data = read('vjump.sites','ex'); 

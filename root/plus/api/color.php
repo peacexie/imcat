@@ -3,6 +3,7 @@ require dirname(__FILE__).'/_config.php';
 glbHtml::page('Color Pick',1);
 eimp('initJs','jquery;/_pub/jslib/jscolor'); 
 eimp('initCss',';comm');
+glbHtml::page('aumeta');
 ?>
 <style TYPE="text/css">
 body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;color:#333;background-color:#fff}
