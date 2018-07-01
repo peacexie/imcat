@@ -1,0 +1,4 @@
+
+-- docs_news@2013-04-05 06:07:08 -- 
+INSERT INTO `{pre}docs_news{ext}` (`did`, `dno`, `catid`, `hinfo`, `title`, `mpic`, `jump`, `show`, `color`, `click`, `aip`, `atime`, `auser`) VALUES 
+('2013-45-6789','1','nsys','','新闻测试','','','1','','354','127.0.0.8','1365113228','adminer');

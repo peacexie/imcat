@@ -1,0 +1,4 @@
+
+-- docs_faqs@2013-04-05 06:07:08 -- 
+INSERT INTO `{pre}docs_faqs{ext}` (`did`, `dno`, `catid`, `hinfo`, `title`, `mpic`, `jump`, `show`, `color`, `click`, `tags`, `bugid`, `bugst`, `aip`, `atime`, `auser`) VALUES
+('2013-45-6788','1','qacom','0','测试问答','','','1','','154','测试,问答','','open','127.0.0.8','1365114228','peace');
