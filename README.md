@@ -1,10 +1,7 @@
 
 
 
-* 贴心猫(IntimateCat) v4.2 CA
-
-* v4.2 Upgrading... Please use/down v4.1
-* v4.2 升级中…… 请使用/下载 v4.1
+* 贴心猫(IntimateCat) v4.2 Released
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -65,10 +62,13 @@
 
 * Optimize the home page, Show friendly some models that do not exist;
 
+* Demo-site:
+  - We move Demo-site from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
+  - We change the domain to `txmao.txjia.com` (Old is `imcat.txjia.com`)
+
 * [Related news]
   - The shop-store system basic on IntimateCat, It's published and it works OK!
   - Brother-product `Wepy(python)`, It used in work(for info-gather)！
-  - We move IntimateCat from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -115,16 +115,17 @@
 
 * 增加`Opcache`后台管理（清理）
 
-* 贴心猫(IntimateCat)更改域名：txmao.txjia.com -=> imcat.txjia.com
-
 * 修正：前台重复生成缩略图
 
 * 修正：一处数据库操作错误;
 
 * 优化首页，对一些不存在的模型，怎加判断并提示
 
+* 演示站：
+  - 因BAE(基础版)下线停服，贴心猫 转移至“云虚拟主机BCH”下！
+  - 更改域名：imcat.txjia.com (旧: txmao.txjia.com)
+
 * [相关喜讯]
   - 由贴心猫二次开发的外贸商城系统，运营上线！
   - 贴心组合-Python微爬，辅助系统应用于工作中的采集！
-  - 因BAE(基础版)下线停服，贴心猫 至“云虚拟主机BCH”下！
 
