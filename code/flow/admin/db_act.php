@@ -13,7 +13,7 @@ foreach($tabinfo as $r){
     $igap = $fix=='exd' ? '<br>' : ' ';
     if(!in_array($fix,$fixa)) $fixs .= "$igap<input type='checkbox' class='rdcb' value='cache' onClick=\"fmSelGroup(this,'$fix');\">$fix"; 
     $fixa[] = $fix;
-    $opts .= "$itab|$itab($r[Rows])\n";
+    $opts .= "$itab=$itab($r[Rows])\n";
 }
 $sact = "window.location.href='?mkv=$mkv&view=$view&tabid='+this.options[selectedIndex].value";
 $opts = "<select onchange=\"$sact\">".basElm::setOption($opts,$tabid,lang('admin.dba_stab'))."</select>";
@@ -55,12 +55,8 @@ if(!empty($bsend)){
 
 $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 $links = admPFunc::fileNav($view,'dba');
-if($view=='runsql'){
-    $a1 = "<a href='?mkv=$mkv&view=$view&part=data'>data~*</a>";
-    $a2 = "<a href='?mkv=$mkv&view=$view&part=gbak'>gbak~*</a>";
-    $a3 = "<a href='?mkv=$mkv&view=$view&part=ins'>ins~*</a>";
-    $sbar = "Run-SQL : $a1 # $a2 # $a3";
-} 
+
+if($view=='runsql'){ $sbar = "Run-SQL : ---"; }
 if(!in_array($view,array('Export','View'))) glbHtml::tab_bar("$links $umsg",$sbar,35,'tc');
 
 if($view=='Clear'){
@@ -70,8 +66,6 @@ if($view=='Clear'){
 }elseif($view=='runsql'){
 
     $sqldata = req("sqldata",'','html'); 
-    $list = comFiles::listDir(DIR_DTMP.'/update/','file');
-    $list += comFiles::listDir(DIR_DTMP.'/dbexp/','file');
     $part = req("part"); 
     if(!empty($sqldata)){ 
         $res = devData::run1Sql($sqldata);
@@ -80,27 +74,6 @@ if($view=='Clear'){
         $msg = 'Use `---&lt;split&gt;---` Split SQL Statement.';
     }
     $istr = "<textarea name='sqldata' cols='' wrap='off' rows='24' style='width:100%'></textarea>";
-    if(strpos($part,'.dbsql')>0){
-        if(strstr($part,'ins')){
-            $arr = include DIR_DTMP."/update/$part"; 
-            $data = implode(devData::$spsql,$arr);
-        }else{
-            $data = comFiles::get(DIR_DTMP."/dbexp/$part"); 
-            $data = str_replace("><",">$data<",$data);
-        }
-        $istr = str_replace("><",">$data<",$istr);
-    }elseif(!empty($part)){ //if($part=='data~'){
-        $istr = "<pre>\n";
-        foreach ($list as $fp=>$v) {
-            if(!strstr($fp,$part)||strpos($fp,'.dbsql')<=0) continue;
-            $fp = str_pad($fp,30," ");
-            $tm = date('Y-m-d H:i',$v[0]);
-            $sz = basStr::showNumber($v[1], 'Byte');
-            $sz = str_pad($sz,15," ");
-            $istr .= "<a href='?mkv=$mkv&view=$view&part=$fp'>$fp</a>-$sz $tm\n";
-        }
-        $istr .= "</pre>";
-    }
     
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "\n<tr><td class='tc w120'>Run-SQL</td>\n<td>$istr</td></tr>\n";
