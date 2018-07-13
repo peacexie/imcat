@@ -19,8 +19,8 @@ if(devRun::prootGet()!=PATH_PROJ){ // 检查路径
     header('Location:'.PATH_PROJ.$cfg[$tpl][1]); 
 }else{ //默认页:qstr-空
     // * 原生代码(自己写脚本)
-    //require DIR_ROOT.'/tools/rhome/home.php';
+    //require DIR_ROOT.'/tools/home/home.php';
     // * 通过模板解析
     $slang = $_cbase['sys']['lang']=='cn' ? 'cn' : 'en';
-    vopTpls::cinc("_pub:rhome/home-$slang",0,1);
+    vopTpls::cinc("_pub:home/home-$slang",0,1);
 }

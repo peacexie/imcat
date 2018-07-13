@@ -27,13 +27,8 @@ if(strstr($act,'loadExtjs')){ // footer
 if(strstr($act,'autoJQ')){
     if(strstr($exjs,'zepto')){ // 需要自行添加如下zepto文件
         require DIR_VENDUI.'/jquery/zepto-1x.js';
-    }else{ 
-        if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
-            require DIR_VENDUI.'/jquery/html5.js'; // html5shiv + respond
-            require DIR_VENDUI.'/jquery/jquery-1.x.js';
-        }else{
-            require DIR_VENDUI.'/jquery/jquery-2.x.js';
-        }
+    }else{
+        require DIR_VENDUI.'/jquery/jquery-2.x.js';
     }
 }
 

@@ -17,13 +17,25 @@ if(strpos($uri,'.htm')>0){
     }
 }
 
-// 本身是404页,可能存在404的head,所以以下跳转代码无效
-if($url){
-    //header("location:$url");
-    //die($url);
+# dir-blog
+// /tip/?2011-39-8TR9  -=>  /chn.php?news.2011-39-8tr9
+if(strpos($uri,'tip/?')>0){
+    $url = "http://imcat.txjia.com".str_replace('/tip/?','/chn.php?news.',strtolower($uri));
 }
 
-//httpStatus(404);
+# baby,kgfood,peace,tools,wee
+$pre3 = substr($uri,1,3);
+if(strpos(",bab,kgf,pea,tip,too,wee,",$pre3)){
+   $url = "http://txjia.com".$uri;
+}
+
+ob_clean();
+// 本身是404页,可能存在404的head,所以以下跳转代码无效
+if($url){
+    header("location:$url");
+    //die($url);
+}
+httpStatus(404);
 
 ?>
 <!DOCTYPE html>

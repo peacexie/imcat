@@ -8,8 +8,13 @@ $_sy_domain['subDirs'] = array(
     #'www.txjia.com' => 'txjia.com', //不要www.域名跳转
     #'tiexinmao.duapp.com' => 'imcat.txjia.com', //跳转到主域名
     #'127.0.0.1' => '127.0.0.1', //测试
-    'txmao.txjia.com' => 'imcat.txjia.com',
+    'imcat.gz01.bdysite.com' => 'imcat.txjia.com', 
+    'imcat.pswpower.com'     => 'imcat.txjia.com', 
+    'www.txjia.com'          => 'imcat.txjia.com', 
+    'txmao.txjia.com'        => 'imcat.txjia.com',
 ); //dir-跳转
+// http://imcat.gz01.bdysite.com/
+// http://imcat.pswpower.com/
 
 
 ### 跨域子域名设置
