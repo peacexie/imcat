@@ -1,8 +1,7 @@
 {php}
 $isMobile = basEnv::isMobile();
 $_cbase['tpl']['tpl_dir'] = 'chn';
-$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub'],$vcfg['adm'],$vcfg['demo']); 
-if($isMobile) unset($vcfg['chn']); 
+$vcfg = vopTpls::etr1('tpl'); unset($vcfg['_pub'],$vcfg['adm'],$vcfg['demo']);  
 $title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
 $icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
     'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode
@@ -11,9 +10,9 @@ $icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
 <html>
 <head>
 {php}glbHtml::page('init');
-eimp('initJs','jquery;comm;/_pub/rhome/funcs');{/php}
+eimp('initJs','jquery;comm;/_pub/home/funcs');{/php}
 <link href='{=PATH_VENDUI}/bootstrap/css/font-awesome.min.css' type='text/css' rel='stylesheet'/>
-<link href='{=PATH_SKIN}/_pub/rhome/style.css' type='text/css' rel='stylesheet'/>
+<link href='{=PATH_SKIN}/_pub/home/style.css' type='text/css' rel='stylesheet'/>
 {block:head}{/block:head}
 <base target="_blank"/>
 </head>

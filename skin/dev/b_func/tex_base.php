@@ -112,7 +112,12 @@ class tex_base{
         $file = "$path/$key"; 
         if(!file_exists($file)) return '';
         $data = comFiles::get($file);
-        $conv && $data = comConvert::autoCSet($data,'gbk');
+        if($conv){
+            $data = comConvert::autoCSet($data,'gbk');
+        }else{
+            $flag = basStr::isConv($data);
+            $flag && $data = comConvert::autoCSet($data,'gbk');  
+        }
         return $data;
     }
     
