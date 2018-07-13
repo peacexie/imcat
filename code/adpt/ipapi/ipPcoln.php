@@ -2,7 +2,7 @@
 // 获取ip地址-Pcoln
 class ipPcoln{
     
-    public $url = 'http://whois.pconline.com.cn/jsFunction.jsp?callback=jsShow&ip='; 
+    public $url = 'http://whois.pconline.com.cn/ip.jsp?ip='; 
     public $cset = 'gb2312';
     
     // 获取数据

@@ -120,11 +120,11 @@ class safComm{ // extends safBase
         $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
         $q = urldecode($q);
         if($q!=str_replace(array('<','>','"',"'","\\","\r","\n"),'',$q)){
-            if($re) return false;
             $msg = "[QUERY]Error!";
+            if($re) return $msg;
             basMsg::show($msg,'die'); 
         }
-        return true;
+        return 0;
     }
     
     //检测是否外部提交过来的Url

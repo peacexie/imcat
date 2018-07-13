@@ -17,8 +17,8 @@ class vopTpls{
         return $res;
     }
     // 包含html区块（通过模板解析）
-    // vopTpls::cinc('_pub:rhome/home',0,1);
-    // include vopTpls::cinc('_pub:rhome/home');
+    // vopTpls::cinc('_pub:home/home',0,1);
+    // include vopTpls::cinc('_pub:home/home');
     static function cinc($file,$ext='',$inc=0){
         global $_cbase; 
         $ext || $ext = $_cbase['tpl']['tpl_ext']; 

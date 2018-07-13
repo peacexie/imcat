@@ -8,9 +8,9 @@ class comImage{
         $lists = comFiles::listScan($dir);
         foreach ($lists as $file=>$row) {
             $full = "$dir/$file";
-            if(strpos($file,'.jpg') && $row[1]>$size*1024){
-                $res[] = self::compcut($full, $max);
-                self::compress($full, 75);
+            $res[] = self::compcut($full, $max);
+            if(strpos($file,'.jpg') && $row[1]>$size*1024){ 
+                self::compress($full, 80);
             }
         }
         return $res;

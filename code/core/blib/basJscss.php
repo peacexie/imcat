@@ -66,16 +66,12 @@ class basJscss{
     // zepto,jquery,bootstrap,layer
     static function loadJqbs($exjs,$dw=1,$skin=''){
         if(empty($exjs)) return;
-        global $_cbase;
+        //global $_cbase;
         if(strstr($exjs,'zepto')){ // 需要自行添加如下zepto文件
             $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/zepto-1x.js');
         }elseif(strstr($exjs,'jquery')){
-            if(preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])){
-                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/html5.js');
-                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-1.x.js');
-            }else{
-                $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
-            }
+            $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
+            // preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])
         }
         if(strstr($exjs,'bootcss')){
             $ims[] = basJscss::csscode(0,PATH_VENDUI."/bootstrap/css/bootstrap.".($skin ? $skin : 'min').".css");

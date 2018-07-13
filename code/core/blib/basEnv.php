@@ -116,7 +116,7 @@ class basEnv{
     
     // 获取客户端IP地址('::1','123.234.123.234, 127.0.0.1')(.:[ ])
     static function userIP($flag=0){
-        $a = array('f'=>'HTTP_X_FORWARDED_FOR','a'=>'REMOTE_ADDR','c'=>'HTTP_CLIENT_IP');
+        $a = array('xf'=>'HTTP_X_FORWARDED_FOR','ra'=>'REMOTE_ADDR','cip'=>'HTTP_CLIENT_IP');
         $ip = ''; //'r'=>'HTTP_X_REAL_FORWARDED_FOR',
         foreach($a as $k=>$v){
             $v = str_replace(' ','',$v);
