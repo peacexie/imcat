@@ -1,11 +1,9 @@
 <?php
 return array (
-  '.htaccess' => 'f7aa1d0fa4715990b0956109f563bdcb',
   'chn.php' => '3d52285640638203465007a906e3e9c9',
   'dev.php' => '685e0d529140195117757c5373f08579',
   'doc.php' => '1af317c41bdbcb220107090c8f4492e1',
-  'index.php' => '6fe1525fa9f55edc55666462106bb187',
+  'index.php' => '76767f2006dfcc20e24209386163ddc8',
   'mob.php' => 'd391bd8ea7f1c9adb4f2a21e9ebeb84a',
   'robots.txt' => '0d44f69e79d5da3b5898ffd8fdc92ddb',
-  'web.config' => '096d3e19f34a77563d8b9545203fad40',
 ); 
