@@ -78,6 +78,15 @@ p.err{ font-size:18px; padding:10px; }
 #adf_copy { text-align:center; font-size:12px; padding:5px 1px 0px 1px; margin:5px 5px 10px 5px; }
 #adf_logo { text-align:center; padding:5px; list-style:none; }
 
+#adi_links{ position:relative; display:inline-block; float:right; margin:1px;  }
+#adi_links>i{ display:inline-block; padding:9px; border:1px solid #DDD; border-radius:2px; border-top-left-radius:5px; }
+#adi_links p{ position:absolute; top:32px; right:0px; display:inline-block; padding:5px 10px;
+  background:#FFF; border:1px solid #DDD; border-radius:5px 0 0 5px; }
+#adi_links p a{ display:block; white-space:nowrap; padding:5px 5px; border-bottom:1px dotted #CCC; }
+#adi_navbc{ margin-bottom:5px; }
+#adi_navbc i, #adi_navbc b{ font-weight:normal; font-style:normal; }
+#adh_links div.col-xs-6{ max-height:24px; overflow:hidden; }
+
 ul.adf_mnu2 { padding:3px auto 0px auto; margin:0px auto 10px auto; }
 
 ul.adf_mnu2 li.adf_dir, ul.adf_mnu2 li.adf_dir:hover { 

@@ -50,6 +50,7 @@ class _defCtrl{
         if(!file_exists($full)){
             die("<h1>File Not Found: $file.php</h1>");
         }else{
+            include(DIR_SKIN."/adm/frame/_inc-navbar.htm");
             $dop = new dopBase(@$_groups[$mod],'base_model');
             $cv = $dop->cv;
             require $full;
@@ -63,7 +64,7 @@ class _defCtrl{
             echo "<p class='tc pv20'>".basDebug::runInfo()."</p>\n";
         }
         echo "</body></html>\n";
-        echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n";
+        echo basJscss::jscode("$(function(){ admNavd(); setTimeout('jcronRun()',4700) });")."\n";
         die(); //return array('tplnull'=>1);
     }
 

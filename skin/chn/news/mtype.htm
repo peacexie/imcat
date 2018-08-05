@@ -14,14 +14,16 @@ $null = "所有类别";
 
       <div class="news-tbar">
       <i>
-        <a href="{surl($this->mod)}">新闻动态</a>
-        - {sopt($this->key,$this->mod,0,$null)}
+        <a href="{surl($this->mod)}">贴心代码</a>
       </i>
       <i class="hidden-xs right">
-      <a href="{surl($this->mod)}">[所有]</a>
-      {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
-      <a href='{surl($this->mod."-$t_kid")}'>{title($t_title,32,$u)}</a>
-      {/tag:tp}
+        {sopt($this->key,$this->mod,0,$null)}
+        <!--
+        <a href="{surl($this->mod)}">[所有]</a>
+        {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+        <a href='{surl($this->mod."-$t_kid")}'>{title($t_title,32,$u)}</a>
+        {/tag:tp}
+        -->
       </i>
       </div>
       {inc:"news/n-list"}

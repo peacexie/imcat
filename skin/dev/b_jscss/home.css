@@ -9,7 +9,7 @@
 .home-tipn li.title { font-weight:bold; text-align:center; padding:5px; margin:0px 0px 10px 0px; border-bottom:1px dashed #CCC; }
 
 @media only screen and (max-width:992px){
-    .home-tipn ul { width:100%; display:block; float:none; }
+    .home-tipn ul { width:100%; height:auto; display:block; float:none; padding:10px; }
     .home-tipn ul.right { width:100%; display:block; float:none; }
 }
 

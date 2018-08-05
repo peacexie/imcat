@@ -2,6 +2,7 @@
 Lang.adm = {
 
     'open_nowmod_list' : 'Please Open Now Model List.',
+    'nav_nearest' : '- Nearest Links -',
 
     'types_nowsels' : 'Now:',
     'types_allitems' : 'All[{val}]Items',

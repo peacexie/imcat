@@ -34,9 +34,8 @@ a.cur { color:#C00; }
 .ma10 { margin:10px; }
 
 
-.divOuter { width:750px;
-    padding: 0px; margin: 0px auto; border:1px solid #DDD; border-top:0px;
-}
+.divOuter { width:750px; padding: 0px; margin: 0px auto; border:1px solid #DDD; border-top:0px; }
+.infOut{ width:750px; padding:0px; margin:10px auto; border:0; }
 .header{ position:relative; background:#d9edf7; }
 .header p, .header h2{ border: 1px solid #A6CAF0; border-top-left-radius:5px; border-top-right-radius:5px;}
 .header p{ position:absolute; top:0px; right:0px; display:inline-block; background:#FFF; padding:0px 5px 1px 5px; margin:0px 0 0 0; 
@@ -47,7 +46,8 @@ a.cur { color:#C00; }
 .header p img{ vertical-align:middle; }
 /* 平板电脑布局: 481px 至 768px。样式继承自: 移动设备布局。 */
 @media only screen and (max-width:767px) {
-    .divOuter { width:100%; max-width:750px; min-width:240px; }
+    .divOuter { width:100%; }
+    .infOut{ width:100%; min-width:240px; }
     .header{ position:relative; background:#FFF; }
     .header p, .header h2{ display:block; text-align:center; margin:0px auto; border:0px; }
     .header p{ position:static; padding:5px; border-radius:0px; }

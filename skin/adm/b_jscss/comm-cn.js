@@ -2,6 +2,7 @@
 Lang.adm = {
 
     'open_nowmod_list' : '请定位到当前模型列表',
+    'nav_nearest' : '- 最近管理链接 - ',
 
     'types_nowsels' : '已择:',
     'types_allitems' : '共[{val}]个项目',

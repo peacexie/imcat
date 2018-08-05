@@ -36,7 +36,7 @@ tmp...
 
 * Future/Direction
  - 1. Wechat-activity
- - 2. Develop Nodejs/Python accessory project - these project will not in this case! 
+ - 2. Improve-Document
 
 * Recent target
  - App-systems : Shopping-System/Blog

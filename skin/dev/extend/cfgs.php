@@ -4,7 +4,7 @@
 $cfgs = array(
 
     // admSkin, house
-    'ueditor', 'apiServer', 
+    'ueditor', 'kindEditor', 'summernote', 'apiServer', 
     'exdemo', // 一页(10个)以内
     'LocalIP', 'Simkai',
     'TinyUrl',

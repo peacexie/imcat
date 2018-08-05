@@ -380,18 +380,19 @@ function mulStore(flag){ // local,session
     };
     // 设置值
     this.set = function(key, value){
+        key = this.kid(key);
         //在iPhone/iPad上有时设置setItem()时会出现诡异的QUOTA_EXCEEDED_ERR错误；
         if( this.get(key) !== null ) this.del(key);
         this.Store.setItem(key, value);
     };
     // 获取值 查询不存在的key时，有的浏览器返回undefined，这里统一返回null
     this.get = function(key){
-        var v = this.Store.getItem(key);
+        var v = this.Store.getItem(this.kid(key));
         return v === undefined ? null : v;
     };
     this.del = function(key){
-        this.Store.removeItem(key);
-    }
+        this.Store.removeItem(this.kid(key));
+    };
     this.clear = function(){
         this.Store.clear();
     };
@@ -405,5 +406,8 @@ function mulStore(flag){ // local,session
                 n--; i--;
             }
         }
+    };
+    this.kid = function(key){
+        return _cbase.ck.ckpre+jsKey(key);
     };
 }

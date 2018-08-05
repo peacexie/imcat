@@ -4,7 +4,7 @@
 {php}
 eimp('initJs','jquery,bootstrap;comm;comm(-lang)');
 eimp('initCss','stpub,bootstrap;comm'); 
-$upd = req('act')=='update' ? 1 : 1;
+$upd = req('act')=='update' ? 1 : 0;
 {/php}
 </head><body class="pcbody">
 <div class="con.tainer">
@@ -14,18 +14,18 @@ $upd = req('act')=='update' ? 1 : 1;
     <h4>[{=$_cbase['sys_name']}] {lang(admin.home_index)}</h4>
   </div>
   <div class="col-md-6 tc pv5">
-    {lang(admin.home_sn)} : <a href='#' class='cur'>{=$_cbase['sys']['sn']}</a>
+    {lang(admin.home_sn)} : <a href='http://imcat.txjia.com/' target='_blank'>{=$_cbase['sys']['sn']}</a>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-6">
-    <div class="panel panel-default">
+    <div class="panel panel-default" id='adh_links'>
       <div class="panel-heading">
-        <h3 class="panel-title">{lang(admin.home_srvnews)}</h3>
+        <h3 class="panel-title">...</h3>
       </div>
       <div class="panel-body">
-  <script src="{=PATH_ROOT}/plus/api/update.php?act=client&upd={=$upd}"></script>
+        <div class="row"></div>
       </div>
     </div>
   </div>
@@ -158,4 +158,29 @@ echo "--></pre>\n";
 
 </div>
 </body></html>
-{php echo basJscss::jscode("setTimeout(\"jcronRun()\",5400);")."\n"; }
+
+<script>
+$(function(){ 
+    var tabs = admSloc.get('abcNav_tabs'),
+        res = new Array(), nav1 = jsElm.pdID('adf_nav1');
+    if(tabs){
+        try{ res = JSON.parse(tabs); }
+        catch(ex1){ jsLog(ex1); }
+    }
+    // adi_links
+    var html='', drow='', cnt=0;
+    $.each(res,function(id,el){
+        drow = JSON.stringify(el);
+        var p = " onclick='admLnkc(this)' p='"+drow+"' ",
+            t = ""+el.rt+" &gt; "+el.pt+" &gt; "+el.title+"",
+            ahtml = nav1 ? $(nav1).find('.atm_'+el.rid).html() : el.rt,
+            title = ""+ahtml+">"+el.pt+">"+el.title+"";
+        html += "<div class='col-xs-6'> <a href='"+el.url+"' "+p+">"+title+"</a></div>";
+        cnt++; if(cnt==8){ return false; }
+    });
+    $('#adh_links .panel-body>div').html(html);
+    $('#adh_links h3').html(Lang.adm.nav_nearest);
+    // 
+    jcronRun()
+});
+</script>

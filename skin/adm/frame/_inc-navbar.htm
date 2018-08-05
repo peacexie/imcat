@@ -1,0 +1,12 @@
+<?php if(!( req('dialog')>'0' || !empty($_POST) )){ ?>
+<div id='adi_links' onclick='admLinks()'>
+    <i class='fa fa-caret-square-o-down'></i>
+    <p style='display:none'>
+        <!--a href='#'>Link1</a-->
+    </p>
+</div>
+<ol id='adi_navbc' class='breadcrumb'>
+    <li><a href="<?=surl(0)?>" class="fa fa-refresh" target="_parent"></a></li>
+    <!--li><a href='#'>Level1</a></li-->
+</ol>
+<?php } ?>

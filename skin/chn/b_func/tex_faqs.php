@@ -183,7 +183,7 @@ class tex_faqs{
         $db->table('coms_qatag')->where("cid>'0'")->delete(); 
         foreach($at as $tag=>$cnt){ 
             $no += mt_rand(7,13);
-            $cid = basKeyid::kidTemp('0').'-'.basKeyid::fmtBase32('',$no,32,5); 
+            $cid = basKeyid::kidTemp('mdh').'-'.basKeyid::fmtBase32('',$no,32,4); 
             $data = array('cid'=>$cid,'cno'=>'1','title'=>$tag,'show'=>'1','hotcnt'=>$cnt,);
             $db->table('coms_qatag')->data($data)->insert(); 
         }

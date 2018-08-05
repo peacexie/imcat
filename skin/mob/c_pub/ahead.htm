@@ -18,7 +18,7 @@ if($this->type=='detail'){
         <li><a href="{surl(news)}">News-新闻动态</a></li>
         <li><a href="{surl(keres)}">Keres-课程资源</a></li>
     </ul>
-    <p class="logo">
+    <div class="logo">
         <a href="javascript:void(0)" onclick="history.back(-1)"><img src="{=PATH_SKIN}/_pub/logo/imcat-40x.png" width="40" height="40"></a>
         {if $this->mod!='user'}
         <b onclick="jsActNav('subs')">{=$sbtitle} <i class="fa fa-toggle-down"></i></b>
@@ -31,7 +31,7 @@ if($this->type=='detail'){
             {/tag:tp}
             <?php } ?>
         </ul>
-    </p>
+    </div>
 </nav>
 
 <div class="divOuter clearfix">

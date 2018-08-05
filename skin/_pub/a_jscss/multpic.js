@@ -166,6 +166,64 @@ function mpic_data(fmid, rst){
     return re;
 }
 
+// 
+
+function fup_jqui(fpid, cnt, size){
+    var _btn='#'+fpid+'b', _file='#'+fpid+'f', _prog='#'+fpid+'bar';
+    $('#'+fpid+'b').click(function(){ 
+        $('#'+fpid+'f').trigger('click');
+    });
+    var url = _cbase.run.roots+"/plus/file/updeel.php?recbk=json&_r=v02", 
+        minFileSize = 1*1024,//文件最小限制>1K
+        maxFileSize = 980*1024,//文件不超过960K
+        maxNumberOfFiles = 99;//最大上传文件数目
+    $('#'+fpid+'f').fileupload({
+        url: url,
+        dataType: 'json',
+        method: 'post',
+        done: function (e, data) { //jsLog(res); 
+            var res = data.result;
+            var img = "<img width='160' height='120' src='"+res.url+"'>";
+            $('#'+fpid).val(res.url);
+            $('#'+fpid+'img').val(img);
+            if($('#'+fpid+'show').length>0) mpic_madd(fpid,res.url);
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#'+fpid+'bar .progress-bar').css('width', progress + '%');
+        }
+    })
+    .prop('disabled', !$.support.fileInput)
+    .parent().addClass($.support.fileInput ? undefined : 'disabled')
+    .bind('fileuploadadd', function (e, data) {
+        var tmp = data.originalFiles;
+        for(var i=0;i<tmp.length;i++){
+            if (tmp[i]['size'] > maxFileSize) {
+                alert('File size too big!');
+                return true;
+            }
+            if (tmp[i]['size'] < minFileSize) {
+                alert('File size too small!');
+                return true;
+            }
+        }
+    })
+    .bind('fileuploadfail', function (e, data) {
+        if (data.errorThrown=='abort') {
+             alert('Upload Canceled!', 'success',3);
+        }else{
+             alert('Upload Fail, Try again!', 'error',3);
+        }
+    })
+    .bind('fileuploadchange', function (e, data) {
+        //console.log('fileuploadchange');
+    })
+    .bind('click', function (e, data) {
+        $('#'+fpid+'bar .progress-bar').css('width','0%');
+    });
+
+}
+
 /*
 
 */

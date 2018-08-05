@@ -1,4 +1,68 @@
 
+var admSloc=new mulStore('local'); 
+
+function admLinks(){
+    var _o = $('#adi_links p');
+    if($(_o).css('display')==='none'){
+        $(_o).show(300);
+    }else{
+        $(_o).hide(300);
+    }
+    $('#adi_links i').toggleClass('fa-caret-square-o-up').toggleClass('fa-caret-square-o-down');
+}
+
+// display-显示
+function admNavd(){
+    var last = admSloc.get('abcNav_last'),
+        tabs = admSloc.get('abcNav_tabs'),
+        res = new Array();
+    if(tabs){
+        try{ res = JSON.parse(tabs); }
+        catch(ex1){ jsLog(ex1); }
+    }
+    try{ last = JSON.parse(last); }
+    catch(ex2){ jsLog(ex2); }
+    if(last) res.unshift(last); 
+    // adi_links
+    var html='<b>'+Lang.adm.nav_nearest+'</b>', 
+        data='', rows=[], drow='', cnt=0;
+    $.each(res,function(id,el){
+        drow = JSON.stringify(el);
+        if(data.indexOf(drow)<0){
+            var p = " onclick='admLnkc(this)' p='"+drow+"' ";
+            html += "<a href='"+el.url+"' "+p+">"+el.pt+" &gt; "+el.title+"</a>";
+            data += (id>0?',\n':'')+drow;
+            rows.push(el);
+            cnt++; if(cnt==10){ return false; }
+        }
+    });
+    $('#adi_links p').html(html);
+    // adi_navbc
+    var el = res[0],
+        lnk1 = "<li><a onclick=\"admNavc('"+el.rid+"')\">"+el.rt+"</a></li>", 
+        lnk2 = "<li><b>"+el.pt+"</b></li><li><b href='"+el.url+"'>"+el.title+"</b></li>";
+    $('#adi_navbc').append(lnk1+lnk2);
+    // save-configs
+    //data = '['+data+']';
+    data = JSON.stringify(rows);
+    admSloc.set('abcNav_tabs', data);
+}
+// click-adi_navbc
+function admLnkc(e){
+    var drow = $(e).attr('p');
+    try{ last = JSON.parse(drow); }
+    catch(ex2){ jsLog(ex2); }
+    admSloc.set('abcNav_last', drow);
+    window.parent.admSetTab(last.rid);
+    location.href = $(e).prop('href');
+    return false;
+}
+// click-adi_links
+function admNavc(rid){
+    if(top.location!=self.location)
+    window.parent.admSetTab(rid);
+}
+
 function jsactMenu(menuid){
     if(!menuid){
         var a = _cbase.run.mkv.replace('.','-').split('-');

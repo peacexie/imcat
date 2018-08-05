@@ -1,139 +1,103 @@
 
 
---------------------------
+SELECT CONCAT(fromid,'@',fsite) AS cstr FROM cms_infrepub
+WHERE model='news' AND tsite='test'
 
 
-### to Shirley
+SELECT * FROM `cms_infshare` `s` LEFT JOIN `cms_infrepub` `p` ON `s`.`fromid`=p.fromid and s.fsite=p.fsite 
+WHERE (p.tsite='dg' OR p.tsite IS NULL ) AND `s`.`fsite` NOT IN ('dg') ORDER BY `create_time` DESC LIMIT 0,10;
 
 
-* 我睡不着，我是很难过！
-  这几天，我都没生气；只有难过！
+* 模型（后续可能视频等也要分享，用这个表）
+model=news
 
-* 我欲言又止，我怕我说不好让你生气；我怕我没说完，你听一半发飙…
-  相反：你想说什么，想做什么是要立即执行，很多时候不计后果！
+* Infshare/cms_infrepub 
+优化，没有好办法 ... 
 
-* 你要找人说话，我没有回答你；我在生你气吗？不，我当时很难过！
-  这个时候要我笑嘻嘻陪你说话，我真办不到；对不起！我当时也不知道说什么好！
-
-* 把时间前推一个小时：
-  是你在生楚越的气，你在痛骂（具体忘记台词），但我很难过；
-  我很难过，有大半是应为你的台词！
-
-* 你先是生楚越的气；走一圈过来要陪你说话；
-  结果没达到预期效果，然后就转过来一直在生我的气…（到现在）
-
-* 再把时间前推一两天：我们从珠海回来：
-  大家都很累，楚越耍赖有点过分…
-  然后就由你来找滴滴车-找车失败-生气骂人（具体忘记台词），我也很难过；
-  
-* 或许我们都很贱！你骂过之后，楚越安静了，我也精神多了！
-  吃饭前：楚越有气无力的趴在桌上……
-  这时你息怒平静下来，好好的问楚越吃什么了……
-  这时你是否感觉你生气过分了呢？
-
-* 我们对楚越说：不要图一时痛快；乱说话，乱吹牛…
-
-* 很多很多时候，你说的很伤人的话；追究起原因，其实都根本不值一提！
-  其实就算那些`原因`（你不喜欢的事情）再过分一些；
-  都没有你生气时骂的那些伤人词语对应的那么严重！
-
-* 每当你生气时：请你也去掉那些：“家破人亡，你死我活，妻离子散...”
-  的伤人词语？一旦听到这些，我都会很难过！
-  也许，你一下子骂完就好了；而我可能会伤心比较久！
+----------------------------------- 
 
 
-好了，都是小事，没事了！你说呢？
+//分享 
+  --- 更新 update_time
 
------ 2018-07-12 23:32 Peace
-
-
---------------------------
-
-Summernote may be freely distributed under the MIT license.
-
-jquery/jquery is licensed under the MIT License
+//删除分享
+  --- 先不删除
 
 
-* userIP()
-  - HTTP_X_FORWARDED_FOR:61.145.169.200
-  - ??? 
+cityid,  dbname,  ftpdir,  homeurl
+dg,      dghouse,  dg,     dg.fzg360.com
+s228,    s228house,  <xxx>,  192.168.1.228
 
-* jsCss()
+
+------------------------------------------------------------------------------
+
+* 优化 js / css 加载          --- ok ...
   - jquery:1/2    --- ok
   - zepto         --- ok
   - MSIE [6|7|8]  --- ok
   - @import ...
 
-* Editor/编辑器
+* 优化文件上传                --- ok 
+  - 增加: 编辑器 上传
+  - 优化 单文件 上传
+  - 优化 多图片 上传
 
-* Jq-Upload/上传
+* Editor/编辑器               --- ok 
+  - 增加: summernote 扩展
+  - 增加: 编辑器 上传
+  - 优化: 编辑器 分页样式
 
-* tools/plus : 页面
+* 后台                        --- ok 
+  - navbar - 导航 / tabs - 标签
 
---------------------------
+* jquery-ui                  --- ok 
+  - Widget,Position,Draggable,
+  - Resizable,Sortable,Spinner
+  - Jq-Upload/上传
 
-CanPHP框架(简称CP)，是一个简单、自由、实用、高效的php框架。
-CanPHP框架以面向应用为主，不纠结于OOP，不纠结于MVC，不纠结于设计模式，不拘一格，
-力求简单快速优质的完成项目开发，是中小型项目开发首选php框架。 
+* tools/plus : 页面           --- ...
 
-CanPHP框架(CP) 2.0 升级日志
-1、重构了数据库层，内置数据过滤，支持数据库分布式
-2、重构缓存层，支持file、memcache等缓存
-3、重构模版引擎，扩展更灵活
-
-
-* 定位
- - 框架/CMS
- - 
-
-
---------------------------
+* umc                         --- ... 
 
 
-v4.2 # Editor/编辑器
+------------------------------------------------------------------------------
 
- - https://summernote.org/getting-started/#installation
- - Summernote - Super Simple WYSIWYG editor
- - Summernote may be freely distributed under the MIT license.
- - https://www.cnblogs.com/stitchgogo/p/6943917.html
+* 积分/兑换
+  - gift
+  - 购买抵用
 
-v4.3 # umc-css
+* 存储格式：                  --- ???
+  - 增加：md + mdEditor
 
-v4.3 # tag-tools
-
-v4.3 # tools-css
-
------------------------------- 
-
-# open, vcode
-
-# xxx
- - robots
-
-
-# tools
-
-* db
-* remote
-* img:水印,压缩
-* php.ini:比较
-
--------------------------
-
-# home           --- ... smod:判断
- - adm, - ok
- - chn, - ok
- - umc, - ??
-
-# adm            --- ... 
- - 上传，编辑器
-
-# umc            --- ... 
-
------------------------------- 
+* 文档
+ - db
+ - remote
+ - img:水印,压缩
+ - php.ini:比较
 
 
 * plus/coms
  - footer ... 
 
------------------------------- 
+
+* 其它
+ - 定位：框架/CMS
+ - 文档
+ - project psw 发布
+
+
+------------------------------------------------------------------------------
+
+
+* userIP()
+  - HTTP_X_FORWARDED_FOR:61.145.169.200
+  - ip 变化 ??? 
+
+* map                         --- 
+  - 地图周边
+  - 多点搜索
+
+
+------------------------------------------------------------------------------
+
+
