@@ -23,7 +23,7 @@ class vopUrl{
             $ua = array();
             $mkv = 'home';
         }elseif(strpos($q,'=')){
-            parse_str($q,$ua); 
+            parse_str($q, $ua); 
             $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
         }else{ //无=且不为空 
             $ua = array('mkv'=>$q);

@@ -26,7 +26,7 @@ $tiprows = "
     \n<tr><td class='tc w180'>".lang('admin.upg_blfile')."</td>\n<td>
         ".lang('admin.upg_tipfile')."
     </td></tr>\n";
-$tpl = $_cbase['sys']['lang']=='zh' ? 'dev' : 'doc'; 
+$tpl = $_cbase['sys']['lang']=='cn' ? 'dev' : 'doc'; 
 $link = "<a href='{$_cbase['server']['txmao']}/$tpl.php?uplog' target='_blank'>".lang('admin.upg_off')."</a>";
 
 glbHtml::fmt_head('fmlist',"$burl$kid&step=deel",'tblist');
@@ -65,7 +65,7 @@ if($mod=='upvnow'){
 if(in_array($mod,array('upvnow','import'))){
 
     echo "\n<tr><th class='tc'></th>\n<th>".lang('admin.upg_tip1').": </th></tr>\n";
-    $text = comFiles::get(DIR_SKIN."/$tpl/d_uplog/upd_readme.txt"); 
+    $text = comFiles::get(DIR_SKIN."/$tpl/d_uplog/readme.txt"); 
     //$text = extMkdown::pdext($text);
     echo "\n<tr><td class='tc w180'>".lang('admin.upg_tip2')."<br>$link</td>\n<td>
         <textarea cols='' rows='18' style='width:100%'>$text</textarea>

@@ -1,25 +1,13 @@
 <?php
 (!defined('RUN_INIT')) && die('No Init'); 
 
-$part = req('part','syscache'); //opcache,xxx
-$act = req('act','view'); // view, clear
-$msg = "$part : $act";
-
-$gap = "<span class='span ph5'>|</span>";
-$bar = "<a href='?mkv=admin-update'>Syscache</a> ### \n";
-$bar .= "<a href='?mkv=admin-update&part=opcache'>Opcache</a>\n";
-$bar .= " : <a href='?mkv=admin-update&part=opcache&act=delete'>Clear</a>\n";
-glbHtml::tab_bar($msg,$bar,25); // ($title,$cont,$w1=25,$css2='tc')
-
-# ----------------------- 
-
 $parts = empty($parts) ? 'cache' : $parts;
 $cfg = basLang::ucfg('cfgbase.admupd'); 
 
-
-$gbar = ''; $ggap = ''; // class='cur,
+$gbar = ''; $ggap = "\n"; // class='cur,
 foreach($cfg as $k=>$v){ 
-    $gbar .= "$ggap<input type='checkbox' class='rdcb' value='cache' onClick=\"clr_group(this,'$k');\"><a href='#' id='navid_$k'>$v</a>";    
+    $imp = "<input type='checkbox' class='rdcb' value='cache' onClick=\"clr_group(this,'$k');\">";
+    $gbar .= "$ggap<label id='navid_$k'>$imp$v</label>\n";    
     $ggap = ' | ';
 }
 
@@ -29,17 +17,7 @@ foreach($g0 as $k=>$v){
     $g1[$v['kid']] = $v;
 }
 
-if($part=='opcache'){
-    if(!function_exists('opcache_get_status')){
-        echo "<p class='f18 tc'>Opcache Disabled! Please set your php.ini</p>";
-    }elseif($act=='view'){
-        dump(opcache_get_status());
-    }elseif($act=='delete'){
-        opcache_reset();
-        echo "<p>Clean Opcache OK!</p>";
-        dump(opcache_get_status()); 
-    }
-}elseif(empty($bsend)){
+if(empty($bsend)){
     $str1 = ''; $ti = 0;
     foreach($g1 as $k=>$v){
         if($v['pid']=='types'){
@@ -69,8 +47,24 @@ if($part=='opcache'){
     glbHtml::fmae_row(lang('flow.op_upd').':'.$cfg['menux'],$strm);
     glbHtml::fmae_row(lang('flow.dops_clear').':'.$cfg['data'],$strb);
     glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
+    // opcache
+    $opbar = "<a href='?mkv=admin-update&bsend=opcache&act=view'>View-Cache</a>\n # ";
+    $opbar .= "<a href='?mkv=admin-update&bsend=opcache&act=delete'>Clear-Cache</a>\n";
+    glbHtml::fmae_row('Opcache',$opbar);
     glbHtml::fmt_end(array("kid|".(empty($kid) ? '_isadd_' : $kid))); 
     echo basJscss::jscode("function clr_group(e,part){fmSelGroup(e,part);$('#navid_'+part).toggleClass('cur');}$('input:first').trigger('click');");
+
+}elseif($bsend=='opcache'){
+    if(!function_exists('opcache_get_status')){
+        echo "<p class='f18 tc'>Opcache Disabled! Please set your php.ini</p>";
+    }elseif($act=='view'){
+        dump(opcache_get_status());
+    }elseif($act=='delete'){
+        opcache_reset();
+        echo "<p>Clean Opcache OK!</p>";
+        dump(opcache_get_status()); 
+    }
+    echo "<p class='tc'><br><br><a href='?mkv=admin-update'>Go-back!</a></p>\n";
 
 }elseif(!empty($bsend)){
 

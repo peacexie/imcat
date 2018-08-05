@@ -13,11 +13,12 @@ class vopStatic{
         );
         $tpl = empty($cfg['i'][$type]['cfgs']) ? $dtpl[$cfg['etab']] : $cfg['i'][$type]['cfgs']; 
         if(!strpos($tpl,'target')) $tpl = str_replace('<a',"<a target='_blank'",$tpl);
-        $data = ''; $rep = array('title','color','url','mpic','detail');
+        $data = ''; $rep = array('title','color','url','urlorg','mpic','detail');
         $list = glbDBObj::dbObj()->table("advs_$mod")->where("catid='$type' AND `show`='1'")->select();
         if($list){
             foreach($list as $r){
                 $istr = $tpl;
+                $r['urlorg'] = $r['url'];
                 if(in_array($cfg['etab'],array(1,2))){ 
                     $r['url'] = PATH_ROOT."/plus/ajax/redir.php?advs:".comConvert::sysBase64("$mod,$r[aid],$r[url]");
                 }

@@ -9,7 +9,7 @@ class updInfo{
     static $space_file = '/dset/_upd_spaceinfo.php';
     
     static $updtcfg = array(
-        'sync'  => '10d', //10d
+        'sync'  => '3d', //3d
         'stat'  => '3h', //3h
         'space' => '24h', //24h
     );
@@ -27,7 +27,7 @@ class updInfo{
         $data = self::getCacheData($nf,'sync');
         if(empty($data)){
             // ● [资讯]2015-0501：微信接口基本完成 [2015-05-05] 
-            $list = glbDBObj::dbObj()->table('docs_news')->where("catid='nsystem'")->limit(3)->order('did DESC')->select();
+            $list = glbDBObj::dbObj()->table('docs_news')->where("catid='nsys'")->limit(3)->order('did DESC')->select();
             if($list){foreach($list as $r){
                 $url = $_cbase['run']['rsite'].vopUrl::fout("chn:news.$r[did]");
                 $a = "<a href='$url' target='_blank'>$r[title]</a>";

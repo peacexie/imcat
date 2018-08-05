@@ -165,7 +165,7 @@ class basStr{
     static function filHText($xStr,$xLen=0) {
         $xStr = preg_replace("/<\!--.*?-->/si","",$xStr); //注释
         $xStr = strip_tags($xStr); 
-        $xStr = str_replace(array('&nbsp;'),' ',$xStr); 
+        $xStr = htmlspecialchars_decode($xStr); // 不含<>字符
         $xStr = self::filTrim($xStr); 
         if($xLen) $xStr = self::cutWidth($xStr,$xLen);
         return $xStr; // nl2br($s);

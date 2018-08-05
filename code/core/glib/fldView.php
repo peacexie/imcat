@@ -51,12 +51,12 @@ class fldView{
         $item = strstr(@$cfg['fmexstr'],'exbar') ? "<div id='fm_{$k}_bar' class='edt_bar'></div>" : '';
         if($eid=='um'){
             $item .= basJscss::imp('/edt_um/themes/default/css/umeditor.css','vendui');
-            $item .= "<textarea id='fm[$k]' name='fm[$k]' style='display:none;'></textarea>";
-            $item .= "<script type='text/plain' id='fm_{$k}_' name='fm[$k]' style='width:{$cfg['fmsize'][0]}px;height:{$cfg['fmsize'][1]}px;'>".@$val."</script>";
+            $item .= "<textarea id='fm[$k]' name='fm[$k]' style='display:none;'></textarea>\n";
+            $item .= "<script type='text/plain' id='fm_{$k}_' name='fm[$k]' style='width:{$cfg['fmsize'][0]}px;height:{$cfg['fmsize'][1]}px;'>".@$val."</script>\n";
         }else{
-            $item .= "<textarea id='fm_{$k}_' name='fm[$k]'>".@$val."</textarea>";
+            $item .= "<textarea id='fm_{$k}_' name='fm[$k]'>".@$val."</textarea>\n";
         }
-        $item .= basJscss::jscode("var editor_fm_{$k}_; edt_Init('fm[$k]','$bsbar',$size);"); 
+        $item .= basJscss::jscode("var editor_fm_{$k}_; $().ready(function(){edt_Init('fm[$k]','$bsbar',$size);});\n"); 
         return $item;
     }
     // 日期时间
@@ -95,9 +95,24 @@ class fldView{
             $simg = "<br><span class='idHidden' id='$id'><img src='$val' onload='imgShow(this,360,240)' border='0' /></span>";
         }
         $item .= "<input id='fm_{$k}_' name='fm[{$k}]' type='text' value='$val' class='file' $vstr $jsAct>";
-        $item .= "<input type='button' value='".basLang::show('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upone.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_upfiles')."',360,120)\">";
-        $item .= "<input type='button' value='".basLang::show('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_vfiles')."',720,480)\">";
-        $item .= "<input type='button' value='".basLang::show('admin.fv_clear')."' onclick=\"$('#fm_{$k}_').val('');\">$simg";
+        $item .= self::ifpinp($k,$smk).$simg;
+        $item .= self::ifpcjs();
+        $item .= basJscss::jscode("$(function(){fup_jqui('fm_{$k}_',1,980);})");
+        return $item;
+    }
+    static function ifpinp($k,$smk,$multi=''){
+        $clear = $multi ? "mpic_clear('fm_{$k}_');" : "$('#fm_{$k}_').val('');";
+        $item  = "<input type='file' id='fm_{$k}_f' name='fm_{$k}_files' $multi style='display:none;'>";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_upload')."' id='fm_{$k}_b'>";
+        $item .= "<input type='button' value='".basLang::show('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_vfiles')."',720,560)\">"; 
+        $item .= "<input type='button' value='".basLang::show('admin.fv_clear')."' onClick=\"$clear\">";
+        return $item;
+    }
+    static function ifpcjs(){
+        $item  = basJscss::imp("/_pub/a_jscss/multpic.js");
+        //$item .= basJscss::imp("/jqui/jquery-fileupload.css",'vendui');
+        $item .= basJscss::imp("/jqui/jquery-ui.min.js",'vendui');
+        $item .= basJscss::imp("/jqui/jquery-fileupload.js",'vendui');
         return $item;
     }
     // pics
@@ -108,12 +123,10 @@ class fldView{
         $item .= "<div id='fm_{$k}_out' class='mpic_out'>"; 
         $item .= "<div id='fm_{$k}_show'>{$cfg['cfgs']}</div>"; 
         $item .= "<div id='fm_{$k}_tarea' class='clear'><textarea name='fm[$k]' id='fm_{$k}_' style='display:none;'>$val</textarea></div>"; 
-        $item .= "<input type='button' value='".basLang::show('admin.fv_upload')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/upbat.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_upfiles')."',720,560)\">"; 
-        $item .= "<input type='button' value='".basLang::show('admin.fv_view')."' onclick=\"winOpen('".PATH_ROOT."/plus/file/fview.php?fid=fm_{$k}_$smk','".basLang::show('admin.fv_vfiles')."',720,560)\">"; 
-        $item .= "<input type='button' value='".basLang::show('admin.fv_clear')."' onClick=\"mpic_clear('fm_{$k}_');\">";
+        $item .= self::ifpinp($k,$smk,'multiple');
         $item .= "</div>"; 
-        $jpath = PATH_SKIN."/_pub/a_jscss/multpic.js";
-        $item .= basJscss::jscode("jQuery.getScript('$jpath',function(){ mpic_minit('fm_{$k}_'); })"); 
+        $item .= self::ifpcjs();
+        $item .= basJscss::jscode("$(function(){mpic_minit('fm_{$k}_');fup_jqui('fm_{$k}_',99,980);})");
         return $item;
     }
     static function ipick($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){

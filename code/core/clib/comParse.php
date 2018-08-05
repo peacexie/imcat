@@ -89,12 +89,13 @@ class comParse{
     // 反序列化（将某些特殊字符的utf8编码转为asc码解析）不建议使用原生的unserialize。
     static function serEncode($str) { 
         $str = str_replace("\r", "", $str);
-        #$str = preg_replace('!s:(\d+):"(.*?)";!se', '"s:".strlen("$2").":\"$2\";"', $str);
-        $str = preg_replace_callback('/s:(\d+):"(.*?)";/s', function ($matches) { 
-            return 's:'.strlen($matches[2]).':"'.$matches[2].'";';
-        }, $str);
+        #$str = preg_replace('/s:(\d+):"(.*?)";/se', '"s:".strlen("$2").":\"$2\";"', $str);
+        $str = preg_replace_callback('/s:(\d+):"(.*?)";/s', array(self,'serEncode_cb'), $str);
         return unserialize($str); 
     }
+    static function serEncode_cb($arr){
+        return 's:'.strlen($arr[2]).':"'.$arr[2].'";';
+    } // php5.2不支持匿名函数
 
     // unicode 
     static function uniDecode($str, $type='u'){
@@ -103,10 +104,11 @@ class comParse{
         }else{ // '&#x4E00'
             $reg = '/\&\#x([0-9a-f]{4})\;/i';
         }
-        $str = preg_replace_callback($reg, function($match){
-            return mb_convert_encoding(pack('H*', $match[1]), 'UTF-8', 'UCS-2BE');
-        }, $str);
+        $str = preg_replace_callback($reg, array(self,'uniDecode_cb'), $str);
         return $str;
     }
+    static function uniDecode_cb($arr){
+        return mb_convert_encoding(pack('H*', $arr[1]), 'UTF-8', 'UCS-2BE');
+    } // php5.2不支持匿名函数
 
 }
