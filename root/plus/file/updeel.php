@@ -27,12 +27,13 @@ if($uparr){
         "allowFiles" => $ucfg['uptypes'], //array(".gif", ".png",'.jpg')
     );
     
-    $nok = $smsg = ''; 
+    $nok = $smsg = ''; $infos = array();
     $sum = count($uparr);
     foreach($uparr as $k){
     //生成上传实例对象并完成上传
         $up = new comUpload($k, $config, $uptype);
         $info = $up->getFileInfo(); 
+        $infos[] = $info;
         if($info['state']=='SUCCESS'){
             $nok++;
             $smsg .= "\\n{$info['original']} -=> ".basename($info['url'])."";
@@ -49,6 +50,10 @@ if($uparr){
             $msg = lang('plus.fop_fupok')."$mok \\n$smsg";    
         } 
         echo basJscss::Alert($msg,'Redir',basReq::getURep($_SERVER["HTTP_REFERER"],'dfile',''));
+    }elseif($recbk=='kindEditor'){ 
+        $info['error'] = $info['state']=='SUCCESS' ? 0 : 1;
+        if(!empty($msg)) $info['message'] = $msg;
+        echo json_encode($info);
     }elseif($recbk=='pfield'){
         $cmd = $nok>0 ? "window.parent.jsElm.jeID('$fid').value='{$info['url']}';" : "alert('{$info['state']}');";
         echo basJscss::jscode("$cmd;parent.layer.close(parent.layer.getFrameIndex(window.name));"); 
@@ -56,7 +61,7 @@ if($uparr){
         $id = substr($recbk,6);
         $cmd = $nok>0 ? " [OK!] ".lang('plus.fop_upok').":{$info['original']}" : " [Error] ".lang('plus.fop_upfail').": {$info['state']}";
         echo basJscss::jscode("window.parent.jsElm.jeID('bidiv_$id').innerHTML='[OK!] ".lang('plus.fop_upok').":{$info['original']}';"); 
-    } else {
+    } else { 
         echo json_encode($info);
     }
     

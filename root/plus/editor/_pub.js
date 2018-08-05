@@ -16,24 +16,25 @@ function edt_showBar(fid){
 }
 
 function edt_InsPage(fid,title){
-    var html = "<p><hr class='split_pager'></p>"; 
+    var html = "<hr class='split_pager'>"; 
     edt_Insert(fid, html);
 }
 function edt_InsDate(fid){
-      var date = new Date();
-      var nYear   = date.getFullYear(); 
-      var nMonth  = date.getMonth()+1; if(nMonth<10) nMonth = '0'+nMonth;
-      var nDay    = date.getDate();    if(nDay<10) nDay = '0'+nDay;  
+    var date = new Date();
+    var nYear   = date.getFullYear(); 
+    var nMonth  = date.getMonth()+1; if(nMonth<10) nMonth = '0'+nMonth;
+    var nDay    = date.getDate();    if(nDay<10) nDay = '0'+nDay;  
     var html = ' ' + nYear + '-' + nMonth + '-' + nDay + ' ';
     edt_InsText(fid, html);
 }
 function edt_InsTime(fid){
-      var date = new Date();
-      var nHour   = date.getHours();   if(nHour<10) nHour = '0'+nHour;
-      var nMinute = date.getMinutes(); if(nMinute<10) nMinute = '0'+nMinute;
-      var nSecond = date.getSeconds(); if(nSecond<10) nSecond = '0'+nSecond;
+    var date = new Date();
+    var nHour   = date.getHours();   if(nHour<10) nHour = '0'+nHour;
+    var nMinute = date.getMinutes(); if(nMinute<10) nMinute = '0'+nMinute;
+    var nSecond = date.getSeconds(); if(nSecond<10) nSecond = '0'+nSecond;
     var html = ' ' + nHour + ':' + nMinute + ':' + nSecond + ' ';
     edt_InsText(fid, html);
+    //_cbase.run.snflag = 0;
 }
 
 function edt_InsImage(fid,url,title,w,h){

@@ -44,7 +44,7 @@ $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARN
 td { white-space:nowrap; }
 input.r { width:96%; }
 </style>
-</head><body class="divOuter">
+</head><body class="infOut">
 
 <?php basLang::shead(lang('tools.chk_envcheck')); ?>
 

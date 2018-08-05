@@ -23,7 +23,7 @@ glbHtml::page('aumeta');
 td { white-space:nowrap; }
 select[multiple]{height:auto;}
 </style>
-</head><body class="divOuter">
+</head><body class="infOut">
 
 <?php basLang::shead(lang('tools.rst_title')); ?>
 

@@ -85,7 +85,7 @@ b, strong, .b { font-weight: bolder; }
 </style>
 
 </head>
-<body class="divOuter">
+<body class="infOut">
 
 <?php basLang::shead(lang('tools.adcfg_binfo')); ?>
 

@@ -61,7 +61,7 @@ li { border-bottom: 1px solid #CCC; padding: 5px; margin: 1px 0px; }
 i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; padding: 0px 3px; margin: 0px; }
 </style>
 
-</head><body class="divOuter">
+</head><body class="infOut">
 
 <?php basLang::shead('Check/Scan'); ?>
 
@@ -142,7 +142,7 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
     <td class="tc" colspan="3">
      <!--# <a href='?act=openDowns&part=1'>openDowns</a>-->
      # <a href='?act=scanDblang&part='>scanDblang</a>
-     # <a href='cbaidu.php'>scanBaidu</a>
+     <!--# <a href='cbaidu.php'>scanBaidu</a>-->
      # <a href='?act=testMkvs&part=ok' target="_blank">okMkvs</a>
      # <a href='?act=testMkvs&part=ng' target="_blank">ngMkvs</a>
      #

@@ -34,7 +34,10 @@ function edt_Init(fid,bar,w,h){
         para += "editor_"+fid+" = K.create('#"+fid+"',{";
         para += "langType:edt_langType,";
         para += "resizeType:1,";
-        para += "allowImageUpload:false,";
+        para += "allowImageUpload:true,"; // true
+        para += "uploadJson:_cbase.run.roots+'/plus/file/updeel.php?recbk=kindEditor',";
+        para += "afterUpload: function(url){this.sync();},";
+        para += "cssData: '.split_pager{ font-size:0; height:5px; margin:10px 0; border:1px dotted #999; }',";
         if(w) para += "width:'"+w+"px',";
         if(h) para += "height:'"+h+"px',";
         para += "items:edt_"+bar+"Bar";

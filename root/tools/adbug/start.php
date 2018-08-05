@@ -36,7 +36,7 @@ glbHtml::page('aumeta');
 <base target="_blank"/>
 </head>
 
-<body class="divOuter">
+<body class="infOut">
 
 <?php 
 
