@@ -4,7 +4,7 @@
 
 $_cfgs['db_class']   = 'mysqli'; // 数据库类(class),mysqli(推荐),pdox(用于PDO扩展),mysql(PHP5.5+不能使用)
 $_cfgs['db_host']    = 'localhost'; // 数据库主机(如果发现使用主机名连接数据库很慢,改用ip试一下)
-$_cfgs['db_name']    = 'catv42_20186r'; // 数据库名(pdox连接不使用) 
+$_cfgs['db_name']    = 'catv43_20188a'; // 数据库名(pdox连接不使用) 
 $_cfgs['db_port']    = '3306'; // 数据库端口，mysql默认是3306，一般不需要修改
 $_cfgs['db_user']    = 'root'; // 数据库用户名
 $_cfgs['db_pass']    = ''; // 数据库密码    
