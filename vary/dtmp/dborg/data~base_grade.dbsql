@@ -1,7 +1,7 @@
 
--- base_grade@2018-07-01 15:04:55 -- 
+-- base_grade@2018-08-05 10:09:33 -- 
 INSERT INTO `{pre}base_grade{ext}` VALUES 
-('supper','adminer','超级管理员','124','1','m1adm','','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','','','0','','127.0.0.1','1507104726','peace'),
+('supper','adminer','超级管理员','124','1','m1coms','','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','','','0','','127.0.0.1','1507104726','peace'),
 ('auser','adminer','会员管理员','148','1','','','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','','','0','','127.0.0.1','1507104726','peace'),
 ('ainfo','adminer','信息管理员','132','1','m1info','','m1012,m1main,m1info,m1coms,m1tool,m2test1,m3demo,m3drem,m2test2,m3b3,m3b1,m3b2,m2pro,m3order,m3pro,m3cset,m2res,m3kres,m3keres,m2user,m2info,m3news,m3nrem,m3about,m2topic,m3topic,m3torem,m2indoc,m3indoc,m3inread,m3inrem,m3inmem,m2faqs,m3qadmin,m3qrtag,m3qaset,m2vote,m3vtadm,m3voip,m2else,m3gbook,m3notea,m2sys,m3catch,m3self,m2fav,m3favor','order-isdone,indoc-get,indoc-d,indoc-adm','dops-m,dops-a,admin-catalog,admin-grade,admin-static,admin-uinfo,admin-update,apis-exp_indoc,apis-exp_order,apis-exp_qaset','','admin/paras.php,admin/api400.php','demo,about,news,cargo,topic,keres,indoc,votes,faqs,gbook,notea,inrem,inread,crem,drem,kerem,nrem,trem,corder,coitem,cocar,qarep,qatag,votei,votep,adfavor','','','','edtlist,edtup,edtadm,pstools,psdev,image,flash,media,file','upsize1=200\r\nupsizes=960000','','','0','','127.0.0.1','1507104726','peace'),
 ('aframe','adminer','系统架构员','180','1','','','','m1base,m2uedit,m2upass,m2uinfo,m2utips,m1order,m2order,m2oitem,m2oquiry,m1docs,m2idview,m2idpub','','','','','','','','','','','','0','','127.0.0.1','1507104726','peace'),

@@ -1,4 +1,4 @@
 
--- plus_sphinx@2018-07-01 15:04:55 -- 
+-- plus_sphinx@2018-08-05 10:09:34 -- 
 INSERT INTO `{pre}plus_sphinx{ext}` VALUES 
 ('demo','33');

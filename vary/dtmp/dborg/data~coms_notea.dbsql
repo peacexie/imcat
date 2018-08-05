@@ -1,5 +1,5 @@
 
--- coms_notea@2018-07-01 15:04:55 -- 
+-- coms_notea@2018-08-05 10:09:33 -- 
 INSERT INTO `{pre}coms_notea{ext}` VALUES 
 ('2017-5y-n771','1','OPcache设置','[OPcache]\r\nzend_extension=php_opcache.dll\r\nopcache.enable=1\r\nopcache.enable_cli=1\r\nopcache.memory_consumption=528\r\nopcache.interned_strings_buffer=8\r\nopcache.max_accelerated_files=10000\r\nopcache.revalidate_freq=1\r\nopcache.fast_shutdown=1','','','','','','','1','t124','','220.115.158.76, 10.50.148.53','1496146471','peace','220.115.158.76, 10.50.148.53','1496146471','peace'),
 ('2017-5y-n811','1','房产系统','* www.08cms.com 08CMS房产系统\r\n* www.house5.net house5房地产网站程序\r\n* www.eallcn.com 易遨中介房源管理系统\r\n* www.aijiacms.com 爱家房产网站系统\r\n* www.fangcms.com fangcms房产网站cms\r\n* www.hi-house.com Hi-House房产中介网站系统 (*)','','','','','','','1','t124','','220.115.158.76, 10.50.143.19','1496146611','peace','220.115.158.76, 10.50.143.19','1496146611','peace'),

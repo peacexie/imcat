@@ -26,12 +26,13 @@ $_prcore = array (
       'fmextra' => '',
       'fmexstr' => '',
       'cfgs' => 'kind=KindEditor
+sn=Summernote
 ue=UEditor
 um=UEMini
 ck=CKEditor
 xh=xhEditor',
       'key' => 'sys_editor',
-      'val' => 'kind',
+      'val' => 'summernote',
     ),
     'sys_open' => 
     array (
@@ -51,7 +52,7 @@ xh=xhEditor',
       'fmextra' => '',
       'fmexstr' => '',
       'cfgs' => '4=4)layer@sentsin.com(推荐)
-1=1)Js/Bootstrap.modal',
+1=1)Js/window.open',
       'key' => 'sys_open',
       'val' => '4',
     ),
@@ -73,7 +74,7 @@ xh=xhEditor',
       'fmextra' => '',
       'fmexstr' => '',
       'cfgs' => '4=4)layer@sentsin.com
-1=1)JQ/Bootstrap.modal(推荐)',
+3=3)JQ/tipsWindown(推荐)',
       'key' => 'sys_pop',
       'val' => '3',
     ),

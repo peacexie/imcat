@@ -1,5 +1,5 @@
 
--- users_inmem@2018-07-01 15:04:56 -- 
+-- users_inmem@2018-08-05 10:09:34 -- 
 INSERT INTO `{pre}users_inmem{ext}` VALUES 
 ('2015-6x-djs1','yufish','inadm','fish鱼','135-37432199','yufish@163.com','233232','Nancheng','intech','1','0','192.168.1.11','1435556269','peace','192.168.1.11','1435556269','peace'),
 ('2015-9d-nus1','xgezi','incom','xie鸽子','135-37432147','80893510@qq.com','','','intech','1','0','127.0.0.1','1442149020','peace','127.0.0.1','1442149020','peace'),

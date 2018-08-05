@@ -1,5 +1,5 @@
 
--- exd_sptabs@2018-07-01 15:04:55 -- 
+-- exd_sptabs@2018-08-05 10:09:34 -- 
 INSERT INTO `{pre}exd_sptabs{ext}` VALUES 
 ('xtab1','2011','_2012'),
 ('xtab1','2012','_2012'),
