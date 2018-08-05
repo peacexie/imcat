@@ -1,7 +1,7 @@
 
 
-
-* 贴心猫(IntimateCat) v4.2 Released
+* 贴心猫(IntimateCat) V4.3(Alpha)
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
 
