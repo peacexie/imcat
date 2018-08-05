@@ -40,7 +40,7 @@ function mpic_madd(fmid,file){
     }
     if(!k){
         mpic_mshow(fmid,file,val);
-        val = $('#'+fmid).val();
+        val = $('#'+fmid).val(); 
         mpic_marea(fmid,val+file+';\n');
         cfg.data.push(file);
     }else{    
@@ -184,9 +184,12 @@ function fup_jqui(fpid, cnt, size){
         done: function (e, data) { //jsLog(res); 
             var res = data.result;
             var img = "<img width='160' height='120' src='"+res.url+"'>";
-            $('#'+fpid).val(res.url);
-            $('#'+fpid+'img').val(img);
-            if($('#'+fpid+'show').length>0) mpic_madd(fpid,res.url);
+            if($('#'+fpid+'show').length>0){
+                mpic_madd(fpid,res.url);
+            }else{
+                $('#'+fpid+'img').val(img);
+                $('#'+fpid).val(res.url);
+            }
         },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
