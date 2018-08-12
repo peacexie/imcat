@@ -1,14 +1,14 @@
 
 
-* 贴心猫(IntimateCat) V4.3(Alpha)
+* 贴心猫(imcat) V4.3(Alpha)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
 
 
-### What is IntimateCat(贴心猫)?
+### What is imcat(贴心猫)?
 
-* IntimateCat(贴心猫) is a set of Light weight, free, sharing general PHP web application system!
+* `Imcat` means IntimateCat(贴心猫), It is a set of Light weight, free, sharing general PHP web application system!
 * Apply to: online shop, hospital, school, enterprise, personal website, enterprise intranet, profession portal site, etc.......
 * Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
 
@@ -18,7 +18,7 @@
 * Support: PHP5.3~PHP7.2 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
-* Demo Website: [IntimateCat(贴心猫)](http://imcat.txjia.com/)
+* Demo Website: [imcat(贴心猫)](http://imcat.txjia.com/)
 
 
 ### 【Setup】
@@ -54,7 +54,7 @@
 
 * Add `Opcache` Admin-Management(Clear)
 
-* IntimateCat change the domain: txmao.txjia.com -=> imcat.txjia.com
+* imcat change the domain: txmao.txjia.com -=> imcat.txjia.com
 
 * Fix: Repeat generate thumbnails;
 
@@ -67,7 +67,7 @@
   - We change the domain to `txmao.txjia.com` (Old is `imcat.txjia.com`)
 
 * [Related news]
-  - The shop-store system basic on IntimateCat, It's published and it works OK!
+  - The shop-store system basic on imcat, It's published and it works OK!
   - Brother-product `Wepy(python)`, It used in work(for info-gather)！
 
 
