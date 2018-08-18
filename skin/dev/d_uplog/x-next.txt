@@ -1,73 +1,45 @@
 
 
-SELECT CONCAT(fromid,'@',fsite) AS cstr FROM cms_infrepub
-WHERE model='news' AND tsite='test'
+1、app8.0.1版本上线及维护（已完成）；
+2、旧版接口的维护（已完成）；
+3、新后台整合app资讯管理与新闻评论（进行中）；
+
+以后安这种标准
 
 
-SELECT * FROM `cms_infshare` `s` LEFT JOIN `cms_infrepub` `p` ON `s`.`fromid`=p.fromid and s.fsite=p.fsite 
-WHERE (p.tsite='dg' OR p.tsite IS NULL ) AND `s`.`fsite` NOT IN ('dg') ORDER BY `create_time` DESC LIMIT 0,10;
+
+日,三 12:13
+
+“1111=0,3388=4,1289=3,9090=4,2256=1,1868=?”要求根据规律找出答案。
 
 
-* 模型（后续可能视频等也要分享，用这个表）
-model=news
+test/201808/17105944c6374880.mp3
+test/201808/17_live_12345678.mp3
 
-* Infshare/cms_infrepub 
-优化，没有好办法 ... 
-
------------------------------------ 
-
-
-//分享 
-  --- 更新 update_time
-
-//删除分享
-  --- 先不删除
-
-
-cityid,  dbname,  ftpdir,  homeurl
-dg,      dghouse,  dg,     dg.fzg360.com
-s228,    s228house,  <xxx>,  192.168.1.228
-
+RTMP://play.aliyunlive.com/AppName/StreamName?auth_key=timestamp-rand-uid-md5hash
+RTMP://play.aliyunlive.com/AppName/StreamName?auth_key=timestamp-rand-uid-md5hash
 
 ------------------------------------------------------------------------------
 
-* 优化 js / css 加载          --- ok ...
-  - jquery:1/2    --- ok
-  - zepto         --- ok
-  - MSIE [6|7|8]  --- ok
-  - @import ...
+http://201886.txjia.com/
+http://imcat.txjia.com/cases/201886/
+http://192.168.1.228/peace/imcat/cases/201886/
 
-* 优化文件上传                --- ok 
-  - 增加: 编辑器 上传
-  - 优化 单文件 上传
-  - 优化 多图片 上传
+* archives
+  - 大督查
+  - 读书卡
 
-* Editor/编辑器               --- ok 
-  - 增加: summernote 扩展
-  - 增加: 编辑器 上传
-  - 优化: 编辑器 分页样式
+------------------------------------------------------------------------------
 
-* 后台                        --- ok 
-  - navbar - 导航 / tabs - 标签
-
-* jquery-ui                  --- ok 
-  - Widget,Position,Draggable,
-  - Resizable,Sortable,Spinner
-  - Jq-Upload/上传
-
-* tools/plus : 页面           --- ...
+### v4.4
 
 * umc                         --- ... 
-
-
-------------------------------------------------------------------------------
 
 * 积分/兑换
   - gift
   - 购买抵用
 
-* 存储格式：                  --- ???
-  - 增加：md + mdEditor
+* cases
 
 * 文档
  - db
@@ -75,19 +47,24 @@ s228,    s228house,  <xxx>,  192.168.1.228
  - img:水印,压缩
  - php.ini:比较
 
+--------------------------------------
+
+### v4.5
+
+* 其它
+ - 二手房，楼盘
+ - 文档 / 定位：框架/CMS
+ - project psw 发布
+
+------------------------------------------------------------------------------
+
+* 存储格式：                  --- ???
+  - 增加：md + mdEditor
 
 * plus/coms
  - footer ... 
 
-
-* 其它
- - 定位：框架/CMS
- - 文档
- - project psw 发布
-
-
 ------------------------------------------------------------------------------
-
 
 * userIP()
   - HTTP_X_FORWARDED_FOR:61.145.169.200
@@ -96,7 +73,6 @@ s228,    s228house,  <xxx>,  192.168.1.228
 * map                         --- 
   - 地图周边
   - 多点搜索
-
 
 ------------------------------------------------------------------------------
 

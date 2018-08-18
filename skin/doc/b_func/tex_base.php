@@ -8,7 +8,7 @@ class tex_base{
 
     static function init($obj){
         global $_cbase;
-        $_cbase['sys_name'] = 'IntimateCat(贴心猫)';
+        $_cbase['sys_name'] = 'imcat(贴心猫)';
         if(!empty($_cbase['login_dev'])){
             $user = user(); $msg = '';
             if(empty($user)){

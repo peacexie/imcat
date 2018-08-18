@@ -168,15 +168,15 @@ function mpic_data(fmid, rst){
 
 // 
 
-function fup_jqui(fpid, cnt, size){
+function fup_jqui(fpid, cnt){
     var _btn='#'+fpid+'b', _file='#'+fpid+'f', _prog='#'+fpid+'bar';
     $('#'+fpid+'b').click(function(){ 
         $('#'+fpid+'f').trigger('click');
     });
     var url = _cbase.run.roots+"/plus/file/updeel.php?recbk=json&_r=v02", 
-        minFileSize = 1*1024,//文件最小限制>1K
-        maxFileSize = 980*1024,//文件不超过960K
-        maxNumberOfFiles = 99;//最大上传文件数目
+        minFileSize = 1*1024, // 文件最小限制>1K, 不超过980K
+        maxFileSize = isNaN(_cbase.run.pm_upsize1) ? 980*1024 : parseInt(_cbase.run.pm_upsize1)*1024,
+        maxNumberOfFiles = 99; // 最大上传文件数目
     $('#'+fpid+'f').fileupload({
         url: url,
         dataType: 'json',

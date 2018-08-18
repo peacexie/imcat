@@ -20,6 +20,7 @@ p i.r{ float:right; color:#999; }
 
 .head{ width:480px; height:55px; display:block; clear:both; text-align:center; margin:10px auto 10px auto; }
 .head h1{ font-size:18px; font-weight:bold; padding:0px 0px; margin:15px 0px 5px 0px; }
+.head h1 a{ font-size:18px; font-weight:bold; }
 .head p{ padding:0px 0px 0px 0px; margin:5px 0px 5px 0px; }
 .head img{ float:right; margin:-10px 10px 0px 10px; }
 

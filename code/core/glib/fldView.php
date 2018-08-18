@@ -85,6 +85,7 @@ class fldView{
     }
     // file
     static function ifile($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){
+        global $_cbase;
         $val = comStore::revSaveDir($val);
         $item = '';    $smk = self::mkpar($mod,$kid);
         $ticon = comFiles::getTIcon($val);
@@ -94,10 +95,11 @@ class fldView{
             $jsAct = " onmouseover=\"$('#$id').removeClass('idHidden');$('#$id').addClass('idShow');\" onmouseout=\"$('#$id').removeClass('idShow');$('#$id').addClass('idHidden');\" ";    
             $simg = "<br><span class='idHidden' id='$id'><img src='$val' onload='imgShow(this,360,240)' border='0' /></span>";
         }
+        $icjs = self::ifpcjs();
+        $ijs = $icjs ? $_cbase['run']['pm_upsize1'] : '';
         $item .= "<input id='fm_{$k}_' name='fm[{$k}]' type='text' value='$val' class='file' $vstr $jsAct>";
-        $item .= self::ifpinp($k,$smk).$simg;
-        $item .= self::ifpcjs();
-        $item .= basJscss::jscode("$(function(){fup_jqui('fm_{$k}_',1,980);})");
+        $item .= self::ifpinp($k,$smk).$simg.$icjs;
+        $item .= basJscss::jscode("$(function(){ $ijs;fup_jqui('fm_{$k}_',1);})");
         return $item;
     }
     static function ifpinp($k,$smk,$multi=''){
@@ -109,8 +111,17 @@ class fldView{
         return $item;
     }
     static function ifpcjs(){
+        global $_cbase;
+        if(!empty($_cbase['run']['pm_upsize1'])){
+            return ''; 
+        }
+        // perm
+        $user = user(array('Admin','Member'));
+        $ucfg = usrPerm::pmUpload($user); // allowFiles => $ucfg['uptypes'], 
+        $upsize1 = $ucfg['upsize1']=='(supper)'?120123:$ucfg['upsize1'];
+        $_cbase['run']['pm_upsize1'] = "_cbase.run.pm_upsize1='$upsize1'; ";
+        // js/css # /jqui/jquery-fileupload.css
         $item  = basJscss::imp("/_pub/a_jscss/multpic.js");
-        //$item .= basJscss::imp("/jqui/jquery-fileupload.css",'vendui');
         $item .= basJscss::imp("/jqui/jquery-ui.min.js",'vendui');
         $item .= basJscss::imp("/jqui/jquery-fileupload.js",'vendui');
         return $item;
@@ -119,14 +130,15 @@ class fldView{
     static function ipics($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){
         $val = comStore::revSaveDir($val);
         $cfg['cfgs'] = empty($cfg['cfgs']) ? '' : basElm::arr2text($cfg['cfgs'],';','|');
-        $item = '';    $smk = self::mkpar($mod,$kid);
+        $item = ''; $smk = self::mkpar($mod,$kid);
+        $icjs = self::ifpcjs();
+        $ijs = $icjs ? $_cbase['run']['pm_upsize1'] : '';
         $item .= "<div id='fm_{$k}_out' class='mpic_out'>"; 
         $item .= "<div id='fm_{$k}_show'>{$cfg['cfgs']}</div>"; 
         $item .= "<div id='fm_{$k}_tarea' class='clear'><textarea name='fm[$k]' id='fm_{$k}_' style='display:none;'>$val</textarea></div>"; 
         $item .= self::ifpinp($k,$smk,'multiple');
-        $item .= "</div>"; 
-        $item .= self::ifpcjs();
-        $item .= basJscss::jscode("$(function(){mpic_minit('fm_{$k}_');fup_jqui('fm_{$k}_',99,980);})");
+        $item .= "</div>$icjs"; 
+        $item .= basJscss::jscode("$(function(){ $ijs;mpic_minit('fm_{$k}_');fup_jqui('fm_{$k}_',99);})");
         return $item;
     }
     static function ipick($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){

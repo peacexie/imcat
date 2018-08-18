@@ -1,5 +1,40 @@
 
 
+#v4.3# (2018.09)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.3
+ - Release date: 2018.09
+ - rar-size: [core]1.xx MB, [full]3.xx MB(core+vendor)
+
+
+## ChangeLog
+
+* Modify the English name:
+  - Modify `IntimateCat` to `Imcat`
+
+* Improve js/css load
+  - Deprecated jquery1 support, 
+  - Deprecated IE8 support.
+
+* Improve file upload
+  - Add: upload in Editor
+  - Improve single upload
+  - Improve multi-upload
+
+* Add Editor Extra
+  - Add: summernote Extra
+  - Improve: pagination style
+
+* Add navs in admin
+
+* jquery-ui - Upload
+
+
+
 #v4.2# (2018.07)
 
 
