@@ -8,26 +8,26 @@
 * 基本信息：
  - 版本：v4.3
  - 发布日期：2018.09
- - rar-大小: [core]1.xx MB, [full]3.xx MB(core+vendor)
+ - rar-大小: [core]1.27 MB, [full]3.66 MB(core+vendor)
 
 
 ## 更新事项
 
 * 简化英文名:
-  - 英文名 `IntimateCat` ->改为 `Imcat`
+ - 英文名 `IntimateCat` ->改为 `Imcat`
 
 * 优化 js/css 加载
-  - 弃用jquery1, 
-  - 取消IE8支持
+ - 弃用jquery1, 
+ - 取消IE8支持
 
 * 优化文件上传
-  - 增加: 编辑器 上传
-  - 优化 单文件 上传
-  - 优化 多图片 上传
+ - 增加: 编辑器 上传
+ - 优化 单文件 上传
+ - 优化 多图片 上传
 
 * Editor/编辑器 扩展
-  - 增加: summernote 扩展
-  - 优化: 编辑器 分页样式
+ - 增加: summernote 扩展
+ - 优化: 编辑器 分页样式
 
 * 增加后台导航
 
