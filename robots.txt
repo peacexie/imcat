@@ -1,6 +1,6 @@
 #
 # robots.txt for IntimateCat
-# Version 4.2
+# Version 4.3
 #
 
 User-Agent: SomeSpider
