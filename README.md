@@ -1,6 +1,6 @@
 
 
-* 贴心猫(imcat) V4.3(Alpha)
+* 贴心猫(imcat) V4.3(Beta)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
@@ -25,7 +25,7 @@
 
 * Need Environmental
   - PHP5.3 ~ PHP7.2 (Recommend: PHP5.4 ~ PHP7.2)
-  - mysql5.0+
+  - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
 * Set the relative path of the site: 
@@ -44,31 +44,27 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.2 ChangeLog】 (2018.07)
+### 【v4.3 ChangeLog】 (2018.09)
 
-* Revised/Optimize template, Enhance mobile adaption, Streamline and optimize foreground configuration;d
-  - Move [Topic/Faqs] to `chn` Group
-  - Streamline template configs : `_config/va_home.php` > `[extra/_tabCtrl]` , It can checks automatic; 
+* Modify the English name:
+  - Modify `IntimateCat` to `Imcat`
 
-* Add template for `solemn/serious/memory`;
+* Improve js/css load
+  - Deprecated jquery1 support, 
+  - Deprecated IE8 support.
 
-* Add `Opcache` Admin-Management(Clear)
+* Improve file upload
+  - Add: upload in Editor
+  - Improve single upload
+  - Improve multi-upload
 
-* imcat change the domain: txmao.txjia.com -=> imcat.txjia.com
+* Add Editor Extra
+  - Add: summernote Extra
+  - Improve: pagination style
 
-* Fix: Repeat generate thumbnails;
+* Add navs in admin
 
-* Fix: One error in Db-Operation;
-
-* Optimize the home page, Show friendly some models that do not exist;
-
-* Demo-site:
-  - We move Demo-site from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
-  - We change the domain to `txmao.txjia.com` (Old is `imcat.txjia.com`)
-
-* [Related news]
-  - The shop-store system basic on imcat, It's published and it works OK!
-  - Brother-product `Wepy(python)`, It used in work(for info-gather)！
+* jquery-ui - Upload
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -89,7 +85,7 @@
 
 * 环境需求
   - PHP5.3 ~ PHP7.2 (推荐: PHP5.4 ~ PHP7.1)
-  - mysql5.0+
+  - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
 * 设置站点相对目录；
@@ -105,27 +101,25 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.2更新日志】(2018.07)
+### 【v4.3更新日志】(2018.09)
 
-* 改版优化模板，增强移动适配，精简优化前台配置
-  - 移动[专题/问答]至 `chn` 分组
-  - 精简模板中 `_config/va_home.php` > `[extra/_tabCtrl]` 配置，可自动检测
+* 简化英文名:
+  - 英文名 `IntimateCat` ->改为 `Imcat`
 
-* 增加`庄重严肃·追忆`专题模板
+* 优化 js/css 加载
+  - 弃用jquery1, 
+  - 取消IE8支持
 
-* 增加`Opcache`后台管理（清理）
+* 优化 文件上传
+  - 增加: 编辑器 上传
+  - 优化 单文件 上传
+  - 优化 多图片 上传
 
-* 修正：前台重复生成缩略图
+* Editor/编辑器 扩展
+  - 增加: summernote 扩展
+  - 优化: 编辑器 分页样式
 
-* 修正：一处数据库操作错误;
+* 增加后台导航
 
-* 优化首页，对一些不存在的模型，怎加判断并提示
-
-* 演示站：
-  - 因BAE(基础版)下线停服，贴心猫 转移至“云虚拟主机BCH”下！
-  - 更改域名：imcat.txjia.com (旧: txmao.txjia.com)
-
-* [相关喜讯]
-  - 由贴心猫二次开发的外贸商城系统，运营上线！
-  - 贴心组合-Python微爬，辅助系统应用于工作中的采集！
+* jquery-ui 优化上传
 
