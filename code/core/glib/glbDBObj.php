@@ -331,14 +331,15 @@ class glbDBObj{
     
     // 
     static function dbObj($config=array(), $catch=0){ 
+        $dbcfg = self::getCfg(); 
         if(empty($config)){
             $key = 'db0_main';
         }elseif(is_string($config)){ // `user`
-            $dbcfg = self::getCfg(); 
             $key = $config;
             $config = isset($dbcfg[$key]) ? $dbcfg[$key] : $dbcfg;
             $key = isset($dbcfg[$key]) ? "db1_$key" : 'db0_main';
         }else{ // array()
+            $config = array_merge($dbcfg, $config);
             $key = 'dba_'.$config['db_host'].'_'.$config['db_name'];
         }
         $key .= $catch;

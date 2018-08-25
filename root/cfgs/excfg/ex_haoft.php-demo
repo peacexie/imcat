@@ -1,0 +1,11 @@
+<?php
+
+$_ex_haoft = array(
+    'linzhi' => array(
+        'ak' => 'B?88', // 接口`COMP_NO`，如`BC12`
+        'as' => '', // 接口`SYNC_VERIFYID`，32位字符
+    ),
+    'db-key' => 'imhouse', // 为空则共用数据库
+);
+
+include __DIR__.'/ex_haoft-fields.php';

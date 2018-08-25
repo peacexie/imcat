@@ -10,10 +10,16 @@ class comHttp
         '2' => array('fsockopen','socketCrawl'),
         '3' => array('file_get_contents','fileCrawl'),
     );
+    public static $cache = 0;
+    public static $savep = '';
 
     //手动设置访问方式
     static function setWay($way){
         self::$way = intval($way);
+    }
+    //手动设置缓存
+    static function setCache($exp){
+        self::$cache = intval($exp);
     }
 
     //通过get方式获取数据
@@ -42,6 +48,10 @@ class comHttp
     // $data:array('_ref'=>'http://down.chinaz.com/soft/37712.htm'); 来路模拟
     // $header:'X-FORWARDED-FOR:8.8.8.8'.PHP_EOL.'CLIENT-IP:8.8.8.8' //来源IP模拟
     static function curlCrawl($url, $data=array(), $timeout=5, $header="") {
+        // getCache
+        $cres = self::getCache($url, $data);
+        if($cres!==false) return $cres;
+        // header
         $header = self::_getHeader($header);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -60,14 +70,22 @@ class comHttp
         if(substr($url,0,8)=='https://'){
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSLVERSION, 1);
+            curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+            // CURL_SSLVERSION_TLSv1_2
         }
-        $result = curl_exec($ch); 
+        $result = curl_exec($ch);
+        // saveCache
+        self::saveCache($result);
+        // return
         curl_close($ch);
         return $result;
     }
     //通过 socket get/post数据
     static function socketCrawl($url, $data=array(), $timeout=5, $header="") {
+        // getCache
+        $cres = self::getCache($url, $data);
+        if($cres!==false) return $cres;
+        // header
         $header = self::_getHeader($header);
         $url = parse_url($url); $errno = 0; $errstr = '';
         $url["path"] = ($url["path"] == "" ? "/" : $url["path"]);
@@ -102,12 +120,19 @@ class comHttp
         $status = substr($head, 0, strpos($head, $eol));    
         if(preg_match("/^HTTP\/\d\.\d\s([\d]+)\s.*$/", $status, $matches)){
             if(intval($matches[1]) / 100 == 2){
-                return substr($out, $pos + 4, strlen($out) - ($pos + 4));
+                $result = substr($out, $pos + 4, strlen($out) - ($pos + 4));
+                // saveCache
+                self::saveCache($result);
+                return $result;
             }else{ return false; }
         }else{ return false; }
     }
     //通过 file_get_contents 函数post数据
     static function fileCrawl($url, $data=array(), $timeout=5, $header=""){
+        // getCache
+        $cres = self::getCache($url, $data);
+        if($cres!==false) return $cres;
+        // header
         $header = self::_getHeader($header);
         $opts = array( 
             'http'=>array(
@@ -122,8 +147,12 @@ class comHttp
             $header .= "Content-length: ".strlen($pstr);
             $opts['http']['content'] = $pstr;
         }
-        $context = stream_context_create($opts);    
-        return @file_get_contents($url,false,$context);
+        $context = stream_context_create($opts);
+        $result = @file_get_contents($url,false,$context);
+        // saveCache
+        self::saveCache($result);
+        // return
+        return $result;
     }
     
     //默认模拟的header头 
@@ -225,6 +254,25 @@ class comHttp
         return $content;
     }
 
+    // 缓存处理
+    static function getCache($url, $data) {
+        if(!self::$cache) return false;
+        $fp = preg_replace("/https?\:\/\//", '', $url);
+        $fp = str_replace(array('/','?','&',), array('!','---',',',), $fp);
+        $fp = basStr::filSafe4($fp);
+        if(strlen($fp)>120){
+            $md5 = md5("$url+++".json_encode($data));
+            $fp = substr($fp,0,80).'---'.substr($fp,-20).'---'.$md5;
+        }
+        self::$savep = $fp;
+        $data = extCache::cfGet("/remote/$fp", self::$cache, 'dtmp', 'str');
+        return $data;
+    }
+    static function saveCache($data) {
+        if(!self::$cache) return false;
+        extCache::cfSet("/remote/".self::$savep, $data);
+    }
+
     //兼容方法(后续去掉)
     static function curlGet($url, $timeout=5, $header="") {    
         return self::curlCrawl($url, array(), $timeout, $header);
@@ -234,4 +282,15 @@ class comHttp
     }
 
 }
+
+/*
+    comHttp::setCache(30); // 缓存30分钟
+
+    $url = "http://imcat.txjia.com/chn.php?news-n1012";
+    $data = comHttp::curlCrawl($url);
+    $url = "http://imcat.txjia.com/chn.php?news-n1014";
+    $data = comHttp::socketCrawl($url);
+    $url = "http://imcat.txjia.com/chn.php?news-n1022";
+    $data = comHttp::fileCrawl($url);
+*/
 

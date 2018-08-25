@@ -28,9 +28,10 @@ $_sy_pubcfg['ids'] =  array(
 // - 是否有个-cdemo文件
 // - 替换
 $_sy_pubcfg['cdemo'] =  array(
-    'root/cfgs/excfg/ex_mail.php' =>'',
-    'root/cfgs/excfg/ex_sms.php' =>'',
     'root/cfgs/excfg/ex_a3rd.php' =>'',
+    'root/cfgs/excfg/ex_mail.php' =>'',
+    'root/cfgs/excfg/ex_haoft.php' =>'',
+    'root/cfgs/excfg/ex_sms.php' =>'',
     'root/cfgs/excfg/ex_store.php' =>'',
     'root/cfgs/boot/_paths.php' => array(
         array("'".PATH_PROJ."'",),
@@ -69,7 +70,7 @@ $_sy_pubcfg['rndata'] =  array(
 
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
-    'main' => array('fitpl'),
+    'main' => array('fitpl','yscode'),
     'vendor' => array('Monolog','psrlog','silex','Spyc'),
     'dtmp' => array('@test','@udoc','debug','update','weixin'),
     'vendui' => array('artEditor','swplayer','summernote'),

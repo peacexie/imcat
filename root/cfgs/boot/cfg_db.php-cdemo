@@ -32,4 +32,8 @@ $_cfgs['dc_exp']     = 60; // 600~3600(s)
 $_cfgs['user'] = $_cfgs;
 $_cfgs['user']['db_host']    = 'localhost'; // 127.0.0.1,localhost,数据库主机(pdox连接不使用)
 $_cfgs['user']['db_name']    = 'txmao_main_user'; // 数据库名(pdox连接不使用) 
+$_cfgs['imhouse'] = $_cfgs; // 好房通
+$_cfgs['imhouse']['db_name'] = 'imhouse'; // 数据库名(pdox连接不使用) 
+$_cfgs['imhouse']['db_prefix'] = 'hft_';
+$_cfgs['imhouse']['db_suffix'] = '';
 //*/
