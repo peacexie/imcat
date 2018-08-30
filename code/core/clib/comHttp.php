@@ -257,14 +257,15 @@ class comHttp
     // 缓存处理
     static function getCache($url, $data) {
         if(!self::$cache) return false;
-        $fp = preg_replace("/https?\:\/\//", '', $url);
-        $fp = str_replace(array('/','?','&',), array('!','---',',',), $fp);
-        $fp = basStr::filSafe4($fp);
+        $fp = preg_replace("/https?\:\/\//", '', urldecode($url));
+        $fp = str_replace(array(' ',':','|'), array('@','_','-'), $fp);
+        $fp = str_replace(array('/','?','&'), array('!','---',','), $fp);
+        $fp = basStr::filSafe4($fp); // <"'>\%
         if(strlen($fp)>120){
-            $md5 = md5("$url+++".json_encode($data));
-            $fp = substr($fp,0,80).'---'.substr($fp,-20).'---'.$md5;
+            $fp = substr($fp,0,80).'---'.substr($fp,-25);
         }
-        self::$savep = $fp;
+        $md5 = md5("$url+++".json_encode($data));
+        self::$savep = $fp.'---'.$md5.'.htm'; //echo self::$savep;
         $data = extCache::cfGet("/remote/$fp", self::$cache, 'dtmp', 'str');
         return $data;
     }
