@@ -6,7 +6,7 @@ $cfgs = array(
     // admSkin, house
     'ueditor', 'kindEditor', 'summernote', 'apiServer', 
     'exdemo', // 一页(10个)以内
-    'LocalIP', 'Simkai',
+    'ThinkPHPv31','LocalIP', 'Simkai',
     'TinyUrl',
     
 );
