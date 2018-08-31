@@ -258,15 +258,14 @@ class comHttp
     static function getCache($url, $data) {
         if(!self::$cache) return false;
         $fp = preg_replace("/https?\:\/\//", '', urldecode($url));
-        $fp = str_replace(array(' ',':','|'), array('@','_','-'), $fp);
-        $fp = str_replace(array('/','?','&'), array('!','---',','), $fp);
-        $fp = basStr::filSafe4($fp); // <"'>\%
-        if(strlen($fp)>120){
-            $fp = substr($fp,0,80).'---'.substr($fp,-25);
+        $fp = str_replace(array(' ',':','|'), '_', $fp);
+        $fp = str_replace(array('/','?'), array('!','---'), $fp);
+        $fp = basStr::filTitle($fp, 'file');
+        if(strlen($fp)>90){
+            $fp = substr($fp,0,70).'...'.substr($fp,-20);
         }
-        $md5 = md5("$url+++".json_encode($data));
-        self::$savep = $fp.'---'.$md5.'.htm'; //echo self::$savep;
-        $data = extCache::cfGet("/remote/$fp", self::$cache, 'dtmp', 'str');
+        self::$savep = $fp.'---'.md5($url.'+'.json_encode($data)).'.htm';
+        $data = extCache::cfGet("/remote/".self::$savep, self::$cache, 'dtmp', 'str');
         return $data;
     }
     static function saveCache($data) {
@@ -275,7 +274,7 @@ class comHttp
     }
 
     //兼容方法(后续去掉)
-    static function curlGet($url, $timeout=5, $header="") {    
+    static function curlGet($url, $timeout=5, $header="") {
         return self::curlCrawl($url, array(), $timeout, $header);
     }
     static function curlPost($url, $parr=array(), $timeout=5, $header="") {    

@@ -1,0 +1,57 @@
+
+<title>数据导入结果-好房通</title>
+<style type="text/css">
+.out{ max-width:640px; margin:20px auto; }
+.out p{ line-height:200%; }
+.out hr{ margin:10px auto; }
+.addsec{ display:inline-block; float:right; padding:5px; border:1px solid #CCC; }
+</style>
+
+
+<div class="out">
+
+    <p><b>同步结果：</b>
+    <?php if(empty($res['ERRCODE'])){ ?>
+    add:<?=@$res['nadd']?> / upd:<?=@$res['nupd']?> / skip:<?=@$res['nskip']?> <br>
+    <?=@$res['nok']?>成功 / <?=@$res['nbad']?>失败 / <?=@$res['TOTAL']?>（TOTAL）
+    <?php }else{ ?>
+    错误：<{$res.ERRMSG}>(<{$res.ERRCODE}>)
+    <?php } ?>
+    </p>
+
+    <hr>
+
+    <p><b>批次循环：</b>
+    <?php if(empty($res['nextUrl'])){ ?>
+        全部执行完毕！不用循环了...
+    <?php }else{ ?>
+        <b class="addsec" onClick="setJsec()">+5000</b>
+        在<span id="jsec">180</span>秒后重新跳转同步...<br>
+        <?=@$res['nextUrl']?>
+    <?php } ?>
+    </p>
+
+    <hr>
+
+    <p><b>调试信息：</b><br>
+    <?php dump($res); ?>
+    </p>
+
+</div>
+
+
+<script>
+var idSec = document.getElementById('jsec');
+var nextUrl = '<?=@$res['nextUrl']?>';
+function jumpPage(){
+    var nSec = idSec.innerHTML;
+    if(nSec>0) { idSec.innerHTML = nSec-1; }
+    if(nSec<=0) { location.href = nextUrl; }
+    else { setTimeout("jumpPage()",1000); }
+}
+function setJsec(){
+    var nSec = idSec.innerHTML;
+    idSec.innerHTML = parseInt(nSec)+5000;
+}
+if(nextUrl) setTimeout("jumpPage()",1000);
+</script>

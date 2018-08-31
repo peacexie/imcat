@@ -41,7 +41,7 @@ if(!empty($bsend)){
                  if(isset($syrem['fdemo'][$id]) && $uprem[$id]==$syrem['fdemo'][$id]){ 
                      $db->table('bext_dbdict')->where("kid='$id' AND tabid='$tabid'")->delete(); //array('kid'=>$id,'tabid'=>$tabid)
                  }else{
-                     $uprem[$id] = $irem = trim(basStr::filSafe4($uprem[$id]));
+                     $uprem[$id] = $irem = trim(basStr::filTitle($uprem[$id]));
                      $db->table('bext_dbdict')->data(array('kid'=>$id,'tabid'=>$tabid,'title'=>$irem))->replace();
                  }
                  $cnu++;

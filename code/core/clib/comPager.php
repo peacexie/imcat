@@ -104,8 +104,8 @@ class comPager{
             return $this->sql[0];
         }
     }
-    function exe(){
-        $db = glbDBObj::dbObj();
+    function exe($dbkey=''){
+        $db = glbDBObj::dbObj($dbkey);
         $rs = $db->query($this->sql());
         if(!$this->prec){ 
             $rec = $db->query($this->sql('_rc_recs_'));

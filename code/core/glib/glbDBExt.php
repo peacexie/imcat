@@ -232,7 +232,7 @@ class glbDBExt{
                 }
             }
             $fields[$f]['_flag'] = $flag;
-            $fields[$f]['_rem'] = basStr::filSafe4($rem);
+            $fields[$f]['_rem'] = basStr::filTitle($rem);
         }
         $_groups = glbConfig::read('groups');
         if(isset($_groups[$modid]) && $_groups[$modid]['pid']==$moda[0]){

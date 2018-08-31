@@ -64,30 +64,27 @@ class basReq{
 
     // type=D,N,Key,Title,Html
     static function fmt($data,$def='',$type='Title',$len=255){ 
-       if($type=='N'){
-          if(is_numeric($data)) return $data; 
-          else return $def;  
-       }elseif($type=='D'){
-          if(strtotime($data)) return $data; 
-          else return $def; 
-       }
-       switch ($type){ 
-       case "Key" : 
-       case "Title" : 
-          $Tmp = basStr::cutCount($data,$len);
-          $Tmp = $type=='Title' ? basStr::filTitle($Tmp) : basStr::filKey($Tmp,'_.-@');
-          $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
-          return $Tmp; break; 
-       case "Safe4" : 
-          $Tmp = basStr::filSafe4($data);
-          $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
-          return $Tmp; break; 
-       default:  // Html
-          $Tmp = basStr::filHtml($data); 
-          $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
-          //$Tmp = self::in($Tmp);
-          return $Tmp; break;  //处理 '"\
-      }  
+        if($type=='N'){
+           if(is_numeric($data)) return $data; 
+           else return $def;  
+        }elseif($type=='D'){
+           if(strtotime($data)) return $data; 
+           else return $def; 
+        }
+        switch ($type){ 
+        case "Key" : 
+        case "Title" : 
+        case "Safe4" : 
+           $Tmp = basStr::cutCount($data,$len);
+           $Tmp = $type=='Key' ? basStr::filKey($Tmp,'_.-@') : basStr::filTitle($Tmp);
+           $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
+           return $Tmp; break;
+        default:  // Html
+           $Tmp = basStr::filHtml($data); 
+           $Tmp = strlen($Tmp)==0 ? $def : $Tmp;
+           //$Tmp = self::in($Tmp);
+           return $Tmp; break;  //处理 '"\
+        }  
     }
     
     // *** fmtNum

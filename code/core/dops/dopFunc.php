@@ -163,7 +163,7 @@ class dopFunc{
         }elseif($fext=='winpop'){
             $val = preg_replace('/[^0-9A-Za-z,]/','',$val);    
         }elseif($fext=='pics'){
-            $val = basStr::filSafe4($val);     
+            $val = basStr::filTitle($val,array('%'));     
         }elseif($fext=='pick'){
             $val = is_array($val) ? implode(',',$val) : $val;
             $val = basStr::filTitle($val);     

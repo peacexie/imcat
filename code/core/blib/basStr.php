@@ -193,19 +193,19 @@ class basStr{
         } 
         return $re;
     }
-    // *** Safe4过滤标题
-    static function filSafe4($xStr,$exa=array('%')){
-        $def = array('<','>','"',"'","\\"); //开始为前4个,\,%后续加上
-        if(!empty($exa)){ 
-            foreach($exa as $val) $def[] = $val;
+    // *** Title过滤标题
+    static function filTitle($xStr, $exa=array('\r','\n')){
+        $def = array('<','>','"',"'","\\");
+        if($exa=='file') $exa = array('/',':','*','?','|'); // \/:*?"<>|
+        if(!empty($exa)){
+            $def = array_merge($def, $exa);
         }
         $xStr = str_replace($def,'',$xStr); 
         return $xStr;
     }
-    // *** Title过滤标题
-    static function filTitle($xStr){
-        $xStr = str_replace(array('<','>','"',"'","\\","\r","\n",'&','#'),'',$xStr); 
-        return $xStr;
+    // *** Safe4过滤表单
+    static function filSafe4($xStr, $exa=array('%')){
+        return self::filTitle($xStr, $exa);
     }
     // *** 过滤空行和注释
     static function filNotes($str){
