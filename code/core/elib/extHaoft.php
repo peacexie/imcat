@@ -32,7 +32,7 @@ class extHaoft{
 
     public function syncData($type){
         // 检查类型
-        if(!$type || !in_array($type,$this->types)){ // !isset($this->types[$type])
+        if(!$type || !in_array($type,$this->types)){
             die('`type($this->type)` Error!');
         }
         $this->type = $type; 
@@ -135,7 +135,7 @@ class extHaoft{
     
     // type: Sale, Lease, Comp, User, Dept
     public function apiUrl($last=''){
-        $apiType = ucfirst($this->type); // $this->types[$this->type];
+        $apiType = ucfirst($this->type);
         $key = "LAST_TIME_".strtoupper($this->type);
         if(in_array($this->type,array('sale','lease'))){
             $slast = "$key=".($last ? str_replace(' ','%20',$last) : '2015-01-01');
