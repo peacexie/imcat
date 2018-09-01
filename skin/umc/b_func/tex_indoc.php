@@ -172,7 +172,7 @@ class tex_indoc{
             $re['tou'] = $null;
         }else{
             foreach($uarr as $k=>$v){
-                $re['tou'] .= "".(empty($re['tou'])?"":", ")."".(count($uarr<5)?"($k)":"")."$v[mname]";
+                $re['tou'] .= "".(empty($re['tou'])?"":", ")."".(count($uarr)<5?"($k)":"")."$v[mname]";
             }
         }
         if($vars['topub']=='ispub'){

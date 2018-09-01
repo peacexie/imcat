@@ -42,20 +42,7 @@ class tagBase{
     // 所有公用: 
     function setModid(){
         $para = $this->p1Cfg('modid');
-        if(empty($para)){
-            $modid = $this->mod;
-        }else{
-            $modid = $para[1];
-            if(isset($para[2])){
-                $ext = $para[2];
-                if(strstr($ext,'get')){
-                    $mod2 = basReq::val($modid,'','Key');
-                    global $_cbase;
-                    if($mod2 && isset($_cbase[$mod2])) $modid = $mod2; 
-                }
-            }
-        }
-        $this->modid = $modid;
+        $this->modid = empty($para[1]) ? $this->mod : $para[1];
     }
     // List, Page, One: 
     function setFrom(){ 
@@ -140,17 +127,7 @@ class tagBase{
             $this->whrArr[] = "m.grade='$stype'";
         }else{ //交互等,无stype
             
-        } 
-        /*
-        $ccfg = glbConfig::read($this->modid,'_c');
-        if($fix && !empty($ccfg)){ 
-            if(!empty($ccfg[$fix])){
-                $exFlds = array_keys($ccfg[$fix]);
-                if(!empty($exFlds)){
-                    $this->exFld2 = array_merge($this->exFld2,$exFlds); 
-                }
-            }
-        }*/
+        }
     }
     
     // `-=>', [where,did=`2004-33-2ycx`]

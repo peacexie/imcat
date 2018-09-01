@@ -15,6 +15,7 @@ $_ex_haoft = array(
         'as' => 'abcd...1234',
     ),
     // 全局配置
+    'api-colse' => 0,
     'db-key' => 'imhouse', // db配置, 为空则共用数据库
     'def-city' => 'linzhi', // 默认城市
 );
