@@ -21,9 +21,9 @@
  - Deprecated IE8 support.
 
 * Improve file upload
- - Add: upload in Editor
- - Improve single upload
- - Improve multi-upload
+ - Improve: upload in Editor
+ - Improve: single upload
+ - Improve: multi-upload
 
 * Add Editor Extra
  - Add: summernote Extra
@@ -31,7 +31,7 @@
 
 * Add navs in admin
 
-* jquery-ui - Upload
+* Add `jquery-ui` component.
 
 
 

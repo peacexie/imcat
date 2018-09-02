@@ -1,7 +1,6 @@
 
 
-* 贴心猫(imcat) V4.3(Beta)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* 贴心猫(imcat) V4.3 Released (2018-09)
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -54,9 +53,9 @@
   - Deprecated IE8 support.
 
 * Improve file upload
-  - Add: upload in Editor
-  - Improve single upload
-  - Improve multi-upload
+  - Improve: upload in Editor
+  - Improve: single upload
+  - Improve: multi-upload
 
 * Add Editor Extra
   - Add: summernote Extra
@@ -64,7 +63,7 @@
 
 * Add navs in admin
 
-* jquery-ui - Upload
+* Add `jquery-ui` component.
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -107,19 +106,19 @@
   - 英文名 `IntimateCat` ->改为 `Imcat`
 
 * 优化 js/css 加载
-  - 弃用jquery1, 
+  - 弃用jquery1 
   - 取消IE8支持
 
 * 优化 文件上传
-  - 增加: 编辑器 上传
-  - 优化 单文件 上传
-  - 优化 多图片 上传
+  - 优化: 编辑器 上传
+  - 优化: 单文件 上传
+  - 优化: 多图片 上传
 
 * Editor/编辑器 扩展
-  - 增加: summernote 扩展
+  - 增加: summernote 编辑器扩展
   - 优化: 编辑器 分页样式
 
 * 增加后台导航
 
-* jquery-ui 优化上传
+* 增加 jquery-ui 组件, 用于附件上传等场合
 
