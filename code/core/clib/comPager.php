@@ -135,7 +135,7 @@ class comPager{
             }
             $bar .= $v; 
         }
-        $bar = str_replace("{url}",$pbase,$bar);
+        $bar = str_replace(array("{url}",'.php&'), array($pbase,'.php?'), $bar);
         return "<ul class='pagination'>$bar</ul>";
     }
     

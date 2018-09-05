@@ -1,17 +1,92 @@
 {imp:"c_pub/layout"}<!--继承父模板-->
 
 {block:main}
+
+<style type="text/css">
+  .w480{ width:480px; margin:20px 0px; }
+  .clear{ clear:both; line-height:1px; }
+</style>
+
 <div class="pgf_w">
+    <h3>homepage！</h3>
+
     <div class="w480 right">
+        <ul>
+            <li>cargo(产品)</li>
+            {tag:dlist3=[List][modid,cargo][show,1][limit,3]}
+            <li>
+            <a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a>
+            </li>
+            {/tag:dlist3}
+        </ul>
+    </div>
+
+    <div class="w480">
+        <ul>
+            <li>lease(出租)</li>
+            {tag:dlist4=[Free][dbkey,imhouse][modid,lease][order,LEASE_ID][limit,3]}
+            <li>
+            <a href="{surl("news.$t_LEASE_ID")}">{title($t_LEASE_SUBJECT,96,$v)}</a>
+            </li>
+            {/tag:dlist4}
+        </ul>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+
+    <div class="w480 right">
+        <ul>
+            <li>news(新闻)</li>
+            {tag:dlist1=[List][modid,news][show,1][limit,3]}
+            <li>
+            <a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a>
+            </li>
+            {/tag:dlist1}
+        </ul>
+        <div>&nbsp;</div>
+        <ul>
+            <li>sale(出售)</li>
+            {tag:dlist5=[Free][dbkey,imhouse][modid,sale][pgbar,1][order,SALE_ID][limit,3]}
+            <li>
+            <a href="{surl("news.$t_SALE_ID")}">{title($t_SALE_SUBJECT,96,$v)}</a>
+            </li>
+            {/tag:dlist5}
+        </ul>
+    </div>
+
+
+<?php
+$whrstr = "m.code<20"; // [where,$whrstr]
+?>
+<div class="w480">
     <ul>
-        {tag:dlist2=[List][modid,news][show,1][limit,6]}
+        <li>area(区域)</li>
+        {tag:dlist2=[Free][dbkey,imhouse][modid,area][order,code,0,1][limit,8]}
         <li>
-        <a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a>
+        <a href="{surl("news.$t_code")}">{=$t_code}:{title($t_title,96,$v)}</a>
         </li>
         {/tag:dlist2}
     </ul>
-    </div>
-      <h3>homepage！</h3>
 </div>
+{=$_cbase['page']['bar']}
+
+
+</div>
+
+<?php
+
+echo "\n\n<br>";
+$a=3.525; $b=4.525; // %8.8s
+echo "\n<br>$a = ".sprintf('%6.2f',$a);
+echo "\n<br>$b = ".sprintf('%6.2f',$b);
+
+
+echo "\n\n<br>";
+$a=3.535; $b=4.535; // %8.8s
+echo "\n<br>$a = ".sprintf('%6.2f',$a);
+echo "\n<br>$b = ".sprintf('%6.2f',$b);
+
+?>
+
 {/block:main}
 

@@ -87,7 +87,7 @@ class tagBase{
         $this->jonArr = $cfg;
     }
     
-    // [order,0,kid1+f02+f03]
+    // [order,0,kid1+f02+f03,1]
     // order, odesc
     function pOrder(){ 
         $cfg = $this->p1Cfg('order');
@@ -105,7 +105,7 @@ class tagBase{
             $order = '';    
         }
         $order || $order = $this->sqlArr['ordef'];
-        $odesc = basReq::val('odesc','1','N');
+        $odesc = isset($cfg[3]) ? $cfg[3] : basReq::val('odesc','1','N');
         $this->sqlArr['order'] = $order;
         $this->sqlArr['odesc'] = $odesc;
         $this->sqlArr['ofull'] = 'm.'.$order.($odesc ? ' DESC' : '');
