@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // usrPerm : 单独分离出来
 class usrPerm{    

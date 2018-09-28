@@ -1,5 +1,7 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include_once(DIR_STATIC.'/ximp/class/Splitword.cls_php'); 
 
 $_locfp = '/ximp/utabs/spword.imp_txt';
@@ -15,7 +17,7 @@ if(!is_file(DIR_STATIC.$_locfp)){
 	$str = $a_split->GetIndexText($a_split->SplitRMM($str),100);
 ************************************************************************************* ******/
 
-class extSpword extends Splitword{
+class extSpword extends \Splitword{
 	
 	static function main($str,$len=-1,$cset='utf-8'){
 		if(!$str) return '';

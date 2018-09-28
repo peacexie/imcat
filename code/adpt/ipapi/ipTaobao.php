@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 获取ip地址-Taobao
 class ipTaobao{
     

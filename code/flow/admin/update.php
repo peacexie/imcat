@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init'); 
 
 $parts = empty($parts) ? 'cache' : $parts;
@@ -142,7 +143,6 @@ if(empty($bsend)){
         }
     }
     
-    echo '<br>'.basDebug::runInfo().'<hr>';
     basMsg::show(lang('admin.ud_end'),'Redir',"?mkv=admin-update&parts=$parts");
 
 }elseif($view=='set'){

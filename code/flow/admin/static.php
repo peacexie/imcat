@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 $ntpl = req('ntpl',$_cbase['tpl']['def_static']);

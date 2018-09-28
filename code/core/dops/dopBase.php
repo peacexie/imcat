@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // dops : All Data & View OP Systems
 // dopBase : 基本数据操作(Basic Data Operate) --- 列表,搜索,设置,编辑...
 // for : docs,coms,user,advs,

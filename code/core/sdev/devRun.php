@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 define('FLAGYES', '<span style="color: #008000; font-weight : bold;">&#10004;<!--isYes--></span>');
 define('FLAGNO', '<span style="color: #ff0000; font-weight : bold;">&#10008;<!--isNo--></span>');
@@ -67,17 +68,17 @@ class devRun{
         }
 
         // db配置
-        $_cfgs = glbConfig::read('db','cfg'); 
-        $dbcls = $_cfgs['db_class'];
-        if($dbcls=='pdox'){
+        include DIR_ROOT.'/cfgs/boot/cfg_db.php';
+        $dbcls = $_cfgs['db_driver'];
+        if($dbcls=='pdo'){
             $dbflag = class_exists('PDO');
         }else{
             $dbflag = function_exists("{$dbcls}_connect");
         }
         // mysql扩展
-        $exlib = array('mysqli'=>'mysqli','mysql'=>'mysql','pdox'=>'pdo_mysql');
+        $exlib = array('mysqli'=>'mysqli','mysql'=>'mysql','pdo'=>'pdo_mysql');
         if(!$dbflag){
-            $umsg['mysql']['msg'] = basLang::show('devrun_my3a',$exlib[$_cfgs['db_class']]).basLang::show('devrun_my3b')."(/root/cfgs/boot/cfg_db.php)，<br>".basLang::show('devrun_my3c')."\$_cfgs['db_class'] = 'mysqli,mysql,pdox'; //".basLang::show('devrun_my3d');
+            $umsg['mysql']['msg'] = basLang::show('devrun_my3a',$exlib[$_cfgs['db_driver']]).basLang::show('devrun_my3b')."(/root/cfgs/boot/cfg_db.php)，<br>".basLang::show('devrun_my3c')."\$_cfgs['db_driver'] = 'mysqli,mysql,pdo'; //".basLang::show('devrun_my3d');
             $umsg['mysql']['tip'] = FLAGNO; 
         }
         // gd2扩展
@@ -99,13 +100,13 @@ class devRun{
     }
 
     static function startDbadd($dbname){ 
-        $_cfgs = glbConfig::read('db','cfg'); 
+        include DIR_ROOT.'/cfgs/boot/cfg_db.php';
         foreach($_cfgs as $k=>$v){
             if(!empty($_POST[$k])) $_cfgs[] = $_POST[$k];
         }
-        $type = $_cfgs['db_class'];
+        $type = $_cfgs['db_driver'];
         $sql = "CREATE DATABASE `$dbname` COLLATE 'utf8_general_ci';";
-        if($type=='pdox'){
+        if($type=='pdo'){
             $dsn = 'mysql:host='.$_cfgs['db_host'].';dbname='.$_cfgs['db_name'].'';
             $idb = new PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); 
             $re = $idb->query($sql);
@@ -189,7 +190,7 @@ class devRun{
     static function runMydb3($dbcfgs=array()){ 
         $a = array('mysqli'=>array(),'mysql'=>array(),'pdo'=>array());
         if(empty($dbcfgs)){
-            $_cfgs = glbConfig::read('db','cfg'); 
+            include DIR_ROOT.'/cfgs/boot/cfg_db.php';
         }else{
             $_cfgs = $dbcfgs; 
         }
@@ -203,10 +204,10 @@ class devRun{
             $a[$type] = array('res'=>FLAGYES,'info'=>''); //支持pdo扩展
             try{
                 $dsn = 'mysql:host='.$_cfgs['db_host'].';dbname='.$_cfgs['db_name'].'';
-                @$pdo = new PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); 
+                @$pdo = new \PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); 
                 // PDO::ATTR_DRIVER_NAME, PDO::ATTR_SERVER_VERSION, PDO::ATTR_SERVER_VERSION
                 $info = " OK : ".$pdo->getAttribute(PDO::ATTR_SERVER_VERSION)."; OK : {$_cfgs['db_name']}";
-            }catch(PDOException $e){
+            }catch(\PDOException $e){
                 $info = ' - '.$e->getMessage().' - ';
             }
             if(!strstr($info,'; OK :')){

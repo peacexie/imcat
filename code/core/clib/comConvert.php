@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 
 // 编码转化,加密类
 class comConvert{                  

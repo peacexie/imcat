@@ -1,6 +1,8 @@
 <?php
+namespace imcat;
+
 // PDO数据库驱动 
-class db_pdox{
+class dbPdo{
 
     public $pdo = null;
     public $lastID = 0;
@@ -123,7 +125,7 @@ class db_pdox{
                 break;
             case 'MYSQL':
             default:
-                $sql   = 'DESCRIBE '.$tableName;//备注: 驱动类不只针对mysql，不能加``
+                $sql   = 'DESCRIBE '.$tableName; //备注: 驱动类不只针对mysql，不能加``
         } 
         $result = $this->query($sql);
         $info   =   array();

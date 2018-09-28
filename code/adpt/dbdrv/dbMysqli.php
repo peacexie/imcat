@@ -1,6 +1,8 @@
 <?php
+namespace imcat;
+
 //mysqli数据库基类
-class db_mysqli {
+class dbMysqli {
     
     public $link;    
     public $lastID = 0;
@@ -127,7 +129,7 @@ class db_mysqli {
         $sql = str_replace(array('<','>'),array('&lt;','&gt;'),$sql);
         $func = @$this->config['efunc'];
         if($func) return $func($message);
-        @$error = (($this->link) ? mysqli_error($this->link) : mysqli_error());
+        @$error = (($this->link) ? mysqli_error($this->link) : mysqli_connect_error());
         @$errorno = intval(($this->link) ? mysqli_errno($this->link) : mysqli_errno());
         $msga = array(
             'Resume' => $message,

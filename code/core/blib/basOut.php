@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Output
 class basOut

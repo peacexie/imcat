@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 手机短信接口类
  
@@ -25,9 +26,10 @@ class extSms{
             $this->cfgs = $_cfgs; 
             $this->cnow = $_apis[$api];
             //$this->name = $this->cnow['name'];
-            $class = "sms_$this->api";
+            $cfile = 'sms'.ucfirst($this->api);
             // 统一实例化一个 api对象 // load sms libs
-            require DIR_CODE."/adpt/smsapi/sms_{$this->api}.php"; // 加载
+            require DIR_CODE."/adpt/smsapi/$cfile.php"; // 加载
+            $class = "\\imcat\\$cfile";
             $this->smsdo = new $class($_cfgs); 
         }
         $this->amap = $_apis;

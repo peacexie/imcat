@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 //$dop->dskey  = $dop->so->dskey  = 'mtel'; //改变默认搜索字段

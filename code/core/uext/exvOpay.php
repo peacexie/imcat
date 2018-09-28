@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // exvOpay相关函数
 // 各模版公用

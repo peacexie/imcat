@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // dopFunc : 基本操作 static函数
 class dopFunc{    
 

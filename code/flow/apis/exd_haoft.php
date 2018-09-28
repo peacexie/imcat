@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
@@ -29,9 +30,22 @@ if(in_array($view,array('list','set'))){
 }
 echo "<table border='1' class='table tblist'><tr><th>$citys</th></tr></table>";
 
-if($view=='set'){
+if($view=='loctest'){ // 本地数据测试
     
-    echo 'xx-set';
+    $tabs = '苏仙区/北湖区/资兴市/永兴县/桂阳县/宜章县/嘉禾县/临武县/汝城县/桂东县/安仁县'; // 不限/
+    $arr = explode('/', $tabs);
+    $db = db('imhaoft');
+    $areas = $db->table('area')->where('pid=0')->select();
+    foreach ($areas as $k=>$row) {
+        echo "$k, {$arr[$k]}<br>";
+        $data = array('title'=>$arr[$k+4]);
+        $db->table('area')->data($data)->where("kid={$row['kid']}")->update(0);
+    }
+    $tabs = array('area','comp','dept','lease','sale','user');
+    foreach ($tabs as $tab) {
+        $db->table($tab)->data(['city'=>'chenzhou'])->where("1=1")->update(0);
+    }
+    //dump($areas);
 
 }elseif($view=='list'){
 
@@ -44,12 +58,6 @@ if($view=='set'){
         $res = $hft->syncArea();
     }
     include DIR_SKIN."/adm/stpl/hft_sync.htm";
-
-    /*
-    $db = db('imhouse');
-    dump($db->table('area')->select());
-    */
-
 
 }elseif(in_array($view,array('json','tpl'))){
     

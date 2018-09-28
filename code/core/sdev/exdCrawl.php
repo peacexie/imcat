@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_INIT')) && die('No Init');
+namespace imcat;
 
 // ...类exdCrawl
 class exdCrawl{    

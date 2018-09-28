@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Fields
 class fldView{    

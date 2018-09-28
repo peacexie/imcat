@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(__FILE__).'/_wex_cfgs.php';
 

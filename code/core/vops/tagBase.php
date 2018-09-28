@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /*
 */
 // 标签解析 基类

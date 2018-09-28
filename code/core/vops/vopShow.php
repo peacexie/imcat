@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // 标签解析,显示 总控类
 class vopShow{
     
@@ -211,7 +213,7 @@ class vopShow{
         }else{
             if($type=='Page') $this->chkPage($tagname);
             $this->tagRun('tagnow',$tagname);
-            $class = "tag$type";
+            $class = "\\imcat\\tag$type";
             $_1tag = new $class($paras);
             $data = $_1tag->getData();
             if($res[0]){

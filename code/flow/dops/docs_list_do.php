@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_DOPA')) && die('No DopA');
 
 $fs_do = req('fs_do');

@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // sysCookie
 class comCookie{    
 

@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 //缓存类
 class extCache{
 

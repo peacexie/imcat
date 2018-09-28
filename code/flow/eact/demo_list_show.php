@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init'); 
 // 参考: dops/docs_list_show.php
 #$_cbase['show']['apsize'] = 2; // 分页测试

@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 消息回复（被动回复）
 // 如果本系统修改,就改这个文件，不用改wmp*文件

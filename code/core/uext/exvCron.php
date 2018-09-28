@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // exvCron计划任务
 class exvCron{

@@ -1,6 +1,8 @@
 <?php
+namespace imcat;
+
 //cp错误异常类
-class glbError extends Exception {
+class glbError extends \Exception {
 
     private $erMsg='';
     private $erFile = '';
@@ -122,6 +124,7 @@ class glbError extends Exception {
             ob_clean();
             die($re); 
         }else{
+            #dump($traceInfo);
             include vopTpls::cinc("_pub:stpl/err_info");
             die();
         }

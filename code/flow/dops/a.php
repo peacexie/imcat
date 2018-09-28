@@ -1,4 +1,5 @@
-<?php // dops
+<?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 define('RUN_DOPA',1);
 
@@ -17,7 +18,7 @@ if(!isset($_tmp[$_pid])) glbHtml::end(lang('flow.dops_parerr').':mod@dop.php');
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@a.php'); 
 usrPerm::run('pmod',$mod);
 
-$_cls = $_tmp[$_pid][0]; 
+$_cls = '\\imcat\\'.$_tmp[$_pid][0]; 
 $dop = new $_cls($_cfg); 
 $so = $dop->so; 
 $cv = $dop->cv;

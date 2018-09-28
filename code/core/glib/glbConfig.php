@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Cache - 读写
 class glbConfig{    
@@ -24,7 +25,6 @@ class glbConfig{
     // read config
     // $_demo = read('demo');
     // $_sy_keepid = read('keepid','sy');
-    // $dbcfg = read('db','cfg'); 
     static function read($file,$dir='modcm'){ 
         global $_cbase;
         $modid = $file;
@@ -37,10 +37,6 @@ class glbConfig{
             $file = "/modex/$key.cfg.php";
             $base = DIR_DTMP;
             if(!file_exists(DIR_DTMP.$file)) return array();
-        }elseif(in_array($dir,array('cfg'))){
-            $key = "_cfg_$file"; $kk = "_cfgs"; 
-            $file = "/cfgs/boot/cfg_$file.php";
-            $base = DIR_ROOT;
         }elseif(in_array($dir,array('dset'))){
             $key = "_$file";
             $file = "/dset/$key.cfg.php";

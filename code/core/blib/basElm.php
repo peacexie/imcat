@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Element基本html元素类
 class basElm{    
@@ -86,9 +87,10 @@ class basElm{
             $t = explode('.',$text);
             $mcfg = glbConfig::read($t[0]); 
             $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
-        }elseif(preg_match("/^(\w+)\::(\w+)\(([\w\,]{0,24})\)$/",$text)){
-            preg_match("/^(\w+)\::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);
-            $class = $ma[1]; $method = $ma[2]; 
+        }elseif(preg_match("/^(\w+)::(\w+)\(([\w\ \,]{0,24})\)$/",$text)){
+            $text = str_replace(array("\r","\n",' '),'',$text);
+            preg_match("/^(\w+)::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);
+            $class = $ma[1]; $method = $ma[2];
             $pa = explode(',',$ma[3].',,,,');
             foreach ($pa as $pk=>$pv) {
                 $pa[$pk] = strlen($pa[$pk])>0 ? $pa[$pk] : null;

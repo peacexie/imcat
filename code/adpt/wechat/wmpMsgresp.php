@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 被动回复信息(这里只组消息结构,不能直接die，因为可能下发消息后，还有继续其它操作)
 // 随微信规则更新

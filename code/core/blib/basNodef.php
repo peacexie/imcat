@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // basNodef
 class basNodef{    
@@ -10,9 +11,9 @@ class basNodef{
         $db = glbDBObj::dbObj();
         $str = $db->quoteSql($str);
         if(empty($noq)){ 
-            return $db->class=='pdox' ? $str : "'$str'";
+            return $db->driver=='pdo' ? $str : "'$str'";
         }else{ /* 不要括号 */ 
-            return $db->class=='pdox' ? substr($str,1,strlen($str)-2) : $str;
+            return $db->driver=='pdo' ? substr($str,1,strlen($str)-2) : $str;
         }
     }
 

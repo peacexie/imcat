@@ -1,6 +1,8 @@
 <?php
+namespace imcat;
+
 //mysql数据库基类
-class db_mysql {
+class dbMysql {
     
     public $link;    
     public $lastID = 0;

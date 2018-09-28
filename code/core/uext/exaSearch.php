@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 function fsget_dirs($path) { 
     $now = BASE.$path; $s = '';

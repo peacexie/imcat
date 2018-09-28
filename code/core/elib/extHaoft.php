@@ -1,5 +1,5 @@
 <?php
-(!defined('RUN_INIT')) && die('No Init');
+namespace imcat;
 
 class extHaoft{
 
@@ -163,8 +163,9 @@ class extHaoft{
                 $pid = $arr[1][$k1];
                 $res[$k1] = "[{$pid}:$v1]\n";
                 // db-pid=0
-                $row = array('code'=>$pid,'title'=>$v1,'city'=>$city,'pid'=>0);
-                $old = $db->table('area')->where("city='$city' AND pid='0' AND title='$v1'")->find();
+                $row = array('kid'=>$pid,'title'=>$v1,'city'=>$city,'pid'=>0);
+                $whr1 = "kid='$pid' "; // AND city='$city' 
+                $old = $db->table('area')->where($whr1)->find();
                 if(empty($old)){
                     $rf = $db->table('area')->data($row)->insert(0);
                 } // db-pid=(end) */
@@ -177,8 +178,9 @@ class extHaoft{
                         $kid = $ar2[2][$k2];
                         $res[$k1] .= "{$kid}:$v2, ";
                         // db-sub=0
-                        $row = array('code'=>$kid,'title'=>$v2,'city'=>$city,'pid'=>$pid);
-                        $old = $db->table('area')->where("city='$city' AND pid='$pid' AND title='$v2'")->find();
+                        $row = array('kid'=>$kid,'title'=>$v2,'city'=>$city,'pid'=>$pid);
+                        $whr2 = "kid='$kid' "; // AND city='$city' 
+                        $old = $db->table('area')->where($whr2)->find();
                         if(empty($old)){
                             $rf = $db->table('area')->data($row)->insert(0);
                         } // db-sub=(end) */
@@ -187,6 +189,25 @@ class extHaoft{
             }
         }
         return $res; 
+    }
+
+    // --------------------------------------------
+
+    // 缩略图
+    static function thumb($url, $mw, $mh, $def='demo_error.jpg')
+    {
+        if(empty($url)){
+            return PATH_STATIC."/icons/basic/$def";
+        }
+        return "$url?x-oss-process=image/resize,m_fill,h_$mw,w_$mh";
+        // return "{$base}_{$mw}x{$mh}$ext";
+    }
+
+    // 是否开启API self::opend()
+    static function opend()
+    {
+        $cfgs = read('haoft','ex'); 
+        return empty($cfgs['api-open']) ? 0 : 1;
     }
 
 }

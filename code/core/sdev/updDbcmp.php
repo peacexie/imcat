@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 // ...类updDbcmp
@@ -14,7 +15,7 @@ class updDbcmp{
             $ocfgs = $ocfgs['psyn']['odbcfgs'];
             $ocfgs = array_merge($db->config,$ocfgs); 
             $res = devRun::runMydb3($ocfgs); 
-            $res = @$res[$ocfgs['db_class']];
+            $res = @$res[$ocfgs['db_driver']];
             self::$cpcfgs = array('new'=>$db->config, 'old'=>$ocfgs, 'res'=>$res,);  
         }
         return self::$cpcfgs;   

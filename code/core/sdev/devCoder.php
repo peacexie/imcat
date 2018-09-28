@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // ... 代码导出类（申请著作权）
 

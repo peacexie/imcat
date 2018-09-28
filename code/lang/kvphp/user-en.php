@@ -217,11 +217,11 @@ return array(
     'gtp_idmail' => 'Use userid/mail get password!',
     'gtp_getok' => 'Get password OK!',
 
-    // b_func/tex_base.php
+    // _funcs/tex_base.php
     'tex_base_ulogin' => 'User Login',
     'tex_base_uperm' => 'User Perm',
     'tex_base_vlimit' => 'Access NOT permissions',
-    // b_func/xx.php
+    // _funcs/xx.php
     'exf_vcode' => ' View-Code',
     'exf_alltype' => 'All-Class',
     'exf_indocmsg' => 'Inner Doc notification',

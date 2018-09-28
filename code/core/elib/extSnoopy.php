@@ -1,8 +1,10 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include DIR_STATIC.'/ximp/class/Snoopy.cls_php'; 
 
-class extSnoopy extends Snoopy{
+class extSnoopy extends \Snoopy{
     
     static function xx_($text){
         //return xxx;

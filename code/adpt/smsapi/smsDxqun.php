@@ -1,6 +1,7 @@
 <?php
+namespace imcat;
 // sms_dxqun；
-class sms_dxqun{
+class smsDxqun{
         
     public $userid; // 序列号    
     public $userpw; // 密码

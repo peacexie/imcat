@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 显示相关函数; 单独函数可先用new exvJump();自动加载
 class exvJump{

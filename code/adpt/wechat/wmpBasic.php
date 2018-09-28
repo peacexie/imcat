@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 /**
  * Class wmpBasic 基本接口，随微信规则更新
  *

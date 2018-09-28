@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 if(empty($fs_do)) $msg = lang('flow.dops_setop');

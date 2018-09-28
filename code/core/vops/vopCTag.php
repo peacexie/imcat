@@ -1,20 +1,22 @@
 <?php
+namespace imcat;
+
 // 标签编译 类
 
 class vopCTag{
 
     static $tag_fix = "tag:[a-z][a-z0-9_]{1,17}";
     static $tag_func = array(
-        'surl' => 'vopUrl::fout',
-        'lang' => 'basLang::show',
-        'spic' => 'vopCell::cPic',
+        'surl'  => 'vopUrl::fout',
+        'lang'  => 'basLang::show',
+        'spic'  => 'vopCell::cPic',
         'title' => 'vopCell::cTitle',
-        'html' => 'vopCell::cHtml',
-        'text' => 'vopCell::cText',
+        'html'  => 'vopCell::cHtml',
+        'text'  => 'vopCell::cText',
         'stime' => 'vopCell::cTime',
-        'sopt' => 'vopCell::cOpt',
-        'show' => 'vopCell::cShow',
-    );
+        'sopt'  => 'vopCell::cOpt',
+        'show'  => 'vopCell::cShow',
+    ); // \imcat\
     
     // vop:cecho标签
     // {stime($re4['atime']);}                 =>  [?php echo vopCell::cTime($re4['atime']);;?]
@@ -116,7 +118,7 @@ class vopCTag{
                 $pare2[] = $v2;
                 $v2 = self::_1Para($v2,$js);
                 // [modid,$ucfg('mod')] -=> $ucfg['mod']
-                $v2 = str_replace(array("('","')"),array("['","']"),$v2); 
+                //$v2 = str_replace(array("('","')"),array("['","']"),$v2); 
                 $paras .= "$v2,";
             }
             $paras .= "),";
@@ -159,8 +161,8 @@ class vopCTag{
         if(substr($v,0,6)=='array('){ 
             $v = str_replace("\\n",",",$v);
             return $v;
-        // class::func(@$re1['h'])
-        }elseif(strpos($v,'::')){ 
+        // class::func(@$re1['h']) / tex('texCargo')->expwhr()
+        }elseif(strpos($v,'::') || strpos($v,'->')){ 
             return $v;
         // $re1['kid'], "about-$re1[kid]"
         }elseif(strstr($v,'$')){ // || strstr($v,'"')
@@ -172,6 +174,7 @@ class vopCTag{
         }else{
             return "'$v'";
         }
+        // [where,tex('texCargo')->expwhr()]
     }
     
     // [c_page/test_tjs,flag1][Type,re1][modid,$_modx1][idfix,top]

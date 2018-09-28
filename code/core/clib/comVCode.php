@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 //生成验证码
 class comVCode {
 

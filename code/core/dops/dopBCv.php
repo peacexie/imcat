@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // dopBCv : 基本数据操作(data OP(base) for CellView) --- 单元格显示...
 // for : dopBCv,

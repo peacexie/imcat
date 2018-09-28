@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Url 类
 class vopUrl{    
@@ -237,7 +238,7 @@ class vopUrl{
         global $_cbase;
         $binds = $_cbase['ucfg']['dbind']; 
         if(empty($binds)) return $url;
-        $na = glbConfig::read('dmbind','ex');
+        $na = glbConfig::read('dmbind','sy');
         if(empty($na)) return $url;
         foreach($na as $v){
             $vbak = $v[0];

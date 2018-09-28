@@ -1,8 +1,10 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include DIR_STATIC.'/ximp/class/Parsedown.cls_php'; 
 
-class extMkdown extends Parsedown{
+class extMkdown extends \Parsedown{
     
     static function pdext($text,$mode=1){
         if($mode==1){

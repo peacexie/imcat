@@ -1,6 +1,7 @@
 <?php
+namespace imcat;
 // sms_emhttp；
-class sms_emhttp{
+class smsEmhttp{
     
     public $userid; // 序列号
     public $userpw; // 密码/Key

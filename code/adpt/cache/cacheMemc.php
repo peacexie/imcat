@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 是一个原生版本，完全在php框架内开发的。
 class cacheMemc {
     private $mmc = NULL;

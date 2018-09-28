@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 $ocfgs = read('outdb','ex');

@@ -1,10 +1,11 @@
 <?php
+namespace imcat;
 // sms_bucp；
 //http://sdk2.entinfo.cn/z_send.aspx?sn=SDK-DHX-010-xxx&pwd=222&mobile=13712748215&content=Test你好
 //http://sdk2.entinfo.cn/z_balance.aspx?sn=SDK-DHX-010-xxx&pwd=222
 //http://117.79.237.3:8060/webservice.asmx/
 
-class sms_bucp{
+class smsBucp{
     
     public $userid; // 序列号
     public $userpw; // 密码/Key 

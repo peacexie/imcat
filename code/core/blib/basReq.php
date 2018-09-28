@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Request,表单,Url参数处理类
 class basReq{    

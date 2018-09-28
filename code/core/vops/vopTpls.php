@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /*
 
 */
@@ -47,7 +49,7 @@ class vopTpls{
         return ($root ? ($type=='tpc' ? DIR_CTPL : DIR_SKIN) : '').'/'.$tpl;  
     }
     
-    // include_once:扩展函数：{php vopTpls::pinc('chn:tex_keres');} -=> chn/b_func/tex_keres.php
+    // include_once:扩展函数：{php vopTpls::pinc('chn:tex_keres');} -=> chn/_config/tex_keres.php
     // 得到_config路径：      {php include vopTpls::pinc('_config/va_home'); } -=> _config/va_home.php
     // 得到include需要的路径：{php include vopTpls::pinc('tools/a_cfgs'); } -=> tools/a_cfgs.php
     // {imp:"_pub:stpl/_lay_info"} -=> code/cogs/stinc/tools/_lay_info.htm
@@ -62,8 +64,8 @@ class vopTpls{
             $a = array(0,0);
         } 
         $ext = strpos($finc,'.') ? '' : (empty($ext) ? '.php' : $ext);
-        if(!strpos($finc,'/')){ // 'chn:tex_keres' -=> {chn}/b_func/tex_keres
-            include_once DIR_SKIN."/$tpl/b_func/$finc$ext";
+        if(!strpos($finc,'/')){ // 'chn:tex_keres' -=> {chn}/_config/tex_keres
+            include_once DIR_SKIN."/$tpl/_config/$finc$ext";
         }elseif(strpos($tpl,']')){ // [root]:tools/exdiy/rplan
             $tpl = str_replace(array('[',']'),'',$tpl); 
             $tpl = comStore::cfgDirPath($tpl); 
@@ -231,10 +233,10 @@ class vopTpls{
         $arr[] = $mod.'Ctrl';
         if(!empty($hcfg['_defCtrl'])) $arr[] = $hcfg['_defCtrl'];
         foreach ($arr as $class) {
-            $fp = $tpdir."/b_ctrls/$class.php";
+            $fp = $tpdir."/_ctrls/$class.php";
             if(file_exists($fp)){
                 include_once $fp;
-                return $class;
+                return "\\imcat\\{$_cbase['tpl']['tpl_dir']}\\$class";
             }
         }
         return 0;

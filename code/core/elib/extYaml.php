@@ -1,9 +1,11 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include DIR_VENDOR.'/Spyc/Spyc.cls_php'; 
 
 
-class extYaml extends Spyc{
+class extYaml extends \Spyc{
     // Dumps array to YAML.
     static function adump($array, $indent = false, $wordwrap = false, $no_opening_dashes = false){
         return self::YAMLDump($array, false, false, false);

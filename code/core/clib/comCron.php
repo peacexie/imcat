@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 计划任务类
  

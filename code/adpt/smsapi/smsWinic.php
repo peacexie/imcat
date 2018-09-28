@@ -1,6 +1,7 @@
 <?php
+namespace imcat;
 // sms_winic；
-class sms_winic{
+class smsWinic{
     
     public $userid; // 序列号
     public $userpw; // 密码

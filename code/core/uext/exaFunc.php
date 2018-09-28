@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 后台函数; 单独函数可先用new exaFunc();自动加载
 class exaFunc{

@@ -217,11 +217,11 @@ return array(
     'gtp_idmail' => '用账号邮箱找密码！',
     'gtp_getok' => '找回密码成功！',
 
-    // b_func/tex_base.php
+    // _funcs/tex_base.php
     'tex_base_ulogin' => '会员登录',
     'tex_base_uperm' => '会员权限',
     'tex_base_vlimit' => '访问受限',
-    // b_func/xx.php
+    // _funcs/xx.php
     'exf_vcode' => '代码查看',
     'exf_alltype' => '所有分类',
     'exf_indocmsg' => '公文提醒通知',

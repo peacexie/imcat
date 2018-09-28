@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 用于测试
 
 class wysTester{

@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Static相关
 class vopStatic{

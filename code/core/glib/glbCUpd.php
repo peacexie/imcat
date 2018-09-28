@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // glbCUpd
 class glbCUpd{    

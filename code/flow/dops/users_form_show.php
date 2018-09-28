@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_DOPA')) && die('No DopA'); 
 
 if(!empty($uid)){

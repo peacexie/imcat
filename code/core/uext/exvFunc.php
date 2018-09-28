@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 显示相关函数; 单独函数可先用new exvFunc();自动加载
 class exvFunc{

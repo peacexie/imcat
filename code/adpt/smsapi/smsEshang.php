@@ -1,6 +1,7 @@
 <?php
+namespace imcat;
 // sms_eshang；
-class sms_eshan{
+class smsEshang{
         
     public $userid; // 用户名    
     public $userpw; // 密钥    

@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /*
  * 中文圆形印章类
  * @author lkk/lianq.net

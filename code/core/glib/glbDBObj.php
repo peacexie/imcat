@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 //数据库操作类，加载了外部的数据库驱动类
 
@@ -6,7 +7,7 @@ class glbDBObj{
 
     public $db = NULL; // 当前数据库操作对象
     public $config = array();
-    public $class = '';
+    public $driver = '';
     public $sql = '';//sql语句，主要用于输出构造成的sql语句
     public $pre = '';//表前缀，主要用于在其他地方获取表前缀
     public $ext = '';//表后缀，主要用于在其他地方获取表后缀
@@ -17,7 +18,7 @@ class glbDBObj{
     function __construct($config=array()){
         $this->config = empty($config) ? self::getCfg() : $config;
         $this->otps['field'] = '*';//默认查询字段
-        $this->class = $this->config['db_class'];
+        $this->driver = $this->config['db_driver'];
         $this->pre = $this->config['db_prefix'];//数据表前缀
         $this->ext = $this->config['db_suffix'];//数据表后缀
     }
@@ -27,8 +28,9 @@ class glbDBObj{
         global $_cbase;
         if(!is_object($this->db)){ //$this->db不是对象，则连接数据库
             $_cbase['run']['qstart'] = microtime(1); //分析Start
-            $class = 'db_'.$this->class;
-            require_once DIR_CODE."/adpt/dbdrv/{$class}.php";
+            $file = 'db'.ucfirst($this->driver);
+            require_once DIR_CODE."/adpt/dbdrv/{$file}.php";
+            $class = "\\imcat\\$file";
             $this->db = new $class();//连接数据库
             $this->db->connect($this->config);
         }
@@ -344,7 +346,7 @@ class glbDBObj{
         }
         $key .= $catch;
         if(empty(self::$uobj[$key])){
-            $class = $catch ? 'glbDBCache' : 'glbDBObj';
+            $class = $catch ? '\\imcat\\glbDBCache' : '\\imcat\\glbDBObj';
             self::$uobj[$key] = new $class($config); 
             self::$uobj[$key]->connect($config); 
         }
@@ -354,7 +356,8 @@ class glbDBObj{
     static function getCfg($key=''){
         static $dbcfg;
         if(empty($dbcfg)){
-            $dbcfg = glbConfig::read('db','cfg');
+            require DIR_ROOT.'/cfgs/boot/cfg_db.php';
+            $dbcfg = $_cfgs;
         }
         return ($key && isset($dbcfg[$key])) ? $dbcfg[$key] : $dbcfg;
     }

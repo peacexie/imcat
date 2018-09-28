@@ -1,4 +1,6 @@
 <?php 
+namespace imcat;
+
 /**
  * 类的自动加载 //可以多个...
  * spl_autoload_register('func_name');
@@ -10,27 +12,7 @@ class autoLoad_ys{
     static $cfgpr4 = array();
     static $cfgnsp = array();
     static $cfgmap = array();
-    
-    static $upath = array();
-    
-    // autoLoad_ys::ureg('/adpt/cache'); //code目录下
-    // autoLoad_ys::ureg('/a3rd/udir',0); //root目录下
-    static function ureg($upath,$pcode=1){
-        $key = $pcode ? 'code' : 'root';
-        if(empty(self::$upath[$key]) || !in_array($upath,self::$upath[$key])){ 
-            self::$upath[$key][] = $upath;
-        }
-        spl_autoload_register(array(__CLASS__,'uload'));
-    }
-    static function uload($name){ 
-        foreach(self::$upath as $key=>$kpath){ 
-            $base = $key=='code' ? DIR_CODE : DIR_ROOT;
-            foreach($kpath as $path){ 
-                self::doinc($path."/$name.php",$base);
-            }
-        }
-    }
-    
+
     static function init(){ 
         require DIR_ROOT.'/cfgs/boot/cfg_load.php';
         self::$acdirs = $_cfgs['acdir'];
@@ -41,31 +23,35 @@ class autoLoad_ys{
         spl_autoload_register(array(__CLASS__,'vload')); 
     }
     // 核心类库
-    static function cload($name){ 
-        if(isset(self::$cfgmap[$name])){ // 自定义-class-map
-            if(substr(self::$cfgmap[$name],0,1)=='~'){
-                $base = DIR_CODE;
-                $file = substr(self::$cfgmap[$name],1);
-            }else{
-                $base = DIR_VENDOR;
-                $file = self::$cfgmap[$name];
-            } 
-            return self::doinc($file,$base,1);
-        }else{ // 按[前缀-目录]对照加载
-            $fx3 = substr($name,0,3); 
-            foreach(self::$acdirs as $dir=>$fixs){ //
-                if(strstr($fixs,$fx3)){ 
-                    return self::doinc("/$dir/$name.php",DIR_CODE,1);
+    static function cload($name){
+        if(substr($name,0,6)!='imcat\\') return;
+        $cname = substr($name,6);
+        if(strpos($cname,'\\')){ // 模板扩展函数
+            // imcat\chn\texName // -=> skin/chn/_ctrls/texName.php 
+            return self::doinc('/'.str_replace('\\','/_ctrls/',$cname).".php", DIR_SKIN, 1);
+        }else{ // 核心类库
+            // imcat\fixName // -=> code/core/xdir/fixName.php
+            $fx3 = substr($cname,0,3);
+            foreach(self::$acdirs as $dir=>$fixs){
+                if(strstr($fixs,$fx3)){ // 按[前缀-目录]对照加载 
+                    return self::doinc("/$dir/$cname.php", DIR_CODE, 1);
                 }
-            }
-        }
+            }    
+        } // (控制器) imcat\chn\topicCtrl // -=> skin/chn/_ctrls/topicCtrl.php 
+
     }
     // 第三方
-    static function vload($name){ 
+    static function vload($name){
+        // -自定义-class-map
+        if(isset(self::$cfgmap[$name])){
+            $file = self::$cfgmap[$name];
+            return self::doinc($file,'',1);
+        }
         // -pr4规范
-        foreach(self::$cfgpr4 as $k=>$v){ 
+        foreach(self::$cfgpr4 as $k=>$v){
             if(!strstr($name,$k)) continue; //strstr 比file_exists快多了吧？
-            $file = str_replace('\\', '/', str_replace($k, $v[0].'/', $name)).'.php'; 
+            $file = str_replace('\\', '/', str_replace($k, $v[0].'/', $name)).'.php';
+            $file = str_replace('//', '/', $file);
             return self::doinc($file,DIR_VENDOR);
         }
         // -namespace规范
@@ -109,7 +95,7 @@ function bootPerm_ys($key='',$re='0',$exmsg=''){
     return $msg; 
 }*/
 // 默认异常处理函数
-function except_handler_ys($e) {  
+function except_handler_ys($e) {
     throw new glbError($e); 
 }
 // 默认错误处理函数

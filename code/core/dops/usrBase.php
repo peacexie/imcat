@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // usrBase
 class usrBase{    
@@ -231,7 +232,7 @@ class usrBase{
             }
             return $utmp;
         }
-        $uclass = $uclass=='Admin' ? 'usrAdmin' : 'usrMember';
+        $uclass = $uclass=='Admin' ? '\\imcat\\usrAdmin' : '\\imcat\\usrMember';
         if(empty(self::$uobjs[$uclass])){ 
             self::$uobjs[$uclass] = new $uclass();
         }

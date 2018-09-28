@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /**
  * FTP 操作类
  * 不支持 SFTP 和 SSL FTP 协议, 仅支持标准 FTP 协议.
@@ -10,53 +12,54 @@
  * $config['debug'] = TRUE;
  */
 // rsFtp-Ftp存储
+
 @set_time_limit(1000);
 class rsFtp{
 
     public static $objs = array();
-
-    public $ftp_ssl     = FALSE;
-    public $hostname    = '';
-    public $username    = '';
-    public $password    = '';
-    public $port        = 21;
-    public $passive     = TRUE;
-    public $timeout     = 10;
-    public $debug       = FALSE;
-    public $conn_id     = FALSE;
+    public $cfgs        = array();
     public $dir_ures    = '';
 
+    public $ftp_ssl     = FALSE;
+    public $host        = '';
+    public $user        = '';
+    public $pass        = '';
+    public $port        = 21;
+    public $passive     = TRUE;
+    public $timeout     = 15;
+    public $debug       = FALSE;
+    public $conn_id     = FALSE;
+
     // 移动:从临时文件夹移动(上传)到ftp远程
-    function moveUres($org,$obj){
-        //$re = rename($orgfile,DIR_URES.'/'.$obj)
-        //$obj_dir = DIR_URES.'/'.$obj;
+    function moveUres($org, $obj, $fmove=1){
         $obj_dir = $this->dir_ures.'/'.$obj;
-        $this->rmkdir(dirname($obj_dir)); 
-        $re = $this->upload($org,$obj_dir,'auto');
-        if($re) unlink($org);
-        return $re;
+        if($fmove){
+            $this->rmkdir(dirname($obj_dir)); 
+            $re = $this->upload($org, $obj_dir);
+            if($re) unlink($org);
+        }
+        return $this->cfgs['spre'].$obj.$this->cfgs['sfix'];
     }
     // 删除:
     function delFiles($dir){
-        //comFiles::delDir(DIR_URES.'/'.$dir,1);
         $obj_dir = $this->dir_ures.'/'.$dir;
         return $this->delete_dir($obj_dir);
     }
 
-    /**
-     * 析构函数 - 设置参数
-     */
+    // 析构函数 - 设置参数
     function __construct($config=array()){
+        $tcfg = read('store.types','ex');
+        $this->cfgs = $tcfg['rsFtp'];
         if(empty($config)){
-            $config = read('store.rsFtp','ex');
+            $config = $this->cfgs['apicfgs'];
         } 
         foreach($config as $key => $val){
             if(isset($this->$key)){
                 $this->$key = $val;
             }
         }
+        $this->dir_ures = $this->cfgs['dir_ures'];
         // 准备主机名
-        $this->hostname = preg_replace('|.+?://|', '', $this->hostname);
         $this->connect();
     }
 
@@ -64,8 +67,11 @@ class rsFtp{
      * FTP 链接
      */
     function connect(){
-        $func = $this->ftp_ssl && function_exists('ftp_ssl_connect') ? 'ftp_ssl_connect' : 'ftp_connect';
-        if(FALSE=== ($this->conn_id = @$func($this->hostname, $this->port, $this->timeout))){
+        $func = $this->ftp_ssl ? 'ftp_ssl_connect' : 'ftp_connect';
+        if(!function_exists($func)){
+            glbError::show("Call to undefined function $func()");
+        }
+        if(FALSE=== ($this->conn_id = @$func($this->host, $this->port, $this->timeout))){
             $this->_error('Can NOT Connect FTP!');
             return FALSE;
         }
@@ -84,7 +90,7 @@ class rsFtp{
      * FTP 登录
      */
     function _login(){
-        return @ftp_login($this->conn_id, $this->username, $this->password);
+        return @ftp_login($this->conn_id, $this->user, $this->pass);
     }
 
     /**
@@ -166,7 +172,7 @@ class rsFtp{
     /**
      * 上传一个文件到服务器
      */
-    function upload($locpath, $rempath, $mode = 'auto', $perm = NULL){
+    function upload($locpath, $rempath, $perm = NULL){
         if(!$this->_is_conn()){
             return FALSE;
         }
@@ -174,13 +180,7 @@ class rsFtp{
             $this->_error('Local File NOT Found!');
             return FALSE;
         }
-        // 未指定则设置模式
-        if($mode=='auto'){
-            // 获取文件扩展名，以便本类上传类型
-            $ext = $this->_getext($locpath);
-            $mode = $this->_settype($ext);
-        }
-        $mode = ($mode=='ascii') ? FTP_ASCII : FTP_BINARY;
+        $mode = FTP_BINARY; //($mode=='ascii') ? FTP_ASCII : FTP_BINARY;
         $result = @ftp_put($this->conn_id, $rempath, $locpath, $mode, 0);
         if($result=== FALSE){
             $this->_error('Can NOT Upload!');

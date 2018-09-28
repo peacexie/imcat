@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // basJscss类
 class basJscss{
@@ -129,9 +130,9 @@ class basJscss{
         echo "\n_cbase.run.isMoble = ".(basEnv::isMobile()?1:0).";";
         echo "\n_cbase.run.isWeixin = ".(basEnv::isWeixin()?1:0).";";
         if($mkv && $tpldir!='mob'){
-            if($mkv=='home') $mkv='0';
-            echo "\n_cbase.run.mobDir = '".vopUrl::fout("mob:$mkv")."';";
-            echo "\nif(typeof(_pbase.rdmob)!='undefined' && _cbase.run.isMoble){location.href=_cbase.run.mobDir;}";
+            #if($mkv=='home') $mkv='0';
+            #echo "\n_cbase.run.mobDir = '".vopUrl::fout("mob:$mkv")."';";
+            #echo "\nif(typeof(_pbase.rdmob)!='undefined' && _cbase.run.isMoble){location.href=_cbase.run.mobDir;}";
         }
         echo "\nif(typeof(_pbase.jscode)!='undefined'){eval(_pbase.jscode);}";
         // Path  

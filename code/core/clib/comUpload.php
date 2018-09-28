@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /**
  * UEditor编辑器通用上传类
  */

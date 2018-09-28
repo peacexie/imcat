@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 //图像:缩略图/水印处理
 class comImage{
 
@@ -120,7 +122,7 @@ class comImage{
         // 还原完整路径
         $orgd = str_replace(array('{uresroot}','{staticroot}'),array(DIR_URES,DIR_STATIC),$val);
         $orgp = str_replace(array('{uresroot}','{staticroot}'),array(PATH_URES,PATH_STATIC),$val);
-        $repath = read('repath','ex');
+        $repath = read('repath','sy');
         $redir = empty($repath['dir']) ? array() : $repath['dir'];
         $reatt = empty($repath['att']) ? array() : $repath['att'];
         if(!empty($redir)){

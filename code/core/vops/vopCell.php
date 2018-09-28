@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /*
 
 */
@@ -98,6 +100,12 @@ class vopCell{
     // $def=demo_nop300x200.jpg
     // $resize=160x120
     static function cPic($val,$def='',$resize=0){
+        $scfg = glbConfig::read('store', 'ex');
+        foreach($scfg['types'] as $tk=>$row){ 
+            if(!empty($row['cut_ures']) && strpos($val,$row['spre'])===0){
+                return $row['cut_ures']."?img=$val&size=$resize&def=$def";
+            }
+        }
         if(empty($val) && $def) return PATH_STATIC."/icons/basic/$def";
         // 不需要缩略图直接返回
         if(empty($resize)) return vopUrl::root($val);
@@ -241,7 +249,7 @@ class vopCell{
         //[demo:2013-cm-abcd] => Array
                 //[etime] => 1387418573
         $re = ''; $ext = '';
-        $cfgc = read('coms.click','ex'); 
+        $cfgc = read('coms.click','sy'); 
         foreach($b as $k2=>$v2){
             $t = explode(':',$k2);
             $tmp = glbDBExt::getTable($t[0],'arr');

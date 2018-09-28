@@ -1,8 +1,10 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include DIR_VENDOR.'/phpQuery/phpQuery.php';
 
-class extQuery extends phpQuery{
+class extQuery extends \phpQuery{
     
     //使用phpQuery查询
     static function pqo($obj,$mark='body',$conv=array('ISO-8859-1','utf-8')){

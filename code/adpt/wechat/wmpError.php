@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 错误信息
 // 随微信规则更新
 

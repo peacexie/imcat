@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // basDebug
 class basDebug{    
@@ -12,7 +13,7 @@ class basDebug{
     // *** 显示变量 
     static function varShow($val,$flag='',$lev=1){
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-        $arr = array();
+        $arr = array(); 
         foreach($trace as $k=>$row) {
             $bf = basename($row['file']);
             if(in_array($bf,array('helper.php','basDebug.php'))){
@@ -206,7 +207,8 @@ class basDebug{
         if(!$db){ // DIR_IMPS, DIR_VARS ,dirname(DIR_PROJ)
             $str = str_replace(array(DIR_PROJ,DIR_IMPS,DIR_VARS),'~',$str); 
         }else{
-            $cdb = glbConfig::read('db','cfg'); 
+            require DIR_ROOT.'/cfgs/boot/cfg_db.php';
+            $cdb = $_cfgs;
             foreach(array('pre','suf') as $key){
                 $fix = $cdb["db_{$key}fix"];
                 if(!empty($fix)){

@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(dirname(__FILE__)).'/binc/_pub_cfgs.php';
 
@@ -19,7 +20,7 @@ if(empty($dialog)){
 if($view=='upd'){
     
     comJifen::update(); 
-    echo "\n<hr>End! ".basDebug::runInfo();
+    echo "\n<hr>End! ";
     
 }elseif($pid=='jifen_grade' && $view=='list'){
 

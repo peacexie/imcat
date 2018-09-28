@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // 获取ip地址的地理位置信息
 // $ip = new extIPAddr(); //sina,yodao,1616
@@ -8,21 +9,21 @@ class extIPAddr{
     
     // 默认接口
     private $api = 'sina'; // sina
-    private $class = ''; // ipSina
+    private $cfile = ''; // ipSina
     
     // 配置接口
     function __construct($api=''){
         global $_cbase; 
         $defapi = empty($_cbase['ucfg']['ipapi']) ? $this->api : $_cbase['ucfg']['ipapi'];
         $this->api = $api ? $api : $defapi; 
-        $this->class = 'ip'.ucfirst($this->api);
-        $file = DIR_CODE.'/adpt/ipapi/'.$this->class.'.php';
+        $this->cfile = 'ip'.ucfirst($this->api);
+        $file = DIR_CODE.'/adpt/ipapi/'.$this->cfile.'.php';
         if(file_exists($file)){
             require $file;    
         }else{
             $this->api = 'local';
-            $this->class = 'ipLocal';
-            require DIR_CODE.'/adpt/ipapi/'.$this->class.'.php';        
+            $this->cfile = 'ipLocal';
+            require DIR_CODE.'/adpt/ipapi/'.$this->cfile.'.php';        
         }
     }
     
@@ -37,7 +38,8 @@ class extIPAddr{
         if(basEnv::isLocal($ip)){
             return 'LAN'; //Local Area Network
         }
-        $ipa = new $this->class();
+        $class = "\\imcat\\$this->cfile";
+        $ipa = new $class();
         if(method_exists($ipa,'getAddr')){ //检查方法...
             $addr = $ipa->getAddr($ip);
         }else{

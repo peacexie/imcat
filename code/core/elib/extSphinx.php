@@ -1,5 +1,7 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include DIR_STATIC.'/ximp/class/sphinxapi.cls_php'; 
 
 // Sphinx搜索类
@@ -74,7 +76,7 @@ class extSphinx {
         $this->cfgs = $spcfgs['cfgs'];
         $this->idxs = $spcfgs['index'];
         //初始化sphinx
-        $this->so = new SphinxClient(); 
+        $this->so = new \SphinxClient(); 
         $this->so->SetServer($this->cfgs['host'], $this->cfgs['port']); 
         $this->so->SetConnectTimeout(3);
         $this->so->SetArrayResult(true);

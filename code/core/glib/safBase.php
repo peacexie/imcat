@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 /**
 safBase : 基础-安全过滤(Safil=Safety Filter)
   Stop,ipStop,robotStop,
@@ -11,7 +13,7 @@ class safBase{
     // IPStop
     static function ipStop($ip=''){
         $ip || $ip = self::userIP();
-        $tab = glbConfig::read('ipstop','ex');
+        $tab = glbConfig::read('ipstop','sy');
         if(empty($ip) || empty($tab)) return;
         if($tab){
             if(preg_match("/^($tab)$/",$ip)) self::Stop('ipStop');

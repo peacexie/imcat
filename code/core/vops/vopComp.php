@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // 模板编译 类
 class vopComp{
     
@@ -23,12 +25,13 @@ class vopComp{
         $_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
         $content = comFiles::get($re[0]);
         $content = $this->bcore($content); //获取经编译后的内容
-        $shead = "(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
-        $fptex = '/b_func/tex_base.php'; $spend = '';
+        $shead = "namespace imcat;\n(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
+        $fptex = '/_ctrls/texBase.php'; $spend = '';
         if(file_exists(vopTpls::path().$fptex)){
+            $class = '\\imcat\\'.$_cbase['tpl']['tpl_dir'].'\\texBase';
             $shead .= "\ninclude_once vopTpls::path().'$fptex';";
-            $shead .= "\nif(method_exists('tex_base','init')){ tex_base::init(\$this); }";
-            $spend = "<?php\nif(method_exists('tex_base','pend')){ tex_base::pend(); }\n?>";
+            $shead .= "\nif(method_exists('$class','init')){ $class::init(\$this); }";
+            $spend = "<?php\nif(method_exists('$class','pend')){ $class::pend(); }\n?>";
         }
         comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.$spend); //写入缓存
         return $re[1];
@@ -107,7 +110,7 @@ class vopComp{
         /* 路径自定义替换 ----------------------------
             {outSwplayerPath}/ -=> http://cdn_d/vimp/vendui/swplayer/
         */
-        $reps = glbConfig::read('repath', 'ex');
+        $reps = glbConfig::read('repath', 'sy');
         if(!empty($reps['tpl'])){
             $stpl = str_replace(array_keys($reps['tpl']), array_values($reps['tpl']), $stpl);
         }

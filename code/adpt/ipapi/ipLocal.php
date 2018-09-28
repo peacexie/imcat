@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 /*
  * 算法代码：
 http://www.fuziba.com/2012/08/01/php%E8%AF%BB%E5%8F%96%E7%BA%AF%E7%9C%9Fip%E6%95%B0%E6%8D%AE%E5%BA%93/

@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Crawl函数; 单独函数可先用new exaCrawl();自动加载
 class exaCrawl{

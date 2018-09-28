@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 获取ip地址-S1616
 class ipS1616{
     

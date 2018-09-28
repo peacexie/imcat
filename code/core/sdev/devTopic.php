@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // ... 专题类
 

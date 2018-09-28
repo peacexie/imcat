@@ -1,4 +1,6 @@
 <?php 
+namespace imcat;
+
 /* string,array,file:解析类
  * serial : serEncode
  * json : jsonFormat,jsonDecode,jsonEncode,

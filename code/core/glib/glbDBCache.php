@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 //数据库-缓存类
 class glbDBCache extends glbDBObj{
 

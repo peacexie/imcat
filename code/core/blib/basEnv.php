@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Environment基本环境处理类
 class basEnv{    
@@ -100,8 +101,8 @@ class basEnv{
             if($debug['err_hand']){
                 $hkey = $debug['err_hkey'];
                 $hkey = ($hkey=='(def)' || intval($hkey)<=0) ? E_ALL^E_WARNING^E_NOTICE : $hkey; 
-                set_exception_handler('except_handler_ys'); //注册异常处理函数
-                set_error_handler('error_handler_ys',$hkey); //注册错误处理函数
+                #set_exception_handler('except_handler_ys'); //注册异常处理函数
+                #set_error_handler('error_handler_ys',$hkey); //注册错误处理函数
             }
         }
     }

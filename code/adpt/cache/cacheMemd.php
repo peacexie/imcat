@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // 建立在libmemcached的基础上，memcached版本的功能更全一些。 
 class cacheMemd {
     private $mmc = NULL;

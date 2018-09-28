@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // dopBSo : 基本数据操作(data OP(base) for Search) --- 搜索...
 // for : dopSo,

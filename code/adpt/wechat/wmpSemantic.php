@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 语义理解接口
 // 随微信规则更新 7000009:请求语义服务失败 

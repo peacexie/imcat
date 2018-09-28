@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // $m = new extEmail(); 
 // $s = 'v01-Mail:'.$_cbase['mail']['type'].' : 邮件 : '.date('Y-m-d H:i');
@@ -24,7 +25,7 @@ class extEmail{
         $this->cfg = empty($cfg) ? $this->cfg : $cfg;
         if($this->type=='phpmailer'){
             require DIR_VENDOR.'/PHPMailer/PHPMailerAutoload.php';
-            $this->umail = new PHPMailer(true); 
+            $this->umail = new \PHPMailer(true); 
             $this->umail->SMTPOptions = array(  
                 'ssl' => array(  
                     'verify_peer' => false,  

@@ -1,9 +1,10 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 $mod = req('mod','upvnow'); 
 $nava = basLang::ucfg('nava.upd_vers'); 
-$mtitle = $nava["admin/upgrade&mod=$mod"];
+$mtitle = $nava["admin-upgrade&mod=$mod"];
 $step = req('step','init'); // init,set,deel
 $kid = req('kid'); 
 $act = req('act'); $acg = req('acg'); $acm = req('acm');

@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // 数据导出成Excel文件,暂不支持中文文件名称。尽量生成UTF-8编码的excel
 // 包括从数据库取出来的数据转成UTF-8,测试时某些WPS版本只支持UTF-8的编码
 
@@ -19,7 +21,7 @@ class extExcel{
     */
     static function exWrite($head,$data,$tcnt=1,$encode='utf-8'){
         include_once DIR_VENDOR.'/Excel/writer.php'; 
-        $xls = new ExcelWriter($encode); //默认UTF-8编码
+        $xls = new \ExcelWriter($encode); //默认UTF-8编码
         $xls->generateXMLHeader('Excel_'.date('Y-md-His'));  //excel文件名
         if($tcnt==1){
             $xls->setTable($head,$data);
@@ -34,7 +36,7 @@ class extExcel{
     // $data = exRead('./@note/163data-1zz.xls','gbk'); 
     static function exRead($file,$encode='utf-8',$rtb=0){ 
         include_once DIR_VENDOR.'/Excel/reader.php'; 
-        $data = new Spreadsheet_Excel_Reader(); 
+        $data = new \Spreadsheet_Excel_Reader(); 
         $data->setOutputEncoding($encode);
         $data->read($file); 
         $sheets = $data->sheets; 
@@ -44,7 +46,7 @@ class extExcel{
     // 建议用: exRead轻量的类
     static function peRead($file,$encode='utf-8'){
         include_once DIR_VENDOR.'/Excel/PHPExcel.php'; // 自行下载PHPExcel到相关目录
-        $Reader = PHPExcel_IOFactory::createReader('Excel5');
+        $Reader = \PHPExcel_IOFactory::createReader('Excel5');
         $Reader->setReadDataOnly(true);
         $PHPExcel = $Reader->load($file);
         $sheet = $PHPExcel->getActiveSheet();

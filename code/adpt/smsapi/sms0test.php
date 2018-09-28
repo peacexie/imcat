@@ -1,10 +1,11 @@
 <?php
+namespace imcat;
 
 /**
  * 仅测试使用，用于测试系统其它流程；
  * 具体操作不会发短信，仅写一个文件记录表示发短信
  */
-class sms_0test{
+class sms0test{
     
     public $userid; // 序列号
     public $userpw; // 密码

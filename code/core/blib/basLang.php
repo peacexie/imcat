@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // basLang多语言类
 class basLang{    

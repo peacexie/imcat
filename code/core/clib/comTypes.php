@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Types类
 class comTypes{    

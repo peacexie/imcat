@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // Memcache@新浪云平台
 class cacheSaem {
     private $mmc = NULL;

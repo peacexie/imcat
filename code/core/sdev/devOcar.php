@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // Order-Car : 外贸/前后台扩展部分
 class devOcar{    

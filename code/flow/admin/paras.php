@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init'); 
 
 $mod = empty($mod) ? 'prcore' : $mod;
@@ -13,7 +14,7 @@ $aval = glbCUpd::upd_paras($gpid, '');
 if($view=='upd'){
     
     glbCUpd::upd_paras($gpid);
-    echo "\n<hr>".lang('admin.pr_updend')."<hr>".basDebug::runInfo();
+    echo "\n<hr>".lang('admin.pr_updend');
 
 }elseif(!empty($bsend)){
 

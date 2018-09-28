@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 
 // String类 - by Peace(XieYS) 2012-02-18
 

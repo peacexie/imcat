@@ -1,5 +1,7 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
+
 include_once(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php'); 
 
 /*
@@ -17,6 +19,6 @@ include_once(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php');
 class extQRcode{
 	
 	public static function show($text, $size=3, $level=1, $margin=4, $type='png', $outfile=false){
-		QRcode::$type($text, $outfile, $level, $size, $margin);
+		\QRcode::$type($text, $outfile, $level, $size, $margin);
 	}
 }
