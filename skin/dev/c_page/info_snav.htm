@@ -31,7 +31,7 @@ eimp('initCss','bootstrap,stpub;comm;info');
     <ul class="info-nav">
       <li class="type"><a href="{surl($mod,-);}">{=$mod}:{=$mv}</a></li>
       {loop $vcfg $key $val}
-      {php $ktitle = tex_devs::getKeyTitle($mod,$key); }
+      {php $ktitle = tex('texBase')->getKeyTitle($mod,$key); }
       <li><a href="{surl("$mod-$key")}">{=$key} : {=$ktitle}</a></li>
       {/loop}
     </ul>

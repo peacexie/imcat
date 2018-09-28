@@ -1,5 +1,5 @@
 <?php
-include vopTpls::pinc('b_func/book');
+include_once vopTpls::pinc('top_book'); 
 $data = bookData($did,$this->view);
 $info = bookNav2($data,$clist);
 $info[1] = 'a'; $info[2] = 'b';

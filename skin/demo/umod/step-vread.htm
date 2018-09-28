@@ -6,7 +6,7 @@
 <hr>
 <p>*1. 先来实例: url中,dev.php?start-down:
    则类名为:startCtrl(Ctrl为后缀,start即模型名), 方法名为downAct(Act为后缀,down即操作或分类)</p>
-<p>*1.a 一个模型，对应一个控制器(类),放在当前模板文件夹的`b_ctrls`下,如:/skin/dev/b_ctrls/startCtrl.php
+<p>*1.a 一个模型，对应一个控制器(类),放在当前模板文件夹的`_ctrls`下,如:/skin/dev/_ctrls/startCtrl.php
    为了优化加载不用file_exists检测文件存在，而需要在_config/va_home.php中注册(`c`键值下)如：`'_tabCtrl' => array('homeCtrl','bincCtrl'),`
    同时，可注册一个默认控制器（类）(`'_defCtrl' => '_defCtrl',`),使每个未定义控制器类的模型都按这个方式处理 </p>
 <p>*1.b 一个分类或一个操作，对应一个方法

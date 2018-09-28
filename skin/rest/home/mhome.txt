@@ -32,7 +32,7 @@
 
 * Use(step:3)-Get-data/2nd-Dev
  - Use `token` Get-data, Enjoy yourself...
- - 2nd-Dev/Extra class see: b_ctrls/_exdemoCtrl.php
+ - 2nd-Dev/Extra class see: _ctrls/_exdemoCtrl.php
 
 * Idea from Yii2
  - This idea comes fomr yii2, the `RESTful Web Service`
@@ -74,7 +74,7 @@
 
 * 使用(step:3)-获取数据/二次开发
  - 使用token获取数据,好好享受吧...
- - 二次开发/扩展见文件：b_ctrls/_exdemoCtrl.php
+ - 二次开发/扩展见文件：_ctrls/_exdemoCtrl.php
 
 * 灵感来源
  - 此功能灵感来源于：yii2的 `RESTful Web 服务`

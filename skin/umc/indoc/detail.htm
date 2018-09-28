@@ -1,11 +1,10 @@
 <?php
 $user = usrBase::userObj('Member'); 
-vopTpls::pinc('tex_indoc');
-if($res=tex_indoc::noperm($user,$this->vars)){
+if($res=\imcat\umc\texIndoc::noperm($user,$this->vars)){
     basMsg::show(lang('user.idoc_perm').":[$res]",'die');
 }
 $null = "";
-$toarr = tex_indoc::toshow($this->vars);
+$toarr = \imcat\umc\texIndoc::toshow($this->vars);
 ?>
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
@@ -39,7 +38,7 @@ if(in_array($sealpos,array('cseal_tl','cseal_tr'))){
 <h1 class="news_title">{title($title,96,$this->vars)}</h1>
 <div class="news_bar"> 
   <b class="indoc_tip1">
-  {php echo tex_indoc::isread($user,$did,'(val)',2); } &nbsp; 
+  {php echo \imcat\umc\texIndoc::isread($user,$did,'(val)',2); } &nbsp; 
   {sopt($rdtip,indoc.rdtip,0,$null)}</b> &nbsp; 
   {sopt($indep,indep,0,$null)} &nbsp; 
   <i class="atime">{stime($atime,min)}</i> &nbsp; 
@@ -129,6 +128,6 @@ echo "<script>$jstr</script>";
 {/php}
 
 <?php
-$re = tex_indoc::isread($user,$did,"<i class='itm-{val}'></i>");
+$re = \imcat\umc\texIndoc::isread($user,$did,"<i class='itm-{val}'></i>");
 ?>
 

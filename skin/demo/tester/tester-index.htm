@@ -3,14 +3,14 @@
 {block:exmain}
 <?php
 $code = req('code','');
-$path = vopTpls::path('tpl',1);
+$path = \imcat\vopTpls::path('tpl',1);
 $full = "$path/tester/$code.php"; 
 
 echo "<h3>/tester/$code.php(Test Code)</h3>\n";
 if(file_exists($full)){
     include $full;
 }else{
-    $subs = tex_base::lister('');
+    $subs = tex('texBase')->lister('');
     $fix = '';
     foreach($subs as $v){ 
         $a = explode('_',$v);

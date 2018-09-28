@@ -7,7 +7,7 @@ if($uip){
 }
 $title = 'IP转化地址类（IPv4）';
 $api = req('api',$_cbase['ucfg']['ipapi']); 
-$ufix = surl($this->mkv);
+$ufix = surl(0).'?mkv='.$this->mkv;
 $vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
 
 $ipObj = new extIPAddr($api);
@@ -18,13 +18,13 @@ if(strstr($act,'down')){
 }
 $tab = '';
 for($i=0;$i<3;$i++){
-    $ipx = tex_tools::rndIP();
-    $tab .= " # <a href='$ufix?api=$api&uip=$ipx'>$ipx</a><br>\\n"; 
+    $ipx = tex('texBase')->rndIP();
+    $tab .= " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\\n"; 
 }
 $astr = '';
-$aarr = array('Local','Sina','Pcoln','Taobao','Api','Ip138','S1616','Baidu');
+$aarr = array('Local','Pcoln','Taobao','Api','Ip138','S1616','Baidu');
 foreach($aarr as $key){
-    $astr .= " # <a href='$ufix?api=$key'>$key</a>\\n"; 
+    $astr .= " # <a href='$ufix&api=$key'>$key</a>\\n"; 
 }
 
 ?>{/block:extop}
@@ -59,7 +59,7 @@ if($uip){
 <p><?php
 if(!basEnv::isRobot()){
 for($i=0;$i<3;$i++){
-    $ipx = tex_tools::rndIP();
+    $ipx = tex('texBase')->rndIP();
     $addr = $ipObj->addr($ipx);
     echo "$ipx : $addr<br>\n"; 
 }}

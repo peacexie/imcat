@@ -12,10 +12,10 @@
 
     <div class="w480 right">
         <ul>
-            <li>cargo(产品)</li>
+            <li>cargo(产品:List标签)</li>
             {tag:dlist3=[List][modid,cargo][show,1][limit,3]}
             <li>
-            <a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a>
+            <a href="{surl("news.$t_did")}">{=$t_title}</a>
             </li>
             {/tag:dlist3}
         </ul>
@@ -23,12 +23,14 @@
 
     <div class="w480">
         <ul>
-            <li>lease(出租)</li>
-            {tag:dlist4=[Free][dbkey,imhouse][modid,lease][order,LEASE_ID][limit,3]}
+            <li>lease(出租:Free标签)</li>
+            {if extHaoft::opend()}
+            {tag:dlist4=[Free][dbkey,imhaoft][modid,lease][order,LEASE_ID][limit,3]}
             <li>
-            <a href="{surl("news.$t_LEASE_ID")}">{title($t_LEASE_SUBJECT,96,$v)}</a>
+            <a href="{surl("news.$t_LEASE_ID")}">{=$t_LEASE_SUBJECT}</a>
             </li>
             {/tag:dlist4}
+            {/if}
         </ul>
     </div>
 
@@ -36,36 +38,40 @@
 
     <div class="w480 right">
         <ul>
-            <li>news(新闻)</li>
-            {tag:dlist1=[List][modid,news][show,1][limit,3]}
+            <li>news(新闻:Free标签)</li>
+            {tag:dlist1=[Free][modid,docs_news][order,did][limit,3]}
             <li>
-            <a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a>
+            <a href="{surl("news.$t_did")}">{=$t_title}</a>
             </li>
             {/tag:dlist1}
         </ul>
         <div>&nbsp;</div>
         <ul>
-            <li>sale(出售)</li>
-            {tag:dlist5=[Free][dbkey,imhouse][modid,sale][pgbar,1][order,SALE_ID][limit,3]}
+            <li>sale(出售:Free标签)</li>
+            {if extHaoft::opend()}
+            {tag:dlist5=[Free][dbkey,imhaoft][modid,sale][pgbar,1][order,SALE_ID][limit,3]}
             <li>
-            <a href="{surl("news.$t_SALE_ID")}">{title($t_SALE_SUBJECT,96,$v)}</a>
+            <a href="{surl("news.$t_SALE_ID")}">{=$t_SALE_SUBJECT}</a>
             </li>
             {/tag:dlist5}
+            {/if}
         </ul>
     </div>
 
 
 <?php
-$whrstr = "m.code<20"; // [where,$whrstr]
+$whrstr = "m.city='linzhi'"; // [where,$whrstr]
 ?>
 <div class="w480">
     <ul>
-        <li>area(区域)</li>
-        {tag:dlist2=[Free][dbkey,imhouse][modid,area][order,code,0,1][limit,8]}
+        <li>area(区域:Free标签)</li>
+        {if extHaoft::opend()}
+        {tag:dlist2=[Free][dbkey,imhaoft][modid,area][order,kid,0,1][limit,8]}
         <li>
-        <a href="{surl("news.$t_code")}">{=$t_code}:{title($t_title,96,$v)}</a>
+        <a href="{surl("news.$t_kid")}">{=$t_kid}:{=$t_title}</a>
         </li>
         {/tag:dlist2}
+        {/if}
     </ul>
 </div>
 {=$_cbase['page']['bar']}
@@ -73,6 +79,7 @@ $whrstr = "m.code<20"; // [where,$whrstr]
 
 </div>
 
+<!--
 <?php
 
 echo "\n\n<br>";
@@ -87,6 +94,7 @@ echo "\n<br>$a = ".sprintf('%6.2f',$a);
 echo "\n<br>$b = ".sprintf('%6.2f',$b);
 
 ?>
+-->
 
 {/block:main}
 

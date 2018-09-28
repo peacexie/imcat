@@ -12,13 +12,12 @@ table.tbdata label{ font-size:14px; }
 
 <?php
 
-vopTpls::pinc('umc:tex_indoc');
 $_cbase['run']['dopmod'] = 'indoc';
 
 if(!empty($bsend)){
 
     $dop->svPrep();
-    tex_indoc::fixIspub($dop,$isadd); // topub=ispub : 扩展
+    \imcat\umc\texIndoc::fixIspub($dop,$isadd); // topub=ispub : 扩展
     if(!empty($isadd)){ 
         $dop->svAKey(); $did = $dop->fmu['did'] = $dop->fmv['did'];
         $dop->fmv['show'] = 0;
@@ -33,7 +32,7 @@ if(!empty($bsend)){
         $actm = lang('flow.dops_edit');
     }
     $dop->svEnd($did); //静态情况等
-    tex_indoc::exNotice($dop,$isadd); // 通知扩展
+    \imcat\umc\texIndoc::exNotice($dop,$isadd); // 通知扩展
     basMsg::show("$actm".lang('flow.dops_ok'),'Redir');
 
 }else{
@@ -49,7 +48,7 @@ if(!empty($bsend)){
     }
     //for Tester ------------------ 
     #$dop->fmv = $dop->fmu = $fmo;
-    #tex_indoc::exNotice($dop,1);
+    #\imcat\umc\texIndoc::exNotice($dop,1);
     //end Tester ------------------ 
     $dop->fmo = $fmo;
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');

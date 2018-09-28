@@ -8,7 +8,7 @@ $kar = array(
     'tagbase' => '标签基础',
     'tagjs'   => 'js标签',
 );
-$subs = tex_base::docer("d_tpltag/doc_$key"); 
+$subs = tex('texBase')->docer("d_tpltag/doc_$key"); 
 $sub = req('sub',''); //include
 $titletop = $kar[$key].'-模板标签';
 $titlesub = $kar[$key]; 

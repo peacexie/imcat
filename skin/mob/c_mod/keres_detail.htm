@@ -1,7 +1,6 @@
 {imp:"c_page/lay_comm"}<!--继承父模板-->
 
 {block:init}
-{php vopTpls::pinc('tex_keres');}
 <?php
 $null1 = "所有类别";
 $null2 = "<span class='cCCC'>------</span>";
@@ -18,9 +17,9 @@ $null3 = "";
         评论:<i id="cnt_nrem">0</i>条 </div>
       <div class="news_text">
       
-      <?php   
-      tex_keres::media_show($uvdo);
-      tex_keres::down_show($ufile);
+      <?php
+      tex('texKeres','chn')->media_show($uvdo);
+      tex('texKeres','chn')->down_show($ufile);
       $pmod = 'kerem'; //audio,ckvdo
       ?>
       {html($detail)} 

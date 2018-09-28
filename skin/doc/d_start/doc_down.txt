@@ -41,7 +41,7 @@
 
 * Edit DB-Config(It can be edited while installing, advice you config manually);
  - File: /root/cfgs/boot/cfg_db.php;
- - Tip: the defalut `DB-Type` is: $_cfgs['db_class'] = 'mysqli';
+ - Tip: the defalut `DB-Type` is: $_cfgs['db_driver'] = 'mysqli';
  
 * Setup/Config
  - View Start Page: /index.php?start to Check and Config: 

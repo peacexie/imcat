@@ -81,9 +81,9 @@ basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
 
 #exfunc#Extra-Libs
 
-* The extra Tpl-Class put in the sub dir: [b_func];
-* b_func/tex_base.php (this file(calss) will autoload);
-* {php vopTpls::pinc('tex_cargo');} // load extra-lib(b_func/tex_cargo.php) [if needs];
-* Demo: file: b_func/tex_base.php method: function coder($tpl=''), in tpl: c_page/info_coder ues eg: <?php echo tex_base::coder($tpl); ?>;
-* Demo: View <a href='?mkv=info-coder&tpls=b_func/tex_base.php' target="_blank">Now-Tpl Public Class</a>
+* The extra Tpl-Class put in the sub dir: [_funcs];
+* _funcs/tex_base.php (this file(calss) will autoload);
+* {php vopTpls::pinc('tex_cargo');} // load extra-lib(_funcs/tex_cargo.php) [if needs];
+* Demo: file: _funcs/tex_base.php method: function coder($tpl=''), in tpl: c_page/info_coder ues eg: <?php echo tex('texBase')->coder($tpl); ?>;
+* Demo: View <a href='?mkv=info-coder&tpls=_funcs/tex_base.php' target="_blank">Now-Tpl Public Class</a>
 

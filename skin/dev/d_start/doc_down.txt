@@ -41,7 +41,7 @@
 
 * 修改数据库配置（可安装时配置，建议手动配置）：
  - 文件：/root/cfgs/boot/cfg_db.php；
- - 注意`数据库类`默认为：$_cfgs['db_class'] = 'mysqli';
+ - 注意`数据库类`默认为：$_cfgs['db_driver'] = 'mysqli';
  
 * 安装/配置
  - 访问起始页：/index.php?start 检查配置；

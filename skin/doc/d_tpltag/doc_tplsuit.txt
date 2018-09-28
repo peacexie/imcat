@@ -9,7 +9,7 @@
  
 * Add Tpl dir:
  - Add dir `ven`: /skin/ven
- - Add sub dir: _config(Tpl Configs), b_func(Tpl Extra Class) 
+ - Add sub dir: _config(Tpl Configs), _ctrls(Tpl Extra Class) 
  - Other sub dir reference existing template, self planning
  - Add img/js/css dir:
  - Add sub dir: b_img(Image,Icon), b_jscss(js/css) 

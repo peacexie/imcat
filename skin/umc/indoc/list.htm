@@ -1,5 +1,4 @@
 {imp:"c_pub/a-frame"}<!--模板继承-->
-{block:init}{:parent}{php vopTpls::pinc('tex_indoc');}{/block:init}
 {block:title}{php echo lang('user.pub_cindoc').'-'.$_cbase['sys_name']; }{/block:title}
 
 {block:action}
@@ -10,7 +9,7 @@ $part = req('part','imy');
 $stype = req('stype',''); $stit2 = vopCell::cOpt($stype,$this->mod);
 $stitle = @$gets[substr($part,1)] .(empty($stit2)?'':'-') .$stit2;
 $null = "<span class='cCCC'>---</span>"; //where
-$where = tex_indoc::expwhr($user,$part,$stype); 
+$where = \imcat\umc\texIndoc::expwhr($user,$part,$stype); 
 ?>
 <div class="pgf_mid">
   <div class="pgf_mcon"> 
@@ -27,7 +26,7 @@ $where = tex_indoc::expwhr($user,$part,$stype);
 <dl class="news-list"> 
   {:row}
   <dt>
-  {php echo tex_indoc::isread($user,$t_did); } 
+  {php echo \imcat\umc\texIndoc::isread($user,$t_did); } 
   {sopt($t_rdtip,indoc.rdtip,0,"&nbsp;")} 
   <a href="{surl($this->mod.".$t_did")}" target="_blank">{title($t_title,60,$v)}</a>
   {if !empty($t_hinfo)}<b class="uimark-star-icon1a">&nbsp;</b>{/if}

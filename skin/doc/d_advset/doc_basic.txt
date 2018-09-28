@@ -26,15 +26,6 @@
 
 * ex_coms.php : clicks,digg fields-config
 
-* ex_dmbind.php : domain-bind config
- - (Demo) org url : /html/cargo/2015-9c/h3h1.html
- - -=>want disply url
- - http://pro.my_domain.com/2015-9c/h3h1.html
- - Detail config see the notice in the file
- - Your will deal with these things OUT of the system(sub-domain DNS, pseudo-static rule)
-
-* ex_ipstop.php : for forbid-ip config
-
 * ex_mail.php : for Email
 
 * ex_outdb.php : Data-Share/Syn, Out-DB
@@ -54,6 +45,13 @@
 
 * sy_domain.php : sub-domain jump,xss,top-domain config
 
+* sy_dmbind.php : domain-bind config
+ - (Demo) org url : /html/cargo/2015-9c/h3h1.html
+ - -=>want disply url
+ - http://pro.my_domain.com/2015-9c/h3h1.html
+ - Detail config see the notice in the file
+ - Your will deal with these things OUT of the system(sub-domain DNS, pseudo-static rule)
+
 * sy_fadvs.php : fileds for advs
 
 * sy_fdemo.php : common-pick fileds
@@ -63,6 +61,8 @@
 * sy_fkeywd.php : keyword for fileds
 
 * sy_frame.php : model-frame config(store-format, extra-params)
+
+* sy_ipstop.php : for forbid-ip config
 
 * sy_keepid.php : sys-keep-ids config
 

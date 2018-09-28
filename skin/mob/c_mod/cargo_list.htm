@@ -1,11 +1,11 @@
 {imp:"c_page/lay_comm"}<!--继承父模板-->
 
 {block:init}
-{php vopTpls::pinc('tex_cargo');}
 <?php
 $null1 = "所有类别";
 $null2 = "<span class='cCCC'>------</span>";
 $null3 = "";
+$whrstr = tex('texCargo','chn')->expwhr();
 ?>
 {/block:init}
 
@@ -18,7 +18,7 @@ $null3 = "";
     <!--list_start-->
     <?php $col=2; ?>
     <table border="1" width="100%" class="pro-table">
-      {tag:dlist=[Page][modid,$this->mod][show,1][stype][brand][hinfo][keywd][where,tex_cargo::expwhr()][order,0,click+price][limit,8]}
+      {tag:dlist=[Page][modid,$this->mod][show,1][stype][brand][hinfo][keywd][where,$whrstr][order,0,click+price][limit,8]}
       {:row}
       {php if($i_v%$col==0) echo "\n<tr>"; }
       <td width="25%" valign="top">

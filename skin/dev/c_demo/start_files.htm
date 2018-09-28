@@ -17,7 +17,7 @@ $titlesub = '文件结构';
 
 {block:exmain}
     
-    <?php foreach($subs as $k=>$v){ $data = tex_base::texter("d_start/$k"); ?>
+    <?php foreach($subs as $k=>$v){ $data = tex('texBase')->texter("d_start/$k"); ?>
     <ul id="s_{=$k}" class="mod-section">
       <li class="type">{=$_cbase['sys_name']} {=$k} [{=$subs[$k]}] <span class="right">--- <a href="#">[Top]</a></span></li>
       <pre style="font-family:Tahoma, Geneva, sans-serif">{=$data}</pre>

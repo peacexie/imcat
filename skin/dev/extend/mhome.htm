@@ -14,7 +14,7 @@ eimp('initCss','bootstrap,stpub;comm');
 
     <?php 
     foreach($cfgs as $k){ 
-      $v = @include vopTpls::pinc("extend/$k/cfgs"); if(!$v) continue;
+      $v = @include \imcat\vopTpls::pinc("extend/$k/cfgs"); if(!$v) continue;
       $title = $v['title']; 
     ?>
     <dl class="resume-list"> 
@@ -37,7 +37,7 @@ eimp('initCss','bootstrap,stpub;comm');
     
   <div class="h10">&nbsp;</div>
   <p class="resume-list">
-    <a href="<?php tex_base::uplog_furl() ?>" class="right" target="_blank">贴心猫 V{=$_cbase['sys']['ver']}发布</a>
+    <a href="<?php tex('texBase')->uplog_furl() ?>" class="right" target="_blank">贴心猫 V{=$_cbase['sys']['ver']}发布</a>
     <a href="{surl(0)}" target="_blank">Home/首页</a>
   </p>
 

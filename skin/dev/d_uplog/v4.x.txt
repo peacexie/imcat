@@ -140,7 +140,7 @@
 
 * 增强：
  - 改进：兼容伪静态?后的参数如：/dev/mkv.htm?api=Local
- - 增加：自定义路径替换配置 见文件：/cfgs/excfg/ex_repath
+ - 增加：自定义路径替换配置 见文件：/cfgs/sycfg/sy_repath
 
 * 修正：
  - php7.2 下几处警告错误

@@ -12,9 +12,8 @@ if($user->userFlag=='Login'){
 $runinfo = $_cbase['run']['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
 $mdtitle = $sbtitle = lang('user.pub_cuser'); 
 
-vopTpls::pinc('tex_indoc');
-$cnt1 = tex_indoc::expwhr($user,"ipub",0,'no',1);
-$cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
+$cnt1 = \imcat\umc\texIndoc::expwhr($user,"ipub",0,'no',1);
+$cnt2 = \imcat\umc\texIndoc::expwhr($user,"imy",0,'no',1);
 
 ?>{/block:init}
 

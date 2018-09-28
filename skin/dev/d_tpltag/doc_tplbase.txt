@@ -80,9 +80,9 @@ basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
 
 #exfunc#加载扩展类库
 
-* 所有模板扩展类库，放在当前整套模板目录的[b_func]子目录；
-* b_func/tex_base.php (当前所有模版能使用的公用方法[自动加载])；
-* {php vopTpls::pinc('tex_cargo');} //加载多个模版使用的特定类库文件(b_func/tex_cargo.php) [当前模版需要时加]；
-* 示例：b_func/tex_base.php 中定义方法：function coder($tpl='')，c_page/info_coder 中使用如：<?php echo tex_base::coder($tpl); ?>；
-* 示例：查看<a href='?mkv=info-coder&tpls=b_func/tex_base.php' target="_blank">当前模版公用类库</a>
+* 所有模板扩展类库，放在当前整套模板目录的[_funcs]子目录；
+* _funcs/tex_base.php (当前所有模版能使用的公用方法[自动加载])；
+* {php vopTpls::pinc('tex_cargo');} //加载多个模版使用的特定类库文件(_funcs/tex_cargo.php) [当前模版需要时加]；
+* 示例：_funcs/tex_base.php 中定义方法：function coder($tpl='')，c_page/info_coder 中使用如：<?php echo tex('texBase')->coder($tpl); ?>；
+* 示例：查看<a href='?mkv=info-coder&tpls=_funcs/tex_base.php' target="_blank">当前模版公用类库</a>
 

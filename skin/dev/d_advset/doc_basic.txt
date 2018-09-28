@@ -26,15 +26,6 @@
 
 * ex_coms.php : 点击,digg字段设置
 
-* ex_dmbind.php : 域名绑定设置
- - (示例)原本地址：/html/cargo/2015-9c/h3h1.html
- - -=>设置后，输出地址
- - http://pro.my_domain.com/2015-9c/h3h1.html
- - 具体见文件中的注释
- - 本系统外自行设置：具体域名解析，伪静态规则 等
-
-* ex_ipstop.php : 设置ip访问过滤
-
 * ex_mail.php : 邮件参数
 
 * ex_outdb.php : 数据分享同步，外部数据库 配置参数
@@ -54,6 +45,13 @@
 
 * sy_domain.php :  子域名跳转,跨域,顶级域名 等配置
 
+* sy_dmbind.php : 域名绑定设置
+ - (示例)原本地址：/html/cargo/2015-9c/h3h1.html
+ - -=>设置后，输出地址
+ - http://pro.my_domain.com/2015-9c/h3h1.html
+ - 具体见文件中的注释
+ - 本系统外自行设置：具体域名解析，伪静态规则 等
+
 * sy_fadvs.php : 广告位字段配置
 
 * sy_fdemo.php : 常用字段配置
@@ -63,6 +61,8 @@
 * sy_fkeywd.php : 字段关键字
 
 * sy_frame.php : 模型架构 相关设置（存储格式，扩展参数）
+
+* sy_ipstop.php : 设置ip访问过滤
 
 * sy_keepid.php : 系统保留ID配置
 

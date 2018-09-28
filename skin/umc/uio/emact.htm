@@ -3,7 +3,7 @@
 {block:init}{:parent}<?php
 $res = safComm::urlStamp('flag',1860); // 31min(30min)
 if(empty($res)){
-    $res = tex_user::chkActEmail();
+    $res = \imcat\umc\texBase::chkActEmail();
 }
 ?>{/block:init}
 

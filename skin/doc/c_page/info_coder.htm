@@ -28,7 +28,7 @@ $titlesub = 'Source Coder';
     <?php foreach($tpla as $tpl){ if(empty($tpl)) continue; ?>
     <ul id="s_{=$tpl}" class="mod-section">
       <li class="type">{=$path}/{=$tpl}{if !strstr($tpl,'.php')}{=$fext}{/if} - Source <a href="#" class="right">[Top]</a></li>
-      <li><?php echo tex_base::coder($tpl); ?></li>
+      <li><?php echo tex('texBase')->coder($tpl); ?></li>
     </ul>
     <?php } ?>
 {/block:exmain}

@@ -1,5 +1,4 @@
 {block:init}{inc:"c_pub/c-init"}<?php
-vopTpls::pinc('tex_faqs');
 $tag = req('tag');
 $keywd = req('keywd');
 ?>{/block:init}
@@ -25,7 +24,7 @@ eimp('initCss','bootstrap,stpub,jstyle;comm;faqs');
 <div class="row">
   <div class="col-md-9">
     <ul class="nav nav-tabs">
-      {php echo tex_faqs::navTop($this); }
+      {php echo tex('texFaqs')->navTop($this); }
       {if $this->type=='detail'}
       <li class='active'><a id="qat_detail">{lang(user.qa_detail)}</a></li>
       {/if}

@@ -11,7 +11,7 @@ $kar = array(
     'names' => 'Important Noun',
     'hello' => 'Hello World!',
 );
-$subs = tex_base::docer("d_start/doc_$key");
+$subs = tex('texBase')->docer("d_start/doc_$key");
 $sub = req('sub',''); //include
 $titletop = (empty($kar[$key]) ? $key : $kar[$key]).'- Fast Start';
 $titlesub = empty($kar[$key]) ? $key : $kar[$key]; 

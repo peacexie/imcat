@@ -12,17 +12,17 @@ $bugid || $bugid = '---';
   {lang(user.qa_click)}:<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>{lang(user.qa_times)} &nbsp; 
   {lang(user.qa_rep)}:<i id="cnt_qarep">0</i>{lang(user.qa_cnt)} </div>
 <div class="news_text">
- <?php echo tex_faqs::showDetail($detail,$mdshow); ?>
+ <?php echo tex('texFaqs')->showDetail($detail,$mdshow); ?>
 </div>
 <div class="news_bar">
   <i class="left">{lang(user.qa_state)}:{sopt($bugst,faqs.bugst,0,$null)}</i>
-  <i class="right"><?php echo tex_faqs::showMdshow($mdshow,$did); ?></i>
+  <i class="right"><?php echo tex('texFaqs')->showMdshow($mdshow,$did); ?></i>
   {sopt($hinfo,faqs.hinfo,0,$null)}
   &nbsp; 
   {lang(user.qa_bugid)}: {=$bugid}
 </div>
 {if !empty($tags) }
-<div class="cst-tag1 ph5">{php echo tex_faqs::navTags($this,$tags); }</div>
+<div class="cst-tag1 ph5">{php echo tex('texFaqs')->navTags($this,$tags); }</div>
 {/if}
 <div class="news_rem">
   <div class="rembar"> 
@@ -37,13 +37,13 @@ $bugid || $bugid = '---';
     <?php echo $i_v+1 ?># {title($t_title,48,$v)}
     </dt>
     <dd>
-    <?php echo tex_faqs::showDetail($t_detail,$t_mdshow); ?>
+    <?php echo tex('texFaqs')->showDetail($t_detail,$t_mdshow); ?>
     <p class="tc">
     <span>by: {=$t_mname}</span> 
     &nbsp;
     {lang(user.qa_imid)}: {if empty($t_miuid) } --- {else}{title($t_miuid,48,$v)}{/if} 
     <i class="right">
-      <?php echo tex_faqs::showMdshow($t_mdshow,$t_cid,1); ?>
+      <?php echo tex('texFaqs')->showMdshow($t_mdshow,$t_cid,1); ?>
     </i>
     </p>
     </dd>

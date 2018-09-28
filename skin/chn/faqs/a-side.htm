@@ -7,7 +7,7 @@
   <div class="panel-body side">
     <?php 
     $cts = extCache::tkGet('faqs_types',1); 
-    if(!$cts) $cts = tex_faqs::statTypes('upd');
+    if(!$cts) $cts = tex('texFaqs')->statTypes('upd');
     ?>
     <li class="type {if !$this->key}act{/if}"><a href="{surl(faqs)}" id='qas__allt'>
       <i class='right'><?=isset($cts['_allt'])?$cts['_allt']:0?></i>
@@ -47,9 +47,9 @@
   </div>
   <div class="panel-body side">
     <div class="cst-tag1">
-      {if !empty($this->vars['tags']) }{php echo tex_faqs::navTags($this,$this->vars['tags']); }
+      {if !empty($this->vars['tags']) }{php echo tex('texFaqs')->navTags($this,$this->vars['tags']); }
       {else}{tag:tags=[List][modid,qatag][show,1][order,hotcnt][limit,24]}
-      {:row}<a href="{surl(0)}?mkv=faqs--list&tag={=$t_title}" class="c<?php echo tex_faqs::rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
+      {:row}<a href="{surl(0)}?mkv=faqs--list&tag={=$t_title}" class="c<?php echo tex('texFaqs')->rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
       {/tag:tags}{/if}
     </div>
   </div>

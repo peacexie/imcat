@@ -12,7 +12,7 @@ $kar = array(
     'i18n'     => '国际化',
     'sms'      => '短信接口',
 );
-$subs = tex_base::docer("d_dev2nd/doc_$key");
+$subs = tex('texBase')->docer("d_dev2nd/doc_$key");
 $sub = req('sub',''); //include
 $titletop = (empty($kar[$key]) ? $key : $kar[$key]).'-二次开发';
 $titlesub = empty($kar[$key]) ? $key : $kar[$key]; 

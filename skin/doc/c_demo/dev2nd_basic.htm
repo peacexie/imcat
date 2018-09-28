@@ -12,7 +12,7 @@ $kar = array(
     'i18n'     => 'Internationalization',
     'sms'      => 'SMS-API',
 );
-$subs = tex_base::docer("d_dev2nd/doc_$key");
+$subs = tex('texBase')->docer("d_dev2nd/doc_$key");
 $sub = req('sub',''); //include
 $titletop = (empty($kar[$key]) ? $key : $kar[$key]).'- 2nd-Development';
 $titlesub = empty($kar[$key]) ? $key : $kar[$key]; 

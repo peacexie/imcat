@@ -2,7 +2,6 @@
 
 {block:action}
 <?php
-vopTpls::pinc('tex_indoc');
 $cfgs = basLang::ucfg('cfgbase.indoc_types');
 $uname = @$user->uinfo['uname'];
 ?>
@@ -12,14 +11,14 @@ $uname = @$user->uinfo['uname'];
     <h3><i>{=$key}-docu</i>{=$vc}: </h3>
     <dl>
         <?php 
-            $where = tex_indoc::expwhr($user,"i$key",0,'no'); 
+            $where = \imcat\umc\texIndoc::expwhr($user,"i$key",0,'no'); 
             if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
             $recn = 0; 
         ?>
         {tag:indocs1=[List][modid,$this->mod][where,$where][show,1][limit,5]}
         {:row}
         <dt class="list">
-        {php echo tex_indoc::isread($user,$t_did); } 
+        {php echo \imcat\umc\texIndoc::isread($user,$t_did); } 
         <a href="{surl($this->mod.".$t_did")}" target="_blank">{title($t_title,32,$v)}</a>
         </dt>
         <dd class="list">
@@ -32,14 +31,14 @@ $uname = @$user->uinfo['uname'];
         {/tag:indocs1}
         {if $recn<5 }
         <?php 
-            $where = tex_indoc::expwhr($user,"i$key",0,'in'); 
+            $where = \imcat\umc\texIndoc::expwhr($user,"i$key",0,'in'); 
             if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
             $recm=5-$recn; 
         ?>
         {tag:indocs2=[List][modid,$this->mod][where,$where][show,1][limit,$recm]}
         {:row}
         <dt class="list">
-        {php echo tex_indoc::isread($user,$t_did); } 
+        {php echo \imcat\umc\texIndoc::isread($user,$t_did); } 
         <a href="{surl($this->mod.".$t_did")}" target="_blank">{title($t_title,32,$v)}</a>
         </dt>
         <dd class="list">

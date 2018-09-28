@@ -1,7 +1,7 @@
 {imp:"c_pub/a-frame"}<!--模板继承-->
 
 {block:init}{:parent}<?php 
-extract(tex_base::tips_init($this), EXTR_OVERWRITE);
+extract(\imcat\umc\texBase::tips_init($this), EXTR_OVERWRITE);
 $tipmsg = 'Welcome!';
 if($user->userFlag=='Guest'){
     $unqid = usrPerm::getUniqueid(); 
@@ -9,9 +9,9 @@ if($user->userFlag=='Guest'){
 }else{
     $ordwcnt = $db->table('coms_corder')->where("auser='$uname'")->count();     
 }
-vopTpls::pinc('tex_indoc');
-$cnt1 = tex_indoc::expwhr($user,"ipub",0,'no',1);
-$cnt2 = tex_indoc::expwhr($user,"imy",0,'no',1);
+
+$cnt1 = \imcat\umc\texIndoc::expwhr($user,"ipub",0,'no',1);
+$cnt2 = \imcat\umc\texIndoc::expwhr($user,"imy",0,'no',1);
 
 ?>{/block:init}
 

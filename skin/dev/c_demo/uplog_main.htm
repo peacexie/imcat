@@ -6,7 +6,7 @@
 $_bkey = $this->key ? 'vlog' : 'home'; 
 $file = empty($this->key) ? 'readme' : "v".intval($this->key).'.x';
 $key = empty($this->key) ? 'readme' : $this->key;
-$subs = tex_base::docer("d_uplog/$file");
+$subs = tex('texBase')->docer("d_uplog/$file");
 if(empty($subs)){ $this->msg('还未发布！'); }
 $sub = req('sub',''); 
 $verflag = $cfgs[$key][1];

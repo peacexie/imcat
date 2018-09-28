@@ -11,7 +11,7 @@ $kar = array(
     'names' => '重要术语',
     'hello' => 'Hello World!',
 );
-$subs = tex_base::docer("d_start/doc_$key");
+$subs = tex('texBase')->docer("d_start/doc_$key");
 $sub = req('sub','');
 $titletop = (empty($kar[$key]) ? $key : $kar[$key]).'-快速开始';
 $titlesub = empty($kar[$key]) ? $key : $kar[$key]; 
