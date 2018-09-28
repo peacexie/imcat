@@ -1,0 +1,8 @@
+title: IntimateCat(贴心猫)
+description: Light weight, Free, Sharing general PHP web application system!
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions
