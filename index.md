@@ -1,7 +1,7 @@
 
-### What is IntimateCat(贴心猫)?
+### What is Imcat(贴心猫)?
 
-* IntimateCat(贴心猫) is a set of Light weight, free, sharing general PHP web application system!
+* IntimateCat(Imcat,贴心猫) is a set of Light weight, free, sharing general PHP web application system!
 * Apply to: online shop, hospital, school, enterprise, personal website, enterprise intranet, profession portal site, etc.......
 
 ### 【Functions】
@@ -20,7 +20,7 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-贴心猫(Intimate) 是以PHP+MySQL架构设计的通用网站系统，简约、实用、轻量、开源。
+贴心猫(Imcat) 是以PHP+MySQL架构设计的通用网站系统，简约、实用、轻量、开源。
 适用于：网店，医院，学校，企业站，个人网站，企业内部Intranet，中小型行业门户站点等……
 
 ### 【功能介绍】
@@ -34,4 +34,4 @@
 * 全球下载：https://github.com/peacexie/imcat
 * 中国下载：http://down.admin5.com/php/130751.html
 * 百度下载：http://pan.baidu.com/share/home?uk=3191979020#category/type=0
-* 官网演示：http://txmao.txjia.com/
+* 官网演示：http://imcat.txjia.com/
