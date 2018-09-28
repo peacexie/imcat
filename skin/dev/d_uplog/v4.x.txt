@@ -14,7 +14,7 @@
 ## 更新事项
 
 * 简化英文名:
- - 英文名 `IntimateCat` ->改为 `Imcat`
+ - 英文名 `Imcat` ->改为 `Imcat`
 
 * 优化 js/css 加载
  - 弃用jquery1, 
@@ -56,7 +56,7 @@
 
 * 增加`Opcache`管理（清理）
 
-* 贴心猫(IntimateCat)更改域名：txmao.txjia.com -=> imcat.txjia.com
+* 贴心猫(Imcat)更改域名：txmao.txjia.com -=> imcat.txjia.com
 
 * 修正：前台重复生成缩略图
 

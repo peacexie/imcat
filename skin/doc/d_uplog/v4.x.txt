@@ -14,7 +14,7 @@
 ## ChangeLog
 
 * Modify the English name:
- - Modify `IntimateCat` to `Imcat`
+ - Modify `Imcat` to `Imcat`
 
 * Improve js/css load
  - Deprecated jquery1 support, 
@@ -56,7 +56,7 @@
 
 * Add `Opcache` Management(Clear)
 
-* IntimateCat change the domain: txmao.txjia.com -=> imcat.txjia.com
+* Imcat change the domain: txmao.txjia.com -=> imcat.txjia.com
 
 * Fix: Repeat generate thumbnails;
 
@@ -65,9 +65,9 @@
 * Optimize the home page, Show friendly some models that do not exist;
 
 * [Related news]
- - The shop-store system basic on IntimateCat, It's published and it works OK!
+ - The shop-store system basic on Imcat, It's published and it works OK!
  - Brother-product `Wepy(python)`, It used in work(for info-gather)！
- - We move IntimateCat from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
+ - We move Imcat from BAE(basic) to BCH(Cloud virtual host), because of BAE Out of Service!
 
 
 

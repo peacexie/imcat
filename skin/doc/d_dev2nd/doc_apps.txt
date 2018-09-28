@@ -4,13 +4,13 @@
 
 * Single-App
  - In Sing-App system(website), a separate system corresponds to an application project;
- - eg. You can use IntimateCAT setup a Property website, and use IntimateCAT setup another Investment website;
+ - eg. You can use Imcat setup a Property website, and use Imcat setup another Investment website;
  - It's ok, No problem!
 
 * Problem
  - If someday, you must upgrade you two apps, you must upgrade the dirs like `code`,`vimp` twice!
  - In this system, More then one app can use ONLY one set of `code`,`vimp` dirs?!
- - How to use IntimateCAT setup Multi-App?
+ - How to use Imcat setup Multi-App?
 
 * Multi-Target
  - More than one App, use the some `code`,`vimp` dirs and static files,

@@ -32,7 +32,7 @@
 
 * 第三方调用示例
  - http://yscode.txjia.com/mlabs/csframe.htm
- - 查看对应代码：Demo : Data From IntimateCat
+ - 查看对应代码：Demo : Data From Imcat
 
 * 第三方系统-同步数据
  - 接口：app.php?mod=data
@@ -58,7 +58,7 @@
 
 * Get data in 3nd-part 
  - http://yscode.txjia.com/mlabs/csframe.htm
- - See : Demo : Data From IntimateCat
+ - See : Demo : Data From Imcat
 
 * Third party system - synchronous data
  - Interface: app.php?mod=data

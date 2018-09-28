@@ -46,7 +46,7 @@ return array(
   'WindowMode',
   ',Suggestions1',
   // 3: 
-  'IntimateCat',
+  'Imcat',
   'RandomCode',
   'Beteen 4 and',
   '48 bit',

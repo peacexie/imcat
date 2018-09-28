@@ -3,9 +3,9 @@
 #app#App-Project
 
 * It's also called `Website`, `app` or `应用` and so on;
-* eg: There are 3 web site: Investment site, Property site adn Decoration website; Among them, the first two developed by IntimateCAT system, The latter developed by a certain CMS.
+* eg: There are 3 web site: Investment site, Property site adn Decoration website; Among them, the first two developed by Imcat system, The latter developed by a certain CMS.
 * Each application has a separate configuration, database, cache, and so on...
-* Generally, a separate system corresponds to an application project (i.e. Single-App System), You can also develop and manage more then ONE apps in a IntimateCAT, No special description is based on the former description.
+* Generally, a separate system corresponds to an application project (i.e. Single-App System), You can also develop and manage more then ONE apps in a Imcat, No special description is based on the former description.
 
 
 #entry#Display-Entrance

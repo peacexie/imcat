@@ -30,7 +30,7 @@
 #uevimp#Deal with dir:vimp
 
 * Background
- - If more then one THIS system(IntimateCat) in the same server, and with the some version, they can share the dir:`vimp`
+ - If more then one THIS system(Imcat) in the same server, and with the some version, they can share the dir:`vimp`
 
 * Handling items
  - Specific processing matters, can refer to the above, all of the sites are config virtual dirs, use the same `vimp` directory...

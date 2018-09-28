@@ -27,7 +27,7 @@
  - 东西一旦发布，我一向不善美工，又需要美工资助……
  - …… …… ……
 
-* If you are Agree with the IntimateCat(贴心猫),   
+* If you are Agree with the Imcat(贴心猫),   
   and feel helpful to you, and if you are convenient,   
   please help us, her sustainable development needs YOUR support and help!!!
  - You Can: Provide translation help, see the details below;
@@ -35,7 +35,7 @@
  - You Can: Provide PHP+Mysql hostspace(Need PHP5.3+,Mysql5.0+）
  - You Can: Provide WeChat service number (for test API);
  - You Can: Provide template design, Logo design;
- - You Can: To test the IntimateCat(贴心猫), feedback bugs, or join the development;
+ - You Can: To test the Imcat(贴心猫), feedback bugs, or join the development;
 
 
 #lang#Translation Notes
@@ -56,7 +56,7 @@
  - Next Step, I wish I can find volunteers to translate French, Spanish and Russian language packs;
  - Follow-up: Is German, Japanese language package; Korean, Arabic and MORE...
  - Of course I wish: more and more volunteers to translate more other language package!
- - Welcome to join HER(IntimateCat), thanks!
+ - Welcome to join HER(Imcat), thanks!
 
 * How to do:
  - Example Add [French-fr]Language pack:
@@ -75,7 +75,7 @@
 * Donation purpose
  - For: Demo website domain name registration, server hosting space, bandwidth leasing and other basic costs
  - For: Reward the development who outstanding contributors(Limited small award)
- - First of all: I wish my-cat(IntimateCat) can ` feed herself `!
+ - First of all: I wish my-cat(Imcat) can ` feed herself `!
  - If one day, there are too many donations? To public donations, to ensure that the financial disclosure!
 
 * Donation way

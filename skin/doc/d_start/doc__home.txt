@@ -21,14 +21,14 @@ tmp...
 * Multi language: Support Customer language package (since v3.3 include Chinese & English two language packages)
 
 
-#IntimateCat#Name `Cat`'s Origin
+#Imcat#Name `Cat`'s Origin
 
 * Cat: ordinary, gentle, plain and without luxurious; it is the goal of the system --- "Concise, lightweight, practical, free, sharing"!
 * Cat: to catch mice, waiting for hours beside the rats hole, it is the attitude of the system to deal with "safe - efficient - details"!
 * Cat: catch mice do not care about black and white; this "intimate cat":
  - do not care about any design model, do not care about any advanced theory
  - with the most refined and simple method, use the most easy maintenance amount, to provide you with practical Web application system!
-* `Incat` means `Intimate-Cat`, You can registered those domains: Intimate, IntimateCat, imcat,...
+* `Incat` means `Intimate-Cat`, You can registered those domains: Intimate, Imcat, IntimateCat,...
 * 2015-12-17, 05:00 peace got from insomnia
 
 

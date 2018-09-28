@@ -54,7 +54,7 @@
 * Rewrite配置(Apache/Nginx/iis7+)
  -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
 
-* idea：贴心猫(IntimateCat)开发者自白书
+* idea：贴心猫(Imcat)开发者自白书
  -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
 
 * 贴心扩展[Extend]

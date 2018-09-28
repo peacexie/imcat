@@ -57,7 +57,7 @@
 * Rewrite Config(Apache/Nginx/iis7+)
  -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
 
-* idea: 贴心猫(IntimateCat)Developer confession
+* idea: 贴心猫(Imcat)Developer confession
  -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
 
 * Extend[贴心扩展]
@@ -342,7 +342,7 @@ sa
 * 看情况：征集/开发 一些应用模块；
 
 
-## IntimateCat with THEM
+## Imcat with THEM
 
 * 模板继承
  - 看过 laravel / symfony 的模板继承；所以 贴心猫于[2015-05]已实现；
@@ -413,7 +413,7 @@ tplnamenews=c_mod/mem_ulst）
  - Update layer (to:3.0.1)
  - Update KindEditor 4.1.11 (to:2016-05-26)
  - Update PHPMailer (to:5.2.16@2016)
- - Use IntimateCat Icon
+ - Use Imcat Icon
  - Improve: Loggers
  - Run-SQL Run SQL in system
 
@@ -444,14 +444,14 @@ tplnamenews=c_mod/mem_ulst）
 
 ## Future
 
-* The Future of the IntimateCat - Three direction
+* The Future of the Imcat - Three direction
  - Sqlite+No-Install : Reduce threshold, But It need for a larger transformation to some DB-operate code.
  - Add Sphinx Searching / Ftp+Cloud Storage : The first step to the `High-Big-Upper`
  - Use ThinkPHP Reconstruction Whole System : No longer supported PHP5.2 (I'll start a another new project...)
 
 * We need your Opinion's
  - We need your help, Please click you mouse...
- - <a href="{svrtxmao}/mob.php?votes" target="_1">Votes for the Future's [IntimateCat]</a>
+ - <a href="{svrtxmao}/mob.php?votes" target="_1">Votes for the Future's [Imcat]</a>
 
 
 #v3.3# (2016.09)

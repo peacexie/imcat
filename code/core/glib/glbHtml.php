@@ -15,7 +15,7 @@ class glbHtml{
             echo "</body></html>\n";
         }elseif($mod=='aumeta'){ // 去掉/修改:author-meta标签在这里
             $auweb = "http://imcat.txjia.com, https://github.com/peacexie/imcat";
-            echo "<meta name='author' content='$auweb, 贴心猫(IntimateCat)'>\n";
+            echo "<meta name='author' content='$auweb, 贴心猫(Imcat)'>\n";
         }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';

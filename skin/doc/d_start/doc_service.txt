@@ -3,7 +3,7 @@
 #shenming#Service statement
 
 * Free open source
- - IntimateCat, A set of free, open source system that follows the MIT Protocol;
+ - Imcat, A set of free, open source system that follows the MIT Protocol;
  - The system itself is not encrypted, free modification, free use.
 
 * Your own template
@@ -35,7 +35,7 @@
 
 
 * Paid services
- - IntimateCat Provide (`Limited` and `Amateur`) service for the Advanced user (Template, We strongly recommend your `DIY`);
+ - Imcat Provide (`Limited` and `Amateur`) service for the Advanced user (Template, We strongly recommend your `DIY`);
  - Program customization : We provide functional customization based on this system; (fully shows the powerful extended characteristic) 
  - Data conversion : Convert other system's Data into this system, like as the data based on MYSQL,MSSQL,ACCESS...
  - Value-added service : Interface development, Setup environment, Software upgrade, Data transfer and so on...
