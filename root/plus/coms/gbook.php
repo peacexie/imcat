@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_mod = basename(__FILE__,'.php');
 require dirname(__FILE__).'/_cfgcom.php'; 
 

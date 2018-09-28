@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 global $_cbase;
 
@@ -29,6 +30,7 @@ $_sy_pubcfg['ids'] =  array(
 // - 替换
 $_sy_pubcfg['cdemo'] =  array(
     'root/cfgs/excfg/ex_a3rd.php' =>'',
+    'root/cfgs/excfg/ex_aliyun.php' =>'',
     'root/cfgs/excfg/ex_mail.php' =>'',
     'root/cfgs/excfg/ex_haoft.php' =>'',
     'root/cfgs/excfg/ex_sms.php' =>'',
@@ -71,9 +73,9 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl','yscode'),
-    'vendor' => array('Monolog','psrlog','silex','Spyc'),
-    'dtmp' => array('@test','@udoc','debug','update','weixin'),
-    'vendui' => array('artEditor','swplayer','summernote'),
+    'vendor' => array('Spyc','composer','aliOss'), // 'Monolog','psrlog','silex',
+    'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
+    'vendui' => array('artEditor','swplayer','summernote'), // 
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(

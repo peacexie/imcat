@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php'; 
 glbHtml::page('Types Pick',1);
 eimp('initJs','jquery,jspop;comm;comm(-lang);/_pub/jslib/search;/_pub/jslib/jstypes'); 

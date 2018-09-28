@@ -29,9 +29,9 @@ $_tpl = array();
 // 综合结果 ------------------------
 
 // 替换路径
-$_ex_repath['att'] = $_pub + $_att;
-$_ex_repath['tpl'] = $_pub + $_tpl; 
-$_ex_repath['dir'] = $_dir; 
+$_sy_repath['att'] = $_pub + $_att;
+$_sy_repath['tpl'] = $_pub + $_tpl; 
+$_sy_repath['dir'] = $_dir; 
 
 
 /*

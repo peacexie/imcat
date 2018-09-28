@@ -1,4 +1,5 @@
 <?php 
+namespace imcat;
 require '_config.php';
 glbHtml::head('js'); 
 $mod = req('mod','demo'); 

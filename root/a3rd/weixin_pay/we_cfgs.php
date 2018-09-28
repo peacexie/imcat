@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 //define('RUN_AJAX', 1);  
 //if(!isset($_cbase['skip'])) $_cbase['skip']['_all_'] = true;
 $_cbase['tpl']['tpl_dir'] = 'adm';

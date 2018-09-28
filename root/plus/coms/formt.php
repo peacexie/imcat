@@ -1,5 +1,5 @@
 <?php 
-
+namespace imcat;
 # vote-topic : for:topic
 
 require dirname(__FILE__).'/_cfgall.php'; 

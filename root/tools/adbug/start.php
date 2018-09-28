@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 if(file_exists(dirname(__FILE__).'/start-360.php')){
   include(dirname(__FILE__).'/start-360.php');
   die();

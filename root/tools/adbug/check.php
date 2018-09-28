@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php'; 
 
 $act = @$_GET['act']; $act || $act = 'check'; 
@@ -194,7 +195,7 @@ function setInpval(e){
     <th width="70%"><?php lang('tools.chk_dbstatus',0); ?></th>
   </tr>
   
- <?php 
+  <?php 
   $a3 = devRun::runMydb3(); $nocnt = 0;
   foreach($a3 as $k=>$re){ $nocnt += $re['res']==FLAGNO ? 1 : 0;
   ?>
@@ -208,7 +209,48 @@ function setInpval(e){
     <td class="tip" colspan="4"><?php lang('tools.chk_dbset',0); ?></td>
   </tr> 
   <?php } ?>
-  
+  <tr>
+    <td colspan="4"><p class="title">Mysql-Connact</p></td>
+  </tr> 
+  <?php 
+  if($inptype=='mysql'){ 
+    $host = req('host'); $port = req('port','3306'); 
+    $user = req('user'); $pass = req('pass'); 
+    $func = req('func');
+    if($func=='mysql'){
+      $res = @mysql_connect($host.':'.$port, $user, $pass);
+      $msg = $res ? '' : mysql_error();
+    }else{
+      $res = @mysqli_connect($host, $user, $pass, null, $port);
+      $msg = $res ? '' : mysqli_connect_error();
+    }
+    $msg = $msg ? $msg : "$user:$pass@$host --- OK!";
+  ?>
+  <tr>
+    <th class="tc">-Result-</th>
+    <th class="tc" colspan="2"><?=$msg?></th>
+  </tr>
+  <?php } ?>
+  <tr>
+    <td colspan="4" class="blk">
+      <form action="?">
+        <input type="hidden" name="inptype" value="mysql">
+      <p>
+      Host:<input type="text" name="host" value="localhost" size="15" />
+      Port:<input type="text" name="port" value="3306" size="8" />
+      &nbsp; 
+      </p>
+      <p>
+      User:<input type="text" name="user" value="root" size="15" />
+      Pass:<input type="text" name="pass" value="" size="8" />
+      </p>
+      <p>
+      Diver:<input type="text" name="func" value="mysqli" size="8" />(mysqli,mysql) 
+      &nbsp; <input type="submit" name="submit" id="submit" value="Submit" class="btn">
+      </p>
+      </form>
+    </td>
+  </tr>
   </table>
 
 <?php 

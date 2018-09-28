@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php';  
 
 glbHtml::page("Run Plan - (sys_name)",1);

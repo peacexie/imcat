@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 include dirname(__FILE__).'/_config.php'; 
 
 // for your dir debug ... 

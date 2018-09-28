@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php'; 
 
 $act = req('act','');
@@ -159,9 +160,9 @@ if(in_array($act,array('expData','expBack'))){
 //}elseif($act=='xxx'){
 }elseif(in_array($act,array('cdbPKey','cdbV255','cdbMKey'))){
   $_res = devScan::cdbStrus($act);
-}elseif(method_exists('devData',$act)){
+}elseif(method_exists('\\imcat\\devData',$act)){
   devData::$act(); 
-}elseif(method_exists('devScan',$act)){
+}elseif(method_exists('\\imcat\\devScan',$act)){
   devScan::$act(); 
 }elseif($act){
   echo "Error:$act"; 

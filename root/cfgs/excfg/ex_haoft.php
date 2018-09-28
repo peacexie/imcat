@@ -10,14 +10,11 @@ $_ex_haoft = array(
         'ak' => 'BA12', // 测试
         'as' => '1234...abcd',
     ),
-    'zh' => array( // 测试
-        'ak' => 'BADG',
-        'as' => 'abcd...1234',
-    ),
     // 全局配置
-    'api-colse' => 0,
-    'db-key' => 'imhouse', // db配置, 为空则共用数据库
+    'api-open' => 1,
+    'db-key' => 'imhaoft', // db配置, 为空则共用数据库
     'def-city' => 'linzhi', // 默认城市
 );
 
 include __DIR__.'/ex_haoft-fields.php';
+include __DIR__.'/ex_haoft-price.php';

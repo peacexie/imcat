@@ -3,8 +3,8 @@
 
 // 同步服务器 'http://master.domain.com/root';
 $_ex_outdb['psyn']['server'] = 'http://127.0.0.1/txmao'; //同步服务器
-$_ex_outdb['sign']['sapp'] = '3ntk24rfjfadwtk3n1durbf4'; //签名:sapp
-$_ex_outdb['sign']['skey'] = 'coBlf7IVr0z32X6tpz3SbOXIsdrXLPrEwd90'; //签名:skey
+$_ex_outdb['sign']['sapp'] = 'my4bhfxjyw32kh84794s9tkj'; //签名:sapp
+$_ex_outdb['sign']['skey'] = 'yuqfWnLiKBOfINL13UxTaAYHZR1zfdgQd29E'; //签名:skey
 // 单独设置(暂未使用...)
 #$_ex_outdb['sign_(jobid)']['sapp'] = ''; //签名:sapp
 #$_ex_outdb['sign_(jobid)']['skey'] = ''; //签名:skey
@@ -40,7 +40,7 @@ $_ex_outdb['powereasy']['db_cset'] = 'gbk';
 
 
 // 旧版数据，（用于[更新升级]#导入旧版数据）
-$_cfgs['db_name']   = 'txmao_v32'; // 数据库名(pdox连接不使用) 
+$_cfgs['db_name']   = 'txmao_v32'; // 数据库名(pdo连接不使用) 
 $_cfgs['db_prefix'] = ''; // 数据库前缀pre_
 $_cfgs['db_suffix'] = '_ys'; // 数据库前缀_suf
 $_cfgs['db_cset']   = 'utf8';// 数据库编码

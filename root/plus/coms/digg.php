@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/_cfgall.php'; 
 
 # mod,kid
@@ -12,7 +13,7 @@ $tabfull = $db->table($tbid,2);
 if(empty($mod) || empty($opfid)){
     die("Error-a: Model or Filed.");
 }
-$cfgd = read('coms.digg','ex');
+$cfgd = read('coms.digg','sy');
 
 // 模型判断
 if(empty($cfgd[$mod])){

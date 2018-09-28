@@ -1,5 +1,5 @@
 <?php
-
+namespace imcat;
 //UCenter API
 die();
 

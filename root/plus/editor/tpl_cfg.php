@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require '_config.php';
 glbHtml::head('html');
 $fid = req('fid','content');

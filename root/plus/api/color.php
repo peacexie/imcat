@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php'; 
 glbHtml::page('Color Pick',1);
 eimp('initJs','jquery;/_pub/jslib/jscolor'); 

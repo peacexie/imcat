@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require 'tpl_cfg.php'; 
 require DIR_STATIC.'/ximp/utabs/spchars.imp_htm'; 
 ?>

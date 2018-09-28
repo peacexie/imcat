@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/we_cfgs.php';
 
 $act = req('act','main'); 

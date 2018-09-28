@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_cbase['skip']['.none.'] = true;
 require dirname(__FILE__).'/_config.php';
 $ocfgs = read('outdb','ex');

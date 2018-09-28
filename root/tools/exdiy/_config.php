@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 //if(empty($_cbase['skip']['_paths'])){
     include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
 //}

@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php'; 
 //autoLoad_ys::ureg('/adpt/wechat');
 //autoLoad_ys::ureg('/adpt/weuser');

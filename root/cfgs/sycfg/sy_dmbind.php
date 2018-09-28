@@ -1,5 +1,5 @@
 <?php
-$_ex_dmbind = array(
+$_sy_dmbind = array(
 
 	// /vary/html/cargo/2015-9c/h3h1.html
 	// http://pro.my_domain.com/2015-9c/h3h1.html

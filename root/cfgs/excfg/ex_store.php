@@ -1,56 +1,78 @@
 <?php
+(!defined('RUN_INIT')) && die('No Init');
+// 附件模式: rsLocal, rsFtp, rsAlioss
+#$_cfg['type'] = 'rsLocal'; // 自v4.4, 默认固定为:rsLocal
 
-// 附件模式: rsLocal,rsFtp,rsSea
-$_cfg['type'] = 'rsLocal'; 
+/*
+* upload/save
+* edit/save
+* view
+* del : oss
+* thumb : oss
 
-// 缩略图大小
+*/
+
+// 默认(放最后):rsLocal(不用改动)
+$_cfg['types']['rsLocal'] = array(
+    // 类型/目录:配置
+    'ftypes' => array(), // 见`sy_filetype.php`, 为空所有类型, array('none')不启用; 
+    'mdirs' => array(),  // (目录)前缀:为`模型id+/`, 为空所有类型, array('none')不启用;
+    // 前缀/后缀
+    'spre' => '{uresroot}/', // save 前缀
+    'sfix' => '',            // save 后缀, 一般为空
+    'vpre' => PATH_URES.'/', // view 前缀
+    'vfix' => '',            // view 后缀, 一般为空
+    // 缩略图剪切地址,可自行设置重定向 
+    'cut_ures' => '', // (size),(oimg,oext,fimg,fext),
+    #'apicfgs' => array(),
+    'dir_ures' => DIR_URES, // upload 根路径
+);
+
+// 使用ftp附件的:类型/目录前缀
+$_cfg['types']['rsFtp'] = array(
+    // 类型/目录:配置
+    'ftypes' => array('image', 'flash', 'docus', 'file', 'ziper', 'video', 'audio'),
+    'mdirs' => array('none'), //array('news/', 'cargo/'), 为空所有类型, array('none')不启用;
+    // 前缀/后缀
+    'spre' => '{ftproot}/', // save 前缀
+    'sfix' => '',           // save 后缀
+    'vpre' => 'http://ftp.txjia.com/imcat/', // view 前缀
+    'vfix' => '', // view 后缀
+    // 缩略图剪切地址,可自行设置重定向 
+    'cut_ures' => 'http://ftp.txjia.com/thumb.php',
+    // api-cfgs
+    'apicfgs' => array(
+        'ftp_ssl'     => false, // true,false
+        'host'        => 'host-ip',
+        'user'        => 'ftp-userid',
+        'pass'        => 'ftp.passwd',
+        'port'        => 18519,
+        'passive'     => false,
+        'debug'       => true,
+    ),
+    'dir_ures'  => '/imcat', // ftp根路径
+);
+
+// 使用oss附件的:类型/目录前缀
+$_cfg['types']['rsAlioss'] = array(
+    'ftypes' => array('image', 'flash', 'docus', 'file', 'ziper', 'video', 'audio'),
+    'mdirs' => array('none'), // 为空所有类型, array('none')不启用; 'news/', 'cargo/', 'keres/'
+    // 前缀/后缀
+    'spre' => '{aliroot}/', // save 前缀 
+    'sfix' => '', // save 后缀 ?{urlsign}
+    'vpre' => 'http://vdo.imcat.com/', // view 前缀
+    'vfix' => '', // view 后缀
+    // 缩略图剪切地址,可自行设置重定向 
+    'cut_ures' => '',
+    #'apicfgs' => array(),
+    'dir_ures' => 'test', // oss根路径
+);
+
+// 缩略图大小(此控制意图为:防止生成任意大小的缩略图,导致大量垃圾文件)
 $_cfg['resize'] = ';240x180,160x120,120x90,120x60;88x31,40x40,120x120;'; 
 $_cfg['resize'] .= '180x240,120x160,90x120,60x120;31x88,80x80,240x240;'; 
 
-// Local附件-默认,不用配置
-$_cfg['rsLocal'] = array(
-    //
-);
 
-// FTP附件
-$_cfg['rsFtp'] = array(
-    'ftp_ssl'     => false, // true,false
-    'hostname'    => 'host-ip',
-    'username'    => 'ftp-userid',
-    'password'    => 'ftp.passwd',
-    'port'        => 21,
-    'passive'     => true,
-    'debug'       => true,
-    'dir_ures'    => '/www/imcat', // ftp根路径
-    // 缩略图剪切地址,可自行设置重定向(如:/cut/(size)/(img))
-    'cut_ures'    => 'http://domain.com/cut.php?size=(size)&img=(img)',
-);
-
-// Sea附件
-$_cfg['rsSea'] = array(
-    //
-);
-
+// return
 $_ex_store = $_cfg; 
 
-/*
-
-### FTP附件 配置说明
-
-* 配置ftp服务器
- - 自行配置好ftp服务器，并把子域名指向相关目录
- - 示例结果: http://domain.com/imcat/cargo/2016-cq/n6q1/ma2s8.jpg  
- - url对应的ftp文件: /www/imcat/cargo/2016-cq/n6q1/ma2s8.jpg
- - 为了优化,imcat目录可去掉
-
-* 配置系统参数
- - ftp相关参数，配置到以上 $_cfg['rsFtp'] 区块
- - 配置 _paths.php 中设置 PATH_URES ：(注意: DIR_URES 设置按本地设置)
- - define('PATH_URES', 'http://domain.com/imcat');
-
-* 缩略图优化
- - 各服务器上，自行设置
- - 参考：/root/plus/api/thumb.php文件
- - 可自行设置 重定向 优化
-
-*/

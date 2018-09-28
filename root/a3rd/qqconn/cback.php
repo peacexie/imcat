@@ -1,9 +1,10 @@
 <?php
+namespace imcat;
 $_cbase['tpl']['tpl_dir'] = 'umc';
 require dirname(dirname(dirname(__FILE__)))."/run/_init.php";
 require_once(DIR_VENDOR.'/a3rd/qqcAPI/qqConnectAPI.php');
 
-$qc = new QC();
+$qc = new \QC();
 $actoken = $qc->qq_callback();
 $openid = $qc->get_openid(); 
 $qc->setParms($actoken, $openid); //$qc = new QC($actoken,$openid);

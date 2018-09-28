@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_cbase['run']['wedemo'] = 1;
 require dirname(__FILE__).'/we_cfgs.php';
 

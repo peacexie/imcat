@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 ini_set("default_charset", "gbk");
 $_cbase['run']['outer'] = 1;
 require dirname(__FILE__).'/_config.php';

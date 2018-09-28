@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require 'api_cfg.php'; 
 $larr = array(
     'en'=>'en',

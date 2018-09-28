@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 define('RUN_JSHOW', 1);
 $_cbase['skip']['.none.'] = true;
 require dirname(__FILE__).'/_config.php';

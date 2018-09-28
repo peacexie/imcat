@@ -13,7 +13,6 @@ define('DIR_CTPL', DIR_VARS.'/ctpl'); define('PATH_CTPL', PATH_VARS.'/ctpl'); //
 define('DIR_DTMP', DIR_VARS.'/dtmp'); define('PATH_DTMP', PATH_VARS.'/dtmp'); //dynamic_temp动态临时目录,访问相对路径
 define('DIR_HTML', DIR_PROJ.'/html'); define('PATH_HTML', PATH_PROJ.'/html'); //html_doc静态html文档目录,访问相对路径
 define('DIR_URES', DIR_PROJ.'/ures'); define('PATH_URES', PATH_PROJ.'/ures'); //upload_resource上传资源文件目录,访问相对路径
-#define('DIR_URES', DIR_PROJ.'/ures'); define('PATH_URES', 'http://img.domain.com/imcat'); // ftp附件
  
 define('DIR_IMPS', DIR_PROJ.DS.'vimp'); define('PATH_IMPS', PATH_PROJ.'/vimp'); //import_root导入目录
 define('DIR_VENDOR', DIR_IMPS.'/vendor'); define('PATH_VENDOR', PATH_IMPS.'/vendor'); //vendor_package第三方组件目录,访问相对路径

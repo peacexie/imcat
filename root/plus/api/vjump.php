@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_cbase['run']['subDirs'] = '1';
 require dirname(__FILE__).'/_config.php'; 
 

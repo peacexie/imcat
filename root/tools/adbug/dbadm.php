@@ -1,4 +1,4 @@
-<?php    
+<?php
 $_cbase['run']['outer'] = 1;
 
 if(file_exists(dirname(__FILE__).'/start-360.php')){

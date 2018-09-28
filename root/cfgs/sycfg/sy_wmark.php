@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 $_sy_wmark['type']   = 'text'; // 0,pic,text, 水印类型：pic-配置中的图片, text-配置中的文字

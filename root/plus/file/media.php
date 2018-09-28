@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require '_config.php';
 /*
     $html = file_get_contents('http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&kw='.$key.'&pageNo=1&pageSize=20&channelId='.$type.'&inDays=7&media=v&sort=s');

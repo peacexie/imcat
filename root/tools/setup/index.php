@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php';
 
 // Check proot
@@ -28,7 +29,7 @@ if($act=='EditDB'){
     header('Location:?');
 }elseif($act=='Mark'){
     @die(devSetup::$func($step));
-}elseif(method_exists('devSetup',$func)){
+}elseif(method_exists("\\imcat\\devSetup",$func)){
     devSetup::$func($tab);
 }
 
@@ -38,7 +39,7 @@ eimp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
 $cmydb3 = devRun::runMydb3();
-$cmynow = $cmydb3[glbDBObj::getCfg('db_class')];
+$cmynow = $cmydb3[glbDBObj::getCfg('db_driver')];
 include DIR_ROOT.'/cfgs/boot/cfg_db.php'; 
 
 $orguser = 'adm_'.basKeyid::kidRand(0,3);

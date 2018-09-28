@@ -1,4 +1,5 @@
-<?php 
+<?php
+namespace imcat;
 require '_config.php';
 $user || basMsg::show('Not Login.','die'); //未登录
 

@@ -1,4 +1,4 @@
-<?php    
+<?php
 
 # Adminer - dostosowanie
 # https://www.adminer.org/pl/extension/

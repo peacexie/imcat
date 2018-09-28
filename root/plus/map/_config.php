@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_cbase['skip']['_all_'] = true;
 $_cbase['ucfg']['lang'] = '(auto)'; 
 require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 

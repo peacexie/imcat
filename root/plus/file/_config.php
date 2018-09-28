@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 $_cbase['ucfg']['lang'] = '(auto)'; 
 $_cbase['tpl']['tpl_dir'] = 'adm';
 require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 

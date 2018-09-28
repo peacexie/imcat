@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 注册/登录:相关设置
 

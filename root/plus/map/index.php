@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require '_config.php'; 
 
 glbHtml::page("{$api} ".lang('plus.map_title'),1);

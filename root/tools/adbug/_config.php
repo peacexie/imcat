@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 //    辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
 //$_cbase['tpl']['tpl_dir'] = 'adm';    
 //$_cbase['run']['outer'] = 1;
@@ -7,7 +8,7 @@ if(!session_id()) @session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
 include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
 include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';
-$sess_id = usrPerm::getSessid(); 
+$sess_id = \imcat\usrPerm::getSessid(); 
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    

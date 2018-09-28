@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 // (自v3.8开始) `设置站点相对目录` 等路径请移步至 `/root/cfgs/boot/_paths.php`
 
 // 页面_cbase, 运行时常用变量, 基本常量 
@@ -7,14 +8,15 @@ $_cbase['run']['timer']  = microtime(1); // 越是最先运行越准确
 $_cbase['run']['memory'] = memory_get_usage();
 $_cbase['run']['aclass'] = array(); 
 define('DIR_PROJ', dirname(dirname(dirname(__FILE__)))); // 项目根目录 
-define('RUN_INIT', 1); // 初始化标记
-define('DS', DIRECTORY_SEPARATOR); // 目录分隔符
+defined('RUN_INIT') || define('RUN_INIT', 1); // 初始化标记
+defined('DS') || define('DS', DIRECTORY_SEPARATOR); // 目录分隔符
 
 // 加载:系统路径配置,常规配置,自动加载类
 include DIR_PROJ.'/root/cfgs/boot/_paths.php'; // 加载系统路径配置
 require DIR_ROOT.'/cfgs/boot/const.cfg.php'; // 基本设置const: 可被后台设置,页面设置覆盖
 require DIR_DTMP.'/dset/_score.cfg.php'; // 后台设置_score: 其次,可被页面设置_pbase覆盖
 require DIR_CODE.'/core/blib/loader.php'; // 包含自动加载类(仅包含文件)
+#require DIR_VENDOR.'/autoload.php'; // composer 的自动加载
 
 autoLoad_ys::init(); // 初始化-类自动加载
 // 处理outer运行模式

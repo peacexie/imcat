@@ -20,12 +20,12 @@ $_sy_updvnow['compcfgs'] = array(
     'cfgs/boot/cfg_load.php',
     
     'cfgs/excfg/ex_a3rd.php',
-    'cfgs/excfg/ex_ipstop.php',
     'cfgs/excfg/ex_mail.php',
     'cfgs/excfg/ex_outdb.php',
     'cfgs/excfg/ex_sfdata.php',
     'cfgs/excfg/ex_sms.php',
 
+    'cfgs/sycfg/sy_ipstop.php',
     'cfgs/sycfg/sy_keepid.php',
     'cfgs/sycfg/sy_urdirs.php',
     'cfgs/excfg/sy_wmark.php',

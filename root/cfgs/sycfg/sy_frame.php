@@ -1,7 +1,5 @@
 <?php
-(!defined('RUN_INIT')) && die('No Init');
 // 架构相关设置
-
 
 ### 存储格式
 $_sy_frame['resfmt'] = array( 

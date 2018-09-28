@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 域名相关设置
 
@@ -7,9 +8,7 @@
 $_sy_domain['subDirs'] = array(
     #'www.txjia.com' => 'txjia.com', //不要www.域名跳转
     #'tiexinmao.duapp.com' => 'imcat.txjia.com', //跳转到主域名
-    #'127.0.0.1' => '127.0.0.1', //测试
-    'imcat.gz01.bdysite.com' => 'imcat.txjia.com', 
-    'imcat.pswpower.com'     => 'imcat.txjia.com', 
+    #'127.0.0.1' => '127.0.0.2', //测试
     'www.txjia.com'          => 'imcat.txjia.com', 
     'txmao.txjia.com'        => 'imcat.txjia.com',
 ); //dir-跳转

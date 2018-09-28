@@ -1,4 +1,5 @@
-<?php    
+<?php
+namespace imcat;
 require dirname(__FILE__).'/_config.php';    
 
 bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login" target="x">login</a></p>');

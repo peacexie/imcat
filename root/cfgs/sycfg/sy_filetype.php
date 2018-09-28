@@ -2,7 +2,7 @@
 
 // 附件类型
 $_sy_filetype = array( 
-    //             // 第一个需要有个代表图标...
+    // type        // 第一个需要有个代表图标...
     'image' => array('pic', 'gif', 'jpg', 'jpeg', 'png'), 
     'flash' => array('swf', 'flv'), //{palyer}
     'video' => array('video', 'mp4', 'mov', 'avi', 'mpg', 'mpeg', 'mepg', 'asf', 'rm', 'rmvb', 'ogg', 'm3u8'),

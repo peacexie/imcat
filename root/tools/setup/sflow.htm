@@ -2,7 +2,7 @@
 <?php include DIR_ROOT.'/tools/setup/_head.htm'; ?>
 <h2 class="tc pv5">
   <?php echo $_cbase['sys_name']; ?> 
-  [V<?php echo $_cbase['sys']['ver']; ?>] - 
+  [v<?php echo $_cbase['sys']['ver']; ?>] - 
   <?php lang('tools.setup_title',0); ?>
 </h2>
 
@@ -24,7 +24,7 @@
   </tr>
   <tr class="tc">
     <td><?php lang('tools.setup_mysqlinfo',0); ?></td>
-    <td class="msg"><?php echo "$_cfgs[db_user]:$_cfgs[db_pass]@$_cfgs[db_host]:$_cfgs[db_port] [$_cfgs[db_class]]"; ?></td>
+    <td class="msg"><?php echo "$_cfgs[db_user]:$_cfgs[db_pass]@$_cfgs[db_host]:$_cfgs[db_port] [$_cfgs[db_driver]]"; ?></td>
     <td class="tc">---</td>
   </tr>
     <?php if(strstr($cmynow['info'],'Unknown database')){ ?>
