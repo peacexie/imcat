@@ -1,7 +1,8 @@
 <?php
 $_cbase['run']['outer'] = 1;
+
 include '../run/_init.php';
-$_flg = safComm::urlQstr7(1);
+$_flg = \imcat\safComm::urlQstr7(1);
 if($_flg) die($_flg);
 
 $_root = empty(PATH_PROJ) ? '/' : PATH_PROJ;

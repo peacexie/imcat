@@ -234,7 +234,7 @@ class glbCUpd{
                     $js2 .= ",$v1[title]";
                     $js3 .= ",$v1[icon]";
                     $s0 .= "<div id='left_$k1'>";
-                    if(method_exists('exaFunc',$func="admenu_$k1")){ exaFunc::$func($s0); }
+                    if(method_exists('\\imcat\\exaFunc',$func="admenu_$k1")){ exaFunc::$func($s0); }
                     elseif($k1=='m1adv'){ self::upd_madvs($s0); }
                     else{ self::upd_mitms($s0,$cfg,$k1); }
                     $s0 .= "</div>";
