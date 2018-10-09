@@ -11,6 +11,9 @@ class vopUrl{
     static function iget($q=''){
         global $_cbase;
         $q = empty($q) ? (isset($_SERVER['QUERY_STRING'])?$_SERVER['QUERY_STRING']:'') : $q;
+        if(preg_match("/^[\w\-\.]{3,24}\=\&\w+/i",$q)){
+            $q = str_replace('=&','&',$q);
+        } // 修正微信分享url:?2018-12-31xx=&from=timeline
         $uri = $_SERVER['REQUEST_URI']; // /dev/mkv.htm?api=Local
         if(strpos($uri,'.htm?') || strpos($uri,'.html?')){
             $tmp = parse_url($uri);
