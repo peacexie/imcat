@@ -1,6 +1,6 @@
 
 
-* 贴心猫(imcat) V4.4(Alpha)
+* 贴心猫(imcat) V4.4(Beta)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
@@ -44,27 +44,27 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.3 ChangeLog】 (2018.09)
+### 【v4.4 ChangeLog】 (2018.11)
 
-* Modify the English name:
-  - Modify `IntimateCat` to `Imcat`
+* Core: Add namespace(imcat), Adjust root entries, Adjust dirs;
 
-* Improve js/css load
-  - Deprecated jquery1 support, 
-  - Deprecated IE8 support.
+* Add: `composer` extend;
 
-* Improve file upload
-  - Improve: upload in Editor
-  - Improve: single upload
-  - Improve: multi-upload
+* Add: Ali-Oss Store-extend;
 
-* Add Editor Extra
-  - Add: summernote Extra
-  - Improve: pagination style
+* Add: Free-Data-tag, support Multi-db;
 
-* Add navs in admin
+* Add: Haofangtong API (Only Data API, NO views) --- (provided by `CrabyLi`);
 
-* Add `jquery-ui` component.
+* Improve: Store-Config --- (It's can config by file-types and models);
+
+* Improve: http-collection remote data, Add cache remote data;
+
+* Add extend: ThinkPHP(v31)Core for PHP7 --- (third party packages that are almost independent of the system)
+
+* Update: The db-manage component(Adminer)
+
+* Fix: Some url shared in wechat, It will jump to homepage.
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -101,25 +101,25 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.3更新日志】(2018.09)
+### 【v4.4更新日志】(2018.11)
 
-* 简化英文名:
-  - 英文名 `IntimateCat` ->改为 `Imcat`
+* 核心: 添加命名空间, 整合root入口, 调整目录 --- (本次调整范围较大,升级用户请安装新系统再导入旧资料)
 
-* 优化 js/css 加载
-  - 弃用jquery1 
-  - 取消IE8支持
+* 添加: `composer` 扩展
 
-* 优化 文件上传
-  - 优化: 编辑器 上传
-  - 优化: 单文件 上传
-  - 优化: 多图片 上传
+* 添加: 阿里OSS云存储扩展
 
-* Editor/编辑器 扩展
-  - 增加: summernote 编辑器扩展
-  - 优化: 编辑器 分页样式
+* 添加: 自由数据调用标签，支持多库调用
 
-* 增加后台导航
+* 添加: 好房通数据API (仅数据接口,无显示页) --- (`CrabyLi` 提供)
 
-* 增加 jquery-ui 组件, 用于附件上传等场合
+* 改善: 存储配置 --- (支持按模块/类型配置不同存储类型)
+
+* 改善: http采集远程数据，增加缓存功能
+
+* 增加扩展: ThinkPHP(v31)核心-PHP7兼容包 --- (与本系统几乎无关的第三方包)
+
+* 更新：数据库管理组件（Adminer）
+
+* 修正：微信分享地址，跳转到首页
 
