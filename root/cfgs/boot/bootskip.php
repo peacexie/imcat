@@ -1,7 +1,7 @@
 <?php
 /* Demo: 
   $_cbase['skip']['_all_'] = true;
-  require dirname(__FILE__).'/run/_init.php'; 
+  require __DIR__.'/run/_init.php'; 
   // $_cbase['skip']['robot'] = true; //单独用
   // $_cbase['skip']['db'] = true; //单独用
   // $_cbase['skip']['uchr7'] = true; //单独用

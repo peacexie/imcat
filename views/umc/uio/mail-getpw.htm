@@ -1,0 +1,19 @@
+{imp:"base:stpl/_lay_notice"}<!--模板继承-->
+
+{block:init}{/block:init} 
+
+{block:title}{=$site} 找回密码邮件{/block:title}
+
+{block:main}
+    <p>{=$uname} 您好！</p>
+    <p>您于 {=$time} 在 {=$site} 使用，邮件找回密码功能；<br>
+       请点击（或复制）访问如下链接，根据提示，重置密码：</p>
+    <p><a href="{=$urlpath}" target="_blank">{=$root}{=$urlpath}</a><br>
+       (如果您无法点击此链接，请将它复制到浏览器地址栏后访问)</p>
+    <p>1、请在 30分钟内 完成，过期失效！<br>
+    2、此链接将在您使用过一次后失效！<br>
+    3、系统发送，不要回复；非本人操作请忽略！</p>
+    <p style="text-align:right;">
+        <a href="{=$root}" target="_blank">{=$site}</a> 团队<br> {=$time} 
+    </p>
+{/block:main}

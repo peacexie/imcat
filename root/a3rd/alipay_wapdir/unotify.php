@@ -1,5 +1,5 @@
 <?php
-require dirname(__FILE__)."/alipay.config.php";
+require __DIR__."/alipay.config.php";
 require LIBS_PAYRUN."/alipay_notify.class.php";
 
 //计算得出通知验证结果

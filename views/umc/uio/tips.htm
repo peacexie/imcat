@@ -1,0 +1,57 @@
+{imp:"uio/_layinfo"}<!--模板继承-->
+
+{block:init}{:parent}
+{inc:"c_pub/c-init"}{php}
+extract(\imcat\umc\texBase::tips_init($this), EXTR_OVERWRITE); 
+{/php}{/block:init}
+
+{block:title}{lang(user.tips_systips)}{/block:title}
+
+{block:hdimp}{php}
+eimp('initJs','jquery,bootstrap;comm;comm(-lang)');
+eimp('initCss','bootstrap,stpub,jstyle;comm;/base/cssjs/cinfo'); 
+{/php}{/block:hdimp}
+
+{block:hdcss}{:parent}
+.vcm1{ float:right; }
+div.main p.150 { line-height:150%; }
+{/block:hdcss}
+
+{block:main}
+
+<form action="?{=$this->mkv}" method="post" name="fmgetpw" id="fmgetpw">
+
+  <div id="idx_login" class="pgu_login">
+
+    <div class="login">
+      <div class="bg-info tc pa10">{=$unowstr}</div>
+
+      <p class="row">
+        <i class="col-xs-4 col-md-4"><a class="block pt10 c333">{lang(user.tips_vpage)}: </a></i>
+        <i class="col-xs-8 col-md-8 tl"><a class="block pt10 c333">?{=$from}</a></i>
+      </p>
+      <p class="row">
+        <i class="col-xs-4 col-md-4"><a class="block pt10 c333">{lang(user.tips_nperm)}: </a></i>
+        <i class="col-xs-8 col-md-8 tl"><a class="block pt10 c333">{=$perm}</a></i>
+      </p>
+      <p class="row">
+        <i class="col-xs-4 col-md-4"><a class="block pt10 c333">Time: </a></i>
+        <i class="col-xs-8 col-md-8 tl"><a class="block pt10 c333">{= date('Y-m-d H:i:s'); }</a></i>
+      </p>
+      <p class="row">
+        <i class="col-xs-4 col-md-4"><a class="block pt10 c333">User-IP: </a></i>
+        <i class="col-xs-8 col-md-8 tl"><a class="block pt10 c333">{= $_cbase['run']['userip']}</a></i>
+      </p>
+
+      <p class="row">
+        <i class="col-xs-6 col-md-6"><a class="form-control btn btn-primary" href="{surl($ulogin)}">{lang(user.tips_login)}</a></i>
+        <i class="col-xs-6 col-md-6"><a class="form-control btn btn-primary" href="{surl($uapply)}">{lang(user.tips_reg)}</a></i>
+      </p>
+
+    </div>
+    <div class="clear"></div>
+  </div>
+
+</form>
+
+{/block:main}

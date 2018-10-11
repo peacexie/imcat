@@ -50,7 +50,7 @@ $_stops = array(
 /*
 限制可操作的coms模型
 */
-$_ex_coms = array(
+$_sy_coms = array(
     'stops' => $_stops,
     'click' => $_click,
     'digg' => $_digg,

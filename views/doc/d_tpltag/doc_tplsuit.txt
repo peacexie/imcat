@@ -1,0 +1,133 @@
+
+
+#tplenglish#English-Tpl
+
+* Target : 
+ - Suppose : These model have exists(enabt:Introduce; enews:Dynamic)
+ - Reference : Develop >> 2nd-Dev:Suit-Demo
+ - Add a set of Tpl, Use English show the Info(Introduce/Dynamic) 
+ 
+* Add Tpl dir:
+ - Add dir `ven`: /views/ven
+ - Add sub dir: _config(Tpl Configs), _ctrls(Tpl Extra Class) 
+ - Other sub dir reference existing template, self planning
+ - Add img/js/css dir:
+ - Add sub dir: b_img(Image,Icon), b_jscss(js/css) 
+ 
+* Add Entry:
+ - Dir: \root\run\
+ - Copy: eng.php to english.php, or use file `eng.php` direct.
+ - Edit: `$_cbase['tpl']['vdir'] = 'ven';`
+ - Edit: $_cbase['sys']['lang'] = 'en'; // Set Language
+ - The param `ven` is the tpl dir
+ 
+* Add Config:
+ - File : /root/cfgs/sycfg/sy_vopcfg.php
+ - Add an item in $_sy_vopcfg['tpl'], `'ven' => array('English','/english.php'),`
+ - View Url : /english.php, Enjoy! 
+ 
+* Reference Tips:
+ - Copy a set of Tpl to modify : eg:chn(中文版)
+ - Reference dir: /views/ >> dev, chn, adm
+
+
+#tplenmodel#Model-Config
+
+* Copy homepage Config: 
+ - va_home.php, from: /views/chn/_config to: /views/ven/_config
+* Copy about Config: 
+ - vc_about.php, from: /views/chn/_config to: /views/ven/_config
+ - Modiy the filename as: vc_enabt.php, (enabt is the model ID)
+* Copy news Config: 
+ - vc_news.php, from: /views/chn/_config to: /views/ven/_config
+ - Modiy the filename as: vc_enews.php, (enews is the model ID)
+* Tpl/Resources: 
+ - Copy the tpls/resources, from: /views/chn/ to: /views/ven/
+ - If you need, Modiy the configs,tpls,resources...
+
+
+#vx_modfmt#Config-Speci.
+
+* va_home: homepage config
+ - c: basic config
+ - m: model homepage config
+ - u: (custom) config
+    see: /views/umc/_config/va_home.php
+
+* vc_model: system model
+ - model is the model ID, one model a file
+
+* ve_extra: extra model
+ - extra is the model ID, one model a file
+
+
+#app_diy#Suit-Tools
+
+* Purpose: create a set of Tpl(Diy)
+
+* Notice:
+ - Diy Url: {proj}/root/tools/exdiy/mktpl.php, for the safe, It ONLY opend in localhost url
+ - In default, Only show one model[Docs/News] and an hellow extra-page
+ - To rich template, show more model info, you will DIY...
+
+* Idea from:
+ - In Symfony, Use `app/console generate:bundle` to create Bundles;
+ - Why is it so high with the command, Why not use a PHP page to realize it?
+ - In this system, I Imitate Symfony create Bundles, set some params in the web UI, create a set of Tpl
+ - In this system, Named as [Suit Tpl Tools], If you get the more suitable name, please share it.
+
+
+#tplbug#Notice(bug)
+
+* This is a bug in the Tpl(while Tpl Compiled):
+
+ - These 2 problems as below, I want`nt to solve it while compile tpl(Multiple replacement/替换来替换去)
+ - Please expression a methed to avoid them(In fact, It is very easy to avoid this)
+
+* [1] Use curly braces({}) show variables in the HTML remark:
+
+```
+// eg: <!--{=$this->tplname}-->
+// -=>Parse into: <?php echo @$this->tplname; ?>
+// -=>It should: <!--<?php echo @$this->tplname; ?>-->
+// Solve: Add special symbol like as `/`: <!--/{=$this->tplname}/-->  
+// or Remark(<i id="jsid_count_{=$pmod}:{=$did}">0<!--`{=$this->mod},cnt_{=$pmod}`--></i>) (Use ` split them)
+```
+
+* [2] The variables in the double quotation marks(""):
+ - While these code in the tpl pages, It will conflict
+
+```
+// !!! This problem has been resolved in v3.9, old is:{$vname} -=> new is:{=$vname}
+eg: {php echo "userip={$_cbase['run']['userip']};"; }
+// -=>Parse into: <?php echo "userip=<?php echo @$_cbase['run']['userip']; ?>;"; ?>
+// -=>It should: <?php echo "userip=".@$_cbase['run']['userip'].";"; ?>
+Solve1: Use `.` contact the string: {php echo "userip=".@$_cbase['run']['userip'].";"; }
+Solve2: For large block PHP code, do not need template parsing, can be used as follows:
+{php include_once vopTpls::tinc('m_tppart/tpfile',0); } 
+or: {code:"dev:tools/a-cfgs"}
+-=> include file (it will NOT parse the code)
+{NOW-Tpl-Dir}/m_tppart/tpfile.php 
+```
+
+
+#vc_i18n#Multi-Language
+
+* How to config:
+ - Config dir: /imcat/lang/，
+ - Store sub dirs by category, a language pack each a file in a dir
+ - Set Entry file: $_cbase['sys']['lang'] = 'en'; // Multi-Language
+
+* How to use
+```
+    * php
+     - basLang::show('core.page_First')
+     - lang('admin.adm_center') 
+     - <?php lang('tools.start_setup',0) ?>
+    * tpl
+     - {lang(core.view_times,$click)} 
+     - {lang(core.sys_name)}
+    * js
+     - lang('jcore.sub_key')
+```
+

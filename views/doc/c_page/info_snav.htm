@@ -1,0 +1,68 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}
+<?php
+$titletop = 'Site Map';
+$titlesub = 'Site Map';
+$mods = array(
+  'start' => 'Fast Start',
+  'tpltag' => 'Tpl/Tag',
+  'dev2nd' => 'Develop',
+  'advset' => 'Setting',
+  //'tester' => '测试代码',
+);
+?>
+{/block:extop}
+
+{block:eximp}{php}
+eimp('initJs','jquery;comm');
+eimp('initCss','bootstrap,stpub;comm;info');
+{/php}{/block:eximp}
+
+{block:exbar}
+    <a href="#">Has no sub title</a>
+{/block:exbar}    
+
+{block:exmain}
+
+    {loop $mods $mod $mv}
+    {php $vcfg = glbConfig::vcfg($mod); unset($vcfg['c'],$vcfg['m'],$vcfg['d']); }
+    <ul class="info-nav">
+      <li class="type"><a href="{surl($mod,-);}">{=$mod}:{=$mv}</a></li>
+      {loop $vcfg $key $val}
+      {php $ktitle = tex('texBase')->getKeyTitle($mod,$key); }
+      <li><a href="{surl("$mod-$key")}">{=$key} : {=$ktitle}</a></li>
+      {/loop}
+    </ul>
+    {/loop}
+
+    <ul class="info-nav">
+    <li class="type">info:Extra Info</li>
+    <li><a href="{surl(info)}">map:Site Map</a></li>
+    <li><a href="{surl(info-help)}">help:Help</a></li>
+    <li><a href="{surl(info-gbook)}">gbook:Guestbook</a></li>
+    <li><a href="{surl(info-coder)}">coder:Source Coder</a></li>
+    <li><a href="{surl(demo)}">demo:Demo Doc.d</a></li>
+    </ul>
+        
+    {code:"dev:tools/a-cfgs"}
+    <ul class="info-nav">
+      <li class="type"><a href="{surl(tools)}">Demo Tools</a></li>
+      <?php foreach($cfgs as $key=>$val){ ?>
+      <li><a href="{surl("dev:tools-$key")}">{=$key} : {=$val['mt']}</a></li>
+      <?php } ?>
+    </ul>
+
+    {code:"d_uplog/a_cfgs"}
+    <ul class="info-nav">
+      <li class="type"><a href="{surl(uplog)}">Publish</a></li>
+      <?php foreach($cfgs as $key=>$val){ ?>
+      <li><a href="{surl("uplog-$key")}">{=$val[0]} : {=$val[1]}</a></li>
+      <?php } ?>
+    </ul>
+
+{/block:exmain}
+
+{block:exfoot}
+<script>_cbase.jsrun.menuid='snav';</script>
+{/block:exfoot}

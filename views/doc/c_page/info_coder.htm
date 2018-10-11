@@ -1,0 +1,43 @@
+{imp:"c_pub/alay_main"}<!--继承父模板-->
+
+{block:extop}
+<?php
+$tpls = req('tpls','');
+$tpla = explode(',',$tpls); $tplb = array();
+foreach($tpla as $k=>$v){
+    if(strstr($v,'c_pub/')){
+        $tplb[$k] = $v;
+        unset($tpla[$k]);
+    }
+}
+$tpla += $tplb; 
+$path = PATH_ROOT.vopTpls::path('tpl',0);
+$titletop = 'Source Coder';
+$titlesub = 'Source Coder';
+?>
+{/block:extop}
+
+{block:exbar}
+    <?php foreach($tpla as $tpl){ ?>
+    <a href="#s_{=$tpl}">{= $tpl}</a>
+    <?php } ?>
+{/block:exbar}    
+
+{block:exmain}
+    <?php foreach($tpla as $tpl){ if(empty($tpl)) continue; ?>
+    <ul id="s_{=$tpl}" class="mod-section">
+      <li class="type">{=$path}/{=$tpl}{if !strstr($tpl,'.php')}.htm{/if} - Source <a href="#" class="right">[Top]</a></li>
+      <li><?php echo tex('texBase')->coder($tpl); ?></li>
+    </ul>
+    <?php } ?>
+{/block:exmain}
+
+{block:exfoot}
+<script>
+_cbase.jsrun.menuid='home';
+<?php 
+if(empty($tpls)) echo "window.location.href='$ntpl_url'; ";
+?>
+</script>
+{/block:exfoot}
+

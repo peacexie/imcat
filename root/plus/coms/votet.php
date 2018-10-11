@@ -2,7 +2,7 @@
 namespace imcat;
 # vote-topic : for:topic
 
-require dirname(__FILE__).'/_cfgall.php'; 
+require __DIR__.'/_cfgall.php'; 
 
 glbHtml::head('js');
 

@@ -1,0 +1,56 @@
+{block:minit}{php}
+$user = usrBase::userObj('Member'); 
+$key = $this->ucfg['key'];
+$key = empty($key) ? 'login' : $key;
+$act = req('act');
+$recbk = req('recbk');
+$recbk=='ref' && $recbk = $_SERVER['HTTP_REFERER'];
+$karr = basLang::ucfg('cfgbase.user_ops');
+$kname = isset($karr[$key]) ? $karr[$key] : "($key)";
+{/php}{/block:minit}
+<!DOCTYPE html><html><head>
+{php $this->pmeta($kname.'-'.$_cbase['sys_name']); }
+{php}
+eimp('initJs','jquery,bootstrap;comm;comm(-lang);user');
+eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);user(-mob)'); 
+glbHtml::page('aumeta');
+{/php}
+</head><body>
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+{php glbHtml::ieLow_html();}
+
+<div class="pgu_outer panel panel-info">
+    <div class="panel-heading head">
+        <img class="logo right" src="{=PATH_VIEWS}/base/logo/logo120x60.jpg">
+        <select class="form-control" id="locSetS" onchange="location.href=this.value;">
+            <option value=""> En&#x21d4;中 </option>
+            <?php echo basLang::links("<option value='{url}'>{title}</option>"); ?>
+        </select>
+        <p>{show(sys_name)}</p>
+        <h3 class="panel-title">
+            <a href="{surl(0)}"><i class='fa fa-user'></i> {lang(user.pub_cuser)}</a>
+            &raquo; {=$kname}
+        </h3>
+        </div>
+        <div class="panel-body">
+            {block:action}Panel content{=$kname}{/block:action}
+        </div>
+        <div class="panel-footer small tc" style="background:#FFF">
+            <a href="{surl(chn:0)}">[{lang(user.nv2_home)}]</a> # 
+            <a href="{surl(chn:news)}">{lang(user.nv2_news)}</a> # 
+            <a href="{surl(chn:cargo)}">{lang(user.nv2_pro)}</a> # 
+            <a href="{surl(chn:topic)}">{lang(user.nv2_spe)}</a> # 
+            <a href="{surl(chn:keres)}">{lang(user.nv2_res)}</a> # 
+            <a href="{surl(user)}">[{lang(user.nv2_user)}]</a>
+        </div>
+        <div class="panel-footer f12 tc">
+            {php echo basDebug::runInfo(); }
+        </div>
+    </div>
+</div>
+
+</body></html>
+<script>winAutoMargin('topMargin');</script>
+{block:footer}
+{php $_cbase['tpl']['tplpend']='jstag'; }
+{/block:footer}

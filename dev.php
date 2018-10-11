@@ -1,7 +1,7 @@
 <?php
 define('RUN_DEV', 1);
 //$_cbase['tpl']['tpc_on']  = 0;
-$_cbase['tpl']['tpl_dir'] = 'dev';
+$_cbase['tpl']['vdir'] = 'dev';
 $_cbase['sys']['lang'] = 'cn'; // 切换语言
-require dirname(__FILE__).'/root/run/_init.php'; 
+require __DIR__.'/root/run/_init.php'; 
 $vop = new \imcat\vopShow();

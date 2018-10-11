@@ -1,0 +1,136 @@
+
+body{ background:#FFF; border:0px; padding:0px; margin:0px; }
+body, td, input, textarea, select, button{ color:#333; line-height:150%; font:large "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
+ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%; margin:0; padding:0; }
+li{ list-style:none; }
+
+a { color: #134D9D; text-decoration: none; cursor: pointer; }
+a:hover { text-decoration: underline; cursor: pointer; }
+a.cur { color: #C00; }
+/* title */
+
+i { font-style:normal; }
+
+.umc-mitem{ width:780px; margin:0 auto 0 auto; }
+
+.umc-mitem dl{ height:auto; }
+.umc-mitem h3 { color:#06F; font-size:larger; text-align:left;
+    padding:5px 0 5px 80px; clear:both;
+    background-image:url(./views/base/aimg/line-blue.png);
+    background-repeat:repeat-x;
+    border-bottom:1px solid #a1dbff;
+}
+.umc-mitem h3 i{ color:#999; font-style:normal; float:right; font-size:x-small; padding-right:10px; }
+.umc-mitem dt, .umc-mitem dd { line-height:150%; height:32px; display:inline-block; padding:3px; 0px; margin:3px 0px; border-bottom:1px dashed #CCC; }
+.umc-mitem dt { width:120px; float:left; margin:3px 10px 3px 15px; font-weight:normal; }
+.umc-mitem dd { width:620px; float:left; }
+.umc-mitem dd.msg{ width:100%; display:block; text-align:center; color:#F00; padding:20px 5px 30px 5px; border-bottom:1px dashed #CCC; }
+.umc-mitem dt.list { width:420px; }
+.umc-mitem dd.list { width:320px; font-size:small; text-align:right; }
+
+.umc_cprint { width:770px; margin:0px auto; font-size:medium; }
+.umc_cont { width:960px; margin:0px auto; font-size:medium; }
+.umc_logo { width:120px; height:60px; float:right; display:inline-block; margin:5px 10px 0px 10px; 
+    background: url(./views/base/logo/logo120x60.jpg); 
+    border:0px solid #3A6EA5; border-radius: 3px; 
+}
+.umc_msg { margin: 5px; }
+.umc_msg a{ display:inline-block; padding:0px 5px; }
+.umc_msg i { font-style:normal; float: right; display: inline-block; padding-right:20px; }
+.umc_nav1 { font-size:large; font-weight:bold; padding:5px 10px 5px 10px; }
+.umc_nav1 a { display:inline-block; padding:1px 5px; }
+.umc_nav1 a.act { color:#F00; background:#FFF; }
+.umc_mtip { float:right; display:inline-block; color:#134D9D; margin:10px 10px auto 10px; }
+.umc_nav2 { padding:10px 10px 10px 1px; margin-bottom:10px; 
+    background-image:url(./views/base/aimg/line-blue.png);
+    background-position:0px -40px;
+    border-top:1px dashed #CCC; 
+    border-bottom:1px solid #99F; 
+}
+.umc_nav2 a { display:inline-block; padding:1px 5px; } 
+.umc_nav2 a.act { font-weight:normal; border:1px solid #03C; }
+.umc_nav2 i, .umc_nav2 b { color:#999; font-style:normal; display:inline-block; padding:0px 10px 0px 30px; }
+.umc_nav2 b { font-weight:normal; padding:0px 10px 0px 10px; }
+
+.umc_navh { width:960px; margin:0px auto; padding:10px 10px 0px 1px; border-top:1px solid #CCC; }
+
+.umc_flink { text-align:center; padding:10px 0 5px 0; border-top:1px solid #CCC; }
+.umc_flink a { display:inline-block; padding:0px 5px; } 
+.umc_finfo { text-align:center; font-size:smaller; padding:0px 0 0px 0; }
+
+.umc_head{
+    background-image:url(./views/base/aimg/line-blue.png);
+    background-position:0px -80px;
+    padding:5px 0px 5px 0px;
+}
+.umc_foot{
+    background: #DDD;
+    padding:0px 0px 10px 0px;
+}
+
+.tblist td{ padding:2px 1px; font-size:14px; }
+.tblist th{ padding:2px 1px; font-size:14px; font-weight:normal; }
+.ordtitle { background:#EEE; }
+
+/* table */
+table.tbdata td{ border-color:#A6CAF0;  }
+table.tbdata tr td:hover{ border-color:#3A6EA5; background:#DFF; }
+table.tblist td{ border-color:#A6CAF0; }
+table.tblist tr:hover{ background:#DFF; }
+th{ font-weight:bold; }
+table.tbdata th, table.tblist th{ text-align:center; color:#333; background:#A6CAE0; background-image:url(./views/base/aimg/nv_01.png); background-position:0px -250px; border-color:#CCC; padding:3px 0; border-bottom:1px solid #808080; }
+table.tbdata, table.tblist{ width:100%; border-color:#A6CAF0; margin:0px auto; }
+table.tbbar1{ width:100%; border-color:#A6CAF0; margin:0px auto; }
+table.tbdata td, table.tblist td, table.tbbar1 td{ line-height:180%; padding:8px 3px; }
+
+.umc_dops { width:960px; margin:0px auto; font-size:small; }
+input, select, label{ font-size:small; }
+label{ font-weight:normal; }
+
+.news-list { width:100%; }
+.news-list dt, .news-list dd { height:30px; border-bottom:1px dashed #F0F0F0; margin-bottom:5px; }
+.news-list dt { width: 65%; float: left; font-weight:normal; } 
+.news-list dd { width: 34%; float: right; text-align:right; }
+.news-list dd i, .news-list dd b { font-style: normal; display: inline-block; padding: 0px 3px 0px 3px; }
+.news-list dd i.click { width: 18%; text-align:left; white-space:nowrap; }
+.news-list dd i.atime { white-space:nowrap; }
+.news-list dd i.atype { white-space:nowrap; }
+.news-list dd i.price { width: 18%; text-align:left; white-space:nowrap; }
+
+.news-tbar { background:#EEE; padding:5px 10px; margin:5px 0px 20px 0px; border:1px solid #CCC; }
+.news-tbar i { font-style: normal; }
+.news-tbar i.title { }
+.news-tbar i a { display: inline-block; padding: 0px 5px; }
+
+.news_text, td.news_text, td.news_text p, div.news_text, div.news_text p { font-size:14px; line-height:150%; padding:10px; }
+h1.news_title { text-align: center; font-family: "Microsoft YaHei", "黑体"; font-size: 18px; margin: 10px 0px 10px 0px; }
+.news_bar { text-align:center; background: #EEE; display:block; padding: 5px; padding:5px 10px; margin:5px auto; }
+.news_rem .rembar { font-size:small; text-align:left; background: #DDD; padding: 5px; margin: 10px 5px;  border:1px solid #999; }
+.news_rem .remadd { display:inline-block; float:right; text-align:center; background: #FFF; padding:1px 5px; }
+.news_rem .remtitle { display:block; }
+
+.news_rem dl{ border-bottom:1px solid #999; }
+.news_rem ul{ padding:0px 5px; }
+.readlog li{ font-size:small; padding:2px 5px; border-bottom:1px dashed #CCC; }
+.remlist li{ font-size:small; padding:2px 5px; border-bottom:1px dashed #CCC; }
+
+.umc_indtag{ width:120px; height:60px; float:right; display:inline-block; margin:5px 10px 0px 10px; }
+.umc_indto{ width:560px; height:60px; float:left; color:#666; margin:5px 10px 5px 10px; }
+
+.indoc_tip1, .indoc_print { font-weight:normal; margin:2px 5px 2px 5px; }
+.indoc_tip1 { color:#ff0033; }
+.indoc_print { color:#0033FF; cursor:pointer; }
+.indoc_flink { font-size:small; text-align:center; padding:10px 0 0px 0; }
+
+.itm-v24, .itm-v36, .itm-v48, .itm-v60{ display:inline-block; width:80px; text-align:center; }  
+.itm-v24{ color:#CCC; }  
+.itm-v36 { color:#333; }
+.itm-v48 { color:#F00; }
+.itm-v60 { color:#00F; }
+
+.itm-isread { color:#999; }
+.itm-noread { color:#F00; }
+
+.pg_bar{ margin:auto; text-align:center; }
+.pg_bar .pagination li a{ margin:0 5px; }
+.pg_bar .pagination li input{ width:60px; }

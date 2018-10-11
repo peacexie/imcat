@@ -1,8 +1,8 @@
 <?php
 if(!isset($_cbase['skip'])) $_cbase['skip']['_all_'] = true;
 $_cbase['ucfg']['lang'] = '(auto)'; 
-$_cbase['tpl']['tpl_dir'] = 'adm';
-require dirname(dirname(dirname(__FILE__))).'/run/_init.php'; 
+$_cbase['tpl']['vdir'] = 'adm';
+require dirname(dirname(__DIR__)).'/run/_init.php'; 
 
 $act = req('act','view');
 $frmid = req('frmid','');

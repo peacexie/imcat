@@ -7,23 +7,23 @@ namespace imcat;
   </dd>
   <ul>
   <li>
-    <i>{lang(tools.rplan_ntime)}</i> 
+    <i><?=lang('tools.rplan_ntime')?></i> 
     <b class="ext"></b>
     <b class="comm" id="idNow">Loading…</b> 
   </li>
   <li>
-    <i>{lang(tools.rplan_nstat)}</i>
+    <i><?=lang('tools.rplan_nstat')?></i>
     <b class="ext"></b>
     <b class="comm" id="idSate">Loading…</b>  
   </li>
   </ul>
   
-  <p> {lang(tools.rplan_title)} </p>
+  <p> <?=lang('tools.rplan_title')?> </p>
   <ul id='job_lists'>
   <?php if($act=='alist') echo "<pre>".exvCron::plistTest()."</pre>"; ?>
   <!--li id="job_file1">
     file1
-    <iframe src='/plus/ajax/cron.php' width='100%' height='60'></iframe>
+    <iframe src='./index.php?ajax-cron' width='100%' height='60'></iframe>
   </li-->
   </ul>
 </div>

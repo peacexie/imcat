@@ -3,103 +3,103 @@ namespace imcat;
 ?>
 <dd class="langbar">
 
-<a href='?part=tpl' class='c666' target='_self'>Template Suit</a>
-# 
-<a href='?part=lang' class='c666' target='_self'>Translation Suit</a>
+  <a href='?part=tpl' class='c666' target='_self'>Template Suit</a>
+  # 
+  <a href='?part=lang' class='c666' target='_self'>Translation Suit</a>
 
 </dd>
 
 <div>
  <form name="form1" method="post" action="?">
- {if $part=='tpl'}
- <p> {lang(tools.mktpl_suit)} --- Idea from Symfony <!--(“app/console generate:bundle”)--></p>
- <ul>
-   <li>
-     <i>{lang(tools.mktpl_tpldir)}</i> 
-     <b class="ext">&nbsp;</b>
-     <b class="comm">
-     {proj{lang(tools.mktpl_dir)}}/skin/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="{lang(tools.mktpl_312)}">
-     </b> 
-   </li>
-   <li>
-     <i>{lang(tools.mktpl_enfile)}</i> 
-     <b class="ext">.php</b>
-     <b class="comm">
-     {proj{lang(tools.mktpl_dir)}}/<input name="front" type="text" maxlength="12" id="front" value="<?php echo $front; ?>" placeholder="{lang(tools.mktpl_312)}">
-     </b> 
-   </li>
-   <li>
-     <i>{lang(tools.mktpl_datamode)}</i> 
-     <b class="ext">&nbsp;</b>
-     <b class="comm">
-     Hello + mkv + ctrl<select name="mod" id="mod"><?php echo devBuild::modOpt($mod); ?></select>
-     </b> 
-   </li>
-   <?php if(!comFiles::canWrite(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php')){ ?>
-   <li>
-     <i class="c999">{lang(tools.mktpl_nowrite)}</i> 
-     <b class="ext">&nbsp;</b>
-     <b class="comm">
-      {lang(tools.mktpl_fnwrite,/cfgs/sycfg/sy_vopcfg.php)}
-     </b> 
-   </li>
-   <?php }elseif($dmsg){ ?>
-   <li>
-     <i class="c999">{lang(tools.mktpl_crtres)}</i> 
+   <?if($part=='tpl'){?>
+   <p> <?=lang('tools.mktpl_suit')?> --- Idea from Symfony <!--(“app/console generate:bundle”)--></p>
+   <ul>
+     <li>
+       <i><?=lang('tools.mktpl_tpldir')?></i> 
+       <b class="ext">&nbsp;</b>
+       <b class="comm">
+         {proj<?=lang('tools.mktpl_dir')?>}/views/<input name="dir" type="text" maxlength="12" id="dir" value="<?php echo $dir; ?>" placeholder="<?=lang('tools.mktpl_312')?>">
+       </b> 
+     </li>
+     <li>
+       <i><?=lang('tools.mktpl_enfile')?></i> 
+       <b class="ext">.php</b>
+       <b class="comm">
+         {proj<?=lang('tools.mktpl_dir')?>}/<input name="front" type="text" maxlength="12" id="front" value="<?php echo $front; ?>" placeholder="<?=lang('tools.mktpl_312')?>">
+       </b> 
+     </li>
+     <li>
+       <i><?=lang('tools.mktpl_datamode')?></i> 
+       <b class="ext">&nbsp;</b>
+       <b class="comm">
+         Hello + mkv + ctrl<select name="mod" id="mod"><?php echo devBuild::modOpt($mod); ?></select>
+       </b> 
+     </li>
+     <?php if(!comFiles::canWrite(DIR_ROOT.'/cfgs/sycfg/sy_vopcfg.php')){ ?>
+     <li>
+       <i class="c999"><?=lang('tools.mktpl_nowrite')?></i> 
+       <b class="ext">&nbsp;</b>
+       <b class="comm">
+        <?=lang('tools.mktpl_fnwrite,/cfgs/sycfg/sy_vopcfg.php')?>
+      </b> 
+    </li>
+    <?php }elseif($dmsg){ ?>
+    <li>
+     <i class="c999"><?=lang('tools.mktpl_crtres')?></i> 
      <b class="view">
       <?php echo $fmsg; ?>
-     </b>
-     <b class="comm">
+    </b>
+    <b class="comm">
       <a class="cF00"><?php echo $smsg; ?></a> &nbsp; 
-      <a href="../../../<?php echo $front; ?>.php" target="_blank">{lang(tools.mktpl_view)}</a> # 
-      <a href="?">{lang(tools.mktpl_back)}</a>
-     </b> 
-   </li>
-   <?php }else{ ?>
-   <li>
-     <i class="c999">{lang(tools.mktpl_crtsuit)}</i> 
-     <b class="ext"><input name="act" type="submit" value="{lang(tools.mktpl_create)}" class="btn" id="act"></b>
-     <b class="comm">
-     {lang(tools.mktpl_tplname)}:<input name="title" type="text" maxlength="12" id="title" value="<?php echo req('title'); ?>" placeholder="{lang(tools.mktpl_def)}:xxxApp"> 
-     </b> 
-   </li>
-   <?php } ?>
-   </ul>
-   <span class="notice">{lang(tools.mktpl_more)}<a href="<?php echo surl('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00">{lang(tools.mktpl_nvtpl)}</a></span>
-   {else}
-   <p> Translation Suit --- Extend language pack</p>
- <ul>
-   <li>
-     <i>Org Translation Flag</i> 
-     <b class="ext">&nbsp;</b>
-     <b class="comm">
+      <a href="../../../<?php echo $front; ?>.php" target="_blank"><?=lang('tools.mktpl_view')?></a> # 
+      <a href="?"><?=lang('tools.mktpl_back')?></a>
+    </b> 
+  </li>
+  <?php }else{ ?>
+  <li>
+   <i class="c999"><?=lang('tools.mktpl_crtsuit')?></i> 
+   <b class="ext"><input name="act" type="submit" value="<?=lang('tools.mktpl_create')?>" class="btn" id="act"></b>
+   <b class="comm">
+     <?=lang('tools.mktpl_tplname')?>:<input name="title" type="text" maxlength="12" id="title" value="<?php echo req('title'); ?>" placeholder="<?=lang('tools.mktpl_def')?>:xxxApp"> 
+   </b> 
+ </li>
+ <?php } ?>
+</ul>
+<span class="notice"><?=lang('tools.mktpl_more')?><a href="<?php echo surl('dev:tpltag-tplsuit'); ?>" target="_blank" class="cF00"><?=lang('tools.mktpl_nvtpl')?></a></span>
+<?php }else{ ?>
+<p> Translation Suit --- Extend language pack</p>
+<ul>
+ <li>
+   <i>Org Translation Flag</i> 
+   <b class="ext">&nbsp;</b>
+   <b class="comm">
      <select name="org" id="org" class="w120"><?php echo basElm::setOption("cn=cn-中文\nen=en-English"); ?></select>
-     </b> 
-   </li>
-   <?php if($dmsg){ ?>
-   <li>
-     <i class="c999">{lang(tools.mktpl_crtres)}</i> 
-     <b class="view">
-      <?php echo $dmsg; ?>
-     </b>
-     <b class="comm">
-      <a class="ext">[{$obj}] <?php echo $dmsg; ?></a> &nbsp; 
-     </b> 
-   </li>
-   <?php }else{ ?>
-   <li>
-     <i class="c999">Obj Translation Flag</i> 
-     <b class="ext"><input name="act" type="submit" value="{lang(tools.mktpl_create)}" class="btn" id="act"></b>
-     <b class="comm">
-     lang-Flag:<input name="obj" type="text" maxlength="2" id="obj" value="" class="w120" placeholder="like:jp/de/kr/ar">
-     </b> 
-   </li>
-   <?php } ?>
- </ul>
- <input type="hidden" name="part" value="lang">
- <span class="notice">Notice: <a href="<?php echo surl('doc:info-help'); ?>" target="_blank" class="cF00">Translation Notes</a></span>
- {/if}
- 
- </form>
- 
+   </b> 
+ </li>
+ <?php if($dmsg){ ?>
+ <li>
+   <i class="c999"><?=lang('tools.mktpl_crtres')?></i> 
+   <b class="view">
+    <?php echo $dmsg; ?>
+  </b>
+  <b class="comm">
+    <a class="ext">[{$obj}] <?php echo $dmsg; ?></a> &nbsp; 
+  </b> 
+</li>
+<?php }else{ ?>
+<li>
+ <i class="c999">Obj Translation Flag</i> 
+ <b class="ext"><input name="act" type="submit" value="<?=lang('tools.mktpl_create')?>" class="btn" id="act"></b>
+ <b class="comm">
+   lang-Flag:<input name="obj" type="text" maxlength="2" id="obj" value="" class="w120" placeholder="like:jp/de/kr/ar">
+ </b> 
+</li>
+<?php } ?>
+</ul>
+<input type="hidden" name="part" value="lang">
+<span class="notice">Notice: <a href="<?php echo surl('doc:info-help'); ?>" target="_blank" class="cF00">Translation Notes</a></span>
+<?php } ?>
+
+</form>
+
 </div>

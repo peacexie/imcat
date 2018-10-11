@@ -1,6 +1,6 @@
 <?php
 $logfid = 8; //date('d-His');
-require dirname(__FILE__).'/ec-cfg.php';
+require __DIR__.'/ec-cfg.php';
 
 $item_name = req('item_name'); //171104-HCV604 / 2017-3s-rkv01
 $mc_gross = req('mc_gross'); //252.28

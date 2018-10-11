@@ -1,0 +1,96 @@
+{imp:"tools/a-lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+$title = '七甲-南湾:沙盘(郴州-永兴)';
+?>{/block:extop}
+
+{block:eximp}
+{php}
+eimp('/base/jslib/jsmove.js');
+eimp('/~tpl/shapan.js');
+{/php}
+<style type="text/css">
+p { margin: 10px 0px 0px 10px; }
+p.rtop{ font-size:14px; padding:1px; margin:5px; float:right; } 
+div.sha-dot { z-index: 999; position: absolute; display:inline-block; color:#FFF; background:#09F; cursor: pointer; padding: 1px 2px; border:1px solid #FFF; }
+.right{float:right;}
+img { border:1px solid #36F; }
+</style>
+{/block:eximp}
+
+{block:exbody}
+
+<p class="rtop">1. 点击地点，添加到图层；<br>
+2. 拖动图层上的地点，移动位置；<br>
+3. 双击图层上的地点，从图层上删除；<br>
+*. 位置检测：<span id="posStr"></span>
+</p>
+
+<h3 class="tc">七甲-南湾:资源开发蓝图(沙盘演示代码)</h3>
+
+<form name="form1" method="post" action="">
+  <p> 地点：
+    <label>
+      <input type="checkbox" name="cb_1224" id="cb_1224" onClick="sha_add(1224,'南湾牧场',1)" checked>
+      南湾牧场 </label>
+    <label>
+      <input type="checkbox" name="cb_1228" id="cb_1228" onClick="sha_add(1228,'烟煤矿',2)" checked>
+      烟煤矿 </label>
+    <label>
+      <input type="checkbox" name="cb_1232" id="cb_1232" onClick="sha_add(1232,'银矿山',3)" checked>
+      银矿山 </label>
+    <label>
+      <input type="checkbox" name="cb_1236" id="cb_1236" onClick="sha_add(1236,'南湾村委',4)" checked>
+      南湾村委 </label>
+    <label>
+      <input type="checkbox" name="cb_1248" id="cb_1248" onClick="sha_add(1248,'南湾标志',5)" checked>
+      南湾标志 </label>
+    <label>
+      <input type="checkbox" name="cb_1252" id="cb_1252" onClick="sha_add(1252,'8亩农田',6)">
+      8亩农田 </label>
+    <br>
+    <label>
+      <input type="checkbox" name="cb_1256" id="cb_1256" onClick="sha_add(1256,'南湾山泉',7)" checked>
+      南湾山泉 </label>
+    <label>
+      <input type="checkbox" name="cb_1260" id="cb_1260" onClick="sha_add(1260,'板仙旅游区',8)" checked>
+      板仙旅游区 </label>
+    <label>
+      <input type="checkbox" name="cb_1820" id="cb_1820" onClick="sha_add(1820,'自定义点1',2)">
+      自定义点1 </label>
+    <label>
+      <input type="checkbox" name="cb_1824" id="cb_1824" onClick="sha_add(1824,'自定义点2',3)">
+      自定义点2 </label>
+    <label>
+      <input type="checkbox" name="cb_1828" id="cb_1828" onClick="sha_add(1828,'自定义点3',4)" checked>
+      自定义点3 </label>
+  </p>
+  <p> 
+    <img src="<?php echo PATH_STATIC; ?>/file_image/qijia-nanwan.png" name="MapImages" width="840" height="600" usemap="#MapDots" id="MapImages">
+    <map name="MapDots" id="MapDots"></map>
+  </p>
+  <p> 
+  <input name="南湾牧场" type="hidden" value="1224" title="548,68">
+  </p>
+</form>
+<script type="text/javascript">
+var movingNow,mapPos,dotMoved=0;
+setTimeout('var movingNow = new moveMain()',200);
+var dots_data = [
+    '1224^南湾牧场:548,68',
+    '1228^烟煤矿:698,298',
+    '1232^银矿山:248,79',
+    '1236^南湾村委:387,180',
+    '1256^南湾山泉:610,284', 
+    '1248^南湾标志:158,391',
+    '1828^自定义点3:727,539'
+];
+if(document.all){ 
+    document.onreadystatechange=function(){ 
+        if(document.readyState=='loaded'||document.readyState=='complete'){ sha_init(); }
+    }; 
+}else{ document.addEventListener('DOMContentLoaded',sha_init(),false); } 
+</script>
+
+{/block:exbody}
+

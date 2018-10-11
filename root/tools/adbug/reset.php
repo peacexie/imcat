@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php'; 
+require __DIR__.'/_config.php'; 
 
 $act = req('act','');
 $part = req('part','');
@@ -16,8 +16,8 @@ $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-eimp('/_pub/a_jscss/cinfo.css');
-eimp('/_pub/jslib/jsbase.js');
+eimp('/base/cssjs/cinfo.css');
+eimp('/base/jslib/jsbase.js');
 glbHtml::page('aumeta');
 ?>
 <style type='text/css'>

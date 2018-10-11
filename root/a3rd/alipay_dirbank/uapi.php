@@ -7,7 +7,7 @@
 </head>
 <?php
 
-require dirname(__FILE__)."/alipay.config.php";
+require __DIR__."/alipay.config.php";
 require LIBS_PAYRUN."/alipay_submit.class.php";
 //logResult('test');
 /**************************请求参数**************************/

@@ -1,6 +1,6 @@
 <?php 
-require dirname(dirname(dirname(__FILE__))).'/a3rd_cfgs.php'; 
-define('DIR_PAYRUN', dirname(dirname(__FILE__))); 
+require dirname(dirname(__DIR__)).'/a3rd_cfgs.php'; 
+define('DIR_PAYRUN', dirname(__DIR__)); 
 define('PATH_PAYRUN', PATH_ROOT.'/a3rd/weixin_pay');
 define('LIBS_PAYRUN', DIR_VENDOR.'/a3rd/weixinpay_lib');
 /**

@@ -1,5 +1,5 @@
 <?php
-require dirname(dirname(__FILE__))."/lib/WxPay.Config.php";
+require dirname(__DIR__)."/lib/WxPay.Config.php";
 error_reporting(E_ERROR); 
 require DIR_STATIC.'/ximp/class/QRcodeBase.cls_php';
 $data = $_GET["data"];

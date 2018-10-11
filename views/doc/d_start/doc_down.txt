@@ -1,0 +1,87 @@
+
+
+#down#Download
+
+* Github.com/Gitee.com：
+ - https://github.com/peacexie/imcat
+ - https://gitee.com/mirrors/TiexinCat
+ - Follow the `MIT License` open source protocol
+
+* Down at out sites: 
+ - [chinaz.com] http://down.chinaz.com/soft/38424.htm
+ - [admin5.com] http://down.admin5.com/php/130751.html
+
+* Tips:
+ - Other download addresses, are collected by the third party, the update is relatively slow;
+ - Welcome publish this system, but please pay attention to update; despise deceptive update (only to change the version number of the text but the actual download files is not updated);
+
+
+#check#Environmental
+
+* PHP Environmental: 
+ - PHP5.3 ~ PHP7.2 (It can run Under php5.2 temporary, But we do NOT guarantee compatible with php5.2)
+ - Recommend: PHP5.4 ~ PHP7.1
+ 
+* Mysql Environmental:
+ - mysql5.x+
+ 
+* Extended: 
+ - MySQLi OR MySQL Libs (`Recommend/Default:MySQLi`)
+ - GD Extended Libs
+ - curl_init, fsockopen, file_get_contents
+
+
+#setup#Setup&Config
+
+* Set the relative path of the site:
+ - all files will be placed on the site of any directory (do not have Chinese characters, spaces and special characters in the dir name);
+ - In file: /root/cfgs/boot/_paths.php Param: PATH_PROJ;
+ - The value of PATH_PROJ is the relative path of the site, eg:['/txmao'] or root [''](empty string);
+ - For the first time, It will automatically correct the project path, so you can omit the operation;
+
+* Edit DB-Config(It can be edited while installing, advice you config manually);
+ - File: /root/cfgs/boot/cfg_db.php;
+ - Tip: the defalut `DB-Type` is: $_cfgs['db_driver'] = 'mysqli';
+ 
+* Setup/Config
+ - View Start Page: /index.php?start to Check and Config: 
+ - View Url: /root/tools/setup/ to Setup.
+
+
+#supend#After Setup
+ 
+(` ------------------- Important! ------------------- `)
+
+* Refresh Cache: 
+ - AdminCenter >> Tools >> SysTools >> SysCache >> SysCache:Refresh/Clear >> Send 
+ - If not do this, some of the admin menus will Broken!
+* Setting write permissions and other server settings
+* Deel/Setting /dev.php, /doc.php Entry(Del or Hide or Setting on AdminCenter[Close `dev` Views])
+* Del or remove Dirs: /root/tools/setup/,
+* Keep Dirs: /root/tools/adbug, in order to subsequent debugging.
+* Start page: /index.php some of the links as a common tools, need to login the admin.
+ - can also be a separate login, please set the params in file /root/cfgs/boot/cfg_adbug.php.
+ - Please reset the params enough complex and keep it properly!
+
+
+#extTips#Tips
+
+* Files and Permission
+ - Write Permission  
+ 　 vary and sub dirs, need write  
+ 　 File: /root/cfgs/boot/_paths.php When you install, Need write (if you are not setting, you can automatically reset the path, only once)  
+ 　 File: /root/cfgs/boot/cfg_adbug.php Need write (reset the auxiliary debugging tools account/password, only once)
+ - File frame
+ 　 [Dir Frames]({static}/file_image/txmao-tree.png) ,
+    [Down parts]({static}/file_image/txmao-parts.png) ,
+    [File Frames]({pathpro}/views/doc/d_start/tree_brem.txt) ;
+
+* Resources
+
+ - Online
+ ：[Demo Page]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [Guides]({svrtxmao}/doc.php)
+ - [Tec FAQs(bug feed back)]({svrtxmao}/chn.php?faqs)
+ - [Guestbook & Complaint]({svrtxmao}/doc.php?info-gbook)
+ - [Contribution of donation]({svrtxmao}/doc.php?info-help)
+ - Imcat(贴心猫) Tech-QQ-Group: 607070548
+ - [QQ/Mail] QQ: 8089-3510, Email: xpigeon#163.com (QQ remove`-`, Email Edit `#` to `@`)

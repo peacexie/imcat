@@ -1,11 +1,11 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_cfgcom.php'; 
+require __DIR__.'/_cfgcom.php'; 
 
-$adeel = dirname(__FILE__)."/{$mod}.php"; 
+$adeel = __DIR__."/{$mod}.php"; 
 if(file_exists($adeel)){ die("It must deel with [{$mod}.php]." ); }
-$aform = dirname(__FILE__)."/{$mod}_form.php";
-$asave = dirname(__FILE__)."/{$mod}_save.php";
+$aform = __DIR__."/{$mod}_form.php";
+$asave = __DIR__."/{$mod}_save.php";
 
 if(!empty($bsend)){
     

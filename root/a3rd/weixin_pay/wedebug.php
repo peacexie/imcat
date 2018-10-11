@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/we_cfgs.php';
+require __DIR__.'/we_cfgs.php';
 
 $act = req('act','main'); 
 $kid = req('kid','admin');
@@ -14,9 +14,9 @@ if(@$debug['type']=='qrGet'){ //cookie-header问题,放在echo输出前
 }
 
 glbHtml::page("微信接口调试");
-eimp('initJs','jquery;comm;comm(-lang);/_pub/a_jscss/weixin'); 
+eimp('initJs','jquery;comm;comm(-lang);/base/cssjs/weixin'); 
 eimp('initCss','stpub;comm'); // bootstrap,
-echo basJscss::imp("/_pub/a_jscss/weixin.js"); 
+echo basJscss::imp("/base/cssjs/weixin.js"); 
 echo "<style type='text/css'>.radio{display:inline-block;}</style>";
 glbHtml::page('body',' style="margin:20px;"');
 wxDebugNavbar();
@@ -138,7 +138,7 @@ if($act=='main'){
             }
         }
         if($debug['type']=='oaLink'){ 
-            $url = "{root}/mob.php?mkv=user&oauth=snsapi_base&state=mlogin"; //&_tm=".time()."
+            $url = "{root}/mob.php?user&oauth=snsapi_base&state=mlogin"; //&_tm=".time()."
             $wem = new wysMenu($wecfg);
             $url = $wem->fmtUrl($url);
             echo "\n<br>授权链接Url: <input name='' type='text' value='{$url}' style='width:100%'>"; 

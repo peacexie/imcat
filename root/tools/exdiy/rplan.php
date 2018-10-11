@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php';  
+require __DIR__.'/_config.php';  
 
 glbHtml::page("Run Plan - (sys_name)",1);
 echo "<meta http-equiv='refresh' content='14400' />\n";
@@ -14,7 +14,7 @@ $sapp = $ocfgs['sign']['sapp'];
 $skey = $ocfgs['sign']['skey'];
 
 $act = req('act','');
-include vopTpls::cinc('[root]:tools/exdiy/rplan');
+include __DIR__.'/rplan.htm';
 glbHtml::page('end');
 ?>
 

@@ -1,0 +1,49 @@
+{block:init}{php}
+$act = req('act');
+$user = usrBase::userObj('Member'); 
+{/php}{/block:init}<!DOCTYPE html><html><head>
+<?php glbHtml::page('init',1); ?>
+<title>{block:title}{/block:title}</title>
+{block:hdimp}<?php
+eimp('/base/cssjs/cinfo.css');
+eimp('/base/jslib/jsbase.js');
+//eimp('/base/jslib/jsbext.js');
+glbHtml::page('aumeta');
+?>{/block:hdimp}
+<style type="text/css">{block:hdcss}
+p.nav a{ display:inline-block; padding:2px 3px; margin:3px 3px 0px 3px; border: 1px solid #DDD; }
+@media only screen and (max-width:767px) {
+    p.nav a{ padding:5px 3px; margin:3px; border-radius:5px; }
+    p.nav img{ float:right; vertical-align:middle; border:1px solid #DDD; border-radius:5px; }
+}
+{/block:hdcss}</style>
+</head><body> 
+
+<div id="topMargin" style="display:none; border:0px solid #999;"></div>
+<div class="divOuter"> 
+
+<div class='header'>
+    <p class="nav">
+        <img src="{=PATH_VIEWS}/base/logo/imcat-40x.png" width="40" height="40">
+        <a href="{surl(login)}">{lang(user.nv2_login)}</a>
+        <a href="{surl(reg)}">{lang(user.nv2_reg)}</a>
+        <a href="{surl(0)}">{lang(user.pub_cuser)}</a>
+    </p>
+<h2>{block:title}{/block:title}</h2>
+</div>
+
+<div class="main">{block:main}{/block:main}</div>
+
+<?php
+$_cbase['tpl']['tplpend'] = '-';
+$_cbase['tpl']['tplpext'] = '//';
+$rinfo = basDebug::runInfo();
+?>
+<div class='footer'>
+  <p>{=$rinfo}</p>  
+</div>
+</div>
+
+<script>/*winAutoMargin('topMargin');*/</script>
+
+</body></html>

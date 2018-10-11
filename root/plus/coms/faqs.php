@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 $_mod = basename(__FILE__,'.php'); 
-require dirname(__FILE__).'/_cfgdoc.php'; 
+require __DIR__.'/_cfgdoc.php'; 
 
 if(!empty($bsend)){
     

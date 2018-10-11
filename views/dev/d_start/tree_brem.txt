@@ -1,0 +1,48 @@
+﻿
+### 目录结构：
+
+[SiteProject]
+│  chn.php
+│  dev.php
+│  doc.php
+│  index.php
+│  mob.php
+│  robots.txt
+│  
+├─@read : readme files
+├─html : 静态文件目录
+├─imcat : 类库,流程代码,配置,模版等; 是网站运行的主要代码
+│  ├─adpt : api/驱动类库
+│  ├─core : 核心类库
+│  ├─flow : 后台/会员中心流程脚本
+│  └─lang : 多语言包
+├─root : 各种入口脚本,及前端常用js,css等; 是web服务器所指向的根目录; 
+│  ├─a3rd : 第三方 [登录/支付] 接口
+│  ├─cfgs : 配置
+│  ├─plus : 接口插件,ajax入口
+│  ├─run : 启动文件及常用入口(最初规划在root根目录)
+│  └─tools : 工具,二次开发,安装入口等
+├─views : 视图模板(每套模版一个子目录)及前端常用js,css等; 
+│  ├─adm : 后台管理
+│  ├─base : 基础视图(含首页)
+│  ├─chn : 中文版
+│  ├─demo : 演示目录
+│  ├─dev : 开发文档
+│  ├─doc : Guides
+│  ├─mob : 手机版
+│  ├─rest : REST-API
+│  └─umc : 会员中心
+├─ures : 上传资源附件目录; 
+├─vary : 可变动态文件(缓存,临时文件)
+│  ├─ctpl : Tpl-缓存目录
+│  └─dtmp : 缓存/临时文件目录
+└─vimp : 导入文件(静态图,第三方组件)
+    ├─static : 静态图片,图标,附件,字体等文件; 
+    ├─vendor : 第三方PHP代码或组件; 
+    └─vendui : 第三方前端代码或组件; 
+	
+* 纠结的目录(怎样放置合理？)：
+ - /imcat/adpt/wechat/ 微信接口类库
+ - /imcat/adpt/weuser/ 微信接口(扩展)类库
+ - /root/a3rd/ 第三方支付,登录(含类库,配置,入口文件)
+

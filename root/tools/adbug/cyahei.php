@@ -1,6 +1,6 @@
 <?php    
 $_cbase['run']['outer'] = 1;    
-require dirname(__FILE__).'/_config.php';    
+require __DIR__.'/_config.php';    
 
 $_locfp = '/ximp/files/check_yahei.imp_php';
 if(!is_file(DIR_STATIC.$_locfp)){

@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 $_mod = basename(__FILE__,'.php');
-require dirname(__FILE__).'/_cfgcom.php'; 
+require __DIR__.'/_cfgcom.php'; 
 
 # setting
 $gap = 5; //5分钟间隔

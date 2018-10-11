@@ -5,7 +5,7 @@
     <title>微信支付样例-查退款单</title>
 </head>
 <?php
-require dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
+require dirname(__DIR__)."/lib/WxPay.Api.php";
 require "WxPay.MicroPay.php";
 require 'log.php';
 

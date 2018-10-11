@@ -1,0 +1,15 @@
+{imp:"umod/_layout"}<!--继承父模板-->
+
+{block:title}分类`mtype`的模板{/block:title}
+
+{block:cmain}
+<h1>系统模型`mtype`的模板</h1>
+<p>Hello, MKV!, ?`{=$this->mkv}`, 分类=`{=$this->key}`, 模板=`{=$this->tplname}`;</p>
+{tag:dlist=[Page][modid,$this->mod][show,1][stype][hinfo][keywd,0,company][limit,5]}
+<? //dump($t_dlist); ?>
+{:row}
+<p><a href="{surl($this->mod.".$t_uid")}">{=$t_uid}:{title($t_mname,96,$v)}</a>({=$t_uname})</p>
+{/row}
+<p>{php echo $_cbase['page']['bar']; }</p>
+{/tag:dlist}
+{/block:cmain}

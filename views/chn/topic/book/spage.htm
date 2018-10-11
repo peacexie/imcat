@@ -1,0 +1,92 @@
+<?php
+tinc('top_book');
+$cfgs = devTopic::cfg2arr($clist);
+if(!empty($ctext)){
+    $btxt = array();
+    $atxt = devTopic::cfg2arr($ctext);
+    foreach($atxt as $tk=>$tv){
+        $btxt[$tk] = db()->table('topic_items')->where("did='$did' AND part='$tk'")->find();
+    }
+}
+if(!empty($cexts)){
+    $aext = devTopic::cfg2arr($cexts);
+}
+if(!empty($crels)){
+    $brel = array();
+    $arel = devTopic::cfg2arr($crels);
+    foreach($arel as $tk=>$tv){
+        $brel[$tk] = db()->table('topic_items')->where("did='$did' AND part='$tk'")->find();
+    }
+}
+//dump($aext);
+$rows = array();
+?>
+<!doctype html>
+<html><head>
+<?php $this->pmeta();?>
+<?php eimp('/~tpl/book.css'); ?>
+</head><body>
+
+<h1 class="title">{=$title}</h1>
+
+<ul class="list">
+    {if !empty($aext)}
+    <li class='subt'><span class='right'>{=$aext['date']}</span><b>({=$aext['ver']}) {=$aext['subtitle']}</b> </li>
+    {/if}
+    {if !empty($btxt['start'])}
+    <li class='lv1'><span class='right'>start</span>&hearts; {=$btxt['start']['title']}</li>
+    <li class=''><?=extMkdown::pdorg($btxt['start']['detail'])?></li>
+    {/if}
+    {loop $cfgs $k1 $v1}
+    <li class='lv1'><span class='right'>{=$k1}</span>&hearts; {=$v1}</li>
+    <?php 
+    $list = db()->table('topic_items')->where("did='$did' AND part='$k1'")->order('top,dno')->select();
+    if(!empty($list)){ 
+    foreach($list as $k2=>$v2){ $dno = $v2['dno']; 
+        $rows[] = $v2;
+    ?>
+    <a href='#row{=$v2['dno']}'><li class=''><span class='right'>-</span>{=$v2['title']}</li></a>
+    <?php } } ?>
+    {/loop}
+</ul>
+
+{loop $rows $kr $row}
+<h1 class="title" id="row{=$row['dno']}">
+    <a href='#' class='right'>Top</a>
+    {=$row['title']}
+</h1>
+<div class="out">
+    <?=extMkdown::pdorg($row['detail'])?>
+</div>
+{/loop}
+
+<ul class="list">
+    {if !empty($btxt['end'])}
+    <li class='lv1'><span class='right'>end</span>&hearts; {=$btxt['end']['title']}</li>
+    <li class=''><?=extMkdown::pdorg($btxt['end']['detail'])?></li>
+    {/if}
+    {if !empty($brel['links'])}
+    <li class='lv1'><span class='right'>links</span>&hearts; {=$brel['links']['title']}</li>
+    <li class='tc'>
+    <?php 
+    $rels = json_decode($brel['links']['detail'],1);
+    if(!empty($rels)){ 
+    foreach($rels as $rel1){
+    ?>
+    &middot; <a href='{=$rel1['url']}' target="_blank">{=$rel1['name']}</a>
+    <?php } } ?>
+    {/if}
+    </li>
+</ul>
+
+<footer>
+    (Markdown)单页专题
+    <span>模板 : {=$this->tplname}</span>
+    <span><a href='{surl("topic.$did.cfgs")}'>配置查看</a></span>
+</footer>
+
+</body></html>
+
+<?php 
+$_cbase['tpl']['tplpend'] = '~';
+?>

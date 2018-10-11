@@ -1,12 +1,12 @@
 <?php
 namespace imcat;
 //    辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
-//$_cbase['tpl']['tpl_dir'] = 'adm';    
+//$_cbase['tpl']['vdir'] = 'adm';    
 //$_cbase['run']['outer'] = 1;
 //$_cbase['skip']['_sess_'] = true;
 if(!session_id()) @session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
-include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
+include dirname(dirname(__DIR__)).'/run/_init.php';
 include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';
 $sess_id = \imcat\usrPerm::getSessid(); 
 
@@ -24,7 +24,7 @@ if(strstr($_selfname,'start.php')){
     ;//
 }else{
     bootPerm_ys('pstools','','<p><a href="binfo.php?login">login</a></p>');
-    //else {  $_isOut = 1;    @include dirname(__FILE__).'/devRun.php';    }
+    //else {  $_isOut = 1;    @include __DIR__.'/devRun.php';    }
 }    
 
 function tadbugNave($path=''){

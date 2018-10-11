@@ -1,0 +1,107 @@
+
+
+#### Manual and Guides
+
+* Using `token` authentication, And use `mkv` operation CURD
+ - `?{modid}&token={tk}`, List
+ - `?{modid}-add&token={tk}`, Add
+ - `?{modid}-edit&token={tk}&id=2017-7d-1234`, Edit
+ - `?{modid}-del&token={tk}&id=2017-7d-1234`, Del
+ - `?{modid}-table&token={tk}`, Table-Structure
+ - `?{modid}&token={tk}&retype=jsonp&callback=mycb` (Comprehensive)
+
+* Extra Parms
+ - retype: Format return: xml,json,jsonp
+ - debug=1: for Debug
+ - id=yyyy-md-abcd: Data-id
+ - page=N, page for List
+ - limit=N, page size for list
+ - odesc=1, User DESC for Order, The Default is ASC
+ - Demo links as below
+
+* Use(step:1)-Get REST Userid/Password
+ - Contact the admin, Get the REST Userid/Password
+ - Field `perm`, A model corresponds to a line, format like as: {modid}=perm1,perm2,perm3;
+ - eg: news=table,list,add,edit,del,check;
+
+* Use(step:2)-Self-service management `token` 
+ - Users can manage `token` by themselves(Self-service), Link as below.
+ - It can change password
+ - It can reset `token` 
+ - It can Renewal the Expiration for `token`
+
+* Use(step:3)-Get-data/2nd-Dev
+ - Use `token` Get-data, Enjoy yourself...
+ - 2nd-Dev/Extra class see: _ctrls/_exdemoCtrl.php
+
+* Idea from Yii2
+ - This idea comes fomr yii2, the `RESTful Web Service`
+ - In Yii2, the `RESTful` Has powerful filter handling: authorized authentication / rate limiting
+ - In this system, authorization verification / rate limiting is implemented very succinctly
+ - And very convenient to achieve: token self-service management.
+ - In this system, We will replace `apiServer/appServer` with `Rest-API` in the future.
+
+
+#### 文档/手册
+
+* 使用token认证，使用mkv实现CURD操作
+ - `?{modid}&token={tk}`, 列表
+ - `?{modid}-add&token={tk}`, 增加
+ - `?{modid}-edit&token={tk}&id=2017-7d-1234`, 修改
+ - `?{modid}-del&token={tk}&id=2017-7d-1234`, 删除
+ - `?{modid}-table&token={tk}`, 表结构
+ - `?{modid}&token={tk}&retype=jsonp&callback=mycb` (综合)
+
+* 扩展参数
+ - retype: 返回格式, xml,json,jsonp
+ - debug=1: 调试
+ - id=yyyy-md-abcd: 操作数据id
+ - page=N, 列表用,翻页
+ - limit=N, 列表用,分页大小
+ - odesc=1, 默认ASC, DESC排序
+ - 示例连接,见尾部
+
+* 使用(step:1)-设置REST账号密码
+ - 联系管理员，设置一组REST账号密码
+ - perm字段，一个模型一行，格式：{modid}=perm1,perm2,perm3;
+ - 如：news=table,list,add,edit,del,check;
+
+* 使用(step:2)-自助管理token
+ - 用户根据账号密码，自助管理token，见尾部连接
+ - 可更改密码
+ - 可重新设置token
+ - 可更新token过期时间
+
+* 使用(step:3)-获取数据/二次开发
+ - 使用token获取数据,好好享受吧...
+ - 二次开发/扩展见文件：_ctrls/_exdemoCtrl.php
+
+* 灵感来源
+ - 此功能灵感来源于：yii2的 `RESTful Web 服务`
+ - Yii2的 `REST` 拥有强大的过滤器处理：授权验证/速率限制
+ - 本系统，非常简洁的实现了授权验证/速率限制，
+ - 而且非常方便的实现：token自助管理。
+ - 本系统，后续将用 `Rest-API` 取代 `apiServer/appServer`
+
+
+#### Sample Links
+
+* Data-Operation 
+ - demo:
+       <a href="?demo-table&token={tk}">Table<a/> - 
+       <a href="?demo-table&token={tk}&retype=json">Json<a/> - 
+       <a href="?demo&token={tk}">List<a/> - 
+       <a href="?demo-del&token={tk}&id=2017-7d-1234">Del<a/> - 
+       <a href="?demo&token={tk}&debug=1">Debug<a/>
+ - china:
+       <a href="?china-table&token={tk}&retype=xml">Xml<a/> - 
+       <a href="?china&token={tk}&retype=jsonp&callback=mycb">Jsonp<a/> - 
+       <a href="?china-add&token={tk}">Add<a/> - 
+       <a href="?china-edit&token={tk}&id=2017-7d-1234">Edit<a/> - 
+       <a href="?china-del&token={tk}&id=2017-7d-1234">Del<a/>
+
+* Extra-Operation
+ - Token: <a href='?token'>Management/管理<a/>
+ - Info: <a href='?error'>Error/错误信息<a/>
+ - Old version: <a href="http://imcat.txjia.com/dev.php?extend-apiServer">`apiServer/appServer`<a/>
+

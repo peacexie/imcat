@@ -1,13 +1,13 @@
 <?php
-require_once dirname(__FILE__)."/config.php";
+require_once __DIR__."/config.php";
 ?>
 <!DOCTYPE html><html><head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
 <title><?php lang('a3rd.xsend_title',0); ?></title>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_SKIN; ?>/_pub/a_jscss/stpub.css'/>
+<script src="<?php echo PATH_BASE; ?>?ajax-comjs&act=autoJQ"></script>
+<script src="<?php echo PATH_BASE; ?>?ajax-comjs"></script>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_VIEWS; ?>/base/cssjs/stpub.css'/>
 <style type="text/css">
 
 p.nav{ margin:auto auto 10px auto; text-align:center; }
@@ -29,7 +29,7 @@ foreach($ptabs as $k=>$v){
     $i++;
 }
 
-$_cbase['tpl']['tpl_dir'] = 'chn';
+$_cbase['tpl']['vdir'] = 'chn';
 $kar = glbDBExt::dbAutID('coms_corder');
 $order['cid'] = $order['title'] = $kar[0]; 
 $order['cno'] = $kar[1];

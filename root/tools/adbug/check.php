@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php'; 
+require __DIR__.'/_config.php'; 
 
 $act = @$_GET['act']; $act || $act = 'check'; 
 $inptype = @$_GET['inptype']; 
@@ -33,8 +33,8 @@ if($act=='image'){
 }
 
 glbHtml::page(lang('tools.chk_envcheck')."-$title");
-eimp('/_pub/a_jscss/cinfo.css');
-eimp('/_pub/jslib/jsbase.js');
+eimp('/base/cssjs/cinfo.css');
+eimp('/base/jslib/jsbase.js');
 glbHtml::page('aumeta');
 
 $iniPath = get_cfg_var('cfg_file_path');

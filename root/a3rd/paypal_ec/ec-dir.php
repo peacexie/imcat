@@ -1,5 +1,5 @@
 <?php 
-require dirname(__FILE__).'/ec-cfg.php';
+require __DIR__.'/ec-cfg.php';
 
 if(strpos('(,mailSend,ofeeDebug,opayDebug,)',",$act,")>0){
     $a_user = usrBase::userObj('Admin'); 
@@ -67,12 +67,12 @@ if($act=='ofee'){ //运费计算
 }elseif($act=='odel'){ //取消订单
     //$erow = exvOcar::odel($ordid);
     $msg = "删除".($erow ? '成功！' : '失败！');
-    $url = surl(0).($erow ? surl('cargo') : "?mkv=$this->mkv&ordid=$ordid&enc=$enc");
+    $url = surl(0).($erow ? surl('cargo') : "?$this->mkv&ordid=$ordid&enc=$enc");
     die(basMsg::show("$msg",'Redir',$url,1));
 }elseif($act=='oedit'){ //edit订单
     //$erow = exvOcar::oedit($ordid);
     $msg = "编辑".($erow ? '成功！' : '失败(可能没有修改项)！');
-    die(basMsg::show("$msg",'Redir',surl(0)."?mkv=$this->mkv&ordid=$ordid&enc=$enc",1));
+    die(basMsg::show("$msg",'Redir',surl(0)."?$this->mkv&ordid=$ordid&enc=$enc",1));
 }elseif($act=='invoce'){
     //$ouser = exvOcar::whruser();
     $where = "ordid='$ordid'"; 
@@ -82,7 +82,7 @@ if($act=='ofee'){ //运费计算
     // "2018-16-gu71.".(time()).".amount"
     $qtmp = empty($qstr) ? array() : comConvert::sysRevert($qstr,1);
     $qarr = explode('.',$qtmp); echo "$qtmp<br>\n";
-    $url = "?mkv=ocar.{$qarr[0]}&enc=$qstr&".safComm::urlStamp('init');
+    $url = "?ocar.{$qarr[0]}&enc=$qstr&".safComm::urlStamp('init');
     header('Location:'.surl('ven:0').$url); 
     echo $url;
 

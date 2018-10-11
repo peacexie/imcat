@@ -9,7 +9,7 @@ if(strpos($uri,'.htm')>0){
     foreach ($cfgs as $key) {
         if(substr($uri,0,5)=="/$key/"){
             if(strpos($uri,'?')>0){
-                $url = str_replace(array("/$key/",'.htm?'),array("/$key.php?mkv=",'&'),$uri);
+                $url = str_replace(array("/$key/",'.htm?'),array("/$key.php?",'&'),$uri);
             }else{
                 $url = str_replace(array("/$key/",'.htm'),array("/$key.php?",''),$uri);
             }

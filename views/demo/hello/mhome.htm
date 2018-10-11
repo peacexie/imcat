@@ -1,0 +1,33 @@
+{imp:"c_pub/layout"}<!--继承父模板-->
+
+{block:main}
+{php}
+$uname = req('uname','Default Name');
+$nav = 'Set Name : ';
+for($i=0;$i<5;$i++){
+    $rnd = basKeyid::kidRand('24',6);
+    $nav .= "\n # <a href='".surl(0)."?hello&uname=$rnd'>$rnd</a>";
+}
+{/php}
+<div class="pgf_w">
+    <div class="w480 right">
+        <nav>
+            <li><a href="{surl(hello)}">Hello-Index</a></li>
+            #
+            <li><a href="{surl(hello-imcat)}">Hello-Imcat</a></li>
+        </nav>
+    <ul>
+        {tag:hinfs=[Type][modid,news][idfix,top]}
+        <li>
+        <a href="{surl("news-$t_kid")}">{title($t_title,96,$v)}</a>
+        </li>
+        {/tag:hinfs}
+
+    </ul>
+    </div>
+      <p>{=$nav}</p>
+    <h3>Hello：{=$uname}！</h3>
+
+</div>
+{/block:main}
+

@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_cfgall.php'; 
+require __DIR__.'/_cfgall.php'; 
 
 $act = req('act','view');
 $mod = empty($mod) ? (empty($_mod) ? '' : $_mod) : $mod;

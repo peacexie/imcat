@@ -1,0 +1,50 @@
+{imp:"base:stpl/_lay_info"}<!--模板继承-->
+
+{block:title}{=$title}{/block:title}
+
+{block:hdcss}
+.divta {
+  line-height:120%;
+  border: 1px solid #DDD;
+  padding: 5px;
+}
+{/block:hdcss}
+
+{block:main}
+
+{if !empty($dberrInfo) }
+    <ul>
+      <p>{lang(stinc_erdbsql)}:</p>
+      {=$dberrInfo}
+      <li>Time : <?php echo date('Y-m-d H:i:s');?></li>
+    </ul>
+{else}
+    <p>(Level:{=$sLevel}) {=$message}</p>
+    <hr>
+    <ul>
+      <p>{lang(stinc_erbase)}:</p>
+      <li>Level : {=$sLevel}</li>
+      {if $this->erFile }
+      <li>File : {=$this->erFile} (Line:{=$this->erLine})</li>
+      {/if}
+      <li>Time : <?php echo date('Y-m-d H:i:s');?></li>
+    </ul>
+{/if}
+
+<hr>
+<ul>
+  <p>{lang(stinc_ertrace)}:</p>
+  {=$traceInfo}
+</ul>
+
+<hr>
+<ul>
+  <p>{lang(stinc_nycan)}:</p>
+  <li>
+    <a href='{=$_SERVER['SCRIPT_NAME']}'>{lang(stinc_retry)}Retry</a> , 
+    <a href='javascript:history.back()'>{lang(stinc_reback)}</a> 
+    OR <a href='{=PATH_ROOT}'>{lang(stinc_gohome)}</a>
+  </li>
+</ul>
+
+{/block:main}

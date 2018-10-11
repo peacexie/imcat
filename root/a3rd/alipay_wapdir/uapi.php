@@ -7,7 +7,7 @@
 </head>
 <?php
 
-require dirname(__FILE__)."/alipay.config.php";
+require __DIR__."/alipay.config.php";
 require LIBS_PAYRUN."/alipay_smob.class.php";
 
 /**************************调用授权接口alipay.wap.trade.create.direct获取授权码token**************************/

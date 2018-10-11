@@ -2,7 +2,7 @@
 namespace imcat;
 ini_set("default_charset", "gbk");
 $_cbase['run']['outer'] = 1;
-require dirname(__FILE__).'/_config.php';
+require __DIR__.'/_config.php';
 
 /**-/ //- eval是否可用?
     #require // helper.php:别名函数 

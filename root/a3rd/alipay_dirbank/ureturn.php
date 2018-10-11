@@ -1,5 +1,5 @@
 <?php
-require dirname(__FILE__)."/alipay.config.php";
+require __DIR__."/alipay.config.php";
 require LIBS_PAYRUN."/alipay_notify.class.php";
 
 //计算得出通知验证结果
@@ -54,4 +54,4 @@ foreach($cfg as $k1=>$k2){
 $res['msg'] = $msg;
 $res['api'] = 'AliDirect';
 $res['stamp'] = req('notify_time');
-require dirname(dirname(__FILE__))."/paydemo_dir/xresult.php";
+require dirname(__DIR__)."/paydemo_dir/xresult.php";

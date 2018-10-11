@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php';
+require __DIR__.'/_config.php';
 
 // Check proot
 $proot = devRun::prootGet();
@@ -45,7 +45,8 @@ include DIR_ROOT.'/cfgs/boot/cfg_db.php';
 $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
-glbHtml::ieLow_html(); 
-require dirname(__FILE__).'/sflow.htm';
+glbHtml::ieLow_html();
+include __DIR__.'/_head.htm';
+include __DIR__.'/index.htm';
 glbHtml::page('end');
 ?>

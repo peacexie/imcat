@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 //if(empty($_cbase['skip']['_paths'])){
-    include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
+    include dirname(dirname(__DIR__)).'/run/_init.php';
 //}
 
 // idea From : Symfony : config.php

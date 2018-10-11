@@ -1,0 +1,26 @@
+
+
+div.msg_1info{ margin:10px auto; }
+div.msg_golist{ width:80%; min-height:120px; margin:auto; }
+div table.tblist td{ }
+table.tblist th.msg_th{ font-size:14px; padding:5px 12px; }
+
+/*easy_validator.css*/
+p#evf_vtip {position: absolute; padding: 10px; left: 5px; font-size: 14px; background-color: white; border: 1px solid #a6c9e2; -moz-border-radius: 5px; -webkit-border-radius: 5px; z-index: 8888;}
+p#evf_vtip #evf_vtipArrow { position: absolute; top: -10px; left: 5px }
+.evf_valid-failed { border: 2px solid #FF0000; color:red;}
+
+/*wordStrength.css*/
+#passwordStrengthDiv{width:138px; height:7px; display:inline-block; margin:3px; }
+.psc_is00{width:138px;height:7px;background:url(./views/base/aimg/passwordStrength.png) no-repeat 0 0;}
+.psc_is10{background-position:0 -7px;}
+.psc_is20{background-position:0 -14px;}
+.psc_is30{background-position:0 -21px;}
+.psc_is40{background-position:0 -28px;}
+.psc_is50{background-position:0 -35px;}
+.psc_is60{background-position:0 -42px;}
+.psc_is70{background-position:0 -49px;}
+.psc_is80{background-position:0 -56px;}
+.psc_is90{background-position:0 -63px;}
+.psc_isa0{background-position:0 -70px;}
+

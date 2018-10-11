@@ -1,0 +1,83 @@
+
+～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
+
+
+* tab_[code|skin].php-cdemo  - git, online
+* plus - editor/ file        - test
+
+*root/error
+ - 
+
+* cfgs                       --- ...
+ - player
+ - stinc
+
+～～～～～～～～～～～～～
+
+
+ECMAScript 6 入门
+http://es6.ruanyifeng.com/
+
+
+～～～～～～～～～～～～～
+
+
+你不曾察觉的隐患：危险的 target="_blank" 与 “opener”
+https://segmentfault.com/a/1190000016421263
+
+https://segmentfault.com/a/1190000016389031
+CSS实现水平垂直居中的1010种方式（史上最全）
+
+
+～～～～～～～～～～～～～
+
+* index : home,root,base
+
+* index, adm, umc, 
+
+------------------------------------------------------------------------------
+
+http://201886.txjia.com/
+http://imcat.txjia.com/cases/201886/
+http://192.168.1.228/peace/imcat/cases/201886/
+
+------------------------------------------------------------------------------
+
+
+### v4.5
+
+* dir调整
+ - extra ???
+ - @udoc  -=>  dtmp -> ures  --- 
+ - dbexp/dborg  -=> vary     --- x
+
+* imhaoft 多库管理
+* remark 同模型分表管理 (spkey=)
+
+* 调试：thinkphp\library\think\debug\Html.php
+
+* 二手房，楼盘
+
+* 文档 / 定位：框架/CMS
+ - db
+ - remote
+ - img:水印,压缩
+ - php.ini:比较
+
+* umc                         --- ... 
+
+------------------------------------------------------------------------------
+
+* 积分/兑换
+  - gift
+  - 购买抵用
+
+* 其它
+ - 二手房，楼盘
+ - project psw 发布
+
+* plus/coms
+ - footer ... 
+
+------------------------------------------------------------------------------
+

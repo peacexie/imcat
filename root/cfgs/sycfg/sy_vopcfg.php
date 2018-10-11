@@ -19,7 +19,11 @@ $_sy_vopcfg['langs'] = array(
 $_sy_vopcfg['tpl'] = array(
     'adm' => array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
-        '/root/run/adm.php'
+        '/root/run/adm.php',
+    ),
+    'base' => array(
+        array('cn'=>'默认首页', 'en'=>'Basic'),
+        '/index.php', // index,base
     ),
     'chn' => array(
         '官网版',
@@ -51,11 +55,6 @@ $_sy_vopcfg['tpl'] = array(
         'REST-API', 
         '/root/run/rest.php'
     ),
-    '_pub' => 0,
-    /*'app' => array(
-        'apiServer', 
-        '/root/run/app.php'
-    ),*/
     'demo' => array('Hello.Demo!','/root/run/demo.php'), 
     //'ven' => array('English','/root/run/eng.php'), 
 );

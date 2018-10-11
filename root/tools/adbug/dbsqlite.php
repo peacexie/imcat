@@ -50,4 +50,4 @@ function adminer_object() {
   return new AdminerSQLite;
 }
 
-include dirname(__FILE__).'/dbadm.php';  
+include __DIR__.'/dbadm.php';  

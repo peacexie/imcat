@@ -1,11 +1,11 @@
 <?php
 namespace imcat;
 
-if(file_exists(dirname(__FILE__).'/start-360.php')){
-  include(dirname(__FILE__).'/start-360.php');
+if(file_exists(__DIR__.'/start-360.php')){
+  include(__DIR__.'/start-360.php');
   die();
 }
-require dirname(dirname(__FILE__)).'/adbug/_config.php';
+require dirname(__DIR__).'/adbug/_config.php';
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $proot = devRun::prootGet(); 
@@ -28,11 +28,11 @@ if(!empty($fmsg)){
 }
 
 $vcfg = vopTpls::etr1('tpl');
-unset($vcfg['_pub']);
+unset($vcfg['base']);   
 
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
-eimp('/_pub/a_jscss/cinfo.css');
-eimp('/_pub/jslib/jsbase.js');
+eimp('/base/cssjs/cinfo.css');
+eimp('/base/jslib/jsbase.js');
 glbHtml::page('aumeta');
 ?>
 <base target="_blank"/>
@@ -59,7 +59,7 @@ basLang::shead($_cbase['sys_name'].' - '.lang('tools.start_title').' - v'.$_cbas
 
 <?php
 if(!empty($fmsg)){ die('</body></html>'); }
-$mapurl = PATH_ROOT.'/plus/map/index.php?api=';
+$mapurl = PATH_BASE.'?info-map-';
 $tolurl = PATH_PROJ.'/dev.php';
 ?>
 
@@ -77,7 +77,7 @@ $tolurl = PATH_PROJ.'/dev.php';
     <td><a href="cstudy.php"><?php lang('tools.start_dtstudy',0) ?></a></td>
     <td><a href='cyahei.php'><?php lang('tools.start_dtyahei',0) ?></a></td>
     <td><a href="../exdiy/nomuma.php"><?php lang('tools.start_tmuma',0) ?></a></td>
-    <td><a href="<?php echo PATH_ROOT; ?>/plus/api/color.php">Color</a></td>
+    <td><a href="<?php echo PATH_BASE; ?>?info-color">Color</a></td>
   </tr> 
   <tr class="tc">
     <td><a href="binfo.php?login"><?php lang('tools.start_login',0) ?></a></td>
@@ -144,7 +144,7 @@ $scfg = array('min','cerulean','flatly','superhero'); // ,'(ull)'
   </tr>
   <tr class="tc">
    <?php foreach($scfg as $k){ ?>
-    <td width="25%"><a href="<?php echo PATH_ROOT; ?>/plus/ajax/redir.php?skin:<?php echo $k; ?>" target='_self'><?php echo $k; ?></a></td>
+    <td width="25%"><a href="<?php echo PATH_ROOT; ?>/plus/api/redir.php?skin:<?php echo $k; ?>" target='_self'><?php echo $k; ?></a></td>
    <?php } ?>
   </tr>
   <?php } ?>

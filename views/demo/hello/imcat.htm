@@ -1,0 +1,39 @@
+{imp:"c_pub/layout"}<!--继承父模板-->
+
+{block:main}
+{php}
+$uname = req('uname','Default Name');
+$nav = 'Set Name : ';
+for($i=0;$i<5;$i++){
+    $rnd = basKeyid::kidRand('24',6);
+    $nav .= "\n # <a href='".surl(0)."?hello&uname=$rnd'>$rnd</a>";
+}
+{/php}
+<div class="pgf_w">
+    <div class="w480 right">
+        <nav>
+            <a href="{surl(hello)}">Hello-Index</a>
+            #
+            <a href="{surl(hello-imcat)}">Hello-Imcat</a>
+        </nav>
+    </div>
+      <p>{=$nav}</p>
+    <h3>Hello：{=$uname}！</h3>
+
+    <hr>
+
+    <ul>
+
+        <li class="title">贴心猫(Imcat)：名字由来</li>
+
+        <li>● 猫：平凡，温顺，实而无华；正是本系统追求的目标---“简约、轻量、实用、免费、共享”！</li>
+        <li>● 猫：为捉老鼠，洞口守候数时；正是本系统对待“安全-高效-细节”需要的执着！</li>
+        <li>● 猫：捉老鼠不在乎黑白；本“贴心猫”： <br> &nbsp; -&gt; 不在乎任何设计架构模式，不在乎任何高深理论 <br> &nbsp; -&gt; 只用最精最简的架构，最少最易的维护量，为您提供实用的Web应用系统！</li>
+        <li>● 大家抢注域名：Intimate, Imcat, txmao, txcat, imcat, …</li>
+        <li>● peace,2015-12-17 05:00 失眠所得</li>
+
+    </ul>
+
+</div>
+{/block:main}
+

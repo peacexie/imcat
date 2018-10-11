@@ -1,0 +1,30 @@
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-xs-8 pro-bsharebar tc">
+                <b class="qrcode_tip" onMouseOver="qrcargo_act(3,1,'{surl("mob:cargo.$did")}')" onMouseOut="qrcargo_act(3,0)">扫描进手机版
+                <i class="qrcode_pic" id="qrcode_pic3" style="display:none;">
+                <img src="{=PATH_VIEWS}/base/aimg/loadbig.gif" width="180" height="180" />
+                </i></b>
+                <b class="qrcode_tip" onMouseOver="qrcargo_act(4,1,'cargo.{=$did}')" onMouseOut="qrcargo_act(4,0)">扫描发到微信
+                <i class="qrcode_pic" id="qrcode_pic4" style="display:none;">
+                <img src="{=PATH_VIEWS}/base/aimg/loadbig.gif" width="180" height="180" />
+                </i></b>
+            </div>
+            <div class="col-xs-4 pt10">
+                <span id='diggs2'>
+                <a id="jsid_field_{=$this->mod}:{=$did}:diggtop" class="fa fa-thumbs-up c6F6 f24 hand">{=$diggtop}</a>
+                &nbsp;
+                <a id="jsid_field_{=$this->mod}:{=$did}:diggdown" class="fa fa-thumbs-down cF33 f16 hand">{=$diggdown}</a>
+                &nbsp;
+                </span>
+            </div>
+        </div>  
+    </div>
+    <div class="col-md-6 hidden-xs" id="pro-bsharebar">
+        {inc:"c_pub/inc-bshare"}
+    </div>
+
+</div>

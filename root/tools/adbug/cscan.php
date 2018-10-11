@@ -1,13 +1,13 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php'; 
+require __DIR__.'/_config.php'; 
 set_time_limit(300); 
 
 $act = req('act','');
 $part = $ntpl = req('part','');
 
 if($act=='testMkvs'){ 
-  require dirname(__FILE__).'/cscan-testMkvs.php';
+  require __DIR__.'/cscan-testMkvs.php';
   foreach ($mkvs[$part] as $url) {
     echo "\n<div style='width:50%;float:left;margin-bottom:20px;'>\n";
     echo "<a href='".PATH_PROJ."$url'><b>$url</b></a>\n";
@@ -17,8 +17,8 @@ if($act=='testMkvs'){
 }
 
 glbHtml::page("Check/Scan");
-eimp('/_pub/a_jscss/cinfo.css');
-eimp('/_pub/jslib/jsbase.js');
+eimp('/base/cssjs/cinfo.css');
+eimp('/base/jslib/jsbase.js');
 
 $dcfgs = array(
  'curlDown' => 37712,
@@ -28,8 +28,8 @@ $dcfgs = array(
 );
 
 if($act=='scanInit'){
-  $bcfg = array('code'=>DIR_CODE, 'root'=>DIR_ROOT, 'tpls'=>DIR_SKIN,   'a3rd'=>DIR_ROOT.'/a3rd'); @$burl = $bcfg[$part]; 
-  $dcfg = array('code'=>'',     'root'=>'',     'tpls'=>'/code',  'a3rd'=>'/root');      @$durl = $dcfg[$part];
+  $bcfg = array('imcat'=>DIR_IMCAT, 'root'=>DIR_ROOT, 'views'=>DIR_VIEWS, 'a3rd'=>DIR_ROOT.'/a3rd', 'adpt'=>DIR_IMCAT.'/adpt'); @$burl = $bcfg[$part]; 
+  $dcfg = array('imcat'=>'',        'root'=>'',       'views'=>'',        'a3rd'=>'/a3rd',          'adpt'=>'/adpt');           @$durl = $dcfg[$part];
   if(!empty($burl)){
   $re = devBase::scanInit($burl,$_cbase['run']['rmain']."$durl/$part");
   echo "<base target='_blank'/>[$durl/$part]<pre>"; print_r($re); 
@@ -85,7 +85,7 @@ i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; p
 
 <?php 
 $bomroot = empty($_GET['bomroot']) ? '../../../' : $_GET['bomroot'];
-defined('DIR_PROJ') || define('DIR_PROJ',dirname(__FILE__));
+defined('DIR_PROJ') || define('DIR_PROJ',__DIR__);
 if(empty($can_upfile)){
   if(!strstr($bomreal,DIR_PROJ)) $bomroot = '../../../';
 }
@@ -163,10 +163,11 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
   <tr>
     <td class="tc">Check[file]Entry</td>
     <td class="tc" colspan="3">
-     # <a href='?act=scanInit&part=code' target="_blank">init_code</a> 
-     | <a href='?act=scanInit&part=root' target="_blank">init_root</a>
-     | <a href='?act=scanInit&part=tpls' target="_blank">init_tpls</a>
-     | <a href='?act=scanInit&part=a3rd' target="_blank">init_a3rd</a>
+     # <a href='?act=scanInit&part=imcat' target="_blank">init_imcat</a> 
+     | <a href='?act=scanInit&part=root'  target="_blank">init_root</a>
+     | <a href='?act=scanInit&part=views' target="_blank">init_views</a>
+     | <a href='?act=scanInit&part=a3rd'  target="_blank">init_a3rd</a>
+     | <a href='?act=scanInit&part=adpt'  target="_blank">init_adpt</a>
      #
     </td>
   </tr> 
@@ -184,13 +185,13 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
   <tr>
     <td class="tc">Check[Cnchr]Char</td>
     <td class="tc" colspan="3">
-     <a href='?act=scanCnchr&part=code/adpt' target="_blank">adpt</a> 
+     <a href='?act=scanCnchr&part=imcat/adpt' target="_blank">adpt</a> 
      | <a href='?act=scanCnchr&part=root/cfgs' target="_blank">cfgs</a>
-     | <a href='?act=scanCnchr&part=code/core' target="_blank">core</a>
-     | <a href='?act=scanCnchr&part=code/flow' target="_blank">flow</a>
-     # <a href='?act=scanCnchr&part=skin/adm' target="_blank">adm</a>
-     | <a href='?act=scanCnchr&part=skin/umc' target="_blank">umc</a>
-     | <a href='?act=scanCnchr&part=skin/doc' target="_blank">doc</a>
+     | <a href='?act=scanCnchr&part=imcat/core' target="_blank">core</a>
+     | <a href='?act=scanCnchr&part=imcat/flow' target="_blank">flow</a>
+     # <a href='?act=scanCnchr&part=views/adm' target="_blank">adm</a>
+     | <a href='?act=scanCnchr&part=views/umc' target="_blank">umc</a>
+     | <a href='?act=scanCnchr&part=views/doc' target="_blank">doc</a>
      # <a href='?act=scanCnchr&part=root/a3rd' target="_blank">a3rd</a> 
      | <a href='?act=scanCnchr&part=root/plus' target="_blank">plus</a>
      | <a href='?act=scanCnchr&part=root/tools' target="_blank">tools</a>
@@ -200,8 +201,8 @@ $bomreal = str_replace("\\","/",realpath($bomroot));
 
 <?php
 if($act=='openLinks'){ 
-  echo basJscss::imp('/plus/ajax/comjs.php?act=autoJQ'); 
-  $_cbase['tpl']['tpl_dir'] = empty($ntpl) ? $_cbase['tpl']['def_static'] : $ntpl;
+  echo basJscss::imp('?ajax-comjs&act=autoJQ'); 
+  $_cbase['tpl']['vdir'] = empty($ntpl) ? $_cbase['tpl']['def_static'] : $ntpl;
   $ncfg = vopTpls::entry($part,'ehlist','ehlist'); 
   if($part=='umc'){
     $ncfg = array();

@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php'; 
+require __DIR__.'/_config.php'; 
 glbHtml::head('html');
 
 $nav[1] = array('nav','mscfg','msuply','mfatch'); 

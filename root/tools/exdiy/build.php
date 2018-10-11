@@ -1,6 +1,7 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php';        
+$_cbase['tpl']['vdir'] = 'base';
+require __DIR__.'/_config.php';        
 
 glbHtml::page("Create Suit Template - (sys_name)",1);
 eimp('initJs','jquery');
@@ -24,6 +25,6 @@ if($dir && $front && $mod){
     $dmsg = devBuild::clang($org, $obj);
 }
 
-include vopTpls::cinc('[root]:tools/exdiy/build');
+include __DIR__.'/build.htm';
 
 glbHtml::page('end');

@@ -1,0 +1,47 @@
+{imp:"tools/a-lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+$title = '中文分词，关键词提取';
+$ufix = surl()."?".$this->mkv;
+$file = vopTpls::tinc('tools/a-chun',0);
+$data = comFiles::get($file);
+$words = extSpword::main($data,30);
+?>{/block:extop}
+
+{block:eximp}
+<style type="text/css">
+img { ; }
+</style>
+{/block:eximp}
+
+{block:exbody}
+<div class="tools_outer">
+
+<h3 class="tc"><?php echo $title;?></h3>
+
+<h4 class="tl">### 测试原文：</h4>
+<p class="tc">
+<textarea name="udata" style="width:100%;" rows="12"><?php
+echo basStr::filForm($data);
+?></textarea>
+</p>
+
+<h4 class="tl">### 关键词提取结果：</h4>
+<p>
+<?php 
+for($i=0;$i<4;$i++){  
+    echo "$words;"; 
+}
+?>
+</p>
+
+<h4 class="tl">### 下载/DIY：</h4> 
+<p>打开：<a href="http://pan.baidu.com/share/home?uk=3191979020">百度云-网盘</a>，<br>
+下载txmao-main.rar文件(本系统核心代码) 查看如下相关文件：</p>
+<p>相关文件/夹：/views/dev/tools/目录下<br>
+文件：tools_spword.htm</p>
+
+</div>
+
+{/block:exbody}
+

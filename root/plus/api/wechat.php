@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php'; 
+require __DIR__.'/_config.php'; 
 //autoLoad_ys::ureg('/adpt/wechat');
 //autoLoad_ys::ureg('/adpt/weuser');
 

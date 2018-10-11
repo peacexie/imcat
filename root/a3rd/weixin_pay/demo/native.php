@@ -2,7 +2,7 @@
 ini_set('date.timezone','Asia/Shanghai');
 //error_reporting(E_ERROR);
 
-require dirname(dirname(__FILE__))."/lib/WxPay.Api.php";
+require dirname(__DIR__)."/lib/WxPay.Api.php";
 require "WxPay.NativePay.php";
 require 'log.php';
 

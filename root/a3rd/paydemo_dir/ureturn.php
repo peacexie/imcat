@@ -1,5 +1,5 @@
 <?php
-require dirname(__FILE__)."/config.php";
+require __DIR__."/config.php";
 
 //计算得出通知验证结果
 $verify_result = dmdoCheck();
@@ -45,4 +45,4 @@ foreach($cfg as $k1=>$k2){
 $res['msg'] = $msg;
 $res['api'] = 'Demopay';
 $res['stamp'] = date('Y-m-d H:i:s',req('notify_time','0'));
-require dirname(dirname(__FILE__))."/paydemo_dir/xresult.php";
+require dirname(__DIR__)."/paydemo_dir/xresult.php";

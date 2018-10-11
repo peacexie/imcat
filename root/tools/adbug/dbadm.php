@@ -1,10 +1,10 @@
 <?php
 $_cbase['run']['outer'] = 1;
 
-if(file_exists(dirname(__FILE__).'/start-360.php')){
-  include dirname(dirname(dirname(__FILE__))).'/run/_init.php';
+if(file_exists(__DIR__.'/start-360.php')){
+  include dirname(dirname(__DIR__)).'/run/_init.php';
 }else{
-  require dirname(__FILE__).'/_config.php';  
+  require __DIR__.'/_config.php';  
 }
 
 //session_destroy();

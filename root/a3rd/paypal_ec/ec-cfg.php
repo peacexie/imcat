@@ -1,7 +1,7 @@
 <?php
-$_cbase['tpl']['tpl_dir'] = 'ven'; // 指定模板目录
+$_cbase['tpl']['vdir'] = 'ven'; // 指定模板目录
 $_cbase['sys']['lang'] = 'en'; // 指定语言
-require dirname(dirname(dirname(__FILE__))).'/run/_init.php';
+require dirname(dirname(__DIR__)).'/run/_init.php';
 
 $db = db(); //dump($user);
 if(empty($logfid)){

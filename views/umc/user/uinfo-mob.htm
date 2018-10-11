@@ -1,0 +1,96 @@
+{imp:"c_pub/m-frame"}<!--继承父模板-->
+
+{block:init}{:parent}<?php
+if($user->userFlag=='Login'){
+    $unowtype = $user->uperm['title'];
+    $ordwcnt = $db->table('coms_corder')->where("auser='$uname'")->count(); 
+}else{
+    $unowtype = lang('user.pub_guest');
+    $unqid = usrPerm::getUniqueid(); 
+    $ordwcnt = $db->table('coms_cocar')->where("ordid='$unqid'")->count();   
+}
+$runinfo = $_cbase['run']['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
+$mdtitle = $sbtitle = lang('user.pub_cuser'); 
+
+$cnt1 = \imcat\umc\texIndoc::expwhr($user,"ipub",0,'no',1);
+$cnt2 = \imcat\umc\texIndoc::expwhr($user,"imy",0,'no',1);
+
+?>{/block:init}
+
+{block:brnav}{:clear}{/block:brnav}
+
+{block:main}
+
+<ul class="mod-user">
+
+  <li class="type">
+  <b class="right ext">user info</b>
+  {lang(user.pub_uinfo)}
+  </li>
+
+  <li>
+  <i class="atype">{lang(user.pub_accinfo)}</i>
+  <i class="title ellipsis">{=$unowstr}</i>
+  </li>
+  <li>
+  <i class="atype">{lang(user.uif_utype)}</i>
+  <i class="title ellipsis">{=$unowtype}</i>
+  </li>
+
+  {if ($user->userFlag=='Guest') }
+  <li class="tc">
+  <a href="{surl(login)}">{lang(user.uif_clickl)}</a> {lang(user.uif_or)} <a href="{surl(reg)}">{lang(user.uif_clickr)}</a>
+  </li>
+  <li>
+  <i class="atype">{lang(user.uif_corder)}</i> 
+  <i class="title ellipsis"> <a href="{surl(chn:ocar)}">({=$ordwcnt}) <a href="{surl(chn:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a> </i>
+  </li>
+  {else}
+  <!--li>
+  <i class="atype">{lang(user.pub_indoc)}</i>
+  <i class="title ellipsis"><a href="?indoc-iget&part=ipub">({=$cnt1}) {lang(user.uif_allmsg)}&gt;&gt;</a></i>
+  </li-->
+  <li>
+  <i class="atype">{lang(user.uif_sysmsg)}</i>
+  <i class="title ellipsis"><a href="{surl(order)}">({=$ordwcnt}) {lang(user.uif_allord)}&gt;&gt;</a></i>
+  </li>
+  {/if}
+
+  <li class="type" id="moreflagid">
+  <a href="#moreflagid" class="right ext" onclick="moreSysinfo()">more&gt;</a>
+  {lang(user.uif_sysinfo)}
+  </li>
+  <li>
+  <i class="atype">{lang(user.uif_runinfo)}</i>
+  <i class="title">{=$runinfo}</i>
+  </li>
+  <li>
+  <i class="atype">IP</i>
+  <i class="title">{= $_cbase['run']['userip'] ;}</i>
+  </li>
+  <li>
+  <i class="atype">ServerTime</i>
+  <i class="title">{= date('Y-m-d H:i:s'); }</i>
+  </li>
+
+  <?php 
+  $ka = array('HTTP_USER_AGENT','HTTP_X_WAP_PROFILE','HTTP_VIA','HTTP_ACCEPT');
+  foreach($ka as $k){ if(isset($_SERVER[$k])){
+  ?>
+  <li class="moresysinfo" style="display:none;">
+  <i>{=$k}</i>
+  <i>{=$_SERVER[$k]}</i>
+  </li>
+  <?php }} ?>
+
+</ul>
+
+<div class="clear"></div>
+
+<script>
+function moreSysinfo(){
+  $('.moresysinfo').toggle();
+}
+</script>
+
+{/block:main}

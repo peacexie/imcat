@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-include dirname(__FILE__).'/_config.php'; 
+include __DIR__.'/_config.php'; 
 
 // for your dir debug ... 
 $list = comFiles::listDir(dirname(DIR_PROJ).'/project/tester'); 
@@ -24,7 +24,7 @@ echo "<p>
 $part = req('part','(root)');
 $dir = req('dir','utest');
 $pcfg = array(
-  '(root)' => array(dirname(dirname(__FILE__)), '..'),
+  '(root)' => array(dirname(__DIR__), '..'),
   'tester' => array(dirname(DIR_PROJ)."/project/tester", '../../../../project/tester'),
   '08data' => array(dirname(DIR_PROJ)."/project", '../../../../project'),
   'fzg360' => array(dirname(DIR_PROJ)."/project", '../../../../project'),

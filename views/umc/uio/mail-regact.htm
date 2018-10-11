@@ -1,0 +1,18 @@
+{imp:"base:stpl/_lay_notice"}<!--模板继承-->
+
+{block:init}{/block:init}
+
+{block:title}{=$site} 注册激活邮件{/block:title}
+
+{block:main}
+    <p>{=$uname} 您好！</p>
+    <p>您于 {=$time} 注册 {=$site} 帐号，请点击以下链接，激活帐号：</p>
+    <p><a href="{=$urlpath}" target="_blank">{=$root}{=$urlpath}</a><br>
+       (如果您无法点击此链接，请将它复制到浏览器地址栏后访问)</p>
+    <p>1、请在 30分钟内 完成激活，过期失效！<br>
+    2、此链接将在您激活过一次后失效！<br>
+    3、注册的帐号可以畅行订单，评论，会员中心……</p>
+    <p style="text-align:right;">
+        <a href="{=$root}" target="_blank">{=$site}</a> 团队<br> {=$time} 
+    </p>
+{/block:main}

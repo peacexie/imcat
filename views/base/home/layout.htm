@@ -1,0 +1,77 @@
+{php}
+namespace imcat;
+$isMobile = basEnv::isMobile();
+$vcfg = vopTpls::etr1('tpl'); unset($vcfg['base'],$vcfg['adm'],$vcfg['demo']);  
+$title = $_cbase['sys_name']." v".$_cbase['sys']['ver'];
+$icons = array('adm'=>'cog','rest'=>'exchange','umc'=>'user',
+    'chn'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book',); // qrcode
+{/php}
+<!doctype html>
+<html>
+<head>
+{php}glbHtml::page('init');
+$lang = empty($lang) ? 'cn' : $lang;
+eimp('initJs','jquery;comm;/base/home/funcs');{/php}
+<link href='{=PATH_VENDUI}/bootstrap/css/font-awesome.min.css' type='text/css' rel='stylesheet'/>
+<link href='{=PATH_VIEWS}/base/home/style.css' type='text/css' rel='stylesheet'/>
+{block:head}{/block:head}
+<base target="_blank"/>
+</head>
+<body>
+
+<!--[if lt IE 9]>
+<p class='gwidth ie6'>浏览器版本太低，不支持HTML5，浏览效果可能不正常！</p>
+<![endif]-->
+
+<div class="nav">
+{loop $vcfg $k $v}
+<i class="cCCC">●</i> <a href="{=PATH_PROJ}{=$v[1]}" class="qrcode_tip"><b
+  class="fa fa-{=$icons[$k]}"></b> <?php echo basLang::pick(0,$v[0]); ?><i 
+  class="qrcode_pic" id="qrcode_pic{=$k}" style="display:none;"></i></a>
+{/loop}
+</div>
+
+<div class="head">
+    <a href="?" target="_self"><img src="{=PATH_VIEWS}/base/logo/logo120x60.jpg" width="120" height="60"></a>
+    <h1>
+        <a href="http://imcat.txjia.com">贴心猫</a>(<a href="http://imcat.txjia.com">imcat</a>) v{=$_cbase['sys']['ver']}
+    </h1>
+    <p>{=$resume}</p>
+</div>
+
+<div class="out">
+
+{block:inner}{/block:inner}
+
+</div><!--end.out-->
+
+<div class="foot">
+<p>
+    <span>[<a href="?start">Start</a>] # </span>
+    <a href='./?en' target='_self'>English</a> # 
+    <a href='./?cn' target='_self'>中文版</a> # 
+    <a href="https://jq.qq.com/?_wv=1027&k=43NUHsK" title="贴心猫(imcat)技术交流" target="_blank">QQ群:607070548</a>
+    <span> # <a href="mailto:xpigeon#163.com">E-mail</a> 
+    # [<a class="qrcode_home" _url='{=PATH_PROJ}/'>Scan<i class="qrcode_hpic" id="qrcode_pichome" style="display:none;"></i></a>] </span>
+</p>
+<p>
+    贴心猫(imcat) © MIT @ 
+    <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备07020797号</a>
+</p>
+</div>
+
+<script type="text/javascript">
+var _burl = '{=$_cbase['run']['rsite']}';
+var _ismb = <?php echo $isMobile ? 1 : 0; ?>;
+$(function(){ 
+    if(_ismb){
+        $('.vnote p').hide();
+        $('.foot span').hide();
+    }else{
+        qrActs();
+    }
+});
+</script>
+
+</body>
+</html>

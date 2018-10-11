@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php';    
+require __DIR__.'/_config.php';    
 
 bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login" target="x">login</a></p>');
 $upc = updBase::preCheck(); 
@@ -86,10 +86,11 @@ eimp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
 eimp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
-if(in_array($act,$carrs)){    
-    include vopTpls::cinc('[root]:tools/setup/upcomp');
+include __DIR__.'/_head.htm';
+if(in_array($act,$carrs)){
+    include __DIR__.'/upvnow-comp.htm';
 }else{
-    include vopTpls::cinc('[root]:tools/setup/upflow');
+    include __DIR__.'/upvnow-flow.htm';
 }
 
 glbHtml::page('end');

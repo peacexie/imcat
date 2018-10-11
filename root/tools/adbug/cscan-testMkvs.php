@@ -2,13 +2,13 @@
 
 $mkvs['ok'] = array(
 
-'/root/run/adm.php?mkv=dops-a',
-'/root/run/adm.php?mkv=admin-types',
+'/root/run/adm.php?dops-a',
+'/root/run/adm.php?admin-types',
 '/root/run/adm.php?uhome',
 //'/root/run/adm.php',
 
 '/chn.php',
-'/chn.php?mkv=&adpush=load',
+'/chn.php?&adpush=load',
 '/chn.php?news',
 '/chn.php?news.2017-59-d2u1',
 '/chn.php?news-n1012',
@@ -30,7 +30,7 @@ $mkvs['ok'] = array(
 '/doc.php?tester',
 '/doc/tester-hello.htm',
 '/doc/tester-step_imtpl.htm',
-'/skin/doc/tester/step-ufile.php',
+'/views/doc/tester/step-ufile.php',
 '/doc.php?tester-step_utpl',
 '/doc.php?tester-step_imtpl',
 

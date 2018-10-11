@@ -1,12 +1,12 @@
 <?php
-require dirname(__FILE__)."/config.php";
+require __DIR__."/config.php";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title><?php lang('a3rd.uapi_title',0); ?></title>
-<script src="<?php echo PATH_ROOT; ?>/plus/ajax/comjs.php?act=autoJQ"></script>
+<script src="<?php echo PATH_BASE; ?>?ajax-comjs&act=autoJQ"></script>
 <style type="text/css">.tc { text-align:center; }</style>
 </head>
 <?php

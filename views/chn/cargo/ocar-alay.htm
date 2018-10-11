@@ -1,0 +1,60 @@
+{block:minit}<?php
+$user = usrBase::userObj('Member');
+$db = db();
+$msg = '';
+$act = req('act');
+$ordid = req('ordid');
+$cid = req('cid');
+$enc = req('enc');
+$unqid = usrPerm::getUniqueid(); 
+$where = "ordid='$unqid'";
+if($act=='iadd' || $act=='oadd'){
+    $res = safComm::formCAll('fmocar');
+    if(!empty($res[0])){ 
+        die(basMsg::show($res[0],'Redir',surl($this->mkv),1));
+    }
+}
+?>{/block:minit}
+<!DOCTYPE html><html><head>
+{php $this->pmeta($title); }
+{php}
+eimp('initJs','jspop,jquery;bootstrap;comm;/base/cssjs/sordbar');
+eimp('initCss','bootstrap,stpub,jstyle;comm;ocar'); 
+{/php}
+{block:mimp}
+<script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:cargo;jsFields:cargo"></script> 
+{/block:mimp}
+</head><body>
+
+{block:mbdstart}
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="row">
+  <div class="col-md-9">
+    {/block:mbdstart}
+    <!--main_start-->
+    {block:mact}{/block:mact}
+    <!--main_end-->
+    {block:mbdend}
+  </div>
+  <div class="col-md-3">
+    {inc:"cargo/cinc-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"} 
+{/block:mbdend}
+
+</body></html>
+
+{block:mend}
+<script>
+_cbase.jsrun.menuid = 'cargo'; 
+{if empty($this->key) }
+var ocar_items = '{=$ocar_items}';
+setCookie('ocar_items',ocar_items);
+{/if}
+</script>
+{php $ocar_code='end'; }
+{/block:mend}

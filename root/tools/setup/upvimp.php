@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-require dirname(__FILE__).'/_config.php';
+require __DIR__.'/_config.php';
 
 //check, re:cfgs:
 $cfg = updDbcmp::uimpCheck(); 
@@ -17,7 +17,8 @@ eimp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
 eimp('initCss','bootstrap,stpub;/tools/setup/style.css');
 glbHtml::page('body');
 
-include vopTpls::cinc('[root]:tools/setup/upvimp');
+include __DIR__.'/_head.htm';
+include __DIR__.'/upvimp.htm';
 
 $cnew = updBase::cacGet('uimp_new');
 $cold = updBase::cacGet('uimp_old');

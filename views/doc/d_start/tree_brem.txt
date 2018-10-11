@@ -1,0 +1,47 @@
+﻿
+ *** Dirs Frame
+
+[Site-Project]
+│  chn.php
+│  dev.php
+│  doc.php
+│  index.php
+│  mob.php
+│  robots.txt
+│  
+├─@read : Readme Files
+├─html : Static Html Files
+├─imcat : Libs,Cfgs,Tpls(the core code of the system)
+│  ├─adpt : api/Dirves
+│  ├─core : Core Libs
+│  ├─flow : Admin flow scripts
+│  └─lang : Language package 
+├─root : Entrys files(include js,css) 
+│  ├─a3rd : 3nd [Login/Pay] Api
+│  ├─cfgs : Configs
+│  ├─plus : Api/ajax Entrys
+│  ├─run : Startup file and Admin Entrys
+│  └─tools : DIY Tools and Setup Entrys 
+├─views : views/tpls(Eache set of tpl has a sub dir) include js,css 
+│  ├─adm : Admin Center
+│  ├─base : Basic-views(include homepage)
+│  ├─chn : 中文版
+│  ├─demo : Demo dir
+│  ├─dev : 开发文档
+│  ├─doc : Guides
+│  ├─mob : Mobile
+│  └─umc : User Center
+├─ures : Upload Files
+├─vary : Variable Files (cathe/Temp Files)
+│  ├─ctpl : Tpl-Cache Files
+│  └─dtmp : Temp/Cache Files
+└─vimp : Static, 3nd Component
+    ├─static : Static Pic,Icon,Logo,Fonts; 
+    ├─vendor : the 3nd Libs/Component
+    └─vendui : the 3nd js/Front Component 
+	
+* How to Arrange the dirs and files is the BEST?:  
+ - /imcat/adpt/wechat/ Common Wechat Libs
+ - /imcat/adpt/weuser/ Extra Wechat Libs
+ - /root/a3rd/ 3nd Pay/Login Apis(Libs,Settings,Entry Files)
+

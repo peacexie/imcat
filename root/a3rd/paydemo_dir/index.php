@@ -1,5 +1,5 @@
 <?php
-require dirname(__FILE__)."/config.php";
+require __DIR__."/config.php";
 ?>
 <!DOCTYPE html><html><head>
 <title><?php lang('a3rd.demo_title',0); ?></title>

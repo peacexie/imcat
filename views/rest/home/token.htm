@@ -1,0 +1,123 @@
+{imp:"home/_layout"}<!--继承父模板-->
+
+{block:chead}
+<meta name='robots' content='noindex, nofollow'>
+<title>Token Management - REST-API</title>
+{php} basJscss::loadJqbs('jquery',0);{/php}
+<style type='text/css'>
+body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;color:#333;background-color:#fff;}
+h1,p,nav,fieldset{ max-width:620px; line-height:150%; margin:20px auto;}
+fieldset,p{ margin:10px auto;}
+h1{ font-size:larger; text-align:center; }
+hr{ clear:both; }
+.tc{ text-align:center; }
+.l{ display:inline-block; float:left; }
+.r{ display:inline-block; float:right; }
+</style>
+{/block:chead}
+
+{block:cmain}
+<form name="fmrest" id="fmrest" action="?token" method="post" autocomplete="off">
+
+<h1><a href="?" class="l">Home</a>
+{if empty($sess)}
+Please Login
+{else}
+<a href="?token&op=out" class="r">Logout</a>
+Your are Logined
+{/if}</h1>
+<p>User ID: <input name="kid" id="kid" value="{=$row['kid']}" class="r"></p>
+<p>Password: <input name="pass" id="pass" value="" class="r"></p>
+{if empty($sess)}
+<p style="clear:both">
+    <img src="{=PATH_BASE}?ajax-vimg&mod=fmrest&<?=safComm::urlStamp('init');?>&_r=" style="cursor:pointer;"/>
+    <span class="r">
+    <input name="vcode" id="vcode" value="" class="r" style="width:80px">
+    </span>
+</p>
+<p class="tc"><input name="op" value="Login" tabindex="19820" type="submit"/></p>
+{else}
+<p id="npass">New Pass. <input name="pasn" id="pasn" value="" class="r"></p>
+<!--p id="sdebug">Debug: 
+    <span class="r">
+    <input name="debug" type="radio" value="1">Debug
+    <input name="debug" type="radio" value="0">Normal
+    </span>
+</p-->
+<p>Action: 
+    <select name="sop" id='sop' class="r">
+    <option value="0">--- Select ---</option>
+    <option value="edit">Edit-Password</option>
+    <!--option value="debug">Set-Debug</option-->
+    <option value="1d">Renewal-1 day</option>
+    <option value="1w">Renewal-1 week</option>
+    <option value="1m">Renewal-1 month</option>
+    <option value="12m">Renewal-1 year</option>
+    <option value="reset">Reset-Token</option>
+    </select>
+</p>
+<p>State: 
+    <span class="r">
+    Exp.{=$row['expstr']}
+    </span>
+</p>
+<fieldset>
+    <legend>Token </legend>
+    <input id='token' value="{=$row['token']}" style="width:100%; color:#FFF;">
+</fieldset>
+<p class="tc"><input name="op" value="Submit" tabindex="19820" type="submit"/></p>
+{/if}
+
+<script>
+$(function(){
+    $('#pasn,#pass').focus(function(){
+        $(this).attr('type','password');
+    });
+    $('#token').focus(function(){
+        $(this).attr('type','text');
+    }).blur(function(){
+        $(this).attr('type','password');
+    });
+    setTimeout(function(){
+        $('#token').attr('type','password');
+        $('#token').css('color','#00F');
+        $('#npass').hide();
+    },300);
+    $('#fmrest').submit(function(e){
+        if(!$('#kid').val()){
+            alert('Input UserID!');
+            $('#kid').focus();
+            return false;
+        };
+        if(!$('#pass').val()){
+            alert('Input password!');
+            $('#pass').focus();
+            return false;
+        };
+        if($('#sop').val()=='edit' && !$('#pasn').val()){
+            alert('Input New password!');
+            $('#pasn').focus();
+            return false;
+        }
+        if($('#vcode').length && !$('#vcode').val()){
+            alert('Input VCode!');
+            $('#vcode').focus();
+            return false;
+        }
+    });
+    $('#sop').change(function(e){
+        if($(this).val()=='edit'){
+            $('#npass').show();
+        }else{
+            $('#npass').hide();
+        };
+    });
+    $('img').click(function(e){
+        var tmp = $(this).prop('src');
+        $(this).prop('src',tmp+Math.ceil(Math.random()*9));
+    });
+});
+</script>
+
+</form>
+{/block:cmain}

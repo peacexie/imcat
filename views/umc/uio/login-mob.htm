@@ -1,0 +1,110 @@
+{imp:"uio/_laymob"}<!--模板继承-->
+
+{block:minit}{:parent}{code:"_config/user_login"}{/block:minit}
+
+{block:main}
+
+{if $user->userFlag=='Error' }
+
+    <p class="text-danger bg-warning pa10">
+      {lang(user.lon_erlock)} <br>
+      {lang(user.lon_ercnt,$user->usess['errno'])}
+    </p>
+    <p class="text-danger bg-info pa10 mv10">
+      {lang(user.lon_lockto)}：{php echo date('Y-m-d H:i:s',$user->usess['stime']+$user->utmOut); }  
+    </p>
+    <p class="text-danger bg-info pa10 tc">  
+      <a href="{surl(0)}">{lang(user.pub_cuser)}</a>
+    </p>
+
+{elseif $user->userFlag=='Login' }
+
+    <p class="text-danger bg-warning pa10 tc">
+      [{=$user->usess['uname']}] {lang(user.lon_logined)} <br>
+      <a href="{surl(0)}">{lang(user.pub_cuser)}</a>
+    </p>
+    <p class="text-danger bg-info pa10 mv10"> {lang(user.lon_change)}【<a href="?uio-logout">{lang(user.lon_logout)}</a>】;  <br>
+        {lang(user.lon_touto)}：{php echo date('Y-m-d H:i',$user->usess['stime']+$user->utmOut); }  
+    </p>
+
+{elseif !empty($remsg) }
+
+    <p class="text-danger bg-warning pa10">{=$remsg}</p>
+
+{else}
+
+  <!--
+  <p class="bg-info pa10 pm10">
+  {lang(user.lon_noidpw)}
+  </p>
+  <div class="h15 clear">&nbsp;</div>
+  -->
+
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a>{lang(user.lon_3idpw)}</a></li>
+    <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_VIEWS}/base/aimg/a3rd-qq_7.png" height="24" /></a></li>
+    <li role="presentation"><a class="cCCC">{lang(user.lon_3wechat)}</a></li>
+  </ul>
+
+  <div class="user-login">
+    <form action="?login" method="post" name="fmlogin" id="fmlogin">
+    <ul class="row">
+      <li class="col-xs-4 col-md-4"><label for="ex1">{lang(uname)}</label></li>
+      <li class="col-xs-8 col-md-8"><input type="text" class="form-control" id="fm[uname]" name="fm[uname]"></li>
+    </ul>
+    <ul class="row">
+      <li class="col-xs-4 col-md-4"><label for="ex2">{lang(upass)}</label></li>
+      <li class="col-xs-8 col-md-8"><input type="password" class="form-control" id="fm[upass]" name="fm[upass]"></li>
+    </ul>
+    <ul class="row">
+      <li class="col-xs-4 col-md-4"><label for="ex3">{lang(vcode)}</label></li>
+      <li class="col-xs-8 col-md-8"><script>fsInit('fmlogin');</script></li>
+    </ul>
+    <ul class="row">
+      <li class="col-xs-12 col-md-12">
+        <button type="submit" class="btn btn-primary wp100">{lang(submit)}</button>
+        <input name="act" type="hidden" value="dologin" />
+        <input name="recbk" type="hidden" value="{=$recbk}" />
+      </li>
+    </ul>
+    <ul class="row">
+      <li class="col-xs-6 col-md-6">
+        <a class="btn btn-info wp100" href="{surl(uio-getpw)}">{lang(user.lon_fpass)}?</a>
+      </li>
+      <li class="col-xs-6 col-md-6">
+        <a class="btn btn-info wp100" href="{surl(reg)}">{lang(user.lon_reg)}</a> 
+      </li>
+    </ul>
+    </form>
+  </div>
+
+  <div class="user-login hide">
+    微信扫码
+  </div>
+
+  <div class="user-login hide">
+    QQ登录
+  </div>
+
+{/if}
+
+<script>
+$('.nav-tabs li').click(function(){
+    var id = $(this).index();
+    return;
+    $('.nav-tabs li').removeClass('active');
+    $(this).addClass('active');
+    $('.user-login').addClass('hide');
+    $('.user-login').eq(id).removeClass('hide');
+});
+//以下为按钮点击事件的逻辑。注意这里要重新打开窗口
+//否则后面跳转到QQ登录，授权页面时会直接缩小当前浏览器的窗口，而不是打开新窗口
+function qqLogin(){
+    var url = _cbase.run.roots+'/a3rd/qqconn/login.php';
+    // recbk ??? 
+    _cbase.sys_open = 1;
+    winOpen(url,'',480,360,'qqLogin');
+} 
+</script>
+
+{/block:main}

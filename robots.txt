@@ -1,6 +1,6 @@
 #
 # robots.txt for Imcat
-# Version 4.2
+# Version 4.4
 #
 
 User-Agent: SomeSpider
@@ -10,12 +10,12 @@ User-agent: *
 
 Allow: /root/run/demo.php
 Allow: /root/run/rest.php
-Allow: /skin/_pub/logo/
+Allow: /views/base/logo/
 Allow: /vimp/static/
 
 Disallow: /@read/
-Disallow: /code/
+Disallow: /imcat/
 Disallow: /root/
-Disallow: /skin/
+Disallow: /views/
 Disallow: /vary/
 Disallow: /vimp/

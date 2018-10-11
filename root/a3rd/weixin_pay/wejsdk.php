@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 $_cbase['run']['wedemo'] = 1;
-require(dirname(__FILE__).'/we_cfgs.php');
+require(__DIR__.'/we_cfgs.php');
 
 $wecfg = wysBasic::getConfig(); 
 $jssdk = new wmpJssdk($wecfg);

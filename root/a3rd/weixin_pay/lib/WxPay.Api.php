@@ -1,5 +1,5 @@
 <?php
-require dirname(__FILE__)."/WxPay.Config.php";
+require __DIR__."/WxPay.Config.php";
 require LIBS_PAYRUN."/WxPay.Exception.php";
 require LIBS_PAYRUN."/WxPay.Data.php";
 
