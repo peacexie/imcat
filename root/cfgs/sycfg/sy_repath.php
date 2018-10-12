@@ -4,7 +4,7 @@
 $_pub = array();
 
 // 自定义(公共)路径
-#$_pub['{outSwplayerPath}/'] = 'http://cdn_d/vimp/vendui/swplayer/';  
+#$_pub['{outSwplayerPath}/'] = 'http://cdn_d/ximps/vendui/swplayer/';  
 
 // $_att, 附件替换路径; ------------------------
 $_att = array();

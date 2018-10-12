@@ -1,4 +1,13 @@
 
+
+* imcat
+* root / web
+* views / assets
+
+* vary  ->  dynamic / runtime / xvars / xcache / ucache
+* vimp  ->  imports / vendors / ximps / uthird / uvend / component
+
+
 ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
 
 

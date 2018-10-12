@@ -216,7 +216,7 @@ class devScan{
     // 重新发布目录
     static function rstPub(){
         $cfgs = glbConfig::read('pubcfg','sy');
-        $part = basReq::val('part','main'); //part=main/vars/vimp
+        $part = basReq::val('part','main'); //part=main/xvars/ximps
         $pdir = dirname(DIR_PROJ).'/'.date('md-His-').$part; 
         mkdir($pdir,0777);
         $method = 'pub'.ucfirst($part);

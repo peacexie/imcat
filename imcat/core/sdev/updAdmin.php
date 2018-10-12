@@ -31,7 +31,7 @@ class updAdmin extends updBase{
             }
         }
         // copy root files
-        $new = self::cacGet("tab_proj.php-cdemo",$cfg['path']."/vary/dtmp/store");
+        $new = self::cacGet("tab_proj.php-cdemo",$cfg['path']."/xvars/dtmp/store");
         foreach($new as $k=>$v){
             $f = @copy($cfg['path']."/$k",DIR_PROJ."/$k");
         }
@@ -43,7 +43,7 @@ class updAdmin extends updBase{
         $dcfg = array('code'=>DIR_IMCAT,'root'=>DIR_ROOT);
         $pnew = $cfg['path']."/$part"; 
         $pold = $dcfg[$part]; 
-        $new = self::cacGet("tab_$part.php-cdemo",$cfg['path']."/vary/dtmp/store");
+        $new = self::cacGet("tab_$part.php-cdemo",$cfg['path']."/xvars/dtmp/store");
         if(empty($new)) $new = self::listDir($pnew); 
         $old = self::cacGet("tab_$part.php-cdemo",DIR_DTMP."/dset");
         foreach($new as $k=>$v){
@@ -87,7 +87,7 @@ class updAdmin extends updBase{
     
     // 补全dtmp目录
     static function doDirDtmp($cfg){
-        $pnew = $cfg['path']."/vary/dtmp/"; 
+        $pnew = $cfg['path']."/xvars/dtmp/"; 
         $res = self::dirFix($pnew,DIR_DTMP);
         $str = ""; 
         foreach($res as $dir=>$val){
@@ -99,7 +99,7 @@ class updAdmin extends updBase{
     // 添加数据表
     static function doDbInit($cfg){
         devData::struExp('/dbexp/');
-        $pnew = $cfg['path']."/vary/dtmp/dborg/_stru_tables.dbsql"; 
+        $pnew = $cfg['path']."/xvars/dtmp/dborg/_stru_tables.dbsql"; 
         $pold = DIR_DTMP.'/dbexp/_stru_tables.dbsql';
         $new = self::listTab($pnew); 
         $old = self::listTab($pold);
@@ -164,7 +164,7 @@ class updAdmin extends updBase{
                 if(!file_exists(DIR_DTMP."/dbexp/data~$tab.dbsql")) devData::data1ExpInsert("/dbexp/data~",$tab); 
                 $len = 2; //in_array($tab,array('bext_cron')) ? 1 : 2; 
                 if($fdir){ header("Location:?act=cmpdata&ntab=$tab"); die(); }
-                $dnew = self::listData($cfg['path']."/vary/dtmp/dborg/data~$tab.dbsql",$len);
+                $dnew = self::listData($cfg['path']."/xvars/dtmp/dborg/data~$tab.dbsql",$len);
                 $dold = self::listData(DIR_DTMP."/dbexp/data~$tab.dbsql",$len);
                 foreach($dnew as $k=>$v){
                     if($tab=='base_paras' && strpos($k,':prsafe')) continue;

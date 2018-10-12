@@ -247,9 +247,9 @@ sa
 * Add: Multi-db config, It's a nother step to the High-end!
  - Whow to use see: root/cfgs/boot/cfg_db.php-cdemo (The notice)
 * Add: js plug: prettyPhoto --- a set of image player plug
- - Whow to use see: /vimp/vendui/prettyPhoto/demo.html
+ - Whow to use see: /ximps/vendui/prettyPhoto/demo.html
 * Add: doT --- a set of js template engine
- - Whow to use see: /vimp/vendui/common/doT.demo.html
+ - Whow to use see: /ximps/vendui/common/doT.demo.html
 * Add: js plug: swiper --- a set of slide plug
 
 * Fixed: 

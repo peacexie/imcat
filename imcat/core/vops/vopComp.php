@@ -108,7 +108,7 @@ class vopComp{
     // 基本php语法解析, 常量,变量,函数,php代码
     static function phpBasic($stpl=''){
         /* 路径自定义替换 ----------------------------
-            {outSwplayerPath}/ -=> http://cdn_d/vimp/vendui/swplayer/
+            {outSwplayerPath}/ -=> http://cdn_d/ximps/vendui/swplayer/
         */
         $reps = glbConfig::read('repath', 'sy');
         if(!empty($reps['tpl'])){

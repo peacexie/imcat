@@ -11,11 +11,11 @@ User-agent: *
 Allow: /root/run/demo.php
 Allow: /root/run/rest.php
 Allow: /views/base/logo/
-Allow: /vimp/static/
+Allow: /ximps/static/
 
 Disallow: /@read/
 Disallow: /imcat/
 Disallow: /root/
 Disallow: /views/
-Disallow: /vary/
-Disallow: /vimp/
+Disallow: /xvars/
+Disallow: /ximps/

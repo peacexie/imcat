@@ -98,7 +98,7 @@
  - Other tips: a specific version, please see the relevant notes at the release page
 
 * Backup update record
- - Dirs: /vary/dtmp/update/
+ - Dirs: /xvars/dtmp/update/
  - You can copy all the files here, back up, for the necessary follow-up analysis
  
 * Clean up and Finish

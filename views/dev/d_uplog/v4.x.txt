@@ -171,7 +171,7 @@
 * 增加 皮肤(主题)切换：
  - 基于bootstrap界面风格
  - 自行下载主题css：https://bootswatch.com/
- - 配置参考：/vimp/vendui/bootstrap/css/notes.txt
+ - 配置参考：/ximps/vendui/bootstrap/css/notes.txt
 
 * 增强：
  - 改进：兼容伪静态?后的参数如：/dev/mkv.htm?api=Local

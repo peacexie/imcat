@@ -8,7 +8,7 @@
 ### Setup / 安装
 
 * 下载解压
-* 把文件复制到：【/vimp/vendui/KindEditor/】下, 如无`KindEditor`目录，请自行添加该目录
+* 把文件复制到：【/ximps/vendui/KindEditor/】下, 如无`KindEditor`目录，请自行添加该目录
 * 后台设置：架设 / 超管工具 / 核心参数 / 系统编辑器 / [选] KindEditor
 
 

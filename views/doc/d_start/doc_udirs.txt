@@ -21,7 +21,7 @@
 #vdirs#Optimize directories
 
 * dirs: html,ures
- - For optimize: you can move dirs `/vary/html`, `/vary/ures` out from `vary`, 
+ - For optimize: you can move dirs `/xvars/html`, `/xvars/ures` out from `vary`, 
    ( From v3.5, It is optimized in the default set)
  - Or set virtual directory: 
  - Attention to modify the configs in file【/root/cfgs/boot/_paths.php】.

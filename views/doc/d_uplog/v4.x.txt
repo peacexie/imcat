@@ -171,7 +171,7 @@
 * Add: Skin(theme) Switch: 
  - Based on bootstrap skin
  - Please download the skin css: https://bootswatch.com/
- - Config See to: /vimp/vendui/bootstrap/css/notes.txt
+ - Config See to: /ximps/vendui/bootstrap/css/notes.txt
 
 * Improve:
  - Improve: Compatibility parameters after pseudo-static url. eg. /dev/mkv.htm?api=Local

@@ -6,7 +6,7 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = 'e221ad8b-2849-czyx-xmao-2018-abpkjv'; //序列号
+$_cbase['sys']['sn']      = '7add59fc-cc86-czyx-xmao-2018-acd9gd'; //序列号
 $_cbase['sys']['ver']     = '4.4'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
@@ -14,7 +14,7 @@ $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = 'r43lt'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = '29RUr'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 

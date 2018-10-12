@@ -1,4 +1,6 @@
 <?php
+#namespace imcat;
+
 /**
  * 一组别名函数（使用Symfony的dump后添加的,有的叫助手函数）
  * 如果与其它程序一起使用，发现有如下函数冲突，请设置[run.outer]参数即可

@@ -5,7 +5,7 @@
 * Dir : /root/cfgs/boot/
 
 * _paths.php : sys-paths config
- - Can change the sys-dirs as : html/ures, imcat/root/views, vary/vimp
+ - Can change the sys-dirs as : html/ures, imcat/root/views, xvars/ximps
 
 * cfg_adbug.php : The id/pw for auxiliary debugging tools
   -> StartPage : /root/index.php?start 

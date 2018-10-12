@@ -5,7 +5,7 @@
 function autoInc_ys($file=''){
     if(empty($file)) return $file;
     $path = ''; // -- ×Ô¶¯¼ì²âÂ·¾¶
-    // /vary/html/model/yyyy/md/id/
+    // /xvars/html/model/yyyy/md/id/
     for($i=0;$i<6;$i++){
         $path = empty($path) ? __DIR__ : dirname($path);
         $full = "$path$file";

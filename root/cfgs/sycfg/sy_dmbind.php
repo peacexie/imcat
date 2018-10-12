@@ -1,7 +1,7 @@
 <?php
 $_sy_dmbind = array(
 
-	// /vary/html/cargo/2015-9c/h3h1.html
+	// /xvars/html/cargo/2015-9c/h3h1.html
 	// http://pro.my_domain.com/2015-9c/h3h1.html
 	/*
 	array(
@@ -14,7 +14,7 @@ $_sy_dmbind = array(
 
 /*
 
-// /vary/html/cargo/2015-9c/h3h1.html
+// /xvars/html/cargo/2015-9c/h3h1.html
 // /pro1/2015-9c/h3h1.html
 array(
 	'{html}/cargo/', //{html}=PATH_HTML：/run/_init.php中定义，html文档的相对目录
@@ -22,7 +22,7 @@ array(
 	'0', //0-不用正则
 ),
 
-// /vary/html/cargo/2015-9c/h3h1.html
+// /xvars/html/cargo/2015-9c/h3h1.html
 // http://pro2.my_domain.com/2015-9c/h3h1.html
 array(
 	'{html}/cargo/`d#`', //用`d#`,`w#` 分别代表正则的 (\d+)(\w+)
@@ -30,7 +30,7 @@ array(
 	'1', //1-用正则-自动格式化
 ),
 
-// 效果同上/08tools/yssina/vary/html/
+// 效果同上/08tools/yssina/xvars/html/
 array(
 	'{html}\\/cargo\\/(\d+)\\-', 
 	'http://pro3.my_domain.com/\\1-', 

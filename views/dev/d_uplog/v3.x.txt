@@ -226,9 +226,9 @@
 * 增加：多库调用配置
  - 使用见：root/cfgs/boot/cfg_db.php-cdemo 说明
 * 增加：前端js插件：prettyPhoto图片播放插件，
- - 使用见：/vimp/vendui/prettyPhoto/demo.html
+ - 使用见：/ximps/vendui/prettyPhoto/demo.html
 * 增加：前端js模版引擎：doT，
- - 使用见：/vimp/vendui/common/doT.demo.html
+ - 使用见：/ximps/vendui/common/doT.demo.html
 * 增加：前端js插件：swiper滑动插件, 
 
 * 修正：

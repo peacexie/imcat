@@ -5,7 +5,7 @@
 * 目录：/root/cfgs/boot/
 
 * _paths.php : 系统目录设置
- - 可以更改系统目录如：html/ures, imcat/root/views, vary/vimp
+ - 可以更改系统目录如：html/ures, imcat/root/views, xvars/ximps
 
 * cfg_adbug.php : 辅助调试工具的账号密码
  - 起始页：/root/index.php?start 
