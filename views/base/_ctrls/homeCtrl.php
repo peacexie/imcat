@@ -19,8 +19,9 @@ class homeCtrl{
     // home检查
     function check(){
         // 检查路径
-        if(\imcat\devRun::prootGet()!=PATH_PROJ){
-            header('Location:'.PATH_PROJ.$this->start.'?FixProot');
+        $npath = \imcat\devRun::prootGet();
+        if($npath!=PATH_PROJ){
+            header('Location:'.$npath.$this->start.'?FixProot');
             die('<!--FixProot-->');
         }
         // 检查关闭
