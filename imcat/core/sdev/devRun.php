@@ -207,7 +207,7 @@ class devRun{
                 $dsn = 'mysql:host='.$_cfgs['db_host'].';dbname='.$_cfgs['db_name'].'';
                 @$pdo = new \PDO( $dsn, $_cfgs['db_user'], $_cfgs['db_pass']); 
                 // PDO::ATTR_DRIVER_NAME, PDO::ATTR_SERVER_VERSION, PDO::ATTR_SERVER_VERSION
-                $info = " OK : ".$pdo->getAttribute(PDO::ATTR_SERVER_VERSION)."; OK : {$_cfgs['db_name']}";
+                $info = " OK : ".$pdo->getAttribute(\PDO::ATTR_SERVER_VERSION)."; OK : {$_cfgs['db_name']}";
             }catch(\PDOException $e){
                 $info = ' - '.$e->getMessage().' - ';
             }
