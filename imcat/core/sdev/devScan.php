@@ -198,7 +198,7 @@ class devScan{
         self::pmdFlg($pdir,'ures');
         self::pmdFlg($pdir,'html');
     }
-    static function pubVary($pdir,$cfgs){ 
+    static function pubXvars($pdir,$cfgs){ 
         self::pmdFlg($pdir,'ctpl');
         self::pmdFlg($pdir,'dtmp');
         $skip = isset($cfgs['skip']['dtmp']) ? $cfgs['skip']['dtmp'] : array();
@@ -207,7 +207,7 @@ class devScan{
             mkdir("$pdir/dtmp/$dir");
         }
     }
-    static function pubVimp($pdir,$cfgs){ 
+    static function pubXimps($pdir,$cfgs){ 
         foreach ($cfgs['parts']['vimp'] as $sdir) {
             $skip = isset($cfgs['skip'][$sdir]) ? $cfgs['skip'][$sdir] : array();
             comFiles::copyDir(DIR_IMPS.DS.$sdir,"$pdir/$sdir",$skip,$cfgs['skfiles']);

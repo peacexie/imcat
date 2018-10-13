@@ -21,7 +21,7 @@ $_cfgs['db_cset']   = 'utf8';// 数据库编码
 // 数据库缓存
 $_cfgs['dc_on']      = 0; //
 //$_cfgs['dc_type']    = ''; // 不设置为空默认
-$_cfgs['dc_prefix']  = 'gmoKH';
+$_cfgs['dc_prefix']  = 'RoKCI';
 $_cfgs['dc_path']    = '/cacdb'; // /cacdb
 $_cfgs['dc_exp']     = 60; // 600~3600(s)
 

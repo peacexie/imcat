@@ -69,8 +69,8 @@ select[multiple]{height:auto;}
     <a href="?act=rstTabcode"><?php lang('tools.rst_rstcomp',0); ?></a> , 
     <a href="?act=rstTabmini"><?php lang('tools.rst_rstmini',0); ?></a></td>
     <td><a href="?act=rstPub&part=main"><?php lang('tools.rst_rstpub',0); ?></a>:(<a  
-    href="?act=rstPub&part=vary">vary</a>,<a  
-    href="?act=rstPub&part=vimp">vimp</a>)</td>
+    href="?act=rstPub&part=xvars">xvars</a>,<a  
+    href="?act=rstPub&part=ximps">ximps</a>)</td>
     <td><a href="?act=rstCache"><?php lang('tools.rst_rstcache',0); ?></a></td>
   </tr>
 

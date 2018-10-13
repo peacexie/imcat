@@ -5,7 +5,7 @@ $_sy_keepid = '
 ,sysfield,|,kid,did,uid,cid,aid,sid,uname,
 ,aip,atime,auser,eip,etime,euser,
 ,pagebar,|,page,prec,ptype,pkey,
-,sysdir,|,code,root,skin,vary,vimp,html,ures,dtmp,ctpl,static,vendor,vendui,
+,sysdir,|,code,root,skin,html,ures,dtmp,ctpl,static,vendor,vendui,
 ,sysuserid,|,admin,master,peace,lihan,xiecy,shierly,xieys,
 ,sysvariable,|,api,act,file,view,mod,parts,
 ,abase,cbase,db,dop,so,cv,fm,

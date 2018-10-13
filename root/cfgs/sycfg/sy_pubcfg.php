@@ -73,7 +73,7 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl','yscode'),
-    'vendor' => array('Spyc','composer','aliOss'), // 'Monolog','psrlog','silex',
+    'vendor' => array('Spyc','aliOss'), // 'composer','Monolog','psrlog','silex',
     'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
     'vendui' => array('artEditor','swplayer','summernote','wangEditor'), // 
 );
