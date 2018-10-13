@@ -7,10 +7,10 @@ class basJscss{
     // jspop,jq_base,bootstrap,layer
     static function loadExtjs($exjs){
         if(strstr($exjs,'jspop')){
-            require DIR_VIEWS.'/base/jslib/jspop.js';
+            require DIR_VIEWS.'/base/assets/jslib/jspop.js';
         }
         if(strstr($exjs,'jq_base')){
-            require DIR_VIEWS.'/base/jslib/jq_base.js';
+            require DIR_VIEWS.'/base/assets/jslib/jq_base.js';
         }
         if(strstr($exjs,'bootstrap')){
             $jsimp = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
@@ -33,11 +33,11 @@ class basJscss{
         }
         if(strstr($excss,'stpub')){
             echo "/* ------ stpub ------ */\n";
-            include DIR_VIEWS."/base/cssjs/stpub.css"; 
+            include DIR_VIEWS."/base/assets/cssjs/stpub.css"; 
         }
         if(strstr($excss,'jstyle')){
             echo "/* ------ jstyle ------ */\n";
-            include DIR_VIEWS."/base/cssjs/jstyle.css";
+            include DIR_VIEWS."/base/assets/cssjs/jstyle.css";
         }
     }
     // xxx;comm;home
@@ -48,7 +48,7 @@ class basJscss{
             for($i=1;$i<$len;$i++){
                 $imp = $arr[$i];
                 if(!strstr($imp,'/')){
-                    $imp = "/$tpldir/b_jscss/{$arr[$i]}";
+                    $imp = "/$tpldir/assets/{$arr[$i]}";
                 }
                 if(!strstr($imp,$ext)){
                     $imp = "$imp$ext";
@@ -165,12 +165,12 @@ class basJscss{
         echo "\n";
         
 		// ***** 加载Base.js *****
-		require DIR_VIEWS.'/base/jslib/jsbase.js';
-		require DIR_VIEWS.'/base/jslib/jsbext.js';
+		require DIR_VIEWS.'/base/assets/jslib/jsbase.js';
+		require DIR_VIEWS.'/base/assets/jslib/jsbext.js';
         if(strstr($exjs,'jspop')){
-            require DIR_VIEWS.'/base/jslib/jspop.js';
+            require DIR_VIEWS.'/base/assets/jslib/jspop.js';
         }
-        $flang = DIR_VIEWS."/base/jslib/jcore-$lang.js";
+        $flang = DIR_VIEWS."/base/assets/jslib/jcore-$lang.js";
         if(file_exists($flang)) require $flang; 
     }
 
@@ -193,7 +193,7 @@ class basJscss{
             $path = "?ajax-comjs&act=$path$exp&ex$mod=$base";
             $base = PATH_BASE;
         }elseif(in_array(substr($path,0,6),array('/views/','/base/','/~tpl/'))){
-            $path = str_replace(array('/views/','/~tpl/'),array('/',"/$tpldir/b_jscss/"),$path);
+            $path = str_replace(array('/views/','/~tpl/'),array('/',"/$tpldir/assets/"),$path);
             $base = PATH_VIEWS;
         }elseif(in_array(substr($path,0,9),array('?ajax'))){
             $base = PATH_BASE;

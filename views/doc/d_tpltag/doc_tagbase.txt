@@ -34,7 +34,7 @@ Array: {=$_cbase['server']['valkey']},{=$fc['title']} (Recommended add quotes)
   or {=$_cbase[server][valkey]},{=$fc[title]} (Not recommend)
 · {= date('Y-m-d'); } <br>
 · {= 'Hi! '; }{= date('Y-m-d') } 
-· {=PATH_VIEWS}/base/aimg/loadbig.gif
+· {=PATH_VIEWS}/base/assets/aimg/loadbig.gif
 ```
 
 

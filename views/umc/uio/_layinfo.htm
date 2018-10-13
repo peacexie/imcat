@@ -5,9 +5,9 @@ $user = usrBase::userObj('Member');
 <?php glbHtml::page('init',1); ?>
 <title>{block:title}{/block:title}</title>
 {block:hdimp}<?php
-eimp('/base/cssjs/cinfo.css');
-eimp('/base/jslib/jsbase.js');
-//eimp('/base/jslib/jsbext.js');
+eimp('/base/assets/cssjs/cinfo.css');
+eimp('/base/assets/jslib/jsbase.js');
+//eimp('/base/assets/jslib/jsbext.js');
 glbHtml::page('aumeta');
 ?>{/block:hdimp}
 <style type="text/css">{block:hdcss}
@@ -24,7 +24,7 @@ p.nav a{ display:inline-block; padding:2px 3px; margin:3px 3px 0px 3px; border: 
 
 <div class='header'>
     <p class="nav">
-        <img src="{=PATH_VIEWS}/base/logo/imcat-40x.png" width="40" height="40">
+        <img src="{=PATH_VIEWS}/base/assets/logo/imcat-40x.png" width="40" height="40">
         <a href="{surl(login)}">{lang(user.nv2_login)}</a>
         <a href="{surl(reg)}">{lang(user.nv2_reg)}</a>
         <a href="{surl(0)}">{lang(user.pub_cuser)}</a>

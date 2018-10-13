@@ -1,0 +1,20 @@
+
+.about-tbar { background:#EEE; padding:5px 10px; margin:5px 0px 1px 0px; border:1px solid #CCC; }
+.about-tbar i { font-style: normal; }
+.about-tbar i.title { }
+.about-tbar i a { display: inline-block; padding: 0px 5px; }
+.about-map { width:100%; height:600px; margin:10px auto; }
+
+.about-table { border-top:1px dashed #CCC; margin:20px 0; }
+.about-table td { padding:2px 2px; }
+.about-table td:hover { background:#FFC; }
+.about-table i { font-style: normal; display: inline-block; }
+.about-table .title a { font-size:large; }
+.about-table .resume { color:#666; padding:1px 1px; margin:1px 1px; border-bottom:1px dashed #CCC; }
+
+.about-fqas{ margin:10px 0px; }
+.about-fqas dt{ padding:5px; background:#EEE; cursor:pointer; }
+.about-fqas dt i, .about-fqas dt b { font-style: normal; display: inline-block; }
+.about-fqas dt i { font-weight:normal; }
+.about-fqas dd{ padding:5px; }
+.about-fqas .line{ line-height:1px; margin:5px; border-bottom:1px dashed #999; }

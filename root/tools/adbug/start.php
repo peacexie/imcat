@@ -31,8 +31,8 @@ $vcfg = vopTpls::etr1('tpl');
 unset($vcfg['base']);   
 
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
-eimp('/base/cssjs/cinfo.css');
-eimp('/base/jslib/jsbase.js');
+eimp('/base/assets/cssjs/cinfo.css');
+eimp('/base/assets/jslib/jsbase.js');
 glbHtml::page('aumeta');
 ?>
 <base target="_blank"/>

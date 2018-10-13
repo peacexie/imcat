@@ -28,8 +28,8 @@ class editorCtrl{
         echo "var edt_langType = '".@$lang."';\n"; 
         echo "var edt_sysMod = '".@$mod."';\n"; 
         echo "var edt_sysKid = '".@$kid."';\n"; 
-        $d1 = comFiles::get(vopTpls::tinc("b_jscss/editor-func.js", 0));
-        $d2 = comFiles::get(vopTpls::tinc("b_jscss/comm-$lang.js", 0));
+        $d1 = comFiles::get(vopTpls::tinc("assets/editor-func.js", 0));
+        $d2 = comFiles::get(vopTpls::tinc("assets/comm-$lang.js", 0));
         echo "$d1\n\n//($lang)\n$d2";
         include vopTpls::tinc("editor/func-pub", 0);
         include vopTpls::tinc("editor/api_$api", 0);

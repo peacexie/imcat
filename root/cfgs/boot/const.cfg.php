@@ -6,7 +6,7 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = '7add59fc-cc86-czyx-xmao-2018-acd9gd'; //序列号
+$_cbase['sys']['sn']      = 'a16a1f0a-3906-czyx-xmao-2018-adabyx'; //序列号
 $_cbase['sys']['ver']     = '4.4'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
@@ -14,7 +14,7 @@ $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = '29RUr'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = 'gr3YW'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
@@ -65,7 +65,7 @@ $_cbase['ucfg']['ctab'] = 'F00,F0F,060,00F,F60,90F,F69,06F,099,606,60F,906,F6F';
 $_cbase['weixin']['debug']  = true; 
 $_cbase['weixin']['actiks']  = array(); 
 $_cbase['weixin']['haibaoMediaid'] = 'I7mPnzk9v0tF6nHiEmy0sDbtRksBp4pVHSYBZvdROjc';
-$_cbase['weixin']['haibaoPicurl'] = 'http://yscode.txjia.com/uimgs/logo/haibao.jpg';
+$_cbase['weixin']['haibaoPicurl'] = 'http://yscode.txjia.com/uimgs/assets/logo/haibao.jpg';
 $_cbase['weixin']['tplidIndoc'] = 'u6DK6CKG8TnCFGaOwglBPUPa_UvE3nwpQU-k8kP1YpA';
 
 // indoc

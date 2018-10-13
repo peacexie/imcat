@@ -16,8 +16,8 @@ $orguser = 'adm_'.basKeyid::kidRand(0,3);
 $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::page(lang('tools.rst_title'),1);
-eimp('/base/cssjs/cinfo.css');
-eimp('/base/jslib/jsbase.js');
+eimp('/base/assets/cssjs/cinfo.css');
+eimp('/base/assets/jslib/jsbase.js');
 glbHtml::page('aumeta');
 ?>
 <style type='text/css'>

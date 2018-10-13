@@ -1,6 +1,6 @@
 
-document.write("<script src='../views/base/jslib/jsbase.js'></script>");
-document.write("<script src='../views/base/cssjs/mkdown.js'></script>");
+document.write("<script src='../views/base/assets/jslib/jsbase.js'></script>");
+document.write("<script src='../views/base/assets/cssjs/mkdown.js'></script>");
 
 var doc_url = '../views/'+cfg.tpl+'/d_start/doc_down.txt';
 window.onload = function (){

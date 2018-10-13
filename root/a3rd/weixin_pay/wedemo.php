@@ -13,9 +13,9 @@ $wecfg = wysBasic::getConfig($kid);
 $db = db(); 
 
 glbHtml::page("微信接口调试");
-eimp('initJs','jquery;comm;comm(-lang);/base/cssjs/weixin'); 
+eimp('initJs','jquery;comm;comm(-lang);/base/assets/cssjs/weixin'); 
 eimp('initCss','stpub;comm'); // bootstrap,
-echo basJscss::imp("/base/cssjs/weixin.js"); 
+echo basJscss::imp("/base/assets/cssjs/weixin.js"); 
 echo '<style type="text/css">
 #tester { left:620px; top10px; position:fixed; background:#FFF; padding:10px; border:1px solid #CCC; }
 .ngray { color:#F3F; }

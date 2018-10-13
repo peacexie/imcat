@@ -18,7 +18,7 @@ $rs = $pg->exe();
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init'); ?>
 <title>db,翻页:演示1</title>
-<link href="<?php echo PATH_VIEWS; ?>/base/cssjs/stpub.css" rel="stylesheet" type="text/css"/>
+<link href="<?php echo PATH_VIEWS; ?>/base/assets/cssjs/stpub.css" rel="stylesheet" type="text/css"/>
 <link href='<?php echo PATH_VENDUI; ?>/bootstrap/css/bootstrap.min.css' type='text/css' rel='stylesheet'/>
 <style type="text/css">
 body,nav,div {

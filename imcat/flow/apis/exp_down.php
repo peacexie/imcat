@@ -135,7 +135,7 @@ if($view=='list'){
         
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[pid]|$pid","kid|".(empty($kid) ? 'is__add' : $kid),"cid|$cid"));
-        echo basJscss::jscode(0,PATH_VIEWS.'/adm/b_jscss/finps.js');
+        echo basJscss::jscode(0,PATH_VIEWS.'/adm/assets/finps.js');
         echo basJscss::jscode("$(function(){mitmInit('itm')})");
         
     }

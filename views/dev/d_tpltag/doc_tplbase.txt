@@ -33,23 +33,23 @@
 #imhead#加载CSS/JS
 
 ```
-<link href='{=PATH_VIEWS}/dev/b_jscss/home.css' type='text/css' rel='stylesheet'/>
+<link href='{=PATH_VIEWS}/dev/assets/home.css' type='text/css' rel='stylesheet'/>
 <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ 或
 {php}
-eimp('/~tpl/cinfo.css'); // /views/{tpldir}/b_jscss/a_jscss.css
+eimp('/~tpl/cinfo.css'); // /views/{tpldir}/assets/a_jscss.css
 eimp('/layer/layer.js','vendui');
-eimp('/base/cssjs/cinfo.css'); // /views/base/cssjs/cinfo.css
-eimp('/base/jslib/jsbase.js'); // /views/base/cssjs/jsbase.js
+eimp('/base/assets/cssjs/cinfo.css'); // /views/base/assets/cssjs/cinfo.css
+eimp('/base/assets/jslib/jsbase.js'); // /views/base/assets/cssjs/jsbase.js
 {php}
 ------ ------ 或（初始化）
 eimp('initJs','zepto,jquery,bootcss,bootstrap,layer;comm;comm(-lang);user'); // in head
  -=>
-    // js-cfgs + /base/jslib/jsbase.js + /base/jslib/jsbext.js
+    // js-cfgs + /base/assets/jslib/jsbase.js + /base/assets/jslib/jsbext.js
     + 
-    <script src='/views/{tpldir}/b_jscss/comm.js'></script>
-    <script src='/views/{tpldir}/b_jscss/comm-{lang}.js'></script> // {lang}=cn/en
-    <script src='/views/{tpldir}/b_jscss/user.js'></script> // {lang}=cn/en
+    <script src='/views/{tpldir}/assets/comm.js'></script>
+    <script src='/views/{tpldir}/assets/comm-{lang}.js'></script> // {lang}=cn/en
+    <script src='/views/{tpldir}/assets/user.js'></script> // {lang}=cn/en
     + (以上合并,以下不合并)
     <script src='{=PATH_VENDUI}/jquery/zepto-1x.js'></script> // 与jquer用其一即可
     <script src='{=PATH_VENDUI}/jquery/jquery-3.x.js'></script> // 1.x/3.x自适应
@@ -60,14 +60,14 @@ eimp('initCss','bootstrap,stpub,jstyle;comm(-mob);faqs'); // in head
  -=>
     @import url({=PATH_VENDUI}/bootstrap/css/bootstrap.min.css);
     + (以上不合并,以下合并)
-    <link href='/base/jslib/stpub.css' type='text/css' rel='stylesheet'/>
-    <link href='/base/cssjs/jstyle.css' type='text/css' rel='stylesheet'/>
-    <link href='/views/{tpldir}/b_jscss/comm{-mob}.css' type='text/css' rel='stylesheet'/> // {-mob}自适应
-    <link href='/views/{tpldir}/b_jscss/faqs.css' type='text/css' rel='stylesheet'/>
+    <link href='/base/assets/jslib/stpub.css' type='text/css' rel='stylesheet'/>
+    <link href='/base/assets/cssjs/jstyle.css' type='text/css' rel='stylesheet'/>
+    <link href='/views/{tpldir}/assets/comm{-mob}.css' type='text/css' rel='stylesheet'/> // {-mob}自适应
+    <link href='/views/{tpldir}/assets/faqs.css' type='text/css' rel='stylesheet'/>
 eimp('loadExtjs','jspop,jq_base,bootstrap,layer'); // 可放body最后 
  -=>
-    <script src='/views/base/jslib/jspop.js'></script>
-    <script src='/views/base/jslib/jq_base.js'></script>
+    <script src='/views/base/assets/jslib/jspop.js'></script>
+    <script src='/views/base/assets/jslib/jq_base.js'></script>
     <script src='{=PATH_VENDUI}/bootstrap/js/bootstrap.min.js'></script>
     <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ 或（其他）

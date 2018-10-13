@@ -63,8 +63,8 @@ HTML;
 <!DOCTYPE html><html><head>
 <?php glbHtml::page('init',1); ?>
 <title><?php lang('tools.binf_userenv',0);?>-(COOKIE,SERVER,phpinfo(4,8),Login,Logout)</title>
-<link href="<?php echo PATH_VIEWS; ?>/base/cssjs/cinfo.css?v1" type='text/css' rel='stylesheet'/>
-<script src="<?php echo PATH_VIEWS; ?>/base/jslib/jsbase.js?v1"></script>
+<link href="<?php echo PATH_VIEWS; ?>/base/assets/cssjs/cinfo.css?v1" type='text/css' rel='stylesheet'/>
+<script src="<?php echo PATH_VIEWS; ?>/base/assets/jslib/jsbase.js?v1"></script>
 
 <style type="text/css">
 .notice { font-size:small; color:#F00; background:#FF9; padding:5px; }

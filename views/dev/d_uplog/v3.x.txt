@@ -159,7 +159,7 @@
  - 代码细节，优化调整
 
 * 调整logo/sinc目录
- - /views/base/aimg/ 相关logo都移动到 /views/base/logo/ 目录
+ - /views/base/assets/aimg/ 相关logo都移动到 /views/base/assets/logo/ 目录
  - /root/cfgs/sinc/ 相关logo都移动到 /views/base/stpl/ 目录
  - 让运营者更便于管理替换自己的图标
 

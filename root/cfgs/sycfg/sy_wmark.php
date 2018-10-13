@@ -4,7 +4,7 @@ namespace imcat;
 
 $_sy_wmark['type']   = 'text'; // 0,pic,text, 水印类型：pic-配置中的图片, text-配置中的文字
 $_sy_wmark['stext']  = basEnv::topDomain($_SERVER['SERVER_NAME']); //水印文字内容('my_domain.com')
-$_sy_wmark['plogo']  = '/logo/logo-site.gif'; //水印图片文件(root目录)
+$_sy_wmark['plogo']  = '/assets/logo/logo-site.gif'; //水印图片文件(root目录)
 $_sy_wmark['width']  = '200'; //文字宽度
 $_sy_wmark['height'] = '40'; //文字高度
 $_sy_wmark['size']   = '24'; //文字大小

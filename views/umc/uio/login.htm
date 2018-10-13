@@ -32,8 +32,8 @@
 
   <ul class="nav nav-tabs" nav-justified>
     <li role="presentation" onClick="funcLogin(0)" class="active"><a><i class="fa fa-pencil c33F"></i>{lang(user.lon_3idpw)}</a></li>
-    <li role="presentation" onClick="funcLogin(1)"><a><img src="{=PATH_VIEWS}/base/aimg/a3rd-wx.png"  height="22" />{lang(user.lon_3wechat)}</a></li>
-    <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_VIEWS}/base/aimg/a3rd-qq_7.png" height="24" /><!--{lang(user.lon_3qqcon)}--></a></li>
+    <li role="presentation" onClick="funcLogin(1)"><a><img src="{=PATH_VIEWS}/base/assets/aimg/a3rd-wx.png"  height="22" />{lang(user.lon_3wechat)}</a></li>
+    <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_VIEWS}/base/assets/aimg/a3rd-qq_7.png" height="24" /><!--{lang(user.lon_3qqcon)}--></a></li>
   </ul>
 
   <div class="block-login">
@@ -48,7 +48,7 @@
 
       <div id="idx_lscan" class="left w450" style="display:none;">
           <p class="tc" id="lscan_msg">
-          <img src="{=PATH_VIEWS}/base/aimg/loadbig.gif" id="lscan_img" width="250">
+          <img src="{=PATH_VIEWS}/base/assets/aimg/loadbig.gif" id="lscan_img" width="250">
           </p>
           <p class="tc">{lang(user.lon_scana)}</p>
       </div>
@@ -94,7 +94,7 @@
 
 {block:footer}
 {:parent}
-{php}eimp('/base/jslib/jq_base.js');{/php}
+{php}eimp('/base/assets/jslib/jq_base.js');{/php}
 <script>
 var ubase = '<?php echo PATH_ROOT."/plus/api/wechat.php?"; ?>';
 var iTime = 0;

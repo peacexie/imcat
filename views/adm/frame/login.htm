@@ -19,7 +19,7 @@ body, input, textarea, select, button{ font-size:14px; }
 
 <div class="login-outer panel panel-primary">
     <div class="panel-heading login-head">
-        <img class="logo right" src="{=PATH_VIEWS}/base/logo/logo120x60.jpg">
+        <img class="logo right" src="{=PATH_VIEWS}/base/assets/logo/logo120x60.jpg">
         <select class="form-control" id="locSetS" onchange="location.href=this.value;">
             <option value=""> En&#x21d4;中 </option>
             <?php echo basLang::links("<option value='{url}'>{title}</option>"); ?>
@@ -79,7 +79,7 @@ body, input, textarea, select, button{ font-size:14px; }
 </div>
 
 </body></html>
-{php}eimp('/base/jslib/jq_base.js');{/php}
+{php}eimp('/base/assets/jslib/jq_base.js');{/php}
 <script>
 $(function(){
     winAutoMargin('topMargin');

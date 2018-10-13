@@ -69,7 +69,7 @@ class _defCtrl{
             require $full;
         }
         echo "\n<!--inc:end-->\n"; 
-        eimp('/base/jslib/jq_base.js');
+        eimp('/base/assets/jslib/jq_base.js');
         eimp('/layer/layer.js','vendui');
         eimp('/bootstrap/js/bootstrap.min.js','vendui');
         // footer

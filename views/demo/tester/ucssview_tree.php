@@ -1,8 +1,8 @@
 
 <?php 
 (!defined('RUN_INIT')) && die('No Init');
-eimp('/base/cssjs/sordbar.js');
-eimp('/base/jslib/jspop.js'); 
+eimp('/base/assets/cssjs/sordbar.js');
+eimp('/base/assets/jslib/jspop.js'); 
 ?>
 <!--//plus/ajax/comjs.php?act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand/--> 
 <script src='<?php echo PATH_BASE; ?>?ajax-comjs&act=jsTypes:cargo,china,natcn;'></script>

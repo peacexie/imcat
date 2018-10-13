@@ -1,18 +1,7 @@
 
 
-* imcat
-* root / web
-* views / assets
-
-* vary  ->  dynamic / runtime / xvars / xcache / ucache
-* vimp  ->  imports / vendors / ximps / uthird / uvend / component
-
 
 ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
-
-
-* tab_[code|skin].php-cdemo  - git, online
-* plus - editor/ file        - test
 
 *root/error
  - 
@@ -38,12 +27,6 @@ https://segmentfault.com/a/1190000016389031
 CSS实现水平垂直居中的1010种方式（史上最全）
 
 
-～～～～～～～～～～～～～
-
-* index : home,root,base
-
-* index, adm, umc, 
-
 ------------------------------------------------------------------------------
 
 http://201886.txjia.com/
@@ -54,6 +37,9 @@ http://192.168.1.228/peace/imcat/cases/201886/
 
 
 ### v4.5
+
+
+* tag-build
 
 * dir调整
  - extra ???

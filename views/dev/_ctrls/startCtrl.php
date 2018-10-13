@@ -29,11 +29,11 @@ class startCtrl{
             $subs = array(
                 'base/jslib',
                 'base/cssjs',
-                'adm/b_jscss',
-                'chn/b_jscss',
-                'dev/b_jscss',
-                'mob/b_jscss',
-                'umc/b_jscss',
+                'adm/assets',
+                'chn/assets',
+                'dev/assets',
+                'mob/assets',
+                'umc/assets',
             ); 
         }else{
             $root = DIR_IMCAT.'/core';

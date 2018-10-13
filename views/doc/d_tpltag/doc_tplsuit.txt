@@ -12,7 +12,7 @@
  - Add sub dir: _config(Tpl Configs), _ctrls(Tpl Extra Class) 
  - Other sub dir reference existing template, self planning
  - Add img/js/css dir:
- - Add sub dir: b_img(Image,Icon), b_jscss(js/css) 
+ - Add sub dir: b_img(Image,Icon), assets(js/css) 
  
 * Add Entry:
  - Dir: \root\run\

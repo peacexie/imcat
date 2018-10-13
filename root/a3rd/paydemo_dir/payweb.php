@@ -25,7 +25,7 @@ if($act=='dologin'){
 <title><?php lang('a3rd.demo_title',0); ?></title>
 <script src="<?php echo PATH_BASE; ?>?ajax-comjs&act=autoJQ"></script>
 <script src="<?php echo PATH_BASE; ?>?ajax-comjs"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_VIEWS; ?>/base/cssjs/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_VIEWS; ?>/base/assets/cssjs/stpub.css'/>
 <style type="text/css">
 .pgu_login{ width:640px; border:1px solid #CCC; padding:2px; margin:10px auto; font-size:14px; }
 .pgu_login p{ padding:5px; line-height:150%; }
@@ -38,7 +38,7 @@ if($act=='dologin'){
 .login i { font-style:normal; display:inline-block; width:65px; padding-left:10px; }
 #evf_vtip{ display:none; }
 </style>
-<link rel="shortcut icon" href="<?php echo PATH_VIEWS; ?>/base/logo/favicon.ico" />
+<link rel="shortcut icon" href="<?php echo PATH_VIEWS; ?>/base/assets/logo/favicon.ico" />
 </head>
 <body>
 <div id="topMargin" style="display:none; border:0px solid #999;"></div>

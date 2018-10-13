@@ -130,7 +130,7 @@ class basLang{
             $ops = "<option value=''> En<>中 </option>";
             $ops .= basLang::links("<option value='{url}'>{title}</option>",array());
         }
-        $img = $img ? '<img src="'.PATH_VIEWS.'/base/logo/imcat-40x.png" width="40" height="40">' : '';
+        $img = $img ? '<img src="'.PATH_VIEWS.'/base/assets/logo/imcat-40x.png" width="40" height="40">' : '';
         echo "<p>$img<select id='locSetS' onchange='location.href=this.value;'>$ops</select></p>";
     }
     // shead

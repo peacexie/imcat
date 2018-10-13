@@ -17,8 +17,8 @@ if($act=='testMkvs'){
 }
 
 glbHtml::page("Check/Scan");
-eimp('/base/cssjs/cinfo.css');
-eimp('/base/jslib/jsbase.js');
+eimp('/base/assets/cssjs/cinfo.css');
+eimp('/base/assets/jslib/jsbase.js');
 
 $dcfgs = array(
  'curlDown' => 37712,

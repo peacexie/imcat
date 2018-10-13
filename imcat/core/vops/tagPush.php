@@ -14,8 +14,8 @@ class tagPush extends tagList{
     }
     static function load(){
         echo basJscss::imp('/layer/layer.js','vendui');
-        echo basJscss::imp('/base/cssjs/adpush.css');
-        echo basJscss::imp('/base/cssjs/adpush.js');
+        echo basJscss::imp('/base/assets/cssjs/adpush.css');
+        echo basJscss::imp('/base/assets/cssjs/adpush.js');
         $lngs = "{ps_pinfo:'".basLang::show('flow.ps_pinfo')."',ps_title:'".basLang::show('flow.ps_title')."'}";
         echo basJscss::jscode("Lang.push=$lngs;");
     }

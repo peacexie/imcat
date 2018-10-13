@@ -232,7 +232,7 @@ if($act=='iform'){
     }
 
     echo $navStr; 
-    echo "<script src='".PATH_VIEWS."/adm/b_jscss/finps.js'></script>";
+    echo "<script src='".PATH_VIEWS."/adm/assets/finps.js'></script>";
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
     echo "<tr><th>项目</th><th>设置</th></tr>";
     $jsb = $jsc = "";
@@ -293,7 +293,7 @@ if($act=='iform'){
     $tmps = $db->table($tbexd)->where("did='$did'")->select(); # AND dno='$k2'
     $datas = array();
     foreach ($tmps as $kd=>$vd) { $datas[$vd['dno']]=$vd; }
-    echo "<script src='".PATH_VIEWS."/adm/b_jscss/finps.js'></script>";
+    echo "<script src='".PATH_VIEWS."/adm/assets/finps.js'></script>";
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
     echo "<tr><th>表单项目/标记</th><th>选项</th><th>票数</th><th>描述</th></tr>";
     $jsb = $jsc = "";

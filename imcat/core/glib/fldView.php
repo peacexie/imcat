@@ -122,7 +122,7 @@ class fldView{
         $upsize1 = $ucfg['upsize1']=='(supper)'?120123:$ucfg['upsize1'];
         $_cbase['run']['pm_upsize1'] = "_cbase.run.pm_upsize1='$upsize1'; ";
         // js/css # /jqui/jquery-fileupload.css
-        $item  = basJscss::imp("/base/cssjs/multpic.js");
+        $item  = basJscss::imp("/base/assets/cssjs/multpic.js");
         $item .= basJscss::imp("/jqui/jquery-ui.min.js",'vendui');
         $item .= basJscss::imp("/jqui/jquery-fileupload.js",'vendui');
         return $item;

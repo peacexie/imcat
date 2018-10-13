@@ -11,34 +11,34 @@ div { margin:10px; border:1px solid #CCF; }
 
 
 <div id="test21" style="width:150px; height:80px; overflow:hidden">
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2008.jpg' width="120" height="60" />logo-2008.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2009.jpg' width="120" height="60" />logo-2009.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2010.jpg' width="120" height="60" />logo-2010.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2011.jpg' width="120" height="60" />logo-2011.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2008.jpg' width="120" height="60" />logo-2008.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2009.jpg' width="120" height="60" />logo-2009.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2010.jpg' width="120" height="60" />logo-2010.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2011.jpg' width="120" height="60" />logo-2011.jpg</p>
 </div>    
 
 <div id="test22" style="width:150px; height:80px; overflow:hidden">
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2008.jpg' width="120" height="60" alt="08" />logo-2008.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2009.jpg' width="120" height="60" alt="09" />logo-2009.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2010.jpg' width="120" height="60" alt="10" />logo-2010.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2011.jpg' width="120" height="60" alt="11" />logo-2011.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2008.jpg' width="120" height="60" alt="08" />logo-2008.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2009.jpg' width="120" height="60" alt="09" />logo-2009.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2010.jpg' width="120" height="60" alt="10" />logo-2010.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2011.jpg' width="120" height="60" alt="11" />logo-2011.jpg</p>
 </div>
 
 <div style="width:130px; height:120px; overflow:hidden">
 <div id="test23">
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2008.jpg' width="120" height="60" />logo-2008.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2009.jpg' width="120" height="60" />logo-2009.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2010.jpg' width="120" height="60" />logo-2010.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2011.jpg' width="120" height="60" />logo-2011.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2008.jpg' width="120" height="60" />logo-2008.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2009.jpg' width="120" height="60" />logo-2009.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2010.jpg' width="120" height="60" />logo-2010.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2011.jpg' width="120" height="60" />logo-2011.jpg</p>
 </div>
 </div>
 
 <div style="width:130px; height:120px; overflow:hidden">
 <div id="test24">
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2008.jpg' width="120" height="60" alt="08" />logo-2008.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2009.jpg' width="120" height="60" alt="08" />logo-2009.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2010.jpg' width="120" height="60" alt="10" />logo-2010.jpg</p>
-<p><img src='<?php echo PATH_VIEWS; ?>/base/logo/base/logo-2011.jpg' width="120" height="60" alt="11" />logo-2011.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2008.jpg' width="120" height="60" alt="08" />logo-2008.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2009.jpg' width="120" height="60" alt="08" />logo-2009.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2010.jpg' width="120" height="60" alt="10" />logo-2010.jpg</p>
+<p><img src='<?php echo PATH_VIEWS; ?>/base/assets/logo/base/logo-2011.jpg' width="120" height="60" alt="11" />logo-2011.jpg</p>
 </div>
 </div>
 

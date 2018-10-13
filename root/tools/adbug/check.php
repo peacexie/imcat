@@ -33,8 +33,8 @@ if($act=='image'){
 }
 
 glbHtml::page(lang('tools.chk_envcheck')."-$title");
-eimp('/base/cssjs/cinfo.css');
-eimp('/base/jslib/jsbase.js');
+eimp('/base/assets/cssjs/cinfo.css');
+eimp('/base/assets/jslib/jsbase.js');
 glbHtml::page('aumeta');
 
 $iniPath = get_cfg_var('cfg_file_path');

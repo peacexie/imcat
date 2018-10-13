@@ -14,9 +14,9 @@ if(@$debug['type']=='qrGet'){ //cookie-header问题,放在echo输出前
 }
 
 glbHtml::page("微信接口调试");
-eimp('initJs','jquery;comm;comm(-lang);/base/cssjs/weixin'); 
+eimp('initJs','jquery;comm;comm(-lang);/base/assets/cssjs/weixin'); 
 eimp('initCss','stpub;comm'); // bootstrap,
-echo basJscss::imp("/base/cssjs/weixin.js"); 
+echo basJscss::imp("/base/assets/cssjs/weixin.js"); 
 echo "<style type='text/css'>.radio{display:inline-block;}</style>";
 glbHtml::page('body',' style="margin:20px;"');
 wxDebugNavbar();

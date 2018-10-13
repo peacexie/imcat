@@ -12,7 +12,7 @@ defined('PATH_ROOT') || define('PATH_ROOT','../../');
 <title><?php lang('a3rd.xresult_title',0); ?></title>
 <script src="<?php echo PATH_BASE; ?>?ajax-comjs&act=autoJQ"></script>
 <script src="<?php echo PATH_BASE; ?>?ajax-comjs"></script>
-<link rel='stylesheet' type='text/css' href='<?php echo PATH_VIEWS; ?>/base/cssjs/stpub.css'/>
+<link rel='stylesheet' type='text/css' href='<?php echo PATH_VIEWS; ?>/base/assets/cssjs/stpub.css'/>
 <style type="text/css">
 .pay_info{ width:640px; border:1px solid #CCC; padding:10px; margin:10px auto; font-size:14px; }
 

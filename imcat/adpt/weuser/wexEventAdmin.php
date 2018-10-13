@@ -6,7 +6,7 @@ namespace imcat;
 class wexEventAdmin extends wysEvent{
 
     //public $haibaoMediaid = 'I7mPnzk9v0tF6nHiEmy0sDbtRksBp4pVHSYBZvdROjc';
-    //public $haibaoPicurl = 'http://yscode.txjia.com/uimgs/logo/haibao.jpg';
+    //public $haibaoPicurl = 'http://yscode.txjia.com/uimgs/assets/logo/haibao.jpg';
 
     function __construct($post,$wecfg){ 
         parent::__construct($post,$wecfg); 
@@ -153,10 +153,10 @@ class wexEventAdmin extends wysEvent{
             array('title'=>'[英语]迪斯尼神奇英语','desc'=>'','url'=>'{svrtxcode}/learn/disney.htm?','picurl'=>'',),
             array('title'=>'[数字数学]算24游戏','desc'=>'','url'=>'{svrtxcode}/learn/ms-suan24.htm?','picurl'=>'',),
             //array('title'=>'','desc'=>'','url'=>'?','picurl'=>'',),
-            array('title'=>'[智力]称鸡蛋','desc'=>'','url'=>'{svrtxcode}/about/egg.htm?','picurl'=>'{svrtxcode}/uimgs/base/logo/gezi1-40x.jpg',),
+            array('title'=>'[智力]称鸡蛋','desc'=>'','url'=>'{svrtxcode}/about/egg.htm?','picurl'=>'{svrtxcode}/uimgs/base/assets/logo/gezi1-40x.jpg',),
             array('title'=>'[健康保健]保护视力-眼保健操','desc'=>'','url'=>'{svrtxcode}/health/cmshili.htm?','picurl'=>'',),
             array('title'=>'[健康保健]食物相克查询','desc'=>'','url'=>'{svrtxcode}/health/cmxke.htm?','picurl'=>'',),
-            array('title'=>'[应用]全国城市-天气预报','desc'=>'','url'=>'{svrtxcode}/about/tianqi.htm?','picurl'=>'{svrtxcode}/uimgs/base/logo/gezi-fly.gif',),
+            array('title'=>'[应用]全国城市-天气预报','desc'=>'','url'=>'{svrtxcode}/about/tianqi.htm?','picurl'=>'{svrtxcode}/uimgs/base/assets/logo/gezi-fly.gif',),
         ); 
         die($this->remNews($news));
     }

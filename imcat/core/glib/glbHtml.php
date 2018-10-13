@@ -25,7 +25,7 @@ class glbHtml{
             echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";
             self::page('viewport'); 
             if($ext) self::page('robots'); 
-            if(empty($iex)) echo "<link rel='shortcut icon' href='".PATH_VIEWS."/base/logo/favicon.ico' />\n";
+            if(empty($iex)) echo "<link rel='shortcut icon' href='".PATH_VIEWS."/base/assets/logo/favicon.ico' />\n";
         }else{ //head
             $_cbase['run']['headed'] = 1;
             $mod || $mod = $_cbase['sys_name'];
@@ -110,7 +110,7 @@ class glbHtml{
         echo "$str$tabend</form>";
         // utabResize
         if(!empty($_cbase['run']['tabResize'])){
-            echo basJscss::imp('/base/cssjs/resizeCols.js');
+            echo basJscss::imp('/base/assets/cssjs/resizeCols.js');
         }
     }
     
