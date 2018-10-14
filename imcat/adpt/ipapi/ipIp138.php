@@ -1,4 +1,6 @@
 <?php
+namespace imcat;
+
 // »ñÈ¡ipµØÖ·-Ip138
 class ipIp138{
 	
