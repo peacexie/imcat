@@ -57,7 +57,7 @@ class comStore{
         }else{
             $res = array();
             foreach(self::$cfgs['types'] as $cls=>$cfg) {
-                if(in_array($dfix,$cfg['mdirs'])){
+                if(empty($cfg['mdirs']) || in_array($dfix,$cfg['mdirs'])){
                     $res[$cls] = $cfg;
                 }
             }

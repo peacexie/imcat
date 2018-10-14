@@ -1,16 +1,6 @@
 
-
-
-公司介绍；
-公司简介/企业文化/服务内容/公司新闻/公司图片/常见问题/联系我们/责权申明/产品介绍
-要不要这么复杂？可减少一些
-
-产品介绍：
-
-
-
-
-
+{"rid":"m1tool","rt":"工具","pid":"left_m2sys","pt":"  系统工具","title":"系统缓存","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-update"}
+[{"rid":"m1tool","rt":"工具","pid":"left_m2sys","pt":"  系统工具","title":"系统缓存","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-update"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"模块架设","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-groups"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"(管理员)添加","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=adminer&view=form"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"管理员","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=adminer"},{"rid":"m1coms","rt":"互动","pid":"left_m2indoc","pt":"  内部公文","title":"公文管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=indoc"},{"rid":"m1coms","rt":"互动","pid":"left_m2else","pt":"  其他互动","title":"网站留言管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=gbook"},{"rid":"m1coms","rt":"互动","pid":"left_m2else","pt":"  其他互动","title":"笔记管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=notea"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":"( 样例文档)增加","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=demo&view=form"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":" 样例文档","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=demo"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":" 样例文档","url":"http://127.0.0.1/peace/imcat/catmain/root/run/adm.php?mkv=dops-a&mod=demo"}]
 
 
 ～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
@@ -50,6 +40,9 @@ http://192.168.1.228/peace/imcat/cases/201886/
 
 ### v4.5
 
+* 企业站：中英文：介绍，  产品，  新闻，  留言，联络
+                 about, cargo, news,   gbook, about
+                 intro, product, info, gbook, 
 
 * tag-build
 
