@@ -1,1 +1,4 @@
-deny from all
+<FilesMatch \.(?i:php|exe)$>
+   Order allow,deny
+   Deny from all
+</FilesMatch> 
