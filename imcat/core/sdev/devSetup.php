@@ -102,11 +102,11 @@ class devSetup{
         }
         $dstr .= "\n(!@~)isend\n";
         $dres = "\n$dstr\n"; 
-        comFiles::put(DIR_DTMP."$fp.dbsql",$dres);
+        comFiles::put(DIR_VARS."$fp.dbsql",$dres);
         $ares['keys'] = implode(',',$ares['keys']);
         $ares['notes'] = '';
         $ares = "<?php\nreturn ".var_export($ares,1).";\n?>";
-        comFiles::put(DIR_DTMP."$fp.php",$ares);
+        comFiles::put(DIR_VARS."$fp.php",$ares);
         return $fp;
     }
 
@@ -136,9 +136,9 @@ class devSetup{
         $jstr .= "\nfYES='".FLAGYES."',\nfNO='".FLAGNO."',";
         $jstr .= "\nfRes='".(($okcnt && $okcnt==$nstep) ? lang('devsetup_donen') : lang('devsetup_nosetup'))."',";
         
-        $files = comFiles::listDir(DIR_DTMP.'/dborg'); 
+        $files = comFiles::listDir(DIR_VARS.'/dborg'); 
         if(empty($files)){
-            $msg = 'NOT found init setup data in `'.PATH_DTMP.'/dborg/`';
+            $msg = 'NOT found init setup data in `'.DIR_VARS.'/dborg/`';
             glbError::show($msg);
         }
         $all_tabs = array_keys($files['file']); 

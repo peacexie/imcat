@@ -38,19 +38,15 @@ class _defCtrl{
 
     // _defAct
     function _defAct(){
+        global $_cbase; 
         usrPerm::run();
         // init
-        global $_cbase;
         extract(basReq::sysVars()); 
+        $mkv = $this->ucfg['mkv'];
         $_groups = glbConfig::read('groups'); 
         $db = glbDBObj::dbObj();
         $user = usrBase::userObj('Admin');
         $aurl = basReq::getUri(-2); 
-        if(strpos($aurl[1],'&frame=1')){
-            $reurl = str_replace('&frame=1','',$aurl[1]); 
-            $reurl = comParse::urlBase64($reurl,0); 
-            header('Location:'."?mke=$reurl");
-        }
         $file = str_replace('-','/',$this->ucfg['mkv']);
         // head
         glbHtml::page(basLang::show('admin.adm_center').'-(sys_name)',1);

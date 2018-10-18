@@ -1,7 +1,7 @@
 <?php
 
 $groups = read('groups');
-extract(pfcfgPars(), EXTR_OVERWRITE); 
+extract(tex('texFile')->fopPars(), EXTR_OVERWRITE); 
 
 $dfile = req('dfile',''); 
 $cfg_dirs = read('urdirs','sy');
@@ -46,8 +46,8 @@ if($dfile && $_admPerm && $_delPath){
     @$dre = unlink($rdir.$dfile); 
     $dmsg = $dre ? lang('plus.fv_delok') : lang('plus.fv_delng');
 }
-pfileHead($parts,lang('plus.fv_ftitle'));
-$allpars = pfcfgPars(0);
+tex('texFile')->fopHead($parts,lang('plus.fv_ftitle'));
+$allpars = tex('texFile')->fopPars(0);
 ?>
 
 <table border='1' class='tbdata'>

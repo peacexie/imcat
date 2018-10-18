@@ -1,5 +1,6 @@
 
-var admSloc=new mulStore('local'); 
+var admSloc = new mulStore('local');
+var admSses = new mulStore('session');
 
 function admLinks(){
     var _o = $('#adi_links p');

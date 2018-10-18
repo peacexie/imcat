@@ -161,6 +161,7 @@ class vopTpls{
             if(strpos($file,'.maobak')) continue;
             $key = str_replace('.php','',$file);
             $kc = "_$key"; $km = substr($key,3);
+            if(!in_array($km,array('va_','ve_','vc_')) || !isset($$kc)) return $re;
             include "$dir/$file"; $cfg[$km] = $$kc;
             if(!in_array($key,array('va_docs'))){ //,'va_home'
                 $re = $re + self::$cb($cfg[$km],$km,$mode); 

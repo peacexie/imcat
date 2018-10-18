@@ -18,12 +18,12 @@ devData::data1ExpInsert('/debug/','dext_cargo',array(),0);
 
 // 清理:记录文件
 $stamp = time()-5*86400;
-$lists = comFiles::listDir(DIR_DTMP.'/debug'); 
+$lists = comFiles::listDir(DIR_VARS.'/debug'); 
 foreach ($lists['file'] as $file => $row) {
-    if($row[0]<$stamp) unlink(DIR_DTMP.'/debug/'.$file);
+    if($row[0]<$stamp) unlink(DIR_VARS.'/debug/'.$file);
 }
 
 #die();
-//basDebug::bugLogs('demo_file','do-sth','detmp','db');
+#basDebug::bugLogs('demo_file','do-sth','detmp','db');
 
 $rdo = 'pass';

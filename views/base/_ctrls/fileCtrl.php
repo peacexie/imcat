@@ -16,7 +16,6 @@ class fileCtrl{
         $this->ucfg = $ucfg;
         $this->vars = $vars;
         // check-perm
-        vopTpls::tinc('info/file-func');
         $this->user = user(array('Admin','Member'));
         $this->user->userFlag=='Guest' && basMsg::show('Not Login.','die'); //未登录
     }
@@ -24,7 +23,7 @@ class fileCtrl{
     function updeelAct(){
         global $_cbase;
         $user = $this->user;
-        $allpars = pfcfgPars(0);
+        $allpars = tex('texFile')->fopPars(0);
         include vopTpls::tinc('info/file-updeel',0);
         die();
     }

@@ -98,7 +98,7 @@ class devData{
     // struImp('/dbexp/'); 从文件导入结构
     static function struImp($path){
         $db = glbDBObj::dbObj(); 
-        $file = DIR_DTMP.$path.'_stru_tables.dbsql';
+        $file = DIR_VARS.$path.'_stru_tables.dbsql';
         $data = comFiles::get($file);
         $fix1 = 'DROP TABLE IF EXISTS `'; 
         $fix2 = 'CREATE TABLE `';
@@ -151,7 +151,7 @@ class devData{
                         if($tdata) $data .= "$thead$tdata";
             }    }    }
             if(!empty($data)){
-                $pathi = $pfull ? $path : DIR_DTMP.$path;
+                $pathi = $pfull ? $path : DIR_VARS.$path;
                 $fp = fopen(str_replace("\\","/",$pathi."$group.dbsql"), 'w');
                 fwrite($fp, $data);
                 fclose($fp);
@@ -182,7 +182,7 @@ class devData{
     static function data1ExpInsert($path,$tab,$dbcfg=array(),$pfull=0,$where=''){
         $db = db($dbcfg);
         $tabfull = $db->pre.$tab.$db->ext; 
-        $path = $pfull ? $path : DIR_DTMP.$path;
+        $path = $pfull ? $path : DIR_VARS.$path;
         $list = $db->table($tab)->where($where)->select();
         if($list){ //分块未考虑... 
             $shead = devBase::_tabHead($tab); $i = 0; 
@@ -202,7 +202,7 @@ class devData{
     static function data1ExpFile($path,$tab,$dbcfg=array()){
         $db = db($dbcfg);
         $tabfull = $db->pre.$tab.$db->ext; 
-        $path = DIR_DTMP.$path;
+        $path = DIR_VARS.$path;
         try{
             $file = str_replace("\\","/",$path."$tab.dbsql"); 
             $sql="SELECT * FROM {$tabfull} INTO OUTFILE '$file' ".devBase::_loadOpt();
@@ -225,7 +225,7 @@ class devData{
     static function dataImpFile($path,$tab,$dtmp=0){
         $db = glbDBObj::dbObj(); 
         $tabfull = $db->pre.$tab.$db->ext;
-        $path = ($dtmp ? $dtmp : DIR_DTMP).$path;
+        $path = ($dtmp ? $dtmp : DIR_VARS).$path;
         $file = str_replace("\\","/",$path."$tab.dbsql"); 
         $sqlClean = "DELETE FROM $tabfull";
         $sqlLoad = "LOAD DATA INFILE '$file' INTO TABLE $tabfull ".devBase::_loadOpt();
@@ -243,7 +243,7 @@ class devData{
     static function dataImpInsert($path,$tab,$dtmp=0){
         $db = glbDBObj::dbObj(); 
         $tabfull = $db->pre.$tab.$db->ext;
-        $path = ($dtmp ? $dtmp : DIR_DTMP).$path;
+        $path = ($dtmp ? $dtmp : DIR_VARS).$path;
         $file = str_replace("\\","/",$path."$tab.dbsql"); 
         $fsql = comFiles::get($file);
         if(empty($fsql)){

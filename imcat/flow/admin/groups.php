@@ -7,7 +7,7 @@ $view = empty($view) ? 'glist' : $view;
 $tabid = 'base_model';
 if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').':mod@groups.php'); 
 $gbar = admAFunc::grpNav('groups',$mod);
-$advetabs = basLang::ucfg('cfglibs.advs_type'); 
+$advetabs = basLang::ucfg('cfglibs.advs_type');
 
 if($view=='glist'){
 

@@ -99,8 +99,8 @@ class updAdmin extends updBase{
     // 添加数据表
     static function doDbInit($cfg){
         devData::struExp('/dbexp/');
-        $pnew = $cfg['path']."/xvars/dtmp/dborg/_stru_tables.dbsql"; 
-        $pold = DIR_DTMP.'/dbexp/_stru_tables.dbsql';
+        $pnew = $cfg['path']."/xvars/dborg/_stru_tables.dbsql"; 
+        $pold = DIR_VARS.'/dbexp/_stru_tables.dbsql';
         $new = self::listTab($pnew); 
         $old = self::listTab($pold);
         self::cacSave($new,"dbcfg_new");
@@ -161,11 +161,11 @@ class updAdmin extends updBase{
             if(!isset($old[$tab])) continue;
             $f1 = in_array(substr($tab,0,5),array('base_','bext_'));
             if($f1){
-                if(!file_exists(DIR_DTMP."/dbexp/data~$tab.dbsql")) devData::data1ExpInsert("/dbexp/data~",$tab); 
+                if(!file_exists(DIR_VARS."/dbexp/data~$tab.dbsql")) devData::data1ExpInsert("/dbexp/data~",$tab); 
                 $len = 2; //in_array($tab,array('bext_cron')) ? 1 : 2; 
                 if($fdir){ header("Location:?act=cmpdata&ntab=$tab"); die(); }
-                $dnew = self::listData($cfg['path']."/xvars/dtmp/dborg/data~$tab.dbsql",$len);
-                $dold = self::listData(DIR_DTMP."/dbexp/data~$tab.dbsql",$len);
+                $dnew = self::listData($cfg['path']."/xvars/dborg/data~$tab.dbsql",$len);
+                $dold = self::listData(DIR_VARS."/dbexp/data~$tab.dbsql",$len);
                 foreach($dnew as $k=>$v){
                     if($tab=='base_paras' && strpos($k,':prsafe')) continue;
                     if(!isset($dold[$k])){

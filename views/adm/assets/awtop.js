@@ -63,7 +63,7 @@ function admJsClick(e){
             url = $(p).prop('href')+'&view=form'; 
         ext = $(p).text();
     }
-    admLeftc(e, url, ext);
+    if(target && target=='adf_main') admLeftc(e, url, ext);
     if(!target || target=='adf_main'){
         $('#adf_main').prop('src',url);
         $(e).parent().trigger('click'); // in mobile, hidden pop menu
@@ -83,6 +83,7 @@ function admLeftc(e, url, ext){
             title:ext+$(e).text(), url:url},
         str = JSON.stringify(row); //jsLog(str);
     admSloc.set('abcNav_last', str);
+    admSses.set('abcNav_lses', str);
 }
 
 function admReSize(){

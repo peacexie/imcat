@@ -18,7 +18,7 @@ require DIR_DTMP.'/dset/_score.cfg.php'; // 后台设置_score: 其次,可被页
 require DIR_IMCAT.'/core/blib/loader.php'; // 包含自动加载类(仅包含文件)
 #require DIR_VENDOR.'/autoload.php'; // composer 的自动加载
 
-autoLoad_ys::init(); // 初始化-类自动加载
+basLoader::init(); // 初始化-类自动加载
 // 处理outer运行模式
 if(empty($_cbase['run']['outer'])){ 
     require DIR_IMCAT.'/core/blib/helper.php'; // 别名函数

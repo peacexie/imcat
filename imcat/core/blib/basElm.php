@@ -90,12 +90,12 @@ class basElm{
         }elseif(preg_match("/^(\w+)::(\w+)\(([\w\ \,]{0,24})\)$/",$text)){
             $text = str_replace(array("\r","\n",' '),'',$text);
             preg_match("/^(\w+)::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);
-            $class = $ma[1]; $method = $ma[2];
+            $cfile = $ma[1]; $method = $ma[2];
             $pa = explode(',',$ma[3].',,,,');
             foreach ($pa as $pk=>$pv) {
                 $pa[$pk] = strlen($pa[$pk])>0 ? $pa[$pk] : null;
-            } // class::func(pa,p2,..)
-            $re = $class::$method($pa[0],$pa[1],$pa[2],$pa[3],$pa[4],$pa[5]);
+            } // \imcat\class::func(pa,p2,..)
+            $re = basClass::obj($cfile)->$method($pa[0],$pa[1],$pa[2],$pa[3],$pa[4],$pa[5]);
         }else{
             $text = str_replace(array(' ',"\n","\r"),array('','&','&'),$text);
             parse_str($text, $re);

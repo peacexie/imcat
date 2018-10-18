@@ -28,7 +28,8 @@ class devScan{
     static function clrTmps(){
         $arr = array('@test','@udoc','dbexp','debug','cacdb','cache','weixin'); 
         foreach($arr as $dir){ //,'update','updsvr'
-            comFiles::delDir(DIR_DTMP."/$dir",0);
+            $dbase = in_array($dir, array('dbexp','debug')) ? DIR_VARS :DIR_DTMP;
+            comFiles::delDir("$dbase/$dir",0);
         }
         comFiles::put(DIR_DTMP.updBase::$prereset,"done=locked");
         /*
@@ -105,7 +106,7 @@ class devScan{
     }
     // rstTabmini()
     static function rstTabmini(){
-        $dir = DIR_DTMP."/dbexp";
+        $dir = DIR_VARS."/dbexp";
         $files = comFiles::listDir($dir,'file');
         if(empty($files)) return;
         foreach ($files as $file => $value) {
@@ -117,7 +118,7 @@ class devScan{
         $cfgs = glbConfig::read('pubcfg','sy');
         foreach($cfgs['rndata'] as $tab=>$cfg){
             if(strpos($tab,':')) $tab = substr($tab,0,strpos($tab,':'));
-            $file = str_replace("\\","/",DIR_DTMP.$path."$tab.dbsql");
+            $file = str_replace("\\","/",DIR_VARS.$path."$tab.dbsql");
             $list = glbDBObj::dbObj()->table($tab)->field($cfg[1])->where($cfg[0])->select();
             if($list){    
                 $data = $dbak = comFiles::get($file);
@@ -201,6 +202,8 @@ class devScan{
     static function pubXvars($pdir,$cfgs){ 
         self::pmdFlg($pdir,'ctpl');
         self::pmdFlg($pdir,'dtmp');
+        self::pmdFlg($pdir,'dborg'); // dbexp
+        comFiles::copyDir(DIR_VARS.'/dbexp',"$pdir/dbexp");
         $skip = isset($cfgs['skip']['dtmp']) ? $cfgs['skip']['dtmp'] : array();
         comFiles::copyDir(DIR_DTMP,"$pdir/dtmp",$skip,$cfgs['skfiles']);
         foreach($skip as $dir){

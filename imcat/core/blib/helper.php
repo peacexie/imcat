@@ -21,10 +21,7 @@ function dump($var,$min=1){
 // tex('texClass')->func() -=> \imcat\chn\texClass::func()
 if(!function_exists('tex')){ 
 function tex($cfile, $tpl=''){
-    global $_cbase; 
-    $tpl || $tpl = $_cbase['tpl']['vdir'];
-    $class = "\\imcat\\$tpl\\$cfile";
-    return new $class();
+    return \imcat\basClass::tex($cfile, $tpl);
 } }
 // tinc(模板包含) 
 if(!function_exists('tinc')){ 
@@ -127,7 +124,28 @@ function eimp($type,$base='',$user=0){
     echo \imcat\basJscss::imp($type,$base,$user);
 } }
 
-// user-function
+// 一组handler函数 ---------------------------------
+
+/*function uerr_handler($msg='') {  
+    return $msg; 
+}*/
+// 默认异常处理函数
+function except_handler_ys($e) {
+    throw new \imcat\glbError($e); 
+}
+// 默认错误处理函数
+function error_handler_ys($Code,$Message,$File,$Line) {  
+    throw new \imcat\glbError(@$Code,$Message,$File,$Line); 
+}
+// 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
+function shutdown_handler_ys() {  
+    //echo "(shutdown)";
+    \imcat\basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
+}
+
+//(!function_exists('intl_is_failure'))
+
+// user-function ---------------------------------
 
 if(!function_exists('subRep')){ 
 function subRep($str){

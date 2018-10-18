@@ -27,10 +27,7 @@ class homeCtrl{
         $userstr = "<span title='".@$user->uperm['title']."(".@$user->uperm['grade'].")'>Hi:".$user->usess['uname']."!</span>";
         $vars['user'] = $user;
         $vars['userstr'] = $userstr;
-        if($mke=basReq::val('mke')){
-            $reurl = comParse::urlBase64($mke,1);
-        }
-        $mainurl = vopUrl::fout(0).(empty($reurl) ? '?uhome' : $reurl);
+        $mainurl = vopUrl::fout(0).'?uhome';
         $vars['mainurl'] = $mainurl;
         $re = array('vars'=>$vars); 
         if(basEnv::isMobile()){

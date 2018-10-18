@@ -13,7 +13,7 @@ class CLogFileHandler implements ILogHandler
     
     public function __construct($fp = '')
     {
-        $fp = DIR_DTMP.'/debug/'.str_replace(array('../','./','/',),array('','','_',),$fp); // ../logs/2016-04-19.log
+        $fp = DIR_VARS.'/debug/'.str_replace(array('../','./','/',),array('','','_',),$fp); // ../logs/2016-04-19.log
         $this->handle = fopen($fp,'a');
     }
     

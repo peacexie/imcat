@@ -266,12 +266,12 @@ class comHttp
             $fp = substr($fp,0,70).'...'.substr($fp,-20);
         }
         self::$savep = $fp.'---'.md5($url.'+'.json_encode($data)).'.htm';
-        $data = extCache::cfGet("/remote/".self::$savep, self::$cache, 'dtmp', 'str');
+        $data = extCache::cfGet("/remote/".self::$savep, self::$cache, 'vars', 'str');
         return $data;
     }
     static function saveCache($data) {
         if(!self::$cache) return false;
-        extCache::cfSet("/remote/".self::$savep, $data);
+        extCache::cfSet("/remote/".self::$savep, $data, 'vars');
     }
 
     //兼容方法(后续去掉)

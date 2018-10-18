@@ -28,7 +28,8 @@ class dopAdvs extends dopBase{
     }
     // 搜索条 // check,fields
     function sobar($msg='',$width=30){ 
-        $mkv = basReq::val('mkv');
+        global $_cbase;
+        $mkv = $_cbase['mkv']['mkv'];
         $mod = $this->mod;
         $sbar = "\n".$this->so->Type(120,basLang::show('flow.op0_cat')); 
         $sbar .= "\n&nbsp; ".$this->so->Word(80,80,basLang::show('flow.op0_filt'));

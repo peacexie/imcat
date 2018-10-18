@@ -1,7 +1,8 @@
 <?php
 namespace imcat\base;
 
-//use imcat\vopTpls;
+use imcat\exvJump;
+use imcat\glbHtml;
 
 class _defCtrl{
 
@@ -18,10 +19,11 @@ class _defCtrl{
     function _defAct(){
         global $_cbase;
         $tpl = $this->ucfg['tplname'];
-        $pres = array('info/', 'user');
+        $pres = array('info/', 'user/');
         if(!in_array(substr($tpl,0,5),$pres)){
-            die(__FUNCTION__);
-            new \imcat\exvJump();
+            $res = new exvJump();
+            //glbHtml::httpStatus(404);
+            die('Error `mkv`! @ '.__FUNCTION__);
         }
     }
 

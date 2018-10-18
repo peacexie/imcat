@@ -1,6 +1,7 @@
 <?php
 namespace imcat;
 require __DIR__.'/_config.php';
+bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login">login</a></p>');
 
 //check, re:cfgs:
 $cfg = updDbcmp::uimpCheck(); 

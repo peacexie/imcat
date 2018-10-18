@@ -298,7 +298,8 @@ class glbCUpd{
             foreach($ta as $row){
                 $tb = explode("(!)","$row(!)(!)");
                 if(strstr($tb[2],'frame')){
-                    $t .= (empty($t) ? '' : ' - ')."<a href='$tb[1]&frame=1' target='_blank'>$tb[0]</a>";
+                    $_u = str_replace('?','?#',$tb[1]);
+                    $t .= (empty($t) ? '' : ' - ')."<a href='$_u' target='_frame'>$tb[0]</a>";
                 }elseif(strstr($tb[2],'blank')){
                     $t .= (empty($t) ? '' : ' - ')."<a href='$tb[1]' target='_blank'>$tb[0]</a>";
                 }elseif(strstr($tb[2],'jsadd')){

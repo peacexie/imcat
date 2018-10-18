@@ -1,5 +1,6 @@
 <?php
 namespace imcat;
+(!defined('RUN_INIT')) && die('No Init');
 
 $cover = db()->table('topic_items')->where("did='$did' AND dno='cover'")->find();
 $flower = db()->table('topic_items')->where("did='$did' AND dno='flower'")->find();

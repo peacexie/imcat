@@ -184,7 +184,7 @@ class updBase{
                 $db->query("DROP TABLE IF EXISTS `{$db->pre}$tab{$db->ext}`;");
                 $sql = self::dbCreate($tab,$v);
                 $f1 = $db->query($sql); 
-                $f2 = devData::dataImpInsert("/dborg/data~",$tab,$cfg['path'].'/xvars/dtmp');
+                $f2 = devData::dataImpInsert("/dborg/data~",$tab,$cfg['path'].'/xvars');
                 $add[$tab] = array('f1'=>!$f1,'f2'=>$f2,'sql'=>$sql);
             } 
         }

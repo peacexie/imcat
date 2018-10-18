@@ -4,9 +4,9 @@ namespace imcat;
 /**
  * 类的自动加载 //可以多个...
  * spl_autoload_register('func_name');
- * spl_autoload_register(array('autoLoad_ys','load'));     
+ * spl_autoload_register(array('\\imcat\\basLoader','load'));     
  */
-class autoLoad_ys{
+class basLoader{
     
     static $acdirs = array();
     static $cfgpr4 = array();
@@ -72,6 +72,31 @@ class autoLoad_ys{
     }
 }
 
+# ---------------------------------
+
+// 类库控制类
+class basClass{
+
+    // obj: "\\imcat\\xxxClass"::$func()
+    // obj('xxxClass')->func() -=> \imcat\xxxClass::func()
+    static function obj($cfile){
+        $class = "\\imcat\\$cfile";
+        return new $class();
+    }
+
+    // tex(调用模板扩展方法) 
+    // tex('texClass')->func() -=> \imcat\chn\texClass::func()
+    static function tex($cfile, $tpl=''){
+        global $_cbase; 
+        $tpl || $tpl = $_cbase['tpl']['vdir'];
+        $class = "\\imcat\\$tpl\\$cfile";
+        return new $class();
+    }
+
+}
+
+# ---------------------------------
+
 // 权限判断函数,用于未加载核心类库场合
 function bootPerm_ys($key='',$re='0',$exmsg=''){
     global $_cbase; // 不能用cfg()
@@ -90,22 +115,5 @@ function bootPerm_ys($key='',$re='0',$exmsg=''){
     }
 }
 
-// 一组handler函数
-/*function uerr_handler($msg='') {  
-    return $msg; 
-}*/
-// 默认异常处理函数
-function except_handler_ys($e) {
-    throw new glbError($e); 
-}
-// 默认错误处理函数
-function error_handler_ys($Code,$Message,$File,$Line) {  
-    throw new glbError(@$Code,$Message,$File,$Line); 
-}
-// 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
-function shutdown_handler_ys() {  
-    //echo "(shutdown)";
-    basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
-}
+# ---------------------------------
 
-//(!function_exists('intl_is_failure'))

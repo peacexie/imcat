@@ -194,8 +194,8 @@ class basDebug{
             } 
             if(!strstr($file,'debug/')) $ftmp = "debug/$file";
             else $ftmp = "$file"; 
-            comFiles::chkDirs(str_replace("//","/",$ftmp),'dtmp');
-            $file = str_replace("//","/",DIR_DTMP."/$ftmp"); 
+            comFiles::chkDirs(str_replace("//","/",$ftmp),'vars');
+            $file = str_replace("//","/",DIR_VARS."/$ftmp"); 
             $fh = fopen($file, "a+");
             fwrite($fh, "\n$data");
             fclose($fh);

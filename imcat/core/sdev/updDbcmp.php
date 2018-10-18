@@ -8,7 +8,6 @@ class updDbcmp{
     static $cpcfgs = array();
     
     static function uimpCheck(){
-        bootPerm_ys('pstools','','<p><a href="../adbug/binfo.php?login">login</a></p>');
         if(empty(self::$cpcfgs)){
             $db = glbDBObj::dbObj();
             $ocfgs = glbConfig::read('outdb','ex');

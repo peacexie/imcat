@@ -180,7 +180,16 @@ $(function(){
     });
     $('#adh_links .panel-body>div').html(html);
     $('#adh_links h3').html(Lang.adm.nav_nearest);
-    // 
-    jcronRun()
+    // jump-last-url
+    drow = admSses.get('abcNav_lses');
+    if(drow) { drow = JSON.parse(drow); }
+    if(top.location.hash){
+        var url = top.location.hash.replace('#','?');
+        window.location.href = url;
+    }else if(drow && drow.url){
+        window.location.href = drow.url;
+    }else{
+        jcronRun();
+    }
 });
 </script>

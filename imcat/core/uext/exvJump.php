@@ -11,6 +11,7 @@ class exvJump{
     //function __destory(){  }
     function __construct($run=1){
         $run && $this->run();
+        return 1;
     }
 
     function run(){
@@ -34,7 +35,7 @@ class exvJump{
         $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
         $file = DIR_VENDUI."/bootstrap/css/bootstrap.$skin.css";
         file_exists($file) && comCookie::oset('skin',$skin,30*86400);
-        if($recbk && !strpos($recbk,'plus/api/redir.php')){
+        if($recbk && !strpos($recbk,'?api-redir')){
             header("Location: $recbk");
         }else{
             die("::$file:$recbk::");
@@ -46,7 +47,7 @@ class exvJump{
         $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
         $file = DIR_IMCAT."/lang/kvphp/core-$lang.php";
         file_exists($file) && comCookie::oset('lang',$lang,30*86400); 
-        if($recbk && !strpos($recbk,'plus/api/redir.php')){
+        if($recbk && !strpos($recbk,'?api-redir')){
             header("Location: $recbk");
         }else{
             die("::$file:$recbk::");

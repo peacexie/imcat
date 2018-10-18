@@ -143,7 +143,7 @@ class extSms{
             if(file_exists($file)){
                 $data = comFiles::get($file);
             }
-            $fp = fopen(DIR_DTMP."/$file", 'a');
+            $fp = fopen(DIR_VARS."/$file", 'a');
             $data = date('Y-m-d H:i:s')."^ ".'mname'." ^ $onlineip \n $flag\r\n\r\n$data";
             flock($fp, 2); fwrite($fp, $data); fclose($fp);
         }

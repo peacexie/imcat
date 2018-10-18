@@ -1,10 +1,17 @@
 <?php
+namespace imcat;
+
+function edwimp($file){
+    echo basJscss::write(basJscss::imp($file,'vendui'))."\n";
+}
+
 namespace imcat\base;
 
 use imcat\basJscss;
 use imcat\comFiles;
 use imcat\glbHtml;
 use imcat\vopTpls;
+
 
 class editorCtrl{
 
@@ -31,7 +38,6 @@ class editorCtrl{
         $d1 = comFiles::get(vopTpls::tinc("assets/editor-func.js", 0));
         $d2 = comFiles::get(vopTpls::tinc("assets/comm-$lang.js", 0));
         echo "$d1\n\n//($lang)\n$d2";
-        include vopTpls::tinc("editor/func-pub", 0);
         include vopTpls::tinc("editor/api_$api", 0);
     }
 

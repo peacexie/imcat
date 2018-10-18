@@ -10,7 +10,7 @@ class exaFunc{
           <li class="adf_dir"><i class="fa fa-folder-o"></i>'.basLang::show('admin.ef_demot').'</li>
           
           <li id="left_m3demo"><a href="?dops-a&amp;mod=demo" target="adf_main"><i class="fa fa-file-text-o"></i> '.basLang::show('admin.ef_demodoc').'</a> - <a onClick="admJsClick(this)">'.basLang::show('admin.ef_add').'</a></li>
-          <li id="left_m3drem"><a href="?dops-a&amp;mod=drem" target="adf_main"><i class="fa fa-file-text-o"></i> '.basLang::show('admin.ef_demorem').'</a> - <a href="?admin-catalog&amp;mod=demo&amp;frame=1" target="_blank">'.basLang::show('admin.ef_catalog').'</a></li>
+          <li id="left_m3drem"><a href="?dops-a&amp;mod=drem" target="adf_main"><i class="fa fa-file-text-o"></i> '.basLang::show('admin.ef_demorem').'</a> - <a href="?#admin-catalog&amp;mod=demo" target="_blank">'.basLang::show('admin.ef_catalog').'</a></li>
         
         </ul>
         <ul class="adf_mnu2" id="left_m2test2">  

@@ -224,6 +224,7 @@ class comStore{
             'views'  => array(DIR_VIEWS,   PATH_VIEWS),
             'ctpl'   => array(DIR_CTPL,    ''),
             'dtmp'   => array(DIR_DTMP,    PATH_DTMP),
+            'vars'   => array(DIR_VARS,    PATH_VARS),
             'ures'   => array(DIR_URES,    PATH_URES),
             'html'   => array(DIR_HTML,    PATH_HTML),
             'vendor' => array(DIR_VENDOR,  PATH_VENDOR),
