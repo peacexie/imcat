@@ -33,6 +33,7 @@
 
 * Fix: Some url shared in wechat, It will jump to homepage.
 
+* Improve: Further optimization of URL
 
 
 #v4.3# (2018.09)

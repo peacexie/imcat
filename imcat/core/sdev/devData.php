@@ -78,7 +78,7 @@ class devData{
             $re .= "\n".self::stru1Exp($tab,$dbcfg).";\n";
         }
         if($path){
-            $path = DIR_DTMP.$path.'_stru_tables.dbsql';
+            $path = DIR_VARS.$path.'_stru_tables.dbsql';
             comFiles::put($path,$re);
         }else{
             return $re;

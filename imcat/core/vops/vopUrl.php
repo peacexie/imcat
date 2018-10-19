@@ -8,13 +8,19 @@ class vopUrl{
     static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext
     
     // get/url初始数据
-    static function iget($q=''){
+    static function iget($q='', $flag=0){
         global $_cbase;
         $q = empty($q) ? (empty($_SERVER['QUERY_STRING'])?'home':$_SERVER['QUERY_STRING']) : $q;
+        // 去掉开头的:mkv= (a.肯定是动态,)
+        if(substr($q,0,4)=='mkv='){
+            header('Location:'."?".substr($q,4));
+        }
+        // 修正微信分享url:?2018-12-31xx=&from=timeline
         if(preg_match("/^[\w\-\.]{3,24}\=\&\w+/i",$q)){
             $q = str_replace('=&','&',$q);
-        } // 修正微信分享url:?2018-12-31xx=&from=timeline
-        $uri = $_SERVER['REQUEST_URI']; // /dev/mkv.htm?api=Local
+        }
+        $uri = $_SERVER['REQUEST_URI'];
+        // 处理伪静态:/dev/mkv.htm?api=Local
         if(strpos($uri,'.htm?') || strpos($uri,'.html?')){
             $tmp = parse_url($uri);
             $q = "mkv=$q&".$tmp['query'];
@@ -112,8 +118,8 @@ class vopUrl{
     }
 
     // url分析
-    static function init($q='',$ext=array()){
-        $re = self::iget($q); 
+    static function init($q='', $flag=0){
+        $re = self::iget($q, $flag);
         $re = self::imkv($re);
         if($re['mkv']=='home'){
             $re['vcfg'] = $re['hcfg'];

@@ -142,7 +142,7 @@ class comStore{
             }
         }
         foreach(self::$cfgs['types'] as $tk=>$row){
-            if(!empty($row['vpre'] && !empty($row['spre']) && strpos($str,$row['vpre'])>=0)){
+            if(!empty($row['vpre']) && !empty($row['spre']) && strpos($str,$row['vpre'])>=0){
                 $str = str_replace($row['vpre'], $row['spre'], $str);
             } 
         }
@@ -255,7 +255,7 @@ class comStore{
             }
         }
         foreach(self::$cfgs['types'] as $tk=>$row){ 
-            if(!empty($row['vpre'] && !empty($row['spre']) && strpos($str,$row['spre'])>=0)){
+            if(!empty($row['vpre']) && !empty($row['spre']) && strpos($str,$row['spre'])>=0){
                 $str = str_replace($row['spre'], $row['vpre'], $str); 
             } 
         }

@@ -161,9 +161,7 @@ class dopBSo{
         $mod = $this->mod;
         $bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".basLang::show('flow.dops_search')."'>";
         echo "\n<form id='fmid' name='fmid' method='GET' action='?".$this->urlstr."'>";
-        empty($run['sobarnav']) || $bar = $run['sobarnav']."$bar";
-        glbHtml::tab_bar($msg,$bar,$w,'tl');
-        echo "\n<input name='mkv' type='hidden' value='".basReq::val('mkv')."' />";
+        echo "\n<input name='mkv' type='hidden' value='".$_cbase['mkv']['mkv']."' />";
         echo "\n<input name='mod' type='hidden' value='$mod' />";
         echo "\n<input name='view' type='hidden' value='".basReq::val('view')."' />";
         echo "\n<input name='pid' type='hidden' value='".basReq::val('pid')."' />";
@@ -173,8 +171,9 @@ class dopBSo{
         foreach($khid as $k=>$v){
             echo "\n<input name='$k' type='hidden' value='$v' />";
         }
+        empty($run['sobarnav']) || $bar = $run['sobarnav']."$bar";
+        glbHtml::tab_bar($msg,$bar,$w,'tl');
         echo "\n</form>";
-        //return $str;
     }
 
     // getOptions(Select)

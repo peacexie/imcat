@@ -35,10 +35,9 @@ class tagPage extends tagList{
         }
         $scname = $_SERVER["REQUEST_URI"]; //REQUEST_URI,SCRIPT_NAME
         if(strpos($scname,'ajax-cron') || strpos($scname,'ajax-jshow')){
-            $mkv = vopUrl::umkv('rf');
+            $mkv = basReq::val('rf');
             $burl = vopUrl::fout('base:0')."?rf=$mkv";
         }else{
-            $mkv = vopUrl::umkv('mkv');
             $burl = basReq::getUri(-1,'','page|prec|ptype|pkey');    
         } 
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";

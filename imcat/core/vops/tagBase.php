@@ -115,10 +115,18 @@ class tagBase{
     
     // 
     function pStype(){ 
+        global $_cbase; 
         $cfg = $this->p1Cfg('stype'); 
         if(empty($cfg)) return;
-        //优先取标签属性,再去url的stype
-        $stype = empty($cfg[1]) ? vopUrl::umkv('key','stype') : $cfg[1];
+        //优先取标签属性,再取url的stype
+        if(!empty($cfg[1])){
+            $stype = $cfg[1];
+        }else{
+            $stype = basReq::val('stype');
+            if(empty($stype) && !empty($_cbase['mkv']['key'])){
+                $stype = $_cbase['mkv']['key']; 
+            }
+        }
         if(empty($stype)) return;
         $_groups = glbConfig::read('groups'); 
         $pid = $_groups[$this->modid]['pid'];

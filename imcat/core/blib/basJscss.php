@@ -192,8 +192,8 @@ class basJscss{
             }
             $path = "?ajax-comjs&act=$path$exp&ex$mod=$base";
             $base = PATH_BASE;
-        }elseif(in_array(substr($path,0,6),array('/views/','/base/','/~tpl/'))){
-            $path = str_replace(array('/views/','/~tpl/'),array('/',"/$tpldir/assets/"),$path);
+        }elseif(in_array(substr($path,0,6),array('/views','/base/','/~tpl/'))){
+            $path = str_replace(array('/views','/~tpl/'),array('/',"/$tpldir/assets/"),$path);
             $base = PATH_VIEWS;
         }elseif(in_array(substr($path,0,9),array('?ajax'))){
             $base = PATH_BASE;

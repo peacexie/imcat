@@ -52,6 +52,7 @@ class _defCtrl{
         glbHtml::page(basLang::show('admin.adm_center').'-(sys_name)',1);
         eimp('initJs','jquery,jspop;comm;comm(-lang)');
         eimp('initCss','bootstrap,stpub,jstyle;comm');
+        glbHtml::page('aumeta');
         echo '</head><body class="'.(basEnv::isMobile()?'mobbody':'pcbody').'">';
         // inc
         echo "\n<!--inc:/$file.php-->\n"; 
