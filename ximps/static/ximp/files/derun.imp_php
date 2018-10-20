@@ -1,7 +1,8 @@
-<?php 
-// 辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
-$_abase['out']['user'] = 'maotools'; // 如果有_config.php，则使用_config.php中的设置；
-$_abase['out']['pass'] = 'maopass'; // 请每次使用,都改个新密码；否则安全问题,请后果自负！
+<?php
+/*
+$out_user = ''; // 如果有_config.php，则使用_config.php中的设置；
+$out_pass = ''; // 请每次使用,都改个新密码；否则安全问题,请后果自负！
+*/
 
 if(!session_id()) session_start();
 $sessid = 'usessid_'.$_SERVER['SCRIPT_NAME'].'_'.date('Y-m-d').''; 
@@ -30,8 +31,7 @@ if(empty($qstr) || in_array($qstr,array('cook','fset','frame','iframe','myoutip'
 }elseif($qstr=='dologin'){ 
   $user = @$_POST['user'];
   $pass = @$_POST['pass'];
-  $pget = function_exists('outPass') ? outPass($pass,$_abase['out']['pass']) : $_abase['out']['pass'];
-  if($user==$_abase['out']['user'] && $pass==$pget){
+  if(!empty($out_user) && !empty($out_pass) && $user==$out_user && $pass==$out_pass){
     $_SESSION[$sessid] = 'pstools';
   }
 }else{
