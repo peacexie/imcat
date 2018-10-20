@@ -6,6 +6,7 @@ require __DIR__.'/_config.php';
 glbHtml::page("Create Suit Template - (sys_name)",1);
 eimp('initJs','jquery');
 eimp('initCss','stpub;/tools/exdiy/style.css');
+echo glbHtml::wpscale(480, 1);
 glbHtml::page('body');
 
 $part = req('part','tpl');

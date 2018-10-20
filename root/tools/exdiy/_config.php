@@ -1,5 +1,6 @@
 <?php
 namespace imcat;
+$_cbase['ucfg']['lang'] = '(auto)'; // 切换语言
 //if(empty($_cbase['skip']['_paths'])){
     include dirname(dirname(__DIR__)).'/run/_init.php';
 //}

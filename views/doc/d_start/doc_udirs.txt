@@ -7,7 +7,7 @@
 * Move file:
  - Create a sub dir in /root/, like as:`usecret`(Arbitrary modification),
  - Copy file /root/run/adm.php to THIS sub dir, and modify the filename, like as `cat.php`(Arbitrary modification),
- - Edit the path(_paths.php) in this file: `require dirname(__DIR__.'/run/_init.php');`
+ - Edit the path(_init.php) in this file: `require dirname(__DIR__.'/run/_init.php');`
 
 * Edit config: 
  - File: /root/cfgs/sycfg/sy_vopcfg.php
@@ -21,7 +21,7 @@
 #vdirs#Optimize directories
 
 * dirs: html,ures
- - For optimize: you can move dirs `/xvars/html`, `/xvars/ures` out from `vary`, 
+ - For optimize: you can move dirs `/xvars/html`, `/xvars/ures` out from `xvars`, 
    ( From v3.5, It is optimized in the default set)
  - Or set virtual directory: 
  - Attention to modify the configs in file【/root/cfgs/boot/_paths.php】.
@@ -30,9 +30,9 @@
 #uevimp#Deal with dir:vimp
 
 * Background
- - If more then one THIS system(Imcat) in the same server, and with the some version, they can share the dir:`vimp`
+ - If more then one THIS system(Imcat) in the same server, and with the some version, they can share the dir:`ximps/imcat`
 
 * Handling items
- - Specific processing matters, can refer to the above, all of the sites are config virtual dirs, use the same `vimp` directory...
+ - Specific processing matters, can refer to the above, all of the sites are config virtual dirs, use the same `ximps/imcat` directory...
 
  

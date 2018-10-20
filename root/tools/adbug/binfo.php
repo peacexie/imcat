@@ -84,7 +84,7 @@ b, strong, .b { font-weight: bolder; }
     .login span { display:block; padding:5px; }
 }
 </style>
-
+<?=glbHtml::wpscale(480, 1);?>
 </head>
 <body class="infOut">
 

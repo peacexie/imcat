@@ -36,6 +36,7 @@ if($act=='EditDB'){
 glbHtml::page(lang('tools.setup_title')." - ".$_cbase['sys_name'],1);
 eimp('initJs','jquery;/tools/setup/sfunc;/tools/setup/sfunc(-lang)');
 eimp('initCss','bootstrap,stpub;/tools/setup/style.css');
+echo glbHtml::wpscale(480, 1);
 glbHtml::page('body');
 
 $cmydb3 = devRun::runMydb3();

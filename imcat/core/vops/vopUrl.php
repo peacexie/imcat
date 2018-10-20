@@ -9,35 +9,22 @@ class vopUrl{
     
     // get/url初始数据
     static function iget($q='', $flag=0){
-        global $_cbase;
-        $q = empty($q) ? (empty($_SERVER['QUERY_STRING'])?'home':$_SERVER['QUERY_STRING']) : $q;
-        // 去掉开头的:mkv= (a.肯定是动态,)
+        $q = empty($q) ? (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '') : $q;
+        // 去掉开头的:mkv= (肯定是动态)
         if(substr($q,0,4)=='mkv='){
             header('Location:'."?".substr($q,4));
+            die();
         }
         // 修正微信分享url:?2018-12-31xx=&from=timeline
         if(preg_match("/^[\w\-\.]{3,24}\=\&\w+/i",$q)){
             $q = str_replace('=&','&',$q);
         }
-        $uri = $_SERVER['REQUEST_URI'];
-        // 处理伪静态:/dev/mkv.htm?api=Local
-        if(strpos($uri,'.htm?') || strpos($uri,'.html?')){
-            $tmp = parse_url($uri);
-            $q = "mkv=$q&".$tmp['query'];
-            parse_str($q, $_GET);
-            $ua = $_GET;
-        }else{
-            parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);
-        }
-        if(empty($ua['mkv'])){ // || in_array($q,array('mkv=home'))
-            vopShow::msg("a:[$q]:".basLang::show('vop_parerr'));
-        }
+        parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);
         $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
         $re1 = preg_match("/^\w+(\-\-(so|list))?$/",$mkv); // modid, (--list)
         $re2 = preg_match("/^\w+\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
         $re3 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
-        $re4 = preg_match("/(^home\-)|((\-|\_)$)/",$mkv);
-        if(!($re1 || $re2 || $re3) || $re4){
+        if(!($re1 || $re2 || $re3)){
             vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr'));
         }
         $re = array('q'=>$q, 'mkv'=>$mkv, 'ua'=>$ua);
@@ -62,9 +49,7 @@ class vopUrl{
             $a = array($mkv,'');    
             $type = 'mhome';
         }
-        $re1 = preg_match("/^[a-z0-9]{1}\_/",$a[0]); // 预留前缀:x_
-        $re2 = in_array($a[1],self::$keepmk);
-        if($re1 || $re2){
+        if(in_array($a[1],self::$keepmk)){
             vopShow::msg("c:[$mkv]:".basLang::show('vop_parerr'));
         }
         //$mod分析

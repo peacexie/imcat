@@ -8,7 +8,7 @@ namespace imcat;
 class extIPAddr{
     
     // 默认接口
-    private $api = 'sina'; // sina
+    private $api = 'Taobao'; // sina
     private $cfile = ''; // ipSina
     
     // 配置接口

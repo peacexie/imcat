@@ -7,7 +7,8 @@ if($uip){
 }
 $title = 'IP转化地址类（IPv4）';
 $api = req('api',$_cbase['ucfg']['ipapi']); 
-$ufix = surl(0).'?'.$this->mkv;
+$ubase = surl($this->mkv); 
+$ufix = $ubase.(strpos($ubase,'.htm')?'?':'&');
 $vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
 
 $ipObj = new extIPAddr($api);
@@ -19,12 +20,12 @@ if(strstr($act,'down')){
 $tab = '';
 for($i=0;$i<3;$i++){
     $ipx = tex('texBase')->rndIP();
-    $tab .= " # <a href='$ufix&api=$api&uip=$ipx'>$ipx</a><br>\\n"; 
+    $tab .= " # <a href='{$ufix}api=$api&uip=$ipx'>$ipx</a><br>\\n"; 
 }
 $astr = '';
 $aarr = array('Local','Pcoln','Taobao','Api','Ip138','S1616','Baidu');
 foreach($aarr as $key){
-    $astr .= " # <a href='$ufix&api=$key'>$key</a>\\n"; 
+    $astr .= " # <a href='{$ufix}api=$key'>$key</a>\\n"; 
 }
 
 ?>{/block:extop}

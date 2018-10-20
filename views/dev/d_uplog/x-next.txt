@@ -1,62 +1,56 @@
 
-{"rid":"m1tool","rt":"工具","pid":"left_m2sys","pt":"  系统工具","title":"系统缓存","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-update"}
-[{"rid":"m1tool","rt":"工具","pid":"left_m2sys","pt":"  系统工具","title":"系统缓存","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-update"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"模块架设","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=admin-groups"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"(管理员)添加","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=adminer&view=form"},{"rid":"m1adm","rt":"架设","pid":"left_m2stru","pt":"  超管架构","title":"管理员","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=adminer"},{"rid":"m1coms","rt":"互动","pid":"left_m2indoc","pt":"  内部公文","title":"公文管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=indoc"},{"rid":"m1coms","rt":"互动","pid":"left_m2else","pt":"  其他互动","title":"网站留言管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=gbook"},{"rid":"m1coms","rt":"互动","pid":"left_m2else","pt":"  其他互动","title":"笔记管理","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=notea"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":"( 样例文档)增加","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=demo&view=form"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":" 样例文档","url":"http://127.0.0.1/txmao/v43/u03/root/run/adm.php?mkv=dops-a&mod=demo"},{"rid":"m1012","rt":"演示","pid":"left_m2test1","pt":"演示样例","title":" 样例文档","url":"http://127.0.0.1/peace/imcat/catmain/root/run/adm.php?mkv=dops-a&mod=demo"}]
+$_abase['out']['user'] = 'maotools'; // 如果有_config.php，则使用_config.php中的设置；
+$_abase['out']['pass'] = 'maopass'; // 请每次使用,都改个新密码；否则安全问题,请后果自负！
+
+* search : mkv=xxx                                        --- ok 
+ - /dir/file.htm?(伪静态) - ok
+
+* pub - save - vars/ : dirs                               --- ... 
+* setup - test
 
 
-～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～
+* DIR_DTMP   ->  DIR_VARS                                 --- ok 
+ - dbexp(ok), dborg(ok)
+ - debug(ok), remote(ok)
 
-*root/error
+
+系统工具 > 静态                                            --- ok 
+
+    
+umkv($key,$ukey='')                                       --- ok 
+ - $mkv = $_cbase['mkv']['mkv'];
+
+
+Searching 22 files for `.set('abcNav` (case sensitive)    --- ok 
+
+
+UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'?mkv=','?')    --- ok 
+UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="admin-','href="?admin-');
+UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="apis-','href="?apis-');
+UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="dops-','href="?dops-');
+
+------------------------------------------------------------------------------
+
+### 企业站：中英文：
+
+* 规划
+ - 介绍，  产品，  新闻，  留言，  联络
+ - about, cargo, news,   gbook,  about
+ - intro, product, info, gbook, 
+ - expart = [华尔泰]lang(en,en,jp,fr)/[华特教育]city(dg,sz,gz,cz)/
+
+* 入口
+ - pinyin.php (txmao)
+ - english.php (imcat)
  - 
 
-* cfgs                       --- ...
- - player
- - stinc
-
-～～～～～～～～～～～～～
-
-
-ECMAScript 6 入门
-http://es6.ruanyifeng.com/
-
-
-～～～～～～～～～～～～～
-
-
-你不曾察觉的隐患：危险的 target="_blank" 与 “opener”
-https://segmentfault.com/a/1190000016421263
-
-https://segmentfault.com/a/1190000016389031
-CSS实现水平垂直居中的1010种方式（史上最全）
-
-
 ------------------------------------------------------------------------------
-
-http://201886.txjia.com/
-http://imcat.txjia.com/cases/201886/
-http://192.168.1.228/peace/imcat/cases/201886/
-
-------------------------------------------------------------------------------
-
 
 ### v4.5
 
-* 企业站：中英文：介绍，  产品，  新闻，  留言，联络
-                 about, cargo, news,   gbook, about
-                 intro, product, info, gbook, 
+* wechat, qq-login
 
-* tag-build
-
-* dir调整
- - extra ???
- - @udoc  -=>  dtmp -> ures  --- 
- - dbexp/dborg  -=> vary     --- x
-
-* imhaoft 多库管理
-* remark 同模型分表管理 (spkey=)
-
-* 调试：thinkphp\library\think\debug\Html.php
-
-* 二手房，楼盘
+* umc                         --- ... 
 
 * 文档 / 定位：框架/CMS
  - db
@@ -64,9 +58,19 @@ http://192.168.1.228/peace/imcat/cases/201886/
  - img:水印,压缩
  - php.ini:比较
 
-* umc                         --- ... 
+* tagor
+
+* 二手房，楼盘
+
+* dir调整
+ - @udoc  -=>  dtmp -> ures  --- 
 
 ------------------------------------------------------------------------------
+
+
+* cfgs                       --- ...
+ - player
+ - stinc
 
 * 积分/兑换
   - gift
@@ -76,8 +80,64 @@ http://192.168.1.228/peace/imcat/cases/201886/
  - 二手房，楼盘
  - project psw 发布
 
+*root/error
+
 * plus/coms
  - footer ... 
 
 ------------------------------------------------------------------------------
 
+* 多库操作(后台管理/前台标签)    - imhaoft
+* 同模型分表管理                - 历史订单/会员总表
+* 多城市/多语言：区分(栏目/类别) - 华尔泰多语言
+* 目录/文档:绑定子域名
+
+* 调试：
+ - thinkphp\library\think\debug\Html.php
+ - thinkphp\library\think\debug\Console.php
+
+～～～～～～～～～～～～～
+
+* next - v5.x
+ - del 静态
+ - ID - 风格 2017-9a-f3a1
+ - del js标签
+ - dir
+
+------------------------------------------------------------------------------
+
+茶树菇排骨汤
+生地龙骨汤
+党参猪心汤
+虫草土鸡汤
+花旗参乌鸡汤
+猪肚鸡汤
+天麻猪脑汤
+人参鸽子汤
+杜仲腰尾(猪腰)汤
+
+ECMAScript 6 入门
+http://es6.ruanyifeng.com/
+
+～～～～～～～～～～～～～
+
+找点时间，找点空闲；弄个证件，回家看看…
+http://app.jszg.edu.cn/portal/request/index
+中国教师资格网-资格认定申报系统
+点绿色的那个，点绿色的那个!
+
+～～～～～～～～～～～～～
+
+你不曾察觉的隐患：危险的 target="_blank" 与 “opener”
+https://segmentfault.com/a/1190000016421263
+
+https://segmentfault.com/a/1190000016389031
+CSS实现水平垂直居中的1010种方式（史上最全）
+
+～～～～～～～～～～～～～
+
+http://201886.txjia.com/
+http://imcat.txjia.com/cases/201886/
+http://192.168.1.228/peace/imcat/cases/201886/
+
+～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～

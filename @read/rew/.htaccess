@@ -4,8 +4,8 @@ RewriteEngine on
 # RewriteCond %{REQUEST_FILENAME} !-d
 # RewriteCond %{REQUEST_FILENAME} !-f
 
-RewriteRule ^(entry1|entry2)/([\w|\.|\-]+)$ $1.php?$2 [QSA,PT]
-#RewriteRule ^(entry1|entry2)/([\w|\.|\-]+)?(.+)$ $1.php?$2&$3 [QSA,PT]
+RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
+#RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
 
 # RewriteRule ^test([0-9]*).html$ test.php?id=$1
 # http://txjia.com/test8.html -> http://txjia.com/test.php?id=8

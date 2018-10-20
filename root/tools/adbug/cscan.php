@@ -61,7 +61,7 @@ if($act=='scanInit'){
 li { border-bottom: 1px solid #CCC; padding: 5px; margin: 1px 0px; }
 i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; padding: 0px 3px; margin: 0px; }
 </style>
-
+<?=glbHtml::wpscale(480, 1);?>
 </head><body class="infOut">
 
 <?php basLang::shead('Check/Scan'); ?>
@@ -85,13 +85,13 @@ i { width: 150px; font-style: normal; display: inline-block; overflow: hidden; p
 
 <?php 
 $bomroot = empty($_GET['bomroot']) ? '../../../' : $_GET['bomroot'];
+$bomreal = str_replace("\\","/",realpath($bomroot)); 
 defined('DIR_PROJ') || define('DIR_PROJ',__DIR__);
 if(empty($can_upfile)){
   if(!strstr($bomreal,DIR_PROJ)) $bomroot = '../../../';
 }
 $bompath = empty($_GET['bompath']) ? '' : $_GET['bompath'];
 $bomfile = @$_GET['bomfile']; $bommsg = '';
-$bomreal = str_replace("\\","/",realpath($bomroot)); 
 ?>
 
   <?php

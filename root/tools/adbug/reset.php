@@ -19,6 +19,7 @@ glbHtml::page(lang('tools.rst_title'),1);
 eimp('/base/assets/cssjs/cinfo.css');
 eimp('/base/assets/jslib/jsbase.js');
 glbHtml::page('aumeta');
+echo glbHtml::wpscale(480, 1);
 ?>
 <style type='text/css'>
 td { white-space:nowrap; }

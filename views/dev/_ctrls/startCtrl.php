@@ -27,7 +27,7 @@ class startCtrl{
         }elseif($act=='jslib'){
             $root = DIR_VIEWS;
             $subs = array(
-                'base/jslib',
+                'base/assets/jslib',
                 'base/cssjs',
                 'adm/assets',
                 'chn/assets',

@@ -6,7 +6,7 @@ $_cbase['run']['defPort'] = 1; //默认端口，不带端口
 /// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
 
 // 系统参数
-$_cbase['sys']['sn']      = 'ad3bf441-7adb-czyx-xmao-2018-af91j0'; //序列号
+$_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
 $_cbase['sys']['ver']     = '4.4'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
@@ -14,7 +14,7 @@ $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn等
 
 // Cookie
-$_cbase['ck']['pre']      = 'fur54'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = '044_'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
@@ -49,7 +49,7 @@ $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 
 //用户自定义配置
 $_cbase['ucfg']['vimg']  = 'K'; // 0,H,K
-$_cbase['ucfg']['ipapi'] = 'pcoln'; // 默认IP地址接口, sina,taobao,pcoln,s1616
+$_cbase['ucfg']['ipapi'] = 'Taobao'; // 默认IP地址接口, Pcoln # Taobao # Api # Ip138 # Baidu
 #$_cbase['ucfg']['czip']  = '0'; // zlib,gzip,0(不用了)
 $_cbase['ucfg']['guid'] = 'Cook'; // UIP,Sess,Cook
 $_cbase['ucfg']['city'] = '东莞'; //本地城市,订单算运费用

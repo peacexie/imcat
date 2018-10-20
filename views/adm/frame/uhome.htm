@@ -169,7 +169,7 @@ $(function(){
         catch(ex1){ jsLog(ex1); }
     }
     // adi_links
-    var html='', drow='', cnt=0;
+    var html='', hash='', drow='', cnt=0;
     $.each(res,function(id,el){
         drow = JSON.stringify(el);
         var p = " onclick='admLnkc(this)' p='"+drow+"' ",
@@ -182,10 +182,11 @@ $(function(){
     $('#adh_links .panel-body>div').html(html);
     $('#adh_links h3').html(Lang.adm.nav_nearest);
     // jump-last-url
+    hash = top.location.hash;
     drow = admSses.get('abcNav_lses');
     if(drow) { drow = JSON.parse(drow); }
-    if(top.location.hash){
-        var url = top.location.hash.replace('#','?');
+    if(hash && hash.indexOf('#admin-')==0){
+        var url = hash.replace('#','?');
         window.location.href = url;
     }else if(drow && drow.url){
         window.location.href = drow.url;

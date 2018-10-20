@@ -85,5 +85,5 @@ basJscss::loadJqbs('jquery,bootcss,bootstrap,layer',0);
 * _funcs/tex_base.php (this file(calss) will autoload);
 * {php vopTpls::tinc('tex_cargo');} // load extra-lib(_funcs/tex_cargo.php) [if needs];
 * Demo: file: _funcs/tex_base.php method: function coder($tpl=''), in tpl: c_page/info_coder ues eg: <?php echo tex('texBase')->coder($tpl); ?>;
-* Demo: View <a href='?info-coder&tpls=_funcs/tex_base.php' target="_blank">Now-Tpl Public Class</a>
+* Demo: View <a href='?info-coder&tpls=_ctrls/texBase.php' target="_blank">Now-Tpl Public Class</a>
 

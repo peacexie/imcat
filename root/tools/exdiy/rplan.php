@@ -6,6 +6,7 @@ glbHtml::page("Run Plan - (sys_name)",1);
 echo "<meta http-equiv='refresh' content='14400' />\n";
 eimp('initJs','jquery;/tools/exdiy/rplan.js');
 eimp('initCss','stpub;/tools/exdiy/style.css');
+echo glbHtml::wpscale(480, 1);
 glbHtml::page('body');
 
 $ocfgs = read('outdb','ex');

@@ -4,6 +4,18 @@ namespace imcat;
 // Html类
 class glbHtml{    
 
+    // viewport-scale
+    static function wpscale($width=480, $script=1){
+        $jstr = "
+        var ua=navigator.userAgent, wscr=parseInt(window.screen.width),
+          scale=wscr/$width, wpus='user-scalable=no', wpstr='';
+        if(/Android/.test(ua)) { wpus = 'minimum-scale='+scale+', maximum-scale='+scale; }
+        wpstr='<meta name=\"viewport\" content=\"width=$width, '+wpus+', target-densitydpi=device-dpi\">';
+        if(wscr<$width) document.write(wpstr);\n";
+        if($script){ $jstr = "<script>$jstr</script>\n";}
+        return $jstr;
+    }
+
     // 页面结构
     static function page($mod='',$ext='',$iex=''){
         global $_cbase; 
