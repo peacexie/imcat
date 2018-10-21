@@ -4,10 +4,10 @@
 
 $_cfgs['db_driver']   = 'mysqli'; // 数据库类(class),mysqli(推荐),pdo(用于PDO扩展),mysql(PHP5.5+不能使用)
 $_cfgs['db_host']    = 'localhost'; // 数据库主机(如果发现使用主机名连接数据库很慢,改用ip试一下)
-$_cfgs['db_name']    = 'imcat_v44_8af'; // 数据库名(pdo连接不使用) 
+$_cfgs['db_name']    = 'imcat_v44_8b1'; // 数据库名(pdo连接不使用) 
 $_cfgs['db_port']    = '3306'; // 数据库端口，mysql默认是3306，一般不需要修改
 $_cfgs['db_user']    = 'root'; // 数据库用户名
-$_cfgs['db_pass']    = ''; // 数据库密码    
+$_cfgs['db_pass']    = '123456'; // 数据库密码    
 
 // 数据库 - 高级配置
 #$_cfgs['db_dsn']  = 'mysql:host=localhost;dbname=peace_v30'; //pdo连接access使用
@@ -21,7 +21,7 @@ $_cfgs['db_cset']   = 'utf8';// 数据库编码
 // 数据库缓存
 $_cfgs['dc_on']      = 0; //
 //$_cfgs['dc_type']    = ''; // 不设置为空默认
-$_cfgs['dc_prefix']  = 'gN0Zg';
+$_cfgs['dc_prefix']  = '_dc1';
 $_cfgs['dc_path']    = '/cacdb'; // /cacdb
 $_cfgs['dc_exp']     = 60; // 600~3600(s)
 
