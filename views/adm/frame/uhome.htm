@@ -185,9 +185,14 @@ $(function(){
     hash = top.location.hash;
     drow = admSses.get('abcNav_lses');
     if(drow) { drow = JSON.parse(drow); }
-    if(hash && hash.indexOf('#admin-')==0){
-        var url = hash.replace('#','?');
-        window.location.href = url;
+    if(hash){
+        if(hash.indexOf('#admin-')==0){
+            var url = hash.replace('#','?');
+            window.location.href = url;
+        }else{
+            admSses.set('abcNav_lses','{}');
+        }
+        top.location.hash = '';
     }else if(drow && drow.url){
         window.location.href = drow.url;
     }else{

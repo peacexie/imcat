@@ -5,6 +5,8 @@ body, td, input, textarea, select, button{ color:#333; line-height:150%; font:12
 ul, li, dl, dd, p, h1, h2, h3, h4, h5, h6, hr, form, fieldset { line-height:150%; margin:0; padding:0; }
 li{ list-style:none; }
 
+.header, div.header{ max-width:640px; margin:10px auto; padding:0px; border:0px; }
+
 div { border: 1px solid #999; padding: 10px; max-width: 620px; margin: 10px auto; }
 p { font-weight: bold; text-align: center; background: #CCC; border: 1px dashed #999; padding: 5px; margin: 5px 0px; }
 section { margin: 5px; }
@@ -26,3 +28,5 @@ input.url { width:420px; }
 
 .w120 { width:120px; }
 .tc { text-align:center; }
+
+.itag{ margin:10px auto; }
