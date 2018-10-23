@@ -1,9 +1,8 @@
 <?php
 // 常用参数
-//$_cbase['run']['isDemo'] = 0; //演示站，不能提交数据
-$_cbase['run']['defPort'] = 1; //默认端口，不带端口
+//$_cbase['run']['isDemo'] = 0; //演示站，不能提交数据(不用了)
 
-/// 参数配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
+/// 参数配置-根据需要配置 -----------------------------------------------
 
 // 系统参数
 $_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
@@ -35,7 +34,6 @@ $_cbase['debug']['db_area'] = array('RUN_FRONT','RUN_MOB',); //,'RUN_ADMIN','RUN
 $_cbase['debug']['db_time'] = '100'; //0,10,100
 
 //模板配置 
-//$_cbase['tpl']['tpl_ext'] = '.htm'; //模板后缀，v4.4后固定为.htm
 $_cbase['tpl']['tpc_on']  = 0; //是否开启模板缓存，true开启,false不开启 
 $_cbase['tpl']['tpc_ext'] = '.cac_php'; //模板缓存后缀,一般不需要修改 
 $_cbase['tpl']['no_static'] = '(adm)'; //,umc
@@ -50,16 +48,13 @@ $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 //用户自定义配置
 $_cbase['ucfg']['vimg']  = 'K'; // 0,H,K
 $_cbase['ucfg']['ipapi'] = 'Taobao'; // 默认IP地址接口, Pcoln # Taobao # Api # Ip138 # Baidu
-#$_cbase['ucfg']['czip']  = '0'; // zlib,gzip,0(不用了)
 $_cbase['ucfg']['guid'] = 'Cook'; // UIP,Sess,Cook
 $_cbase['ucfg']['city'] = '东莞'; //本地城市,订单算运费用
 $_cbase['ucfg']['space'] = 30; //M空间大小
 $_cbase['ucfg']['dbind'] = 0; //是否开启绑定子域名
 $_cbase['ucfg']['ctab'] = 'F00,F0F,060,00F,F60,90F,F69,06F,099,606,60F,906,F6F'; //颜色表
 
-/// 额外配置-根据需要配置 //////////////////////////////////////////////////////////////////////////////// 
-
-// xdebug 
+/// 额外配置-根据需要配置 -----------------------------------------------
 
 // weixin
 $_cbase['weixin']['debug']  = true; 
