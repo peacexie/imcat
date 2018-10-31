@@ -1,7 +1,5 @@
 
-
-* 贴心猫(imcat) V4.4(Beta)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* 贴心猫(imcat) V4.4 Released (2018-11)
 
 --- --- --- --- --- --- --- --- --- 
 
