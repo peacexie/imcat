@@ -87,15 +87,12 @@ class vopUrl{
             if(isset($cfg[$view])){
                 $tpl = $cfg[$view];
             }elseif(empty($cfg[1]) && in_array($view,array('so','list'))){
-                $tpl = '';
+                $tpl = "$mod/$dsub";
             }else{
-                vopShow::msg("d:[-$view]:".basLang::show('vop_parerr'));
+                $tpl = "$mod/$dsub-$view";
             }
         }else{
-            $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : '') : $cfg; 
-        }
-        if(empty($tpl)){
-            $tpl = "$mod/$dsub"; // $re['hcfg']['c']['extra']
+            $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : "$mod/$dsub") : $cfg; 
         }
         // 处理{mod}
         $re['tplname'] = str_replace('{mod}',$mod,$tpl); 
