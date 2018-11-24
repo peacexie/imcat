@@ -6,7 +6,7 @@ $whrs = tex('texFaqs')->expwhr($this);
 $whr = $whrs[0]; $ord = $whrs[1];
 ?>
 <dl class="qalist">
-{tag:qas=[Page][modid,faqs][where,$whr][order,$ord][show,1][limit,10]}
+{tag:qas=[Page][modid,faqs][where,$whr][order,$ord][limit,10]}
     {:row}
     <dt>{if !empty($t_hinfo) }<b class="fa fa-leaf"></b> {/if}<a href="{surl("faqs.$t_did")}">{title($t_title,240,$v)}</a></dt>
     <dd>

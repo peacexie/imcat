@@ -18,7 +18,7 @@ $_va_home = array(
     ),
     
     //mod.home模块首页模板
-    'm' => 'home/index',
+    'm' => 'home/mhome',
 
     'u' => array(), // 自定义参数
 

@@ -21,7 +21,7 @@ glbHtml::ieLow_html(10,'LowIE',$msg);
 
 {block:main}
     <ul id="adpic02" class="home-adpic02" style="overflow:hidden">
-        {tag:dlist1=[List][modid,cargo][hinfo,pindao+home+zhuanti,in][show,1][limit,6]}
+        {tag:dlist1=[List][modid,cargo][hinfo,pindao+home+zhuanti,in][limit,6]}
         <li>
         <a href="{surl("cargo.$t_did")}"><img src="{spic($t_mpic,demo_nop300x200.jpg)}" width="100%" height="320" /></a>
         <p><a href="{surl("cargo.$t_did")}">{title($t_title,96,$v)}</a></p>
@@ -34,7 +34,7 @@ glbHtml::ieLow_html(10,'LowIE',$msg);
     <p class="home-title"><a href="{surl(news)}" class="icobox right"><i class="fa fa-folder-open"></i></a>
     <strong>新闻动态</strong></p>
     <ul>
-        {tag:dlist2=[List][modid,news][show,1][limit,6]}
+        {tag:dlist2=[List][modid,news][limit,6]}
         <li>
         <p><a href="{surl("news.$t_did")}">{title($t_title,96,$v)}</a></p>
         </li>
@@ -46,7 +46,7 @@ glbHtml::ieLow_html(10,'LowIE',$msg);
     <p class="home-title"><a href="{surl(keres)}" class="icobox right"><i class="fa fa-folder-open"></i></a>
     <strong>课程资源</strong></p>
     <ul>
-        {tag:dlist3=[List][modid,keres][show,1][limit,6]}
+        {tag:dlist3=[List][modid,keres][limit,6]}
         <li>
         <p><a href="{surl("keres.$t_did")}">{title($t_title,96,$v)}</a></p>
         </li>

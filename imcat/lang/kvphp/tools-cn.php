@@ -322,6 +322,13 @@ return array(
     'setup_tdb_ndb' => '当前数据库',
     'setup_tdb_rst' => '安装后将重置',
 
+    'tag_helper' => '标签助手',
+    'tag_restore' => '标签还原',
+    'tag_create_code' => '生成代码',
+    'tag_create_tag_code' => '生成标签代码',
+    'tag_attr_fromcode' => '还原标签配置',
+    'tag_attr_resetp' => '重新配置属性',
+
     'fix_' => 'end',
     
 );

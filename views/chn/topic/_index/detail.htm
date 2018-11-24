@@ -43,7 +43,7 @@ eimp('initCss','bootstrap,stpub;comm;topic');
         <div class="sidebar-module">
             <h4>其他专题</h4>
             <ol class="list-unstyled">
-                {tag:hinfs=[List][modid,$this->mod][show,1][limit,10]}
+                {tag:hinfs=[List][modid,$this->mod][limit,10]}
                 <li><a href='{surl($this->mod.".$t_did")}'>{title($t_title,200,$v)}</a></li>
                 {/tag:hinfs}
             </ol>

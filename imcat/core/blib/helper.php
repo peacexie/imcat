@@ -1,6 +1,21 @@
 <?php
 #namespace imcat;
 
+use imcat\basClass;
+use imcat\basDebug;
+use imcat\basJscss;
+use imcat\basLang;
+use imcat\basOut;
+use imcat\basReq;
+use imcat\basStr;
+use imcat\glbConfig;
+use imcat\glbDBObj;
+use imcat\glbError;
+use imcat\usrBase;
+use imcat\usrPerm;
+use imcat\vopTpls;
+use imcat\vopUrl;
+
 /**
  * 一组别名函数（使用Symfony的dump后添加的,有的叫助手函数）
  * 如果与其它程序一起使用，发现有如下函数冲突，请设置[run.outer]参数即可
@@ -13,7 +28,7 @@ function dump($var,$min=1){
     if($min=='min'){
         echo "<pre>"; print_r($var); echo "</pre>";
     }else{
-        \imcat\basDebug::varShow($var,'',$min);
+        basDebug::varShow($var,'',$min);
     }
 } }
 
@@ -21,12 +36,12 @@ function dump($var,$min=1){
 // tex('texClass')->func() -=> \imcat\chn\texClass::func()
 if(!function_exists('tex')){ 
 function tex($cfile, $tpl=''){
-    return \imcat\basClass::tex($cfile, $tpl);
+    return basClass::tex($cfile, $tpl);
 } }
 // tinc(模板包含) 
 if(!function_exists('tinc')){ 
 function tinc($fp, $inc=1, $refull=1){
-    return \imcat\vopTpls::tinc($fp, $inc, $refull);
+    return vopTpls::tinc($fp, $inc, $refull);
 } }
 
 // cfg(读取cbase配置) cfg('sys.cset');
@@ -45,9 +60,9 @@ function cfg($key,$def=''){
 if(!function_exists('lang')){ 
 function lang($mk, $val=''){
     if($val===0){ 
-        echo \imcat\basLang::show($mk, $val===0?'':$val);
+        echo basLang::show($mk, $val===0?'':$val);
     }else{
-        return \imcat\basLang::show($mk, $val);
+        return basLang::show($mk, $val);
     } 
 } }
 
@@ -57,32 +72,32 @@ function read($file,$dir='modcm'){
     // $file:支持格式:news.i
     if(strpos($file,'.')){
         $t = explode('.',$file);
-        $re = \imcat\glbConfig::read($t[0],$dir);
+        $re = glbConfig::read($t[0],$dir);
         return isset($re[$t[1]]) ? $re[$t[1]] : $re;
     }else{
-        return \imcat\glbConfig::read($file,$dir);
+        return glbConfig::read($file,$dir);
     }
 } }
 
 // req(获得get/post参数)
 if(!function_exists('req')){ 
 function req($key,$def='',$type='Title',$len=255){
-    return \imcat\basReq::val($key,$def,$type,$len);
+    return basReq::val($key,$def,$type,$len);
 } }
 
 // 输入 : addslashes 反斜杠
 if(!function_exists('in')){ 
 function in($data,$type=''){
-    return \imcat\basReq::in($data,$type);
+    return basReq::in($data,$type);
 } }
 
 // 输出 : 格式: str,json,jsonp,xml
 if(!function_exists('out')){ 
 function out($data,$type='json'){
     if($type=='str'){ // 删除(addslashes添加的)反斜杠
-        $data = \imcat\basReq::out($data,$type);
+        $data = basReq::out($data,$type);
     }else{ // fmt: json,jsonp,xml
-        $data = \imcat\basOut::fmt($data,$type);
+        $data = basOut::fmt($data,$type);
     }
     return $data;
 } }
@@ -90,25 +105,25 @@ function out($data,$type='json'){
 // db(获得db对象)
 if(!function_exists('db')){ 
 function db($config=array(),$catch=0){
-    return \imcat\glbDBObj::dbObj($config,$catch);
+    return glbDBObj::dbObj($config,$catch);
 } }
 
 // user(获得user对象)
 if(!function_exists('user')){ 
 function user($uclass=''){
-    return \imcat\usrBase::userObj($uclass);
+    return usrBase::userObj($uclass);
 } }
 
 // show-url:格式化url输出
 if(!function_exists('surl')){ 
 function surl($mkv='',$type='',$host=0){
-    return \imcat\vopUrl::fout($mkv,$type,$host);
+    return vopUrl::fout($mkv,$type,$host);
 } }
 
 // sys-mod:系统(有效)模块,关闭或不存在返回`false`
 if(!function_exists('smod')){ 
 function smod($key=''){
-    $_groups = \imcat\glbConfig::read('groups'); 
+    $_groups = glbConfig::read('groups'); 
     return isset($_groups[$key]);
 } }
 
@@ -121,7 +136,7 @@ function cmod($key=''){
 // echo-import:css,js
 if(!function_exists('eimp')){ 
 function eimp($type,$base='',$user=0){
-    echo \imcat\basJscss::imp($type,$base,$user);
+    echo basJscss::imp($type,$base,$user);
 } }
 
 // 一组handler函数 ---------------------------------
@@ -131,16 +146,16 @@ function eimp($type,$base='',$user=0){
 }*/
 // 默认异常处理函数
 function except_handler_ys($e) {
-    throw new \imcat\glbError($e); 
+    throw new glbError($e); 
 }
 // 默认错误处理函数
 function error_handler_ys($Code,$Message,$File,$Line) {  
-    throw new \imcat\glbError(@$Code,$Message,$File,$Line); 
+    throw new glbError(@$Code,$Message,$File,$Line); 
 }
 // 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
 function shutdown_handler_ys() {  
     //echo "(shutdown)";
-    \imcat\basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
+    basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
 }
 
 //(!function_exists('intl_is_failure'))
@@ -149,10 +164,10 @@ function shutdown_handler_ys() {
 
 if(!function_exists('subRep')){ 
 function subRep($str){
-    $sup = \imcat\usrPerm::issup();
-    $user = \imcat\usrBase::userObj('Member');
+    $sup = usrPerm::issup();
+    $user = usrBase::userObj('Member');
     $mem = $user->userFlag=='Login';
-    return ($sup||$mem) ? $str : \imcat\basStr::subReplace($str); 
+    return ($sup||$mem) ? $str : basStr::subReplace($str); 
 } }
 
 # $sPUser = MemPW.MemID

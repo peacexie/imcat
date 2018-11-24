@@ -12,18 +12,19 @@ class vopUrl{
         $q = empty($q) ? (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '') : $q;
         // 去掉开头的:mkv= (肯定是动态)
         if(substr($q,0,4)=='mkv='){
-            header('Location:'."?".substr($q,4));
+            header('Location:?'.substr($q,4));
             die();
         }
         // 修正微信分享url:?2018-12-31xx=&from=timeline
         if(preg_match("/^[\w\-\.]{3,24}\=\&\w+/i",$q)){
-            $q = str_replace('=&','&',$q);
+            header('Location:?'.str_replace('=&','&',$q));
+            die();
         }
         parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);
         $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
-        $re1 = preg_match("/^\w+(\-\-(so|list))?$/",$mkv); // modid, (--list)
-        $re2 = preg_match("/^\w+\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
-        $re3 = preg_match("/^\w+\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
+        $re1 = preg_match("/^[A-Za-z0-9]{2}\w*(\-\-(so|list))?$/",$mkv); // modid, (--list)
+        $re2 = preg_match("/^[A-Za-z0-9]{2}\w*\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
+        $re3 = preg_match("/^[A-Za-z0-9]{2}\w*\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
         if(!($re1 || $re2 || $re3)){
             vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr'));
         }
@@ -33,7 +34,7 @@ class vopUrl{
     
     // mkv/mod初始分析
     static function imkv($re,$remod=0){
-        $hcfg = glbConfig::vcfg('home'); 
+        $hcfg = glbConfig::vcfg('home');
         $mkv = $re['mkv']; $type = ''; $vcfg = array();
         // ?login -=>别名 ?uio-login // 都可访问
         if(isset($hcfg[$mkv])){
@@ -62,8 +63,7 @@ class vopUrl{
     // tpl/key分析
     static function itpl($re){
         foreach(self::$params as $k) $$k = $re[$k]; 
-        $tpl = ''; $dsub = $type;
-        $cfg = array();
+        $dsub = $type; $cfg = "";
         if($type=='mtype'){
             $dsub = $key;
             if(isset($vcfg[$key])){
@@ -81,21 +81,20 @@ class vopUrl{
                 $cfg[$view] = $vcfg['d']['v'];
             }
         }elseif(isset($vcfg['m'])){ // mext,mhome
-            $cfg = $vcfg['m']; 
+            $cfg = $vcfg['m'];
         }
-        if($view){
+        $tpl = ($cfg && is_string($cfg)) ? $cfg : "$mod/$dsub";
+        if($view){ // && !)
             if(isset($cfg[$view])){
                 $tpl = $cfg[$view];
-            }elseif(empty($cfg[1]) && in_array($view,array('so','list'))){
-                $tpl = "$mod/$dsub";
-            }else{
+            }elseif(!in_array($view,array('so','list'))){
                 $tpl = "$mod/$dsub-$view";
             }
         }else{
-            $tpl = is_array($cfg) ? (isset($cfg[0]) ? $cfg[0] : "$mod/$dsub") : $cfg; 
+            if(is_array($cfg) && isset($cfg[0])){ $tpl = $cfg[0]; }
         }
         // 处理{mod}
-        $re['tplname'] = str_replace('{mod}',$mod,$tpl); 
+        $re['tplname'] = str_replace('{mod}',$mod,$tpl);
         return $re;
     }
 
@@ -114,7 +113,7 @@ class vopUrl{
         }
         empty($re['hcfg']['u']) || $re['u'] = $re['hcfg']['u']; //自定义参数
         $re['vcfg'] = isset($re['vcfg']['c']) ? $re['vcfg']['c'] : '';
-        $re['hcfg'] = $re['hcfg']['c']; 
+        $re['hcfg'] = $re['hcfg']['c'];
         return $re; 
     }
     

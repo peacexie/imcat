@@ -21,10 +21,6 @@ $_sy_vopcfg['tpl'] = array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
         '/root/run/adm.php',
     ),
-    'base' => array(
-        array('cn'=>'默认首页', 'en'=>'Basic'),
-        '/index.php', // index,base
-    ),
     'chn' => array(
         '官网版',
         '/chn.php',
@@ -56,6 +52,10 @@ $_sy_vopcfg['tpl'] = array(
         '/root/run/rest.php'
     ),
     'demo' => array('Hello.Demo!','/root/run/demo.php'), 
+    'base' => array(
+        array('cn'=>'默认首页', 'en'=>'Basic'),
+        '/index.php', // index,base
+    ),
     //'ven' => array('English','/root/run/eng.php'), 
 );
 

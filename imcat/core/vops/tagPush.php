@@ -2,35 +2,11 @@
 namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
-// 标签解析 (数据列表)类
+// 标签解析 (数据推送)类
 class tagPush extends tagList{
     
     //public $whrArr = array();
 
-    static function check(){
-        $user = usrBase::userObj('Admin');
-        $grades = ",supper,ainfo,auser,advers,";
-        return strpos($grades,$user->uperm['grade']);
-    }
-    static function load(){
-        echo basJscss::imp('/layer/layer.js','vendui');
-        echo basJscss::imp('/base/assets/cssjs/adpush.css');
-        echo basJscss::imp('/base/assets/cssjs/adpush.js');
-        $lngs = "{ps_pinfo:'".basLang::show('flow.ps_pinfo')."',ps_title:'".basLang::show('flow.ps_title')."'}";
-        echo basJscss::jscode("Lang.push=$lngs;");
-    }
-    static function gets($ids){
-        $db = glbDBObj::dbObj(); $res = array();
-        $ids = str_replace(array("'",','),array("","','"),$ids);
-        $sfrom = "aid,detail FROM ".$db->table('advs_adpush',2)." m ";
-        $sqlAll = "SELECT $sfrom WHERE m.aid IN('$ids') ORDER BY `top`"; 
-        $re1 = $db->query($sqlAll); 
-        foreach($re1 as $row) {
-            $res[$row['aid']] = comParse::jsonDecode($row['detail']); 
-        } 
-        return $res;
-    }
-    
     function __construct($paras=array()) {
         parent::__construct($paras); 
     }
@@ -65,4 +41,29 @@ class tagPush extends tagList{
         }
         return $ops;
     }
+
+    static function check(){
+        $user = usrBase::userObj('Admin');
+        $grades = ",supper,ainfo,auser,advers,";
+        return strpos($grades,$user->uperm['grade']);
+    }
+    static function load(){
+        echo basJscss::imp('/layer/layer.js','vendui');
+        echo basJscss::imp('/base/assets/cssjs/adpush.css');
+        echo basJscss::imp('/base/assets/cssjs/adpush.js');
+        $lngs = "{ps_pinfo:'".basLang::show('flow.ps_pinfo')."',ps_title:'".basLang::show('flow.ps_title')."'}";
+        echo basJscss::jscode("Lang.push=$lngs;");
+    }
+    static function gets($ids){
+        $db = glbDBObj::dbObj(); $res = array();
+        $ids = str_replace(array("'",','),array("","','"),$ids);
+        $sfrom = "aid,detail FROM ".$db->table('advs_adpush',2)." m ";
+        $sqlAll = "SELECT $sfrom WHERE m.aid IN('$ids') ORDER BY `top`"; 
+        $re1 = $db->query($sqlAll); 
+        foreach($re1 as $row) {
+            $res[$row['aid']] = comParse::jsonDecode($row['detail']); 
+        } 
+        return $res;
+    }
+
 }

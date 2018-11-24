@@ -74,7 +74,7 @@ demo:
  - Show list for [Docs/News] | [Coms/Remarks] | [User/Member] [Advs/Links]
  - Notice: There are another call mode for [Advs/Links]
 ```
-{tag:dhinfo=[List][modid,cargo][show,1][limit,6]}
+{tag:dhinfo=[List][modid,cargo][limit,6]}
 <li>{title($t_title,96,$v)}</li>
 {/tag:dhinfo}
 ```
@@ -111,7 +111,7 @@ demo:
 * Tag-Specification: 
 
  - Format: Suppose tag name is `mytag_123`, the full tag will begin with `{tag:mytag_2=[Type]`; end with `{/tag:mytag_2}`
- - Tag name: consisting of 2~24 letters/numbers/underlines, begin with the letter;
+ - Tag name: consisting of 2~18 letters/numbers/underlines, begin with the letter;
  - In the same page, is best not to have the same tag name, a small part of the case may have conflict;
  - Can NOT use 2 or more page-tag in the same page
  - {:row}Loop-Parts{/row}: Set the loop parts, Used in these tags : List/Page

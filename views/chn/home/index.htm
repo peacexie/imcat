@@ -30,7 +30,7 @@ eimp('initCss','bootstrap,stpub;comm;home');
       <dt class="line">&nbsp;</dt>
       </dl>
       <dl>
-          {tag:dlistn=[List][modid,news][hinfo,pindao+home+zhuanti,in][show,1][join,detail][limit,5][offset,0]}
+          {tag:dlistn=[List][modid,news][hinfo,pindao+home+zhuanti,in][join,detail][limit,5][offset,0]}
           <dd><i class="right">[{stime($t_atime,0)}] </i><a href="{surl("news.$t_did")}">{title($t_title,24,$v)}</a></dd>
           {/tag:dlistn}
       </dl>
@@ -143,7 +143,7 @@ $null3 = "";
         <div class="row home-keres">
         <!--list_start: uimark-pos-rel-->
         {if smod('keres')}
-        {tag:dlist=[List][modid,keres][join,detail][show,1][limit,4]}
+        {tag:dlist=[List][modid,keres][join,detail][limit,4]}
         {:row}
         <dl class='col-md-6'>
           <dt class="title">
@@ -184,7 +184,7 @@ $null3 = "";
       <div class="panel-body home-side">
           <!--list_start-->
           {if smod('keres')}
-          {tag:tlist=[List][modid,topic][show,1][limit,8]}
+          {tag:tlist=[List][modid,topic][limit,8]}
           <p>
             <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("topic.$t_did")}">{title($t_title,45,$v)}</a>
           </p>

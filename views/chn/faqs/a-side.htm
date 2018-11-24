@@ -48,7 +48,7 @@
   <div class="panel-body side">
     <div class="cst-tag1">
       {if !empty($this->vars['tags']) }{php echo tex('texFaqs')->navTags($this,$this->vars['tags']); }
-      {else}{tag:tags=[List][modid,qatag][show,1][order,hotcnt][limit,24]}
+      {else}{tag:tags=[List][modid,qatag][order,hotcnt][limit,24]}
       {:row}<a href="{surl(0)}?faqs--list&tag={=$t_title}" class="c<?php echo tex('texFaqs')->rndColor(); ?>">{title($t_title,24,$v)}</a>{/row}
       {/tag:tags}{/if}
     </div>

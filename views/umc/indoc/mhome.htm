@@ -15,7 +15,7 @@ $uname = @$user->uinfo['uname'];
             if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
             $recn = 0; 
         ?>
-        {tag:indocs1=[List][modid,$this->mod][where,$where][show,1][limit,5]}
+        {tag:indocs1=[List][modid,$this->mod][where,$where][limit,5]}
         {:row}
         <dt class="list">
         {php echo \imcat\umc\texIndoc::isread($user,$t_did); } 
@@ -35,7 +35,7 @@ $uname = @$user->uinfo['uname'];
             if($key=='dep') $where .= " AND touser NOT LIKE '%$uname%' "; 
             $recm=5-$recn; 
         ?>
-        {tag:indocs2=[List][modid,$this->mod][where,$where][show,1][limit,$recm]}
+        {tag:indocs2=[List][modid,$this->mod][where,$where][limit,$recm]}
         {:row}
         <dt class="list">
         {php echo \imcat\umc\texIndoc::isread($user,$t_did); } 

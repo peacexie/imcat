@@ -17,6 +17,6 @@ $_sy_home = array(
     ),
     
     //mod.home模块首页模板
-    'm' => 'home/index',
+    'm' => 'home/mhome',
   
 );

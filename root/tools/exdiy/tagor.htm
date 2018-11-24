@@ -1,0 +1,361 @@
+<?php
+namespace imcat;
+basLang::shead($_cbase['sys_name'].' - '.lang('tools.tag_helper'));
+?>
+
+<div>
+
+  <p>
+  <span class="right">
+    <a href='#' onclick="opFlip2()"><?=lang('tools.tag_restore')?></a> 
+  </span>
+  <?=lang('tools.tag_helper')?>
+  </p>
+
+<dl id="-att_tab-">
+
+  <ul class="itag">
+    <li class="il">
+      标签名 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="18" id="tagname" value="<?=$tagname?>">
+    </li>
+    <dd class="tip">
+      <p>
+        <span class="right">`{tag:d1list=`</span>
+        <b>tagname</b> / 标签名 
+      </p>
+      <p>由字母开头，可以是：字母/数字/下划线，最多18个字符；</p>
+      <p>嵌套的父子标签，名称不能相同；单个模板，建议标签名不要相同。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag"> 
+    <li class="il">
+      标签类型 &nbsp; 
+    </li>
+    <li class="ir">
+      <select id="tagtype" onchange="opTagtype(this)">
+        <?php echo basElm::setOption($typtabs,'','- 标签类型 -'); ?>
+      </select>
+      v:
+      <input type="text" maxlength="8" id="tagtype_v" value="v" size="5">
+    </li>
+    <dd class="tip">
+      <p>
+        <span class="right">`[Page,v2]`</span>
+        <b>tagtype</b> / 标签类型 
+      </p>
+      <p>`v`参数为列表循环中，每行数据的变量名，默认是`v`；
+      嵌套标签中，为避免变量冲突，请手动指定；</p>
+      <p>标签内打印一行代码：&lt;?php dump($v);?&gt;，`{=$v['title']}`或`{=$t_title}`显示$v的一个`title`t_`为固定前缀。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="Free">
+    <li class="il">
+      数据源 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="18" id="dbkey" onchange="opModid_2(this)">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[dbkey,powereasy]`</span>
+        <b>dbkey</b> / 外部数据源
+      </p>
+      <p>[Free]自由调用中使用，用于指定外部数据源；</p>
+      <p>外部数据源配置见：/root/cfgs/boot/cfg_db.php。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="Free">
+    <li class="il">
+      模型 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="18" id="modid_2" onchange="opModid_2(this)">
+      <label><input type="checkbox" value="1" id='pgbar' />分页</label>
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[modid,area]`</span>
+        <b>modid</b> / 数据模型
+      </p>
+      <p>`modid`为第三方数据库表名称；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Type,Push">
+    <li class="il">
+      模型 &nbsp; 
+    </li>
+    <li class="ir">
+      <select id="modid" onchange="opModid(this)">
+        <?php echo basElm::setOption($modtabs,'','- 请选择模型 -',1); ?>
+      </select>
+      <label><input type="checkbox" value="1" id='join' />join</label>
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[modid,news]`</span>
+        <b>modid</b> / 数据模型
+      </p>
+      <p>`modid`为后台配置的模型ID，在特定模板中，可用`$this->mod`表示当前默认模型；</p>
+      <p>`join`项为【文档/资讯】中，是否需要详情表数据；默认不配置，可以设置为`[join,detail]。</p>
+      <p></p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Push" mds="docs,users,advs">
+    <li class="il">
+      栏目 &nbsp;
+    </li>
+    <li class="ir">
+      <select id="stype">
+        <option value=''>- 请选择[栏目] -</option>
+      </select>
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[stype,cvip]`</span>
+        <b>stype</b> / 栏目
+      </p>
+      <p>【文档/资讯】中，是栏目；【用户/会员】中，是等级；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Push" mds="docs,users,coms,advs">
+    <li class="il">
+      审核 &nbsp; 
+    </li>
+    <li class="ir">
+      <label><input name="show" type="radio" value="0" id='show_0'>hide</label> &nbsp; 
+      <label><input name="show" type="radio" value="all" id='show_all'>all</label> &nbsp; 
+      <label><input name="show" type="radio" value="1" id='show_def' checked>def</label>
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[show,all]`</span>
+        <b>show</b> / 显示开关
+      </p>
+      <p>只针对：【文档/资讯】/【用户/会员】/【互动/评论】有效；</p>
+      <p>默认条件为审核项[show,1]，如需显示隐藏的请设置[show,0]，如需显示所有资料请设置[show,all]。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page" mds="docs,users,coms">
+    <li class="il">
+      pid &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="12" id="pid">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[pid,2018-88-9988]`</span>
+        <b>pid</b> / 关联pid
+      </p>
+      <p>假设后台设置：`[nrem]新闻评论`关联模型是`[news]新闻动态`；</p>
+      <p>有新闻动态id为`2018-88-9988`，查找新闻评论中，且关联新闻动态id=`2018-88-9988`的评论可设置：[pid,2018-88-9988]；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Push,Free" mds="docs,users,coms,advs">
+    <li class="il">
+      inids &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="120" id="inids">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[inids,$rel_doc]`</span>
+        <b>inids</b> / 主键id列表
+      </p>
+      <p>文章详情页，有`$rel_doc`变量为关联id字段；则找出关联的文章可用属性`[inids,$rel_doc]`；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Type,Push" mds="docs,users,coms,types,advs">
+    <li class="il">
+      关键字 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="12" id="keywd">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[keywd]`</span>
+        <b>keywd</b> / 关键字
+      </p>
+      <p>如：`[keywd]`，会查询url中`keywd=xxx`参数为条件，然后like比较的结果；</p>
+      <p>如：`[keywd,$kwd]`或,`[keywd,mycat]`，查询like `%mycat%`的结果，其中`$kwd='mycat'`；</p>
+      <p>适合：【文档/资讯】/【用户/会员】/【分类/组系】数据调用；【用户/会员】中比较字段是`mname`，其他模型比较字段是`title`；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="Type" mds="types">
+    <li class="il">
+      层级关系 &nbsp;
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="18" id="idfix">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[idfix,top]`</span>
+        <b>idfix</b> / id层级关系
+      </p> 
+      <p>用于【分类/组系】的id层级关系；</p>
+      <p>如`[idfix,all]`,所有分类；</p>
+      <p>如`[idfix,top]`,所有顶级分类；</p>
+      <p>如`[idfix,sun:p1012]`,p1012的子分类（不含子分类下的分类）；</p>
+      <p>如`[idfix,sall:p1012]`,p1012的子分类（含子分类下的分类）；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Free" mds="docs,users,coms">
+    <li class="il">
+      字段条件 &nbsp;
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="48" id="-ex_fields-">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[brand,huawei][hinfo]`</span>
+        <b>fields</b> / 字段条件
+      </p> 
+      <p>拼接后台定义的字段条件：格式为`[字段名,值]`；</p>
+      <p>如`[brand][hinfo]`,省略值则从url中取如：`brand=huawei`；</p>
+      <p>如`[hinfo,pindao+home+zhuanti,in]`,hinfo取列表中的值之一；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Push,Free" mds="docs,users,coms,advs">
+    <li class="il">
+      where &nbsp;
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="48" id="where">
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[where,$whrstr]`</span>
+        <b>where</b> / 关键字
+      </p>
+      <p>拼接条件字段：`[keywd,$whrstr]`，其中`$whrstr`为自定义sql的where子句的php字符串：`$whrstr="did='2004-33-2ycx'"`；</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Free" mds="docs,users,coms"> 
+    <li class="il">
+      排序 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="12" id="order">
+    </li>
+    <dd class="tip">
+      <p>
+        <span class="right">`[order,m.did]`</span>
+        <b>order</b> / 排序 
+      </p>
+      <p>【分类/组系】不使用排序；默认表别名为`m`；</p>
+      <p>排序字段：为空时【用户/会员】默认是添加时间；其它模型默认是主键；</p>
+      <p>排序方式：默认是倒序，可以添加`0`参数或url中`odesc=0`改变排序方式如`[order,m.did,1]`；。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="List,Page,Push,Free" mds="docs,users,coms,advs"> 
+    <li class="il">
+      limit &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="number" maxlength="12" id="limit" value="10" class="w60">
+      offset:
+      <input type="number" maxlength="12" id="offset" value="0" class="w60">
+    </li>
+    <dd class="tip">
+      <p>
+        <span class="right">`[limit,10]`</span>
+        <b>limit</b> / 分页大小 
+      </p>
+      <p>`offset`偏移量，默认为空，如`[offset,5]`。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" tps="One,List,Page,Free" mds="docs,users,coms">
+    <li class="il">
+      缓存 &nbsp; 
+    </li>
+    <li class="ir">
+      <input type="text" maxlength="6" id="cache" value="0" class="w60"> (min)
+    </li> 
+    <dd class="tip">
+      <p>
+        <span class="right">`[cache,6h]`</span>
+        <b>cache</b> / 缓存
+      </p>
+      <p>默认不配置，可以设置数字，单位是分钟；</p>
+      <p>也可设置如：`4h`,`7d`等表示`4小时`,`7天`。</p>
+    </dd>
+  </ul>
+
+  <ul class="itag" id="itpl">
+    <textarea id="-tpl_str-" style="width:100%; height:80px;" placeholder="标签内模板代码<?=$demotpl?>"></textarea>
+  </ul>
+
+  <ul class="itag" id="icreate">
+    <li class="il">
+      <?=lang('tools.tag_create_code')?> &nbsp; 
+    </li>
+    <li class="ic">
+      <input type="button" id="btnCreate" onclick="tagCreate()" value="<?=lang('tools.tag_create_tag_code')?>">
+    </li> 
+  </ul>
+
+</dl>
+
+<dl id="-rec_box-" style="display:none;">
+
+  <ul class="itag">
+    <textarea id="-tag_str-" style="width:100%; height:120px;" placeholder="完整标签代码<?=$democode?>"></textarea>
+  </ul>
+
+  <ul class="itag" id="irestore">
+    <li class="il">
+      <?=lang('tools.tag_restore')?> &nbsp; 
+    </li>
+    <li class="ic">
+      <input type="button" id="btnRestore" onclick="tagRestore()" value="<?=lang('tools.tag_attr_fromcode')?>">
+      #
+      <input type="button" id="btnResetp" onclick="tagResetp()" value="<?=lang('tools.tag_attr_resetp')?>">
+    </li> 
+  </ul>
+
+</dl>
+
+<dl>
+  <!--dd>适合：【文档/资讯】/【用户/会员】/【互动/评论】/【分类/组系】数据调用；</dd-->
+  <dd class="pv10">
+    <!--b class="right fa fa-question-circle-o"></b-->
+    <span class="right">
+      <a onclick="opAllp()">所有属性</a> #
+      <a onclick="opAllt()">所有提示</a> 
+    </span>
+    完整标签代码示例:<pre class="tgpre"><?=$democode?></pre>
+    <ul>js标签只需在标签类别前加`js`即可，如：`jsOne,jsList,jsPage`，这里不作额外处理；</ul>
+    <ul>常规【广告/连接】调用，不建议使用这种方式调用，请使用js调用。</ul>
+  </dd>
+</dl>
+
+</div>
+
+<script>
+  var tipmk = '<i class="qmark fa fa-question-circle-o"></i>';
+  cfgs.types = ['<?=$typkeys?>'];
+  initAll(1);
+</script>
+

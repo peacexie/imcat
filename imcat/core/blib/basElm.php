@@ -6,7 +6,7 @@ class basElm{
 
     // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
-    static function setOption($cfgs,$val='',$title='-(def)-'){
+    static function setOption($cfgs,$val='',$title='-(def)-',$fpid=0){
         $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
         if(is_string($cfgs)){
             if(!strpos($cfgs,'(')){ // 排除:class::func(pa,p2,..)
@@ -15,14 +15,16 @@ class basElm{
             $cfgs = self::text2arr($cfgs);
         }
         if($title) $cfgs = array(''=>$title) + $cfgs; 
-        $str = '';
+        $str = $pid = '';
         foreach($cfgs as $k=>$v){ 
             $v = is_string($v) ? $v : $v['title']; // isset($v['title']) 某些环境下出错...
             if(strstr($k,'^group^')){
                 $str .= "\n<optgroup label='$v'></optgroup>";
+                $pid = str_replace('^group^','',$k);
             }else{
                 $def = "$val"==="$k" ? 'selected' : ''; 
-                $str .= "\n<option value='$k' $def>$v</option>";    
+                $pids = $fpid ? " pid='$pid'" : '';
+                $str .= "\n<option value='$k' $def$pids>$v</option>";    
             }
         }
         return $str;

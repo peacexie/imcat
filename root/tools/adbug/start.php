@@ -83,7 +83,7 @@ $tolurl = PATH_PROJ.'/dev.php';
   <tr class="tc">
     <td><a href="binfo.php?login"><?php lang('tools.start_login',0) ?></a></td>
     <td><a href="../exdiy/rplan.php">rplan</a>-<a href="../exdiy/build.php">build</a></td>
-    <td><a href="../exdiy/index.php">tools</a>-<a href="../exdiy/derun.php">derun</a></td>
+    <td><a href="../exdiy/tagor.php">tagor</a>-<a href="../exdiy/derun.php">derun</a></td>
     <td><a href="dbadm.php"><?php lang('tools.start_dbadmin',0) ?></a></td>
   </tr> 
   <tr class="tc">

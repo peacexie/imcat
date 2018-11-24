@@ -131,12 +131,13 @@ class admAFunc{
         
     // upd config
     static function grpNav($pid,$mod){
+        global $_cbase; 
         $_groups = glbConfig::read('groups');
-        $mkv = basReq::val('mkv',$_SERVER['QUERY_STRING']); 
+        $mkv = $_cbase['mkv']['mkv'];
         $str = ''; 
         $ggap = ''; $top0 = '1';
         foreach($_groups as $k=>$v){
-            if($v['pid']==$pid){ 
+            if($v['pid']==$pid){
                 $top1 = substr($v['top'],0,1);
                 $str .= (($top0!=$top1)?'<br>':$ggap)."<a href='?mod=$k'>$v[title]</a>";    
                 $ggap = ' | '; $top0 = $top1;

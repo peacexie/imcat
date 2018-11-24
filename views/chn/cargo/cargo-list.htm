@@ -31,7 +31,7 @@ eimp('initCss','bootstrap,stpub;comm');
     <div class="h10">&nbsp;</div>
     <!--list_start-->
     <div class="row pro-table">
-      {tag:dlist=[Page][modid,$this->mod][show,1][stype][brand][hinfo][keywd][where,tex('texCargo')->expwhr()][order,0,click+price][limit,12]}
+      {tag:dlist=[Page][modid,$this->mod][stype][brand][hinfo][keywd][where,tex('texCargo')->expwhr()][order,0,click+price][limit,12]}
       {:row}
       <div class="col-md-3 pitm">
         <p class="tc picbox uimark-pos-rel">
@@ -42,7 +42,7 @@ eimp('initCss','bootstrap,stpub;comm');
         <p class="title"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
       </div> 
       {/row}
-        <div colspan="{=$col}" class="pa5">
+        <div colspan="{=$col}" class="clear pa5">
         {php echo $_cbase['page']['bar']; }
         </div>
       {/tag:dlist}

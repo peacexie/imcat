@@ -171,5 +171,15 @@ class comPager{
         }
         return $a;
     }
+
+    static function fixUrl($key='home'){
+        global $_cbase;
+        $bar = &$_cbase['page']['bar'];
+        if(!strpos($bar,"?$key&")){
+            $bar = str_replace('?',"?$key&",$bar);
+        }
+        return $bar;
+    }
+    
 }
 

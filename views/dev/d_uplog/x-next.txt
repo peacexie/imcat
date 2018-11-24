@@ -1,37 +1,40 @@
 
-$_abase['out']['user'] = 'maotools'; // 如果有_config.php，则使用_config.php中的设置；
-$_abase['out']['pass'] = 'maopass'; // 请每次使用,都改个新密码；否则安全问题,请后果自负！
-
-* search : mkv=xxx                                        --- ok 
- - /dir/file.htm?(伪静态) - ok
-
-* pub - save - vars/ : dirs                               --- ... 
-* setup - test
 
 
-* DIR_DTMP   ->  DIR_VARS                                 --- ok 
- - dbexp(ok), dborg(ok)
- - debug(ok), remote(ok)
 
 
-系统工具 > 静态                                            --- ok 
+大不列颠及北爱尔兰联合王国（United Kingdom of Great Britain and Northern Ireland）
 
-    
-umkv($key,$ukey='')                                       --- ok 
- - $mkv = $_cbase['mkv']['mkv'];
+<!--
+
+ * demo
+ - {tag:dlist4=[Free][dbkey,imhaoft][modid,lease][order,LEASE_ID][limit,3]}
+ - $t_dlist = $this->tagParse("dlist","Page",array(array('modid',$this->mod),array('show','1'),array('stype'),array('brand'),array('hinfo'),array('keywd'),array('where',tex('texCargo')->expwhr()),array('order',0,'click+price'),array('limit','12'),));
+ - $t_dlist = $this->tagParse("dlist","Page",[['modid',$this->mod],['show','1'],['stype'],['brand'],['hinfo'],['keywd'],['where',tex('texCargo')->expwhr()],['order',0,'click+price'],['limit','12'],]);
+
+-->
+
+/chn.php?about-apics
 
 
-Searching 22 files for `.set('abcNav` (case sensitive)    --- ok 
+### (im3n/贴心三农.) nanwan + 201886 --- (2018-10/11) [2018-11-11封存]
 
+### tagBase->pWhere() - 处理show     --- ok
 
-UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'?mkv=','?')    --- ok 
-UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="admin-','href="?admin-');
-UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="apis-','href="?apis-');
-UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="dops-','href="?dops-');
+### 标签助手 / tagor (v4.5)          --- ok
+
+### umc： (v4.5)
+
+### 企业站：中英文： (v4.5) + 
+
 
 ------------------------------------------------------------------------------
 
-### 企业站：中英文：
+### house (v4.6)
+
+～～～～～～～～～～～～～
+
+### 企业站：中英文： (v4.5)
 
 * 规划
  - 介绍，  产品，  新闻，  留言，  联络
@@ -58,8 +61,6 @@ UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="dops-','href="?dops-');
  - img:水印,压缩
  - php.ini:比较
 
-* tagor
-
 * 二手房，楼盘
 
 * dir调整
@@ -78,12 +79,6 @@ UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="dops-','href="?dops-');
 
 * 其它
  - 二手房，楼盘
- - project psw 发布
-
-*root/error
-
-* plus/coms
- - footer ... 
 
 ------------------------------------------------------------------------------
 
@@ -116,9 +111,6 @@ UPDATE base_menu_ys SET cfgs=REPLACE(cfgs,'href="dops-','href="?dops-');
 人参鸽子汤
 杜仲腰尾(猪腰)汤
 
-ECMAScript 6 入门
-http://es6.ruanyifeng.com/
-
 ～～～～～～～～～～～～～
 
 找点时间，找点空闲；弄个证件，回家看看…
@@ -127,6 +119,9 @@ http://app.jszg.edu.cn/portal/request/index
 点绿色的那个，点绿色的那个!
 
 ～～～～～～～～～～～～～
+
+ECMAScript 6 入门
+http://es6.ruanyifeng.com/
 
 你不曾察觉的隐患：危险的 target="_blank" 与 “opener”
 https://segmentfault.com/a/1190000016421263

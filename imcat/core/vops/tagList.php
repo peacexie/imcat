@@ -76,7 +76,7 @@ class tagList extends tagBase{
                 $sql && $sql = "(".substr($sql,4).")";
             }elseif($fix){
                 $pid = $_groups[$this->modid]['pid'];    
-                if(in_array($pid,array('docs'))){
+                if(in_array($pid,array('docs','advs'))){
                     $def = 'title';
                 }elseif(in_array($pid,array('users'))){
                     $def = 'mname';
@@ -97,10 +97,10 @@ class tagList extends tagBase{
         foreach($this->paras as $para){ 
             $sql = '';
             if(isset($flist[$para[0]]) || in_array($para[0],$exFields)){
-                $f = $para[0]; 
-                $v = empty($para[1]) ? basReq::val($f) : $para[1]; 
+                $f = $para[0];
+                $v = isset($para[1]) ? $para[1] : basReq::val($f); 
                 $op = @$para[2]; 
-                if($v){
+                if(strlen($v)>0){ // 0可以通过
                     if(in_array($op,array('>','>=','<','<='))){ 
                         $sql = "(m.$f $op '$v')";
                     }elseif($op=='in'){
@@ -116,7 +116,6 @@ class tagList extends tagBase{
                 }
             }
             $sql && $this->whrArr[] = $sql;
-            
         }
     }
     

@@ -3,7 +3,7 @@ namespace imcat;
 
 define('FLAGYES', '<span style="color: #008000; font-weight : bold;">&#10004;<!--isYes--></span>');
 define('FLAGNO', '<span style="color: #ff0000; font-weight : bold;">&#10008;<!--isNo--></span>');
-define('MINPHPVER', '5.2');
+define('MINPHPVER', '5.3');
 
 // ...类
 class devRun{    

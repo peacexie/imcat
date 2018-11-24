@@ -29,4 +29,24 @@ input.url { width:420px; }
 .w120 { width:120px; }
 .tc { text-align:center; }
 
-.itag{ margin:10px auto; }
+/* tagor */
+
+.itag{ min-width:263px; min-height:35px; padding:5px 5px 10px 5px; margin:5px auto; border-bottom: 1px solid #999; }
+@media only screen and (max-width:360px){ .itag{padding:5px 1px 10px 1px; margin:5px -5px; }}
+.itag li{ float:left; border-bottom:0; }
+.itag .il{ width:20%; text-align:right; padding:9px 0 0 0; }
+.itag .ir{ width:80%; }
+.itag li.ic{ float:none; text-align:center; padding-bottom:5px; }
+
+.itag label { cursor:pointer; }
+.itag select{ width:130px; }
+
+.itag .qmark{ font-size:18px; float:right; color:#3F9; width:auto; cursor:pointer; }
+.itag .tip{ display:block; clear:both; background:#FFF; padding:5px 2px 5px 5px; border:1px dashed #FCC; }
+.itag .tip b{ font-weight:bold; }
+.itag .tip p{ text-align:left; font-weight:normal; background:#FFF; border:0px dashed #FFF; padding:3px; margin:1px; }
+
+.tphid{ display:none; }
+.mdhid{ display:none; }
+.tgpre{ background:#CCC; padding:3px; margin:3px 3px 15px 3px; }
+input[type="button"]:disabled{ color: #999; }

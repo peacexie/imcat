@@ -150,6 +150,16 @@ class tagBase{
         if(!empty($cfg[1])){ 
             $whr .= (substr($cfg[1],0,5)!=' AND ' ? ' AND ':'').$cfg[1];  
         }
+        // 处理：默认`show=1`及`show=all`条件
+        $_groups = glbConfig::read('groups'); 
+        $pid = $_groups[$this->modid]['pid'];
+        if(in_array($pid,array('docs','users','coms','advs'))){
+            if(strpos($whr,"(m.show='all')")){
+                $whr = str_replace(" AND (m.show='all')",'',$whr);
+            }elseif(!strpos($whr,'(m.show=')){
+                $whr .= " AND (m.show='1')";
+            } //echo "($whr)<br>\n";
+        }
         if(substr($whr,0,5)==' AND ') $whr = substr($whr,5);
         $this->whrStr = $whr; 
     }

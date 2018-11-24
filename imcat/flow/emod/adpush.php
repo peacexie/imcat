@@ -3,8 +3,7 @@ namespace imcat;
 (!defined('RUN_DOPA')) && die('No DopA'); 
 
 $fm = basReq::arr('fm','Html'); 
-$omkv = req('omkv');
-$otpl = req('otpl');
+$from = req('from');
 
 if(req('umod')=='upd'){
     echo "<p class='tc'><a href='?$mkv&mod=$mod&view=list'>".lang('flow.dops_back')."</a></p>";
@@ -111,11 +110,11 @@ if($view=='list'){
     
     if(!empty($bsend)){
         $data = comParse::jsonEncode($fm); 
-        $db->table($dop->tbid)->data(basReq::in(array('detail'=>$data)))->where("aid='$aid'")->update(); // save
-        if(!empty($omkv) && !empty($otpl)){
+        $db->table($dop->tbid)->data(basReq::in(array('detail'=>$data)))->where("aid='$aid'")->update();
+        /*if(!empty($from)){ // omkv,otpl
             $url = "?ajax-cron&static=$omkv&tpldir=$otpl&act=mkv";
-            echo "\n<iframe src='".PATH_BASE."$url"."' width='100%'></iframe>"; // static
-        }
+            echo "\n<iframe src='".PATH_BASE."$url"."' width='100%'></iframe>";
+        }*/
         die(basJscss::Alert('Push OK!','prClose'));
     }
 
@@ -146,6 +145,6 @@ if($view=='list'){
     $submit = "<input name='bsend' type='submit' class='btn' value='".lang('flow.ps_send')."' />";
     echo "<tr><td class='tc' width='15%'>".lang('flow.ps_send')."</td>\n";
     echo "<td class='tc' colspan='".(count($fields))."'>$submit</td></tr>\n";
-    glbHtml::fmt_end(array("mod|$mod","aid|$aid","omkv|$omkv","otpl|$otpl","view|$view"));
+    glbHtml::fmt_end(array("mod|$mod","aid|$aid","view|$view"));
 
 }

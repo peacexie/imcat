@@ -49,13 +49,13 @@ $subs = tex('texBase')->docer('d_start/doc__home');
         </div>
         <div class="panel-heading">系统资讯 / 问答</div>
         <div class="panel-body side">
-          {tag:tlist3=[List][modid,news][stype,nsys][show,1][limit,3]}
+          {tag:tlist3=[List][modid,news][stype,nsys][limit,3]}
           <p>
             <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
           </p>
           {/tag:tlist3}
           
-          {tag:tlist2=[List][modid,faqs][show,1][limit,5]}
+          {tag:tlist2=[List][modid,faqs][limit,5]}
           <p>
             <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("chn:faqs.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
           </p>

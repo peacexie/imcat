@@ -18,7 +18,7 @@ $whrstr = tex('texCargo','chn')->expwhr();
     <!--list_start-->
     <?php $col=2; ?>
     <table border="1" width="100%" class="pro-table">
-      {tag:dlist=[Page][modid,$this->mod][show,1][stype][brand][hinfo][keywd][where,$whrstr][order,0,click+price][limit,8]}
+      {tag:dlist=[Page][modid,$this->mod][stype][brand][hinfo][keywd][where,$whrstr][order,0,click+price][limit,8]}
       {:row}
       {php if($i_v%$col==0) echo "\n<tr>"; }
       <td width="25%" valign="top">

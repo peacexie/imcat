@@ -322,6 +322,13 @@ return array(
     'setup_tdb_ndb' => 'NOW DB is',
     'setup_tdb_rst' => 'It will reset after setup',
 
+    'tag_helper' => 'Tag Helper',
+    'tag_restore' => 'View Attr.',
+    'tag_create_code' => 'Create code',
+    'tag_create_tag_code' => 'Create tag code',
+    'tag_attr_fromcode' => 'Attr. from code',
+    'tag_attr_resetp' => 'Re-config attr.',
+
     'fix_' => 'end',
 
 );
