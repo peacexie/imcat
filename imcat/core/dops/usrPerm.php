@@ -16,7 +16,8 @@ class usrPerm{
     // ??? usrPerm::run(array('pcheck,about','padd,about'));
     //usrPerm::run('mkv','admin-groups');
     static function run($key='mkv',$val='',$fix='end'){
-        if($key=='mkv' && empty($val)) $val = basReq::val('mkv');
+        global $_cbase;
+        if($key=='mkv' && empty($val)) $val = $_cbase['mkv']['mkv'];
         $msg = self::check($key,$val); 
         if(empty($fix)){
             return $msg;
