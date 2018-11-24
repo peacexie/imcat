@@ -1,6 +1,6 @@
 
 * 贴心猫(imcat) V4.4 Released (2018-11)
-* 修复几处小bug；Some bugs fixed!(2018-11-23)
+* 修复几处小bug。 Some bugs fixed! (2018-11-23)
 
 --- --- --- --- --- --- --- --- --- 
 
