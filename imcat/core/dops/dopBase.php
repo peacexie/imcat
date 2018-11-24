@@ -54,8 +54,9 @@ class dopBase{
     
     // 左上信息条
     function msgBar($msg='',$lnkadd=''){
+        global $_cbase;
         $mod = $this->mod;
-        $mkv = basReq::val('mkv');
+        $mkv = $_cbase['mkv']['mkv'];
         $stype = basReq::val('stype');  
         $gname = $this->cfg['title'];
         empty($lnkadd) && $lnkadd = $this->cv->Url(basLang::show('flow.dops_add2').'&gt;&gt;',0,"?$mkv&mod=$mod&view=form&stype=$stype&recbk=ref","");
