@@ -25,7 +25,7 @@ class vopComp{
         $_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
         $content = comFiles::get($re[0]);
         $content = $this->bcore($content); //获取经编译后的内容
-        $shead = "namespace imcat;\n(!defined('RUN_INIT')) && die('No Init'); \n\$this->tagRun('tplnow','$tpl','s');";
+        $shead = NSP_INIT."\n\$this->tagRun('tplnow','$tpl','s');";
         $tpfp = vopTpls::tinc('_ctrls/texBase',0); $spend = '';
         if(file_exists($tpfp)){
             $class = '\\imcat\\'.$_cbase['tpl']['vdir'].'\\texBase';

@@ -28,6 +28,7 @@ class homeCtrl{
         $hclose = empty($_cbase['close_home']) ? 'index' : $_cbase['close_home'];
         if($hclose=='close'){
             \imcat\vopTpls::cinc("stpl/close_info",1);
+            die();
         }elseif(substr($hclose,0,4)=='dir-'){
             $tpl = substr($hclose,4);
             $cfg = read('vopcfg.tpl','sy'); 

@@ -84,7 +84,7 @@ class vopUrl{
             $cfg = $vcfg['m'];
         }
         $tpl = ($cfg && is_string($cfg)) ? $cfg : "$mod/$dsub";
-        if($view){ // && !)
+        if($view){
             if(isset($cfg[$view])){
                 $tpl = $cfg[$view];
             }elseif(!in_array($view,array('so','list'))){

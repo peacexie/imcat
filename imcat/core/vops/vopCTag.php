@@ -74,6 +74,7 @@ class vopCTag{
         $p2 = strpos($tpl, $tag2);
         $data = substr($tpl, $p1, $p2-$p1+strlen($tag2)); 
         $tag0 = substr($tag1,5);
+        //$varid = '$T_'.$tag0;
         $varid = '$T_'.$tag0;
         preg_match("/\{tag:$tag0\=([^\n]{12,1200}\])\}/i", $data, $_m);
         // $_m[0] : {tag:flag2=[...]}
@@ -88,8 +89,7 @@ class vopCTag{
                 $tplnow = $_cbase['run']['comp']; 
                 $jsfile = vopTpls::path('tpc')."/$tplnow.$tag0.comjs.php";
                 $dstr = str_replace($_m[0], '<!-- start('.$unv.'); -->', $dstr);
-                $conhead = "(!defined('RUN_INIT')) && die('No Init'); "; 
-                comFiles::put($jsfile, "<?php $conhead ?>".$dstr); //写入缓存
+                comFiles::put($jsfile, "<?php ".NSP_INIT." ?>".$dstr); //写入缓存
                 $ps = self::_1Pjs($_m[1]);
                 $dstr = "<div id='jsid_tags_".str_replace('/','_',$tplnow)."_$tag0'><!--".str_replace('[js','['.$tplnow.','.$tag0.'][',$ps)."--></div>";
             }else{

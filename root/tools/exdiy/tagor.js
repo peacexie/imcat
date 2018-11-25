@@ -302,6 +302,7 @@ function tagResetp(){
     tagRestore();
     $('#icreate').show();
     $('#irestore').hide();
+    $('#-rec_box-').hide();
     cfgs.rtag = 0;
 }
 

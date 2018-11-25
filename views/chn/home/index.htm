@@ -106,7 +106,7 @@ eimp('initCss','bootstrap,stpub;comm;home');
       <div class="panel-body home-side">
           <!--list_start-->
           {if smod('corder')}
-          {tag:dlist=[List][modid,corder][limit,6]}
+          {tag:dlist=[List][modid,corder][show,all][limit,6]}
           <?php $item=exvOcar::ilist('coms_coitem',"ordid='$t_cid'",2); @$v=$item['data'][0]; ?>
           <p>
             <i class="right">{sopt($t_ordstat,corder.ordstat,0,0)}</i>&middot; 单号：{=$t_cid}

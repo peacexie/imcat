@@ -26,7 +26,7 @@ class vopShow{
         $data || $data = basReq::val($data,'','');
         $temp = vopCTag::tagParas($data,'arr'); 
         $tagfile = @$temp[0]; 
-        $tagname = @$temp[1]; $varid = 't_'.$tagname;
+        $tagname = @$temp[1]; $varid = 'T_'.$tagname;
         $tagpath = "/$tagfile.$tagname.comjs.php";
         if(!file_exists(vopTpls::path('tpc').$tagpath)){
             vopComp::main($tagfile);

@@ -30,8 +30,7 @@ class vopTpls{
             $btpl = new vopComp();
             $template = $btpl->bcore($template);
             comFiles::chkDirs($cac,'ctpl',1); 
-            $shead = "namespace imcat;\n(!defined('RUN_INIT')) && die('No Init');";
-            comFiles::put($tplfull, "<?php \n$shead \n?>\n".$template); //写入缓存
+            comFiles::put($tplfull, "<?php \n".NSP_INIT." \n?>\n".$template); //写入缓存
         }
         $_cbase['run']['tplname'] = $file;
         if($inc){
