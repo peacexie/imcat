@@ -171,6 +171,19 @@ class basStr{
         if($xLen) $xStr = self::cutWidth($xStr,$xLen);
         return $xStr; // nl2br($s);
     }
+    // *** 从Html内容过滤样式，适合wap显示
+    static function filHWap($str){
+        $str = preg_replace('/<img.*?src=["\']?([^"\'\s]*)["\']?[^>]*>/is',"<img src=\"$1\" />",$str);//图片格式化
+        $str = preg_replace('/<p[^>]*>\s*<img[^>]*src=["\']?([^"\'\s]*)["\']?[^>]*>/is',"<p style=\"text-align:center;\" ><img src=\"$1\" />",$str);//图片居中
+        // text
+        $str = preg_replace('/>(\s|&nbsp;|　)*/is',">",$str);//去除空格
+        $str = preg_replace('/text-indent:[^;\'"]*;?/i','',$str);
+        // iframe
+        $str = preg_replace('/width=(\d+)&amp;height=(\d+\.{0,9}\d*)/is',"",$str);
+        $str = preg_replace('/<iframe height="\d+" width="\d+"/','<iframe height="250" width="100%"',$str);
+        return $str;
+        #$val = preg_replace('/\[#.*?#\]/','',safestr($val)); // 安全,分页
+    }
     // *** Form中字符编码
     static function filForm($str) {
         return self::filText($str,0);

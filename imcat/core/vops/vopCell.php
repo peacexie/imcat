@@ -130,16 +130,6 @@ class vopCell{
         }
         return $val;
     }
-    // mob:显示-val
-    static function cMobile($val=''){
-        $val = preg_replace('/<img[^>]*src=["\']?([^"\'\s]*)["\']?[^>]*>/is',"<img src=\"$1\" />",$val);  
-        $val = preg_replace('/<p[^>]*>\s*<img[^>]*src=["\']?([^"\'\s]*)["\']?[^>]*>\s*<\/p>/is',"<p style=\"text-align:center;\" ><img src=\"$1\" /></p>",$val);//图片居中
-        $val = preg_replace('/<p([^>]*)>\s*(\s*&nbsp;\s*)*\s*/i',"<p$1>",$val);//去除nbsp;
-        $val = preg_replace('/<p([^>]*)>(　)*/i',"<p$1>",$val);//去除开头的全角空格;
-        $val = preg_replace('/<p([^>]*)text-indent:[^;]+;([^>]*)>/i',"<p$1$2>",$val);//去除text-indent
-        #$val = preg_replace('/\[#.*?#\]/','',safestr($val)); // 安全,分页
-        return $val;
-    }
     //Page -- js处理？
     static function cPage($val=''){
         return $val;
@@ -153,7 +143,7 @@ class vopCell{
         if(strpos($paras,'media')) $val = self::cMedia($val);
         #if(strpos($paras,'page')) $val = self::cPage($val);
         // 处理mob特性
-        if(strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir'])) $val = self::cMobile($val);
+        if(strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir'])) $val = basStr::filHWap($val);
         return $val;
     }
     

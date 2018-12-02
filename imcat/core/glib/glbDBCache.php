@@ -22,7 +22,7 @@ class glbDBCache extends glbDBObj{
             $data = $this->_dcGet();
             if(!empty($data)){ return $data; }
             //没有缓存，则查询数据库
-            $this->connect();
+            $this->runTimer();
             $data = $this->db->arr($this->sql);
             $this->runTimer('qSelect');
             $this->_dcPut($data);//写入缓存
@@ -41,7 +41,7 @@ class glbDBCache extends glbDBObj{
         //读取缓存
         $re = $this->_dcGet();
         if(!empty($re)){ return $re; }
-        $this->connect();            
+        $this->runTimer();
         $re = $this->db->val($this->sql);
         $this->runTimer('count');
         $this->_dcPut($re);//写入缓存
@@ -59,7 +59,7 @@ class glbDBCache extends glbDBObj{
         //读取缓存
         $data = $this->_dcGet();
         if(!empty($data)){ return $data; }
-        $this->connect();
+        $this->runTimer();
         $data = $this->db->row($this->sql);
         $this->runTimer('find');
         $this->_dcPut($data);//写入缓存
@@ -77,7 +77,7 @@ class glbDBCache extends glbDBObj{
         $data = $this->_dcGet();
         if(!empty($data)){ return $data; }
         //没有缓存，则查询数据库
-        $this->connect();
+        $this->runTimer();
         $data = $this->db->arr($this->sql);
         $this->runTimer('select');
         $this->_dcPut($data);//写入缓存
@@ -85,7 +85,7 @@ class glbDBCache extends glbDBObj{
      }
     
     //初始化缓存类，如果开启缓存，则加载缓存类并实例化
-    function _dcInit(){        
+    function _dcInit(){
         if(is_object($this->cache)){
             return true;
         }elseif($this->config['dc_on']){
@@ -121,24 +121,26 @@ class glbDBCache extends glbDBObj{
             $exp = $this->_dcKey('(exp)');
             return $this->cache->set($key[0],$data,$key[1]);
         }
-        return false;    
+        return false;
     }
     private function _dcKey($resql=1){
         $expire = isset($this->opts['cache']) ? $this->opts['cache'] : $this->config['dc_exp'];
         if(empty($expire)) return false; // 缓存时间为0，不读取缓存
         if(!$this->_dcInit()){
-            return false;  
+            return false;
         }
         $arr1 = array(
             'SELECT ','FROM ','WHERE ','AND ','OR ',
             'INSERT INTO ','UPDATE ','DELETE ','REPLACE INTO ', 
             'GROUP BY ','HAVING ','ORDER BY ','LIMIT ',
+            'LEFT JOIN','RIGHT JOIN','INNER JOIN',
             ' ',
-        ); // LEFT JOIN, RIGHT JOIN INNER JOIN
+        );
         $arr2 = array(
             '[s]','[f]','[w]','[a]','[o]',
             '[ins]','[upd]','[del]','[rep]',
-            '[gby]','[hav]','[oby]','[m]',
+            '[gby]','[hav]','[oby]','[lmt]',
+            '[lj]','[rj]','[ij]',
             '',
         );
         $sql = str_replace($arr1,$arr2,$this->sql);

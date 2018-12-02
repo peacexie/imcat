@@ -62,14 +62,14 @@
     <div class="clear">&nbsp;</div>
     
     <?php
-    $whrstr = "m.city='linzhi'"; // [where,$whrstr] 
+    $whrstr = "m.pid='0'"; // [where,$whrstr] 
     ?>
     <div class="w480">
         <ul>
             <li>area(区域:Free标签)</li>
-            {tag:dlist2=[Free][modid,types_world][pgbar,1][order,kid,0,1][limit,3]}
+            {tag:dlist2=[Free][modid,types_china][pgbar,1][where,$whrstr][order,top,0,0][limit,3]}
             <li>
-            <a href="{surl("news.$t_kid")}">{=$t_kid}:{=$t_title}</a>
+            <a href="#{=$t_kid}">{=$t_kid}:{=$t_title}</a>
             </li>
             {/tag:dlist2}
         </ul>

@@ -48,7 +48,7 @@ class tagFree extends tagList{
         $cfg = $this->p1Cfg('where'); 
         if(empty($cfg)) return;
         if(!empty($cfg[1])){
-            $this->where = ' WHERE '.$cfg[1];
+            $this->where = $cfg[1];
         }
     }
   
@@ -60,9 +60,10 @@ class tagFree extends tagList{
         return empty($cfg[1]) ? $this->resLister() : $this->resPager();
     }
     function resLister(){ 
+        $where = $this->where ? ' WHERE '.$this->where : '';
         $offset = empty($this->sqlArr['offset']) ? '' : $this->sqlArr['offset'].',';
         $ordLimit = "ORDER BY ".$this->sqlArr['ofull']." LIMIT $offset".$this->sqlArr['limit'];
-        $this->sqlAll = "SELECT {$this->from} {$this->where} $ordLimit"; 
+        $this->sqlAll = "SELECT {$this->from} {$where} $ordLimit"; 
         $this->re = $this->db->query($this->sqlAll);
         return $this->re;  
     }

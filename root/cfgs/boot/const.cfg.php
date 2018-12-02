@@ -29,7 +29,7 @@ $_cbase['debug']['log_save']  = ''; //记录方式: 空:不记录, Y-mdH, Y-md-H
 $_cbase['debug']['pay_log'] = 1; //支付记录-调试标记
 
 $_cbase['debug']['db_sql']  = ''; //记录方式: 空:不记录, Y-mdH, Y-md-H, db, 
-$_cbase['debug']['db_acts'] = ',select,qSelect,find,'; //,delete,update,replace,insert,count,fields,tables,qOther,
+$_cbase['debug']['db_acts'] = ',select,qSelect,find,'; //connect,delete,update,replace,insert,count,fields,tables,qOther,
 $_cbase['debug']['db_area'] = array('RUN_FRONT','RUN_MOB',); //,'RUN_ADMIN','RUN_UMC','RUN_AJAX','RUN_DBSQL','RUN_DEV'
 $_cbase['debug']['db_time'] = '100'; //0,10,100
 

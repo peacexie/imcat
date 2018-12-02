@@ -74,7 +74,6 @@ class vopCTag{
         $p2 = strpos($tpl, $tag2);
         $data = substr($tpl, $p1, $p2-$p1+strlen($tag2)); 
         $tag0 = substr($tag1,5);
-        //$varid = '$T_'.$tag0;
         $varid = '$T_'.$tag0;
         preg_match("/\{tag:$tag0\=([^\n]{12,1200}\])\}/i", $data, $_m);
         // $_m[0] : {tag:flag2=[...]}

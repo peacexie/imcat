@@ -25,31 +25,35 @@ class glbDBObj{
 
     //连接数据库
     function connect(){ 
-        global $_cbase;
         if(!is_object($this->db)){ //$this->db不是对象，则连接数据库
-            $_cbase['run']['qstart'] = microtime(1); //分析Start
             $file = 'db'.ucfirst($this->driver);
             require_once DIR_IMCAT."/adpt/dbdrv/{$file}.php";
             $class = "\\imcat\\$file";
             $this->db = new $class();//连接数据库
+            $this->runTimer();
             $this->db->connect($this->config);
+            $this->runTimer('connect');
         }
     }
 
     //执行时间分析
-    function runTimer($mode='-'){
+    function runTimer($mode=0){
         global $_cbase;
-        $run_end = microtime(1); //分析Start
-        $run_one = $run_end-$_cbase['run']['qstart'];
-        $_cbase['run']['qtime'] += $run_one;
-        $_cbase['run']['query']++;
+        if(!$mode){
+            $_cbase['run']['qstart'] = microtime(1); //记录Start
+            return;
+        }else{
+            $run_one = microtime(1)-$_cbase['run']['qstart'];
+            $_cbase['run']['qtime'] += $run_one;
+            $_cbase['run']['query']++;
+            $loger = $this->runChkbug($mode);
+            if(empty($loger)) return;
+        }
         $tpl = $_cbase['run']['tplname'];
-        $noid = $this->runChkbug($_cbase,$mode); 
-        if(empty($noid)) return;
         if($_cbase['debug']['db_sql']=='db'){
             $info = basDebug::bugInfo();
             $sql = basReq::in($this->sql); $used = 1000*$run_one; $run = $_cbase['run']; 
-            $kid = basKeyid::kidTemp().$noid;//.basKeyid::kidRand('24',4);
+            $kid = basKeyid::kidTemp().$_cbase['run']['query'];
             $vals = "'$kid','$sql','$used','{$info['vp']}','$tpl','','{$run['stamp']}'"; 
             $this->db->run("INSERT INTO ".$this->table('logs_dbsql',2)."(kid,`sql`,used,page,tpl,tag,atime)VALUES($vals)"); 
         }elseif(!empty($_cbase['debug']['db_sql'])){
@@ -59,7 +63,8 @@ class glbDBObj{
         }
     }
 
-    function runChkbug($_cbase, $mode){
+    function runChkbug($mode){
+        global $_cbase;
         if(!strpos($_cbase['debug']['db_acts'],$mode)) return 0;
         $indefine = 0;
         foreach($_cbase['debug']['db_area'] as $key){
@@ -68,14 +73,7 @@ class glbDBObj{
                 break;
             }
         }
-        if(!$indefine) return 0;
-        static $__noid;
-        if(empty($__noid)){
-            $__noid = 101;
-        }else{
-            $__noid++;    
-        }
-        return ($__noid>=960) ? 0 : $__noid;
+        return $indefine;
     }
 
     //回调方法，连贯操作的实现
@@ -107,7 +105,8 @@ class glbDBObj{
     function query($sql){ 
         $this->sql = $sql;
         //判断当前的sql是否是查询语句
-        if(strpos(trim(strtolower($sql)),'select')===0){ 
+        if(strpos(trim(strtolower($sql)),'select')===0){
+            $this->runTimer();
             $data = $this->db->arr($this->sql);
             $this->runTimer('qSelect');
             return $data;
@@ -121,6 +120,7 @@ class glbDBObj{
     function run($sql, $act=''){ 
         global $_cbase;
         $this->sql = $sql;
+        $this->runTimer();
         $re = $this->db->run($this->sql);
         $this->runTimer($act);
         return $re;
@@ -131,7 +131,8 @@ class glbDBObj{
         $table = $this->otps['table'];//当前表
         $field = 'count(*)';//查询的字段
         $where = $this->_parseCond();//条件
-        $this->sql="SELECT $field FROM $table $where";          
+        $this->sql="SELECT $field FROM $table $where";
+        $this->runTimer();       
         $re = $this->db->val($this->sql);
         $this->runTimer('count');
         return $re;
@@ -146,6 +147,7 @@ class glbDBObj{
         $this->otps['field']='*';//设置下一次查询时，字段的默认值
         $this->sql="SELECT $field FROM $table $where";
         $data = array();
+        $this->runTimer();
         $data = $this->db->row($this->sql);
         $this->runTimer('find');
         return $data;
@@ -159,6 +161,7 @@ class glbDBObj{
         $this->otps['field'] = '*';//设置下一次查询时，字段的默认值
         $this->sql = "SELECT $field FROM $table $where";
         $data = array();
+        $this->runTimer();
         $data = $this->db->arr($this->sql);
         $this->runTimer('select');
         return $data;
@@ -213,6 +216,7 @@ class glbDBObj{
     // 取得数据表的字段信息
     function fields($tab){
         $tab = is_array($tab) ? $tab[0] : $tab;
+        $this->runTimer();
         $a = $this->db->fields("$this->pre$tab$this->ext");
         $this->runTimer('fields');
         return $a;
@@ -220,6 +224,7 @@ class glbDBObj{
 
     // 取得数据库的表信息
     function tables($info=0){
+        $this->runTimer();
         $a = $info ? $this->db->tabinfo() : $this->db->tables();
         $this->runTimer('tables'); 
         $tab = array();
@@ -239,6 +244,7 @@ class glbDBObj{
 
     // 取得创建表sql
     function create($tab){
+        $this->runTimer();
         $a = $this->db->create("{$this->pre}$tab{$this->ext}");
         $this->runTimer('create');
         return $a;
@@ -284,7 +290,7 @@ class glbDBObj{
                 foreach($this->otps['data'] as $key=>$value){
                     $data .= "`$key`='$value',";
                 }
-                $data = substr($data, 0,-1);    //去除后面的逗号
+                $data = substr($data, 0,-1); //去除后面的逗号
                 return $data;
                 break;
             default:
@@ -304,7 +310,7 @@ class glbDBObj{
                     foreach($this->otps['where'] as $key=>$value){
                          $cond .= " `$key`='$value' AND ";
                     }
-                    $cond = substr($cond, 0,-4);    
+                    $cond = substr($cond, 0,-4);
             }else{
                 $cond = "";
             }
