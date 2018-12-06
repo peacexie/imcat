@@ -116,6 +116,19 @@ class dopBase{
         $str .= "</select>";
         return $str;
     }
+    // 表单-Part资料(语言/城市)
+    function fmPart($w=150){
+        global $_cbase;
+        $mod = $this->mod; $str = ''; $key = 'part'; 
+        if(in_array($mod,$_cbase['part']['mods'])){
+            $part = basReq::val('part',$_cbase['part']['def']);
+            $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' reg='tit:2-12'>"; 
+            $str .= basElm::setOption($_cbase['part']['tab'],$part); 
+            $str .= "</select>";
+
+        }
+        return $str;
+    }
     // def：0/1; 当前资料优先, 再次是模型设置优先, 最后用$def默认值
     function fmShow($def=1){
         $val = dopFunc::fmDefval($this,'show',$def);
@@ -170,6 +183,9 @@ class dopBase{
         return $this->fmv[$_key];
     }
     function svTypes(){
+        if(isset($this->fme['part'])){ 
+            $this->fmv['part'] = $this->fme['part'];
+        }
         $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
         if(isset($this->fme[$field])){
             $type = $this->fmv[$field] = preg_replace('/[^0-9A-Za-z\.\-]/','',$this->fme[$field]);

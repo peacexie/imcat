@@ -45,6 +45,14 @@ class dopDocs extends dopBase{
     // 搜索条:模块(pro)扩展
     //function sobar_pro($msg='',$width=30){}
     
+    // Catid,show
+    function fmCatid(){
+        global $_cbase;
+        glbHtml::fmae_row(lang('flow.dops_icat'),$this->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$this->fmShow());
+        // Part资料(语言/城市)
+        $partOpts = $this->fmPart();
+        $partOpts && glbHtml::fmae_row($_cbase['part']['name'],$partOpts);
+    } 
     // 属性设置
     function fmProp(){ 
         dopFunc::fmSafe();

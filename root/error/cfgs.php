@@ -12,8 +12,6 @@ $_qstr = @$_SERVER['QUERY_STRING'];
 $uri = str_replace(array('<','>','"',"'","\\","\r","\n"),'',$_SERVER['REQUEST_URI']);
 
 // 发送HTTP状态
-function httpStatus($code) {
-    header('HTTP/1.1 '.$code.' Http Error '.$code);
-    header('Status:'.$code.' Http Error '.$code); // 确保FastCGI模式下正常
-    return;
+function httpStatus($code, $remsg=0) {
+    return \imcat\glbHtml::httpStatus($code, $remsg);
 }

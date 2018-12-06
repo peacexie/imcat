@@ -142,6 +142,7 @@ class tagBase{
     
     // `-=>', [where,did=`2004-33-2ycx`]
     function pWhere(){ 
+        global $_cbase;
         $whr = ''; 
         foreach($this->whrArr as $w){
             $whr .= ' AND '.$w;
@@ -159,6 +160,11 @@ class tagBase{
             }elseif(!strpos($whr,'(m.show=')){
                 $whr .= " AND (m.show='1')";
             } //echo "($whr)<br>\n";
+        }
+        // 绑定[语言/城市]资料 --- `part`条件
+        $bdpart = isset($_cbase['tpl']['bdpart']) ? $_cbase['tpl']['bdpart'] : '';
+        if(in_array($this->modid,$_cbase['part']['mods']) && $bdpart){
+            $whr .= " AND (m.part='$bdpart')";
         }
         if(substr($whr,0,5)==' AND ') $whr = substr($whr,5);
         $this->whrStr = $whr; 

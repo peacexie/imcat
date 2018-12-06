@@ -156,7 +156,7 @@ class dopBSo{
     }
     // 搜索项-form
     function Form($bar,$msg,$w,$khid=array()){
-        global $_cbase; 
+        global $_cbase;
         $run = $_cbase['run'];
         $mod = $this->mod;
         $bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".basLang::show('flow.dops_search')."'>";
@@ -172,8 +172,28 @@ class dopBSo{
             echo "\n<input name='$k' type='hidden' value='$v' />";
         }
         empty($run['sobarnav']) || $bar = $run['sobarnav']."$bar";
-        glbHtml::tab_bar($msg,$bar,$w,'tl');
+        glbHtml::tab_bar($msg,$this->Partbar().$bar,$w,'tl');
         echo "\n</form>";
+    }
+    function Partbar(){
+        global $_cbase;
+        $mkv = $_cbase['mkv']['mkv'];
+        $mod = $this->mod; $pbar = '';
+        if(in_array($mod,$_cbase['part']['mods'])){
+            $part = basReq::val('part',$_cbase['part']['def']);
+            $cls = $part=='(all)' ? "  class='cur'" : '';
+            $pbar = "<a href='?$mkv&mod=$mod&part=(all)' $cls>{$_cbase['part']['name']}(all)</a>";
+            foreach($_cbase['part']['tab'] as $kp=>$vt){
+                $cls = $kp==$part ? "  class='cur'" : '';
+                $pbar .= " | <a href='?$mkv&mod=$mod&part=$kp' $cls>$vt</a>";
+            }
+            if($part=='(nul)'){
+                $this->whrstr .= " AND part=''";
+            }elseif($part!='(all)'){
+                $this->whrstr .= " AND part='$part'";
+            }
+        }
+        return $pbar ? "$pbar<br>\n" : '';
     }
 
     // getOptions(Select)

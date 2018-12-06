@@ -28,7 +28,7 @@ class basMsg{
         $recbk = basReq::val('recbk','','Html'); 
         if(empty($xAddr) && $recbk) $xAddr = $recbk; 
         if($xAct=='die'){
-            @header("HTTP/1.1 404 Not Found");
+            glbHtml::httpStatus('404');
             self::init($xMsg);
             echo "<p class='tc bold pa10'> $xMsg </p>";
             die(glbHtml::page('end'));

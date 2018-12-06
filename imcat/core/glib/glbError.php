@@ -113,7 +113,7 @@ class glbError extends \Exception {
         $title = empty($this->dbMsgs) ? basLang::show('stinc_errun')." : $sCode" : basLang::show('stinc_erdbsql')." $sCode";
         $traceInfo = basDebug::hidInfo($this->trMsgs);
         $dberrInfo = basDebug::hidInfo($this->dbMsgs);
-        @header("HTTP/1.1 404 Not Found");
+        glbHtml::httpStatus('404');
         //define('RUN_AJAX',1); 
         if(defined('RUN_AJAX')){
             ob_start(); 

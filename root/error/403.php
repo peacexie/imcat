@@ -11,7 +11,7 @@ httpStatus(403);
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Error 403 : Forbidden</title>
+<title>Error 403 : <?=httpStatus(403,1)?></title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name='viewport' content='width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'>
 <style type="text/css">
@@ -24,7 +24,7 @@ httpStatus(403);
     <?php include './head.php'; ?>
     <!--head:end-->
     <div class="content">
-        <h1>403 Forbidden</h1>
+        <h1>403 <?=httpStatus(403,1)?></h1>
         <h2>服务器拒绝 : `<?=$uri?>`</h2>
         <div class="intruduction">
             <p class="title">可能原因：您的访问被拒绝，请联系网站管理员！</p>

@@ -73,3 +73,12 @@ $_cbase['3aks']['baiduip'] = '3GGtGlCtbAGa1GYK70XFX2Rb'; //百度IP
 $_cbase['3aks']['googlemap'] = 'AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g'; //google地图
 $_cbase['3aks']['baidumap'] = ''; //百度地图
 
+// 多语言/多城市:实现
+$_cbase['part']['name'] = '语言'; // 名称:语言/城市
+$_cbase['part']['tab'] = array(
+    'cn' => '中文版', // 'cz' => '郴州',
+    'en' => 'English', // 'dg' => '东莞',
+);
+$_cbase['part']['def'] = 'cn'; // 默认:语言-cn/城市-cz
+$_cbase['part']['mods'] = array('modx1','modx2'); 
+// 请在相关模型主表的`xno`字段后,手动添加`part`字段

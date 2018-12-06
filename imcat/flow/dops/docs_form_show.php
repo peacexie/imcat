@@ -13,7 +13,7 @@ if(!empty($did)){
 }
 $dop->fmo = $fmo;
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-glbHtml::fmae_row(lang('flow.dops_icat'),$dop->fmType('catid').' &nbsp; '.lang('flow.dops_ishow').$dop->fmShow());
+$dop->fmCatid();
 fldView::lists($mod,$fmo);
 $dop->fmProp();
 glbHtml::fmae_send('bsend',lang('flow.dops_send'));

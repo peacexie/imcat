@@ -34,7 +34,7 @@ glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
 eimp('/base/assets/cssjs/cinfo.css');
 eimp('/base/assets/jslib/jsbase.js');
 glbHtml::page('aumeta');
-echo glbHtml::wpscale(480, 1);
+glbHtml::wpscale(480, 1);
 ?>
 <base target="_blank"/>
 </head>
