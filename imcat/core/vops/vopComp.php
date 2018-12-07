@@ -50,7 +50,7 @@ class vopComp{
 
     // 解析{inc},
     function incTpls($stpl=''){ 
-        preg_match_all("/{inc:\"(.*)\"}/ie", $stpl, $match); 
+        preg_match_all("/{inc:\"(.*)\"}/i", $stpl, $match); 
         if(count($match[1])>0){ //解析模板包含
             $arr = $match[1]; 
             foreach($arr as $tpl){
@@ -66,7 +66,7 @@ class vopComp{
 
     // 解析{code}
     function incCodes($stpl=''){
-        preg_match_all("/{code:\"(.*)\"}/ie", $stpl, $match); 
+        preg_match_all("/{code:\"(.*)\"}/i", $stpl, $match); 
         if(count($match[1])>0){ //解析模板包含 
             $arr = $match[1]; 
             foreach($arr as $tpl){
@@ -80,7 +80,7 @@ class vopComp{
     // 模板继承extend,block,layout,parent,inherit
     // {imp:"c_layout/news"] // {block:title]Welcome!{/block:title] // {block:title] {:parent} {:clear} News - Project Name{/block:title]
     function impBlock($stpl=''){
-        preg_match("/\{imp:\"([\S]{3,48})\"\}/ie", $stpl, $match);
+        preg_match("/\{imp:\"([\S]{3,48})\"\}/i", $stpl, $match);
         if(empty($match[0]) || empty($match[1])) return $stpl; //没有imp,原样返回
         /*if(strpos($match[1],'[-mob]') && !basEnv::isMobile()){
             $match[1] = str_replace('[-mob]','',$match[1]);
