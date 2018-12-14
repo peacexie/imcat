@@ -254,10 +254,10 @@ class comStore{
                 $str = str_replace(array_keys($reps[$k0]), array_values($reps[$k0]), $str);
             }
         }
-        foreach(self::$cfgs['types'] as $tk=>$row){ 
-            if(!empty($row['vpre']) && !empty($row['spre']) && strpos($str,$row['spre'])>=0){
+        foreach(self::$cfgs['types'] as $tk=>$row){ // && strpos($str,$row['spre'])>=0
+            if(!empty($row['vpre']) && !empty($row['spre'])){
                 $str = str_replace($row['spre'], $row['vpre'], $str); 
-            } 
+            }
         }
         return $str;
     }
