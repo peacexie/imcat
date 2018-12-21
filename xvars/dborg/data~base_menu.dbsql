@@ -1,5 +1,5 @@
 
--- base_menu@2018-10-18 19:42:28 -- 
+-- base_menu@2018-12-21 20:18:05 -- 
 INSERT INTO `{pre}base_menu{ext}` VALUES 
 ('m1info','muadm','0','资讯','bullhorn','320','1','1','','新闻,资讯','','0','','127.0.0.1','1507099250','peace'),
 ('m1012','muadm','0','演示','list-alt','112','1','1','','演示菜单,扩展','','0','','127.0.0.1','1507099250','peace'),
@@ -64,7 +64,7 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m2faqs','muadm','m1coms','问答系统','','240','1','2','','','','0','','127.0.0.1','1479815451','peace'),
 ('m3cset','muadm','m2pro','分类设置','','360','1','3','产品分类(!)?admin-catalog&mod=cargo(!)frame\r\n设置(!)?apis-exp_order','','','0','','127.0.0.1','1511272489','peace'),
 ('m3kres','muadm','m2res','课程资源','','120','1','3','课程资源(!)?dops-a&mod=keres\r\n增加(!)keres(!)jsadd','','','0','','','0',''),
-('m3keres','muadm','m2res','评论设置','','888','1','3','资源评论(!)?admin-catalog&mod=keres(!)\r\n栏目(!)?admin-catalog&mod=keres(!)frame','','','0','','','0',''),
+('m3keres','muadm','m2res','评论设置','','888','1','3','资源评论(!)?dops-a&mod=kerem(!)\r\n栏目(!)?admin-catalog&mod=keres(!)frame','','','0','','','0',''),
 ('m2topic','muadm','m1info','专题新闻','','640','1','2','','','','0','','','0',''),
 ('m3torem','muadm','m2topic','评论栏目','','480','1','3','新闻评论(!)?dops-a&mod=trem(!)\r\n栏目(!)?admin-catalog&mod=topic(!)frame','','','0','','','0',''),
 ('user-uedpw','mkvu','user-m','修改密码','','888','1','2','','user/uedpw','','0','','127.0.0.1','1506868115','peace'),

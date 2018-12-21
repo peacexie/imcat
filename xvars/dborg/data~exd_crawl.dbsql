@@ -1,4 +1,4 @@
 
--- exd_crawl@2018-08-05 10:09:34 -- 
+-- exd_crawl@2018-12-21 20:18:05 -- 
 INSERT INTO `{pre}exd_crawl{ext}` VALUES 
 ('demo_txtip','0','贴心代码采集','0','http://txjia.com/tip/?2016-1J-DE2G','http://txjia.com/tip/?Page=(*)','utf-8','1-23',',23,22,21,20,19,18,17,16,15,14,13,12,11,','modePos(:)class=\"list-g\"(*)class=\'SysPBar\'','','','/tip/?','Page=','http://txjia.com','','news','5','color\r\nrel_doc\r\njump','','0','','0','','','0','');
