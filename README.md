@@ -1,7 +1,10 @@
 
-* 贴心猫(imcat) V4.4 Released (2018-11)
-* (2018-11-23) 增加标签助手，修复几处小bug。   
-  (2018-11-23) Add Tap-Help Tools, And some bugs fixed! 
+
+* 贴心猫(imcat) v4.5(Alpha)
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+  - Please use v4.4 in PRODUCTION.
+  - 正式使用，请用 v4.4.
+ 
 
 --- --- --- --- --- --- --- --- --- 
 

@@ -47,7 +47,7 @@ $_sy_pubcfg['cdemo'] =  array(
         array("'ut.<rnd8>';",                       "'up.<rnd12>';",),
         array("'ut.".basKeyid::kidRand('f',8)."';", "'up.".basKeyid::kidRand('f',12)."';",),
     ),    
-    'root/cfgs/boot/const.cfg.php' => array( 
+    'root/cfgs/boot/const.php' => array( 
         array("'".$_cbase['ck']['pre']."';", "'".$_cbase['sys']['sn']."';",),
         array("'".basKeyid::kidRand('f',5)."';", "'".comConvert::sysSn()."';",), 
     ), //sn, ver, sign
@@ -73,9 +73,9 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array('fitpl','yscode'),
-    'vendor' => array('Spyc','aliOss'), // 'composer','Monolog','psrlog','silex',
+    'vendor' => array('aliOss'), // 'composer','Monolog','psrlog','silex',
     'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
-    'vendui' => array('artEditor','swplayer','summernote','wangEditor'), // 
+    'vendui' => array('artEditor','swplayer',), // 'summernote','wangEditor'
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(
@@ -119,7 +119,6 @@ $_sy_pubcfg['skfiles'] =  array(
 
     //ext-*
     'extMedoo.php',
-    'DbManage.cls_php',
     'Medoo.cls_php',
     'Pimple.cls_php',
 

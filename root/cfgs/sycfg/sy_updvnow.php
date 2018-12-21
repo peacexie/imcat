@@ -4,7 +4,7 @@
 $_sy_updvnow['selfcfgs'] = array(
 
     'cfgs/boot/cfg_db.php',
-    'cfgs/boot/const.cfg.php',
+    'cfgs/boot/const.php',
 
     'cfgs/excfg/ex_paras.php',
     'cfgs/sycfg/sy_vopcfg.php',

@@ -1,4 +1,7 @@
 <?php
+
+# skip section configs
+
 /* Demo: 
   $_cbase['skip']['_all_'] = true;
   require __DIR__.'/run/_init.php'; 
@@ -8,7 +11,7 @@
   // $_cbase['handler']['shutdown'] = true; //单独用 
   // Access-Control-Allow-Origin ??
   // X-Frame-Options ??
-*/
+*/ 
 
 // _all_方案:所有
 if(isset($_cbase['skip']['_all_'])){

@@ -13,7 +13,7 @@ defined('DS') || define('DS', DIRECTORY_SEPARATOR); // 目录分隔符
 
 // 加载:系统路径配置,常规配置,自动加载类
 include DIR_PROJ.'/root/cfgs/boot/_paths.php'; // 加载系统路径配置
-require DIR_ROOT.'/cfgs/boot/const.cfg.php'; // 基本设置const: 可被后台设置,页面设置覆盖
+require DIR_ROOT.'/cfgs/boot/const.php'; // 基本设置const: 可被后台设置,页面设置覆盖
 require DIR_DTMP.'/dset/_score.cfg.php'; // 后台设置_score: 其次,可被页面设置_pbase覆盖
 #require DIR_ROOT.'/cfgs/boot/_score.min.php'; // mini模式用此文件
 require DIR_IMCAT.'/core/blib/loader.php'; // 包含自动加载类(仅包含文件)

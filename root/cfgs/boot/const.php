@@ -5,12 +5,13 @@
 /// 参数配置-根据需要配置 -----------------------------------------------
 
 // 系统参数
-$_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; //序列号
-$_cbase['sys']['ver']     = '4.4'; // 版本号
+$_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; // 序列号
+$_cbase['sys']['ver']     = '4.5'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn等
+$_cbase['sys']['xpwby']   = '贴心猫(imcat)/v'.$_cbase['sys']['ver']; // `X-Powered-By`头信息：空为默认, 或自定义
 
 // Cookie
 $_cbase['ck']['pre']      = '044_'; // Cookie前缀,8字符以内
@@ -80,5 +81,5 @@ $_cbase['part']['tab'] = array(
     'en' => 'English', // 'dg' => '东莞',
 );
 $_cbase['part']['def'] = 'cn'; // 默认:语言-cn/城市-cz
-$_cbase['part']['mods'] = array('modx1','modx2'); 
+$_cbase['part']['mods'] = array('xxx'); // 'about','news','cargo','gbook'
 // 请在相关模型主表的`xno`字段后,手动添加`part`字段
