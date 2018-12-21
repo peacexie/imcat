@@ -15,7 +15,7 @@
 
 * cfg_load.php : Class prefix and autoload path config
 
-* const.cfg.php : Cookie prefix, custom config, debug log config
+* const.php : Cookie prefix, custom config, debug log config
 
 
 #prexcfg#excfg-Param

@@ -64,7 +64,7 @@
 * Init File: _init.php
  - Init $_cbase
  - Load Paths ('/root/cfgs/boot/_paths.php');
- - Load Common configs ('/cfgs/boot/const.cfg.php')
+ - Load Common configs ('/cfgs/boot/const.php')
  - Load Admin _score '/dset/_score.cfg.php')
  - Include loader ('/core/blib/loader.php')
  - Deal outer Run mode, Load alias functions, Run autoloads

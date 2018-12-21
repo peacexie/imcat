@@ -15,7 +15,7 @@
 
 * cfg_load.php : 类自动加载规范，二次开发可能需要配置
 
-* const.cfg.php : Cookie前缀,自定义配置,调试日志配置
+* const.php : Cookie前缀,自定义配置,调试日志配置
 
 
 #prexcfg#excfg参数

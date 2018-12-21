@@ -61,7 +61,7 @@
 * 初始化文件：_init.php
  - 初始化 $_cbase
  - 加载系统路径 ('/root/cfgs/boot/_paths.php');
- - 加载常规配置 ('/cfgs/boot/const.cfg.php')
+ - 加载常规配置 ('/cfgs/boot/const.php')
  - 加载后台设置_score '/dset/_score.cfg.php')
  - 包含自动加载类 ('/core/blib/loader.php')
  - 处理outer运行模式,加载别名函数,类自动加载处理等

@@ -11,7 +11,7 @@ tmp...
 
 #func#Functions
 
-* Support: PHP5.3~PHP7.2/ custom module / custom field / custom parameter / custom classification
+* Support: PHP5.3~PHP7.3/ custom module / custom field / custom parameter / custom classification
 * Data&share / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Other: Ftp store/Sphinx search/planning tasks / user points / template inherit / tag cache /js tags / field content save to file

@@ -7,7 +7,6 @@ use imcat\basReq;
 use imcat\basJscss;
 use imcat\basLang;
 use imcat\dopBase;
-use imcat\comParse;
 use imcat\glbConfig;
 use imcat\glbDBObj;
 use imcat\glbHtml;

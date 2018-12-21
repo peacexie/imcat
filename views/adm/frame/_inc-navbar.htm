@@ -1,4 +1,4 @@
-<?php if(!( req('dialog')>'0' || !empty($_POST) )){ ?>
+<?php if(!( req('dialog')>'0')){ ?>
 <div id='adi_links' onclick='admLinks()'>
     <i class='fa fa-caret-square-o-down'></i>
     <p style='display:none'>
@@ -9,4 +9,4 @@
     <li><a href="<?=surl(0)?>?mkv=#uhome" class="fa fa-refresh" target="_parent"></a></li>
     <!--li><a href='#'>Level1</a></li-->
 </ol>
-<?php } ?>
+<?php } /* && !empty($_POST) */ ?>

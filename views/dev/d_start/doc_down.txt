@@ -19,7 +19,7 @@
 #check#环境需求
 
 * PHP环境：
- - PHP5.3 ~ PHP7.2 (v4.4+不再支持php5.2)
+ - PHP5.3 ~ PHP7.3 (v4.4+不再支持php5.2)
  - 推荐：PHP5.4 ~ PHP7.1
  
 * Mysql数据库服务器：
