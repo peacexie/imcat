@@ -120,8 +120,13 @@ class dopBase{
     function fmPart($w=150){
         global $_cbase;
         $mod = $this->mod; $str = ''; $key = 'part'; 
-        if(in_array($mod,$_cbase['part']['mods'])){
-            $part = basReq::val('part',$_cbase['part']['def']);
+        if($mod && in_array($mod,$_cbase['part']['mods'])){
+            $def = $_cbase['part']['def'];
+            if(!empty($_SERVER['HTTP_REFERER'])){
+                preg_match("/\&part\=(\w+)$/",$_SERVER['HTTP_REFERER'],$ms);
+                if(!empty($ms[1])){ $def = $ms[1]; }
+            }
+            $part = basReq::val('part', $def);
             $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' reg='tit:2-12'>"; 
             $str .= basElm::setOption($_cbase['part']['tab'],$part); 
             $str .= "</select>";
@@ -166,10 +171,10 @@ class dopBase{
         $tabid = $this->cfg['pid']=='users' ? $this->tbuacc : $this->tbid;
         $_key = $this->cfg['pid']=='users' ? 'uid' : $this->_kid;
         if(!empty($this->fme[$_key]) && !empty($this->fme[$this->_kno])){    
-            $val = preg_replace('/[^0-9A-Za-z\.\-]/','',$this->fme[$_key]);
+            $val = preg_replace('/[^\w\.\-]/','',$this->fme[$_key]);
             if(!$this->db->table($tabid)->where($_key."='$val'")->find()){
                 $kid = $val; 
-                $kno = preg_replace('/[^0-9A-Za-z\.\-]/','',$this->fme[$this->_kno]);
+                $kno = preg_replace('/[^\w\.\-]/','',$this->fme[$this->_kno]);
             }
         }
         if(empty($kid) || empty($kno)){
@@ -255,7 +260,7 @@ class dopBase{
         foreach($a as $k){
         if(isset($this->fme[$k])){ 
             $val = $this->fme[$k];    
-            $val = preg_replace('/[^0-9A-Za-z,\.\-\ \:]/','',$val);
+            $val = preg_replace('/[^\w,\.\-\ \:]/','',$val);
             if(in_array($k,array('atime','etime'))) $val = empty($val) ? $_cbase['run']['stamp'] : strtotime($val); 
             $this->fmv[$k] = $val;    
         } }

@@ -161,10 +161,14 @@ class tagBase{
                 $whr .= " AND (m.show='1')";
             } //echo "($whr)<br>\n";
         }
-        // 绑定[语言/城市]资料 --- `part`条件
-        $bdpart = isset($_cbase['tpl']['bdpart']) ? $_cbase['tpl']['bdpart'] : '';
-        if(in_array($this->modid,$_cbase['part']['mods']) && $bdpart){
-            $whr .= " AND (m.part='$bdpart')";
+        // [语言/城市]资料 --- `part`条件
+        if(in_array($this->modid,$_cbase['part']['mods'])){
+            $bd = isset($_cbase['tpl']['bdpart']) ? $_cbase['tpl']['bdpart'] : '';
+            $cfg=$this->p1Cfg('part'); $p=basReq::val('part'); $val='';
+                if($bd)                  { $val = $bd;     } // 绑定条件
+            elseif(!empty($cfg[1]))      { $val = $cfg[1]; } // 标签条件
+            elseif(!empty($cfg[0]) && $p){ $val = $p;      } // Url条件
+            $val && $whr .= " AND (m.part='$val')";
         }
         if(substr($whr,0,5)==' AND ') $whr = substr($whr,5);
         $this->whrStr = $whr; 

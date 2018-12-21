@@ -9,7 +9,7 @@ class updBase{
     );
     static $comps = array(
         'cfgs/boot/cfg_load.php' => 'code',
-        'cfgs/boot/const.cfg.php' => 'code',
+        'cfgs/boot/const.php' => 'code',
         'run/_init.php' => 'root',
     );
     static $skipdirs = array('tpls','skin');
@@ -39,9 +39,9 @@ class updBase{
         }
         if(!is_dir(DIR_DTMP.'/update/')) mkdir(DIR_DTMP.'/update/');
         if(strstr($path,DIR_ROOT) || strstr($path,DIR_IMCAT)) die("Error Dir [$path]!");
-        include $path."/root/cfgs/boot/const.cfg.php"; 
+        include $path."/root/cfgs/boot/const.php"; 
         $vnew = $_cbase['sys']['ver'];
-        include DIR_ROOT.'/cfgs/boot/const.cfg.php'; 
+        include DIR_ROOT.'/cfgs/boot/const.php'; 
         $vold = $_cbase['sys']['ver'];
         if(version_compare($vold,$vnew)>=0){ 
             basMsg::show(basLang::show('updbase_verbig'),'die');
@@ -71,7 +71,7 @@ class updBase{
             $re['comp'] = '<br>'.basLang::show('updbase_compare');  
             self::$comps = array(
                 'cfgs/boot/cfg_load.php' => 'root',
-                'cfgs/boot/const.cfg.php' => 'root',
+                'cfgs/boot/const.php' => 'root',
                 'cfgs/boot/_paths.php' => 'root',
             );
             foreach(self::$comps as $k=>$part){

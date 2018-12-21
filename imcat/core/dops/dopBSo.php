@@ -179,7 +179,7 @@ class dopBSo{
         global $_cbase;
         $mkv = $_cbase['mkv']['mkv'];
         $mod = $this->mod; $pbar = '';
-        if(in_array($mod,$_cbase['part']['mods'])){
+        if($mod && in_array($mod,$_cbase['part']['mods'])){
             $part = basReq::val('part',$_cbase['part']['def']);
             $cls = $part=='(all)' ? "  class='cur'" : '';
             $pbar = "<a href='?$mkv&mod=$mod&part=(all)' $cls>{$_cbase['part']['name']}(all)</a>";

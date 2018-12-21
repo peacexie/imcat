@@ -11,7 +11,7 @@ class glbDBExt{
         $tabf = 'base_fields';
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
         if(in_array($r['dbtype'],array('nodb','file'))) return; 
-        $tabid = self::getTable($mod,$r['etab']);
+        $tabid = self::getTable($mod,empty($r['etab'])?'0':1); 
         $cols = $db->fields($tabid); 
         if($act=='del'){
             if(isset($cols[$cid])) $db->query("ALTER TABLE $db->pre{$tabid}$db->ext DROP `$cid` ");
@@ -35,29 +35,7 @@ class glbDBExt{
             $db->query($sql);
         }
     }
-    
-    // tab下-添加字段，在什么字段后面
-    static function findAfterField($tab,$col){
-        $_groups = glbConfig::read('groups');
-        $a = is_array($tab) ? $tab : $db->fields($tab);
-        if(isset($_groups[$col]) && $_groups[$col]['pid']=='types' && isset($a['catid'])){
-            $def = 'catid';
-        }else{
-            $def = ''; $bak = ''; 
-            foreach($a as $k=>$v){
-                if($k=='aip'){ 
-                    $def = empty($bak) ? 'aip' : $bak;
-                    break;
-                }
-                if(substr("$k)))",0,3)==substr("$col)))",0,3)){
-                    $def = $k;
-                }
-                $bak = $k;
-            }
-        }
-        return $def;
-    }
-    
+
     static function setfieldDemo($mod,$obj,$org='(drop)'){
         $db = glbDBObj::dbObj();
         if($org=='(drop)'){
@@ -83,6 +61,28 @@ class glbDBExt{
         }
     }
     
+    // tab下-添加字段，在什么字段后面
+    static function findAfterField($tab,$col){
+        $_groups = glbConfig::read('groups');
+        $a = is_array($tab) ? $tab : $db->fields($tab);
+        if(isset($_groups[$col]) && $_groups[$col]['pid']=='types' && isset($a['catid'])){
+            $def = 'catid';
+        }else{
+            $def = ''; $bak = ''; 
+            foreach($a as $k=>$v){
+                if($k=='aip'){ 
+                    $def = empty($bak) ? 'aip' : $bak;
+                    break;
+                }
+                if(substr("$k)))",0,3)==substr("$col)))",0,3)){
+                    $def = $k;
+                }
+                $bak = $k;
+            }
+        }
+        return $def;
+    }
+        
     /* *****************************************************************************
       *** 数据库相关函数 
     - db前缀
@@ -137,7 +137,7 @@ class glbDBExt{
     }
     
     // ext: 0-tab, 1-ext, kid, arr
-    static function getTable($mod,$ext=0){ 
+    static function getTable($mod,$ext='0'){ 
         $_groups = glbConfig::read('groups');
         if(!isset($_groups[$mod])) return '';
         if($_groups[$mod]['pid']=='docs'){
@@ -256,6 +256,7 @@ class glbDBExt{
         return $fields;
     }
     
+    // 获取一组扩展参数
     static function getExtp($type){ 
         $data = array();
         $whr = strpos($type,'%') ? " LIKE '$type'" : "='$type'";

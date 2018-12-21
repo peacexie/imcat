@@ -21,7 +21,7 @@ if($part=='dbsql'){
         require dirname(__DIR__).'/binc/act_ops.php';
     } 
     
-    $lnkset = "(<a href='?admin-ediy&part=edit&dkey=cfgs&dsub=&efile=boot/const.cfg.php' onclick='return winOpen(this,\"".lang('admin.rl_setpm')."\");'>".lang('flow.title_set')."</a>)";
+    $lnkset = "(<a href='?admin-ediy&part=edit&dkey=cfgs&dsub=&efile=boot/const.php' onclick='return winOpen(this,\"".lang('admin.rl_setpm')."\");'>".lang('flow.title_set')."</a>)";
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     $links = admPFunc::fileNav('dbsql','logs');
     $dop->sobar("$links$lnkset $umsg",40,array());

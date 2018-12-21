@@ -1,6 +1,6 @@
 <?php
 namespace imcat;
-(!defined('RUN_DOPA')) && die('No DopA');
+(!defined('RUN_INIT')) && die('No Init');
 
 if(!empty($cid)){
     $fmo = $db->table($dop->tbid)->where("cid='$cid'")->find(); 
@@ -11,12 +11,13 @@ if(!empty($cid)){
 }
 $dop->fmo = $fmo;
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tbdata');
-$dop->fmPKey();
-if(in_array($mod,$_cbase['part']['mods'])){
-   $partOpts = $dop->fmPart();
-    echo glbHtml::fmae_row($_cbase['part']['name'],$partOpts); 
-}
+$dop->fmPKey(0,0);
+$partOpts = $dop->fmPart();
+echo glbHtml::fmae_row($_cbase['part']['name'],$partOpts);
 fldView::lists($mod,$fmo);
 $dop->fmProp();
 glbHtml::fmae_send('bsend',lang('flow.dops_send'));
 glbHtml::fmt_end(array("mod|$mod","isadd|$isadd"));
+
+$jstr = "\$().ready(function(){\$('table').eq(0).find('tr').eq(0).hide();});";
+echo basJscss::jscode($jstr);

@@ -1,25 +1,23 @@
 <?php
 namespace imcat;
-(!defined('RUN_DOPA')) && die('No DopA'); 
+(!defined('RUN_INIT')) && die('No Init');
 
 //$dop->dskey  = $dop->so->dskey  = 'mtel'; //改变默认搜索字段
 $dop->sobar($dop->msgBar($msg));
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-basLang::inc('aflow', 'coms_list');
+//basLang::inc('aflow', 'inrem_list');
+echo "<th>选</th><th>文本内容</th><th>添加时间</th>
+<th>top</th><th>down</th><th>修改</th></tr>";
 $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
     foreach($rs as $r){ 
       $cid = $idend = $r['cid'];
       if(empty($idfirst)) $idfirst = $cid;
       echo $cv->Select($cid);
-      echo $cv->Field($r['title'],1,64); 
-      echo $cv->Show($r['show']);
-      echo $cv->Field($r['mname']);
-      //echo $cv->Field($r['mtel']);
-      //echo $cv->Field($r['memail']);
-      //echo $cv->Field($r['miuid']);
+      echo "<td class='tl'>".basStr::cutWidth($r['title'],48,'..')."</td>\n";
       echo $cv->Time($r['atime']);
-      echo $cv->Field($r['aip']);
+      echo $cv->Field($r['diggtop']);
+      echo $cv->Field($r['diggdown']);
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
       echo "</tr>"; 
     }

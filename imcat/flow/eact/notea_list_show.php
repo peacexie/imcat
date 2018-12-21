@@ -3,12 +3,10 @@ namespace imcat;
 (!defined('RUN_DOPA')) && die('No DopA'); 
 
 //$dop->dskey  = $dop->so->dskey  = 'mtel'; //改变默认搜索字段
-$dop->so->whrstr .= " AND `auser`='{$user->uinfo['uname']}'";
+#$dop->so->whrstr .= " AND `auser`='{$user->uinfo['uname']}'";
 $dop->sobar($dop->msgBar($msg));
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
-//basLang::inc('aflow', 'coms_list');
-echo "<th>选</th><th>标题</th><th>显示</th><th>mname</th>
-<th>类型</th><th>添加</th><th>添加IP</th><th>修改</th></tr>";
+basLang::inc('aflow', 'notea_list');
 $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
     foreach($rs as $r){ 

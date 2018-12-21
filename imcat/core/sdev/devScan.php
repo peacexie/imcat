@@ -51,8 +51,7 @@ class devScan{
         $db->table('active_session')->where("exp<'".($stnow-3600)."'")->delete();
         $logtabs = array(
             'logs_dbsql','logs_syact','logs_detmp','logs_jifen',
-            'plus_smsend','plus_emsend','plus_paylog',
-            'exd_crlog','xtest_keyid', // 'exd_oilog','exd_pslog',
+            //'exd_crlog','xtest_keyid', // 'plus_smsend','plus_emsend','plus_paylog',
         );
         foreach($logtabs as $tab){
             $db->table($tab)->where("atime<'".$stnow."'")->delete();
@@ -65,9 +64,9 @@ class devScan{
         }
         $tabinfo = $db->tables(); 
         $db->table('bext_dbdict')->where("tabid NOT IN('".implode("','",$tabinfo)."')")->delete();
-        foreach(array('wex_locate','wex_msgget','wex_msgsend','wex_qrcode') as $tabid){
+        /*foreach(array('wex_locate','wex_msgget','wex_msgsend','wex_qrcode') as $tabid){
             $db->table($tabid)->where("atime<'".($stnow-3600)."'")->delete();
-        }
+        }*/
     }
 
     // clrCTpl(); //advs, tagc, 

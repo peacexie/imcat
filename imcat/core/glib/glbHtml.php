@@ -24,12 +24,15 @@ class glbHtml{
             echo "</body></html>\n";
         }elseif($mod=='aumeta'){ // 去掉/修改:author-meta标签在这里
             $auweb = "http://imcat.txjia.com, https://github.com/peacexie/imcat";
-            echo "<meta name='author' content='$auweb, 贴心猫(Imcat)'>\n";
+            echo "<meta name='author' content='$auweb, 贴心猫(imcat)'>\n";
         }elseif(in_array($mod,array('robots','viewport','keywords','description'))){
             if($mod=='robots' && empty($ext)) $ext = 'noindex, nofollow';
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';
             echo "<meta name='$mod' content='$ext'>\n"; 
         }elseif($mod=='init'){
+            if(!empty($_cbase['sys']['xpwby'])){
+                header('X-Powered-By:'.$_cbase['sys']['xpwby']);
+            }
             echo "<meta charset='".$_cbase['sys']['cset']."'>\n";
             echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";
             self::page('viewport'); 
@@ -52,10 +55,10 @@ class glbHtml{
         $a = array(
             'html'=>'text/html',
             'css'=>'text/css',
+            'xml'=>'text/xml', 
             'js'=>'text/javascript', 
             'json'=>'application/json',
             'jsonp'=>'application/jsonp',
-            'xml'=>'text/xml', 
             'down'=>'application/octet-stream',
         );
         header("Content-Type:$a[$type]; charset=$cset");

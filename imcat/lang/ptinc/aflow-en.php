@@ -31,10 +31,13 @@ Without the use of multi language, these codes can be written directly into the 
 
 <?php break;case 'coms_list': ?> 
 
-<th>Sel.</th><th>Title</th><th>Show</th><th>uName</th>
-<th>Tel</th><th>E-Mail</th><th>imNo</th>
-<th>Add</th><th>Add-IP</th>
-<th>Edit</th></tr>
+<th>Sel.</th><th>Title</th><th>Show</th><th>Nick</th>
+<th>Add</th><th>Add-IP</th><th>Edit</th></tr>
+
+<?php break;case 'notea_list': ?> 
+
+<th>Sel.</th><th>Title</th><th>Type</th><th>Show</th><th>Nick</th>
+<th>Add</th><th>IP</th><th>Edit</th></tr>
 
 <?php break;case 'users_list': ?> 
 

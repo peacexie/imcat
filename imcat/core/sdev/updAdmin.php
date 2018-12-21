@@ -12,7 +12,7 @@ class updAdmin extends updBase{
         $vnew = $upc['vnew'];
         $key = "[$]_cbase\[\'sys\'\]\[\'ver\'\]\s*\=\s*[\"'].*?[\"'];";
         $val = "\$_cbase['sys']['ver']     = '$vnew';";
-        $path = DIR_ROOT.'/cfgs/boot/const.cfg.php';
+        $path = DIR_ROOT.'/cfgs/boot/const.php';
         $data = comFiles::get($path);
         $data = preg_replace("/$key/is", $val, $data);
         $data = comFiles::put($path, $data);

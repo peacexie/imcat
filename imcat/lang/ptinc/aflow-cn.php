@@ -31,10 +31,13 @@
 
 <?php break;case 'coms_list': ?> 
 
-<th>选</th><th>标题</th><th>显示</th><th>会员名称</th>
-<th>电话</th><th>E-Mail</th><th>聊天号</th>
-<th>添加</th><th>添加IP</th>
-<th>修改</th></tr>
+<th>选</th><th>标题</th><th>显示</th><th>昵称</th>
+<th>添加</th><th>添加IP</th><th>修改</th></tr>
+
+<?php break;case 'notea_list': ?> 
+
+<th>选</th><th>标题</th><th>类型</th><th>显示</th><th>昵称</th>
+<th>添加</th><th>添加IP</th><th>修改</th></tr>
 
 <?php break;case 'users_list': ?> 
 
