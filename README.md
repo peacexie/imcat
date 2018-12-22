@@ -1,6 +1,6 @@
 
 
-* 贴心猫(imcat) v4.5(Alpha)
+* 贴心猫(imcat) v4.5(Beta)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
   - Please use v4.4 in PRODUCTION.
   - 正式使用，请用 v4.4.
@@ -18,7 +18,7 @@
 
 ### 【Functions】
 
-* Support: PHP5.3~PHP7.2 / custom module / custom field / custom parameter / custom classification
+* Support: PHP5.3~PHP7.3 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [imcat(贴心猫)](http://imcat.txjia.com/)
@@ -27,7 +27,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.3 ~ PHP7.2 (Recommend: PHP5.4 ~ PHP7.2)
+  - PHP5.3 ~ PHP7.3 (Recommend: PHP5.4 ~ PHP7.2)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -47,27 +47,22 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.4 ChangeLog】 (2018.11)
+### 【v4.5 ChangeLog】 (2019.01)
 
-* Core: Add namespace(imcat), Adjust root entries, Adjust dirs;
+* Add: Tag-Helper / tagor (v4.5);
 
-* Add: `composer` extend;
+* Fix: In debugging information, SQL execution time statistics are inaccurate;
 
-* Add: Ali-Oss Store-extend;
+* Simplification: The default attributes of `show` in list-tag;
 
-* Add: Free-Data-tag, support Multi-db;
+* Simplify: Comment fields;
 
-* Add: Haofangtong API (Only Data API, NO views) --- (provided by `CrabyLi`);
+* Fix: Two notices on php7.3
 
-* Improve: Store-Config --- (It's can config by file-types and models);
+* Fix: The char `_` was filtered in the field `auser`, while publish info;
 
-* Improve: http-collection remote data, Add cache remote data;
-
-* Add extend: ThinkPHP(v31)Core for PHP7 --- (third party packages that are almost independent of the system)
-
-* Update: The db-manage component(Adminer)
-
-* Fix: Some url shared in wechat, It will jump to homepage.
+* Coming SOON: imblog(IntimateBlog) --- Based on imcat(IntimateCat);
+  - Third party: Coming!
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -79,7 +74,7 @@
 
 ### 【功能介绍】
 
-* 支持：PHP5.3~PHP7.2/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
+* 支持：PHP5.3~PHP7.3/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
 * 模型：问答系统/内部公文/商品展销/新闻/专题/课程资源/样例文档/用户
 * 接口：REST-API/Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
 
@@ -87,7 +82,7 @@
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.3 ~ PHP7.2 (推荐: PHP5.4 ~ PHP7.1)
+  - PHP5.3 ~ PHP7.3 (推荐: PHP5.4 ~ PHP7.2)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
@@ -104,25 +99,20 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.4更新日志】(2018.11)
+### 【v4.5更新日志】(2019.01)
 
-* 核心: 添加命名空间, 整合root入口, 调整目录 --- (本次调整范围较大,升级用户请安装新系统再导入旧资料)
+* 增加：标签助手 / tagor (v4.5)
 
-* 添加: `composer` 扩展
+* 修正：调试信息中，sql执行时间统计不准确
 
-* 添加: 阿里OSS云存储扩展
+* 简化：列表标签 审核属性`show`的默认处理
 
-* 添加: 自由数据调用标签，支持多库调用
+* 精简：优化评论字段
 
-* 添加: 好房通数据API (仅数据接口,无显示页) --- (`CrabyLi` 提供)
+* 修正：php7.3下两处 Notice 提示
 
-* 改善: 存储配置 --- (支持按模块/类型配置不同存储类型)
+* 修正：发布信息时,`auser`过滤了下换线问题
 
-* 改善: http采集远程数据，增加缓存功能
-
-* 增加扩展: ThinkPHP(v31)核心-PHP7兼容包 --- (与本系统几乎无关的第三方包)
-
-* 更新：数据库管理组件（Adminer）
-
-* 修正：微信分享地址，跳转到首页
+* 敬请期待：贴心博客 --- 基于贴心猫开发
+  - 第三方：合作开发中...
 
