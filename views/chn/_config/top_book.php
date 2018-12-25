@@ -3,7 +3,7 @@
 function bookData($did,$dno){
     $data = db()->table('topic_items')->where("did='$did' AND dno='$dno'")->find();
     if(!$data){
-        glbHtml::httpStatus('404');
+        \imcat\glbHtml::httpStatus('404');
         die('<h3>404 Not Found</h3>');
     }
     return $data;
@@ -19,9 +19,9 @@ function bookNav2($data,$clist=''){
         $whr = "$whrs AND part='{$data['part']}' AND top{$cfg[0]}'{$data['top']}' AND dno{$cfg[1]}'{$data['dno']}'";
         $row = db()->table('topic_items')->where($whr)->order($cfg[2])->find(); 
         if(empty($row)){
-            $cfgb = devTopic::cfg2arr($clist); 
+            $cfgb = \imcat\devTopic::cfg2arr($clist); 
             $func = "{$key}Key";
-            $pk = basArray::$func($cfgb,$data['part']);
+            $pk = \imcat\basArray::$func($cfgb,$data['part']);
             if($pk){ 
                 $whr = "$whrs AND part='$pk'";
                 $row = db()->table('topic_items')->where($whr)->order($cfg[2])->find();
