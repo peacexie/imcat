@@ -157,9 +157,12 @@ function opTagtype(e){
         if(val=='Free'){ $('#-att_tab- .itag').removeClass('mdhid'); }
         $('#modid option').hide();
         $('#modid').find('option').eq(0).show();
-        if(val=='Type' || val=='Push'){
-            if(val=='Type'){ $('#modid option[pid="types"]').show(); }
-            if(val=='Push'){ $('#modid option[pid="advs"]').show(); }
+        if(val=='Push'){
+            $('#modid option[pid="advs"]').show();
+        }else if(val=='Type'){
+            $('#modid option[pid="types"]').show();
+            $('#modid option[pid="docs"]').show();
+            $('#modid option[pid="users"]').show();
         }else{
             $('#modid option[pid="docs"]').show();
             $('#modid option[pid="users"]').show();

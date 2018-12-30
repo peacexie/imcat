@@ -1,5 +1,35 @@
 
 
+
+#v4.5# (2019.01)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.5
+ - Release date: 2019.01
+ - rar-size: [core]1.27 MB, [full]3.65 MB(core+vendor)
+
+
+## ChangeLog
+
+* Add: Tag-Helper / tagor (v4.5);
+
+* Fix: In debugging information, SQL execution time statistics are inaccurate;
+
+* Simplification: The default attributes of `show` in list-tag;
+
+* Simplify: Comment fields;
+
+* Fix: Two notices on php7.3
+
+* Fix: The char `_` was filtered in the field `auser`, while publish info;
+
+* Coming SOON: imblog(IntimateBlog) --- Based on imcat(IntimateCat);
+ - Third party: Coming!
+
+
 #v4.4# (2018.11)
 
 

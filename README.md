@@ -57,6 +57,8 @@
 
 * Simplify: Comment fields;
 
+* Fix: Setup page shows the html template in v4.4
+
 * Fix: Two notices on php7.3
 
 * Fix: The char `_` was filtered in the field `auser`, while publish info;
@@ -108,6 +110,8 @@
 * 简化：列表标签 审核属性`show`的默认处理
 
 * 精简：优化评论字段
+
+* 修正：v4.4安装程序在某些情况下显示html模板页
 
 * 修正：php7.3下两处 Notice 提示
 

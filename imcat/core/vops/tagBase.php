@@ -169,7 +169,7 @@ class tagBase{
             elseif(!empty($cfg[1]))      { $val = $cfg[1]; } // 标签条件
             elseif(!empty($cfg[0]) && $p){ $val = $p;      } // Url条件
             $val && $whr .= " AND (m.part='$val')";
-        }
+        } 
         if(substr($whr,0,5)==' AND ') $whr = substr($whr,5);
         $this->whrStr = $whr; 
     }

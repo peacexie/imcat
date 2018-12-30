@@ -7,7 +7,7 @@ $dop->sobar($dop->msgBar($msg));
 glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
 //basLang::inc('aflow', 'inrem_list');
 echo "<th>选</th><th>文本内容</th><th>添加时间</th>
-<th>top</th><th>down</th><th>修改</th></tr>";
+<th>color</th><th>digg</th><th>修改</th></tr>";
 $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
     foreach($rs as $r){ 
@@ -16,8 +16,8 @@ if($rs=$dop->getRecs()){
       echo $cv->Select($cid);
       echo "<td class='tl'>".basStr::cutWidth($r['title'],48,'..')."</td>\n";
       echo $cv->Time($r['atime']);
-      echo $cv->Field($r['diggtop']);
-      echo $cv->Field($r['diggdown']);
+      echo $cv->Field(str_replace(array('text-','bg-'),'',$r['vtxt'].'/'.$r['vbg']),1,24);
+      echo $cv->Field($r['diggtop'].'/'.$r['diggdown']);
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&cid=$r[cid]&recbk=ref","");
       echo "</tr>"; 
     }
