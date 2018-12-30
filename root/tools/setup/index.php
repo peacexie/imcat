@@ -48,6 +48,6 @@ $orgpass = 'pass_'.basKeyid::kidRand(0,3);
 
 glbHtml::ieLow_html();
 include __DIR__.'/_head.htm';
-include __DIR__.'/index.htm';
+include __DIR__.'/isetup.htm';
 glbHtml::page('end');
 ?>
