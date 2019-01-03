@@ -1,10 +1,7 @@
 
 
-* 贴心猫(imcat) v4.5(Beta)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
-  - Please use v4.4 in PRODUCTION.
-  - 正式使用，请用 v4.4.
- 
+贴心猫(imcat) V4.5 Released (2019-01)
+
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -115,7 +112,7 @@
 
 * 修正：php7.3下两处 Notice 提示
 
-* 修正：发布信息时,`auser`过滤了下换线问题
+* 修正：发布信息时,字段`auser`过滤了下换线问题
 
 * 敬请期待：贴心博客 --- 基于贴心猫开发
   - 第三方：合作开发中...

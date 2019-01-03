@@ -166,7 +166,7 @@ class tagBase{
             $bd = isset($_cbase['tpl']['bdpart']) ? $_cbase['tpl']['bdpart'] : '';
             $cfg=$this->p1Cfg('part'); $p=basReq::val('part'); $val='';
                 if($bd)                  { $val = $bd;     } // 绑定条件
-            elseif(!empty($cfg[1]))      { $val = $cfg[1]; } // 标签条件
+            elseif(!empty($cfg[1]))      { if($cfg[1]!=='(all)') $val = $cfg[1]; } // 标签条件
             elseif(!empty($cfg[0]) && $p){ $val = $p;      } // Url条件
             $val && $whr .= " AND (m.part='$val')";
         } 

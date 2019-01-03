@@ -22,6 +22,8 @@
 
 * Simplify: Comment fields;
 
+* Fix: Setup page shows the html template in v4.4
+
 * Fix: Two notices on php7.3
 
 * Fix: The char `_` was filtered in the field `auser`, while publish info;
