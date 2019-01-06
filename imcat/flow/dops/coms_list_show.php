@@ -10,9 +10,10 @@ $idfirst = ''; $idend = '';
 if($rs=$dop->getRecs()){ 
     foreach($rs as $r){ 
       $cid = $idend = $r['cid'];
+      $msg = empty($r['title']) ? $r['detail'] : $r['title'];
       if(empty($idfirst)) $idfirst = $cid;
       echo $cv->Select($cid);
-      echo $cv->Field($r['title'],1,64); 
+      echo $cv->Field($msg,1,64); 
       echo $cv->Show($r['show']);
       echo $cv->Field($r['mname']);
       //echo $cv->Field($r['mtel']);

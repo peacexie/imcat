@@ -11,7 +11,7 @@ include dirname(dirname(dirname(__DIR__))).'/catmain/root/run/_init.php';
 <script src='/peace/imcat/catmain/root/plus/ajax/comjs.php?act=initJs&tpldir=adm&lang=cn&mkv=dops-a&exjs=jquery,jspop;comm;comm(-lang)&_r=4.2'></script>
 <link href='/peace/imcat/catmain/root/plus/ajax/comjs.php?act=initCss&tpldir=adm&lang=cn&skin=min&excss=bootstrap,stpub,jstyle;comm&_r=4.2' type='text/css' rel='stylesheet'/>
 
-<?php echo basJscss::imp("/_pub/a_jscss/multpic.js"); ?>
+<?php echo \imcat\basJscss::imp("/_pub/a_jscss/multpic.js"); ?>
 
 <link rel="stylesheet" href="./jquery-fileupload.css">
 <script src="./jquery-ui.min.js"></script>

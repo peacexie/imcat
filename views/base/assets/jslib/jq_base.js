@@ -99,15 +99,16 @@ $(function(){
         var msgarr = new Array();
         var userCheck = $(this).attr("usercheck");
         $(this).find("[reg],[url]:not([reg])").each(function(){
+            var msg1 = evf_errMessage(this).replace('<br>','');
             if($(this).attr("reg") == undefined){
                 if(!evf_check_ajax($(this))){
                     isSubmit = false;
-                    msgarr.push(evf_errMessage(this));
+                    msgarr.push(msg1);
                 }
             }else{
                 if(!evf_validate($(this))){
                     isSubmit = false;
-                    msgarr.push(evf_errMessage(this));
+                    msgarr.push(msg1);
                 }
             }
         });

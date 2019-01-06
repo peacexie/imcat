@@ -1,7 +1,7 @@
 <?php
 $_sy_keepid = '
 ,suser,|,user,
-,sysmodel,|,test,model,cbase,suser,pbase,catid,grade,passpt,info,common,
+,sysmodel,|,test,model,cbase,suser,pbase,catid,grade,passpt,common,
 ,sysfield,|,kid,did,uid,cid,aid,sid,uname,
 ,aip,atime,auser,eip,etime,euser,
 ,pagebar,|,page,prec,ptype,pkey,

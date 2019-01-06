@@ -45,15 +45,16 @@ class comJifen{
         }else{
             $mcfg[$key] = intval($mcfg[$key]);
         }
+        $auser = empty($mcfg['auser']) ? '' : $mcfg['auser'];
         // addcr
         $op = $act=='add' ? '+' : '-';
-        $sql = "UPDATE ".$db->table('users_uacc',2)." SET ujifen=ujifen{$op}".$mcfg[$key]." WHERE uname='{$mcfg['auser']}'";
+        $sql = "UPDATE ".$db->table('users_uacc',2)." SET ujifen=ujifen{$op}".$mcfg[$key]." WHERE uname='$auser'";
         $db->query($sql);
         // logger
         $data = basSql::logData('a');
         $data['kid'] = basKeyid::kidTemp('3.4').basKeyid::kidRand('24',4);
         $data['act'] = $act; 
-        $data['uto'] = $mcfg['auser'];
+        $data['uto'] = $auser;
         $data['jifen'] = $mcfg[$key];
         $data['jfmod'] = $mcfg['kid'];
         $data['note'] = $msg ? $msg : "{$mcfg['kid']}:$act";

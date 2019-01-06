@@ -33,10 +33,11 @@ class dopCheck extends dopBase{
 
     // iprep=3(ip重复发布时间间隔)
     static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
-        $ckey = "$mod.$kid";
+        $ckey = "{$mod}_$kid";
         $stamp = $_SERVER["REQUEST_TIME"];
         $glife = intval($num)*60;
         $ck = comCookie::mget('diggs',$ckey); // cookie;
+        //echo "($ck)";
         if(empty($ck) || ($stamp-intval($ck))>$glife){
             comCookie::mset('diggs',$glife,$ckey,$stamp,20);
         }else{
