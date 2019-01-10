@@ -122,8 +122,9 @@ if($view=='glist'){
           echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";
           echo "<td class='tc'>-".lang('flow.title_bei')."-</td>\n";  
       }
+      $note = basStr::filTitle($r['note']);
       echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=gform&kid=$r[kid]&recbk=ref","");
-      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
+      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$note' class='txt w120' /></td>\n";
       echo "</tr>"; 
     }} 
     echo "<tr>\n";

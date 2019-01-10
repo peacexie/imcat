@@ -49,6 +49,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
         $u_sub = strstr($aurl[1],'pid=') ? basReq::getURep($aurl[1],'pid',$r['kid']) : "$aurl[1]&pid=$r[kid]";
         $f_deep = @$cfg['i'][$pid]['deep'] < $cfg['deep']-1;
         $s_cnt = count(comTypes::getSubs($cfg['i'],$r['kid']));
+        $note = basStr::filTitle($r['note']);
         echo "<tr>\n";
         echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' /></td>\n";
         echo "<td class='tc'>$r[kid]</td>\n";
@@ -59,7 +60,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
         echo "<td class='tc'>".($f_deep ? "<a href='$u_sub'>$s_cnt</a>" : glbHtml::null_cell($s_cnt))."</td>\n";
         $popt = "<select name='fm[$kid][cfgs]'>".basElm::setOption($pcfg,$r['cfgs'],lang('admin.mu_loginpm'))."</select>";
         echo "<td class='tc'>$popt</td>\n";
-        echo "<td class='tl'><input type='text' value='$r[note]' class='txt w120' /></td>\n";
+        echo "<td class='tl'><input type='text' value='$note' class='txt w120' /></td>\n";
         echo "</tr>"; 
     }} 
     $ops = basElm::setOption("upd|".lang('flow.op_upd')."\nshow|".lang('flow.op_open')."\nstop|".lang('flow.op_close')."");
@@ -120,6 +121,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
         $f_deep = @$cfg['i'][$pid]['deep'] < $cfg['deep']-1;
         $s_cnt = count(comTypes::getSubs($cfg['i'],$r['kid']));
         $iconstr = empty($r['icon']) ? '(x)' : " <i class='fa fa-".$r['icon']."'></i>";
+        $note = basStr::filTitle($r['note']);
         echo "<tr>\n";
         echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' /></td>\n";
         echo "<td class='tc'><a href='$aurl[1]&view=set&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.fad_setid',$r['title'])."\");'>$r[kid]</a></td>\n";
@@ -129,7 +131,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
         echo "<td class='tc'>$r[deep]</td>\n"; 
         echo "<td class='tc'>".($f_deep ? "<a href='$u_sub'>$s_cnt</a>" : glbHtml::null_cell($s_cnt))."</td>\n";   
         echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.mu_editone')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
-        echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
+        echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$note' class='txt w120' /></td>\n";
         echo "</tr>"; 
     }} 
     echo "<tr>\n";

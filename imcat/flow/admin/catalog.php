@@ -66,6 +66,7 @@ if($view=='glist'){
       $u_sub = strstr($aurl[1],'pid=') ? basReq::getURep($aurl[1],'pid',$r['kid']) : "$aurl[1]&pid=$r[kid]";
       $f_deep = @$cfg['i'][$pid]['deep'] < $cfg['deep']-1;
       $s_cnt = count(comTypes::getSubs($cfg['i'],$r['kid']));
+      $note = basStr::filTitle($r['note']);
       echo "<tr>\n";
       echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' /></td>\n";
       echo "<td class='tc'><a href='$aurl[1]&view=set&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.fad_setid',$r['title'])."\",400,300);'>$r[kid]</a></td>\n";
@@ -78,7 +79,7 @@ if($view=='glist'){
       echo "<td class='tc'>".($f_deep ? "<a href='$u_sub'>$s_cnt</a>" : glbHtml::null_cell($s_cnt))."</td>\n"; 
       if(in_array($mod,$_ex_paras['catid'])) echo "<td class='tc'>".("<a href='?admin-fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";  
       echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.cat_edit')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
-      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
+      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$note' class='txt w120' /></td>\n";
       echo "</tr>"; 
     }} 
     $cspan = in_array($mod,$_ex_paras['catid']) ? 11 : 10;

@@ -72,6 +72,7 @@ if($view=='upd'){
     if($list){
         foreach($list as $r){
           $kid = $r['kid']; 
+          $note = basStr::filTitle($r['note']);
           echo "<tr>\n".$cv->Select($kid);
           echo "<td class='tc'>$r[kid]</td>\n";
           echo "<td class='tc'>$r[title]</td>\n";
@@ -79,7 +80,7 @@ if($view=='upd'){
           echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
           echo "<td class='tc'>".glbHtml::null_cell($r['enable'])."</td>\n";
           echo $cv->Url(lang('flow.dops_edit'),1,"$aurl[1]&view=form&kid=$r[kid]&recbk=ref","");
-          echo "<td class='tl'><input type='text' value='$r[note]' class='txt w300' /></td>\n";
+          echo "<td class='tl'><input type='text' value='$note' class='txt w300' /></td>\n";
           echo "</tr>"; 
         }
         echo "<tr>\n";

@@ -51,6 +51,7 @@ if($view=='glist'){
     if($list){
     foreach($list as $r){
       $kid = $r['kid'];
+      $note = basStr::filTitle($r['note']);
       echo "<tr>\n";
       echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' /></td>\n";
       echo "<td class='tc'>$r[kid]</td>\n";
@@ -60,7 +61,7 @@ if($view=='glist'){
       echo "<td class='tc'>".($kid=='supper' ? lang('admin.grd_set') : "<a href='$aurl[1]&view=set&kid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
       echo "<td class='tc'><a href='$aurl[1]&view=gform&kid=$r[kid]' onclick='return winOpen(this,\"".lang('admin.grd_edit')."-$r[title]\");'>".lang('flow.title_edit')."</a></td>\n";
       if(in_array($mod,$_ex_paras['grade'])) echo "<td class='tc'>".("<a href='?admin-fields&mod=$mod&catid=$r[kid]'>".lang('flow.title_set')."</a>")."</td>\n";
-      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$r[note]' class='txt w120' /></td>\n";
+      echo "<td class='tl'><input name='fm[$kid][note]' type='text' value='$note' class='txt w120' /></td>\n";
       echo "</tr>"; 
     }} 
     echo "<tr>\n";
