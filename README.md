@@ -60,8 +60,10 @@
 
 * Fix: The char `_` was filtered in the field `auser`, while publish info;
 
-* Coming SOON: imblog(IntimateBlog) --- Based on imcat(IntimateCat);
-  - Third party: Coming!
+* Coming SOON: imblog(IntimateBlog) 
+  - Based on imcat(IntimateCat);
+  - [READ-ME](https://github.com/peacexie/imcat/blob/patches/projs/imblog-READ.md)
+  - [Download](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -114,6 +116,8 @@
 
 * 修正：发布信息时,字段`auser`过滤了下换线问题
 
-* 敬请期待：贴心博客 --- 基于贴心猫开发
-  - 第三方：合作开发中...
+* 敬请期待：贴心博客
+  - 基于贴心猫开发
+  - [项目说明](https://github.com/peacexie/imcat/blob/patches/projs/imblog-READ.md)
+  - [项目下载](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar)
 
