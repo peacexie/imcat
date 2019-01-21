@@ -1,9 +1,23 @@
 
+
 * 贴心博客(imblog) V4.5.1 Released (2019-01)
-* Official Website: [imblog(贴心博客)](http://imblog.txjia.com/)
+* Official Website / 官网: http://imblog.txjia.com/
+* Download / 下载: https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar
 * [Download(下载)](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar)
 
 --- --- --- --- --- --- --- --- --- 
+
+
+### About 贴心博客(Imblog)
+
+* 贴心博客(Imblog) is a blog system based on `jquery2+bootstrap4+贴心猫(imcat)` ;
+* Include: 中文版/English two edition, Pc/wap adaptive based on bootstrap 4;
+* The models include: 
+  - Blog (Free classification), 
+  - Memo-Wall (Mood-Wall,Wish-Wall,Words-Wall ...), 
+  - About-Me (Website introduction), 
+  - Else (Adv-sys, Friend-Link) And so on very practical basic module ...
+
 
 ### 【Setup】
 
@@ -28,6 +42,18 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 --- --- --- --- --- --- --- --- --- 
+
+
+### 关于贴心博客(Imblog)
+
+* 贴心博客(Imblog) 是 基于`jquery2+bootstrap4+贴心猫`开发的博客系统；
+* 目前包含：中文版/English 版本，基于bootstrap4的pc/wap自适应；
+* 包含模型有：
+  - 博客文章（自由分类），
+  - 便笺墙（心情墙/许愿墙/小语墙...自由分类），
+  - 关于我（网站介绍），
+  - 其它（广告/友情链接）等很实用的基本的模块。
+
 
 ### 【安装提示】
 
