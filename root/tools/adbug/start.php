@@ -78,7 +78,7 @@ $tolurl = PATH_PROJ.'/dev.php';
   <tr class="tc">
     <td><a href="cstudy.php"><?php lang('tools.start_dtstudy',0) ?></a></td>
     <td><a href='cyahei.php'><?php lang('tools.start_dtyahei',0) ?></a></td>
-    <td><a href="../exdiy/nomuma.php"><?php lang('tools.start_tmuma',0) ?></a></td>
+    <td><a href="#../exdiy/nomuma.php"><?php lang('tools.start_tmuma',0) ?></a></td>
     <td><a href="<?php echo PATH_BASE; ?>?info-color">Color</a></td>
   </tr> 
   <tr class="tc">
