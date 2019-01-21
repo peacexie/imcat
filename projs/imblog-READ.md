@@ -3,7 +3,6 @@
 * 贴心博客(imblog) V4.5.1 Released (2019-01)
 * Official Website / 官网: http://imblog.txjia.com/
 * Download / 下载: https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar
-* [Download(下载)](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.0.rar)
 
 --- --- --- --- --- --- --- --- --- 
 
