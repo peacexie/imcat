@@ -1,6 +1,6 @@
 
 * [2019-0127]
-  - Fix: In Android, The defalut browser does not support flex;
+  - Fix: In Android7, The defalut browser does not support flex;
   - 修正：Android7自带浏览器不支持flex；
 
 --- --- --- --- --- --- --- --- --- 
