@@ -115,17 +115,17 @@ class vopComp{
             $stpl = str_replace(array_keys($reps['tpl']), array_values($reps['tpl']), $stpl);
         }
         /* 常量/变量解析 ----------------------------
-            {=PATH_ROOT} -=> <?php echo PATH_ROOT; ?>
-            {=$name} -=> <?php  echo $name; ?> $re1['title'], $this->mod, $this->ucfg['q']
+            {=PATH_ROOT} -=> <?=PATH_ROOT; ?>
+            {=$name} -=> <?=$name; ?> $re1['title'], $this->mod, $this->ucfg['q']
         */
-        $stpl = preg_replace ( "/\{\=([A-Z_][A-Z0-9_]*)\}/s", "<?php echo \\1;?>", $stpl );    
-        /*将变量{$name}替换成<?php  echo $name; ?>,可以是数组 $name, $re1['title'], $this->mod, $this->ucfg['q'] */
-        $stpl = preg_replace("/{\=(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?php echo @$1; ?>", $stpl);
+        $stpl = preg_replace ( "/\{\=([A-Z_][A-Z0-9_]*)\}/s", "<?=\\1;?>", $stpl );    
+        /*将变量{$name}替换成<?=$name; ?>,可以是数组 $name, $re1['title'], $this->mod, $this->ucfg['q'] */
+        $stpl = preg_replace("/{\=(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?=@$1; ?>", $stpl);
         /* php标签 ----------------------------
-            {= date('Y-m-d'); }     =>  <?php echo date('Y-m-d'); ?>
-            {php echo phpinfo();}    =>    <?php echo phpinfo(); ?>
+            {= date('Y-m-d'); }     =>  <?=date('Y-m-d'); ?>
+            {php phpinfo();}    =>    <?php phpinfo(); ?>
          */
-        $stpl = preg_replace ( "/\{=\s+([^}]+)\}/", "<?php echo \\1?>", $stpl );
+        $stpl = preg_replace ( "/\{=\s+([^}]+)\}/", "<?=\\1?>", $stpl );
         $stpl = preg_replace ( "/\{php\s+([^}]+)\}/", "<?php \\1?>", $stpl );
         return $stpl;
     }

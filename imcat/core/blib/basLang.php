@@ -76,12 +76,12 @@ class basLang{
     
     // 前置处理: ucfg.lang, ucfg.skin ============================================= 
 
-    // $_cbase['ucfg']['lang'] = '(auto)'; 
+    // $_cbase['ucfg']['lang'] = '(auto)'; // (get)
     static function auto(){
         global $_cbase; 
         //if(empty($_cbase['ucfg']['lang'])) return;
-        if(!empty($_cbase['ucfg']['lang']) && $_cbase['ucfg']['lang']=='(auto)'){
-            $lang = comCookie::oget('lang');
+        if(!empty($_cbase['ucfg']['lang']) && strpos($_cbase['ucfg']['lang'],')')){ // (auto), (get)
+            $lang = $_cbase['ucfg']['lang']=='(get)' ? basReq::val('lang') : comCookie::oget('lang');
             if(!empty($lang)){
                 $_cbase['sys']['lang'] = $lang;
             }elseif(empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])){

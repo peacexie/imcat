@@ -18,8 +18,8 @@ class vopCTag{
         'show'  => 'vopCell::cShow',
     ); // \imcat\
     
-    // vop:cecho标签
-    // {stime($re4['atime']);}                 =>  [?php echo vopCell::cTime($re4['atime']);;?]
+    // vop:cecho 标签
+    // {stime($re4['atime']);}                 =>  [?=vopCell::cTime($re4['atime']);;?]
     // {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
     // {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
     // {sopt(c0769+c0735,china)}
@@ -38,12 +38,12 @@ class vopCTag{
                     $s = substr($s,1); 
                     // like as : cbase配置:run.stamp
                     if($func=='show' || !isset(self::$tag_func[$func])){
-                        $funu = "echo vopCell::cShow($s,\$this);"; 
+                        $funu = "vopCell::cShow($s,\$this)"; 
                     }else{
                         $clsm = self::$tag_func[$func];
-                        $funu = "echo $clsm($s);";     
+                        $funu = "$clsm($s)";     
                     }
-                    $tpl = str_replace($sorg,"<?php $funu;?>",$tpl);
+                    $tpl = str_replace($sorg,"<?=$funu?>",$tpl);
                 }
             }
         }
@@ -182,7 +182,7 @@ class vopCTag{
         $a = explode(',',$t);
         foreach($a as $k=>$v){
             if(strstr($v,'$')){
-                $s = str_replace($v,'<?php echo '.$v.'; ?>',$s);    
+                $s = str_replace($v,'<?='.$v.'; ?>',$s);    
             }
         }
         return $s;

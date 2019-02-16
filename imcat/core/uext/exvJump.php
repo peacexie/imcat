@@ -19,7 +19,8 @@ class exvJump{
         if(strpos($qstr,':')>0){
             $arr = explode(':',$qstr);
             $mth = 'do'.ucfirst($arr[0]);
-            $this->$mth($arr[1]); // lang:/advs:
+            $p = $arr[1]; if(strpos($p,'&')) { $p=substr($p,0,strpos($p,'&')); }
+            $this->$mth($p); // lang:/advs:
         }elseif(strpos($qstr,'.')){
             $arr = explode('.',$qstr);
             $mth = 'do'.($arr[0]=='dir'?'Dirs':'Mods');
@@ -30,10 +31,11 @@ class exvJump{
         }
     }
 
-    // /api/redir.php?skin:blue:&recbk=redir
+    // /api/redir.php?skin:[bs4.]blue:&recbk=redir
     function doSkin($skin){
         $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
-        $file = DIR_VENDUI."/bootstrap/css/bootstrap.$skin.css";
+        $fver = strpos($skin,'.') ? $skin : "bootstrap.$skin"; 
+        $file = DIR_VENDUI."/bootstrap/css/$fver.css";
         file_exists($file) && comCookie::oset('skin',$skin,30*86400);
         if($recbk && !strpos($recbk,'?api-redir')){
             header("Location: $recbk");

@@ -10,8 +10,37 @@ class devRun{
     
     static $sfixpath = '/store/_setfix_path.txt'; 
     static $sfixidpw = '/store/_setrnd_idpw.txt'; 
-    static $fp_paths = '/cfgs/boot/_paths.php'; 
+    static $fp_paths = '/cfgs/boot/_paths.php';
+    static $fp_dbcfg = '/cfgs/boot/cfg_db.php';
 
+    static function rstVerfix(){
+        global $_cbase;
+        $fix = str_replace('.','',$_cbase['sys']['ver']);
+        return $fix;
+    }
+
+    static function rstDbname(){
+        $fsu = DIR_DTMP.devSetup::$flagfile;
+        $fdb = DIR_ROOT.self::$fp_dbcfg;
+        # 自动修正路径时运行,db配置一天内未修改,且是初始安装
+        $mt = time()-filemtime($fdb);
+        if(abs($mt)>86400 && !file_exists($fsu)){
+            include(DIR_ROOT.self::$fp_dbcfg);
+            $oldname = $_cfgs['db_name'];
+            $dbname = self::autoDbname();
+            $data = comFiles::get(DIR_ROOT.self::$fp_dbcfg);
+            $data = str_replace("'$oldname';", "'$dbname';",$data);
+            $fres = comFiles::put(DIR_ROOT.self::$fp_dbcfg,$data);
+        }
+    }
+    // imcat_v42_a12
+    static function autoDbname(){
+        include(DIR_ROOT.self::$fp_dbcfg.'-cdemo');
+        $tmp = explode('_', $_cfgs['db_name']);
+        $dbname = $tmp[0].'_v'.self::rstVerfix().'_';
+        $dbname .= dechex(date('m')).date('d');
+        return $dbname;
+    }
     // prootGet
     static function prootGet(){
         // 虚拟目录: E:\truedir\index.php -> /imcat/index.php
@@ -27,20 +56,21 @@ class devRun{
     } 
     // prootFix
     static function prootFix($proot){
-            $fpath = DIR_DTMP.self::$sfixpath;
-            if(file_exists($fpath)) return false; //只修正一次
-            $data = comFiles::get(DIR_ROOT.self::$fp_paths);
-            $fix = "define('PATH_PROJ'"; 
-            $data = str_replace("$fix,","$fix, '$proot'); #Old: ",$data);
-            $fres = comFiles::put(DIR_ROOT.self::$fp_paths,$data);
-            if($fres && !empty($data)){
-                $re = 1;
-                comFiles::put($fpath,date('Y-m-d H:i:s')); 
-            }else{
-                $re = 0;
-            }
-            return $re;
-    } 
+        $fpath = DIR_DTMP.self::$sfixpath;
+        if(file_exists($fpath)) return false; //只修正一次
+        $data = comFiles::get(DIR_ROOT.self::$fp_paths);
+        $fix = "define('PATH_PROJ'"; 
+        $data = str_replace("$fix,","$fix, '$proot'); #Old: ",$data);
+        $fres = comFiles::put(DIR_ROOT.self::$fp_paths,$data);
+        if($fres && !empty($data)){
+            $re = 1;
+            comFiles::put($fpath,date('Y-m-d H:i:s')); 
+            //self::rstDbname();
+        }else{
+            $re = 0;
+        }
+        return $re;
+    }
     // prootMsg
     static function prootMsg($proot, $fixres){
         $re = array();

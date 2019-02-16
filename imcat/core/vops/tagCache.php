@@ -6,23 +6,22 @@ namespace imcat;
 */
 // 标签缓存类
 class tagCache{
-    
+
     // adblock:abfoot0,2cF0F
-    static function showAdv($mkey){ 
+    static function showAdv($mkey,$reorg=0,$adtag=4){ 
         $mk = explode(':',$mkey);
         if(empty($mk[1])) return '';
         $a = explode(',',$mk[1]);
-        $p = empty($a[1]) ? '4' : substr($a[1],0,1);
+        $p = empty($a[1]) ? $adtag : substr($a[1],0,1);
         $s = (!empty($a[1]) && strlen($a[1])>1) ? ' '.substr($a[1],1) : ' cCCC'; 
         $cfg = array(
-            1=>"<i class='advFlag advTopL$s'>广告</i>",
-            2=>"<i class='advFlag advTopR$s'>广告</i>",
-            3=>"<i class='advFlag advBotL$s'>广告</i>",
-            4=>"<i class='advFlag advBotR$s'>广告</i>",
+            1=>"TopL$s", 2=>"TopR$s",
+            3=>"BotL$s", 4=>"BotR$s",
         );
-        $sp = empty($cfg[$p]) ? '' : $cfg[$p];
+        $sp = empty($cfg[$p]) ? '' : "<i class='advFlag adv{$cfg[$p]}'>广告</i>";
         $file = tagCache::caPath($mk[0],$a[0],1);
         $data = file_exists($file) ? comFiles::get($file).$sp : "$mkey";
+        if($reorg) return $data;
         $re = basJscss::jsShow($data, 0);
         return $re;
     }

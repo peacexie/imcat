@@ -1,20 +1,12 @@
 <?php
 #namespace imcat;
 
-use imcat\basClass;
 use imcat\basDebug;
-use imcat\basJscss;
 use imcat\basLang;
-use imcat\basOut;
 use imcat\basReq;
-use imcat\basStr;
 use imcat\glbConfig;
-use imcat\glbDBObj;
 use imcat\glbError;
 use imcat\usrBase;
-use imcat\usrPerm;
-use imcat\vopTpls;
-use imcat\vopUrl;
 
 /**
  * 一组别名函数（使用Symfony的dump后添加的,有的叫助手函数）
@@ -36,12 +28,12 @@ function dump($var,$min=1){
 // tex('texClass')->func() -=> \imcat\chn\texClass::func()
 if(!function_exists('tex')){ 
 function tex($cfile, $tpl=''){
-    return basClass::tex($cfile, $tpl);
+    return \imcat\basClass::tex($cfile, $tpl);
 } }
 // tinc(模板包含) 
 if(!function_exists('tinc')){ 
 function tinc($fp, $inc=1, $refull=1){
-    return vopTpls::tinc($fp, $inc, $refull);
+    return \imcat\vopTpls::tinc($fp, $inc, $refull);
 } }
 
 // cfg(读取cbase配置) cfg('sys.cset');
@@ -97,7 +89,7 @@ function out($data,$type='json'){
     if($type=='str'){ // 删除(addslashes添加的)反斜杠
         $data = basReq::out($data,$type);
     }else{ // fmt: json,jsonp,xml
-        $data = basOut::fmt($data,$type);
+        $data = \imcat\basOut::fmt($data,$type);
     }
     return $data;
 } }
@@ -105,7 +97,7 @@ function out($data,$type='json'){
 // db(获得db对象)
 if(!function_exists('db')){ 
 function db($config=array(),$catch=0){
-    return glbDBObj::dbObj($config,$catch);
+    return \imcat\glbDBObj::dbObj($config,$catch);
 } }
 
 // user(获得user对象)
@@ -117,7 +109,7 @@ function user($uclass=''){
 // show-url:格式化url输出
 if(!function_exists('surl')){ 
 function surl($mkv='',$type='',$host=0){
-    return vopUrl::fout($mkv,$type,$host);
+    return \imcat\vopUrl::fout($mkv,$type,$host);
 } }
 
 // sys-mod:系统(有效)模块,关闭或不存在返回`false`
@@ -136,7 +128,7 @@ function cmod($key=''){
 // echo-import:css,js
 if(!function_exists('eimp')){ 
 function eimp($type,$base='',$user=0){
-    echo basJscss::imp($type,$base,$user);
+    echo \imcat\basJscss::imp($type,$base,$user);
 } }
 
 // 一组handler函数 ---------------------------------
@@ -164,10 +156,10 @@ function shutdown_handler_ys() {
 
 if(!function_exists('subRep')){ 
 function subRep($str){
-    $sup = usrPerm::issup();
+    $sup = \imcat\usrPerm::issup();
     $user = usrBase::userObj('Member');
     $mem = $user->userFlag=='Login';
-    return ($sup||$mem) ? $str : basStr::subReplace($str); 
+    return ($sup||$mem) ? $str : \imcat\basStr::subReplace($str); 
 } }
 
 # $sPUser = MemPW.MemID

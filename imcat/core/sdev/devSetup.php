@@ -252,16 +252,10 @@ class devSetup{
         $_cbase['tout_admin'] = $rcfg['tout_admin'];  
         $_cbase['tout_member'] = $rcfg['tout_member'];    
         devScan::rstIDPW(basReq::val('uid'),basReq::val('upw'));
+        self::setLangs();
         self::updCache();
         $re = array('res'=>'OK','msg'=>'');
         self::ajaxStop($re);
-    }
-    
-    static function setDbname(){
-        $md = substr(basKeyid::kidTemp(),3,4);
-        $dbname = "imcat_v".cfg('sys.ver')."_".$md;
-        $dbname = str_replace(array('.','-'),array('',''),$dbname);
-        return $dbname; // imcat_v42_86v
     }
 
     // ajaxStop 
@@ -277,7 +271,40 @@ class devSetup{
     static function isSetuped(){ 
         return file_exists(DIR_DTMP.self::$fsetuped);
     }
-
+    // setLangs
+    static function setLangs(){
+        global $_cbase;
+        $lang = $_cbase['sys']['lang'];
+        $fp = '/tools/setup/slang.php';
+        if(!file_exists(DIR_ROOT.$fp)){ return; }
+        include(DIR_ROOT.$fp);
+        if(!empty($_scfgs['files'])){
+            foreach ($_scfgs['files'] as $row) {
+                if($lang==$row['skip']){ continue; } 
+                $fp = $row['dir'].$row['file'];
+                $data = comFiles::get($fp);
+                $data = str_replace(array_keys($row['tabs']), array_values($row['tabs']), $data);
+                comFiles::put($fp, $data);
+            }
+        }
+        if(!empty($_scfgs['dbtabs'])){
+            foreach ($_scfgs['dbtabs'] as $row) {
+                if(!isset($row['val'.$lang])){ continue; } 
+                $whr = $row['where'];
+                $vals = $row['val'.$lang];
+                foreach($row['keys'] as $no=>$k2) {
+                    $data = array($row['vfield']=>$vals[$no]); // title='Study'
+                    $whrstr = $row['kfield']."='$k2'".($whr?" AND $whr":''); // kid='i1024' AND model='info'
+                    db()->table($row['table'])->data($data)->where($whrstr)->update(); 
+                }
+            }
+        }
+        if(!empty($_scfgs['updmods'])){
+            foreach ($_scfgs['updmods'] as $mod) {
+                glbCUpd::upd_model($mod); 
+            }
+        }
+    }
     // updCache 
     static function updCache(){ 
         $g0 = glbDBObj::dbObj()->table('base_model')->where("enable='1'")->order('kid')->select();

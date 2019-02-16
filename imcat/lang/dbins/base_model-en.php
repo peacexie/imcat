@@ -72,11 +72,17 @@ return array(
   'QA-System',
   'QA-Reply',
   'QA-Label',
+  'Sys-Notes',
+  'Push-Info',
   // 3: 
   'Admin',
   'TextBlock',
   'ShopCart',
+  'Words',
   // 2: 
+  'Recom.',
+  'Blog',
+  'Notes',
   'Remark',
   'Prov-City',
   'Country',
