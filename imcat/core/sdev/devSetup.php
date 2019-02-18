@@ -275,7 +275,7 @@ class devSetup{
     static function setLangs(){
         global $_cbase;
         $lang = $_cbase['sys']['lang'];
-        $fp = '/tools/setup/slang.php';
+        $fp = '/cfgs/boot/setcfg.php';
         if(!file_exists(DIR_ROOT.$fp)){ return; }
         include(DIR_ROOT.$fp);
         if(!empty($_scfgs['files'])){
