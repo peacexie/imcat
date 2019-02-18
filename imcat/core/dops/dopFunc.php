@@ -191,48 +191,30 @@ class dopFunc{
     }
     
     // modFile .. ???? 
-    static function modFile($scbase,$mod,$type){ //模型脚本
-        if(defined('RUN_ADMIN')){ //后台
-            $udir = 'umod'; //用户扩展
-            $edir = 'emod'; //系统扩展
-            $ecfg = 'sc_fadm';
-        }else{ //会员
-            $udir = 'umou'; //用户扩展
-            $edir = 'emod'; //系统扩展
-            $ecfg = 'cs_fmem';
+    static function modFile($mod,$type=''){ //模型脚本
+        require DIR_ROOT."/cfgs/scfile/sc_fadm.php"; //sc_fadm/cs_fmem
+        if(isset($scfgs[$mod])){
+            $re = $scfgs[$mod];
+        }elseif(file_exists($_fex=DIR_ROOT."/extra/emod/{$mod}.php")){
+            $re = $_fex;
+        }elseif(file_exists($_fex=DIR_IMCAT."/flow/emod/{$mod}.php")){
+            $re = $_fex;
+        }else{
+            $re = ''; //DIR_IMCAT."/flow/dops/{$type}_{$mod}.php";
         }
-        $re = '';
-        require DIR_ROOT."/cfgs/scfile/$ecfg.php"; //$_scfile
-        if(file_exists($_fex="$scbase/$udir/{$mod}.php")){
-            $re = $_fex; 
-        }elseif(file_exists($_fex="$scbase/$edir/{$mod}.php")){
-            $re = $_fex; 
-        }elseif(file_exists($_fex="$scbase/dops/{$type}_{$mod}.php")){
-            $re = $_fex; 
-        }elseif(isset($scfgs[$mod]) && file_exists($scbase.$scfgs[$mod])){
-            $re = $scbase.$scfgs[$mod]; //以上配置:再次
-        } 
         return $re;
     }
     
     // modAct .. ???? 
-    static function modAct($scbase,$act,$mod,$type){ //act脚本
-        if(defined('RUN_ADMIN')){ //后台
-            $udir = 'uact';  //用户扩展
-            $edir = 'eact'; //系统扩展
-        }else{ //会员
-            $udir = 'uacu'; //用户扩展 
-            $edir = 'eacu'; //系统扩展
-        }
-        if(file_exists($_fex="$scbase/$udir/{$mod}_{$act}.php")){
-            return $_fex; //扩展目录
-        }elseif(file_exists($_fex="$scbase/$edir/{$mod}_{$act}.php")){
-            return $_fex; //扩展脚本
-        }elseif(file_exists($_fex="$scbase/dops/{$type}_{$act}.php")){
-            return $_fex;
+    static function modAct($act,$mod,$type){ //act脚本
+        if(     file_exists($_fex=DIR_ROOT."/extra/eact/{$mod}_{$act}.php")){
+            $re = $_fex;
+        }elseif(file_exists($_fex=DIR_IMCAT."/flow/eact/{$mod}_{$act}.php")){
+            $re = $_fex;
         }else{
-            return '';    
+            $re = DIR_IMCAT."/flow/dops/{$type}_{$act}.php";
         }
+        return $re;
     }
     
 }

@@ -3,9 +3,7 @@ namespace imcat;
 
 // basNodef
 class basNodef{    
-    
-    static $_CACHES_LG = array();//将读取过的缓存暂存可重用
-    
+
     // php5.5弃用了mysql扩展后,此函数也不可用了
     static function quoteSql($str,$noq=0){
         $db = glbDBObj::dbObj();

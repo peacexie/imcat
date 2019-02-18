@@ -181,6 +181,7 @@ class devScan{
         // copy : root
         $skip = isset($cfgs['skip']['main']) ? $cfgs['skip']['main'] : array();
         comFiles::copyDir(DIR_PROJ,$pdir,$skip,$cfgs['skfiles']);
+        comFiles::copyDir(DIR_IMCAT,$pdir.'/imcat'); // copy : imcat
         // reset : ids
         foreach($cfgs['ids'] as $v){
             self::rstVals("$pdir/".$v[0]."$v[1]",$v[2]);

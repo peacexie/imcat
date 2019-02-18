@@ -39,9 +39,12 @@ class basLang{
         $lang = $_cbase['sys']['lang'];
         if(isset(self::$_CACHES_LG[$mod])){
             $cfgs = self::$_CACHES_LG[$mod];
+        }elseif(file_exists($_fex=DIR_ROOT."/extra/$dir/$mod-$lang.php")){
+            $cfgs = self::$_CACHES_LG[$mod] = include $_fex;
+        }elseif(file_exists($_fex=DIR_IMCAT."/lang/$dir/$mod-$lang.php")){
+            $cfgs = self::$_CACHES_LG[$mod] = include $_fex;
         }else{
-            $flang = DIR_IMCAT."/lang/$dir/$mod-$lang.php"; 
-            $cfgs = self::$_CACHES_LG[$mod] = file_exists($flang) ? include $flang : array();    
+            $cfgs = self::$_CACHES_LG[$mod] = array();
         }
         if(empty($key)) return $cfgs;
         return isset($cfgs[$key]) ? $cfgs[$key] : '{'."$mod.$key".'}';

@@ -77,11 +77,14 @@ class comCron{
     static function rone($row,$data=array()){
         $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
-        $file = "/adpt/cron/{$row['kid']}.php"; 
+        $fp1 = DIR_ROOT."/extra/cron/{$row['kid']}.php"; 
+        $fp2 = DIR_IMCAT."/adpt/cron/{$row['kid']}.php"; 
         if(!empty($row['cfgs'])){
             // run-sql
-        }elseif(file_exists(DIR_IMCAT.$file)){
-            include_once DIR_IMCAT.$file;
+        }elseif(file_exists($fp1)){
+            include_once $fp1;
+        }elseif(file_exists($fp2)){
+            include_once $fp2;
         }else{
             // logger???
         }

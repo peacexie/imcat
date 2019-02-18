@@ -18,7 +18,7 @@ if($view=='clear'){
 if($view=='list'){
 
     if(!empty($bsend)){
-        require dopFunc::modAct($_scdir,'list_do',$mod,$dop->type);
+        require dopFunc::modAct('list_do',$mod,$dop->type);
     } 
     
     $sbar = "\n".$so->Type(90,'-pKey-'); 
@@ -54,9 +54,9 @@ if($view=='list'){
 
 }elseif($view=='form'){
     if(!empty($bsend)){
-        require dopFunc::modAct($_scdir,'form_do',$mod,$dop->type);
+        require dopFunc::modAct('form_do',$mod,$dop->type);
     }else{
-        require dopFunc::modAct($_scdir,'form_show',$mod,$dop->type);
+        require dopFunc::modAct('form_show',$mod,$dop->type);
     }
 }elseif($view=='xset'){
     ;//

@@ -13,7 +13,7 @@ $msg = ''; $tabext = '';
 if($view=='list'){
     
     if(!empty($bsend)){
-        require dopFunc::modAct($_scdir,'list_do',$mod,$dop->type);
+        require dopFunc::modAct('list_do',$mod,$dop->type);
     } 
 
     $dop->sobar($dop->msgBar($msg));

@@ -2,13 +2,13 @@
 namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
-include_once(DIR_STATIC.'/ximp/class/Splitword.cls_php'); 
-
 $_locfp = '/ximp/utabs/spword.imp_txt';
 if(!is_file(DIR_STATIC.$_locfp)){
     $_dowurl = 'https://github.com/peacexie/imcat/raw/patches/excode/imp_files.rar';
     die("Please down the file `$_locfp` <br>\nfrom `$_dowurl`<br>\n");
 }
+
+include_once(DIR_STATIC.'/ximp/class/Splitword.cls_php'); 
 
 /* Demo *************************************************************************************
 	$str = ''; //保证gbk/gb2312编码，不是请先转化，结果请还原。

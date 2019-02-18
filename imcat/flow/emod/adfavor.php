@@ -10,24 +10,24 @@ if($view=='list'){
 	
 	usrPerm::issup() || usrPerm::run('pcheck',$mod);
 	if(!empty($bsend)){
-		require(dopFunc::modAct($_scdir,'list_do',$mod,$dop->type));
+		require(dopFunc::modAct('list_do',$mod,$dop->type));
 	} //$dop->whrstr = " AND "; $_mpid,
     if(!empty($bsend)){
         $dop->whrstr = empty($whrself) ? '' : $whrself; 
     }
-	require(dopFunc::modAct($_scdir,'list_show',$mod,$dop->type));
+	require(dopFunc::modAct('list_show',$mod,$dop->type));
 	
 }elseif($view=='form'){
 	
     usrPerm::issup() || usrPerm::run('pcheck',$mod);
 	if(!empty($bsend)){
-		require(dopFunc::modAct($_scdir,'form_do',$mod,$dop->type));
+		require(dopFunc::modAct('form_do',$mod,$dop->type));
 	}else{
 		if(!usrPerm::issup()){
         foreach($dop->cfg['i'] as $k=>$v){
             if(!in_array($stype,array($k,$v['pid']))) { unset($dop->cfg['i'][$k]); }
 		}} 
-        require(dopFunc::modAct($_scdir,'form_show',$mod,$dop->type));
+        require(dopFunc::modAct('form_show',$mod,$dop->type));
 	}
     if(!usrPerm::issup()){
         echo basJscss::jscode("setEdit('click,xmpic');"); // ÆÁ±ÎÐÐ

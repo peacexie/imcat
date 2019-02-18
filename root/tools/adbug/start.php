@@ -1,10 +1,5 @@
 <?php
 namespace imcat;
-
-if(file_exists(__DIR__.'/start-360.php')){
-  include(__DIR__.'/start-360.php');
-  die();
-}
 require dirname(__DIR__).'/adbug/_config.php';
 
 $qstr = @$_SERVER['QUERY_STRING'];
@@ -14,6 +9,7 @@ if($qstr=='FixProot' && $proot!=PATH_PROJ){
   $fixres = devRun::prootFix($proot);
   $qstr = $fixres ? 'FixPrOkey' : 'FixPrError';
   $fmsg = devRun::prootMsg($proot, $qstr);
+  devRun::rstDbname();
 }else{
   //$qstr = 'start';
 }

@@ -15,7 +15,7 @@ $_sy_pubcfg = array();
 
 //3. parts
 $_sy_pubcfg['parts'] =  array(
-    'main' => array('code','root','skin'), //'@read',
+    'main' => array(), //'code','root','skin','@read',
     'vary' => array('ctpl','dtmp'), //'html','ures',
     'vimp' => array('static','vendor','vendui'),
 );
@@ -35,21 +35,12 @@ $_sy_pubcfg['cdemo'] =  array(
     'root/cfgs/excfg/ex_haoft.php' =>'',
     'root/cfgs/excfg/ex_sms.php' =>'',
     'root/cfgs/excfg/ex_store.php' =>'',
-    'root/cfgs/boot/_paths.php' => array(
-        array("'".PATH_PROJ."'",),
-        array("''",),
-    ), 
-    'root/cfgs/boot/cfg_db.php' => array(
-        array("'".glbDBObj::getCfg('db_name')."';", "'".glbDBObj::getCfg('dc_prefix')."';", ),
-        array("'".devSetup::setDbname()."';",       "'".basKeyid::kidRand('f',5)."';",),
-    ),
-    'root/cfgs/boot/cfg_adbug.php' => array(
-        array("'ut.<rnd8>';",                       "'up.<rnd12>';",),
-        array("'ut.".basKeyid::kidRand('f',8)."';", "'up.".basKeyid::kidRand('f',12)."';",),
-    ),    
+    'root/cfgs/boot/_paths.php' => '',
+    'root/cfgs/boot/cfg_adbug.php' => '',
+    'root/cfgs/boot/cfg_db.php' => '',
     'root/cfgs/boot/const.php' => array( 
         array("'".$_cbase['ck']['pre']."';", "'".$_cbase['sys']['sn']."';",),
-        array("'".basKeyid::kidRand('f',5)."';", "'".comConvert::sysSn()."';",), 
+        array("'v".devRun::rstVerfix()."_';", "'".comConvert::sysSn()."';",), 
     ), //sn, ver, sign
     'root/cfgs/excfg/ex_outdb.php' => array( 
         array("'".$ocfgs['sign']['sapp']."';",   "'".$ocfgs['sign']['skey']."';",   ), 
@@ -72,10 +63,10 @@ $_sy_pubcfg['rndata'] =  array(
 
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
-    'main' => array('fitpl','yscode'),
+    'main' => array(), // 'fitpl','yscode'
     'vendor' => array('aliOss'), // 'composer','Monolog','psrlog','silex',
     'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
-    'vendui' => array('artEditor','swplayer',), // 'summernote','wangEditor'
+    'vendui' => array('artEditor','swplayer','photoSwipe'), //
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(
@@ -129,7 +120,14 @@ $_sy_pubcfg['skfiles'] =  array(
     //'adminer.imp_php',
     //'derun.imp_php',
 
-    //'jquery-2.x.js',
+    //'jq/bs
+    'jquery-3.x.js',
+    'bs4.min.css',
+    'bs4.min.js',
+    //'spword.imp_txt',
+    
+    'jquery-fileupload.js',
+
     'fontawesome-webfont.svg', // format('svg'); /* iOS 4.1- */
     'bootstrap.cerulean.css',
     'bootstrap.flatly.css',

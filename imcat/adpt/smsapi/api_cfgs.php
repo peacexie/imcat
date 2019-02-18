@@ -27,19 +27,11 @@ $_apis = array(
         'note' => '亿美软通接口(http调用), 新亿美用户建议首选本调用方式, 不需要login操作。',
         'nmem' => '', //会员提示
     ),
-    'dxqun' => array(
-        'name' => '短信群',
-        'unit' => '条', // 余额单位(元 或 条)
-        'home' => 'http://www.dxqun.com/',
-        'admin' => 'http://1.dxton.com/', //如无此项可不填
-        'note' => '',
-        'nmem' => '', //会员提示
-    ),
     'bucp' => array(
         'name' => '博星(ws)',
         'unit' => '条', // 余额单位(元 或 条)
         'home' => 'http://www.bucp.net/', 
-        'admin' => 'http://117.79.237.3:8060/webservice.asmx', //http://sdkhttp.eucp.b2m.cn/sdk/SDKService
+        'admin' => 'http://117.79.237.3:8060/webservice.asmx', 
         'note' => '',
         'nmem' => '', //会员提示
     ),
@@ -55,20 +47,5 @@ $_apis = array(
 );
 
 /*
-    'emay' => array(
-        'name' => '亿美(ws)',
-        'unit' => '元', // 余额单位(元 或 条)
-        'home' => 'http://www.emay.cn/', 
-        'admin' => '', //http://sdkhttp.eucp.b2m.cn/sdk/SDKService
-        'note' => '亿美软通接口(Services调用), 第一次使用时,需使用[<a href="include/sms/extra_act.php?act=login" target="_blank">登录(login)</a>]操作; 如有问题请联系亿美相关人员指定Key值。<br />',
-        'nmem' => '', //会员提示
-    ),
-    'bucp' => array(
-        'name' => '博星(ws)',
-        'unit' => '条', // 余额单位(元 或 条)
-        'home' => 'http://www.bucp.net/', 
-        'admin' => 'http://117.79.237.3:8060/webservice.asmx', //http://sdkhttp.eucp.b2m.cn/sdk/SDKService
-        'note' => '',
-        'nmem' => '', //会员提示
-    ),
+
 */

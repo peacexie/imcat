@@ -144,7 +144,7 @@ if($act=='iform'){
 }elseif($view=='list'){
 
     if(!empty($bsend)){
-        require dopFunc::modAct($_scdir,'list_do',$mod,$dop->type);
+        require dopFunc::modAct('list_do',$mod,$dop->type);
         // ext-del:topic_items
         $msg = "$cnt ".lang('flow.dops_okn',$msgop);
         if(empty($fs) && $fs_do=='del'){
@@ -153,7 +153,7 @@ if($act=='iform'){
           }
         }
     } 
-    require dopFunc::modAct($_scdir,'list_show',$mod,$dop->type);
+    require dopFunc::modAct('list_show',$mod,$dop->type);
     // ext-set:data
     $link = "<a href='?dops-a&mod=topic&did={id}&view=cfgs' target='_blank'>资料管理</a>";
     echo basJscss::jscode("setColstr('tblist',-2,'资料管理',\"$link\");");
@@ -161,9 +161,9 @@ if($act=='iform'){
 }elseif($view=='form'){
 
     if(!empty($bsend)){
-        require dopFunc::modAct($_scdir,'form_do',$mod,$dop->type);
+        require dopFunc::modAct('form_do',$mod,$dop->type);
     }else{
-        require dopFunc::modAct($_scdir,'form_show',$mod,$dop->type);
+        require dopFunc::modAct('form_show',$mod,$dop->type);
     }
 
 }elseif($view=='tpls'){
