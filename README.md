@@ -15,7 +15,7 @@
 
 ### 【Functions】
 
-* Support: PHP5.3~PHP7.3 / custom module / custom field / custom parameter / custom classification
+* Support: PHP5.4~PHP7.3 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [imcat(贴心猫)](http://imcat.txjia.com/)
@@ -24,7 +24,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.3 ~ PHP7.3 (Recommend: PHP5.4 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (Recommend: PHP5.6 ~ PHP7.2)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -75,7 +75,7 @@
 
 ### 【功能介绍】
 
-* 支持：PHP5.3~PHP7.3/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
+* 支持：PHP5.4~PHP7.3/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
 * 模型：问答系统/内部公文/商品展销/新闻/专题/课程资源/样例文档/用户
 * 接口：REST-API/Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
 
@@ -83,7 +83,7 @@
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.3 ~ PHP7.3 (推荐: PHP5.4 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (推荐: PHP5.6 ~ PHP7.2)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
