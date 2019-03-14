@@ -38,7 +38,8 @@ function clear1(){
 
 function chkIdpass(e,no,len){
     var tmp = $(e).val().replace(/\W/g, ""); 
-    if(simpass.indexOf(tmp)>0 || tmp.length<len){
+    var reg = /^[a-zA-Z]([-_a-zA-Z0-9]{2,14})$/;
+    if(!reg.test(tmp) || simpass.indexOf(tmp)>0 || tmp.length<len){
         tmp = orgcfgs[no];
         alert(lang('setup.idpw_rule')+simpass);
     }

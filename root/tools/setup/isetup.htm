@@ -67,7 +67,7 @@
   </tr> 
   <tr id="step1">
     <td><?php lang('tools.setup_x1',0); ?></td>
-    <td class="note">(PHP)V5.3+; (GD library)V2.0+; <a href="../adbug/check.php" target="_blank">-=&gt;<?php lang('tools.setup_view',0); ?></a><br>
+    <td class="note">(PHP)V5.4+; (GD library)V2.0+; <a href="../adbug/check.php" target="_blank">-=&gt;<?php lang('tools.setup_view',0); ?></a><br>
     [mysqli,mysql,pdo] <?php lang('tools.setup_my31',0); ?></td>
     <td class="tc"><input name="step1" type="button" value="<?php lang('tools.setup_start',0); ?>" class="btn" onClick="setMain(1);"></td>
   </tr> 
@@ -150,6 +150,6 @@ var steps = new Array('','Check','Stru','Base','Demo','Idpw');
 var nowStep = 0;
 setState(); 
 var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
+var simpass = ' <?php echo implode(',',read('simpass','sy')); ?> ';
 var otimer = null;
 </script>
