@@ -275,7 +275,7 @@ return array(
     'rst_idpw_memory' => 'Please remember!',
     'rst_idpw_error' => 'set Error!',
     'rst_idpw_tip1' => 'Tips:use reset before install the system.',
-    'rst_idpw_tip2' => 'Error user id/pasword:\nLetters/numbers/underscores, \\nand at the beginning of the letter.\\nuser id:3~15 letters, pasword:6~24 letters\\nand cant use the simple string:\\n',
+    'rst_idpw_tip2' => 'Error user id/pasword: Letters/numbers/underscores, and at the beginning of the letter.user id:3~15 letters, pasword:6~24 letters and cant use the simple string:',
 
     // setup/
     'setup_title' => 'Setup',

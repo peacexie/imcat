@@ -186,13 +186,13 @@ $re .= '<br> @ '.date('Y-m-d H:i:s');
 <script>
 function chkIdpass(e,no,len){
   var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-  var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
-  var tmp = $(e).val().replace(/\W/g, ""); 
+  var simpass = ' <?php echo implode(',',read('simpass','sy')); ?>';
+  var tmp = e.value.replace(/\W/g, ""); 
   if(simpass.indexOf(tmp)>0 || tmp.length<len){
     tmp = orgcfgs[no];
     alert('<?php lang('tools.rst_idpw_tip2',0); ?>'+simpass);
   }
-  $(e).val(tmp);
+  e.value = tmp;
 }
 </script>
 

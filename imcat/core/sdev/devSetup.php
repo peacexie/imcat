@@ -251,7 +251,8 @@ class devSetup{
         $_cbase['safe']['rndtab'] = $rcfg['safe_rndtab'];
         $_cbase['tout_admin'] = $rcfg['tout_admin'];  
         $_cbase['tout_member'] = $rcfg['tout_member'];
-        devScan::rstIDPW(basReq::val('uid'),basReq::val('upw'));
+        $sre = devScan::rstIDPW(basReq::val('uid'),basReq::val('upw'));
+        if($sre){ self::ajaxStop(array('res'=>'Error','msg'=>$sre)); }
         self::setLangs();
         self::updCache();
         $re = array('res'=>'OK','msg'=>'');

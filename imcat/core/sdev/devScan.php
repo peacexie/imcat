@@ -141,7 +141,8 @@ class devScan{
     
     // rstIDPW();
     static function rstIDPW($uname='',$upass=''){
-        // check ...
+        $sre = usrPerm::simIdpw($uname, $upass);
+        if(!empty($sre)) return $sre;
         $db = glbDBObj::dbObj();
         $enc = comConvert::sysPass($uname,$upass,'adminer');
         $db->table('users_uacc')->data(array('uname'=>$uname,'upass'=>$enc))->where("aip='(reset)'")->update();

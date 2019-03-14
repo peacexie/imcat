@@ -4,6 +4,12 @@ namespace imcat;
 // usrPerm : 单独分离出来
 class usrPerm{    
     
+    static function simIdpw($id, $pw){
+        $arr = glbConfig::read('simpass','sy');
+        $msg = basLang::show('tools.rst_idpw_tip2');
+        return (in_array($id,$arr) || in_array($pw,$arr)) ? $msg : ''; 
+    }
+
     // 
     static function issup(){
         $sessid = self::getSessid();

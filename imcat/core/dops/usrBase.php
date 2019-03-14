@@ -79,9 +79,9 @@ class usrBase{
     // re : Null, isLogin, Forbid, Info, array()
     function check_login($uname='',$upass=''){
         $_groups = glbConfig::read('groups');
-        if(empty($uname) || empty($upass)) return 'Null'; 
-        $simpass = glbConfig::read('simpass','sy');
-        if(in_array($upass,$simpass)) return 'SimPass'; 
+        if(empty($uname) || empty($upass)) return 'Null';
+        $sre = usrPerm::simIdpw($uname, $upass);
+        if(!empty($sre)) return $sre;
         if($this->userFlag=='Error') return 'Forbid';
         if($this->userFlag=='Login') return 'isLogin'; 
         $uname = basStr::filKey($uname,'_.-@'); // email
