@@ -6,7 +6,7 @@
 <h1>系统模型`mtype`的模板</h1>
 <p>Hello, MKV!, ?`{=$this->mkv}`, 分类=`{=$this->key}`, 模板=`{=$this->tplname}`;</p>
 {tag:dlist=[Page][modid,$this->mod][stype][hinfo][keywd,0,company][limit,5]}
-<? //dump($t_dlist); ?>
+<?php //dump($t_dlist); ?>
 {:row}
 <p><a href="{surl($this->mod.".$t_uid")}">{=$t_uid}:{title($t_mname,96,$v)}</a>({=$t_uname})</p>
 {/row}

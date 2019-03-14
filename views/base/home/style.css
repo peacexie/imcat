@@ -30,7 +30,6 @@ p i.r{ float:right; color:#999; }
 .in{ 
     padding:10px; margin:10px; border:1px solid #CCC; 
     box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 30px inset;
-    background: webkit-gradient(linear, 0% 20%, 0% 100%, from(rgb(255, 255, 255)), color-stop(0.1, rgb(243, 243, 243)), to(rgb(255, 255, 255)));
     border-radius: 5px 20px 0px 0px;
 }
 .in h2 { width:30%; float:right; font-size:18px; font-weight:bold; text-align:center; line-height:150%; 
