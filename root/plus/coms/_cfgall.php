@@ -1,4 +1,4 @@
-<?
+<?php
 namespace imcat;
 define('RUN_COMSADD', 1);
 $_cbase['ucfg']['lang'] = '(auto)'; 

@@ -7,6 +7,7 @@ if($qstr=='logout'){
 }elseif($qstr=='dologin'){ 
   $user = @$_POST['user'];
   $pass = @$_POST['pass'];
+  if($out_pass=='up.<rnd12>'){ die('Initial password prohibits login!'); }
   if($user==$out_user && $pass==$out_pass){
     $_SESSION[$sess_id] = 'pstools';
   }

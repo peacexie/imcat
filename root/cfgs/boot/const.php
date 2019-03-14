@@ -14,7 +14,7 @@ $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn
 $_cbase['sys']['xpwby']   = '贴心猫(imcat)/v'.$_cbase['sys']['ver']; // `X-Powered-By`头信息：空为默认, 或自定义
 
 // Cookie
-$_cbase['ck']['pre']      = '046_'; // Cookie前缀,8字符以内
+$_cbase['ck']['pre']      = 'v46_'; // Cookie前缀,8字符以内
 $_cbase['ck']['domain']   = ''; // Cookie Domain
 $_cbase['ck']['path']     = '/'; // Cookie Path
 
