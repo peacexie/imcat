@@ -274,7 +274,7 @@ class exvOcar{
             $r['i'] = $i+1;
             $r['ifee'] = $r['ordcnt']*$r['ordprice'];
             $afee += $r['ifee'];
-            $aweight += $r['ordweight'];
+            $aweight += $r['ordcnt']*$r['ordweight'];
             //$avolume += $r['ordvolume'];
             //$aweight2 += max($r['ordweight'],$r['weight2']);
             $acnt += $r['ordcnt'];

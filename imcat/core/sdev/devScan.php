@@ -141,10 +141,12 @@ class devScan{
     
     // rstIDPW();
     static function rstIDPW($uname='',$upass=''){
+        // check ...
         $db = glbDBObj::dbObj();
         $enc = comConvert::sysPass($uname,$upass,'adminer');
         $db->table('users_uacc')->data(array('uname'=>$uname,'upass'=>$enc))->where("aip='(reset)'")->update();
         $db->table('users_adminer')->data(array('uname'=>$uname))->where("aip='(reset)'")->update();
+        return 0;
     }    
     
     // 替换配置文件中的变量值

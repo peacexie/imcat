@@ -25,7 +25,13 @@
 ├─views : views/tpls(Eache set of tpl has a sub dir)
 │  ├─adm : Admin Center
 │  ├─base : Basic-views(Include homepage)
-│  ├─...
+│  ├─chn : Official website
+│  ├─demo : Demo Functions
+│  ├─dev : 文档版
+│  ├─doc : Manual
+│  ├─mob : Mobile
+│  ├─rest : REST-API
+│  ├─... Extend freely
 │  └─umc : User Center
 ├─ximps : Static, 3nd Component
 │  ├─static : Static Pic,Icon,Logo,Fonts; 
@@ -33,7 +39,11 @@
 │  └─vendui : the 3nd js/Front Component 
 └─xvars : Variable Files (cathe/Temp Files)
    ├─ctpl : Tpl-Cache Files
-   └─dtmp : Temp/Cache Files
+   ├─dbexp : Export sql
+   ├─dborg : Setup sql
+   ├─debug : for Debug
+   ├─dtmp : Temp/Cache Files
+   └─remote : Romote files for gather
 
 * How to Arrange the dirs and files is the BEST?:  
  - /imcat/adpt/wechat/ Common Wechat Libs

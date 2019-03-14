@@ -132,6 +132,9 @@ class basEnv{
     }
 
     // ---- 用户信息 判断 --------------------------------------- 
+    /*  Android.*MicroMessenger.*miniProgram//安卓端的小程序
+        iPhone.*MicroMessenger//苹果端微信或小程序
+    //*/
     
     // 是否搜索引擎来访
     static function isRobot($uastr=''){
@@ -141,7 +144,12 @@ class basEnv{
         if(preg_match("/($kw_spiders)/i",$uastr)) return true;
         return false;
     }
-
+    // 是否miniProgram()
+    static function isMpro($ver=0){
+        $uagent = $_SERVER['HTTP_USER_AGENT'];
+        $wxpos = strpos($uagent, 'miniProgram');
+        return $wxpos;
+    } 
     // 是否Weixin()
     static function isWeixin($ver=0){
         $uagent = $_SERVER['HTTP_USER_AGENT'];
@@ -152,14 +160,13 @@ class basEnv{
         }else{
             return $wxpos;
         }
-    }
+    } 
     // 是否Qq()
     static function isQq($ver=0){
         $uagent = $_SERVER['HTTP_USER_AGENT'];
         $wxpos = strpos($uagent, 'QQBrowser');
         return $wxpos;
     }
-    
     // 是否Mobile
     static function isMobile($ckey=''){
         //return true;
@@ -169,13 +176,15 @@ class basEnv{
         if(isset($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'],"wap")){
             return true;
         }
-        $mbstr = "Android|Windows Phone|webOS|iPhone|iPod|BlackBerry";
+        $mbstr = "Android|Windows Phone|webOS|iPhone|iPad|BlackBerry";
         if(preg_match("/$mbstr/i",$_SERVER['HTTP_USER_AGENT'])){
             return true;
         }else{
             return false;
         }
     }
+
+    # ======================================================
 
     // topDomain
     static function topDomain($host){

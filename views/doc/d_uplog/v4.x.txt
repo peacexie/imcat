@@ -1,5 +1,26 @@
 
 
+#v4.6# (2019.03)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.6
+ - Release date: 2019.03
+ - rar-size: [core]1.?27 MB, [full]3.?65 MB(core+vendor)
+
+
+## ChangeLog
+
+* Fix: Some confirmed bugs
+* Improve: 变量解析调整
+* Improve: 安装时处理扩展的语言包
+* Simplify: 外部组件，小调整目录结构 - 更利于扩展
+* Extra-Edition: 个人制作`至简`迷你版（基于md文件解析，无安装，无db，无上传，无用户）
+* Project: Imblog is online
+
+
 
 #v4.5# (2019.01)
 

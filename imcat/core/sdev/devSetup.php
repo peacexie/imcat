@@ -250,7 +250,7 @@ class devSetup{
         $_cbase['safe']['safix'] = $rcfg['safe_safix'];
         $_cbase['safe']['rndtab'] = $rcfg['safe_rndtab'];
         $_cbase['tout_admin'] = $rcfg['tout_admin'];  
-        $_cbase['tout_member'] = $rcfg['tout_member'];    
+        $_cbase['tout_member'] = $rcfg['tout_member'];
         devScan::rstIDPW(basReq::val('uid'),basReq::val('upw'));
         self::setLangs();
         self::updCache();

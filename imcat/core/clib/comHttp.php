@@ -47,6 +47,8 @@ class comHttp
     
     //通过 curl get/post数据 ($data: str:xml,str:json,array)
     // $data:array('_ref'=>'http://down.chinaz.com/soft/37712.htm'); 来路模拟
+    // $data:array('_proxy'=>['ip','80']); proxy设置
+    // $data:array('_cookie'=>'user=admin'); cookie设置
     // $header:'X-FORWARDED-FOR:8.8.8.8'.PHP_EOL.'CLIENT-IP:8.8.8.8' //来源IP模拟
     static function curlCrawl($url, $data=array(), $timeout=5, $header="") {
         // getCache
@@ -54,11 +56,22 @@ class comHttp
         if($cres!==false) return $cres;
         // header
         $header = self::_getHeader($header);
+        if(isset($data['_cookie'])){ // cookie设置
+            $header .= PHP_EOL."Cookie: ".$data['_cookie'];
+            unset($data['_cookie']);
+        }
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         if(isset($data['_ref'])){ //模拟来源地址
             curl_setopt($ch, CURLOPT_REFERER, $data['_ref']);
             unset($data['_ref']);
+        }
+        if(isset($data['_proxy'])){
+            $proxy = $data['_proxy'];
+            curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC); //代理认证模式  
+            curl_setopt($ch, CURLOPT_PROXY, $proxy[0]); //代理服务器地址   
+            curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]); //代理服务器端口
+            unset($data['_proxy']);
         }
         if(!empty($data)){
             curl_setopt($ch, CURLOPT_POST, true); 

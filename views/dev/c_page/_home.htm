@@ -17,6 +17,26 @@ $col = 2; $i_v = 0;
 $subs = tex('texBase')->docer('d_start/doc__home');
 ?>
 
+
+<b>标签嵌套</b><br>
+{tag:d_xtop=[Type][modid,cargo][idfix,top]}
+顶级:{=$t_kid}:{=$t_title}<br>
+  {tag:d_sun=[Type,v2][modid,cargo][idfix,"sun:$t_kid"]}
+  --- 子类别:{=$t_kid}:{=$t_title}<br>
+  {/tag:d_sun}
+{/tag:d_xtop}
+
+<hr>
+
+<b>标签+级别</b><br>
+{tag:d_42tmcv=[Type][modid,cargo][idfix,all]}
+  {if $t_deep==1}顶级{/if}
+  {if $t_deep==2}---2级{/if}
+  -级别:{=$t_deep}:
+  {=$t_kid}:{=$t_title}<br>
+{/tag:d_42tmcv}
+
+
 <div class="row">
   <div class="col-md-9">
     <!--main_start-->

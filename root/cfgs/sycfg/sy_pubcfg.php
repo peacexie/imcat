@@ -66,7 +66,7 @@ $_sy_pubcfg['skip'] =  array(
     'main' => array(), // 'fitpl','yscode'
     'vendor' => array('aliOss'), // 'composer','Monolog','psrlog','silex',
     'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
-    'vendui' => array('artEditor','swplayer','photoSwipe'), //
+    'vendui' => array('artEditor','swplayer','photoSwipe','proxy'), //
 );
 //8. skip-files
 $_sy_pubcfg['skfiles'] =  array(
@@ -112,6 +112,7 @@ $_sy_pubcfg['skfiles'] =  array(
     'extMedoo.php',
     'Medoo.cls_php',
     'Pimple.cls_php',
+    'exvFtree.php',
 
     // mini-imps
     'supper_muma.imp_php',
