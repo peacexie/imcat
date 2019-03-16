@@ -62,7 +62,9 @@ class usrAdmin extends usrBase{
             } 
         }elseif($vop->key=='logout'){ 
             $user->logout();
-            $remsg = basLang::show('admin.oplogin_logout');    
+            $remsg = basLang::show('admin.oplogin_logout');
+        }elseif($user->userFlag=='Login'){
+            $remsg = basLang::show('admin.oplogin_islogin',$user->usess['uname']);
         }
         $remsg = empty($remsg) ? basLang::show('admin.oplogin_please_login') : $remsg; 
         return $remsg;

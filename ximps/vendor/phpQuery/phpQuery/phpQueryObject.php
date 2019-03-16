@@ -231,26 +231,7 @@ class phpQueryObject
 	 * @return string
 	 */
 	public function serialize() {
-	  // serializeArray() returns a flat array of associative arrays with name and value elements,
-	  // which matches what jQuery does. jQuery does that to allow multiple elements with the
-	  // same name, which an object (equivalent to an associative array in PHP) wouldn't.
-	  // OK, but to turn it into a valid query string we can't just call param() and therefore 
-	  // http_build_query(), which expects an associative array. To get the "multiple elements with the
-	  // same name" feature and still serialize() properly we have to reimplement
-	  // http_build_query. tom@punkave.com
-    $s = '';
-	  $flat = $this->serializeArray();
-	  foreach ($flat as $pair)
-	  {
-	    if (strlen($s))
-	    {
-	      $s .= '&';
-	    }
-	    $s .= urlencode($pair['name']);
-	    $s .= '=';
-	    $s .= urlencode($pair['value']);
-	  }
-	  return $s;
+		return phpQuery::param($this->serializeArray());
 	}
 	/**
 	 * Enter description here...

@@ -39,6 +39,7 @@ input.disf{ color:#fff; background-color:#CCC; }
 .line { border-bottom: 1px solid #0F0; }
 
 /* table */
+.tblist td, .tblist th, .tbdata td, .tbdata th{ word-wrap:normal;word-break:keep-all;white-space:nowrap; }
 table.tbdata td{ border-color:#A6CAF0;  }
 table.tbdata tr td:hover{ border-color:#3A6EA5; background:#DFF; }
 table.tblist td{ border-color:#A6CAF0; }
@@ -63,7 +64,6 @@ p.err{ font-size:18px; padding:10px; }
     background: -ms-linear-gradient(bottom, #DDD, #FFF);
     background: -moz-linear-gradient(center bottom, #DDD 0%, #FFF 100%);
     background: -o-linear-gradient(bottom, #DDD, #FFF);
-    filter: progid:dximagetransform.microsoft.gradient(startColorStr='#DDDDDD', EndColorStr='#FFFFFF');
     padding: 1px; margin: 0px auto; border-bottom: 3px solid #999;
 }
 #adf_nav1>i:first-of-type{ display:none; }
@@ -160,7 +160,6 @@ form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
     form.login { width:100%; float:none; padding-top:38px;  }
     form div.topmsg{ }
     .login-read { width:100%; font-size:small; float:none; }
-    .tblist td, .tblist th{ word-wrap:normal;word-break:keep-all;white-space:nowrap; }
 }
 
 .btn, input.btn { background-clip: padding-box; padding:5px 3px; margin:auto 3px; }
@@ -172,6 +171,3 @@ form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
 /* #locSetS { background-clip:padding-box; } select*/
 
 .flgOpbar .form-control{ display:inline-block; }
-@media only screen and (max-width:620px){
-    .flgOpbar{ display:block; float:none; }
-}

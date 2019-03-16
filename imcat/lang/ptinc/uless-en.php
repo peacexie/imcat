@@ -7,7 +7,7 @@ En: Less use of the large section of the text:<?php echo $uarr['hname'] ?>
 <?php break;case 'fldedit_note': 
 
 $note  = "Fmt1:val=title,each item a line;\n";
-$note .= "Fmt2:ModId(Catalog/Types);\n";
+$note .= "Fmt2:ModId(Catalog/Types), OR modid.pid;\n";
 $note .= "Fmt3:pid:\"cnhn\",w:640;\n";
 $note .= "Fmt4:bext_paras.logmode_cn, get cfgs from bext_paras;\n";
 $note .= "Fmt5:`class::method(p1,p2...)`;\n";

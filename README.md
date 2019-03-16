@@ -1,6 +1,6 @@
 
 
-* 贴心猫(imcat) V4.6(Alpha)
+* 贴心猫(imcat) V4.6(Beta)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
@@ -44,26 +44,9 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.5 ChangeLog】 (2019.01)
+### 【v4.6 ChangeLog】 (2019.03)
 
-* Add: Tag-Helper / tagor (v4.5);
-
-* Fix: In debugging information, SQL execution time statistics are inaccurate;
-
-* Simplification: The default attributes of `show` in list-tag;
-
-* Simplify: Comment fields;
-
-* Fix: Setup page shows the html template in v4.4
-
-* Fix: Two notices on php7.3
-
-* Fix: The char `_` was filtered in the field `auser`, while publish info;
-
-* Related Project: Imblog(贴心博客) 
-  - Based on imcat(IntimateCat);
-  - [READ-ME](https://github.com/peacexie/imcat/blob/patches/projs/imblog-READ.md)
-  - [Download](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.rar)
+* [View](http://imcat.txjia.com/doc.php?uplog-4_0)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -100,24 +83,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.5更新日志】(2019.01)
+### 【v4.6更新日志】(2019.03)
 
-* 增加：标签助手 / tagor (v4.5)
-
-* 修正：调试信息中，sql执行时间统计不准确
-
-* 简化：列表标签 审核属性`show`的默认处理
-
-* 精简：优化评论字段
-
-* 修正：v4.4安装程序在某些情况下显示html模板页
-
-* 修正：php7.3下两处 Notice 提示
-
-* 修正：发布信息时,字段`auser`过滤了下换线问题
-
-* 关联项目：Imblog(贴心博客) 
-  - 基于贴心猫开发
-  - [项目说明](https://github.com/peacexie/imcat/blob/patches/projs/imblog-READ.md)
-  - [项目下载](https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.rar)
+* [View](http://imcat.txjia.com/dev.php?uplog-4_0)
 

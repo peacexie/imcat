@@ -5,44 +5,49 @@ namespace imcat;
 include DIR_VENDOR.'/phpQuery/phpQuery.php';
 
 class extQuery extends \phpQuery{
-    
-    //使用phpQuery查询
-    static function pqo($obj,$mark='body',$conv=array('ISO-8859-1','utf-8')){
-        if(is_object($obj)) return $obj;
-        $murl = substr($obj,0,7);
-        if(in_array($murl,array('http://','https:/'))){
-            $obj = comHttp::doGet($obj); 
+
+    static function pqa($data, $sel='li', $dtype=1){
+        if(is_object($data)){
+            $doc = $data;
+        }else{
+            if(is_array($data)){
+                comHttp::$cache = $data[1];
+                $data = comHttp::curlCrawl($data[0]);
+            }
+            if(!$dtype) $data = "<!DOCTYPE html>$data";
+            $doc = \phpQuery::newDocument($data);   
         }
-        $doc = self::newDocument($obj); 
-        self::selectDocument($doc);
-        $res = pq($mark); 
-        empty($conv) || $res = mb_convert_encoding($res->html(),$conv[0],$conv[1]);
+        $did = $doc->getDocumentID();
+        $list = pq($sel, $did);
+        $res = [];
+        foreach($list as $li) {
+            $res[] = $li;
+        }
         return $res;
     }
 
-    //使用phpQuery查询
-    static function pq($data,$mark='li',$tags=array(),$conv=array('ISO-8859-1','utf-8')){
-        $list = self::pqo($data,$mark,array());
-        $re = array(); $rn = 0; //[$mark]
-        foreach($list as $k=>$itm){ 
-            foreach($tags as $tag){ 
-                $val = pq($itm)->find($tag);
-                empty($conv) || $val = mb_convert_encoding($val->html(),$conv[0],$conv[1]);
-                $re[$k][$tag] = $val;
-            }
-        }
-        return $re;
-    }
-    
 }
 
 /*
-extQuery::newDocumentFile('http://www.php.net/'); 
-$li = pq("nav li")->html(); 
-echo "<hr>";
-$li = str_replace("<a","<br><a",$li);
-dump($li);
 
-$li = extQuery::pq('http://www.php.net/','body',array('.navbar-inner','#trick'));
-dump($li);
+// 1. $lists = extQuery::pqa([$url,30],'.item');
+// 2. $lists = extQuery::pqa($html,'a',0); 
+// 3. $doc = extQuery::newDocumentFile($url); 
+//    $lists = extQuery::pqa($doc,'span'); // 
+
+$rows = [];
+$url2 = 'http://hezhou.loupan.com/xinfang/p2/';
+$lists = extQuery::pqa([$url2,30],'.list-house li.item');
+foreach($lists as $li) {
+    $row['url'] = pq($li)->find('a:first')->attr('href');
+    $img = pq($li)->find('img:first');
+    $thumb = pq($img)->attr('data-src');
+    $row['thumb'] = strpos($thumb,'images/nopic.') ? '' : $thumb;
+    $row['title'] = pq($img)->attr('alt');
+    $row['area'] = pq($li)->find('.address')->text();
+    $row['price'] = pq($li)->find('.price')->text();
+    $rows[] = $row;
+}
+dump($rows);
+
 */

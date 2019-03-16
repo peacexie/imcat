@@ -96,17 +96,24 @@ class glbHtml{
     // form+table:头
     static function fmt_head($fmid,$fmact,$tbcss='',$win='',$tbbrd=1){
         global $_cbase; 
-        if($tbcss=='tblist') $_cbase['run']['tabResize'] = 1;
+        //if($tbcss=='tblist') $_cbase['run']['tabResize'] = 1;
         $fmact = basReq::getURep($fmact,'recbk');
         echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
         $recbk = basReq::val('recbk','');
         $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
         echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
+        if(strstr($tbcss,'tbdata') || strstr($tbcss,'tblist')){
+            echo "<div class='table-responsive'>";
+            $_cbase['run']['tabResp'] = 1;
+        }
         echo "<table border='$tbbrd' class='table $tbcss'>\n"; 
     }    
     // form+table:(end):结束
     static function fmt_end($data='',$tabend='</table>'){
         global $_cbase; 
+        if(strstr($tabend,'</table>') && !empty($_cbase['run']['tabResp'])){
+            $tabend .= "</div>";
+        }
         if(!$data){ echo "\n$tabend</form>"; return; }
         if(is_array($data)){
             $arr = $data;
@@ -120,10 +127,10 @@ class glbHtml{
             $str .= "\n<input name='$itm[0]' type='hidden' value='$itm[1]' />";
         }
         echo "$str$tabend</form>";
-        // utabResize
+        /*/ utabResize
         if(!empty($_cbase['run']['tabResize'])){
             echo basJscss::imp('/base/assets/cssjs/resizeCols.js');
-        }
+        }*/
     }
     
     // form:(增加/修改):一行

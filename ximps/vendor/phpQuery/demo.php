@@ -57,9 +57,3 @@ print $doc->htmlOuter();
 print $doc;
 // another...
 print $doc['ul'];
-
-phpQuery::newDocumentFile('http://txjia.com/tip/?typ=CoN1214'); 
-$li = pq("nav li")->html(); 
-echo "<hr>";
-$li = str_replace("<a","<br><a",$li);
-var_dump($li);

@@ -78,7 +78,7 @@ class basElm{
         }elseif(empty($text)){ 
             return array();
         }elseif(isset($_groups[$text])){ 
-            $rei = glbConfig::read("$text"); 
+            $rei = glbConfig::read($text); 
             $rei = $rei['i'];
             foreach($rei as $k=>$v){ 
                 $re[$k] = $v['title'];
@@ -88,7 +88,13 @@ class basElm{
         }elseif(preg_match("/^\w+\.\w+$/",$text)){ //corder.ordstat
             $t = explode('.',$text);
             $mcfg = glbConfig::read($t[0]); 
-            $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
+            if(!empty($mcfg['i'][$t[1]])){
+                foreach($mcfg['i'] as $k=>$v){ if($v['pid']==$t[1]){
+                    $re[$k] = $v['title'];
+                } }
+            }else{
+                $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
+            } //dump($mcfg);
         }elseif(preg_match("/^(\w+)::(\w+)\(([\w\ \,]{0,24})\)$/",$text)){
             $text = str_replace(array("\r","\n",' '),'',$text);
             preg_match("/^(\w+)::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);

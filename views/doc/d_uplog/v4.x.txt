@@ -16,6 +16,7 @@
 * Fix: Some confirmed bugs
 * Improve: 变量解析调整
 * Improve: 安装时处理扩展的语言包
+* Improve: 后台移动操作体验
 * Simplify: 外部组件，小调整目录结构 - 更利于扩展
 * Extra-Edition: 个人制作`至简`迷你版（基于md文件解析，无安装，无db，无上传，无用户）
 * Project: Imblog is online

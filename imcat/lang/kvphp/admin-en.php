@@ -310,6 +310,7 @@ return array(
     'oplogin_vform_err' => 'Error Form Check!',
     'oplogin_logout' => 'Logout Admin OK!',
     'oplogin_please_login' => 'Please Login Admin!',
+    'oplogin_islogin' => '`{val}`Logined, Please`<a href="?logout">Logout</a>`Or go to`<a href="?">Admin-Center</a>`!',
     'tip_logim' => 'Notice: Click input box, then show Verification code.',
     'adm_home' => 'Home',
 

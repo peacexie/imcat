@@ -157,7 +157,7 @@ class devRun{
     static function verPHP(){ 
         $info = PHP_VERSION.' (SAPI:'.PHP_SAPI.')';
         $res = version_compare(PHP_VERSION,MINPHPVER,">") ? FLAGYES : FLAGNO;
-        $tip = 'V5.2+, '.basLang::show('devrun_phpvbest').' V5.3+';
+        $tip = 'V5.4+, '.basLang::show('devrun_phpvbest').' V5.6+';
         $status = array('title'=>basLang::show('devrun_phpver'),'info'=>$info,'res'=>$res,'tip'=>$tip);
         return $status;
     }
