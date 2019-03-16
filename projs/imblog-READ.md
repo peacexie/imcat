@@ -1,11 +1,8 @@
 
-* [2019-0127]
-  - Fix: In Android7, The defalut browser does not support flex;
-  - 修正：Android7自带浏览器不支持flex；
 
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心博客(imblog) V4.5.1 Released (2019-01)
+* 贴心博客(imblog) V4.6 Released (2019-03)
 * Official Website / 官网: http://imblog.txjia.com/
 * Download / 下载: https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.rar
 
@@ -26,7 +23,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.3 ~ PHP7.3 (Recommend: PHP5.4 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (Recommend: PHP5.6 ~ PHP7.2)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2
 
@@ -62,7 +59,7 @@
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.3 ~ PHP7.3 (推荐: PHP5.4 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (推荐: PHP5.6 ~ PHP7.2)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2
 
