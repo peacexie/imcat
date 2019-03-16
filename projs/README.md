@@ -10,7 +10,7 @@
 * imblog: 贴心博客/Intimate-Blog
   - 基于jquery2+bootstrap4+贴心猫开发
   - Based on jquery2+bootstrap4+贴心猫(imcat)
-  - 贴心博客(imblog) V4.5.1 Released (2019-01)
+  - 贴心博客(imblog) V4.6 Released (2019-03)
   - Official Website: [imblog(贴心博客)](http://imblog.txjia.com/)
 
 * imcorp: 贴心企业网/Intimate-Corporation
