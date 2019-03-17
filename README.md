@@ -46,7 +46,7 @@
 
 ### 【v4.6 ChangeLog】 (2019.03)
 
-* [View](http://imcat.txjia.com/doc.php?uplog-4_0)
+* [View-Details](http://imcat.txjia.com/doc.php?uplog-4_0)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -85,5 +85,5 @@
 
 ### 【v4.6更新日志】(2019.03)
 
-* [View](http://imcat.txjia.com/dev.php?uplog-4_0)
+* [查看详情](http://imcat.txjia.com/dev.php?uplog-4_0)
 
