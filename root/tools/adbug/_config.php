@@ -13,8 +13,8 @@ $sess_id = \imcat\usrPerm::getSessid();
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
 $_selfname = $_SERVER['SCRIPT_NAME'];    
-$allowb = array('binfo','phpinfo1','cookie','login','dologin','iframe','frame','fset');
-$allowc = array('binfo');
+$allowb = array('binfo','login','dologin','iframe','frame','fset'); // 'phpinfo1','cookie',
+$allowc = array('_null_');
 
 if(strstr($_selfname,'start.php')){    
     ;//
@@ -25,7 +25,10 @@ if(strstr($_selfname,'start.php')){
 }else{
     bootPerm_ys('pstools','','<p><a href="binfo.php?login">login</a></p>');
     //else {  $_isOut = 1;    @include __DIR__.'/devRun.php';    }
-}    
+}
+/*if(!basEnv::isLocal()){
+    //
+}*/
 
 function tadbugNave($path=''){
     if(empty($path)){
