@@ -8,7 +8,7 @@
 * 基本信息：
  - 版本：v4.6
  - 发布日期：2019.03
- - rar-大小: [core]1.?28 MB, [full]3.?65 MB(core+vendor)
+ - rar-大小: [core]1.32 MB, [full]3.65 MB(core+vendor)
 
 
 ## 更新事项

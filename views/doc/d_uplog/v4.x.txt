@@ -8,17 +8,17 @@
 * Basic-Info:
  - version: v4.6
  - Release date: 2019.03
- - rar-size: [core]1.?27 MB, [full]3.?65 MB(core+vendor)
+ - rar-size: [core]1.32 MB, [full]3.65 MB(core+vendor)
 
 
 ## ChangeLog
 
 * Fix: Some confirmed bugs
-* Improve: 变量解析调整
-* Improve: 安装时处理扩展的语言包
-* Improve: 后台移动操作体验
-* Simplify: 外部组件，小调整目录结构 - 更利于扩展
-* Extra-Edition: 个人制作`至简`迷你版（基于md文件解析，无安装，无db，无上传，无用户）
+* Improve: Variable analytical adjustment
+* Improve: Deel with extra language-pack while setup
+* Improve: Experience on mobile phone
+* Simplify: Third-part components, adjustment dirs, More conducive to expansion
+* Extra Mini-Edition: (Basic on md file, No-setup, No-db, No-upload, No-user)
 * Project: Imblog is online
 
 

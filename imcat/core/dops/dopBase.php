@@ -111,7 +111,8 @@ class dopBase{
     // 表单-类别
     function fmType($key='catid',$w=150){ 
         $dval = empty($this->fmo[$key]) ? basReq::val('stype') : $this->fmo[$key];
-        $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' reg='tit:2-12'>"; 
+        $reg = count($this->cfg['i'])>0 ? "reg='tit:2-12'" : ''; // disabled
+        $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' $reg>"; 
         $str .= comTypes::getOpt($this->cfg['i'],$dval); 
         $str .= "</select>";
         return $str;

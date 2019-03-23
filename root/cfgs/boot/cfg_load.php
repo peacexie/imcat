@@ -12,6 +12,7 @@ $_cfgs['acdir'] =  array(
     'core/sdev' => 'dev,exd,upd',//二次开发,数据扩展,更新相关
     'core/uext' => 'exa,exm,exv',//后台扩展,会员扩展,前台扩展
     'adpt/aliyun' => 'ali',//阿里云类库
+    'adpt/caiji' => 'cai',//采集扩展类库
     'adpt/wechat' => 'wmp,wys',//微信接口类库,微信系统类库
     'adpt/weuser' => 'wex',//微信扩展类库
     #'libu/libx1' => 'ex1',//自定义路径和前缀

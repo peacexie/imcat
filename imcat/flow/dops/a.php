@@ -19,7 +19,7 @@ if(!($gname = @$_groups[$mod]['title'])) glbHtml::end(lang('flow.dops_parerr').'
 usrPerm::run('pmod',$mod);
 
 $_cls = '\\imcat\\'.$_tmp[$_pid][0]; 
-$dop = new $_cls($_cfg); 
+$dop = new $_cls($_cfg);
 $so = $dop->so; 
 $cv = $dop->cv;
 unset($_cfg,$_pid,$_tmp,$_cls);

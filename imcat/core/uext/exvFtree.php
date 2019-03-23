@@ -5,9 +5,8 @@ namespace imcat;
 class exvFtree{
 
     // 预留属性
-    static $tab = 'ftree_main'; // ftree_main,分表
-    static $part = '8'; // 分段
-    static $extab = '0'; // 分表
+    static $part = 'demo'; // 分段 8,demo,test
+    static $extab = 'exdemo'; // 分表 0,main,exdemo
 
     static function rowActs($fm, $kid, $act){
         $sex = basReq::val('sex');
@@ -193,7 +192,7 @@ class exvFtree{
     }
 
     static function dbNow($wk=''){
-        $db = db()->table(self::$tab);
+        $db = db()->table('ftree_'.self::$extab);
         if(!$wk) return $db;
         $whrp = "part='".self::$part."'";
         if(is_numeric($wk)) return $db->where("$whrp AND (kid='$wk')")->find();

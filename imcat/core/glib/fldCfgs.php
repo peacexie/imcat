@@ -59,13 +59,15 @@ class fldCfgs{
             $s .= " | <a href='#' onclick=\"gf_setDemoField('$data')\" class='span'>$v[title]</a>\r\n";
         }}
         $s .= "<br> &nbsp; ".basLang::show('flow.fc_rffield');
+        $no = 0;
         foreach($ademo as $k=>$v){
             if(in_array($k,$amods)) continue;
             if(!in_array($k,$a)){
                 $data = "$k|$v[type]|".@$v['fmextra']."|".@$v['etab'].""; 
-                $s .= " | <a href='#' onclick=\"gf_setDemoField('$data')\" class='span'>$v[title]</a>\r\n";
+                $s .= (($no && $no%8==0) ? ' <br> ' : ' | ')."<a href='#' onclick=\"gf_setDemoField('$data')\" class='span'>$v[title]</a>\r\n";
                 $a[] = $k;
             }
+            $no++;
         }
         return $s;
         //return $re=='str' ? $s : $a;
@@ -75,17 +77,20 @@ class fldCfgs{
         $ccfg = glbConfig::read($mod,'_c');
         $flist = basLang::ucfg('fsystem'); 
         $s = ' &nbsp; '.basLang::show('flow.fc_rffield');
+        $no = 0;
         foreach($flist as $k=>$v){
             if(strstr($k,'exp_')){
                 $a = explode('-',$v);
                 $type = str_replace("checkbox","cbox",$a[1]);
                 $data = "$k|$type||0";
+                $sp = ($no && $no%8==0) ? ' <br> ' : ' | ';
                 if(isset($ccfg[$catid][$k])){
-                    $s .= " | <i class='span'>$v</i>\r\n";
+                    $s .= "$sp<i class='span'>$v</i>\r\n";
                 }else{
-                    $s .= " | <a href='#' onclick=\"gf_setDemoField('$data')\" class='span'>$v</a>\r\n";
+                    $s .= "$sp<a href='#' onclick=\"gf_setDemoField('$data')\" class='span'>$v</a>\r\n";
                 }
             }
+            $no++;
         }
         return $s;
     }

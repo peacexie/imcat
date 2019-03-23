@@ -146,17 +146,28 @@ class fldView{
         $pmod = empty($size[0]) ? '' : $size[0];
         $pcnt = empty($size[1]) ? 1 : intval($size[1]);
         $para = "type='checkbox' class='rdcb' checked"; $item = '';
-        if($val){
-            $arr = explode(',',$val);
-            foreach($arr as $v){
-                $title = dopFunc::vgetTitle($pmod,$v); 
-                $item .= "<span class='ph5'><input name='fm[{$k}][]' onClick='pickMul(this,1)' value='$v' $para />$title</span>";
-            }
+        // 前面多选隐藏空项目
+        $ipre = $pcnt>1 ? "<input id='fm[{$k}][]' type='hidden' name='fm[{$k}]' value=''>\n" : '';
+        if($pcnt>1){
+            if($val){
+                $arr = explode(',',$val);
+                foreach($arr as $v){
+                    $title = dopFunc::vgetTitle($pmod,$v); 
+                    $item .= "<span class='ph5'><input name='fm[{$k}][]' onClick='pickMul(this,1)' value='$v' $para />$title</span>";
+                }
+            } // fm[lpid] , fm_lpid_refname 
+            $item = "<div id='fm_{$k}_refname'>$item</div>";
+        }else{
+            $title = dopFunc::vgetTitle($pmod,$val); 
+            $item = "<input id='fm[{$k}]' type='hidden' name='fm[{$k}]' value='$val'>\n";
+            $item = "$item<input id='fm_{$k}_refname' value='$title'>";
         }
-        $item = "<div id='fm_{$k}_refname'>$item</div><input name='fm_{$k}_modpicks' id='fm_{$k}_modpicks' type='hidden' value='$pmod'>";
+        $item .= "<input name='fm_{$k}_modpicks' id='fm_{$k}_modpicks' type='hidden' value='$pmod'>";
         $item .= "<input type='button' value='".basLang::show('admin.fv_pick')."' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  
+        // 后面单选清除按钮
+        $ifix = $pcnt==1 ? "<input type='button' value='".basLang::show('admin.fv_clear')."' onclick=\"pickOnc('fm[{$k}]','fm_{$k}_refname')\" class='btn'>" : '';             
         // pmod,cnt, $ptitle = dopFunc::vgetTitle($pmod,$val); 
-        return $item;
+        return "$ipre{$item}$ifix";
     }
 
     // fields-公共函数
@@ -222,7 +233,7 @@ class fldView{
     }
     // form: (增加/修改):字段列表
     // 处理分组等。
-    static function lists($mod,$vals=array(),$catid='',$ufields=array()){
+    static function lists($mod,$vals=array(),$catid='',$ufields=array(),$skips=array()){
         global $_cbase;
         if(!empty($ufields)){
             $mfields = $ufields; 
@@ -234,7 +245,7 @@ class fldView{
             ${"_$mod"} = glbConfig::read($mod); 
             $mfields = ${"_$mod"}['f']; 
         }
-        $skip = array('0');
+        $skip = empty($skips) ? array('0') : $skips;
         $_cbase['run']['jtype_mods'] = '';
         $_cbase['run']['jtype_init'] = '';
         foreach($mfields as $k=>$v){ 

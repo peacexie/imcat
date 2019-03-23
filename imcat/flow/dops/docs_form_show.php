@@ -4,7 +4,7 @@ namespace imcat;
  
 if(!empty($did)){
     $fmo = $db->table($dop->tbid)->where("did='$did'")->find();
-    $fme = $db->table($dop->tbext)->where("did='$did'")->find();
+    $fme = $dop->tbext ? $db->table($dop->tbext)->where("did='$did'")->find() : [];
     $fme && $fmo = $fmo + $fme;
     $isadd = 0;
 }else{

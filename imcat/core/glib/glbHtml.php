@@ -6,9 +6,9 @@ class glbHtml{
 
     // viewport-scale
     static function wpscale($width=480, $script=1){
-        $jstr = "var ua=navigator.userAgent, wscr=window.screen.width, scale=wscr/$width, wpus='user-scalable=no', wpstr='';
-        if(/Android/.test(ua)) { wpus = 'minimum-scale='+scale+', maximum-scale='+scale; }
-        if(wscr<$width) document.write( wpstr='<meta name=\"viewport\" content=\"width=$width, '+wpus+', target-densitydpi=device-dpi\">');";
+        $jstr = "var ua=navigator.userAgent, wscr=window.screen.width, scale=wscr/$width, wpus='user-scalable=no', wpstr='';\n";
+        $jstr .= "if(/Android/.test(ua)) { wpus = 'minimum-scale='+scale+', maximum-scale='+scale; }\n";
+        $jstr .= "if(wscr<$width) document.write( wpstr='<meta name=\"viewport\" content=\"width=$width, '+wpus+'\">');";
         if($script){ $jstr = "<script>\n$jstr\n</script>\n";}
         echo $jstr; return;
     }

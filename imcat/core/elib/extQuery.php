@@ -18,6 +18,7 @@ class extQuery extends \phpQuery{
             $doc = \phpQuery::newDocument($data);   
         }
         $did = $doc->getDocumentID();
+        if(!$sel) return $did;
         $list = pq($sel, $did);
         $res = [];
         foreach($list as $li) {

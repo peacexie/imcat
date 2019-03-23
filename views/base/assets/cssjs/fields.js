@@ -8,7 +8,7 @@ function gf_setvMust(e){
 function gf_setfmType(e){
     var val = e.value;
     var cfgs = {};
-    cfgs.input = ",winpop,datetm,map"; //color,
+    cfgs.input = ",winpop,datetm,map,pick"; //color,
     cfgs.text = ",editor,pics,pick";
     cfgs.hidden = ",color";
     if(val=='input' || val=='text' || val=='hidden'){

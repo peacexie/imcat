@@ -94,8 +94,12 @@ function pickOpen(modid,retitle,refval,refname,cntre,exparas){
     url += 'mod='+mod+'&retitle='+retitle+'&refval='+refval+'&refname='+refname+'&cntre='+cntre+'';
     popOpen(lang('jcore.pop_infopick'),url,640,320);
 }
+function pickOnc(refval,refname){
+    jsElm.jeID(refval).value = '';
+    jsElm.jeID(refname).value = '';
+}
 function pickOne(e){
-    var itm = pickRinfo(e); 
+    var itm = pickRinfo(e);
     parent.jsElm.jeID(pick_refval).value = itm[0];
     parent.jsElm.jeID(pick_refname).value = itm[1];
     // p-eml
@@ -343,11 +347,9 @@ function dataLetter(data){
     for(var i=0;i<data.length;i++){
         var itm = data[i];
         ch = data[i][5]; 
-        if(ch=='') a[0].push(itm);
-        else{ //string.fromCharCode(asc);
-            xn = ch.charCodeAt()-64; 
-            a[xn].push(itm);    
-        }
+        xn = ch ? ch.charCodeAt()-64 : 0; 
+        if(xn<0 || xn>26) xn = 0;
+        a[xn].push(itm);  
     }
     return a;
 }
