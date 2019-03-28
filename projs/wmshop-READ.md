@@ -2,7 +2,7 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心博客(imblog) V4.3 Released (2019-04)
+* 外贸商店(Warm-Shop) V4.3 Released (2019-04)
 * Official Website / 官网: http://txjia.com/peace/wmshop.htm
 * Download / 下载: https://github.com/peacexie/imcat/blob/patches/projs/warmshop1.rar
 
