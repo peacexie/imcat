@@ -177,6 +177,7 @@ class basJscss{
     // imp css/js
     static function imp($path,$base='',$mod=''){
         global $_cbase; 
+        $fix6 = substr($path,0,6);
         $tpldir = empty($_cbase['tpl']['vdir']) ? '' : $_cbase['tpl']['vdir'];
         if(in_array($path,array('initCss','initJs','loadExtjs'))){
             $lang = empty($_cbase['sys']['lang']) ? '' : $_cbase['sys']['lang'];
@@ -192,13 +193,18 @@ class basJscss{
             }
             $path = "?ajax-comjs&act=$path$exp&ex$mod=$base";
             $base = PATH_BASE;
-        }elseif(in_array(substr($path,0,6),array('/views','/base/','/~tpl/'))){
-            $path = str_replace(array('/views','/~tpl/'),array('/',"/$tpldir/assets/"),$path);
+        }elseif(in_array($fix6,array('/views','/~base','/~tpl/','/~now/'))){
+            $a1 = array('/views/', '/~base/',       '/~tpl/',         );
+            $a2 = array('/',       "/base/assets/","/$tpldir/assets/");
+            if(!empty($_cbase['mkv']['mod'])){
+                $a1[] = '/~now/'; $a2[] = "/$tpldir/".$_cbase['mkv']['mod']."/";
+            }
+            $path = str_replace($a1,$a2,$path);
             $base = PATH_VIEWS;
-        }elseif(in_array(substr($path,0,9),array('?ajax'))){
+        }elseif(in_array($fix6,array('?ajax-'))){
             $base = PATH_BASE;
-        }elseif(in_array(substr($path,0,6),array('/plus/','/tools'))){ // '/plus/',
-            $base = PATH_ROOT;
+        #}elseif(in_array($fix6,array('/plus/','/tools'))){
+            #$base = PATH_ROOT;
         }else{
             $base = $base ? comStore::cfgDirPath($base,'path') : '';
         }

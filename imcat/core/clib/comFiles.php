@@ -4,8 +4,9 @@ namespace imcat;
 // Files类
 class comFiles{    
 
-    //重定义file_get_contents来兼容不支持此函数的PHP
-    static function get($fname){
+    // 重定义file_get_contents来兼容不支持此函数的PHP
+    // $kbom : 移除BOM标记
+    static function get($fname, $kbom=0){
         //return file_get_contents($fname);
         if(!file_exists($fname) || is_dir($fname)){
             return '';
@@ -15,6 +16,7 @@ class comFiles{
             if($size==0) return '';
             $ct = fread($fp, $size);
             fclose($fp);
+            $kbom && $ct = self::killBOM($ct);
             return $ct;
         }
     }

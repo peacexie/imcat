@@ -99,6 +99,17 @@ class comParse{
         return 's:'.strlen($arr[2]).':"'.$arr[2].'";';
     } // php5.2不支持匿名函数
 
+    # fix: %u, &#
+    private function uniEncode($str, $fix='%u'){
+        preg_match_all('/./u', $str, $matches);
+        $reStr = "";
+        foreach($matches[0] as $m){
+            $itm = bin2hex(iconv('UTF-8',"UCS-4",$m));
+            $reStr .= $fix.strtoupper(substr($itm,4));
+        }
+        return $reStr;
+    }
+
     // unicode 
     static function uniDecode($str, $type='u'){
         if($type=='u'){ // '\u4E00'

@@ -14,3 +14,8 @@ function jsactMenu(menuid){
     var e = jsElm.jeID('idf_'+menuid); 
     if(e) e.className = 'act';
 }
+
+function mpro_vbig(e){
+    var src = $(e).prop('src');
+    $('#picBig').html("<img src='"+src+"' width=400 height=300 data-val='"+src+"' onload='imgShow(this,400,300)'>");
+}

@@ -79,7 +79,7 @@ if($view=='list'){
         basMsg::show($msg);    //,'Redir'?$mkv&mod=$mod
     }else{
 
-        eimp('/base/assets/cssjs/weixin.js');
+        eimp('/~base/cssjs/weixin.js');
         if(!empty($kid)){
             $fm = $db->table($tabid)->where("kid='$kid'")->find();
         }else{

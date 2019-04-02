@@ -27,8 +27,8 @@ $vcfg = vopTpls::etr1('tpl');
 unset($vcfg['base']);   
 
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
-eimp('/base/assets/cssjs/cinfo.css');
-eimp('/base/assets/jslib/jsbase.js');
+eimp('/~base/cssjs/cinfo.css');
+eimp('/~base/jslib/jsbase.js');
 glbHtml::page('aumeta');
 glbHtml::wpscale(480, 1);
 

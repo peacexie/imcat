@@ -148,8 +148,13 @@ class glbCUpd{
         }else{
             $tabid = (empty($cfg['etab']) ? 'types_common' : 'types_'.$mod);
         }
-        $fileds = 'kid,pid,title,deep,frame,`char`,cfgs';
-        $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
+        $filed = 'kid,pid,title,deep,frame,`char`,cfgs';
+        if(strstr($cfg['cfgs'],'cats=')){
+            preg_match("/cats=(\w+)/",$cfg['cfgs'],$pts);
+            $mod = $pts[1]; //dump($cfg); die('xx');
+        }
+        $where = "model='$mod' AND enable='1'";
+        $arr = $db->field($filed)->table($tabid)->where($where)->order('deep,top')->select();
         $res = comTypes::arrLays($arr,self::$_mitems);
         return $res;
     }
@@ -158,7 +163,8 @@ class glbCUpd{
         $db = glbDBObj::dbObj();
         $tabid = 'base_grade'; 
         $arr = array(); 
-        $list = $db->field('kid,title')->table($tabid)->where("model='$mod' AND enable='1' ")->order('top')->select();
+        $where = "model='$mod' AND enable='1'";
+        $list = $db->field('kid,title')->table($tabid)->where($where)->order('top')->select();
         if($list){
         foreach($list as $v){
           $k = $v['kid']; 
@@ -172,7 +178,8 @@ class glbCUpd{
         $db = glbDBObj::dbObj();
         $tabid = 'base_menu';
         $fileds = 'kid,pid,title,icon,deep,cfgs';
-        $arr = $db->field($fileds)->table($tabid)->where("model='$mod' AND enable='1'")->order('deep,top')->select();
+        $where = "model='$mod' AND enable='1'";
+        $arr = $db->field($fileds)->table($tabid)->where($where)->order('deep,top')->select();
         $res = comTypes::arrLays($arr,self::$_mitems);
         return $res;
     }

@@ -117,22 +117,41 @@ class glbDBExt{
         else return array($kid,$kno);
     }
 
-    static function dbNxtID($tab,$mod,$pid=0){
-        $_groups = glbConfig::read('groups');
-        $fix = substr($mod,0,1);
-        if($pid){
-            $cfg = glbConfig::read($mod); 
-            $fix .= ($cfg['i'][$pid]['deep']+1);
-        }else{ $fix .= "1"; }
+    static function dbNxtID($tab,$mod,$pid='0'){
         $sqlm = $tab=='bext_relat' ? '' : ($tab=='base_model' ? 'pid' : 'model')."='$mod' AND ";
-        $whr = "$sqlm kid LIKE '$fix%'"; //"$sqlm kid REGEXP ('^{$fix}[0-9]{3}$')";
+        $mcfg = glbConfig::read($mod); //"$sqlm kid REGEXP ('^{$fix}[0-9]{3}$')";
+        $fd = $pid ? ($mcfg['i'][$pid]['deep']+1) : '1';
+        $tid = ''; // 找:本pid下最大的一个ID
+        if(!empty($mcfg['i'])){ foreach($mcfg['i'] as $ik=>$iv) {
+            if($iv['pid']==$pid && preg_match("/^[a-z]{1,6}\d{2,10}$/i",$ik)){
+                $tid = max($tid,$ik);
+            }
+        } }
+        if($tid){ // 找:所有的类似最大的一个ID
+            preg_match("/^([a-z]{1,5})(\d{2,10})$/i",$tid,$tmp); 
+            $fix = $tmp[1]; $no = $tmp[2]; $nl = strlen($no);
+            foreach($mcfg['i'] as $ik=>$iv) {
+                if($iv['pid']==$pid) continue;
+                if($iv['deep']!=$fd) continue;
+                if(preg_match("/^$fix\d{{$nl}}$/i",$ik)){
+                    $tid = max($tid,$ik);
+                }
+            } //echo $tid;
+            // 找:下一个
+            preg_match("/^([a-z]{1,5})(\d{2,10})$/i",$tid,$tmp);
+            $nid = $fix.basKeyid::kidNext('',$tmp[2],$tmp[2],2,strlen($tmp[2]));
+            // 是否存在
+            $whr = "$sqlm kid='$nid'"; // echo "(n=$nid";
+            $re = glbDBObj::dbObj()->table($tab)->where($whr)->order('kid DESC')->find();
+            if(!$re){ return $nid; }
+        }
+        $fix = substr($mod,0,1).$fd;
+        $whr = "$sqlm kid LIKE '$fix%'";
         $re = glbDBObj::dbObj()->table($tab)->where($whr)->order('kid DESC')->find();
         if($re){
             $nid = substr($re['kid'],2);
             $nid = basKeyid::kidNext('',$nid,'012',2,3);
-        }else{
-            $nid = '012';
-        }
+        }else{ $nid = '012'; }
         return $fix.$nid;
     }
     

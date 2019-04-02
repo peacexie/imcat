@@ -69,7 +69,7 @@ class dopDocs extends dopBase{
     // opDelete。
     function opDelete($id){
         parent::opDelete($id);
-        $this->db->table($this->tbext)->where("did='$id'")->delete();      
+        $this->tbext && $this->db->table($this->tbext)->where("did='$id'")->delete();      
         return 1;
     }
     // opCopy。

@@ -129,7 +129,7 @@ class glbHtml{
         echo "$str$tabend</form>";
         /*/ utabResize
         if(!empty($_cbase['run']['tabResize'])){
-            echo basJscss::imp('/base/assets/cssjs/resizeCols.js');
+            echo basJscss::imp('/~base/cssjs/resizeCols.js');
         }*/
     }
     

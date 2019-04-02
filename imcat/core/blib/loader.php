@@ -26,19 +26,16 @@ class basLoader{
     static function cload($name){
         if(substr($name,0,6)!='imcat\\') return;
         $cname = substr($name,6);
-        if(strpos($cname,'\\')){ // 模板扩展函数
-            // imcat\chn\texName // -=> views/chn/_ctrls/texName.php 
+        $fx3 = substr($cname,0,3);
+        if(strpos($cname,'\\')){ // /views/chn/_ctrls/* 控制器
             return self::doinc('/'.str_replace('\\','/_ctrls/',$cname).".php", DIR_VIEWS, 1);
-        }else{ // 核心类库
-            // imcat\fixName // -=> imcat/core/xdir/fixName.php
-            $fx3 = substr($cname,0,3);
+        /*}elseif($fx3=='exu'){ // /extra/ulibs/*扩展类库
+            return self::doinc("/extra/ulibs/$cname.php", DIR_ROOT, 1);*/
+        }else{ // /imcat/core/xdir/fixName.php 核心类库
             foreach(self::$acdirs as $dir=>$fixs){
-                if(strstr($fixs,$fx3)){ // 按[前缀-目录]对照加载 
-                    return self::doinc("/$dir/$cname.php", DIR_IMCAT, 1);
-                }
+                if(strstr($fixs,$fx3)) return self::doinc("/$dir/$cname.php", DIR_IMCAT, 1);
             }    
-        } // (控制器) imcat\chn\topicCtrl // -=> views/chn/_ctrls/topicCtrl.php 
-
+        }
     }
     // 第三方
     static function vload($name){

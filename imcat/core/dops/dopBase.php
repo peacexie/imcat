@@ -162,9 +162,9 @@ class dopBase{
         return $item;
     }
     function fmAE3($hid=0){
-        glbHtml::fmae_row(basLang::show('flow.log_optime'),basLang::show('flow.log_opadd').$this->fmAELogs('date','atime').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('date','etime'),$hid);
-        glbHtml::fmae_row(basLang::show('flow.log_opuser'),  basLang::show('flow.log_opadd').$this->fmAELogs('user','auser').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('user','euser'),$hid);
-        glbHtml::fmae_row(basLang::show('flow.log_opip'),  basLang::show('flow.log_opadd').$this->fmAELogs('uip','aip')   .' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('uip','eip'),   $hid);
+        glbHtml::fmae_row(basLang::show('flow.log_optime'), basLang::show('flow.log_opadd').$this->fmAELogs('date','atime').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('date','etime'),$hid);
+        glbHtml::fmae_row(basLang::show('flow.log_opuser'), basLang::show('flow.log_opadd').$this->fmAELogs('user','auser').' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('user','euser'),$hid);
+        glbHtml::fmae_row(basLang::show('flow.log_opip'), basLang::show('flow.log_opadd').$this->fmAELogs('uip','aip')   .' &nbsp; '.basLang::show('flow.log_opedit').$this->fmAELogs('uip','eip'),$hid);
     }
 
     // svAKey，
@@ -191,6 +191,9 @@ class dopBase{
     function svTypes(){
         if(isset($this->fme['part'])){ 
             $this->fmv['part'] = $this->fme['part'];
+            /*if(isset($this->cfg['f']['psyn'])){
+               $this->fmv['part'] = basKeyid::kidY3x5().'-'.basKeyid::kidRand('24',3); 
+            }*/
         }
         $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
         if(isset($this->fme[$field])){

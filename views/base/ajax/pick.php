@@ -8,7 +8,8 @@ $_groups = read('groups');
 glbHtml::page("Pick Data");
 eimp('initJs','jquery,jspop;comm;comm(-lang)'); 
 eimp('initCss','bootstrap,stpub,jstyle;comm'); // bootstrap,
-echo "<style type='text/css'>div.pg_bar li{margin: 0px 1px;}</style>";
+echo "<style type='text/css'>.pg_bar li{margin: 0px 1px;}
+.tbbar1 select{ padding:3px; vertical-align:middle; }</style>";
 glbHtml::page('body');
 
 $mod = req('mod','','Key');

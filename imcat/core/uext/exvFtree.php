@@ -32,13 +32,19 @@ class exvFtree{
         if(is_numeric($fm['name'])){
             $okid = $fm['name'];
             $orow = self::dbNow($okid);
-            if(!$orow || $orow['kid']==$kid){
+            if(!$orow || $orow['kid']==$kid || $orow['part']!=self::$part){
                 die("Error:`$okid`!");
             }
         }else{
             if(empty($fm['name'])){
                 die("Null:`name`!");
             }
+        }
+        if(!$kid && empty($_SESSION['ftuser_parts'])){ // 超管(不指定区域)才可添加
+            unset($fm['kid']);
+            $fm['part'] = self::$part;
+            $insid = self::dbNow("kid='$kid'")->data($fm)->insert();
+            return $insid;
         }
         if($act=='edit'){
             // mates>移除
@@ -116,16 +122,19 @@ class exvFtree{
     }
 
     // 列表/搜索
-    static function getList(){
-        $whr = "(did>0 OR mid>0) AND mates>0";
+    static function getList($ids=''){
+        $whr = "(did>0 OR mid>0)"; // AND mates>0
         $kw = req('kw'); $eid = req('eid');
-        if($kw && is_numeric($kw)){
+        if($ids){
+            $whr = "kid IN($ids)";
+        }elseif($kw && is_numeric($kw)){
             $whr = "kid='$kw' OR did='$kw' OR mid='$kw' OR mates='$kw'";
         }elseif($kw){
             $whr = "name LIKE '$kw%'";
         }
-        if($eid) $whr .= " OR kid='$eid'";
+        if($eid) $whr .= " OR kid='$eid'"; //echo $whr;
         $res = self::dbNow("$whr")->order('kid DESC')->limit(10)->select();
+        //echo db()->getSql();
         if(!empty($res)){ foreach($res as $rk=>$row){
             $res[$rk]['pr0'] = self::getPair($row);
         } }
@@ -135,7 +144,7 @@ class exvFtree{
     // 仅自己的子女
     static function getSuno($row){ 
         $whr = $row['sex']=='男' ? "did='{$row['kid']}'" : "mid='{$row['kid']}'";
-        $res = self::dbNow($whr)->order('top')->select();
+        $res = self::dbNow($whr)->order('top,kid')->select();
         return $res;
     }
     // 同辈(兄弟姐妹)/子辈/孙辈
@@ -149,7 +158,7 @@ class exvFtree{
         }else{
             $whr = 0;
         }
-        $res = $whr ? self::dbNow("$whr")->order('top')->select() : [$row];
+        $res = $whr ? self::dbNow("$whr")->order('top,kid')->select() : [$row];
         self::getSuns($res);
         return $res;
     }
@@ -160,7 +169,7 @@ class exvFtree{
             foreach ($data as $sk=>$srow) {
                 $fk1 = $srow['sex']=='男' ? 'did' : 'mid'; $fk2 = $fk1=='did' ? 'mid' : 'did';
                 $and = empty($srow['mate']) ? '' : " AND $fk2 IN('".str_replace(",","','","{$srow['mate']}")."'')";
-                $suns = self::dbNow("$fk1='{$srow['kid']}' $and")->order('top')->select();
+                $suns = self::dbNow("$fk1='{$srow['kid']}' $and")->order('top,kid')->select();
                 $data[$sk][$dk] = $suns;
                 if($deep<2){
                     self::getSuns($data[$sk][$dk],$deep+1);

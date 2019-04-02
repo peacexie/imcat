@@ -53,7 +53,7 @@ class glbConfig{
                 require $file; 
                 $tmp = self::$_CACHES_YS[$ck] = isset($kk) ? $$kk : $$key;
                 if(is_array($tmp) && (!empty($tmp['i'])) && is_string($tmp['i'])){
-                     self::$_CACHES_YS[$ck]['i'] = self::tmpItems($modid);
+                    self::$_CACHES_YS[$ck]['i'] = self::tmpItems($modid);
                 }
             }else{ 
                 self::$_CACHES_YS[$ck] = array();

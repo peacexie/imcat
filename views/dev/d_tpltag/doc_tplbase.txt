@@ -37,11 +37,18 @@
 <script src='{=PATH_VENDUI}/layer/layer.js'></script>
 ------ ------ 或
 {php}
-eimp('/~tpl/cinfo.css'); // /views/{tpldir}/assets/a_jscss.css
+# v4.7
+eimp('/~tpl/cinfo.css');      // /views/{tpldir}/assets/cinfo.css
+eimp('/~now/cijs/funcs.js');  // /views/{tpldir}/{mdodir}/cijs/funcs.js
+eimp('/~base/cssjs/cinfo.css'); // /views/base/assets/cssjs/cinfo.css
+eimp('/~base/jslib/jsbase.js'); // /views/base/assets/cssjs/jsbase.js
 eimp('/layer/layer.js','vendui');
+# v4.6
+eimp('/~tpl/cinfo.css'); // /views/{tpldir}/assets/cinfo.css
 eimp('/base/assets/cssjs/cinfo.css'); // /views/base/assets/cssjs/cinfo.css
 eimp('/base/assets/jslib/jsbase.js'); // /views/base/assets/cssjs/jsbase.js
 {php}
+
 ------ ------ 或（初始化）
 eimp('initJs','zepto,jquery,bootcss,bootstrap,layer;comm;comm(-lang);user'); // in head
  -=>

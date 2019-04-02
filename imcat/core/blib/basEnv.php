@@ -111,7 +111,7 @@ class basEnv{
     // 获取客户端软件信息
     static function userAG(){
         $ua = empty($_SERVER['HTTP_USER_AGENT']) ? '' : $_SERVER['HTTP_USER_AGENT'];
-        //basStr::filTitle($_SERVER['HTTP_USER_AGENT'])
+        //basStr::filTitle($ua)
         $ua = str_replace(array("'","\\"),array("",""),$ua);
         return $ua;
     }
@@ -146,14 +146,12 @@ class basEnv{
     }
     // 是否miniProgram()
     static function isMpro($ver=0){
-        $uagent = $_SERVER['HTTP_USER_AGENT'];
-        $wxpos = strpos($uagent, 'miniProgram');
+        $wxpos = strpos(self::userAG(), 'miniProgram');
         return $wxpos;
     } 
     // 是否Weixin()
     static function isWeixin($ver=0){
-        $uagent = $_SERVER['HTTP_USER_AGENT'];
-        $wxpos = strpos($uagent, 'MicroMessenger');
+        $wxpos = strpos(self::userAG(), 'MicroMessenger');
         if($ver){
             preg_match('/.*?(MicroMessenger\/([0-9.]+))\s*/', $uagent, $matches);
             return $wxpos ? $matches[2] : '';
@@ -163,8 +161,7 @@ class basEnv{
     } 
     // 是否Qq()
     static function isQq($ver=0){
-        $uagent = $_SERVER['HTTP_USER_AGENT'];
-        $wxpos = strpos($uagent, 'QQBrowser');
+        $wxpos = strpos(self::userAG(), 'QQBrowser');
         return $wxpos;
     }
     // 是否Mobile
@@ -177,7 +174,7 @@ class basEnv{
             return true;
         }
         $mbstr = "Android|Windows Phone|webOS|iPhone|iPad|BlackBerry";
-        if(preg_match("/$mbstr/i",$_SERVER['HTTP_USER_AGENT'])){
+        if(preg_match("/$mbstr/i",self::userAG())){
             return true;
         }else{
             return false;

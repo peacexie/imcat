@@ -8,7 +8,7 @@ $mucfg = wysMenu::getMenuData($weapp);
 
 if($view=='list'){ 
 
-    eimp('/base/assets/cssjs/weixin.js?v=1');
+    eimp('/~base/cssjs/weixin.js?v=1');
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     glbHtml::tab_bar(lang('awex.appid')."[$wekid] : ".lang('awex.follows')."$umsg",$_cbase['run']['sobarnav'],40,'tl');
     
