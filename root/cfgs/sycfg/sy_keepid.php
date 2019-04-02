@@ -7,7 +7,7 @@ $_sy_keepid = '
 ,pagebar,|,page,prec,ptype,pkey,
 ,sysdir,|,code,root,skin,html,ures,dtmp,ctpl,static,vendor,vendui,
 ,sysuserid,|,admin,master,peace,lihan,xiecy,shierly,xieys,
-,sysvariable,|,api,act,file,view,mod,parts,
+,sysvariable,|,api,act,file,view,mod,part,parts,
 ,abase,cbase,db,dop,so,cv,fm,
 ,mkv,|,home,mhome,mtype,detail,mext,first,
 ,jsvars,|,jselm,jsElm,
