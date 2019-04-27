@@ -14,7 +14,7 @@ $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
 $_selfname = $_SERVER['SCRIPT_NAME'];    
 $allowb = array('binfo','login','dologin','iframe','frame','fset'); // 'phpinfo1','cookie',
-$allowc = array('_null_');
+$allowc = array('binfo'); // binfo, _null_
 
 if(strstr($_selfname,'start.php')){    
     ;//
