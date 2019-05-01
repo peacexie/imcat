@@ -1,6 +1,7 @@
 <?php
 
-$out_user = 'ut.N4NeS6lw'; // Èç¹ûÓÐ_config.php£¬ÔòÊ¹ÓÃ_config.phpÖÐµÄÉèÖÃ£»
-$out_pass = 'up.lFS2ZR9NErRo'; // ÇëÃ¿´ÎÊ¹ÓÃ,¶¼¸Ä¸öÐÂÃÜÂë£»·ñÔò°²È«ÎÊÌâ,Çëºó¹û×Ô¸º£¡
-$can_upfile = '0'; //ÊÇ·ñ¿ÉÉÏ´«ÎÄ¼þ,ÒÆ³ýBOM,É¨ÃèÕ¾µãÍâÄ¿Â¼
-$can_reset = '0'; //ÊÇ·ñ¿Éreset
+$out_user = 'ut.N4NeS6lw'; // å¦‚æžœæœ‰_config.phpï¼Œåˆ™ä½¿ç”¨_config.phpä¸­çš„è®¾ç½®ï¼›
+$out_pass = 'up.lFS2ZR9NErRo'; // è¯·æ¯æ¬¡ä½¿ç”¨,éƒ½æ”¹ä¸ªæ–°å¯†ç ï¼›å¦åˆ™å®‰å…¨é—®é¢˜,è¯·åŽæžœè‡ªè´Ÿï¼
+$can_upfile = '0'; //æ˜¯å¦å¯ä¸Šä¼ æ–‡ä»¶,ç§»é™¤BOM,æ‰«æç«™ç‚¹å¤–ç›®å½•
+$can_reset = '0'; //æ˜¯å¦å¯reset 
+$show_binfo = array('binfo'); // 'binfo' æˆ– '_null_', `/?start` å…¥å£æ˜¾ç¤ºåŸºæœ¬çš„ `è°ƒè¯•/å·¥å…·`

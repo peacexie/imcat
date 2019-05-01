@@ -14,7 +14,8 @@ $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
 $_selfname = $_SERVER['SCRIPT_NAME'];    
 $allowb = array('binfo','login','dologin','iframe','frame','fset'); // 'phpinfo1','cookie',
-$allowc = array('binfo'); // binfo, _null_
+$allowc = isset($show_binfo) ? $show_binfo : array('_null_'); 
+// array('_null_'); // 'binfo' 或 '_null_'
 
 if(strstr($_selfname,'start.php')){    
     ;//
@@ -30,6 +31,12 @@ if(strstr($_selfname,'start.php')){
     //
 }*/
 
+function navlinks($link){
+    $tmp = explode('?', $link);
+    $has = file_exists('./'.$tmp[0]) ? 1 : 0;
+    return $has ? "href='$link'" : "title='file [$tmp[0]] NOT FOUND!' class='cccc'";
+}
+
 function tadbugNave($path=''){
     if(empty($path)){
     echo "<tr class='tc'>
@@ -38,8 +45,8 @@ function tadbugNave($path=''){
         <td class='tip'><a href='../setup/'>".lang('tools.adcfg_setup')."&gt;&gt;</a></td>";
     }
     echo "</tr><tr class='tc'>
-        <td width='25%'><a href='binfo.php'>".lang('tools.adcfg_binfo')."</a></td>
-        <td width='25%'><a href='check.php'>".lang('tools.adcfg_chkenv')."</a></td>
+        <td width='25%'><a ".navlinks('binfo.php').">".lang('tools.adcfg_binfo')."</a></td>
+        <td width='25%'><a ".navlinks('check.php').">".lang('tools.adcfg_chkenv')."</a></td>
         <td width='25%'><a href='cscan.php'>Scan</a></td>
         <td width='25%'><a href='reset.php'>".lang('tools.adcfg_reset')."</a></td>
         </tr>";
