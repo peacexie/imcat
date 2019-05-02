@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width'>
+  <title>点击图片显示大图</title> 
+  <script src='http://127.0.0.1/peace/imcat/share_ximps/vendui/jquery/jquery-2.x.js'></script>
+  <style>  
+    #imgp1 img{padding:5px;width:100px;height:auto;cursor: pointer;}  
+    #imgp2 img{padding:5px;width:auto;height:80px;cursor: pointer;}  
+
+
+.pic1-play {
+    width:320px; display:inline-block; 
+}
+.pic1-play ul, .pic1-play li{
+    padding:0; margin:0;
+}
+
+.pic2-play {
+    width:240px; display:inline-block; 
+}
+.pic2-play ul, .pic2-play li{
+    padding:0; margin:0;
+}
+
+  </style> 
+
+</head> 
+
+<body> 
+
+<script src='./picPlay.js'></script>
+
+<div id="imgp1"> 
+   <p class="abc">点击图片测试...</p> 
+   <img title="啊十大神兽的" src="http://*/dg/userfiles/image/20170919/19135051f03a5a05000729_120_100.jpg" /> 
+   <img src="http://127.0.0.1/peace/imcat/ourhouse/ures/mdown/huxing/10609/2531990769-59750e2461782388bea0293a6861e3b0.jpg" /> 
+   <img src="http://*/dg/userfiles/image/20180712/1215360945a9b0af382522.jpg##" /> 
+ </div>   
+
+<div id="imgp2"> 
+   <p class="abc">点击图片测试...</p> 
+   <img src="http://*/dg/userfiles/image/20190228/13db1fed488251280e73f9c8a62a8097_320_240.jpg" /> 
+   <img title="啊十大神兽的" src="http://*/dg/userfiles/image/20190215/f9282d9a7700f8f51b750cb9eac67c90_320_240.jpg" /> 
+   <img src="http://*/dg/userfiles/image/20180712/1215360945a9b0af382522.jpg##" /> 
+   <img src="http://127.0.0.1/peace/imcat/ourhouse/ures/mdown/huxing/10609/2531990769-59750e2461782388bea0293a6861e3b0.jpg" /> 
+   <img title="啊十大神兽的" src="http://*/dg/userfiles/image/20190228/13db1fed488251280e73f9c8a62a8097_320_240.jpg" /> 
+</div>   
+
+img-btn, bg-pic, wh比例
+
+<div class="pic1-play">
+<div class="ppout">
+  <ul class="ppin_box">
+
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://*/dg/userfiles/image/20190228/13db1fed488251280e73f9c8a62a8097_320_240.jpg">
+      <span>东莞市1房地产企业诚信联盟正式启动</span>
+    </a> </li>
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://*/dg/userfiles/image/20190409/5b6c3ff56756ddae7beee6bf68860b12_86_64.jpg">
+      <span>东莞市3房地产企业诚信联盟正式启动</span>
+    </a> </li>
+  </ul>
+</div>
+</div>
+
+<div class="pic2-play">
+<div class="ppout">
+  <ul class="ppin_box">
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://*/dg/userfiles/image/20180712/1215360945a9b0af382522.jpg">
+      <span>东莞市1房地产企业诚信联盟正式启动</span>
+    </a> </li>
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://127.0.0.1/peace/imcat/ourhouse/ures/mdown/huxing/10609/2531990769-59750e2461782388bea0293a6861e3b0.jpg">
+      <span>东莞市2房地产企业诚信联盟正式启动</span>
+    </a> </li>
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://*/dg/userfiles/image/20190228/13db1fed488251280e73f9c8a62a8097_320_240.jpg">
+      <span>东莞市3房地产企业诚信联盟正式启动</span>
+    </a> </li>
+    <li> <a href="/video/view/id/3226.html" target="_blank">
+      <img src="http://*/dg/userfiles/image/20190215/f9282d9a7700f8f51b750cb9eac67c90_320_240.jpg">
+      <span>东莞市2房地产企业诚信联盟正式启动</span>
+    </a> </li>
+  </ul>
+</div>
+</div>
+
+
+</div>
+
+<script>
+  $('#imgp1').picView();
+  $('#imgp2').picView();
+  //$('.ppout').picView();
+  $(".ppout").picPlay({li:'li',inbox:'ppin_box'});
+</script> 
+
+
+</body>
+</html>

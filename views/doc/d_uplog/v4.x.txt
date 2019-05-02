@@ -1,5 +1,33 @@
 
 
+#v4.7# (2019.05)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.7
+ - Release date: 2019.05
+ - rar-size: [core]1.31 MB, [full]3.64 MB(core+vendor)
+
+
+## ChangeLog
+
+* Add: Baidu-AP-API, for Translation, Text-Keyword, Text-Summary, Text-Audit, Text-Recovery
+* Add: Data Omnipotent Function, It can call all models data
+* Add: Jq-Plus for Play Picturs
+* Improve: The demo data can set sptional while install
+* Fix: Some confirmed bugs
+
+* Admin Console optimization (operational experience)
+ - Optimization Automatically generate ID while creat catelog
+ - Table-Tesponsive in the Admin Console
+
+* Projects
+ - Publish: 爱窝房产系统(OurHouse) --- [Gift for May Day]
+ - planning: 快乐企业站(CheerSite) --- [May by the gift for Children's Day]
+
+
 #v4.6# (2019.03)
 
 

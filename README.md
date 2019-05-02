@@ -1,7 +1,7 @@
 
 
-* 贴心猫(imcat) V4.7(Alpha)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+贴心猫(imcat) V4.7 Released (2019-05)
+
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -44,7 +44,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.6 ChangeLog】 (2019.03)
+### 【v4.7 ChangeLog】 (2019.05)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-4_0)
 
@@ -60,7 +60,7 @@
 
 * 支持：PHP5.4~PHP7.3/自定义模块/自定义字段/自定义参数/自定义分类/模板继承/tag缓存/js标签/静态/伪静态
 * 模型：问答系统/内部公文/商品展销/新闻/专题/课程资源/样例文档/用户
-* 接口：REST-API/Ftp存储/Sphinx检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
+* 接口：REST-API/Ftp存储/Sphinx 检索/微信/短信/地图/支付/数据分享/数据同步/外部导入/采集/推送/导入旧版
 
 
 ### 【安装提示】
@@ -83,7 +83,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.6更新日志】(2019.03)
+### 【v4.7更新日志】(2019.05)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-4_0)
 
