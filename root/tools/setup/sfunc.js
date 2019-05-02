@@ -66,8 +66,9 @@ function setStp34(step,id){
     if(step){
         var tabs = step==3 ? base_tabs : demo_tabs;
         var arr = tabs.split(',');
-        var id = id ? id : 0; var tab = arr[id];    
-        var url = '?step='+step+'&act=Imps&tab='+tab+'&'+jsRnd();
+        var id = id ? id : 0; var tab = arr[id];
+        var dd = $('#hasdd').prop('checked') ? 1 : 0;
+        var url = '?step='+step+'&act=Imps&tab='+tab+'&hasdd='+dd+'&'+jsRnd();
         $.get(url, function(re){    
             re = setJSON(step,re,tab);
             if(re.res=='OK'){
@@ -81,7 +82,7 @@ function setStp34(step,id){
         });
     }else{ 
         setJSON(id,"{'res':'OK','msg':''}");
-        setState('step'+id,2,id);    //step = id;
+        setState('step'+id,2,id); //step = id;
     }
 }
 

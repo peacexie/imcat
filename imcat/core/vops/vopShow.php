@@ -136,13 +136,13 @@ class vopShow{
         if(!empty($vars['tplname'.$this->view])){ 
             $tplname = $vars['tplname'.$this->view];
         }elseif($this->type=='detail'){ 
-            $cfgs = '';
+            $cfgs = array();
             if(isset($vars['grade'])){
                 $mcfgs = glbConfig::read('grade','dset');
                 $cfgs = isset($mcfgs[$vars['grade']]) ? $mcfgs[$vars['grade']] : '';
             }elseif(isset($vars['catid'])){
                 $mcfgs = glbConfig::read($this->mod);
-                $cfgs = $mcfgs['i'][$vars['catid']];
+                $cfgs = isset($mcfgs['i'][$vars['catid']]) ? $mcfgs['i'][$vars['catid']] : array();
             }
             $cfgs = empty($cfgs['cfgs']) ? array() : basElm::text2arr($cfgs['cfgs']); 
             if(!empty($cfgs['tplname'.$this->view])){

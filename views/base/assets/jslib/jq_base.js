@@ -159,7 +159,7 @@ function evf_getRegs(obj){
     }else if(str=='fix:email'){ // peace_xie@qq.com
         re = '^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$';
     }else if(str=='fix:uri'){ // peace_xie@qq.com
-        re = '^(http|https|ftp)\\://\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*(\\S)*$';
+        re = '^([a-z]+:)?//[A-Za-z0-9-_]+\\.[A-Za-z0-9-_%&\?\/.,=#]+$';
         // /^\s*https?:\/\/(?:[\w\-]+\.)+[a-z]{2,4}(?:\:\d{1,5})?(?:\/.*)?\s*$/ 
     }else if(str=='fix:file'){ // http://www.txmao.com/?wpwe
         var image = 'gif|jpg|jpeg|png|swf|flv|';

@@ -160,7 +160,7 @@ class vopCell{
         if(is_array($val)){ return ''; }
         $len = empty($len) ? 0 : intval($len);
         $val = basStr::filHText($val,$len);
-        if(!$nobr){ $val = nl2br($val);}
+        if(!empty($nobr)){ $val = nl2br($val);}
         return $val;
     }
     
@@ -190,7 +190,8 @@ class vopCell{
     //        [,]/[1]: 单个>0数字,多个用,好分开,或自定义个分割符变量(如$split)也可
     //        [tpl]: 默认模版显示,可自行写css.class着色
     //        [<span class='itm-(k)'>(v)</span>]: 自定模版显示,可自行写css.class着色
-    static function cOpt($val='',$mod='',$split=0,$null=''){ 
+    static function cOpt($val='',$mod='',$split=0,$null=''){
+        if(empty($val)){ return empty($null) ? '' : $null; }
         $color = empty($split);
         $arr = self::optArray($mod,$val,$color);
         $rea = '';

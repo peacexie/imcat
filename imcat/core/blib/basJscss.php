@@ -281,7 +281,7 @@ class basJscss{
     }
 
     static function jsTypes($act){ 
-        $mods = exvFunc::actMods($act,'jsTypes'); 
+        $mods = exvFunc::actMods($act,'jsTypes');
         $moda = explode(',',$mods); 
         $done = ",";
         foreach($moda as $mod){

@@ -5,6 +5,122 @@ namespace imcat;
 
 class devBuild{    
 
+    // 翻译一个系统语言包文件/ devBuild::trsfp('kvphp/flow-fr', 'fr');
+    static function trsfp($fp, $to, $from='cn'){
+        $tab = [
+            'cn'=>'zh', //'en'=>'en', // 汉,英
+            'fr'=>'fra', 'es'=>'spa', //'ru'=>'ru', // 法,西,俄
+            //'de'=>'de', 'jp'=>'jp', // 德,日
+            'kr'=>'kor', 'ar'=>'ara', // 韩,阿
+        ];
+        $ff = DIR_IMCAT."/lang/$fp.php"; // 'ptinc/aflow-cn.php';
+        $bk = "{$ff}-bk"; if(file_exists($bk)) return;
+        $from = isset($tab[$from]) ? $tab[$from] : $from;
+        $to = isset($tab[$to]) ? $tab[$to] : $to;
+        $type = strstr($fp,'ptinc/') ? (strpos($fp,'aflow-') ? 'html' : 'line') : '';
+        $dsave = self::trans($ff, $to, $type, $from);
+        copy($ff, $bk);
+        comFiles::put($ff, $dsave);
+        return $fp;
+    }
+
+    // type: (null), html(翻译html的节点), line(按行翻译)
+    static function trans($fp, $to, $type='', $from='ch', $re=1){
+        $dstr = $dorg = comFiles::get($fp);
+        $data = []; // 提取中文数组
+        if($type=='line'){
+            $dstr = preg_replace("/\<([^>|\n]+)\>/", "\n", $dstr);
+            $arr = explode("\n", $dstr);
+            $data = self::trarr($arr, 1);
+        }elseif($type=='html'){
+            preg_match_all("/\>([^<]+)\</", $dstr, $arr);
+            if(!empty($arr[1])){
+                $data = self::trarr($arr[1], 1);
+            }
+        }else{
+            $arr = include($fp);
+            foreach($arr as $vals){
+                if(is_array($vals)){
+                    foreach($vals as $val){ $data[] = $val; }
+                }else{ $data[] = $vals; }
+            }
+        } //return $data; die();
+        $trans = self::trapi($data, $to, $from); // 得到英文翻译
+        $dsave = self::trrep($trans, $dorg, $type); // 替换翻译
+        if($re) return $dsave;
+        comFiles::put("$fp-$to", $dsave);
+    }
+    // 翻译替换
+    static function trrep($trans, $dorg, $type=''){
+        $data = $dorg;
+        if(!$type){
+            foreach($trans['from'] as $tk=>$tv) {
+                $val = $trans['to'][$tk];
+                $vf = ["'$tv'", '"'.$tv.'"'];
+                $vt = ["'$val'", '"'.$val.'"'];
+                $data = str_replace($vf, $vt, $data);
+            }
+        }else{
+            $data = str_replace($trans['from'], $trans['to'], $data);
+        }
+        return $data;
+    }
+    // 对接一次翻译API
+    static function trapi1(&$trans, $str, $to, $from='ch'){
+        $res = aisTrans::main($str, $from, $to);
+        if(!empty($res['trans_result'])){
+            foreach($res['trans_result'] as $itms){
+                $trans['from'][] = $itms['src'];
+                $trans['to'][] = str_replace("'", '`', $itms['dst']);
+            }
+        }
+    }
+    // 翻译所有数组(分批)
+    static function trapi($data, $to, $from='ch'){
+        $str = ''; $cnt = 0; 
+        $trans = [];
+        foreach($data as $val){
+            $ilen = mb_strlen($str);
+            if($cnt+$ilen>1200){
+                self::trapi1($trans, $str, $to, $from);
+                $str = $val; 
+                $cnt = $ilen;
+            }else{
+                $str .= ($str?"\n":'')."$val"; 
+                $cnt += $ilen;
+            }
+        } //return $trans; die();
+        if($cnt){
+            self::trapi1($trans, $str, $to, $from);
+        }
+        return $trans;
+    }
+    // 数组转化（翻译用）
+    static function trarr($arr, $trm2=0){
+        $data = $res = [];
+        foreach($arr as $val){
+            $ival = trim($val);
+            if($trm2){
+                $ival = preg_replace("/^([\x20-\x7f]+)/i", "", $ival);
+                $ival = preg_replace("/([\x20-\x7f]+)$/i", "", $ival);
+                $ival = trim($ival); 
+            }
+            if($ival){
+                $ilen = mb_strlen($ival);
+                $ikey = $ilen>35 ? 36 : $ilen;
+                if(!isset($data[$ikey]) || !in_array($ival,$data[$ikey])){
+                    $data[$ikey][] = $ival;
+                }
+            }
+        }
+        for($i=36;$i>0;$i--){ if(isset($data[$i])){
+            foreach($data[$i] as $val) {
+                $res[] = $val;
+            }
+        } }
+        return $res;
+    }
+
     static function clang($org, $obj){ 
         if(empty($org)||empty($obj)) return 'Error';
         $lists = comFiles::listScan(DIR_IMCAT.'/lang');

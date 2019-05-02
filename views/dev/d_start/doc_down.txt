@@ -42,7 +42,7 @@
 * 修改数据库配置（可安装时配置，建议手动配置）：
  - 文件：/root/cfgs/boot/cfg_db.php；
  - 注意`数据库类`默认为：$_cfgs['db_driver'] = 'mysqli';
- 
+
 * 安装/配置
  - 访问起始页：/index.php?start 检查配置；
  - 访问地址：/root/tools/setup/ 安装程序。
@@ -57,27 +57,30 @@
 * 设置目录权限等服务器设置
 * 处理 /dev.php, /doc.php入口(删除或屏蔽或后台设置[关闭dev显示模板])
 * 删除或移开目录 /root/tools/setup/，
-* 可保留文件夹 /root/tools/adbug，以备后续调试。
+* 处理文件夹 /root/tools/adbug：
+ - 可改名/备份，以备后续调试使用；
+ - （这些页本来就是用作调试的工具，有较多的敏感信息）关于漏洞说法见[链接](http://www.cnnvd.org.cn/web/vulnerability/querylist.tag?relLdKey=2018121282)；其它所说的漏洞，已经修复。
+ - 实在不放心，可直接删除，不影响整体功能；
 * 起始页：/index.php?start 有些链接为常用工具，需要后台登录才可使用
  - 也可单独登录，请设置/root/cfgs/boot/cfg_adbug.php中的`辅助调试工具的账号密码`
  - 请`重新设置`得足够复杂 并妥善保管！
 
 #extTips#相关提示
 
-* 文件结构 和 写权限
- - 写权限    
- 　 vary目录下的子目录，需要写权限  
- 　 文件：/root/cfgs/boot/_paths.php 安装时需要写权限(如果设置不对，可自动重置路径，仅执行一次)  
- 　 文件：/root/cfgs/boot/cfg_adbug.php 安装时需要写权限 (重置辅助调试工具账号密码，仅执行一次)
- - 文件结构   
- 　 [目录结构示图]({static}/file_image/txmao-tree.png) ，
-   [分包下载示图]({static}/file_image/txmao-parts.png) ，
-   [文件结构]({pathpro}/views/dev/d_start/tree_brem.txt) ；
+写权限 / 文件结构
+
+* 写权限
+ - vary目录下的子目录，需要写权限  
+ - 文件：/root/cfgs/boot/_paths.php 安装时需要写权限(如果设置不对，可自动重置路径，仅执行一次)  
+ - 文件：/root/cfgs/boot/cfg_adbug.php 安装时需要写权限 (重置辅助调试工具账号密码，仅执行一次)
+
+* 文件结构   
+ - [目录结构示图]({static}/file_image/txmao-tree.png) ，
+ - [分包下载示图]({static}/file_image/txmao-parts.png) ，
+ - [文件结构]({pathpro}/views/dev/d_start/tree_brem.txt) ；
 
 * 相关资源
-
- - 在线地址
- ：[演示首页]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [英文文档]({svrtxmao}/doc.php)
+ - 在线地址：[演示首页]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [英文文档]({svrtxmao}/doc.php)
  - [技术问答(bug反馈)]({svrtxmao}/chn.php?faqs)
  - [随便吐槽(留言投诉)]({svrtxmao}/dev.php?info-gbook)
  - [捐赠贡献]({svrtxmao}/dev.php?info-help)

@@ -1,28 +1,28 @@
 ﻿
 ### 0. This System / 本系统
 
-1 英语     en
-2 汉语     cn
+1 英语     en (en)
+2 汉语     cn (zh)
 ---------------
-4 法语     fr
-6 西班牙语 es
-5 俄语     ru
+4 法语     fr (fra)
+6 西班牙语 es (spa)
+5 俄语     ru (ru)
 ---------------
-3 德语     de
-7 日语     jp
+3 德语     de (de)
+7 日语     jp (jp)
 ---------------
-9 韩语     kr/kor
-8 阿拉伯语 ar 
+9 韩语     kr (kor)
+8 阿拉伯语 ar (ara)
 
 
 ### 1. Working language of the United Nations / 联合国工作语言
 
-[الأمم المتحدة[العربية(阿拉伯语)
+[الأمم المتحدة[العربية (阿拉伯语)
 [汉语]联合国(汉语)
 [English]United Nations (UN)(英语)
-[Fran&ccedil;aise]Organisation des Nations Unies (ONU/ Nations Unies)(法语)
+[Française]Organisation des Nations Unies (ONU/ Nations Unies)(法语)
 [Русский]Организация Объединённых Наций (ООН)(俄语)
-[Espa&ntilde;ol]Organización de las Naciones Unidas (ONU / Naciones Unidas)(西班牙语)
+[Español]Organización de las Naciones Unidas (ONU / Naciones Unidas)(西班牙语)
 
 
 ### 2. The ten languages of the world / 世界十大语言

@@ -53,7 +53,7 @@ class comHttp
     static function curlCrawl($url, $data=array(), $timeout=5, $header="") {
         // getCache
         $cres = self::getCache($url, $data);
-        if($cres!==false) return $cres;
+        if(!empty($cres[1])) return $cres[1];
         // header
         $header = self::_getHeader($header);
         if(isset($data['_cookie'])){ // cookie设置
@@ -77,6 +77,7 @@ class comHttp
             curl_setopt($ch, CURLOPT_POST, true); 
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
         }
+        #curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
         curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
@@ -90,7 +91,7 @@ class comHttp
         }
         $result = curl_exec($ch);
         // saveCache
-        self::saveCache($result);
+        self::saveCache($cres[0], $result);
         // return
         curl_close($ch);
         return $result;
@@ -99,7 +100,7 @@ class comHttp
     static function socketCrawl($url, $data=array(), $timeout=5, $header="") {
         // getCache
         $cres = self::getCache($url, $data);
-        if($cres!==false) return $cres;
+        if(!empty($cres[1])) return $cres[1];
         // header
         $header = self::_getHeader($header);
         $url = parse_url($url); $errno = 0; $errstr = '';
@@ -137,7 +138,7 @@ class comHttp
             if(intval($matches[1]) / 100 == 2){
                 $result = substr($out, $pos + 4, strlen($out) - ($pos + 4));
                 // saveCache
-                self::saveCache($result);
+                self::saveCache($cres[0], $result);
                 return $result;
             }else{ return false; }
         }else{ return false; }
@@ -146,7 +147,7 @@ class comHttp
     static function fileCrawl($url, $data=array(), $timeout=5, $header=""){
         // getCache
         $cres = self::getCache($url, $data);
-        if($cres!==false) return $cres;
+        if(!empty($cres[1])) return $cres[1];
         // header
         $header = self::_getHeader($header);
         $opts = array( 
@@ -165,7 +166,7 @@ class comHttp
         $context = stream_context_create($opts);
         $result = @file_get_contents($url,false,$context);
         // saveCache
-        self::saveCache($result);
+        self::saveCache($cres[0], $result);
         // return
         return $result;
     }
@@ -217,6 +218,7 @@ class comHttp
     }
     // 保存远程页面(图片)到本地
     static function downSave($url, $showname='', $curl=0){
+        if(!$url) return;
         self::downCheck($url, $showname);
         if($curl){
             $data = self::curlCrawl($url);
@@ -236,7 +238,7 @@ class comHttp
             ini_set('allow_url_fopen', 'On');
         }
         if(empty($url) || ($chkexists && !file_exists($url))) {
-            throw new InvalidArgumentException("[$url]Not Exists!");
+            throw new \Exception("[$url]Not Exists!");
         }else{
             $fsize = @filesize($url);
         }
@@ -269,9 +271,7 @@ class comHttp
         return $content;
     }
 
-    // 缓存处理
-    static function getCache($url, $data) {
-        if(!self::$cache) return false;
+    static function fpCache($url, $data) {
         $fp = preg_replace("/https?\:\/\//", '', urldecode($url));
         $fp = str_replace(array(' ',':','|'), '_', $fp);
         $fp = str_replace(array('/','?'), array('!','---'), $fp);
@@ -279,13 +279,18 @@ class comHttp
         if(strlen($fp)>90){
             $fp = substr($fp,0,70).'...'.substr($fp,-20);
         }
-        self::$savep = $fp.'---'.md5($url.'+'.json_encode($data)).'.htm';
-        $data = extCache::cfGet("/remote/".self::$savep, self::$cache, 'vars', 'str');
-        return $data;
+        return $fp.'---'.md5($url.'+'.json_encode($data)).'.htm';
     }
-    static function saveCache($data) {
+    // 缓存处理
+    static function getCache($url, $data) {
         if(!self::$cache) return false;
-        extCache::cfSet("/remote/".self::$savep, $data, 'vars');
+        $fp = self::fpCache($url, $data);
+        $data = extCache::cfGet("/remote/$fp", self::$cache, 'vars', 'str');
+        return [$fp, $data];
+    }
+    static function saveCache($fp, $data) {
+        if(!self::$cache) return false;
+        extCache::cfSet("/remote/$fp", $data, 'vars');
     }
 
     //兼容方法(后续去掉)

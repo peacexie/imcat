@@ -70,7 +70,7 @@ class caiHftcz{
         foreach($pics as $tr){ 
             $abi = ['title'=>$tr['alt'],'mpic'=>$tr['src'],'aflag'=>'8','atype'=>'',];
             $abi['lpid'] = $lpid;
-            $abi['catid'] = 'rent';
+            $abi['part'] = 'rent';
             $abi['exid'] = "hft-".(md5($tr['src'])); 
             $old = db()->table('docs_album')->where("exid='{$abi['exid']}'")->find();
             if(!$old){

@@ -13,7 +13,7 @@ class caiHft00{
         if($list){ 
             foreach($list as $row) {
                 $url = str_replace('h_160,w_220','h_600,w_800',$row['mpic']);
-                $res = caiBase::savePic($url, 'sale'); 
+                $res = caiBase::savePic($url, $type); 
                 $upd2['mpic'] = $res;
                 $upd1 = []; $tmp = explode(',',$row['sotags']);
                 if(!empty($tmp[2])){
@@ -82,7 +82,7 @@ class caiHft00{
         if($list){ 
             foreach($list as $row) {
                 $url = str_replace('h_170,w_220','h_600,w_800',$row['mpic']);
-                $res = caiBase::savePic($url, $row['catid']); 
+                $res = caiBase::savePic($url, $row['part']); 
                 $upd2 = ['mpic'=>$res, 'aflag'=>'7'];
                 db()->table('docs_album')->where("did='{$row['did']}'")->data($upd2)->update();
                 $cnt++;

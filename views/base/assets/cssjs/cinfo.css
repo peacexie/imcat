@@ -27,6 +27,7 @@ a.cur { color:#C00; }
 
 .cred{ color:#F00; }
 .cmsg{ color:#F00; background:#FFC; }
+.cccc, a.cccc{ color:#CCC; }
 .main .cmbg{ background:#FFC; padding: 10px; }
 .pa5 { padding:5px; }
 .ma5 { margin:5px; }

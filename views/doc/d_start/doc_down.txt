@@ -58,7 +58,10 @@
 * Setting write permissions and other server settings
 * Deel/Setting /dev.php, /doc.php Entry(Del or Hide or Setting on AdminCenter[Close `dev` Views])
 * Del or remove Dirs: /root/tools/setup/,
-* Keep Dirs: /root/tools/adbug, in order to subsequent debugging.
+* Deal with dir: /root/tools/adbug：
+ - Modify the name or and backup the files, It will has some usefull in the future; 
+ - (As some tool files, It maybe have some `Sensitive ` infomations in it), someone says `Information-Disclosure` in them as the [LINK](https://github.com/AvaterXXX/CVEs/blob/master/imcat.md); (other bugs are fixed).
+ - It can be deleted directly without affecting the whole function.
 * Start page: /index.php some of the links as a common tools, need to login the admin.
  - can also be a separate login, please set the params in file /root/cfgs/boot/cfg_adbug.php.
  - Please reset the params enough complex and keep it properly!
@@ -66,20 +69,20 @@
 
 #extTips#Tips
 
-* Files and Permission
- - Write Permission  
- 　 vary and sub dirs, need write  
- 　 File: /root/cfgs/boot/_paths.php When you install, Need write (if you are not setting, you can automatically reset the path, only once)  
- 　 File: /root/cfgs/boot/cfg_adbug.php Need write (reset the auxiliary debugging tools account/password, only once)
- - File frame
- 　 [Dir Frames]({static}/file_image/txmao-tree.png) ,
-    [Down parts]({static}/file_image/txmao-parts.png) ,
-    [File Frames]({pathpro}/views/doc/d_start/tree_brem.txt) ;
+Files and Permission
+
+* Write Permission  
+ - vary and sub dirs, need write  
+ - File: /root/cfgs/boot/_paths.php When you install, Need write (if you are not setting, you can automatically reset the path, only once)  
+ - File: /root/cfgs/boot/cfg_adbug.php Need write (reset the auxiliary debugging tools account/password, only once)
+
+* File frame
+ - [Dir Frames]({static}/file_image/txmao-tree.png) ,
+ - [Down parts]({static}/file_image/txmao-parts.png) ,
+ - [File Frames]({pathpro}/views/doc/d_start/tree_brem.txt) ;
 
 * Resources
-
- - Online
- ：[Demo Page]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [Guides]({svrtxmao}/doc.php)
+ - Online：[Demo Page]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [Guides]({svrtxmao}/doc.php)
  - [Tec FAQs(bug feed back)]({svrtxmao}/chn.php?faqs)
  - [Guestbook & Complaint]({svrtxmao}/doc.php?info-gbook)
  - [Contribution of donation]({svrtxmao}/doc.php?info-help)

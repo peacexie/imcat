@@ -1,6 +1,4 @@
 <?php
-// 常用参数
-//$_cbase['run']['isDemo'] = 0; //演示站，不能提交数据(不用了)
 
 /// 参数配置-根据需要配置 -----------------------------------------------
 
@@ -72,7 +70,7 @@ $_cbase['topic']['tpldir'] = '/chn/topic';
 // 3aks
 $_cbase['3aks']['baiduip'] = '3GGtGlCtbAGa1GYK70XFX2Rb'; //百度IP
 $_cbase['3aks']['googlemap'] = 'AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g'; //google地图
-$_cbase['3aks']['baidumap'] = ''; //百度地图
+$_cbase['3aks']['baidumap'] = 'MgtgVl65h2kjZUdXi8QX71dW'; //百度地图
 
 // 多语言/多城市:实现
 $_cbase['part']['name'] = '语言'; // 名称:语言/城市

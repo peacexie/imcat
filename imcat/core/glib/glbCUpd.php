@@ -154,7 +154,7 @@ class glbCUpd{
             $mod = $pts[1]; //dump($cfg); die('xx');
         }
         $where = "model='$mod' AND enable='1'";
-        $arr = $db->field($filed)->table($tabid)->where($where)->order('deep,top')->select();
+        $arr = $db->field($filed)->table($tabid)->where($where)->order('deep,top,kid')->select();
         $res = comTypes::arrLays($arr,self::$_mitems);
         return $res;
     }

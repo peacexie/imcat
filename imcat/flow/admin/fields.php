@@ -26,6 +26,46 @@ if($view=='ftest'){
         echo "</pre>";
     }
 
+}elseif($view=='fmove'){
+
+    $msg = '';    
+    if(!empty($bsend)){
+        if(empty($fs_do)) $msg = lang('flow.dops_setop');
+        if(empty($fs)) $msg = lang('flow.msg_pkitem');
+        else{
+            $msg = lang('flow.msg_set');
+            foreach($fs as $id=>$v){
+                $msg = lang('flow.msg_set');
+                if($fs_do=='move'){ 
+                    glbDBExt::moveOneField($mod,$id);
+                }
+            }
+        }
+        glbCUpd::upd_model($mod);
+    }     
+    glbHtml::tab_bar("<span class='span ph5'>|</span>[$gname]{$title} ".lang('admin.fls_list')."<span class='span ph5'>|</span>",'Move Fields...',40);
+    glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
+    echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th>";
+    echo "<th>".lang('admin.fls_extab')."</th><th title='".lang('admin.fls_maxlen')."'>".lang('admin.fls_lettes')."</th>";
+    echo "</tr>\n";   
+    $list = $db->table($tabid)->where("model='$mod' AND enable=1 AND dbtype!='nodb'")->order('top')->select();
+    foreach($list as $r){
+      $kid = $r['kid'];
+      echo "<tr>\n"; $dis = in_array($kid,['title','color']) ? 'disabled' : ''; 
+      echo "<td class='tc'><input name='fs[$kid]' type='checkbox' class='rdcb' value='1' $dis /></td>\n";
+      echo "<td class='tc'>$r[kid]</td>\n";
+      echo "<td class='tl'><input name='fm[$kid][title]' type='text' value='$r[title]' class='txt w150' /> ".(empty($ispara) ? '' : $r['key'])."</td>\n";
+      echo "<td class='tc'><input name='fm[$kid][top]' type='text' value='$r[top]' class='txt w40' /></td>\n";
+      echo "<td class='tc'>".($r['dbtype']=='nodb' ? '---' : glbHtml::null_cell($r['etab']))."</td>\n";
+      echo "<td class='tr'>".glbHtml::null_cell($r['vmax'],'')." | ".glbHtml::null_cell($r['dblen'],'')."</td>\n";
+      echo "</tr>"; 
+    }
+    echo "<tr>\n";
+    echo "<td class='tc'><input name='fs_act' type='checkbox' class='rdcb' onClick='fmSelAll(this)' /></td>\n";
+    echo "<td class='tr' colspan='10'><span class='cF00 left'>$msg</span>".lang('flow.fl_opbatch').": <select name='fs_do'>".basElm::setOption("move|Move")."</select> <input name='bsend' class='btn' type='submit' value='".lang('flow.fl_deeltitle')."' /> &nbsp; </td>\n";
+    echo "</tr>";
+    glbHtml::fmt_end(array("mod|$mod"));
+
 }elseif($view=='fadd'){
     
     if(empty($bsend)){ 
@@ -145,9 +185,9 @@ if($view=='ftest'){
     $lnkcat = "<a href='?admin-catalog&mod=$mod'>&lt;&lt;".lang('admin.fls_backcat')."</a>";
     $lnkgrd = "<a href='?admin-grade&mod=$mod'>&lt;&lt;".lang('admin.fls_backgrade')."</a>";
     $lnkbak = $catid ? ($_groups[$mod]['pid']=='users'? $lnkgrd : $lnkcat) : $lnkbak;
-    
     $lnkadd = "<a href='?$mkv&mod=$mod&view=fadd&ispara=$ispara&catid=$catid' onclick='return winOpen(this,\"".lang('admin.fls_addfield')."\")'>".lang('admin.fls_add')." $title&gt;&gt;</a>"; 
-    $lnkform = " | <a href='?$mkv&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>".lang('admin.fls_fmres')."&gt;&gt;</a>";
+    $lnkform = $_groups[$mod]['pid']=='docs' ? "<a href='?$mkv&mod=$mod&view=fmove'>&lt;&lt;Move</a> | " : '';
+    $lnkform .= "<a href='?$mkv&mod=$mod&view=ftest&ispara=$ispara&catid=$catid'>".lang('admin.fls_fmres')."&gt;&gt;</a>";
     glbHtml::tab_bar("$lnkbak<span class='span ph5'>|</span>[$gname]{$title} ".lang('admin.fls_list')."<span class='span ph5'>|</span>$lnkadd",$lnkform,40);
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th>";

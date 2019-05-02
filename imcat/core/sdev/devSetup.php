@@ -7,10 +7,7 @@ class devSetup{
     static $fsetuped = '/store/_setup_lock.txt'; 
     static $flagfile = '/store/_setup_step.txt'; 
     static $flagdata = "###Start###\nstep1=Null\nstep2=Null\nstep3=Null\nstep4=Null\nstep5=Null\n###End###"; 
-    static $demo_tabs = array(
-        'dext_demo','docs_demo', 'dext_news','docs_news', 'dext_cargo','docs_cargo', 
-        'dext_keres','docs_keres', 'dext_faqs','dext_faqs', 
-    ); 
+    static $demo_tabs = array('dext_demo', 'docs_demo', 'dext_news', 'docs_news'); 
 
     // 安装/更新一个模块
     static function ins1Item($act,$mod,$type,$kid,$pid){
@@ -143,6 +140,11 @@ class devSetup{
         }
         $all_tabs = array_keys($files['file']); 
         $demo_tabs = self::$demo_tabs;
+        $fp = '/cfgs/boot/setcfg.php';
+        if(file_exists(DIR_ROOT.$fp)){  
+            include(DIR_ROOT.$fp);
+            $demo_tabs = $_scfgs['demo_tabs'];
+        }
         $base_tabs = array();
         foreach($all_tabs as $tab1){
             if(substr($tab1,0,5)=='data~'){
@@ -217,8 +219,14 @@ class devSetup{
     // supImps
     static function supImps($tab){ 
         if(self::isSetuped()){ die('isRunning...'); }
-        $re = devData::dataImpInsert("/dborg/data~",$tab);
-        $re = array('res'=>'OK','msg'=>'');
+        $hasdd = req('hasdd');
+        $step = req('step');
+        if($step==4 && !$hasdd){
+            $re = array('res'=>'OK','msg'=>', Skiped!');
+        }else{
+            devData::dataImpInsert("/dborg/data~",$tab);
+            $re = array('res'=>'OK','msg'=>'');
+        }
         self::ajaxStop($re);
     }
     

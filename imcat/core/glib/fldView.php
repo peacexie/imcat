@@ -122,7 +122,7 @@ class fldView{
         $upsize1 = $ucfg['upsize1']=='(supper)'?120123:$ucfg['upsize1'];
         $_cbase['run']['pm_upsize1'] = "_cbase.run.pm_upsize1='$upsize1'; ";
         // js/css # /jqui/jquery-fileupload.css
-        $item  = basJscss::imp("/base/assets/cssjs/multpic.js");
+        $item  = basJscss::imp("/~base/cssjs/multpic.js");
         $item .= basJscss::imp("/jqui/jquery-ui.min.js",'vendui');
         $item .= basJscss::imp("/jqui/jquery-fileupload.js",'vendui');
         return $item;
@@ -160,7 +160,7 @@ class fldView{
         }else{
             $title = dopFunc::vgetTitle($pmod,$val); 
             $item = "<input id='fm[{$k}]' type='hidden' name='fm[{$k}]' value='$val'>\n";
-            $item = "$item<input id='fm_{$k}_refname' value='$title'>";
+            $item = "$item<input id='fm_{$k}_refname' name='fm[{$k}_refname]' value='$title'>";
         }
         $item .= "<input name='fm_{$k}_modpicks' id='fm_{$k}_modpicks' type='hidden' value='$pmod'>";
         $item .= "<input type='button' value='".basLang::show('admin.fv_pick')."' onclick=\"pickOpen('fm_{$k}_modpicks','','fm[{$k}]','fm_{$k}_refname',$pcnt)\" class='btn'>";  

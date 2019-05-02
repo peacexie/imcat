@@ -1,0 +1,7 @@
+
+
+* /lib/AipBase.php
+ - private function getAuthFilePath() - 修改了路径
+ - $path = DIR_DTMP."/store/bdaip_".md5($this->apiKey);
+
+

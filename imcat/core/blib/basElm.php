@@ -74,7 +74,11 @@ class basElm{
         $_groups = glbConfig::read('groups');
         $text = is_array($text) ? $text : trim($text);
         if(is_array($text)){
-            if(isset($text['title']) && !empty($text['cfgs'])) return self::text2arr($text['cfgs']);
+            if(!empty($text['fmextra']) && !empty($text['fmexstr']) && $text['fmextra']=='winpop'){
+                return self::text2arr($text['fmexstr']);
+            }elseif(isset($text['title']) && !empty($text['cfgs'])){
+                return self::text2arr($text['cfgs']);
+            }
             return $text;
         }elseif(empty($text)){ 
             return array();

@@ -35,7 +35,7 @@ class caiHftcs{
         $ext['louceng'] = $res2['所在楼层'];
         $ext['cqnian'] = $res2['产权年限']; 
         $ext['jznian'] = $res2['建成年限']; 
-        $ext['wyfee'] = floatval($res2['物 业 费']);
+        $ext['wyfee'] = isset($res2['物 业 费']) ? floatval($res2['物 业 费']) : 0;
         $ext['remark'] = empty($res3['remark']) ? '' : $res3['remark'];
         if(!empty($res3['核心卖点'])){
             $ext['remark'] .= (empty($res3['remark']) ? '' : "；\n").$res3['核心卖点'];
@@ -63,7 +63,7 @@ class caiHftcs{
         foreach($pics as $tr){ 
             $abi = ['title'=>$tr['alt'],'mpic'=>$tr['src'],'aflag'=>'8','atype'=>'',];
             $abi['lpid'] = $lpid;
-            $abi['catid'] = 'sale';
+            $abi['part'] = 'sale';
             $abi['exid'] = "hft-".(md5($tr['src'])); 
             $old = db()->table('docs_album')->where("exid='{$abi['exid']}'")->find();
             if(!$old){

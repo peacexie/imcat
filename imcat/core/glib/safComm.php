@@ -25,13 +25,13 @@ class safComm{ // extends safBase
     }
 
     // 综合认证：
-    static function formCAll($mod,$path='',$timeout=3600){
+    static function formCAll($mod,$path='',$timeout=3600,$clear=1){
         $re = '';
         //fromUrl 认证
         self::urlFrom($path);
         $rest = self::formCInit('x', $timeout);
         $code = basReq::val("{$mod}_{$rest[1]}");
-        $revc = self::formCVimg($mod, $code, 'check', $timeout, 1);
+        $revc = self::formCVimg($mod, $code, 'check', $timeout, $clear);
         if(!empty($rest[0])){ 
             $re = basLang::show('safcomm_vcoderr')."[$rest[0]]";
         }elseif(!empty($revc)){ //认证码 认证

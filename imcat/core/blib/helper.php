@@ -14,6 +14,12 @@ use imcat\usrBase;
  * 核心类库:core中，尽量不要使用别名函数
  */
 
+// data(模型数据函数)
+if(!function_exists('data')){ 
+function data($mod, $whr='', $lmt='10', $ord='', $ops=[]){
+    return \imcat\glbData::get($mod, $whr, $lmt, $ord, $ops);
+} }
+
 // dump(格式化输出：变量，数组，Object)
 if(!function_exists('dump')){ 
 function dump($var,$min=1){

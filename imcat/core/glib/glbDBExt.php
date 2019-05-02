@@ -4,36 +4,59 @@ namespace imcat;
 // DBExt
 class glbDBExt{    
     
+    static function moveOneField($mod, $cid){
+        $db = glbDBObj::dbObj();
+        // create:field
+        $tabf = 'base_fields';
+        $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
+        if(in_array($r['dbtype'],array('nodb','file'))) return; 
+        $tabid = (empty($r['etab'])?'docs':'dext')."_$mod"; 
+        $tabto = (empty($r['etab'])?'dext':'docs')."_$mod"; 
+        $cols = $db->fields($tabto); 
+        self::setOneFAE($tabto,$cid,$r,$cols);
+        // move:data
+        $sin = "SELECT `$cid` FROM $db->pre{$tabid}$db->ext f WHERE f.did=n.did";
+        $sql = "UPDATE $db->pre{$tabto}$db->ext n SET n.$cid = ($sin) "; 
+        $db->query($sql);
+        // end:del-old-field, upd-field-cfg
+        $db->query("ALTER TABLE $db->pre{$tabid}$db->ext DROP `$cid` ");
+        $dupd['etab'] = empty($r['etab']) ? '1' : '0';
+        $db->table($tabf)->data($dupd)->where("model='$mod' AND kid='$cid'")->update();
+        glbCUpd::upd_model($mod);
+    }
+
     // 字段 - 添加/删除/修改 
     static function setOneField($mod,$cid,$act='del',$cfg=array()){
-        $_groups = glbConfig::read('groups');
         $db = glbDBObj::dbObj();
         $tabf = 'base_fields';
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
         if(in_array($r['dbtype'],array('nodb','file'))) return; 
+        if(empty($r) && !empty($cfg)) $r = $cfg;
         $tabid = self::getTable($mod,empty($r['etab'])?'0':1); 
         $cols = $db->fields($tabid); 
         if($act=='del'){
             if(isset($cols[$cid])) $db->query("ALTER TABLE $db->pre{$tabid}$db->ext DROP `$cid` ");
             $db->table($tabf)->where("model='$mod' AND kid='$cid'")->delete();     
         }else{
-            $sql = "ALTER TABLE $db->pre{$tabid}$db->ext";
-            if(isset($cols[$cid])) $sql.= " CHANGE `$cid` ";
-            else                   $sql.= " ADD ";     
-            if(empty($r) && !empty($cfg)) $r = $cfg;
-            $dblen = intval(@$r['dblen']);
-            $sql.= " `$cid` $r[dbtype]".($r['dbtype']=='varchar' ? ($dblen>0?"($dblen)":'(12)') : ''); 
-            $sql.= (strpos("($r[vreg]",'nul:') ? " NULL " : ' NOT NULL '); 
-            //$sql.= (empty($r['dbdef']) ? "" : " DEFAULT '$r[dbdef]' "); 
-            if(strstr($r['dbtype'],'char')){
-                $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'':$r['dbdef'])."' "; 
-            }elseif(strstr($r['dbtype'],'int')){
-                $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'0':$r['dbdef'])."' "; 
-            }
-            $after = self::findAfterField($cols,$cid);
-            if(!isset($cols[$cid])) $after && $sql.= " AFTER `$after` ";
-            $db->query($sql);
+            self::setOneFAE($tabid,$cid,$r,$cols);
         }
+    }
+    static function setOneFAE($tabid,$cid,$r,$cols=array()){
+        $db = glbDBObj::dbObj();
+        $sql = "ALTER TABLE $db->pre{$tabid}$db->ext";
+        if(isset($cols[$cid])) $sql.= " CHANGE `$cid` ";
+        else                   $sql.= " ADD ";
+        $dblen = intval(@$r['dblen']);
+        $sql.= " `$cid` $r[dbtype]".($r['dbtype']=='varchar' ? ($dblen>0?"($dblen)":'(12)') : ''); 
+        $sql.= (strpos("($r[vreg]",'nul:') ? " NULL " : ' NOT NULL '); 
+        if(strstr($r['dbtype'],'char')){
+            $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'':$r['dbdef'])."' "; 
+        }elseif(strstr($r['dbtype'],'int')){
+            $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'0':$r['dbdef'])."' "; 
+        }
+        $after = self::findAfterField($cols,$cid);
+        if(!isset($cols[$cid])) $after && $sql.= " AFTER `$after` ";
+        $db->query($sql);
     }
 
     static function setfieldDemo($mod,$obj,$org='(drop)'){

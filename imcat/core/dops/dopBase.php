@@ -283,12 +283,12 @@ class dopBase{
     function svEnd($id,$show=1){
         $this->svMoveFiles($id);
         $this->svFileData($id);
+        $js = '';
         if(in_array($this->cfg['pid'],array('docs','users'))){ //,'types'
             //是否判定cheched?
             $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
             $itype = isset($this->fme[$field]) ? $this->fme[$field] : '';
             $urls = vopStatic::updKid($this->mod,$id,'upd',$itype);
-            $js = '';
             foreach($urls as $tpl=>$mkv){
                 $js .= basJscss::jscode(0,PATH_BASE."?ajax-cron&static=updkid&tpldir=$tpl&rf=$mkv");
             }

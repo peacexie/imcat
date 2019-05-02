@@ -29,7 +29,7 @@ class basLoader{
         $fx3 = substr($cname,0,3);
         if(strpos($cname,'\\')){ // /views/chn/_ctrls/* 控制器
             return self::doinc('/'.str_replace('\\','/_ctrls/',$cname).".php", DIR_VIEWS, 1);
-        /*}elseif($fx3=='exu'){ // /extra/ulibs/*扩展类库
+        /*}elseif($fx3=='exu'){ // /extra/ulibs/*扩展类库 (要么增加:mycat命名空间?)
             return self::doinc("/extra/ulibs/$cname.php", DIR_ROOT, 1);*/
         }else{ // /imcat/core/xdir/fixName.php 核心类库
             foreach(self::$acdirs as $dir=>$fixs){

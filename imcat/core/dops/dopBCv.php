@@ -43,7 +43,7 @@ class dopBCv{
         return "<td class='tc'>$val</td>\n";
     }
     // 显示项-Title
-    function Title($r,$td=1,$key='title',$url='',$len=32){ 
+    function Title($r,$td=1,$key='title',$url='',$len=32,$exstr=''){ 
         $val = $r[$key]; 
         $val = basStr::cutWidth($val,$len);
         if(!empty($r['color'])) $val = "<span style='color:#{$r['color']}'>$val</span>"; 
@@ -54,12 +54,12 @@ class dopBCv{
             $val = "<span class='c33F'>".($ticon['icon']=='pic' ? basLang::show('core.bcv_pic') : basLang::show('core.bcv_file'))."</span>$val"; 
         }
         if(empty($td)) return $val;
-        return "<td class='tl'>$val</td>\n";
+        return "<td class='tl'>$val{$exstr}</td>\n";
     }
     // 显示项-TKeys, winpop,select,cbox,
     function TKeys($r,$td=1,$key,$len=12,$null='',$color=1){
         $val = $r[$key]; $vbak = $val; $vre = array();
-        $fc = @$this->cfg['f'][$key]; 
+        $fc = @$this->cfg['f'][$key]; //if($key=='areas') dump($fc);
         $vre = vopCell::optArray($fc,$val,$color);
         if(empty($vre)){
             $val = empty($vbak) ? $null : $vbak;

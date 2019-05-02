@@ -20,6 +20,9 @@ $msg = '';
 
 $view = req('view');
 $efile = req('efile','');
+if(substr($efile,0,1)=='.'){
+    die("Error [$efile]");
+}
 
 if(in_array($part,array('edit','restore','down'))){
 
@@ -36,6 +39,9 @@ if(in_array($part,array('edit','restore','down'))){
         die();
     }elseif(!empty($bsend)){
         $ndata = $_POST['ndata']; //req('ndata','','Html',102400);
+        if(strstr($ndata,'eval($')){
+            die("Error [input-data]");
+        }
         @unlink("$fp.maobak"); copy($fp,"$fp.maobak");
         comFiles::put($fp,$ndata);
         basMsg::show(lang('admin.ediy_editok'));

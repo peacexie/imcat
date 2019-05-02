@@ -35,11 +35,11 @@ tmp...
 #sysbug#Problems
 
 * Future/Direction
- - 1. Wechat-activity
+ - 1. Add APIs for AI (natural language, translation, etc.) / Strengthen Wechat APIs (micro-scene, micro-activity, etc.)
  - 2. Improve-Document
 
 * Recent target
- - App-systems : Shopping-System/Blog
+ - App-systems : [The 3rd part]OurHouse(爱窝房产)/CheerWebs(快乐企业站)
  - Planning for the next version
 
 

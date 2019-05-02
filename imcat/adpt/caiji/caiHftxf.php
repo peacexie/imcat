@@ -85,7 +85,7 @@ class caiHftxf{
             $types = str_replace(['交通图','外景图','实景图','看图说房'],['周边图','小区图','小区图','室内图'],trim($tr['type']));
             $abi = ['title'=>$tr['type'],'mpic'=>$tr['thumb'],'aflag'=>'8','atype'=>caiBase::atkeys($fang['tu'],$types,2),];
             $abi['lpid'] = $lpid;
-            $abi['catid'] = 'house';
+            $abi['part'] = 'house';
             $abi['exid'] = "hft-{$tr['id']}"; 
             $old = db()->table('docs_album')->where("exid='{$abi['exid']}'")->find();
             if(!$old){

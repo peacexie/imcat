@@ -58,8 +58,10 @@ class dopFunc{
             $url = PATH_ROOT."/plus/api/redir.php?$mod.{$kid}";
         }elseif($link=='#'){
             return $title;
-        }elseif(strpos($link,'://')){
+        }elseif(strpos($link,'://') || strpos($link,'//')===0){
             $url = $link;    
+        }elseif(strpos($link,'{')===0){
+            $url = comStore::revSaveDir($link); 
         }else{
             $url = PATH_ROOT.$link;    
         }
