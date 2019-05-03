@@ -7,7 +7,7 @@
 $_demo_tabs = array(
     'dext_cargo', 'docs_cargo', 
     'dext_keres', 'docs_keres', 
-    'dext_faqs', 'dext_faqs', 
+    'dext_faqs', 'docs_faqs', 
     // 
     'dext_demo', 'docs_demo', 
     'dext_news', 'docs_news', 
