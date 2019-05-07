@@ -20,6 +20,9 @@ class texIndoc{
     static $ncfgs = array();
     
     static function expwhr($user,$part,$stype,$read=0,$cnt=0){ 
+        if(!smod('indoc')){
+            return $cnt ? 0 : '';
+        }
         $db = db(); 
         if($user->userFlag=='Login'){
             $uname = $user->uinfo['uname'];
