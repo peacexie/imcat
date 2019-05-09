@@ -78,8 +78,8 @@ select[multiple]{height:auto;}
   <form name="reidpw" action="?" method="get">
   <tr class="tc">
     <td><?php lang('tools.rst_rstidpw',0); ?></td>
-    <td><input name="uname" value="<?php echo $orguser; ?>" type="text" onBlur="chkIdpass(this,0,3)" maxlength="12" class='w150'></td>
-    <td><input name="upass" value="<?php echo $orgpass; ?>" type="text" onBlur="chkIdpass(this,1,6)" maxlength="18" class='w150'></td>
+    <td><input name="uname" value="<?php echo $orguser; ?>" type="text" onBlur="chkIdpass(this,0)" maxlength="12" class='w150'></td>
+    <td><input name="upass" value="<?php echo $orgpass; ?>" type="text" onBlur="chkIdpass(this,1)" maxlength="18" class='w150'></td>
     <td><input name="" value="<?php lang('tools.rst_reset',0); ?>" class="btn" type="submit"><input name="act" type="hidden" value="rstIDPW"></td>
   </tr> 
   </form>
@@ -184,17 +184,13 @@ $re .= '<br> @ '.date('Y-m-d H:i:s');
   </table>
 
 <script>
-function chkIdpass(e,no,len){
-  var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-  var simpass = ' <?php echo implode(',',read('simpass','sy')); ?>';
-  var tmp = e.value.replace(/\W/g, ""); 
-  if(simpass.indexOf(tmp)>0 || tmp.length<len){
-    tmp = orgcfgs[no];
-    alert('<?php lang('tools.rst_idpw_tip2',0); ?>'+simpass);
-  }
-  e.value = tmp;
+var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
+var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
+function chkIdpass(e, no){
+    chkIdpwd(e, no, '<?=lang('tools.rst_idpw_tip2',0)?>');
 }
 </script>
+<script src="./xfunc.js"></script>
 
 <?php
 glbHtml::page('end');

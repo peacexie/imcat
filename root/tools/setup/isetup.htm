@@ -109,12 +109,12 @@
   </tr>
   <tr>
     <td class="tr"><?php lang('tools.setup_admid',0); ?></td>
-    <td class="tl"><input name="uid" value="<?php echo $orguser; ?>" onBlur="chkIdpass(this,0,3)" type="text" id="uid" size="24" maxlength="24" reg='str:3-15'>
+    <td class="tl"><input name="uid" value="<?php echo $orguser; ?>" onBlur="chkIdpass(this,0)" type="text" id="uid" size="24" maxlength="24" reg='str:3-15'>
     <td><?php echo lang('tools.setup_val_letter','3~15'); ?></td>
   </tr>
   <tr>
     <td class="tr"><?php lang('tools.setup_admpw',0); ?></td>
-    <td class="tl"><input name="upw" value="<?php echo $orgpass; ?>" onBlur="chkIdpass(this,1,6)" type="text" id="upw" size="24" maxlength="24" reg='str:6-24'>
+    <td class="tl"><input name="upw" value="<?php echo $orgpass; ?>" onBlur="chkIdpass(this,1)" type="text" id="upw" size="24" maxlength="24" reg='str:6-24'>
     <td><?php echo lang('tools.setup_val_letter','6~24'); ?></td>
   </tr> 
   <tr>
@@ -153,6 +153,7 @@ var steps = new Array('','Check','Stru','Base','Demo','Idpw');
 var nowStep = 0;
 setState(); 
 var orgcfgs = '<?php echo "$orguser,$orgpass"; ?>'.split(',');
-var simpass = ' <?php echo implode(',',read('simpass','sy')); ?> ';
+var simpass = ',<?php echo implode(',',read('simpass','sy')); ?>,';
 var otimer = null;
 </script>
+<script src="../adbug/xfunc.js"></script>

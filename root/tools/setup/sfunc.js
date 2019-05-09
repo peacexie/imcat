@@ -36,15 +36,10 @@ function clear1(){
 }
 */
 
-function chkIdpass(e,no,len){
-    var tmp = $(e).val().replace(/\W/g, ""); 
-    var reg = /^[a-zA-Z]([-_a-zA-Z0-9]{2,14})$/;
-    if(!reg.test(tmp) || simpass.indexOf(tmp)>0 || tmp.length<len){
-        tmp = orgcfgs[no];
-        alert(lang('setup.idpw_rule')+simpass);
-    }
-    $(e).val(tmp);
+function chkIdpass(e, no){
+    chkIdpwd(e, no, lang('setup.idpw_rule'));
 }
+
 function chkDbname(){
     var msg = $('#dbname').val()==$('#dbnold').val() ? lang('setup.dbcreat') : lang('setup.dbedit');
     $('#bdbedit').val(msg);
