@@ -189,11 +189,12 @@ class dopBase{
         return $this->fmv[$_key];
     }
     function svTypes(){
+        global $_cbase;
         if(isset($this->fme['part'])){ 
             $this->fmv['part'] = $this->fme['part'];
-            /*if(isset($this->cfg['f']['psyn'])){
+            if(in_array($this->mod,$_cbase['part']['psyn'])){
                $this->fmv['part'] = basKeyid::kidY3x5().'-'.basKeyid::kidRand('24',3); 
-            }*/
+            } // 1y3-akt6n-7w4
         }
         $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 
         if(isset($this->fme[$field])){
