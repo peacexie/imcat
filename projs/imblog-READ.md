@@ -2,9 +2,23 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心博客(imblog) V4.6 Released (2019-03)
+* 贴心博客(imblog) V4.8 Released (2019-05-11)
 * Official Website / 官网: http://imblog.txjia.com/
 * Download / 下载: https://github.com/peacexie/imcat/blob/patches/projs/imblog-4.5.rar
+
+--- --- --- --- --- --- --- --- --- 
+
+### ChangeLog/更新项目 2019-05-11
+
+* Fix/修正: 
+ - The authentication code is not displayed while run under https
+ - 部署在https下，验证码不显示
+* Improve/优化: 
+ - The demo data can set sptional while install
+ - 安装时，演示资料可选
+* Improve/优化: 
+ - Improve account/password checking when instal or reset-password
+ - 安装系统/重置密码时，改进账号密码的验证
 
 --- --- --- --- --- --- --- --- --- 
 
