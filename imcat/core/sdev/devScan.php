@@ -140,7 +140,15 @@ class devScan{
     }
     
     // rstIDPW();
-    static function rstIDPW($uname='',$upass=''){
+    static function rstIDPW($uname='', $upass='', $updp=0){
+        global $_cbase;
+        if($updp){
+            glbCUpd::upd_groups();
+            glbCUpd::upd_paras('score');
+            foreach($_cbase['run']['_safe'] as $sk=>$sv) {
+                $_cbase['run']['safe'][$sk] = $sv;
+            }
+        }
         $sre = usrPerm::simIdpw($uname, $upass);
         if(!empty($sre)) return $sre;
         $db = glbDBObj::dbObj();

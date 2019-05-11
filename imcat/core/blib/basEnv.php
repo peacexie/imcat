@@ -220,22 +220,30 @@ class basEnv{
     static function sysHome(){
         global $_cbase;
         $host = $_SERVER["HTTP_HOST"]; 
-        $http = (@$_SERVER['HTTPS']==='on') ? 'https' : 'http';
+        $http = ''; // self::isHttps() ? 'https:' : 'http:';
         $res = glbConfig::read('domain','sy');
         $sdirs = $res['subDirs'];
         // dir-跳转:
         if(isset($sdirs[$host])){
             $host = $sdirs[$host];
             $uri = $_SERVER['REQUEST_URI'];
-            $dir = "$http://$host$uri";
+            $dir = "$http//$host$uri";
             header("Location:$dir");
         }
-        $_cbase['run']['rsite'] = "$http://$host"; 
-        $_cbase['run']['rmain'] = "$http://$host".PATH_PROJ; 
-        $_cbase['run']['roots'] = "$http://$host".PATH_ROOT; 
-        $_cbase['run']['fbase'] = "$http://$host".PATH_BASE; 
+        $_cbase['run']['rsite'] = "$http//$host"; 
+        $_cbase['run']['rmain'] = "$http//$host".PATH_PROJ; 
+        $_cbase['run']['roots'] = "$http//$host".PATH_ROOT; 
+        $_cbase['run']['fbase'] = "$http//$host".PATH_BASE; 
     }
-
+    // 判断是否 isHttps
+    static function isHttps() {
+        if(isset($_SERVER['HTTPS']) && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))){
+            return true; // 1:Apache, on:IIS
+        }elseif(isset($_SERVER['SERVER_PORT']) && ('443' == $_SERVER['SERVER_PORT'] )) {
+            return true;
+        } // HTTP_X_FORWARDED_PROTO='https'
+        return false;
+    }
     // 检查内网ip地址
     static function isLocal($ip=''){
         $ip || $ip = self::userIP();

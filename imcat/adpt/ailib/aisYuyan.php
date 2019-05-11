@@ -34,12 +34,13 @@ class aisYuyan extends aisBdapi{
     }
 
     // 摘要提取
-    static function sums($title, $content)
+    static function sums($title, $content, $len=180)
     {
         $url = 'https://aip.baidubce.com/rpc/2.0/nlp/v1/news_summary';
         $data['title'] = $title;
         $data['content'] = $content;
-        $res = self::remote($url, $data, 1);
+        $data['max_summary_len'] = $len;
+        $res = self::remote($url, $data, 1); var_dump($res);
         return $res;
     }
 

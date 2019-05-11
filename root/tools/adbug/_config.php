@@ -1,21 +1,17 @@
 <?php
 namespace imcat;
-//    辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
-//$_cbase['tpl']['vdir'] = 'adm';    
-//$_cbase['run']['outer'] = 1;
-//$_cbase['skip']['_sess_'] = true;
+// 辅助调试工具，请用于合法用途，使用后请删除本文件或移动到网站目录之外！
 if(!session_id()) @session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
 include dirname(dirname(__DIR__)).'/run/_init.php';
 include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';
-$sess_id = \imcat\usrPerm::getSessid(); 
+$sess_id = usrPerm::getSessid(); 
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
 $_selfname = $_SERVER['SCRIPT_NAME'];    
-$allowb = array('binfo','login','dologin','iframe','frame','fset'); // 'phpinfo1','cookie',
+$allowb = array('binfo','login','dologin','iframe','frame','fset');
 $allowc = isset($show_binfo) ? $show_binfo : array('_null_'); 
-// array('_null_'); // 'binfo' 或 '_null_'
 
 if(strstr($_selfname,'start.php')){    
     ;//
@@ -25,11 +21,7 @@ if(strstr($_selfname,'start.php')){
     ;//
 }else{
     bootPerm_ys('pstools','','<p><a href="binfo.php?login">login</a></p>');
-    //else {  $_isOut = 1;    @include __DIR__.'/devRun.php';    }
 }
-/*if(!basEnv::isLocal()){
-    //
-}*/
 
 function navlinks($link){
     $tmp = explode('?', $link);

@@ -150,7 +150,7 @@ if(in_array($act,array('expData','expBack'))){
     $uname = req('uname');
     $upass = req('upass');
     if($uname && $upass){ 
-      devScan::rstIDPW($uname,$upass);
+      devScan::rstIDPW($uname, $upass, 1);
       $exmsg = "<br>".lang('tools.rst_idpw_id')."[<span class='cF03'>$uname</span>] ".lang('tools.rst_idpw_pw')."[<span class='cF03'>$upass</span>] ".lang('tools.rst_idpw_memory')."";
     }else{
       $exmsg = lang('tools.rst_idpw_error'); 

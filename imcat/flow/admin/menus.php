@@ -106,7 +106,9 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
     $lnkupd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\",300,200);'>".lang('admin.mu_upd')."</a>";
     $lnklay = admAFunc::typLay($cfg,$aurl,$pid);
     $lnkadd = "<a href='$aurl[1]&view=gform&pid=$pid' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('admin.mu_add')."&gt;&gt;</a>";
-    glbHtml::tab_bar(lang('admin.mu_navmenu')." :: $gname<span class='span ph5'>|</span>$lnkupd - $lnkadd<br>$lnklay",$gbar,35);
+    if($msg && !strpos($msg,'<')) $msg = "<span class='cF00'>$msg</span>";
+    $msg && $msg = $msg."<br>";
+    glbHtml::tab_bar("$msg".lang('admin.mu_navmenu')." :: $gname<span class='span ph5'>|</span>$lnkupd - $lnkadd<br>$lnklay",$gbar,35);
     
     glbHtml::fmt_head('fmlist',"$aurl[1]",'tblist');
     echo "<th>".lang('flow.title_select')."</th><th>Key</th><th>".lang('flow.title_name')."</th><th>".lang('flow.title_top')."</th><th>".lang('flow.title_enable')."</th>";

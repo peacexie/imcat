@@ -203,6 +203,7 @@ class glbCUpd{
     }
     
     static function upd_paras($pid, $re='save'){ 
+        global $_cbase;
         $_groups = glbConfig::read('groups');
         $str = ''; $arr = array();
         foreach($_groups as $k=>$v){ 
@@ -215,6 +216,10 @@ class glbCUpd{
                     $val = str_replace(array('"',"\\"),array("\\\"","\\\\"),$res['val']);
                     $str .= "\n\$_cbase$k3 = \"$val\";";
                     $arr[$k2] = $res['val'];
+                    if(substr($v2['key'],0,5)=='safe_'){
+                        $_sk = substr($v2['key'],5);
+                        $_cbase['run']['_safe'][$_sk] = $val;
+                    }
                 }
                 $str .= "\n";
             }    
