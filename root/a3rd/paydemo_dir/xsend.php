@@ -29,7 +29,7 @@ foreach($ptabs as $k=>$v){
     $i++;
 }
 
-$_cbase['tpl']['vdir'] = 'chn';
+$_cbase['tpl']['vdir'] = 'comm';
 $kar = glbDBExt::dbAutID('coms_corder');
 $order['cid'] = $order['title'] = $kar[0]; 
 $order['cno'] = $kar[1];

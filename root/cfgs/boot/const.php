@@ -36,7 +36,7 @@ $_cbase['debug']['db_time'] = '100'; //0,10,100
 $_cbase['tpl']['tpc_on']  = 0; //是否开启模板缓存，true开启,false不开启 
 $_cbase['tpl']['tpc_ext'] = '.cac_php'; //模板缓存后缀,一般不需要修改 
 $_cbase['tpl']['no_static'] = '(adm)'; //,umc
-$_cbase['tpl']['def_static'] = 'chn';
+$_cbase['tpl']['def_static'] = 'comm';
 $_cbase['tpl']['mob_tpls'] = '(mob)'; //,app
 
 // server
@@ -65,7 +65,7 @@ $_cbase['weixin']['tplidIndoc'] = 'u6DK6CKG8TnCFGaOwglBPUPa_UvE3nwpQU-k8kP1YpA';
 // indoc
 $_cbase['indoc']['debug'] = true; 
 // topic
-$_cbase['topic']['tpldir'] = '/chn/topic'; 
+$_cbase['topic']['tpldir'] = '/comm/topic'; 
 
 // 3aks
 $_cbase['3aks']['baiduip'] = '3GGtGlCtbAGa1GYK70XFX2Rb'; //百度IP
@@ -80,4 +80,6 @@ $_cbase['part']['tab'] = array(
 );
 $_cbase['part']['def'] = 'cn'; // 默认:语言-cn/城市-cz
 $_cbase['part']['mods'] = array('xxx'); // 'about','news','cargo','gbook'
+$_cbase['part']['psyn'] = array('xxx'); // 'about','cargo', // 资料同步模型
 // 请在相关模型主表的`xno`字段后,手动添加`part`字段
+// 设置了psyn的模型，再添加psyn字段，用于同步

@@ -4,9 +4,9 @@
 
 ```
 <a href="{surl(0)}">[Homepage]</a>
-<a href="{surl(chn:about-alink);}">chn:About-Us</a>
-<a href="{surl(chn:0)}">[chn:Home]</a>
-<a href="{surl(chn:cargo)}">chn:Porduct</a>
+<a href="{surl(comm:about-alink);}">chn:About-Us</a>
+<a href="{surl(comm:0)}">[chn:Home]</a>
+<a href="{surl(comm:cargo)}">chn:Porduct</a>
 <a href="{surl(start)}">Start-Page</a>
 <a href="{surl(doc:tester)}">Test-Code</a>
 <a href="{surl(demo)}">Docs/News</a>
@@ -154,6 +154,6 @@ demo:
 ```
 // {stime($re4['atime']);}                 =>  [?php echo vopCell::cTime($re4['atime']);;?]
 // {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
-// {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
+// {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(comm:info-nav)}
 // {sopt(c0769+c0735,china)}
 ```

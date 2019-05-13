@@ -22,7 +22,7 @@ $_sy_pubcfg['parts'] =  array(
 
 //4. ids
 $_sy_pubcfg['ids'] =  array(
-    array('dtmp','/dset/_score.cfg.php',array('close_chn'=>'1')), //安装标记
+    array('dtmp','/dset/_score.cfg.php',array('close_comm'=>'1')), //安装标记
 );
 
 //5. cdemo

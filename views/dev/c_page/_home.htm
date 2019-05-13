@@ -51,13 +51,13 @@ $subs = tex('texBase')->docer('d_start/doc__home');
         <div class="panel-body side">
           {tag:tlist3=[List][modid,news][stype,nsys][limit,3]}
           <p>
-            <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("chn:news.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
+            <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("comm:news.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
           </p>
           {/tag:tlist3}
           
           {tag:tlist2=[List][modid,faqs][limit,5]}
           <p>
-            <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("chn:faqs.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
+            <i class="right">{stime($t_atime,0)}</i>*. <a href="{surl("comm:faqs.$t_did")}" target="_blank">{title($t_title,45,$v)}</a>
           </p>
           {/tag:tlist2}
         </div>
@@ -70,11 +70,11 @@ $subs = tex('texBase')->docer('d_start/doc__home');
     <div class="right">
     <i><a href="{surl(doc:tester)}" target="_blanlk">测试代码</a></i>
     <i><a href="{surl(demo)}" target="_blanlk">演示文档</a></i>
-    <i><a href="{surl(chn:topic)}" target="_blank">演示专题</a></i>
+    <i><a href="{surl(comm:topic)}" target="_blank">演示专题</a></i>
     </div>
 -->
 
-{inc:"chn:c_pub/inc-blinks"}
+{inc:"comm:c_pub/inc-blinks"}
 
 {inc:"c_pub/afoot"}
 

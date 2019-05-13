@@ -21,7 +21,7 @@ $cnt2 = \imcat\umc\texIndoc::expwhr($user,"imy",0,'no',1);
     <dl>
         <dt>{lang(user.pub_uinfo)}: </dt><dd>{=$unowstr}</dd>
         {if ($user->userFlag=='Guest') }
-        <dt>{lang(user.uif_corder)}: </dt><dd>{lang(user.uif_caritems,"$ordwcnt")}, <a href="{surl(chn:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a>. 
+        <dt>{lang(user.uif_corder)}: </dt><dd>{lang(user.uif_caritems,"$ordwcnt")}, <a href="{surl(comm:ocar)}">{lang(user.uif_clickv)}&gt;&gt;</a>. 
           ({lang(user.uif_nolontip)})</dd>
         <dt>{lang(user.uif_unow)}: </dt><dd>{lang(user.uif_notlogin)}<a href="{surl($ulogin)}">{lang(user.uif_clickl)}</a> {lang(user.uif_or)} <a href="{surl($uapply)}">{lang(user.uif_clickr)}</a>......</dd>
         {else}
