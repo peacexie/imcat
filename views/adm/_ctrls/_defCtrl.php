@@ -46,35 +46,52 @@ class _defCtrl{
         $db = glbDBObj::dbObj();
         $user = usrBase::userObj('Admin');
         $aurl = basReq::getUri(-2); 
-        $file = str_replace('-','/',$this->ucfg['mkv']);
-        // head
+        // body
+        $this->head($_cbase);
+        if($mod && isset($_groups[$mod])){
+            $dop = new dopBase($_groups[$mod],'base_model');
+            $cv = $dop->cv; 
+        }
+        $full = $this->flowFile();
+        require $full;
+        $this->foot($_cbase);
+        die(); 
+    }
+
+    function flowFile(){
+        include(DIR_VIEWS."/adm/frame/_inc-navbar.htm");
+        $fp = str_replace('-','/',$this->ucfg['mkv']).'.php';
+        $fext = "/extra/$fp";
+        $file = "/flow/$fp";
+        if(file_exists(DIR_ROOT.$fext)){
+            echo "\n<!--inc:{root}$fext-->\n";
+            return DIR_ROOT.$fext;
+        }elseif(file_exists(DIR_IMCAT.$file)){
+            echo "\n<!--inc:{imcat}$file-->\n";
+            return DIR_IMCAT.$file;
+        }else{
+           die("<h3>File Not Found: <br>{root}$fext or<br>{imcat}$file</h3>"); 
+        }
+    }
+
+    function head(){
         glbHtml::page(basLang::show('admin.adm_center').'-(sys_name)',1);
         eimp('initJs','jquery,jspop;comm;comm(-lang)');
         eimp('initCss','bootstrap,stpub,jstyle;comm');
         glbHtml::page('aumeta');
         echo '</head><body class="'.(basEnv::isMobile()?'mobbody':'pcbody').'">';
-        // inc
-        echo "\n<!--inc:/$file.php-->\n"; 
-        $full = DIR_IMCAT."/flow/$file.php";
-        if(!file_exists($full)){
-            die("<h1>File Not Found: $file.php</h1>");
-        }else{
-            include(DIR_VIEWS."/adm/frame/_inc-navbar.htm");
-            $dop = new dopBase(@$_groups[$mod],'base_model');
-            $cv = $dop->cv;
-            require $full;
-        }
+    }
+
+    function foot($_cbase){
         echo "\n<!--inc:end-->\n"; 
         eimp('/~base/jslib/jq_base.js');
         eimp('/layer/layer.js','vendui');
         eimp('/bootstrap/js/bootstrap.min.js','vendui');
-        // footer
         if($_cbase['debug']['err_mode']){
             echo "<p class='tc pv20'>".basDebug::runInfo()."</p>\n";
         }
         echo "</body></html>\n";
         echo basJscss::jscode("$(function(){ admNavd(); setTimeout('jcronRun()',4700) });")."\n";
-        die(); //return array('tplnull'=>1);
     }
 
 }
