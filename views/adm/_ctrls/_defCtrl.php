@@ -48,10 +48,9 @@ class _defCtrl{
         $aurl = basReq::getUri(-2); 
         // body
         $this->head($_cbase);
-        if($mod && isset($_groups[$mod])){
-            $dop = new dopBase($_groups[$mod],'base_model');
-            $cv = $dop->cv; 
-        }
+        $_dcfg = isset($_groups[$mod]) ? $_groups[$mod] : $_groups['docs'];
+        $dop = new dopBase($_dcfg,'base_model');
+        $cv = $dop->cv; 
         $full = $this->flowFile();
         require $full;
         $this->foot($_cbase);
