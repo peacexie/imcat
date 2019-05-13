@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta(); }
+{php}
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub;jstyle;comm');
+$null1 = "所有会员";
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+{/php}
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+
+<div class="row">
+  <div class="col-md-9">
+    <!--main_start-->
+      <div class="news-tbar">
+        <i>{sopt($this->key,$this->mod,0,$null1)}</i>
+        <i class="right">
+        <a href="{surl($this->mod)}">[所有]</a>
+        {tag:tp=[Type,u][modid,$this->mod]}
+        {php if(strpos($t_kid,'stop')) continue; }
+        <a href="{surl($this->mod."-$t_kid")}">{title($t_title,32,$u)}</a>
+        {/tag:tp}
+        </i>
+      </div>
+    
+      <table border="0" width="100%" class="keres-table">
+        {tag:dlist=[Page][modid,$this->mod][stype][hinfo][keywd,0,company][limit,10]}
+        {:row}
+        <tr>
+          <td rowspan="2" width="160" height="120" class="tc uimark-pos-rel">
+          <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+          {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}
+          </td>
+          <td class="title">
+          <a href="{surl($this->mod.".$t_uid")}">{title($t_company,96,$v)}</a>({=$t_uname})
+          <i class="right">{sopt($t_grade,$this->mod,0,$null2)} &nbsp; </i>
+          </td>
+        </tr>
+        <tr class="resume">
+          <td> 
+          &nbsp; &nbsp;
+          {if !empty($t_grade)}<i>[{sopt($t_grade,$this->mod,0,$null3)}]</i>{/if} &nbsp; 
+          {if !empty($t_ftype)}<i>[{sopt($t_ftype,ftype,0,$null3)}]</i>{/if} &nbsp; 
+          联系人:{=$t_mname} &nbsp; 电话:{=$t_mtel} &nbsp; [<a href="{surl($this->mod.".$t_uid")}">详情</a>]
+          </td>
+        </tr>
+        {/row}
+        <tr>
+          <td colspan="2" class="pa5">
+          {php echo $_cbase['page']['bar']; }
+          </td>
+        </tr>
+        {/tag:dlist}
+      </table> 
+    <!--main_end-->
+  </div>
+  <div class="col-md-3">
+    {inc:"corp/mem-side"}
+  </div>
+</div>
+
+
+{inc:"c_pub/afoot"} 
+</body></html>

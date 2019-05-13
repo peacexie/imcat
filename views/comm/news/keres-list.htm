@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head>
+{php}
+$this->pmeta();
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub,jstyle;comm'); 
+{/php}
+<?php
+$null1 = "所有类别";
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+?>
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+
+<div class="row">
+  <div class="col-md-9">
+
+    <div class="news-tbar">
+      <i>
+        <a href="{surl($this->mod)}">课件资源</a>
+        - {sopt($this->key,$this->mod,0)}
+      </i>
+      <i class="hidden-xs right">
+      <a href="{surl($this->mod)}">[所有]</a>
+      {tag:tp=[Type,u][modid,$this->mod][idfix,top]}
+      <a href="{surl($this->mod."-$t_kid")}">{title($t_title,32,$u)}</a>
+      {/tag:tp}
+      </i>
+    </div>
+    
+      <table border="0" width="100%" class="keres-table">
+        {tag:dlist=[Page][modid,$this->mod][join,detail][stype][ygrade][course][hinfo][keywd][limit,10]}
+        {:row}
+        <tr>
+          <td rowspan="2" width="160" height="120" class="tc uimark-pos-rel">
+          <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+          {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
+          </td>
+          <td class="title">
+          <a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a>
+          <i class="hidden-xs right">{sopt($t_catid,$this->mod,0,$null2)} &nbsp; </i>
+          </td>
+        </tr>
+        <tr class="resume">
+          <td>
+          &nbsp; &nbsp; 
+          {if !empty($t_ygrade)}<i>[{sopt($t_ygrade,ygrade,0,$null3)}]</i>{/if}
+          {if !empty($t_course)}<i>[{sopt($t_course,course,0,$null3)}]</i>{/if}
+          <span class="hid480">
+          &nbsp; &nbsp; {text(array($t_seo_des,$t_detail),120,1)} …… [<a href="{surl($this->mod.".$t_did")}">详情</a>]
+          </span>
+          </td>
+        </tr>
+        {/row}
+        <tr>
+          <td colspan="2" class="pa5">
+          {php echo $_cbase['page']['bar']; }
+          </td>
+        </tr>
+        {/tag:dlist}
+      </table> 
+
+  </div>
+  <div class="col-md-3">
+    {inc:"news/b-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"} 
+</body></html>

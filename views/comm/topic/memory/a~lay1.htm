@@ -1,0 +1,148 @@
+{block:init}{/block:init}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{php}
+include tinc('top_memory',0);
+$this->pmeta();
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub;comm;memory');
+{/php}
+</head>
+<body>
+{inc:"topic/memory/a~head"}
+
+
+    {block:cover}
+    <div class="row">
+      <div class="col-md-6 tc mpic">
+            <img src="{spic($cover['mpic'],demo_120x150.jpg,240x320)}" class="img-thumbnail">
+            <h1>{=$cover['title']}</h1>
+            <p>{=$cover['tags']}</p>
+      </div>
+      <div class="col-md-6 tc mtext">
+            <?=extMkdown::pdorg($cover['detail'])?>
+      </div>
+    </div>
+    {/block:cover}
+
+
+    {block:gift}
+    <a name="gift" class="pv10">&nbsp;</a>
+    <ul class="nav nav-tabs">
+        <a href="#" class="right">Top</a>
+        <li role="presentation" class="active">
+            <a><span class="fa fa-gift"></span> 留言</a>
+        </li> 
+    </ul>
+    <div class="h15">&nbsp;</div>
+    <div class="row">
+    <div class="col-md-7 mword">
+        <div>
+            <div class="left wp50 ph2">
+                <input type="text" class="form-control" id="word" name="word" maxlength="36" placeholder="留言">
+            </div>
+            <div class="left wp25 ph2">
+                <input type="text" class="form-control" id="mname" name="mname" maxlength="12" value="(匿名)" placeholder="网名">
+            </div>
+            <div class="right wp20 ph2">
+                <button type="submit" class="btn btn-primary" id='submit'>提交</button>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div class="lists">
+            {loop $words $k $v}
+            <h4>
+                <span class="right">{stime($v['atime'],auto)}</span>
+                {=$v['mname']}
+            </h4>
+            <p class="mb10">{text($v['detail'],255,1)} </p>
+            {/loop}
+        </div>
+    </div>
+    <div class="col-md-5 mflower">
+        <p>
+            {if empty($flower['mpic'])}
+            <img src="{=PATH_STATIC}/media/collect/aisi.jpg">
+            {else}
+            <img src="{spic($flower['mpic'])}">
+            {/if}
+        </p> 
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" id='fclicks'>{=$fclick}</button>
+            {if empty($flower)}
+            <button type="button" class="btn" id='fcbtn' disabled="disabled">{=$ftitle}</button>
+            {else}
+            <button type="button" class="btn btn-primary" id='fcbtn'>{=$ftitle}</button>
+            {/if}
+        </div>
+    </div>
+    </div>
+    {/block:gift}
+
+
+    {block:arcs}{if !empty($arcs)}
+    <a name="list" class="pv10">&nbsp;</a>
+    <ul class="nav nav-tabs">
+        <a href="#" class="right">Top</a>
+        <li role="presentation" class="active">
+            <a><span class="fa fa-list"></span> 忆文</a>
+        </li> 
+    </ul>
+    <div class="h15">&nbsp;</div>
+    <div class="row">
+        {loop $arcs $k $v}
+        <div class="col-md-6">
+            <h4>{=$v['title']}</h4>
+            <p class="mb10">{text($v['detail'],48,1)} …… [<a href='{surl("topic.$did.$v[dno]")}'>详情</a>]</p>
+        </div>
+        {/loop}
+    </div>
+    {/if}{/block:arcs}
+
+
+    {block:pics}{if !empty($pics)}
+    <a name="image" class="pv5">&nbsp;</a>
+    <ul class="nav nav-tabs">
+        <a href="#" class="right">Top</a>
+        <li role="presentation" class="active">
+            <a><span class="fa fa-image"></span> 忆图</a>
+        </li> 
+    </ul>
+    <div class="h15">&nbsp;</div>
+    <div class="mdetail">
+        <div class="row pics">
+            <?php if(!empty($pics) && count($pics)==1){ ?><!--album:start-->
+            <?php reset($pics); $upics=current($pics); foreach ($upics as $img) { ?>
+                <div class="col-xs-6 col-md-3 tc mhpica">
+                    <a class="thumbnail">
+                        <img src="{=$img}" alt="{=$img}">
+                    </a>
+                </div>
+            <?php } ?>
+            <?php }else{ ?><!--album/alist-->
+            <?php foreach($pics as $k2=>$data){ if(empty($data['upics'])) continue; ?>
+                <div class="col-xs-6 col-md-3 mhpicb">
+                    <p title="{=$data['tags']}">{=$data['title']}</p>
+                    <a href='{surl("topic.$did.$k2")}' class="thumbnail">
+                        <img src="{=$data['upics'][0]}">
+                    </a>
+                </div>
+            <?php } ?>
+            <?php } ?> <!--alist-end-->
+        </div>
+    </div>
+    {/if}{/block:pics}
+
+    {block:detail}{/block:detail}
+
+
+{inc:"topic/memory/a~foot"}
+
+{block:exact}<script>
+var wurl = '{=PATH_PROJ}/root/plus/coms/memory.php?did={=$did}';
+</script>{/block:exact}
+
+
+</body>
+</html>

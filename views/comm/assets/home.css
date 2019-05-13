@@ -1,0 +1,57 @@
+/* CSS Document */
+
+
+.home-tabadv { background:#F4F4F4; margin:0px auto 10px auto; }
+.home-tabadv td { text-align:center; border:1px solid #CCC; }
+.home-tabadv .side a { width:180px; display:block; padding:3px 10px; }
+.home-tabadv .adhead, .home-tabadv .adpic, .home-tabadv .adfoot{ padding:5px 0; }
+.home-tabadv .adhead a, .home-tabadv .adfoot a { display:inline-block; padding:3px 5px; }
+.home-tabadv .adpic { background:#FFF; padding:10px; }
+
+
+.adpush_obj{}
+.home-toolbar{ padding:0; }
+.home-adv0 { width:1140px; margin:0px auto 10px auto; }
+.home-adpic02 {
+    width: 100%; height:320px;
+    padding: 0px 0px;
+    margin: 0px;
+}
+.home-adpic02 img{ border-radius:10px; }
+.home-adpic02 p{ text-align:center; padding:5px 0; }
+
+
+.home-hot .top1, .home-hot .top2, .home-hot .top3 { text-align:center; font-size:large; }
+.home-hot .note1, .home-hot .note2, .home-hot .note3 { color:#666; font-size:small; }
+.home-hot .line { line-height:1px; border-bottom:1px dashed #CCC; margin:3px 0px 10px 0px; }
+.home-hot dd { padding:5px 0px; }
+.home-hot i { font-style:normal; color:#666; }
+
+
+.home-tabpro { padding:10px 0px 0px 12px; }
+.home-tabpro dl { height:190px; }
+.home-tabpro dl.right { margin:0px 0px 10px 0px; }
+.home-tabpro dl:hover { border-top:1px solid #66F; border-bottom:1px solid #66F; }
+.home-tabpro dt { text-align:center; }
+.home-tabpro img { padding:2px; margin-bottom:5px; }
+
+
+.home-side { padding-bottom:15px; }
+.home-side p { line-height:150%; border-bottom:1px dashed #CCC; padding:5px; margin:5px 0; }
+.home-side b { display:block; padding:0px 0px 5px 20px; font-weight:normal; }
+
+.home-tabpro i, .home-tabpro b, .home-tabord i, .home-tabord b,  
+.home-keres i, .home-keres b
+{ font-style:normal; display:inline-block; margin:10px; }
+
+
+.home-keres { padding:10px 0px 0px 12px; }
+.home-keres dl { height:170px; }
+.home-keres dl.right { margin:0px 0px 10px 0px; }
+.home-keres dl:hover { border-top:1px solid #66F; border-bottom:1px solid #66F; }
+.home-keres dt { text-align:center; padding:5px 0px; margin:5px 0px 10px 0px; border-bottom:1px dashed #D8D8D8; }
+.home-keres p.img { width:50%; height:120px; display:inline-block; float:left; text-align:center; }
+.home-keres p.detail { width:50%; height:120px; display:inline-block; float:left; 
+    display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden; }
+.home-keres dd { }
+

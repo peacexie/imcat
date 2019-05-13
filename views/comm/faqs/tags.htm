@@ -1,0 +1,26 @@
+{imp:"faqs/a-layout"}<!--模板继承-->
+
+{block:main}
+<dl class="sct-qa-tags">
+<?php
+$where = tex('texFaqs')->expwhr($this); // [keywd][where,$where] 
+?>
+{tag:qas=[Page][modid,qatag][order,hotcnt][limit,120]}
+    {:row}
+    <dt><a href="{surl(0)}?faqs--list&tag={=$t_title}" class="c<?php echo tex('texFaqs')->rndColor(); ?>">{title($t_title,24,$v)}({=$t_hotcnt})</a></dt>
+    {/row}
+    <div class="clear pa5"></div> 
+    <?php 
+    if($_cbase['page']['prec']){ echo $_cbase['page']['bar']; }
+    else{ echo "<dt>{lang(user.qa_nodata)}</dt>"; }
+    ?>
+    </dd>
+{/tag:qas}
+</dl>
+{/block:main}
+
+{block:uend}{:parent}{php}
+$jstr = "var qas_id='_allt', qat_id='tag';";
+echo "<script>$jstr</script>"; 
+{/php}{/block:uend}
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html><html><head>
+{php}
+$this->pmeta();
+eimp('initJs','jspop,jquery;bootstrap;comm;/base/assets/cssjs/multpic;/base/assets/cssjs/sordbar');
+eimp('initCss','bootstrap,stpub;comm');
+$fexts = vopCell::exFields($this->mod,$catid);
+$null = "<span class='cCCC'>------</span>";
+{/php} 
+<script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:cargo;jsFields:cargo"></script> 
+</head><body> 
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="row">
+
+  <div class="col-md-9">
+    <!--main_start-->
+
+    <!-- Detail Start -->
+    <h1 class="pro_title">{title($title,96,$this->vars)}</h1>
+    <div class="pro_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+        点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次 &nbsp; 
+        评论:<i id="cnt_nrem">0</i>条 
+    </div>
+
+    {inc:"cargo/cinc-tools"}
+
+    <div class="col-md-12">
+        <div class="pro-line">&nbsp;</div>
+    </div>
+
+    <form id='fmocar' name='fmocar' method="post" action="{surl(ocar)}">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="tc pro-picBig" id="picBig"><img src="{spic($mpic,demo_nop300x200.jpg)}" width='400' height='300' onload='imgShow(this,400,300)' /></div>
+            <div id="picMini">&nbsp;</div>
+        </div>
+        <div class="col-md-6">
+            <div class=" pro-paras">
+                <p><i>品牌:</i><b class="uimark-pos-rel">{sopt($brand,brand,0,$null)}{if !empty($hinfo)}<span>{sopt($hinfo,hinfo)}</span><span class="uimark-star-icon1a"></span>{/if}</b></p>
+                <p><i>型号:</i><b class='itm-text'>{=$xinghao} </b></p>
+                <p><i>规格:</i><b class='itm-text'>{=$guige} </b></p>
+                {if !empty($fexts)}
+                {loop $fexts $f $fc}
+                    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+                {/loop}
+                {/if}
+                <p><i>价格:</i><b class='itm-text'>{=$price}(元) 批量价</b></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            价格：<input name="ordprice" type="text" value="{=$price}" class="w60" readonly> 　
+            订购数量：<input name="ordcnt" type="text" value="1" class="w60" reg="n+i:" tip="格式: 888"> 
+        </div>
+        <div class="col-md-6">
+            <input name="pid" type="hidden" value="{=$did}">
+            <input name="title" type="hidden" value="{=$title}">
+            <input name="ordweight" type="hidden" value="{=$weight}">
+            <input name="act" type="hidden" value="iadd">
+            认证码：<script>fsInit('fmocar','5,-30','txt w80');</script>
+            <input name="actname" type="submit" value="+ 购物车">
+        </div>
+    </div>
+    </form>
+
+    <div class="col-md-12 pv20">
+        <div class="pro-line">&nbsp;</div>
+    </div>
+
+    <ul class="nav nav-tabs detab">
+      <li class='active'><a>商品详情</a></li>
+      <li class=''><a>商品相册</a></li>
+      <li class=''><a>商品评论</a></li>
+    </ul>
+
+    <div class='tab_d0 pa10'>
+        {html($detail)}
+    </div>
+
+    <div class='tab_d1 pv10' style="display:none;">
+        <div id="fm_pics_out" class="mpic_out">
+        <div><b class="cntout">共<i class="cntall">0</i>个图</b><i class="seltype">select</i></div>
+        <div id="fm_pics_show">full|外观图;side|侧面图;inn|内部图;att|附件图;</div>
+        <div id="fm_pics_tarea" class="clear">
+        <textarea name="fm[pics]" cols="88" rows="8" id="fm_pics_" style="display:none;">
+        {= comStore::revSaveDir($rel_pic);}
+        </textarea></div>
+        </div>
+    </div>
+
+    <div class='tab_d2 pv10 news_rem' style="display:none;">
+        <div class="rembar"> 
+        <span class="remadd"><a href="{surl(0)}?crem&pid={=$did}">评论(<i id="jsid_count_crem:{=$did}">0<!--,cnt_crem--></i>条)</a> &nbsp; <a {php vopCell::vOpen("crem",$did); }>&gt;&gt;发布</a></span> 
+        <span class="remtitle">评论列表</span> 
+        </div><!--[cache,60]-->
+        {tag:dlist=[jsList][modid,crem][pid,$did][limit,10]}
+        {:row}
+        <dl>
+          <dt>{title($t_title,48,$v)} </dt>
+          <dd>
+          {text($t_detail,2400)}
+          <p class="tr"><span>{=$t_mname}</span> &nbsp; 发布于:<i class="atime">{stime($t_atime,min)} </i></p>
+          </dd>
+        </dl>
+        {/row}
+        {/tag:dlist}
+    </div>
+
+    <div class="clear"></div>
+    <!-- Detail End -->
+
+  </div>
+  <div class="col-md-3">
+    {inc:"cargo/cinc-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"}
+</body></html>
+
+{php} eimp('loadExtjs','jq_base,layer');{/php}
+<link href='{=PATH_VENDUI}/prettyPhoto/prettyPhoto.css' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_VENDUI}/prettyPhoto/prettyPhoto.js'></script>
+<script>
+var diggurl = '{=PATH_PROJ}/root/plus/coms/digg.php?mod={=$this->mod}&kid={=$did}&opfid=';
+
+$(document).ready(function(){
+
+$('#diggs2 a').each(function(i1, e1) {
+    $(e1).click(function(){ 
+        var eid = $(e1).prop('id').split(':');
+        var ajurl = _cbase.run.rsite+diggurl+eid[2];
+        $.ajax({     
+            url:ajurl, type:'get', async : false, //默认为true 异步     
+            error:function(){     
+                layer.tips('Error-A:'+data, '#diggs2', {tips: [4, '#3278BA']}); 
+            },
+            success:function(data){     
+                if(data=='success'){
+                    data = eid[2]=='diggtop' ? '点赞成功！' : '吐槽成功！';
+                    $(e1).html(parseInt($(e1).html())+1); 
+                }
+                layer.tips(data, e1, {tips: [4, '#3278BA']});
+            }  
+        });   
+    });
+});
+
+mpic_view('fm_pics_',240,180,1);
+$('.detab li').each(function(i1, e1) {
+    $(e1).click(function(){ 
+        $('.tab_d0,.tab_d1,.tab_d2').hide();
+        $('.tab_d'+i1).show();
+        $('.detab li').removeClass('active');
+        $(e1).addClass('active');        
+    });
+});
+
+//显示-初始化vmini
+var cfg,i,a,v,pic,opt,str='';
+cfg = mpic_data('fm_pics_', 1);
+w=50; h=50;
+for(i=0;i<cfg.data.length;i++){
+    a = cfg.data[i].split(',');
+    v = a.length>0 ? a[1] : '';
+    pic = "<img src='"+a[0]+"' width="+w+" height="+h+" data-val='"+v+"' onclick='mpro_vbig(this)' onload='imgShow(this,"+w+","+h+")'>";
+    str += pic;
+}
+$('#picMini').html(str);
+
+// viewPhoto
+//$("a[rel='viewPhoto[fm_pics_]']").prettyPhoto();
+setTimeout(function(){
+    $("#fm_pics_show a").prettyPhoto();
+}, 300);
+
+});
+
+</script>

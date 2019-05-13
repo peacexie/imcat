@@ -1,0 +1,44 @@
+{imp:"topic/memory/a~lay1"}
+
+{block:gift}{:clear}{/block:gift}
+{block:arcs}{:clear}{/block:arcs}
+{block:pics}{:clear}{/block:pics}
+
+{block:detail}
+    <a name="file" class="pv5">&nbsp;</a>
+    <ul class="nav nav-tabs">
+        <a href='{surl("topic.$did")}' class="right">返回</a>
+        <li role="presentation" class="active">
+            <a><span class="fa fa-file-text"></span> 详情</a>
+        </li> 
+    </ul>
+    <div class="h15">&nbsp;</div>
+    <div class="mdetail">
+        <h1 class="title">{=$detail['title']}</h1>
+        <div class="bar">
+            <span class="right">发布: <i class="atime">{stime($detail['etime'],min)}</i></span>
+            <span>标签: {=$detail['tags']}</span>
+        </div>
+        <?php if(is_numeric($this->view)){ ?>
+        <div class="text"> {=$text} </div>
+        <?php }else{ ?>
+        <div class="row pics">
+            <?php if(!empty($upics)){ foreach ($upics as $img) { ?>
+            <div class="col-xs-6 col-md-3 tc mhpica">
+                <a class="thumbnail">
+                    <img src="{=$img}" alt="{=$img}">
+                </a>
+            </div>
+            <?php } } ?>
+        </div>
+        <?php } ?>
+    </div>
+{/block:detail}
+
+{block:exact}{:parent}<script>
+$(function(){
+    $('#m_gift,#m_arts,#m_pics').hide();
+    $('#m_home').removeClass('active');
+    $('#m_detail').addClass('active');
+});
+</script>{/block:exact}

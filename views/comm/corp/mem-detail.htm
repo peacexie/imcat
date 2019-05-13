@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta($company); }
+{php}
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub,jstyle;comm'); 
+{/php}
+
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<div class="row">
+  <div class="col-md-9">
+    <!--main_start-->
+
+      <h1 class="news_title">{title($company,96,$this->vars)}</h1>
+      <div class="news_bar"> 添加:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+        点击<i id="jsid_field_{=$this->mod}:{=$uid}:click">{=$click}<!--,add1--></i>次 &nbsp; 
+      </div>
+      <div class="h10">&nbsp;</div>
+      <h5>一般的模板 (模板功能演示) --- {=$this->tplname}</h5>
+      <div class="h10">&nbsp;</div>
+      <p class="tc">
+      <a href="{surl($this->mod.".$uid.news")}">{title($company,96,$this->vars)} --- 新闻</a>
+      ###
+      <a href="{surl($this->mod.".$uid.pro")}">{title($company,96,$this->vars)} --- 产品</a>
+      </p>
+      <div class="h10">&nbsp;</div>
+      <?php 
+      //$map = $now['exp_i01']; $title = $now['title']; //[ext=$title]
+      $map = "{media:[type=map][val=$map][w=100%][h=600]/media}"; 
+      $map = vopMedia::repShow($map);
+      if($map) echo "<div class='umem-map'>$map</div>";
+      ?>
+      {if !empty($maddr)}
+      <li class="list">地址: <i>{=$maddr}</i>&nbsp; </li>
+      {/if}
+      <div class="h10">&nbsp;</div>
+      
+    <!--main_end-->
+  </div>
+  <div class="col-md-3">
+    {inc:"corp/mem-side"}
+  </div>
+</div>
+
+{inc:"c_pub/afoot"}
+</body></html>

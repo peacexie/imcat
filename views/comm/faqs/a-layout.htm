@@ -1,0 +1,46 @@
+{block:init}{inc:"c_pub/c-init"}<?php
+$tag = req('tag');
+$keywd = req('keywd');
+?>{/block:init}
+<!DOCTYPE html><html><head>
+<?php
+if(empty($title)){
+  $title = lang('user.qa_title').'-'.$_cbase['sys_name'];
+}
+?>
+{block:title}{php $this->pmeta($title); }{/block:title}
+{php}
+eimp('initJs','jquery,bootstrap,layer;comm');
+eimp('initCss','bootstrap,stpub,jstyle;comm;faqs'); 
+{/php}
+</head><body>
+{php glbHtml::ieLow_html();}
+
+
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+
+<div class="row">
+  <div class="col-md-9">
+    <ul class="nav nav-tabs">
+      {php echo tex('texFaqs')->navTop($this); }
+      {if $this->type=='detail'}
+      <li class='active'><a id="qat_detail">{lang(user.qa_detail)}</a></li>
+      {/if}
+    </ul>
+    <!--main_start-->
+    {block:main}
+    <!--main-->
+    {/block:main}
+    <!--main_end-->
+  </div>
+  <div class="col-md-3">
+    <!--side_start-->
+    {inc:"faqs/a-side"}
+    <!--side_end-->
+  </div>
+</div>
+
+
+{inc:"c_pub/afoot"} 

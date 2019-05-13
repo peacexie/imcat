@@ -1,0 +1,70 @@
+
+<div class="panel panel-default">
+  <div class="panel-body side">
+    {tag:hinfs=[List][modid,$this->mod][limit,10]}
+    <li class="type"><a href="{surl($this->mod.".$t_uid")}">{title($t_company,20,$v)}</a></li>
+    {/tag:hinfs}
+  </div>
+</div>
+
+<div class="sd-adv60"> 
+    <span id='jsid_advs_adpic_250x60a'><!--adpic:a2018--></span>
+</div>
+<div class="h20">&nbsp;</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form method="get" action="{surl(0:0)}">
+      <input name="mkv" type="hidden" value="{=$this->mod}--list">
+      <select name="stype" class="form-control">{= basElm::setOption($this->mod,$this->key,'-请选择-'); }</select>
+      <div class="pt10">
+          <input name="keywd" type="text" id="keywd" class="form-control wp60 inblock" />
+          <input type="submit" id="sobtn" value="搜索" class="form-control wp30 inblock" />
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="sd-adv60"> 
+    <span id='jsid_advs_adpic_250x60c'><!--adpic:a2020--></span>
+</div>
+
+<?php
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+?>
+<ul class="sd-minfo">
+<li class="list uimark-pos-rel">
+{if !empty($hinfo)}<b class="uimark-star-icon1b">{/if}</b>
+{if !empty($grade)}<i>[{sopt($grade,$this->mod,0,$null3)}]</i>&nbsp; {/if} 
+{if !empty($ftype)}<i>[{sopt($ftype,ftype,0,$null3)}]</i>&nbsp; {/if}  
+</li>
+<li class="list">
+联系人: 
+{if !empty($mname)}<i>[{=$mname}]</i>&nbsp; {/if} 
+{if !empty($mtitle)}<i>[{=$mtitle}]</i>&nbsp; {/if}  
+</li>
+{if !empty($miuid)}
+<li class="list">聊天号: <i>{=$miuid}</i>&nbsp; </li>
+{/if} 
+{if !empty($mtel)}
+<li class="list">电话: <i>{=$mtel}</i>&nbsp; </li>
+{/if}
+{if !empty($t400)}
+<li class="list">400: <i>{=$t400}</i>&nbsp; </li>
+{/if} 
+{if !empty($t800)}
+<li class="list">800: <i>{=$t800}</i>&nbsp; </li>
+{/if}
+{if !empty($memail)}
+<li class="list">E-mail: <i>{=$memail}</i>&nbsp; </li>
+{/if}
+{if !empty($mweb)}
+<li class="list">地址: <i><a href="{=$mweb}" target="_blank">{=$mweb}</a></i>&nbsp; </li>
+{/if}
+</ul>
+
+<div class="sd-mpic"> 
+    <img src="{spic($mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
+</div>
+<div class="h10">&nbsp;</div>

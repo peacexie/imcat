@@ -1,0 +1,65 @@
+{imp:"topic/exdemo/topb~frame"}
+
+{block:infos}
+
+    <?php
+    $fcfg = devTopic::cfg2arr($cpics); 
+    foreach ($fcfg as $k2=>$title) {
+    $data = db()->table('topic_items')->where("did='$this->key' AND dno='$k2'")->find();
+    $pics = comStore::revSaveDir($data['detail']); 
+    $pica = basElm::line2arr($pics,0,";");
+    ?>
+    <div class="topic-post">
+        <h2 class="topic-post-title">{=$data['title']}</h2>
+        <p class="topic-post-meta">
+            {=$data['tags']}
+        </p>
+        <div class="row">
+          <?php foreach ($pica as $img) { ?>
+          <div class="col-xs-6 col-md-3">
+            <a class="thumbnail">
+              <img src="{=$img}" alt="{=$img}">
+            </a>
+          </div>
+          <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php
+    $fcfg = devTopic::cfg2arr($cmedia); 
+    foreach ($fcfg as $k2=>$title) {
+    $data = db()->table('topic_items')->where("did='$this->key' AND dno='$k2'")->find();
+    $tags = json_decode(@$data['tags'],1);
+    $tags && array_unshift($tags,$data['mpic']); 
+    if(empty($tags)) continue;
+    ?>
+    <div class="topic-post">
+        <h2 class="topic-post-title">{=$data['title']}</h2>
+        <p class="topic-post-meta">
+            {=$data['mpic']}
+        </p>
+        <div class="row">
+            <?php if(strstr($k2,'ado')){ ?>
+            <audio width='100%' controls>
+              <?php foreach ($tags as $url) { ?>
+              <source src="{=$url}">
+              <?php } ?>
+            </audio>
+            <?php } ?>
+            <?php if(strstr($k2,'vod')){ ?>
+            <video width='100%' controls>
+              <?php 
+              foreach ($tags as $url) { 
+                $ext = strtolower(strrchr($url,"."));
+                $ext = substr($ext,1);
+              ?>
+              <source src="{=$url}" type="video/{=$ext}">
+              <?php } ?>
+            </video>
+            <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+        
+{/block:infos}

@@ -1,0 +1,227 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta('功能演示版 - '.$_cbase['sys_name']); }
+{php}
+eimp('initJs','jquery;bootstrap;comm');
+eimp('initCss','bootstrap,stpub;comm;home');
+{/php} 
+</head><body>
+{inc:"c_pub/ahead"}
+{inc:"c_pub/amenu"}
+
+<?php $res=tagPush::gets('cargo-push8,news-push2,hpic-push5');?>
+
+{inc:"home/inc-adtop"}
+
+<div class="row pv20">
+
+  <div class="col-md-5 home-hot">
+      <div class="h20 visible-xs-block">&nbsp;</div>
+      <dl class="adpush_obj" aid='news-push2'>
+      {php $i_v=0; }
+      {loop $res['news-push2'] $key $v}
+          {if ($i_v==0) }
+          <dt class="top1"><a href="{=$v['url']}">{title($v['title'],24,$v)}</a></dt>
+          <dd class="note1"> {=$v['rem']} </a></dd>
+          {elseif ($i_v==1) }
+          <dt class="top2"><a href="{=$v['url']}">{title($v['title'],24,$v)}</a></dt>
+          <dd class="note2"> {=$v['rem']}</dd>
+          {/if}
+      {php $i_v++; }{/loop}
+      <dt class="line">&nbsp;</dt>
+      </dl>
+      <dl>
+          {tag:dlistn=[List][modid,news][hinfo,pindao+home+zhuanti,in][join,detail][limit,5][offset,0]}
+          <dd><i class="right">[{stime($t_atime,0)}] </i><a href="{surl("news.$t_did")}">{title($t_title,24,$v)}</a></dd>
+          {/tag:dlistn}
+      </dl>
+  </div>
+
+  <div class="col-md-2 home-toolbar">
+      <div class="panel panel-default" style="margin-bottom:0px">
+        <div class="panel-heading">翻译/搜索</div>
+        <div class="panel-body" style="border-bottom:1px solid #DDD;">
+          {inc:"c_pub/inc-i18n"}
+        </div>
+        <div class="panel-body">
+          {inc:"c_pub/inc-search"}
+        </div>
+      </div>
+  </div>
+
+  <div class="col-md-5">
+      <div class="swiper-container adpush_obj" aid='hpic-push5'>
+      <ul class="home-adpic02 swiper-wrapper" id="adpic02">
+        {loop $res['hpic-push5'] $key $v}
+        <li class="swiper-slide">
+        <a href="{=$v['url']}"><img src="{spic($v['mpic'],demo_nop300x200.jpg)}" width="100%" height="300"/></a>
+        <p><a href="{=$v['url']}">{title($v['title'],96,$v)}</a></p>
+        </li>
+        {/loop}
+      </ul>
+      <!--div class="swiper-pagination"></div-->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      </div>
+  </div>
+
+</div>
+
+{inc:"home/inc-adbar2"}
+
+<div class="row pv10">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="right"><a href="{surl(cargo)}">更多&gt;&gt;</a></i>
+        推荐产品
+      </div>
+      <div class="panel-body adpush_obj" aid='cargo-push8'>
+        <div class="row home-tabpro">
+        <!--list_start-->
+        <?php $_i=0; ?>
+        {loop $res['cargo-push8'] $key $v}
+        <?php $_i++; if($_i==4){ echo "<div class='h20 clear'>&nbsp;</div>"; } ?>
+        <dl class="col-md-4">
+          <dd>
+            <p class="tc uimark-pos-rel">
+            <a href="<?php echo vopUrl::root($v['url']);?>"><img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' class="img-thumbnail" onload='imgShow(this,160,120)' /></a>
+            {if !empty($v['star'])}<b class="uimark-star-icon1b"></b>{/if}</p>
+            <p class="detail"><i class="right">&yen;{=$v['price']}元</i><i class="click">浏览{=$v['click']}次</i>
+            </p>
+          </dd> 
+          <dt class="title clear"><a href="<?php echo vopUrl::root($v['url']);?>">{title($v['title'],96,$v)}</a></dt>
+        </dl>
+        {/loop}
+        <!--list_end-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default left-15">
+      <div class="panel-heading">
+        <i class="right"><a href="{surl(umc:order)}">更多&gt;&gt;</a></i>
+        最新订单
+      </div>
+      <div class="panel-body home-side">
+          <!--list_start-->
+          {if smod('corder')}
+          {tag:dlist=[List][modid,corder][show,all][limit,6]}
+          <?php $item=exvOcar::ilist('coms_coitem',"ordid='$t_cid'",2); @$v=$item['data'][0]; ?>
+          <p>
+            <i class="right">{sopt($t_ordstat,corder.ordstat,0,0)}</i>&middot; 单号：{=$t_cid}
+            <b><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">等</i>{/if}</b>
+          </p>
+          {/tag:dlist}
+          {else}
+          <p>
+            <i class="right">-</i>&middot; 单号：(null)
+            <b>`订单`模块关闭...</b>
+          </p>
+          {/if}
+          <!--list_end-->
+          <dt class="h25">&nbsp;</dt>
+      </div>
+    </div>
+  </div>
+</div>
+
+{inc:"home/inc-adbar1"}
+
+<?php
+$null2 = "<span class='cCCC'>------</span>";
+$null3 = "";
+?>
+<div class="row pv10">
+  <div class="col-md-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <i class="right"><a href="{surl(keres)}">更多&gt;&gt;</a></i>
+        课程资源
+      </div>
+      <div class="panel-body">
+        <div class="row home-keres">
+        <!--list_start: uimark-pos-rel-->
+        {if smod('keres')}
+        {tag:dlist=[List][modid,keres][join,detail][limit,4]}
+        {:row}
+        <dl class='col-md-6'>
+          <dt class="title">
+            <a href="{surl("keres.$t_did")}">{title($t_title,96,$v)}</a>
+          </dt>
+          <dd>
+            <p class="img">
+            <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' class="img-thumbnail" onload='imgShow(this,160,120)' />
+            {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
+            <p class="detail">
+              {sopt($t_catid,keres,0,$null2)}
+              {if !empty($t_ygrade)}<i>[{sopt($t_ygrade,ygrade,0,$null3)}]</i>{/if}
+              {if !empty($t_course)}<i>[{sopt($t_course,course,0,$null3)}]</i>{/if}
+              <a href='{surl("keres.$t_did")}'>{text(array($t_seo_des,$t_detail),60,1)} …… </a>
+            </p>
+          </dd> 
+        </dl>
+        {/row}
+        {/tag:dlist}
+        {else}
+        <dl class='col-md-6'>
+          <dt class="title">
+            <a href="#">`课程资源`模块关闭...</a>
+          </dt>
+        </dl>
+        {/if}
+        <!--list_end-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="panel panel-default left-15">
+      <div class="panel-heading">
+        <i class="right"><a href="{surl(topic)}">更多&gt;&gt;</a></i>
+        专题新闻
+      </div>
+      <div class="panel-body home-side">
+          <!--list_start-->
+          {if smod('keres')}
+          {tag:tlist=[List][modid,topic][limit,8]}
+          <p>
+            <i class="right">{stime($t_atime,0)}</i>{php echo $i_v+1; }. <a href="{surl("topic.$t_did")}">{title($t_title,45,$v)}</a>
+          </p>
+          {/tag:tlist}
+          {else}
+          <p>
+            <i class="right">-</i>&middot; 
+            <a>`专题新闻`模块关闭...</a>
+          </p>
+          {/if}
+          <!--list_end-->
+          <dt class="h25">&nbsp;</dt>
+      </div>
+    </div>
+  </div>
+</div>
+
+{inc:"home/inc-adbar2"}
+<div class="h10">&nbsp;</div>
+{inc:"c_pub/inc-blinks"}
+
+{inc:"c_pub/afoot"}
+
+<link href='{=PATH_VENDUI}/common/swiper.min.css' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_VENDUI}/common/swiper.jquery.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  var mySwiper = new Swiper('.swiper-container', {
+    //pagination : '.swiper-pagination',
+    prevButton:'.swiper-button-prev',
+    nextButton:'.swiper-button-next',
+    loop : true,
+    autoplay: 5000//可选选项，自动滑动
+  });
+});
+</script>
+
+<?php if(req('adpush')=='load' && tagPush::check()){tagPush::load();} ?>
+
+</body></html>

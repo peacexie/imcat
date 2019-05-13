@@ -1,0 +1,22 @@
+
+    <div class="about-tbar">
+    <i>
+    {php $data = array(); }
+    {tag:alist=[List][modid,$this->mod][join,detail][stype][limit,10]}
+    <?php
+    $vid = $i_v==0 ? '' : '-v'.($i_v+1);
+    $dk = $i_v==0 ? 'v1' : 'v'.($i_v+1);
+    $data[$dk] = $v; 
+    $ukey = $this->mod.'-'.$this->key.$vid;
+    ?>
+    <a href="{surl($ukey)}">{title($t_title,32,$u)}</a>
+    {/tag:alist}
+    </i>
+    <i class="right">
+    {sopt($this->key,$this->mod,0,$null)} &gt;&gt;
+    </i>
+    </div>
+    
+    {php reset($data); $now = ($this->view && isset($data[$this->view])) ? $data[$this->view] : current($data); $detail = $now['detail']; }
+    <div class="news_text"> {html($detail)} </div>
+

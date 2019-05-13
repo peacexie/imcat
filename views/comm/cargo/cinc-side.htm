@@ -1,0 +1,34 @@
+
+<div class="panel panel-default hidden-xs">
+  <div class="panel-heading">Catalog/类别</div>
+  <div class="panel-body">
+    <div id="tree01" class="layTree1 sd-stype"></div>
+  </div>
+</div>
+
+<div class="sd-adv60"> 
+    <span id='jsid_advs_adpic_250x60'><!--adpic:a2020,1c999--></span>
+</div>
+<div class="h20">&nbsp;</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form method="get" action="{surl(0:0)}">
+    <input name="mkv" type="hidden" value="{=$this->mod}--list">
+    <select name="stype" class="form-control">{= basElm::setOption($this->mod,$this->key,'-请选择-'); }</select>
+    <div class="pt10">
+        <input name="keywd" type="text" id="keywd" class="form-control wp60 inblock" />
+        <input type="submit" id="sobtn" value="搜索" class="form-control wp30 inblock" />
+    </div>
+    </form>
+  </div>
+</div>
+
+<?php
+$urltm = vopUrl::f1st('cargo');
+?>
+<script>
+var tpl2 = "<p class='tree_(level) p_(pid) k_(key) (css)'>(lay)<a href='{=$urltm}'>(title)</a></p>"; 
+var trees1 = sotree_init(tpl2,'cargo',0); $('#tree01').html(trees1); 
+sotree_open('tree01','{=$this->key}'+urlPara('stype','')); //p2012
+</script>

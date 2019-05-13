@@ -1,0 +1,18 @@
+<?php
+$null = "<span class='cCCC'>------</span>";
+?>  
+{tag:dlist=[Page][modid,$this->mod][stype][hinfo][keywd][limit,20]}
+<dl class="news-list"> 
+  {:row}
+  <dt>
+  <a href="{surl($this->mod.".$t_did")}">{title($t_title,60,$v)}</a>
+  {if !empty($t_hinfo)}<b class="uimark-star-icon1a">&nbsp;</b>{/if}
+  </dt>
+  <dd class="hidden-xs"><i class="atype">{sopt($t_catid,$this->mod,0,$null)}</i><i class="click">{=$t_click}次</i><i class="atime">{stime($t_atime,min)}</i></dd>
+  {if (($i_v+1)%5==0 && ($i_v+1)<20) } <div class="h15 cleft">&nbsp;</div> {/if}
+  {/row}
+</dl>
+{php echo $_cbase['page']['bar']; }
+{/tag:dlist}
+
+  

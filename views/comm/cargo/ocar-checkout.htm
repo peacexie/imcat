@@ -1,0 +1,181 @@
+{imp:"cargo/ocar-alay"}<!--模板继承-->
+
+{block:minit}{:parent}<?php 
+$tabid = 'coms_cocar';
+$title = '收银台';
+$entit = 'Chechout';
+
+$list = exvOcar::ilist($tabid,$where); 
+if($list['sum']['acnt']==0){
+    die(basMsg::show("购物车为空，返回[商品展销]！",'Redir',surl('cargo'),1));
+}
+$mname = @$user->uinfo['mname']; $mname || $mname = 'Guest';
+$mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
+
+?>{/block:minit}
+
+{block:mact}
+
+<div class="table-responsive">
+<form id='fmocar' name='fmocar' method="post" action="{surl(ocar-invoce)}">
+<input name="fm[ordcnt]" type="hidden" value="{=$list[sum][acnt]}" />
+<input name="fm[ordweight]" type="hidden" value="{=$list[sum][aweight]}" />
+<table border="1" class="ocar_items">
+    <tr>
+        <th width="8%" class="tc">No.</thrtggr>
+        <th width="28%">费用项目</th>
+        <th>金额</th>
+    </tr>
+    <tr>
+        <td class="tc">1</td>
+        <td>商品金额</td>
+        <td><input id="feeamount" name="fm[feeamount]" type="input" value="{=$list[sum][afee]}" reg="n+d:" tip="商品金额" readonly /> &nbsp;<a href="{surl(ocar)}">&gt;&gt;详情</a></td>
+    </tr>
+    <tr>
+        <td class="tc">2</td>
+        <td>运费</td>
+        <td><input id="feeship" name="fm[feeship]" type="input" value="---" reg="n+d:" tip="运费" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
+    </tr>
+    <tr>
+        <td class="tc">3</td>
+        <td>折扣（-）</td>
+        <td><input id="feedis" name="fm[feedis]" type="input" value="0" reg="n+d:" tip="折扣" readonly /> 线下折扣，提交订单后，联系店主改价</td>
+    </tr>
+    <tr>
+        <td class="tc">4</td>
+        <td>应付款</td>
+        <td><input id="feetotle" name="fm[feetotle]" type="input" value="---" reg="n+d:" tip="应付款" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
+    </tr>
+</table>
+<table border="1" class="ocar_items">
+    <tr>
+        <th width="8%" class="tc">No.</thrtggr>
+        <th width="28%">支付方式</th>
+        <th>详情</th>
+    </tr>
+    <?php $list=glbDBExt::getExtp('paymode_cn'); foreach($list as $v){ ?>
+    <tr>
+        <td class="tc">{=$v['i']}</td>
+        <td><input name="fm[ordpay]" type="radio" value="{=$v['kid']}" {if $v['i']==1}checked="checked"{/if}/>{=$v['title']}</td>
+        <td><textarea rows="2" style=" width:560px" readonly>{=$v['detail']}</textarea></td>
+    </tr>
+    <?php } ?>
+</table>
+<table border="1" class="ocar_items">
+    <tr>
+        <td class="tc"></td>
+        <td>配送地区</td>
+        <td colspan="2">配送至：<span id='fm_ordshto__pop'>nul:str:2-255</span></td>
+    </tr>
+    <tr>
+        <th width="8%" class="tc">No.</th>
+        <th width="28%">物流方式</th>
+        <th width="30%">运费</th>
+        <th>时间</th>
+    </tr>
+    <?php $list=glbDBExt::getExtp('logmode_cn'); foreach($list as $i=>$v){ ?>
+    <tr>
+        <td class="tc">{=$v['i']}</td>
+        <td><input name="fm[ordship]" id="ordship_{=$v['kid']}" type="radio" value="{=$v['kid']}" onclick="ocar_pickship(this)" disabled />{=$v['detail']}</td>
+        <td id="shipfee_{=$v['kid']}">---</td>
+        <td id="shipmsg_{=$v['kid']}">---</td>
+    </tr>
+    <?php } ?>
+    <tr>
+        <td class="tc c999">提示：</td>
+        <td colspan="3" class="c999">选择【配送地区】后自动计算运费，后续才可选物流方式</td>
+    </tr>
+</table>
+<table border="1" class="ocar_items">
+    <tr>
+        <th width="8%" class="tc">No.</th>
+        <th width="28%">送货信息</th>
+        <th>详情</th>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td width="28%">会员名称</td>
+        <td class='tl'><input name='fm[mname]' type='text' class='txt' id='fm[mname]' value="{=$mname}"  maxlength='24'  reg='str:2-24'  tip='2-24字符'  />
+            &nbsp;电话
+<input name='fm[mtel]' type='text' class='txt' id='fm[mtel]' value="{=$mtel}"  maxlength='24'  reg='fix:tel'  tip='2-24字符'  /></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>聊天号</td>
+        <td class='tl'><input id='fm[miuid]' name='fm[miuid]' type='text' value='' class='txt'  maxlength='120'  reg='nul:str:5-120'  tip='聊天号:QQ,MSN等'  />
+            &nbsp;邮件
+<input id='fm[memail]' name='fm[memail]' type='text' class='txt'  maxlength='255'  reg='nul:fix:email'  tip='如:peace@domain.com'  /></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>收货地址</td>
+        <td class='tl'><input id='fm[maddr]' name='fm[maddr]' type='text' class='txt'  maxlength='120'  reg='nul:str:5-120'  tip='详细地址'  style='width:360px';  /></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>送货要求<br>(可写详细要求<br>120字以内)</td>
+        <td>
+        <?php $list=glbDBExt::getExtp('timmode_cn'); $detail=''; foreach($list as $v){ ?>
+        <input name="fm_orddkey" type="radio" onclick="ocar_setdetail('{=$v[detail]}')" />{=$v[title]} &nbsp; 
+        <?php $detail || $detail=$v['detail']; } ?>
+        <textarea id="fm_detail" name="fm[detail]" rows="2" style=" width:560px" reg='str:10-150'>{=$detail}</textarea>
+        </td>
+    </tr>
+
+</table>
+
+<table border="1" class="ocar_items">
+    <tr>
+        <td width="35%" class="tc"><input type="button" value="+ 再找商品" onclick="urlConfirm('{surl(cargo)}','go_url')"></td>
+
+        <td width="65%" class="toinvoce">
+            <span class="right">
+            <input type="submit" value="+ 提交订单">
+            </span>
+        认证码：<script>fsInit('fmocar','5,-30','txt w80');</script>
+        </td>
+    </tr>
+</table>
+<input name="act" type="hidden" value="oadd" />
+</form>
+</div>
+
+{php}eimp('/~base/jslib/jq_base.js');{/php}
+<script>
+jQuery.getScript('{=PATH_BASE}?ajax-comjs&act=jsTypes&mod=,china,',function(){
+    var fm_ordshto__obj; popInit('fm[ordshto]','china',240,1,'',{},'ocar_setship');
+});
+function ocar_setdetail(val){ 
+    $("#fm_detail").val(val);
+    $("#fm_detail").html(val);
+}
+function ocar_setship(kval,kname){ //c0598,福建»三明
+    var arr = kname.split('»');
+    $("#feeship").html('---');
+    $("#feetotle").html('---');
+    $("[name='fm[ordship]']").attr("checked",false);
+    $("[name='fm[ordship]']").attr("disabled",true);
+    $("[id^='shipfee_']").html('---'); //[href$='.jpg']
+    $("[id^='shipmsg_']").html('---');
+    jQuery.getScript('{=PATH_ROOT}/plus/api/ocar.php?act=shipfee&from={=$_cbase[ucfg][city]}&to='+arr[1]+'&weight={=$list[sum][aweight]}',function(){
+        for(var k in data){ 
+            var itm = data[k];
+            if($('#shipfee_'+itm.kid) && itm.ufee){
+                $('#shipfee_'+itm.kid).html(itm.ufee);
+                $('#shipmsg_'+itm.kid).html(itm.uday);
+                $('#ordship_'+itm.kid).attr("disabled",false);
+            }
+        }    
+    });
+}
+function ocar_pickship(e){ 
+    var sfee = $("#shipfee_"+e.value).html();
+    sfee = sfee.replace('元','');
+    $("#feeship").val(sfee);
+    var afee = $("#feeamount").val()*1.0+sfee*1.0-$("#feedis").val()*1.0;
+    $("#feetotle").val(afee.toFixed(2));
+}
+
+</script>
+
+{/block:mact}
