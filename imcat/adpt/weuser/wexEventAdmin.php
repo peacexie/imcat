@@ -105,7 +105,7 @@ class wexEventAdmin extends wysEvent{
                 'company'=>'商家','ftype'=>'行业','mname'=>'联系人','mtitle'=>'称呼','mtel'=>'联系电话',
                 'memail'=>'邮件','maddr'=>'地址','mweb'=>'网址'
             );
-            $plink = 'chn';
+            $plink = 'comm';
         }
         $msg = $this->getSendText($this->sendCfgs[0].'.'.@$this->sendCfgs[1],$fields,$plink);
         return $msg;

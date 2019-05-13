@@ -117,7 +117,7 @@ if($view=='list'){
         glbHtml::fmae_row(lang('flow.cr_runnext'),"$item $slast");
         
         $inp1 = "<input id='fm[hkmkv]' name='fm[hkmkv]' type='text' value='".$fm['hkmkv']."' class='txt w130' tip='eg.(home/cargo/news.detail/company-ccom)' /> &nbsp; ";
-        $inp2 = "<input id='fm[hktpl]' name='fm[hktpl]' type='text' value='".$fm['hktpl']."' class='txt w90' tip='eg.(adm/umc/chn)'/>";
+        $inp2 = "<input id='fm[hktpl]' name='fm[hktpl]' type='text' value='".$fm['hktpl']."' class='txt w90' tip='eg.(adm/umc/comm)'/>";
         glbHtml::fmae_row('mkv/tpl'," $inp1 $inp2");
 
         glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");

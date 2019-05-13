@@ -28,7 +28,7 @@ class extSeo{
         $a = basElm::line2arr($jcfg['note'],0,';'); $fdata = ''; 
         foreach($a as $tmp){
             if(empty($tmp)) continue;
-            $b = explode(',',$tmp); //cargo,100,chn,monthly,0.7
+            $b = explode(',',$tmp); //cargo,100,comm,monthly,0.7
             if(empty($exd)){
                 $exd = new exdBase($b[0]);
             }else{

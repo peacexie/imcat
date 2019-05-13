@@ -84,7 +84,7 @@ if(in_array($part,array('edit','restore','down'))){
         $listu = comFiles::listScan(DIR_DTMP.$edir);
 
     }else{ //views
-        $edir = $_sy_nava['exdiys'][$dkey]; 
+        $edir = $_sy_nava['exdiys'][$dkey];
         $lists = comFiles::listDir(DIR_VIEWS);
         $lnkds = ""; $dsub || $dsub = $_cbase['tpl']['def_static']; 
         foreach($lists['dir'] as $sdir=>$etime){

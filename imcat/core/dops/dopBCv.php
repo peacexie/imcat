@@ -135,19 +135,18 @@ class dopBCv{
         $ftype = @$fc['type']; $cfgs = @$fc['cfgs'];
         $arr = array();
         $extra = @$fc['fmextra']; $exstr = @$fc['fmexstr'];
-            if($extra=='winpop' && isset($_groups[$exstr])){ 
-                $arr = basElm::text2arr($exstr);
-            }elseif(in_array($ftype,array('select','cbox'))){
-                $arr = basElm::text2arr($cfgs);
-            }
-            //$va = explode(',',$val); 
-            $re = "";
-            foreach($arr as $k=>$v){
-                $re .= "\nset_$k|".basLang::show('core.bcv_set')."`$k`$v";
-            }
-
+        $arr = array();
+        if($extra=='winpop' && isset($_groups[$exstr])){ 
+            $arr = basElm::text2arr($exstr);
+        }elseif(in_array($ftype,array('select','cbox'))){
+            $arr = basElm::text2arr($cfgs);
+        }
+        //$va = explode(',',$val); 
+        $re = "";
+        foreach($arr as $k=>$v){
+            $re .= "\nset_$k|".basLang::show('core.bcv_set')."`$k`$v";
+        }
         return $re; 
-    
     }
 
 }

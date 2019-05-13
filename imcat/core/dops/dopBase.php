@@ -193,7 +193,7 @@ class dopBase{
         if(isset($this->fme['part'])){ 
             $this->fmv['part'] = $this->fme['part'];
             if(in_array($this->mod,$_cbase['part']['psyn'])){
-               $this->fmv['part'] = basKeyid::kidY3x5().'-'.basKeyid::kidRand('24',3); 
+               $this->fmv['psyn'] = basKeyid::kidY3x5().'-'.basKeyid::kidRand('24',3); 
             } // 1y3-akt6n-7w4
         }
         $field = $this->cfg['pid']=='users' ? 'grade' : 'catid'; 

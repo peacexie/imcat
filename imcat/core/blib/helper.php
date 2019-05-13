@@ -31,7 +31,7 @@ function dump($var,$min=1){
 } }
 
 // tex(调用模板扩展方法) 
-// tex('texClass')->func() -=> \imcat\chn\texClass::func()
+// tex('texClass')->func() -=> \imcat\comm\texClass::func()
 if(!function_exists('tex')){ 
 function tex($cfile, $tpl=''){
     return \imcat\basClass::tex($cfile, $tpl);

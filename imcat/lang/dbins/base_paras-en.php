@@ -14,7 +14,7 @@ return array(
   'SafeFilter/ArrayPrefix',
   'AdminTimeout',
   '62 bit RandomCode(Unique)',
-  'Close chn',
+  'Close comm',
   // 8: 
   'dev-Need Login',
   'Password-ConfusionCode',

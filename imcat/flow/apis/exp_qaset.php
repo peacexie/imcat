@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 
-use \imcat\chn\texFaqs;
+use \imcat\comm\texFaqs;
 
 (!defined('RUN_INIT')) && die('No Init');
 require dirname(__DIR__).'/binc/_pub_cfgs.php';

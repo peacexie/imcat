@@ -40,7 +40,7 @@ class vopTpls{
         }
     }
     
-    // tinc('chn:_config/top_book'); -=> include-tpl
+    // tinc('comm:_config/top_book'); -=> include-tpl
     // tinc('dir/modtpl.htm', 0); -=> tpl-path 
     static function tinc($fp, $inc=1, $refull=1){
         global $_cbase;

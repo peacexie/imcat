@@ -189,7 +189,7 @@ if($pid=='create'){
             glbHtml::fmae_row(lang('flow.pu_mfname'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150' maxlength='18' reg='key:7-18' $vstr />$ienable");
         } 
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='12' reg='tit:2-12' tip='".lang('admin.fad_tip21246')."'  />$itop");
-        glbHtml::fmae_row(lang('flow.pu_modset'),"<textarea name='fm[note]' rows='5' cols='50' wrap='wrap'>$fm[note]</textarea><br>".lang('flow.exd_iline').", eg:news,limit,chn,monthly,0.5；");
+        glbHtml::fmae_row(lang('flow.pu_modset'),"<textarea name='fm[note]' rows='5' cols='50' wrap='wrap'>$fm[note]</textarea><br>".lang('flow.exd_iline').", eg:news,limit,comm,monthly,0.5；");
         
         glbHtml::fmae_row(lang('flow.pu_itpl'),"<textarea name='fm[cfgs]' rows='5' cols='50' wrap='wrap'>$fm[cfgs]</textarea>");
         glbHtml::fmae_row(lang('flow.pu_ftpl'),"<textarea name='fm[detail]' rows='5' cols='50' wrap='wrap'>$fm[detail]</textarea>");
@@ -202,6 +202,6 @@ if($pid=='create'){
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[pid]|$pid","kid|".(empty($kid) ? 'is__add' : $kid),"cid|$cid"));
     }
-}
-
 ?>
+
+}

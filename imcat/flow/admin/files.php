@@ -4,10 +4,12 @@ namespace imcat;
 require dirname(__DIR__).'/binc/_pub_cfgs.php';
 
 $part = req('part','dtmp'); 
+$dir = req('dir'); 
+$to = req('to'); 
 $purls = comStore::cfgDirPath(0,'arr'); 
 unset($purls['tpl'],$purls['tpc']);
 
-if(isset($purls[$part])){ 
+if(isset($purls[$part])){
 
     $basedir = $purls[$part][0]; 
     $navp = '<b>'; 
@@ -16,8 +18,7 @@ if(isset($purls[$part])){
         $navp .= (strpos($navp,'<a')?' - ':'')."<a href='?$mkv&part=$idir' $cur>".basename($itime[0])."</a>";
     }
     $navp .= '</b><br>'; 
-
-    $dir = req('dir'); 
+    
     $opfile = req('opfile'); 
     // 删除操作
     if(!empty($bsend)){
@@ -28,6 +29,11 @@ if(isset($purls[$part])){
         }elseif($bsend=='del'){ 
             unlink($fpath);
             $msg = 'Delete OK!';
+        }elseif($bsend=='trans'){ 
+            ob_end_clean();
+            $res = devBuild::trsfp($fpath, $to);
+            $msg = $res ? 'TransOK' : 'Skiped';
+            die($msg);
         }
     } 
 
@@ -41,6 +47,7 @@ if(isset($purls[$part])){
 
     $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
     $psub = $dir ? "&gt;$dir" : "";
+    $psub .= admMpts::vNav($part, $dir);
     $ldiy = "<a href='?admin-ediy&part=exdiy'>DIYSet</a> # ";
     glbHtml::tab_bar("$ldiy Sys Files : $part$psub $umsg","$navp$navs",40);
         

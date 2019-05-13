@@ -26,7 +26,7 @@ class exdFunc extends exdBase{
         global $_cbase;
         $data = $this->odata(); 
         $tpl = basReq::val('tpl','','');
-        $burl = vopTpls::etr1(1,'chn'); 
+        $burl = vopTpls::etr1(1,'comm'); 
         $tpl = $tpl ? comParse::urlBase64($tpl,1) : "<li><a href='$burl?$this->mod.{kid}'>{title}</a></li>";
         $tpl = str_replace('{rmain}',$_cbase['run']['rmain'],$tpl);
         $cut = ','.basReq::val('cut',"title,company").',';

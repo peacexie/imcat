@@ -30,7 +30,7 @@ class updInfo{
             // ● [资讯]2015-0501：微信接口基本完成 [2015-05-05] 
             $list = glbDBObj::dbObj()->table('docs_news')->where("catid='nsys'")->limit(3)->order('did DESC')->select();
             if($list){foreach($list as $r){
-                $url = $_cbase['run']['rsite'].vopUrl::fout("chn:news.$r[did]");
+                $url = $_cbase['run']['rsite'].vopUrl::fout("comm:news.$r[did]");
                 $a = "<a href='$url' target='_blank'>$r[title]</a>";
                 $data .= "<br>● $a [".date('Y-m-d',$r['atime'])."]\n";
             }}

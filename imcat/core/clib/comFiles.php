@@ -87,6 +87,7 @@ class comFiles{
 
     static function listScan($dir,$sub='',$skips=array()){
         $re = array(); $mCount = 6400;
+        if(!is_dir($dir)) return [];
         $handle = opendir($dir);
         while ($file = readdir($handle)) {
             if($file=='.'||$file=='..') continue;

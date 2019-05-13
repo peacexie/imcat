@@ -7,7 +7,7 @@ class basElm{
     // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
     static function setOption($cfgs,$val='',$title='-(def)-',$fpid=0){
-        #if(empty($cfgs)) return '';
+        if(empty($cfgs)) return '';
         $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
         if(is_string($cfgs)){
             if(!strpos($cfgs,'(')){ // 排除:class::func(pa,p2,..)

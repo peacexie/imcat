@@ -21,7 +21,7 @@ class vopCTag{
     // vop:cecho 标签
     // {stime($re4['atime']);}                 =>  [?=vopCell::cTime($re4['atime']);;?]
     // {stime(1234657890,Y-m-d H:i,a=va\nb=vb)}
-    // {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(chn:info-nav)}
+    // {surl(0)}  {surl("demo.$re4[did]",.)}  {surl("about-$re1[kid]",-)}  {surl(comm:info-nav)}
     // {sopt(c0769+c0735,china)}
     static function cecho($tpl='',$func='show'){
         preg_match_all("/\{{$func}[\(]([^}]{1,240})[\)];?\}/",$tpl,$_m); 

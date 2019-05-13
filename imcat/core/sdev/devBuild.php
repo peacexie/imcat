@@ -5,45 +5,55 @@ namespace imcat;
 
 class devBuild{    
 
-    // 翻译一个系统语言包文件/ devBuild::trsfp('kvphp/flow-fr', 'fr');
+    static function trtype($ff){
+        if(strpos($ff,'/lang/ptinc/')){
+            $type = strpos($ff,'aflow-') ? 'html' : 'line';
+        }elseif(strpos($ff,'/lang/')){
+            $type = 'php';
+        }elseif(strpos($ff,'/views/')){
+            $type = strpos($ff,'.php') ? 'php' : 'html';
+        }else{
+            $type = 'line';
+        }
+        return $type;
+    }
+
+    // 翻译一个系统文件 devBuild::trsfp('kvphp/flow-fr', 'fr');
     static function trsfp($fp, $to, $from='cn'){
-        $tab = [
-            'cn'=>'zh', //'en'=>'en', // 汉,英
-            'fr'=>'fra', 'es'=>'spa', //'ru'=>'ru', // 法,西,俄
-            //'de'=>'de', 'jp'=>'jp', // 德,日
-            'kr'=>'kor', 'ar'=>'ara', // 韩,阿
-        ];
-        $ff = DIR_IMCAT."/lang/$fp.php"; // 'ptinc/aflow-cn.php';
-        $bk = "{$ff}-bk"; if(file_exists($bk)) return;
+        $cfgai = read('ais','ex');
+        $tab = $cfgai['fanyi']['_tab']; 
+        $tpa = explode('/',$fp); // ptinc/aflow-cn
+        $ff = (count($tpa)==2 && !strpos($fp,'.')) ? DIR_IMCAT."/lang/$fp.php" : $fp;
+        $bk = "{$ff}.maobak"; if(file_exists($bk)) return 0;
+        copy($ff, $bk);
         $from = isset($tab[$from]) ? $tab[$from] : $from;
         $to = isset($tab[$to]) ? $tab[$to] : $to;
-        $type = strstr($fp,'ptinc/') ? (strpos($fp,'aflow-') ? 'html' : 'line') : '';
+        $type = self::trtype($ff);
         $dsave = self::trans($ff, $to, $type, $from);
-        copy($ff, $bk);
         comFiles::put($ff, $dsave);
         return $fp;
     }
 
-    // type: (null), html(翻译html的节点), line(按行翻译)
+    // type: php(php数组翻译), html(翻译html的节点), line(按行翻译,默认)
     static function trans($fp, $to, $type='', $from='ch', $re=1){
         $dstr = $dorg = comFiles::get($fp);
         $data = []; // 提取中文数组
-        if($type=='line'){
-            $dstr = preg_replace("/\<([^>|\n]+)\>/", "\n", $dstr);
-            $arr = explode("\n", $dstr);
-            $data = self::trarr($arr, 1);
-        }elseif($type=='html'){
-            preg_match_all("/\>([^<]+)\</", $dstr, $arr);
-            if(!empty($arr[1])){
-                $data = self::trarr($arr[1], 1);
-            }
-        }else{
+        if($type=='php'){
             $arr = include($fp);
             foreach($arr as $vals){
                 if(is_array($vals)){
                     foreach($vals as $val){ $data[] = $val; }
                 }else{ $data[] = $vals; }
             }
+        }elseif($type=='html'){
+            preg_match_all("/\>([^<]+)\</", $dstr, $arr);
+            if(!empty($arr[1])){
+                $data = self::trarr($arr[1], 1);
+            }
+        }else{ // $type: 'line', ''
+            $dstr = preg_replace("/\<([^>|\n]+)\>/", "\n", $dstr);
+            $arr = explode("\n", $dstr);
+            $data = self::trarr($arr, 1);
         } //return $data; die();
         $trans = self::trapi($data, $to, $from); // 得到英文翻译
         $dsave = self::trrep($trans, $dorg, $type); // 替换翻译
