@@ -51,17 +51,17 @@ class _defCtrl{
         $_dcfg = isset($_groups[$mod]) ? $_groups[$mod] : $_groups['docs'];
         $dop = new dopBase($_dcfg,'base_model');
         $cv = $dop->cv; 
-        $full = $this->flowFile();
+        $_fp = str_replace('-','/',$this->ucfg['mkv']).'.php';
+        $fext = "/extra/$_fp";
+        $file = "/flow/$_fp";
+        $full = $this->flowFile($fext, $file);
         require $full;
         $this->foot($_cbase);
         die(); 
     }
 
-    function flowFile(){
+    function flowFile($fext, $file){
         include(DIR_VIEWS."/adm/frame/_inc-navbar.htm");
-        $fp = str_replace('-','/',$this->ucfg['mkv']).'.php';
-        $fext = "/extra/$fp";
-        $file = "/flow/$fp";
         if(file_exists(DIR_ROOT.$fext)){
             echo "\n<!--inc:{root}$fext-->\n";
             return DIR_ROOT.$fext;
@@ -69,7 +69,7 @@ class _defCtrl{
             echo "\n<!--inc:{imcat}$file-->\n";
             return DIR_IMCAT.$file;
         }else{
-           die("<h3>File Not Found: <br>{root}$fext or<br>{imcat}$file</h3>"); 
+           die("<h2>File Not Found: <br>{root}$fext or<br>{imcat}$file</h2>"); 
         }
     }
 

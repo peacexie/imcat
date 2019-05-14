@@ -9,10 +9,13 @@ class admMpts{
         global $_cbase;
         $islang = $part=='imcat' && $dir=='lang';
         $istpl = $part=='views' && !in_array($dir,['adm','base']);
-        if(!($islang || $istpl)){
+        $isroot = $part=='root' && in_array($dir,['extra','plus']);
+        if(!($islang || $istpl || $isroot)){
             return '';
         }
-        $files = glob(DIR_IMCAT.'/lang/kvphp/core-*.php');
+        $fps1 = glob(DIR_IMCAT.'/lang/kvphp/core-*.php');
+        $fps2 = glob(DIR_ROOT.'/extra/kvphp/core-*.php');
+        $files = array_merge($fps1, $fps2);
         $tra = [];
         foreach($files as $fp) {
             $trkey = str_replace(['core-','.php'],'',basename($fp));

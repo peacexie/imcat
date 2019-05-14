@@ -202,6 +202,5 @@ if($pid=='create'){
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[pid]|$pid","kid|".(empty($kid) ? 'is__add' : $kid),"cid|$cid"));
     }
-?>
 
 }
