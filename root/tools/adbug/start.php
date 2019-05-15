@@ -122,10 +122,10 @@ $scfg = array('min','cerulean','flatly','superhero'); // ,'(ull)'
     <?php if(($ti)%$col==0 && $ti<count($vcfg)){ echo "</tr><tr class='tc'>\n"; }  } ?>
   </tr>
   <tr class="tc" style="border-top:3px solid #A6CAF0;">
-    <td><a href="<?php echo $tolurl; ?>?tools-seal">PHP印章</a></td>
-    <td><a href="<?php echo $tolurl; ?>?tools-qrcode">二维码</a></td>
-    <td><a href="<?php echo $tolurl; ?>?tools-vimg">图片码</a></td>
-    <td><a href="<?php echo $tolurl; ?>?tools-cnconv">拼音</a></td>
+    <td><a href="http://imcat.txjia.com/dev.php?tools-seal">PHP印章</a></td>
+    <td><a href="http://imcat.txjia.com/dev.php?tools-qrcode">二维码</a></td>
+    <td><a href="http://imcat.txjia.com/dev.php?tools-vimg">图片码</a></td>
+    <td><a href="http://imcat.txjia.com/dev.php?tools-cnconv">拼音</a></td>
   </tr> 
   <tr class="tc">
     <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">贴心口袋</a></td>

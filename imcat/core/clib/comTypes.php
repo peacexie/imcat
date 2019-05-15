@@ -73,7 +73,7 @@ class comTypes{
                 $start = '1'; 
                 $fdeep = $v['deep'];
             }
-            if($start && strstr($deep,$v['deep'])){
+            if($start && strstr($deep,"$v[deep]")){
                 $a[$k] = $v;
             }
         } 

@@ -154,7 +154,7 @@ $bomfile = @$_GET['bomfile']; $bommsg = '';
     <td class="tc" colspan="3">
      # <a href='?act=openLinks&part=umc'>umc</a>
      | <a href='?act=openLinks&part=mob'>mob</a>
-     | <a href='?act=openLinks&part=chn'>chn</a>
+     | <a href='?act=openLinks&part=comm'>comm</a>
      | <a href='?act=openLinks&part=dev'>dev</a>
      | <a href='?act=openLinks&part=doc'>doc</a>
      #
@@ -177,7 +177,7 @@ $bomfile = @$_GET['bomfile']; $bommsg = '';
      # <a href='?act=scanMkvs&part=adm' target="_blank">mkv_adm</a> 
      | <a href='?act=scanMkvs&part=umc' target="_blank">mkv_umc</a>
      | <a href='?act=scanMkvs&part=mob' target="_blank">mkv_mob</a>
-     | <a href='?act=scanMkvs&part=chn' target="_blank">mkv_chn</a>
+     | <a href='?act=scanMkvs&part=comm' target="_blank">mkv_comm</a>
      | <a href='?act=scanMkvs&part=dev' target="_blank">mkv_dev</a>
      #
     </td>
