@@ -1,5 +1,30 @@
 
 
+#v4.8# (2019.05)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.8
+ - Release date: 2019.05
+ - rar-size: [core]1.31 MB, [full]3.64 MB(core+vendor)
+
+
+## ChangeLog
+
+* Add: 多语言数据同步管理
+* Add: 多语言包DIY制作工具（使用百度翻译接口）
+* Fix: 部署在https下，验证码不显示
+* Fix: php7.3下，一处Deprecated提示
+* Improve: 安装系统/重置密码时，改进账号密码的验证
+* Adjust: 演示站模板目录
+* Projects:
+ - CheerWebs(开心企业站)，
+ - Include: versions such as: `中文版`, `English`, `Français`, `Русский`, `Español`
+
+
+
 #v4.7# (2019.05)
 
 
