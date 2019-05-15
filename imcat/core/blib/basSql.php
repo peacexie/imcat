@@ -125,7 +125,7 @@ class basSql{
             $sql = str_replace(") AND",") \n AND",$sql); 
         }else{
             require_once DIR_VENDOR.'/sql-formatter/SqlFormatter.php';
-            $sql = SqlFormatter::format($sql, $hlight);            
+            $sql = \SqlFormatter::format($sql, $hlight);            
         }
         return $sql;
     }
