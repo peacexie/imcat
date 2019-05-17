@@ -146,7 +146,7 @@ class devScan{
             glbCUpd::upd_groups();
             glbCUpd::upd_paras('score');
             foreach($_cbase['run']['_safe'] as $sk=>$sv) {
-                $_cbase['run']['safe'][$sk] = $sv;
+                $_cbase['safe'][$sk] = $sv;
             }
         }
         $sre = usrPerm::simIdpw($uname, $upass);
