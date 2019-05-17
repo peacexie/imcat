@@ -1,6 +1,14 @@
 <?php
 namespace imcat;
 
+/*
+    comHttp::setCache(30); // 缓存30分钟
+    $opt:array('ref'=>'http://x_yz.com/file.htm'); 来路模拟
+    $opt:array('proxy'=>['ip','80']); proxy设置
+    $opt:array('cookie'=>'user=admin'); cookie设置
+    $header:'X-FORWARDED-FOR:8.8.8.8'.PHP_EOL.'CLIENT-IP:8.8.8.8' // ??? 来源IP模拟
+*/
+
 //数据采集，doGET,doPOST,文件下载，
 class comHttp
 {
@@ -24,12 +32,12 @@ class comHttp
     }
 
     //通过get方式获取数据
-    static function doGet($url, $timeout=5, $header="") {    
-        return self::doPost($url, array(), $timeout, $header);
+    static function doGet($url, $params=array()) {    
+        return self::doPost($url, array(), $params);
     }
     //通过POST方式发送数据
-    static function doPost($url, $parr=array(), $timeout=5, $header="") {
-        if(empty($url)||empty($timeout)) return false;
+    static function doPost($url, $data=array(), $params=array()) {
+        if(empty($url)) return false; 
         if(!preg_match('/^(http|https)/is',$url)) $url = "http://".$url;
         $method = ''; #self::$way = 2;
         if(isset(self::$ways[self::$way])){
@@ -42,67 +50,72 @@ class comHttp
                 }
             }
         } 
-        return $method ? self::$method($url,$parr,$timeout,$header) : false;
+        return $method ? self::$method($url, $data, $params) : false;
     }
     
     //通过 curl get/post数据 ($data: str:xml,str:json,array)
-    // $data:array('_ref'=>'http://down.chinaz.com/soft/37712.htm'); 来路模拟
-    // $data:array('_proxy'=>['ip','80']); proxy设置
-    // $data:array('_cookie'=>'user=admin'); cookie设置
-    // $header:'X-FORWARDED-FOR:8.8.8.8'.PHP_EOL.'CLIENT-IP:8.8.8.8' //来源IP模拟
-    static function curlCrawl($url, $data=array(), $timeout=5, $header="") {
+    static function curlCrawl($url, $data=array(), $opt=array()) {
         // getCache
         $cres = self::getCache($url, $data);
         if(!empty($cres[1])) return $cres[1];
-        // header
-        $header = self::_getHeader($header);
-        if(isset($data['_cookie'])){ // cookie设置
-            $header .= PHP_EOL."Cookie: ".$data['_cookie'];
-            unset($data['_cookie']);
-        }
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        if(isset($data['_ref'])){ //模拟来源地址
-            curl_setopt($ch, CURLOPT_REFERER, $data['_ref']);
-            unset($data['_ref']);
-        }
-        if(isset($data['_proxy'])){
-            $proxy = $data['_proxy'];
-            curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC); //代理认证模式  
-            curl_setopt($ch, CURLOPT_PROXY, $proxy[0]); //代理服务器地址   
-            curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]); //代理服务器端口
-            unset($data['_proxy']);
-        }
-        if(!empty($data)){
-            curl_setopt($ch, CURLOPT_POST, true); 
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
-        }
+        // init
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL, $url); 
+        self::_timeout($opt, $ch); // Timeout
+        self::curlProxy($ch, $opt); // ref/proxy
         #curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array($header));
-        curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate'); //curl解压gzip页面内容
+        $header = self::_heads($opt, $data); // header/cookie/type
+        $header && curl_setopt($ch, CURLOPT_HTTPHEADER, $header); 
+        self::curlData($ch, $opt, $data); // data,gzip
+        // https
         if(substr($url,0,8)=='https://'){
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-            // CURL_SSLVERSION_TLSv1_2
         }
+        // saveCache & return
         $result = curl_exec($ch);
-        // saveCache
         self::saveCache($cres[0], $result);
-        // return
         curl_close($ch);
         return $result;
     }
+    // data,gzip
+    static function curlData(&$ch, &$opt=array(), $data=array()){
+        if(!empty($data)){
+            if(isset($opt['type']) && in_array($opt['type'],array('xml','json'))){
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            }else{
+                curl_setopt($ch, CURLOPT_POST, true);  
+            }
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data); 
+        }
+        if(isset($opt['gzip'])){ //模拟来源地址
+            $gzip = empty($opt['gzip']) ? 'gzip,deflate' : $opt['gzip'];
+            curl_setopt($ch, CURLOPT_ENCODING, $gzip); //curl解压gzip页面内容
+        } 
+    }
+    // ref/proxy
+    static function curlProxy(&$ch, &$opt=array()){
+        if(isset($opt['ref'])){ //模拟来源地址
+            curl_setopt($ch, CURLOPT_REFERER, $opt['ref']);
+        }
+        if(isset($opt['proxy'])){
+            $proxy = $opt['proxy'];
+            curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC); //代理认证模式  
+            curl_setopt($ch, CURLOPT_PROXY, $proxy[0]); //代理服务器地址   
+            curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]); //代理服务器端口
+        }
+    }
+
     //通过 socket get/post数据
-    static function socketCrawl($url, $data=array(), $timeout=5, $header="") {
+    static function socketCrawl($url, $data=array(), $opt=array()) {
         // getCache
         $cres = self::getCache($url, $data);
         if(!empty($cres[1])) return $cres[1];
-        // header
-        $header = self::_getHeader($header);
+        // timeout/header
+        $timeout = self::_timeout($opt);
+        $header = self::_heads($opt, $data);
         $url = parse_url($url); $errno = 0; $errstr = '';
         $url["path"] = ($url["path"] == "" ? "/" : $url["path"]);
         $url["port"] = empty($url["port"]) ? 80 : $url["port"];
@@ -113,7 +126,7 @@ class comHttp
         $request = $url["path"].($url["query"] ? "?" . $url["query"] : ""); 
         $eol = PHP_EOL; $eol2 = $eol.$eol; 
         $in  = (empty($data) ? 'GET' : 'POST')." $request HTTP/1.0$eol";
-        $in .= "Host: " . $url["host"] . "$eol$header";
+        $in .= "Host: " . $url["host"] . "$eol".implode($eol,$header);
         if(!empty($data)){
             $pstr = http_build_query($data);  
             $in .= "Content-type: application/x-www-form-urlencoded$eol";
@@ -144,23 +157,24 @@ class comHttp
         }else{ return false; }
     }
     //通过 file_get_contents 函数post数据
-    static function fileCrawl($url, $data=array(), $timeout=5, $header=""){
+    static function fileCrawl($url, $data=array(), $opt=array()){
         // getCache
         $cres = self::getCache($url, $data);
         if(!empty($cres[1])) return $cres[1];
-        // header
-        $header = self::_getHeader($header);
+        // timeout/header
+        $timeout = self::_timeout($opt);
+        $header = self::_heads($opt, $data);
         $opts = array( 
             'http'=>array(
                 'protocol_version'=>'1.0',//http协议版本(若不指定php5.2系默认为http1.0)
                 'timeout' => $timeout ,
-                'header'=> $header,  
+                'header'=> implode(PHP_EOL,$header),  
                 'method'=> (empty($data) ? 'GET' : 'POST'),
             )
         ); 
         if(!empty($data)){
             $pstr = http_build_query($data); 
-            $header .= "Content-length: ".strlen($pstr);
+            $opts['http']['header'] = "Content-length: ".strlen($pstr);
             $opts['http']['content'] = $pstr;
         }
         $context = stream_context_create($opts);
@@ -171,11 +185,52 @@ class comHttp
         return $result;
     }
     
+    // exp
+    static function _timeout(&$opt=array(), &$ch='re'){
+        $exp = 5;
+        if(is_numeric($opt)){
+            $exp = $opt;
+            $opt = array();
+        }elseif(!empty($opt['exp'])){
+            $exp = $opt;
+        }
+        if($ch=='re') return $exp;
+        curl_setopt($ch, CURLOPT_TIMEOUT, $exp);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $exp);
+    }
+    // head/cookie: 'null', empty(), cookie
+    static function _heads(&$opt=array(), &$data=array()){
+        if(empty($opt['head'])){
+            $header = self::_defHeader();
+        }elseif(is_array($opt['head'])){
+            $header = implode(PHP_EOL, $opt['head']);
+        }else{
+            $header = $opt['head']=='null' ? array() : $opt['head'];
+        }
+        if(isset($opt['cookie'])){ // cookie设置
+            $header[] = "Cookie: ".$data['cookie'];
+        }
+        $tag = array(
+            'html'=>'text/html', // plain
+            'xml'=>'text/xml', 
+            'json'=>'application/json',
+            'down'=>'application/octet-stream',
+        );
+        if(isset($opt['type']) && isset($tag[$opt['type']])){ // json
+            $header[] = "Content-Type: ".$tag[$opt['type']];
+            if($opt['type']=='json'){
+                if(is_array($data)) $data = json_encode($data);
+                $header['json'] = "Content-Length: ".strlen($data);
+            }
+        }
+        return $header;
+    }
+
     //默认模拟的header头 
-    static function _getHeader($header="", $restr=1){
+    static function _defHeader($header=""){
         if(!empty($header)) return $header;
         $defs = array(
-            'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko',
+            'HTTP_USER_AGENT' => 'comHttp@imcat.txjia.com',
         );
         $cfgs = array(
             'HTTP_ACCEPT' => 'Accept',
@@ -193,7 +248,6 @@ class comHttp
         }
         // 乱码问题: 遇到了外部$_cbase中加入,这里添加
         // 'HTTP_ACCEPT_ENCODING' = 'Accept-Encoding: gzip, deflate';
-        $restr && $header = implode(PHP_EOL,$header);
         return $header;
     }
 
@@ -294,23 +348,12 @@ class comHttp
     }
 
     //兼容方法(后续去掉)
-    static function curlGet($url, $timeout=5, $header="") {
-        return self::curlCrawl($url, array(), $timeout, $header);
+    static function curlGet($url, $params=array()) {
+        return self::curlCrawl($url, array(), $params);
     }
-    static function curlPost($url, $parr=array(), $timeout=5, $header="") {    
-        return self::curlCrawl($url, $parr, $timeout, $header);
+    static function curlPost($url, $data=array(), $params=array()) {    
+        return self::curlCrawl($url, $data, $params);
     }
 
 }
-
-/*
-    comHttp::setCache(30); // 缓存30分钟
-
-    $url = "http://imcat.txjia.com/chn.php?news-n1012";
-    $data = comHttp::curlCrawl($url);
-    $url = "http://imcat.txjia.com/chn.php?news-n1014";
-    $data = comHttp::socketCrawl($url);
-    $url = "http://imcat.txjia.com/chn.php?news-n1022";
-    $data = comHttp::fileCrawl($url);
-*/
 

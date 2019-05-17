@@ -40,7 +40,8 @@ class exvOcar{
         $s_data .= self::$account;
         $s_data .= '</CreateAndPreAlertOrderService>';
         $header = "Content-type: text/xml";
-        $res = comHttp::curlCrawl($api, $s_data, 5, $header);
+        $ops = ['exp'=>5, 'type'=>'xml'];
+        $res = comHttp::curlCrawl($api, $s_data, $ops);
         $xml = simplexml_load_string($res);
         $json = json_encode($xml);
         $jarr = json_decode($json, true);
