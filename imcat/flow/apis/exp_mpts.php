@@ -90,6 +90,9 @@ $msg = ''; $tabext = '';
     }
     glbHtml::fmt_end(array("mod|$mod"));
 
+    $jstr = "$('#{$mod}_add').addClass('cCCC').prop('href','#')";
+    echo basJscss::jscode($jstr);
+
     //require dopFunc::modAct('list_show',$mod,$dop->type);
 
 //}elseif($view=='set'){
