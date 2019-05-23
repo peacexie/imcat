@@ -35,6 +35,19 @@ $cntre = req('cntre','1','N'); if($cntre<1) $cntre = 1;
 $retitle = req('retitle','','Title'); if(empty($retitle)) $retitle = key($fshow); 
 $refval = req('refval','','Title');
 $refname = req('refname','','Title');
+$reckey = 'pick_rekeys';
+if($refval && $refname){
+  comCookie::oset($reckey, "$cntre---$retitle---$refval---$refname");
+}else{
+  $reckvals = comCookie::oget($reckey);
+  $reckvala = explode('---', $reckvals);
+  if(count($reckvala)==4){
+    $cntre = $reckvala[0];
+    $retitle = $reckvala[1];
+    $refval = $reckvala[2];
+    $refname = $reckvala[3];
+  }
+}
 
 $msg = ''; 
 
