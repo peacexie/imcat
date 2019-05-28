@@ -55,6 +55,15 @@ class glbConfig{
                 if(is_array($tmp) && (!empty($tmp['i'])) && is_string($tmp['i'])){
                     self::$_CACHES_YS[$ck]['i'] = self::tmpItems($modid);
                 }
+                if(isset($_cbase['tpl']['bdpart'])){
+                    $bdpart = $_cbase['tpl']['bdpart'];
+                    if(isset($_cbase['lang'][$bdpart]["i_$modid"]) && isset($tmp['i'])){
+                        self::$_CACHES_YS[$ck]['i'] = basArray::Merge($tmp['i'], $_cbase['lang'][$bdpart]["i_$modid"]);
+                    }
+                    if(isset($_cbase['lang'][$bdpart]["f_$modid"]) && isset($tmp['f'])){
+                        self::$_CACHES_YS[$ck]['f'] = basArray::Merge($tmp['f'], $_cbase['lang'][$bdpart]["f_$modid"]);
+                    }
+                }
             }else{ 
                 self::$_CACHES_YS[$ck] = array();
             }
@@ -91,7 +100,7 @@ class glbConfig{
             comFiles::put($file,$data); 
         }else{ //get
             $data = comFiles::get($file); 
-             $itms = comParse::jsonDecode($data); 
+            $itms = comParse::jsonDecode($data); 
             return $itms;
         }
     }

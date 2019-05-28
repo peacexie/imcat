@@ -91,7 +91,7 @@ class basDebug{
         $info = "Done:$qtime/$rtime($unit); ";
         $info .= "".$run['query']."(queries)/".round(memory_get_usage()/1024/1024, 3)."(MB); ";
         $route = empty($_SERVER['PATH_INFO']) ? '' : "Route:".$_SERVER['PATH_INFO'];
-        $tpl = "Tpl:".(empty($run['tplname']) ? '(null)' : $run['tplname']); //tpl  
+        $tpl = "Tpl:".(empty($run['tplname']) ? '(null)' : $_cbase['tpl']['vdir'].':'.$run['tplname']); //tpl  
         $auto = empty($route) ? (empty($run['tplname']) ? self::runQstr() : $tpl) : $route;
         $info .= $$tq."; Upd:".date('Y-m-d H:i:s')." "; 
         return $info;

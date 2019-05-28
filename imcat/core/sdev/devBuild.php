@@ -10,6 +10,8 @@ class devBuild{
             $type = strpos($ff,'aflow-') ? 'html' : 'line';
         }elseif(strpos($ff,'/lang/')){
             $type = 'php';
+        }elseif(strpos($ff,'/views/') && strpos($ff,'.js')){
+            $type = 'line';
         }elseif(strpos($ff,'/views/')){
             $type = strpos($ff,'.php') ? 'php' : 'html';
         }else{
@@ -30,6 +32,7 @@ class devBuild{
         $to = isset($tab[$to]) ? $tab[$to] : $to;
         $type = self::trtype($ff);
         $dsave = self::trans($ff, $to, $type, $from);
+        if(empty($dsave)) return 0;
         comFiles::put($ff, $dsave);
         return $fp;
     }
@@ -46,6 +49,10 @@ class devBuild{
                 }else{ $data[] = $vals; }
             }
         }elseif($type=='html'){
+            $dstr = preg_replace("/<style[\s\S]*?<\/style>/i", "", $dstr); 
+            $dstr = preg_replace("/<script[\s\S]*?<\/script>/i", "", $dstr); 
+            $dstr = preg_replace("/<\?php[\s\S]*?\?>/i", "", $dstr); 
+            $dstr = preg_replace("/\{php[\s\S]*?\{\/php\}/i", "", $dstr);
             preg_match_all("/\>([^<]+)\</", $dstr, $arr);
             if(!empty($arr[1])){
                 $data = self::trarr($arr[1], 1);
@@ -53,12 +60,15 @@ class devBuild{
         }else{ // $type: 'line', ''
             $dstr = preg_replace("/\<([^>|\n]+)\>/", "\n", $dstr);
             $arr = explode("\n", $dstr);
-            $data = self::trarr($arr, 1);
+            $data = self::trarr($arr, 1); 
         } //return $data; die();
         $trans = self::trapi($data, $to, $from); // 得到英文翻译
+        if(empty($trans['from'])){
+            return 0;
+        }
         $dsave = self::trrep($trans, $dorg, $type); // 替换翻译
         if($re) return $dsave;
-        comFiles::put("$fp-$to", $dsave);
+        //comFiles::put("$fp-$to", $dsave);
     }
     // 翻译替换
     static function trrep($trans, $dorg, $type=''){

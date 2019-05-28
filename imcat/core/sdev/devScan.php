@@ -125,6 +125,7 @@ class devScan{
                     $fa = explode(',',$cfg[1]);
                     foreach($fa as $fk){
                         $old = $row[$fk];
+                        if(strlen($old)<12) continue;
                         $new = empty($cfg[2][$fk]) ? devBase::_drndData($old) : $cfg[2][$fk]; 
                         $data = str_replace("'$old'","'$new'",$data);
                     }

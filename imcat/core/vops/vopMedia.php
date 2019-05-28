@@ -7,7 +7,7 @@ namespace imcat;
 class vopMedia{
 
     // {media:[type=map][val=3.44%2C44.24][w=33][h=44][ext=地点1]/media}
-    static function repShow($cstr){ 
+    static function repShow($cstr){
         preg_match_all("/\{media\:([^\n]{12,1200}\])\/media\}/i", $cstr, $m);
         $cfgs = self::cfgTypes();
         if(!empty($m[0])){

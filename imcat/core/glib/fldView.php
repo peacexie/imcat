@@ -129,6 +129,7 @@ class fldView{
     }
     // pics
     static function ipics($k,$cfg,$val,$size,$vstr,$mod='',$kid=''){
+        global $_cbase;
         $val = comStore::revSaveDir($val);
         $cfg['cfgs'] = empty($cfg['cfgs']) ? '' : basElm::arr2text($cfg['cfgs'],';','|');
         $item = ''; $smk = self::mkpar($mod,$kid);

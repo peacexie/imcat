@@ -220,20 +220,20 @@ class basEnv{
     static function sysHome(){
         global $_cbase;
         $host = $_SERVER["HTTP_HOST"]; 
-        $http = ''; // self::isHttps() ? 'https:' : 'http:';
         $res = glbConfig::read('domain','sy');
         $sdirs = $res['subDirs'];
         // dir-跳转:
         if(isset($sdirs[$host])){
+            $http = self::isHttps() ? 'https' : 'http';
             $host = $sdirs[$host];
             $uri = $_SERVER['REQUEST_URI'];
-            $dir = "$http//$host$uri";
+            $dir = "$http://$host$uri"; 
             header("Location:$dir");
         }
-        $_cbase['run']['rsite'] = "$http//$host"; 
-        $_cbase['run']['rmain'] = "$http//$host".PATH_PROJ; 
-        $_cbase['run']['roots'] = "$http//$host".PATH_ROOT; 
-        $_cbase['run']['fbase'] = "$http//$host".PATH_BASE; 
+        $_cbase['run']['rsite'] = "//$host"; 
+        $_cbase['run']['rmain'] = "//$host".PATH_PROJ; 
+        $_cbase['run']['roots'] = "//$host".PATH_ROOT; 
+        $_cbase['run']['fbase'] = "//$host".PATH_BASE; 
     }
     // 判断是否 isHttps
     static function isHttps() {

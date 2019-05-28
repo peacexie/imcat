@@ -8,7 +8,7 @@ class admMpts{
     static function vNav($part, $dir){
         global $_cbase;
         $islang = $part=='imcat' && $dir=='lang';
-        $istpl = $part=='views' && !in_array($dir,['adm','base']);
+        $istpl = $part=='views' && !in_array($dir,['adm']); // ,'base'
         $isroot = $part=='root' && in_array($dir,['extra','plus']);
         if(!($islang || $istpl || $isroot)){
             return '';

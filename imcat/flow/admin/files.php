@@ -55,7 +55,7 @@ if(isset($purls[$part])){
     echo "<th>No.</th><th>File</th><th>Size</th><th>Edit Time</th><th>Actions</th></tr>\n";
     if(!empty($flist)){ 
         $i=0;
-        foreach($flist as $ifile=>$cfg){ 
+        foreach($flist as $ifile=>$cfg){
             $i++; $burl = "?$mkv&part=$part&dir=$dir&opfile=$ifile";
             $down = "<a href='$burl&bsend=down' target='_blank'>Down</a>";
             $move = "<i class='c999'>Move</i>";
