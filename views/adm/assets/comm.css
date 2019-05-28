@@ -105,6 +105,8 @@ ul.adf_mnu2 li a:hover{ color:#F00; }
 .mpic_out div { width:100%; }
 .mpic_out select { width:100%; }
 .mpic_out i.seltype select { width:120px; }
+/*图集*/
+.mpic_out{ word-wrap:break-word;word-break:break-all;white-space:normal; }
 
 .uh-space { width:100%; margin-bottom:5px; border:0px solid #CCC; }
 .uh-space td { text-align:center; border:1px dashed #CCC; white-space:nowrap; }

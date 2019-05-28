@@ -37,7 +37,7 @@ $_cbase['tpl']['tpc_on']  = 0; //是否开启模板缓存，true开启,false不�
 $_cbase['tpl']['tpc_ext'] = '.cac_php'; //模板缓存后缀,一般不需要修改 
 $_cbase['tpl']['no_static'] = '(adm)'; //,umc
 $_cbase['tpl']['def_static'] = 'comm';
-$_cbase['tpl']['mob_tpls'] = '(mob)'; //,app
+$_cbase['tpl']['mob_tpls'] = '(mob,comm)'; //,app
 
 // server
 $_cbase['server']['txmao']  = 'http://imcat.txjia.com'; //txmao首页{svrtxmao}

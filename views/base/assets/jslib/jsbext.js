@@ -29,9 +29,13 @@ function getCookie(name){
 
 // 系统开窗(System)
 function winOpen(e,title,width,height,ext){
-    var width = width ? width : 640;
-    var height = height ? height : 480;
-    var url,title,wt=_cbase.sys_open;
+    var width = width ? width : 640,
+        height = height ? height : 480,
+        scw = screen.width,
+        sch = screen.height;
+    if(width>scw) width = scw;
+    if(height>sch) height = sch;
+    var url, title, wt=_cbase.sys_open;
     if(isObj(e,'s')){
         url = e;
         title = title ? title : "winOpen";
@@ -41,7 +45,7 @@ function winOpen(e,title,width,height,ext){
     }
     url += (url.indexOf('?')>0 ? '' : '?') + '&' + jsRnd('dialog');
     if(wt==1){ 
-        var _x = (screen.width-width)/2, _y = (screen.height-height)/2, id = ext ? '_win_'+jsKey(ext) : '_win_';
+        var _x = (scw-width)/2, _y = (sch-height)/2, id = ext ? '_win_'+jsKey(ext) : '_win_';
         var p = ",left="+_x+",top="+_y+",width="+width+",height="+height+"";
         window.open(url,id,'scrollbars=yes,toolbar=no,location=no,status=no,menubar=no,resizable=yes'+p); 
     }else{ // 4
