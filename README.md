@@ -1,6 +1,6 @@
 
 
-贴心猫(imcat) V4.7 Released (2019-05)
+贴心猫(imcat) V4.8 Released (2019-06)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -44,7 +44,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.7 ChangeLog】 (2019.05)
+### 【v4.8 ChangeLog】 (2019.06)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-4_0)
 
@@ -83,7 +83,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.7更新日志】(2019.05)
+### 【v4.8更新日志】(2019.06)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-4_0)
 
