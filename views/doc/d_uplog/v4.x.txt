@@ -20,7 +20,7 @@
 * Improve: Improve account/password verification while installing system or resetting password
 * Adjust: Demo-Site Template Directory
 * Projects:
- - CheerWebs(开心企业站)，
+ - CheerWeb(开心企业站)，
  - Include: versions such as: `中文版`, `English`, `Français`, `Русский`, `Español`
 
 

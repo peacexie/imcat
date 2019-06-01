@@ -1,0 +1,25 @@
+
+<h3>贴心猫(imcat)</h3>
+<ul>
+  <li>一款PHP+MySQL架构设计的通用网站系统，简约、轻量、实用、免费、共享；</li>
+  <li>介于框架与CMS之间，也是一个实用的php工具包；</li>
+  <li>以面向应用为主，不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放。</li>
+</ul>
+
+<h4>各版本入口</h4>
+<ul>
+  <li>
+    各入口：
+    {loop $vcfg $k $v}
+    <a href="{=PATH_PROJ}{=$v[1]}"><?php echo basLang::pick(0,$v[0]); ?></a>
+    {=$k}{if $k!='rest'}，{else}。{/if}
+    {/loop}
+  </li>
+</ul>
+
+<h4>应用场景</h4>
+<ul>
+  <li>适用于：网店，医院，学校，企业站，个人博客，</li>
+  <li>APP服务端，企业内部Intranet，各种行业门户站点等……；</li>
+  <li>作为一个PHP <a href="http://imcat.txjia.com/dev.php?tools">工具包</a>；</li>
+</ul>

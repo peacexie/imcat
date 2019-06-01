@@ -16,11 +16,9 @@ $_va_home = array(
     ),
     
     //mod.home模块首页模板
-    'm' => 'home/home-(xx)', // home/home-xx(cn|en)
+    'm' => 'home/en', // cn|en
 
     'start' => '(jump)',
-    'cn' => 'home/home-cn',
-    'en' => 'home/home-en',
     //'update' => 'home/update',
   
 );

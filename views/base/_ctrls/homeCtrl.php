@@ -42,7 +42,7 @@ class homeCtrl{
         $lang = \imcat\comCookie::oget('lang');
         $key = in_array($lang,array('en','cn')) ? $lang : 'cn';
         $vars['lang'] = $lang;
-        return array('newtpl'=>"home/home-$key",'vars'=>$vars);
+        return array('newtpl'=>"home/$key",'vars'=>$vars);
     }
 
     function startAct(){

@@ -7,10 +7,11 @@
 body, html, p, div{ font:14px "Lucida Grande", Verdana, Lucida, Helvetica, Arial, 'Simsun', sans-serif; }
 a{ text-decoration:none; }
 i{ font-style:normal;  }
-p i.r{ float:right; color:#999; }
+.r{ float:right; }
 .gwidth{ width:760px; display:block; margin:0px auto; clear:both; }
 .ie6{ color:#F00; background-color:#FFC; text-align:center; padding:10px 0; padding:10px 0px; }
 .clear { clear:both; }
+.tc { text-align:center; }
 
 
 .nav{ text-align:center; font-size:larger; padding:20px 0 0 0; }
@@ -68,6 +69,9 @@ p i.r{ float:right; color:#999; }
     .head p{ display:block; margin:auto 0px 20px 0px; }
 } /*<=764(768)的设备*/
 
+@media only screen and (max-width:350px){
+    .hid350{ display:none; }
+} /*<=350的设备*/
 
 .foot{ text-align:center; clear:both; padding:20px 0; }
 .foot p{ padding:0px 0; margin:5px 0; }

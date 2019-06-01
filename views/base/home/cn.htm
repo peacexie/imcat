@@ -1,4 +1,4 @@
-{imp:"home/layout"}
+{imp:"home/_layout"}
 
 {block:head}
 {php} $resume = '通用PHP建站系统'; {/php}
@@ -6,6 +6,53 @@
 <meta name='keywords' content='贴心猫(imcat):贴心猫,轻量免费,开源共享,PHP CMS,微信接口,Imcat,imcat'>
 <meta name='description' content='贴心猫(imcat)一款轻量、免费、共享的通用PHP网站应用系统；App服务端-PC版-手机版-微信接口一站搞定！'>
 {/block:head}
+
+{block:catxx}
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">v{=$_cbase['sys']['ver']}</span>贴心猫(imcat)</h2>
+    <div>
+        <p>一款PHP+MySQL架构设计的通用网站系统，简约、轻量、实用、免费、共享</p>
+        <p>介于框架与CMS之间，也是一个实用的php工具包</p>
+        <p>以面向应用为主，不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放</p>
+        <p class="tc">
+            <a href="http://imcat.txjia.com/">演示站</a> -
+            <a href="{surl(home-tips)}">入门</a> -  
+            <a href="http://imcat.txjia.com/dev.php">文档</a> - 
+            <a href="https://github.com/peacexie/imcat">github下载</a>
+        </p>
+    </div>
+</div></div>
+
+<div class="block"><div class="in">
+    <h2><span class="tg1">扩展系统</span>基于贴心猫开发</h2>
+    <div>
+        <p>
+            <a class="r" href="https://github.com/peacexie/imblog">下载</a>
+            <a href="http://imblog.txjia.com">贴心博客</a>：
+            包含 博客文章、心情墙、许愿墙、小语墙 
+        </p>
+        <p>
+            <a class="r" href="https://github.com/peacexie/ourhouse">下载</a>
+            <a href="http://ourhouse.txjia.com">爱窝房产</a>：
+            为房产行业定制的通用系统，免费、开源、无加密、无限制！
+        </p>
+        <p>
+            <a class="r" href="https://github.com/peacexie/cheerweb">下载</a>
+            <a href="http://cheerweb.txjia.com/">开心企业网</a>：
+            包含 中、英、法、俄、西班牙多语言展示，还可多语言DIY。
+        </p>
+        <p>
+            <i class="r"><a href="http://txjia.com/">More</a></i>
+            <span class="hid350">相关系统: </span>
+            <a href="http://im3n.txjia.com/">至简生活</a> - 
+            <a href="http://imblog.txjia.com/home.php?ftree">家族亲友树</a> - 
+            <a href="http://imcat.txjia.com/dev.php?tools">贴心工具</a>
+        </p>
+    </div>
+</div></div>
+
+{/block:catxx}
 
 {block:inner}
 
