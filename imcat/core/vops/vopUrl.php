@@ -161,13 +161,15 @@ class vopUrl{
         }
         //动态
         if(empty($url)){
+            $tcfg = $_cbase['run']['tplcfg'];
             $url = $burl.'?'.$mkv;
             // 处理伪静态
-            if(!empty($_cbase['run']['tplcfg'][2])){
-                $url = str_replace('.php?', $_cbase['run']['tplcfg'][2], $url);
+            if(!empty($tcfg[2])){
+                $rp = empty($tcfg[4]) ? '.php?' : $tcfg[1].'?';
+                $url = str_replace($rp, $tcfg[2], $url);
             }
-            if(!empty($_cbase['run']['tplcfg'][3])){
-                $url .= $_cbase['run']['tplcfg'][3];
+            if(!empty($tcfg[3])){
+                $url .= $tcfg[3];
             }
         }
         $url = self::bind($url);

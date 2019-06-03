@@ -133,7 +133,6 @@ class dopBCv{
         //$val = $r[$key]; $vbak = $val; $vre = array();
         $fc = @$this->cfg['f'][$key];
         $ftype = @$fc['type']; $cfgs = @$fc['cfgs'];
-        $arr = array();
         $extra = @$fc['fmextra']; $exstr = @$fc['fmexstr'];
         $arr = array();
         if($extra=='winpop' && isset($_groups[$exstr])){ 

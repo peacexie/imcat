@@ -219,6 +219,41 @@ class basDebug{
         return $str;
     }
 
+    # log
+    static function log($act='', $sec='get,post,input'){
+        $svr = $_SERVER;
+        $act || $act = $svr['REQUEST_METHOD'];
+        $res = $srvs = [];
+        // base
+        $res['get'] = $_GET;
+        $res['post'] = $_POST;
+        $res['input'] = file_get_contents('php://input');
+        $res['cookie'] = $_COOKIE;
+        // server
+        $srvt = array(
+            'HTTP_ACCEPT_ENCODING',
+            'HTTP_CONNECTION',
+            'HTTP_COOKIE',
+            'HTTP_REFERER',
+            'HTTP_VIA',
+            'HTTP_UPGRADE_INSECURE_REQUESTS',
+            'HTTP_X_FORWARDED_FOR',
+            'HOSTNAME',
+            'REMOTE_ADDR',
+            'SERVER_ADDR',
+        );
+        foreach($srvt as $key) {
+            $srvs[$key] = isset($svr[$key]) ? $svr[$key] : '(null)';
+        }
+        $res['srvs'] = $srvs;
+        // debug
+        $debug['qlen'] = strlen($svr['QUERY_STRING']);
+        $debug['method'] = $act;
+        $res['debug'] = $debug;
+        $data = var_export($res, 1);
+        $path = "debug/$act-".date('md-His-').mt_rand(1000,9999).'.txt';
+        self::bugLogs($act, $data, $path, 'file'); // save
+    }
     
 }
 

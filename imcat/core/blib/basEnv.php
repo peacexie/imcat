@@ -126,7 +126,7 @@ class basEnv{
                 $ip .= ';'.($flag ? "$k," : '').$_SERVER[$v];
             }
         }
-        if(basArray::inStr(array("'","\\"),$ip)) self::Stop('userIPError');
+        if(basArray::inStr(array("'","\\"),$ip)) safBase::Stop('userIPError');
         $ip = substr($ip,1);
         return $ip;
     }
@@ -219,7 +219,7 @@ class basEnv{
     // sysHome // HTTP_HOST = SERVER_NAME : SERVER_PORT
     static function sysHome(){
         global $_cbase;
-        $host = $_SERVER["HTTP_HOST"]; 
+        $host = empty($_SERVER["HTTP_HOST"]) ? '' : $_SERVER["HTTP_HOST"]; 
         $res = glbConfig::read('domain','sy');
         $sdirs = $res['subDirs'];
         // dir-跳转:
