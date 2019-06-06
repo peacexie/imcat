@@ -15,7 +15,8 @@ use imcat\vopTpls;
 公共模板扩展函数
 */ 
 class texBase{
-    
+
+    static $data = array();
     static $dcfg = array('basic','main',); //'base','frame'
 
     static function init($obj){

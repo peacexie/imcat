@@ -9,6 +9,7 @@ use imcat\usrBase;
 */ 
 class texBase extends \imcat\dev\texBase{
     
+    static $data = array();
     //protected $xxx = array();
 
     static function init($obj){
