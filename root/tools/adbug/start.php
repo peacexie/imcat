@@ -21,7 +21,7 @@ $umsg = devRun::startCheck();
 if(!empty($fmsg)){
   $pmsg['fpath'] = $fmsg;
   $umsg = $pmsg + $umsg; 
-}
+} //basDebug::log();
 
 $vcfg = vopTpls::etr1('tpl');
 unset($vcfg['base']);   

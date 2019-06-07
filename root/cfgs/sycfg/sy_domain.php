@@ -11,6 +11,7 @@ $_sy_domain['subDirs'] = array(
     #'127.0.0.1' => '127.0.0.2', //测试
     'www.txjia.com'          => 'imcat.txjia.com', 
     'txmao.txjia.com'        => 'imcat.txjia.com',
+    'imcat.gz01.bdysite.com' => 'imcat.txjia.com',
 ); //dir-跳转
 // http://imcat.gz01.bdysite.com/
 // http://imcat.pswpower.com/

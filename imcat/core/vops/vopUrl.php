@@ -139,10 +139,11 @@ class vopUrl{
     // paras: array, string 
     static function fout($mkv='',$type='',$host=0){ //,$ext=array()
         global $_cbase;
+        $tcfg = $_cbase['run']['tplcfg'];
         if(strpos($mkv,':')) return self::gtpl($mkv,$type,$host);
         $burl = self::burl($host); 
         //mkv分析
-        if(strlen($mkv)<3) return self::bind($burl); //首页
+        if(strlen($mkv)<3) return self::bind($burl,$tcfg); //首页
         $type || $type = strpos($mkv,'.') ? '.' : '-';
         $a = explode($type,"$mkv$type$type");
         $mod = $a[0]; $key = $a[1]; $view = $a[2];
@@ -161,7 +162,6 @@ class vopUrl{
         }
         //动态
         if(empty($url)){
-            $tcfg = $_cbase['run']['tplcfg'];
             $url = $burl.'?'.$mkv;
             // 处理伪静态
             if(!empty($tcfg[2])){
@@ -172,7 +172,7 @@ class vopUrl{
                 $url .= $tcfg[3];
             }
         }
-        $url = self::bind($url);
+        $url = self::bind($url,$tcfg);
         return $url;
     }
     
@@ -221,8 +221,14 @@ class vopUrl{
     }
 
     // 绑定域名
-    static function bind($url){
+    static function bind($url,$tcfg=array()){
         global $_cbase;
+        if(!empty($tcfg[5])){
+            $rfp = $tcfg[5]['0'];
+            if(substr($url,-1*strlen($rfp))==$rfp){
+                $url = str_replace($rfp,$tcfg[5]['1'],$url);
+            }
+        }
         $binds = $_cbase['ucfg']['dbind']; 
         if(empty($binds)) return $url;
         $na = glbConfig::read('dmbind','sy');

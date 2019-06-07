@@ -4,9 +4,35 @@ RewriteEngine on
 # RewriteCond %{REQUEST_FILENAME} !-d
 # RewriteCond %{REQUEST_FILENAME} !-f
 
-RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
-#RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
+# 方案1(默认,含有/home/目录,首页home.php为态)
+# /home/news.htm         -> /home.php?news
+# /home/news.htm?p1=v1   -> /home.php?news&p1=v1
+RewriteRule ^(home|chn|vcn|ven|ves|vfr|vru)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
+RewriteRule ^(home|chn|vcn|ven|ves|vfr|vru)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
 
-# RewriteRule ^test([0-9]*).html$ test.php?id=$1
-# http://txjia.com/test8.html -> http://txjia.com/test.php?id=8
+# 方案2(去掉/home/目录,首页home.php也转为静态)
+# /home.htm              -> /home.php # 
+# /news.htm              -> /home.php?news
+#RewriteRule ^(home|chn|vcn).htm$ $1.php [QSA,PT]
+#RewriteRule ^([\w|\.|\-]+).htm$ home.php?$1 [QSA,PT]
+#RewriteRule ^([\w|\.|\-]+).htm?(.+)$ home.php?$1&$2 [QSA,PT]
+# 博客/房产可用此方案，企业站因多语言版最多只能设置一个语言版本,建议不用此方案
+
+# 测试(entry1/entry2测试页)
+# /entry1/news.htm       -> /entry1.php?news
+# /entry1/news.htm?p1=v1 -> /entry1.php?news&p1=v1
+RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
+RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
+
+# 测试(test测试页)
+# /test8.html            -> test.php?id=8
+#RewriteRule ^test([0-9]*).html$ test.php?id=$1
+
+# 提示:
+# `home.php` 为博客/房产系统的前端首页; `chn.php` 为演示站的官网版首页,
+# `vcn`,`ven`,`ves`,`vfr`,`vru` 为企业站的各版本首页,
+# 根据你自己的系统，留下自己的方案，删除不必要的提示和规则
+# Rewrite配置(Apache/Nginx/iis7+)参考 
+# http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
+
 </IfModule>

@@ -7,7 +7,7 @@ $base = $_SERVER['SCRIPT_NAME'];
 $base = substr($base,0,strrpos($base,'/')); 
 
 $nav = '';
-$arr = array('/entry1.php','/entry1.php?hi=Test1!','/entry1.php/pinfo?q=hi','/entry1/news.id1234','/entry1/news-subx','/entry1/news-a?hi=abc');
+$arr = array('/entry1.php','/entry1.php?hi=Test1!','/entry1.php/pinfo?q=hi','/entry1/news.id1234.htm','/entry1/news-subx.htm','/entry1/news-a.htm?hi=abc');
 foreach ($arr as $key) {
     $nav .= " # <a href='$base$key'>$key</a>\n";
 }
@@ -18,7 +18,10 @@ $nav = str_replace(array('>/entry1.php/','>/entry2.php/','>/entry1/','>/entry2/'
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no'>
+<meta name='robots' content='noindex, nofollow'>
 <title>Rewrite Tester</title>
 </head>
 

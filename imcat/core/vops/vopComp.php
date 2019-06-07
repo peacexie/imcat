@@ -40,51 +40,43 @@ class vopComp{
     //模板编译核心
     function bcore($stpl=''){
         $stpl = self::impBlock($stpl); // 解析模板继承
-        $stpl = self::incTpls($stpl); // 解析{inc},
-        $stpl = self::phpBasic($stpl); //基本php语法解析
-        $stpl = self::phpFlow($stpl); //流程控制语句
-        $stpl = self::incCodes($stpl); // 解析{code}
-        $stpl = vopCTag::tagMain($stpl); //系统标签解析
+        $stpl = self::incBlock($stpl); // 解析{code|inc|md}
+        $stpl = self::phpBasic($stpl); // 基本php语法解析
+        $stpl = self::phpFlow($stpl); // 流程控制语句
+        $stpl = vopCTag::tagMain($stpl); // 系统标签解析
         return $stpl;
     }
 
-    // 解析{inc},
-    function incTpls($stpl=''){ 
-        preg_match_all("/{inc:\"(.*)\"}/i", $stpl, $match); 
-        if(count($match[1])>0){ //解析模板包含
-            $arr = $match[1]; 
-            foreach($arr as $tpl){
-                $pfile = vopTpls::tinc($tpl.'.htm', 0); 
-                $ptpl = $this->incTpls(comFiles::get($pfile)); 
-                if(empty($ptpl)) { $ptpl = "<!-- {inc:`$tpl`} -->"; }
-                $stpl = str_replace("{inc:\"$tpl\"}", $ptpl, $stpl);
-                $stpl = $this->incTpls($stpl);
-            }
-        }
-        return $stpl;
-    }
-
-    // 解析{code}
-    function incCodes($stpl=''){
-        preg_match_all("/{code:\"(.*)\"}/i", $stpl, $match); 
-        if(count($match[1])>0){ //解析模板包含 
-            $arr = $match[1]; 
-            foreach($arr as $tpl){
-                $pfile = "vopTpls::tinc('$tpl',0)"; 
-                $stpl = str_replace("{code:\"$tpl\"}", "<?php include $pfile; ?>", $stpl);
+    // 解析区块(code|inc|md), 如:{inc:"_pub/_head"}
+    function incBlock($stpl=''){ 
+        preg_match_all("/{(inc|md|code):\"(.*)\"}/i", $stpl, $match); 
+        if(count($match[2])>0){
+            $arr = $match[2]; 
+            foreach($arr as $k0=>$tpl){
+                $mstr = $match[0][$k0];
+                $mkey = $match[1][$k0];
+                if($mkey=='code'){
+                    $pfile = "vopTpls::tinc('$tpl',0)";
+                    $ptpl = "<?php include $pfile; ?>";
+                }else{ 
+                    $pfile = vopTpls::tinc("$tpl.".($mkey=='md'?'md':'htm'), 0);
+                    $ptpl = comFiles::get($pfile, 1);
+                    strpos($ptpl,'"}')>0 && $ptpl = $this->incBlock($ptpl);
+                    $mkey=='md'          && $ptpl = extMkdown::pdext($ptpl, 0);
+                    $ptpl || $ptpl = '<!-- '.str_replace('"','`',$mstr).' -->';
+                }
+                $stpl = str_replace($mstr, $ptpl, $stpl);
             }
         }
         return $stpl;
     }
 
     // 模板继承extend,block,layout,parent,inherit
-    // {imp:"c_layout/news"] // {block:title]Welcome!{/block:title] // {block:title] {:parent} {:clear} News - Project Name{/block:title]
+    // {imp:"_dir/layout"] // {block:title]Welcome!{/block:title] 
+    // {block:title] {:parent} {:clear} News - Project Name{/block:title]
     function impBlock($stpl=''){
         preg_match("/\{imp:\"([\S]{3,48})\"\}/i", $stpl, $match);
         if(empty($match[0]) || empty($match[1])) return $stpl; //没有imp,原样返回
-        /*if(strpos($match[1],'[-mob]') && !basEnv::isMobile()){
-            $match[1] = str_replace('[-mob]','',$match[1]);
-        }*/
         $layfile = vopTpls::tinc($match[1].'.htm', 0); 
         $layout = comFiles::get($layfile);
         $stpl = substr($stpl,strlen($match[0]));
