@@ -4,6 +4,7 @@ namespace imcat;
 define('RUN_DOPA',1);
 
 $pcfg = $_cbase['part'];
+if(empty($pcfg['tab'])){ glbHtml::end('Error@ex_mpts.php');  }
 $mod = req('mod','about'); //dopFunc::getDefmod();
 //$view = empty($view) ? 'list' : $view;
 $_cfg = read($mod); 

@@ -220,16 +220,17 @@ class basEnv{
     static function sysHome(){
         global $_cbase;
         $host = empty($_SERVER["HTTP_HOST"]) ? '' : $_SERVER["HTTP_HOST"]; 
+        $iss = self::isHttps() ? 'https' : 'http';
         $res = glbConfig::read('domain','sy');
         $sdirs = $res['subDirs'];
         // dir-跳转:
         if(isset($sdirs[$host])){
-            $http = self::isHttps() ? 'https' : 'http';
             $host = $sdirs[$host];
             $uri = $_SERVER['REQUEST_URI'];
-            $dir = "$http://$host$uri"; 
+            $dir = "$iss://$host$uri"; 
             header("Location:$dir");
         }
+        $_cbase['run']['iss'] = $iss; 
         $_cbase['run']['rsite'] = "//$host"; 
         $_cbase['run']['rmain'] = "//$host".PATH_PROJ; 
         $_cbase['run']['roots'] = "//$host".PATH_ROOT; 
@@ -250,8 +251,8 @@ class basEnv{
         if(strpos($ip,'.')){ // IPv4:
             $pa = explode('.',$ip);
             $f1 = in_array($pa[0],array('10','127')); // 10.*, 127.*
-            $f2 = $pa[0]=='192' && ($pa[1]=='168'); // 192.168.*
-            $f3 = $pa[0]=='172' && ($pa[1]>='16' && $pa[1]<='31'); // 172.16.* ~ 172.31.*
+            $f2 = $pa[0]==192 && ($pa[1]==168); // 192.168.*
+            $f3 = $pa[0]==172 && ($pa[1]>=16 && $pa[1]<=31); // 172.16.* ~ 172.31.*
             return $f1 || $f2 || $f3;
         }elseif(strpos($ip,':')){ // IPv6
             $arr = explode(':',$ip);

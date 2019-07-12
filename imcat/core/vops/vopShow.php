@@ -163,18 +163,8 @@ class vopShow{
         $key = in_array($pid,array('types')) ? "kid" : substr($pid,0,1).'id';
         $data = $dext = array();
         if(in_array($pid,array('docs','users','coms','advs','types'))){
-            $db = glbDBObj::dbObj();
-            $tabid = glbDBExt::getTable($this->mod);
-            $data = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-            if(empty($data)){ 
-                $this->vars = "[{$this->key}]".basLang::show('core.vshow_uncheck');
-                return; 
-            }
-            if(in_array($pid,array('docs'))){
-                $tabid = glbDBExt::getTable($this->mod,1);
-                $dext = $db->table($tabid)->where(substr($pid,0,1)."id='{$this->key}'")->find();
-                $dext && $data += $dext; 
-            }
+            $data = glbData::getRow($this->mod, $this->key, $pid);
+            if(empty($data)){ return $this->vars = "[{$this->key}]".basLang::show('core.vshow_uncheck'); }
         }
         $this->vars = $data;
     }

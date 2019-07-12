@@ -6,13 +6,13 @@ $_cbase['ucfg']['lang'] = '(auto)';
 $urls = array(
     'baidu' => 'http://api.map.baidu.com/api?v=1.4',
     'google' => 'http://www.google.cn/maps/api/js?sensor=false',
-    //http://ditu.google.cn/maps/api/js?key=AIzaSyCz-pQkTS-XnB2l3kc9JeT-NICKxO8dc-g&sensor=false&v=3.5
 );
 $api = $this->view; //req('api','baidu');
 
 $act = req('act','view');
 $frmid = req('frmid','');
 $title = req('title','');
+$from = req('from','');
 
 $point = req('point',''); 
 $pa = explode(',',"$point,,");

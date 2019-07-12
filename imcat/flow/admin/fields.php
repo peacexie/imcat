@@ -95,7 +95,8 @@ if($view=='ftest'){
     }else{
         $paras = "";
         foreach(fldCfgs::addParas() as $k){
-            $paras .= "&fm[$k]=$fm[$k]";    
+            $kv = isset($fm[$k]) ? $fm[$k] : '';
+            $paras .= "&fm[$k]=$kv";    
         }
         $url = basReq::getURep($aurl[1],'view','form').$paras; 
         die(basMsg::dir($url));
@@ -157,7 +158,7 @@ if($view=='ftest'){
                 $msg = lang('flow.msg_set');
                 if($fs_do=='upd'){ 
                     $db->table($tabid)->data(basReq::in($fm[$id]))->where("model='$mod' AND kid='$id' $cawhr")->update(); 
-                }elseif($fs_do=='del'){ 
+                }elseif($fs_do=='del'){ echo 'xxx'; echo $id;
                      if(!empty($ispara)){
                          $db->table($tabid)->where("issys='0' AND model='$mod' AND kid='$id' $cawhr")->delete(); 
                      }elseif(!empty($catid)){
@@ -179,6 +180,7 @@ if($view=='ftest'){
             }
         }
         glbCUpd::upd_model($mod);
+        basMsg::show($msg,'Redir',"?$mkv&mod=$mod&ispara=$ispara&catid=$catid&flag=v1");
     }     
 
     $lnkbak = "<a href='?admin-groups&mod=".$_groups[$mod]['pid']."'>&lt;&lt;".lang('admin.fls_backmod')."</a>"; //&view=list&ispara=$ispara

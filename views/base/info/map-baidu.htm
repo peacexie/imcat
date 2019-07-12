@@ -7,9 +7,29 @@ http://developer.baidu.com/map/jsdemo.htm#h0_4
 示例DEMO
 -->
 <script>
-var mpoint = new BMap.Point(<?php echo "$pa[0],$pa[1]";?>);
+
+function convPos(gg_lon, gg_lat){
+    var pi = 3.1415926535897932384626;
+    var x = gg_lon, y = gg_lat;
+    var z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * pi);
+    var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * pi);
+    var bd_lon = z * Math.cos(theta) + 0.0065;
+    var bd_lat = z * Math.sin(theta) + 0.006;
+    return [bd_lon, bd_lat];
+}
+<?php if($from=='gg'){ ?>
+var conv = convPos(<?=$pa[0]?>, <?=$pa[1]?>);
+var lon = conv[0]; 
+var lat = conv[1]; 
+<?php }else{ ?>
+var lon = <?=$pa[0]?>; 
+var lat = <?=$pa[1]?>; 
+<?php } ?>
+
+//var pstr = '';
+var mpoint = new BMap.Point(lon, lat);
 var map = new BMap.Map("map");
-map.centerAndZoom(mpoint, <?php echo $zoom;?>);
+map.centerAndZoom(mpoint, <?=$zoom;?>);
 map.addControl(new BMap.NavigationControl({type:BMAP_NAVIGATION_CONTROL_ZOOM})); //缩放
 map.addControl(new BMap.ScaleControl()); // 比例尺
 map.addControl(new BMap.MapTypeControl());   //添加地图类型控件

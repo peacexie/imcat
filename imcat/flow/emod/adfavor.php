@@ -3,7 +3,7 @@ namespace imcat;
 (!defined('RUN_DOPA')) && die('No DopA'); 
 
 $stype = basReq::val('stype');
-$duwhr = " AND auser='{$user->usess['uname']}'"; 
+$duwhr = " AND auser='{$user->usess['uname']}'";
 
 $msg = ''; $tabext = ''; 
 if($view=='list'){

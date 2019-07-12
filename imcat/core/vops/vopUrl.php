@@ -16,8 +16,9 @@ class vopUrl{
             die();
         }
         // 修正微信分享url:?2018-12-31xx=&from=timeline
-        if(preg_match("/^[\w\-\.]{3,24}\=\&\w+/i",$q)){
-            header('Location:?'.str_replace('=&','&',$q));
+        if(preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i",$q)){
+            preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i", $q, $p);
+            header('Location:?'.$p[1]); 
             die();
         }
         parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);

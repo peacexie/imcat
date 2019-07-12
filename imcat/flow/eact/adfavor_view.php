@@ -32,5 +32,7 @@ if(!empty($list)){
         }}
         echo "</ul></div>"; 
     }
+}else{
+    echo "<h2 class='col-md-3'>{$stype}:暂无资料!</h2>";
 }
 echo "\n</div>";

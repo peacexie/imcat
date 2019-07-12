@@ -143,4 +143,63 @@ class glbData{
         return self::$cfg;
     }
 
+    // 得到一笔数据:docs','users','coms','advs','types
+    static function getRow($mod, $key, $pid=''){
+        if(!$pid){
+            $_groups = glbConfig::read('groups');
+            $pid = $_groups[$mod]['pid'];
+        }
+        $kid = $pid=='types' ? 'kid' : substr($pid,0,1).'id';
+        $db = glbDBObj::dbObj();
+        $tabid = glbDBExt::getTable($mod);
+        $res = $db->table($tabid)->where("$kid='{$key}'")->find();
+        if(empty($res)){
+            return array();
+        }
+        if(in_array($pid,array('docs'))){
+            $tabid = glbDBExt::getTable($mod,1);
+            $dext = $db->table($tabid)->where("did='{$key}'")->find();
+            $dext && $res += $dext; 
+        }
+        return $res;
+    }
+
+    static function fmtRow($row, $mod, $opts=array()){
+        foreach($row as $k => $val){
+            if($k=='catid'){
+                $row["{$k}Name"] = vopCell::cOpt($val, $mod, ',');
+            }
+            if($k=='mpic'){ // cPic($val,$def='',$resize=0)
+                $mpic = vopCell::cPic($val);
+                $row["mpic"] = self::fmtUrl($mpic);
+            }
+            if(in_array($k,['atime','etime'])){
+                $row["{$k}Str"] = vopCell::cTime($val);
+            }
+            if(!empty($opts[$k])){
+                $cfg = $opts[$k];
+                if($cfg['type']=='cOpt'){
+                    $row["{$k}Name"] = vopCell::cOpt($val, $cfg['mod'], ',');
+                }
+                if($cfg['type']=='cTime'){
+                    $fmt = empty($cfg['fmt']) ? 'auto' : $cfg['fmt'];
+                    $row["{$k}Name"] = vopCell::cTime($val, $fmt);
+                }
+            }
+        }
+        return $row;
+    }
+    static function fmtList($list, $mod, $opts=array()){
+        foreach($list as $k => $row){
+            $list[$k] = self::fmtRow($row, $mod, $opts);
+        }
+        return $list;
+    }
+    static function fmtUrl($url){
+        if(!$url) return '';
+        global $_cbase;
+        $rc = $_cbase['run'];
+        return $rc['iss'].':'.$rc['rsite'].$url;
+    }
+
 }
