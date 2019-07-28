@@ -1,25 +1,25 @@
 <?php
 namespace imcat;
 
-class newsApi extends bextApi{
+class faqsApi extends bextApi{
     
     function homeAct(){ 
-        $parts = read("news.i");
+        $parts = read("faqs.i");
         $res['parts'] = $parts;
         foreach($parts as $kp => $vp) {
-            $list = data('news', "catid='$kp'", 3, '');
-            $res[$kp] = glbData::fmtList($list, 'news');
+            $list = data('faqs', "catid='$kp'", 3, '');
+            $res[$kp] = glbData::fmtList($list, 'faqs');
         }
         $res['row'] = $this->row;
         return $res;
     }
 
     function listAct(){
-        $res = $this->_list();
+        $res = $this->_list('faqs');
         $ops = [
             'mpic_resize' => '120x90',
         ];
-        $res['list'] = glbData::fmtList($res['list'], 'news', $ops);
+        $res['list'] = glbData::fmtList($res['list'], 'faqs', $ops);
         $page = req('page', 1, 'N');
         if($page>1){
             unset($res['parts']);
@@ -31,9 +31,9 @@ class newsApi extends bextApi{
         $ops = [
             'hinfo' => ['type'=>'cOpt', 'mod'=>'hinfo',],
         ];
-        $res['row'] = glbData::fmtRow($this->row, 'news', $ops);
-        $news = data('news', '', 5, '');
-        $res['rels'] = glbData::fmtList($news, 'news');
+        $res['row'] = glbData::fmtRow($this->row, 'faqs', $ops);
+        $faqs = data('faqs', '', 5, '');
+        $res['rels'] = glbData::fmtList($faqs, 'faqs');
         return $res;
     }
 

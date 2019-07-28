@@ -16,15 +16,26 @@ class rootApi extends bextApi{
         return $res;
     }
 
+    // mds
+    function mdsAct(){
+        $mds = req('mds');
+        $mda = explode(',', $mds);
+        $res = [];
+        foreach($mda as $mdk){
+            $res[$mdk] = comFiles::get(DIR_API."/mds/$mdk.md");
+        }
+        return $res;
+    }
+
     // city
     function cityAct(){
         //;
     }
     
-    // info
-    function infoAct(){
-        $res['ver'] = req('ver', 'nver');
-        $res['sk'] = '(hidden)'; //$this->sk;
+    // about+update
+    function abupdAct(){
+        $res = $this->uver;
+        $res['about'] = comFiles::get(DIR_API."/mds/sys-about.md");
         return $res;
     }
 

@@ -7,19 +7,26 @@ class baseApi{
     
     public $cfgs = []; // mkv,mksp,mod,key,func
     public $row = [];
+    public $uver = [
+        'key'=>'200', 'val'=>'2.0.0',
+        'url'=>'http://imcat.txjia.com/h5/down',
+    ]; // 最新版本,用于更新
+    public $skips = ['info'];
 
     //function __destory(){  }
     function __construct($cfgs){
         $this->cfgs = $cfgs;
-        if($this->cfgs['mksp']=='.'){
+        if($this->cfgs['mksp']=='.' && !in_array($cfgs['mod'],$this->skips)){
             $this->_init(); 
         }
+        //usleep(200000);
+        //sleep(1);
     }
 
     function _init(){
         extract($this->cfgs);
         $this->row = glbData::getRow($mod, $key);
-        if(empty($this->row)){ vopApi::verr("Error `$key`!"); }
+        if(empty($this->row)){ vopSapi::verr("Error `$key`!"); }
     }
 
     // 公用数据块
@@ -32,13 +39,9 @@ class baseApi{
         $whr = "";
         $stype = req('stype');
         if($stype){
-            if(in_array($pid,array('docs','advs'))){
-                $sql = basSql::whrTree($this->mcfg['i'],'m.catid',$stype);
-                $whr .= $sql ? $sql : '';
-            }else{
-                $whr .= " AND catid='$stype'";
-            }
-        } 
+            $sql = basSql::whrTree(read("$mod.i"),'catid',$stype);
+            $whr .= $sql ? $sql : ''; 
+        }        
         $keyword = req('keyword');
         $keyword && $whr .= " AND title='$keyword'";
         $exwhr && $whr .= $exwhr;
@@ -57,11 +60,7 @@ class baseApi{
             $res[] = $row;
         }
         return $res;
-    }
-
-    function xxxAct(){
-        return $this->error('Test Error.');
-    }    
+    }  
 
 }
 
