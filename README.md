@@ -1,6 +1,6 @@
 
 
-贴心猫(imcat) V4.9 Alpha
+贴心猫(imcat) V4.9 Beta
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
@@ -24,7 +24,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.4 ~ PHP7.3 (Recommend: PHP5.6 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (Recommend: PHP5.6 ~ PHP7.3)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -44,7 +44,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.8 ChangeLog】 (2019.06)
+### 【v4.9 ChangeLog】 (2019.08)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-4_0)
 
@@ -66,7 +66,7 @@
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.4 ~ PHP7.3 (推荐: PHP5.6 ~ PHP7.2)
+  - PHP5.4 ~ PHP7.3 (推荐: PHP5.6 ~ PHP7.3)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
@@ -83,7 +83,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.8更新日志】(2019.06)
+### 【v4.9更新日志】(2019.08)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-4_0)
 

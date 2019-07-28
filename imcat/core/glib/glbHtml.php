@@ -30,9 +30,6 @@ class glbHtml{
             if($mod=='viewport' && empty($ext)) $ext = 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no';
             echo "<meta name='$mod' content='$ext'>\n"; 
         }elseif($mod=='init'){
-            if(!empty($_cbase['sys']['xpwby'])){
-                header('X-Powered-By:'.$_cbase['sys']['xpwby']);
-            }
             echo "<meta charset='".$_cbase['sys']['cset']."'>\n";
             echo "<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>\n";
             self::page('viewport'); 
@@ -62,6 +59,9 @@ class glbHtml{
             'down'=>'application/octet-stream',
         );
         header("Content-Type:$a[$type]; charset=$cset");
+        if(!empty($_cbase['sys']['xpwby'])){
+            header('X-Powered-By:'.$_cbase['sys']['xpwby']);
+        }
     }
     
     // domain_allow跨域允许

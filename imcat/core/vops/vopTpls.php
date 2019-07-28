@@ -51,19 +51,21 @@ class vopTpls{
         }else{ // tpl:dir/file
             $fp = '/'.str_replace(':', '/', $fp);
         }
+        $vbase = empty($_cbase['tpl']['vbase']) ? DIR_VIEWS : $_cbase['tpl']['vbase'];
         if($inc){
-            include_once DIR_VIEWS."$fp$ext";
+            include_once $vbase."$fp$ext";
             return;
         }else{
-            return ($refull ? DIR_VIEWS : '')."$fp$ext";
+            return ($refull ? $vbase : '')."$fp$ext";
         }
     }
 
     //获得模版或缓存路径:type=tpl,tpc;
-    static function path($type='',$root=1){
+    static function path($type='', $root=1){
         global $_cbase;
         $tpl = empty($_cbase['tpl']['vdir']) ? '/(null-tpl)' : '/'.$_cbase['tpl']['vdir'];
-        return ($root ? ($type=='tpc' ? DIR_CTPL : DIR_VIEWS) : '').$tpl;  
+        $vbase = empty($_cbase['tpl']['vbase']) ? DIR_VIEWS : $_cbase['tpl']['vbase'];
+        return ($root ? ($type=='tpc' ? DIR_CTPL : $vbase) : '').$tpl;  
     }
 
 
@@ -98,7 +100,8 @@ class vopTpls{
             if(empty($vopcfg['tpl'][$tpl])){ //无tpl配置
                 $tplchks[$tpl]['cfg'] = 1;
             }
-            $fp = DIR_VIEWS."/$tpl/_config/va_home.php";
+            $vbase = empty($_cbase['tpl']['vbase']) ? DIR_VIEWS : $_cbase['tpl']['vbase'];
+            $fp = $vbase."/$tpl/_config/va_home.php";
             if(!file_exists($fp)){
                 $tplchks[$tpl]['dir'] = 1;
             }

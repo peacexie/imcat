@@ -21,6 +21,7 @@ class vopSapi{
     }
 
     function mkvs(){
+        //$this->cfgs['nver'] = $this->ver;
         $this->cfgs['mkv'] = $mkv = req('mkv', 'root-home');
         $this->cfgs['mksp'] = $mksp = strpos($mkv,'.')>0 ? '.' : '-';
         $tmp = explode($mksp, $mkv);
@@ -79,7 +80,7 @@ class vopSapi{
         $sk = $_cbase['safe']['api'];
         $usk = req('sk');
         // dallow
-        $alp = basEnv::isLocal() ? '*' : '';
+        $alp = '*'; //basEnv::isLocal() ? '*' : '';
         glbHtml::dallow($alp);
     }
 

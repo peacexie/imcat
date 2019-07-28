@@ -1,5 +1,32 @@
 
 
+#v4.9# (2019.08)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v4.9
+ - Release date: 2019.08
+ - rar-size: [core]1.32 MB, [full]3.66 MB(core+vendor)
+
+
+## ChangeLog
+
+* Add: Add markdown file block parsing in template, e.g. `{md:"dir/mdfile"}`
+* Add: Add simple template views mode in single module
+* Add: Add app service-end
+* Improve: Further optimization Pseudo-static configuration, Applied to some special needs
+* Improve: Some default CSS Styles display effect in article contents
+* Improve: Optimized treatment Details page URL in Wechat
+* Improve: winOpen(js pop win effect)
+* Fix: Fix `notice error` when adding field, Fix `multiple submit` when deleted field
+* Fix: Fix the common select page, It will get some js error after search
+* Adjust: Minor adjustment template file
+* Project: (Python) published: Wepy2.0, and deploy demo-site (http://wepy.txjia.com/)
+* Project: Will publish: App+Wap+MiniPrograme Three-piece Suite Source Code (Separate projects)
+
+
 #v4.8# (2019.06)
 
 
@@ -22,7 +49,6 @@
 * Projects:
  - CheerWeb(开心企业站)，
  - Include: versions such as: `中文版`, `English`, `Français`, `Русский`, `Español`
-
 
 
 #v4.7# (2019.05)

@@ -170,14 +170,19 @@ class glbData{
                 $row["{$k}Name"] = vopCell::cOpt($val, $mod, ',');
             }
             if($k=='mpic'){ // cPic($val,$def='',$resize=0)
-                $mpic = vopCell::cPic($val);
+                $resize = isset($opts['mpic_resize']) ? $opts['mpic_resize'] : 0;
+                $mpic = vopCell::cPic($val, '', $resize);
                 $row["mpic"] = self::fmtUrl($mpic);
             }
             if(in_array($k,['atime','etime'])){
                 $row["{$k}Str"] = vopCell::cTime($val);
             }
+            if($k=='detail'){
+                $row["detail"] = basStr::filHWap($row["detail"]);
+            }
             if(!empty($opts[$k])){
                 $cfg = $opts[$k];
+                $mod = empty($cfg['mod']) ? $mod : $cfg['mod'];
                 if($cfg['type']=='cOpt'){
                     $row["{$k}Name"] = vopCell::cOpt($val, $cfg['mod'], ',');
                 }

@@ -8,8 +8,9 @@ class vopComp{
     
     static function main($tplname) {
         $vob = new self(); 
-        $vob->build($tplname); 
+        $res = $vob->build($tplname); 
         unset($vob); 
+        return $res;
     }
     
     function __construct($tpl='') {
@@ -20,7 +21,7 @@ class vopComp{
     
     //模板编译 ---------- 
     function build($tpl){ 
-        global $_cbase; 
+        global $_cbase;
         $re = self::checkTpls($tpl);
         $_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
         $content = comFiles::get($re[0]);
@@ -59,7 +60,8 @@ class vopComp{
                     $pfile = "vopTpls::tinc('$tpl',0)";
                     $ptpl = "<?php include $pfile; ?>";
                 }else{ 
-                    $pfile = vopTpls::tinc("$tpl.".($mkey=='md'?'md':'htm'), 0);
+                    $ext = strpos($tpl,'.')>0 ? '' : ($mkey=='md'?'md':'htm');
+                    $pfile = vopTpls::tinc("$tpl.$ext", 0);
                     $ptpl = comFiles::get($pfile, 1);
                     strpos($ptpl,'"}')>0 && $ptpl = $this->incBlock($ptpl);
                     $mkey=='md'          && $ptpl = extMkdown::pdext($ptpl, 0);
