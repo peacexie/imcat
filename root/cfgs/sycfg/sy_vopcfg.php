@@ -49,10 +49,6 @@ $_sy_vopcfg['tpl'] = array(
         array('cn'=>'会员中心', 'en'=>'User'),
         '/root/run/umc.php'
     ), 
-    'rest' => array(
-        'REST-API', 
-        '/root/run/rest.php'
-    ),
     'demo' => array('Hello.Demo!','/root/run/demo.php'), 
     'base' => array(
         array('cn'=>'默认首页', 'en'=>'Basic'),
