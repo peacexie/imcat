@@ -143,7 +143,8 @@ class vopCell{
         if(strpos($paras,'media')) $val = self::cMedia($val);
         #if(strpos($paras,'page')) $val = self::cPage($val);
         // 处理mob特性
-        if(strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir'])) $val = basStr::filHWap($val);
+        $mobtpl = strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir']);
+        if($mobtpl && basEnv::isMobile()) $val = basStr::filHWap($val);
         return $val;
     }
     
