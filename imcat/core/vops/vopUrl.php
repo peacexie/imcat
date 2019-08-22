@@ -203,8 +203,8 @@ class vopUrl{
         }
         $tplold = $_cbase['tpl']['vdir'];
         $a = explode(':',$str);
-        $ck = vopTpls::check($a[0],0);
-        if(empty($ck['ok'])) return "#close#{$a[1]}";
+        //$ck = vopTpls::check($a[0],0);
+        //if(empty($ck['ok'])) return "#close#{$a[1]}";
         $a[0] && vopTpls::set($a[0]);
         $path = self::fout($a[1],$type,$host);
         $a[0] && vopTpls::set($tplold);
