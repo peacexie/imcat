@@ -45,9 +45,9 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v4.9 ChangeLog】 (2019.08)
+### 【v5.0 ChangeLog】 (2019.10)
 
-* [View-Details](http://imcat.txjia.com/doc.php?uplog-4_0)
+* [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -84,7 +84,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v4.9更新日志】(2019.08)
+### 【v5.0更新日志】(2019.10)
 
-* [查看详情](http://imcat.txjia.com/dev.php?uplog-4_0)
+* [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
 
