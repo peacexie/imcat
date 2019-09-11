@@ -115,9 +115,7 @@ class vopCTag{
             $paras .= "array("; $pare2 = array();
             foreach($a2 as $k2=>$v2){
                 $pare2[] = $v2;
-                $v2 = self::_1Para($v2,$js);
-                // [modid,$ucfg('mod')] -=> $ucfg['mod']
-                //$v2 = str_replace(array("('","')"),array("['","']"),$v2); 
+                $v2 = self::_1Para($v2,$js); 
                 $paras .= "$v2,";
             }
             $paras .= "),";

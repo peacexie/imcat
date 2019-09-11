@@ -119,8 +119,8 @@ class basJscss{
         if($tpldir){
             vopTpls::set($tpldir);
             if(!empty($_cbase["close_$tpldir"])){ //close-for-static-files
-                basEnv::obClean();
-                die("location.href='".PATH_PROJ."?close&tpldir=$tpldir';");
+                #basEnv::obClean();
+                #die("location.href='".PATH_PROJ."?close&tpldir=$tpldir';");
             }
             echo "\n_cbase.run.mkv = '$mkv';";
             echo "\n_cbase.run.csname = '".vopUrl::burl()."';";

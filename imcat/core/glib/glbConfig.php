@@ -147,7 +147,7 @@ class glbConfig{
             return $hcfgs;
         }elseif(isset($hc['imcfg'][$mod])){ 
             $re = self::vinc($dir, $hc['imcfg'][$mod],'vc'); //导入模块
-        }elseif(in_array($mod,$hc['extra'])){ //扩展模块
+        }elseif(isset($hc['extra']) && in_array($mod,$hc['extra'])){ //扩展模块
             $re = self::vinc($dir, $mod,'ve');             
         }elseif(file_exists(vopTpls::tinc("vc_$mod",0))){ //常规模块
             $re = self::vinc($dir, $mod,'vc');   

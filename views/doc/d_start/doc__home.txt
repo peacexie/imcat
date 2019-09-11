@@ -36,10 +36,10 @@ tmp...
 
 * Future/Direction
  - 1. APP, Mini-Program
- - 2. Improve-Document, Optimizing the `Admin-End`
+ - 2. Optimizing the `Admin-End`
 
 * Recent target
- - Perfecting the existing Application Systems
+ - Improve-Document
  - Planning for the next version
 
 

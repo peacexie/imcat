@@ -138,7 +138,7 @@ class glbDBCache extends glbDBObj{
         );
         $arr2 = array(
             '[s]','[f]','[w]','[a]','[o]',
-            '[ins]','[upd]','[del]','[rep]',
+            '[i]','[u]','[d]','[r]',
             '[gby]','[hav]','[oby]','[lmt]',
             '[lj]','[rj]','[ij]',
             '',

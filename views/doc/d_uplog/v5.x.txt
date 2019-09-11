@@ -1,0 +1,20 @@
+
+
+#v5.0# (2019.10)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v5.0
+ - Release date: 2019.10
+ - rar-size: [core]1.32 MB, [full]3.66 MB(core+vendor)
+
+
+## ChangeLog
+
+* Add: Url suppor route model
+* Add: vopSdiy model (Custom-Simple model) 
+* Add: Start-up Custom-Market (Cooperative development)
+* Improve: Including MD files can be nested
+

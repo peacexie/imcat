@@ -19,8 +19,8 @@ class basLoader{
         self::$cfgpr4 = $_cfgs['acpr4'];
         self::$cfgnsp = $_cfgs['acnsp']; 
         self::$cfgmap = $_cfgs['acmap'];
-        spl_autoload_register(array(__CLASS__,'cload')); 
-        spl_autoload_register(array(__CLASS__,'vload')); 
+        spl_autoload_register(array(__CLASS__, 'cload')); 
+        spl_autoload_register(array(__CLASS__, 'vload')); 
     }
     // 核心类库
     static function cload($name){
@@ -49,18 +49,18 @@ class basLoader{
             if(!strstr($name,$k)) continue; //strstr 比file_exists快多了吧？
             $file = str_replace('\\', '/', str_replace($k, $v[0].'/', $name)).'.php';
             $file = str_replace('//', '/', $file);
-            return self::doinc($file,DIR_VENDOR);
+            return self::doinc($file, DIR_VENDOR);
         }
         // -namespace规范
         foreach(self::$cfgnsp as $k=>$v){ 
             if(!strstr($name,$k)) continue; //strstr 比file_exists快多了吧？
             $file = str_replace('\\', '/', $v[0].'/'.$name).'.php'; 
-            return self::doinc($file,DIR_VENDOR);
+            return self::doinc($file, DIR_VENDOR);
         }
         return ''; 
     }
     // inc
-    static function doinc($file,$base='',$exist=0){
+    static function doinc($file, $base='', $exist=0){
         global $_cbase; 
         if($exist || file_exists($base.$file)){ 
             $_cbase['run']['aclass'][] = $file;
@@ -95,7 +95,7 @@ class basClass{
 # ---------------------------------
 
 // 权限判断函数,用于未加载核心类库场合
-function bootPerm_ys($key='',$re='0',$exmsg=''){
+function bootPerm_ys($key='', $re='0', $exmsg=''){
     global $_cbase; // 不能用cfg()
     $sid = usrPerm::getSessid(); 
     if($re=='sid') return $sid;

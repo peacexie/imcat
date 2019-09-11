@@ -14,7 +14,7 @@ class basSql{
     }
 
     // type=a/e; $re='arr/str'; ip=''
-    static function logData($type='a',$ip='',$time=0,$user=''){ 
+    static function logData($type='a', $ip='', $time=0, $user=''){ 
         global $_cbase;
         $run = $_cbase['run'];
         //$unow = usrBase::userObj();
@@ -27,7 +27,7 @@ class basSql{
     }
     
     // 2013-12-31; 5(天)
-    static function whrDate($key,$val,$op,$cfg='isdate'){
+    static function whrDate($key, $val, $op, $cfg='isdate'){
         //'fmextra' => 'datetm'
         $val = preg_replace('/[^0-9A-Za-z,\.\-\ \:]/','',$val);
         if( in_array($key,array('atime','etime')) || @$cfg=='isdate' || @$cfg['f'][$key]['mfextra']=='datetm' ){
@@ -51,7 +51,7 @@ class basSql{
      * @param string $fname        查询的字段名（包含表别名前缀）
      * m.didu_0>=22.456 AND m.didu_0<=52.456 AND m.didu_1>=50.33 AND m.didu_1<=150.33
      */
-    static function whrMap($x,$y,$diff,$mode,$fname){        
+    static function whrMap($x, $y, $diff, $mode, $fname){        
         if(!$diff) return '';
         $mode = empty($mode) ? 0 : 1;
         $x = floatval($x);
@@ -69,7 +69,7 @@ class basSql{
     }
     
     // 栏目，类别系的子类别
-    static function whrTree($items,$key,$val){
+    static function whrTree($items, $key, $val){
         $ids = comTypes::getSubs($items,$val); 
         $ids = array_keys($ids); $ids[] = $val;
         if(in_array($key,array('(arr)','(crc32)'))){
@@ -85,7 +85,7 @@ class basSql{
     }
     
     // 单选/多选/单选按钮:可用用文字搜索
-    static function whrScbr($cfgs,$sfid,$sfkw){
+    static function whrScbr($cfgs, $sfid, $sfkw){
         $cfg = $cfgs[$sfid]; 
         $arr = basElm::text2arr($cfg); 
         if(isset($arr[$sfkw])){
@@ -108,7 +108,7 @@ class basSql{
     }
     
     // ids : array, id1,id2...
-    static function whrInids($ids,$sp=','){
+    static function whrInids($ids, $sp=','){
         $arr = is_array($ids) ? $ids : explode($sp,$ids);
         $arr = array_unique(array_filter($arr));
         $arr = str_replace("'","",$arr);
@@ -117,7 +117,7 @@ class basSql{
     }
     
     // 格式化sql        
-    static function fmtShow($sql,$hlight=0){
+    static function fmtShow($sql, $hlight=0){
         if($hlight=='2'){
             $arr = array("INNER JOIN","WHERE","ORDER BY","GROUP BY","LIMIT","FORCE INDEX",);
             $sql = basStr::filTrim($sql); 
@@ -141,7 +141,7 @@ class basSql{
      * @param  string $multi =1时，*，空格当成通配符处理
      * @return string $sqlstr 返回sql子字符串，包含 LIKE
      */
-    static function fmtKeyWD($keyword,$multi=1){
+    static function fmtKeyWD($keyword, $multi=1){
         $keyword = addcslashes($keyword,'%_');
         $multi && $keyword = str_replace(array(' ','*'),'%',$keyword);
         return " LIKE '%$keyword%' ";

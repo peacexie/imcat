@@ -19,7 +19,7 @@ class basOut
     static $contentType = ''; // application/json, application/javascript, text/xml
 
     // 格式化输出
-    static function fmt($data,$type='json')
+    static function fmt($data, $type='json')
     {
         $type = in_array($type,array('jsonp','xml')) ? $type : 'json';
         $method = 'out'.ucfirst($type);
@@ -59,7 +59,7 @@ class basOut
         }
     }
 
-    static function outXml($data,$uopt=array())
+    static function outXml($data, $uopt=array())
     {
         $opt = self::$options;
         if(!empty($uopt)) $opt = array($opt, $uopt);
@@ -90,8 +90,8 @@ class basOut
     static function xmlRow($data, $item, $id)
     {
         $xml = $attr = '';
-        $a1 = array("&","<",">");
-        $a2 = array("&amp;","&lt;","&gt;");
+        $a1 = array("&", "<", ">");
+        $a2 = array("&amp;", "&lt;", "&gt;");
         foreach ($data as $key => $val) {
             if (is_numeric($key)) {
                 $id && $attr = " {$id}=\"{$key}\"";

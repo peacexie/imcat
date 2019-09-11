@@ -7,7 +7,7 @@ class vopTpls{
     ### 主要方法 ～～～～～～～～～～～
 
     // 显示解析后的模板内容
-    static function show($file,$ext='',$data=array()){
+    static function show($file, $ext='', $data=array()){
         global $_cbase; 
         $fpath = self::cinc($file,$ext); 
         extract($data, EXTR_OVERWRITE); 
@@ -70,13 +70,11 @@ class vopTpls{
 
 
     //设置当前tpl:set tpl path
-    static function set($dir=''){
+    static function set($vdir=''){
         global $_cbase; 
-        //$dir = $dir ? $dir : basReq::val('tpldir');
-        if($dir){
-            $_cbase['tpl']['vdir'] = $dir;    
-        }
-        return empty($_cbase['tpl']['vdir']) ? '' : $_cbase['tpl']['vdir'];
+        $_cbase['tpl']['vdir'] = $vdir;
+        self::check($vdir);
+        return $vdir;
     }
     
     //获得默认模板
@@ -93,26 +91,23 @@ class vopTpls{
     
     ### 相关方法 ～～～～～～～～～～～
 
-    static function check($tpl,$die=1){
+    static function check($vdir, $die=0){
+        global $_cbase;
         static $tplchks;
-        if(empty($tplchks[$tpl])){
-            $vopcfg = glbConfig::read('vopcfg','sy'); 
-            if(empty($vopcfg['tpl'][$tpl])){ //无tpl配置
-                $tplchks[$tpl]['cfg'] = 1;
-            }
-            $vbase = empty($_cbase['tpl']['vbase']) ? DIR_VIEWS : $_cbase['tpl']['vbase'];
-            $fp = $vbase."/$tpl/_config/va_home.php";
-            if(!file_exists($fp)){
-                $tplchks[$tpl]['dir'] = 1;
-            }
-            if(empty($tplchks[$tpl])){
-                $tplchks[$tpl]['ok'] = 1;    
-            }
+        if(empty($tplchks[$vdir])){
+            $vcfg = glbConfig::read('vopcfg','sy'); 
+            if(!empty($vcfg['tpl'][$vdir])){ //无tpl配置
+                $_cbase['run']['tplcfg'] = $tplchks[$vdir] = $vcfg['tpl'][$vdir];
+            }else{
+                $_cbase['run']['tplcfg'] = $tplchks[$vdir] = ['', ''];
+            } // tplcfg 处理伪静态使用
+        }else{
+            $_cbase['run']['tplcfg'] = $tplchks[$vdir];
         }
-        if($die && empty($tplchks[$tpl]['ok'])){
-            vopShow::msg("Config Error! <br>[cfgs/sycfg/sy_vopcfg.php] : _sy_vopcfg['tpl'][$tpl]");
-        } 
-        return $tplchks[$tpl];
+        if($die && empty($tplchks[$vdir][1])){
+            vopShow::msg("Config Error! <br>[cfgs/sycfg/sy_vopcfg.php] : _sy_vopcfg['tpl'][$vdir]");
+        } //dump($tplchks[$vdir]); dump($vdir);
+        return $tplchks[$vdir];
     }
 
     static function impCtrl($mod){
@@ -135,17 +130,16 @@ class vopTpls{
     ### 入口相关 ～～～～～～～～～～～
 
     //type=all,show,tpl;title;0,1,
-    static function etr1($type=0,$dir=''){
+    static function etr1($type=0, $dir=''){
         global $_cbase; 
-        $vcfg = glbConfig::read('vopcfg','sy'); 
+        $vcfg = glbConfig::read('vopcfg', 'sy'); 
         if(strlen($type)<3){ // 0,1,''
-            $_cbase['run']['tplcfg'] = $vcfg['tpl'][$dir]; // 处理伪静态使用
-            $etr = PATH_PROJ.$vcfg['tpl'][$dir][1];
+            $etr = empty($_cbase['run']['tplcfg'][1]) ? '#' : PATH_PROJ.$_cbase['run']['tplcfg'][1];
             return $type ? $_cbase['run']['rsite'].$etr : $etr; //type=1 > full
         }elseif(in_array($type,array('show','tpl'))){
             return $vcfg[$type];
         }elseif($type=='title'){
-            return $vcfg['tpl'][$dir][0];
+            return $_cbase['run']['tplcfg'][0];
         }else{ //all
             return $vcfg;
         }
@@ -153,7 +147,7 @@ class vopTpls{
     
     // entry 
     // $cb=enmkv/ehlist
-    static function entry($dir='',$cb='enmkv',$mode=''){
+    static function entry($dir='', $cb='enmkv', $mode=''){
         global $_cbase;
         $dir = $dir ? $dir : $_cbase['tpl']['vdir'];    
         $dir = DIR_VIEWS."/$dir/_config";
@@ -181,7 +175,7 @@ class vopTpls{
         return $re;
     }
     // enmkv // 针对:会员中心/管理后台-菜单权限
-    static function enmkv($cfg,$km,$mode){
+    static function enmkv($cfg, $km, $mode){
         $re = array(); 
         foreach(array('c','v','u') as $k) unset($cfg[$k]); //'d','m','t','first'
         foreach($cfg as $ki=>$kv){ 
@@ -208,7 +202,7 @@ class vopTpls{
         return $re;
     }
     // $mode=dynamic/static/both/all/
-    static function ehlist($cfg,$km,$mode){
+    static function ehlist($cfg, $km, $mode){
         if(in_array($mode,array('static','dynamic')) && $cfg['c']['vmode']!=$mode) return array();
         if($mode=='both' && !in_array($cfg['c']['vmode'],array('static','dynamic'))) return array();
         $re[$km] = array();

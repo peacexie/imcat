@@ -5,7 +5,7 @@ namespace imcat;
 class basMsg{    
     
     // init
-    static function init($xMsg,$clear=0){ //
+    static function init($xMsg, $clear=0){ //
         global $_cbase;
         if($clear){
             //ob_end_clean(); //清除了不好找...
@@ -23,7 +23,7 @@ class basMsg{
     }
 
     // show
-    static function show($xMsg,$xAct='Redir',$xAddr=array(),$head=0){
+    static function show($xMsg, $xAct='Redir', $xAddr=array(), $head=0){
         $dialog = basReq::val('dialog','','');
         $recbk = basReq::val('recbk','','Html'); 
         if(empty($xAddr) && $recbk) $xAddr = $recbk; 
@@ -33,13 +33,13 @@ class basMsg{
             echo "<p class='tc bold pa10'> $xMsg </p>";
             die(glbHtml::page('end'));
         }elseif($dialog){
-            echo self::msgbox($xMsg,$xAct,$xAddr);
+            echo self::msgbox($xMsg, $xAct, $xAddr);
         }else{ 
-            echo basJscss::Alert($xMsg,$xAct,$xAddr,$head);      
+            echo basJscss::Alert($xMsg, $xAct, $xAddr, $head);      
         }
     }
     // xAddr : array(array('地址1','http://txjia.com/'),array('地址2','http://domain.com/'))
-    static function msgbox($xMsg,$xAct='prClose',$xAddr=array()){
+    static function msgbox($xMsg, $xAct='prClose', $xAddr=array()){
         global $_cbase; 
         $css = empty($xAddr) ? 'msg_1info' : 'msg_golist';
         $str = "<div id='msg_box' class='$css'>\n<table border='1' class='tblist'>";

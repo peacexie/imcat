@@ -6,21 +6,10 @@ class vopUrl{
     
     static $params = array('mkv','mod','key','view','type','hcfg','vcfg');
     static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext
-    
+
     // get/url初始数据
-    static function iget($q='', $flag=0){
-        $q = empty($q) ? (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '') : $q;
-        // 去掉开头的:mkv= (肯定是动态)
-        if(substr($q,0,4)=='mkv='){
-            header('Location:?'.substr($q,4));
-            die();
-        }
-        // 修正微信分享url:?2018-12-31xx=&from=timeline
-        if(preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i",$q)){
-            preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i", $q, $p);
-            header('Location:?'.$p[1]); 
-            die();
-        }
+    static function iget(){
+        $q = self::route(); 
         parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);
         $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
         $re1 = preg_match("/^[A-Za-z0-9]{2}\w*(\-\-(so|list))?$/",$mkv); // modid, (--list)
@@ -34,7 +23,7 @@ class vopUrl{
     }
     
     // mkv/mod初始分析
-    static function imkv($re,$remod=0){
+    static function imkv($re, $remod=0){
         $hcfg = glbConfig::vcfg('home');
         $mkv = $re['mkv']; $type = ''; $vcfg = array();
         // ?login -=>别名 ?uio-login // 都可访问
@@ -100,8 +89,8 @@ class vopUrl{
     }
 
     // url分析
-    static function init($q='', $flag=0){
-        $re = self::iget($q, $flag);
+    static function init(){
+        $re = self::iget();
         $re = self::imkv($re);
         if($re['mkv']=='home'){
             $re['vcfg'] = $re['hcfg'];
@@ -118,7 +107,7 @@ class vopUrl{
         return $re; 
     }
     
-    static function ifirst($mod,$re=''){
+    static function ifirst($mod, $re=''){
         $minfo = glbConfig::read($mod); 
         $key = empty($minfo['i']) ? '' : key($minfo['i']); 
         if($re=='key'){
@@ -138,13 +127,13 @@ class vopUrl{
 
     // url格式化输出, 处理静态,伪静态,url优化(只在前台或生成静态,后台用跳转...)
     // paras: array, string 
-    static function fout($mkv='',$type='',$host=0){ //,$ext=array()
+    static function fout($mkv='', $type='', $host=0){ //,$ext=array()
+        if(strpos($mkv,':')) return self::gtpl($mkv, $type, $host);
         global $_cbase;
-        $tcfg = $_cbase['run']['tplcfg'];
-        if(strpos($mkv,':')) return self::gtpl($mkv,$type,$host);
+        $tcfg = $_cbase['run']['tplcfg']; //dump($tcfg);
         $burl = self::burl($host); 
         //mkv分析
-        if(strlen($mkv)<3) return self::bind($burl,$tcfg); //首页
+        if(!$mkv) return self::bind($burl,$tcfg); //首页
         $type || $type = strpos($mkv,'.') ? '.' : '-';
         $a = explode($type,"$mkv$type$type");
         $mod = $a[0]; $key = $a[1]; $view = $a[2];
@@ -166,12 +155,14 @@ class vopUrl{
             $url = $burl.'?'.$mkv;
             // 处理伪静态
             if(!empty($tcfg[2])){
-                $rp = empty($tcfg[4]) ? '.php?' : $tcfg[1].'?';
-                $url = str_replace($rp, $tcfg[2], $url);
+                if($tcfg[2]=='?'){
+                    $url = str_replace('?', '/', $url);
+                }else{
+                    $rp = empty($tcfg[4]) ? '.php?' : $tcfg[1].'?';
+                    $url = str_replace($rp, $tcfg[2], $url);
+                } //echo "($rp, $tcfg[2], $url)";
             }
-            if(!empty($tcfg[3])){
-                $url .= $tcfg[3];
-            }
+            if(!empty($tcfg[3])){ $url .= $tcfg[3]; }
         }
         $url = self::bind($url,$tcfg);
         return $url;
@@ -179,14 +170,8 @@ class vopUrl{
     
     //base-url
     static function burl($host=0){ 
-        global $_cbase;
-        $dir = $_cbase['tpl']['vdir']; 
-        $vcfg = glbConfig::read('vopcfg','sy'); 
-        $burl = PATH_PROJ.$vcfg['tpl'][$dir][1];
-        if($host){ //$full
-            $burl = $_cbase['run']['rsite'].$burl;
-        }
-        return $burl;
+        $type = $host ? 1 : 0;
+        return $burl = vopTpls::etr1($type);
     }
     
     //还原root路径
@@ -196,33 +181,25 @@ class vopUrl{
         return $re;
     }
     //指定分组(tpl)下的url
-    static function gtpl($str,$type='',$host=0){
+    static function gtpl($str, $type='', $host=0){
         global $_cbase;
-        if(!empty($_cbase['run']['tplcfg'])){
-            $cfgold = $_cbase['run']['tplcfg']; // ??? 切换当中怎么这个变了?
-        }
         $tplold = $_cbase['tpl']['vdir'];
         $a = explode(':',$str);
-        //$ck = vopTpls::check($a[0],0);
-        //if(empty($ck['ok'])) return "#close#{$a[1]}";
         $a[0] && vopTpls::set($a[0]);
-        $path = self::fout($a[1],$type,$host);
+        $path = self::fout($a[1], $type, $host);
         $a[0] && vopTpls::set($tplold);
-        if(!empty($cfgold)){
-            $_cbase['run']['tplcfg'] = $cfgold; // ??? vopTpls::etr1(使用...)
-        }
         return $path;
     }
     //format指定mod下的第一个类别的url
-    static function f1st($mod,$re='(key)'){
-        $key = self::ifirst($mod,'key');
+    static function f1st($mod, $re='(key)'){
+        $key = self::ifirst($mod, 'key');
         $url = self::fout("$mod-$key");
         if($re) $url = str_replace(array("/$key.","-$key"),array("/$re.","-$re"),$url);
         return $url;
     }
 
     // 绑定域名
-    static function bind($url,$tcfg=array()){
+    static function bind($url, $tcfg=array()){
         global $_cbase;
         if(!empty($tcfg[5])){
             $rfp = $tcfg[5]['0'];
@@ -254,7 +231,7 @@ class vopUrl{
     }
     
     // umkv：获取mkv: $_GET > $_cbase > 
-    static function umkv($key,$ukey=''){
+    static function umkv($key, $ukey=''){
         global $_cbase; 
         $ukey || $ukey = $key;
         $val = basReq::val($ukey,'','Key',24);
@@ -264,5 +241,33 @@ class vopUrl{
         return $val;
     }
 
+    // 路由
+    static function route($def=''){
+        $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+        if(!empty($_SERVER['PATH_INFO'])){
+            $q = substr($_SERVER['PATH_INFO'],1) . ($q ? "&$q" : '');
+        }
+        $q || $q = $def;
+        // 去掉开头的:mkv= (肯定是动态)
+        if(substr($q,0,4)=='mkv='){
+            header('Location:?'.substr($q,4));
+            die();
+        }
+        // 修正微信分享url:?2018-12-31xx=&from=timeline
+        if(preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i",$q)){
+            preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i", $q, $p);
+            header('Location:?'.$p[1]); 
+            die();
+        }
+        global $_cbase; // 去掉.htm尾巴
+        $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
+        if(!empty($tcfg[3])){ $q = preg_replace("/{$tcfg[3]}/", '', $q, 1); }
+        return $q;
+    }
+
 }
 
+/*
+    $org['self'] = $_SERVER['PHP_SELF']; // path/file.php/mod/act
+    $org['script'] = $_SERVER['SCRIPT_NAME']; // /path/file.php
+*/

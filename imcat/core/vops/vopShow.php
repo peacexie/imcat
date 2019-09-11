@@ -12,12 +12,13 @@ class vopShow{
     
     public $pgflag = array();
     public $pgbar = array(); //分页信息
-    public $mod,$key,$view,$type;
-    public $tplname,$tplorg,$tplnull; 
+    public $mod, $key, $view, $type;
+    public $tplname, $tplorg, $tplnull; 
     
     function __construct($start=1){
         global $_cbase;
         $this->tplCfg = $_cbase['tpl'];
+        vopTpls::check($_cbase['tpl']['vdir'], 1);
         $start && $this->run();
     }
     //init-js
@@ -25,6 +26,12 @@ class vopShow{
         global $_cbase;
         $data || $data = basReq::val($data,'','');
         $temp = vopCTag::tagParas($data,'arr'); 
+        # 2019-08-31:安全修正
+        foreach($temp[2] as $tk=>$tv){
+            if(in_array($tv[0],['order','where'])){
+                die("Error `{$tv[0]}`");
+            }
+        }
         $tagfile = @$temp[0]; 
         $tagname = @$temp[1]; $varid = 'T_'.$tagname;
         $tagpath = "/$tagfile.$tagname.comjs.php";
@@ -35,19 +42,18 @@ class vopShow{
         $tagtype = @$temp[0][0];
         $tagre = @$temp[0][1]; $tagre || $tagre = 'v';
         unset($temp[0]);
-        $tagparas = $temp;
+        $tagparas = $temp; 
         $unv = in_array($tagtype,array('One')) ? $tagre : $varid;
         $$unv = $this->tagParse($tagname,$tagtype,$temp);
         //显示模板  
-        $_groups = glbConfig::read('groups'); 
+        $_groups = glbConfig::read('groups');
         include vopTpls::path('tpc').$tagpath;
     }
     //run
-    function run($q=''){ 
+    function run(){ 
         global $_cbase; 
-        vopTpls::check($_cbase['tpl']['vdir']);
         $this->vars = array(); // 重新清空(初始化),连续生成静态需要
-        $this->ucfg = vopUrl::init($q); 
+        $this->ucfg = vopUrl::init(); 
         $_cbase['mkv'] = $this->ucfg;
         foreach(array('mkv','mod','key','view','type','tplname',) as $k){
             $this->$k = $this->ucfg[$k];
@@ -66,6 +72,7 @@ class vopShow{
     }
     // 检查模板,编译
     function chkTpl() {
+        global $_cbase;
         if(!empty($this->tplnull)){
             return ''; // 不要后续模板显示-直接返回
         }
@@ -92,6 +99,7 @@ class vopShow{
                 vopComp::main($this->tplname);
             }   
         }
+        $tplfull = empty($_cbase['tpl']['fixmkv']) ? $tplfull : $tplfull.'.'.$_cbase['tpl']['fixmkv'];
         return $tplfull;
     }
     // 扩展操作

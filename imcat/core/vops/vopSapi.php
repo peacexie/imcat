@@ -3,21 +3,15 @@ namespace imcat;
 
 class vopSapi{
  
-    public $ver = 'nver'; // 暂未用
+    public $ver = 'nver'; // 
     public $cfgs = []; // mkv,mksp,mod,key,func
-    static $me = null;
-
-    static function verr($msg='', $code=0){
-        self::$me->error($msg, $code);
-    }
+    public $res = [];
 
     //function __destory(){  }
     function __construct(){
         $this->init();
-        self::$me = $this;
-        // vers // 版本兼容
         $this->mkvs();
-        #$this->view();  
+        $this->view($this->res);  
     }
 
     function mkvs(){
@@ -29,13 +23,13 @@ class vopSapi{
         $this->cfgs['key'] = $key = empty($tmp[1]) ? '' : $tmp[1]; 
         $this->cfgs['func'] = $key ? ($mksp=='.' ? '_detailAct' : "{$key}Act") : 'homeAct';
         // 
-        $fp = DIR_API."/nver/{$mod}Api.php";
+        $fp = DIR_API."/{$this->ver}/{$mod}Api.php";
         if(file_exists($fp)){
             $res = $this->refp();
         }else{
             $res = $this->redef();
         }
-        $this->view($res);
+        $this->res = $res;
     }
     // 得到`默认`的数据 / mkv=china
     function redef(){
@@ -50,7 +44,7 @@ class vopSapi{
                 if(empty($res['row'])){ $this->error("(redef) Error `$key`!"); }
             }
         }
-        if(empty($res)){ // $mksp=='.' && 
+        if(empty($res)){
             $this->error("(redef) Error `$mkv`!");
         }
         return $res;
@@ -59,8 +53,8 @@ class vopSapi{
     function refp(){
         extract($this->cfgs);
         require DIR_API."/comm/baseApi.php";
-        require DIR_API."/nver/bextApi.php";
-        $fp = DIR_API."/nver/{$mod}Api.php";
+        require DIR_API."/{$this->ver}/bextApi.php";
+        $fp = DIR_API."/{$this->ver}/{$mod}Api.php";
         require $fp; 
         $cls = "\\imcat\\{$mod}Api";
         $api = new $cls($this->cfgs);
@@ -84,22 +78,9 @@ class vopSapi{
         glbHtml::dallow($alp);
     }
 
-    // 公用数据块
-    # function topnNews($top=4)
-
     // 通用方法
 
-    function error($msg='', $code=0){
-        $msg = empty($msg) ? 'Error Message!' : $msg;
-        $res['ercode'] = $code ? $code : 1;
-        $res['ermsg'] = $msg;
-        $res['ref'] = empty($_SERVER['HTTP_REFERER']) ? '?' : $_SERVER['HTTP_REFERER'];
-        glbHtml::httpStatus(404);
-        $this->view($res);
-        //die();
-    }
-
-    function view($data=array()){
+    static function view($data=array()){
         if(empty($data['ercode'])){
             $data['ercode'] = 0;
             $data['ermsg'] = '';            
@@ -113,6 +94,20 @@ class vopSapi{
             $res = basOut::fmt($data, $re);
             die($res);
         }
+    }
+
+    static function error($msg='', $code=0){
+        $msg = empty($msg) ? 'Error Message!' : $msg;
+        $res['ercode'] = $code ? $code : 1;
+        $res['ermsg'] = $msg;
+        $res['ref'] = empty($_SERVER['HTTP_REFERER']) ? '?' : $_SERVER['HTTP_REFERER'];
+        glbHtml::httpStatus(404);
+        self::view($res);
+        die('');
+    }
+
+    static function verr($msg='', $code=0){
+        self::error($msg, $code);
     }
 
 }

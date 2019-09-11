@@ -21,15 +21,15 @@ class tagOne extends tagBase{
         $sfrom = "m.* FROM ".glbDBObj::dbObj()->table($this->sqlArr['tabid'],2)." m ";
         $where = empty($this->whrStr) ? '' : "WHERE ".$this->whrStr;
         $this->sqlAll = "SELECT $sfrom $where ORDER BY ".$this->sqlArr['ofull']." LIMIT 1"; 
-        $this->re = $this->db->query($this->sqlAll); 
+        $res = $this->db->query($this->sqlAll); 
         if(!empty($res[0])){
+            $res = $this->getJoin($res);
             $re = $res[0];
         }else{
-            $re = array();    
+            $re = array();
         }
-        $this->re = $re;
-        return $this->getJoin($re);
-            
+        $this->re = $re; 
+        return $re;
     }
 
 }

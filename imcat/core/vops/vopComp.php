@@ -24,8 +24,8 @@ class vopComp{
         global $_cbase;
         $re = self::checkTpls($tpl);
         $_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
-        $content = comFiles::get($re[0]);
-        $content = $this->bcore($content); //获取经编译后的内容
+        $stpl = comFiles::get($re[0]); 
+        $stpl = $this->bcore($stpl); //获取经编译后的内容
         $shead = NSP_INIT."\n\$this->tagRun('tplnow','$tpl','s');";
         $tpfp = vopTpls::tinc('_ctrls/texBase',0); $spend = '';
         if(file_exists($tpfp)){
@@ -34,8 +34,9 @@ class vopComp{
             $shead .= "\nif(method_exists('$class','init')){ $class::init(\$this); }";
             $spend = "<?php\nif(method_exists('$class','pend')){ $class::pend(); }\n?>";
         }
-        comFiles::put($re[1], "<?php \n$shead \n?>\n".$content.$spend); //写入缓存
-        return $re[1];
+        $cfp = empty($_cbase['tpl']['fixmkv']) ? $re[1] : $re[1].'.'.$_cbase['tpl']['fixmkv'];
+        comFiles::put($cfp, "<?php \n$shead \n?>\n".$stpl.$spend); //写入缓存
+        return $cfp;
     }
 
     //模板编译核心
@@ -49,7 +50,8 @@ class vopComp{
     }
 
     // 解析区块(code|inc|md), 如:{inc:"_pub/_head"}
-    function incBlock($stpl=''){ 
+    static function incBlock($stpl=''){ // `{inc:"{mod}_key.md"}`
+        global $_cbase;
         preg_match_all("/{(inc|md|code):\"(.*)\"}/i", $stpl, $match); 
         if(count($match[2])>0){
             $arr = $match[2]; 
@@ -60,10 +62,23 @@ class vopComp{
                     $pfile = "vopTpls::tinc('$tpl',0)";
                     $ptpl = "<?php include $pfile; ?>";
                 }else{ 
+                    $mkv = [];
+                    if(strpos($tpl,'}')){ // 漏洞???
+                        $mkv = $_cbase['mkv'];
+                        $tpl = str_replace(['{mod}','{key}','{mkv}'] ,[$mkv['mod'],$mkv['key'],$mkv['mkv']], $tpl);
+                    }
                     $ext = strpos($tpl,'.')>0 ? '' : ($mkey=='md'?'md':'htm');
                     $pfile = vopTpls::tinc("$tpl.$ext", 0);
                     $ptpl = comFiles::get($pfile, 1);
-                    strpos($ptpl,'"}')>0 && $ptpl = $this->incBlock($ptpl);
+                    if(!empty($mkv['mkv'])){
+                        if(!$ptpl){ 
+                            glbHtml::httpStatus('404'); 
+                            $ptpl = "File `{$_cbase['tpl']['vdir']}/$tpl.$ext` NOT Found!";
+                        }else{
+                            $_cbase['tpl']['fixmkv'] = $mkv['mkv'];
+                        }
+                    }
+                    strpos($ptpl,'"}')>0 && $ptpl = self::incBlock($ptpl);
                     $mkey=='md'          && $ptpl = extMkdown::pdext($ptpl, 0);
                     $ptpl || $ptpl = '<!-- '.str_replace('"','`',$mstr).' -->';
                 }
@@ -76,7 +91,7 @@ class vopComp{
     // 模板继承extend,block,layout,parent,inherit
     // {imp:"_dir/layout"] // {block:title]Welcome!{/block:title] 
     // {block:title] {:parent} {:clear} News - Project Name{/block:title]
-    function impBlock($stpl=''){
+    static function impBlock($stpl=''){
         preg_match("/\{imp:\"([\S]{3,48})\"\}/i", $stpl, $match);
         if(empty($match[0]) || empty($match[1])) return $stpl; //没有imp,原样返回
         $layfile = vopTpls::tinc($match[1].'.htm', 0); 

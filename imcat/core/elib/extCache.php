@@ -6,10 +6,10 @@ class extCache{
 
     protected $cache = NULL;
     
-    function __construct($ucfg = array()) {
-        $cfg = glbConfig::read('cache','ex');
+    function __construct($ucfg=array()) {
+        $cfg = glbConfig::read('cache', 'ex');
         if(!empty($ucfg)){
-            $cfg = array_merge($cfg,$ucfg);
+            $cfg = array_merge($cfg, $ucfg);
         }
         $driver = $cfg['type'];
         require_once DIR_IMCAT . '/adpt/cache/' . $driver . '.php';
@@ -22,7 +22,7 @@ class extCache{
     }
     
     //设置缓存
-    function set($key, $value, $expire = 1800) {
+    function set($key, $value, $expire=1800) {
         return $this->cache->set($key, $value, $expire);
     }
     
@@ -67,7 +67,7 @@ class extCache{
         return $ctime;
     }
     // cache-path, dir: /12/34/ab 
-    static function CPath($sKey,$mkdir=0,$base=''){
+    static function CPath($sKey, $mkdir=0, $base=''){
         $file = $sKey; $kmd5 = md5($sKey); $aDir = array();
         for($i=0;$i<5;$i=$i+2){ $aDir[] = substr($kmd5,$i,2); }
         if($mkdir){
@@ -81,23 +81,24 @@ class extCache{
                 $base = $tmp;
             }
         }
-        $file = str_replace(array('/','+','*','|','?',':','%'),array('~','-','.','!','$',';',''),$file); 
+        $tb1 = ['/', '+', '*', '|', '?',   ':', '%', '&'];
+        $tb2 = ['~', '-', '.', '!', '---', ';', '',  '^'];
+        $file = str_replace($tb1, $tb2, $file); 
         $file = basStr::filTitle($file); //del:&,#
-        //$file = (strlen($file)>130 ? substr($file,0,130) : $file).'~'.md5($file);
-        if(strlen($file)>150) $file = substr($file,0,120).'~'.md5($file);
+        if(strlen($file)>150) $file = substr($file,0,120).'---'.md5($file);
         $dir = '/'.implode('/', $aDir);
-        return array('dir'=>$dir,'file'=>$file);
+        return array('dir'=>$dir, 'file'=>$file);
     }
 
     // cache-file-set: Set,Get
-    static function cfSet($file,$data,$bdir='dtmp'){
+    static function cfSet($file, $data, $bdir='dtmp'){
         if(is_array($data)) $data = json_encode($data);
-        comFiles::chkDirs($file,$bdir);
+        comFiles::chkDirs($file, $bdir);
         $bdir = comStore::cfgDirPath($bdir);
-        comFiles::put($bdir.$file,$data);
+        comFiles::put($bdir.$file, $data);
     }
     // cache-file-get: re: 0=fp,str,arr,
-    static function cfGet($file,$ctime=30,$bdir='dtmp',$re=0){ 
+    static function cfGet($file, $ctime=30, $bdir='dtmp', $re=0){ 
         $ctime = extCache::CTime($ctime);
         $bdir = comStore::cfgDirPath($bdir);
         if(file_exists($bdir.$file)){
@@ -108,7 +109,7 @@ class extCache{
                 if($re=='str') return $data;
                 if(empty($data) || is_numeric($data)) return $data;
                 if(substr($data,0,2)=='{"' || substr($data,0,1)=='"'){
-                    $data = json_decode($data,1);
+                    $data = json_decode($data, 1);
                 }
                 return $data;
             }
@@ -117,7 +118,7 @@ class extCache{
     }
 
     // token-set:
-    static function tkSet($kid,$token,$exp='1d'){
+    static function tkSet($kid, $token, $exp='1d'){
         $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
         $exp = $exp ? $stamp + extCache::CTime($exp) : 0;
@@ -131,7 +132,7 @@ class extCache{
         $db->table("token_store")->data($data)->where("kid='$kid'")->update(0);
     }
     // token-get:
-    static function tkGet($kid,$exp=1){
+    static function tkGet($kid, $exp=1){
         $db = glbDBObj::dbObj();
         $stamp = $_SERVER["REQUEST_TIME"];
         $row = $db->table("token_store")->where("kid='$kid'")->find();

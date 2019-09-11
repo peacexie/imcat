@@ -61,12 +61,15 @@ class _defCtrl{
     }
 
     function flowFile($fext, $file){
+        global $_cbase;
         include(DIR_VIEWS."/adm/frame/_inc-navbar.htm");
         if(file_exists(DIR_ROOT.$fext)){
-            echo "\n<!--inc:{root}$fext-->\n";
+            $_cbase['run']['tplname'] = "{root}:$file";
+            echo "\n<!--inc:{root}:$fext-->\n";
             return DIR_ROOT.$fext;
         }elseif(file_exists(DIR_IMCAT.$file)){
-            echo "\n<!--inc:{imcat}$file-->\n";
+            $_cbase['run']['tplname'] = "{imcat}:$file";
+            echo "\n<!--inc:{imcat}:$file-->\n";
             return DIR_IMCAT.$file;
         }else{
            die("<h2>File Not Found: <br>{root}$fext or<br>{imcat}$file</h2>"); 

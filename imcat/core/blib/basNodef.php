@@ -5,7 +5,7 @@ namespace imcat;
 class basNodef{    
 
     // php5.5弃用了mysql扩展后,此函数也不可用了
-    static function quoteSql($str,$noq=0){
+    static function quoteSql($str, $noq=0){
         $db = glbDBObj::dbObj();
         $str = $db->quoteSql($str);
         if(empty($noq)){ 

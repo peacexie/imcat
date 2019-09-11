@@ -8,14 +8,14 @@ namespace imcat;
 class vopCell{    
 
     // Array ( [exp_s01] => Array ( [title] => 手机类型 [val] => 3G [org] => net3g ) ...
-    static function exFields($mod,$catid,$vars=''){ //
+    static function exFields($mod, $catid, $vars=''){ //
         $re = array();
-        $ccfg = glbConfig::read($mod,'_c'); 
+        $ccfg = glbConfig::read($mod, '_c'); 
         if(empty($ccfg[$catid])) return array();
         $mfields = $ccfg[$catid]; 
         if(empty($vars)) return $mfields;
         foreach($mfields as $k=>$v){ 
-            $vre = self::optArray($v,$vars[$k]);
+            $vre = self::optArray($v, $vars[$k]);
             $vre = empty($vre) ? $vars[$k] : $vre;
             $re[$k] = array(
                 'title' => $v['title'],
@@ -26,22 +26,22 @@ class vopCell{
         return $re;
     }
     
-    static function optItems($vals,$tpl=''){
+    static function optItems($vals, $tpl=''){
         $re = ''; $tpl || $tpl="<span class='itm-(k)'>(v)</span>";
         foreach($vals as $k=>$v){ 
-            $re .= str_replace(array('(k)','(v)'),array($k,$v),$tpl);
+            $re .= str_replace(array('(k)','(v)'), array($k,$v), $tpl);
         }
         return $re;
     }
     
     // fc : modid=brand,china / 字段配置 / mod.field 
     // hn,gd -=> array('hn'=>'湖南','gd'=>'广东');
-    static function optArray($fc,$val='',$color=1){
+    static function optArray($fc, $val='', $color=1){
         global $_cbase; 
         $sc = '333,'.$_cbase['ucfg']['ctab'].',999'; $ac = explode(',',$sc); 
         if(empty($val)) return array(); 
-        $arr = basElm::text2arr($fc); 
-        $va = explode(',',str_replace('+',',',$val)); 
+        $arr = basElm::text2arr($fc);
+        $va = explode(',', str_replace('+',',',$val)); 
         foreach($va as $k1){
             if(empty($k1)) continue;
             $vre[$k1] = empty($arr[$k1]) ? $k1 : $arr[$k1];
@@ -61,7 +61,7 @@ class vopCell{
     
     // <a {php vOpen('nrem',$did); }>发布评论</a>
     // "<a href='/url' ".xxx::vOpen().">Update-Init</a>"
-    static function vOpen($mod=0,$pid='',$title='',$w=0,$h=0){
+    static function vOpen($mod=0, $pid='', $title='', $w=0, $h=0){
         $w || $w = 500; $h || $h = 400;
         $return = 1;
         if(empty($mod)){
@@ -84,7 +84,7 @@ class vopCell{
     
     // $len: 24
     // $paras['color'] :
-    static function cTitle($val='',$len=24,$paras=array()){
+    static function cTitle($val='', $len=24, $paras=array()){
         $len = is_numeric($len) ? $len : 24;
         $len = empty($len) ? 24 : $len;
         $val = basStr::filTitle($val);
@@ -99,7 +99,7 @@ class vopCell{
     // 还原cPic路径,处理无图,处理缩略图
     // $def=demo_nop300x200.jpg
     // $resize=160x120
-    static function cPic($val,$def='',$resize=0){
+    static function cPic($val, $def='', $resize=0){
         $scfg = glbConfig::read('store', 'ex');
         foreach($scfg['types'] as $tk=>$row){ 
             if(!empty($row['cut_ures']) && strpos($val,$row['spre'])===0){
@@ -135,7 +135,7 @@ class vopCell{
         return $val;
     }
     //Html (??Link,Cut)
-    static function cHtml($val,$paras=''){
+    static function cHtml($val, $paras=''){
         global $_cbase;
         $paras || $paras = ',root-media-page,';
         // 通用处理
@@ -149,7 +149,7 @@ class vopCell{
     }
     
     //Text (val,len,nobr,??Link,Cut)
-    static function cText($val,$len=0,$nobr=0){
+    static function cText($val, $len=0, $nobr=0){
         if(is_array($val)){
             foreach($val as $v){
                 if(!empty($v)){
@@ -167,7 +167,7 @@ class vopCell{
     
     // full: min,full,dm,auto,
     // null: -
-    static function cTime($val='',$fmt='auto',$null=''){
+    static function cTime($val='', $fmt='auto', $null=''){
         $val = intval($val);
         if(empty($val)){
             return empty($null) ? '-' : $null;
@@ -180,7 +180,7 @@ class vopCell{
         }elseif($fmt=='auto'){
             $fmt = 'Y-m-d';
         }
-        $fmt = empty($fmt) ? 'Y-m-d' : $fmt;
+        $fmt=='d' && $fmt = 'Y-m-d'; 
         $fmt=='min' && $fmt = 'Y-m-d H:i';
         $fmt=='full' && $fmt = 'Y-m-d H:i:s';
         $fmt=='dm' && $fmt = 'm-d H:i';
@@ -188,13 +188,13 @@ class vopCell{
     }
     
     // split: [0]: 默认自动彩色显示 
-    //        [,]/[1]: 单个>0数字,多个用,好分开,或自定义个分割符变量(如$split)也可
+    //        [,]/[1]: 单个>0数字,多个用`,/+`号分开,或自定义个分割符变量(如$split)也可
     //        [tpl]: 默认模版显示,可自行写css.class着色
     //        [<span class='itm-(k)'>(v)</span>]: 自定模版显示,可自行写css.class着色
-    static function cOpt($val='',$mod='',$split=0,$null=''){
+    static function cOpt($val='', $mod='', $split=0, $null=''){
         if(empty($val)){ return empty($null) ? '' : $null; }
         $color = empty($split);
-        $arr = self::optArray($mod,$val,$color);
+        $arr = self::optArray($mod, $val, $color);
         $rea = '';
         if(!empty($arr)){
             if(empty($split)){
@@ -212,7 +212,7 @@ class vopCell{
     }
     
     // show
-    static function cShow($val,$vop=NULL){
+    static function cShow($val, $vop=NULL){
         global $_cbase;
         $re = empty($vop->$val) ? '' : $vop->$val;
         $re || $re = $_cbase[$val]; 
@@ -241,7 +241,7 @@ class vopCell{
         //[demo:2013-cm-abcd] => Array
                 //[etime] => 1387418573
         $re = ''; $ext = '';
-        $cfgc = read('coms.click','sy'); 
+        $cfgc = read('coms.click', 'sy'); 
         foreach($b as $k2=>$v2){
             $t = explode(':',$k2);
             $tmp = glbDBExt::getTable($t[0],'arr');

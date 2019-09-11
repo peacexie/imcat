@@ -143,6 +143,7 @@ if($qstr=='cookie'){
   <p class="tc pa10">Login OK!</p>
   <?php } ?>
   <p class="notice"><?php lang('tools.binf_usenotes',0);?></p>
+  <p class="tc"><?=basDebug::runInfo(); ?></p> 
 
 <?php } ?>
 <?php if($qstr=='binfo'){ ?>

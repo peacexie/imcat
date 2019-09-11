@@ -13,7 +13,7 @@ $_sy_home = array(
         'imcfg' => array( // import导入配置的模块
             //'gbook' => 'nrem', // gbook按nrem方式显示
         ),
-        //'extra' => array(), // 扩展模块: 'hello','umod',
+        'extra' => array(), // 扩展模块: 'hello','umod',
     ),
     
     //mod.home模块首页模板

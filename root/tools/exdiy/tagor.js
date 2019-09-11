@@ -23,7 +23,7 @@ function p2cAll(){
 // 属性->代码:tagtype
 function p2cTagtype(){
     var tp = strTrim('#tagtype'), tv = strTrim('#tagtype_v');
-    tv = (tv!='v' && isKey(tv)) ? ','+tv : '';
+    tv = (tv!='v' && /^[a-zA-Z]\w*$/.test(tv)) ? ','+tv : '';
     return '['+tp+tv+']';
 }
 // 属性->代码:modid

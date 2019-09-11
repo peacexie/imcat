@@ -22,11 +22,11 @@ function data($mod, $whr='', $lmt='10', $ord='', $ops=[]){
 
 // dump(格式化输出：变量，数组，Object)
 if(!function_exists('dump')){ 
-function dump($var,$min=1){
+function dump($var, $min=1){
     if($min=='min'){
         echo "<pre>"; print_r($var); echo "</pre>";
     }else{
-        basDebug::varShow($var,'',$min);
+        basDebug::varShow($var, '', $min);
     }
 } }
 
@@ -44,7 +44,7 @@ function tinc($fp, $inc=1, $refull=1){
 
 // cfg(读取cbase配置) cfg('sys.cset');
 if(!function_exists('cfg')){ 
-function cfg($key,$def=''){
+function cfg($key, $def=''){
     global $_cbase; 
     $org = $_cbase; $re = $def;
     $ak = explode('.',$key);
@@ -66,44 +66,44 @@ function lang($mk, $val=''){
 
 // read(读取缓存)
 if(!function_exists('read')){ 
-function read($file,$dir='modcm'){
+function read($file, $dir='modcm'){
     // $file:支持格式:news.i
     if(strpos($file,'.')){
-        $t = explode('.',$file);
+        $t = explode('.', $file);
         $re = glbConfig::read($t[0],$dir);
         return isset($re[$t[1]]) ? $re[$t[1]] : $re;
     }else{
-        return glbConfig::read($file,$dir);
+        return glbConfig::read($file, $dir);
     }
 } }
 
 // req(获得get/post参数)
 if(!function_exists('req')){ 
-function req($key,$def='',$type='Title',$len=255){
-    return basReq::val($key,$def,$type,$len);
+function req($key, $def='', $type='Title', $len=255){
+    return basReq::val($key, $def, $type, $len);
 } }
 
 // 输入 : addslashes 反斜杠
 if(!function_exists('in')){ 
-function in($data,$type=''){
-    return basReq::in($data,$type);
+function in($data, $type=''){
+    return basReq::in($data, $type);
 } }
 
 // 输出 : 格式: str,json,jsonp,xml
 if(!function_exists('out')){ 
-function out($data,$type='json'){
+function out($data, $type='json'){
     if($type=='str'){ // 删除(addslashes添加的)反斜杠
-        $data = basReq::out($data,$type);
+        $data = basReq::out($data, $type);
     }else{ // fmt: json,jsonp,xml
-        $data = \imcat\basOut::fmt($data,$type);
+        $data = \imcat\basOut::fmt($data, $type);
     }
     return $data;
 } }
 
 // db(获得db对象)
 if(!function_exists('db')){ 
-function db($config=array(),$catch=0){
-    return \imcat\glbDBObj::dbObj($config,$catch);
+function db($config=array(), $catch=0){
+    return \imcat\glbDBObj::dbObj($config, $catch);
 } }
 
 // user(获得user对象)
@@ -114,8 +114,8 @@ function user($uclass=''){
 
 // show-url:格式化url输出
 if(!function_exists('surl')){ 
-function surl($mkv='',$type='',$host=0){
-    return \imcat\vopUrl::fout($mkv,$type,$host);
+function surl($mkv='', $type='', $host=0){
+    return \imcat\vopUrl::fout($mkv, $type, $host);
 } }
 
 // sys-mod:系统(有效)模块,关闭或不存在返回`false`
@@ -133,8 +133,8 @@ function cmod($key=''){
 
 // echo-import:css,js
 if(!function_exists('eimp')){ 
-function eimp($type,$base='',$user=0){
-    echo \imcat\basJscss::imp($type,$base,$user);
+function eimp($type, $base='', $user=0){
+    echo \imcat\basJscss::imp($type, $base, $user);
 } }
 
 // 一组handler函数 ---------------------------------
@@ -147,13 +147,13 @@ function except_handler_ys($e) {
     throw new glbError($e); 
 }
 // 默认错误处理函数
-function error_handler_ys($Code,$Message,$File,$Line) {  
-    throw new glbError(@$Code,$Message,$File,$Line); 
+function error_handler_ys($Code, $Message, $File, $Line) {  
+    throw new glbError(@$Code, $Message, $File, $Line); 
 }
 // 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
 function shutdown_handler_ys() {  
     //echo "(shutdown)";
-    basDebug::bugLogs('handler',"[msg]","shutdown-".date('Y-m-d').".debug",'file');
+    basDebug::bugLogs('handler', "[msg]", "shutdown-".date('Y-m-d').".debug", 'file');
 }
 
 //(!function_exists('intl_is_failure'))

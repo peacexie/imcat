@@ -8,21 +8,21 @@ RewriteEngine on
 # /home/news.htm         -> /home.php?news
 # /home/news.htm?p1=v1   -> /home.php?news&p1=v1
 RewriteRule ^(home|chn|vcn|ven|ves|vfr|vru)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
-RewriteRule ^(home|chn|vcn|ven|ves|vfr|vru)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
+RewriteRule ^(home|chn|vcn|ven|ves|vfr|vru)/([\w|\.|\-]+).htm\?(.+)$ $1.php?$2&$3 [QSA,PT]
 
 # 方案2(去掉/home/目录,首页home.php也转为静态)
 # /home.htm              -> /home.php # 
 # /news.htm              -> /home.php?news
 #RewriteRule ^(home|chn|vcn).htm$ $1.php [QSA,PT]
 #RewriteRule ^([\w|\.|\-]+).htm$ home.php?$1 [QSA,PT]
-#RewriteRule ^([\w|\.|\-]+).htm?(.+)$ home.php?$1&$2 [QSA,PT]
+#RewriteRule ^([\w|\.|\-]+).htm\?(.+)$ home.php?$1&$2 [QSA,PT]
 # 博客/房产可用此方案，企业站因多语言版最多只能设置一个语言版本,建议不用此方案
 
 # 测试(entry1/entry2测试页)
 # /entry1/news.htm       -> /entry1.php?news
 # /entry1/news.htm?p1=v1 -> /entry1.php?news&p1=v1
 RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm$ $1.php?$2 [QSA,PT]
-RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm?(.+)$ $1.php?$2&$3 [QSA,PT]
+RewriteRule ^(entry1|entry2)/([\w|\.|\-]+).htm\?(.+)$ $1.php?$2&$3 [QSA,PT]
 
 # 测试(test测试页)
 # /test8.html            -> test.php?id=8
