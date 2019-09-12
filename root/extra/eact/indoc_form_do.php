@@ -3,7 +3,7 @@ namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
 $dop->svPrep();
-tex('texIndoc')->fixIspub($dop,$isadd); // topub=ispub : 扩展
+tex('texIndoc','umc')->fixIspub($dop,$isadd); // topub=ispub : 扩展
 if(!empty($isadd)){ 
     $dop->svAKey(); $did = $dop->fmu['did'] = $dop->fmv['did'];
     $db->table($dop->tbid)->data($dop->fmv)->insert(); 
@@ -17,5 +17,5 @@ if(!empty($isadd)){
     $actm = lang('flow.dops_edit');
 }
 $dop->svEnd($did); //静态情况等
-tex('texIndoc')->exNotice($dop,$isadd); // 通知扩展
+tex('texIndoc','umc')->exNotice($dop,$isadd); // 通知扩展
 basMsg::show("$actm".lang('flow.dops_ok'),'Redir');

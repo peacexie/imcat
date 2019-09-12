@@ -13,8 +13,10 @@
 
 ## ChangeLog
 
+* Publish: IntimateCat-Document(Chinese) - http://custom.txjia.com/book.php
 * Add: Url suppor route model
 * Add: vopSdiy model (Custom-Simple model) 
 * Add: Start-up Custom-Market (Cooperative development)
 * Improve: Including MD files can be nested
+* Fix: A security bug, and a few known bugs
 
