@@ -1,0 +1,21 @@
+{
+    "name": "peace/imcat",
+    "description": "Website system & PHP Toolkit",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "imcat",
+        "Toolkit"
+    ],
+    "homepage": "http://imcat.txjia.com/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "peace",
+            "email": "xpigeon@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
