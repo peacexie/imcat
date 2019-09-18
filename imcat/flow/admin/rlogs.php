@@ -39,7 +39,7 @@ if($part=='dbsql'){
         foreach($rs as $r){ 
           $kid = $idend = $r['kid'];
           if(empty($idfirst)) $idfirst = $kid;
-          $sql = basSql::fmtShow($r['sql'],2);
+          $sql = basSql::fmtShow($r['sql']);
           $ext = "$r[tag]@$r[tpl] # <a href='$r[page]' target=_blank>View</a> # $r[kid]";
           echo "<tr>\n".$cv->Select($kid);
           echo "<td class='tl'><textarea cols=60 rows=3>$sql</textarea></td>\n";

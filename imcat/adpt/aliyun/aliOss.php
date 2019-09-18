@@ -1,6 +1,8 @@
 <?php
 namespace imcat;
+
 use OSS\OssClient;
+use OSS\Core\OssException;
 
 // 阿里OSS类
 class aliOss extends aliBase
@@ -133,11 +135,11 @@ class aliOss extends aliBase
     // 根据Config配置，得到一个OssClient实例
     public function getOssClient()
     {
-        try {
-            $ossClient = new OssClient($this->accessKeyId, $this->accessKeySecret, $this->endpoint, true);
-        } catch (OssException $e) {
-            glbError::show($e->getMessage());
-        } // 0.0060560703277588
+        if(!class_exists('\OSS\OssClient')){
+            glbError::show('OSS\OssClient NOT Found!');
+        }
+        $ossClient = new OssClient($this->accessKeyId, $this->accessKeySecret, $this->endpoint, true);
+        // 0.0060560703277588
         $this->ossClient = $ossClient;
         return $ossClient;
     }

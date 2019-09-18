@@ -1,5 +1,8 @@
 <?php
 namespace imcat;
+
+# http://sdk2.entinfo.cn/webservice.asmx
+
 // sms_bucp；
 //http://sdk2.entinfo.cn/z_send.aspx?sn=SDK-DHX-010-xxx&pwd=222&mobile=13712748215&content=Test你好
 //http://sdk2.entinfo.cn/z_balance.aspx?sn=SDK-DHX-010-xxx&pwd=222

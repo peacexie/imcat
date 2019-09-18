@@ -1,5 +1,8 @@
 <?php
 namespace imcat;
+
+# http://www.winic.org/
+
 // sms_winic；
 class smsWinic{
     

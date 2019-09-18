@@ -150,13 +150,10 @@ function except_handler_ys($e) {
 function error_handler_ys($Code, $Message, $File, $Line) {  
     throw new glbError(@$Code, $Message, $File, $Line); 
 }
-// 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
-function shutdown_handler_ys() {  
-    //echo "(shutdown)";
-    basDebug::bugLogs('handler', "[msg]", "shutdown-".date('Y-m-d').".debug", 'file');
-}
-
-//(!function_exists('intl_is_failure'))
+/*/ 当php脚本执行完成,或者代码中调用了exit ,die这样的代码之后：要执行的函数
+register_shutdown_function(function(){
+    glbError::show();
+});*/
 
 // user-function ---------------------------------
 

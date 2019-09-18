@@ -12,17 +12,22 @@ namespace imcat;
 class vopSdiy extends vopShow{
 
     //function __destory(){  }
-    function __construct($dir, $cfg=[]){
+    function __construct($dir, $cfg=[], $cex=[]){
         $def = ['home'=>'home', '_mkv'=>'home', '_tpl'=>'page'];
         $cfg = empty($cfg) ? $def : array_merge($def, $cfg);
         $this->imkv($cfg);
-        $this->view($dir, $cfg);
+        $this->view($dir, $cfg, $cex);
     }
 
-    function view($dir, $cfg=''){
+    function view($dir, $cfg='', $cex=[]){
         global $_cbase;
         $_cbase['tpl']['vbase'] = dirname($dir);
         $_cbase['tpl']['vdir'] = basename($dir);
+        $_cbase['run']['tplcfg'] = [ // 支持surl(标签函数)
+            empty($cex[0]) ? '' : $cex[0], 
+            empty($cex[1]) ? "/{$_cbase['tpl']['vdir']}/home.php" : $cex[1], 
+            empty($cex[2]) ? '?' : $cex[2]
+        ];
         $this->tplCfg = $_cbase['tpl']; 
         $mkv = $_cbase['mkv'];
         if(isset($cfg[$mkv['q']])){
@@ -51,7 +56,7 @@ class vopSdiy extends vopShow{
         }else{
             $re = ['mod'=>$q, 'key'=>''];
         }
-        $re['q'] = $re['mkv'] = $q; 
+        $re['q'] = $re['mkv'] = $q;
         $_cbase['mkv'] = $re;
     }
     

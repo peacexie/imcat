@@ -54,14 +54,5 @@ class aisBdapi{
 }
 
 /*
-    if(empty(self::$clients[$class])){
-        include_once DIR_VENDOR."/bdAip/$class.php";
-        $cfull = "\\$class"; 
-        self::$clients[$class] = new $cfull($cfg['id'], $cfg['ak'], $cfg['as']);
-    }
-    /* 使用SDK
-    $client = self::init('AipNlp');
-    $ops = array();
-    $title && $ops["title"] = $title;
-    $res = $client->newsSummary($content, 240, $ops);
+
 */

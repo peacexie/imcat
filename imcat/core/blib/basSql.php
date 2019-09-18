@@ -6,10 +6,10 @@ class basSql{
     
     // *** 过滤注释
     static function filNotes($str){
-        $str = str_replace('---<split>---','###<split>###',$str);
-        $str = preg_replace('/\/\*(.*?)\*\//is','',$str);
-        $str = preg_replace('/\-\-([^\'\r\n]{0,}(\'[^\'\r\n]{0,}\'){0,1}[^\'\r\n]{0,}){0,}/is','',$str);
-        $str = str_replace('###<split>###','---<split>---',$str);
+        $str = str_replace('---<split>---', '###<split>###', $str);
+        $str = preg_replace('/\/\*(.*?)\*\//is', '', $str);
+        $str = preg_replace('/\-\-([^\'\r\n]{0,}(\'[^\'\r\n]{0,}\'){0,1}[^\'\r\n]{0,}){0,}/is', '', $str);
+        $str = str_replace('###<split>###', '---<split>---', $str);
         return $str; 
     }
 
@@ -111,25 +111,20 @@ class basSql{
     static function whrInids($ids, $sp=','){
         $arr = is_array($ids) ? $ids : explode($sp,$ids);
         $arr = array_unique(array_filter($arr));
-        $arr = str_replace("'","",$arr);
+        $arr = str_replace("'", "", $arr);
         $str = empty($arr) ? '' : "'".implode("','",$arr)."'";
         return $str;
     }
     
     // 格式化sql        
-    static function fmtShow($sql, $hlight=0){
-        if($hlight=='2'){
-            $arr = array("INNER JOIN","WHERE","ORDER BY","GROUP BY","LIMIT","FORCE INDEX",);
-            $sql = basStr::filTrim($sql); 
-            foreach($arr as $v) $sql = str_replace($v,"\n$v",$sql);    
-            $sql = str_replace(") AND",") \n AND",$sql); 
-        }else{
-            require_once DIR_VENDOR.'/sql-formatter/SqlFormatter.php';
-            $sql = \SqlFormatter::format($sql, $hlight);            
-        }
+    static function fmtShow($sql){
+        $arr = array("INNER JOIN","WHERE","ORDER BY","GROUP BY","LIMIT","FORCE INDEX",);
+        $sql = basStr::filTrim($sql); 
+        foreach($arr as $v) $sql = str_replace($v, "\n$v", $sql);    
+        $sql = str_replace(") AND", ") \n AND", $sql); 
         return $sql;
     }
-    static function fmtCount($str,$field='_rec_count_'){
+    static function fmtCount($str, $field='_rec_count_'){
         return $str ? preg_match('/^(.+?)\s+GROUP\s+BY(.+)$/is',$str,$arr) ? "SELECT COUNT(DISTINCT $arr[2]) ".stristr($arr[1],'FROM') : ("SELECT COUNT(*) AS $field ".stristr($str,'FROM')) : '';
     }
     
@@ -142,8 +137,8 @@ class basSql{
      * @return string $sqlstr 返回sql子字符串，包含 LIKE
      */
     static function fmtKeyWD($keyword, $multi=1){
-        $keyword = addcslashes($keyword,'%_');
-        $multi && $keyword = str_replace(array(' ','*'),'%',$keyword);
+        $keyword = addcslashes($keyword, '%_');
+        $multi && $keyword = str_replace(array(' ','*'), '%', $keyword);
         return " LIKE '%$keyword%' ";
     }
     
@@ -186,7 +181,7 @@ class basSql{
             if(strstr($val,'INSERT INTO `')){
                 $head = $val;
             }elseif(strstr($val,"','") && (strpos($val,'),') || strpos($val,');'))>0){
-                $val = substr($val,0,strlen($val)-1);
+                $val = substr($val, 0, strlen($val)-1);
                 $re .= "$head $val;\n";
             }
         }

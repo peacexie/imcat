@@ -19,7 +19,7 @@ class extSms{
     //function __destory(){  }
     function __construct(){ 
         require DIR_IMCAT."/adpt/smsapi/api_cfgs.php"; // 加载
-        $_cfgs = glbConfig::read('sms','ex');
+        $_cfgs = glbConfig::read('sms', 'ex');
         $api = @$_cfgs['cfg_api'];
         if($api && isset($_apis[$api])){ 
             $this->api = $api;
@@ -50,6 +50,21 @@ class extSms{
         return $this->smsdo->getBalance();    
     }
     
+    /** 模板短信发送
+     * @param    string    $mobiles     手机号码,参考sendSMS()
+     * @param    array     $params      参数：array('code'=>'1234','name'=>'peace',)
+     * @param    string    $tid         模版id
+     * @param    string    $sign        签名
+     **/
+    function sendTid($mobiles, $params, $tid='', $sign='', $limit=1){
+        if(!method_exists($this->smsdo, 'sendTid')){
+            return array(-1, "a:{sendTid}不支持！");
+        }
+        $res = $this->smsdo->sendTid($mobiles, $params, $tid, $sign);
+        $this->loger($mobiles, json_encode($params)."(tid=$tid:sign=$sign)", $res, $limit); //写记录-db
+        return $res;
+    }
+
     /** 短信发送，支持短信模版替换，
      * @param    string    $mobiles     手机号码,参考sendSMS()
      * @param    string    $tpl         支持模版，如：{subject}{name}标记
@@ -57,18 +72,18 @@ class extSms{
      * @param    string    $type         发送方式/发送身份,参考sendSMS()
      * @return    array    ---        结果数组,参考sendSMS()
      **/
-    function sendTpl($mobiles,$tpl,$source,$limit=1,$cfgs=array()){
+    function sendTpl($mobiles, $tpl, $source, $limit=1, $cfgs=array()){
         $tpl = str_replace(array("\r\n","\r","\n"),array(' ',' ',' '),$tpl);
         if(preg_match_all('/{\s*([a-zA-Z_0-9]\w*)\s*}/i', $tpl, $matchs)){
             if(!empty($matchs[0])){
                 foreach($matchs[0] as $v){
-                    $k = str_replace(array('{','}'),'',$v);
+                    $k = str_replace(array('{','}'), '', $v);
                     $val = isset($source[$k]) ? $source[$k] : (isset($GLOBALS[$k]) ? $GLOBALS[$k] : "{\$$k}");
-                    $tpl = str_replace($v,$val,$tpl);
+                    $tpl = str_replace($v, $val, $tpl);
                 }
             }
         }
-        return $this->sendSMS($mobiles,$tpl,$limit,$cfgs);
+        return $this->sendSMS($mobiles, $tpl, $limit, $cfgs);
     }
     
     /** 短信发送
@@ -77,7 +92,10 @@ class extSms{
      * @param    string    $limit       xxx ：
      * @return    array    ---        结果数组,如：array(1,'操作成功'): 
      **/
-    function sendSMS($mobiles,$content,$limit=1,$cfgs=array()){
+    function sendSMS($mobiles, $content, $limit=1, $cfgs=array()){
+        if(!method_exists($this->smsdo, 'sendSMS')){
+            return array(-1, "a:{sendSMS}不支持！");
+        }
         // 格式化 $mobiles,$content, 
         $atel = $this->telFormat($mobiles);
         $amsg = $this->msgCount($content);
@@ -100,21 +118,26 @@ class extSms{
             $res = array('-2',basLang::show('sms_msenderr'));
             $flag = false; //成功标记
             foreach($groups as $group){ 
-                $res_temp = $this->smsdo->sendSMS($group,$content);
+                $res_temp = $this->smsdo->sendSMS($group, $content);
                 if($res_temp[0]=='1'){ //只要一组发送成功,则都算成功.
                     $res = $res_temp;    
                 }
             }
         }else{
-            $res = $this->smsdo->sendSMS($atel,$content);
+            $res = $this->smsdo->sendSMS($atel, $content);
         }    
+        $this->loger($atel, $amsg[0], $res); //写记录-db
+        return $res;
+    }
+    
+    // 写记录-db
+    function loger($tel, $msg, $res, $nmsg=0, $pid=''){
         // 写记录-db
-        $stel = implode(',',$atel); 
+        $stel = is_array($tel) ? implode(',',$tel) : $tel; 
         if(strlen($stel)>255) $stel = substr($stel,0,240).'...'.substr($stel,strlen($stel)-5,255);
-        $pid = empty($cfgs['pid'])?'':$cfgs['pid'];
         $data = array( 
-            'kid'=>basKeyid::kidTemp(),'pid'=>$pid,
-            'tel'=>$stel,'msg'=>basReq::in($amsg[0]),
+            'kid'=>basKeyid::kidTemp(), 'pid'=>$pid,
+            'tel'=>$stel, 'msg'=>basReq::in($msg),
             'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
         );
         glbDBObj::dbObj()->table('plus_smsend')->data($data)->insert();
@@ -122,10 +145,9 @@ class extSms{
         if($this->api=='0test' && $res[0]=='1'){
             $this->smsdo->deductingCharge($nmsg);
         }
-        return $res;
-
     }
-    
+
+
     /** 余额报警检测,余额报警记录
      * @param    int        $flag     int/string数字/
      *                    数字,多少小时被修改(记录了余额不足)过,
@@ -154,8 +176,8 @@ class extSms{
     // 格式化并过滤后的电话号码
     function telFormat($tel){
         if(is_string($tel)){
-            $tel = str_replace(array("-","("," ",')'),'',$tel);
-            $tel = str_replace(array("\r\n","\r","\n",';'),',',$tel);
+            $tel = str_replace(array("-","("," ",')'), '', $tel);
+            $tel = str_replace(array("\r\n","\r","\n",';'), ',', $tel);
             $arr = explode(',',$tel);
         }else{
             $arr = $tel;    
@@ -172,7 +194,7 @@ class extSms{
     // param    string    $msg     初始的短信内容
     // param    int        $slen     最多截取多少文字
     // return    array    $re        返回array(文字,信息条数,文字个数)
-    function msgCount($msg,$slen=255){
+    function msgCount($msg, $slen=255){
         global $_cbase;
         $cset = $_cbase['sys']['cset'];
         $cnt = mb_strlen($msg, $cset);

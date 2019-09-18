@@ -1,6 +1,9 @@
 <?php
 namespace imcat;
 // sms_emhttp；
+
+# http://sdk4report.eucp.b2m.cn:8080/sdk/SDKService
+
 class smsEmhttp{
     
     public $userid; // 序列号

@@ -33,7 +33,7 @@ class glbError extends \Exception {
             foreach($erMsg as $ek=>$ev) {
                 $ev = basDebug::hidInfo($ev,1);
                 if($ek=='sql'){
-                    $ev = basSql::fmtShow($ev,2);
+                    $ev = basSql::fmtShow($ev);
                     $tInfo .= "<li><div class='divta' contenteditable='true'>$ev</div></li>\n";
                 }else{
                     $tInfo .= "<li>$ek : $ev </li>\n";
