@@ -17,7 +17,7 @@ require DIR_ROOT.'/cfgs/boot/const.php'; // 基本设置const: 可被后台设�
 require DIR_DTMP.'/dset/_score.cfg.php'; // 后台设置_score: 其次,可被页面设置_pbase覆盖
 #require DIR_ROOT.'/cfgs/boot/_score.min.php'; // mini模式用此文件
 require DIR_IMCAT.'/core/blib/loader.php'; // 包含自动加载类(仅包含文件)
-#require DIR_VENDOR.'/autoload.php'; // composer 的自动加载
+require DIR_VENDOR.'/autoload.php'; // composer 的自动加载(0.002/0.004s)
 
 basLoader::init(); // 初始化-类自动加载
 // 处理outer运行模式

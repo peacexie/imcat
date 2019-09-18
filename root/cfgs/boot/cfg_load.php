@@ -19,14 +19,14 @@ $_cfgs['acdir'] =  array(
     #'libu/libx1' => 'ex1',//自定义路径和前缀
 );
 
-//2. 第三方-pr4规范
+//2. 第三方-pr4规范(v5.0+不建议使用,推荐直接用composer代替)
 $_cfgs['acpr4'] =  array(
     //'Vdemo' => array('/Vdemo'), //vendor加载演示
-    //'Monolog' => array('/Monolog'), 
-    'OSS' => array('/aliOss/src/OSS'),
+    'Alidayu' => array('/dysms'), # 不用composer手动配置加载类库; 
+    #'OSS' => array('/aliOss/src/OSS'), # 不用composer手动配置加载类库; 
 );
 
-//3. 第三方-namespace规范
+//3. 第三方-namespace规范(v5.0+不建议使用,推荐直接用composer代替)
 $_cfgs['acnsp'] =  array(
     //'Psr\\Log' => array('/psrlog'),
 );
