@@ -1,6 +1,6 @@
 
 
-贴心猫(imcat) V5.0(Alpha)
+贴心猫(imcat) V5.0(Beta)
 
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
