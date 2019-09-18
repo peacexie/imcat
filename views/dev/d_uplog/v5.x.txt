@@ -8,7 +8,7 @@
 * 基本信息：
  - 版本：v5.0
  - 发布日期：2019.10
- - rar-大小: [core]1.32 MB, [full]3.66 MB(core+vendor)
+ - rar-大小: [core]1.32 MB, [full]3.57 MB(core+vendor)
 
 
 ## 更新事项
