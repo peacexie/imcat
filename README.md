@@ -1,8 +1,8 @@
 
 
-贴心猫(imcat) V5.0(Beta)
+贴心猫(imcat) V5.0(CA924)
 
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* v5.0 Coming SOON!
 
 --- --- --- --- --- --- --- --- --- 
 
