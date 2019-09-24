@@ -108,8 +108,8 @@ class comFiles{
     }
 
     static function listDir($dir,$key=''){
-        if(!is_dir($dir)) return array(); 
         $re = array('dir'=>array(),'file'=>array());
+        if(!is_dir($dir)) return $re; 
         // --- scandir();
         $handle = opendir($dir);
         while ($file = readdir($handle)) {
