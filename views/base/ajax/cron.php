@@ -72,16 +72,27 @@ if($static=='updkid'){ // 保存资料时执行
         $cron = new comCron($fjob);
     } 
 }else{ // jcronRun-执行
-    // comCron
-    $chk = safComm::urlStamp('flag',90);
+
+    # urlCheck
+    $rec = safComm::urlStamp('flag', 90);
+    if($rec){ die("// urlCheck :$rec"); } # "c:($rec)"
+
+    # comCron,comHook
     $cron = new comCron();
-    // comHooks
-    $hook = comHook::listen($mkv,$tpldir);
-    // vopStatic
+    $hook = comHook::listen($mkv, $tpldir);
+
+    # vopStatic
     if($mkv){
         if(vopStatic::chkNeed($mkv)){
             echo "// ".vopStatic::toFile($mkv);
         }  
-    } 
+    }
+
+    # exdVlog 开启统计模块
+    if(!empty($_cbase['ucfg']['stats']) && strstr($_cbase['ucfg']['stats'],$tpldir)){
+        exdVlog::main($tpldir, $mkv);
+        //echo basDebug::runInfo();
+    }
+
 }
 

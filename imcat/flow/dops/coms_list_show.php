@@ -13,7 +13,7 @@ if($rs=$dop->getRecs()){
       $msg = empty($r['title']) ? $r['detail'] : $r['title'];
       if(empty($idfirst)) $idfirst = $cid;
       echo $cv->Select($cid);
-      echo $cv->Field($msg,1,64); 
+      echo $cv->Field($msg,1,24); 
       echo $cv->Show($r['show']);
       echo $cv->Field($r['mname']);
       //echo $cv->Field($r['mtel']);

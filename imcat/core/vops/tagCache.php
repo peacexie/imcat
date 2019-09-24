@@ -8,7 +8,7 @@ namespace imcat;
 class tagCache{
 
     // adblock:abfoot0,2cF0F
-    static function showAdv($mkey,$reorg=0,$adtag=4){ 
+    static function showAdv($mkey, $reorg=0, $adtag=4){ 
         $mk = explode(':',$mkey);
         if(empty($mk[1])) return '';
         $a = explode(',',$mk[1]);
@@ -26,19 +26,19 @@ class tagCache{
         return $re;
     }
     
-    static function jsTag($k,$mkv,$para){ 
+    static function jsTag($k, $mkv, $para){ 
         preg_match("/\[cache\,([a-z0-9]+)\]/", $para, $m);  
         if(!empty($m[0]) && !empty($m[1])){ // && intval($m[1])>0
-            $pkey = str_replace(array("[List]","[Page]","[One]"),'',$para);
+            $pkey = str_replace(array("[List]", "[Page]","[One]") ,'', $para);
             $path = self::ctPath($pkey,basReq::val('tpldir'));
-            $data = extCache::cfGet($path,$m[1],'ctpl','str');
+            $data = extCache::cfGet($path, $m[1], 'ctpl', 'str');
             $para = str_replace($m[0],'',$para);
         }else{
             $path = $data = ''; //无缓存,无数据
         }
         if(empty($data)){
-            $data = self::jsData($k,$para); 
-            if($path) self::setCache($path,$data);
+            $data = self::jsData($k, $para); 
+            if($path) self::setCache($path, $data);
         }
         $re = basJscss::jsShow($data, 0);
         return $re;
@@ -53,7 +53,7 @@ class tagCache{
         return $re;
     }
     
-    static function comTag($type,$mkv,&$paras){ 
+    static function comTag($type, $mkv, &$paras){ 
         $cac = 0; $cex = $path = $fmkv = ''; 
         foreach($paras as $k=>$v){ 
             if($v[0]=='cache' && !empty($v[1])){
@@ -69,27 +69,27 @@ class tagCache{
             global $_cbase;
             $nowtpl = $_cbase['run']['tplnow']; 
             $vdir = $_cbase['tpl']['vdir']; 
-            $path = self::ctPath("[{$nowtpl}][$type]{$cex}",$vdir);
-            $data = extCache::cfGet($path,$cac,'ctpl','arr');
+            $path = self::ctPath("[{$nowtpl}][$type]{$cex}", $vdir);
+            $data = extCache::cfGet($path, $cac, 'ctpl', 'arr');
         }else{
             $data = ''; //无数据
         } 
         return array($path,$data);
     }
     
-    static function ctPath($para,$tpldir){ 
-        $para = str_replace(array('[modid,','[limit,','[cache,','[show,'),array('[m','[n','[c','[s'),$para); 
+    static function ctPath($para, $tpldir){ 
+        $para = str_replace(array('[modid,','[limit,','[cache,','[show,'), array('[m','[n','[c','[s'), $para); 
         $cp = extCache::CPath($para);
         $path = "/_tagc/$tpldir/{$cp['file']}.cac_htm";
         return $path;
     }
-    static function caPath($mod,$type,$full=0){ 
+    static function caPath($mod, $type, $full=0){ 
         $path = "/_advs/$mod/$type.cfg_htm"; 
         $full && $path = DIR_CTPL.$path;
         return $path;
     }
     
-    static function setCache($file,$data,$isa=0){
+    static function setCache($file, $data, $isa=0){
         global $_cbase; 
         if($isa){
             $data['page_bar'] = $_cbase['page']['bar'];

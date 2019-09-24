@@ -179,11 +179,29 @@ function fmSelGroup(e,part) {
 
 // 前台ajax调用资料使用 ===================================================================================================
 
+function jcUrlfmt(str, noenc){
+    if(!str) return '';
+    str = str.replace(/(^\s+)|(\s+$)/g, ''); // 前后空格
+    if(noenc){ return str; }
+    str = str.replace(/(\#)/g, '%23');
+    str = str.replace(/(\&)/g, '%26');
+    str = str.replace(/(\=)/g, '%3D');
+    str = str.replace(/(\?)/g, '%3F');
+    // #&=? -=> %23%26%3D%3F
+    str = str.replace(/(\ )/g, '%20');
+    str = str.replace(/(\\)/g, '%5C');
+    return str; 
+}
 function jcronRun(tpldir,mkv,reurl){
     tpldir = tpldir ? tpldir : ((typeof(_cbase.run.tpldir)=='undefined') ? '' : _cbase.run.tpldir);
     mkv = mkv ? mkv : ((typeof(_cbase.run.mkv)=='undefined') ? urlPara('mkv','') : _cbase.run.mkv);
-    mkv = (typeof(_cbase.run.mkv)=='undefined') ? '' : _cbase.run.mkv;
-    var url = '?ajax-cron&tpldir='+tpldir+'&rf='+mkv+'&'+_cbase.safil.url+'&'+jsRnd();
+    var uri = jcUrlfmt(window.location.href),
+        ref = jcUrlfmt(document.referrer),
+        ua = jcUrlfmt(navigator.userAgent),
+        sotab = /(Bot|Crawl|Spider|sohu-search|lycos|robozilla)/ig, // 搜索引擎agent, |slurp|okhttp
+        soag = ((ua && sotab.test(ua)) || (!ref && (!ua || ua.length<15))) ? 1 : 0,
+        pamx = '&soag='+soag+'&uri='+uri+'&ref='+ref+'&';
+    var url = '?ajax-cron&tpldir='+tpldir+'&rf='+mkv+'&'+_cbase.safil.url+pamx+jsRnd();
     if(reurl) return url;
     jsImp(url); 
 }

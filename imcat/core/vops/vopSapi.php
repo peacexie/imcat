@@ -11,11 +11,15 @@ class vopSapi{
     function __construct(){
         $this->init();
         $this->mkvs();
-        $this->view($this->res);  
+        # exdVlog 开启统计模块
+        if(!empty($_cbase['ucfg']['stats']) && strstr($_cbase['ucfg']['stats'],'sapi')){
+            exdVlog::main('sapi', $this->cfgs['mkv'], 0); # uri,ref
+            //echo basDebug::runInfo();
+        }
+        $this->view($this->res);
     }
 
     function mkvs(){
-        //$this->cfgs['nver'] = $this->ver;
         $this->cfgs['mkv'] = $mkv = req('mkv', 'root-home');
         $this->cfgs['mksp'] = $mksp = strpos($mkv,'.')>0 ? '.' : '-';
         $tmp = explode($mksp, $mkv);

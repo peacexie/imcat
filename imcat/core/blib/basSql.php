@@ -17,7 +17,6 @@ class basSql{
     static function logData($type='a', $ip='', $time=0, $user=''){ 
         global $_cbase;
         $run = $_cbase['run'];
-        //$unow = usrBase::userObj();
         $cfg = array(
             $type.'ip' => $ip ? $ip : $run['userip'],
             $type.'time' => $run['stamp'],

@@ -14,7 +14,6 @@ class extSms{
     
     public  $cnow      = array('name'=>'-','unit'=>'-'); //now配置
     public  $amap      = array(); //api列表
-    //public  $name      = ''; //name
     
     //function __destory(){  }
     function __construct(){ 
@@ -25,7 +24,6 @@ class extSms{
             $this->api = $api;
             $this->cfgs = $_cfgs; 
             $this->cnow = $_apis[$api];
-            //$this->name = $this->cnow['name'];
             $cfile = 'sms'.ucfirst($this->api);
             // 统一实例化一个 api对象 // load sms libs
             require DIR_IMCAT."/adpt/smsapi/$cfile.php"; // 加载

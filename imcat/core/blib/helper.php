@@ -70,7 +70,7 @@ function read($file, $dir='modcm'){
     // $file:支持格式:news.i
     if(strpos($file,'.')){
         $t = explode('.', $file);
-        $re = glbConfig::read($t[0],$dir);
+        $re = glbConfig::read($t[0], $dir);
         return isset($re[$t[1]]) ? $re[$t[1]] : $re;
     }else{
         return glbConfig::read($file, $dir);

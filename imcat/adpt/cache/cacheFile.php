@@ -20,7 +20,7 @@ class cacheFile{
         if(empty($sKey)) return false;
         $sFile  = self::fullPath($sKey);
         if(!file_exists($sFile)) return null;
-        $handle = fopen($sFile,'rb');
+        $handle = fopen($sFile, 'rb');
         if(intval(fgets($handle)) > $_SERVER["REQUEST_TIME"]){ //未失效期，取出数据
             $sData = fread($handle, filesize($sFile)); 
             fclose($handle);

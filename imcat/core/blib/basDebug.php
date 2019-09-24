@@ -175,9 +175,12 @@ class basDebug{
             $dcss = "border:1px solid #F00; background-color:#FFFFCC; padding:8px; margin:5px; clear:both; display:block;";    
             print_r("\n\n<div style=\"$dcss\">$data</div>\n\n");
         }elseif($mod=='db'){
+            $_cbase['run']['noid'] = empty($_cbase['run']['noid']) ? 1 : $_cbase['run']['noid']+1;
             $db = glbDBObj::dbObj();
-            $kid = basKeyid::kidTemp();
-            $vals = "'$kid','$act','$info[run]','$info[vp]','$info[rp]','".basReq::in($msg)."','$info[ip]','{$_cbase['run']['stamp']}','$info[ua]'";
+            $kid = basKeyid::kidTemp().$_cbase['run']['noid'];
+            $vp = strlen($info['vp'])>240 ? substr($info['vp'],0,240) : $info['vp'];
+            $rp = strlen($info['rp'])>240 ? substr($info['rp'],0,240) : $info['rp'];
+            $vals = "'$kid','$act','$info[run]','$vp','$rp','".basReq::in($msg)."','$info[ip]','{$_cbase['run']['stamp']}','$info[ua]'";
             $db->db->run("INSERT INTO ".$db->table("logs_$path",2)."(kid,`act`,used,page,pref,note,aip,atime,aua)VALUES($vals)");     
         }else{ // file
             $data = str_replace("<br>\n", "\n", $data);

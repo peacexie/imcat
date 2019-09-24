@@ -15,7 +15,7 @@
 
 * Publish: IntimateCat-Document(Chinese) - http://custom.txjia.com/book.php
 * Add: ali-dayu SMS-API, qcloud SMS-API
-* Add: Url suppor route model
+* Add: Url suppor Pathinfo-route model
 * Add: vopSdiy model (Custom-Simple model) 
 * Add: Start-up Custom-Market (Cooperative development)
 * Adjustment: /ximps/vendor/ directory, The dependencies that composer can install are no longer placed in packaged files

@@ -29,7 +29,7 @@ class texBase{
         $ext = $tpl['tplpext']; 
         $base || $base = 'jstag,menu,caritems,fanyi';
         $js = "";
-        $js .= "setTimeout(\"jcronRun()\",3700);\n";
+        $js .= "setTimeout(\"jcronRun()\",370);\n";
         strstr($base,'jstag') && $js .= "jtagSend();\n";
         strstr($base,'menu') && $js .= "jsactMenu();\n";
         strstr($base,'caritems') && $js .= "js_caritems();\n";

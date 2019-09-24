@@ -15,7 +15,7 @@
 
 * 发布：贴心猫-文档(中文) - http://custom.txjia.com/book.php
 * 增加：阿里大于短信接口，腾讯云短信接口
-* 增加：路由模式支持 
+* 增加：Pathinfo路由模式支持 
 * 增加：vopSdiy模式 (自定义-简易模式)
 * 增加：启动 custom 定制市场 (合作开发中...)
 * 调整：/ximps/vendor/ 目录，composer能安装的依赖不再放到打包文件中

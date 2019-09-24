@@ -14,7 +14,7 @@ $_ex_sms['price_mem'] = '0.15'; //
 $_ex_sms['cfg_api']   = 'alidy'; 
 $_ex_sms['user']      = ''; // ali-AccessKeyId
 $_ex_sms['pass']      = ''; // ali-AccessKeySecret 
-$_ex_sms['cfg_pr3']   = 'SMS_174028158'; // 模板id
+$_ex_sms['cfg_pr3']   = 'SMS_168000012'; // 模板id
 $_ex_sms['cfg_pr4']   = '公司名'; //
 
 $_ex_sms['cfg_api']   = 'qcloud'; 

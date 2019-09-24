@@ -3,6 +3,7 @@ namespace imcat;
 
 # http://api.fanyi.baidu.com/api/trans/product/apidoc
 # 每月翻译字符低于200万，当月免费，如超过200万字符，需按照49元人民币/百万字符支付当月全部翻译字符数费用（包括之前免费的200万字符）。
+# 请将单次请求长度控制在 6000 bytes以内。（汉字约为2000个）
 
 class aisTrans{
 

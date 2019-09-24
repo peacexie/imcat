@@ -7,7 +7,7 @@ class comCookie{
     // *** Cookie操作 user@peace+pass@123456
     
     // mset :
-    static function mset($gkey,$glife,$key='',$value='',$max=5){
+    static function mset($gkey, $glife, $key='', $value='', $max=5){
         if(is_array($key)){
             $garr = $key;
             $max = 99;
@@ -27,7 +27,7 @@ class comCookie{
         self::oset($gkey,$str,$glife);
     }
     // mget :
-    static function mget($gkey,$key='(array)'){
+    static function mget($gkey, $key='(array)'){
         $gtxt = self::oget($gkey); 
         $garr = basElm::text2arr($gtxt); 
         if($key=='(array)') return $garr;
@@ -36,7 +36,7 @@ class comCookie{
     
     // set(k,'v',n),get(k),del(k,''),clear()
     // set/del
-    static function oset($key='',$value='',$life=0,$pre='(def)'){
+    static function oset($key='', $value='', $life=0, $pre='(def)'){
         global $_cbase; 
         $kbak = $key; $fset = 0;
         $ckpre = isset($_cbase['ck']['pre']) ? $_cbase['ck']['pre'] : 'sysCookie';
