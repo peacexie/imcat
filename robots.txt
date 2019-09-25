@@ -1,6 +1,6 @@
 #
 # robots.txt for Imcat
-# Version 4.4
+# Version 5.0
 #
 
 
