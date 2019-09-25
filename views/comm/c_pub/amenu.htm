@@ -1,7 +1,7 @@
 
 <?php
-$user = usrBase::userObj('Member'); 
-$uname = $user->usess['uname'];
+$user = usrBase::userObj('Member');
+$uname = $_cbase['run']['uname'];
 $uname = empty($uname) ? 'Guest' : basStr::cutWidth($uname,12);
 $isup = usrPerm::issup();
 ?>

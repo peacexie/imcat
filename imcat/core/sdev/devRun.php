@@ -287,7 +287,7 @@ class devRun{
         imagefill($im,0,0,imagecolorallocate($im,245,245,245)); //背景
         for($i=0;$i<5;$i++){
             $ctab = strtoupper(KEY_TAB24); 
-            $char = $ctab{mt_rand(0,strlen($ctab)-1)}; 
+            $char = substr($ctab,mt_rand(0,strlen($ctab)-1),1);
             $color = imagecolorallocate($im,rand(100,255),rand(0,100),rand(100,255));
             $xPos=rand(5,21);
             $yPos=rand(30,90);

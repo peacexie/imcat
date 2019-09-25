@@ -20,5 +20,6 @@
 * Add: Start-up Custom-Market (Cooperative development)
 * Adjustment: /ximps/vendor/ directory, The dependencies that composer can install are no longer placed in packaged files
 * Improve: Including MD files can be nested
+* Fix: Some compatibility problem under PHP 7.4.0(RC2)
 * Fix: A security bug, and a few known bugs
 

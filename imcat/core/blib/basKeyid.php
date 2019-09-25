@@ -45,7 +45,7 @@ class basKeyid{
             }else{
                 $ni = $n;
             }
-            $si = $sKey{$ni};
+            $si = substr($sKey,$ni,1);
             $s0 = $s0.$si; 
             $n = $n % pow($xBase,$i);
         } 
@@ -111,8 +111,8 @@ class basKeyid{
         $sLen = strlen($sOrg); 
         if(empty($obj)) return $sOrg;
         for($i=0;$i<$sLen;$i++){
-            $ch1 = $sOrg{mt_rand(0,$sLen-1)};
-            $ch2 = $bOrg{mt_rand(0,$sLen-1)};
+            $ch1 = substr($sOrg, mt_rand(0,$sLen-1), 1);
+            $ch2 = substr($bOrg, mt_rand(0,$sLen-1), 1);
             $obj = str_replace($ch1,$ch2,$obj);
         }
         return $obj;
@@ -123,14 +123,14 @@ class basKeyid{
         $sLen = strlen($sOrg); $str = '';
         if($Len<=0){
             for($i=0;$i<$sLen;$i++){
-                $ch = $sOrg{mt_rand(0,$sLen-1)}; 
+                $ch = substr($sOrg, mt_rand(0,$sLen-1), 1);
                 $str .= $ch; 
                 $sOrg = str_replace($ch,'',$sOrg);
                 if($nLen==1){ $str .= $sOrg; break; }
             }
         }else{
             for($i=0;$i<$Len;$i++){
-                $str .= $sOrg{mt_rand(0,$sLen-1)};
+                $str .= substr($sOrg, mt_rand(0,$sLen-1), 1);
             }
         }
         return $str;
@@ -150,9 +150,9 @@ class basKeyid{
             $sTime = date("His",$xTime);
         } 
         $y4 = date("Y",strtotime($sDate)); 
-        $md2 = $ktab32{substr($sDate,4,2)}.$ktab32{substr($sDate,6,2)}; 
-        $md3 = $ktab32{substr($sDate,4,2)}.substr($sDate,6,2); 
-        $h = $ktab32{substr($sTime,0,2)}; 
+        $md2 = substr($ktab32,substr($sDate,4,2),1).substr($ktab32,substr($sDate,6,2),1); 
+        $md3 = substr($ktab32,substr($sDate,4,2),1).substr($sDate,6,2); 
+        $h   = substr($ktab32,substr($sTime,0,2),1); 
         $ms = 60 * substr($sTime,2,2) + substr($sTime,4,2);
         $s3 = substr(microtime(),2,3);
         $ms = self::fmtBase32('', intval($ms/4), 32, 2, '');
@@ -216,7 +216,7 @@ class basKeyid{
                     }else{
                         $hf = 0;
                     }
-                    $c = $tn{$n}; 
+                    $c = substr($tn,$n,1); 
                 }else{ //ILOZ不在列表中则
                     $c = $c=='z' ? 'z' : chr(ord($c)+1); 
                 }

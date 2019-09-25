@@ -120,8 +120,8 @@ class usrBase{
         $stamp = $_cbase['run']['stamp'];
         $_groups = glbConfig::read('groups');
         $sid = $this->sinit['sid'];
-        $this->usess = $this->uget_online($sid,'*'); 
-        $_cbase['run']['uname'] = $this->usess['uname'];
+        $this->usess = $this->uget_online($sid,'*');
+        $_cbase['run']['uname'] = empty($this->usess['uname']) ? '(unKnow)' : $this->usess['uname'];
         if(!empty($this->usess)){ // 判断: stime,errno,uid,grade,
             if($stamp-$this->usess['stime']>$this->utmOut){ //超时
                 $this->userFlag = 'Guest';

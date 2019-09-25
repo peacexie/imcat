@@ -15,6 +15,11 @@ class exvJump{
     }
 
     function run(){
+        if(!empty($_SERVER['PATH_INFO'])){
+            $q = substr($_SERVER['PATH_INFO'], 1);
+        }else{
+            $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+        }
         $qstr = $_SERVER['QUERY_STRING'];
         if(strpos($qstr,':')>0){
             $arr = explode(':',$qstr);
@@ -71,21 +76,17 @@ class exvJump{
     }
     // /api/redir.php?news.2015-a1-fhh1
     // /index.php?indoc.1234-56-7890
-    function doMods($mod,$kid){
+    function doMods($mod, $kid){
         $mods = array('indoc');
         if(in_array($mod,$mods)){
-            if(basEnv::isMobile()){ // basEnv::isWeixin() || 
-                $tpl = 'mob';
-            }else{
-                $tpl = 'umc';    
-            }
+            $tpl = basEnv::isMobile() ? 'mob' : 'umc';
         }else{
             $sdirs = vopTpls::etr1('show'); 
             $tpl = $_cbase['tpl']['vdir'] = $sdirs['_defront_'];
             $hid = $sdirs['_hidden_'];
-            unset($sdirs['_defront_'],$sdirs['_deadmin_'],$sdirs['_hidden_']);
+            unset($sdirs['_defront_'], $sdirs['_deadmin_'], $sdirs['_hidden_']);
             foreach($sdirs as $k=>$v){ 
-                if(in_array($mod,$v)){
+                if(in_array($mod, $v)){
                     $tpl = $k;
                     break;
                 }

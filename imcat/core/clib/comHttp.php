@@ -76,7 +76,7 @@ class comHttp
         }
         // saveCache & return
         $result = curl_exec($ch);
-        self::saveCache($cres[0], $result);
+        if(!empty($cres[0])) self::saveCache($cres[0], $result);
         curl_close($ch);
         return $result;
     }

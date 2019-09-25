@@ -137,8 +137,8 @@ class comConvert{
         $fix = ($key ? $key : $safe['rndch6'])."^";
         if($de){ 
             for($i=0;$i<strlen($s);$i++){
-                $ch = $s{$i}; $p = strpos($rnd,$ch); 
-                $re .= $p===false ? $ch : $org{$p}; 
+                $ch = substr($s,$i,1); $p = strpos($rnd,$ch); 
+                $re .= $p===false ? $ch : substr($org,$p,1); 
             }
             $s = $re;
         }else{
@@ -149,8 +149,8 @@ class comConvert{
             $s = substr($s,strlen($fix));
         }else{
             for($i=0;$i<strlen($s);$i++){
-                $ch = $s{$i}; $p = strpos($org,$ch); 
-                $re .= $p===false ? $ch : $rnd{$p}; 
+                $ch = substr($s,$i,1); $p = strpos($org,$ch); 
+                $re .= $p===false ? $ch : substr($rnd,$p,1); 
             }
             $s = $re;
         }
