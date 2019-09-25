@@ -203,8 +203,10 @@ class basDebug{
     
     // 隐藏:根路径,表前后缀
     static function hidInfo($str='', $db=0){
-        if(!$db){ // DIR_IMPS, DIR_VARS ,dirname(DIR_PROJ)
-            $str = str_replace(array(DIR_PROJ,DIR_IMPS,DIR_VARS), '~', $str); 
+        if(!$db){
+            $a1 = [DIR_IMPS, DIR_VARS, DIR_IMCAT, DIR_PROJ];
+            $a2 = ['{ximps}', '{xvars}', '{imcat}', '{proj}'];
+            $str = str_replace($a1, $a2, $str); 
         }else{
             require DIR_ROOT.'/cfgs/boot/cfg_db.php';
             $cdb = $_cfgs;
