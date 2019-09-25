@@ -494,7 +494,7 @@ CREATE TABLE `{pre}coms_corder{ext}` (
   `mweb` varchar(255) DEFAULT NULL,
   `maddr` varchar(120) DEFAULT NULL,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(255) NOT NULL DEFAULT '',
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `ordcnt` int(11) NOT NULL,
   `ordweight` float NOT NULL,
   `ordpay` varchar(12) NOT NULL,
@@ -509,7 +509,7 @@ CREATE TABLE `{pre}coms_corder{ext}` (
   `ordshto` varchar(12) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(255) NOT NULL DEFAULT '',
+  `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
@@ -1015,7 +1015,6 @@ DROP TABLE IF EXISTS `{pre}docs_news{ext}`;
 CREATE TABLE `{pre}docs_news{ext}` (
   `did` varchar(24) NOT NULL,
   `dno` int(11) NOT NULL DEFAULT '0',
-  `part` varchar(24) NOT NULL DEFAULT '',
   `catid` varchar(255) NOT NULL,
   `hinfo` varchar(12) DEFAULT '',
   `title` varchar(255) NOT NULL,
@@ -1258,8 +1257,8 @@ CREATE TABLE `{pre}init_users{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uid`),
+  KEY `uname` (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}logs_dbsql{ext}`;
@@ -1466,7 +1465,7 @@ CREATE TABLE `{pre}topic_items{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  UNIQUE KEY `did_dno` (`did`,`dno`),
+  PRIMARY KEY (`did`,`dno`),
   KEY `did` (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1522,9 +1521,9 @@ CREATE TABLE `{pre}types_brand{ext}` (
   `char` varchar(1) NOT NULL,
   `cfgs` text NOT NULL,
   `note` varchar(255) NOT NULL,
-  `world` varchar(12) NOT NULL,
-  `bweb` varchar(255) DEFAULT NULL,
-  `bpic` varchar(255) DEFAULT NULL,
+  `world` varchar(12) NOT NULL DEFAULT '',
+  `bweb` varchar(255) DEFAULT '',
+  `bpic` varchar(255) DEFAULT '',
   `detail` text,
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1550,10 +1549,10 @@ CREATE TABLE `{pre}types_china{ext}` (
   `char` varchar(1) NOT NULL,
   `cfgs` text NOT NULL,
   `note` varchar(255) NOT NULL,
-  `renkou` float NOT NULL,
-  `mianji` float NOT NULL,
-  `map` varchar(48) NOT NULL,
-  `quhao` varchar(6) NOT NULL,
+  `renkou` float NOT NULL DEFAULT '0',
+  `mianji` float NOT NULL DEFAULT '0',
+  `map` varchar(48) NOT NULL DEFAULT '',
+  `quhao` varchar(6) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1760,8 +1759,7 @@ CREATE TABLE `{pre}users_adminer{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_company{ext}`;
@@ -1793,8 +1791,7 @@ CREATE TABLE `{pre}users_company{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_govern{ext}`;
@@ -1826,8 +1823,7 @@ CREATE TABLE `{pre}users_govern{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_inmem{ext}`;
@@ -1849,8 +1845,7 @@ CREATE TABLE `{pre}users_inmem{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_organize{ext}`;
@@ -1882,8 +1877,7 @@ CREATE TABLE `{pre}users_organize{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_person{ext}`;
@@ -1905,8 +1899,7 @@ CREATE TABLE `{pre}users_person{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`uname`),
-  UNIQUE KEY `uid` (`uid`)
+  PRIMARY KEY (`uname`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}users_uacc{ext}`;
