@@ -100,14 +100,15 @@ if($view=='glist'){
     
 }elseif($view=='gform'){ 
 
+    $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','frame'=>'0','deep'=>'1','cfgs'=>'',);
     if(!empty($bsend)){ 
         if($kid=='_isadd_'){
             $fm['char'] = strtoupper(comConvert::pinyinMain($fm['title'],3,1));
+            foreach($def as $k=>$v){if(!isset($fm[$k])) $fm[$k] = $v;}
             if($db->table($tabid)->where("model='$mod' AND kid='$fm[kid]'")->find()){
                 $msg = lang('flow.msg_exists',$fm['kid']);
             }else{
                 $msg = lang('flow.msg_add');  
-                
                 $fm['deep'] = empty($fm['pid']) ? 1 : @$cfg['i'][$pid]['deep']+1;
                 $db->table($tabid)->data(basReq::in($fm))->insert();
                 $id = $fm['kid'];    
@@ -135,10 +136,8 @@ if($view=='glist'){
         }else{
             $fm = $db->table($tabid)->where("model='$mod' AND kid='$kid'")->find();
         }
-        $def = array('kid'=>'','title'=>'','top'=>'888','enable'=>'1','note'=>'','frame'=>'0','deep'=>'1','cfgs'=>'',);
-        foreach($def as $k=>$v){
-            if(!isset($fm[$k])) $fm[$k] = $v;
-        }
+        foreach($def as $k=>$v){if(!isset($fm[$k])) $fm[$k] = $v;}
+
         $ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
         $ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
         $itop = " &nbsp; ".lang('flow.title_top')."<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  />";

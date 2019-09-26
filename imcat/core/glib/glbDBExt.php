@@ -51,7 +51,7 @@ class glbDBExt{
         $sql.= (strpos("($r[vreg]",'nul:') ? " NULL " : ' NOT NULL '); 
         if(strstr($r['dbtype'],'char')){
             $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'':$r['dbdef'])."' "; 
-        }elseif(strstr($r['dbtype'],'int')){
+        }elseif(strstr($r['dbtype'],'int') || in_array($r['dbtype'],['float','double','decimal'])){
             $sql.= " DEFAULT '".(strlen($r['dbdef'])==0?'0':$r['dbdef'])."' "; 
         }
         $after = self::findAfterField($cols,$cid);
