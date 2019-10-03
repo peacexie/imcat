@@ -1,43 +1,43 @@
-<?php
+ï»¿<?php
 $_sy_dmbind = array(
 
-	// /xvars/html/cargo/2015-9c/h3h1.html
+	// /html/cargo/2015-9c/h3h1.html
 	// http://pro.my_domain.com/2015-9c/h3h1.html
 	/*
 	array(
-		'{html}/xxx_cargo/`d#`', //ÓÃ`d#`,`w#` ·Ö±ð´ú±íÕýÔòµÄ (\d+)(\w+)
-		'http://pro.my_domain.com/\\1-', //Ê¹ÓÃ\1µÄÐÎÊ½À´ÊµÏÖ·´ÏòÒýÓÃ
-		'1', //1-ÓÃÕýÔò-×Ô¶¯¸ñÊ½»¯
+		'{html}/xxx_cargo/`d#`', //ç”¨`d#`,`w#` åˆ†åˆ«ä»£è¡¨æ­£åˆ™çš„ (\d+)(\w+)
+		'http://pro.my_domain.com/\\1-', //ä½¿ç”¨\1çš„å½¢å¼æ¥å®žçŽ°åå‘å¼•ç”¨
+		'1', //1-ç”¨æ­£åˆ™-è‡ªåŠ¨æ ¼å¼åŒ–
 	),*/
 	
 );
 
 /*
 
-// /xvars/html/cargo/2015-9c/h3h1.html
+// /html/cargo/2015-9c/h3h1.html
 // /pro1/2015-9c/h3h1.html
 array(
-	'{html}/cargo/', //{html}=PATH_HTML£º/run/_init.phpÖÐ¶¨Òå£¬htmlÎÄµµµÄÏà¶ÔÄ¿Â¼
+	'{html}/cargo/', //{html}=PATH_HTMLï¼š/run/_init.phpä¸­å®šä¹‰ï¼Œhtmlæ–‡æ¡£çš„ç›¸å¯¹ç›®å½•
 	'/pro1/',
-	'0', //0-²»ÓÃÕýÔò
+	'0', //0-ä¸ç”¨æ­£åˆ™
 ),
 
-// /xvars/html/cargo/2015-9c/h3h1.html
+// /html/cargo/2015-9c/h3h1.html
 // http://pro2.my_domain.com/2015-9c/h3h1.html
 array(
-	'{html}/cargo/`d#`', //ÓÃ`d#`,`w#` ·Ö±ð´ú±íÕýÔòµÄ (\d+)(\w+)
-	'http://pro2.my_domain.com/\\1-', //Ê¹ÓÃ\1µÄÐÎÊ½À´ÊµÏÖ·´ÏòÒýÓÃ
-	'1', //1-ÓÃÕýÔò-×Ô¶¯¸ñÊ½»¯
+	'{html}/cargo/`d#`', //ç”¨`d#`,`w#` åˆ†åˆ«ä»£è¡¨æ­£åˆ™çš„ (\d+)(\w+)
+	'http://pro2.my_domain.com/\\1-', //ä½¿ç”¨\1çš„å½¢å¼æ¥å®žçŽ°åå‘å¼•ç”¨
+	'1', //1-ç”¨æ­£åˆ™-è‡ªåŠ¨æ ¼å¼åŒ–
 ),
 
-// Ð§¹ûÍ¬ÉÏ/08tools/yssina/xvars/html/
+// æ•ˆæžœåŒä¸Š/08tools/yssina/html/
 array(
 	'{html}\\/cargo\\/(\d+)\\-', 
 	'http://pro3.my_domain.com/\\1-', 
-	'2', //2-ÓÃÕýÔò-×ÔÓÉÐ´ÕýÔò
+	'2', //2-ç”¨æ­£åˆ™-è‡ªç”±å†™æ­£åˆ™
 ),
 
-// ¹æÔò£ºÕýÔò±í´ïÊ½ÌØÊâ×Ö·ûÓÐ£º . \ + * ? [ ^ ] $ ( ) { } = ! < > | : - 
+// è§„åˆ™ï¼šæ­£åˆ™è¡¨è¾¾å¼ç‰¹æ®Šå­—ç¬¦æœ‰ï¼š . \ + * ? [ ^ ] $ ( ) { } = ! < > | : - 
 
 */
 		
