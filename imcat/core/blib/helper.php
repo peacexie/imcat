@@ -27,6 +27,9 @@ function dump($var, $min=1){
         echo "<pre>"; print_r($var); echo "</pre>";
     }else{
         basDebug::varShow($var, '', $min);
+        if(!in_array($min,[0,1,2])){
+            basDebug::varShow($min, '', 1);
+        }
     }
 } }
 

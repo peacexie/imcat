@@ -265,6 +265,16 @@ class vopUrl{
         return $q;
     }
 
+    // jumpr, uf.php?mkv -=> uf.php/mkv
+    static function jumpr(){
+        $uri = $_SERVER["REQUEST_URI"]; 
+        if(preg_match("/\.php\?([\w\-\.]{3,36})$/i",$uri)){ 
+            preg_match("/\.php\?([\w\-\.]{3,36})$/i", $uri, $p);
+            $uf = $_SERVER["SCRIPT_NAME"];
+            header("Location:$uf/{$p[1]}"); 
+            die();
+        }
+    }
 }
 
 /*

@@ -49,7 +49,7 @@ $_sy_vopcfg['tpl'] = array(
         array('cn'=>'会员中心', 'en'=>'User'),
         '/root/run/umc.php'
     ), 
-    'demo' => array('Hello.Demo!','/root/run/demo.php'), 
+    #'demo' => array('Hello.Demo!','/demo.php'), 
     'base' => array(
         array('cn'=>'默认首页', 'en'=>'Basic'),
         '/index.php', // index,base
