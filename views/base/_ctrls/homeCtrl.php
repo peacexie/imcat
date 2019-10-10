@@ -19,12 +19,14 @@ class homeCtrl{
     // home检查
     function check(){
         // 检查路径
-        $npath = \imcat\devRun::prootGet();
-        if($npath!=PATH_PROJ){
-            header('Location:'.$npath.$this->start.'?FixProot');
-            die('<!--FixProot-->');
+        if(empty($_SERVER['PATH_INFO'])){ // `file.php/mkv`不检查
+            $npath = \imcat\devRun::prootGet();
+            if($npath!=PATH_PROJ){
+                header('Location:'.$npath.$this->start.'?FixProot');
+                die('<!--FixProot-->');
+            }
         }
-        // 检查关闭
+        // 检查关闭(兼容?)
         $hclose = empty($_cbase['close_home']) ? 'index' : $_cbase['close_home'];
         if($hclose=='close'){
             \imcat\vopTpls::cinc("stpl/close_info",1);

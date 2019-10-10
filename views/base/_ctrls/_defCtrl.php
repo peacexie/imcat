@@ -13,13 +13,14 @@ class _defCtrl{
     function __construct($ucfg=array(), $vars=array()){ 
         $this->ucfg = $ucfg;
         $this->vars = $vars;
+        $this->_defAct();
     }
 
     // _defAct
     function _defAct(){
-        global $_cbase;
+        global $_cbase; 
         $tpl = $this->ucfg['tplname'];
-        $pres = array('info/', 'user/');
+        $pres = array('info/', 'user/'); # info/map-baidu
         if(!in_array(substr($tpl,0,5),$pres)){
             $res = new exvJump();
             //glbHtml::httpStatus(404);

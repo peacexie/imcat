@@ -43,8 +43,11 @@ class devRun{
     }
     // prootGet
     static function prootGet(){
-        // 虚拟目录: E:\truedir\index.php -> /imcat/index.php
-        $path = $_SERVER['SCRIPT_NAME'];
+        // 虚拟目录: /imcat/index.php
+        $path = $_SERVER['SCRIPT_NAME']; // SCRIPT_NAME,PHP_SELF
+        if(strpos($path,'.php/')>0){ // fix:engix下pathinfo(index.php/mkv)
+            $path = substr($path, 0, strpos($path,'.php/')+4);
+        }
         $files = array(
             "/root/tools/setup/index.php",
             "/root/tools/adbug/start.php",

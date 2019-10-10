@@ -243,12 +243,16 @@ class vopUrl{
 
     // 路由
     static function route($def=''){
+        global $_cbase;
+        $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
         $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
         if(!empty($_SERVER['PATH_INFO'])){
             $q = substr($_SERVER['PATH_INFO'],1) . ($q ? "&$q" : '');
+        }else{
+            if(!empty($tcfg[2]) && $tcfg[2]=='?'){ self::jumpr(); }
         }
         $q || $q = $def;
-        // 去掉开头的:mkv= (肯定是动态)
+        // 去掉开头的`mkv=`(肯定是动态)
         if(substr($q,0,4)=='mkv='){
             header('Location:?'.substr($q,4));
             die();
@@ -259,15 +263,15 @@ class vopUrl{
             header('Location:?'.$p[1]); 
             die();
         }
-        global $_cbase; // 去掉.htm尾巴
-        $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
+        // 去掉末尾的的`.htm`(未静态)       
         if(!empty($tcfg[3])){ $q = preg_replace("/{$tcfg[3]}/", '', $q, 1); }
         return $q;
     }
 
-    // jumpr, uf.php?mkv -=> uf.php/mkv
+    // 跳转: entry.php?mkv -=> entry.php/mkv
+    // /?home-cn 未跳转
     static function jumpr(){
-        $uri = $_SERVER["REQUEST_URI"]; 
+        $uri = $_SERVER["REQUEST_URI"];
         if(preg_match("/\.php\?([\w\-\.]{3,36})$/i",$uri)){ 
             preg_match("/\.php\?([\w\-\.]{3,36})$/i", $uri, $p);
             $uf = $_SERVER["SCRIPT_NAME"];

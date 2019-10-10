@@ -16,11 +16,10 @@ class exvJump{
 
     function run(){
         if(!empty($_SERVER['PATH_INFO'])){
-            $q = substr($_SERVER['PATH_INFO'], 1);
+            $qstr = substr($_SERVER['PATH_INFO'], 1);
         }else{
-            $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+            $qstr = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
         }
-        $qstr = $_SERVER['QUERY_STRING'];
         if(strpos($qstr,':')>0){
             $arr = explode(':',$qstr);
             $mth = 'do'.ucfirst($arr[0]);
