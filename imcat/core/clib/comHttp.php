@@ -63,7 +63,7 @@ class comHttp
         curl_setopt($ch, CURLOPT_URL, $url); 
         self::_timeout($opt, $ch); // Timeout
         self::curlProxy($ch, $opt); // ref/proxy
-        #curl_setopt($ch, CURLOPT_HEADER, false);
+        # curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $header = self::_heads($opt, $data); // header/cookie/type
         $header && curl_setopt($ch, CURLOPT_HTTPHEADER, $header); 
@@ -72,14 +72,9 @@ class comHttp
         if(substr($url,0,8)=='https://'){
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            if(defined('CURL_SSLVERSION_TLSv1_3')){
-                $tls = CURL_SSLVERSION_TLSv1_3;
-            }elseif(defined('CURL_SSLVERSION_TLSv1_2')){
-                $tls = CURL_SSLVERSION_TLSv1_2;
-            }else{ echo '1';
-                $tls = CURL_SSLVERSION_TLSv1_1;
-            }
-            curl_setopt($ch, CURLOPT_SSLVERSION, $tls);
+            if(isset($opt['sslv'])){ // 2-7, 默认情况下PHP会自己检测这个值
+                curl_setopt($ch, CURLOPT_SSLVERSION, $opt['sslv']);
+            } // ['TLSv1_3','TLSv1_2','TLSv1_1','TLSv1_0','SSLv3','SSLv2','SSLv1']
         }
         // saveCache & return
         $result = curl_exec($ch);
@@ -185,9 +180,9 @@ class comHttp
             $opts['http']['content'] = $pstr;
         }
         $context = stream_context_create($opts);
-        $result = @file_get_contents($url,false,$context);
+        $result = file_get_contents($url, false, $context);
         // saveCache
-        self::saveCache($cres[0], $result);
+        $cres && self::saveCache($cres[0], $result);
         // return
         return $result;
     }
