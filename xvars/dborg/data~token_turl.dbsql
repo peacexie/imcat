@@ -1,17 +1,20 @@
 
--- token_turl@2018-12-21 20:18:05 -- 
+-- token_turl@2019-10-11 08:21:39 -- 
 INSERT INTO `{pre}token_turl{ext}` VALUES 
-('bug','https://bugs.php.net/bug.php?id=74721','(def)'),
-('bb','http://txjia.com/baby/about.asp','txjia'),
-('yl','https://txjia2.taobao.com/index.htm','txjia'),
-('tip','http://txjia.com/tip/?typ=CoA1212','txjia'),
-('kd','http://yscode.txjia.com/tools/screen.htm','txjia'),
-('dg','http://www.weather.com.cn/weather/101281601.shtml','(def)'),
-('kg','http://www.txjia.com/kgfood/vgb/about.asp','txjia'),
-('cat','http://txmao.txjia.com/dev.php','txjia'),
-('box','http://txjia.com/peace/txbox.htm','txjia'),
-('asp','http://txjia.com/peace/txasp.htm','txjia'),
-('git','https://github.com/peacexie/imcat','txjia'),
-('eb','http://www.elifebike.com/page/pic.asp','(def)'),
-('psw','http://www.pswpower.com/page/pic.asp','(def)'),
-('node','http://txjia.com/peace/wenode.htm','txjia');
+('1','php','https://www.php.net/','(def)'),
+('2','ftree','http://imblog.txjia.com/home.php/ftree','txjia'),
+('3','jian','http://im3n.txjia.com/home.php','txjia'),
+('4','cheer','http://cheerweb.txjia.com/','txjia'),
+('5','kd','http://yscode.txjia.com/tools/screen.htm','txjia'),
+('6','house','http://ourhouse.txjia.com/','txjia'),
+('7','blog','http://imblog.txjia.com','txjia'),
+('8','imcat','http://imcat.txjia.com','txjia'),
+('9','box','http://txjia.com/peace/txbox.htm','txjia'),
+('10','asp','http://txjia.com/peace/txasp.htm','txjia'),
+('11','imgit','https://github.com/peacexie/imcat','txjia'),
+('12','eb','http://www.elifebike.com/','(def)'),
+('13','psw','http://www.pswpower.com','(def)'),
+('14','node','http://txjia.com/peace/wenode.htm','txjia'),
+('15','wepy','http://wepy.txjia.com/','txjia'),
+('16','book','http://custom.txjia.com/book.php','txjia'),
+('17','shop','http://txjia.com/peace/wmshop.htm','txjia');

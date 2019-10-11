@@ -1426,12 +1426,14 @@ CREATE TABLE `{pre}token_store{ext}` (
 
 DROP TABLE IF EXISTS `{pre}token_turl{ext}`;
 CREATE TABLE `{pre}token_turl{ext}` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `kid` varchar(12) NOT NULL DEFAULT '(appid)',
   `url` varchar(255) NOT NULL DEFAULT '',
   `type` varchar(12) NOT NULL DEFAULT '(def)',
   PRIMARY KEY (`kid`),
-  UNIQUE KEY `url` (`url`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  UNIQUE KEY `url` (`url`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}topic_form{ext}`;
 CREATE TABLE `{pre}topic_form{ext}` (
