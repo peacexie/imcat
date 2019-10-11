@@ -72,7 +72,14 @@ class comHttp
         if(substr($url,0,8)=='https://'){
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-            curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+            if(defined('CURL_SSLVERSION_TLSv1_3')){
+                $tls = CURL_SSLVERSION_TLSv1_3;
+            }elseif(defined('CURL_SSLVERSION_TLSv1_2')){
+                $tls = CURL_SSLVERSION_TLSv1_2;
+            }else{ echo '1';
+                $tls = CURL_SSLVERSION_TLSv1_1;
+            }
+            curl_setopt($ch, CURLOPT_SSLVERSION, $tls);
         }
         // saveCache & return
         $result = curl_exec($ch);
