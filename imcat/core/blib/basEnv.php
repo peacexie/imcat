@@ -30,7 +30,7 @@ class basEnv{
     static function runConst(){
         define('IS_CGI',     substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
         define('IS_WIN',     strstr(PHP_OS, 'WIN') ? 1 : 0 );
-        define('IS_CLI',     PHP_SAPI=='cli'? 1   :   0);
+        define('IS_CLI',     PHP_SAPI=='cli'? 1 : 0);
         define('KEY_NUM10',  '0123456789');
         define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');
         define('KEY_CHR22',  'abcdefghjkmnpqrstuvwxy'); // -iloz
@@ -47,7 +47,7 @@ class basEnv{
         global $_cbase;
         $run = &$_cbase['run'];
         // 运行时常用变量,
-        $run['domain'] = $_SERVER['SERVER_NAME'];
+        $run['domain'] = IS_WIN ? '-' : $_SERVER['SERVER_NAME'];
         $run['dmtop'] = self::topDomain($run['domain']);
         $run['stamp'] = $_SERVER["REQUEST_TIME"]; 
         $run['userag'] = self::userAG();

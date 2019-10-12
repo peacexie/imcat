@@ -44,7 +44,7 @@ class comCookie{
         $life && $life = $_SERVER["REQUEST_TIME"] + $life; //,  + 72 * 3600
         $path = isset($_cbase['ck']['path']) ? $_cbase['ck']['path'] : '/'; 
         $domain = isset($_cbase['ck']['domain']) ? $_cbase['ck']['domain'] : '';
-        $secure = $_SERVER['SERVER_PORT'] == 443 ? 1 : 0;
+        $secure = IS_CLI ? '0' : ($_SERVER['SERVER_PORT'] == 443 ? 1 : 0);
         //basDebug::bugLogs('test1',"($value),($life=".date('Y-m-d H:i:s',$life)."),$path,$domain,$secure");
         setcookie($key,$value,$life,$path,$domain,$secure); 
     }
