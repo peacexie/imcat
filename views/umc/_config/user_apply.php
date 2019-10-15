@@ -23,7 +23,7 @@ if($act=='doapply'){
         if(empty($fm['mtel'])) $fm['mtel'] = '126-8888-8888'; 
         if(empty($fm['memail'])) $fm['memail'] = $fm['mtel'].$_cbase['run']['dmtop']; 
     }
-    $re2 = \imcat\umc\texBase::chkAppCode('fmapply',$fm,$mod); // safComm::formCAll
+    $re2 = \imcat\umc\texUser::chkAppCode('fmapply',$fm,$mod); // safComm::formCAll
     if(empty($re2[0])){ 
         $arr = array('company'=>@$fm['company'],); 
         if(in_array($ucfg['regnow'],array('mail-act'))){
@@ -32,7 +32,7 @@ if($act=='doapply'){
         $re3 = usrMember::addUser($mod,$fm['uname'],$fm['upass'],$fm['mname'],$fm['mtel'],$fm['memail'],$arr);
         if(empty($re3['erno'])){
             if($ucfg['regnow']=='mail-act'){
-                $msg_em = \imcat\umc\texBase::sendActEmail($re3,$fm);
+                $msg_em = \imcat\umc\texUser::sendActEmail($re3,$fm);
                 //$msg_em = "<br>邮件激活…";
             }elseif($ucfg['regnow']=='sms-vcode'){
                 usrMember::bindUser($fm['uname'],'mtel',$fm['mtel']); // bind
