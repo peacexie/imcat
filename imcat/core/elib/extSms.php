@@ -54,12 +54,16 @@ class extSms{
      * @param    string    $tid         模版id
      * @param    string    $sign        签名
      **/
-    function sendTid($mobiles, $params, $tid='', $sign='', $limit=1){
+    function sendTid($mobiles, $tid='', $params, $cfgs=array()){ // , $sign='', $limit=1, $pid=''
         if(!method_exists($this->smsdo, 'sendTid')){
             return array(-1, "a:{sendTid}不支持！");
         }
+        $sign = empty($cfgs['sign']) ? '' : $cfgs['sign'];
+        $pid = empty($cfgs['pid']) ? 1 : $cfgs['pid'];
+        $limit = empty($cfgs['limit']) ? 1 : $cfgs['limit'];
         $res = $this->smsdo->sendTid($mobiles, $params, $tid, $sign);
-        $this->loger($mobiles, json_encode($params)."(tid=$tid:sign=$sign)", $res, $limit); //写记录-db
+        $tid || $tid = '(def)'; $sign || $sign = '(def)';
+        $this->loger($mobiles, json_encode($params)."(tid=$tid:sign=$sign)", $res, $limit, $pid); //写记录-db
         return $res;
     }
 
@@ -70,7 +74,7 @@ class extSms{
      * @param    string    $type         发送方式/发送身份,参考sendSMS()
      * @return    array    ---        结果数组,参考sendSMS()
      **/
-    function sendTpl($mobiles, $tpl, $source, $limit=1, $cfgs=array()){
+    function sendTpl($mobiles, $tpl, $source, $cfgs=array()){
         $tpl = str_replace(array("\r\n","\r","\n"),array(' ',' ',' '),$tpl);
         if(preg_match_all('/{\s*([a-zA-Z_0-9]\w*)\s*}/i', $tpl, $matchs)){
             if(!empty($matchs[0])){
@@ -81,7 +85,7 @@ class extSms{
                 }
             }
         }
-        return $this->sendSMS($mobiles, $tpl, $limit, $cfgs);
+        return $this->sendSMS($mobiles, $tpl, 5, $cfgs);
     }
     
     /** 短信发送
@@ -91,6 +95,7 @@ class extSms{
      * @return    array    ---        结果数组,如：array(1,'操作成功'): 
      **/
     function sendSMS($mobiles, $content, $limit=1, $cfgs=array()){
+        $pid = empty($cfgs['pid']) ? '' : $cfgs['pid'];
         if(!method_exists($this->smsdo, 'sendSMS')){
             return array(-1, "a:{sendSMS}不支持！");
         }
@@ -124,12 +129,12 @@ class extSms{
         }else{
             $res = $this->smsdo->sendSMS($atel, $content);
         }    
-        $this->loger($atel, $amsg[0], $res); //写记录-db
+        $this->loger($atel, $amsg[0], $res, $nmsg, $pid); //写记录-db
         return $res;
     }
     
     // 写记录-db
-    function loger($tel, $msg, $res, $nmsg=0, $pid=''){
+    function loger($tel, $msg, $res, $nmsg=1, $pid=''){
         // 写记录-db
         $stel = is_array($tel) ? implode(',',$tel) : $tel; 
         if(strlen($stel)>255) $stel = substr($stel,0,240).'...'.substr($stel,strlen($stel)-5,255);
@@ -137,6 +142,7 @@ class extSms{
             'kid'=>basKeyid::kidTemp(), 'pid'=>$pid,
             'tel'=>$stel, 'msg'=>basReq::in($msg),
             'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
+            'atime'=>time(), 
         );
         glbDBObj::dbObj()->table('plus_smsend')->data($data)->insert();
         // 扣钱 for 0test_balance.txt

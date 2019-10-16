@@ -134,6 +134,7 @@ class usrMember extends usrBase{
         if($key=='uname' && $re=basKeyid::keepCheck($val,1,1,1)){
             return $re;
         }
+        $tmsg = '';
         if($key=='uname'){
             if($uinfo = $db->table("users_uacc")->where("uname='$val'")->find()){
                 return basLang::show('plus.cajax_userid')."[$val](uacc)".basLang::show('plus.cajax_exsists');

@@ -126,12 +126,13 @@ class basLang{
     static function sopts($def='',$img=1){
         global $_cbase; 
         $lang = $_cbase['sys']['lang'];
-        if(empty($_cbase['ucfg']['lang'])){
-            $cfgs = glbConfig::read('vopcfg','sy');
-            $ops = "<option value=''> ".$cfgs['langs'][$lang][0]." </option>";
-        }else{ // <!-- <>◇/↔/⇔/&#x21d4; <i>«»<i> -->
+        if(!empty($_cbase['ucfg']['lang']) && $_cbase['ucfg']['lang']=='(auto)'){
             $ops = "<option value=''> En<>中 </option>";
             $ops .= basLang::links("<option value='{url}'>{title}</option>",array());
+        }else{ // <!-- <>◇/↔/⇔/&#x21d4; <i>«»<i> -->
+            $cfgs = glbConfig::read('vopcfg','sy'); 
+            $lname = empty($cfgs['langs'][$lang][0]) ? '' : $cfgs['langs'][$lang][0];
+            $ops = "<option value=''> {$lang} : $lname </option>";
         }
         $img = $img ? '<img src="'.PATH_VIEWS.'/base/assets/logo/imcat-40x.png" width="40" height="40">' : '';
         echo "<p>$img<select id='locSetS' onchange='location.href=this.value;'>$ops</select></p>";
