@@ -22,7 +22,11 @@ if($mod=='sms-vcode' && $ucfg['regnow']=='sms-vcode' && $code && $tel){
     $sms = new extSms();
     $tpl = $ucfg['utpls'][$mod];
     $code = basKeyid::kidRand('0',6);
-    $re = $sms->sendTpl($tel,$tpl,array('code'=>$code),1,array('pid'=>"$mod:$code"));
+    if(method_exists($sms->smsdo, 'sendTid')){
+        $re = $sms->sendTid($tel, array('code'=>$code));
+    }else{
+        $re = $sms->sendTpl($tel, $tpl, array('code'=>$code), 1, array('pid'=>"$mod:$code"));
+    }
     if($re[0]==1) die("var ajres='success';");
     else die("var ajres='{$re[1]}';");
 //}elseif($mod=='mail-act'){
