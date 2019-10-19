@@ -39,11 +39,13 @@ if($uparr){
             $nok++;
             $smsg .= "\\n{$info['original']} -=> ".basename($info['url'])."";
         }else{
+            $info['url'] = ''; // 出问题不允许显示
+            $info['title'] = ''; // 出问题不允许显示
             $smsg .= "\\n{$info['original']} -=> ".basename($info['state'])."";    
         }
     }
 
-    if($recbk=='ref') {
+    if($recbk=='ref'){
         if($nok==0){
             $msg = lang('plus.fop_fupfail')."\\n$smsg";
         }else{
@@ -53,7 +55,11 @@ if($uparr){
         echo basJscss::Alert($msg,'Redir',basReq::getURep($_SERVER["HTTP_REFERER"],'dfile',''));
     }elseif($recbk=='kindEditor'){ 
         $info['error'] = $info['state']=='SUCCESS' ? 0 : 1;
-        if(!empty($msg)) $info['message'] = $msg;
+        //if(!empty($msg)) $info['message'] = $msg;
+        if($info['state'] != 'SUCCESS') {
+            $info['message'] = $info['state'];
+            //echo basJscss::Alert($info['state'], '-');
+        } 
         echo json_encode($info);
     }elseif($recbk=='pfield'){
         $cmd = $nok>0 ? "window.parent.jsElm.jeID('$fid').value='{$info['url']}';" : "alert('{$info['state']}');";
@@ -62,7 +68,7 @@ if($uparr){
         $id = substr($recbk,6);
         $cmd = $nok>0 ? " [OK!] ".lang('plus.fop_upok').":{$info['original']}" : " [Error] ".lang('plus.fop_upfail').": {$info['state']}";
         echo basJscss::jscode("window.parent.jsElm.jeID('bidiv_$id').innerHTML='[OK!] ".lang('plus.fop_upok').":{$info['original']}';"); 
-    } else { 
+    } else {
         echo json_encode($info);
     }
     

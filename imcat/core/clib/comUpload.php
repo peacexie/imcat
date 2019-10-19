@@ -24,8 +24,7 @@ class comUpload
      * @param array $config 配置项
      * @param type upload/remote/base64
      */
-    function __construct($fileField, $config, $type="upload")
-    {
+    function __construct($fileField, $config, $type="upload"){
         $this->stateMap = basLang::ucfg('cfglibs.upload');
         $this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $this->stateMap['ERROR_TYPE_NOT_ALLOWED'];
         $this->fileField = $fileField;
@@ -44,8 +43,7 @@ class comUpload
      * 上传文件的主处理方法
      * @return mixed
      */
-    private function upFile()
-    {
+    private function upFile(){
         $file = $this->file = $_FILES[$this->fileField];
         if (!$file) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
@@ -67,7 +65,7 @@ class comUpload
         $this->fullName = $this->getFullName();
         $this->fileName = $this->getFileName();
         //检查文件大小是否超出限制
-        if (!$this->checkSize()) {
+        if (!$this->checkSize()){
             $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
             return;
         }
@@ -77,7 +75,7 @@ class comUpload
             return;
         }
         //移动文件
-        if ( !move_uploaded_file( $file[ "tmp_name" ] , $this->fullName ) ) {
+        if (!move_uploaded_file($file["tmp_name"], $this->fullName)) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
         }else{
             $this->upEnd();
@@ -88,8 +86,7 @@ class comUpload
      * 处理base64编码的图片上传
      * @return mixed
      */
-    private function upBase64()
-    {
+    private function upBase64(){
         $base64Data = $_POST[$this->fileField];
         $img = base64_decode($base64Data);
         $this->fileSize = strlen($img);
@@ -115,8 +112,7 @@ class comUpload
      * 拉取远程图片
      * @return mixed
      */
-    private function saveRemote($imgUrl='')
-    {
+    private function saveRemote($imgUrl=''){
         if(empty($imgUrl)){
             $imgUrl = htmlspecialchars($this->fileField);
             $imgUrl = str_replace("&amp;", "&", $imgUrl); 
@@ -165,13 +161,11 @@ class comUpload
             $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
         } else { //移动成功
             $this->upEnd();
-        } 
-
+        }
     }
 
     // 上传End
-    private function upEnd()
-    {
+    private function upEnd(){
         $this->stateInfo = $this->stateMap[0];
         if(in_array($this->fileType,array('.jpg','.jpeg'))){
             comImage::compress($this->fullName);
@@ -179,16 +173,14 @@ class comUpload
     }
 
     // 上传错误检查
-    private function getStateInfo($errCode)
-    {
+    private function getStateInfo($errCode){
         $msg = isset($this->stateMap[$errCode]) ? $this->stateMap[$errCode] : $this->stateMap["ERROR_UNKNOWN"];
         $msg = "$errCode:$msg";
         return $msg;
     }
 
     // 获取文件扩展名
-    private function getFileExt()
-    {
+    private function getFileExt(){
         $ext = strtolower(strrchr($this->oriName, '.'));
         if(empty($ext) && $this->type=='remote'){
             $ext = '.jpg';    
@@ -197,8 +189,7 @@ class comUpload
     }
 
     // 重命名文件
-    private function getFullName()
-    {
+    private function getFullName(){
         $_parts = req('_parts'); 
         $_dir = req('_dir'); 
         $ndir = in_array($_parts,array('files')) && usrPerm::issup();
@@ -211,8 +202,7 @@ class comUpload
     }
 
     // 获取文件名
-    private function getFileName () {
-        
+    private function getFileName(){
         $ext = $this->getFileExt();
         $upren = basReq::val('upren','auto');
         if($upren=='auto'){ // || in_array($this->type,array('remote','base64'))
@@ -228,18 +218,21 @@ class comUpload
             $name ="{$org}~".basKeyid::kidRand('f',4).$ext;
         }
         return $this->fileName = strtolower($name);
-        
     }
 
     // 文件类型检测
-    private function checkType()
-    {
-        $flag = $this->config["allowFiles"]==='(supper)' ? true : in_array($this->getFileExt(), $this->config["allowFiles"]);
+    private function checkType(){
+        $ext = $this->getFileExt();
+        $skips = '_.asp.aspx.jsp.php.exe.sh.bat.com.'; // asa.cdx.cer.php2.php3.php4.
+        if(strpos($skips, $ext)){ // 超级管理员都不给上传这些文件？？？
+            $this->stateInfo = "Error `$ext`!";
+            return false; //"Error `$ext`!";
+        }
+        $flag = $this->config["allowFiles"]==='(supper)' ? true : in_array($ext, $this->config["allowFiles"]);
         return $flag;
     }
     // 文件大小检测
-    private function checkSize()
-    {
+    private function checkSize(){
         $flag = $this->config["maxSize"]==='(supper)' ? true : $this->fileSize <= ($this->config["maxSize"]*1024 );
         return $flag;
     }
@@ -248,8 +241,7 @@ class comUpload
      * 获取当前上传成功文件的各项信息
      * @return array
      */
-    function getFileInfo()
-    {
+    function getFileInfo(){
         return array(
             "state" => $this->stateInfo,
             "url" => comStore::fixTmpDir($this->fullName),

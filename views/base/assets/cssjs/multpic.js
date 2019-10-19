@@ -213,10 +213,16 @@ function fup_jqui(fpid, cnt){
     })
     .bind('fileuploadfail', function (e, data) {
         if (data.errorThrown=='abort') {
-             alert('Upload Canceled!', 'success',3);
+            alert('Upload Canceled!', 'success',3);
         }else{
-             alert('Upload Fail, Try again!', 'error',3);
+            alert('Upload Fail, Try again!', 'error',3);
         }
+    })
+    .bind('fileuploaddone', function (e, data) {
+        res = data.result;
+        if(res['state'] != 'SUCCESS') {
+            alert(res['state']);
+        } 
     })
     .bind('fileuploadchange', function (e, data) {
         //console.log('fileuploadchange');

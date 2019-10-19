@@ -58,7 +58,7 @@ function urlEncode(url,ext,percent){
     return url;
 }
 // 按比例显示图片
-function imgShow(obj,w,h){
+function imgShow(obj, w, h){
     img = new Image(); img.src = obj.src; 
     zw = img.width; zh = img.height; 
     zr = zw / zh;
@@ -71,8 +71,10 @@ function imgShow(obj,w,h){
     }
     if(zh > fixh) {
         zh = fixh; zw = zh*zr;
-    } 
-    obj.width = zw; obj.height = zh;
+    }
+    if(zw==0) zw=w; 
+    if(zh==0) zh=h; 
+    obj.width=zw; obj.height=zh;
 }
 // Json对象合并：var c=mjson(a,b,1); mjson({},[a,b]);
 function jmJson(des, src, override){
