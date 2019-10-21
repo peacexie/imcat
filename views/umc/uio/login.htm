@@ -32,8 +32,12 @@
 
   <ul class="nav nav-tabs" nav-justified>
     <li role="presentation" onClick="funcLogin(0)" class="active"><a><i class="fa fa-pencil c33F"></i>{lang(user.lon_3idpw)}</a></li>
+    {if !empty($ultypes['weixin']['open'])}
     <li role="presentation" onClick="funcLogin(1)"><a><img src="{=PATH_VIEWS}/base/assets/aimg/a3rd-wx.png"  height="22" />{lang(user.lon_3wechat)}</a></li>
+    {/if}
+    {if !empty($ultypes['qqcon']['open'])}
     <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_VIEWS}/base/assets/aimg/a3rd-qq_7.png" height="24" /><!--{lang(user.lon_3qqcon)}--></a></li>
+    {/if}
   </ul>
 
   <div class="block-login">

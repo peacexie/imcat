@@ -142,8 +142,8 @@ class extSms{
             'kid'=>basKeyid::kidTemp(), 'pid'=>$pid,
             'tel'=>$stel, 'msg'=>basReq::in($msg),
             'res'=>implode(':',$res),'api'=>$this->api,'amount'=>$nmsg,
-            'atime'=>time(), 
         );
+        $data = $data + basSql::logData();
         glbDBObj::dbObj()->table('plus_smsend')->data($data)->insert();
         // 扣钱 for 0test_balance.txt
         if($this->api=='0test' && $res[0]=='1'){

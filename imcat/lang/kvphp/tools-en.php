@@ -329,7 +329,12 @@ return array(
     'tag_attr_fromcode' => 'Attr. from code',
     'tag_attr_resetp' => 'Re-config attr.',
 
+    'exdiy_403' => "Limited access! Please log in to the administrator, <br>\n
+                    Or use local IP (10. *, 127. *, 192. *,:: 1, fe80: *, fec0: *) to visit them.",
+
     'fix_' => 'end',
 
 );
+
+
 

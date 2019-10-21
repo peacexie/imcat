@@ -157,6 +157,10 @@ function setUserMod(e){
         $('#iflg_mname').html('{lang(user.uap_link)}');
         $('#pflg_company').show();        
     }
+} // $("a[target='_blank']") id='_umd_{=$k}' 
+var umdskey = ".apform input[name='mod']";
+if($(umdskey).length==1){
+    $(umdskey).eq(0).trigger("click");
 }
 var evf_isExtends = true;
 function evf_uapply(msgarr,isSubmit){ 

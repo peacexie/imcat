@@ -21,7 +21,7 @@ if($view=='list'){
 
     $cfg = array(
         'sofields'=>array('openid','detail'), //'appid',
-        'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)'),
+        'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)', 'atime'=>'atime(D)', 'atime'=>'atime(D)'),
         //'soarea'=>array('amount','数量'),
     );
     $dop = new dopExtra($tabid,$cfg); 
@@ -79,7 +79,7 @@ if($view=='list'){
 
     $cfg = array(
         'sofields'=>array('openid','detail'), //'appid',
-        'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)'),
+        'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)', 'atime'=>'atime(D)'),
         //'soarea'=>array('amount','数量'),
     );
     $dop = new dopExtra($tabid,$cfg); 

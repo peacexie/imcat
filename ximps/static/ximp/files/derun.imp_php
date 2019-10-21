@@ -200,7 +200,7 @@ if($qstr=='image'){
   imagefill($im,0,0,imagecolorallocate($im,245,245,245)); //背景
   for($i=0;$i<5;$i++){
     $ctab = 'ABCDEFGHJKLMNPQRSTUVWXY3456789'; 
-    $char = $ctab{mt_rand(0,strlen($ctab)-1)}; 
+    $char = substr($ctab,mt_rand(0,strlen($ctab)-1),1); 
     $color = imagecolorallocate($im,rand(100,255),rand(0,100),rand(100,255));
     $xPos=($w/2-60)+rand(5,11);
     $yPos=($h/2-20)+rand(3,7);

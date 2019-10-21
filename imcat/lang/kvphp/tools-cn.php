@@ -329,6 +329,9 @@ return array(
     'tag_attr_fromcode' => '还原标签配置',
     'tag_attr_resetp' => '重新配置属性',
 
+    'exdiy_403' => "访问受限！请登录管理员后访问，<br>\n
+                    或用本地IP(10.*, 127.*, 192.*, ::1, FE80:*, FEC0:*)访问。",
+
     'fix_' => 'end',
     
 );

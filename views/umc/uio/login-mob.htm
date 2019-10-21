@@ -42,8 +42,12 @@
 
   <ul class="nav nav-tabs">
     <li role="presentation" class="active"><a>{lang(user.lon_3idpw)}</a></li>
+    {if !empty($ultypes['qqcon']['open'])}
     <li role="presentation"><a onclick='qqLogin()'><img src="{=PATH_VIEWS}/base/assets/aimg/a3rd-qq_7.png" height="24" /></a></li>
+    {/if}
+    {if !empty($ultypes['weixin']['open'])}
     <li role="presentation"><a class="cCCC">{lang(user.lon_3wechat)}</a></li>
+    {/if}
   </ul>
 
   <div class="user-login">

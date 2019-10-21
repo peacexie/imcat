@@ -9,7 +9,8 @@ $cnav = basLang::ucfg('cfgbase.wx_nav');
 
 $cfg = array(
     'sofields'=>array('kid','type','appid','api'),
-    'soorders'=>array('kid' => 'kid(D)','kid-a' => 'kid(A)'),
+    'soorders'=>array('kid'=>'kid(D)', 'kid-a'=>'kid(A)', 'atime'=>'atime(D)'),
+    //'soorders'=>basLang::ucfg('cfgbase.ord_com2'),
     //'soarea'=>array('amount','数量'),
 );
 $tabid = 'wex_apps';

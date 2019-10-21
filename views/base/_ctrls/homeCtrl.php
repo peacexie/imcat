@@ -8,6 +8,7 @@ class homeCtrl{
     public $ucfg = array();
     public $vars = array();
     public $start = '/root/tools/adbug/start.php';
+    public $setup = '/root/tools/setup/index.php';
 
     //function __destory(){  }
     function __construct($ucfg=array(), $vars=array()){ 
@@ -19,12 +20,16 @@ class homeCtrl{
     // home检查
     function check(){
         // 检查路径
-        if(empty($_SERVER['PATH_INFO'])){ // `file.php/mkv`不检查
+        if(empty($_SERVER['PATH_INFO']) && empty($_SERVER['QUERY_STRING'])){
             $npath = \imcat\devRun::prootGet();
             if($npath!=PATH_PROJ){
                 header('Location:'.$npath.$this->start.'?FixProot');
                 die('<!--FixProot-->');
             }
+            if(!\imcat\devSetup::isSetuped()){
+                header('Location:'.$npath.$this->setup.'?FixSetup');
+                die('<!--FixSetup-->');
+            }            
         }
         // 检查关闭(兼容?)
         $hclose = empty($_cbase['close_home']) ? 'index' : $_cbase['close_home'];

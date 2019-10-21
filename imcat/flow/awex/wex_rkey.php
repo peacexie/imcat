@@ -6,7 +6,7 @@ require __DIR__.'/_wex_cfgs.php';
 $types = basLang::ucfg('cfgbase.wx_type');
 $cfg = array(
     'sofields'=>array('keyword','detail','picurl'), //'appid',
-    'soorders'=>array('keyword' => 'keyword(D)','keyword-a' => 'keyword(A)','top' => 'top(D)','top-a' => 'top(A)'),
+    'soorders'=>array('keyword' => 'keyword(D)','keyword-a' => 'keyword(A)','top' => 'top(D)','top-a' => 'top(A)', 'atime'=>'atime(D)'),
     //'soarea'=>array('amount','数量'),
 );
 $tabid = 'wex_keyword'; //$weapp
