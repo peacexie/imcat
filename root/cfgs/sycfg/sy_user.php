@@ -24,12 +24,12 @@ $_sy_user['logintypes'] = array(
     ),
     'qqcon' => array(
         'title' => 'QQ登录',
-        'open' => 1,
+        'open' => 0,
         'def' => 0,
     ),
     'weixin' => array(
         'title' => '微信登录',
-        'open' => 1,
+        'open' => 0,
         'def' => 0,
     ),
 );
