@@ -5,6 +5,7 @@ if(!session_id()) @session_start();
 $_cbase['ucfg']['lang'] = '(auto)';    
 include dirname(dirname(__DIR__)).'/run/_init.php';
 include DIR_ROOT.'/cfgs/boot/cfg_adbug.php';
+$sess_id = usrPerm::getSessid(); 
 
 $qstr = @$_SERVER['QUERY_STRING'];
 $qstr || $qstr = 'binfo';    
