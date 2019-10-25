@@ -319,6 +319,9 @@ return array(
 
     'home_index' => '管理首页',
     'home_sn' => '序列号',
+    'home_imcat' => '贴心猫',
+    'home_guide' => '文档',
+    'home_tagor' => '标签助手',
     'home_srvnews' => '官方更新及动态',
     'home_now_user' => '当前管理员信息',
 

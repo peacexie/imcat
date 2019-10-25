@@ -4,20 +4,26 @@ namespace imcat;
 // basJscss类
 class basJscss{
 
+    static function inc($fp, $base=''){ 
+        $base = $base ? $base : DIR_VIEWS;
+        echo "\n/* --- [load file] /".basename($base)."$fp --- */\n";
+        require $base.$fp;
+    }
+
     // jspop,jq_base,bootstrap,layer
     static function loadExtjs($exjs){
         if(strstr($exjs,'jspop')){
-            require DIR_VIEWS.'/base/assets/jslib/jspop.js';
+            self::inc('/base/assets/jslib/jspop.js');
         }
         if(strstr($exjs,'jq_base')){
-            require DIR_VIEWS.'/base/assets/jslib/jq_base.js';
+            self::inc('/base/assets/jslib/jq_base.js');
         }
         if(strstr($exjs,'bootstrap')){
-            $jsimp = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
+            $jsimp = self::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
             echo "document.write(\"$jsimp\");\n";
         }
         if(strstr($exjs,'layer')){
-            $jsimp = basJscss::jscode(0,PATH_VENDUI.'/layer/layer.js');
+            $jsimp = self::jscode(0,PATH_VENDUI.'/layer/layer.js');
             echo "document.write(\"$jsimp\");\n";
         }
     }
@@ -32,12 +38,10 @@ class basJscss{
             echo "@import url($jsimp);\n";
         }
         if(strstr($excss,'stpub')){
-            echo "/* ------ stpub ------ */\n";
-            include DIR_VIEWS."/base/assets/cssjs/stpub.css"; 
+            self::inc("/base/assets/cssjs/stpub.css");
         }
         if(strstr($excss,'jstyle')){
-            echo "/* ------ jstyle ------ */\n";
-            include DIR_VIEWS."/base/assets/cssjs/jstyle.css";
+            self::inc("/base/assets/cssjs/jstyle.css");
         }
     }
     // xxx;comm;home
@@ -59,8 +63,8 @@ class basJscss{
                 if(strpos($imp,'(-lang)')){
                     $imp = str_replace('(-lang)',"-$lang",$imp);
                 }
-                $imp = (in_array(substr($imp,0,6),array('/plus/','/tools'))?DIR_ROOT:DIR_VIEWS).$imp;
-                if(file_exists($imp)) require $imp; 
+                $base = in_array(substr($imp,0,6),array('/plus/','/tools')) ? DIR_ROOT : DIR_VIEWS;
+                if(file_exists($base.$imp)) self::inc($imp, $base); 
             }
         }
     }
@@ -69,20 +73,20 @@ class basJscss{
         if(empty($exjs)) return;
         //global $_cbase;
         if(strstr($exjs,'zepto')){ // 需要自行添加如下zepto文件
-            $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/zepto-1x.js');
+            $ims[] = self::jscode(0,PATH_VENDUI.'/jquery/zepto-1x.js');
         }elseif(strstr($exjs,'jquery')){
-            $ims[] = basJscss::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
+            $ims[] = self::jscode(0,PATH_VENDUI.'/jquery/jquery-2.x.js');
             // preg_match("/MSIE [6|7|8].0/",$_cbase['run']['userag'])
         }
         if(strstr($exjs,'bootcss')){
-            $ims[] = basJscss::csscode(0,PATH_VENDUI."/bootstrap/css/bootstrap.".($skin ? $skin : 'min').".css");
-            $ims[] = basJscss::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
+            $ims[] = self::csscode(0,PATH_VENDUI."/bootstrap/css/bootstrap.".($skin ? $skin : 'min').".css");
+            $ims[] = self::csscode(0,PATH_VENDUI.'/bootstrap/css/font-awesome.min.css');
         }
         if(strstr($exjs,'bootstrap')){
-            $ims[] = basJscss::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
+            $ims[] = self::jscode(0,PATH_VENDUI.'/bootstrap/js/bootstrap.min.js');
         }
         if(strstr($exjs,'layer')){
-            $ims[] = basJscss::jscode(0,PATH_VENDUI.'/layer/layer.js');
+            $ims[] = self::jscode(0,PATH_VENDUI.'/layer/layer.js');
         }
         if(!empty($ims)){
             foreach ($ims as $row) {
@@ -118,10 +122,6 @@ class basJscss{
         //tpl
         if($tpldir){
             vopTpls::set($tpldir);
-            if(!empty($_cbase["close_$tpldir"])){ //close-for-static-files
-                #basEnv::obClean();
-                #die("location.href='".PATH_PROJ."?close&tpldir=$tpldir';");
-            }
             echo "\n_cbase.run.mkv = '$mkv';";
             echo "\n_cbase.run.csname = '".vopUrl::burl()."';";
             echo "\n_cbase.run.tpldir = '$tpldir';";
@@ -130,10 +130,6 @@ class basJscss{
         echo "\n_cbase.run.isRobot = ".(basEnv::isRobot()?1:0).";";
         echo "\n_cbase.run.isMoble = ".(basEnv::isMobile()?1:0).";";
         echo "\n_cbase.run.isWeixin = ".(basEnv::isWeixin()?1:0).";";
-        if($mkv && $tpldir!='mob'){
-            #echo "\n_cbase.run.mobDir = '".vopUrl::fout("mob:$mkv")."';";
-            #echo "\nif(typeof(_pbase.rdmob)!='undefined' && _cbase.run.isMoble){location.href=_cbase.run.mobDir;}";
-        }
         echo "\nif(typeof(_pbase.jscode)!='undefined'){eval(_pbase.jscode);}";
         // Path  
         echo "\n_cbase.path.cache   = '".PATH_DTMP."';"; 
@@ -165,13 +161,13 @@ class basJscss{
         echo "\n";
         
 		// ***** 加载Base.js *****
-		require DIR_VIEWS.'/base/assets/jslib/jsbase.js';
-		require DIR_VIEWS.'/base/assets/jslib/jsbext.js';
+        self::inc('/base/assets/jslib/jsbase.js');
+		self::inc('/base/assets/jslib/jsbext.js');
         if(strstr($exjs,'jspop')){
-            require DIR_VIEWS.'/base/assets/jslib/jspop.js';
+            self::inc('/base/assets/jslib/jspop.js');
         }
-        $flang = DIR_VIEWS."/base/assets/jslib/jcore-$lang.js";
-        if(file_exists($flang)) require $flang; 
+        $flang = "/base/assets/jslib/jcore-$lang.js";
+        if(file_exists(DIR_VIEWS.$flang)) self::inc($flang); 
     }
 
     // imp css/js
@@ -319,11 +315,9 @@ class basJscss{
         $moda[] = 'relat'; 
         foreach($moda as $mod){ 
             if(empty($mod)) continue;
-            //if(strstr($done,",$mod,")) continue;
             $fnm = DIR_DTMP."/modex/_$mod.cfg_php";
             if(is_file($fnm)){
                 $data = file_get_contents($fnm);
-                //$itms = comParse::jsonDecode($data); 
                 echo "\nvar _{$mod}_data = $data;\n";
             }
         }

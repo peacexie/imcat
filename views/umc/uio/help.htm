@@ -5,15 +5,15 @@
 {block:hdcss}{:parent}
 h3{ text-align:center; padding:10px; }
 h4:before { display:inline-block; content:"◎◎"; color:#036; }
-#help_cont ul, #help_cont li { line-height:150%; padding:10px; }
+#help_cont ul, #help_cont li { line-height:150%; }
+.news_text ul{ margin:10px 0px; padding:0; }
+.news_text ul, .news_text li{ list-style:disc inside; padding:0; }
+.news_text li ul{ margin:0px 20px 10px 40px; padding:0; }
+.news_text li ul li{ list-style:circle; padding:0.3rem; }
 {/block:hdcss}
 
 {block:main}
-<div id="help_cont">
-  <?php 
-  $text = comFiles::get(DIR_VIEWS."/umc/uio/help.txt"); 
-  $text = extMkdown::pdext($text);
-  echo $text; 
-  ?>
+<div id="help_cont" class="news_text">
+  {md:"uio/help"}
 </div>
 {/block:main}

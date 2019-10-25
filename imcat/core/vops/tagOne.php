@@ -6,7 +6,7 @@ namespace imcat;
 
 */
 // 标签解析 (单条数据)类
-class tagOne extends tagBase{
+class tagOne extends tagList{ // Base
     
     //public $whrArr = array();
     
@@ -14,6 +14,10 @@ class tagOne extends tagBase{
         parent::__construct($paras); 
         $this->pOrder();
         $this->pStype();
+        $this->pKeywd();
+        $this->pField();
+        $this->pPid();
+        $this->inIds();
         $this->pWhere();
     }
     

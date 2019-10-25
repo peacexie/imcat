@@ -321,6 +321,9 @@ return array(
 
     'home_index' => 'Admin Center',
     'home_sn' => 'Sn',
+    'home_imcat' => 'Imcat',
+    'home_guide' => 'Guide',
+    'home_tagor' => 'Tagor',
     'home_srvnews' => 'Official update and dynamic',
     'home_now_user' => 'Now Admin info.',
 

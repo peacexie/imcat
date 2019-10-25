@@ -42,6 +42,7 @@ class tagPage extends tagList{
         }
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";
         $_cbase['page']['prec'] = $pg->prec; 
+        $_cbase['page']['pcnt'] = $pg->pcnt;
     }
     
     function getData(){ 

@@ -76,7 +76,9 @@ if($view=='list'){
             $fmo = $db->table($dop->tbid)->where("aid='$aid'")->find(); 
             $isadd = 0;
         }else{
-            $fmo = array();
+            $fmo['mpic'] = '{"title":{"t":"标题","w":"15%"},"url":{"t":"Url","w":"15%"}}';
+            $fmo['detail'] = '[]';
+            $fmo['click'] = '5';
             $isadd = 1;
         }
         $dop->fmo = $fmo; 

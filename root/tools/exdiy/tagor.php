@@ -1,5 +1,6 @@
 <?php
 namespace imcat;
+#include dirname(dirname(__DIR__)).'/run/_init.php';
 include __DIR__.'/_config.php'; 
 
 $act = req('act');

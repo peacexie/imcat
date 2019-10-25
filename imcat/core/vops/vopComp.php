@@ -144,7 +144,7 @@ class vopComp{
         /* if 标签
             {if $name==1}        =>    <?php if ($name==1){ ?>
             {elseif $name==2}    =>    <?php } elseif ($name==2){ ?>
-            {else}                =>    <?php } else { ?>
+            {else}               =>    <?php } else { ?>
             {/if}                =>    <?php } ?>
         */
         $stpl = preg_replace ( "/\{if\s+(.+?)\}/", "<?php if(\\1) { ?>", $stpl );
@@ -154,15 +154,15 @@ class vopComp{
         // ----------------------------
         /* for 标签
             {for $i=0;$i<10;$i++}    =>    <?php for($i=0;$i<10;$i++) { ?>
-            {/for}                    =>    <?php } ?>
+            {/for}                   =>    <?php } ?>
         */
         $stpl = preg_replace("/\{for\s+(.+?)\}/","<?php for(\\1) { ?>",$stpl);
         $stpl = preg_replace("/\{\/for\}/","<?php } ?>",$stpl);
         // ----------------------------
         /* loop 标签
-            {loop $arr $vo}            =>    <?php $n=1; if (is_array($arr) foreach($arr as $vo){ ?>
-            {loop $arr $key $vo}    =>    <?php $n=1; if (is_array($array) foreach($arr as $key => $vo){ ?>
-            {/loop}                    =>    <?php $n++;}unset($n) ?>
+            {loop $arr $vo}          =>    <?php $n=1; if (is_array($arr) foreach($arr as $vo){ ?>
+            {loop $arr $key $vo}     =>    <?php $n=1; if (is_array($array) foreach($arr as $key => $vo){ ?>
+            {/loop}                  =>    <?php $n++;}unset($n) ?>
         */
         $stpl = preg_replace ( "/\{loop\s+(\S+)\s+(\S+)\}/", "<?php if(is_array(\\1)) foreach(\\1 as \\2) { ?>", $stpl );
         $stpl = preg_replace ( "/\{loop\s+(\S+)\s+(\S+)\s+(\S+)\}/", "<?php \$n=1; if(is_array(\\1)) foreach(\\1 as \\2 => \\3) { ?>", $stpl );

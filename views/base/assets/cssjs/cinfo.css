@@ -78,4 +78,3 @@ td { word-break:break-all; padding:6px 1px; }
 td.blk { word-break:break-all; padding:6px 1px; white-space:normal; }
 td.blk p{ display:inline-block; margin:3px auto; }
 td.tip { font-size:small; color:#F00; background:#FF9; }
-

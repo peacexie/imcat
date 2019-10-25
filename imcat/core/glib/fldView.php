@@ -98,6 +98,7 @@ class fldView{
         }
         $icjs = self::ifpcjs();
         $ijs = $icjs ? $_cbase['run']['pm_upsize1'] : '';
+        $vstr = str_replace('fix:uri', 'str:0-255', $vstr);
         $item .= "<input id='fm_{$k}_' name='fm[{$k}]' type='text' value='$val' class='file' $vstr $jsAct>";
         $item .= self::ifpinp($k,$smk).$simg.$icjs;
         $item .= basJscss::jscode("$(function(){ $ijs;fup_jqui('fm_{$k}_',1);})");
