@@ -227,21 +227,21 @@ class basKeyid{
         }
     }
     
-    static function keepCheck($key,$chk=1,$fix=1,$grp=0,$len=3){
+    static function keepCheck($key, $chk=1, $fix=1, $grp=0, $len=3){
         $groups = glbConfig::read('groups');
         $keepids = glbConfig::read('keepid','sy');
         if(strlen($key)<$len){
-            return basLang::show('core.kid_minlen',$len); //"请输入$len+个字符！";
+            return basLang::show('core.kid_minlen', $len); //"请输入$len+个字符！";
         }
         if($chk && strpos($keepids,",$key,")){
-            return basLang::show('core.kid_keeped',$key); 
+            return basLang::show('core.kid_keeped', $key); 
         }
         if($fix && strpos($key,"_")){
-            $fix = strpos($key,0,strpos($key,'_'));
-            if(strstr($keepids,",$fix,")) return basLang::show('core.kid_preused',$key); 
+            $fix = substr($key, 0, strpos($key,'_'));
+            if(strstr($keepids,",$fix,")) return basLang::show('core.kid_preused', $key); 
         }
         if($grp && isset($groups[$key])){ 
-            return basLang::show('core.kid_ismodel',$key); 
+            return basLang::show('core.kid_ismodel', $key); 
         }
         return '';
     }
