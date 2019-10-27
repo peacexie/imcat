@@ -171,7 +171,7 @@ return array(
     'binf_showerror' => 'Here will find [Warning/Notice]Messages and [-End-]Flag,',
     'binf_sererror' => 'If it cant show theses, Please set the environmental for debug.',
     'binf_sadmerror' => 'In PRODUCTION, Can set in Admin Center Close the message [架设-超管工具-核心参数-基本开关-调试模式].', 
-    'binf_usenotes' => 'Tips: Please change the password before use, please delete the file or move to the out of the web directory!',
+    'binf_usenotes' => 'Imcat Tips: Please change the password in`/root/cfgs/boot/cfg_adbug.php`;<br>Please delete the file or move to the out of the web directory after use!',
     'binf_nosupport' => 'NOT Support',
     'binf_frames' => 'Frames',
     'binf_html5base' => 'Basic Characteristic',

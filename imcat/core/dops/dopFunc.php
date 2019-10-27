@@ -193,7 +193,7 @@ class dopFunc{
     }
     
     // modFile .. ???? 
-    static function modFile($mod,$type=''){ //模型脚本
+    static function modFile($mod, $type=''){ //模型脚本
         require DIR_ROOT."/cfgs/scfile/sc_fadm.php"; //sc_fadm/cs_fmem
         if(isset($scfgs[$mod])){
             $re = $scfgs[$mod];
@@ -208,7 +208,8 @@ class dopFunc{
     }
     
     // modAct .. ???? 
-    static function modAct($act,$mod,$type){ //act脚本
+    static function modAct($act, $mod, $type){ //act脚本
+        global $_cbase;
         if(     file_exists($_fex=DIR_ROOT."/extra/eact/{$mod}_{$act}.php")){
             $re = $_fex;
         }elseif(file_exists($_fex=DIR_IMCAT."/flow/eact/{$mod}_{$act}.php")){
@@ -216,6 +217,8 @@ class dopFunc{
         }else{
             $re = DIR_IMCAT."/flow/dops/{$type}_{$act}.php";
         }
+        $adm_act = str_replace([DIR_IMCAT,DIR_ROOT], ['{imcat}:','{root}:'], $re);
+        $_cbase['run']['adm_act'] = $adm_act;
         return $re;
     }
     

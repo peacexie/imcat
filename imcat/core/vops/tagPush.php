@@ -44,8 +44,9 @@ class tagPush extends tagList{
 
     static function check(){
         $user = usrBase::userObj('Admin');
+        if(empty($user->uperm['grade'])){ return 0; }
         $grades = ",supper,ainfo,auser,advers,";
-        return strpos($grades,$user->uperm['grade']);
+        return strpos($grades, $user->uperm['grade']);
     }
     static function load(){
         echo basJscss::imp('/layer/layer.js','vendui');

@@ -85,7 +85,9 @@ class _defCtrl{
     }
 
     function foot($_cbase){
-        echo "\n<!--inc:end-->\n"; 
+        global $_cbase;
+        $adm_act = empty($_cbase['run']['adm_act']) ? '' : $_cbase['run']['adm_act'];
+        echo "\n<!--inc:end{$adm_act}-->\n"; 
         eimp('/~base/jslib/jq_base.js');
         eimp('/layer/layer.js','vendui');
         eimp('/bootstrap/js/bootstrap.min.js','vendui');
