@@ -16,7 +16,9 @@ class emlSwift{
     function __construct($cfg=array()){
         $this->cfg = $cfg;
         #require_once DIR_VENDOR.'/swiftmailer/swiftmailer/lib/swift_required.php';
-        $transport = (new \Swift_SmtpTransport($this->cfg['smtp'], $this->cfg['port']))
+        $class = '\Swift_SmtpTransport';
+        extEmail::hasClass($class);
+        $transport = (new $class($this->cfg['smtp'], $this->cfg['port']))
           ->setUsername($this->cfg['user']) //注意中转邮箱要和下面的From 邮箱一致
           ->setPassword($this->cfg['pass']);
         $this->umail = new \Swift_Mailer($transport); 

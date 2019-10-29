@@ -1,7 +1,6 @@
 <?php
 namespace imcat;
 
-use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 /**
@@ -15,7 +14,9 @@ class emlPhpmail{
     // 初始化
     function __construct($cfg=array()){
         $this->cfg = $cfg;
-        $this->umail = new PHPMailer(true); 
+        $class = '\PHPMailer\PHPMailer\PHPMailer';
+        extEmail::hasClass($class);
+        $this->umail = new $class(true); 
         $this->umail->SMTPOptions = array(  
             'ssl' => array(  
                 'verify_peer' => false,  

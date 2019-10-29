@@ -55,5 +55,14 @@ class extEmail{
         glbDBObj::dbObj()->table('plus_emsend')->data($data)->insert();
     }
 
+    static function hasClass($class){
+        //$class = '\PHPMailer\PHPMailer\PHPMailer';
+        if(!class_exists($class)){
+            $msg = "Class `$class` not found,<br>
+                Please install it with composer, more info see:<br>
+                http://custom.txjia.com/book.php/deeps-no3rd";
+            die($msg);
+        }
+    }
 }
 

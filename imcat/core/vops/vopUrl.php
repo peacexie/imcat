@@ -249,6 +249,12 @@ class vopUrl{
         if(!empty($_SERVER['PATH_INFO'])){
             $q = substr($_SERVER['PATH_INFO'],1) . ($q ? "&$q" : '');
         }else{
+            $tags = 'from|isappinstalled|tdsourcetag'; // 修正分享参数
+            if(preg_match("/(^\w)?($tags)\=\w+$/i", $q)){
+                $uri = preg_replace("/([?|&|=]{1,2})($tags)\=\w+/i", '', $_SERVER["REQUEST_URI"]); 
+                header("Location:$uri"); 
+                die($uri);
+            }
             if(!empty($tcfg[2]) && $tcfg[2]=='?'){ self::jumpr(); }
         }
         $q || $q = $def;
@@ -257,13 +263,7 @@ class vopUrl{
             header('Location:?'.substr($q,4));
             die();
         }
-        // 修正微信分享url:?2018-12-31xx=&from=timeline
-        if(preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i",$q)){
-            preg_match("/^([\w\-\.]{3,24})\=(\&from\=(\w+))?$/i", $q, $p);
-            header('Location:?'.$p[1]); 
-            die();
-        }
-        // 去掉末尾的的`.htm`(未静态)       
+        // 去掉末尾的的`.htm`(伪静态)
         if(!empty($tcfg[3])){ $q = preg_replace("/{$tcfg[3]}/", '', $q, 1); }
         return $q;
     }
@@ -272,16 +272,16 @@ class vopUrl{
     // /?home-cn 未跳转
     static function jumpr(){
         $uri = $_SERVER["REQUEST_URI"];
-        if(preg_match("/\.php\?([\w\-\.]{3,36})$/i",$uri)){ 
-            preg_match("/\.php\?([\w\-\.]{3,36})$/i", $uri, $p);
+        if(preg_match("/(\.php|\/)\?([\w\-\.]{3,36})$/i",$uri)){ 
+            preg_match("/(\.php|\/)\?([\w\-\.]{3,36})$/i", $uri, $p);
             $uf = $_SERVER["SCRIPT_NAME"];
-            header("Location:$uf/{$p[1]}"); 
+            header("Location:$uf/{$p[2]}"); 
             die();
         }
     }
 }
 
 /*
-    $org['self'] = $_SERVER['PHP_SELF']; // path/file.php/mod/act
-    $org['script'] = $_SERVER['SCRIPT_NAME']; // /path/file.php
+    $_SERVER['PHP_SELF']; // path/file.php/mod/act[/mod/act]
+    $_SERVER['SCRIPT_NAME']; // /path/file.php
 */
