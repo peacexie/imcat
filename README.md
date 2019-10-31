@@ -9,9 +9,13 @@
 
 ### What is imcat(贴心猫)?
 
-* `Imcat` means IntimateCat(贴心猫), It is a set of Light weight, free, sharing general PHP web application system!
-* Apply to: online shop, hospital, school, enterprise, personal website, enterprise intranet, profession portal site, etc.......
-* Not entangled in OOP, not entangled in MVC, not entangled in the Design-Model, free and unrestrained!
+* `Imcat` means IntimateCat(贴心猫), It is a set of general web system, 
+  It is a Contracted, Lightweight and Practical System following MIT open source protocol.
+* It is between the framework and CMS, and it is also a practical PHP toolkit.
+* It deeply optimizes the architecture of multi model, multi classification, multi sub page, multi language (sub sites).
+* It's not only the PC side, It can also provide mobile-terminal API conveniently, like as Wap / App / Mini-program.
+* It can be infinitely extended, like as customized Model / user fields / user parameter / classification...
+* It has a cross-border auxiliary system, like as Python crawler, nodejs push or chat service.
 
 
 ### 【Functions】
@@ -52,9 +56,12 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-贴心猫(Imcat,IntimateCat) 是以PHP+MySQL架构设计的通用网站系统，简约、实用、轻量、开源。
-适用于：网店，医院，学校，企业站，个人网站，企业内部Intranet，中小型行业门户站点等……
-不纠结于OOP，不纠结于MVC，不纠结于设计模式，自由奔放！
+贴心猫(Imcat,IntimateCat) 是以PHP+MySQL架构设计的通用网站系统，简约、轻量、实用、开源、共享。  
+介于框架和CMS之间，同时也是一个实用的php工具包；  
+深入优化： 多模型， 多分类， 多子页面， 多语言（分站） 架构；  
+深度结合：Pc/Wap/App/小程序多端展示；  
+无限扩展：无限自定义:模型/字段/参数/分类…  
+跨界辅助：拥有 Python爬虫， Nodejs推送聊天 等辅助系统。
 
 
 ### 【功能介绍】
