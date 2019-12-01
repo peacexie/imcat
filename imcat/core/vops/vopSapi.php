@@ -104,7 +104,7 @@ class vopSapi{
         $msg = empty($msg) ? 'Error Message!' : $msg;
         $res['ercode'] = $code ? $code : 1;
         $res['ermsg'] = $msg;
-        $res['ref'] = empty($_SERVER['HTTP_REFERER']) ? '?' : $_SERVER['HTTP_REFERER'];
+        $res['ref'] = basEnv::serval('ref', '?');
         glbHtml::httpStatus(404);
         self::view($res);
         die('');

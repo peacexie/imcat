@@ -30,7 +30,7 @@ class glbDBExt{
         $db = glbDBObj::dbObj();
         $tabf = 'base_fields';
         $r = $db->table($tabf)->where("model='$mod' AND kid='$cid'")->find();
-        if(in_array($r['dbtype'],array('nodb','file'))) return; 
+        if(!empty($r) && in_array($r['dbtype'],array('nodb','file'))) return; # $r null
         if(empty($r) && !empty($cfg)) $r = $cfg;
         $tabid = self::getTable($mod,empty($r['etab'])?'0':1); 
         $cols = $db->fields($tabid); 

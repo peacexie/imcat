@@ -28,9 +28,9 @@ class basEnv{
     }
     // const,
     static function runConst(){
-        define('IS_CGI',     substr(PHP_SAPI, 0,3)=='cgi' ? 1 : 0 );
-        define('IS_WIN',     strstr(PHP_OS, 'WIN') ? 1 : 0 );
-        define('IS_CLI',     PHP_SAPI=='cli'? 1 : 0);
+        define('IS_CGI',     substr(PHP_SAPI,0,3)=='cgi' ? 1 : 0);
+        define('IS_WIN',     strstr(PHP_OS,'WIN') ? 1 : 0);
+        define('IS_CLI',     PHP_SAPI=='cli' ? 1 : 0);
         define('KEY_NUM10',  '0123456789');
         define('KEY_CHR26',  'abcdefghijklmnopqrstuvwxyz');
         define('KEY_CHR22',  'abcdefghjkmnpqrstuvwxy'); // -iloz
@@ -107,21 +107,31 @@ class basEnv{
             }
         }
     }
+    // 获取一个_SERVER值, serval=serv+val合成
+    static function serval($key, $def=''){
+        $tab = [
+            'host' => 'HTTP_HOST',
+            'lang' => 'HTTP_ACCEPT_LANGUAGE',
+            'ref'  => 'HTTP_REFERER',
+            'ua'   => 'HTTP_USER_AGENT',
+        ];
+        $key = isset($tab[$key]) ? $tab[$key] : $key;
+        $val = isset($_SERVER[$key]) ? $_SERVER[$key] : $def;
+        $val = str_replace(array("'","\\",'"','>','<'), '', $val);
+        return $val;
+    }
 
     // 获取客户端软件信息
     static function userAG(){
-        $ua = empty($_SERVER['HTTP_USER_AGENT']) ? '' : $_SERVER['HTTP_USER_AGENT'];
-        //basStr::filTitle($ua)
-        $ua = str_replace(array("'","\\"),array("",""),$ua);
-        return $ua;
+        return self::serval('ua');
     }
     
     // 获取客户端IP地址('::1','123.234.123.234, 127.0.0.1')(.:[ ])
     static function userIP($flag=0){
-        $a = array('xf'=>'HTTP_X_FORWARDED_FOR','ra'=>'REMOTE_ADDR','cip'=>'HTTP_CLIENT_IP');
+        $a = array('xf'=>'HTTP_X_FORWARDED_FOR', 'ra'=>'REMOTE_ADDR', 'cip'=>'HTTP_CLIENT_IP');
         $ip = ''; //'r'=>'HTTP_X_REAL_FORWARDED_FOR',
         foreach($a as $k=>$v){
-            $v = str_replace(' ','',$v);
+            //$val = self::serval($v);
             if(!empty($_SERVER[$v]) && !strstr($ip,$_SERVER[$v])){
                 $ip .= ';'.($flag ? "$k," : '').$_SERVER[$v];
             }

@@ -37,7 +37,7 @@ class exvJump{
 
     // /api/redir.php?skin:[bs4.]blue:&recbk=redir
     function doSkin($skin){
-        $recbk = req('recbk',@$_SERVER["HTTP_REFERER"]);
+        $recbk = req('recbk', basEnv::serval('ref'));
         $fver = strpos($skin,'.') ? $skin : "bootstrap.$skin"; 
         $file = DIR_VENDUI."/bootstrap/css/$fver.css";
         file_exists($file) && comCookie::oset('skin',$skin,30*86400);

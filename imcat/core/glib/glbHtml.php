@@ -71,7 +71,7 @@ class glbHtml{
         }else{
             $allow = glbConfig::read('domain.dmacc','sy'); 
             if(empty($domain)){
-                @$aurl = parse_url($_SERVER["HTTP_REFERER"]);
+                @$aurl = parse_url(basEnv::serval("HTTP_REFERER"));
                 @$domain = $aurl['host'];
             }
         }
@@ -100,7 +100,7 @@ class glbHtml{
         $fmact = basReq::getURep($fmact,'recbk');
         echo "<form id='$fmid' name='$fmid' method='post' action='$fmact' target='$win'>\n";
         $recbk = basReq::val('recbk','');
-        $recbk = $recbk==='ref' ? @$_SERVER["HTTP_REFERER"] : $recbk;
+        $recbk = $recbk==='ref' ? basEnv::serval("HTTP_REFERER") : $recbk;
         echo "<input name='recbk' type='hidden' value='$recbk' />\n"; 
         if(strstr($tbcss,'tbdata') || strstr($tbcss,'tblist')){
             echo "<div class='table-responsive'>";

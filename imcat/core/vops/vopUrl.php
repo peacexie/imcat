@@ -118,8 +118,8 @@ class vopUrl{
             if(!$key){
                 $url = "Error:[$mod-$key]";
             }else{
-                $url = (self::fout("$mod-$key"));
-                header("Location:?$mod-$key");
+                $url = self::fout("$mod-$key");
+                header("Location:$url");
             }
             die($url);
         }
@@ -130,7 +130,7 @@ class vopUrl{
     static function fout($mkv='', $type='', $host=0){ //,$ext=array()
         if(strpos($mkv,':')) return self::gtpl($mkv, $type, $host);
         global $_cbase;
-        $tcfg = $_cbase['run']['tplcfg']; //dump($tcfg);
+        $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
         $burl = self::burl($host); 
         //mkv分析
         if(!$mkv) return self::bind($burl,$tcfg); //首页
@@ -160,7 +160,7 @@ class vopUrl{
                 }else{
                     $rp = empty($tcfg[4]) ? '.php?' : $tcfg[1].'?';
                     $url = str_replace($rp, $tcfg[2], $url);
-                } //echo "($rp, $tcfg[2], $url)";
+                }
             }
             if(!empty($tcfg[3])){ $url .= $tcfg[3]; }
         }
@@ -245,9 +245,15 @@ class vopUrl{
     static function route($def=''){
         global $_cbase;
         $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
-        $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+        $q = basEnv::serval('QUERY_STRING');
         if(!empty($_SERVER['PATH_INFO'])){
             $q = substr($_SERVER['PATH_INFO'],1) . ($q ? "&$q" : '');
+        }elseif(!empty(IS_CLI)){ // mob.php news--list stype:;keywd:php5.4
+            $q = empty($_SERVER['argv'][1]) ? '' : $_SERVER['argv'][1];
+            if(!empty($_SERVER['argv'][2])) $q .= ($q?'&':'').str_replace([':',';'], ['=','&'], $_SERVER['argv'][2]); 
+            $_SERVER["REQUEST_URI"] = $_SERVER['argv'][0].'?'.$q;
+            $_SERVER['QUERY_STRING'] = $q; 
+            $q ? parse_str($q, $_GET) : $_GET=[]; //dump($_GET);
         }else{
             $tags = 'from|isappinstalled|tdsourcetag'; // 修正分享参数
             if(preg_match("/(^\w)?($tags)\=\w+$/i", $q)){

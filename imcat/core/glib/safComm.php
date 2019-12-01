@@ -118,7 +118,7 @@ class safComm{ // extends safBase
 
     // QUERY-7参数检测
     static function urlQstr7($re=0){ 
-        $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+        $q = basEnv::serval("QUERY_STRING");
         $q = urldecode($q);
         if($q!=str_replace(array('<','>','"',"'","\\","\r","\n"),'',$q)){
             $msg = "[QUERY]Error!";
@@ -136,7 +136,7 @@ class safComm{ // extends safBase
     //demo: if(xxx::urlFrom('/dgpeace/_php_test.php'));
     static function urlFrom($expath='',$die=1){
         $re = '';
-        $ref = empty($_SERVER["HTTP_REFERER"]) ? '' : $_SERVER["HTTP_REFERER"];
+        $ref = basEnv::serval('ref');
         if(empty($ref)){ //为空:(输入地址等)
             $re = 'Null'; 
         }else{
@@ -180,7 +180,7 @@ class safComm{ // extends safBase
     // 注入项扫描关键字
     static function urlScan(){  
         $filters  = "(and|or)\\b.+?(>|<|=|in|like)|<\\s*script\\b|UNION.+?SELECT|UPDATE.+?SET|INSERT\\s+INTO.+?VALUES|(SELECT|DELETE).+?FROM|(CREATE|ALTER|DROP|TRUNCATE)\\s+(TABLE|DATABASE)";
-        $paras = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+        $paras = basEnv::serval("QUERY_STRING");
         if(empty($paras)) return;
         if(preg_match("/".$filters."/is",$paras)){   
             safBase::Stop('urlScan');

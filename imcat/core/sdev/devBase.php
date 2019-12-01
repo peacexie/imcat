@@ -45,6 +45,7 @@ class devBase{
         $farr = array('.php','.js','.fun','.class'); 
         foreach($da as $dir){ 
             $nav .= "\n<ul class='ul'><b class='li'>$dir</b>";
+            if(!is_dir("$root/$dir/")){ return '';}
             $handle = opendir("$root/$dir/");
             while($file = readdir($handle)) {
                 if($file=='.'||$file=='..') continue;

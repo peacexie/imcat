@@ -33,7 +33,7 @@ class tagPage extends tagList{
             $i = end($this->re); 
             $idend = current($i); 
         }
-        $scname = $_SERVER["REQUEST_URI"]; //REQUEST_URI,SCRIPT_NAME
+        $scname = basEnv::serval('REQUEST_URI'); //REQUEST_URI,SCRIPT_NAME
         if(strpos($scname,'ajax-cron') || strpos($scname,'ajax-jshow')){
             $mkv = basReq::val('rf');
             $burl = vopUrl::fout('base:0')."?rf=$mkv";

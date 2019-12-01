@@ -85,12 +85,13 @@ class basLang{
         //if(empty($_cbase['ucfg']['lang'])) return;
         if(!empty($_cbase['ucfg']['lang']) && strpos($_cbase['ucfg']['lang'],')')){ // (auto), (get)
             $lang = $_cbase['ucfg']['lang']=='(get)' ? basReq::val('lang') : comCookie::oget('lang');
+            $alang = basEnv::serval('HTTP_ACCEPT_LANGUAGE');
             if(!empty($lang)){
                 $_cbase['sys']['lang'] = $lang;
-            }elseif(empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])){
+            }elseif(empty($alang)){
                 $_cbase['sys']['lang'] = 'cn';
             }else{
-                $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+                $lang = substr($alang, 0, 2);
                 $_cbase['sys']['lang'] = $lang=='zh' ? 'cn' : 'en';
             }
         }

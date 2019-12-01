@@ -144,8 +144,8 @@ class basDebug{
         $info = array(); 
         $info['ram'] = memory_get_usage(); 
         $info['run'] = microtime(1); 
-        $info['vp'] = $_SERVER['REQUEST_URI'];
-        $info['rp'] = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'(null referer)';
+        $info['vp'] = basEnv::serval('REQUEST_URI');
+        $info['rp'] = basEnv::serval('ref', '(null referer)');
         foreach(array('vp','rp') as $k){
             $info[$k] = str_replace(array("'","\\"), array("`","#"), $info[$k]);
         }

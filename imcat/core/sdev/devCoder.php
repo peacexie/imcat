@@ -72,6 +72,7 @@ class devCoder{
     static function expInfos($fp){
         global $rep1,$rep2;
         $data = comFiles::get(EXP_ROOT.$fp);
+        if(!$data) return [0, '', ''];
         if(basStr::isConv($data)){
             $data = comConvert::autoCSet($data, 'gb2312');
         }
