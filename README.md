@@ -1,7 +1,8 @@
 
 
 
-贴心猫(imcat) V5.0 Released (2019-10)
+<!--贴心猫(imcat) V5.1 Released (2019-12)-->
+贴心猫(imcat) V5.1(Alpha)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -20,7 +21,7 @@
 
 ### 【Functions】
 
-* Support: PHP5.4~PHP7.3 / custom module / custom field / custom parameter / custom classification
+* Support: PHP5.4~PHP7.4 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
 * Demo Website: [imcat(贴心猫)](http://imcat.txjia.com/)
@@ -29,7 +30,7 @@
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.4 ~ PHP7.3 (Recommend: PHP5.6 ~ PHP7.3)
+  - PHP5.4 ~ PHP7.4 (Recommend: PHP5.6 ~ PHP7.3)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -49,7 +50,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.0 ChangeLog】 (2019.10)
+### 【v5.1 ChangeLog】 (2019.12)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
 
@@ -74,7 +75,7 @@
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.4 ~ PHP7.3 (推荐: PHP5.6 ~ PHP7.3)
+  - PHP5.4 ~ PHP7.4 (推荐: PHP5.6 ~ PHP7.3)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
@@ -91,7 +92,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.0更新日志】(2019.10)
+### 【v5.1更新日志】(2019.12)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
 

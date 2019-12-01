@@ -1,5 +1,48 @@
 
 
+#v5.1# (2019.12)
+
+
+## 基本信息
+
+* 基本信息：
+ - 版本：v5.1
+ - 发布日期：2019.12
+ - rar-大小: [core]1.30 MB, [full]3.49 MB(core+vendor)
+
+
+## 更新事项
+
+* 发布 移动端
+  - 配套 App/小程序 发布并开源
+  - 首页地址：https://imcat.txjia.com/h5/pc.htm
+  - 开源项目：https://github.com/peacexie/appcat
+
+* 完善 贴心猫文档
+  - 并增加国内文档镜像：
+  - https://imcat.txjia.com/book.php
+
+* 兼容运行
+  - 兼容 `cli` 运行
+
+* 优化：
+  - 后台调试信息显示
+  - 安装检测：/index.php 
+  - 标签助手 登录后可访问
+  - phpmail 安装提示
+
+* 修正: 
+  - qq点击/分享：打开页面错误
+  - 后台：微信账号管理中，几处问题
+  - ali模板短信，一个兼容错误
+  - 会员注册时，一个错误
+  - 会员找回密码时，一个错误
+
+* 辅助系统-家族树
+  - 发布 红楼梦版-家族树（人物关系树） 
+  - http://imblog.txjia.com/home.php/ftree.256
+
+
 #v5.0# (2019.10)
 
 
