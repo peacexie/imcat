@@ -12,13 +12,39 @@ include_once(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php');
   public static function text($text, $outfile = false, $level = QR_ECLEVEL_L, $size = 3, $margin = 4) 
   public static function raw($text, $outfile = false, $level = QR_ECLEVEL_L, $size = 3, $margin = 4) 
   
- * ¶şÎ¬Âë×î´óÈİÁ¿ÊÇ1850¸ö´óĞ´×ÖÄ¸,2710¸öÊı×Ö,1108¸ö×Ö½Ú,500¶à¸öºº×Ö
+ * äºŒç»´ç æœ€å¤§å®¹é‡æ˜¯1850ä¸ªå¤§å†™å­—æ¯,2710ä¸ªæ•°å­—,1108ä¸ªå­—èŠ‚,500å¤šä¸ªæ±‰å­—
   
  */
  
 class extQRcode{
 	
-	public static function show($text, $size=3, $level=1, $margin=4, $type='png', $outfile=false){
+	static function show($text, $size=3, $level=1, $margin=4, $type='png', $outfile=false){
 		\QRcode::$type($text, $outfile, $level, $size, $margin);
 	}
+
+    static function logo($qrfp, $logo='', $newfp='') {
+        //@ini_set("max_execution_time", "10"); // è®¾ç½®è¯¥æ¬¡è¯·æ±‚è¶…æ—¶æ—¶é•¿ï¼Œ10s
+        //@ini_set("request_terminate_timeout", "10"); // å…¼å®¹php-fpmè®¾ç½®è¶…æ—¶
+        dump(strpos($logo,'/'));
+        if(empty($logo)) { // ä½¿ç”¨ç³»ç»Ÿçš„é»˜è®¤logo
+            $logo = DIR_VIEWS . '/base/assets/logo/imcat-40x.png';
+        }elseif(empty(strpos($logo,'/'))){
+            $logo = DIR_VIEWS . '/base/assets/logo/'.$logo;
+        }
+        $newfp || $newfp = $qrfp;
+        $qrfp = imagecreatefromstring(file_get_contents($qrfp)); 
+        $logo = imagecreatefromstring(file_get_contents($logo));
+        if ($qrfp && $logo) {
+            $QR_width = imagesx($qrfp);
+            $QR_height = imagesy($qrfp);
+            $logo_width = imagesx($logo);
+            $logo_height = imagesy($logo);
+            $dst_w = $dst_h = $QR_width / 4; // ä¸­é—´logoæ˜¯æ–¹çš„
+            //$dst_h = $logo_height / ($logo_width/$dst_w);
+            $from_width = ($QR_width - $dst_w) / 2;
+            imagecopyresampled($qrfp, $logo, $from_width, $from_width, 0, 0, $dst_w, $dst_h, $logo_width, $logo_height);
+        }
+        return imagepng($qrfp, $newfp);
+    }
+
 }

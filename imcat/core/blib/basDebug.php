@@ -23,14 +23,23 @@ class basDebug{
             $arr[] = "line:{$row['line']} ".self::hidInfo($row['file']);
         }
         echo "\r\n<pre style='line-height:150%;'>"; 
-        if($flag) echo "[$flag]\r\n"; 
-        if(is_bool($val)) echo "[bool] "; 
-        elseif(is_numeric($val)) echo "[num] ";
-        elseif(is_string($val)) echo "[str:".strlen($val)."] ";
-        elseif(is_array($val)) echo "[arr:".count($val)."] "; 
-        elseif(is_object($val)) echo "[obj] ";
-        else{ echo "[num] "; } // ,"\n"
-        echo str_replace(array('<','>'), array('&lt;','&gt;'), var_export($val,1));
+        if($flag) echo "[$flag]\r\n";
+        $exp = 1; $tp = "[".gettype($val)."] "; //gettype($val);
+        if(is_string($val)){
+            $tp = "[string:".strlen($val)."] ";
+        }elseif(is_array($val)){
+            $tp = "[array:".count($val)."] "; 
+        }elseif(is_object($val)){
+            ;
+        }else{
+            $exp = 0;
+        }
+        echo $tp;
+        if($exp){
+            echo str_replace(array('<','>'), array('&lt;','&gt;'), var_export($val,1));
+        }else{
+            var_dump($val);
+        }
         if($lev<2){
             echo ' ('.$arr[0].')';
         }else{
