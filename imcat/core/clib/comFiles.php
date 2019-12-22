@@ -156,7 +156,7 @@ class comFiles{
         return $total;
     }
 
-    static function chkDirs($subs,$flag='',$isfile=1){ 
+    static function chkDirs($subs, $flag='', $isfile=1){ 
         if(empty($subs)) return;
         if(strstr($subs,'../')) return;
         if($isfile){

@@ -81,11 +81,7 @@ class extCache{
                 $base = $tmp;
             }
         }
-        $tb1 = ['/', '+', '*', '|', '?',   ':', '%', '&'];
-        $tb2 = ['~', '-', '.', '!', '---', ';', '',  '^'];
-        $file = str_replace($tb1, $tb2, $file); 
-        $file = basStr::filTitle($file); //del:&,#
-        if(strlen($file)>150) $file = substr($file,0,120).'---'.md5($file);
+        $file = self::fName($file);
         $dir = '/'.implode('/', $aDir);
         return array('dir'=>$dir, 'file'=>$file);
     }
@@ -151,5 +147,22 @@ class extCache{
         }
     }
 
+    static function fName($file, $max=90, $cut=70, $cnchar=1){
+        if($cnchar){
+            $file = preg_replace_callback("/([\x{4e00}-\x{9fa5}]+)/u", function($matches){ 
+                return urlencode($matches[1]);
+            }, $file);
+        }
+        $file = preg_replace("/https?\:\/\//i", '', $file);
+        $tb1 = ['/', '?', '&', '%', '#', '*', '|', ':'];
+        $tb2 = ['~', '@', '~', '^', '@', '.', '!', '.']; 
+        $tb3 = ['"', "'", '\\', '<', '>', '!', '+'];
+        // 《!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~》// All:32
+        $file = str_replace($tb1, $tb2, $file);
+        $file = str_replace($tb3, '', $file);
+        $file = preg_replace("/\s/", '', $file);
+        if($max>$cut && strlen($file)>$max) $file = substr($file,0,$cut).'---'.md5($file);
+        return $file;
+    }
 
 }

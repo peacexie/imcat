@@ -66,7 +66,7 @@ class comHttp
         # curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $header = self::_heads($opt, $data); // header/cookie/type
-        $header && curl_setopt($ch, CURLOPT_HTTPHEADER, $header); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header); 
         self::curlData($ch, $opt, $data); // data,gzip
         // https
         if(substr($url,0,8)=='https://'){
@@ -327,14 +327,8 @@ class comHttp
         return $content;
     }
 
-    static function fpCache($url, $data) {
-        $fp = preg_replace("/https?\:\/\//", '', urldecode($url));
-        $fp = str_replace(array(' ',':','|'), '_', $fp);
-        $fp = str_replace(array('/','?'), array('!','---'), $fp);
-        $fp = basStr::filTitle($fp, 'file');
-        if(strlen($fp)>90){
-            $fp = substr($fp,0,70).'...'.substr($fp,-20);
-        }
+    static function fpCache($url, $data=[]) {
+        $fp = extCache::fName($url, 1, 2);
         return $fp.'---'.md5($url.'+'.json_encode($data)).'.htm';
     }
     // 缓存处理

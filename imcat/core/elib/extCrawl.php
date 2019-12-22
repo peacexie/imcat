@@ -52,7 +52,11 @@ class extCrawl{
             return $bext ? $bext.$src : ($binfo['scheme'].'://'.$binfo['host'].$src);
         }else{ // `./`, `../`, `file.ext` 开头(可能有多个)
             $base = $binfo['scheme'].'://'.$binfo['host'];
-            $path = $binfo['path'].(substr($binfo['path'],-1)=='/' ? 'file.ext' : '');
+            if(isset($binfo['path'])){
+                $path = $binfo['path'].(substr($binfo['path'],-1)=='/' ? 'file.ext' : '');
+            }else{
+                $path = '';
+            }
             $url = substr($src,0,1)=='.' ? $path.$src : "$path./$src";
             $url = preg_replace("/\/([^\/]+)?(\w+)\.\//i", "/", $url, 1); // /xxx./
             $url = preg_replace("/\/([^\/]+)\/([^\/]+)?(\w+)\.\.\//i", "/", $url, 1); // /xxx/yyy../

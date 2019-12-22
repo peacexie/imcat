@@ -18,14 +18,13 @@ include_once(DIR_STATIC.'/ximp/class/QRcodeBase.cls_php');
  
 class extQRcode{
 	
-	static function show($text, $size=3, $level=1, $margin=4, $type='png', $outfile=false){
+	static function show($text, $size=3, $level=2, $margin=4, $type='png', $outfile=false){
 		\QRcode::$type($text, $outfile, $level, $size, $margin);
 	}
 
     static function logo($qrfp, $logo='', $newfp='') {
         //@ini_set("max_execution_time", "10"); // 设置该次请求超时时长，10s
         //@ini_set("request_terminate_timeout", "10"); // 兼容php-fpm设置超时
-        dump(strpos($logo,'/'));
         if(empty($logo)) { // 使用系统的默认logo
             $logo = DIR_VIEWS . '/base/assets/logo/imcat-40x.png';
         }elseif(empty(strpos($logo,'/'))){
@@ -45,6 +44,19 @@ class extQRcode{
             imagecopyresampled($qrfp, $logo, $from_width, $from_width, 0, 0, $dst_w, $dst_h, $logo_width, $logo_height);
         }
         return imagepng($qrfp, $newfp);
+    }
+
+    // 带缓存有logo的二维码
+    static function cqr($text, $logo='', $dir='') {
+        $dir || $dir = date('Ym');
+        $fp = "/qrcode/$dir/".extCache::fName($text).'.png';
+        if(!file_exists(DIR_URES.$fp)){
+            if(!is_dir(DIR_URES."/qrcode/")){ mkdir(DIR_URES."/qrcode/"); }
+            if(!is_dir(DIR_URES."/qrcode/$dir/")){ mkdir(DIR_URES."/qrcode/$dir/"); }
+            $re1 = self::show($text, 3, 1, 4, 'png', DIR_URES.$fp); dump(DIR_URES.$fp);
+            self::logo(DIR_URES.$fp, $logo, '');
+        }
+        return PATH_URES.$fp;
     }
 
 }
