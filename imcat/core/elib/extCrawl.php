@@ -55,7 +55,7 @@ class extCrawl{
             if(isset($binfo['path'])){
                 $path = $binfo['path'].(substr($binfo['path'],-1)=='/' ? 'file.ext' : '');
             }else{
-                $path = '';
+                $path = '/';
             }
             $url = substr($src,0,1)=='.' ? $path.$src : "$path./$src";
             $url = preg_replace("/\/([^\/]+)?(\w+)\.\//i", "/", $url, 1); // /xxx./
