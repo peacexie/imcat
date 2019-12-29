@@ -22,10 +22,10 @@ class vopSdiy extends vopShow{
     function view($dir, $cfg='', $cex=[]){
         global $_cbase;
         $_cbase['tpl']['vbase'] = dirname($dir);
-        $_cbase['tpl']['vdir'] = basename($dir);
+        $_cbase['tpl']['vdir'] = basename($dir); 
         $_cbase['run']['tplcfg'] = [ // 支持surl(标签函数)
             empty($cex[0]) ? '' : $cex[0], 
-            empty($cex[1]) ? "/{$_cbase['tpl']['vdir']}/home.php" : $cex[1], 
+            empty($cex[1]) ? $_SERVER['SCRIPT_NAME'] : $cex[1], 
             empty($cex[2]) ? '?' : $cex[2]
         ];
         $this->tplCfg = $_cbase['tpl']; 
