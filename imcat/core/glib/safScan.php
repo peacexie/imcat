@@ -8,17 +8,14 @@ safScan : xx
 */
 class safScan{ // extends safBase
     
-    static function do($str){
-        $tab = self::getTab();
-        foreach($tab as $key=>$value){ 
-            if(preg_match("/$value/i", $str)){
-                safBase::Stop('scanStop');
-            }
-        }
-    }
-    
-    static function getTab(){ 
-        return array( 
+    static $tabs = [
+        '1' =>[
+            '自定义特征1->phpinfo('=>'phpinfo\(', 
+            '自定义特征1->eval('=>'eval\(', 
+            '自定义特征1->exec('=>'exec\(', 
+        ],
+        '-' =>[],
+        '0' => [
             '后门特征->cha88.cn'=>'cha88\.cn', 
             '后门特征->c99shell'=>'c99shell', 
             '后门特征->phpspy'=>'phpspy', 
@@ -63,9 +60,22 @@ class safScan{ // extends safBase
             '.htaccess插马特征->SetHandler application/x-httpd-php'=>'SetHandlerapplication\/x-httpd-php', 
             '.htaccess插马特征->php_value auto_prepend_file'=>'php_valueauto_prepend_file', 
             '.htaccess插马特征->php_value auto_append_file'=>'php_valueauto_append_file' 
-        ); 
-    } 
+        ],
+    ];
 
+    static function do($str, $no=0){
+        $tab = self::getTab($no);
+        foreach($tab as $key=>$value){
+            $value = str_replace("\\(", "\\s*\\(", $value);
+            if(preg_match("/$value/i", $str)){
+                safBase::Stop('scanStop', $key);
+            }
+        }
+    }
+    
+    static function getTab($no=0){
+        return self::$tabs[$no];
+    }
 
     // --- End ----------------------------------------
     
