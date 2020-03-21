@@ -1,5 +1,28 @@
 
 
+#v5.2# (2020.03)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v5.2
+ - Release date: 2020.03
+ - rar-Size: [core]1.30 MB, [full]3.49 MB(core+vendor)
+
+
+## ChangeLog
+
+* Optimizing QR code generation, It can add logo on QR code
+* Add: TTS-API for Speech Synthesis/Speech Recognition
+
+* Correlation system:
+ - [vr-Panorama]Extend: (http://pano.txjia.com/)
+ - [Sup-Simply]Special: (http://im3n.txjia.com)
+
+* fix: Some error in php7.4 while show the graphic verification
+
+
 #v5.1# (2019.12)
 
 
@@ -8,7 +31,7 @@
 * Basic-Info:
  - version: v5.1
  - Release date: 2019.12
- - rar-大小: [core]1.30 MB, [full]3.49 MB(core+vendor)
+ - rar-Size: [core]1.30 MB, [full]3.49 MB(core+vendor)
 
 
 ## ChangeLog

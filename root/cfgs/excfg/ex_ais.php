@@ -25,6 +25,12 @@ $_ex_ais = array(
         'ak' => '******', // API Key
         'as' => '******', // Secret Key
     ),
+    // 百度-tts语音
+    'tts' => array(
+        'id' => '16******', // AppID (可不填写)
+        'ak' => '******', // API Key
+        'as' => '******', // Secret Key
+    ),
     // 
-    'open' => 1,
+    'open' => 0,
 );
