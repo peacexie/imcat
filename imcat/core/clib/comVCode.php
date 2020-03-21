@@ -14,8 +14,8 @@ class comVCode {
     private $clOld = Null;
     private $code = '';     //字符
     private $corg = '';     //字符
-    private $cTab = "";
-    private $oTab = '';
+    //private $cTab = "";
+    //private $oTab = '';
 
     function __construct($mod='(istest)', $ttf='', $corg='0'){ 
         $this->mod = $mod; 
@@ -29,10 +29,6 @@ class comVCode {
         }
     }
     function init(){
-        $tab = array(0,40,80,120,160,200,240);
-        foreach($tab as $v1){ foreach($tab as $v2){ foreach($tab as $v3){
-            $this->cTab .= (empty($this->cTab) ? '' : ';')."$v1,$v2,$v3";
-        } } }
         if($this->mod=='(emtel)'){
             $this->code = $this->corg;
             $this->imw = 20+strlen($this->corg)*20;
@@ -41,8 +37,8 @@ class comVCode {
         }
         $this->im = imagecreate($this->imw, $this->imh); 
         // 填充
-        $t = imagecolorallocate($this->im, 234, 234, 234);
-        $this->bgColor = $this->rndColor(3); 
+        //$t = imagecolorallocate($this->im, 234, 234, 234);
+        $this->bgColor = $this->rndColor(); 
         imagefill($this->im,0,0,$this->bgColor);
     }
     // 输出
@@ -90,37 +86,34 @@ class comVCode {
             $angle = $this->mod=='(emtel)' ? 0              : mt_rand(-20,20);
             $x     = $this->mod=='(emtel)' ? $i*20+8        : mt_rand(15,20)+$i*26;
             $y     = $this->mod=='(emtel)' ? mt_rand(24,30) : mt_rand(27,30);
-            $ffile = $this->rndFonts();
-            if($this->mod=='(emtel)'){
-                $color = $this->rndColor();
-                imagettftext($this->im, $size, $angle, $x, $y, $color, $ffile, $chr); 
-            }else{
+            $ffile = $this->rndFonts(); $tcolor = $this->rndColor(1);
+            if($this->mod!='(emtel)'){
                 // 外围描边(空心效果)
-                $color = $this->rndColor(1);
+                $color = $this->rndColor();
                 imagettftext($this->im, $size, $angle, $x+1, $y, $color, $ffile, $chr); // x
                 imagettftext($this->im, $size, $angle, $x, $y+1, $color, $ffile, $chr); // y
                 // 多一像素描边(阴影效果)
-                $r = mt_rand(0,9); //$color = $this->rndColor(2);
+                $r = mt_rand(0,9); //$color = $this->rndColor();
                 if($r<5){
                     imagettftext($this->im, $size, $angle, $x-2, $y, $color, $ffile, $chr); // x-
                     imagettftext($this->im, $size, $angle, $x, $y-2, $color, $ffile, $chr); // y-
                 }
-                // 文字本身
-                $color = $this->rndColor(2);
-                imagettftext($this->im, $size, $angle, $x, $y, $color, $ffile, $chr);
             }
+            // 文字本身
+            imagettftext($this->im, $size, $angle, $x, $y, $tcolor, $ffile, $chr);
         }
     }
     // 随机颜色
-    function rndColor($init=0){
-        $ctab = ($init==2 && $this->oTab!='') ? $this->oTab : $this->cTab;
-        $xTab = explode(";",$ctab);
-        $xArr = explode(",",$xTab[mt_rand(0,count($xTab)-1)]);
-        $xCol01 = $xArr[0]+mt_rand(-12,12);  
-        $xCol02 = $xArr[1]+mt_rand(-12,12);
-        $xCol03 = $xArr[2]+mt_rand(-12,12);
-        $xColor = imagecolorallocate($this->im, $xCol01, $xCol02, $xCol03);
-        if($init==1 || $init==3) $this->setCtab($xTab,$xArr,$init);
+    function rndColor($no=0, $flag=0){
+        // $tab = array(0,40,80,120,160,200,240);
+        $xC1 = mt_rand(2,254); //$xArr[0]+mt_rand(-12,12);  
+        $xC2 = mt_rand(2,254); //$xArr[1]+mt_rand(-12,12);
+        $xC3 = mt_rand(2,254); //$xArr[2]+mt_rand(-12,12);
+        $xColor = imagecolorallocate($this->im, $xC1, $xC2, $xC3);
+        if(!$xColor && $no){
+            //($no>5) && basDebug::bugLogs('vcode', [$xColor,$xC1,$xC2,$xC3], 'vcode2.txt', 'file');
+            return $no>5 ? mt_rand(2,254) : $this->rndColor($no+1, $flag);
+        } 
         return $xColor;
     }
     // 随机Font
@@ -158,7 +151,7 @@ class comVCode {
     function _rndChars(){ 
         if(empty($this->ttf)){ return; }
         $cnt = mt_rand(5,10); //《!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~》// All:32 '+','-',
-        $chars = array('!',"'",'(',')',',','.','/',":",";","?","^","_","`","~");
+        $chars = array('!',"'",'(',')',',','/',";","?","^","`","~");
         for($i=1; $i<=$cnt; $i++){
             imagestring($this->im,mt_rand(1,5),mt_rand(1,$this->imw),mt_rand(1,$this->imh),$chars[mt_rand(0,4)],$this->rndColor());
         }
@@ -186,25 +179,6 @@ class comVCode {
         }
         $this->im = $this->dis;
     }
-    // 颜色表
-    function setCtab($xTab,$xArr,$init){
-        $oTab = '';
-        $gap = 100; //60,100,80
-        foreach ($xTab as $val) {
-            $tmp = explode(",",$val);
-            $g0 = abs($xArr[0]-$tmp[0])>$gap;
-            $g1 = abs($xArr[1]-$tmp[1])>$gap;
-            $g2 = abs($xArr[2]-$tmp[2])>$gap;
-            if($g0&&$g1 || $g1&&$g2 || $g0&&$g2){
-                $oTab .= ($oTab ? ';' : '')."$val";
-            }
-        }
-        if($init==3){
-            $this->cTab = $oTab;
-        }else{
-            $this->oTab = $oTab;
-        }
-    }
     // *** 随机码
     static function strRand(){
         global $_cbase;
@@ -213,6 +187,9 @@ class comVCode {
         $str = basKeyid::kidRand($type,rand(4,5));
         return strtoupper($str);
     }
+    // 颜色表
+    /*function setCtab($xTab,$xArr,$init){}*/
+    //basDebug::bugLogs('vcode', $this->code, 'vcode.txt', 'file');
     
 }
 

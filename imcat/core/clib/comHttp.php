@@ -66,7 +66,7 @@ class comHttp
         # curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $header = self::_heads($opt, $data); // header/cookie/type
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         self::curlData($ch, $opt, $data); // data,gzip
         // https
         if(substr($url,0,8)=='https://'){

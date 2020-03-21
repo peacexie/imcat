@@ -132,7 +132,7 @@ class exvFtree{
         }elseif($kw){
             $whr = "name LIKE '$kw%'";
         }
-        if($eid) $whr .= " OR kid='$eid'"; //echo $whr;
+        if($eid) $whr .= " OR kid='$eid'";
         $res = self::dbNow("$whr")->order('kid DESC')->limit(10)->select();
         //echo db()->getSql();
         if(!empty($res)){ foreach($res as $rk=>$row){

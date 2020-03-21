@@ -25,7 +25,7 @@ class vopSdiy extends vopShow{
         $_cbase['tpl']['vdir'] = basename($dir); 
         $_cbase['run']['tplcfg'] = [ // 支持surl(标签函数)
             empty($cex[0]) ? '' : $cex[0], 
-            empty($cex[1]) ? $_SERVER['SCRIPT_NAME'] : $cex[1], 
+            $this->burl($cex), 
             empty($cex[2]) ? '?' : $cex[2]
         ];
         $this->tplCfg = $_cbase['tpl']; 
@@ -41,6 +41,16 @@ class vopSdiy extends vopShow{
         $_cbase['run']['tplname'] = $tpl; //echo $tpl;
         $tplfull = vopComp::main($tpl);
         include $tplfull;
+    }
+
+    function burl(&$cex){
+        if(empty($cex[1])){
+            $cex[1] = $_SERVER['SCRIPT_NAME'];
+            if(!empty(PATH_PROJ)){
+                $cex[1] = substr($cex[1], strlen(PATH_PROJ));
+            }
+        }
+        return $cex[1];
     }
 
     // mkv初始化

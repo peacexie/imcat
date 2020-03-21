@@ -20,10 +20,10 @@ class basEnv{
     // 系统信息,魔术变量,时区
     static function runVersion(){
         global $_cbase; 
-        if(version_compare(PHP_VERSION,'5.4.0','<')) {
+        /*if(version_compare(PHP_VERSION,'5.4.0','<')) {
             ini_set('magic_quotes_runtime',0);
             ini_set('magic_quotes_gpc',0);
-        }
+        }*/
         date_default_timezone_set($_cbase['sys']['tzcode']);        
     }
     // const,
