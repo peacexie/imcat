@@ -24,7 +24,11 @@ class exvJump{
             $arr = explode(':',$qstr);
             $mth = 'do'.ucfirst($arr[0]);
             $p = $arr[1]; if(strpos($p,'&')) { $p=substr($p,0,strpos($p,'&')); }
-            $this->$mth($p); // lang:/advs:
+            if(method_exists($this, $mth)){
+                $this->$mth($p); // lang:/advs:
+            }else{
+                vopShow::msg("[$arr[0]]参数错误!");
+            }
         }elseif(strpos($qstr,'.')){
             $arr = explode('.',$qstr);
             $mth = 'do'.($arr[0]=='dir'?'Dirs':'Mods');
