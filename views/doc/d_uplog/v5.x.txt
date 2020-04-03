@@ -21,6 +21,7 @@
  - [Sup-Simply]Special: (http://im3n.txjia.com)
 
 * fix: Some error in php7.4 while show the graphic verification
+* fix: The error message while some Illegal jump url
 
 
 #v5.1# (2019.12)

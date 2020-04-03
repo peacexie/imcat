@@ -37,6 +37,14 @@ class texBase{
         $ext && $js .= "$ext;\n";
         echo basJscss::jscode("\n$js")."\n";
     }
-    
+
+    static function next($mod='news', $id='', $next=1, $caid=''){
+        //$kid = did, cid, uid ...
+        $whr = $next ? "did<'$id'" : "did>'$id'";
+        // $whr .= $caid ? " AND catid='$catid'" : "" ;
+        $ord = $next ? "did-1" : "did";
+        $row = \imcat\glbData::get($mod,$whr,1,$ord);
+        return $row;
+    }
 
 }

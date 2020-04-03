@@ -33,6 +33,14 @@ function dump($var, $min=1){
     }
 } }
 
+// tpath(模板路径)
+if(!function_exists('tpath')){ 
+function tpath($base=0, $assets=1, $dir=0){
+    global $_cbase; 
+    $root = $dir ? DIR_VIEWS : PATH_VIEWS;
+    $vdir = $base ? 'base' : $_cbase['tpl']['vdir'];
+    return "$root/$vdir".($assets ? '/assets' : '');
+} }
 // tex(调用模板扩展方法) 
 // tex('texClass')->func() -=> \imcat\comm\texClass::func()
 if(!function_exists('tex')){ 
