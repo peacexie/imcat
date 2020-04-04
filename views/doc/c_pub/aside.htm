@@ -5,14 +5,19 @@
 <div class="h10">&nbsp;</div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">{=$titletop}</div>
+  <div class="panel-heading">
+    <a class="right" href="https://github.com/peacexie/imcat" target="_blank">Down</a>
+    {=$titletop}
+  </div>
   <div class="panel-body side">
     <?php
     if($this->mod=='uplog'){ foreach($cfgs as $k=>$v){ 
     $imkv = $k=='readme' ? 'uplog' : "uplog-$k";  
     $title = $k=='readme' ? $v[0] : "{$v[1]} Changlog ({$v[0]})"; 
     ?>    
-    <li class="type"><a href="{surl($imkv)}">{=$title}</a></li>
+    <li class="type">
+        <a href="{surl($imkv)}">{=$title}</a>
+    </li>
     <?php } } ?>
     <?php if($this->mod=='start'){ ?>
     <li class="type"><a href="{surl(start)}">FastStart : Down/Setup</a></li>
