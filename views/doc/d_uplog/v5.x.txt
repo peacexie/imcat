@@ -1,13 +1,13 @@
 
 
-#v5.2# (2020.03)
+#v5.2# (2020.04)
 
 
 ## Basic-Info
 
 * Basic-Info:
  - version: v5.2
- - Release date: 2020.03
+ - Release date: 2020.04
  - rar-Size: [core]1.30 MB, [full]3.49 MB(core+vendor)
 
 

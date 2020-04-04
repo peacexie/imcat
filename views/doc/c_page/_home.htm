@@ -1,12 +1,13 @@
 <!DOCTYPE html><html><head>
-{php $this->pmeta('Manual/Guides - '.$_cbase['sys_name'].' v'.$_cbase['sys']['ver']); }
-{php glbHtml::page('keywords',lang('tools.home_exkwd')); }
-{php glbHtml::page('description',lang('tools.home_exdes')); }
 {php}
+$this->pmeta('Manual/Guides - '.$_cbase['sys_name'].' v'.$_cbase['sys']['ver']);
 eimp('initJs','jquery,bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm;home');
-{/php} 
+{/php}
+<meta name='keywords' content='IntimateCat, Web-System, PHP+MySQL, PHPCMS, txmao, imcat'>
+<meta name='description' content='`IntimateCat` is a set of universal website system designed by PHP + MySQL; It is also a practical PHP Toolkit; Concise, lightweight, practical, free, and sharing!'>
 </head><body>
+
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
 
@@ -32,7 +33,10 @@ $subs = tex('texBase')->docer('d_start/doc__home');
   </div>
   <div class="col-md-3">
       <div class="panel panel-default left-15">
-        <div class="panel-heading">Pub Logs</div>
+        <div class="panel-heading">
+          <a class="right" href="https://github.com/peacexie/imcat" target="_blank">Down</a>
+          Release
+        </div>
         <div class="panel-body side">
           {code:"d_uplog/a_cfgs"}
           <?php 

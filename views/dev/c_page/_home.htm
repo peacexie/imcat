@@ -1,12 +1,13 @@
 <!DOCTYPE html><html><head>
-{php $this->pmeta('开发文档/使用手册 - '.$_cbase['sys_name'].' v'.$_cbase['sys']['ver']); }
-{php glbHtml::page('keywords',lang('tools.home_exkwd')); }
-{php glbHtml::page('description',lang('tools.home_exdes')); }
 {php}
+$this->pmeta('开发文档/使用手册 - '.$_cbase['sys_name'].' v'.$_cbase['sys']['ver']); 
 eimp('initJs','jquery,bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm;home');
-{/php} 
+{/php}
+<meta name='keywords' content='贴心猫, 建站系统, PHP+MySQL, PHPCMS, 微信接口, IntimateCat, txmao, imcat'>
+<meta name='description' content='`贴心猫`是一款PHP+MySQL架构设计的通用网站系统；同时也是一个实用的php工具包；简约、轻量、实用、免费、共享！'>
 </head><body>
+
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
 
@@ -32,7 +33,10 @@ $subs = tex('texBase')->docer('d_start/doc__home');
   </div>
   <div class="col-md-3">
       <div class="panel panel-default left-15">
-        <div class="panel-heading">发布记录</div>
+        <div class="panel-heading">
+          <a class="right" href="https://github.com/peacexie/imcat" target="_blank">下载</a>
+          发布记录
+        </div>
         <div class="panel-body side">
           {code:"d_uplog/a_cfgs"}
           <?php 
