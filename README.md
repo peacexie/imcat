@@ -1,7 +1,6 @@
 
 
-* 贴心猫(imcat) V5.2(Beta)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* 贴心猫(imcat) V5.2 Released (2020-04)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -49,7 +48,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.1 ChangeLog】 (2019.12)
+### 【v5.2 ChangeLog】 (2020-04)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
 
@@ -91,7 +90,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.1更新日志】(2019.12)
+### 【v5.2更新日志】(2020-04)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
 
