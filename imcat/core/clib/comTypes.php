@@ -66,7 +66,7 @@ class comTypes{
         $start = '0'; $fdeep = '-1'; $a = array(); 
         if(empty($arr)) return empty($ra) ? 0 : $a;
         foreach($arr as $k=>$v){
-            if(!isset($v['deep'])) $v['deep'] = 1;
+            if(!isset($v['deep'])) $v['deep'] = '1';
             if(!isset($v['pid'])) $v['pid'] = '0';
             if($start && $fdeep>$v['deep']) break;
             if($v['pid']===$pid){ 
