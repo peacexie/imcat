@@ -128,9 +128,7 @@ class comUpload
             $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
             return;
         }
-        //格式验证(扩展名验证和Content-Type验证)
-        //不认证：!in_array($fileType, $this->config['allowFiles']) 为了处理类似图片：http://mmbiz.qpic.cn/mmbiz/kCd...gtw/0
-        $fileType = strtolower(strrchr($imgUrl, '.'));
+        // Content-Type验证
         if (@stristr($heads['Content-Type'], "image")) { 
             $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
             return;
@@ -145,8 +143,8 @@ class comUpload
         readfile($imgUrl, false, $context);
         $img = ob_get_contents();
         ob_end_clean();
-        preg_match("/[\/]([^\/]*)[\.]?[^\.\/]*$/", $imgUrl, $m);
-        $this->oriName = $m ? $m[1]:"";
+        $pinfo = parse_url($imgUrl); // 'http://xxx.cn/dir/file.jpg?x-oss-process=image/resize,m_fill,h_170,w_230;
+        $this->oriName = isset($pinfo['path']) ? basename($pinfo['path']) : basename($imgUrl);
         $this->fileSize = strlen($img);
         $this->fileType = $this->getFileExt();
         $this->fullName = $this->getFullName();
@@ -180,9 +178,13 @@ class comUpload
     }
 
     // 获取文件扩展名
-    private function getFileExt(){
-        $ext = strtolower(strrchr($this->oriName, '.'));
-        if(empty($ext) && $this->type=='remote'){
+    private function getFileExt($flag='0'){
+        if($flag){ // file.php+ 1.jpg
+            $ext = strtolower(strchr($this->oriName, '.'));
+        }else{
+            $ext = strtolower(strrchr($this->oriName, '.'));
+        }
+        if(empty($ext)){ //  && $this->type=='remote'
             $ext = '.jpg';    
         } //处理类似图片:http://mmbiz.qpic.cn/mmbiz/kCd...gtw/0
         return $ext;
@@ -222,10 +224,13 @@ class comUpload
 
     // 文件类型检测
     private function checkType(){
+        $exf = $this->getFileExt(1);
         $ext = $this->getFileExt();
-        $skips = '_.asp.aspx.jsp.php.exe.sh.bat.com.'; // asa.cdx.cer.php2.php3.php4.
-        if(strpos($skips, $ext)){ // 超级管理员都不给上传这些文件？？？
-            $this->stateInfo = "Error `$ext`!";
+        $f1 = preg_match("/[^A-Za-z0-9_\.\-\@]/", $exf); // file.php+ 1.jpg
+        $f2 = preg_match("/\.(asp|aspx|jsp|php|exe|sh|bat|com)$/", $ext); // |asa|cdx|cer|php2|php3|php4
+        if($f1 || $f2){
+            $this->fileType = $exf;
+            $this->stateInfo = "Error `$ext`!"; 
             return false; //"Error `$ext`!";
         }
         $flag = $this->config["allowFiles"]==='(supper)' ? true : in_array($ext, $this->config["allowFiles"]);
