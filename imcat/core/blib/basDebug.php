@@ -170,11 +170,11 @@ class basDebug{
         $info['run'] = 1000*($info['run'] - $_cbase['run']['timer']);
         if(is_array($msg)){
             $re = '';
-            foreach($msg as $k=>$v){ $v = is_array($v) ? json_encode($v,1) : $v; $re .= "$k=$v; "; }
+            foreach($msg as $k=>$v){ $v = (is_array($v)||is_object($v)) ? json_encode($v,1) : $v; $re .= "$k=$v; "; }
             $msg = $re;
         }
         if($mod!='db'){
-            $data = "\nact=$act@".date('Y-m-d H:i:s',$_cbase['run']['stamp'])."<br>";
+            $data = "\nact=$act|$path@".date('Y-m-d H:i:s',$_cbase['run']['stamp'])."<br>";
             $data .= "\nused=$info[run]/$info[ram]<br>";
             $data .= "\npage=$info[vp]<br>\nrp=$info[rp]<br>";
             $data .= "\nip=$info[ip]<br>\nua=$info[ua]<br>";
@@ -184,11 +184,17 @@ class basDebug{
             $dcss = "border:1px solid #F00; background-color:#FFFFCC; padding:8px; margin:5px; clear:both; display:block;";    
             print_r("\n\n<div style=\"$dcss\">$data</div>\n\n");
         }elseif($mod=='db'){
+            if(!in_array($path,['detmp','syact'])){ // 可选?
+                $act .= "|$path"; if(strlen($act)>24) $act = substr($act,0,24);
+                $path = 'detmp';
+            }
             $_cbase['run']['noid'] = empty($_cbase['run']['noid']) ? 1 : $_cbase['run']['noid']+1;
             $db = glbDBObj::dbObj();
             $kid = basKeyid::kidTemp().$_cbase['run']['noid'];
             $vp = strlen($info['vp'])>240 ? substr($info['vp'],0,240) : $info['vp'];
             $rp = strlen($info['rp'])>240 ? substr($info['rp'],0,240) : $info['rp'];
+            $maxlen = $path=='detmp' ? 2400 : 240; // text,varchar
+            if(strlen($msg)>$maxlen) $msg = substr($msg,0,$maxlen).'...'; // 64k
             $vals = "'$kid','$act','$info[run]','$vp','$rp','".basReq::in($msg)."','$info[ip]','{$_cbase['run']['stamp']}','$info[ua]'";
             $db->db->run("INSERT INTO ".$db->table("logs_$path",2)."(kid,`act`,used,page,pref,note,aip,atime,aua)VALUES($vals)");     
         }else{ // file

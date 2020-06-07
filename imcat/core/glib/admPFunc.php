@@ -122,7 +122,11 @@ class admPFunc{
         if(empty($mcfg['f'][$fid])){
             $re = "$para $msg!";    
         }elseif($kwd && $tab=glbDBExt::getTable($mod)){
-            $flag = $db->table($tab)->where("$fid='$kwd'")->find();
+            $whr = "$fid='$kwd'";
+            $vk = glbDBExt::getTable($mod,'kid');
+            $vv = req('vv');
+            if($vv){ $whr .= " AND $vk!='$vv'"; }
+            $flag = $db->table($tab)->where($whr)->find(); //dump($whr);
             $re = empty($flag) ? "success" : lang('plus.cajax_repeat');
         }else{
             $re = "$para $msg!";    

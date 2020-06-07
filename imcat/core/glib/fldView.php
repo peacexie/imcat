@@ -40,24 +40,25 @@ class fldView{
         }
     }
     // 编辑器
-    static function ieditor($k,$cfg,$val,$size,$vstr){ 
+    static function ieditor($k,$cfg,$val,$size,$vstr){
         global $_cbase;
         $val = comStore::revSaveDir($val,1);
         $item = '';    $smk = self::mkpar();
         $sys_editor = $_cbase['sys_editor'];
         $eid = empty($sys_editor) ? 'kind' : $sys_editor;
-        echo basJscss::imp(PATH_BASE."?editor-api_$eid&eid=$eid$smk",'','js'); //&lang=
-        $size = str_replace('x',',',$cfg['fmsize']); if(empty($size)) $size = '480x120';
+        echo basJscss::imp(PATH_BASE."?editor-api_$eid&eid=$eid$smk",'','js'); 
         $bsbar = strstr(@$cfg['fmexstr'],'full') ? 'full' : 'base';
         $item = strstr(@$cfg['fmexstr'],'exbar') ? "<div id='fm_{$k}_bar' class='edt_bar'></div>" : '';
+        if(empty($size[0])) $size[0] = '480'; if(empty($size[1])) $size[1] = '240';
+        $style = "style='width:{$size[0]}px;height:{$size[1]}px;'";
         if($eid=='um'){
             $item .= basJscss::imp('/edt_um/themes/default/css/umeditor.css','vendui');
-            $item .= "<textarea id='fm[$k]' name='fm[$k]' style='display:none;'></textarea>\n";
-            $item .= "<script type='text/plain' id='fm_{$k}_' name='fm[$k]' style='width:{$cfg['fmsize'][0]}px;height:{$cfg['fmsize'][1]}px;'>".@$val."</script>\n";
+            $item .= "<textarea id='fm[$k]' name='fm[$k]' style='display:none;' $style></textarea>\n";
+            $item .= "<script type='text/plain' id='fm_{$k}_' name='fm[$k]' $style>".@$val."</script>\n";
         }else{
-            $item .= "<textarea id='fm_{$k}_' name='fm[$k]'>".@$val."</textarea>\n";
+            $item .= "<textarea id='fm_{$k}_' name='fm[$k]' $style>".@$val."</textarea>\n";
         }
-        $item .= basJscss::jscode("var editor_fm_{$k}_; $().ready(function(){edt_Init('fm[$k]','$bsbar',$size);});\n"); 
+        $item .= basJscss::jscode("var editor_fm_{$k}_; $().ready(function(){edt_Init('fm[$k]','$bsbar',$size[0],$size[1]);});\n"); 
         return $item;
     }
     // 日期时间
@@ -198,8 +199,13 @@ class fldView{
             $sys_map = $_cbase['sys_map'];
             $mpid = empty($sys_map) ? 'baidu' : $sys_map;
             $item = "$iinp<span class='fldicon fmap' onClick=\"mapPick('$mpid','fm[$k]');\">&nbsp;</span>";
-        }elseif($extra=='repeat'){ //检查重名 
-            $act = "onclick=\"repeatCheck('".str_replace(',',"','",@$cfg['cfgs'])."','$k');\""; ;
+        }elseif($extra=='repeat'){ //检查重名
+            $tmpa = explode(',',$cfg['cfgs'].','); // news.title
+            $tmpa[0] || $tmpa[0] = 'news';
+            $tmpa[1] || $tmpa[1] = 'title';
+            $vk = glbDBExt::getTable($tmpa[0],'kid');
+            $vv = req($vk);
+            $act = "onclick=\"repeatCheck('$tmpa[0]','$tmpa[1]','$k','$vv');\""; // ".str_replace(',',"','",@$cfg['cfgs'])."
             $item = "$ihid <input type='button' value='".basLang::show('admin.fv_chkrep')."' id='fm_repeat_$k' $act class='btn'> ";
         }elseif($extra=='winpop'){ //winpop
             $item = self::iwinpop($k,$cfg,$val,$size,@$cfg['vreg']);
