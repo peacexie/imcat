@@ -1,6 +1,7 @@
 
 
-* 贴心猫(imcat) V5.2 Released (2020-04)
+* 贴心猫(imcat) V5.3(Alpha)
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 
 --- --- --- --- --- --- --- --- --- 

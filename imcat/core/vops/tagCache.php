@@ -53,8 +53,9 @@ class tagCache{
         return $re;
     }
     
-    static function comTag($type, $mkv, &$paras){ 
-        $cac = 0; $cex = $path = $fmkv = ''; 
+    static function comTag($type, $mkv, &$paras){
+        if($type=='Page' && req('page')>1){ return ['',''];}
+        $cac = 0; $cex = $path = $fmkv = '';
         foreach($paras as $k=>$v){ 
             if($v[0]=='cache' && !empty($v[1])){
                 $cac = $v[1];
@@ -89,10 +90,10 @@ class tagCache{
         return $path;
     }
     
-    static function setCache($file, $data, $isa=0){
+    static function setCache($file, $data, $isa=0, $isp=0){
         global $_cbase; 
         if($isa){
-            $data['page_bar'] = $_cbase['page']['bar'];
+            $data['page_bar'] = $isp ? $_cbase['page']['bar'] : [];
         }
         extCache::cfSet($file,$data,'ctpl');
     }

@@ -77,17 +77,20 @@ class basStr{
         global $_cbase;
         if(!$string) return ""; 
         $clen = $_cbase['sys']['cset']=='utf-8' ? 3 : 2; //中文宽度
-        $sLen=0; $width=0; $strcut=''; $length=$length*2; //中文宽计算
-        if(strlen($string) > $length) {
+        $olen = strlen($string); $mblen=mb_strlen($string); $len2 = $length*2; //中文宽计算
+        $pos = 0; $width = 0; $mbcnt = 0;
+        if($mblen > $length) {
             //将$length换算成实际UTF8格式编码下字符串的长度
-            for($i = 0; $i < $length; $i++) {
-                if ($sLen >= strlen($string)) { break; }
-                if ($width >= $length) { break; }
+            for($i=0; $i<$olen; $i++) {
+                if ($pos >= strlen($string)) { break; }
+                if ($width >= $len2) { break; }
                 //当检测到一个中文字符时, //大概按一个汉字宽度相当于两个英文字符的宽度
-                if(ord($string[$sLen]) > 127) { $sLen += $clen; $width += $clen; }
-                else { $sLen += 1; $width += 1; }
+                if(ord($string[$pos]) > 127) { $pos += $clen; $width += 2; }
+                else { $pos++; $width++; }
+                $mbcnt++;
             }
-            return substr($string, 0, $sLen).$etc;
+            $res = $mblen>$mbcnt ? mb_substr($string,0,$mbcnt-1).$etc : $string;
+            return $res;
         }else return $string;
     }
     // *** 格式化数字,$type='Byte'显示占用空间
