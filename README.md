@@ -1,5 +1,10 @@
 
 
+
+喜报 [《贴心猫(imcat)通用网站系统》软著获证](https://imcat.txjia.com/chn.php/news.2020-6a-89gf)
+
+--- --- --- --- --- --- --- --- --- 
+
 * 贴心猫(imcat) V5.3(Alpha)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
