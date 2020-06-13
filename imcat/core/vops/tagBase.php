@@ -156,7 +156,7 @@ class tagBase{
         $pid = $_groups[$this->modid]['pid'];
         if(in_array($pid,array('docs','users','coms','advs'))){
             if(strpos($whr,"(m.show='all')")){
-                $whr = str_replace(" AND (m.show='all')",'',$whr);
+                $whr = str_replace([" AND (m.show='all')","(m.show='all')"],'',$whr);
             }elseif(!strpos($whr,'(m.show=')){
                 $whr .= " AND (m.show='1')";
             } //echo "($whr)<br>\n";

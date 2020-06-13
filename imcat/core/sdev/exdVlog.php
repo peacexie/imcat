@@ -114,8 +114,9 @@ class exdVlog{
         $d1 = strtotime(date('Y-m-01',$d0));
         $d2 = strtotime(date('Y-m-01'));
         $whr = "atime>=$d1 AND atime<$d2";
-        $sql = "CREATE TABLE {$tbnew} SELECT * FROM {$tbfull} WHERE $whr"; 
-        $db->query($sql);
+        // $sql = "CREATE TABLE {$tbnew} SELECT * FROM {$tbfull} WHERE $whr"; $db->query($sql);
+        $db->query("CREATE TABLE {$tbnew} LIKE {$tbfull}");
+        $db->query("INSERT INTO {$tbnew} SELECT * FROM {$tbfull} WHERE $whr");
         #dump("// $sql\n"); 
         // 清理某一月数据(2个月前数据)
         $stamp = time() - 60*86400;

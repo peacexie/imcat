@@ -197,11 +197,13 @@ class glbHtml{
     // 发送HTTP状态
     static function httpStatus($code, $remsg=0) {
         $_status = glbConfig::read('https','sy');
+        if($remsg){
+            return ($_status[$code] && $remsg) ? $_status[$code] : 'Unknow Error';
+        }
         if(isset($_status[$code])) {    
             header('HTTP/1.1 '.$code.' '.$_status[$code]);
             header('Status:'.$code.' '.$_status[$code]); // 确保FastCGI模式下正常
         }
-        return ($_status[$code] && $remsg) ? $_status[$code] : 'Unknow Error';
     }
 
 }

@@ -71,7 +71,13 @@ class devCoder{
     // 得到一个文件信息
     static function expInfos($fp){
         global $rep1,$rep2;
-        $data = comFiles::get(EXP_ROOT.$fp);
+        $fpreal = file_exists(EXP_ROOT."$fp-cdemo") ? "$fp-cdemo" : $fp;
+        $data = comFiles::get(EXP_ROOT.$fpreal);
+        $data = preg_replace('/\/\*(.*?)\*\//is','',$data);
+        //$str = preg_replace('/\/\/(.*?)\ /is','',$str);
+        //$str = preg_replace('( [\s| ]* )'," ",$str);
+        $data = preg_replace("/([\s]{2,})/","\\1",$data);
+        $data = preg_replace("/<\!--.*?-->/si","",$data); //注释
         if(!$data) return [0, '', ''];
         if(basStr::isConv($data)){
             $data = comConvert::autoCSet($data, 'gb2312');

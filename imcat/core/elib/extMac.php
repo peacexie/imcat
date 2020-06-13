@@ -10,7 +10,10 @@ class extMac{
     var $res = array(); // 返回带有MAC地址的字串数组 
     var $macAddr = ''; 
 
-    function get($os=''){ 
+    function get($os=''){
+        if(!function_exists('exec')){
+            return '(exec_not_exists)';
+        }
         //$os || $os = PHP_OS;
         if(IS_WIN){ 
             $this->forWindows();

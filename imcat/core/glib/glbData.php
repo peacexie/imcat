@@ -103,7 +103,7 @@ class glbData{
         $pid = self::$cfg['pid'];
         if(in_array($pid,array('docs','users','coms','advs'))){
             if(strstr($whr,"`show`='all'")){
-                $whr = str_replace(["`show`='all'"," AND `show`='all'"],'',$whr);
+                $whr = str_replace([" AND `show`='all'","`show`='all'"],'',$whr);
             }elseif(!strstr($whr,'`show`=')){
                 $whr .= " AND (`show`='1')";
             }

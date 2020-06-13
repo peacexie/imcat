@@ -135,7 +135,7 @@ class glbDBExt{
             $kid = substr($ktmp,0,strlen($ktmp)-2).$kfix;
         }
         if($n) $kid = substr($kid,0,strlen($kid)-2).basKeyid::kidRand('k',2);
-        $rec = $db->table($tab)->where("$tkey='$kid%'")->find();
+        $rec = $db->table($tab)->where("$tkey='$kid'")->find();
         if($rec) return self::dbAutID($tab,$tmp,$n+1);
         else return array($kid,$kno);
     }

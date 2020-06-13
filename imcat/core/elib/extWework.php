@@ -66,7 +66,8 @@ class extWework{
     static function smsgCard($agentId, $msg=[], $to=[]){
         $wecfg = read('wework', 'ex');
         $to['uids'] = array_unique(array_filter($to['uids']));
-        if(empty($to['uids']) && empty($to['party']) && empty($to['tag'])){ 
+        if(empty($to['uids']) && empty($to['party']) && empty($to['tag'])){
+            basDebug::bugLogs("msg-send", $to, "msg-null.log", 'file');
             return ['errcode'=>'82001', 'errmsg'=>"指定的成员/部门/标签全部为空"]; 
         }
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 

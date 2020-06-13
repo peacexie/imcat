@@ -97,9 +97,9 @@ class basElm{
                 foreach($mcfg['i'] as $k=>$v){ if($v['pid']==$t[1]){
                     $re[$k] = $v['title'];
                 } }
-            }else{
+            }elseif(isset($mcfg['f'])){
                 $re = self::text2arr($mcfg['f'][$t[1]]['cfgs']);
-            } //dump($mcfg);
+            }else{ $re=[]; } //dump($mcfg);
         }elseif(preg_match("/^(\w+)::(\w+)\(([\w\ \,]{0,24})\)$/",$text)){
             $text = str_replace(array("\r","\n",' '),'',$text);
             preg_match("/^(\w+)::(\w+)\(([\w\,]{0,24})\)$/",$text,$ma);
