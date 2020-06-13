@@ -35,6 +35,7 @@ $_sy_pubcfg['cdemo'] =  array(
     'root/cfgs/excfg/ex_haoft.php' =>'',
     'root/cfgs/excfg/ex_sms.php' =>'',
     'root/cfgs/excfg/ex_store.php' =>'',
+    'root/cfgs/excfg/ex_wework.php' =>'',
     'root/cfgs/boot/_paths.php' => '',
     'root/cfgs/boot/cfg_adbug.php' => '',
     'root/cfgs/boot/cfg_db.php' => '',
@@ -64,7 +65,7 @@ $_sy_pubcfg['rndata'] =  array(
 //7. skip-dirs
 $_sy_pubcfg['skip'] =  array(
     'main' => array(), // 'fitpl','yscode'
-    'vendor' => array('phpmailer', 'qcloudsms'), // 'composer','Monolog','psrlog','silex',
+    'vendor' => array('phpmailer', 'qcloudsms', 'QrReader'), // 'composer','Monolog','psrlog','silex',
     'dtmp' => array('@test','@udoc','debug','update','weixin','remote'),
     'vendui' => array('artEditor','swplayer','photoSwipe','proxy'), //
 );

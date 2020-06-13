@@ -29,7 +29,7 @@ if(strpos(",bab,kgf,pea,tip,too,wee,",$pre3)){
    $url = "http://txjia.com".$uri;
 }
 
-ob_clean();
+if(ob_get_contents()){ ob_clean(); }
 // 本身是404页,可能存在404的head,所以以下跳转代码无效
 if($url){
     header("location:$url");

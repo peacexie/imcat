@@ -49,6 +49,7 @@ $_cbase['ucfg']['vimg']  = 'K'; // 0,H,K
 $_cbase['ucfg']['ipapi'] = 'Taobao'; // 默认IP地址接口, Pcoln # Taobao # Api # Ip138 # Baidu
 $_cbase['ucfg']['guid'] = 'Cook'; // UIP,Sess,Cook
 $_cbase['ucfg']['city'] = '东莞'; //本地城市,订单算运费用
+$_cbase['ucfg']['map'] = [113.756963,23.02224,15]; // 113.756963,23.02224,17
 $_cbase['ucfg']['space'] = 30; //M空间大小
 $_cbase['ucfg']['dbind'] = 0; //是否开启绑定子域名
 $_cbase['ucfg']['ctab'] = 'F00,F0F,060,00F,F60,90F,F69,06F,099,606,60F,906,F6F'; //颜色表

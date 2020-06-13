@@ -4,7 +4,7 @@ namespace imcat;
 
 $rdo = 'fail';
 
-$stnow = $stamp; // 432000=5day, 86400=1Ìì active_online
+$stnow = $stamp; // 432000=5day, 86400=1å¤© active_online
 
 foreach(array('wex_locate','wex_msgget','wex_msgsend','wex_qrcode') as $tabid){
 	$whrex = $tabid=='wex_qrcode' ? " AND sid>'123000'" : '';
