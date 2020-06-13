@@ -3,6 +3,12 @@
 
 $cfgs = array(
 
+    'qrorc' => array(
+        'title' => '识别二维码/识别文字',
+        'rem' => '识别二维码内容,识别图片文字内容',
+        'mt' => '识文识码',
+    ),
+
     'ipaddr' => array(
         'title' => 'IP转化地址类（IPv4）',
         'rem' => '接口：Local(本地纯真IP数据库)，Sina，Pcoln(太平洋接口)，Taobao(淘宝接口)，Ip138，S1616',

@@ -135,7 +135,7 @@ ul.adf_mnu2 li a:hover{ color:#F00; }
 
 .login-outer{ width:750px; position:relative; margin:5px auto; }
 .login-head { position:relative; }
-.login-head .logo{ position:absolute; left:10px; top:-10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+.login-head .logo{ position:absolute; left:10px; top:-10px; xwidth:120px; height:60px; background:#FFF; border:3px solid #FFF; border-radius:5px; }
 .login-head select{ position:absolute; right:10px; top:10px; width:120px; }
 .login-head p{ text-align:center; padding:10px; margin:0px 130px 0px 130px; border:1px dashed #A6CAF0; border-radius:5px; background-clip:padding-box; }
 .login-head h3{ padding:5px 0px 1px 0px; }
@@ -156,7 +156,7 @@ form div.topmsg{ padding:10px; margin:0px 0px 15px 0px; }
 @media only screen and (max-width:767px) {
     .login-outer{ width:96%; margin:5px auto; }
     .login-head { height:60px; }
-    .login-head .logo{ position:absolute; left:10px; top:-10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+    .login-head .logo{ position:absolute; left:10px; top:-10px; border:3px solid #FFF; border-radius:5px; }
     .login-head select{ float:right; position:static; width:120px; }
     .login-head p{ position:absolute; background:#A6CAF0; color:#333; padding:10px 0px 10px 0px; margin:65px 0 10px 0; border:0; background-clip:padding-box; }
     form.login { width:100%; float:none; padding-top:38px;  }

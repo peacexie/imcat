@@ -3,21 +3,67 @@ include tinc('info/map~code',0);
 glbHtml::page("{$api} ".lang('plus.map_title'),1);
 eimp('initJs','jspop'.($act=='pick'?',jquery':''));
 eimp($urls[$api]);
-echo "<style type='text/css'>body {padding:0px; margin:0px; }
-body, html,#map {width: 100%;height: 100%;overflow: hidden;margin:0;}
-.BMapLabel{ border-radius:4px; border-bottom-left-radius:0px; }</style>\n";
+$pickCss = $act=='pick' ? ".BMapLabel { line-height:60% !important; border-bottom-left-radius: 4px; }" : '';
+echo "<style type='text/css'>
+    body {padding:0px; margin:0px; }
+    body, html,#map {width: 100%;height: 100%;overflow: hidden;margin:0;}
+    .BMapLabel{ border-radius:4px; }
+    .opBar{ z-index:666; position:absolute; left:3rem; top:1rem; font-size:12px; }
+    .opAct{ vertical-align:middle; }
+    $pickCss
+    @media only screen and (max-width:710px){ .opBar{ left:1rem; top:3rem; } }
+</style>\n";
 glbHtml::page('aumeta');
 glbHtml::page('body');
-
 ?>
-
 <?php if(@$act=='pick'){ ?>
-<div id="bar" style="z-index:666;position:absolute; left:56px; top:5px; font-size:12px;">
-  <?php lang('plus.map_piont',0); ?><input name="point" type="text" id="point" size="<?php echo $width; ?>" value="<?php echo $pshow;?>">
+<div class="opBar">
+  <select id='opAct' class="opAct" onchange="setUop(0)">
+    <option value="pos"><?php lang('plus.map_piont',0); ?></option>
+    <option value="so">搜索</option>
+  </select>
+  <input name="point" type="text" id="point" value="<?php echo $pshow;?>" style="width:200px">
   <input type="submit" name="button" id="button" value="<?php lang('plus.map_setok',0); ?>" onClick="setPoint()">
+  <input name="keywd" type="text" id="keywd" value="" style="width:200px; display:none;">
+  <input type="submit" name="search" id="search" value="搜索" onClick="soPoint()" style="display:none;">
 </div>
 <?php } ?>
 <div id="map" style="z-index:333;"></div>
+
+<script>
+function setPoint(){
+  jsElm.pdID('<?php echo $title;?>').value =jsElm.jeID('point').value; 
+  popClose(); //window.close();
+}
+function setUop(val){ // 0,1,2
+  var opAct = jsElm.jeID('opAct'),
+    index = opAct.selectedIndex;
+  jsElm.jeID('point').style.display = 'none';
+  jsElm.jeID('button').style.display = 'none';
+  jsElm.jeID('keywd').style.display = 'none';
+  jsElm.jeID('search').style.display = 'none';
+  if(val){
+    index = val-1;
+    opAct.selectedIndex = index;
+  }
+  if(!index){
+    jsElm.jeID('point').style.display = '';
+    jsElm.jeID('button').style.display = '';
+  }else{
+    jsElm.jeID('keywd').style.display = '';
+    jsElm.jeID('search').style.display = '';
+  }
+}
+function soPoint(){
+  var keywd = jsElm.jeID('keywd').value;
+  if(!keywd) return;
+  var local = new BMap.LocalSearch(map, {
+      renderOptions:{map: map}
+  });
+  local.search(keywd); // "地王广场"
+  //setUop(1);
+}
+</script>
 
 {block:main}{/block:main}
 

@@ -4,7 +4,7 @@
 .pgu_outer{ width:750px; position:relative; margin:5px auto; }
 
 .head { position:relative; }
-.head .logo{ position:absolute; right:10px; top:10px; width:120px; height:60px; border:3px solid #FFF; border-radius:5px; }
+.head .logo{ position:absolute; right:10px; top:10px; height:60px; border:3px solid #FFF; border-radius:5px; }
 .head select{ position:absolute; left:10px; top:10px; width:120px; }
 .head p{ text-align:center; background:#F4F4F4; padding:3px; margin:0px 130px 0px 130px; border-radius:5px; }
 .head h3{ padding:5px 0px 1px 0px; }

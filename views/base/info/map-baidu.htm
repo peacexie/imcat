@@ -40,12 +40,11 @@ map.addOverlay(marker);
 marker.enableDragging(); //可拖拽
 marker.addEventListener("dragend", showPoint);
 function showPoint(e){
+  setUop(1);
   jsElm.jeID('point').value = e.point.lng + "," + e.point.lat+','+map.getZoom(); 
 }
-function setPoint(){
-  parent.document.getElementById('<?php echo $title;?>').value =jsElm.jeID('point').value; 
-  popClose(); //window.close();
-}
+var label = new BMap.Label("=",{offset:new BMap.Size(4,2)});
+marker.setLabel(label);
 <?php }else{ ?>
 var label = new BMap.Label("<?php echo $title;?>",{offset:new BMap.Size(20,-10)});
 marker.setLabel(label);

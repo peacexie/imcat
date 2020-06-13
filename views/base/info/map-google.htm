@@ -31,10 +31,7 @@ google.maps.event.addListener(marker, "dragend", function(){
     var num2 = new Number(parr[0]);
     jsElm.jeID('point').value = num1.toFixed(6)+','+num2.toFixed(6)+','+map.zoom; 
 });
-function setPoint(){
-    parent.document.getElementById('<?php echo $title;?>').value =jsElm.jeID('point').value; 
-    popClose(); //window.close();
-}
+// function setPoint(){}
 window.onresize = function(){window.location.reload();} //jqInit('');
 <?php }else{ ?>
 

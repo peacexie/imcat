@@ -1,0 +1,143 @@
+{imp:"tools/a-lay"}<!--继承父模板-->
+
+{block:extop}{:parent}<?php
+
+$sid = usrPerm::getSessid(); 
+$sval = empty($_SESSION[$sid]) ? '' : $_SESSION[$sid]; 
+$v403 = !basEnv::isLocal() && !$sval; //dump("$sid-$sval");
+
+$title = '识别二维码/识别文字';
+$ermsg = '';
+$config = array( //上传配置
+    "maxSize" => 2048, // 单位KB
+    "allowFiles" => array(".gif", ".png",'.jpg','jpeg'),
+);
+
+// if(empty($can_upfile)) die("Please SET [ \$can_upfile = '1' ]"); 
+if(!empty($_FILES['picfile']) && req('utype')=='upfp' && !$v403){ 
+    $uppath = DIR_VARS.'/debug'; 
+    $up = new comUpload('picfile', $config, 'upload');
+    $info = $up->getFileInfo(); 
+    $tmp = $_FILES['picfile']['tmp_name'];
+    $iurl = $info['url'];
+    $img = str_replace(PATH_DTMP.'/@udoc', DIR_DTMP.'/@udoc', $info['url']);
+    $ermsg = $info['state']=='SUCCESS' ? '' : $info['state'];
+}else{
+    $iurl = $img = req('picurl');
+} //dump($tmp); dump($info);  dump($img);
+$defurl = $iurl ?: 'https://imcat.txjia.com/h5/pay/pay-xie-wx.png'; 
+//https://imcat.txjia.com/views/base/assets/logo/logo120x60.jpg
+
+?>{/block:extop}
+
+{block:eximp}
+<style type="text/css">
+img { padding:10px; margin:10px; border:1px solid #CCC; }
+</style>
+{/block:eximp}
+
+{block:exbody}
+<div class="tools_outer">
+
+<h3 class="tc">识别二维码/识别文字</h3>
+
+<form id="fmup" name="fmup" method="post" action="?" enctype="multipart/form-data">
+<h4 class="tl">### 图片设置：</h4>
+{if empty($img) }
+<p>
+    <select name="rtype" style="width:47%;" class="right">
+        <option value="qrcode">识别二维码</option>
+        <option value="rtext" {if $v403}disabled{/if}>识别文字</option>
+    </select>
+    <select name="utype" style="width:47%;" id="utype" onChange="setType(this)">
+        <option value="wurl">Url地址</option>
+        <option value="upfp" {if $v403}disabled{/if}>上传图片</option>
+    </select>
+</p>
+{/if}
+<p id='r_wurl'>
+    图片Url地址：<br>
+    <input type="text" name="picurl" id="picurl" value="<?=$defurl?>" class="wp100">
+</p>
+<p id='r_upfp' style="display:none;">
+    选择文件：<br>
+    <input type="file" name="picfile" id="picfile">
+</p>
+
+<p class="tc">
+    <a href="?" class="right">Home</a>
+    {if empty($img) }
+    <input type="submit" name="upAct" value="...开始识别..." />
+    {else}
+    <a href="?">...刷新返回...</a>
+    {/if}
+</p>
+</form>
+
+{if !empty($img) }
+<h4 class="tl">
+    ### 识别 结果：
+</h4>
+<p class="tc" id="cres">
+<?php
+if($ermsg){
+    dump([$ermsg]);
+}elseif(req('rtype')=='qrcode'){
+    $_locfp = DIR_VENDOR.'/QrReader/QrReader.php';
+    if(!is_file($_locfp)){
+        $_dowurl = 'https://github.com/peacexie/imcat/blob/patches/exfun/QrReader.rar';
+        echo("请下载文件 `$_dowurl` <br>\n并解压到 `".DIR_VENDOR."/QrReader/`目录<br>\n");
+    }else{
+        include_once($_locfp);
+        $qrcode = new \QrReader($img);  //图片路径
+        $vres = $qrcode->text(); //返回识别后的文本 
+        $vres = $vres ?: '(识别错误!)';
+        dump([$vres]);
+    }
+}else{ // rtext
+    if($v403){
+        dump(["转换额度受限,需要登录或本地IP运行!"]);
+    }else{
+        $ops['language_type'] = 'CHN'; // CHN_ENG, ENG
+        $vres = aisWenzi::ocrgb($img, '', $ops);
+        dump($vres); 
+    }
+}
+?> 
+</p>
+<p class="tc">
+    <a href="{=$iurl}"><img src="{=$iurl}" style="max-width:90%;" /></a>
+</p>
+{else}
+<h4 class="tl">
+    ### 使用 提示：
+</h4>
+<p class="">
+    1. 因为免费额度受限，需要登录或本地IP才可使用“识别文字”接口!<br>
+    2. 因为空间受限，需要登录或本地IP才可上传图片，以免产生过多垃圾文件。<br>
+    3. 测试图片Url<br>
+    <a href="http://www.dongguan.net.cn/uploads/allimg/161113/1_2319131371.png" target="_blank">http://dongguan.net.cn/uploads/allimg/161113/1_2319131371.png</a><br>
+    <a href="https://imcat.txjia.com/index.php?ajax-vimg&mod=qrShow&data=https://txjia.com/" target="_blank">https://imcat.txjia.com/?ajax-vimg&mod=qrShow&data=https://txjia.com/</a><br>
+    <a href="{=$defurl}" target="_blank"><?=$defurl?></a><br>
+    <a href="https://imcat.txjia.com/h5/pay/pay-xie-ali.jpg" target="_blank">https://imcat.txjia.com/h5/pay/pay-xie-ali.jpg</a><br>
+    <a href="https://imcat.txjia.com/views/book/_incs/Imcat-All.png" target="_blank">https://imcat.txjia.com/views/book/_incs/Imcat-All.png</a><br>
+</p>
+{/if}
+
+</div>
+
+<script>
+function setType(e){ // qrcode, rtext
+  var rtype = $(e).val();
+  if(rtype=='upfp'){
+    $('#r_upfp').show();
+    $('#r_wurl').hide();
+  }
+  if(rtype=='wurl'){
+    $('#r_qrcode').hide();
+    $('#r_wurl').show();
+  } //jsLog(rtype);
+} //setType($('#utype'));
+</script>
+
+{/block:exbody}

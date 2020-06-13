@@ -74,8 +74,10 @@ function mapPick(type,fid,w,h){
     popOpen(lang('jcore.pop_pickmap'),url,w,h);
 }
 // 检查重复 ：id='fm_repeat_' onclick="repCheck('news','title','fid');"
-function repeatCheck(mod,fid,kid){
-    var para = 'act=infoRepeat&mod='+mod+'&fid='+fid+'&kwd='+jsElm.jeID('fm['+fid+']').value+'';
+function repeatCheck(mod,fid,kid,vv){
+    var val = encodeURIComponent(jsElm.jeID('fm['+fid+']').value); //jsLog(val);
+    var para = 'act=infoRepeat&mod='+mod+'&fid='+fid+'&kwd='+val+'';
+    if(vv) para += '&vv='+vv+'';
     jQuery.getScript(_cbase.run.fbase+'?ajax-cajax&'+para,function(){ 
         var re = _repeat_res=='success' ? lang('jcore.pop_xrepeat') : _repeat_res;
         layer.tips(re, '#fm_repeat_'+kid, {tips:3});

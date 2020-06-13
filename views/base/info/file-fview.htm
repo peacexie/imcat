@@ -132,7 +132,7 @@ foreach($re['file'] as $fnm=>$v){
     <td align="center" nowrap class="txtSC"><?php echo $iTime ?></td>
     <td align="center" nowrap class="txtSC">
       <?php if($_admPerm && $_delPath){ ?> 
-      <a href="#" onClick="urlConfirm('?<?php echo "$allpars&dfile=/$ufix/$fnm" ?>','<?php echo lang('plus.fv_delq',$fnm); ?>')"><?php lang('plus.fv_tdel',0); ?></a>
+      <a href="#" onClick="urlConfirm('?file-fview&<?php echo "$allpars&dfile=/$ufix/$fnm" ?>','<?php echo lang('plus.fv_delq',$fnm); ?>')"><?php lang('plus.fv_tdel',0); ?></a>
       <?php }else{ ?>
       <span style="color:#999"><?php lang('plus.fv_tdel',0); ?></span>
       <?php } ?></td>

@@ -72,6 +72,11 @@ function edt_getSelect(fid, type){
     if(type=='text') v = jsText(v);
     return v; 
 }
+function edt_setHtml(fid, data){
+    fid = jsKey(fid);
+    eval("var edtObj = editor_"+fid+";");
+    edtObj.html(data);
+}
 <?php if(1==2){ ?></script><?php } ?>
 <?php
 /*
