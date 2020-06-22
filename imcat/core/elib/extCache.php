@@ -12,8 +12,9 @@ class extCache{
             $cfg = array_merge($cfg, $ucfg);
         }
         $driver = $cfg['type'];
+        $class = "\\imcat\\$driver";
         require_once DIR_IMCAT . '/adpt/cache/' . $driver . '.php';
-        $this->cache = new $driver($cfg);
+        $this->cache = new $class($cfg);
     }
 
     //读取缓存
