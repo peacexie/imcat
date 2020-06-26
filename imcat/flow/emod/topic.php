@@ -371,11 +371,13 @@ if($act=='iform'){
             'top-a' => '排序(升)',
             'vote' => '票数(降)',
             'vote-a' => '票数(升)',
+            'atime' => '时间(降)',
+            'atime-a' => '时间(升)',
         ),
         'order'=>($order ? "$order,dno" : 'top,dno'),
         'title'=>$fcfg[$part],
-    );
-    $dop = new dopExtra($tbexd,$cfg); 
+    ); 
+    $dop = new dopExtra($tbexd,$cfg);
 
     $dop->so->whrstr .= " AND `did`='$did' AND part='$part'"; 
     $lnkurl = "?$mkv&mod=$mod&did=$did&act=iform&view=$view&part=$part&recbk=ref";

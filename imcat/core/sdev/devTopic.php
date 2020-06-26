@@ -47,7 +47,9 @@ class devTopic{
 
     // nav
     static function navBar($fcfgs,$xfm,$view='',$part=''){
-        extract(basReq::sysVars()); 
+        global $_cbase;
+        extract(basReq::sysVars());
+        $mkv = $_cbase['mkv']['mkv'];
         $burl = "?$mkv&mod=$mod&did=$did&view";
         $icls = 'class="col-xs-4 col-sm-3 col-md-2 col-lg-1 tc pa3"';
         $nav = "\n"; //print_r($xfm);
