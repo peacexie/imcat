@@ -13,12 +13,19 @@ class wmpJssdk extends wmpBasic{
         $this->cacheInit();
     }
 
-    function getSignPackage() {
+    function getSignPackage($url='', $mode='ref') {
         $jsapiTicket = $this->getJsApiTicket();
-        // 注意 URL 一定要动态获取，不能 hardcode.
-        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
-        $url = "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        $timestamp = $_SERVER["REQUEST_TIME"];
+        $url = req('url'); //'http://weapi.zo-ko.com/root/a3rd/weixin_pay/index.html';
+        if(!$url){
+            if($mode=='ref' && isset($_SERVER["HTTP_REFERER"])){
+                $url = $_SERVER["HTTP_REFERER"];
+            }else{ // 注意 URL 一定要动态获取，不能 hardcode.
+                $protocol = basEnv::isHttps() ? 'https://' : 'http://';
+                $url = $url ? $url : "$protocol$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+            }
+        }
+        $timestamp = $_SERVER["REQUEST_TIME"]; //echo $url;
+        //if(!$url && isset($_SERVER["HTTP_REFERER"])){ $url = $_SERVER["HTTP_REFERER"]; }
         $nonceStr = $this->createNonceStr();
         // 这里参数的顺序要按照 key 值 ASCII 码升序排序
         $string = "jsapi_ticket=$jsapiTicket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
@@ -45,7 +52,7 @@ class wmpJssdk extends wmpBasic{
 
     private function getJsApiTicket() {
     // jsapi_ticket 应该全局存储与更新，以下代码以写入到文件中做示例
-    $data = json_decode(comFiles::get($this->cacheFull));
+    $data = json_decode(comFiles::get($this->cacheFull)); //dump($data);
     if ($data->expire_time < $_SERVER["REQUEST_TIME"]) {
         $accessToken = $this->getAccessToken();
         // 如果是企业号用以下 URL 获取 ticket

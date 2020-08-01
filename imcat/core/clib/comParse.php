@@ -63,10 +63,10 @@ class comParse{
     }
 
     // xml(node) 
-    static function nodeParse($data,$cset='') {
+    static function nodeParse($data, $cset='', $opt=LIBXML_NOCDATA) {
         if(is_string($data)){
             $hfix = $cset ? "<?xml version='1.0' encoding='$cset'?>" : '';
-            $data = simplexml_load_string($hfix.$data); // obj(自动转:utf-8)
+            $data = simplexml_load_string($hfix.$data, null, $opt); // obj(自动转:utf-8)
         }
         $json = json_encode($data);
         $arr = json_decode($json, true);
