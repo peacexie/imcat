@@ -136,6 +136,9 @@ class basSql{
      * @return string $sqlstr 返回sql子字符串，包含 LIKE
      */
     static function fmtKeyWD($keyword, $multi=1){
+        if(is_array($keyword)){
+            die('Error:'.var_export($keyword,1));
+        }
         $keyword = addcslashes($keyword, '%_');
         $multi && $keyword = str_replace(array(' ','*'), '%', $keyword);
         return " LIKE '%$keyword%' ";

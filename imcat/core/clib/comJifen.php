@@ -45,7 +45,7 @@ class comJifen{
         }else{
             $mcfg[$key] = intval($mcfg[$key]);
         }
-        $auser = empty($mcfg['auser']) ? '' : $mcfg['auser'];
+        $auser = empty($mcfg['auser']) ? '' : basStr::filTitle($mcfg['auser']);
         // addcr
         $op = $act=='add' ? '+' : '-';
         $sql = "UPDATE ".$db->table('users_uacc',2)." SET ujifen=ujifen{$op}".$mcfg[$key]." WHERE uname='$auser'";

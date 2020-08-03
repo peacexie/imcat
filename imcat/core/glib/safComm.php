@@ -12,8 +12,11 @@ class safComm{ // extends safBase
     static function chkVImg(){
         safComm::urlStamp('check');
         $mod = req('mod'); $key = req('key'); 
-        $key = "{$mod}_{$key}";
+        $key = (is_string($mod)&&is_string($key)) ? "{$mod}_{$key}" : date('mdHis');
         $vcode = req($key);
+        if(is_array($vcode)){
+            safBase::Stop('Error:'.var_export($vcode,1));
+        }
         $re = safComm::formCVimg($mod, $vcode, 'check', 600);
         if(strstr($re,'-Error')){
             echo lang('plus.cajax_vcerr');
