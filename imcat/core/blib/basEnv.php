@@ -64,6 +64,7 @@ class basEnv{
         $run['sobarnav'] = ''; //dopBSo->Form()使用,搜索条上的导航
         $_cbase['tpl']['tplpend'] = ''; //默认'',除非人工改变
         $_cbase['tpl']['tplpext'] = ''; //默认'',除非人工改变
+        if(empty($_cbase['tpl']['vdir'])){ $_cbase['tpl']['vdir']=''; }
         //$_cbase['mkv'] = array();
         $run['headed'] = '';
         self::sysHome(); //,topDomain,IP过滤

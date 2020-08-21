@@ -1,5 +1,60 @@
 
 
+#v5.3# (2020.08)
+
+
+## Basic-Info
+
+* Basic-Info:
+ - version: v5.3
+ - Release date: 2020.08
+
+
+## ChangeLog
+
+* Add: Get the MAC address Interface
+  - Support WIN/LINUX
+  - Tips: The exec function is required
+
+* Add: Tools for ocr and qr-ocr
+  - https://imcat.txjia.com/dev.php/tools-qrorc
+
+* Improve: Exporting excel supports Chinese file-names
+
+* Improve: Tag cache
+
+* Fix: Detection HTTPS under nginx
+
+* Fix: The contents in CDATA is NULL while Parse xml-nodes.
+
+* Fix: Detect duplicate records when adding document information
+
+* Fix: SQL error in MySQL 5.7+ when create sub-table for `vlog_list`
+
+* Fix: URL error when deleting attachment-file at the File browsing page
+
+* Fix: Some garbled while cut the equal-width string
+
+* Fix: When adding a custom field, the field extension control cannot be selected
+
+* Fix: Map
+  - It can search pionts while pick map-piont
+  - Use the default values while pick map-piont
+  - Some js error under https
+* Fix: Some known bugs
+
+* 3rd-parts: 
+  - 拟增加 企业微信扩展
+  - 拟增加 Workerman ??? 
+
+* Got the `Software copyright` certificate for `贴心猫(imcat)通用网站系统`
+  - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
+
+* Publish: 微样式库 | WeCSSLib
+  - https://imcat.txjia.com/root/run/vapi.php/weys-mob
+  - https://imcat.txjia.com/root/run/vapi.php/weys-pc
+
+
 #v5.2# (2020.04)
 
 

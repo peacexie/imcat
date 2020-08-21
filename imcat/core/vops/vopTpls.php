@@ -80,7 +80,7 @@ class vopTpls{
     //获得默认模板
     static function def($type='adm'){
         global $_cbase;
-        $tpldir = empty($_cbase['tpl']['vdir']) ? '' : $_cbase['tpl']['vdir'];
+        $tpldir = $_cbase['tpl']['vdir'];
         if(!empty($tpldir)){
             return $tpldir;
         }else{

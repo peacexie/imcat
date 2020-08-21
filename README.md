@@ -1,12 +1,9 @@
 
 
 
-喜报 [《贴心猫(imcat)通用网站系统》软著获证](https://imcat.txjia.com/chn.php/news.2020-6a-89gf)
-
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心猫(imcat) V5.3(Alpha)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* 贴心猫(imcat) V5.3(Beta)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -54,7 +51,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.2 ChangeLog】 (2020-04)
+### 【v5.2 ChangeLog】 (2020-08)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
 
@@ -96,7 +93,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.2更新日志】(2020-04)
+### 【v5.2更新日志】(2020-08)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
 

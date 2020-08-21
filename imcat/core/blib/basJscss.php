@@ -174,7 +174,7 @@ class basJscss{
     static function imp($path,$base='',$mod=''){
         global $_cbase; 
         $fix6 = substr($path,0,6);
-        $tpldir = empty($_cbase['tpl']['vdir']) ? '' : $_cbase['tpl']['vdir'];
+        $tpldir = $_cbase['tpl']['vdir'];
         if(in_array($path,array('initCss','initJs','loadExtjs'))){
             $lang = empty($_cbase['sys']['lang']) ? '' : $_cbase['sys']['lang'];
             $skin = empty($_cbase['sys']['skin']) ? '' : $_cbase['sys']['skin'];
