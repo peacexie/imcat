@@ -178,14 +178,15 @@ class dopBSo{
     function Partbar(){
         global $_cbase;
         $mkv = $_cbase['mkv']['mkv'];
+        $stype = req('stype');
         $mod = $this->mod; $pbar = '';
         if($mod && in_array($mod,$_cbase['part']['mods'])){
             $part = basReq::val('part',$_cbase['part']['def']);
             $cls = $part=='(all)' ? "  class='cur'" : '';
-            $pbar = "<a href='?$mkv&mod=$mod&part=(all)' $cls>{$_cbase['part']['name']}(all)</a>";
+            $pbar = "<a href='?$mkv&mod=$mod&stype=$stype&part=(all)' $cls>{$_cbase['part']['name']}(all)</a>";
             foreach($_cbase['part']['tab'] as $kp=>$vt){
                 $cls = $kp==$part ? "  class='cur'" : '';
-                $pbar .= " | <a href='?$mkv&mod=$mod&part=$kp' $cls>$vt</a>";
+                $pbar .= " | <a href='?$mkv&mod=$mod&stype=$stype&part=$kp' $cls>$vt</a>";
             }
             if($part=='(nul)'){
                 $this->whrstr .= " AND part=''";

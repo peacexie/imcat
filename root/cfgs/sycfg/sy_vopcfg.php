@@ -16,13 +16,13 @@ $_sy_vopcfg['langs'] = array(
 );
 
 // 所有模板
-$_sy_vopcfg['tpl'] = array(
+$_sy_vopcfg['tpl'] = array(   
     'adm' => array(
         array('cn'=>'管理中心', 'en'=>'Admin'),
         '/root/run/adm.php',
     ),
     'comm' => array(
-        '官网版',
+        '演示版',
         '/chn.php',
         '?', // 伪静态配置：把`.php?` ->替换为 `/`
         //'.htm', // 伪静态后缀
@@ -30,13 +30,13 @@ $_sy_vopcfg['tpl'] = array(
         //array('/home.php','/home.htm'), //  建议为空, 伪静态首页替换；需要增加伪静态规则
     ), 
     'dev' => array(
-        '文档版',
+        '官网发布',
         '/dev.php',
         '?', // 伪静态配置：把`.php?` ->替换为 `/`
         //'.htm', // 伪静态后缀
     ), 
     'doc' => array(
-        'Manual', 
+        'Released', // Publish
         '/doc.php',
         '?', // 伪静态配置：把`.php?` ->替换为 `/`
         //'.htm', // 伪静态后缀

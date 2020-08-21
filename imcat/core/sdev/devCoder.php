@@ -73,15 +73,11 @@ class devCoder{
         global $rep1,$rep2;
         $fpreal = file_exists(EXP_ROOT."$fp-cdemo") ? "$fp-cdemo" : $fp;
         $data = comFiles::get(EXP_ROOT.$fpreal);
-        $data = preg_replace('/\/\*(.*?)\*\//is','',$data);
-        //$str = preg_replace('/\/\/(.*?)\ /is','',$str);
-        //$str = preg_replace('( [\s| ]* )'," ",$str);
-        $data = preg_replace("/([\s]{2,})/","\\1",$data);
-        $data = preg_replace("/<\!--.*?-->/si","",$data); //注释
+        $data = basStr::filNotes($data, 0);
         if(!$data) return [0, '', ''];
         if(basStr::isConv($data)){
             $data = comConvert::autoCSet($data, 'gb2312');
-        }
+        } 
         $arr = file(EXP_ROOT.$fp); // EXP_HLIGHT
         $line = count($arr);
         if(defined('EXP_HLIGHT') && strpos($fp, '.php')){
@@ -95,8 +91,8 @@ class devCoder{
         $data = (defined('EXP_NOHEAD') ? "\r\n\r\n" : $head).$data;
         // msg
         $sfp = str_replace($rep1, $rep2, $fp);
-        $sfp = strlen($sfp)>42 ? '...'.substr($sfp,-40) : $sfp; 
-        $spad = str_pad($sfp.' ',48,"-");
+        $sfp = strlen($sfp)>62 ? '...'.substr($sfp,-60) : $sfp; 
+        $spad = str_pad($sfp.' ',68,"-");
         $sline = str_pad($line,6," ");
         $kbs = round(filesize(EXP_ROOT.$fp)/1024,2);
         $skbs = str_pad($kbs, 6, " ").'KB';

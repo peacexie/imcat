@@ -100,7 +100,7 @@ class comHttp
     // ref/proxy
     static function curlProxy(&$ch, &$opt=array()){
         if(isset($opt['ref'])){ //模拟来源地址
-            curl_setopt($ch, CURLOPT_REFERER, $opt['ref']);
+            curl_setopt($ch, CURLOPT_REFERER, $opt['ref']); 
         }
         if(isset($opt['proxy'])){
             $proxy = $opt['proxy'];
@@ -202,15 +202,13 @@ class comHttp
     }
     // head/cookie: 'null', empty(), cookie
     static function _heads(&$opt=array(), &$data=array()){
-        if(empty($opt['head'])){
-            $header = self::_defHeader();
-        }elseif(is_array($opt['head'])){
-            $header = implode(PHP_EOL, $opt['head']);
-        }else{
-            $header = $opt['head']=='null' ? array() : $opt['head'];
+        $header = self::_defHeader($opt);
+        if(!empty($opt['head'])){
+            $uhead = is_array($opt['head']) ? $opt['head'] : implode(PHP_EOL, $opt['head']);
+            $header = array_merge($header, $uhead);
         }
         if(isset($opt['cookie'])){ // cookie设置
-            $header[] = "Cookie: ".$data['cookie'];
+            $header[] = "Cookie: ".$opt['cookie'];
         }
         $tag = array(
             'html'=>'text/html', // plain
@@ -224,13 +222,13 @@ class comHttp
                 if(is_array($data)) $data = json_encode($data);
                 $header['json'] = "Content-Length: ".strlen($data);
             }
-        }
+        } //dump($header);
         return $header;
     }
 
     //默认模拟的header头 
-    static function _defHeader($header=""){
-        if(!empty($header)) return $header;
+    static function _defHeader($ops=[]){
+        //if(!empty($header)) return $header;
         $defs = array(
             'HTTP_USER_AGENT' => 'comHttp@imcat.txjia.com',
         );
@@ -242,12 +240,14 @@ class comHttp
         );
         $header = array();
         foreach($cfgs as $ks=>$kn){
-            if(isset($_SERVER[$ks])){
+            if(isset($ops[$ks])){
+                $header[] = "$kn: ".$ops[$ks];
+            }elseif(isset($_SERVER[$ks])){
                 $header[] = "$kn: ".$_SERVER[$ks];
             }elseif(isset($defs[$ks])){
                 $header[] = "$kn: ".$defs[$ks];
             }
-        }
+        } //dump($header); echo "<hr>";
         // 乱码问题: 遇到了外部$_cbase中加入,这里添加
         // 'HTTP_ACCEPT_ENCODING' = 'Accept-Encoding: gzip, deflate';
         return $header;

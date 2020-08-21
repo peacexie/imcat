@@ -170,8 +170,8 @@ class basDebug{
         $info['run'] = 1000*($info['run'] - $_cbase['run']['timer']);
         if(is_array($msg)){
             $re = '';
-            foreach($msg as $k=>$v){ $v = (is_array($v)||is_object($v)) ? comParse::jsonEncode($v) : $v; $re .= "$k=$v; "; }
-            $msg = $re;
+            foreach($msg as $k=>$v){ $v = (is_array($v)||is_object($v)) ? comParse::jsonEncode($v) : $v; $re .= "$k=$v;\n"; }
+            $msg = $re; //dump($msg);
         }
         if($mod!='db'){
             $data = "\nact=$act|$path@".date('Y-m-d H:i:s',$_cbase['run']['stamp'])."<br>";

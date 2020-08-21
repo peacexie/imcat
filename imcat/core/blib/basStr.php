@@ -225,12 +225,18 @@ class basStr{
         return self::filTitle($xStr, $exa);
     }
     // *** 过滤空行和注释
-    static function filNotes($str){
-        $str = preg_replace('/\/\*(.*?)\*\//is','',$str);
-        $str = preg_replace('/\/\/(.*?)\ /is','',$str);
-        $str = preg_replace('( [\s| ]* )'," ",$str);
-        $str = preg_replace("/<\!--.*?-->/si","",$str); //注释
-        return $str; 
+    static function filNotes($data, $sin=1){
+        $data = str_replace(array("\r\n", "\r"), "\n", $data);
+        $data = preg_replace('/\/\*(.*?)\*\//s','',$data); // /*note*/ 多行注释
+        $data = preg_replace("/<\!--.*?-->/s","",$data);   // <!--note--> 多行注释
+        $data = preg_replace("/(#.*?\n){2,}/s","",$data);  // #note 多行注释
+        $data = preg_replace("/([\s]{2,})/","\\1",$data);
+        $data = preg_replace("/\n+/", "\n", $data);
+        if($sin){
+            $data = preg_replace('/\/\/(.*?)\ /s','',$data); // 单行注释
+            $data = preg_replace('( [\s| ]* )'," ",$data); // 连续空白
+        }
+        return $data;
     }
 
     // 去除多余的空格和换行符

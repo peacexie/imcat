@@ -67,6 +67,7 @@ class glbData{
         $burl = basReq::getUri(-1,'','page|prec|ptype|pkey');
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";
         $_cbase['page']['prec'] = $pg->prec;
+        $_cbase['page']['pcnt'] = intval($pg->pcnt);
         return [$res, $sql[0]];
     }
 
@@ -103,7 +104,7 @@ class glbData{
         $pid = self::$cfg['pid'];
         if(in_array($pid,array('docs','users','coms','advs'))){
             if(strstr($whr,"`show`='all'")){
-                $whr = str_replace([" AND `show`='all'","`show`='all'"],'',$whr);
+                $whr = str_replace([" AND `show`='all'","`show`='all' AND ","`show`='all'"],'',$whr);
             }elseif(!strstr($whr,'`show`=')){
                 $whr .= " AND (`show`='1')";
             }

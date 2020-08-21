@@ -3,6 +3,12 @@ namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 // 注册/登录:相关设置
 
+### 2020-624:新
+$_sy_user['login'] = array(
+    'modes' => '(wechat/wework/mcode/idpwd)',
+    'def' => '(wechat)',
+);
+
 ### 注册认证方式
 $_sy_user['regchecks'] = array(
     'idpwd' => '传统注册',

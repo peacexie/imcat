@@ -250,9 +250,13 @@ class basEnv{
     static function isHttps() {
         if(isset($_SERVER['HTTPS']) && ('1' == $_SERVER['HTTPS'] || 'on' == strtolower($_SERVER['HTTPS']))){
             return true; // 1:Apache, on:IIS
+        }elseif(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']==='https'){
+            return true; // 2:Nginx 
+        }elseif(!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!=='off') {
+            return true; // 3:? 
         }elseif(isset($_SERVER['SERVER_PORT']) && ('443' == $_SERVER['SERVER_PORT'] )) {
             return true;
-        } // HTTP_X_FORWARDED_PROTO='https'
+        }
         return false;
     }
     // 检查内网ip地址

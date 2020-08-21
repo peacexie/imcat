@@ -136,8 +136,12 @@ class extWework{
             }
             $data = comFiles::get(DIR_VARS.$fp);
         }
-        $uinfo = json_decode($data,1); 
-        if(empty($uinfo['avatar'])){ $uinfo['avatar']=PATH_STATIC.'/icons/basic/nouser2.png'; }
+        $uinfo = json_decode($data,1);
+        if(!empty($uinfo)){ // 默认头像,调试权限
+            if(empty($uinfo['avatar'])){ $uinfo['avatar']=PATH_STATIC.'/icons/basic/nouser2.png'; }
+            $wecfgs = read('wework', 'ex');
+            $uinfo['pdebug'] = $uinfo['userid'] && strstr($wecfgs['ucfg']['debug'],$uinfo['userid']);
+        }
         return $uinfo;
     }
     // 更新:单个用户数据 > 保存到缓存
@@ -168,6 +172,16 @@ class extWework{
         }
         $data = comFiles::get(DIR_VARS.$fp);
         return json_decode($data,1);
+    }
+    static function getDpuids($dpid=1){
+        $utab = self::getContacts('utab');
+        $res = [];
+        foreach($utab as $uk => $ur) {
+            if(in_array($dpid,$ur['department'])){
+                $res[$uk] = $ur['name'];
+            }
+        }
+        return $res;
     }
     // 更新:部门/用户列表数据 > 保存到缓存
     static function updContacts($act='deps'){ // deps,utab
@@ -220,6 +234,32 @@ class extWework{
         return $act;
     }
     // if(strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')||strpos($_SERVER['HTTP_USER_AGENT'], 'iPad')){
+
+    static function mapLink($pos=''){
+        $tmp = explode(',',$pos);
+        $title = '打卡位置';
+        $url = "https://map.qq.com/?type=marker&isopeninfowin=1&markertype=1&pointx={$tmp[0]}&pointy={$tmp[1]}&name=$title&zoomLevel=16";
+        return $url;
+    }
+
+    static function oauth2Link($redirect, $scope='', $state='imcat_wxwork_login'){
+        //$reuri = $iss.urlencode($iss.surl('user-login','',1));
+
+        $redirect = str_replace(array("?&","&","#"),array("?","%26","%23"),$redirect);
+        $scope || $scope = 'snsapi_base';
+
+        $CorpId = read('wework.CorpId', 'ex');
+        $urlBase = '';
+        $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$CorpId&redirect_uri=$redirect&response_type=code&scope=$scope&state=$state#wechat_redirect";
+        return $url;
+
+        //$redirect = urlencode($redirect);
+
+
+        $scope = in_array($scope,array('snsapi_base','snsapi_userinfo')) ? $scope : 'snsapi_base';
+        return sprintf($this->accodeUrl,$this->cfg['appid'],$redirect,$scope,$state);  
+
+    }
 
 }
 

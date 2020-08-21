@@ -308,7 +308,7 @@ return array(
     'oplogin_vform_err' => '表单认证错误！',
     'oplogin_logout' => '已经退出 管理员！',
     'oplogin_please_login' => '请登录 管理员!',
-    'oplogin_islogin' => '已登录`{val}`, `<a href="?logout">登出</a>`或直接进入`<a href="?">管理中心</a>`!',
+    'oplogin_islogin' => '已登录`{val}`, `<a href="'.surl('logout').'">登出</a>`或直接进入`<a href="'.surl('0').'">管理中心</a>`!',
     'tip_logim' => '提示: 点认证码输入框,显示认证码；',
     'adm_home' => '首页',
 

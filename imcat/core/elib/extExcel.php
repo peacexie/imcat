@@ -19,10 +19,10 @@ class extExcel{
     $data = array(data1,data2,...);
     b: ($head,$data,2);
     */
-    static function exWrite($head,$data,$tcnt=1,$encode='utf-8'){
+    static function exWrite($head,$data,$tcnt=1,$encode='utf-8',$pre='Excel_'){
         include_once DIR_VENDOR.'/Excel/writer.php'; 
         $xls = new \ExcelWriter($encode); //默认UTF-8编码
-        $xls->generateXMLHeader('Excel_'.date('Y-md-His'));  //excel文件名
+        $xls->generateXMLHeader($pre.date('Y-md-His'));  //excel文件名
         if($tcnt==1){
             $xls->setTable($head,$data);
         }else{
