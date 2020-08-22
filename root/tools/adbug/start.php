@@ -24,7 +24,10 @@ if(!empty($fmsg)){
 } //basDebug::log();
 
 $vcfg = vopTpls::etr1('tpl');
-unset($vcfg['base']);   
+$icons = array('umc'=>'user', 'comm'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book');
+foreach($vcfg as $vk => $vv) {
+    if(!isset($icons[$vk])){ unset($vcfg[$vk]); }
+}
 
 glbHtml::page($_cbase['sys_name'].' - '.lang('tools.start_title'),1);
 eimp('/~base/cssjs/cinfo.css');
