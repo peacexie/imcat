@@ -13,11 +13,11 @@
 ## ChangeLog
 
 * Add: Get the MAC address Interface
-  - Support WIN/LINUX
-  - Tips: The exec function is required
+ - Support WIN/LINUX
+ - Tips: The exec function is required
 
 * Add: Tools for ocr and qr-ocr
-  - https://imcat.txjia.com/dev.php/tools-qrorc
+ - https://imcat.txjia.com/dev.php/tools-qrorc
 
 * Improve: Exporting excel supports Chinese file-names
 
@@ -38,21 +38,21 @@
 * Fix: When adding a custom field, the field extension control cannot be selected
 
 * Fix: Map
-  - It can search pionts while pick map-piont
-  - Use the default values while pick map-piont
-  - Some js error under https
+ - It can search pionts while pick map-piont
+ - Use the default values while pick map-piont
+ - Some js error under https
 * Fix: Some known bugs
 
-* 3rd-parts: 
-  - 拟增加 企业微信扩展
-  - 拟增加 Workerman ??? 
+* 3rd-party expansion: 
+ - To be added wework(Enterprise wechat) extend
+ - To be added workerman extend
 
 * Got the `Software copyright` certificate for `贴心猫(imcat)通用网站系统`
-  - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
+ - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
 
-* Publish: 微样式库 | WeCSSLib
-  - https://imcat.txjia.com/root/run/vapi.php/weys-mob
-  - https://imcat.txjia.com/root/run/vapi.php/weys-pc
+* Publish: WeCSSLib(微样式库)
+ - https://imcat.txjia.com/root/run/vapi.php/weys-mob
+ - https://imcat.txjia.com/root/run/vapi.php/weys-pc
 
 
 #v5.2# (2020.04)

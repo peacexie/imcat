@@ -1,7 +1,7 @@
 
 DROP TABLE IF EXISTS `{pre}active_admin{ext}`;
 CREATE TABLE `{pre}active_admin{ext}` (
-  `sid` varchar(255) NOT NULL,
+  `sid` varchar(255) NOT NULL DEFAULT '',
   `uname` varchar(96) NOT NULL DEFAULT '',
   `grade` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
@@ -15,7 +15,7 @@ CREATE TABLE `{pre}active_admin{ext}` (
 
 DROP TABLE IF EXISTS `{pre}active_online{ext}`;
 CREATE TABLE `{pre}active_online{ext}` (
-  `sid` varchar(255) NOT NULL,
+  `sid` varchar(255) NOT NULL DEFAULT '',
   `uname` varchar(96) NOT NULL DEFAULT '',
   `grade` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
@@ -37,12 +37,12 @@ CREATE TABLE `{pre}active_session{ext}` (
 
 DROP TABLE IF EXISTS `{pre}advs_adblock{ext}`;
 CREATE TABLE `{pre}advs_adblock{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(24) NOT NULL DEFAULT '',
   `pmod` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
@@ -61,12 +61,12 @@ CREATE TABLE `{pre}advs_adblock{ext}` (
 
 DROP TABLE IF EXISTS `{pre}advs_adfavor{ext}`;
 CREATE TABLE `{pre}advs_adfavor{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(24) NOT NULL DEFAULT '',
   `pmod` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
@@ -85,12 +85,12 @@ CREATE TABLE `{pre}advs_adfavor{ext}` (
 
 DROP TABLE IF EXISTS `{pre}advs_adpic{ext}`;
 CREATE TABLE `{pre}advs_adpic{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(24) NOT NULL DEFAULT '',
   `pmod` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
@@ -109,12 +109,12 @@ CREATE TABLE `{pre}advs_adpic{ext}` (
 
 DROP TABLE IF EXISTS `{pre}advs_adpush{ext}`;
 CREATE TABLE `{pre}advs_adpush{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(24) NOT NULL DEFAULT '',
   `pmod` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` text NOT NULL,
   `detail` text,
@@ -133,12 +133,12 @@ CREATE TABLE `{pre}advs_adpush{ext}` (
 
 DROP TABLE IF EXISTS `{pre}advs_adtext{ext}`;
 CREATE TABLE `{pre}advs_adtext{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `pid` varchar(24) NOT NULL DEFAULT '',
   `pmod` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
@@ -159,8 +159,8 @@ DROP TABLE IF EXISTS `{pre}base_catalog{ext}`;
 CREATE TABLE `{pre}base_catalog{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
@@ -183,12 +183,12 @@ DROP TABLE IF EXISTS `{pre}base_fields{ext}`;
 CREATE TABLE `{pre}base_fields{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(24) NOT NULL,
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '1',
-  `etab` varchar(24) NOT NULL,
-  `type` varchar(12) NOT NULL,
-  `dbtype` varchar(12) NOT NULL,
+  `etab` varchar(24) NOT NULL DEFAULT '',
+  `type` varchar(12) NOT NULL DEFAULT '',
+  `dbtype` varchar(12) NOT NULL DEFAULT '',
   `dblen` int(11) NOT NULL,
   `dbdef` varchar(48) NOT NULL DEFAULT '',
   `vreg` varchar(120) NOT NULL DEFAULT '',
@@ -214,7 +214,7 @@ DROP TABLE IF EXISTS `{pre}base_grade{ext}`;
 CREATE TABLE `{pre}base_grade{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(24) NOT NULL,
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
   `defmu` varchar(12) NOT NULL DEFAULT '',
@@ -245,8 +245,8 @@ DROP TABLE IF EXISTS `{pre}base_menu{ext}`;
 CREATE TABLE `{pre}base_menu{ext}` (
   `kid` varchar(24) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `icon` varchar(48) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
@@ -267,7 +267,7 @@ DROP TABLE IF EXISTS `{pre}base_model{ext}`;
 CREATE TABLE `{pre}base_model{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `pid` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(24) NOT NULL,
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
   `etab` tinyint(4) NOT NULL DEFAULT '0',
@@ -292,15 +292,15 @@ DROP TABLE IF EXISTS `{pre}base_paras{ext}`;
 CREATE TABLE `{pre}base_paras{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(24) NOT NULL,
-  `key` varchar(24) NOT NULL,
+  `title` varchar(24) NOT NULL DEFAULT '',
+  `key` varchar(24) NOT NULL DEFAULT '',
   `val` text,
   `issys` tinyint(4) NOT NULL DEFAULT '0',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '1',
-  `etab` varchar(24) NOT NULL,
-  `type` varchar(12) NOT NULL,
-  `dbtype` varchar(12) NOT NULL,
+  `etab` varchar(24) NOT NULL DEFAULT '',
+  `type` varchar(12) NOT NULL DEFAULT '',
+  `dbtype` varchar(12) NOT NULL DEFAULT '',
   `dblen` int(11) NOT NULL,
   `dbdef` varchar(48) NOT NULL DEFAULT '',
   `vreg` varchar(120) NOT NULL DEFAULT '',
@@ -324,7 +324,7 @@ CREATE TABLE `{pre}base_paras{ext}` (
 
 DROP TABLE IF EXISTS `{pre}bext_cron{ext}`;
 CREATE TABLE `{pre}bext_cron{ext}` (
-  `kid` varchar(12) NOT NULL,
+  `kid` varchar(12) NOT NULL DEFAULT '',
   `kno` tinyint(4) NOT NULL DEFAULT '0',
   `title` varchar(24) NOT NULL DEFAULT '',
   `excycle` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1-120',
@@ -353,9 +353,9 @@ CREATE TABLE `{pre}bext_cron{ext}` (
 
 DROP TABLE IF EXISTS `{pre}bext_dbdict{ext}`;
 CREATE TABLE `{pre}bext_dbdict{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `tabid` varchar(24) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `tabid` varchar(24) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -367,15 +367,15 @@ CREATE TABLE `{pre}bext_dbdict{ext}` (
 
 DROP TABLE IF EXISTS `{pre}bext_fields{ext}`;
 CREATE TABLE `{pre}bext_fields{ext}` (
-  `kid` varchar(12) NOT NULL,
-  `model` varchar(12) NOT NULL,
-  `catid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `kid` varchar(12) NOT NULL DEFAULT '',
+  `model` varchar(12) NOT NULL DEFAULT '',
+  `catid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '1',
-  `etab` varchar(24) NOT NULL,
-  `type` varchar(12) NOT NULL,
-  `dbtype` varchar(12) NOT NULL,
+  `etab` varchar(24) NOT NULL DEFAULT '',
+  `type` varchar(12) NOT NULL DEFAULT '',
+  `dbtype` varchar(12) NOT NULL DEFAULT '',
   `dblen` int(11) NOT NULL,
   `dbdef` varchar(48) NOT NULL DEFAULT '',
   `vreg` varchar(120) NOT NULL DEFAULT '',
@@ -399,8 +399,8 @@ CREATE TABLE `{pre}bext_fields{ext}` (
 
 DROP TABLE IF EXISTS `{pre}bext_paras{ext}`;
 CREATE TABLE `{pre}bext_paras{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `pid` varchar(12) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `pid` varchar(12) NOT NULL DEFAULT '',
   `title` varchar(24) NOT NULL DEFAULT '',
   `detail` text,
   `numa` float NOT NULL DEFAULT '0',
@@ -424,7 +424,7 @@ CREATE TABLE `{pre}bext_relat{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `mod1` varchar(12) NOT NULL DEFAULT '',
   `mod2` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(24) NOT NULL,
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL DEFAULT '0',
   `cfgs` text,
@@ -441,12 +441,12 @@ CREATE TABLE `{pre}bext_relat{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_cocar{ext}`;
 CREATE TABLE `{pre}coms_cocar{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `ordid` varchar(255) NOT NULL DEFAULT '',
   `ordprice` float NOT NULL,
   `ordcnt` int(11) NOT NULL,
@@ -462,12 +462,12 @@ CREATE TABLE `{pre}coms_cocar{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_coitem{ext}`;
 CREATE TABLE `{pre}coms_coitem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
   `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `ordid` varchar(255) NOT NULL DEFAULT '',
   `ordprice` float NOT NULL,
   `ordcnt` int(11) NOT NULL,
@@ -483,12 +483,12 @@ CREATE TABLE `{pre}coms_coitem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_corder{ext}`;
 CREATE TABLE `{pre}coms_corder{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
   `title` varchar(24) DEFAULT NULL,
   `detail` text,
-  `mname` varchar(24) NOT NULL,
-  `mtel` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
   `memail` varchar(255) DEFAULT NULL,
   `miuid` varchar(120) DEFAULT NULL,
   `mweb` varchar(255) DEFAULT NULL,
@@ -497,8 +497,8 @@ CREATE TABLE `{pre}coms_corder{ext}` (
   `pid` varchar(24) NOT NULL DEFAULT '',
   `ordcnt` int(11) NOT NULL,
   `ordweight` float NOT NULL,
-  `ordpay` varchar(12) NOT NULL,
-  `ordship` varchar(12) NOT NULL,
+  `ordpay` varchar(12) NOT NULL DEFAULT '',
+  `ordship` varchar(12) NOT NULL DEFAULT '',
   `ordstat` varchar(12) NOT NULL DEFAULT '',
   `feeamount` float NOT NULL,
   `feeship` float NOT NULL,
@@ -518,13 +518,13 @@ CREATE TABLE `{pre}coms_corder{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_crem{ext}`;
 CREATE TABLE `{pre}coms_crem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -536,13 +536,13 @@ CREATE TABLE `{pre}coms_crem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_drem{ext}`;
 CREATE TABLE `{pre}coms_drem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -554,11 +554,11 @@ CREATE TABLE `{pre}coms_drem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_gbook{ext}`;
 CREATE TABLE `{pre}coms_gbook{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `leixing` varchar(12) NOT NULL DEFAULT 't124',
   `reply` text,
@@ -573,7 +573,7 @@ CREATE TABLE `{pre}coms_gbook{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_inread{ext}`;
 CREATE TABLE `{pre}coms_inread{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `pid` varchar(24) NOT NULL DEFAULT '',
@@ -589,12 +589,12 @@ CREATE TABLE `{pre}coms_inread{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_inrem{ext}`;
 CREATE TABLE `{pre}coms_inrem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -606,13 +606,13 @@ CREATE TABLE `{pre}coms_inrem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_kerem{ext}`;
 CREATE TABLE `{pre}coms_kerem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -624,9 +624,9 @@ CREATE TABLE `{pre}coms_kerem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_notea{ext}`;
 CREATE TABLE `{pre}coms_notea{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
   `mname` varchar(24) DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
@@ -643,13 +643,13 @@ CREATE TABLE `{pre}coms_notea{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_nrem{ext}`;
 CREATE TABLE `{pre}coms_nrem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -661,15 +661,15 @@ CREATE TABLE `{pre}coms_nrem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_qarep{ext}`;
 CREATE TABLE `{pre}coms_qarep{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `miuid` varchar(120) DEFAULT NULL,
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
-  `mdshow` varchar(12) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `mdshow` varchar(12) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -681,9 +681,9 @@ CREATE TABLE `{pre}coms_qarep{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_qatag{ext}`;
 CREATE TABLE `{pre}coms_qatag{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `hotcnt` int(11) NOT NULL,
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -697,13 +697,13 @@ CREATE TABLE `{pre}coms_qatag{ext}` (
 
 DROP TABLE IF EXISTS `{pre}coms_trem{ext}`;
 CREATE TABLE `{pre}coms_trem{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL,
+  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -715,38 +715,38 @@ CREATE TABLE `{pre}coms_trem{ext}` (
 
 DROP TABLE IF EXISTS `{pre}dext_about{ext}`;
 CREATE TABLE `{pre}dext_about{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
   `author` varchar(255) DEFAULT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `source` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}dext_cargo{ext}`;
 CREATE TABLE `{pre}dext_cargo{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
-  `author` varchar(255) NOT NULL,
-  `source` varchar(255) NOT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `rel_pic` text,
-  `pbat` varchar(255) NOT NULL,
+  `pbat` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}dext_demo{ext}`;
 CREATE TABLE `{pre}dext_demo{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
-  `author` varchar(255) NOT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `rel_doc` text,
   `rel_user` text,
   `rel_pic` text,
@@ -756,21 +756,21 @@ CREATE TABLE `{pre}dext_demo{ext}` (
 
 DROP TABLE IF EXISTS `{pre}dext_faqs{ext}`;
 CREATE TABLE `{pre}dext_faqs{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` text,
   `author` varchar(255) DEFAULT '',
-  `source` varchar(255) NOT NULL,
+  `source` varchar(255) NOT NULL DEFAULT '',
   `seo_key` varchar(255) DEFAULT NULL,
   `seo_des` varchar(255) DEFAULT NULL,
   `seo_tag` varchar(255) DEFAULT NULL,
   `rel_doc` text,
-  `mdshow` varchar(12) NOT NULL,
+  `mdshow` varchar(12) NOT NULL DEFAULT '',
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}dext_indoc{ext}`;
 CREATE TABLE `{pre}dext_indoc{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
   `author` varchar(255) NOT NULL DEFAULT '',
   `seo_key` varchar(255) NOT NULL DEFAULT '',
@@ -784,13 +784,13 @@ CREATE TABLE `{pre}dext_indoc{ext}` (
 
 DROP TABLE IF EXISTS `{pre}dext_keres{ext}`;
 CREATE TABLE `{pre}dext_keres{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
-  `author` varchar(255) NOT NULL,
-  `source` varchar(255) NOT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `ufile` varchar(255) DEFAULT NULL,
   `uvdo` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`did`)
@@ -798,26 +798,26 @@ CREATE TABLE `{pre}dext_keres{ext}` (
 
 DROP TABLE IF EXISTS `{pre}dext_news{ext}`;
 CREATE TABLE `{pre}dext_news{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
-  `author` varchar(255) NOT NULL,
-  `source` varchar(255) NOT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `rel_doc` text,
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}dext_topic{ext}`;
 CREATE TABLE `{pre}dext_topic{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
-  `author` varchar(255) NOT NULL,
-  `source` varchar(255) NOT NULL,
-  `seo_key` varchar(255) NOT NULL,
-  `seo_des` varchar(255) NOT NULL,
-  `seo_tag` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `ctext` text,
   `chtml` text,
   `cpics` text,
@@ -833,14 +833,14 @@ CREATE TABLE `{pre}dext_topic{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_about{ext}`;
 CREATE TABLE `{pre}docs_about{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
   `jump` varchar(255) DEFAULT NULL,
   `show` tinyint(4) NOT NULL DEFAULT '1',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `exp_i01` varchar(48) NOT NULL DEFAULT '',
   `exp_t01` text,
@@ -855,19 +855,19 @@ CREATE TABLE `{pre}docs_about{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_cargo{ext}`;
 CREATE TABLE `{pre}docs_cargo{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `hinfo` varchar(12) NOT NULL,
-  `brand` varchar(12) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `hinfo` varchar(12) NOT NULL DEFAULT '',
+  `brand` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL,
-  `guige` varchar(255) NOT NULL,
-  `xinghao` varchar(255) NOT NULL,
+  `guige` varchar(255) NOT NULL DEFAULT '',
+  `xinghao` varchar(255) NOT NULL DEFAULT '',
   `price` float NOT NULL DEFAULT '0',
   `ordcnt` int(11) NOT NULL,
   `exp_t01` varchar(255) NOT NULL DEFAULT '',
@@ -898,36 +898,36 @@ CREATE TABLE `{pre}docs_cargo{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_demo{ext}`;
 CREATE TABLE `{pre}docs_demo{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `jump` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `jump` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL,
   `mfrom` varchar(12) NOT NULL DEFAULT 'hn',
   `dend` int(11) DEFAULT NULL,
-  `demo_pass` varchar(255) NOT NULL,
-  `map` varchar(48) NOT NULL,
+  `demo_pass` varchar(255) NOT NULL DEFAULT '',
+  `map` varchar(48) NOT NULL DEFAULT '',
   `mname` varchar(24) NOT NULL DEFAULT 'tester',
   `rel_para` text NOT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(255) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `mweb` varchar(255) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(255) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `mweb` varchar(255) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
   `company` varchar(96) NOT NULL DEFAULT 'dgnet',
-  `mtitle` varchar(24) NOT NULL,
+  `mtitle` varchar(24) NOT NULL DEFAULT '',
   `mfron` varchar(255) NOT NULL DEFAULT 'gd,gx',
   `morg` varchar(12) NOT NULL DEFAULT 'c0735',
-  `mwork` varchar(12) NOT NULL,
-  `tphot` varchar(12) NOT NULL,
+  `mwork` varchar(12) NOT NULL DEFAULT '',
+  `tphot` varchar(12) NOT NULL DEFAULT '',
   `tpfields` varchar(255) NOT NULL DEFAULT 'qita',
-  `wdreg` varchar(12) NOT NULL,
-  `mche` varchar(255) NOT NULL,
+  `wdreg` varchar(12) NOT NULL DEFAULT '',
+  `mche` varchar(255) NOT NULL DEFAULT '',
   `set_compc` varchar(255) NOT NULL DEFAULT '',
   `exp_m01` varchar(12) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -941,15 +941,15 @@ CREATE TABLE `{pre}docs_demo{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_faqs{ext}`;
 CREATE TABLE `{pre}docs_faqs{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `hinfo` varchar(12) DEFAULT NULL,
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `jump` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `tags` varchar(24) DEFAULT NULL,
   `bugid` varchar(24) DEFAULT NULL,
@@ -965,19 +965,19 @@ CREATE TABLE `{pre}docs_faqs{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_indoc{ext}`;
 CREATE TABLE `{pre}docs_indoc{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `indep` varchar(12) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `indep` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
   `jump` varchar(255) DEFAULT NULL,
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `rdtip` varchar(12) NOT NULL DEFAULT 'v36',
-  `todep` varchar(255) NOT NULL,
+  `todep` varchar(255) NOT NULL DEFAULT '',
   `touser` text,
   `topub` varchar(12) NOT NULL DEFAULT 'isset',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -991,16 +991,16 @@ CREATE TABLE `{pre}docs_indoc{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_keres{ext}`;
 CREATE TABLE `{pre}docs_keres{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `course` varchar(12) NOT NULL,
-  `ygrade` varchar(12) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `jump` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `course` varchar(12) NOT NULL DEFAULT '',
+  `ygrade` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `jump` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1013,15 +1013,15 @@ CREATE TABLE `{pre}docs_keres{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_news{ext}`;
 CREATE TABLE `{pre}docs_news{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
   `hinfo` varchar(12) DEFAULT '',
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `jump` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `jump` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1034,14 +1034,14 @@ CREATE TABLE `{pre}docs_news{ext}` (
 
 DROP TABLE IF EXISTS `{pre}docs_topic{ext}`;
 CREATE TABLE `{pre}docs_topic{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1054,7 +1054,7 @@ CREATE TABLE `{pre}docs_topic{ext}` (
 
 DROP TABLE IF EXISTS `{pre}exd_crawl{ext}`;
 CREATE TABLE `{pre}exd_crawl{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `kno` tinyint(4) NOT NULL DEFAULT '0',
   `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '0',
@@ -1086,7 +1086,7 @@ CREATE TABLE `{pre}exd_crawl{ext}` (
 
 DROP TABLE IF EXISTS `{pre}exd_crlog{ext}`;
 CREATE TABLE `{pre}exd_crlog{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `kno` tinyint(4) NOT NULL DEFAULT '0',
   `sysid` varchar(24) NOT NULL DEFAULT '',
   `outurl` varchar(255) NOT NULL DEFAULT '',
@@ -1104,8 +1104,8 @@ CREATE TABLE `{pre}exd_crlog{ext}` (
 
 DROP TABLE IF EXISTS `{pre}exd_sfield{ext}`;
 CREATE TABLE `{pre}exd_sfield{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `model` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `model` varchar(24) NOT NULL DEFAULT '',
   `orgtg1` varchar(255) NOT NULL DEFAULT '',
   `orgtg2` varchar(255) NOT NULL DEFAULT '',
   `orgtg3` varchar(255) NOT NULL DEFAULT '',
@@ -1129,19 +1129,19 @@ CREATE TABLE `{pre}exd_sfield{ext}` (
 
 DROP TABLE IF EXISTS `{pre}exd_sptabs{ext}`;
 CREATE TABLE `{pre}exd_sptabs{ext}` (
-  `model` varchar(24) NOT NULL,
+  `model` varchar(24) NOT NULL DEFAULT '',
   `year` int(11) NOT NULL DEFAULT '0',
   `sptab` varchar(24) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}init_advs{ext}`;
 CREATE TABLE `{pre}init_advs{ext}` (
-  `aid` varchar(24) NOT NULL,
+  `aid` varchar(24) NOT NULL DEFAULT '',
   `ano` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `pid` varchar(24) NOT NULL,
-  `pmod` varchar(12) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `pmod` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   `url` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
@@ -1160,12 +1160,12 @@ CREATE TABLE `{pre}init_advs{ext}` (
 
 DROP TABLE IF EXISTS `{pre}init_coms{ext}`;
 CREATE TABLE `{pre}init_coms{ext}` (
-  `cid` varchar(24) NOT NULL,
+  `cid` varchar(24) NOT NULL DEFAULT '',
   `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mname` varchar(24) NOT NULL,
-  `mtel` varchar(24) NOT NULL,
+  `mname` varchar(24) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
   `memail` varchar(120) DEFAULT NULL,
   `miuid` varchar(120) DEFAULT NULL,
   `mweb` varchar(255) DEFAULT NULL,
@@ -1183,7 +1183,7 @@ CREATE TABLE `{pre}init_coms{ext}` (
 
 DROP TABLE IF EXISTS `{pre}init_dext{ext}`;
 CREATE TABLE `{pre}init_dext{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `detail` mediumtext,
   `author` varchar(255) NOT NULL DEFAULT '',
   `source` varchar(255) NOT NULL DEFAULT '',
@@ -1195,15 +1195,15 @@ CREATE TABLE `{pre}init_dext{ext}` (
 
 DROP TABLE IF EXISTS `{pre}init_docs{ext}`;
 CREATE TABLE `{pre}init_docs{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `jump` varchar(255) NOT NULL,
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `jump` varchar(255) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(12) NOT NULL,
+  `color` varchar(12) NOT NULL DEFAULT '',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1218,15 +1218,15 @@ DROP TABLE IF EXISTS `{pre}init_types{ext}`;
 CREATE TABLE `{pre}init_types{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1241,14 +1241,14 @@ CREATE TABLE `{pre}init_types{ext}` (
 DROP TABLE IF EXISTS `{pre}init_users{ext}`;
 CREATE TABLE `{pre}init_users{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `mfrom` varchar(96) NOT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(120) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mfrom` varchar(96) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(120) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '1',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1263,7 +1263,7 @@ CREATE TABLE `{pre}init_users{ext}` (
 
 DROP TABLE IF EXISTS `{pre}logs_dbsql{ext}`;
 CREATE TABLE `{pre}logs_dbsql{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `sql` text NOT NULL,
   `used` float NOT NULL DEFAULT '0',
   `page` varchar(255) NOT NULL DEFAULT '',
@@ -1277,8 +1277,8 @@ CREATE TABLE `{pre}logs_dbsql{ext}` (
 
 DROP TABLE IF EXISTS `{pre}logs_detmp{ext}`;
 CREATE TABLE `{pre}logs_detmp{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `act` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `act` varchar(24) NOT NULL DEFAULT '',
   `used` float NOT NULL DEFAULT '0',
   `page` varchar(255) NOT NULL DEFAULT '',
   `pref` varchar(255) NOT NULL DEFAULT '',
@@ -1292,8 +1292,8 @@ CREATE TABLE `{pre}logs_detmp{ext}` (
 
 DROP TABLE IF EXISTS `{pre}logs_jifen{ext}`;
 CREATE TABLE `{pre}logs_jifen{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `act` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `act` varchar(24) NOT NULL DEFAULT '',
   `uto` varchar(24) NOT NULL DEFAULT '',
   `jifen` int(11) NOT NULL DEFAULT '0',
   `jfop` tinyint(4) unsigned NOT NULL DEFAULT '0',
@@ -1308,8 +1308,8 @@ CREATE TABLE `{pre}logs_jifen{ext}` (
 
 DROP TABLE IF EXISTS `{pre}logs_syact{ext}`;
 CREATE TABLE `{pre}logs_syact{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `act` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `act` varchar(24) NOT NULL DEFAULT '',
   `used` float NOT NULL DEFAULT '0',
   `page` varchar(255) NOT NULL DEFAULT '',
   `pref` varchar(255) NOT NULL DEFAULT '',
@@ -1323,13 +1323,13 @@ CREATE TABLE `{pre}logs_syact{ext}` (
 
 DROP TABLE IF EXISTS `{pre}plus_emsend{ext}`;
 CREATE TABLE `{pre}plus_emsend{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `ufrom` varchar(24) NOT NULL,
-  `uto` varchar(24) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `ufrom` varchar(24) NOT NULL DEFAULT '',
+  `uto` varchar(24) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
   `pid` varchar(255) NOT NULL DEFAULT '',
-  `api` varchar(255) NOT NULL,
+  `api` varchar(255) NOT NULL DEFAULT '',
   `stat` tinyint(4) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1340,14 +1340,14 @@ CREATE TABLE `{pre}plus_emsend{ext}` (
 
 DROP TABLE IF EXISTS `{pre}plus_paylog{ext}`;
 CREATE TABLE `{pre}plus_paylog{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `ordid` varchar(24) NOT NULL DEFAULT '',
   `apino` varchar(255) NOT NULL DEFAULT '',
   `amount` decimal(10,2) NOT NULL,
-  `api` varchar(12) NOT NULL,
+  `api` varchar(12) NOT NULL DEFAULT '',
   `stat` varchar(24) NOT NULL DEFAULT '',
-  `ufrom` varchar(24) NOT NULL,
-  `uto` varchar(24) NOT NULL,
+  `ufrom` varchar(24) NOT NULL DEFAULT '',
+  `uto` varchar(24) NOT NULL DEFAULT '',
   `expar` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1359,8 +1359,8 @@ CREATE TABLE `{pre}plus_paylog{ext}` (
 
 DROP TABLE IF EXISTS `{pre}plus_smcharge{ext}`;
 CREATE TABLE `{pre}plus_smcharge{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `uto` varchar(120) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `uto` varchar(120) NOT NULL DEFAULT '',
   `amount` int(11) NOT NULL DEFAULT '0',
   `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1372,12 +1372,12 @@ CREATE TABLE `{pre}plus_smcharge{ext}` (
 
 DROP TABLE IF EXISTS `{pre}plus_smsend{ext}`;
 CREATE TABLE `{pre}plus_smsend{ext}` (
-  `kid` varchar(24) NOT NULL,
-  `tel` varchar(255) NOT NULL,
-  `msg` varchar(255) NOT NULL,
-  `res` varchar(96) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
+  `tel` varchar(255) NOT NULL DEFAULT '',
+  `msg` varchar(255) NOT NULL DEFAULT '',
+  `res` varchar(96) NOT NULL DEFAULT '',
   `pid` varchar(255) NOT NULL DEFAULT '',
-  `api` varchar(12) NOT NULL,
+  `api` varchar(12) NOT NULL DEFAULT '',
   `amount` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1388,14 +1388,14 @@ CREATE TABLE `{pre}plus_smsend{ext}` (
 
 DROP TABLE IF EXISTS `{pre}plus_sphinx{ext}`;
 CREATE TABLE `{pre}plus_sphinx{ext}` (
-  `modid` varchar(12) NOT NULL,
+  `modid` varchar(12) NOT NULL DEFAULT '',
   `maxid` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`modid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `{pre}token_limit{ext}`;
 CREATE TABLE `{pre}token_limit{ext}` (
-  `kid` varchar(255) NOT NULL,
+  `kid` varchar(255) NOT NULL DEFAULT '',
   `mod` varchar(12) NOT NULL DEFAULT '',
   `act` varchar(24) NOT NULL DEFAULT '',
   `etime` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1404,8 +1404,8 @@ CREATE TABLE `{pre}token_limit{ext}` (
 
 DROP TABLE IF EXISTS `{pre}token_rest{ext}`;
 CREATE TABLE `{pre}token_rest{ext}` (
-  `kid` varchar(12) NOT NULL,
-  `pass` varchar(255) NOT NULL,
+  `kid` varchar(12) NOT NULL DEFAULT '',
+  `pass` varchar(255) NOT NULL DEFAULT '',
   `token` varchar(255) NOT NULL DEFAULT '',
   `perm` text NOT NULL,
   `exp` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1437,7 +1437,7 @@ CREATE TABLE `{pre}token_turl{ext}` (
 
 DROP TABLE IF EXISTS `{pre}topic_form{ext}`;
 CREATE TABLE `{pre}topic_form{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `kno` int(11) NOT NULL DEFAULT '0',
   `mname` varchar(24) NOT NULL DEFAULT '',
   `mtel` varchar(24) NOT NULL DEFAULT '',
@@ -1452,10 +1452,10 @@ CREATE TABLE `{pre}topic_form{ext}` (
 
 DROP TABLE IF EXISTS `{pre}topic_items{ext}`;
 CREATE TABLE `{pre}topic_items{ext}` (
-  `did` varchar(24) NOT NULL,
+  `did` varchar(24) NOT NULL DEFAULT '',
   `dno` varchar(24) NOT NULL DEFAULT '',
   `part` varchar(24) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
   `jump` varchar(255) NOT NULL DEFAULT '',
   `detail` mediumtext,
@@ -1473,7 +1473,7 @@ CREATE TABLE `{pre}topic_items{ext}` (
 
 DROP TABLE IF EXISTS `{pre}topic_votes{ext}`;
 CREATE TABLE `{pre}topic_votes{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `kno` int(11) NOT NULL DEFAULT '0',
   `did` varchar(24) NOT NULL DEFAULT '',
   `dno` varchar(24) NOT NULL DEFAULT '',
@@ -1490,15 +1490,15 @@ DROP TABLE IF EXISTS `{pre}types_auto{ext}`;
 CREATE TABLE `{pre}types_auto{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1514,15 +1514,15 @@ DROP TABLE IF EXISTS `{pre}types_brand{ext}`;
 CREATE TABLE `{pre}types_brand{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `world` varchar(12) NOT NULL DEFAULT '',
   `bweb` varchar(255) DEFAULT '',
   `bpic` varchar(255) DEFAULT '',
@@ -1542,15 +1542,15 @@ DROP TABLE IF EXISTS `{pre}types_china{ext}`;
 CREATE TABLE `{pre}types_china{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL,
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL,
   `frame` tinyint(4) NOT NULL,
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `renkou` float NOT NULL DEFAULT '0',
   `mianji` float NOT NULL DEFAULT '0',
   `map` varchar(48) NOT NULL DEFAULT '',
@@ -1570,15 +1570,15 @@ DROP TABLE IF EXISTS `{pre}types_common{ext}`;
 CREATE TABLE `{pre}types_common{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1594,15 +1594,15 @@ DROP TABLE IF EXISTS `{pre}types_course{ext}`;
 CREATE TABLE `{pre}types_course{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1618,15 +1618,15 @@ DROP TABLE IF EXISTS `{pre}types_indep{ext}`;
 CREATE TABLE `{pre}types_indep{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `detail` text,
   `tel` varchar(15) DEFAULT NULL,
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1644,15 +1644,15 @@ DROP TABLE IF EXISTS `{pre}types_local{ext}`;
 CREATE TABLE `{pre}types_local{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL,
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL,
   `frame` tinyint(4) NOT NULL,
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1668,15 +1668,15 @@ DROP TABLE IF EXISTS `{pre}types_natcn{ext}`;
 CREATE TABLE `{pre}types_natcn{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `renkou` int(11) DEFAULT NULL,
   `detail` text,
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1694,15 +1694,15 @@ DROP TABLE IF EXISTS `{pre}types_world{ext}`;
 CREATE TABLE `{pre}types_world{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL,
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL,
   `frame` tinyint(4) NOT NULL,
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `telc` varchar(12) DEFAULT '',
   `timed` varchar(12) DEFAULT '',
   `ename` varchar(48) DEFAULT '',
@@ -1722,15 +1722,15 @@ DROP TABLE IF EXISTS `{pre}types_ygrade{ext}`;
 CREATE TABLE `{pre}types_ygrade{ext}` (
   `kid` varchar(12) NOT NULL DEFAULT '',
   `model` varchar(12) NOT NULL DEFAULT '',
-  `pid` varchar(12) NOT NULL,
-  `title` varchar(24) NOT NULL,
+  `pid` varchar(12) NOT NULL DEFAULT '',
+  `title` varchar(24) NOT NULL DEFAULT '',
   `top` int(11) NOT NULL DEFAULT '888',
   `enable` tinyint(4) NOT NULL,
   `deep` tinyint(4) NOT NULL DEFAULT '1',
   `frame` tinyint(4) NOT NULL DEFAULT '0',
-  `char` varchar(1) NOT NULL,
+  `char` varchar(1) NOT NULL DEFAULT '',
   `cfgs` text NOT NULL,
-  `note` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1745,14 +1745,14 @@ CREATE TABLE `{pre}types_ygrade{ext}` (
 DROP TABLE IF EXISTS `{pre}users_adminer{ext}`;
 CREATE TABLE `{pre}users_adminer{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(120) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
-  `indep` varchar(12) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(120) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
+  `indep` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1767,15 +1767,15 @@ CREATE TABLE `{pre}users_adminer{ext}` (
 DROP TABLE IF EXISTS `{pre}users_company{ext}`;
 CREATE TABLE `{pre}users_company{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
   `company` varchar(96) NOT NULL DEFAULT '',
-  `hinfo` varchar(255) NOT NULL,
-  `mname` varchar(96) NOT NULL,
+  `hinfo` varchar(255) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
   `mfrom` varchar(96) NOT NULL DEFAULT '',
   `detail` text,
   `mpic` varchar(255) DEFAULT NULL,
-  `map` varchar(48) NOT NULL,
+  `map` varchar(48) NOT NULL DEFAULT '',
   `t400` varchar(24) NOT NULL DEFAULT '',
   `t800` varchar(24) NOT NULL DEFAULT '',
   `mtitle` varchar(24) DEFAULT NULL,
@@ -1799,23 +1799,23 @@ CREATE TABLE `{pre}users_company{ext}` (
 DROP TABLE IF EXISTS `{pre}users_govern{ext}`;
 CREATE TABLE `{pre}users_govern{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
-  `company` varchar(96) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `mfrom` varchar(96) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
+  `company` varchar(96) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mfrom` varchar(96) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `map` varchar(24) NOT NULL,
-  `t400` varchar(24) NOT NULL,
-  `t800` varchar(24) NOT NULL,
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `map` varchar(24) NOT NULL DEFAULT '',
+  `t400` varchar(24) NOT NULL DEFAULT '',
+  `t800` varchar(24) NOT NULL DEFAULT '',
   `mtitle` varchar(24) DEFAULT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(120) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `mweb` varchar(255) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
-  `hinfo` varchar(255) NOT NULL,
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(120) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `mweb` varchar(255) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
+  `hinfo` varchar(255) NOT NULL DEFAULT '',
   `ftype` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `click` int(11) NOT NULL DEFAULT '0',
@@ -1831,14 +1831,14 @@ CREATE TABLE `{pre}users_govern{ext}` (
 DROP TABLE IF EXISTS `{pre}users_inmem{ext}`;
 CREATE TABLE `{pre}users_inmem{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(120) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
-  `indep` varchar(12) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(120) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
+  `indep` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `click` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -1853,23 +1853,23 @@ CREATE TABLE `{pre}users_inmem{ext}` (
 DROP TABLE IF EXISTS `{pre}users_organize{ext}`;
 CREATE TABLE `{pre}users_organize{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `grade` varchar(12) NOT NULL,
-  `company` varchar(96) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `mfrom` varchar(96) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
+  `company` varchar(96) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mfrom` varchar(96) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
-  `mpic` varchar(255) NOT NULL,
-  `map` varchar(24) NOT NULL,
-  `t400` varchar(24) NOT NULL,
-  `t800` varchar(24) NOT NULL,
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `map` varchar(24) NOT NULL DEFAULT '',
+  `t400` varchar(24) NOT NULL DEFAULT '',
+  `t800` varchar(24) NOT NULL DEFAULT '',
   `mtitle` varchar(24) DEFAULT NULL,
-  `mtel` varchar(24) NOT NULL,
-  `memail` varchar(120) NOT NULL,
-  `miuid` varchar(120) NOT NULL,
-  `mweb` varchar(255) NOT NULL,
-  `maddr` varchar(120) NOT NULL,
-  `hinfo` varchar(255) NOT NULL,
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `memail` varchar(120) NOT NULL DEFAULT '',
+  `miuid` varchar(120) NOT NULL DEFAULT '',
+  `mweb` varchar(255) NOT NULL DEFAULT '',
+  `maddr` varchar(120) NOT NULL DEFAULT '',
+  `hinfo` varchar(255) NOT NULL DEFAULT '',
   `ftype` varchar(12) NOT NULL DEFAULT '',
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `click` int(11) NOT NULL DEFAULT '0',
@@ -1885,9 +1885,9 @@ CREATE TABLE `{pre}users_organize{ext}` (
 DROP TABLE IF EXISTS `{pre}users_person{ext}`;
 CREATE TABLE `{pre}users_person{ext}` (
   `uid` varchar(24) NOT NULL DEFAULT '',
-  `uname` varchar(24) NOT NULL,
-  `mname` varchar(96) NOT NULL,
-  `grade` varchar(12) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `grade` varchar(12) NOT NULL DEFAULT '',
   `mfrom` varchar(12) NOT NULL DEFAULT 'c0769',
   `mtel` varchar(24) NOT NULL DEFAULT '',
   `memail` varchar(120) NOT NULL DEFAULT '',
@@ -1906,11 +1906,11 @@ CREATE TABLE `{pre}users_person{ext}` (
 
 DROP TABLE IF EXISTS `{pre}users_uacc{ext}`;
 CREATE TABLE `{pre}users_uacc{ext}` (
-  `uid` varchar(24) NOT NULL,
+  `uid` varchar(24) NOT NULL DEFAULT '',
   `uno` int(11) NOT NULL DEFAULT '0',
-  `uname` varchar(24) NOT NULL,
-  `upass` varchar(120) NOT NULL,
-  `umods` varchar(12) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `upass` varchar(120) NOT NULL DEFAULT '',
+  `umods` varchar(12) NOT NULL DEFAULT '',
   `ujifen` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1923,9 +1923,9 @@ CREATE TABLE `{pre}users_uacc{ext}` (
 
 DROP TABLE IF EXISTS `{pre}users_uppt{ext}`;
 CREATE TABLE `{pre}users_uppt{ext}` (
-  `uname` varchar(24) NOT NULL,
-  `pptmod` varchar(12) NOT NULL,
-  `pptuid` varchar(96) NOT NULL,
+  `uname` varchar(24) NOT NULL DEFAULT '',
+  `pptmod` varchar(12) NOT NULL DEFAULT '',
+  `pptuid` varchar(96) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1938,12 +1938,12 @@ CREATE TABLE `{pre}users_uppt{ext}` (
 
 DROP TABLE IF EXISTS `{pre}wex_apps{ext}`;
 CREATE TABLE `{pre}wex_apps{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `type` varchar(24) NOT NULL COMMENT '(test,chking,dingyue,fuwu)',
   `enable` tinyint(1) NOT NULL DEFAULT '0',
-  `token` varchar(255) NOT NULL,
-  `appid` varchar(255) NOT NULL,
-  `appsecret` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL DEFAULT '',
+  `appid` varchar(255) NOT NULL DEFAULT '',
+  `appsecret` varchar(255) NOT NULL DEFAULT '',
   `qrcode` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
@@ -1957,7 +1957,7 @@ CREATE TABLE `{pre}wex_apps{ext}` (
 
 DROP TABLE IF EXISTS `{pre}wex_keyword{ext}`;
 CREATE TABLE `{pre}wex_keyword{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `keyword` varchar(255) DEFAULT '',
   `type` varchar(12) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
@@ -2008,7 +2008,7 @@ CREATE TABLE `{pre}wex_menu{ext}` (
 
 DROP TABLE IF EXISTS `{pre}wex_msgget{ext}`;
 CREATE TABLE `{pre}wex_msgget{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `type` varchar(12) NOT NULL DEFAULT '',
   `detail` text NOT NULL,
   `media_id` varchar(255) NOT NULL DEFAULT '',
@@ -2022,7 +2022,7 @@ CREATE TABLE `{pre}wex_msgget{ext}` (
 
 DROP TABLE IF EXISTS `{pre}wex_msgsend{ext}`;
 CREATE TABLE `{pre}wex_msgsend{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `type` varchar(12) NOT NULL DEFAULT '',
   `title` varchar(255) DEFAULT '',
   `detail` text NOT NULL,
@@ -2044,7 +2044,7 @@ CREATE TABLE `{pre}wex_msgsend{ext}` (
 
 DROP TABLE IF EXISTS `{pre}wex_qrcode{ext}`;
 CREATE TABLE `{pre}wex_qrcode{ext}` (
-  `sid` varchar(255) NOT NULL,
+  `sid` varchar(255) NOT NULL DEFAULT '',
   `openid` varchar(48) NOT NULL DEFAULT '',
   `smod` varchar(24) NOT NULL DEFAULT '',
   `stat` varchar(12) NOT NULL DEFAULT '',
@@ -2061,7 +2061,7 @@ CREATE TABLE `{pre}wex_qrcode{ext}` (
 
 DROP TABLE IF EXISTS `{pre}xtest_keyid{ext}`;
 CREATE TABLE `{pre}xtest_keyid{ext}` (
-  `kid` varchar(24) NOT NULL,
+  `kid` varchar(24) NOT NULL DEFAULT '',
   `kno` int(11) NOT NULL DEFAULT '0',
   `content` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) DEFAULT '',

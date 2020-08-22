@@ -14,7 +14,7 @@ class glbHtml{
     }
 
     // 页面结构
-    static function page($mod='',$ext='',$iex=''){
+    static function page($mod='',$ext='',$iex=''){ 
         global $_cbase; 
         if($mod=='body'){
             echo "</head><body$ext>\n";

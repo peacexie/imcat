@@ -15,12 +15,19 @@ class basDebug{
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
         $arr = array(); 
         foreach($trace as $k=>$row) {
-            $bf = basename($row['file']);
+            // ["function"]=> string(15) "imcat\{closure}"
+            $tab = ['file'=>'(none)', 'line'=>'-1', 'function'=>'', 'class'=>'', 'type'=>'' ];
+            foreach($tab as $kt=>$vd) {
+                $$kt = empty($row[$kt]) ? $vd : $row[$kt];
+            }
+            $class = $class ? "$class{$type}" : "";
+            $func = $function ? "$class$function(), " : '';
+            $bf = basename($file);
             if(in_array($bf, array('helper.php','basDebug.php'))){
                 unset($trace[$k]);
-                continue;
-            } 
-            $arr[] = "line:{$row['line']} ".self::hidInfo($row['file']);
+                continue;  
+            }
+            $arr[] = ($lev<2?'':$func)."line:{$line}@".self::hidInfo($file);
         }
         echo "\r\n<pre style='line-height:150%;'>"; 
         if($flag) echo "[$flag]\r\n";
@@ -44,7 +51,7 @@ class basDebug{
             echo ' ('.$arr[0].')';
         }else{
             echo "\n".implode("\n",$arr);
-        }
+        } //echo "<pre>"; var_dump($arr);echo "</pre>"; 
         echo "</pre>\r\n";
     }
     // *** 变量列表

@@ -13,11 +13,11 @@
 ## 更新事项
 
 * 增加 获取机器网卡的物理(MAC)地址 接口
-  - 支持WIN/LINUX系统；
-  - 提示：不能禁用exec函数。
+ - 支持WIN/LINUX系统；
+ - 提示：不能禁用exec函数。
 
 * 增加 识别二维码/识别文字 工具
-  - https://imcat.txjia.com/dev.php/tools-qrorc
+ - https://imcat.txjia.com/dev.php/tools-qrorc
 
 * 增强：Excel导出支持中文名
 
@@ -38,21 +38,21 @@
 * 修复：添加自定义字段时，字段扩展控件不能选择问题
 
 * 修复：地图：
-  - 选择地图标点时地图可搜索；
-  - 地图坐标选择，如果为空值，则默认系统预设值；
-  - 地图坐标选择，在https下百度地图js报错。
+ - 选择地图标点时地图可搜索；
+ - 地图坐标选择，如果为空值，则默认系统预设值；
+ - 地图坐标选择，在https下百度地图js报错。
 * 修复：一些已知问题
 
 * 第三方接口：
-  - 拟增加 企业微信扩展
-  - 拟增加 Workerman ??? 
+ - 拟增加 企业微信扩展
+ - 拟增加 Workerman ??? 
 
 * 喜报：《贴心猫(imcat)通用网站系统》软著获证
-  - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
+ - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
 
 * 发布：微样式库 | WeCSSLib
-  - https://imcat.txjia.com/root/run/vapi.php/weys-mob
-  - https://imcat.txjia.com/root/run/vapi.php/weys-pc
+ - https://imcat.txjia.com/root/run/vapi.php/weys-mob
+ - https://imcat.txjia.com/root/run/vapi.php/weys-pc
 
 
 #v5.2# (2020.04)
