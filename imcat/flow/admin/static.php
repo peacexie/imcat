@@ -9,7 +9,10 @@ $cronurl = PATH_BASE."?ajax-cron";
 $view = req('view','list');
 $nmod = req('nmod','home'); 
 $vcfgs = vopTpls::etr1('tpl');
-unset($vcfgs['rest']); 
+$icons = array('umc'=>'user', 'comm'=>'laptop','mob'=>'mobile','dev'=>'book','doc'=>'book');
+foreach($vcfgs as $vk => $vv) {
+    if(!isset($icons[$vk])){ unset($vcfgs[$vk]); }
+}
 $stitle = lang('admin.st_admin').":($ntpl)".basLang::pick(0,$vcfgs[$ntpl][0]); 
 $msg = ''; 
 
