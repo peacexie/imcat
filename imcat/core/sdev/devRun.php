@@ -202,12 +202,13 @@ class devRun{
             $dir = $dconst['user']["DIR_$ukey"];
             $path = $dconst['user']["PATH_$ukey"];  //is_dir
             @$datad = comFiles::get($dir.$file);
-            @$datap = file_get_contents('http://'.$_SERVER['HTTP_HOST'].$path.$file);
+            $host = (basEnv::isHttps() ? 'https://' : 'http://').basEnv::serval('host');
+            $datap = comHttp::curlCrawl($host.$path.$file);
             if($datad && $datap && $datad==$datap){
                 $stat = FLAGYES;
             }else{
                 $stat = FLAGNO;    
-            } 
+            }
             if(in_array($key,$ca2)){
                 $fwrite = comFiles::canWrite($dir);
                 if(!$fwrite){

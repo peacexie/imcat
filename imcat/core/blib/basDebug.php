@@ -177,7 +177,10 @@ class basDebug{
         $info['run'] = 1000*($info['run'] - $_cbase['run']['timer']);
         if(is_array($msg)){
             $re = '';
-            foreach($msg as $k=>$v){ $v = (is_array($v)||is_object($v)) ? comParse::jsonEncode($v) : $v; $re .= "$k=$v;\n"; }
+            foreach($msg as $k=>$v){ 
+                $v = is_scalar($v) ? var_export($v,1) : comParse::jsonEncode($v);
+                $re .= "$k=$v;\n"; 
+            }
             $msg = $re; //dump($msg);
         }
         if($mod!='db'){
