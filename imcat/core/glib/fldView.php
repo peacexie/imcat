@@ -200,7 +200,7 @@ class fldView{
             $mpid = empty($sys_map) ? 'baidu' : $sys_map;
             $item = "$iinp<span class='fldicon fmap' onClick=\"mapPick('$mpid','fm[$k]');\">&nbsp;</span>";
         }elseif($extra=='repeat'){ //检查重名
-            $tmpa = explode(',',$cfg['cfgs'].','); // news.title
+            $tmpa = explode(',',(empty($cfg['cfgs'])?'':$cfg['cfgs']).','); // news.title
             $tmpa[0] || $tmpa[0] = 'news';
             $tmpa[1] || $tmpa[1] = 'title';
             $vk = glbDBExt::getTable($tmpa[0],'kid');

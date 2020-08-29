@@ -67,7 +67,7 @@ p.err{ font-size:18px; padding:10px; }
     padding: 1px; margin: 0px auto; border-bottom: 3px solid #999;
 }
 #adf_nav1>i:first-of-type{ display:none; }
-#adf_nav1 .toplogo { width:36px; height:36px; position:absolute;top:-5px; left:0px; padding:1px 0 0 2px; }
+#adf_nav1 .toplogo { width:32px; height:32px; position:absolute;top:-1px; left:0px; padding:0px 0 0 2px; }
 #adf_nav1>a { display:inline-block; padding:5px 6px 5px 6px; }
 #adf_nav1>a:hover { color:#F00; background:#FFF; border-radius:5px; }
 #adf_nav1 p a { border-right:0px; border-left:1px solid #999; }
