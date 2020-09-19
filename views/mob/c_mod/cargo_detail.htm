@@ -37,7 +37,7 @@ eimp('/layer/layer.js','vendui');
                 <p><i>规格:</i><b class='itm-text'>{=$guige} </b></p>
                 {if !empty($fexts)}
                 {loop $fexts $f $fc}
-                    <p><i>{=$fc[title]}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
+                    <p><i>{=$fc['title']}:</i><b>{sopt($this->vars[$f],$fc,tpl)} </b></p>
                 {/loop}
                 {/if}
                 <p><i>价格:</i><b class='itm-text'>{=$price}(元) 批量价</b></p>

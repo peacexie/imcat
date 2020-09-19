@@ -57,7 +57,7 @@ class dopBCv{
         return "<td class='tl'>$val{$exstr}</td>\n";
     }
     // 显示项-TKeys, winpop,select,cbox,
-    function TKeys($r,$td=1,$key,$len=12,$null='',$color=1){
+    function TKeys($r,$td=1,$key='',$len=12,$null='',$color=1){
         $val = $r[$key]; $vbak = $val; $vre = array();
         $fc = @$this->cfg['f'][$key]; //if($key=='areas') dump($fc);
         $vre = vopCell::optArray($fc,$val,$color);
@@ -111,7 +111,7 @@ class dopBCv{
         return "<td class='tc'>$val</td>\n";
     }
     // 显示项-Url
-    function Url($title,$td=1,$url,$twin='',$w=780,$h=560){ 
+    function Url($title,$td=1,$url='',$twin='',$w=780,$h=560){ 
         if($twin=='frame'){ 
             $url .= "&frame=1";
             $twin = " target='_blank'";

@@ -67,7 +67,7 @@
           {loop $_groups $k $v}{if $v['pid']=='users'}
           {php $cfgm = read($k); $cfgs = basElm::text2arr(@$cfgm['cfgs']); }
           {if !empty($cfgs['defgrade']) }
-          <option value="{=$k}" {if $k=='company'}selected{/if}>{=$v[title]}</option>
+          <option value="{=$k}" {if $k=='company'}selected{/if}>{=$v['title']}</option>
           {/if}{/if}{/loop}
         </select>
       </li>

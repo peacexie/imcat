@@ -70,7 +70,7 @@
             {loop $_groups $k $v}{if $v['pid']=='users'}
             {php $cfgm = read($k); $cfgs = basElm::text2arr(@$cfgm['cfgs']); }
             {if !empty($cfgs['defgrade']) }
-            <input name="mod" type="radio" value="{=$k}" onclick="setUserMod(this)" {if $k=='company'}checked{/if} />{=$v[title]} &nbsp; 
+            <input name="mod" type="radio" value="{=$k}" onclick="setUserMod(this)" {if $k=='company'}checked{/if} />{=$v['title']} &nbsp; 
             {/if}{/if}{/loop}
         </p>
         <div class="h03">&nbsp;</div>

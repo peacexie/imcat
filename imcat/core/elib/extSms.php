@@ -54,7 +54,7 @@ class extSms{
      * @param    string    $tid         模版id
      * @param    string    $sign        签名
      **/
-    function sendTid($mobiles, $tid='', $params, $cfgs=array()){ // , $sign='', $limit=1, $pid=''
+    function sendTid($mobiles, $tid='', $params=[], $cfgs=[]){ // , $sign='', $limit=1, $pid=''
         if(!method_exists($this->smsdo, 'sendTid')){
             return array(-1, "a:{sendTid}不支持！");
         }

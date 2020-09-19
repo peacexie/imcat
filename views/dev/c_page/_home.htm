@@ -24,7 +24,7 @@ $subs = tex('texBase')->docer('d_start/doc__home');
     <div class="home-tipn">
     <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{=$k}" class="{php if($i_v%$col==$col-1) echo "right";}">
-      <li class="title">{=$_cbase['sys_name']}：{=$v[title]}</li>
+      <li class="title">{=$_cbase['sys_name']}：{=$v['title']}</li>
       <?php echo str_replace(array("<ul>","</ul>"),array('',''),$v['detail']); ?>
     </ul>
     <?php $i_v++; } ?>

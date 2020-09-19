@@ -78,7 +78,7 @@ class vopCTag{
         preg_match("/\{tag:$tag0\=([^\n]{12,1200}\])\}/i", $data, $_m);
         // $_m[0] : {tag:flag2=[...]}
         // $_m[1] : [Type,re2][modid,demo][idfix,top]
-        if($p2>$p1 & $_m){ 
+        if($p2>$p1 & !empty($_m)){ 
             $pt = self::tagParas($_m[1]);
             $type = $pt[0]; $re = $pt[1]; $ps = $pt[2]; $dstr = $data;  
             $unv = in_array($type,array('One','jsOne')) ? '$'.$re : $varid;
