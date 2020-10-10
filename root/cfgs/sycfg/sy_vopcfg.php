@@ -24,7 +24,7 @@ $_sy_vopcfg['tpl'] = array(
     'comm' => array(
         '演示版',
         '/chn.php',
-        '?', // 伪静态配置：把`.php?` ->替换为 `/`
+        '?', // [1.屏蔽此行:为动态模式]; [2.设置为`?`:为Pathinfo模式]; [3.设置为`/`:为伪静态模式]; 参考:imcat.txjia.com/book.php/super-rewrite
         //'.htm', // 伪静态后缀
         //'0', // 建议不开启, 伪静态-替换第一层/chn/目录，需要调整伪静态规则
         //array('/home.php','/home.htm'), //  建议为空, 伪静态首页替换；需要增加伪静态规则
@@ -32,14 +32,12 @@ $_sy_vopcfg['tpl'] = array(
     'dev' => array(
         '官网发布',
         '/dev.php',
-        '?', // 伪静态配置：把`.php?` ->替换为 `/`
-        //'.htm', // 伪静态后缀
+        '?', // [1.屏蔽:为动态模式]; [2.设置为`?`:为Pathinfo模式]; [3.设置为`/`:为伪静态模式]
     ), 
     'doc' => array(
         'Released', // Publish
         '/doc.php',
-        '?', // 伪静态配置：把`.php?` ->替换为 `/`
-        //'.htm', // 伪静态后缀
+        '?', // [1.屏蔽:为动态模式]; [2.设置为`?`:为Pathinfo模式]; [3.设置为`/`:为伪静态模式]
     ), 
     'mob' => array(
         array('cn'=>'手机版', 'en'=>'Mobile'),  
