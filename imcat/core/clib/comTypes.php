@@ -62,7 +62,7 @@ class comTypes{
     }
     
     // getSubs,所有pid以下的子分类
-    static function getSubs($arr,$pid='0',$deep='12345',$ra=1){ 
+    static function getSubs($arr, $pid='0', $deep='12345', $ra=1){ 
         $start = '0'; $fdeep = '-1'; $a = array(); 
         if(empty($arr)) return empty($ra) ? 0 : $a;
         foreach($arr as $k=>$v){
@@ -91,18 +91,31 @@ class comTypes{
         return $a;
     }
     
-    // getLays(id对应的树形分类)
-    static function getLays($arr,$id,$a=array()){ 
-        $a[$id] = @$arr[$id]['title'];
-        $pid = @$arr[$id]['pid'];
+    // getLays(id对应的树形分类:键值下标)
+    static function getLays($arr, $id, $a=array()){
+        $a[$id] = empty($arr[$id]['title']) ? '' : $arr[$id]['title'];
+        $pid = empty($arr[$id]['pid']) ? '' : $arr[$id]['pid']; 
         if($pid){
-            return self::getLays($arr,$pid,$a);    
-        }else{ 
-            if(count($a)>1) $a = array_reverse($a,1);
+            return self::getLays($arr, $pid, $a);
+        }else{
+            if(count($a)>1) $a = array_reverse($a, true);
             return $a;
         }
     }
-    
+    // getLarr(id对应的树形分类:数组下标)
+    static function getLarr($arr, $id, $key='kid', $a=array()){
+        foreach($arr as $ik=>$iv) {
+            if($iv[$key]==$id){
+                $a[$id] = $iv['title'];
+                if(!empty($iv['pid'])){
+                    return self::getLarr($arr, $iv['pid'], $key, $a);
+                }
+            }
+        }
+        if(count($a)>1) $a = array_reverse($a, true);
+        return $a;
+    }
+
     // getLnks(arr对应的连接)
     static function getLnks($arr,$tpl="<a href='?key=[k]'>[v]</a>",$gap='»'){ 
         $str = '';

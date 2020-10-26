@@ -28,7 +28,8 @@ if($view=='glist'){
                     if($db->table($tabid)->where("model='$mod' AND pid='$id'")->find()){
                         $msg = lang('admin.cat_dsub',$id); 
                     }else{
-                        $db->table($tabid)->where("model='$mod' AND kid='$id'")->delete();     
+                        $db->table($tabid)->where("model='$mod' AND kid='$id'")->delete();
+                        #comStore::delFiles('icon', $id);
                         $msg = lang('flow.msg_del');
                     }
                 }elseif($fs_do=='show'){ 
@@ -101,12 +102,14 @@ if($view=='glist'){
             }else{
                 $msg = lang('flow.msg_add'); 
                 $fm['deep'] = empty($fm['pid']) ? 1 : @$cfg['i'][$pid]['deep']+1;
+                $fm['icon'] = comStore::moveTmpDir($fm['icon'], 'icon', $mod);
                 $db->table($tabid)->data(basReq::in($fm))->insert();
                 $id = $fm['kid'];    
             }
         }else{
             $msg = lang('flow.msg_upd'); 
             unset($fm['kid']);
+            $fm['icon'] = comStore::moveTmpDir($fm['icon'], 'icon', $mod);
             $db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$kid'")->update();
         } 
         glbCUpd::upd_model($mod);
@@ -121,6 +124,7 @@ if($view=='glist'){
         foreach($def as $k=>$v){
             if(!isset($fm[$k])) $fm[$k] = $v;
         }
+
         $ienable = " &nbsp; <input name='fm[enable]' type='hidden' value='0' /><input name='fm_enable' type='hidden' value='$fm[enable]' />";
         $ienable .= lang('flow.title_enable')."<input name='fm[enable]' type='checkbox' class='rdcb' value='1' ".($fm['enable']=='1' ? 'checked' : '')." />";
         $itop = " &nbsp; ".lang('flow.title_top')."<input name='fm[top]' type='text' value='$fm[top]' class='txt w40' maxlength='5' reg='n+i' tip='".lang('admin.fad_tip25num')."'  />";
@@ -135,6 +139,12 @@ if($view=='glist'){
         glbHtml::fmae_row(lang('flow.dops_itemname'),"<input name='fm[title]' type='text' value='$fm[title]' class='txt w150' maxlength='48' reg='tit:2-48' tip='".lang('admin.fad_tip21246')."'  />$itop");
         glbHtml::fmae_row(lang('flow.fl_cfgtab'),"<textarea name='fm[cfgs]' rows='8' cols='50' wrap='off'>$fm[cfgs]</textarea><br>".lang('flow.fl_cfgtip'));
         glbHtml::fmae_row(lang('flow.title_note'),"<textarea name='fm[note]' rows='6' cols='50' wrap='wrap'>$fm[note]</textarea>");
+        
+        $cfg = []; // 自定义增加字段 ['title'=>'缩略图','etab'=>'0','type'=>'file','enable'=>'1','vmax'=>'255','vreg'=>'nul:fix:image','vtip'=>'gif/jpg/jpeg/png格式.','dbtype'=>'varchar','dblen'=>'255','dbdef'=>NULL]
+        $val = empty($fm['icon']) ? '' : $fm['icon']; // ifile($k,$cfg,$val,$size,$vstr,$mod='',$kid='')
+        $filed = fldView::ifile('icon',$cfg,$val,'','','cargo');
+        glbHtml::fmae_row('图标',$filed);
+
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');
         glbHtml::fmt_end(array("mod|$mod","fm[model]|$mod","fm[pid]|$pid","kid|".(empty($kid) ? '_isadd_' : $kid)));
     }

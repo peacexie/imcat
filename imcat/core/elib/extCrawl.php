@@ -51,7 +51,7 @@ class extCrawl{
         }elseif(substr($src,0,1)=='/'){ // `/`开头 `$bext.$src` ?两个//可修改bext参数解决
             return $bext ? $bext.$src : ($binfo['scheme'].'://'.$binfo['host'].$src);
         }else{ // `./`, `../`, `file.ext` 开头(可能有多个)
-            $base = $binfo['scheme'].'://'.$binfo['host'];
+            $base = empty($binfo['scheme']) ? '' : $binfo['scheme'].'://'.$binfo['host'];
             if(isset($binfo['path'])){
                 $path = $binfo['path'].(substr($binfo['path'],-1)=='/' ? 'file.ext' : '');
             }else{

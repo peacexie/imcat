@@ -244,6 +244,18 @@ class basDebug{
         }
         return $str;
     }
+    // 隐藏:几层跟目录
+    static function hidRoots($path='', $lev=2){
+        $path = str_replace("\\", '/', $path);
+        if(substr($path,0,1)=='/'){ $path = substr($path,1); }
+        $iniArr = explode('/', $path);
+        $pos = $lev-1;
+        for($i=0;$i<$lev;$i++){
+            $pos += strlen($iniArr[$i]);
+        }
+        $path = '{...}'.substr($path,$pos);
+        return $path;
+    }
 
     # log
     static function log($act='', $sec='get,post,input'){

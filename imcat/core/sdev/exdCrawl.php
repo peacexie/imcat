@@ -203,7 +203,7 @@ class exdCrawl{
     static function dealFunc($data,$func,$funp=''){
         global $_cbase;
         $_cbase['crawl']['dealfunc'] = $data; 
-        if(method_exists('exaCrawl',$func)){ 
+        if(method_exists('\imcat\exaCrawl',$func)){ 
             $paras = explode(',',$funp.",,");
             return exaCrawl::$func($data,$paras[0],$paras[1],$paras[2]); 
         }elseif(function_exists($func)){

@@ -4,9 +4,18 @@ namespace imcat;
 // Element基本html元素类
 class basElm{    
 
+    // 选项的key-val相同
+    static function convOpts($arr){
+        $res = [];
+        foreach($arr as $k=>$v){ 
+            $res[$v] = $v;
+        }
+        return $res;
+    }
+
     // option,"upd|更新;del|删除;show|启用", 符号;\n表示一行, 符号|=分开键值
     //        "upd,更新;del|删除\nshow=启用"
-    static function setOption($cfgs,$val='',$title='-(def)-',$fpid=0){
+    static function setOption($cfgs, $val='', $title='-(def)-', $fpid=0){
         if(empty($cfgs)) return '';
         $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
         if(is_string($cfgs)){
@@ -110,34 +119,47 @@ class basElm{
             } // \imcat\class::func(pa,p2,..)
             $re = basClass::obj($cfile)->$method($pa[0],$pa[1],$pa[2],$pa[3],$pa[4],$pa[5]);
         }else{
-            $text = str_replace(array(' ',"\n","\r"),array('','&','&'),$text);
+            $text = self::linestrim($text);
+            $text = str_replace(array("\n","\r"),array('&','&'),$text);
             parse_str($text, $re);
         } 
         return $re;
     }
     // re: 0:直接返回, kv:key=val, text:字符串
-    static function line2arr($text,$re=0,$extf=''){ 
+    static function line2arr($text, $re=0, $extf='', $no=1){ 
         if(!empty($extf)){ $text = str_replace($extf,"\n",$text); }
-        $text = str_replace(array("\r\n","\r"),"\n",$text);
-        $text = str_replace(array("\n\n\n\n","\n\n\n","\n\n"),"\n",$text);
+        $text = self::linestrim($text);
         $text = explode("\n",$text);
         $text = array_filter($text);
         if(!$re) return $text; // 直接返回数组
         if($re=='text') return implode("\n", $text); // 返回文本
         // kv:key=val //  返回键值对数组
         $res = array(); 
-        foreach ($text as $row) {
-            $row = trim($row);
-            $pos = strpos($row,'=');
+        foreach ($text as $row){
+            $row = trim($row); if(empty($row)){ continue; }
+            $pos = strpos($row,'='); 
             if($pos>0){
-                $key = trim(substr($row,0,$pos));
-                $res[$key] = trim(substr($row,$pos+1));
+                $key = substr($row,0,$pos);
+                $res[$key] = substr($row,$pos+1);
             }else{
-                $key = preg_replace('/\s/', '', $row);
-                $res[$key] = $row;
+                $res[$no] = $row;
             }
+            $no++;
         } // print_r($res);
         return $res;
+    }
+    // 多行文本,删除每行前后空白; 删除=号前后空白
+    static function linestrim($text='', $trimeq=1){
+        $text = preg_replace_callback("/\s*([\n|\r])+\s*/i", function($itms){
+            return "\n"; // 去每行两边空白
+        }, trim($text));
+        if(!$trimeq){
+            return $text;
+        }
+        $text = preg_replace_callback("/\s*[\=]+\s*/i", function($itms){
+            return "="; // 去=号两边空白
+        }, $text);
+        return $text;
     }
 
     // 格式化标签

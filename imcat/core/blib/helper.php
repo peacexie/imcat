@@ -3,8 +3,10 @@
 
 use imcat\basDebug;
 use imcat\basLang;
+use imcat\basJscss;
 use imcat\basReq;
 use imcat\glbConfig;
+use imcat\glbData;
 use imcat\glbError;
 use imcat\usrBase;
 
@@ -14,10 +16,16 @@ use imcat\usrBase;
  * 核心类库:core中，尽量不要使用别名函数
  */
 
+// cdata(自定义资料)
+if(!function_exists('cdata')){ 
+function cdata($whr, $lmt=1, $ord='click-0'){
+    return glbData::cdata($whr, $lmt, $ord);
+} }
+
 // data(模型数据函数)
 if(!function_exists('data')){ 
 function data($mod, $whr='', $lmt='10', $ord='', $ops=[]){
-    return \imcat\glbData::get($mod, $whr, $lmt, $ord, $ops);
+    return glbData::get($mod, $whr, $lmt, $ord, $ops);
 } }
 
 // dump(格式化输出：变量，数组，Object)
@@ -145,7 +153,19 @@ function cmod($key=''){
 // echo-import:css,js
 if(!function_exists('eimp')){ 
 function eimp($type, $base='', $user=0){
-    echo \imcat\basJscss::imp($type, $base, $user);
+    echo basJscss::imp($type, $base, $user);
+} }
+
+// weys(微样式库调用)
+if(!function_exists('weys')){
+function weys($tab='jq', $excss='', $exjs='', $skin=''){
+    basJscss::weysInit($tab, $excss, $exjs, $skin);
+} }
+
+// 自定义分页样式
+if(!function_exists('pgbar')){
+function pgbar($cls1='', $cls2=''){
+    return \imcat\tagPage::pgbar($cls1, $cls2);
 } }
 
 // 一组handler函数 ---------------------------------

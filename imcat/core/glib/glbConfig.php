@@ -7,6 +7,25 @@ class glbConfig{
     public static $_CACHES_YS = array(); // 将读取过的缓存暂存可重用
     public static $_CACHES_VC = array(); // views/_confg/_* 缓存
 
+
+    // 获取关联信息: 
+    // part.key ('relpb','a0208');
+    static function relids($part, $key='', $rea=1){
+        $fp = DIR_DTMP."/modex/_$part.cfg_php";
+        $res = [];
+        if(is_file($fp)){
+            $data = file_get_contents($fp);
+            $res = json_decode($data, 1); 
+        } 
+        if($key){
+            $res = isset($res[$key]) ? $res[$key] : '';
+            if($rea){ $res = array_filter(explode(',', $res)); }
+            return $res;
+        }else{
+            return $res;
+        }
+    }
+
     // 获取自由参数: 
     // part.item.key ('parnav.group_a.title');
     static function parex($keys=''){
@@ -28,10 +47,11 @@ class glbConfig{
     static function read($file,$dir='modcm'){ 
         global $_cbase;
         $modid = $file;
-        if(in_array($dir,array('modcm','modex'))){ 
+        if(in_array($dir,array('modcm','modex'))){
+            if($dir=='modex'){ return self::tmpItems($file); }
             $key = "_$file";
-            $file = "/$dir/".$key.($dir=='modcm' ? ".cfg.php" : "cfg_php");
-            $base = DIR_DTMP;
+            $file = "/$dir/".$key.".cfg.php";
+            $base = DIR_DTMP; 
         }elseif(in_array($dir,array('_c'))){ //栏目配置
             $key = "_c_$file"; 
             $file = "/modex/$key.cfg.php";

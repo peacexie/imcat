@@ -41,6 +41,7 @@ class tagPage extends tagList{
             $burl = basReq::getUri(-1,'','page|prec|ptype|pkey');    
         }
         $_cbase['page']['bar'] = "<div class='pg_bar'>".$pg->show($idfirst,$idend,'',$burl)."</div>";
+        $_cbase['page']['cfg'] = $pg->cfg;
         $_cbase['page']['prec'] = $pg->prec; 
         $_cbase['page']['pcnt'] = $pg->pcnt;
     }
@@ -49,6 +50,16 @@ class tagPage extends tagList{
         //$this->debug('pgbar');
         $re = $this->re;
         return $this->getJoin($re);
+    }
+
+    # 自定义分页样式: 默认:pgbar('pg_bar', 'pagination')
+    static function pgbar($cls1='', $cls2=''){ 
+        global $_cbase; 
+        $pgbar = $_cbase['page']['bar'];
+        if($cls1){ $pgbar = str_replace('pg_bar', $cls1, $pgbar); }
+        if($cls2){ $pgbar = str_replace('pagination', $cls2, $pgbar); }
+        // 或者这里全部自定义返回...
+        return $pgbar;
     }
 
 }

@@ -25,6 +25,7 @@ class comPager{
     
     public  $rs = array();
     public  $bar = array();
+    public  $cfg = array();
     public  $sql = array('','');
 
     //function __destory(){  basDebug::bugLogs('page'); }
@@ -135,44 +136,57 @@ class comPager{
                 $v = str_replace($p0,$p1,$v);
             }
             $bar .= $v; 
-        } #echo $pbase;
-        if(!strpos($pbase,'?')){ 
-            $bar = str_replace("{url}&", "$pbase?", $bar);
-        }else{
-            $bar = str_replace('{url}', $pbase, $bar);
+        } //echo $pbase;
+        $bar = str_replace(["{url}&",'{url}'], [strpos($pbase,'?')>0?"$pbase&":"$pbase?","$pbase"], $bar);
+        foreach ($this->cfg as $ck => $cv) {
+            $this->cfg[$ck] = str_replace($p0, $p1, $this->cfg[$ck]);
+            $this->cfg[$ck] = str_replace(["{url}&",'{url}'], [strpos($pbase,'?')>0?"$pbase&":"$pbase?","$pbase"], $this->cfg[$ck]);
         }
-        return "<ul class='pagination'>$bar</ul>";
+        return "<ul class='pagination'>\n$bar</ul>\n";
     }
     
     function links(){
         $pcnt = intval($this->pcnt);
         $a = array(); 
         $sFirst = '<span class="fa fa-fast-backward"></span>';
-        $sPrev = '<span aria-hidden="true">&laquo;</span>';
-        $sNext = '<span aria-hidden="true">&raquo;</span>';
+        $sPrev = '<span class="">&laquo;</span>';
+        $sNext = '<span class="">&raquo;</span>';
         $sLast = '<span class="fa fa-fast-forward"></span>';
         
-        $a['pagno'] = "<li class='pg_pagno'><a class='disabled'>$this->page/$pcnt</a></li>";
-        $a['first'] = "<li><a class='disabled'>$sFirst</a></li>";
-        $a['prev']  = "<li><a class='disabled'>$sPrev</a></li>";
-        $a['pjump'] = "<li class='pg_pjump'><input type='text' id='pg_pjump' pjurl='{url}{pjump}' pjmax='{$pcnt}' value='$this->page' maxlength='9' class='form-control' onchange=\"goPjump(this);\"/></li>";
-        $a['next']  = "<li><a class='disabled'>$sNext</a></li>";
-        $a['last']  = "<li><a class='disabled'>$sLast</a></li>";
-        $a['total'] = "<li class='pg_total'><a class='disabled'>$this->prec</a></li>";
+        $a['pagno'] = "<li class='pg_pagno'><a class='disabled'>$this->page/$pcnt</a></li>\n";
+        $a['first'] = "<li><a class='disabled'>$sFirst</a></li>\n";
+        $a['prev']  = "<li><a class='disabled'>$sPrev</a></li>\n";
+        $a['pjump'] = "<li class='pg_pjump'><input type='text' id='pg_pjump' pjurl='{url}{pjump}' pjmax='{$pcnt}' value='$this->page' class='form-control' onchange='goPjump(this)'/></li>\n";
+        $a['next']  = "<li><a class='disabled'>$sNext</a></li>\n";
+        $a['last']  = "<li><a class='disabled'>$sLast</a></li>\n";
+        $a['total'] = "<li class='pg_total'><a class='disabled'>$this->prec</a></li>\n";
+
+        $cfg['page'] = $this->page; $cfg['pcnt'] = $pcnt;
+        $cfg['first'] = $cfg['prev'] = $cfg['next'] = $cfg['last'] = '#';
+
         if($pcnt<=1) return $a;
         if($this->page==$pcnt){
-            $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
-            $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";
+            $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>\n";
+            $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>\n";
+            $cfg['first'] = "{url}{pfirst}";
+            $cfg['prev'] = "{url}{pprev}";
         }elseif($this->page==1){
-            $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>";
-            $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>";
+            $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>\n";
+            $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>\n";
+            $cfg['next'] = "{url}{pnext}";
+            $cfg['last'] = "{url}{plast}";
         }else{
-            $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>";
-            $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>";
-            //now
-            $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>";
-            $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>";
+            $a['first'] = "<li><a href='{url}{pfirst}'>$sFirst</a></li>\n";
+            $a['prev']  = "<li><a href='{url}{pprev}' >$sPrev</a></li>\n";
+            $a['next']  = "<li><a href='{url}{pnext}' >$sNext</a></li>\n";
+            $a['last']  = "<li><a href='{url}{plast}' >$sLast</a></li>\n";
+            // 
+            $cfg['first'] = "{url}{pfirst}";
+            $cfg['prev'] = "{url}{pprev}";
+            $cfg['next'] = "{url}{pnext}";
+            $cfg['last'] = "{url}{plast}";
         }
+        $this->cfg = $cfg;
         return $a;
     }
 

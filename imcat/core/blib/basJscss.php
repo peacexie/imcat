@@ -4,10 +4,143 @@ namespace imcat;
 // basJscss类
 class basJscss{
 
+    // css基本导入
+    static function weysCss(){
+        $fp = DIR_VIEWS.'/base/assets/weys.css';
+        $data = comFiles::get($fp);
+        $skin = basReq::val('skin'); // TODO: skin ???
+        if(!empty($skin)){
+            $skstr = comFiles::get(DIR_VIEWS.'/base/assets/weskin.css');
+            $to = basElm::getPos($skstr, [":$skin{","}"]);
+            if(!empty($to)){
+                $from = basElm::getPos($data, ["/*skin-start*/","/*skin-end*/"]); 
+                $data = str_replace($from, "\n:root{".$to."}\n", $data);
+            } 
+        }
+        // comm, comm-mob?
+        $tpldir = basReq::val('tpldir');
+        if($tpldir){
+            $fp = "/$tpldir/assets/comm.css";
+            $dstr = comFiles::get(DIR_VIEWS.$fp);
+            $dstr = self::fixPath($dstr, PATH_VIEWS.$fp);
+            $data .= "\n\n/* --- [load file] $fp --- */\n$dstr";
+        }
+        // fix:dir
+        $ua = basEnv::serval('ua'); 
+        if(strpos($ua,'rv:11')>0 || strpos($ua,'MSIE')>0){ // IE11, MSIE 10, MSIE 9
+            $data = self::fixVar($data);
+        }
+        return $data;
+    }
+    // js基本配置
+    static function weysJs(){
+        global $_cbase;
+        // js-cfgs
+        echo "/* --- [js Config] @basJscss::weysCfgs --- */\n";
+        echo "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
+        echo "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
+        echo "\nif(typeof(_pbase)=='undefined'){_pbase={}} ";
+        echo "\n";
+        echo "\n_cbase.run.jsimp = ',';";
+        echo "\n";
+        echo "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
+        echo "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
+        echo "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
+        echo "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_VIEWS."';";
+        echo "\n_cbase.run.fbase = '".$_cbase['run']['fbase']."';";
+        echo "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
+        // js-files
+        $lang = basReq::val('lang', $_cbase['sys']['lang']); 
+        $fp = "/base/assets/jslib/jcore-$lang.js"; // 核心语言包
+        basJscss::inc($fp); 
+        $fp = "/base/assets/weys.js"; // weys框架js
+        basJscss::inc($fp); 
+        $tpldir = basReq::val('tpldir');
+        if($tpldir){
+            $fp = "/$tpldir/assets/comm-$lang.js"; // 当前模板语言包
+            basJscss::inc($fp);
+            $fp = "/$tpldir/assets/comm.js"; // 当前模板js
+            basJscss::inc($fp);
+        }
+    }
+    // weysTab
+    static function weysTab($tab, $fix=''){
+        $tpldir = basReq::val('tpldir');
+        $cfg = [
+            'ui' => [DIR_VENDUI, PATH_VENDUI],
+            'now' => [DIR_VIEWS."/$tpldir/assets", PATH_VIEWS."/$tpldir/assets"],
+        ];
+        preg_match_all("/(\w+)\:([\w\/\.\-]+)/i", $tab, $itms); // dump($itms);
+        foreach($itms[1] as $ino=>$ik) {
+            if(isset($cfg[$ik])){
+                $dir = $cfg[$ik][0];
+                $path = $cfg[$ik][1];
+            }else{
+                $dir = DIR_VIEWS."/$ik/assets";
+                $path = PATH_VIEWS."/$ik/assets";
+            }
+            $fp = "/{$itms[2][$ino]}".(strpos($itms[2][$ino],".$fix")?'':".$fix");
+            if($fix=='js'){
+                basJscss::inc($fp, $dir);
+            }else{
+                if(file_exists($dir.$fp)){
+                    $data = comFiles::get($dir.$fp);
+                    $data = self::fixPath($data, $path.$fp);
+                    echo "\n\n/* --- [load file] $fp --- */\n$data";
+                }
+            }
+        }
+    }
+    // tab = 'jq,zepto,jsbase,jsbext,fa,jstyle,mulnews,mulpic';
+    static function weysInit($tab='jq', $excss='', $exjs='', $skin=''){
+        global $_cbase;
+        if(strstr($tab,'jq')){ echo self::jscode('', PATH_VENDUI."/jquery/jquery-2.x.js")."\n"; }
+        if(strstr($tab,'zepto')){ echo self::jscode('', PATH_VENDUI."/jquery/zepto.js")."\n"; }
+        $lang = empty($_cbase['sys']['lang']) ? '' : $_cbase['sys']['lang'];
+        $mkv = empty($_cbase['mkv']['mkv']) ? '' : $_cbase['mkv']['mkv'];
+        $tpldir = $_cbase['tpl']['vdir'];
+        $ver = '&_r='.$_cbase['sys']['ver'];
+        if(strstr($tab,'jsbase')){ $exjs .= ';base:jslib/jsbase'; }
+        if(strstr($tab,'jsbext')){ $exjs .= ';base:jslib/jsbext'; }
+        if(strstr($tab,'fa')){ $excss .= ';ui:bootstrap/css/font-awesome.min'; }
+        if(strstr($tab,'jstyle')){ $excss .= ';base:cssjs/jstyle'; }
+        if(strstr($tab,'mulnews')){ $excss .= ';base:cssjs/mulnews'; }
+        if(strstr($tab,'mulpic')){ $excss .= ';base:cssjs/mulpic'; }
+        $css = "?ajax-weys&act=css&tpldir=$tpldir&skin=$skin&tab=initCss;$excss$ver";
+        $js = "?ajax-weys&act=js&tpldir=$tpldir&rf=$mkv&tab=initJs;$exjs$ver";
+        echo self::csscode('', PATH_BASE.$css)."\n";
+        echo self::jscode('', PATH_BASE.$js)."\n";
+    }
+    // 编译var(变量) - IE11下不兼容var
+    static function fixVar($data){
+        preg_match_all("/\-\-(\w+)\:([^\;]+)\;/i", $data, $itms);
+        foreach($itms[1] as $ino=>$ik) { // --key:{value}; -=> var(--key);
+            $data = str_replace("var(--$ik)", $itms[2][$ino], $data);
+        }
+        return $data;
+    }
+    // fix路径 - 写法多样,鸡肋？
+    static function fixPath($data, $rfp=''){
+        // background:url(./lunbo.png), src:url('../fonts/
+        preg_match_all("/\:url\(([\'\"]?)([\.\/]+)([\w\/\.\-]+)/i", $data, $itms); 
+        foreach($itms[2] as $ino=>$ik) { 
+            $bracket = $itms[1][$ino];
+            if(strstr($itms[3][$ino],'views/')){ // 兼容旧版...
+                //$data = str_replace("url($bracket{$ik}views/", "url($bracket".PATH_VIEWS."/", $data);
+            }else{
+                $pre = extCrawl::urlJoin($ik, $rfp);
+                $data = str_replace("url($bracket{$ik}", "url($bracket{$pre}", $data);
+            }
+        }
+        return $data;
+    }
+
     static function inc($fp, $base=''){ 
         $base = $base ? $base : DIR_VIEWS;
-        echo "\n/* --- [load file] /".basename($base)."$fp --- */\n";
-        require $base.$fp;
+        if(file_exists($base.$fp)){
+            echo "\n\n/* --- [load file] /".basename($base)."$fp --- */\n";
+            require $base.$fp;
+        }
     }
 
     // jspop,jq_base,bootstrap,layer
@@ -63,7 +196,7 @@ class basJscss{
                 if(strpos($imp,'(-lang)')){
                     $imp = str_replace('(-lang)',"-$lang",$imp);
                 }
-                $base = in_array(substr($imp,0,6),array('/plus/','/tools')) ? DIR_ROOT : DIR_VIEWS;
+                $base = in_array(substr($imp,0,6),array('/plus/','/tools')) ? DIR_ROOT : DIR_VIEWS; 
                 if(file_exists($base.$imp)) self::inc($imp, $base); 
             }
         }
@@ -167,7 +300,7 @@ class basJscss{
             self::inc('/base/assets/jslib/jspop.js');
         }
         $flang = "/base/assets/jslib/jcore-$lang.js";
-        if(file_exists(DIR_VIEWS.$flang)) self::inc($flang); 
+        self::inc($flang); 
     }
 
     // imp css/js

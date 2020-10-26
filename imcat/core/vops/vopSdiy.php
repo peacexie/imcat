@@ -29,14 +29,14 @@ class vopSdiy extends vopShow{
             empty($cex[2]) ? '?' : $cex[2]
         ];
         $this->tplCfg = $_cbase['tpl']; 
-        $mkv = $_cbase['mkv'];
-        if(isset($cfg[$mkv['q']])){
-            $tpl = "tpls/".$cfg[$mkv['q']];
-        }elseif(in_array($mkv['q'],$cfg)){
-            $tpl = "tpls/".$mkv['q'];
+        $mkv = $_cbase['mkv']; //dump($mkv);
+        if(isset($cfg[$mkv['mkv']])){
+            $tpl = "tpls/".$cfg[$mkv['mkv']];
+        }elseif(in_array($mkv['mkv'],$cfg)){
+            $tpl = "tpls/".$mkv['mkv'];
         }else{
             $tpl = "tpls/".$cfg['_tpl']; 
-        }
+        } //dump($tpl);
         $tpl = str_replace(['{mod}','{key}'] ,[$mkv['mod'],$mkv['key']], $tpl);
         $_cbase['run']['tplname'] = $tpl; //echo $tpl;
         $tplfull = vopComp::main($tpl);
@@ -56,17 +56,19 @@ class vopSdiy extends vopShow{
     // mkv初始化
     function imkv($cfg){
         global $_cbase;
-        $q = vopUrl::route($cfg['_mkv']);
-        if(strpos($q,'-')){
-            $tmp = explode('-', $q);
+        $q = vopUrl::route($cfg['_mkv']); 
+        $mkv = strpos($q,'&')>0 ? substr($q,0,strpos($q,'&')) : $q; 
+        if(strpos($mkv,'-')){
+            $tmp = explode('-', $mkv);
             if(count($tmp)>2 || empty($tmp[1])){ 
-                vopShow::msg("b:[$q]:".basLang::show('vop_parerr')); 
+                vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr')); 
             }
             $re = ['mod'=>$tmp[0], 'key'=>$tmp[1]];
         }else{
-            $re = ['mod'=>$q, 'key'=>''];
+            $re = ['mod'=>$mkv, 'key'=>''];
         }
-        $re['q'] = $re['mkv'] = $q;
+        $re['q'] = $q;
+        $re['mkv'] = $mkv;
         $_cbase['mkv'] = $re;
     }
     

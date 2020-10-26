@@ -4,8 +4,38 @@ namespace imcat;
 // admPFunc
 class admPFunc{    
 
+    static function umodKid($tabid, $def='5120'){ 
+        $dbr = db()->table($tabid)->order('kid DESC')->find(); 
+        if(empty($dbr)){
+            $kid = $def;
+        }else{
+            $kid = is_numeric($dbr['kid']) ? intval($dbr['kid'])+1 : substr(basKeyid::kidAuto(12),2,10);
+        }
+        return $kid;
+    }
+
+    static function safeFils($vars, $ucfg, $type='exts'){ 
+        if($type=='dops'){ return $vars; } // exts,dops
+        $fields = ['cfgs','note','gtab'];
+        $deelA = ['admin-catalog-cfgs','admin-menus-cfgs'];
+        foreach($vars as $key => $val) {
+            if($key!='fm' || !is_array($val)){ continue; }
+            foreach ($vars[$key] as $fk => $fv) {
+                if(!in_array($fk,$fields)){ continue; }
+                if(in_array("$ucfg[mkv]-$fk",$deelA)){ 
+                    $fv = str_replace(['<'], ['&lt;'], $fv);
+                    $fv = str_replace(['&lt;a','&lt;/a'], ['<a','</a'], $fv); 
+                }else{
+                    $fv = str_replace(["'",'"','<'], ['','','&lt;'], $fv);
+                }
+                $vars[$key][$fk] = $fv; //echo "($fv)";
+            }
+        } #dump($vars['fm']);
+        return $vars;
+    }
+
     // fileNav
-    static function modList($pmods,$type='relmod'){    
+    static function modList($pmods,$type='relmod'){
         $_groups = glbConfig::read('groups'); 
         $a = array(); $pid = '';
         foreach($pmods as $pmod){

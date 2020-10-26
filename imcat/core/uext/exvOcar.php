@@ -163,7 +163,7 @@ class exvOcar{
         }
         $res['btndel'] = ($flag=='Admin' || $stamp<30*36) ? '' : " disabled style='color:#999'";
         $res['btnedit'] = ($flag=='Admin' || $stamp<30*36) ? '' : " disabled style='color:#999'";    
-        $res['btnpay'] = (in_array($ordstat,array('new','doing'))) ? '' : " disabled style='color:#999'";
+        $res['btnpay'] = (in_array($ordstat,array('new','New','doing'))) ? '' : " disabled style='color:#999'";
         return $res;
     }
     
@@ -177,7 +177,7 @@ class exvOcar{
         $fm['title'] = $fm['cid'] = $kar[0]; 
         //$fm['title'] = '-';
         $fm['cno'] = $kar[1];
-        $fm['ordstat'] = 'New';
+        $fm['ordstat'] = 'new';
         // bing-user : memail,mpass
         /*
         $fu = basReq::arr('fu');

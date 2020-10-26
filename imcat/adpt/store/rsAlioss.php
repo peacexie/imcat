@@ -10,7 +10,7 @@ class rsAlioss{
 
     public $oss         = null;
     
-    // 移动:从临时文件夹移动(上传)到ftp远程
+    // 移动:从临时文件夹移动(上传)到oss远程
     function moveUres($org, $obj, $fmove=1){
         $obj_dir = $this->dir_ures.'/'.$obj;
         if($fmove){

@@ -258,12 +258,12 @@ class devTopic{
         return $arr;
     }
 
-    static function moveTmpFiles($row=array(),$mod,$kid){
+    static function moveTmpFiles($row=[], $mod='topic', $kid=''){
         $arr = array('mpic','detail');
         foreach ($arr as $key) {
             if(!empty($row[$key])){
                 $ext = $key=='mpic' ? 0 : (strstr($row[$key],'<') ? 1 : 0); 
-                $row[$key] = comStore::moveTmpDir($row[$key], $mod,$kid, $ext);
+                $row[$key] = comStore::moveTmpDir($row[$key], $mod, $kid, $ext);
             }
         }
         return $row;

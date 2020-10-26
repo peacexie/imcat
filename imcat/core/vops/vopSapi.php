@@ -1,7 +1,7 @@
 <?php
 namespace imcat;
 
-class vopSapi{
+class vopSapi extends vopApi{
  
     public $ver = 'nver'; // 
     public $cfgs = []; // mkv,mksp,mod,key,func
@@ -82,40 +82,12 @@ class vopSapi{
         glbHtml::dallow($alp);
     }
 
-    // 通用方法
-
-    static function view($data=array()){
-        if(empty($data['ercode'])){
-            $data['ercode'] = 0;
-            $data['ermsg'] = '';            
-        }
-        $re = req('re', 'json');
-        $debug = req('debug');
-        if($debug){
-            dump($data);
-        }else{
-            $re = req('re', 'json');
-            $res = basOut::fmt($data, $re);
-            die($res);
-        }
-    }
-
-    static function error($msg='', $code=0){
-        $msg = empty($msg) ? 'Error Message!' : $msg;
-        $res['ercode'] = $code ? $code : 1;
-        $res['ermsg'] = $msg;
-        $res['ref'] = basEnv::serval('ref', '?');
-        glbHtml::httpStatus(404);
-        self::view($res);
-        die('');
-    }
-
-    static function verr($msg='', $code=0){
-        self::error($msg, $code);
-    }
-
 }
 
 /*
+    function test1Act(){
+        $res['test'] = 'asisv:test1';
+        return $this->view($res);
+    }
 
 */

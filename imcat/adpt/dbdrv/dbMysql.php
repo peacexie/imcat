@@ -132,10 +132,15 @@ class dbMysql {
     function error($message='', $sql='') {
         $sql = basDebug::hidInfo($sql,1);
         $sql = str_replace(array('<','>'),array('&lt;','&gt;'),$sql);
-        $func = @$this->config['efunc'];
+        $func = empty($this->config['efunc']) ? '' : $this->config['efunc']; 
         if($func) return $func($message);
-        $error = (($this->link) ? mysql_error($this->link) : mysql_error());
-        $errorno = intval(($this->link) ? mysql_errno($this->link) : mysql_errno());
+        if($this->link){
+            $error = mysql_error($this->link);
+            $errorno = intval(($this->link) ? mysql_errno($this->link) : mysql_errno($this->link));
+        }else{
+            $error = mysql_connect_error();
+            $errorno = 0;
+        }
         $msga = array(
             'Resume' => $message,
             'Detail' => $error,

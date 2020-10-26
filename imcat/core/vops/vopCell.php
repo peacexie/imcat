@@ -135,16 +135,21 @@ class vopCell{
         return $val;
     }
     //Html (??Link,Cut)
-    static function cHtml($val, $paras=''){
+    static function cHtml($val, $paras='', $vtype='ptxt'){
         global $_cbase;
         $paras || $paras = ',root-media-page,';
         // 通用处理
         if(strpos($paras,'root')) $val = vopUrl::root($val);
         if(strpos($paras,'media')) $val = self::cMedia($val);
         #if(strpos($paras,'page')) $val = self::cPage($val);
-        // 处理mob特性
-        $mobtpl = strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir']);
-        if($mobtpl && basEnv::isMobile()) $val = basStr::filHWap($val);
+        if($vtype=='cmd'){ // comm-markdown
+            $val = extMkdown::pdorg($val);
+        }elseif($vtype=='ctxt'){
+            $val = nl2br(trim($val)); //self::cText($val, 0, 1, );
+        }else{ // html:处理mob特性
+            $mobtpl = strpos($_cbase['tpl']['mob_tpls'],$_cbase['tpl']['vdir']);
+            if($mobtpl && basEnv::isMobile()) $val = basStr::filHWap($val);
+        } 
         return $val;
     }
     

@@ -117,7 +117,8 @@ class comConvert{
             $res .= chr(ord($str[$i]) ^ ($box[($box[$a] + $box[$j]) % 256]));
         }
         if($de){
-            if(substr($res,0,10)==0 || substr($res,0,10)-$_SERVER["REQUEST_TIME"]>0) {
+            $ires = intval(substr($res,0,10));
+            if($ires==0 || $ires-$_SERVER["REQUEST_TIME"]>0) {
                 return @unserialize(substr($res,26));
             }
             return '';

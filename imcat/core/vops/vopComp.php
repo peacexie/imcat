@@ -129,7 +129,7 @@ class vopComp{
         */
         $stpl = preg_replace ( "/\{\=([A-Z_][A-Z0-9_]*)\}/s", "<?=\\1;?>", $stpl );    
         /*将变量{$name}替换成<?=$name; ?>,可以是数组 $name, $re1['title'], $this->mod, $this->ucfg['q'] */
-        $stpl = preg_replace("/{\=(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?=@$1; ?>", $stpl);
+        $stpl = preg_replace("/{\=(\\$[a-zA-Z_][\w\.\"\'\[\]\$\-\>\:]{0,64})}/i", "<?=@$1; ?>", $stpl); # ?下几个版本移除`@`
         /* php标签 ----------------------------
             {= date('Y-m-d'); }     =>  <?=date('Y-m-d'); ?>
             {php phpinfo();}    =>    <?php phpinfo(); ?>

@@ -112,7 +112,7 @@ class glbDBExt{
     - by Peace(XieYS) 2012-07-23
     ***************************************************************************** */
     // tab, $tmp(md2,md3,mdh),max,
-    static function dbAutID($tab='utest_keyid',$tmp='max',$n=0){
+    static function dbAutID($tab='utest_keyid', $tmp='max', $n=0, $xTime=''){
         $db = glbDBObj::dbObj();
         $tabf = $db->pre.$tab.$db->ext;
         $tfix = substr($tab,0,5); 
@@ -123,7 +123,7 @@ class glbDBExt{
             $tkey = 'kid'; 
             $tno = 'kno';
         }
-        $ktmp = basKeyid::kidTemp($tmp); // 2018-mdh-1233
+        $ktmp = basKeyid::kidTemp($tmp, $xTime); // 2018-mdh-1233
         if($tmp=='max'){
             $kno = 1;
             $kid = $ktmp;
@@ -136,7 +136,7 @@ class glbDBExt{
         }
         if($n) $kid = substr($kid,0,strlen($kid)-2).basKeyid::kidRand('k',2);
         $rec = $db->table($tab)->where("$tkey='$kid'")->find();
-        if($rec) return self::dbAutID($tab,$tmp,$n+1);
+        if($rec) return self::dbAutID($tab, $tmp, $n+1, $xTime);
         else return array($kid,$kno);
     }
 
@@ -146,7 +146,7 @@ class glbDBExt{
         $fd = $pid ? ($mcfg['i'][$pid]['deep']+1) : '1';
         $tid = ''; // 找:本pid下最大的一个ID
         if(!empty($mcfg['i'])){ foreach($mcfg['i'] as $ik=>$iv) {
-            if($iv['pid']==$pid && preg_match("/^[a-z]{1,6}\d{2,10}$/i",$ik)){
+            if(!empty($iv['pid']) && $iv['pid']==$pid && preg_match("/^[a-z]{1,6}\d{2,10}$/i",$ik)){
                 $tid = max($tid,$ik);
             }
         } }

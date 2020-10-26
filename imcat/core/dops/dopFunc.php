@@ -140,7 +140,7 @@ class dopFunc{
     // 翻页条
     static function pageBar($pgbar,$opbar,$opname='(null)',$jsFunc='fmSelAll'){
         $opname = $opname=='(null)' ? basLang::show('flow.dops_exeu') : $opname;
-        $pgbar = "<div class='pg_bar'>$pgbar</div>";
+        $pgbar = "\n<div class='pg_bar'>\n$pgbar</div>\n";
         $opstr = strpos($opbar,'</option>') ? "<select name='fs_do' class='form-control w100'>$opbar</select>" : $opbar;
         $opbar = "<div class='w180 tc right flgOpbar'>$opstr";
         $opbar .= ($opname ? "<input name='bsend' class='btn' type='submit' value='$opname' />" : '')."</div>";

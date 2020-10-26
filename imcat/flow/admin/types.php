@@ -36,7 +36,7 @@ if($view=='glist'){
                         $msg = lang('admin.cat_dsub',$id); 
                     }else{
                         $db->table($tabid)->where("model='$mod' AND kid='$id'")->delete(); 
-                        comStore::delFiles($mod,$id);
+                        #comStore::delFiles('icon', $id);
                         $msg = lang('flow.msg_del');    
                     }
                 }elseif($fs_do=='show'){ 
@@ -123,7 +123,7 @@ if($view=='glist'){
                 $fm[$k] = dopFunc::svFmtval($f,$mod,$k,$v);
                 if(isset($mcfg['f'][$k]) && in_array($mcfg['f'][$k]['type'],array('file','text'))){
                     $ishtml = $mcfg['f'][$k]['type']=='text';
-                    $fm[$k] = comStore::moveTmpDir($fm[$k],$mod,$kid,$ishtml);
+                    $fm[$k] = comStore::moveTmpDir($fm[$k], 'icon', $mod, $ishtml);
                 }
             } }
             $db->table($tabid)->data(basReq::in($fm))->where("model='$mod' AND kid='$kid'")->update();

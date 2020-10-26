@@ -127,10 +127,15 @@ class dbMysqli {
     function error($message='', $sql='') { 
         $sql = basDebug::hidInfo($sql,1);
         $sql = str_replace(array('<','>'),array('&lt;','&gt;'),$sql);
-        $func = @$this->config['efunc'];
-        if($func) return $func($message);
-        @$error = (($this->link) ? mysqli_error($this->link) : mysqli_connect_error());
-        @$errorno = intval(($this->link) ? mysqli_errno($this->link) : mysqli_errno());
+        $func = empty($this->config['efunc']) ? '' : $this->config['efunc']; 
+        if($func) return $func($message); 
+        if($this->link){
+            $error = mysqli_error($this->link);
+            $errorno = intval(($this->link) ? mysqli_errno($this->link) : mysqli_errno($this->link));
+        }else{
+            $error = mysqli_connect_error();
+            $errorno = 0;
+        }
         $msga = array(
             'Resume' => $message,
             'Detail' => $error,

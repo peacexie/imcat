@@ -5,6 +5,18 @@ class fldEdit{
 
     //public $cfg = array();
     
+    // 多级下拉(多选未处理?)
+    static function layTypes($mod, $key, $val='', $deep=5, $title='-(def)-'){
+        $title = $title=='-(def)-' ? basLang::show('core.opt_first') : $title;
+        $res = "\n<input name='fm[$key]' id='fm_{$key}_' type='hidden' value='$val' />";
+        for($i=1;$i<=$deep;$i++){
+            $acts = $i>1 ? "style='display:none'" : '';
+            $acts .= " onChange=\"laySet('$mod','$key',this)\" ";
+            $res .= "\n<select id='lt_{$key}_{$i}' $acts><option value=''>-$title-</option></select>";
+        } // layTypes.init(mod,key)
+        return $res;
+    }
+
     static function fmOrgData($tabid,$mod,$kid,$fm=array(),$catid=''){ 
         $_groups = glbConfig::read('groups'); 
         if(empty($kid)){
@@ -107,7 +119,8 @@ class fldEdit{
             $opts = "<option value='text'>text.(64K)".basLang::show('admin.fe_text')."</option>";
             $opts .= "<option value='mediumtext' ".($this->cfg['dbtype']=='mediumtext' ? 'selected' : '').">medium.(16M)".basLang::show('admin.fe_ltext')."</option>";
             $opts .= "<option value='file' ".($this->cfg['dbtype']=='file' ? 'selected' : '').">file.(1G)".basLang::show('admin.fe_svfile')."</option>";
-            $flen = 0;            
+            $opts .= "<option value='varchar' ".($this->cfg['dbtype']=='varchar' ? 'selected' : '').">varchar.".basLang::show('admin.fe_vchar')."</option>";
+            $flen = $this->cfg['dbtype']=='varchar' ? $this->cfg['dblen'] : 0;            
         }else{
             $oldval = empty($this->cfg['dbtype']) ? 'varchar' : $this->cfg['dbtype'];
             $dbtypes = fldCfgs::dbTypes(); 

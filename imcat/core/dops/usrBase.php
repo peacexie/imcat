@@ -176,6 +176,7 @@ class usrBase{
         $db = glbDBObj::dbObj(); 
         $_groups = glbConfig::read('groups');
         $ubase = $db->table('users_uacc')->where("uname='$uname'")->find(); 
+        if(empty($ubase)) return array(); 
         $umod = $ubase['umods']; $dbpass = $ubase['upass'];
         if(!isset($_groups[$umod])) return array(); 
         if($upass && $dbpass!==comConvert::sysPass($uname,$upass,$umod)) return array();

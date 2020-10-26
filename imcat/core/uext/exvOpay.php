@@ -43,7 +43,7 @@ class exvOpay{
         $cfg = self::getCfgs();
         if(!isset($cfg[$order['ordpay']]['method'])) return array();
         $method = 'fmarr'.$cfg[$order['ordpay']]['method'];
-        if(!method_exists('exvOpay',$method)) return array();
+        if(!method_exists('\imcat\exvOpay',$method)) return array();
         $arr = self::$method($order,$cfg[$order['ordpay']]);
         return $arr;
     }

@@ -90,8 +90,17 @@ class glbCUpd{
     }
     static function upd_afield($cfg){     
         $f = glbConfig::read('fadvs','sy');
-        if($cfg['etab']==1){ unset($f['detail'],$f['mpic']); }
-        if($cfg['etab']==2){ unset($f['detail']); }
+        if($cfg['etab']==1){ 
+            unset($f['mpic']); 
+            $f['detail']['title'] = 'cfgs'; 
+            $f['detail']['vreg'] = '';
+            $f['detail']['vtip'] = '';
+        }
+        if($cfg['etab']==2){ 
+            $f['detail']['title'] = 'cfgs'; 
+            $f['detail']['vreg'] = '';
+            $f['detail']['vtip'] = '';
+        }
         if($cfg['etab']==3){ 
             unset($f['mpic']); 
             $f['url']['title'] = basLang::show('core.cupd_reprule');
@@ -148,7 +157,7 @@ class glbCUpd{
         }else{
             $tabid = (empty($cfg['etab']) ? 'types_common' : 'types_'.$mod);
         }
-        $filed = 'kid,pid,title,deep,frame,`char`,cfgs';
+        $filed = 'kid,pid,title,deep,frame,`char`,cfgs'.($tabid=='base_catalog'?',icon':'');
         if(strstr($cfg['cfgs'],'cats=')){
             preg_match("/cats=(\w+)/",$cfg['cfgs'],$pts);
             $mod = $pts[1]; //dump($cfg); die('xx');

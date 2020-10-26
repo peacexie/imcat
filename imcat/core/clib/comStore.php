@@ -123,7 +123,11 @@ class comStore{
         $chkdir && comFiles::chkDirs($repath, 'ures', 0);
         return ($isfull ? DIR_URES.'/' : '').$repath;
     }
-    
+    // 移动一个字段的附件文件：comStore::moveTmpField($dop,'exp_t01');
+    static function moveTmpField(&$dop, $fid, $mod, $did, $ishtml=0){
+        if(!strpos($dop->fmv[$fid],'/@udoc/')){ return; }
+        $dop->fmv[$fid] = self::moveTmpDir($dop->fmv[$fid], $mod, $did, $ishtml); 
+    }
     //移动临时文件夹中的文件
     static function moveTmpDir($str, $mod, $kid, $ishtml=0){
         self::storeCfgs();
@@ -260,6 +264,27 @@ class comStore{
             }
         }
         return $str;
+    }
+    // 图片集转数组: dext:del-ext
+    static function picsTab($exfile, $dext=1){ 
+        if(empty($exfile)) return [];
+        $exfile = str_replace(["\r\n","\r"], ["\n","\n"], $exfile);
+        $exfps = explode("\n", self::revSaveDir($exfile));
+        if(empty($exfps)){ return []; }
+        foreach($exfps as $fk=>$fp){
+            $fp = trim(str_replace(';','',$fp));
+            if(!$fp){ unset($exfps[$fk]); }
+            else{ 
+                $msg = '';
+                if(strpos($fp,',')>0){ 
+                    $tmp = explode(',', $fp);
+                    $fp = $tmp[0]; //substr($fp,0,strpos($fp,',')); 
+                    $msg = $tmp[1];
+                }
+                $exfps[$fk] = $dext ? $fp : [$fp,$msg]; 
+            }
+        }
+        return $exfps;
     }
     
 }

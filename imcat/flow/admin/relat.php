@@ -15,6 +15,9 @@ foreach($list as $r){
     }
 } 
 
+$rcss = ".table>tbody>tr>td.relwrap{word-break:break-all;white-space:normal;}";
+echo basJscss::csscode($rcss);
+
 if($view=='upd'){
     $re = glbCUpd::upd_relat();
     print_r($re);    
@@ -146,7 +149,7 @@ if($view=='upd'){
         echo "<tr>\n";
         echo "<td class='tc w80'>$k</td>";
         echo "<td class='tl w200'><input type='text' value='$fix$v[title]' class='txt w180' /></td>";
-        echo "<td class='tl'>$str</td>";
+        echo "<td class='tl relwrap'>$str</td>";
         echo "<td class='tc w40'><a href='?$mkv&view=sone&parts=$parts&kid=$k' onclick='return winOpen(this,\"[".$v['title']."]".lang('admin.rel_relx')."[".@$_groups[$cfg['mod2']]['title']."]\");'>".lang('flow.title_set')."</a></td>\n";
         echo "</tr>";    
     }
@@ -198,7 +201,9 @@ if($view=='upd'){
                     //if($j>4) { $s3 .= "<br>"; $j=1; }
                     $s3 .= "\n\n<label><input type='checkbox' class='rdcb' name='fm[rel][]' id='fm_rel_$k3' value='$k3' $def>$v3[title]</label>";
                 } }
-                glbHtml::fmae_row($s2,$s3);
+                echo "<tr><td class='tc'>$s2</td>\n";
+                echo "<td class='tl relwrap'>$s3</td></tr>\n";
+                //glbHtml::fmae_row($s2,$s3);
             } }
         }
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),$wcell);

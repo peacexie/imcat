@@ -44,6 +44,8 @@ class vopMedia{
                 $sres = self::$exMethed($sres,$val,$mtype,$porg);
             }
         }
+        $playid = $mtype.'_'.substr(basKeyid::kidAuto(),2,12);
+        $sres = str_replace(array('{$id}'), $playid, $sres); 
         return $sres;
     }
 
@@ -53,8 +55,6 @@ class vopMedia{
 
     static function _exCkvdo($sres,$val,$mtype,$porg){
         global $_cbase;
-        $playid = $mtype.'_'.substr(basStr::filKey($val),-12,12).'_'.basKeyid::kidRand('f',8);
-        $sres = str_replace(array('{$id}'),$playid,$sres); 
         $ckjs = '/ckplayer/ckplayer/ckplayer.js';
         if($mtype=='ckvdo' && !strstr($_cbase['run']['jsimp'],$ckjs)){
             $_cbase['run']['jsimp'] .= "$ckjs,"; 

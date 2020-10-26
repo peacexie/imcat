@@ -68,20 +68,25 @@ class dopBase{
     }
         
     // 列表-记录集
-    function getRecs($key='',$psize=0){
+    function getRecs($key='', $psize=0, $uorder=''){
         global $_cbase; 
         $psize || $psize = $_cbase['show']['apsize'];
         $key = $key ? $key : $this->_kid; 
         $sfrom = "* FROM `".$this->db->pre.$this->tbid.$this->db->ext."` ";  
-        $where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5)); 
-        $opkey = $this->order===$key ? 1 : 0;
-        if(strpos($this->order,'-a')){
-            $order = str_replace('-a','',$this->order);
-            $odesc = 0;
+        $where = empty($this->so->whrstr) ? '' : (substr($this->so->whrstr,5));
+        if(!empty($uorder)){
+            $opkey = 0; $odesc = '';
+            $order = $uorder;
         }else{
-            $order = $this->order;
-            $odesc = 1;
-        } 
+            $opkey = $this->order===$key ? 1 : 0;
+            if(strpos($this->order,'-a')){
+                $order = str_replace('-a','',$this->order);
+                $odesc = 0;
+            }else{
+                $order = $this->order;
+                $odesc = 1;
+            }  
+        }
         $pg = new comPager($sfrom,$where,$psize,$order); 
         $pg->set('odesc',$odesc); // odesc/opkey
         $pg->set('opkey',$opkey);

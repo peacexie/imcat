@@ -29,6 +29,9 @@ class basReq{
         $re = array();
         foreach($sy_sids['GET'] as $key){
             $re[$key] = self::gp($key, array());
+            foreach ($re[$key] as $ik => $iv) {
+                $re[$key][$ik] = basStr::filHtml($iv);
+            }
         }
         foreach(array('Title','Key','N') as $k0){
             $items = $sy_sids[$k0];

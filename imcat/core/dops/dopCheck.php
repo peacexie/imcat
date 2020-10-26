@@ -32,7 +32,7 @@ class dopCheck extends dopBase{
     }
 
     // iprep=3(ip重复发布时间间隔)
-    static function dchkIprep($num=0,$mod,$kid,$opfid=''){ 
+    static function dchkIprep($num,$mod,$kid,$opfid=''){ 
         $ckey = "{$mod}_$kid";
         $stamp = $_SERVER["REQUEST_TIME"];
         $glife = intval($num)*60;
