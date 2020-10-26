@@ -2,7 +2,7 @@
 $_news = array (
   'kid' => 'news',
   'pid' => 'docs',
-  'title' => '新闻动态',
+  'title' => '新闻中心',
   'enable' => '1',
   'etab' => '1',
   'deep' => '1',
@@ -65,6 +65,25 @@ $_news = array (
       'fmexstr' => '',
       'cfgs' => 'news,title',
     ),
+    'vtype' => 
+    array (
+      'kid' => 'vtype',
+      'title' => '内容模式',
+      'etab' => '0',
+      'type' => 'select',
+      'dbtype' => 'varchar',
+      'dblen' => '12',
+      'dbdef' => '',
+      'vreg' => 'nul:',
+      'vtip' => '',
+      'vmax' => '12',
+      'fmsize' => '',
+      'fmline' => '1',
+      'fmtitle' => '0',
+      'fmextra' => '',
+      'fmexstr' => '',
+      'cfgs' => 'vtype',
+    ),
     'hinfo' => 
     array (
       'kid' => 'hinfo',
@@ -78,11 +97,30 @@ $_news = array (
       'vtip' => '',
       'vmax' => '12',
       'fmsize' => '',
-      'fmline' => '1',
+      'fmline' => '0',
       'fmtitle' => '0',
       'fmextra' => '',
       'fmexstr' => '',
       'cfgs' => 'hinfo',
+    ),
+    'exfile' => 
+    array (
+      'kid' => 'exfile',
+      'title' => '附件',
+      'etab' => '1',
+      'type' => 'text',
+      'dbtype' => 'text',
+      'dblen' => '0',
+      'dbdef' => '',
+      'vreg' => 'nul:',
+      'vtip' => '',
+      'vmax' => '0',
+      'fmsize' => '',
+      'fmline' => '1',
+      'fmtitle' => '0',
+      'fmextra' => 'pics',
+      'fmexstr' => '',
+      'cfgs' => '',
     ),
     'detail' => 
     array (
@@ -286,6 +324,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'P',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1014' => 
     array (
@@ -296,6 +335,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'P',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1016' => 
     array (
@@ -306,6 +346,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'A',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1018' => 
     array (
@@ -316,6 +357,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'H',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1020' => 
     array (
@@ -326,6 +368,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'O',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1022' => 
     array (
@@ -336,6 +379,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'J',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1024' => 
     array (
@@ -346,6 +390,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'P',
       'cfgs' => '',
+      'icon' => '',
     ),
     'n1026' => 
     array (
@@ -356,6 +401,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'Z',
       'cfgs' => '',
+      'icon' => '',
     ),
     'nsys' => 
     array (
@@ -366,6 +412,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'X',
       'cfgs' => '',
+      'icon' => '',
     ),
     'ntmp' => 
     array (
@@ -376,6 +423,7 @@ $_news = array (
       'frame' => '0',
       'char' => 'Y',
       'cfgs' => '',
+      'icon' => '',
     ),
   ),
 );
