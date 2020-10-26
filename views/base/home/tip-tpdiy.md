@@ -13,7 +13,6 @@
 * /views/doc/  - 英文文档
 * /views/mob/  - 手机版模板（预留）
 * /views/umc/  - 会员中心模板
-* /views/rest/ - rest API
 
 模板目录详情，以`功能演示版`为例，其他类似
 
