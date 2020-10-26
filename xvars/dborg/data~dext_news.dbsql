@@ -1,4 +1,11 @@
 
--- dext_news@2013-04-05 06:07:08 -- 
-INSERT INTO `{pre}dext_news{ext}` (`did`, `detail`, `author`, `source`, `seo_key`, `seo_des`, `seo_tag`, `rel_doc`) VALUES
-('2013-45-6789','贴心猫(IntimateCat)，<b>测试</b>新闻！','Peace','','测试','测试新闻','测试','');
+-- dext_news@2020-10-26 09:08:22 -- 
+INSERT INTO `{pre}dext_news{ext}` VALUES 
+('2013-45-6789','贴心猫(IntimateCat)，<b>测试</b>新闻！','Peace','','测试','测试新闻','测试',''),
+('2018-8t-kt28','~','','','一切都准时','','一切都准时','',''),
+('2020-9p-j3eq','~','','','','','','','/peace/imcat/share_ximps/static/media/collect/AdvPair01.jpg,2008奥运;\r\n/peace/imcat/share_ximps/static/media/collect/adv_250x060a.jpg,赏心悦目;\r\n/peace/imcat/share_ximps/static/media/collect/adv_850x080.jpg,记忆;\r\n/peace/imcat/share_ximps/static/media/collect/adv_250x060b.jpg,醉人的绿;\r\n/peace/imcat/share_ximps/static/media/collect/wiki_02.gif,维基百科;\r\n/peace/imcat/share_ximps/static/media/collect/y_col1.gif,缘分;\r\n/peace/imcat/share_ximps/static/media/collect/xgirl.jpg,美女;\r\n/peace/imcat/share_ximps/static/media/collect/xbbs_Pazz.gif,计算题;\r\n'),
+('2020-9q-80a9','~','','','','','','',''),
+('2020-9q-82fu','~','','','','','','','/peace/imcat/share_ximps/static/media/sample/case-v01.mp4'),
+('2020-9q-89je','~','','','','','','','/peace/imcat/share_ximps/static/media/sample/ZoomImg.rar'),
+('2020-9q-8b38','~','','','','','','',''),
+('2020-9q-8c5q','~','','','','','','','');
