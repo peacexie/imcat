@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/imp-head"}
+<link href='<?=tpath()?>/comm.css?_r=<?=time()?>' type='text/css' rel='stylesheet'/>
+<title>提示信息-Home</title>
+</head>
+<body>
+
+{inc:"incs/inc-head"}
+{if !$errno}
+
+
+<header class="user" style="margin:-1rem -1rem 0">
+    <a href="#" class="btn" onclick="logout()">登出</a>
+    <div class="logo">
+        <img src="http://wework.qpic.cn/bizmail/jKRQwoOu2zUxPCgABeAe7OsyFqIficNg0ib0CfiaMtg4ZuuZwSsgUzaqA/0">
+    </div>
+    <span class="id">ID: XieYongShun</span>
+</header>
+
+<div class="msg">
+    <h3>({=$uinfo['uid']}) 欢迎您！</h3>
+    <h4 class="gray">更多提示</h4>
+    <ul class="gray">
+        <li>提示：安全第一，共建和谐网络！</li>
+        <li>没事了就登出会员是一个好习惯；避免坏人冒充您，任意非法操作。</li>
+    </ul>
+</div>
+
+
+{else}
+
+
+<div class="msg">
+    <h3>游客，您好！</h3>
+    <p class="">请选择-登录方式</p>
+</div>
+
+<div class="login-cont">
+    <div class="btn-group">
+        <div class="col1 btn-act" onclick="setTab('idpwd')" id='nav_idpwd'>账号密码</div>
+        <div class="col1" onclick="setTab('wechat')" id='nav_wechat'>微信</div>
+        <div class="col2" onclick="setTab('wework')" id='nav_wework'>企业微信</div>
+        <div class="col1" onclick="setTab('mcode')" id='nav_mcode'>短信</div>
+    </div>
+</div>
+
+<div class="login-cont">
+
+    <div class="cont" id='cont_wechat'>
+        {if !$isWexin}
+            <p class="">
+                <a href="{=$wx['qrUrl']}" class="r">扫码链接</a>
+                请用微信扫码登录
+            </p>
+            <div class="qrcode">
+                <img src="{=$wx['scanUrl']}">
+            </div>
+            <p class="">
+                <input value="{=$wx['qrUrl']}" class="col1">
+            </p>
+        {else}
+            <p>
+                <a href="{=$wx['linkUrl']}" class="r">授权链接</a>
+                点击授权链接登录
+            </p>
+            <div class="">
+                <a href="{=$wx['linkUrl']}" class="btn">授权登录</a>
+            </div>
+            <p class="">
+                <input value="{=$wx['linkUrl']}" class="col1">
+            </p>
+        {/if}
+    </div>
+
+    <div class="cont" id='cont_wework'>
+        {if !$isWework}
+            <p class="">
+                <a href="{=$wx['qrUrl']}" class="r">扫码链接</a>
+                企业微信扫码登录
+            </p>
+            <div class="qrcode">
+                <img src="{=$wx['scanUrl']}">
+            </div>
+            <p class="">
+                <input value="{=$wx['qrUrl']}" class="col1">
+            </p>
+        {else}
+            <p>
+                <a href="{=$wx['linkUrl']}" class="right">授权链接</a>
+                点击授权链接登录
+            </p>
+            <div class="">
+                <a href="{=$wx['linkUrl']}" class="btn">授权登录</a>
+            </div>
+            <p class="">
+                <input value="{=$wx['linkUrl']}" class="col1">
+            </p>
+        {/if}
+    </div>
+
+    <div class="cont" id='cont_mcode'>
+        <form class="list1">
+          <div class="row">
+            <div class="col1 tc">图片码</div>
+            <div class="col2 vcode">
+              <input type="text" class="" id="input6Password3" placeholder="验证码">
+            </div>
+            <div class="col3 vcode">
+              <img src="<?=tpath()?>/vcode.jpg">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col1 tc">手机号</div>
+            <div class="col5">
+              <input type="text" class="" id="input4Email3" placeholder="手机号">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col1 tc">短信码</div>
+            <div class="col5">
+              <input type="text" class="" id="input5Email3" placeholder="请填入手机短信认证码">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col2"></div>
+            <div class="col2">
+              <button type="submit" class="btn btn-act">登录</button>
+            </div>
+            <div class="col2"></div>
+          </div>
+        </form>
+    </div>
+
+    <div class="cont" id='cont_idpwd'>
+        <form class="list1">
+          <div class="row">
+            <div class="col1 tc">账号</div>
+            <div class="col5">
+              <input type="text" class="" id="userCode" placeholder="账号">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col1 tc">密码</div>
+            <div class="col5">
+              <input type="password" class="" id="userPass" placeholder="密码">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col1 tc">验证码</div>
+            <div class="col2 vcode">
+              <input type="text" class="" id="vcodeid1" placeholder="验证码">
+            </div>
+            <div class="col3 vcode">
+              <img src="<?=tpath()?>/vcode.jpg">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col2"></div>
+            <div class="col2">
+              <button type="submit" class="btn btn-act">登录</button>
+            </div>
+            <div class="col2"></div>
+          </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="login-cont">
+  
+    <div class="msg">
+        <h3>登录错误</h3>
+        <div class="error"><i class="fa fa-warning "></i></div>
+        <h4 class="gray">错误信息</h4>
+        <ul class="gray">
+            <li>错误代码：123456</li>
+            <li>出错了，这是很长很长的原因。</li>
+        </ul>
+    </div>
+    
+    <hr>
+    <div class="msg">
+        <h3>和平鸽 登录成功</h3>
+        <div class="okey"><i class="fa fa-check-square-o"></i></div>
+        <h3>
+            <a redir="/h5/#/user-login" onclick="goPage(this)">用户首页</a> • 
+            <a redir="/h5/#/{=$res['remkv']}" onclick="goPage(this)" id='godef'>返回上一页</a>
+        </h3>
+    </div>
+
+</div>
+
+
+<!--
+    <a href="{surl(login-logout)}&_v=623" style="float:right;">logout</a>
+    <a href="{surl(login-check)}&_v=623" class='' style="float:;">check</a>
+-->
+
+
+{/if}
+{inc:"incs/inc-foot"}
+
+
+<script>
+
+$(function(){
+    setTab('idpwd'); // wechat/.idpwd
+    return;
+});
+
+</script>
+
+</body>
+</html>

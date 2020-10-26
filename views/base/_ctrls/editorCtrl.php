@@ -35,7 +35,7 @@ class editorCtrl{
         echo "var edt_langType = '".@$lang."';\n"; 
         echo "var edt_sysMod = '".@$mod."';\n"; 
         echo "var edt_sysKid = '".@$kid."';\n"; 
-        $d1 = comFiles::get(vopTpls::tinc("assets/editor-func.js", 0));
+        $d1 = comFiles::get(vopTpls::tinc("assets/alib/editor-func.js", 0));
         $d2 = comFiles::get(vopTpls::tinc("assets/comm-$lang.js", 0));
         echo "$d1\n\n//($lang)\n$d2";
         include vopTpls::tinc("editor/api_$api", 0);
@@ -48,8 +48,8 @@ class editorCtrl{
         $pSub = req('pSub','peace'); // peace,baidu,eweb //// peace,def
         $lang = $_cbase['sys']['lang']; 
         glbHtml::page(lang('plus.edt_tplchar'),1);
-        eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang);editor_func');
-        eimp('initCss','bootstrap,stpub,jstyle;comm;editor_style'); 
+        eimp('initJs','jquery,bootstrap,layer;comm;comm(-lang);alib/editor-func');
+        eimp('initCss','bootstrap,stpub,jstyle;comm;alib/editor-style'); 
         glbHtml::page('body');
         $itpl = lang('plus.edt_tpl');
         $ichr = lang('plus.edt_spchar');

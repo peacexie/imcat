@@ -123,7 +123,7 @@ if($qstr=='cookie'){
   echo '<div>';
   $a = explode('; ',$_SERVER['HTTP_COOKIE']);
   foreach($a as $k=>$v){ 
-    echo "<li>$k: $v</li>\n";
+    echo "<li>".basStr::filText("$k: $v",0)."</li>\n";
   }
   echo '</div>';
 }

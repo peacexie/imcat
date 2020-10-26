@@ -12,6 +12,7 @@ use imcat\glbDBObj;
 use imcat\glbHtml;
 use imcat\usrBase;
 use imcat\usrPerm;
+use imcat\admPFunc;
 
 class _defCtrl{
     
@@ -40,7 +41,13 @@ class _defCtrl{
         global $_cbase; 
         usrPerm::run();
         // init
-        extract(basReq::sysVars()); 
+        $_vars = basReq::sysVars();
+        if($this->ucfg['mod']=='dops'){
+            $_vars = admPFunc::safeFils($_vars, $this->ucfg, 'dops');
+        }else{ // ['cargo','admin','apis']
+            $_vars = admPFunc::safeFils($_vars, $this->ucfg, 'exts');
+        }
+        extract($_vars); 
         $mkv = $this->ucfg['mkv'];
         $_groups = glbConfig::read('groups'); 
         $db = glbDBObj::dbObj();

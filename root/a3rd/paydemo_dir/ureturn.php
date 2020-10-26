@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require __DIR__."/config.php";
 
 //计算得出通知验证结果
@@ -13,7 +14,9 @@ if($verify_result) {//验证成功
     //演示交易号
     $trade_no = req('trade_no');
 
-    //交易状态
+    $total_fee = req('total_fee');
+
+    //交易状态 
     $trade_status = req('trade_status');
 
     if($trade_status == 'TRADE_FINISHED' || $trade_status == 'TRADE_SUCCESS') {
@@ -23,6 +26,12 @@ if($verify_result) {//验证成功
     }
         
     $msg = lang('a3rd.ureturn_ok');
+
+    $kar = glbDBExt::dbAutID('plus_paylog');
+    $rlog = ['kid'=>$kar[0], 'ordid'=>$out_trade_no, 'apino'=>$trade_no, 'amount'=>$total_fee, 'api'=>'Demopay',
+        'ufrom'=>'', 'uto'=>'', 'stat'=>'success', ]; 
+    // kid  ordid   apino   amount  api stat    ufrom   uto expar
+    db()->table('plus_paylog')->data($rlog )->insert();
 
     //——请根据您的业务逻辑来编写程序（以上代码仅作参考）——    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -53,6 +53,13 @@ $_sy_vopcfg['tpl'] = array(
         '/index.php', // index,base
     ),
     //'ven' => array('English','/root/run/eng.php'), 
+    'vapi' => array(
+        'vapi',
+        '/root/run/vapi.php',
+        '?', // 伪静态配置：把`.php?` ->替换为 `/`
+        //'.htm', // 伪静态后缀
+    ), 
+    # ------------------- 
 );
 
 // 各模块展示show

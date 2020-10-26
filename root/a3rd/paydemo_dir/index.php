@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require __DIR__."/config.php";
 ?>
 <!DOCTYPE html><html><head>

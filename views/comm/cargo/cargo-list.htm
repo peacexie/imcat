@@ -3,21 +3,64 @@
 $this->pmeta();
 eimp('initJs','jspop,jquery;bootstrap;comm;/base/assets/cssjs/sordbar');
 eimp('initCss','bootstrap,stpub;comm');
+
+$caidn = req('stype'); $caidn = empty($this->key) ? $caidn : $this->key; // 当前栏目
+$caitms = read('cargo.i'); // 栏目数组
+$calays = comTypes::getLarr($caitms, $caidn); // 当前栏目树
+$cakeys = array_keys($calays); //dump($cakeys); // 数组ID
+
+$brand = req('brand');
+$brands = read('brand.i'); 
+$brels = glbConfig::relids('relpb', $caidn?$caidn:'-'); //dump($brels); // 关联品牌id
+
+$urltm = vopUrl::f1st('cargo'); //dump($urltm);
+$burl = surl(0); //dump($burl);
+// $ccfg = glbConfig::read('about','_c'); dump($ccfg);
 {/php} 
-<script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:cargo,brand,hinfo;jsRelat:relpb;jsFields:cargo&cmod=brand"></script> 
+<script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:hinfo;" uatt='cargo,;jsFields:cargo'></script> 
 </head><body>
 {inc:"c_pub/ahead"}
 {inc:"c_pub/amenu"}
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-12">
     <!--main_start-->
-
     <div class="sobar" id="sobar">
+      <p><b>栏目</b> 
+        <span id="s1lay">
+          <?php foreach($caitms as $cak=>$cav){ if(!$cav['pid']){ ?>
+            <a href="<?=str_replace('(key)',$cak,$urltm)?>" {if isset($calays[$cak])}class="act"{/if}>{=$cav['title']}</a>
+          <?php } } ?>
+        </span>
+        {if isset($cakeys[0])}
+        <span id="s2lay">
+          <b class="casub">- L2</b> 
+          <?php foreach($caitms as $cak=>$cav){ if($cakeys[0]==$cav['pid']){ ?>
+            <a href="<?=str_replace('(key)',$cak,$urltm)?>" {if isset($calays[$cak])}class="act"{/if}>{=$cav['title']}</a>
+          <?php } } ?>
+        </span>
+        {/if}
+        {if isset($cakeys[1])}
+        <span id="s3lay">
+          <b class="casub">- L3</b> 
+          <?php foreach($caitms as $cak=>$cav){ if($cakeys[1]==$cav['pid']){ ?>
+            <a href="<?=str_replace('(key)',$cak,$urltm)?>" {if isset($calays[$cak])}class="act"{/if}>{=$cav['title']}</a>
+          <?php } } ?>
+        </span>
+        {/if}
+      </p>
       <p><b>价格</b> <span id="soprice"></span></p>
-      <p><b>品牌</b> <span id="sobrand"></span></p>
+      {if !empty($brels) && count($brels)>1}
+      <p><b>品牌</b> <span id="sobrand">
+          <?php foreach($brands as $brk=>$brv){ if(in_array($brk,$brels)){ ?>
+            <a href="<?=basReq::getURep(0,'brand',$brk)?>" {if $brand==$brk}class="act"{/if}>{=$brv['title']}</a>
+          <?php } } ?>
+          <a href="<?=basReq::getURep(0,'brand','')?>" {if !$brand}class="act"{/if}>[全部]</a>
+      </span></p>
+      {/if}
       <p><b>推荐</b> <span id="sohinfo"></span></p>
-       </div>
+      <!--`属性搜索,待优化`-->
+    </div>
     <div class="sobar soline"> 
       <p class="order">
        <i id="so_def"></i>
@@ -51,9 +94,6 @@ eimp('initCss','bootstrap,stpub;comm');
 
     <!--main_end-->
   </div>
-  <div class="col-md-3">
-    {inc:"cargo/cinc-side"}
-  </div>
 </div>
 
 {inc:"c_pub/afoot"}
@@ -61,11 +101,11 @@ eimp('initCss','bootstrap,stpub;comm');
 
 <script>
 
-var s,linktpl = "<a href='(url)' class='(act)'>(title)</a>"; 
+var s, linktpl="<a href='(url)' class='(act)'>(title)</a>", _cargo_data={};
 sordb_init('{=$this->mod}','{=$this->key}',0,'stype:brand,exp_*',linktpl);
 var atype = sordb_cfgs.slay.split(','), amtype = atype.length>=0 ? atype[0] : '(null)'; 
 
-s = sordb_relat(0,'brand-relpb-'+atype[atype.length-1],'act'); sordb_setLinks('sobrand',s);
+//s = sordb_relat(0,'brand-relpb-'+atype[atype.length-1],'act'); sordb_setLinks('sobrand',s);
 s = sordb_area(0,'price:10,100,200,300,500,800,1000:元','act'); $('#soprice').html(s);
 s = sordb_extype(0,'hinfo-0','act'); $('#sohinfo').html(s);
 sordb_fexts('sobar',0,'act');
@@ -76,5 +116,7 @@ s = sordb_ordby(0,'价格','price','oasc,odesc,onasc,1'); $('#so_salse').html(s)
 
 $('.js_allrec').html($('.pg_total').text());
 sordb_hideClear('soclear');
+
+if($('#s3lay a').length==0){ $('#s3lay').hide(); }
 
 </script>

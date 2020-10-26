@@ -74,12 +74,12 @@ $ldev = glbDBExt::getExtp('logmode_cn');
         </tr>
         <?php foreach($list['data'] as $v){ ?>
         <tr>
-            <td class="tr">{=$v[i]}</td>
-            <td><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v[title]}</a></td>
-            <td class="tr">{=$v[ordprice]}</td>
-            <td class="tr">{=$v[ordcnt]}</td>
-            <td class="tr">{=$v[ordweight]}</td>
-            <td class="tr">{=$v[ifee]}</td>
+            <td class="tr">{=$v['i']}</td>
+            <td><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v['title']}</a></td>
+            <td class="tr">{=$v['ordprice']}</td>
+            <td class="tr">{=$v['ordcnt']}</td>
+            <td class="tr">{=$v['ordweight']}</td>
+            <td class="tr">{=$v['ifee']}</td>
             <td nowrap="nowrap" class="tc">{stime($v['atime'],dm)}</td>
         </tr>
         <?php } $v=$list['sum']; $ocar_items=count($list['data']); ?>
@@ -87,30 +87,30 @@ $ldev = glbDBExt::getExtp('logmode_cn');
             <td class="tr">-</td>
             <td>（合计）</td>
             <td class="tr">&nbsp;</td>
-            <td class="tr">{=$v[acnt]}</td>
-            <td class="tr">{=$v[aweight]}</td>
-            <td class="tr">{=$v[afee]}</td>
+            <td class="tr">{=$v['acnt']}</td>
+            <td class="tr">{=$v['aweight']}</td>
+            <td class="tr">{=$v['afee']}</td>
             <td class="tc">&nbsp;</td>
         </tr>
         <tr>
             <td class="tc">&nbsp;</td>
             <td>运费</td>
             <td colspan="3">&nbsp;</td>
-            <td class="tr"><input {=$st_feeship} id="feeship" name="fm[feeship]" type="input" value="{=$order[feeship]}" reg="n+d:" tip="运费" class="w80 tr" /></td>
+            <td class="tr"><input {=$st_feeship} id="feeship" name="fm[feeship]" type="input" value="{=$order['feeship']}" reg="n+d:" tip="运费" class="w80 tr" /></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="tc">&nbsp;</td>
             <td>折扣（-）</td>
             <td colspan="3">&nbsp;</td>
-            <td class="tr"><input {=$st_feedis} id="feedis" name="fm[feedis]" type="input" value="{=$order[feedis]}" reg="n+d:" tip="折扣" class="w80 tr" /></td>
+            <td class="tr"><input {=$st_feedis} id="feedis" name="fm[feedis]" type="input" value="{=$order['feedis']}" reg="n+d:" tip="折扣" class="w80 tr" /></td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="tc">&nbsp;</td>
             <td>应付款</td>
             <td colspan="3">&nbsp;</td>
-            <td class="tr"><input {=$st_feetotle} id="feetotle" name="fm[feetotle]" type="input" value="{=$order[feetotle]}" reg="n+d:" tip="应付款" class="w80 tr" /></td>
+            <td class="tr"><input {=$st_feetotle} id="feetotle" name="fm[feetotle]" type="input" value="{=$order['feetotle']}" reg="n+d:" tip="应付款" class="w80 tr" /></td>
             <td>&nbsp;</td>
         </tr>
         
@@ -146,7 +146,7 @@ $ldev = glbDBExt::getExtp('logmode_cn');
             <td>&nbsp;</td>
             <td>货运方式</td>
             <td class='tl'>
-            <span class="right">{=$_cbase[ucfg][city]} → {sopt($ordshto,china,0,$null)}</span>
+            <span class="right">{=$_cbase['ucfg']['city']} → {sopt($ordshto,china,0,$null)}</span>
             <select {=$st_ordship} name="fm[ordship]" class="w180"><?php echo basElm::setOption($ldev,$order['ordship'],'-快递公司-'); ?></select>
             </td>
         </tr>
@@ -171,27 +171,27 @@ $ldev = glbDBExt::getExtp('logmode_cn');
         <tr>
             <td>&nbsp;</td>
             <td>会员名称</td>
-            <td class='tl'><input {=$st_uinfos} name='fm[mname]' type='text' class='txt' id='fm[mname]' value="{=$order[mname]}"  maxlength='24'  reg='str:2-24'  tip='2-24字符'  />
+            <td class='tl'><input {=$st_uinfos} name='fm[mname]' type='text' class='txt' id='fm[mname]' value="{=$order['mname']}"  maxlength='24'  reg='str:2-24'  tip='2-24字符'  />
                 &nbsp;电话
-                <input {=$st_uinfos} name='fm[mtel]' type='text' class='txt' id='fm[mtel]' value="{=$order[mtel]}"  maxlength='24'  reg='fix:tel'  tip='2-24字符'  /></td>
+                <input {=$st_uinfos} name='fm[mtel]' type='text' class='txt' id='fm[mtel]' value="{=$order['mtel']}"  maxlength='24'  reg='fix:tel'  tip='2-24字符'  /></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td>聊天号</td>
-            <td class='tl'><input {=$st_uinfos} id='fm[miuid]' name='fm[miuid]' type='text' value='{=$order[miuid]}' class='txt'  maxlength='120'  reg='nul:str:5-120'  tip='聊天号:QQ,MSN等'  />
+            <td class='tl'><input {=$st_uinfos} id='fm[miuid]' name='fm[miuid]' type='text' value='{=$order['miuid']}' class='txt'  maxlength='120'  reg='nul:str:5-120'  tip='聊天号:QQ,MSN等'  />
                 &nbsp;邮件
-                <input {=$st_uinfos} id='fm[memail]' name='fm[memail]' type='text' value="{=$order[memail]}" class='txt'  maxlength='255'  reg='nul:fix:email'  tip='如:peace@domain.com'  /></td>
+                <input {=$st_uinfos} id='fm[memail]' name='fm[memail]' type='text' value="{=$order['memail']}" class='txt'  maxlength='255'  reg='nul:fix:email'  tip='如:peace@domain.com'  /></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td>收货地址</td>
-            <td class='tl'><input {=$st_uinfos} id='fm[maddr]' name='fm[maddr]' type='text' value="{=$order[maddr]}" maxlength='120' reg='nul:str:5-120'  tip='详细地址' class="txt w450" /></td>
+            <td class='tl'><input {=$st_uinfos} id='fm[maddr]' name='fm[maddr]' type='text' value="{=$order['maddr']}" maxlength='120' reg='nul:str:5-120'  tip='详细地址' class="txt w450" /></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td>送货要求</td>
             <td>
-            <textarea {=$st_uinfos} id="fm[detail]" name="fm[detail]" rows="2" class="w450" reg='str:10-150'>{=$order[detail]}</textarea>
+            <textarea {=$st_uinfos} id="fm[detail]" name="fm[detail]" rows="2" class="w450" reg='str:10-150'>{=$order['detail']}</textarea>
             </td>
         </tr>
 
@@ -213,11 +213,11 @@ $ldev = glbDBExt::getExtp('logmode_cn');
 </div>
 
 <?php
-$opay = exvOpay::getParas($order,'Webchn');
-$opay['showurl'] = surl(0,'',1)."?$this->mkv&ordid=$ordid&enc=$enc"; 
-$oadm = @$opay['a']; unset($opay['a']);
+$opay = exvOpay::getParas($order,'Webchn'); 
+$opay['showurl'] = (basEnv::isHttps()?'https:':'http:').surl(0,'',1)."?$this->mkv&ordid=$ordid&enc=$enc"; 
+$oadm = @$opay['a']; unset($opay['a']); 
 ?>
-<form id='fmopay' name='fmopay' method="post" action="{=PATH_ROOT}/a3rd/{=$oadm[apidir]}/uapi.php" target="_blank">
+<form id='fmopay' name='fmopay' method="post" action="{=PATH_ROOT}/a3rd/{=$oadm['apidir']}/uapi.php" target="_blank">
 <?php foreach($opay as $k=>$v){ ?>
 <input name="{=$k}" type="hidden" value="{=$v}">
 <?php } ?>

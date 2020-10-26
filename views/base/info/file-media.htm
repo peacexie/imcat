@@ -1,10 +1,10 @@
 <?php
-extract(tex('texFile')->fopPars(), EXTR_OVERWRITE); 
+extract(tex('fileCtrl')->fopPars(), EXTR_OVERWRITE); 
 /*
     $html = file_get_contents('http://api.tudou.com/v3/gw?method=item.search&appKey=myKey&format=json&kw='.$key.'&pageNo=1&pageSize=20&channelId='.$type.'&inDays=7&media=v&sort=s');
     echo $html;
 */
-tex('texFile')->fopHead('media',lang('plus.fop_mdtitle'));
+tex('fileCtrl')->fopHead('media',lang('plus.fop_mdtitle'));
 ?>
 
 <form name="media" id="media" method="post" action="">

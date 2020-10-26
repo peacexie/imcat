@@ -1,4 +1,5 @@
 <?php
+namespace imcat;
 require dirname(__DIR__).'/a3rd_cfgs.php'; 
 define('DIR_PAYRUN', __DIR__); 
 define('PATH_PAYRUN', PATH_ROOT.'/a3rd/paydemo_dir');

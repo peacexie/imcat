@@ -58,6 +58,10 @@
     </div>
 {/if}
 {if empty($bsend) }
+    <?php 
+    $emajax="url='".PATH_BASE."?ajax-cajax&act=userExists&key=memail'"; 
+    $phem = "placeholder='".lang('user.uap_forgamail')."'";
+    ?>
     <style type="text/css">
     #fmapply .form-control { display:inline-block; }
     </style>
@@ -93,10 +97,6 @@
         input::-ms-input-placeholder{text-align: right;}
         input::-webkit-input-placeholder{text-align: right;}
         </style>
-        <?php 
-        $emajax="url='".PATH_BASE."?ajax-cajax&act=userExists&key=memail'"; 
-        $phem = "placeholder='".lang('user.uap_forgamail')."'";
-        ?>
         {/if}
         <p> <i id="iflg_mname">{lang(user.uap_name)}: </i>
             <input id='fm[mname]' name='fm[mname]' type='text' value='' class='txt'  maxlength='24'  reg='str:2-24' style='width:150px';  />

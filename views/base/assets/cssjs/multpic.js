@@ -1,6 +1,5 @@
 
 // 图片组操作
-
 var mpic_cfgs = {}; 
 
 //初始化
@@ -9,7 +8,7 @@ function mpic_minit(fmid){
     cfg = mpic_data(fmid, 1); 
     $('#'+fmid+'show').html('');
     str = ''; 
-    for(i=0;i<cfg.data.length;i++){
+    for(i=0;i<cfg.data.length;i++){ 
         a = cfg.data[i].split(',');
         mpic_mshow(fmid,a[0], (a.length>0 ? a[1] : ''));
         str += cfg.data[i]+';\n';
@@ -22,7 +21,8 @@ function mpic_mshow(fmid,file,val){
     cfg = mpic_data(fmid); 
     opt = cfg.opt; 
     if(val){ 
-        opt = opt.replace("value='"+val+"'","value='"+val+"' selected");    
+        opt = opt.replace("value='"+val+"'","value='"+val+"' selected");
+        opt = opt.replace("value=''","value='"+val+"'");
     }
     sets = "<i class='close' title='"+lang('jcore.mpic_del')+"' onclick=\"mpic_mdel('"+fmid+"',this)\">[X]</i>"+opt;
     pic = "<div class='pitem'>"+sets+"<img src='"+file+"' width=120 height=90 onload='imgShow(this,120,90)'></div>";
@@ -139,14 +139,14 @@ function mpic_vtype(fmid,e){
 }
 
 //初始数据
-function mpic_data(fmid, rst){
-    var cfg, arr, opt, str, i, re={}, c=new Array(), d=new Array();
-    if(rst){
+function mpic_data(fmid, rst){ 
+    var cfg, arr, opt, str, i, re={}, c=new Array(), d=new Array(); 
+    if(rst){ 
         var cfg = $('#'+fmid+'show').html();
         var str = $('#'+fmid).val();
-        eval("mpic_cfgs."+fmid+" = {}; mpic_cfgs."+fmid+".cfg = cfg;");
-    }
-    eval("re = mpic_cfgs."+fmid+";"); 
+        mpic_cfgs[fmid] = {}; mpic_cfgs[fmid]['cfg'] = cfg;
+    } 
+    re = mpic_cfgs[fmid];
     if(rst){
         cfg = cfg.replace(/\n/g,'').replace(/\r/g,'').replace(/ /g,'').split(';');
         arr = str.replace(/\n/g,'').replace(/\r/g,'').replace(/ /g,'').split(';'); 
@@ -160,9 +160,13 @@ function mpic_data(fmid, rst){
         for(i=0;i<arr.length;i++){
             if(arr[i].length>12) d.push(arr[i]);
         }
-        re.opt = "<select onchange=\"mpic_mset('"+fmid+"',this)\">"+opt+"</select>"; 
+        if(c.length==0){ 
+            re.opt = "<input value='' onchange=\"mpic_mset('"+fmid+"',this)\" placeholder='图片说明' style='width:100%'>"; 
+        }else{
+            re.opt = "<select onchange=\"mpic_mset('"+fmid+"',this)\">"+opt+"</select>"; 
+        }
         re.data=d; re.cfg = c; 
-    }
+    } //jsLog(re);
     return re;
 }
 

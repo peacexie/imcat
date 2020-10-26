@@ -15,8 +15,8 @@
         <p class="tc uimark-pos-rel">
         <img src="{spic($t_mpic,demo_nop300x200.jpg)}" width='160' height='120' onload='imgShow(this,160,120)' />
         {if !empty($t_hinfo)}<b class="uimark-star-icon1b"></b>{/if}</p>
-        <p class="detail"><i class="price">&yen;{=$t_price}元</i><i class="click">浏览{=$t_click}次</i>
-        </p>
+        <!--p class="detail"><i class="price">-</i><i class="click">浏览{=$t_click}次</i>
+        </p-->
         <p class="title clear"><a href="{surl($this->mod.".$t_did")}">{title($t_title,96,$v)}</a></p>
       </div> 
       {/row}
@@ -39,8 +39,8 @@
             <p class="tc uimark-pos-rel">
             <a href="<?php echo vopUrl::root($v['url']);?>"><img src="{spic($v['mpic'],demo_120x90.jpg,160x120)}" width='160' height='120' class="img-thumbnail" onload='imgShow(this,160,120)' /></a>
             {if !empty($v['star'])}<b class="uimark-star-icon1b"></b>{/if}</p>
-            <p class="detail"><i class="right">&yen;{=$v['price']}元</i><i class="click">浏览{=$v['click']}次</i>
-            </p>
+            <!--p class="detail"><i class="right">-</i><i class="click">浏览{=$v['click']}次</i>
+            </p-->
           </dd> 
           <dt class="title clear"><a href="<?php echo vopUrl::root($v['url']);?>">{title($v['title'],96,$v)}</a></dt>
         </dl>

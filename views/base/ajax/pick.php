@@ -15,6 +15,7 @@ glbHtml::page('body');
 $mod = req('mod','','Key');
 $mcfg = read($mod); 
 if(empty($mcfg['f'])) { die("Error1 [$mod]!"); }
+
 $_key = substr($mcfg['pid'],0,1).'id'; if($_key=='uid') $_key='uname';
 $mfso = dopFunc::vgetFields($mcfg['f']); 
 if($_key=='uname'){
@@ -117,5 +118,6 @@ if($rs=$dop->getRecs('',$_cbase['show']['ppsize'])){
 glbHtml::fmt_end(array("mod|$mod"));
 
 echo basJscss::jscode("var pick_retitle='$retitle', pick_refval='$refval', pick_refname='$refname', pick_max=$cntre; pickInit($cntre); ");
+
 glbHtml::page('end'); 
 

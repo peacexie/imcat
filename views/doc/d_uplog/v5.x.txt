@@ -1,5 +1,53 @@
 
 
+#v5.4# (2020.11)
+
+## Basic-Info
+
+* Basic-Info
+ - version: v5.4
+ - Release date: 2020.11
+
+
+## ChangeLog
+
+* Improve: Product model
+ - Add: Independent attribute model, Can set custom attributes (parameters) by model, Attributes can be grouped
+ - 导入（广东）政府采购的标准产品
+ - 导入 ECSHOP 的产品（细节根据需要自己再调整）
+ - 增加：（广东）政府采购 - API（细节根据需要自己再调整）
+ - Improve: Product view in front-end
+
+* Improve: News model
+ - Support: Multi-Html, Pictures Video, File-down, Markdown, Text, etc
+
+* Add: (cdata)Free Custom Data model
+ - 用于展示那些零碎无规律资料，设置非常自由
+ - Demo-Url：https://imcat.txjia.com/chn.php/home-cdata 
+
+* Core functions 
+ - Add: Multi level linkage selection, for catalog, types
+ - Add: Read relaction-cache method (eg:`glbConfig::relids('relpb')`)
+ - Add: Custom page-bar helper function
+
+* Fix and Improve
+ - Strengthen global security and background security
+ - Improve: Document
+ - Fix: In Sdiy-mode can NOT use more url-parameter
+ - Fix: Notice message while edit advertisement
+ - Fix: Setup check dirs error under https
+ - Fix: Payment demonstration process
+ - Improve: Compatible PHP8(Beta)
+ - Improve: Pictures can add remark
+ - Add icon field for catalog
+
+* TODO:
+ - 前端weys微框架：全面应用
+ - 属性模型：关联栏目
+ - 产品批量价 - 优化
+ - 产品属性搜索 - 待优化
+
+
 #v5.3# (2020.08)
 
 

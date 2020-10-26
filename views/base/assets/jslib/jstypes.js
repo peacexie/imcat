@@ -1,4 +1,71 @@
 
+function layAjax(mod, key, deep, pid, init, lays){
+    var url = _cbase.run.fbase + '?ajax-types&mod='+mod+'&pid='+pid+'&init='+init;
+    $.ajax({
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        success: function(data) {
+            var arr = data.arr, //data.arr ? data.arr : data,
+                kids = '+,',
+                elm = $("#lt_"+key+"_"+deep); //jsLog(arr);
+            if(arr.length){
+                $.each(arr, function(i, row) {
+                    $(elm).append("<option value='"+row.kid+"'>"+row.title+"</option>");
+                    kids += row.kid+','; 
+                });
+                if(data.lays){ lays = data.lays; } //jsLog(lays);
+                if(lays){
+                    $.each(lays, function(rk, rname){
+                        if(kids.indexOf(','+rk+',')>0){
+                            $(elm).val(rk);
+                            laySet(mod, key, elm, lays);
+                            return false; 
+                        }
+                    });
+                }
+            }else{
+                $(elm).hide();
+            }
+        },
+        error: function (err) { 
+            jsLog(err);
+        }
+    })
+}
+function layInit(mod, key){
+    var val = $('#fm_'+key+'_').val();
+    var init = val ? val : '';
+    layAjax(mod, key, '1', '0', init);
+}
+function laySet(mod, key, elm, lays){
+    var deep = $(elm).attr("id").replace('lt_'+key+'_',''),
+        val = $(elm).val(),
+        next = parseInt(deep) + 1; //jsLog(deep+':'+val+':'+next);
+    // set-val
+    for(var i=next;i<10;i++){
+        $('#lt_'+key+'_'+i).hide();
+        $('#lt_'+key+'_'+i+" option:not(:first)").remove(); 
+    }
+    if(val || lays){
+        layAjax(mod, key, next, val, '', lays);
+        $('#lt_'+key+'_'+next).show(200);
+    }
+    if(val==''){
+        val = $('#lt_'+key+'_'+(next-2)).val();
+    }
+    var func = 'laycb_'+mod+'_'+key+''; 
+    try{eval(func+"('"+mod+"','"+key+"','"+val+"')");}
+    catch(ex){ /*jsLog(ex);*/ }
+    $('#fm_'+key+'_').val(val);
+}
+function layBcheck(elm){
+    var val = $(elm).val();
+    if(val.length>2000){
+        alert('Cfgs控制在2000字符以内！');
+        $(elm).val(val.substr(0,1800)+'...');
+    }
+}
+
 // id(s)对应的项目名称(s),多选-已择项目
 function popNames(){
     var val=jsElm.pdID(fid).value; 

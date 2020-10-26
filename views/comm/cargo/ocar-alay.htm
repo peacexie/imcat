@@ -18,11 +18,12 @@ if($act=='iadd' || $act=='oadd'){
 <!DOCTYPE html><html><head>
 {php $this->pmeta($title); }
 {php}
-eimp('initJs','jspop,jquery;bootstrap;comm;/base/assets/cssjs/sordbar');
+eimp('initJs','jspop,jquery;bootstrap;comm');
 eimp('initCss','bootstrap,stpub,jstyle;comm;ocar'); 
+echo basJscss::imp("/~base/jslib/jstypes.js");
 {/php}
 {block:mimp}
-<script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:cargo;jsFields:cargo"></script> 
+<!--script src="{=PATH_BASE}?ajax-comjs&act=jsTypes:cargo;jsFields:cargo"></script--> 
 {/block:mimp}
 </head><body>
 

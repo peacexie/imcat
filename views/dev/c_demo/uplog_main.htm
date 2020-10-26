@@ -26,8 +26,8 @@ $titlesub = $_cbase['sys_name'].' '.$titlesub;
     
     <?php foreach($subs as $k=>$v){ ?>
     <ul id="s_{=$k}" class="mod-section mod-uplog">
-      <li class="type">{=$k}{=$v[title]} <span class="right">--- <a href="#">[Top]</a></span></li>
-      {=$v[detail]}
+      <li class="type">{=$k}{=$v['title']} <span class="right">--- <a href="#">[Top]</a></span></li>
+      {=$v['detail']}
     </ul>
     <div class="h10">&nbsp;</div>
     <?php } ?>

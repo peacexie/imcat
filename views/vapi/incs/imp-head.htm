@@ -1,0 +1,24 @@
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="<?=tpath(1)?>/logo/favicon.ico">
+
+{php}
+$excss = 'now:book;base:alib/file-style;base:cssjs/stpub;ui:lunbo/lunbo';
+$exjs = 'now:book;base:alib/file-func;base:jslib/jsbase;ui:lunbo/lunbo';
+basJscss::weysInit('jq,fa,jsbase'); 
+{/php}
+
+<!--
+
+<?php weys($excss, $exjs, 'jq,fa', 'dark1'); ?>
+
+<?=weys($excss, $exjs, 'jq,fa', 'dark1'); ?>
+
+<script src='<?=tpath(1)?>/weys.js?_r=<?=time()?>'></script>
+<link href='<?=tpath(1)?>/weys.css?_r=<?=time()?>' type='text/css' rel='stylesheet'/>
+
+<script src='{=PATH_PROJ}?ajax-weys&act=css&tpldir=comm&skin=&tab=initCss;{=$excss}&_r=5.3'></script>
+<link href='{=PATH_PROJ}?ajax-weys&act=js&tpldir=comm&rf=home-cdata&tab=initJs;{=$exjs}&_r=5.3' type='text/css' rel='stylesheet'/>
+
+-->

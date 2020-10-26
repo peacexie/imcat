@@ -1,0 +1,205 @@
+<!DOCTYPE html><html><head>
+{php $this->pmeta('自由资料:演示 - '.$_cbase['sys_name']); }
+<meta name='keywords' content='贴心猫(imcat):贴心猫,自由资料'>
+<meta name='description' content='有些零碎资料：如联系方式、首页单独的公司介绍、单独的一个轮播图、一组配置参数、广告、友情链等可使用“自由资料”'>
+
+<!--
+css,js: 各种调用方式
+{php}
+
+$excss = 'now:book;base:alib/file-style;base:cssjs/stpub;ui:lunbo/lunbo';
+$exjs = 'now:book;base:alib/file-func;base:cssjs/adpush;ui:lunbo/lunbo';
+
+echo "\n:aaa\n";
+basJscss::weysInit('jq,jsbase,jsbext,fa,jstyle,mulnews,mulpic'); // $excss='', $exjs='', 'jq', $skin=''
+echo "\n:bbb\n";
+
+echo "\n:ccc\n";
+weys('jq,fa,laz', $excss, $exjs, 'dark1');
+echo "\n:ddd\n";
+
+{/php}
+
+<script src='<?=tpath(1)?>/weys.js?_r=<?=time()?>'></script>
+<link href='<?=tpath(1)?>/weys.css?_r=<?=time()?>' type='text/css' rel='stylesheet'/>
+
+<link href='{=PATH_BASE}?ajax-weys&act=js&tpldir=comm&rf=home-cdata&tab=initJs;{=$exjs}&_r=5.3' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_BASE}?ajax-weys&act=css&tpldir=comm&skin=&tab=initCss;{=$excss}&_r=5.3'></script>
+
+-->
+
+<script src='{=PATH_VENDUI}/jquery/jquery-2.x.js'></script>
+<link href='{=PATH_BASE}?ajax-weys&act=css&tpldir=comm&skin=&tab=initCss;base:cssjs/mulnews;ui:lunbo/lunbo&_r=5.3' type='text/css' rel='stylesheet'/>
+<script src='{=PATH_BASE}?ajax-weys&act=js&tpldir=comm&rf=home-cdata&tab=initJs;base:jslib/jsbase;base:jslib/jsbext;ui:lunbo/lunbo&_r=5.3'></script>
+
+<!--
+<?=weys('base:cssjs/mulnews;ui:lunbo/lunbo', 'base:jslib/jsbase;base:jslib/jsbext;ui:lunbo/lunbo');?>
+-->
+
+<style type="text/css">
+.news_text h2{ font-size:24px; padding:1rem auto; margin:3rem auto 0rem auto; }
+.news_text>p{ background:#E8E8E8; padding:0.5rem; margin:0.5rem auto; }
+.news_text img.about{ float:right; max-width:120px; }
+
+.tab, .tab li{ padding:0; margin:0; }
+.tab li{ width:33%; float:left; text-align:center; }
+.tab li img{ width:80%; height:auto; }
+@media only screen and ( max-width:550px) { 
+    .tab li{ width:100%; float:none; text-align:center; }
+}
+.head li{ text-align:left; }
+.head h2{ font-size:18px; padding:0; margin:0; }
+.head .rem{ font-size:small; background:#E8E8E8; margin:0.5rem; }
+pre{ max-width:100%; max-height:360px; overflow:auto; }
+</style>
+</head><body>
+<article>
+<?php
+if(!smod('cdata')){
+    basMsg::show('Error `cdata`','die');
+}
+?>
+
+
+<div class="news_text">
+    <h2>温馨提示：关于自由资料</h2>
+    <p>原则：仅限于展示那些零碎资料。</p>
+    <ul>
+        <li>如果能够从现有的新闻、产品、案例等资料中，方便调用出来的资料：尽量就地取材，调用现有新闻、产品、案例等资料；</li>
+        <li>有些零碎资料：如联系方式、首页单独的公司介绍、单独的一个轮播图、一组配置参数、广告、友情链等可使用“自由资料”；</li>
+        <li>扩展配置参数：另有[架设>超管工具>核心参数|扩展>]也可设置扩展配置参数，用户可自选；</li>
+        <li>广告、友情链接等：另有专门的广告设置管理，用户可自选；</li>
+        <li>案例分析：如果想从现有新闻资料中，选几条首页或某地方显示，但排序、条件很难选、且资料总量非常多效率差，可考虑试用“自由资料”。</li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：头条演示</h2>
+    <p>类别：头条列表（一次取整个栏目类别）</p>
+    <?php $list=cdata('head',9); ?>
+    <ul class="tab head">
+        <?php foreach($list as $row){ ?>
+        <li>
+          {if !empty($row['mpic'])}
+          <img src="{=$row['mpic']}" title="{=$row['title']}">
+          {else}
+          <h2><a href="{=$row['jump']}" target="1">{title($row['title'],120,$row)}</a></h2>
+          {/if}
+          <p class="rem">{=$row['vext']}</p>
+        </li>
+        <?php } ?>
+    </ul>
+    <div class="c"></div>
+    <ul>
+        <li><?php dump($list); ?></li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：联系我们</h2>
+    <p>使用扩展配置：KV键值对</p>
+    <ul>
+        <?php $row=cdata('demo-links'); $rex=$row['vdata']; ?>
+        <li>座机电话：{=$rex['tel']}</li>
+        <li>商务咨询：{=$rex['mob']}</li>
+        <li>网址：{=$rex['web']}</li>
+        <li>研发地址：{=$rex['adyf']}</li> 
+        <li>工厂地址：{=$rex['adfac']}</li>
+        <li>导航：{=$rex['daohang']}</li>
+        <li><?php dump($rex); ?></li>
+        <li><?php dump($row); ?></li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：友情链接</h2>
+    <p>使用扩展配置：Markdown</p>
+    <?php $row=cdata('demo-flink'); $rex=$row['vdata']; ?>
+    {=$rex}
+        <li><?php dump($rex); ?></li>
+        <li><?php dump($row); ?></li>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：JSON演示</h2>
+    <p>使用扩展配置：JSON数据</p>
+    <?php $row=cdata('demo-json'); $rex=$row['vdata']; ?>
+    <ul>
+        <li>名称：{=$rex['name']}</li>
+        <li>系列1：{=$rex['0']}</li>
+        <li>系列2：{=$rex['1']}</li>
+        <li><?php dump($rex); ?></li>
+        <li><?php dump($row); ?></li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：关于锐连</h2>
+    <p>使用扩展配置，使用`[---]`分片段： </p>
+    <?php $row=cdata('demo-about'); $rex=$row['vdata']; ?>
+    <ul>
+        <li>{=$row['tag1']} / {=$row['tag2']}</li>
+        <li>
+          <img src="{=$row['mpic']}" class="about">
+          {=$rex['0']} / {=$rex['1']}
+        </li>
+        <li>{=$rex['2']}</li>
+        <li>发展方向：{=$rex['3']}</li>
+        <li>公司文化：{=$rex['4']}</li>
+        <li><?php dump($rex); ?></li>
+        <li><?php dump($row); ?></li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：轮播图</h2>
+    <p>使用扩展配置，使用图集字段： </p>
+    <?php $row=cdata('demo-plays'); $exfile=$row['exfile']; ?>
+    <div class="news_pics">
+        <!--
+        <script src="{=PATH_VENDUI}/lunbo/lunbo.js?_v=121"></script>
+        <link href='{=PATH_VENDUI}/lunbo/lunbo.css?_v=121' rel='stylesheet' type='text/css' media='all' />
+        -->
+        <div class="cgun paly01">
+            <ul class="cgun_box">
+                <?php foreach($exfile as $fk=>$fp){ ?>
+                <li {if $fk}style="display:none;"{/if}> <a href="#" target="_blank" style="background:url({=$fp[0]}) center center no-repeat"><p>{=$fp[1]}</p></a> </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <script>
+          $(function(){ $(".paly01").lunbo({}); });
+        </script> 
+    </div>
+    <ul>
+        <li><?php dump($exfile); ?></li>
+        <li><?php dump($row); ?></li>
+    </ul>
+</div>
+
+<div class="news_text">
+    <h2>测试资料：列表资料</h2>
+    <p>类别：演示列表资料（一次取整个栏目类别）</p>
+    <?php $list=cdata('utab',9); ?>
+    <ul class="tab">
+        <?php foreach($list as $row){ ?>
+        <li>
+          <img src="{=$row['mpic']}">
+          <p>[{=$row['tag1']}] : <a href="{=$row['jump']}" target="1">{=$row['title']}</a></p>
+          <p>{=$row['tag2']} ● 预定数：{=$row['tag3']}</p>
+        </li>
+        <?php } ?>
+    </ul>
+    <div class="c"></div>
+    <ul>
+        <li><?php dump($list); ?></li>
+    </ul>
+</div>
+
+
+</article>
+</body></html>
+
+<?php
+$_cbase['tpl']['tplpend'] = '~';
+?>

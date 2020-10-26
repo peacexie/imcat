@@ -9,11 +9,11 @@ $_upPerm = '1';//usrPerm::check('pextra','edtup'); $_upPerm = !$_upPerm;
 $isbat = req('isbat','');
 
 glbHtml::page(lang('plus.fop_uponetitle'),1);
-eimp('initJs','jquery;comm;comm(-lang);file-func');
-eimp('initCss','bootstrap,stpub;file-style');
+eimp('initJs','jquery;comm;comm(-lang);alib/file-func');
+eimp('initCss','bootstrap,stpub;alib/file-style');
 glbHtml::page('body',' style="margin:'.($isbat ? "3px; 1px;" : "10px 5px;").'"');
 
-$allpars = tex('texFile')->fopPars(0);
+$allpars = tex('fileCtrl')->fopPars(0);
 
 ?>
 <table width="100%" border='0' align="center" cellpadding='1' cellspacing='3'>

@@ -35,26 +35,26 @@ $msg || $msg = "<b class='c999'>$entit</b>";
     </tr>
     <?php $list=exvOcar::ilist($tabid,$where); foreach($list['data'] as $v){ ?>
     <tr>
-        <td class="tr">{=$v[i]}</td>
-        <td><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v[title]}</a></td>
-        <td class="tr">{=$v[ordprice]}</td>
-        <td class="tr"><input id="ordcnt_{=$v[i]}" type="text" value="{=$v[ordcnt]}" class="w60 tr" reg="n+i:" tip="格式: 888"></td>
-        <td class="tr">{=$v[ordweight]}</td>
-        <td class="tr">{=$v[ifee]}</td>
+        <td class="tr">{=$v['i']}</td>
+        <td><a href="{surl("cargo.$v[pid]")}" target="detail">{=$v['title']}</a></td>
+        <td class="tr">{=$v['ordprice']}</td>
+        <td class="tr"><input id="ordcnt_{=$v['i']}" type="text" value="{=$v['ordcnt']}" class="w60 tr" reg="n+i:" tip="格式: 888"></td>
+        <td class="tr">{=$v['ordweight']}</td>
+        <td class="tr">{=$v['ifee']}</td>
         <td class="tc">{stime($v['atime'],min)}</td>
         <td class="tc">
-        <a href="#" onClick="urlConedit('?{=$this->mkv}&cid={=$v[cid]}&act=iedit&ordcnt=','{=$v[i]}')">修改</a>
+        <a href="#" onClick="urlConedit('?{=$this->mkv}&cid={=$v['cid']}&act=iedit&ordcnt=','{=$v['i']}')">修改</a>
         -
-        <a href="#" onClick="urlConfirm('?{=$this->mkv}&cid={=$v[cid]}&act=idel','确认删除?')">删除</a></td>
+        <a href="#" onClick="urlConfirm('?{=$this->mkv}&cid={=$v['cid']}&act=idel','确认删除?')">删除</a></td>
     </tr>
     <?php } $v=$list['sum']; $ocar_items=count($list['data']); ?>
     <tr>
         <td class="tr">-</td>
         <td>（合计）</td>
         <td class="tr"></td>
-        <td class="tr">{=$v[acnt]}</td>
-        <td class="tr">{=$v[aweight]}</td>
-        <td class="tr">{=$v[afee]}</td>
+        <td class="tr">{=$v['acnt']}</td>
+        <td class="tr">{=$v['aweight']}</td>
+        <td class="tr">{=$v['afee']}</td>
         <td class="tc"></td>
         <td class="tc"></td>
     </tr>

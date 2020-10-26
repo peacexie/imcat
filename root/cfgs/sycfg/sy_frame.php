@@ -11,9 +11,9 @@ $_sy_frame['resfmt'] = array(
 );    
 
 
-### 扩展参数(按栏目/等级扩展字段)
+### 扩展参数(按栏目/等级扩展字段;需要自行添加对应主表字段)
 $_sy_frame['expars'] = array( 
-    'catid' => array('demo','about','cargo'), 
+    'catid' => array('demo','about'), // ,'cargo'
     'grade' => array('company','govern','organize'),
 );    
 

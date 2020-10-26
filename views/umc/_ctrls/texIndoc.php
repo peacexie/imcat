@@ -167,7 +167,7 @@ class texIndoc{
             [aip] => 127.0.0.1     [eip] => 127.0.0.1
         )*/
     }
-    static function exNLoger($info=array(),$detail){
+    static function exNLoger($info=array(),$detail=''){
         if(is_array($info)) $info = implode(':',$info); 
         $info .= "\ndetail:".$detail;
         $debug = cfg('indoc.debug');

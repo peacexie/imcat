@@ -1,0 +1,46 @@
+
+<?php 
+$expics = comStore::picsTab($exfile,0); 
+$exvdo = tex('texBase')->vdoUrl($exfile);
+$exdown = tex('texBase')->downParas($exfile);
+?>
+<div class="news_clear"></div>
+<link href='<?=tpath(1)?>/cssjs/mulnews.css' type='text/css' rel='stylesheet'/>
+
+<?php if($vtype=='pics' && !empty($expics)){ ?>
+<!--图集-->
+<div class="news_pics">
+    <script src="{=PATH_VENDUI}/lunbo/lunbo.js?_v=121"></script>
+    <link href='{=PATH_VENDUI}/lunbo/lunbo.css?_v=121' rel='stylesheet' type='text/css' media='all' />
+    <div class="cgun paly01" style="">
+        <ul class="cgun_box" style="">
+            <?php foreach($expics as $fk=>$fp){ ?>
+            <li {if $fk}style="display:none;"{/if}> <a href="#" target="_blank" style="background:url({=$fp[0]}) center center no-repeat"><p>{=$fp[1]}</p></a> </li>
+            <?php } ?>
+        </ul>
+    </div>
+    <script>
+      $(function(){ $(".paly01").lunbo({}); });
+    </script> 
+</div>
+<?php } ?>
+
+<?php if($vtype=='vdo' && !empty($exvdo)){ ?>
+<!--Vdo-->
+<div class="news_vdo">
+    <video src="{=$exvdo}" controls="controls">
+    您的浏览器不支持 video 标签。
+    </video>
+</div>
+<?php } ?>
+
+<!--Html/Markdown/Text-->
+<div class="news_text">{html($detail,0,$vtype)}</div>
+
+<?php if($vtype=='down' && !empty($exdown)){ ?>
+<!--Down-->
+<div class='news_down alert alert-success'>[附件下载] <a href="{=$exdown['ufpath']}">
+    <img src="{=$exdown['icon']}" width='18' height='18' border='0' align='absmiddle'> 
+    [{=$exdown['type']}] {=$exdown['vpath']}</a> {=$exdown['ufsize']}
+</div>
+<?php } ?>

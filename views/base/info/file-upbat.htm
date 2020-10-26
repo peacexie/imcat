@@ -1,7 +1,7 @@
 <?php
-$allpars = tex('texFile')->fopPars(0);
+$allpars = tex('fileCtrl')->fopPars(0);
 usrPerm::run('pextra','edtup'); //上传权限 
-tex('texFile')->fopHead('upbat',lang('plus.fop_upbattitle'));
+tex('fileCtrl')->fopHead('upbat',lang('plus.fop_upbattitle'));
 ?>
 
 <table border='1' class='tbdata'>

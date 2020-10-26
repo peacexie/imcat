@@ -18,8 +18,8 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
 
 <div class="table-responsive">
 <form id='fmocar' name='fmocar' method="post" action="{surl(ocar-invoce)}">
-<input name="fm[ordcnt]" type="hidden" value="{=$list[sum][acnt]}" />
-<input name="fm[ordweight]" type="hidden" value="{=$list[sum][aweight]}" />
+<input name="fm[ordcnt]" type="hidden" value="{=$list['sum']['acnt']}" />
+<input name="fm[ordweight]" type="hidden" value="{=$list['sum']['aweight']}" />
 <table border="1" class="ocar_items">
     <tr>
         <th width="8%" class="tc">No.</thrtggr>
@@ -29,12 +29,12 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
     <tr>
         <td class="tc">1</td>
         <td>商品金额</td>
-        <td><input id="feeamount" name="fm[feeamount]" type="input" value="{=$list[sum][afee]}" reg="n+d:" tip="商品金额" readonly /> &nbsp;<a href="{surl(ocar)}">&gt;&gt;详情</a></td>
+        <td><input id="feeamount" name="fm[feeamount]" type="input" value="{=$list['sum']['afee']}" reg="n+d:" tip="商品金额" readonly /> &nbsp;<a href="{surl(ocar)}">&gt;&gt;详情</a></td>
     </tr>
     <tr>
         <td class="tc">2</td>
         <td>运费</td>
-        <td><input id="feeship" name="fm[feeship]" type="input" value="---" reg="n+d:" tip="运费" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
+        <td><input id="feeship" name="fm[feeship]" type="input" value="0" reg="n+d:" tip="运费" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
     </tr>
     <tr>
         <td class="tc">3</td>
@@ -44,7 +44,7 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
     <tr>
         <td class="tc">4</td>
         <td>应付款</td>
-        <td><input id="feetotle" name="fm[feetotle]" type="input" value="---" reg="n+d:" tip="应付款" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
+        <td><input id="feetotle" name="fm[feetotle]" type="input" value="0" reg="n+d:" tip="应付款" readonly /> 选择【配送地区】和【物流方式】后自动计算</td>
     </tr>
 </table>
 <table border="1" class="ocar_items">
@@ -61,11 +61,14 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
     </tr>
     <?php } ?>
 </table>
+
 <table border="1" class="ocar_items">
     <tr>
         <td class="tc"></td>
         <td>配送地区</td>
-        <td colspan="2">配送至：<span id='fm_ordshto__pop'>nul:str:2-255</span></td>
+        <td colspan="2">配送至：
+            <?=fldEdit::layTypes('china', 'ordshto', 0);?>
+        </td>
     </tr>
     <tr>
         <th width="8%" class="tc">No.</th>
@@ -76,7 +79,7 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
     <?php $list=glbDBExt::getExtp('logmode_cn'); foreach($list as $i=>$v){ ?>
     <tr>
         <td class="tc">{=$v['i']}</td>
-        <td><input name="fm[ordship]" id="ordship_{=$v['kid']}" type="radio" value="{=$v['kid']}" onclick="ocar_pickship(this)" disabled />{=$v['detail']}</td>
+        <td><input name="fm[ordship]" id="ordship_{=$v['kid']}" type="radio" value="{=$v['kid']}" onclick="ocar_pickship(this)" x-disabled />{=$v['detail']}</td>
         <td id="shipfee_{=$v['kid']}">---</td>
         <td id="shipmsg_{=$v['kid']}">---</td>
     </tr>
@@ -116,8 +119,8 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
         <td>送货要求<br>(可写详细要求<br>120字以内)</td>
         <td>
         <?php $list=glbDBExt::getExtp('timmode_cn'); $detail=''; foreach($list as $v){ ?>
-        <input name="fm_orddkey" type="radio" onclick="ocar_setdetail('{=$v[detail]}')" />{=$v[title]} &nbsp; 
-        <?php $detail || $detail=$v['detail']; } ?>
+        <input name="fm_orddkey" type="radio" onclick="ocar_setdetail('{=$v['detail']}')" />{=$v['title']} &nbsp; 
+        <?php $detail || $detail=$v['detail']; } ?> <br>
         <textarea id="fm_detail" name="fm[detail]" rows="2" style=" width:560px" reg='str:10-150'>{=$detail}</textarea>
         </td>
     </tr>
@@ -142,22 +145,32 @@ $mtel = @$user->uinfo['mtel']; $mtel || $mtel = '0000-1234-5678';
 
 {php}eimp('/~base/jslib/jq_base.js');{/php}
 <script>
-jQuery.getScript('{=PATH_BASE}?ajax-comjs&act=jsTypes&mod=,china,',function(){
-    var fm_ordshto__obj; popInit('fm[ordshto]','china',240,1,'',{},'ocar_setship');
-});
+
+$(function(){
+    layInit('china','ordshto');
+    // $('#fm_stype_').attr("name","stype");
+    /*$("#fm_ordshto__name").change(function(e){
+      jsLog(e);
+    });*/
+})
+
 function ocar_setdetail(val){ 
     $("#fm_detail").val(val);
     $("#fm_detail").html(val);
 }
-function ocar_setship(kval,kname){ //c0598,福建»三明
-    var arr = kname.split('»');
-    $("#feeship").html('---');
-    $("#feetotle").html('---');
+function laycb_china_ordshto(mod,key,val){ //c0598,福建»三明 ocar_setship
+    var tocity = $('#lt_ordshto_2').find("option[value='"+val+"']").text();
+    if(!tocity){
+        return;
+    } //jsLog(tocity);
+    //var arr = kname.split('»');
+    //$("#feeship").html('---');
+    //$("#feetotle").html('---');
     $("[name='fm[ordship]']").attr("checked",false);
     $("[name='fm[ordship]']").attr("disabled",true);
-    $("[id^='shipfee_']").html('---'); //[href$='.jpg']
-    $("[id^='shipmsg_']").html('---');
-    jQuery.getScript('{=PATH_ROOT}/plus/api/ocar.php?act=shipfee&from={=$_cbase[ucfg][city]}&to='+arr[1]+'&weight={=$list[sum][aweight]}',function(){
+    //$("[id^='shipfee_']").html('---'); //[href$='.jpg']
+    //$("[id^='shipmsg_']").html('---');
+    jQuery.getScript('{=PATH_ROOT}/plus/api/ocar.php?act=shipfee&from={=$_cbase['ucfg']['city']}&to='+tocity+'&weight={=$list['sum']['aweight']}',function(){
         for(var k in data){ 
             var itm = data[k];
             if($('#shipfee_'+itm.kid) && itm.ufee){

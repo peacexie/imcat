@@ -1,4 +1,4 @@
-<FilesMatch \.(?i:html?|php|txt)$>
+<FilesMatch "\.(html?|php|txt)$">
    Order allow,deny
    Deny from all
 </FilesMatch> 

@@ -38,6 +38,9 @@ eimp('/~base/jslib/jsbase.js');
 glbHtml::page('aumeta');
 
 $iniPath = get_cfg_var('cfg_file_path');
+if(devSetup::isSetuped()){ 
+    $iniPath = basDebug::hidRoots($iniPath);
+}
 $iniInfo = $iniPath ? "PHP configuration is using THIS file: [$iniPath]" : "WARNING: No configuration file (php.ini) used by PHP!";
 
 ?>

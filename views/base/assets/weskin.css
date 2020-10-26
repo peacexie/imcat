@@ -1,0 +1,42 @@
+@charset "utf-8";
+
+:blue1{ /*淡蓝底黑字*/
+  --bgbd:#EEE; --bga:#FFF; --bghf:#E8E8E8; /*body背景,文本背景,头尾head/foot颜色*/
+  --text:#333; --link:#337ab7; --hover:#F00;
+  --em:#337ab7; --title:#222; 
+  --bgtb1:linear-gradient(to bottom,#EEF 0%,#E0E0FF 100%);
+  --bgtb2:linear-gradient(to bottom,#E0E0FF 0%,#EEF 100%);
+  --border:1px solid #E0E0FF; --brdC:1px solid #CCC; --brdD:1px solid #DDD; --brdE:1px solid #EEE;
+  --c0:#000; --c1:#111; --c2:#222; --c3:#333; --c4:#444; --c5:#555; --c6:#666; --c7:#777; 
+  --c8:#888; --c9:#999; --cA:#AAA; --cB:#BBB; --cC:#CCC; --cD:#DDD; --cE:#EEE; --cF:#FFF;
+  --wmob:880px; --wpc:1160px; --wmin:320px; /* 780,880; 1160,1200 */
+}
+:gray1{ /*灰底黑字*/
+  --bgbd:#EEE; --bga:#FFF; --bghf:#E8E8E8; /*body背景,文本背景,头尾head/foot颜色*/
+  --text:#333; --link:#337ab7; --hover:#F00;
+  --em:#337ab7; --title:#222; 
+  --bgtb1:linear-gradient(to bottom,#EEE 0%,#E0E0E0 100%);
+  --bgtb2:linear-gradient(to bottom,#E0E0E0 0%,#EEE 100%);
+  --border:1px solid #E0E0E0; --brdC:1px solid #CCC; --brdD:1px solid #DDD; --brdE:1px solid #EEE;
+  --c0:#000; --c1:#111; --c2:#222; --c3:#333; --c4:#444; --c5:#555; --c6:#666; --c7:#777; 
+  --c8:#888; --c9:#999; --cA:#AAA; --cB:#BBB; --cC:#CCC; --cD:#DDD; --cE:#EEE; --cF:#FFF;
+  --wmob:880px; --wpc:1160px; --wmin:320px; /* 780,880; 1160,1200 */
+}
+:dark1{ /*黑底白字*/
+  --bgbd:#333; --bga:#000; --bghf:#181818; /*body背景,文本背景,头尾head/foot颜色*/
+  --text:#EEE; --link:#DDD; --hover:#CC9;
+  --em:#DDD; --title:#DDD; 
+  --bgtb1:linear-gradient(to bottom,#111 0%,#1F1F1F 100%);
+  --bgtb2:linear-gradient(to bottom,#1F1F1F 0%,#111 100%);
+  --border:1px solid #1F1F1F; --brdC:1px solid #333; --brdD:1px solid #222; --brdE:1px solid #111;
+  --cF:#000; --cE:#111; --cD:#222; --cC:#333; --cB:#444; --cA:#555; --c9:#666; --c8:#777; 
+  --c7:#888; --c6:#999; --c5:#AAA; --c4:#BBB; --c3:#CCC; --c2:#DDD; --c1:#EEE; --c0:#FFF;
+  --wmob:880px; --wpc:1160px; --wmin:320px; /* 780,880; 1160,1200 */
+}
+
+/* 
+  320, [360], 375, 425, [640], 768, [800], 1024, [1200], 1440
+     350,             550,        750,   900,  1050,   1200
+  --------------------------
+  lunbo, pager, layTreeN, qrcode_tip, uimark, fldicon
+*/
