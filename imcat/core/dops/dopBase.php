@@ -116,10 +116,14 @@ class dopBase{
     // 表单-类别
     function fmType($key='catid',$w=150){ 
         $dval = empty($this->fmo[$key]) ? basReq::val('stype') : $this->fmo[$key];
-        $reg = count($this->cfg['i'])>0 ? "reg='tit:2-12'" : ''; // disabled
-        $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' $reg>"; 
-        $str .= comTypes::getOpt($this->cfg['i'],$dval); 
-        $str .= "</select>";
+        if(count($this->cfg['i'])>0){
+            $reg = "reg='tit:2-12'";
+            $itms = comTypes::getOpt($this->cfg['i'],$dval);
+        }else{
+            $reg = "";
+            $itms = "<option value=''>(default)</option>";
+        }
+        $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' $reg>$itms</select>";
         return $str;
     }
     // 表单-Part资料(语言/城市)

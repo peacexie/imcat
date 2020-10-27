@@ -120,7 +120,7 @@ class fldEdit{
             $opts .= "<option value='mediumtext' ".($this->cfg['dbtype']=='mediumtext' ? 'selected' : '').">medium.(16M)".basLang::show('admin.fe_ltext')."</option>";
             $opts .= "<option value='file' ".($this->cfg['dbtype']=='file' ? 'selected' : '').">file.(1G)".basLang::show('admin.fe_svfile')."</option>";
             $opts .= "<option value='varchar' ".($this->cfg['dbtype']=='varchar' ? 'selected' : '').">varchar.".basLang::show('admin.fe_vchar')."</option>";
-            $flen = $this->cfg['dbtype']=='varchar' ? $this->cfg['dblen'] : 0;            
+            $flen = $this->cfg['dbtype']=='varchar' ? (isset($this->cfg['dblen'])?$this->cfg['dblen']:255) : 0;
         }else{
             $oldval = empty($this->cfg['dbtype']) ? 'varchar' : $this->cfg['dbtype'];
             $dbtypes = fldCfgs::dbTypes(); 
