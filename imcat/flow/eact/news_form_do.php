@@ -6,6 +6,7 @@ $dop->svPrep();
 
 $devalbk = req('detail_valbk','','');
 $devalbk && $dop->fmu['detail'] = basReq::in($devalbk);
+if(empty($dop->fmv['vtype'])){ $dop->fmv['vtype']='ptxt'; } 
 if($dop->fmv['vtype']=='down'){ $dop->fmu['exfile'] = basReq::in($dop->fme['uatt']); }
 if($dop->fmv['vtype']=='vdo'){  $dop->fmu['exfile'] = basReq::in($dop->fme['uvdo']); } 
 
