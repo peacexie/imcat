@@ -1,11 +1,7 @@
 
 
-* 贴心猫(imcat) V5.4 Alpha, Compatible PHP8(Beta);  
-DO NOT use this version in production, Please use V5.3 instead.
-
---- --- --- --- --- --- --- --- --- 
-
-* 贴心猫(imcat) V5.3 Released(2020-08)
+* 贴心猫(imcat) V5.4 Beta, Compatible PHP8(Beta);  
+* TODO: 功能完成；产品缺少演示数据；产品前台显示待改版...
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -32,7 +28,7 @@ DO NOT use this version in production, Please use V5.3 instead.
 ### 【Setup】
 
 * Need Environmental
-  - PHP5.4 ~ PHP7.4 (Recommend: PHP5.6 ~ PHP7.3)
+  - PHP5.4 ~ PHP8.0 (Recommend: PHP5.6 ~ PHP7.4)
   - mysql5.1+
   - Extended libs: MySQLi/MySQL, GD2, curl
 
@@ -52,7 +48,7 @@ DO NOT use this version in production, Please use V5.3 instead.
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.3 ChangeLog】 (2020-08)
+### 【v5.4 ChangeLog】 (2020-11)
 
 * [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
 
@@ -77,7 +73,7 @@ DO NOT use this version in production, Please use V5.3 instead.
 ### 【安装提示】
 
 * 环境需求
-  - PHP5.4 ~ PHP7.4 (推荐: PHP5.6 ~ PHP7.3)
+  - PHP5.4 ~ PHP8.0 (推荐: PHP5.6 ~ PHP7.4)
   - mysql5.1+
   - 扩展: MySQLi/MySQL, GD2, curl
 
@@ -94,7 +90,7 @@ DO NOT use this version in production, Please use V5.3 instead.
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.3更新日志】(2020-08)
+### 【v5.4更新日志】(2020-11)
 
 * [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
 
