@@ -203,11 +203,15 @@ class safComm{ // extends safBase
             $flag = 0;
             $re_stamp = basReq::ark($safix, 'tm');
             $re_encode = basReq::ark($safix, 'enc'); 
-            if(empty($re_stamp) || empty($re_encode)) $flag = 'empty';
-            if($stamp-$re_stamp>$time) $flag = 'timeout';
-            if(!($re_encode==comConvert::sysEncode($sform, $re_stamp))) $flag = 'encode';
+            if(empty($re_stamp) || empty($re_encode)){ 
+                $flag = 'empty'; 
+            }elseif($stamp-$re_stamp>$time){ 
+                $flag = 'timeout';
+            }elseif(!($re_encode==comConvert::sysEncode($sform, $re_stamp))){ 
+                $flag = 'encode'; 
+            }
             if($flag){
-                return ($act=='flag') ? $flag : safBase::Stop('urlStamp');
+                return ($act=='flag') ? $flag : safBase::Stop('urlStamp-'.$flag);
             }
         }
     }

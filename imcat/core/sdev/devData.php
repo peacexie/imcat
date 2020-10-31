@@ -6,6 +6,20 @@ class devData{
 
     static $spsql = "---<split>---";
 
+    //[/menu_m2pro]
+    // 安装/更新一个模块
+    static function keySqls($data, $key, $rep=1){
+        $db = glbDBObj::dbObj(); 
+        $sqls = basElm::getPos($data, "[$key](*)[/$key]");
+        $sqls = preg_replace("/\s+\-\- ([^\n\r])+/i", '', $sqls);
+        $sqls = str_replace(["`{pre}","{ext}`"], ["`$db->pre","$db->ext`"], $sqls);
+        if($rep){
+            $sqls = str_replace(['INSERT INTO `'], ['REPLACE INTO `'], $sqls);
+        }
+        $sarr = explode(self::$spsql, $sqls);
+        return $sarr;
+    }
+
     // runSql
     static function run1Sql($sql,$rep=''){
         if(empty($sql)) return true;
@@ -20,6 +34,7 @@ class devData{
             $n = 0;
             foreach ($arr as $key => $sql) {
                 $db->query($sql,'run'); 
+                //dump($sql);
                 $n++;
             }
             return $n;

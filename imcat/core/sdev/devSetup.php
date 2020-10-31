@@ -71,12 +71,13 @@ class devSetup{
         if(strlen("$mods$menus")==0) return '';
         $data = $mids = $ares = array(); 
         $_groups = glbConfig::read('groups'); 
-        $_muadm = glbConfig::read('muadm.i'); 
+        $_mucfgs = glbConfig::read('muadm'); 
+        $_muadm = $_mucfgs['i'];
         // menu
         $marr = explode(',',$menus);
-        foreach ($marr as $menu) {
+        foreach ($marr as $menu) { echo "($menu,)";
             if(empty($menu) || empty($_muadm[$menu])) continue;
-            $mpid = $_muadm[$menu]['pid']; 
+            $mpid = $_muadm[$menu]['pid'];
             $mdata = devData::exp1Tab('base_menu',"kid='$menu' OR pid='$menu'"); 
             $mpid && $data['menu_'.$menu] = str_replace(",'$mpid',",",'(pid-$menu)',",$mdata);
             $ares['menus'][$menu] = $_muadm[$menu];
@@ -98,7 +99,7 @@ class devSetup{
             $ares['keys'][] = $key;
         }
         $dstr .= "\n(!@~)isend\n";
-        $dres = "\n$dstr\n"; 
+        $dres = "\n$dstr\n";
         comFiles::put(DIR_VARS."$fp.dbsql",$dres);
         $ares['keys'] = implode(',',$ares['keys']);
         $ares['notes'] = '';

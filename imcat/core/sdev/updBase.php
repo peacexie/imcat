@@ -140,7 +140,7 @@ class updBase{
         return $re;
     }
     
-    static function dbFields($row,$rem=1){
+    static function dbFields($row, $rem=1, $fixdf=0){
         $arr = basElm::line2arr($row);
         $re = array();
         foreach($arr as $r){
@@ -154,6 +154,9 @@ class updBase{
                 $r = substr($r,    0, strpos($r," COMMENT '"))." COMMENT ''";
             } 
             $p = strpos($r,'` ');
+            if($fixdf && strstr($r,'char(') && !strpos($r,' DEFAULT ')){
+                $r = substr($r,0,strlen($r))." DEFAULT ''".substr($r,strlen($r));
+            }
             if(substr($r,0,1)=='`' && $p){
                 $k1 = substr($r,1,$p-1);
                 $t1 = substr($r,$p+2);
@@ -226,7 +229,35 @@ class updBase{
         self::cacSave($re,"dbedit_cols");
         return $add;    
     }
-    
+    // 
+    static function dbTab1($new, $old, $rea=0){
+        $re = array();
+        foreach($new as $k2=>$v2){
+            if(is_numeric($k2)){
+                if(strstr($v2,'PRIMARY')){ continue; }
+                $re['idx'][] = str_replace('KEY `','ADD INDEX `',$v2);
+            }elseif(!isset($old[$k2])){
+                $re['add'][] = "ADD `$k2` $v2";
+            }elseif($v2!=$old[$k2]){ 
+                $re['edit'][] = "CHANGE `$k2` `$k2` $v2";
+            }else{
+                //
+            }
+        }
+        if($rea){
+            return $re;
+        }
+        $res = [];
+        foreach(['add','edit','idx'] as $k1){
+            $res[$k1] = '';
+            if(empty($re[$k1])){ continue; }
+            foreach($re[$k1] as $no2=>$line) {
+                $res[$k1] .= "\n $line".($no2==count($re[$k1])-1?';':',');
+            }
+        }
+        return $res;
+    }
+
     static function cacSave($arr,$file,$path=''){
         $arr = is_array($arr) ? $arr : self::listDir($arr); 
         $data = var_export($arr,1);

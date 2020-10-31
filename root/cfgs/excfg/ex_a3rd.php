@@ -13,12 +13,21 @@ $_cfgs['demo']['sandbox']  = false;
 
 $_cfgs['ali']['partner']  = '2088xxxxxxxxxxxx';
 //合作身份者id，以2088开头的16位纯数字
-$_cfgs['ali']['email']      = 'email-userid@aliyun.com';
+$_cfgs['ali']['email']    = 'email-userid@aliyun.com';
 //收款支付宝账号
 $_cfgs['ali']['key']      = 'keyid-keyid-keyid-keyid-keyid';
 //安全检验码，以数字和字母组成的32位字符
 $_cfgs['ali']['sandbox']  = false;  
 //设置在沙箱中运行，正式环境请设置为false,true
+
+### 微信支付: 
+
+$_cfgs['wepay']['appid']     = "wx123***"; // 微信支付appid
+$_cfgs['wepay']['appsecret'] = "enc***";  // 微信支付appsecret
+$_cfgs['wepay']['mchid']     = "123***"; // 微信支付mchid
+$_cfgs['wepay']['key']       = "abc***xyz";  // 微信支付key
+$_cfgs['wepay']['signtype']  = "MD5"; 
+$_cfgs['wepay']['sandbox']   = false;  
 
 # 提示：确认或复制文件 'cacert.pem' 到: /vendor/a3rd/alipay_class/
 
