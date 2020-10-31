@@ -28,6 +28,7 @@ $fcfg = devTopic::cfg2arr($cform);
         </p>
         <?php 
         $vals = json_decode($row['detail'],1); 
+        $vk2 = $flags = '';
         foreach ($fcfg as $k2=>$title){ 
             $vk2 = isset($vals[$k2]) ? $vals[$k2] : '';
             if(devTopic::skip($k2)) continue;
@@ -47,7 +48,7 @@ $fcfg = devTopic::cfg2arr($cform);
                 <?php 
                 if(strstr($flags,'m,')){
                     $tmp = '';
-                    foreach($names as $k3=>$v3){ if(strstr($vk2,$k3)){
+                    foreach($names as $k3=>$v3){ if(strstr($vk2,"$k3")){
                         $tmp .= (empty($tmp)?'':', ').$v3;
                     } }
                     echo $tmp ? $tmp : '-';
