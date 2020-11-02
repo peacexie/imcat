@@ -33,7 +33,7 @@ class dopBCv{
         $re = basStr::filTitle($re);
         $re = empty($re) ? "<span class='cCCC'>---</span>" : $re;
         $re = basStr::cutWidth($re, $len);
-        $re = dopFunc::vgetLink($re,$mod,'',$url); 
+        $re = dopFunc::vgetLink($re,$mod,$val,$url); 
         echo "<td>".$re."</td>\n"; // class='tc'
     }
     // 显示项-Select

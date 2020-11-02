@@ -103,7 +103,7 @@ if(($mod=='mkvu' || $mod=='mkva') && $view=='glist'){
         glbCUpd::upd_model($mod);
     } 
 
-    $lnkupd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\",300,200);'>".lang('admin.mu_upd')."</a>";
+    $lnkupd = "<a href='$aurl[1]&view=upd' onclick='return winOpen(this,\"".lang('admin.mu_upd')."[$gname]\",300,200);'>".lang('admin.mu_upd')."</a>";
     $lnklay = admAFunc::typLay($cfg,$aurl,$pid);
     $lnkadd = "<a href='$aurl[1]&view=gform&pid=$pid' onclick='return winOpen(this,\"".lang('flow.fl_addin')."[$gname]\");'>".lang('admin.mu_add')."&gt;&gt;</a>";
     if($msg && !strpos($msg,'<')) $msg = "<span class='cF00'>$msg</span>";
