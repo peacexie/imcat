@@ -68,9 +68,8 @@ class extCargo{
         $res = []; 
         foreach($itms[1] as $no=>$key){
             $val = $itms[2][$no]; // ,木头,铁,
-            if($rearr && preg_match("/^\,[^\n]+\,$/", $val)){
-                $val = array_filter(explode(',', $val)); 
-            }
+            $arr = array_filter(explode(',', $val));
+            $val = $rearr ? $arr : implode(',', $arr);
             $res[$key] = $val;
         } 
         return $res;

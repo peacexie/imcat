@@ -52,7 +52,7 @@ if($mod=='insupmod'){
     /*echo $tiprows;*/
     $files = glob(DIR_VARS.'/dtmp/update/*.php'); //dump($files);
     echo "\n<tr><td class='tc w180'>文件位置</td>\n<td>
-        {xvars}/dtmp/update/* (".count($files).")个文件<br>";
+        {xvars}/dtmp/update/* (".count($files).")个文件，(提示：把导出的文件放入此目录)<br>";
     foreach($files as $file) {
         $bfile = basename($file);
         echo "\n<a href='?$mkv&mod=$mod&fp=$bfile'>$bfile</a>; &nbsp; ";
@@ -148,8 +148,8 @@ if($mod=='insupmod'){
         echo "</td></tr>\n";        
     }
 
-    echo "\n<tr><td class='tc w180'>".lang('admin.upg_upstart')."</td>\n<td class='tc'>
-        点击以上[执行]开始安装更新模块
+    echo "\n<tr><td class='tc w180'>Tips</td>\n<td class='tc'>
+        点击文件 > 展开详情 > 点击[执行] > 即执行对应的sql
     </td></tr>\n";
     #devSetup::run1Sql($sql,$rep='');
 

@@ -208,7 +208,8 @@ class comStore{
         $res = $v;
         if(strpos($res,$cfg[1].$fix)===0 && !empty($cfg[1])){
             $res = '{'.$key.'root}'.substr($res, strlen($cfg[1]));
-            $str = str_replace($v, $res, $str);
+            //echo "$str,";
+            $str = str_replace($v, $res, $str); //echo "$str,"; die();
         }
         $reps = glbConfig::read('repath', 'sy');
         foreach (array('att','tpl') as $k0) {

@@ -291,7 +291,7 @@ class updBase{
     
     // file:完整路径,或字符串
     static function listTab($file,$cfg=array(),$rem=1){
-        $data = file_exists($file) ? comFiles::get($file) : $file;
+        $data = (strlen($file)<180 && file_exists($file)) ? comFiles::get($file) : $file;
         $pre = isset($cfg['pre']) ? $cfg['pre'] : '{pre}'; 
         $ext = isset($cfg['ext']) ? $cfg['ext'] : '{ext}'; 
         $a = explode("CREATE TABLE `$pre",$data); 

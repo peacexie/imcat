@@ -122,7 +122,7 @@ class vopShow{
                 //if(method_exists($aex,$exact)) $aex->$exact();
             }
         }
-        if(!empty($res['vars'])){ 
+        if(!empty($res['vars']) && is_array($this->vars)){ 
             $this->vars = array_merge($this->vars,$res['vars']);
         }
         if(!empty($res['tplnull'])){
