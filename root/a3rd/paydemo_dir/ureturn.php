@@ -29,7 +29,7 @@ if($verify_result) {//验证成功
 
     $kar = glbDBExt::dbAutID('plus_paylog');
     $rlog = ['kid'=>$kar[0], 'ordid'=>$out_trade_no, 'apino'=>$trade_no, 'amount'=>$total_fee, 'api'=>'Demopay',
-        'ufrom'=>'', 'uto'=>'', 'stat'=>'success', ]; 
+        'ufrom'=>'', 'uto'=>'', 'stat'=>'success', 'atime'=>time()]; 
     // kid  ordid   apino   amount  api stat    ufrom   uto expar
     db()->table('plus_paylog')->data($rlog )->insert();
 

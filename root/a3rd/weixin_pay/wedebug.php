@@ -26,7 +26,7 @@ wxDebugNavbar();
 foreach($dcfg as $k){
     $$k = empty($debug[$k]) ? (empty($wecfg[$k]) ? '' : $wecfg[$k]) : $debug[$k];
 }
-$api || $api = $_cbase['run']['roots']."/plus/api/wechat.php?kid=$kid";
+$api || $api = $root_url."/plus/api/wechat.php?kid=$kid";
 $orgid || $orgid = 'gh_'.basKeyid::kidRand(24,12);
 $openid || $openid = 'open_'.basKeyid::kidRand(24,24);
 $debug['type'] = empty($debug['type']) ? 'Location' : $debug['type'];

@@ -1,8 +1,4 @@
 <?php
-require_once "WxPay.Exception.php";
-require_once "WxPay.Config.Interface.php";
-require_once "WxPay.Data.php";
-
 /**
  * 
  * 接口访问类，包含所有微信支付API列表的封装，类中方法为static方法，

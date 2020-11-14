@@ -17,10 +17,10 @@ $payment_type = "1";
 //必填，不能修改
 
 //服务器异步通知页面路径
-$notify_url = $_cbase['run']['roots']."/a3rd/alipay_direct/unotify.php";
+$notify_url = $root_url."/a3rd/alipay_direct/unotify.php";
 //需http://格式的完整路径，不能加?id=123这类自定义参数
 //页面跳转同步通知页面路径
-$return_url = $_cbase['run']['roots']."/a3rd/alipay_direct/ureturn.php";
+$return_url = $root_url."/a3rd/alipay_direct/ureturn.php";
 //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 //商户订单号

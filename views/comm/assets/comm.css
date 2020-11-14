@@ -76,10 +76,11 @@ h3 { margin-bottom: 10px; font-size: 14px; color: #09C; }
 
 .pro-table {} 
 .pro-table .pitm { padding:5px 0px; margin:5px 0px; }
-.pro-table .pitm:hover { background:#FFD; }
-.pro-table p.picbox { height:140px; padding:10px 0px 0px 0px; margin:auto; }
+.pro-table .pitm:hover { background:#FDF; }
+.pro-table p.picbox { height:200px; padding:10px 0px 0px 0px; margin:auto; }
 .pro-table p img { }
-.pro-table p.title { font-weight:bold; line-height:120%; clear:both; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; text-align:center; padding:0px 5px 20px 5px; }
+.pro-table p.title { font-weight:bold; height:65px; line-height:150%; clear:both; padding:5px 5px 20px 5px;
+    overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; text-align:center; }
 .pro-table p.detail { font-size:medium; color:#666; padding:0px 10px 8px 10px; }
 .pro-table p.detail i { font-style: normal; display: inline-block; white-space:nowrap; }
 .pro-table p.detail i.click { float:right; }

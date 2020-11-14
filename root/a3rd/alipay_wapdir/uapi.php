@@ -27,11 +27,11 @@ $req_id = date('Ymdhis');
 //**req_data详细信息**
 
 //服务器异步通知页面路径
-$notify_url = $_cbase['run']['roots']."/a3rd/alipay_wapdir/unotify.php";
+$notify_url = $root_url."/a3rd/alipay_wapdir/unotify.php";
 //需http://格式的完整路径，不允许加?id=123这类自定义参数
 
 //页面跳转同步通知页面路径
-$call_back_url = $_cbase['run']['roots']."/a3rd/alipay_wapdir/ureturn.php";
+$call_back_url = $root_url."/a3rd/alipay_wapdir/ureturn.php";
 //需http://格式的完整路径，不允许加?id=123这类自定义参数
 
 //操作中断返回地址

@@ -18,6 +18,8 @@ if($act=='shipfee'){
     $db = db();
     $ordid = req('ordid');
     $row = $db->table('plus_paylog')->where("ordid='$ordid' AND stat='success'")->find();
-    $db->table('coms_corder')->data(array('ordstat'=>'paid'))->where("cid='$ordid' AND ordstat='new'")->update(); 
+    if(!empty($row)){
+        $db->table('coms_corder')->data(array('ordstat'=>'paid'))->where("cid='$ordid' AND ordstat='new'")->update(); 
+    }
     die("var data = '".(empty($row) ? '' : 'YES')."'");    
 }

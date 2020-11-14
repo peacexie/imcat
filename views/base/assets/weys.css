@@ -74,7 +74,7 @@ article .info, section .info{ color:#666; text-align:center; background-color:va
 .md li{ word-break:break-all; }
 
 .user{  }
-.user .logo img{ min-height:72px; max-width:80px; margin:0.5rem 0; border-radius:20%; }
+.user .logo img{ max-width:72px; max-height:72px; min-height:64px; margin:0.5rem 0; border-radius:20%; }
 .user .id{ position:relative; display:inline-block; color:#666; background:var(--bga); float:right; bottom:2.5rem; 
   padding:0.2rem 0.5rem; border-radius:0.2rem; }
 .shead{ background:var(--bgtb2); padding:0.5rem 1rem; border-bottom:var(--border); border-top-left-radius:0.5rem; }
@@ -87,7 +87,8 @@ article .info, section .info{ color:#666; text-align:center; background-color:va
 .list2 .img a{ font-size:2.5rem; }
 .list2 .main p{ display:block; padding:0; margin:0; }
 .list2 .main p.note{ color:#999; font-size:small; padding-top:0.5rem;}
-.list2 .more{ color:#999; text-align:right; }
+.list2 .more{ color:#999; font-size:small; text-align:right; }
+.list2 .more .time, .list2 .more .tag{ color:#999; }
 
 .list1{  }
 .list1 .row{ display:flex; border-bottom:var(--border); }
@@ -150,7 +151,7 @@ input, select{ display:inline-block; padding:6px 12px; color:(--c5); background-
   background-color:var(--bgbd); text-align:left; overflow-y:auto; margin:auto; border-bottom-right-radius:0.5rem; }
 .smenu .close{ background:var(--bgbd); }
 .smenu .hd{ font-size:1.2rem; background:var(--bgtb2); word-break:keep-all; white-space:nowrap; padding:0.5rem 1rem; }
-.smenu .hd img{ vertical-align:middle; padding-right:0.5rem; border-radius:0.5rem; }
+.smenu .hd img{ vertical-align:middle; max-width:36px; max-height:36px; padding-right:0.5rem; border-radius:0.5rem; }
 .smenu .bd{ max-height:calc(96vh-130px); overflow-y:auto; text-align:left; padding:0 1rem; border-top:var(--border); }
 .smenu .bd ul{ padding:0; margin:0; }
 .smenu .bd li{ padding:0.5rem 0 0.5rem 2rem; margin:0; border-top:var(--border); list-style:none; }

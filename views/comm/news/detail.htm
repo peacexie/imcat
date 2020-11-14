@@ -19,6 +19,11 @@ eimp('/layer/layer.js','vendui');
       <li class="active">详情</li>
     </ol>
 
+      <h1 class="news_title">{title($title,96,$this->vars)}</h1>
+      <div class="news_bar"> 发布:<i class="atime">{stime($atime,min)}</i> &nbsp; 
+        点击<i id="jsid_field_{=$this->mod}:{=$did}:click">{=$click}<!--,add1--></i>次 &nbsp; 
+        评论:<i id="cnt_kerem">0</i>条 </div>
+
     {inc:"base:stpl/_news-detail"} 
 
   </div>
