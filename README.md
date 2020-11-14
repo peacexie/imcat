@@ -1,7 +1,10 @@
 
 
-* 贴心猫(imcat) V5.4 Beta, Compatible PHP8(Beta);  
-* TODO: 功能完成；产品缺少演示数据；产品前台显示待改版...
+
+* 贴心猫(imcat) V5.4 Released (2020-11)
+  - Compatible PHP8(Beta);  
+  - TODO: 产品缺少演示数据；产品前台显示待改版...
+
 
 --- --- --- --- --- --- --- --- --- 
 
