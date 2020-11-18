@@ -48,7 +48,7 @@ class dopBSo{
         if($msg=='(null)') $msg = basLang::show('flow.op0_filt');
         $sfid = basReq::val('sfid',$this->dskey,'Key');
         $sfop = basReq::val('sfop','lb','Key');
-        $sfkw = basReq::val('sfkw');
+        $sfkw = trim(basReq::val('sfkw'));
         if($sfkw && isset($this->cfg['f'][$sfid])){ 
             $this->urlstr .= "&sfid=$sfid&sfkw=$sfkw&sfop=$sfop";
             $fcfg = $this->cfg['f'][$sfid];

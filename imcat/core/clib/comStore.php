@@ -131,7 +131,7 @@ class comStore{
     //移动临时文件夹中的文件
     static function moveTmpDir($str, $mod, $kid, $ishtml=0){
         self::storeCfgs();
-        $ar2 = self::moveTmpFmt($str, $ishtml);
+        $ar2 = self::moveTmpFmt($str, $ishtml); 
         if(empty($ar2)) return $str;
         foreach($ar2 as $v){
             if(self::moveTmpOne($str, $v, $mod, $kid)) continue;
@@ -208,8 +208,8 @@ class comStore{
         $res = $v;
         if(strpos($res,$cfg[1].$fix)===0 && !empty($cfg[1])){
             $res = '{'.$key.'root}'.substr($res, strlen($cfg[1]));
-            //echo "$str,";
-            $str = str_replace($v, $res, $str); //echo "$str,"; die();
+            //echo "$key, ($v, $res, $str)<br>";
+            $str = str_replace($v, $res, $str); 
         }
         $reps = glbConfig::read('repath', 'sy');
         foreach (array('att','tpl') as $k0) {
@@ -217,7 +217,7 @@ class comStore{
                 $str = str_replace(array_values($reps[$k0]), array_keys($reps[$k0]), $str);
             }
         }
-        $str = self::revSaveDir($str);
+        //$str = self::revSaveDir($str); # 2009-02之前就有这行代码???
         return $str;
     }
     
