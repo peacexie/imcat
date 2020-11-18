@@ -3,7 +3,8 @@
 
 * 贴心猫(imcat) V5.4 Released (2020-11)
   - Compatible PHP8(Beta);  
-  - TODO: 产品缺少演示数据；产品前台显示待改版...
+  - [产品搜索属性演示](https://imcat.txjia.com/chn.php/cargo)
+  - TODO: 产品前台显示待改版...
 
 
 --- --- --- --- --- --- --- --- --- 
