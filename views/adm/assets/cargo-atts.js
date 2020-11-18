@@ -243,9 +243,9 @@ function attSetVals(){
 
 function att1Html(cfg){
     var kid = cfg.title, tab = [], no = 0; // onblur='attSetVals()' 
-        fnameid = " name='att["+kid+"]' id='att["+kid+"]' onchange='attSetVals()' ";
+        fnameid = " name='att["+kid+"]' id='att["+kid+"_n]' onchange='attSetVals()' ";
         html = "<tr ><td class='tc'>"+cfg.title+"</td><td class='tl'>",
-        val = kid in att_vals ? att_vals[kid] : ''; //jsLog(att_vals[kid]);
+        val = kid in att_vals ? att_vals[kid] : '', def = '';
     if(cfg.cfgs){
         var tmp = cfg.cfgs.replace('\r','\n').split('\n'); 
         for(var i=0;i<tmp.length;i++){
@@ -253,7 +253,9 @@ function att1Html(cfg){
             if(!itm){ continue; }
             tab[no] = itm; no++; 
         }
-    }
+    } 
+    if(cfg.def && !(kid in att_vals)){ val=cfg.def; }
+    //console.log(tab,val,cfg.def);
     if(cfg.type=='select'){
         html += "<select "+fnameid+">";
         html += "<option value='' >-选择-</option>";
@@ -263,16 +265,18 @@ function att1Html(cfg){
         }
         html += "</select>";
     }else if(cfg.type=='cbox'){
-        html += "<input "+fnameid+"0 type='hidden' value='' />";
+        html += "<input "+fnameid+" type='hidden' value='' />";
         for(var i=0;i<tab.length;i++){
             var sed = val.indexOf(tab[i])>=0 ? 'checked' : '';
-            html += "<label><input "+fnameid+i+" type='checkbox' class='rdcb' value='"+tab[i]+"' "+sed+">"+tab[i]+"</label> ";
+            var tid = fnameid.replace("_n]'","_"+i+"]'");
+            html += "<label><input "+tid+" type='checkbox' class='rdcb' value='"+tab[i]+"' "+sed+">"+tab[i]+"</label> ";
         }
     }else if(cfg.type=='radio'){
-        html += "<input "+fnameid+"0 type='hidden' value='' />";
+        html += "<input "+fnameid+" type='hidden' value='' />";
         for(var i=0;i<tab.length;i++){
             var sed = val.indexOf(tab[i])>=0 ? 'checked' : '';
-            html += "<label><input "+fnameid+i+" type='radio' class='rdcb' value='"+tab[i]+"' "+sed+">"+tab[i]+"</label> ";
+            var tid = fnameid.replace("_n]'","_"+i+"]'");
+            html += "<label><input "+tid+" type='radio' class='rdcb' value='"+tab[i]+"' "+sed+">"+tab[i]+"</label> ";
         }
     }else if(cfg.type=='text'){
         html += "<textarea "+fnameid+" rows='3' class='txt' >"+val+"</textarea>";

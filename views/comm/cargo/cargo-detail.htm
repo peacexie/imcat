@@ -122,13 +122,13 @@ $calays = comTypes::getLarr($caitms, $catid); // 当前栏目树
                 <th>参数值</th>
             </tr>
             <?php if(count($gtab)>1){ ?>
-                <?php foreach($gtab as $gkey){ ?>
-                <tr>
+                <?php foreach($gtab as $kg=>$gkey){ ?>
+                <tr class="g_{=$kg}">
                     <th></th>
                     <th class="tc"><?=$gkey?></th>
                 </tr>
                 <?php foreach($attrs as $atr){ if($atr['gkey']==$gkey){ ?>
-                <tr>
+                <tr class="i_{=$kg}">
                     <td class="tc"><?=$atr['name']?></td>
                     <td><?=$atr['value']?></td>
                 </tr>
@@ -244,6 +244,11 @@ for(i=0;i<cfg.data.length;i++){
     str += pic;
 }
 $('#picMini').html(str);
+
+var gnum = '<?=count($gtab)-1?>',
+    gnf1 = $('.g_'+gnum).html().indexOf('(未分组)'),
+    gnf2 = $('.i_'+gnum).length; //jsLog(gnf1); jsLog(gnf2);
+if(gnf1>0 && !gnf2){ $('.g_6').hide(); };
 
 // viewPhoto
 //$("a[rel='viewPhoto[fm_pics_]']").prettyPhoto();
