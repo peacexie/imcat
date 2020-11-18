@@ -3,7 +3,7 @@
 
 * 贴心猫(imcat) V5.4 Released (2020-11)
   - 兼用PHP8.0 / Compatible PHP8;  
-  - [产品搜索属性演示 / Products](https://imcat.txjia.com/chn.php/cargo)
+  - [产品搜索属性演示 / Products Demo](https://imcat.txjia.com/chn.php/cargo)
   - TODO: 产品前台显示待改版...
 
 
