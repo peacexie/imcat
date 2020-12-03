@@ -367,8 +367,8 @@ if($act=='iform'){
         'kid'=>'topic',
         'sofields'=>array('title'),
         'soorders'=>array(
-            'top' => '排序(降)',
             'top-a' => '排序(升)',
+            'top' => '排序(降)',
             'vote' => '票数(降)',
             'vote-a' => '票数(升)',
             'atime' => '时间(降)',

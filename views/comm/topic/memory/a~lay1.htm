@@ -113,7 +113,7 @@ eimp('initCss','bootstrap,stpub;comm;memory');
     <div class="mdetail">
         <div class="row pics">
             <?php if(!empty($pics) && count($pics)==1){ ?><!--album:start-->
-            <?php reset($pics); $upics=current($pics); foreach ($upics as $img) { ?>
+            <?php reset($pics); $uptmp=current($pics); $upics=$uptmp['upics']; foreach ($upics as $img) { ?>
                 <div class="col-xs-6 col-md-3 tc mhpica">
                     <a class="thumbnail">
                         <img src="{=$img}" alt="{=$img}">

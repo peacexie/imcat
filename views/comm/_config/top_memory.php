@@ -9,7 +9,7 @@ $ftitle = empty($flower['title']) ? '送花' : $flower['title'];
 $words = db()->table('topic_form')->where("did='$did' AND `show`=1")->order("kid desc")->limit(50)->select(); 
 
 if(empty($this->view)){
-    $arcs = db()->table('topic_items')->where("did='$did' AND part='arcs'")->select();
+    $arcs = db()->table('topic_items')->where("did='$did' AND part='arcs'")->order('top')->select();
 
     $fcfg = devTopic::cfg2arr($cpics);
     $pics = array();
