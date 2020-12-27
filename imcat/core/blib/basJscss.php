@@ -4,6 +4,48 @@ namespace imcat;
 // basJscss类
 class basJscss{
 
+    // js-基础配置
+    static function jsbcfg($lang=''){
+        global $_cbase;
+        echo "\n// js Config @ "; // base /* --- [load file] /views/base/assets/jslib/jcore-cn.js --- */
+        echo "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
+        echo "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
+        echo "\nif(typeof(_pbase)=='undefined'){_pbase={}} ";
+        echo "\n";
+        echo "\n_cbase.run.timer = '".$_cbase['run']['timer']."';";
+        echo "\n_cbase.run.stamp = '".$_cbase['run']['stamp']."';";
+        echo "\n_cbase.run.userag = '".$_cbase['run']['userag']."';";
+        echo "\n_cbase.run.jsimp = ',';";
+        echo "\n"; // sys
+        echo "\n_cbase.sys.cset = '".$_cbase['sys']['cset']."';";
+        echo "\n_cbase.sys.tzone = '".$_cbase['sys']['tmzone']."';"; // 时区+-12
+        if($lang) echo "\n_cbase.sys.lang = '$lang';";
+        echo "\n"; // root
+        echo "\n_cbase.run.ref = '".basEnv::serval('ref')."';"; // 
+        echo "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
+        echo "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
+        echo "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
+        echo "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_VIEWS."';";
+        echo "\n_cbase.run.fbase = '".$_cbase['run']['fbase']."';";
+        echo "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
+        echo "\n"; // Path
+        echo "\n_cbase.path.cache   = '".PATH_DTMP."';"; 
+        echo "\n_cbase.path.vendor  = '".PATH_VENDOR."';"; 
+        echo "\n_cbase.path.vendui  = '".PATH_VENDUI."';"; 
+        echo "\n_cbase.path.static  = '".PATH_STATIC."';"; 
+        echo "\n_cbase.path.skin    = '".PATH_VIEWS."';"; 
+        echo "\n"; // Cookie
+        echo "\n_cbase.ck.ckpre = '".$_cbase['ck']['pre']."';";
+        echo "\n_cbase.ck.ckdomain = '".$_cbase['ck']['domain']."';";
+        echo "\n_cbase.ck.ckpath = '".$_cbase['ck']['path']."';";
+        echo "\n"; // Safil
+        echo "\n_cbase.safe.safil = '".$_cbase['safe']['safil']."';";
+        echo "\n_cbase.safe.safix = '".$_cbase['safe']['safix']."';";
+        #echo "\n_cbase.safe.rnum = '".$_cbase['safe']['rnum']."';";
+        #echo "\n_cbase.safe.rspe = '".$_cbase['safe']['rspe']."';";
+        echo "\n_cbase.safil.url = '".safComm::urlStamp('init')."';";
+    }
+
     // css基本导入
     static function weysCss(){
         $fp = DIR_VIEWS.'/base/assets/weys.css';
@@ -35,20 +77,7 @@ class basJscss{
     // js基本配置
     static function weysJs(){
         global $_cbase;
-        // js-cfgs
-        echo "/* --- [js Config] @basJscss::weysCfgs --- */\n";
-        echo "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
-        echo "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
-        echo "\nif(typeof(_pbase)=='undefined'){_pbase={}} ";
-        echo "\n";
-        echo "\n_cbase.run.jsimp = ',';";
-        echo "\n";
-        echo "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
-        echo "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
-        echo "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
-        echo "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_VIEWS."';";
-        echo "\n_cbase.run.fbase = '".$_cbase['run']['fbase']."';";
-        echo "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
+        self::jsbcfg();
         // js-files
         $lang = basReq::val('lang', $_cbase['sys']['lang']); 
         $fp = "/base/assets/jslib/jcore-$lang.js"; // 核心语言包
@@ -228,30 +257,11 @@ class basJscss{
             }
         }
     }
+
     // exjs=jspop
     static function loadCfgjs($exjs,$tpldir,$lang,$mkv){
         global $_cbase;
-        // ***** js配置区 *****
-        echo "\n// js Config";
-        echo "\nvar _cbase={}; _cbase.run={}; _cbase.sys={}; _cbase.path={}; _cbase.ck={};";
-        echo "\n_cbase.safe={}; _cbase.safil={}; _cbase.jsrun={};"; //_cbase.safe={}; 
-        echo "\nif(typeof(_pbase)=='undefined'){_pbase={}} ";
-        echo "\n";
-        echo "\n_cbase.run.timer = '".$_cbase['run']['timer']."';";
-        echo "\n_cbase.run.stamp = '".$_cbase['run']['stamp']."';";
-        echo "\n_cbase.run.userag = '".$_cbase['run']['userag']."';";
-        echo "\n_cbase.run.jsimp = ',';";
-        //sys
-        echo "\n_cbase.sys.cset = '".$_cbase['sys']['cset']."';";
-        echo "\n_cbase.sys.tzone = '".$_cbase['sys']['tmzone']."';"; // 时区+-12
-        echo "\n_cbase.sys.lang = '$lang';";
-        echo "\n_cbase.run.ref = '".@$_SERVER['HTTP_REFERER']."';"; // 
-        echo "\n_cbase.run.rsite = '".$_cbase['run']['rsite']."';";
-        echo "\n_cbase.run.rmain = '".$_cbase['run']['rmain']."';";
-        echo "\n_cbase.run.roots = '".$_cbase['run']['roots']."';";
-        echo "\n_cbase.run.rskin = '".$_cbase['run']['rsite'].PATH_VIEWS."';";
-        echo "\n_cbase.run.fbase = '".$_cbase['run']['fbase']."';";
-        echo "\n_cbase.run.dmtop = '".$_cbase['run']['dmtop']."';";
+        self::jsbcfg($lang);
         //tpl
         if($tpldir){
             vopTpls::set($tpldir);
@@ -264,35 +274,17 @@ class basJscss{
         echo "\n_cbase.run.isMoble = ".(basEnv::isMobile()?1:0).";";
         echo "\n_cbase.run.isWeixin = ".(basEnv::isWeixin()?1:0).";";
         echo "\nif(typeof(_pbase.jscode)!='undefined'){eval(_pbase.jscode);}";
-        // Path  
-        echo "\n_cbase.path.cache   = '".PATH_DTMP."';"; 
-        echo "\n_cbase.path.vendor  = '".PATH_VENDOR."';"; 
-        echo "\n_cbase.path.vendui  = '".PATH_VENDUI."';"; 
-        echo "\n_cbase.path.static  = '".PATH_STATIC."';"; 
-        echo "\n_cbase.path.skin    = '".PATH_VIEWS."';"; 
-        echo "\n_cbase.path.editor  = _cbase.path.vendui + '/edt_".@$_cbase['sys_editor']."/';"; 
-        // Cookie
-        echo "\n_cbase.ck.ckpre = '".$_cbase['ck']['pre']."';";
-        echo "\n_cbase.ck.ckdomain = '".$_cbase['ck']['domain']."';";
-        echo "\n_cbase.ck.ckpath = '".$_cbase['ck']['path']."';";
-        
-        // Safil
-        echo "\n";
-        echo "\n_cbase.safe.safil = '".$_cbase['safe']['safil']."';";
-        echo "\n_cbase.safe.safix = '".$_cbase['safe']['safix']."';";
-        #echo "\n_cbase.safe.rnum = '".$_cbase['safe']['rnum']."';";
-        #echo "\n_cbase.safe.rspe = '".$_cbase['safe']['rspe']."';";
-        echo "\n_cbase.safil.url = '".safComm::urlStamp('init')."';";
-        
         // Para
         echo "\n"; //_cbase.para={};\n
-        echo "\n_cbase.sys_editor = '".@$_cbase['sys_editor']."';";
         echo "\n_cbase.sys_open = ".(empty($_cbase['sys_open']) ? 1 : $_cbase['sys_open']).";";
         echo "\n_cbase.sys_pop = ".(empty($_cbase['sys_pop']) ? 1 : $_cbase['sys_pop']).";";
         echo "\n_cbase.msg_timea = ".(empty($_cbase['sys_timea']) ? 1500 : $_cbase['sys_timea']).";";
-        echo "\n_cbase.sys_map = '".@$_cbase['sys_map']."';";
+        echo "\n_cbase.sys_map = '".(empty($_cbase['sys_map']) ? 1 : $_cbase['sys_map'])."';";
+        if(isset($_cbase['sys_editor'])){
+            echo "\n_cbase.sys_editor = '".$_cbase['sys_editor']."';";
+            echo "\n_cbase.path.editor  = _cbase.path.vendui + '/edt_".$_cbase['sys_editor']."/';"; 
+        }
         echo "\n";
-        
 		// ***** 加载Base.js *****
         self::inc('/base/assets/jslib/jsbase.js');
 		self::inc('/base/assets/jslib/jsbext.js');

@@ -23,7 +23,12 @@
         <div class="text"> {=$text} </div>
         <?php }else{ ?>
         <div class="row pics">
-            <?php if(!empty($upics)){ foreach ($upics as $img) { ?>
+            <?php 
+            if(!empty($upics)){ 
+            foreach ($upics as $img) { 
+                $imga = explode(',',$img);
+                $img = $imga[0];
+            ?>
             <div class="col-xs-6 col-md-3 tc mhpica">
                 <a class="thumbnail">
                     <img src="{=$img}" alt="{=$img}">
@@ -37,6 +42,7 @@
 
 {block:exact}{:parent}<script>
 $(function(){
+    $('.mhpica').picView();
     $('#m_gift,#m_arts,#m_pics').hide();
     $('#m_home').removeClass('active');
     $('#m_detail').addClass('active');

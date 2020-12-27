@@ -207,6 +207,22 @@
 
 <script>
 
+function setTab(k){ // act
+    clearTimeout(_timeFlag);
+    $('.btn-group div').removeClass('btn-act');
+    $('#nav_'+k).addClass('btn-act');
+    $('.cont').hide();
+    $('#cont_'+k).show();
+    return;
+    var t1 = k=='wechat' && !isWexin,
+        t2 = k=='wework' && !isWework;
+    if(t1 || t2){
+        _timeFlag = setTimeout(function(){
+            checkScan();
+        }, 3700); // (5分钟)300/3.7=81.08
+    }
+}
+
 $(function(){
     setTab('idpwd'); // wechat/.idpwd
     return;

@@ -62,6 +62,8 @@
 .mdetail .text li ul{ margin:0px 20px 10px 40px; }
 .mdetail .text li ul li{ list-style:circle; }
 
+.mdetail .text hr{ margin:1rem auto; }
+
 .mdetail .pics{ }
 .mdetail .pics img{ max-height:120px; }
 .mdetail .mhpica{ height:130px; margin-bottom:20px; }

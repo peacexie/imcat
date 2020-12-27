@@ -171,7 +171,9 @@ class vopUrl{
     //base-url
     static function burl($host=0){ 
         $type = $host ? 1 : 0;
-        return $burl = vopTpls::etr1($type);
+        $burl = vopTpls::etr1($type);
+        if($host){ $burl = (basEnv::isHttps() ? 'https:' : 'http:') . $burl; }
+        return $burl;
     }
     
     //还原root路径

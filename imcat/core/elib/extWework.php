@@ -125,7 +125,7 @@ class extWework{
     static function getUser($UserId='', $agentId=''){ // deps,utab,uone
         $wecfgs = read('wework', 'ex'); // DefAppID
         $agentId = $agentId ?: $wecfgs['DefAppID'];
-        $fp = "/dtmp/weixin/$UserId.cac_tab";
+        $fp = "/dtmp/wework/$UserId.cac_tab";
         if(!$UserId){
             $data = $wecfgs['utab']['(null)'];
         }elseif(isset($wecfgs['utab'][$UserId])){
@@ -148,7 +148,7 @@ class extWework{
     static function updUser($UserId='', $agentId=''){ // deps,utab,uone
         $wecfgs = read('wework', 'ex'); // DefAppID
         $agentId = $agentId ?: $wecfgs['DefAppID'];
-        $fp = "/dtmp/weixin/$UserId.cac_tab";
+        $fp = "/dtmp/wework/$UserId.cac_tab";
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
         $CorpId = $wecfgs['CorpId']; //read('wework.CorpId', 'ex');
         $api = new \CorpAPI($CorpId, $agentId);
@@ -166,7 +166,7 @@ class extWework{
     // 从缓存获取:部门/用户列表数据
     static function getContacts($act='deps'){ // deps,utab
         $key = $act=='deps' ? 'department' : 'userlist';
-        $fp = "/dtmp/weixin/_$key.cac_tab";
+        $fp = "/dtmp/wework/_$key.cac_tab";
         if(!file_exists(DIR_VARS.$fp)){
             self::updContacts($act);
         }
@@ -186,7 +186,7 @@ class extWework{
     // 更新:部门/用户列表数据 > 保存到缓存
     static function updContacts($act='deps'){ // deps,utab
         $key = $act=='deps' ? 'department' : 'userlist';
-        $fp = "/dtmp/weixin/_$key.cac_tab";
+        $fp = "/dtmp/wework/_$key.cac_tab";
         $res = ['errno'=>'','errmsg'=>'更新成功'];
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
         $wework = read('wework', 'ex');
@@ -252,12 +252,6 @@ class extWework{
         $urlBase = '';
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$CorpId&redirect_uri=$redirect&response_type=code&scope=$scope&state=$state#wechat_redirect";
         return $url;
-
-        //$redirect = urlencode($redirect);
-
-
-        $scope = in_array($scope,array('snsapi_base','snsapi_userinfo')) ? $scope : 'snsapi_base';
-        return sprintf($this->accodeUrl,$this->cfg['appid'],$redirect,$scope,$state);  
 
     }
 

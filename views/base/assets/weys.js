@@ -23,11 +23,12 @@ function opDialog(id){ // tipd1, element
         $(pe).css({"display":'none'});
     }
 }
-function opToast(id){ // tipd1, element
+function opToast(id, gap){ // tipd1, element
+    if(!gap) gap = 1500;
     if(typeof(id)=='string'){
         var pe = $('#'+id);
         $(pe).show(200);
-        setTimeout(function(){opToast(pe)},1500);
+        setTimeout(function(){opToast(pe,gap)},gap);
     }else{
         $(id).hide(200);
     }

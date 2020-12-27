@@ -25,7 +25,7 @@ class cacheFile{
             $sData = fread($handle, filesize($sFile)); 
             fclose($handle);
             return unserialize($sData);
-        }else{    //已经失效期
+        }else{ // 已经失效期
             fclose($handle);
             return null;
         }

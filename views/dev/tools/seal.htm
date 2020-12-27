@@ -24,7 +24,7 @@ if(!is_file(DIR_STATIC.$pfont)){
 }
 
 if($act=='CreatSeal'){
-    $seal = new exaCSeal($text,75,18,16,40);
+    $seal = new exaCSeal($text,750,18,16,40);
     $seal->doImg();    
 }elseif(strstr($act,'down')){
     $path = strpos($act,'Class') ? $pclass : DIR_STATIC.$pfont;

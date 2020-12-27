@@ -214,7 +214,7 @@ $ldev = glbDBExt::getExtp('logmode_cn');
 
 <?php
 $opay = exvOpay::getParas($order,'Webchn'); 
-$opay['showurl'] = (basEnv::isHttps()?'https:':'http:').surl(0,'',1)."?$this->mkv&ordid=$ordid&enc=$enc"; 
+$opay['showurl'] = surl(0,'',1)."?$this->mkv&ordid=$ordid&enc=$enc"; 
 $oadm = @$opay['a']; unset($opay['a']); 
 ?>
 <form id='fmopay' name='fmopay' method="post" action="{=PATH_ROOT}/a3rd/{=$oadm['apidir']}/uapi.php" target="_blank">

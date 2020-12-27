@@ -169,7 +169,12 @@ class basEnv{
         }else{
             return $wxpos;
         }
-    } 
+    }
+    // 是否Wework()
+    static function isWework(){
+        $wxpos = strpos(self::userAG(), 'wxwork/');
+        return $wxpos;
+    }
     // 是否Qq()
     static function isQq($ver=0){
         $wxpos = strpos(self::userAG(), 'QQBrowser');

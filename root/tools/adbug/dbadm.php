@@ -21,7 +21,7 @@ function adminer_object() {
 }
 
 
-// line:71:if(!ini_bool("session.use_cookies")&&!session_id())
+// line:71:if(!ini_bool("session.use_cookies")&&!session_id()) // for 4.7.7
 $_locfp = '/ximp/files/adminer.imp_php';
 require DIR_STATIC.$_locfp;
 

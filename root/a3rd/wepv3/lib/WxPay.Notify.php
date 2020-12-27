@@ -69,7 +69,7 @@ class WxPayNotify extends WxPayNotifyReply
 	 * @param array $data
 	 * @return true回调出来完成不需要继续回调，false回调处理未完成需要继续回调
 	 */
-	final public function NotifyCallBack($data)
+	final function NotifyCallBack($data)
 	{
 		$msg = "OK";
 		$result = $this->NotifyProcess($data, $this->config, $msg);
@@ -89,7 +89,7 @@ class WxPayNotify extends WxPayNotifyReply
 	 * 回复通知
 	 * @param bool $needSign 是否需要签名输出
 	 */
-	final private function ReplyNotify($needSign = true)
+	final function ReplyNotify($needSign = true)
 	{
 		//如果需要签名
 		if($needSign == true && 

@@ -82,7 +82,7 @@ class usrMember extends usrBase{
         @$defshow = in_array($mcfg['defcheck'],array('Y','1','y')) ? '1' : 0;
         @$show = intval($excfg['check']) ? intval($excfg['check']) : $defshow; 
         $mname = $mname ? $mname : $uname; 
-        $mtel = $mtel ? $mtel : '127-6666-8888'; 
+        $mtel = $mtel ? $mtel : '132-6666-8888'; 
         $memail = $memail ? $memail : "$mname@domain.com";
         $upass = comConvert::sysPass($uname,$upass,$mod);
         $acc = array('uid'=>$uid,'uno'=>$uno,'uname'=>$uname,'upass'=>$upass,'umods'=>$mod,); 
@@ -96,15 +96,23 @@ class usrMember extends usrBase{
         comJifen::main(array_merge($md,array('uid'=>$uid,'auser'=>$uname,'defgrade'=>$defgrade)),'add','User-Reg');
         return $re;
     }
-    
-    static function addUname($uname='',$mod=''){ 
+    // wechat(28)o9PAcuAerrObVtcXgKzXllG31twM, wework(64)XieYongShun
+    static function addUname($uname='', $mod='', $no=0){ 
         $tabid = 'users_uacc'; $key = "uname";
         if(empty($uname)){
             $uname = substr($mod,0,1).str_replace('-','',basKeyid::kidTemp('5'));
+        }elseif(strpos($uname,'@') && strlen($uname)<20){
+            // keep@
+        }elseif(strlen($uname)>=20){ 
+            $uname = substr($uname,0,4).'_'.substr($uname,-4).'_'.basKeyid::kidRand('24',4);
+        }
+        if($no){
+            $uname .= '_'.basKeyid::kidRand('24',3); //echo $uname;
         }
         $r = glbDBObj::dbObj()->table($tabid)->field($key)->where("$key='$uname'")->find(); 
         if(!empty($r[$key])){ 
-            return self::addUname('',$mod);
+            if($no>5) die();
+            return self::addUname($uname, $mod, $no+1);
         }
         return $uname;
     }
@@ -126,6 +134,47 @@ class usrMember extends usrBase{
     
     static function bindUser($mname,$pptmod,$pptuid){ 
         glbDBObj::dbObj()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
+    }
+
+    static function delUser($uname, $key=0){
+        // key:0-$uanme,1-uid,2-pptuid
+        $umod = '';
+        if($key==1){
+            $uacc = db()->table('users_uacc')->where("uid='$uname'")->find();
+            if(!empty($uacc)){
+                $umod = $uacc['umods']; 
+                $uname = $uacc['uname'];
+            }else{
+                $uname = '';
+            }
+        }elseif($key==2){
+            $uppt = db()->table('users_uppt')->where("pptuid='$uname'")->find();
+            if(!empty($uppt)){
+                $uname = $uppt['uname'];
+            }else{
+                $uname = '';
+            }
+        }
+        if(!$uname){
+            return;
+        }
+        if($uname && empty($umod)){
+            $uacc = db()->table('users_uacc')->where("uname='$uname'")->find(); 
+            if(!empty($uacc)){
+                $umod = $uacc['umods']; 
+            }else{
+                $umod = '';
+            }
+        }
+        if(!empty($umod)){
+            db()->table("users_$umod")->where("uname='$uname'")->delete();
+        }
+        db()->table('users_uacc')->where("uname='$uname'")->delete();
+        db()->table('users_uppt')->where("uname='$uname'")->delete(); 
+        db()->table('active_online')->where("uname='$uname'")->delete();
+        db()->table('active_admin')->where("uname='$uname'")->delete();
+        db()->table('active_login')->where("uname='$uname'")->delete();
+        db()->table('active_login')->where("pptuid='$uname'")->delete();
     }
 
     static function chkExists($key,$val,$mod=''){ 

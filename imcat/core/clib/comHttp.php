@@ -254,22 +254,28 @@ class comHttp
     }
 
     // 下载web中的(或URL)文件
-    static function downLoad($url, $showname='', $expire=1800){
-        $size = self::downCheck($url, $showname, 1);
-        basEnv::obClean();
-        $type = basNodef::mimeType($url);
-        //发送Http Header信息 开始下载
-        header("Pragma: public");
-        header("Cache-control: max-age=".$expire);
-        //header('Cache-Control: no-store, no-cache, must-revalidate');
-        header("Expires: " . gmdate("D, d M Y H:i:s",$_SERVER["REQUEST_TIME"]+$expire) . "GMT");
-        header("Last-Modified: " . gmdate("D, d M Y H:i:s",$_SERVER["REQUEST_TIME"]) . "GMT");
-        header("Content-Disposition: attachment; filename=".$showname);
-        header("Content-Length: $size"); 
-        header("Content-type: ".$type);
-        header('Content-Encoding: none');
-        header("Content-Transfer-Encoding: binary" );
-        readfile($url);
+    static function downLoad($realname, $showname='', $expire=1800){
+        $size = self::downCheck($realname, $showname, 1);
+        set_time_limit(0);
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . $size);
+        header('Content-Disposition: attachment; filename=' . $showname);
+        # readfile($realname);
+        $fp = fopen($realname, 'rb');
+        ob_clean();
+        ob_end_flush();
+        while (!feof($fp)) {
+            echo fread($fp, $size);
+            ob_flush(); // 刷新PHP缓冲区到Web服务器
+            flush(); // 刷新Web服务器缓冲区到浏览器
+        }
+        fclose($fp);
         return true;
     }
     // 保存远程页面(图片)到本地
@@ -290,7 +296,7 @@ class comHttp
     // downCheck
     static function downCheck(&$url, &$showname, $chkexists=0){
         $fsize = 0;
-        if(preg_match('/^http:\/\//',$url)){
+        if(preg_match('/^https?:\/\//',$url)){
             ini_set('allow_url_fopen', 'On');
         }
         if(empty($url) || ($chkexists && !file_exists($url))) {

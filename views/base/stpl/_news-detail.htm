@@ -1,8 +1,8 @@
 
 <?php 
 $expics = comStore::picsTab($exfile,0); 
-$exvdo = tex('texBase')->vdoUrl($exfile);
-$exdown = tex('texBase')->downParas($exfile);
+$exvdo = tex('texComm','base')->vdoUrl($exfile);
+$exdown = tex('texComm','base')->downParas($exfile);
 ?>
 <div class="news_clear"></div>
 <link href='<?=tpath(1)?>/cssjs/mulnews.css' type='text/css' rel='stylesheet'/>

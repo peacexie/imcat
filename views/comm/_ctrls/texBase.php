@@ -51,26 +51,4 @@ class texBase{
         return $row;
     }
 
-    # multi-news-start
-    static function vdoUrl($uvdo){ 
-      if(empty($uvdo)) return;
-      $uvdo = comStore::revSaveDir($uvdo);
-      return $uvdo;
-    }
-    static function downParas($ufile){ //dump($ufile);
-        $res = [];
-        if(empty($ufile)) return $res;
-        $ticon = comFiles::getTIcon($ufile);
-        $res['type'] = $ticon['type'];
-        $res['icon'] = PATH_STATIC."/icons/file18/{$ticon['icon']}.gif";
-        $res['ufpath'] = comStore::revSaveDir($ufile);
-        $ufdir = comStore::revSaveDir($ufile,'dir'); 
-        $ufdir = str_replace([PATH_URES,PATH_STATIC], [DIR_URES,DIR_STATIC], $ufdir);
-        $ufsize = file_exists($ufdir) ? filesize($ufdir) : 0; 
-        $res['ufsize'] = $ufsize ? basStr::showNumber($ufsize,'Byte') : '';
-        $res['vpath'] = basename($ufile); 
-        return $res;
-    }
-    # multi-news-end
-
 }

@@ -154,11 +154,13 @@ class dopUser extends dopBase{
     // opDelete。
     function opDelete($id){
         parent::opDelete($id);
+        usrMember::delUser($id, 1);
+        /*
         $row = $this->db->table($this->tbuacc)->where("uid='$id'")->find();
         if(!empty($row)){
             $this->db->table('users_uppt')->where("uname='$row[uname]'")->delete();
             $this->db->table($this->tbuacc)->where("uid='$id'")->delete(); 
-        }
+        }*/
         return 1;
     }
     // opCopy。

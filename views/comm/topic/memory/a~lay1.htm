@@ -8,6 +8,7 @@ $this->pmeta();
 eimp('initJs','jquery;bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm;memory');
 {/php}
+<script src='<?=tpath(1)?>/jslib/picPlay.js'></script>
 </head>
 <body>
 {inc:"topic/memory/a~head"}
@@ -113,19 +114,30 @@ eimp('initCss','bootstrap,stpub;comm;memory');
     <div class="mdetail">
         <div class="row pics">
             <?php if(!empty($pics) && count($pics)==1){ ?><!--album:start-->
-            <?php reset($pics); $uptmp=current($pics); $upics=$uptmp['upics']; foreach ($upics as $img) { ?>
+            <?php 
+            reset($pics); $uptmp=current($pics); $upics=$uptmp['upics']; 
+            foreach ($upics as $img) { 
+                $imga = explode(',',$img);
+                $img = $imga[0];
+            ?>
                 <div class="col-xs-6 col-md-3 tc mhpica">
                     <a class="thumbnail">
                         <img src="{=$img}" alt="{=$img}">
                     </a>
                 </div>
             <?php } ?>
+            <script>$('.mhpica').picView();</script>
             <?php }else{ ?><!--album/alist-->
-            <?php foreach($pics as $k2=>$data){ if(empty($data['upics'])) continue; ?>
+            <?php 
+            foreach($pics as $k2=>$data){ 
+                if(empty($data['upics'])) continue; 
+                $imga = explode(',',$data['upics'][0]);
+                $img = $imga[0];
+            ?>
                 <div class="col-xs-6 col-md-3 mhpicb">
                     <p title="{=$data['tags']}">{=$data['title']}</p>
                     <a href='{surl("topic.$did.$k2")}' class="thumbnail">
-                        <img src="{=$data['upics'][0]}">
+                        <img src="{=$img}">
                     </a>
                 </div>
             <?php } ?>

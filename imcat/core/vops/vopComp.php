@@ -65,7 +65,9 @@ class vopComp{
                     $mkv = [];
                     if(strpos($tpl,'}')){ // 漏洞???
                         $mkv = $_cbase['mkv'];
-                        $tpl = str_replace(['{mod}','{key}','{mkv}'] ,[$mkv['mod'],$mkv['key'],$mkv['mkv']], $tpl);
+                        $from = ['{mod}', '{key}', '{view}', '{mkv}'];
+                        $to = [$mkv['mod'], $mkv['key'], $mkv['view'], $mkv['mkv']];
+                        $tpl = str_replace($from, $to, $tpl);
                     }
                     $ext = strpos($tpl,'.')>0 ? '' : ($mkey=='md'?'md':'htm');
                     $pfile = vopTpls::tinc("$tpl.$ext", 0);
