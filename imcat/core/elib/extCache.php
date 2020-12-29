@@ -76,7 +76,7 @@ class extCache{
             foreach(array(0,1,2) as $k){
                 $tmp = $base.'/'.$aDir[$k];
                 if(!is_dir($tmp)){
-                    $flag = mkdir($tmp, 0666);
+                    $flag = mkdir($tmp); // , 0666, 0777
                     if(!$flag) return false;
                 }
                 $base = $tmp;

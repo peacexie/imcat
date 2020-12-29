@@ -65,53 +65,23 @@ class extWeedu{ // extends extWework
 
     # ================================ 
 
-    //static function smsgNewsArticle($agentId){}
 
-    # ================================ 
 
-    // 精简用户数据
-    static function userMin(&$uinfo, $cut=1){
-        $skip = ['extattr','order','external_profile','is_leader_in_dept','errcode','errmsg'];
-        $keep = ['userid','name','mobile','email','avatar'];
-        if($cut){
-            foreach ($skip as $key) {
-                unset($uinfo[$key]);
-            } 
-        }else{
-            foreach ($uinfo as $key=>$val) {
-                if(!in_array($key,$keep)){
-                    unset($uinfo[$key]);
-                }
-            }
-        }
+
+    // ------------------------- user xxx ---------------------------------
+    static function getDeplist($token='', $id=''){
+        $url = "https://oapi.epaas.qq.com/department/list?access_token=access_token=$token&id=$id";
+        $data = comHttp::curlCrawl($url, [], []);
+        $arr = json_decode($data, 1); 
+        return $arr;
     }
 
-    // 从缓存获取:单个用户数据
-    static function getUser($UserId='', $agentId=''){ // deps,utab,uone
-        $wecfgs = read('wework', 'ex'); // DefAppID
-        $agentId = $agentId ?: $wecfgs['DefAppID'];
-        $fp = "/dtmp/wework/$UserId.cac_tab";
-        if(!$UserId){
-            $data = $wecfgs['utab']['(null)'];
-        }elseif(isset($wecfgs['utab'][$UserId])){
-            $data = $wecfgs['utab'][$UserId];
-        }else{
-            if(!file_exists(DIR_VARS.$fp)){
-                self::updUser($UserId, $agentId);
-            }
-            $data = comFiles::get(DIR_VARS.$fp);
-        }
-        $uinfo = json_decode($data,1);
-        if(!empty($uinfo)){ // 默认头像,调试权限
-            if(empty($uinfo['avatar'])){ $uinfo['avatar']=PATH_STATIC.'/icons/basic/nouser2.png'; }
-            $wecfgs = read('wework', 'ex');
-            $uinfo['pdebug'] = $uinfo['userid'] && strstr($wecfgs['ucfg']['debug'],$uinfo['userid']);
-        }
-        return $uinfo;
-    }
-
-    static function oauth2Link($redirect, $scope='', $state='imcat_wxwork_login'){
-        //;  
+    // ------------------------- user xxx ---------------------------------
+    static function getUserDeps($token=''){
+        $url = "https://sso.qq.com/open/get_can_see_departments?access_token=$token";
+        $data = comHttp::curlCrawl($url, [], []);
+        $arr = json_decode($data, 1); 
+        return $arr;
     }
 
     // ------------------------- user info ---------------------------------
@@ -120,7 +90,6 @@ class extWeedu{ // extends extWework
         $data = comHttp::curlCrawl($url, [], []);
         $arr = json_decode($data, 1); 
         return $arr;
-        // https://sso.qq.com/open/userinfo?access_token=581879d8ac77948
     }
 
     // ------------------------- access token ---------------------------------
