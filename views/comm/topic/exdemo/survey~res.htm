@@ -34,6 +34,7 @@ $fcfg = devTopic::cfg2arr($cform);
         <p class="ires">
             <?php
             foreach ($names as $k3=>$v3){
+                if(!isset($tags[$k3])){ $tags[$k3]=0; }
                 $ap = $am ? round($tags[$k3]/$am*100,2) : 0;
                 $ar = $as ? round($tags[$k3]/$as*100,2) : 0;
             ?>
