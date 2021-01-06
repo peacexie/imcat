@@ -9,9 +9,8 @@ class vopUrl{
 
     // get/url初始数据
     static function iget(){
-        $q = self::route(); 
-        parse_str((strstr($q,'mkv=')?'':'mkv=').$q, $ua);
-        $mkv = empty($ua['mkv']) ? 'home' : $ua['mkv'];
+        $re = self::route(); 
+        $mkv = $re[0]; $q = $re[1]; $ua = $re[2];
         $re1 = preg_match("/^[A-Za-z0-9]{2}\w*(\-\-(so|list))?$/",$mkv); // modid, (--list)
         $re2 = preg_match("/^[A-Za-z0-9]{2}\w*\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
         $re3 = preg_match("/^[A-Za-z0-9]{2}\w*\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
@@ -231,49 +230,34 @@ class vopUrl{
         }
         return $url;
     }
-    
-    // umkv：获取mkv: $_GET > $_cbase > 
-    static function umkv($key, $ukey=''){
-        global $_cbase; 
-        $ukey || $ukey = $key;
-        $val = basReq::val($ukey,'','Key',24);
-        if(empty($val) && !empty($_cbase['mkv'][$key])){
-            $val = $_cbase['mkv'][$key]; 
-        }
-        return $val;
-    }
 
     // 路由
     static function route($def=''){
         global $_cbase;
         $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
-        $q = basEnv::serval('QUERY_STRING');
+        $q = $def ? $def : basEnv::serval('QUERY_STRING'); $mkv = '';
         if(!empty($_SERVER['PATH_INFO'])){
-            $q = substr($_SERVER['PATH_INFO'],1) . ($q ? "&$q" : '');
+            $mkv = substr($_SERVER['PATH_INFO'],1);
         }elseif(!empty(IS_CLI)){ // mob.php news--list stype:;keywd:php5.4
-            $q = empty($_SERVER['argv'][1]) ? '' : $_SERVER['argv'][1];
-            if(!empty($_SERVER['argv'][2])) $q .= ($q?'&':'').str_replace([':',';'], ['=','&'], $_SERVER['argv'][2]); 
+            $mkv = empty($_SERVER['argv'][1]) ? '' : $_SERVER['argv'][1];
+            $q = empty($_SERVER['argv'][2]) ? '' : str_replace([':',';'], ['=','&'], $_SERVER['argv'][2]);
             $_SERVER["REQUEST_URI"] = $_SERVER['argv'][0].'?'.$q;
             $_SERVER['QUERY_STRING'] = $q; 
-            $q ? parse_str($q, $_GET) : $_GET=[]; //dump($_GET);
+            $q ? parse_str($q, $_GET) : $_GET=[]; 
         }else{
-            $tags = 'from|isappinstalled|tdsourcetag'; // 修正分享参数
-            if(preg_match("/(^\w)?($tags)\=\w+$/i", $q)){
-                $uri = preg_replace("/([?|&|=]{1,2})($tags)\=\w+/i", '', $_SERVER["REQUEST_URI"]); 
+            $tmp = explode('&', $q); 
+            $mkv = (empty($tmp[0])||preg_match("/^\w+\=[^\n]+/",$tmp[0])) ? 'home' : $tmp[0];
+            if(!empty($tmp[1]) && $p=strpos($mkv,'=')){ // 'file.php?news=&p=wx', 修正分享参数
+                $uri = str_replace("?$tmp[0]&", "?".substr($tmp[0],0,$p)."&", $_SERVER["REQUEST_URI"]); 
                 header("Location:$uri"); 
-                die($uri);
+                die("dir(1):`$q`");
             }
             if(!empty($tcfg[2]) && $tcfg[2]=='?'){ self::jumpr(); }
         }
-        $q || $q = $def;
-        // 去掉开头的`mkv=`(肯定是动态)
-        if(substr($q,0,4)=='mkv='){
-            header('Location:?'.substr($q,4));
-            die();
-        }
         // 去掉末尾的的`.htm`(伪静态)
-        if(!empty($tcfg[3])){ $q = preg_replace("/{$tcfg[3]}/", '', $q, 1); }
-        return $q;
+        if(!empty($tcfg[3])){ $mkv = str_replace($tcfg[3], '', $mkv); }
+        parse_str($q,$ua); //dump("$q, $mkv");
+        return [$mkv, $q, $ua];
     }
 
     // 跳转: entry.php?mkv -=> entry.php/mkv
@@ -290,6 +274,5 @@ class vopUrl{
 }
 
 /*
-    $_SERVER['PHP_SELF']; // path/file.php/mod/act[/mod/act]
-    $_SERVER['SCRIPT_NAME']; // /path/file.php
+
 */

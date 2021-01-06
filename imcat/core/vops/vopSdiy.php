@@ -54,18 +54,18 @@ class vopSdiy extends vopShow{
     }
 
     // mkv初始化
-    function imkv($cfg){
+    function imkv($cfg){ 
         global $_cbase;
-        $q = vopUrl::route($cfg['_mkv']); 
+        $q = basEnv::serval('QUERY_STRING'); //vopUrl::route($cfg['_mkv']); 
         $mkv = strpos($q,'&')>0 ? substr($q,0,strpos($q,'&')) : $q; 
         if(strpos($mkv,'-')){
             $tmp = explode('-', $mkv);
             if(count($tmp)>2 || empty($tmp[1])){ 
                 vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr')); 
             }
-            $re = ['mod'=>$tmp[0], 'key'=>$tmp[1]];
+            $re = ['mod'=>$tmp[0], 'key'=>$tmp[1], 'view'=>''];
         }else{
-            $re = ['mod'=>$mkv, 'key'=>''];
+            $re = ['mod'=>$mkv, 'key'=>'', 'view'=>''];
         }
         $re['q'] = $q;
         $re['mkv'] = $mkv;
