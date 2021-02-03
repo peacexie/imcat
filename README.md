@@ -2,11 +2,10 @@
 
 I will move this project to gitee.com;  
 Welcome to https://gitee.com/peacexie/imcat!  
-同时，欢迎说中文！
+同时，欢迎说中文！(By the way, welcome to speak Chinese!)
 
-我将把本项目移到 gitee.com 平台；
-欢迎进入：https://gitee.com/peacexie/imcat!
-欢迎说中文！
+我将把本项目移到 gitee.com 平台；  
+欢迎进入：https://gitee.com/peacexie/imcat!  
 
 * 2021-03前，择机更新完`贴心猫(imcat)V5.5`，  
   2021-03-01之后，以更新`gitee.com`为主。
