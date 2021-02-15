@@ -64,7 +64,7 @@ $msg || $msg = "<b class='c999'>$entit</b>";
             <form id='fmocar' name='fmocar' method="post" action="{surl(ocar-checkout)}">
             <tr>
                 <td width="33%"><input type="button" value="+ 再找商品" onclick="urlConfirm('{surl(cargo)}','go_url')"></td>
-                <td width="32%"><input type="button" value="* 登录会员" onclick="urlConfirm('{surl(user)}','go_url')"></td>
+                <td width="32%"><input type="button" value="* 登录会员" onclick="urlConfirm('{surl(hi:login)}','go_url')"></td>
                 <td width="33%"><input type="submit" value="¥ 去收银台" <?php if(empty($v['acnt'])) echo "disabled"; ?>></td>
             </tr>
             </form>

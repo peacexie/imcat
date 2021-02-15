@@ -37,7 +37,7 @@ function transformContent(switcherId, fobj){
 //功能：转换指定字符串；
 function transformText(txt, isFt){
     if(txt==null || txt=="")return "";
-    txt = txt.replace('锐连','卓科');
+    txt = txt.replace('锐连','贴心猫');
     return txt;
     //if(parseInt(isFt)){return s2t(txt)}else{return t2s(txt)}
 }

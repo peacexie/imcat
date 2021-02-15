@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>{=$row['title']} - 工单详情</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header class="cs-view">
+    <a href="{surl(task)}" class="fa fa-mail-reply"></a>
+    {if $printUrl}
+    <a href="{=$printUrl}" class="fa fa-print"></a>
+    {/if}
+    <h1>{=$row['title']}</h1>
+    <div class="c"></div>
+    <span>
+        <span class="r gr9">单号:{=$row['did']}</span>
+        <span class="gr9">状态:</span> {sopt("$row[mflag]",cstask.mflag)}
+    </span>
+</header>
+
+<article class="">
+    <div class="list1 task-fmadd">
+
+        {if !empty($eqmsg)}
+        <div class="row">
+            <fieldset class="eq-fset">
+                <legend class="tc">设备信息</legend>
+                {=$eqmsg}
+            </fieldset>
+        </div>
+        {/if}
+
+        <div class="row">
+            <div class="col1 gr9">工单类型</div>
+            <div class="col5">
+                <span>
+                    {sopt($row['catid'],cstask)}{if $row['catid']=='c6018'}({=$row['catstr']}){/if}
+                </span>
+            </div>
+        </div>
+        <div class="row" style="display:none;">
+            <div class="col1 gr9">设备类型</div>
+            <div class="col5">
+                <span>{sopt($row['equip'],cstask.equip)}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">服务标题</div>
+            <div class="col5" id="c_title">{=$row['title']}</div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">详情描述</div>
+            <div class="col5 tl">
+                {html($row['detail'])} 
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col1 gr9">联系人</div>
+            <div class="col5">
+                <span>{=$row['mname']}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">电话</div>
+            <div class="col5">
+                <span>{=$row['mtel']}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">联系地址</div>
+            <div class="col5">
+                <span>{=$row['maddr']}</span>
+            </div>
+        </div>
+
+    </div>
+</article>
+
+<form id='fmApply' name="fmApply" onsubmit="return false">
+
+{if $row['mflag']!='close'}
+    {if strstr($row['mduids'],$uname) || $uname==$row['douid']} <!--待我处理的单-->
+        <?php
+            if(strstr($row['mduids'],$uname)){
+                foreach($tabMflag as $k=>$v){ 
+                    if(!in_array($k,['servchk','aptime','served'])){ unset($tabMflag[$k]); }
+                } //servchk=接收任务
+            }
+        ?>
+        {inc:"task/detail~dome"}
+    {else} <!--@与我相关的单-->
+        {inc:"task/detail~velse"}
+    {/if}
+{/if}<!--/未处理完才显示这个/-->
+
+<article class="">
+    <div class="list2">
+        <div class="shead">
+            <span class="r gr9"><?=count($doLogs)?>次会话</span>
+            <div class="">处理列表</div>
+        </div>
+        <!-- Dologs ----------------------------- -->
+
+        <?php 
+        $noBacks = ['apnew','paied','score','close',]; $qaprev = [];
+        foreach($doLogs as $lk=>$log1){ 
+            $cid = $log1['cid']; 
+            $bf1 = time() - $log1['atime'] < 3600; // 一小时内
+            $bf2 = !in_array($log1['mflag'], $noBacks); // 允许的操作
+            $bf3 = $lk == count($doLogs) - 1; // 最后一个
+        ?>
+        <div class="row">
+            <div class="col1 img">
+                <img src="{if empty($log1['urow']['mpic'])}{=$null['mpic']}{else}{=$log1['urow']['mpic']}{/if}">
+                {if $log1['auser']==$uname && $bf1 && $bf2 && $bf3}
+                <div><i class="btn reback" onclick="cheBack1('<?=$cid?>','<?=$this->key?>')">撤销</i></div>
+                {/if}
+            </div>
+            <div class="col5 main" cid="{=$cid}">
+                <p class="exqa-close">
+                    {=$log1['urow']['mname']} <span class="flag">{=$log1['mflagName']}</span>
+                </p>
+                <p class="act_notes wrap" auid="{=$log1['auser']}">
+                    {if !empty($log1['exstr'])}{=$log1['exstr']}{/if}
+                    <span class="exnotes">{=$log1['title']}</span>
+                    {if !empty($log1['exno'])}{=$log1['exno']}{/if}
+                </p>
+            </div>
+            <div class="col1 more">
+                <span class="time"><?=date('H:i',$log1['atime'])?></span> 
+                <span class="tag"><?=date('m-d',$log1['atime'])?></span>
+            </div>
+        </div>
+
+            <?php
+            if(!empty($qaprev)){ foreach($qaprev as $qaitm){ 
+            ?>
+            <div class="row nexrow">
+                <div class="col1 img"></div>
+                <div class="col5 main" cid="{=$cid}">
+                    <p class="exqa-close">{=$qaitm['names']}</p> 
+                    <p class="act_notes wrap" auid="{=$qaitm['from']}">{=$qaitm['msg']}</p>
+                </div>
+                <div class="col1 more">
+                    <span class="time"><?=date('H:i',$qaitm['atime'])?></span> 
+                    <span class="tag"><?=date('m-d',$qaitm['atime'])?></span>
+                </div>
+            </div>
+            <?php 
+            } }
+            $qaprev = empty($log1['exqnext']) ? [] : $log1['exqnext']; // 传给下一行记录
+            ?>
+
+            <?php foreach($log1['exqa'] as $qaitm){ ?>
+            <div class="row nexrow">
+                <div class="col1 img"></div>
+                <div class="col5 main" cid="{=$cid}">
+                    <p class="exqa-close">{=$qaitm['names']}</p> 
+                    <p class="act_notes wrap" auid="{=$qaitm['from']}">{=$qaitm['msg']}</p>
+                </div>
+                <div class="col1 more">
+                    <span class="time"><?=date('H:i',$qaitm['atime'])?></span> 
+                    <span class="tag"><?=date('m-d',$qaitm['atime'])?></span>
+                </div>
+            </div>
+            <?php } ?>
+
+        <?php } ?>
+
+        <?php if(!empty($uFlags['urow'])){ $urow=$uFlags['urow']; ?>
+        <div class="row">
+            <div class="col1 img">
+                <img src="{if empty($urow['mpic'])}{=$null['mpic']}{else}{=$urow['mpic']}{/if}">
+            </div>
+            <div class="col5 main" cid="{=$cid}" exqn='1'>
+                <p><span class="exqa-close exqn-flag">{=$urow['mname']}</span> (等待...)</p> 
+                <p class="act_notes wrap" auid="{=$urow['uname']}">等待处理</p>
+            </div>
+            <div class="col1 more">
+                <span class="time">...</span> 
+                <span class="tag">未处理</span>
+            </div>
+        </div>
+
+            <?php
+            if(!empty($qaprev)){ foreach($qaprev as $qaitm){ 
+            ?>
+            <div class="row nexrow">
+                <div class="col1 img"></div>
+                <div class="col5 main" cid="{=$cid}">
+                    <p class="exqa-close">{=$qaitm['names']}</p> 
+                    <p class="act_notes wrap" auid="{=$qaitm['from']}">{=$qaitm['msg']}</p>
+                </div>
+                <div class="col1 more">
+                    <span class="time"><?=date('H:i',$qaitm['atime'])?></span> 
+                    <span class="tag"><?=date('m-d',$qaitm['atime'])?></span>
+                </div>
+            </div>
+            <?php 
+            } }
+            ?>
+
+        <?php } ?>
+
+        {if !empty($row['mduids'])}
+        <div class="row">
+            <div class="col1 img">
+                <img src="<?=tpath()?>/icon-40x-add.png">
+            </div>
+            <div class="col6 main">
+                <p class="at-uids">
+                    <?php
+                        $uarr = explode(',',$row['mduids']);
+                        foreach($uarr as $uk){
+                            $name = isset($utab[$uk]) ? $utab[$uk]['name'] : "($uk)";
+                            echo "<span class='btn'>$name</span>";
+                        }
+                    ?>
+                </p>
+            </div>
+        </div>
+        {/if}
+
+        <div class="row">
+            <div class="col1 img">
+                <img src="<?=tpath()?>/icon-40x-at1.png">
+            </div>
+            <div class="col6 main">
+                <p class="at-uids">
+                    <?php
+                        $uarr = explode(',',$row['atuids']);
+                        foreach($uarr as $uk){
+                            $name = isset($utab[$uk]) ? $utab[$uk]['name'] : "($uk)";
+                            echo "<span class='btn'>$name</span>";
+                        }
+                    ?>
+                </p>
+            </div>
+        </div>
+
+        <!-- Dologs ----------------------------- -->
+    </div>
+</article>
+
+</form>
+
+{inc:"incs/weys-foot"}
+
+<div id='exqarow' style="display:none;">
+    <div class="row nexrow exqarow">
+        <div class="col5 main"><!--张王五 补充, 李赵六追问, 回复 谢永顺-->
+          <textarea class="weui-input" name="exqa" placeholder="" style=""></textarea>
+        </div>
+        <div class="col1 tl" style="max-width:45px;">
+            <span class="time" style="padding-top:1rem"><button class="" type="button" onclick="chkQa(this)">提交</button></span> 
+        </div>
+    </div>
+</div>
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <div class="wait"><i class="fa fa-spinner "></i></div>
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+<!--div class="container" id="container">
+</!-- container-start --/>
+<div id='toast' style="display:none;">
+      <div class="weui-mask_transparent"></div>
+      <div class="weui-toast">
+          <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+          <p class="weui-toast__content">已处理</p>
+      </div>
+</div>
+</!-- container-end --/>
+</div-->
+
+{inc:"wxcs/detail~approve"}
+
+<script>
+var fmApply, btnSubmit, csAppre, csAppno=10000, csApptmp=''; //console.log(csAptime);
+$(function(){
+    fmApply = eid('fmApply');
+    btnSubmit = eid('btnSubmit');
+    csAppre = "<?=substr(basKeyid::kidAuto(12),2)?>.{=$row['did']}.purch"; //alert(csAppre+(csAppno+1));
+    var selMflag = $("select[name='fm[mflag]']").find('option');
+    if(selMflag.length==2){
+        eid('fm[mflag]').options[1].selected = true;
+        actOp(eid('fm[mflag]'));
+    }
+    return;
+});
+var uname = '<?=$uname?>',
+    postUrl = '{surl(task-deel,0,1)}',
+    urgeUrl = '{surl(task-urge,0,1)}',
+    cancelUrl = '{surl(task-cancel,0,1)}',
+    back1Url = '{surl(task-back1,0,1)}',
+    qaUrl = '{surl(task-qa,0,1)}',
+    purchUrl = '{surl(task-purch,0,1)}',
+    tplAppendix = "{=$wecfgs['AppsConfig']['AppCS']['tplAppendix']}",
+    wecfgs = <?php echo(\imcat\comParse::jsonEncode($wecfgs))?>,
+    defUser = '', defDept = 0, org_mflag = "{=$row['mflag']}";
+    utab = <?php echo(\imcat\comParse::jsonEncode($utab))?>;
+</script>
+<script src="<?=tpath(0,0)?>/task/detail.js?_v=v114c"></script>
+
+
+<script>
+
+wx.config({
+    //debug: true,
+    beta: true,
+    appId: '<?php echo $signPackage["appId"];?>', //此处的appId等同于企业的CorpID
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    /*success: function(res) {
+        log('config:success:', res);
+    },*/
+    jsApiList: ['selectEnterpriseContact', 'selectExternalContact', 'openUserProfile', 'thirdPartyOpenPage', 'getCurExternalContact']
+}); 
+
+wx.error(function (res) {
+    log(res);
+});
+
+function agentActs(cb){
+    var isfunc = typeof(eval('wx.agentConfig'))=="function";
+    if(!isfunc){
+        alert('请再企业微信中打开。');
+        return;
+    }
+    wx.agentConfig({
+        corpid: '<?php echo $signAgent["appId"];?>', // 必填，企业微信的corpid，必须与当前登录的企业一致
+        agentid: '1000019', // 必填，企业微信的应用id （e.g. 1000247）
+        timestamp: <?php echo $signAgent["timestamp"];?>, // 必填，生成签名的时间戳
+        nonceStr: '<?php echo $signAgent["nonceStr"];?>', // 必填，生成签名的随机串
+        signature: '<?php echo $signAgent["signature"];?>', // 必填，签名，见附录1
+        jsApiList: [
+            'selectExternalContact',
+            'openUserProfile',
+            'thirdPartyOpenPage',
+            'getCurExternalContact',
+        ], //必填
+        success: function(res) {
+            //log('agentConfig:success', res);
+            cb && cb();
+        },
+        fail: function(res) {
+            //log('agentConfig:fail', res);
+            if(res.errMsg.indexOf('function not exist') > -1){
+                alert('版本过低请升级')
+            }
+        }
+    }); 
+}
+</script>
+
+{inc:"incs/inc~foot"}
+
+</body>
+</html>
+
+            

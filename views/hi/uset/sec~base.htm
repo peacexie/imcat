@@ -1,0 +1,49 @@
+
+    <p class="info">基本信息 ● 设置：姓名、电话、邮箱</p>
+
+    <form class="list1" id="fmbase" name="fmbase" method="post" onsubmit="return chkBase('fmbase')">
+
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <?=$uimod['uname']?>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">姓名</div>
+        <div class="col5">
+          <input type="text" id='mname' name="fm[mname]" value="{=$uimod['mname']}" pattern="^[\dA-Za-z_.@\-\u4e00-\u9fa5]{2,15}$" title="2-5汉字或5-15字符" placeholder="姓名">
+          {if !empty($uinfo['mname'])}
+          <span>使用昵称:<a id="nick" onclick="$('#mname').val($(this).text())">{=$uinfo['mname']}</a></span>
+          {/if}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col1 tc">电话</div>
+        <div class="col5">
+          <input type="text" id='mtel' name="fm[mtel]" value="{=$uimod['mtel']}" placeholder="电话">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">邮箱</div>
+        <div class="col5">
+          <input type="text" id='memail' name="fm[memail]" value="{=$uimod['memail']}" placeholder="邮箱">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col2">
+          <button type="submit" class="btn btn-act">保存</button>
+        </div>
+        <div class="col2"></div>
+      </div>
+
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+
+    </form>

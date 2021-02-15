@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/weys~imp"}
+<title>颜色测试 - <?=$title='多彩生活'?></title>
+<style type="text/css">
+.list1 .row { text-align:center; margin:1rem auto; border-bottom:0; }
+.row>div{ overflow:hidden; word-break:keep-all; white-space:nowrap; color:#000; }
+.row>div.ct, .row>div.ct i{ color:#FFF; }
+.row>div i{ display:block; font-style:normal; }
+@media only screen and (max-width:385px){
+    .row>div i{ font-size:9px; }
+}
+/*
+word-break:keep-all; white-space:nowrap;
+word-break:break-all; white-space:normal;
+*/
+</style>
+</head>
+<body>
+
+{inc:"incs/weys~head"}
+
+
+<article class="">
+
+  <h1 class="title">颜色测试</h1>
+  <p class="info">
+    <a href="{surl(weys-color)}?n=2">2列</a> # 
+    <a href="{surl(weys-color)}?n=3">3列</a> # 
+    <a href="{surl(weys-color)}?n=4">4列</a> # 
+    <a href="{surl(weys-color)}?n=5">5列</a> # 
+    <a href="{surl(weys-color)}?n=8">8列</a>
+  </p>
+
+  <div class="list1">
+    <?php
+    $tc['2'] = '7F';
+    $tc['3'] = '5AF';
+    $tc['4'] = '48CF';
+    $tc['5'] = '369CF';
+    $tc['8'] = '13579BDF';
+    $tc['16'] = '0123456789ABCDEF';
+    $n = req('n'); $n = isset($tc[$n]) ? $n : '4';
+    $ti = strrev($tc['16']);
+    $tj = strrev($tc[$n]);
+    ?>
+    <?php for($i=0; $i<16; $i++) { $ct=$i>8?'ct':''; $a=substr($ti,$i,1); ?>
+    <div class="row">
+      <?php for($j=0; $j<$n; $j++) { $b=substr($tj,$j,1); $bg="$a$b$a$b$a$b"; ?>
+      <div class="col1 {=$ct}" style='background:#{=$bg}'>
+        背景<i>{=$bg}</i>
+      </div>
+      <?php } ?> 
+    </div> 
+    <?php } ?>
+  </div>
+
+  <p class="info">2020年08月 / Peace</p>
+
+</article>
+
+
+{inc:"incs/weys~foot"}
+
+</body>
+</html>

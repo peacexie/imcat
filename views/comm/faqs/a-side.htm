@@ -24,8 +24,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <form method="get" action="{surl(0:0)}">
-      <input name="mkv" type="hidden" value="faqs--list">
+    <form method="get" action='{surl($this->mod."--list")}'>
       <select name="stype" class="form-control">
         <option value="keywd">{lang(user.qa_subj)}</option>
         <option value="tag" {if !empty($tag) }selected{/if}>{lang(user.qa_tag)}</option>

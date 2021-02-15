@@ -80,8 +80,8 @@
  - [文件结构]({pathpro}/views/dev/d_start/tree_brem.txt) ；
 
 * 相关资源
- - 在线地址：[演示首页]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [英文文档]({svrtxmao}/doc.php)
- - [技术问答(bug反馈)]({svrtxmao}/chn.php?faqs)
+ - 在线地址：[演示首页]({svrtxmao}/home.php), [文档首页]({svrtxmao}/dev.php), [英文文档]({svrtxmao}/doc.php)
+ - [技术问答(bug反馈)]({svrtxmao}/home.php?faqs)
  - [随便吐槽(留言投诉)]({svrtxmao}/dev.php?info-gbook)
  - [捐赠贡献]({svrtxmao}/dev.php?info-help)
  - 贴心猫(imcat)技术交流QQ群：607070548

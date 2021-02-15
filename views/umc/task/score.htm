@@ -1,0 +1,190 @@
+<?php
+
+?>
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    {inc:"incs/imp-head"}
+    <title>工单评分</title>
+</head>
+<body>
+
+<div class="container" id="container">
+<!-- container-start -->
+
+
+<div class="page flex js_show">
+    <div class="page__hd">
+        <a class='weui-btn weui-btn_mini weui-btn_default r'>单号:{=$did}</a>
+        <h1 class="page__title">工单评分</h1>
+        <p class="page__desc">您的满意，就是贴心猫的追求！</p>
+    </div>
+
+    <form id='fmApply' name="fmApply" onsubmit="return false"><!--/action="?_t=<?=date('i:s')?>" method="post" novalidate="true"/-->
+    <div class="page__bd">
+        <div class="weui-cells weui-cells_form">
+
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">工单号</div>
+                <div class="weui-cell__ft" style="font-size: 0">
+                    <span style="vertical-align:middle; font-size: 17px;">{=$did}</span>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">工单类型</div>
+                <div class="weui-cell__ft" style="font-size: 0">
+                    <span style="vertical-align:middle; font-size: 17px;">{sopt($row['catid'],cstask)}</span>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">设备类型</div>
+                <div class="weui-cell__ft" style="font-size: 0">
+                    <span style="vertical-align:middle; font-size: 17px;">{sopt($row['equip'],cstask.equip)}</span>
+                </div>
+            </div>
+            <div class="weui-cell weui-cell_access">
+                <div class="weui-cell__bd">服务标题</div>
+                <div class="weui-cell__ft">
+                    <span style="vertical-align:middle; font-size: 17px;">{=$row['title']}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="weui-cells__title">请你评分</div>
+
+        <div class="weui-cells weui-cells_checkbox">
+
+            <?php foreach($tabScore as $sk=>$sv){ ?>
+            <label class="weui-cell weui-cell_active weui-check__label" for="score_{=$sk}">
+                <div class="weui-cell__hd">
+                    <input type="radio" class="weui-check" name="fm[exmsg]" value="{=$sk}" id="score_{=$sk}" {if $sk==3}checked="checked"{/if}>
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-cell__bd" style="background:#{=$sv['rgb']}; border-radius:0.5rem">
+                    <p style="padding:0.2rem 1rem">{=$sk}分, {=$sv['text']}</p>
+                </div>
+            </label>
+            <?php } ?>
+
+            <div class="weui-cell">
+                <!--div class="weui-cell__hd"><label class="weui-label">备注</label></div-->
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="fm[domsg]" id='fm[domsg]' placeholder="您还可以留下您的意见或建议">
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <a onclick="chkForm()" id='btnApply' class="weui-btn weui-btn_mini weui-btn_primary curhand">
+                    提交
+                </a>
+                <a href="javascript:" id='btnNull' class="weui-btn weui-btn_mini weui-btn_disabled" style="display:none;">
+                    提交
+                    <i id='btnLoad' class="weui-loading"></i>
+                </a>
+                <a href="{surl(wxcs-score)}?did={=$did}&enc=<?=req('enc')?>" id='btnReset' class="weui-btn weui-btn_mini weui-btn_default">放弃</a>
+            </div>
+            <div style="display:none;"><input type="submit" id='btnSubmit' /></div>
+
+            <input type="hidden" name="fm[atuids_old]" value="{=$row['atuids']}">
+            <input type="hidden" name="fm[douid_old]" value="{=$row['douid']}">
+            <input type="hidden" name="fm[did]" value="{=$row['did']}">
+            <input type="hidden" name="fm[title]" value="{=$row['title']}">
+            <input type="hidden" name="fm[douid]" value="{=$row['douid']}">
+            <input type="hidden" name="fm[mflag]" value="score">
+
+        </div>
+
+    </div>
+    </form>
+        
+    <!--div class="page__bd page__bd_spacing">
+        <div class="weui-flex">
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+            <div class="weui-flex__item"><div class="placeholder">weui</div></div>
+        </div>
+    </div-->
+
+
+    {inc:"incs/inc-foot"}
+</div>
+
+
+<div id='toast' style="display:none;">
+      <div class="weui-mask_transparent"></div>
+      <div class="weui-toast">
+          <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+          <p class="weui-toast__content">已评分</p>
+      </div>
+</div>
+<!-- container-end -->
+</div>
+
+
+<script type="text/javascript">
+var fmApply, btnSubmit;
+$(function(){
+    fmApply = eid('fmApply');
+    btnSubmit = eid('btnSubmit');
+    var selMflag = $("select[name='fm[mflag]']").find('option');
+    if(selMflag.length==2){
+        eid('fm[mflag]').options[1].selected = true;
+    }
+    return;
+});
+var postUrl = '{surl(wxcs-scoreDo,0,1)}',
+    enc = '<?=req('enc')?>';
+
+function chkForm(){
+    var vres = true;
+    if(vres){ 
+        $('#btnApply').hide();
+        $('#btnNull').show();
+        $('#btnReset').text('请关闭窗口');
+        postForm();
+    }
+    //log(vres); 
+}
+function postForm(){
+    $.ajax({
+        type: "POST",
+        url: postUrl,
+        data: $('#fmApply').serialize(),// 你的formid
+        //async: false,
+        error: function(req) {
+            $('#btnApply').show();
+            $('#btnNull').hide();
+            log(req);
+        },
+        success: function(data) {
+            if(typeof data=='string'){ data = JSON.parse(data); }
+            //console.log(data);
+            if(data['errno']){
+                log(data['errno']+data['errmsg']);
+            }else{
+                $('#btnLoad').hide();
+                $('#toast').fadeIn(100);
+                setTimeout(function () {
+                    $('#toast').fadeOut(100);
+                    //window.location.href = "http://www.baidu.com"
+                    //$('#btnReset').trigger("click");
+                }, 2000);
+            }
+        }
+    });
+}
+
+</script>
+
+{inc:"incs/imp-foot"}
+
+</body>
+</html>

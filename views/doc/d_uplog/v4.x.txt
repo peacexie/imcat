@@ -218,7 +218,7 @@
 ## ChangeLog
 
 * Revised/Optimize template, Enhance mobile adaption, Streamline and optimize foreground configuration;d
- - Move [Topic/Faqs] to `chn` Group
+ - Move [Topic/Faqs] to `home` Group
  - Streamline template configs : _config/va_home.php > [extra/_tabCtrl] , It can checks automatic; 
 
 * Add template for `solemn/serious/memory`;
@@ -276,7 +276,7 @@
  - Data import: replace with REST-API or write code separately.
  - Data synchronization: replace with REST-API or write code separately.
  - Clean vote: use the `Free form system` of topic instead.
- - Move: Move topic/faqs to `chn` (view group)
+ - Move: Move topic/faqs to `home` (view group)
 
 
 #v4.0# (2018.01)

@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+{inc:"incs/login~imps"}
+
+<title>API:DEMO - 教育号</title>
+<style type="text/css">
+.user{ height:85px; overflow:hidden; }
+</style>
+</head>
+<body>
+
+<header class="user">
+    
+    <span class="r">
+        {=$uinfo['school']}
+        <i class="fa fa-gear" onclick="opSmenu(1,'smenu')"></i>
+    </span>
+    
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}">
+    </div>
+    
+    <span class="id">
+        {=$uinfo['mname']}({=$uinfo['title']})
+    </span>
+</header>
+
+<div id='smenu' style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="smenu">
+        <i class="fa fa-close close" onclick="opSmenu(0,'smenu')"></i>
+        <div class="hd"><img src="<?=tpath(1)?>/logo/imcat-40x.png">设置中心</div>
+        <div class="bd">
+            <ul>
+                <li><a href="{surl(login-untie)}">
+                    <i class="fa fa-unlink"></i> 解绑客户
+                </a></li>
+            </ul>
+        </div>
+        <div class="ft">
+            <a href="javascript:" class="btn gr3" onclick="opSmenu(0,'smenu')">关闭</a>
+            -
+            <a href="{surl(login-logout-dir)}" class="btn emp">登出</a>
+        </div>
+    </div>
+</div>
+
+
+{inc:"login/eduid~nav"}
+
+<article class="">
+
+<div class="list2">
+    <div class="shead">
+        {if req('apiact')}
+        <a href="?" class="r">RETURN-HOME</a>
+        {else}
+        <a href="?apiact=debug" class="r">API-DEBUG</a>
+        {/if}
+        <div class="">Debug-Info</div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>appid/应用</p>
+            <p class="note">SuiteID={=$uinfo['mexa']['appid']} / {=$uinfo['apname']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>学校id/名称</p>
+            <p class="note">corpid/orgid={=$uinfo['mexa']['coid']} / {=$uinfo['mexa']['corp']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>用户id/名称</p>
+            <p class="note">userid={=$uinfo['mexa']['userid']} / {=$uinfo['mname']}({=$uinfo['title']})</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>token</p>
+            <p class="note">{=$uinfo['mexa']['token']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>HTTP_HOST</p>
+            <p class="note">{=$_SERVER['HTTP_HOST']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>PHP_SELF</p>
+            <p class="note">{=$_SERVER['PHP_SELF']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>QUERY_STRING</p>
+            <p class="note">{=$_SERVER['QUERY_STRING']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>CODE</p>
+            <p class="note"><?=req('code','(null)')?></p>
+        </div>
+        <div class="col2 more">
+            <span class="time">-</span> 
+        </div>
+    </div>
+
+</div>
+</article>
+
+<p class="tc">
+<a href="{surl(login-locin-locdemo)}">login-locdemo</a> #
+<a href="{surl(login-locin-wetest)}?mode=wechat">login-wetest</a> #
+<a href="{surl(login-locin-demoxys)}?mode=wework">login-demoxys</a> #
+<a href="{surl(login-logout)}">logout</a> #
+</p>
+
+<div style="overflow:scroll;"><?php
+dump($this->vars);
+?></div>
+
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script>
+
+$(function(){
+    return;
+});
+</script>

@@ -175,7 +175,9 @@ class basDebug{
         $mod || $mod = $_cbase['debug']['log_save']; //show,db,file
         $info = self::bugInfo();
         $info['run'] = 1000*($info['run'] - $_cbase['run']['timer']);
-        if(is_array($msg)){
+        if(is_object($msg)){
+            $msg = comParse::jsonEncode($msg); 
+        }elseif(is_array($msg)){
             $re = '';
             foreach($msg as $k=>$v){ 
                 $v = is_scalar($v) ? var_export($v,1) : comParse::jsonEncode($v);

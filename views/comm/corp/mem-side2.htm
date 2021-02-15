@@ -15,7 +15,7 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <form method="get" action="{surl(0:0)}">
-      <input name="mkv" type="hidden" value="{=$this->mod}--list">
+      <input name="{=$this->mod}--list" type="hidden" value="">
       <select name="stype" class="form-control">{= basElm::setOption($this->mod,$this->key,'-请选择-'); }</select>
       <div class="pt10">
           <input name="keywd" type="text" id="keywd" class="form-control wp60 inblock" />

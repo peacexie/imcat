@@ -58,11 +58,24 @@ $umsg = $msg ? "<br><span class='cF00'>$msg</span>" : '';
 $links = admPFunc::fileNav($view,'dba');
 
 if($view=='runsql'){ $sbar = "Run-SQL : ---"; }
-if(!in_array($view,array('Export','View'))) glbHtml::tab_bar("$links $umsg",$sbar,35,'tc');
+if(!in_array($view,array('Export','View','Altpre'))) glbHtml::tab_bar("$links $umsg",$sbar,35,'tc');
 
 if($view=='Clear'){
     
     devScan::clrLogs();
+
+}elseif($view=='Altpre'){
+
+    $pre1 = $db->pre; 
+    $pre2 = req('pre2'); if(!$pre2){ die("<p class='tc'>错误：参数为空!</p>"); }
+    $pre2 = $pre2=='(null)' ? '' : preg_replace("/[^\w]+/i",'',$pre2); 
+    if($pre2 && !strpos($pre2,'_')){ $pre2 = "{$pre2}_"; }
+    $pre1S = $pre1 ? $pre1 : '(null)'; 
+    $pre2S = $pre2 ? $pre2 : '(null)'; 
+    $msge = "`$pre1S` -=>改为 `$pre2S`";
+    if($pre1==$pre2){ die("<p class='tc'>$msge<br>错误：未修改!</p>"); }
+    $res = updDbcmp::altDbpre($pre1, $pre2);
+    die("<p class='tc'>$msge : 数据库执行成功!<br>请[手动]修改`/root/cfgs/boot/cfg_db.php`配置。</p>\n$res");
 
 }elseif($view=='runsql'){
 
@@ -81,6 +94,13 @@ if($view=='Clear'){
     $opbar = "<div class='w180 tc right'><input name='btnrun' class='btn' type='submit' value='SQL' /></div>";
     echo "\n<tr><td class='tc'>Run</td>";
     echo "<td colspan='15'>$opbar<div class='pg_bar'>msg: $msg</div></td>\n</tr>";
+
+    $opbtn = "<div class='w180 tc right'><input name='btnalt' class='btn' type='button' onClick=\"altDbpre('?$mkv&view=Altpre')\" value='Alter' /></div>";
+    $pre12 = "<div><input name='pre1' id='pre1' value='".($db->pre ? $db->pre : '(null)')."' type='input' disabled /> -=>修改 <input name='pre2' id='pre2' value='' type='input' />
+        &nbsp; <span class='c999'>(为空填写:`(null)`, 后缀:`$db->ext`，修改后手动修改配置)</span></div>";
+    echo "\n<tr><td class='tc'>Prefix</td>";
+    echo "<td colspan='15'>$opbtn$pre12</td>\n</tr>";
+
     glbHtml::fmt_end(array("view|$view","tabid|tabid","fs_do|upd"));
 
 }elseif($view=='list'){

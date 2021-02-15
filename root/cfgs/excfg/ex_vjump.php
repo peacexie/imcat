@@ -16,7 +16,7 @@ $_ex_vjump['sites'] = array(
 ### 多语言版跳转配置
 // 语言版本配置
 $_ex_vjump['langs'] = array(
-    'zh' => 'chn', 
+    'zh' => 'home', 
     'en' => 'doc', 
     //'fr' => 'fra', 
     //'ru' => 'rus',
@@ -38,7 +38,7 @@ $_ex_vjump['redir'] = array(
 // 默认值
 $_ex_vjump['_defs'] = array(
     'site' => 'dg',
-    'lang' => 'chn',
+    'lang' => 'home',
     'domain' => 'txjia.com', //my_domain.cn
     'api' => 'ip138',
 ); //defsite

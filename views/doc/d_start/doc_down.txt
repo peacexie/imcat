@@ -82,8 +82,8 @@ Files and Permission
  - [File Frames]({pathpro}/views/doc/d_start/tree_brem.txt) ;
 
 * Resources
- - Online：[Demo Page]({svrtxmao}/chn.php), [文档首页]({svrtxmao}/dev.php), [Guides]({svrtxmao}/doc.php)
- - [Tec FAQs(bug feed back)]({svrtxmao}/chn.php?faqs)
+ - Online：[Demo Page]({svrtxmao}/home.php), [文档首页]({svrtxmao}/dev.php), [Guides]({svrtxmao}/doc.php)
+ - [Tec FAQs(bug feed back)]({svrtxmao}/home.php?faqs)
  - [Guestbook & Complaint]({svrtxmao}/doc.php?info-gbook)
  - [Contribution of donation]({svrtxmao}/doc.php?info-help)
  - Imcat(贴心猫) Tech-QQ-Group: 607070548

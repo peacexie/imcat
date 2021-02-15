@@ -1,0 +1,28 @@
+<?php
+(!defined('RUN_INIT')) && die('No Init');
+
+$url = '';
+
+# dir-伪静态到动态
+// `/home/cargo.htm`  -=>  `/home.php?cargo`
+/*
+$cfgs = array('home','dev','doc');
+if(strpos($uri,'.htm')>0){
+    foreach ($cfgs as $key) {
+        if(substr($uri,0,5)=="/$key/"){
+            if(strpos($uri,'?')>0){
+                $url = str_replace(array("/$key/",'.htm?'),array("/$key.php?",'&'),$uri);
+            }else{
+                $url = str_replace(array("/$key/",'.htm'),array("/$key.php?",''),$uri);
+            }
+        }
+    }
+}*/
+
+if(ob_get_contents()){ ob_clean(); }
+// 本身是404页,可能存在404的head,所以以下跳转代码无效
+if($url){
+    header("location:$url");
+    //die($url);
+}
+httpStatus(404);

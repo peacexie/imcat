@@ -1,0 +1,84 @@
+
+<!--
+
+-->
+
+<style type="text/css">
+#purch-dialog .weui-cell { padding:8px 8px 8px 0;}
+#purch-dialog .inheight { height:100%; overflow-y:auto; overflow-x:hidden; }
+#purch-dialog .weui-input { width: 95%; }
+</style>
+
+<div id="purch-dialog" style="display:none;">
+    <div class="weui-mask"></div>
+    <div class="weui-dialog">
+        <div class="inheight">
+            <div class="weui-dialog__hd"><strong class="weui-dialog__title">配件申请</strong></div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">配件名称</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_name' placeholder="请输入配件名称"/>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">规格型号</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_type' placeholder="请输入规格型号"/>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">数量</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_num' placeholder="请输入数量"/>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">预计金额</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_sum' placeholder="请输入预计金额"/>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">预交日期</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_date' placeholder="请输入预交日期"/>
+                </div>
+            </div>
+
+            <div class="weui-cell">
+                <label class="weui-label" style="">备注</label>
+                <div class="weui-cell__bd gw_num" >
+                    <input class="weui-input" type="text" id='sub_rem' placeholder="请输入备注"/>
+                </div>
+            </div>
+
+            <div class="weui-dialog__ft" id='pbtnsSend'>
+                <a href="javascript:;" id="purch-dcacel" style="cursor: pointer" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+                <a href="javascript:;" id="purch-dsend" style="cursor: pointer" class="weui-dialog__btn weui-dialog__btn_primary">确认申请</a>
+            </div>
+            <div class="weui-dialog__ft" id='pbtnsLoad' style="display:none;">
+                <a href="javascript:;" id="purch-Load" style="cursor: pointer" class="weui-dialog__btn weui-dialog__btn_primary">关闭并刷新</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+//取消事件
+$(document).on('click', '#purch-dcacel', function() {
+    $('#purch-dialog').hide();
+    $("select[name='fm[mflag]']").val('');
+});
+//确认事件
+$(document).on('click', '#purch-dsend', function() {
+    agentActs(purchForm);
+})
+//gbtnLoad事件
+$(document).on('click', '#purch-Load', function() {
+    $('#btnReset').trigger("click");
+})
+</script>

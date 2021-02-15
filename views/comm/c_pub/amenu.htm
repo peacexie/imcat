@@ -4,6 +4,7 @@ $user = usrBase::userObj('Member');
 $uname = $_cbase['run']['uname'];
 $uname = empty($uname) ? 'Guest' : basStr::cutWidth($uname,12);
 $isup = usrPerm::issup();
+$ubase = surl('hi:login-setdf')."?jpmkv=comm:{$this->mkv}";
 ?>
 
   <nav class="navbar navbar-default"><!--default,inverse-->
@@ -45,17 +46,17 @@ $isup = usrPerm::issup();
 
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="fa fa-user-circle"></span> {=$uname} <span class="caret"></span>
+              <span class="fa fa-user-circle"></span> {if empty($uinfo)}{=$unull['mname']}{else}{=$uinfo['mname']}{/if} <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li id="idf_shopcar"><a href="{surl(ocar)}">我的购物车<span id="top_scnt"></span></a></li>
-              {if $user->userFlag=='Login'} 
-              <li id="idf_logout"><a href="{surl(umc:0)}?uio-logout&recbk=ref">[登出]</a></li>
-              <li id="idf_umc"><a href="{surl(umc:0)}">[会员中心]</a></li>
+              {if !empty($uinfo)}
+              <li id="idf_logout"><a href="{=$ubase}&domkv=login-logout">登出会员</a></li>
+              <li id="idf_umc"><a href="{surl(umc:order)}">订单中心</a></li>
               {else}
               <li role="separator" class="divider"></li>
-              <li id="idf_login"><a href="{surl(umc:0)}">[登录]</a></li>
-              <li id="idf_apply"><a href="{surl(umc:reg)}">[注册]</a></li>
+              <li id="idf_login"><a href="{=$ubase}&sec=full">[登录]</a></li>
+              <li id="idf_apply"><a href="{=$ubase}&domkv=login-apply">[注册]</a></li>
               {/if}
               {if $isup}
               <li role="separator" class="divider"></li>

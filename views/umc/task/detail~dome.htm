@@ -1,0 +1,165 @@
+
+<a name="viewLogs"></a>
+
+<article class="">
+<div class="doBoxs list1 task-fmadd">
+
+    <div class="row">
+        <div class="col1 tc gr9">进度</div>
+        <div class="col5">
+            <select class="imcat-select" name="fm[mflag]" id='fm[mflag]' onchange="actOp(this)">
+                <?php if(req('Muldo')){ ?>
+                <option value="muldo">增派人员</option>
+                <?php }elseif(!empty($fServchk)){ ?>
+                <option value="servchk">接收任务</option>
+                <?php }else{ ?>
+                <option value="">-请选择-</option>
+                <?php
+                $_acts = $appcfg['acts']; //dump($_acts);
+                $_actt = isset($_acts[$row['mflag']]) ? $_acts[$row['mflag']] : [];
+                foreach($tabMflag as $k=>$v){ 
+                //if($k=='paied' && empty($payUrl)){ continue; }
+                //if($k=='score' && empty($scoreUrl)){ continue; }
+                if(empty($_actt) || in_array($k,$_actt)){ 
+                ?>
+                <option value="{=$k}">{=$v}</option>
+                <?php } } }?>
+            </select>
+        </div>
+    </div>
+    
+    <?php if(req('Muldo')){ ?>
+    <div class="row">
+        <div class="col1 tc gr9">增援人</div>
+        {if $isWework}
+        <div class="col5">
+            <input class="weui-input" name="fm[atuids]" id="fm[atuids]" value="" readonly placeholder="请选择.." style="display:none;"><!--/已选xxx等5个人/-->
+            <input class="weui-input" name="fm[atnames]" id='fm[atnames]' value="" readonly placeholder=".已增援人的自动过滤">
+        </div>
+        <div class="col1 tc curhand" onclick="pickList()">
+            <button class="weui-vcode-btn">增加</button>
+        </div>
+        {else}
+        <div class="col5 tc">
+            <input class="weui-input" name="fm[atuids]" id='fm[atuids]' value="" placeholder="手动填写UserID测试,已增援人的自动过滤" onblur="setName('fm[atuids]','fm[atnames]')" maxlength="120">
+            <input class="weui-input" name="fm[atnames]" id='fm[atnames]' value="" placeholder="显示姓名为空">
+        </div>
+        {/if}
+    </div>
+    <?php }else{ ?>
+    <div class="row">
+        <div class="col1 tc gr9">处理人</div>
+        {if $isWework}
+        <div class="col5">
+            <input class="weui-input" name="fm[douid]" id='fm[douid]' value="" readonly placeholder="请选择..." style="display:none;">
+            <input class="weui-input" name="fm[douname]" id='fm[douname]' value="" readonly placeholder="处理人默认为自己">
+        </div>
+        <div class="col1 tc curhand" onclick="pickOne()">
+            <button class="weui-vcode-btn curhand">选择</button>
+        </div>
+        {else}
+        <div class="col5 tc">
+            <input class="weui-input" name="fm[douid]" id='fm[douid]' value="" placeholder="手动填写UserID测试,处理人默认为自己" onblur="setName('fm[douid]','fm[douname]')" maxlength="18">
+            <input class="weui-input" name="fm[douname]" id='fm[douname]' value="" placeholder="显示姓名为空">
+        </div>
+        {/if}
+    </div>
+    <?php } ?>
+
+    <div class="row" id="row_Time" style="display:none;">
+        <div class="col1 tc">预约时间</div>
+        <?php $dtm=explode(' ',$uFlags['datetime'].' ')?>
+        <div class="col3">
+            <input type="date" class="dt-input" name="fm[date]" id="fm_date" value="" uval="<?=$dtm[0]?>"/>
+        </div>
+        <div class="col2">
+            <input type="time" class="dt-input" name="fm[time]" id="fm_time" value="" uval="<?=$dtm[1]?>"/>
+        </div>
+    </div>
+    <div class="row" id="row_Map" style="display:none;">
+        <div class="col1 tc">定位</div>
+        <div class="col5">
+            <input class="weui-input" name="fm[mapMsg]" id='fm[mapMsg]' value="" readonly placeholder="定位中...">
+            <input class="weui-input" name="fm[map]" id='fm[map]' readonly placeholder="定位中..." style="display:none;">
+        </div>
+    </div>
+    <div class="row" id="row_Score" style="display:none;">
+        <div class="col1 tc">评分</div>
+        <div class="col5">
+            <img src='{=$scoreUrl}' class="qrcode"/>
+        </div>
+    </div>
+    <div class="row" id="row_Pay" style="display:none;">
+        <div class="col1 tc">支付</div>
+        <div class="col5">
+            <img src="{=$payUrl}" class="qrcode">
+            <p class="tc">请微信扫码支付({=$uFlags['payFee']})元</p>
+        </div>
+    </div>
+    <div class="row" id="row_Fee" style="display:none;">
+        <div class="col1 tc">费用</div>
+        <div class="col3">
+            <input class="weui-input" type='number' name="fm[fee]" id='fm[fee]' onblur="$(this).val(parseFloat($(this).val()).toFixed(2))" placeholder="费用,为空不收费">
+        </div>
+        <div class="col2">
+            (￥)元
+        </div>
+    </div>
+    <div class="row" {if req('Muldo') }style="display:none;"{/if}>
+        <div class="col1 tc">备注</div>
+        <div class="col5">
+            <input class="weui-input" name="fm[domsg]" id='fm[domsg]' placeholder="请输入备注信息">
+        </div>
+    </div>
+
+    <!--div class="weui-cell weui-cell_vcode">
+        <div class="weui-cells__title">处理服务单</div>
+    </div-->
+    <div class="btnGap">&nbsp;</div>
+
+    <div class="doBtns tc">
+
+        <?php if(req('Muldo')){ ?>
+        <a onclick="chkMuldo()" id='btnApply' class="btn btn-act">
+            确认
+        </a>
+        <a href="javascript:" id='btnNull' class="btn-gray" style="display:none;">
+            确认
+            <i id='btnLoad' class="weui-loading"></i>
+        </a>
+        <a href="?" id='btnMuldo' class="btn">
+            返回
+        </a>
+        <?php }else{ ?>
+        <a onclick="chkForm()" id='btnApply' class="btn btn-act">
+            确认
+        </a>
+        {if $uCancel}
+        <a onclick="chkCancel()" id='btnCancel' class="btn btn-red">
+            撤销
+        </a>
+        {/if}
+        <a href="javascript:" id='btnNull' class="btn btn-act" style="display:none;">
+            确认
+            <i id='btnLoad' class="weui-loading"></i>
+        </a>
+        <a href='{surl("task.$row[did]")}' id='btnReset' class="btn">刷新</a>
+        {if $uMuldo}
+        <a href="?Muldo=1" id='btnMuldo' class="btn btn-red">
+            增援
+        </a>
+        {/if}
+        <?php } ?>
+
+    </div>
+    <div style="display:none;"><input type="submit" id='btnSubmit' /></div>
+
+</div>
+</article>
+
+<input type="hidden" name="fm[atuids_old]" value="{=$row['atuids']}">
+<input type="hidden" name="fm[douid_old]" value="{=$row['douid']}">
+<input type="hidden" name="fm[did]" value="{=$row['did']}">
+<input type="hidden" name="fm[title]" value="{=$row['title']}">
+<input type="hidden" name="fm[auser]" value="{=$row['auser']}">
+<input type="hidden" name="fm[mduids_old]" value="{=$row['mduids']}">

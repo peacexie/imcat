@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src='http://txjia.com/share_ximps/vendui/jquery/jquery-2.x.js'></script>
+<link href='http://txjia.com/imcat/views/base/assets/weys.css?_r=5.2' type='text/css' rel='stylesheet'/>
+<script src='http://txjia.com/imcat/views/base/assets/jslib/jsbase.js?_r=206'></script>
+<title>Api请求 & 跨域Debug</title>
+<style type="text/css">
+.grid{ margin-bottom:1rem; }
+.grc2, .grc3, .grc4{ text-align:center; overflow:hidden; white-space:nowrap; padding:0.5rem; border:1px dotted #EEE; }
+.load_data{ overflow:hidden; word-break:break-all; white-space:normal; }
+</style>
+</head>
+<body>
+
+<header>
+    <a href="#" class=""></a>
+    <b class="">贴心猫(imcat)</b>
+    <h1>Http-Debug</h1>
+</header>
+
+<article class="md" style="">
+
+    <div class="grid">
+        <div class="grc3"> <a onclick="initActs('home')">Home</a> </div>
+        <div class="grc3"> <a onclick="initActs('list')">List</a> </div>
+        <div class="grc3"> <a onclick="initActs('view')">Wiew</a> </div>
+    </div>
+</article>
+
+<article class="set1" id="sec_home">
+<div class="list2">
+    <div class="shead">
+        <span class="r">登录/导航</span>
+        <div class="">首页：</div>
+    </div>
+    <div class="row" id='inf_user'>
+        <div class="col1 main">
+            <p>欢迎您：<span>...Loading...</span></p>
+        </div>
+    </div>
+    <div class="row" id='inf_login'>
+        <div class="col1 main">
+            <p>请登录：(模拟<a onclick="loadHttp('xieys')">login-xieys</a>)</p>
+            <p class="note tc">
+                <img src="" /> <br>
+                <span>...Loading...</span>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 main load_data">
+            ...
+        </div>
+    </div>
+</div>
+</article>
+
+<article class="set1" id="sec_list">
+<div class="list2">
+    <div class="shead">
+        <span class="r">888条记录</span>
+        <div class="">工单列表：</div>
+    </div>
+    <div class="row">
+        <div class="col1 main load_data">
+            ...
+        </div>
+    </div>
+</div>
+</article>
+
+<article class="set1" id="sec_view">
+<div class="list2">
+    <div class="shead">
+        <span class="r">2021-214-abcd</span>
+        <div class="">详情：</span></div>
+    </div>
+    <div class="row">
+        <div class="col1 main load_data">
+            ...
+        </div>
+    </div>
+</div>
+</article>
+
+
+<script>
+
+var apib = 'http://127.0.0.1/peace/imcat/catmain',
+    apis = {}, hash = 'home', uflag = '0';
+apis['xieys'] = apib + '/hi.php/login-locin-xieys',
+apis['check'] = apib + '/hi.php/login-check',
+apis['home'] = apib + '/hi.php/login',
+apis['list'] = apib + '/umc.php/task'; // ?retype=json
+apis['view'] = apib + '/umc.php/task.2021-2a-p406';
+
+// 初始化:登录状态
+function initCheck(){
+    loadHttp('check', function(data){ 
+        if(data && data.uflag && data.uflag>'0'){
+            uflag = data.uflag;
+        }else{
+            var loc = window.location;
+            hash = loc.hash ? loc.hash.replace('#','') : 'home';
+        }
+    });
+    initActs(hash, 1);
+}
+// 重置:操作状态
+function initActs(hash, init){
+    // 检查登录
+    if(uflag=='0'){
+        if(hash!='home'){ 
+            alert('请先登录!'+hash+':'+uflag); 
+            return;
+        }
+    }
+    // 设置显示tab
+    let tab = 'home,list,view'.split(',');
+    for(i=0;i<tab.length;i++){
+        $('#sec_'+tab[i]).hide();
+    }
+    if(hash){
+        $('.ihash').html('#'+hash);
+    }else{
+        hash = $('.ihash').text().replace('#',''); 
+    }
+    $('#sec_'+hash).show();
+    // 加载API数据
+    loadHttp(hash);
+}
+function loadHttp(hash, cb){
+    $('#sec_'+hash+' .load_data').html('... Loading ...');
+    // 公共参数
+    url = apis[hash] + '?retype=json';
+    let ckey = getCookie('js_ckey'); //jsLog(ckey);
+    url += ckey ? '&_ckey='+ckey : '&_ckey=';
+    // 获取远程数据
+    $.ajax({
+        url: url+(url.indexOf('?')>0?'&':'?')+'_r='+Math.random(),
+        dataType: 'json',
+        success:function(data){ // 成功回调
+            if(data.ckey){ 
+                setCookie('js_ckey', data.ckey, 3);
+            }
+            if(cb){ // 自定义回调
+                cb(data);
+            }else{
+                tabList(hash, data);
+            }
+        },
+        error:function(err){ // 成功回调
+            tabList(hash, err);
+        }
+    })
+}
+// 显示`模块`数据
+function tabList(hash, data){
+    var html = '';
+    if(hash=='home'){ // 首页
+        if(uflag=='0'){ // 未登录
+            $('#inf_user').hide();
+            $('#inf_login').show();
+            $('#inf_login').find('img').prop('src',data.qy.scanUrl);
+            $('#inf_login').find('span').html(data.qy.linkUrl);
+        }else{ // 已登录
+            $('#inf_login').hide();
+            $('#inf_user').show();
+            $('#inf_user').find('span').html(data.uinfo.mname);
+        }
+        html += tabHtml(data);
+    }else if(hash=='list'){ // 列表
+        html += "### 【list】<br>";
+        html += tabHtml(data.list);
+    }else if(hash=='view'){ // 详情
+        html += "### 【row】<br>";
+        html += tabHtml(data.row);
+        html += "### 【doLogs】<br>";
+        html += tabHtml(data.doLogs);
+    }else{
+        html += tabHtml(data);
+    }
+    $('#sec_'+hash+' .load_data').html(html);
+}
+// 由{}对象-显示Html
+function tabHtml(data){
+    var html = "";
+    $.each(data, function(i, val) { 
+        let vf = val && (isObj(val) || isObj(val,'a')); 
+        if(vf){
+            html += "● 【" +i+ "】:" + "<br>";
+            $.each(val, function(i2, v2) { 
+                let t2 = JSON.stringify(v2);
+                html += " &nbsp; - " +i2+ ": " +t2+ "<br>";
+            });
+        }else{
+            let t1 = JSON.stringify(val);
+            html += "● " +i+ ": " +t1+ "<br>";
+        }  
+    });
+    return html;
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+         }
+         if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+         }
+     }
+    return "";
+}
+
+$(function(){
+    initCheck();
+});
+
+</script>
+
+<footer>
+  <p>Copyright@贴心猫(imcat)</p>
+</footer>
+
+</body>
+</html>

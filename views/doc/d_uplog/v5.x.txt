@@ -1,5 +1,30 @@
 
 
+#v5.5# (2021.02)
+
+## Basic-Info: 
+
+* Basic-Info: 
+ - version: v5.5
+ - Release date: 2021.02
+
+## ChangeLog
+
+* Publish: Weys`微样式库`(WeCSSLib)：http://txjia.com/imcat/hi.php/weys
+* Publish: Task management module: http://txjia.com/imcat/umc.php/task
+* Update: User-Multi-Login：http://txjia.com/imcat/hi.php/login?sec=full (Wechat/Wework/Id-passwod/SMS)
+* Reserved api: Tencent Edu-API-Login
+* Official website: All(贴心猫、贴心博客、爱窝房产、开心企业网) system in the same domain `txjia.com`.
+* Improve: Install-Update module
+* Integration: Wechat-Pay API
+* Add: Batch modification of data table prefixes
+* Fix
+ -> cargo module: Default value invalid
+ -> Static-dir replace invalid （子目录移到正式环境可能受影响）
+ -> Other issues
+* Improve: MKV-Route improved
+
+
 #v5.4# (2020.11)
 
 ## Basic-Info
@@ -23,7 +48,7 @@
 
 * Add: (cdata)Free Custom Data model
  - 用于展示那些零碎无规律资料，设置非常自由
- - Demo-Url：https://imcat.txjia.com/chn.php/home-cdata 
+ - Demo-Url：https://txjia.com/imcat/home.php/home-cdata 
 
 * Core functions 
  - Add: Multi level linkage selection, for catalog, types
@@ -96,7 +121,7 @@
  - To be added workerman extend
 
 * Got the `Software copyright` certificate for `贴心猫(imcat)通用网站系统`
- - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
+ - https://txjia.com/imcat/home.php/news.2020-6a-89gf
 
 * Publish: WeCSSLib(微样式库)
  - https://imcat.txjia.com/root/run/vapi.php/weys-mob

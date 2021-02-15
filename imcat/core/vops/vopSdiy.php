@@ -56,8 +56,8 @@ class vopSdiy extends vopShow{
     // mkv初始化
     function imkv($cfg){ 
         global $_cbase;
-        $q = basEnv::serval('QUERY_STRING'); //vopUrl::route($cfg['_mkv']); 
-        $mkv = strpos($q,'&')>0 ? substr($q,0,strpos($q,'&')) : $q; 
+        $tmp = vopUrl::route($cfg['_mkv']);
+        $mkv = $tmp[0]; $q = $tmp[1];
         if(strpos($mkv,'-')){
             $tmp = explode('-', $mkv);
             if(count($tmp)>2 || empty($tmp[1])){ 

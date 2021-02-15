@@ -2,7 +2,7 @@
 ### 目录结构：
 
 [Site-Project]
-│  chn.php
+│  home.php
 │  ...
 │  robots.txt
 │  
@@ -25,7 +25,7 @@
 ├─views : 视图模板(每套模版一个子目录)
 │  ├─adm : 后台管理
 │  ├─base : 基础视图(含首页)
-│  ├─chn : 官网版
+│  ├─home : 官网版
 │  ├─demo : 功能演示
 │  ├─dev : 文档版
 │  ├─doc : Manual

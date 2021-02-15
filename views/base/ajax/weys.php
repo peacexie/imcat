@@ -9,6 +9,7 @@ $tab = basReq::val('tab');
 //$lang = basReq::val('lang', $_cbase['sys']['lang']); 
 //$skin = basReq::val('skin');
 $rf = basReq::val('rf'); // mkv
+//$ver = basReq::val('ver', 'comm');
 
 
 # 导航测试

@@ -22,7 +22,7 @@
 #### 相关链接
 
 * [GitHub](https://github.com/peacexie/imcat) - 
-  [Official/演示站](http://imcat.txjia.com/) - 
+  [Official/演示站](http://txjia.com/imcat/) - 
   [Download](https://github.com/peacexie/imcat/archive/master.zip)
 * [Homepage](./index.php) # 
-  [更多:贴心猫文档](http://imcat.txjia.com/dev.php?start)
+  [更多:贴心猫文档](http://txjia.com/imcat/dev.php?start)

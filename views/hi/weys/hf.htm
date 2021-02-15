@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/weys~imp"}
+<title><?=$title='头尾区块'?> - Weys.微样式库</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+{inc:"incs/weys~head"}
+
+<hr>
+
+<header>
+    <b class="">for Mobile</b>
+    <h1>WeCSSLib</h1>
+</header>
+
+<hr>
+
+<header>
+    <a href="{surl(weys-pc)}" class="btn">Pc</a>
+    <a href="{surl(weys-mob)}" class="btn">Mob</a>
+    <div class="logo">
+        <img src="<?=tpath(1)?>/logo/gezi1-40x.jpg"> 微样式库
+    </div>
+</header>
+
+<hr>
+
+<header class="user">
+    <a href="#" class="btn">登出</a>
+    <div class="logo">
+        <img src="<?=tpath(1)?>/logo/gezi1-40x.jpg">
+    </div>
+    <span class="id">ID: PeaceXie</span>
+</header>
+
+<hr>
+
+<header class="user">
+    
+    <span class="r">用户中心:
+        <i class="fa fa-gear" onclick="opSmenu(1,'smenu')"></i>
+    </span>
+    
+    <div class="logo">
+        <img src="<?=tpath(1)?>/logo/imcat-40x.png">
+    </div>
+    
+    <span class="id">
+        和平鸽@{=$_cbase['sys_name']}
+    </span>
+</header>
+
+<hr>
+
+<header class="tophd">
+    <i class="fa fa-home" onclick="opSmenu(1,'smenu')"></i>
+    <span class="logo"><img src="<?=tpath(1)?>/logo/imcat-40x.png" /></span>
+    <h1>某某项目 - API 探讨</h1>
+    <div class="subtitle">(和平鸽 | 2020-12 | {=$_cbase['sys_name']})</div>
+</header>
+
+<hr>
+
+<header class="tophd">
+    <a href="#" class="btn" onclick="print()">打印</a>
+    <span class="logo"><img src="<?=tpath(1)?>/logo/imcat-40x.png" /></span>
+    <h1>简约生活●大道至简</h1>
+    <div class="subtitle">(和平鸽 | 2021-02 | 系列专题)</div>
+</header>
+
+<hr>
+
+{inc:"incs/weys~foot"}
+
+</body>
+</html>

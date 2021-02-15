@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/login~imps"}
+<title>用户首页 - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+/* scrollbar-滚动条; thumb-里面小方块; track-里面轨道 *-/
+html::-webkit-scrollbar { width:10px; height:10px; } 
+html::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.2); border-radius:3px; }
+html::-webkit-scrollbar-track { background:rgba(0,0,0,0.1); } */
+.user{ height:85px; overflow:hidden; }
+</style>
+</head>
+<body>
+
+<header class="user">
+    <span class="r">
+        请注册账号密码
+    </span>
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}">
+    </div>
+    <span class="id">
+        ---
+    </span>
+</header>
+
+
+<article class="">
+
+<span class="r"><img src="{=PATH_VIEWS}/base/assets/logo/logo120x60.jpg"></span>
+<h1>{=$_cbase['sys_name']}</h1>
+<div class="msg  tc">
+    <h3>请注册使用</h3>
+    <!--div class="error"><i class="fa fa-warning "></i></div-->
+</div>
+
+<div class="cont" id='cont_idpwd'>
+    <form class="list1" id="fmapply" name="fmapply" onsubmit="return chkApply()">
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <input type="text" id='uname' name="uname" value="" autocomplete="off" pattern="^[\dA-Za-z_.\-]{5,15}$" title="5-15字符" placeholder="账号">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">密码</div>
+        <div class="col5">
+          <input type="text" id="upass" onfocus="setPassinp(this)" name="upass" autocomplete="off" placeholder="密码">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">确认吗</div>
+        <div class="col5">
+          <input type="text" id="upchk" onfocus="setPassinp(this)" name="upchk" autocomplete="off" placeholder="确认吗">
+        </div>
+      </div>
+
+      <!--input type="hidden" id="umod" name="umod" value="person" /-->
+      <div class="row">
+        <div class="col1 tc">会员类型</div>
+        <div class="col5">
+          <select name="umod" id="umod">{=$umopt}</select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col1 tc">昵称</div>
+        <div class="col5">
+          <input type="text" id='mname' name="mname" value="" pattern="^[\dA-Za-z_.@\-\u4e00-\u9fa5]{2,15}$" title="2-5汉字或5-15字符" placeholder="姓名">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col1 tc">验证码</div>
+        <div class="col2 vcode">
+          <input type="text" class="" id="vcode1" name="vcode" placeholder="验证码">
+        </div>
+        <div class="col3 vcode">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" id="apply_vimg" onclick="setVcode('apply')">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1"></div>
+        <div class="col2"><button type="button" x_type="submit" onclick="chkApply()" class="btn btn-act">注册</button></div>
+        <div class="col1"></div>
+        <div class="col2"><a href="{surl(login)}?sec=idpwd" class="btn btn-red">去登录</a></div>
+        <div class="col1"></div>
+      </div>
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+    </form>
+</div>
+</article>
+
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+
+<script src="<?=tpath(0,0)?>/{=$this->mod}/apply.js"></script>
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script>
+var applyapi = "<?=surl($this->mod.'-appdo')?>?_r=<?=date('ymdHi')?>",
+    loginurl = "<?=surl($this->mod)?>?_r=<?=date('ymdHi')?>";
+$(function(){
+    setVcode('apply');
+    return;
+});
+</script>

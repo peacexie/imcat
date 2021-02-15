@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-cmn" style="overflow-y:scroll">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>报表打印-工单</title>
+<style>
+
+* { margin: 0; padding: 0; }
+body { /*不要去掉这个注释*/ font-family: "lucida Grande", Verdana, "Microsoft YaHei";  /*不要去掉这个注释*/ }
+
+.approval_print { width:100%; max-width:720px; margin:0 auto; padding-top:18px; }
+.approval_print_pdf { width: 540px; }
+.approval_print_title { margin-bottom: 20px; font-size: 15px; text-align: center; }
+.approval_print_data { width: 100%; border-spacing: 1px; border-collapse: collapse; table-layout: fixed; }
+.approval_print_data tr { border-left: 1px solid #787878; border-right: 1px solid #787878; }
+.approval_print_data th, .approval_print_data td { height:18px; font-size: 12px; padding:4px 12px; border:1px solid #787878; 
+    overflow:hidden; word-break:keep-all; white-space:nowrap; }
+
+.approval_print_data th.wsub { width:190px; }
+.approval_print_data th.wmin { width:60px; }
+.approval_print_data td.wrap { word-break:break-word; white-space:normal; }
+.approval_print_data td.ellip { text-overflow:ellipsis; }
+
+.approval_print_data_sectionTitle { height: 30px; padding-left: 25px; background-color: #fff; font-size: 12px; color: #000; }
+.approval_print_data_space { height: 15px; background: #fff; border-right: 1px solid #787878; border-left: 1px solid #787878; }
+.approval_print_space_title { height: 20px; background: #F3F3F3; text-align: center; border: 1px solid #787878; font-size: 12px; }
+.approval_print_info { float: right; padding-top: 25px; line-height: 20px; font-size: 12px; text-align: left; }
+
+.approval_print_info_date, .approval_print_info_user { display: inline-block; margin-left: 30px; }
+.approval_print_qr { padding-top: 10px; height: 90px; padding-bottom: 20px; }
+.approval_print_qr_image_wrap img { vertical-align: top; width: 70px; height: 70px; float: left; margin-right: 10px; }
+.approval_print_qr_text { font-size: 12px; line-height: 20px; padding-top: 15px }
+.approval_print_data_value_commentItem { line-height: 25px; }
+
+</style>
+</head>
+<body>
+<?php
+$splitp = ',';
+?>
+{tag:dlist=[Page][modid,cstask][where,$whrstr][limit,30]}
+<div class="approval_print ">
+  <!--h1 class="approval_print_title">!!!测试!!!</h1-->
+  <h1 class="approval_print_title">工单-报表打印：<?=req('page',1,'N')?>/{=$_cbase['page']['pcnt']}页</h1>
+  <table class="approval_print_data">
+    <tr>
+      <th class="">工单号</th>
+      <th class="wsub">标题</th>
+      <th class="">发起时间</th>
+      <th class="wmin">处理状态</th>
+      <th class="wmin">联系人</th>
+      <th class="">电话</th>
+    </tr>
+    {:row}
+    <tr>
+      <td class="">{=$t_did}</td>
+      <td class="wrap">{=$t_title}</td>
+      <td class="">{stime($t_atime)}</td>
+      <td class="">{sopt($t_mflag,cstask.mflag,$splitp)}</td>
+      <td class="ellip">{=$t_mname}</td>
+      <td class="">{=$t_mtel}</td>
+    </tr>
+    {/row}
+  </table>
+  <div class="approval_print_info">
+    <div class="approval_print_info_date">打印日期：<?=date('Y-m-d H:i')?></div>
+    <br>
+    <div class="approval_print_info_user">打印人：{=$printName}</div>
+  </div>
+  <div class="approval_print_qr">
+    <div class="approval_print_qr_image_wrap"><img src="<?=tpath()?>/wework.png" alt=""></div>
+    <p class="approval_print_qr_text">使用手机企业微信<br>
+      扫一扫</p>
+  </div>
+</div>
+{/tag:dlist}
+
+<script>
+    setTimeout(print, 500);
+</script>
+</body>
+</html>

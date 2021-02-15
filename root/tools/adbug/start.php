@@ -120,20 +120,20 @@ $scfg = array('min','cerulean','flatly','superhero'); // ,'(ull)'
   <p class="title">CMS<?php lang('tools.start_cmsentry',0) ?></p>
   <table width="100%" border="1" class="tblist">
   <tr class="tc">
-   <?php foreach($vcfg as $k=>$v){ $ti++; if($k=='umc'){$v[1].='?login';} $url=($k=='---')?'../../../?':PATH_PROJ.@$v[1]; ?>
+   <?php foreach($vcfg as $k=>$v){ $ti++; $url=($k=='---')?'../../../?':PATH_PROJ.@$v[1]; ?>
     <td width="25%"><a href="<?php echo $url; ?>"><?php echo !empty($v[0]) ? basLang::pick(0,$v[0]) : ''; ?></a></td>
     <?php if(($ti)%$col==0 && $ti<count($vcfg)){ echo "</tr><tr class='tc'>\n"; }  } ?>
   </tr>
   <tr class="tc" style="border-top:3px solid #A6CAF0;">
-    <td><a href="http://imcat.txjia.com/dev.php?tools-seal">PHP印章</a></td>
-    <td><a href="http://imcat.txjia.com/dev.php?tools-qrcode">二维码</a></td>
-    <td><a href="http://imcat.txjia.com/dev.php?tools-vimg">图片码</a></td>
-    <td><a href="http://imcat.txjia.com/dev.php?tools-cnconv">拼音</a></td>
+    <td><a href="http://txjia.com/imcat/dev.php?tools-seal">PHP印章</a></td>
+    <td><a href="http://txjia.com/imcat/dev.php?tools-qrcode">二维码</a></td>
+    <td><a href="http://txjia.com/imcat/dev.php?tools-vimg">图片码</a></td>
+    <td><a href="http://txjia.com/imcat/dev.php?tools-cnconv">拼音</a></td>
   </tr> 
   <tr class="tc">
     <td><a href="<?php echo $_cbase['server']['txcode']; ?>/">贴心口袋</a></td>
     <td><a href="http://txjia.com/peace/wenode.htm">Node微框架</a></td>
-    <td><a href="http://imcat.txjia.com/chn.php?topic.2018-3j-g9b1">微爬(Wepy)</a></td>
+    <td><a href="http://txjia.com/imcat/home.php?topic.2018-3j-g9b1">微爬(Wepy)</a></td>
     <td><a href="http://txjia.com/peace/txbox.htm">Java盒子</a></td>
   </tr>
   <?php if($qstr=='skin'){ ?>

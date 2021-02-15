@@ -1,0 +1,36 @@
+
+    <form class="list1" id="fmlogin" name="fmlogin" x_onsubmit="return sndfIdpwd()">
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <input type="text" id="uname" name="uname" placeholder="账号">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">密码</div>
+        <div class="col5">
+          <input type="password" id="upass" name="upass" placeholder="密码">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">验证码</div>
+        <div class="col2 vcode">
+          <input type="text" class="" id="vcode1" name="vcode" placeholder="验证码">
+        </div>
+        <div class="col3 vcode">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" id="idpwd_vimg" onclick="setVcode('idpwd')">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col2">
+          <button type="x_submit" class="btn btn-act">登录</button>
+        </div>
+        <div class="col2"></div>
+      </div>
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+    </form>

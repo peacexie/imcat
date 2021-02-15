@@ -3,8 +3,7 @@
   <div class="panel-heading">搜索...</div>
   <div class="panel-body soform">
 
-    <form method="get" action="{surl(0:0)}">
-    <input name="mkv" type="hidden" value="{=$this->mod}--list">
+    <form method="get" action='{surl($this->mod."--list")}'>
     <?=fldEdit::layTypes('cargo', 'stype', 0);?>
     <div class="pt10">
         <input name="keywd" type="text" id="keywd" class="form-control wp60 inblock" />

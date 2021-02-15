@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/weys~imp"}
+<title><?=$title='步骤宫格'?> - Weys.微样式库</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+{inc:"incs/weys~head"}
+
+<hr>
+
+<article class="">
+<div class="flex laybox">
+
+    <div class="col1">
+        <span class="nowrap ico-xxx">
+            <b {if class="act">1</b>
+            <i class="fa fa-weixin"></i>
+            多端登录
+        </span>
+        <p>免密授权/短信/账密</p>
+    </div>
+    <div class="col1">
+        <span class="nowrap ico-xxx">
+            <b>2</b>
+            <i class="fa fa-link"></i>
+            绑定用户
+        </span>
+        <p>仅需1次/仅客户使用</p>
+    </div>
+    <div class="col1">
+        <span class="nowrap ico-xxx">
+            <b>3</b>
+            <i class="fa fa-file-o"></i>
+            DIY管理
+        </span>
+        <p>DIY…描述</p>
+    </div>
+
+</div>
+</article>
+
+<hr>
+
+<article class=" grbox" style="">
+
+    <div class="grc4">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            填单报障
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-atme)}" class="nowrap ico-chart">
+            <i class="fa fa-bar-chart"></i>
+            报表统计
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            处理记录
+        </a>
+    </div>
+</article>
+
+<hr>
+
+<article class=" grbox" style="">
+    <div class="grc3">
+        <a href="{surl(wxcs-atme)}" class="nowrap ico-chart">
+            <i class="fa fa-bar-chart"></i>
+            报表统计
+        </a>
+    </div>
+    <div class="grc3">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            处理记录
+        </a>
+    </div>
+    <div class="grc3">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+</article>
+
+<hr>
+
+<article class=" grbox" style="">
+    <div class="grc2">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            处理记录
+        </a>
+    </div>
+    <div class="grc2">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+</article>
+
+<hr>
+
+
+{inc:"incs/weys~foot"}
+
+</body>
+</html>

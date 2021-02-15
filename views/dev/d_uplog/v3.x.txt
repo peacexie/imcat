@@ -52,10 +52,10 @@
 ## 提示/参考
 
 * Rewrite配置(Apache/Nginx/iis7+)
- -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
+ -> http://txjia.com/imcat/home.php?faqs.2017-9h-4bq1
 
 * idea：贴心猫(Imcat)开发者自白书
- -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
+ -> http://txjia.com/imcat/home.php?faqs.2017-9a-f3a1
 
 * 贴心扩展[Extend]
  -> http://imcat.txjia.com/dev.php?extend
@@ -488,7 +488,7 @@ tplnamenews=c_mod/mem_ulst）
 
 * 初期目标：
  - 后台/会员中心/安装程序：可中英文切换；
- - 原前台：chn.php, dev.php, mob.php 展示页，用原来的中文，分别展示功能，中文文档，移动展示；
+ - 原前台：home.php, dev.php, mob.php 展示页，用原来的中文，分别展示功能，中文文档，移动展示；
  - 增加：doc.php，用作英文文档；
  - 数据资料，随安装时，选的语言决定，中文或英文；安装后不能`转化`
 

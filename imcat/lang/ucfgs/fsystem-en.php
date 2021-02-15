@@ -55,6 +55,7 @@ return array(
         'init_docs'=>'(init)[Docs]Main', 'init_types'=>'(init)[Types]', 'init_users'=>'(init)[Users]', 
         'types_common'=>'(common)Types', 'users_uacc'=>'(user)Account', 'users_uppt'=>'(user)passport',
         'active_admin'=>'(admin)session', 'active_online'=>'(user)session', 'active_session'=>'(Session)session', 
+        'active_login'=>'(user)Uni-Login', 
         
         'logs_dbsql'=>'(sql)Debug Log', 'logs_detmp'=>'(user)Debug Log', 
         'logs_syact'=>'(sys)Debug Log', 'logs_jifen'=>'(piont)op Log', 

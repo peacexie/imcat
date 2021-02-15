@@ -36,7 +36,7 @@ $_sy_updvnow['dellist'] = array(
     
     # - delete list ~ 2016-05-18
     'root/:.htaccess,robots.txt',
-    'root/run/:chn.php,dev.php,mob.php',
+    'root/run/:home.php,dev.php,mob.php',
     'root/tools/setup/update.php',
     'readme.htm',
 );

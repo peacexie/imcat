@@ -4,9 +4,9 @@
 
 ```
 <a href="{surl(0)}">[首页]</a>
-<a href="{surl(comm:about-alink);}">chn:联系我们</a>
-<a href="{surl(comm:0)}">[chn:首页]</a>
-<a href="{surl(comm:cargo)}">chn:产品中心</a>
+<a href="{surl(comm:about-alink);}">home:联系我们</a>
+<a href="{surl(comm:0)}">[home:首页]</a>
+<a href="{surl(comm:cargo)}">home:产品中心</a>
 <a href="{surl(start)}">快速开始</a>
 <a href="{surl(doc:tester)}">测试代码</a>
 <a href="{surl(demo)}">文档/资讯</a>

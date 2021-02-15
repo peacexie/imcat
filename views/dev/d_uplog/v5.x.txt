@@ -1,5 +1,30 @@
 
 
+#v5.5# (2021.02)
+
+## 基本信息：
+
+* 基本信息：
+ - 版本：v5.5
+ - 发布日期：2021.02
+
+## 更新事项
+
+* 发布：Weys.微样式库：http://txjia.com/imcat/hi.php/weys
+* 发布：工单管理模块：http://txjia.com/imcat/umc.php/task
+* 更新：会员多端登录：http://txjia.com/imcat/hi.php/login?sec=full (微信/企业微信/账密/短信)
+* 预留：腾讯教育号登录
+* 调整：官网：贴心猫、贴心博客、爱窝房产、开心企业网：都放到同一域名`txjia.com`不同子目录下
+* 完善：安装更新模块
+* 集成：微信扫码支付接口
+* 增加：数据库可批量改前缀功能： 用于：多系统共用同一套空间，同一个数据库；
+* Fix
+ -> 产品属性模型：默认值（不起作用）
+ -> 子目录下，static附件目录替换失败（子目录移到正式环境可能受影响）
+ -> 其他已知问题
+* 优化：MKV路由优化
+
+
 #v5.4# (2020.11)
 
 ## 基本信息
@@ -23,7 +48,7 @@
 
 * 增加：(cdata)自定义资料模型
  - 用于展示那些零碎无规律资料，设置非常自由
- - Demo地址：https://imcat.txjia.com/chn.php/home-cdata 
+ - Demo地址：https://txjia.com/imcat/home.php/home-cdata 
 
 * 核心功能增加
  - 增加：多级联动选择功能 用于：新闻产品栏目，类别等
@@ -96,7 +121,7 @@
  - 拟增加 Workerman ??? 
 
 * 喜报：《贴心猫(imcat)通用网站系统》软著获证
- - https://imcat.txjia.com/chn.php/news.2020-6a-89gf
+ - https://txjia.com/imcat/home.php/news.2020-6a-89gf
 
 * 发布：微样式库 | WeCSSLib
  - https://imcat.txjia.com/root/run/vapi.php/weys-mob

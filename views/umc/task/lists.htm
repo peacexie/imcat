@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>工单</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header>
+    <a href="{surl(0)}" class="fa fa-home"></a>
+    <a href="#" class="fa fa-search" onclick="opDialog('dlog3')"></a>
+    <h1>工单</h1>
+</header>
+
+<article class="">
+<div class="list2">
+    {tag:dlist=[Page][modid,cstask][where,$whrstr][limit,20]}
+        <div class="shead">
+            <span class="r">{=$_cbase['page']['prec']}条记录</span>
+            <div class="">所有工单</div>
+        </div>
+        {:row}
+        {inc:"task/lists~row"}
+        {/row}
+        <?php if(empty($T_dlist)){ ?>
+        <div class="row">
+            <div class="col6 main">
+                <p class="tc" style="line-height:240px;">
+                    {if $uname}暂无资料{else}登录后显示{/if}
+                </p>
+            </div>
+        </div>
+        <?php } ?>
+        <div class='pg_bar'>
+            {=$_cbase['page']['bar']}
+        </div>
+    {/tag:dlist}
+</div>
+</article>
+
+{inc:"task/lists~so"}
+
+{inc:"incs/inc~foot"}
+
+</body>
+</html>
+
+<?php
+//dump($_cbase['page']);
+?>
+
+<script>
+
+$(function(){
+    return;
+});
+
+</script>
+

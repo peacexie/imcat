@@ -1,0 +1,13 @@
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="<?=tpath(1)?>/logo/favicon.ico">
+
+<script src='{=PATH_VENDUI}/jquery/jquery-2.x.js'></script>
+<link href='{=PATH_VENDUI}/bootstrap/css/font-awesome.min.css' rel='stylesheet'/>
+{php}
+$excss = 'now:book;base:alib/file-style;base:cssjs/stpub;ui:lunbo/lunbo';
+$exjs = 'now:book;base:alib/file-func;base:jslib/jsbase;ui:lunbo/lunbo';
+$skin = req('skin'); // blue1,gray1,dark1
+basJscss::weysInit('jsbase', '', '', $skin); 
+{/php}

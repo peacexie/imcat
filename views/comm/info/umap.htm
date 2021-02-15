@@ -4,13 +4,15 @@
 eimp('initJs','jquery;bootstrap;comm');
 eimp('initCss','bootstrap,stpub;comm;info'); 
 
+$db = db();
+
 // 参数
 $mods = array('company','govern','organize');
 $mod = req('mod');
 $mod = in_array($mod, $mods) ? $mod : 'company';
 $ftype = req('ftype');
 // 分页
-$sfrom = "uid,company,ftype,map FROM users_{$mod}_ys ";
+$sfrom = "uid,company,ftype,map FROM {$db->pre}users_{$mod}$db->ext ";
 $where = "`show`=1 AND map>'0' ".($ftype ? " AND ftype='$ftype' " : ''); 
 $pg = new comPager($sfrom,$where,2,"atime"); 
 $pg->set('opkey','0');
@@ -72,7 +74,7 @@ label { max-width:none; opacity:0.7; border:1px dotted #CCC; border-radius:3px; 
 
     <div class="sd-so01">
     <form method="get" action="{surl(0:0)}">
-    <input name="mkv" type="hidden" value="{=$this->mkv}">
+    <input name="{=$this->mkv}" type="hidden" value="">
     <input name="pid" type="hidden" value="{=$pid}">
     <input name="keywd" type="text" id="keywd" class="w150" />
     <input type="submit" id="sobtn" value="搜索" />

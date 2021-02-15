@@ -40,8 +40,8 @@ $_cbase['tpl']['def_static'] = 'comm';
 $_cbase['tpl']['mob_tpls'] = '(mob,comm)'; //,app
 
 // server
-$_cbase['server']['txmao']  = 'http://imcat.txjia.com'; //txmao首页{svrtxmao}
-$_cbase['server']['txcode'] = 'http://yscode.txjia.com'; //txcode首页{svrtxcode}
+$_cbase['server']['txmao']  = 'http://txjia.com/imcat'; //txmao首页{svrtxmao}
+$_cbase['server']['txcode'] = 'http://txjia.com/yscode'; //txcode首页{svrtxcode}
 $_cbase['server']['txjia']  = 'http://txjia.com'; //txjia首页{svrtxjia}
 
 //用户自定义配置
@@ -61,7 +61,7 @@ $_cbase['ucfg']['stats'] = ''; // 开启统计模块:comm,dev,doc,sapi; 自v5.0+
 $_cbase['weixin']['debug']  = true; 
 $_cbase['weixin']['actiks']  = array(); 
 $_cbase['weixin']['haibaoMediaid'] = 'I7mPnzk9v0tF6nHiEmy0sDbtRksBp4pVHSYBZvdROjc';
-$_cbase['weixin']['haibaoPicurl'] = 'http://yscode.txjia.com/uimgs/assets/logo/haibao.jpg';
+$_cbase['weixin']['haibaoPicurl'] = 'http://txjia.com/yscode/uimgs/assets/logo/haibao.jpg';
 $_cbase['weixin']['tplidIndoc'] = 'u6DK6CKG8TnCFGaOwglBPUPa_UvE3nwpQU-k8kP1YpA';
 
 // indoc

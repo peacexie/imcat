@@ -7,6 +7,20 @@ class updDbcmp{
     
     static $cpcfgs = array();
     
+    // 更改db表前缀, 支持为空
+    static function altDbpre($pre1, $pre2){
+        $db = glbDBObj::dbObj();
+        $ext = $db->ext;
+        $tabs = $db->tables();
+        $re = '';
+        foreach ($tabs as $tab) {
+            $sql = "ALTER TABLE `$pre1{$tab}$ext` RENAME TO `$pre2{$tab}$ext`";
+            $db->query("$sql");
+            $re .= "`$pre1{$tab}$ext` -=> `$pre2{$tab}$ext`;<br>\n";
+        } #dump($tabs);
+        return $re; 
+    }
+
     static function uimpCheck(){
         if(empty(self::$cpcfgs)){
             $db = glbDBObj::dbObj();

@@ -4,9 +4,9 @@
 
 ```
 <a href="{surl(0)}">[Homepage]</a>
-<a href="{surl(comm:about-alink);}">chn:About-Us</a>
-<a href="{surl(comm:0)}">[chn:Home]</a>
-<a href="{surl(comm:cargo)}">chn:Porduct</a>
+<a href="{surl(comm:about-alink);}">home:About-Us</a>
+<a href="{surl(comm:0)}">[home:Home]</a>
+<a href="{surl(comm:cargo)}">home:Porduct</a>
 <a href="{surl(start)}">Start-Page</a>
 <a href="{surl(doc:tester)}">Test-Code</a>
 <a href="{surl(demo)}">Docs/News</a>

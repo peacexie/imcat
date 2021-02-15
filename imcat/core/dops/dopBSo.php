@@ -161,7 +161,7 @@ class dopBSo{
         $mod = $this->mod;
         $bar .= "\n&nbsp; <input name='sch_$mod' class='btn' type='submit' value='".basLang::show('flow.dops_search')."'>";
         echo "\n<form id='fmid' name='fmid' method='GET' action='?".$this->urlstr."'>";
-        echo "\n<input name='mkv' type='hidden' value='".$_cbase['mkv']['mkv']."' />";
+        echo "\n<input name='{$_cbase['mkv']['mkv']}' type='hidden' value='' />";
         echo "\n<input name='mod' type='hidden' value='$mod' />";
         echo "\n<input name='view' type='hidden' value='".basReq::val('view')."' />";
         echo "\n<input name='pid' type='hidden' value='".basReq::val('pid')."' />";

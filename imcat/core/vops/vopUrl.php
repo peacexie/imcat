@@ -7,7 +7,7 @@ class vopUrl{
     static $params = array('mkv','mod','key','view','type','hcfg','vcfg');
     static $keepmk = array('c','d','m','t','u','mhome','mtype','detail'); // mext
 
-    // get/url初始数据
+    // get/url初始mkv数据
     static function iget(){
         $re = self::route(); 
         $mkv = $re[0]; $q = $re[1]; $ua = $re[2];
@@ -231,13 +231,16 @@ class vopUrl{
         return $url;
     }
 
-    // 路由
+    // mkv路由
     static function route($def=''){
         global $_cbase;
         $tcfg = empty($_cbase['run']['tplcfg']) ? [] : $_cbase['run']['tplcfg'];
-        $q = $def ? $def : basEnv::serval('QUERY_STRING'); $mkv = '';
+        $q = basEnv::serval('QUERY_STRING'); $mkv = '';
         if(!empty($_SERVER['PATH_INFO'])){
             $mkv = substr($_SERVER['PATH_INFO'],1);
+            if(!$mkv){ 
+                vopShow::msg("a:[/]:".basLang::show('vop_parerr')); 
+            }
         }elseif(!empty(IS_CLI)){ // mob.php news--list stype:;keywd:php5.4
             $mkv = empty($_SERVER['argv'][1]) ? '' : $_SERVER['argv'][1];
             $q = empty($_SERVER['argv'][2]) ? '' : str_replace([':',';'], ['=','&'], $_SERVER['argv'][2]);
@@ -246,7 +249,7 @@ class vopUrl{
             $q ? parse_str($q, $_GET) : $_GET=[]; 
         }else{
             $tmp = explode('&', $q); 
-            $mkv = (empty($tmp[0])||preg_match("/^\w+\=[^\n]+/",$tmp[0])) ? 'home' : $tmp[0];
+            $mkv = (empty($tmp[0])||preg_match("/^\w+\=[^\n]+/",$tmp[0])) ? ($def?$def:'home') : $tmp[0];
             if(!empty($tmp[1]) && $p=strpos($mkv,'=')){ // 'file.php?news=&p=wx', 修正分享参数
                 $uri = str_replace("?$tmp[0]&", "?".substr($tmp[0],0,$p)."&", $_SERVER["REQUEST_URI"]); 
                 header("Location:$uri"); 

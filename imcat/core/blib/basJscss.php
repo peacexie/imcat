@@ -62,16 +62,17 @@ class basJscss{
         // comm, comm-mob?
         $tpldir = basReq::val('tpldir');
         if($tpldir){
-            $fp = "/$tpldir/assets/comm.css";
+            $ver = req('ver', 'comm');
+            $fp = "/$tpldir/assets/$ver.css";
             $dstr = comFiles::get(DIR_VIEWS.$fp);
             $dstr = self::fixPath($dstr, PATH_VIEWS.$fp);
             $data .= "\n\n/* --- [load file] $fp --- */\n$dstr";
         }
         // fix:dir
         $ua = basEnv::serval('ua'); 
-        if(strpos($ua,'rv:11')>0 || strpos($ua,'MSIE')>0){ // IE11, MSIE 10, MSIE 9
+        #if(strpos($ua,'rv:11')>0 || strpos($ua,'MSIE')>0){ // IE11, MSIE 10, MSIE 9
             $data = self::fixVar($data);
-        }
+        #}
         return $data;
     }
     // js基本配置
@@ -86,9 +87,10 @@ class basJscss{
         basJscss::inc($fp); 
         $tpldir = basReq::val('tpldir');
         if($tpldir){
-            $fp = "/$tpldir/assets/comm-$lang.js"; // 当前模板语言包
+            $ver = req('ver', 'comm');
+            $fp = "/$tpldir/assets/$ver-$lang.js"; // 当前模板语言包
             basJscss::inc($fp);
-            $fp = "/$tpldir/assets/comm.js"; // 当前模板js
+            $fp = "/$tpldir/assets/$ver.js"; // 当前模板js
             basJscss::inc($fp);
         }
     }

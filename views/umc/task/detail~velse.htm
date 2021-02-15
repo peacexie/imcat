@@ -1,0 +1,27 @@
+
+<a name="viewLogs"></a>
+<article class="">
+    <div class="doBoxs doBtns tc">
+        <a onclick="chkUrge()" id='btnApply' class="btn btn-act">
+            催单
+        </a>
+        {if $uCancel}
+        <a onclick="chkCancel()" id='btnCancel' class="btn btn-red">
+            撤销
+        </a>
+        {/if}
+        <a href="javascript:" id='btnNull' class="btn btn-gray" style="display:none;">
+            催单
+            <i id='btnLoad' class="weui-loading"></i>
+        </a>
+        <a href='{surl("task.$row[did]")}' id='btnReset' class="btn">刷新</a>
+    </div>
+    <div style="display:none;"><input type="submit" id='btnSubmit' /></div>
+</article>
+
+<input type="hidden" name="fm[atuids_old]" value="{=$row['atuids']}">
+<input type="hidden" name="fm[douid_old]" value="{=$row['douid']}">
+<input type="hidden" name="fm[did]" value="{=$row['did']}">
+<input type="hidden" name="fm[title]" value="{=$row['title']}">
+<input type="hidden" name="fm[auser]" value="{=$row['auser']}">
+<input type="hidden" name="fm[mflag]" value="{=$row['mflag']}">

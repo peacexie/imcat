@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/weys~imp"}
+<title>Weys.微样式库 - {=$_cbase['sys_name']}</title>
+<meta name='keywords' content='Weys,微样式库,贴心猫,头尾,导航,菜单,文章详情,PC分栏(自适应),列表,按钮,栅格,提示,弹窗,Toast'>
+<meta name='description' content='Weys.微样式库 是一个轻巧的css微样式库，遵循MIT开源协议。'>
+<style type="text/css">
+a.ico-desktop, .grbox>div a.ico-desktop i{ color:#0da75a; }
+a.ico-cubes, .grbox>div a.ico-cubes i{ color:#666; }
+a.ico-id-card, .grbox>div a.ico-id-card i{ color:#bd5105; }
+a.ico-random, .grbox>div a.ico-random i{ color:#1f51e6; }
+.grc2, .grc3, .grc4{ text-align:center;border:1px dotted #EEE; }
+.grc2 img{ width:100%; max-width:240px; display:block; margin:0.5rem auto; border-radius:0.5rem; }
+@media only screen and (max-width:550px){
+  .nomin{ display:none !important; }
+}
+</style>
+</head>
+<body>
+
+{inc:"weys/inc/mpop2"}
+
+<header class="tophd">
+    <i class="fa fa-bars" onclick="opSmenu(1,'smenu2')"></i>
+    <span class="logo"><img src="<?=tpath(1)?>/logo/imcat-40x.png" /></span>
+    <h1>Weys.微样式库</h1>
+    <div class="subtitle">({=$_cbase['sys_name']} | 2021-02 | 和平鸽)</div>
+</header>
+
+<article class="grbox">
+
+    <div class="grc4">
+        <a href="{surl(weys-about)}" class="nowrap ico-id-card">
+            <i class="fa fa-id-card"></i>
+            介绍<!--打赏-->
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(weys-pc)}" class="nowrap ico-desktop">
+            <i class="fa fa-desktop"></i>
+            PC版
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(weys-color)}" class="nowrap ico-cubes">
+            <i class="fa fa-cubes"></i>
+            灰度
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="#sec_skin" class="nowrap ico-random">
+            <i class="fa fa-random"></i>
+            换肤
+        </a>
+    </div>
+
+</article>
+
+<article>
+<div class="list2">
+
+    <div class="shead">
+        <span class="r">更多</span>
+        <div class="">功能列表</div>
+    </div>
+    
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-header "></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-hf)}">头尾区块</a></p> 
+            <p class="note">头尾区块:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">head:7</span> 
+            <span class="tag">foot:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-chain "></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-nm)}">导航菜单</a></p>
+            <p class="note">导航菜单:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">nav:8</span> 
+            <span class="tag">menu:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-file-text-o"></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-ad)}">珊格详情</a></p>
+            <p class="note">珊格详情:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">array:x</span> 
+            <span class="tag">detail:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-list"></a></div>
+        <div class="col4 main">
+            <p><a href="{surl(weys-lp)}">列表翻页</a></p>
+            <p class="note">列表翻页:</p>
+        </div>
+        <div class="col1 img"><img src="<?=tpath(1)?>/logo/gezi1-40x.jpg"></div>
+        <div class="col1 more">
+            <span class="time">list:x</span> 
+            <span class="tag">pager:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-save"></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-fb)}">表单按钮</a></p>
+            <p class="note">表单按钮:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">form:x</span> 
+            <span class="tag">button:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-info"></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-tip)}">提示弹窗</a></p>
+            <p class="note">提示弹窗:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">tip:x</span> 
+            <span class="tag">pop:x</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col1 img"><a href="#" class="fa fa-calendar"></a></div>
+        <div class="col5 main">
+            <p><a href="{surl(weys-sc)}">步骤宫格</a></p>
+            <p class="note">步骤宫格:</p>
+        </div>
+        <div class="col1 more">
+            <span class="time">step:x</span> 
+            <span class="tag">cell:x</span>
+        </div>
+    </div>
+
+</div>
+
+<a name="sec_skin"></a>
+<h1 class="title">Weys - 主题换肤</h1>
+<div class="list2">
+    <div class="row tc">
+        <div class="col1 img nomin"><a class="fa fa-random gr9"></a></div>
+        <div class="col2 main">
+            <p><a href="?skin=blue1">blue1:淡蓝</a></p>
+            <p class="note">默认</p>
+        </div>
+        <div class="col2 main">
+            <p><a href="?skin=gray1">gray1:灰色</a></p>
+            <p class="note">素雅</p>
+        </div>
+        <div class="col2 main">
+            <p><a href="?skin=dark1">dark1:黑色</a></p>
+            <p class="note">庄重</p>
+        </div>
+    </div>
+</div>
+
+<h1 class="title">Weys - 感恩有你</h1>
+
+<p>Weys.微样式库 是一个轻巧的css微样式库，遵循MIT开源协议。
+<br>如果你喜欢且方便，可打赏一下[捂脸]！？ 感恩有你，感谢各位。
+</p>
+
+<div class="grid">
+    <div class="grc2 pa05">
+        <a rel="nofollow" target="p2" href="http://txjia.com/h5/pay/xie-wx.png">微信打赏</a>
+        <br><img src="http://txjia.com/h5/pay/xie-wx.png">
+    </div>
+    <div class="grc2 pa05">
+        <a rel="nofollow" target="p2" href="http://txjia.com/h5/pay/xie-ali.png">支付宝打赏</a>
+        <br><img src="http://txjia.com/h5/pay/xie-ali.png">
+    </div>
+</div>
+
+<hr>
+
+<div class="grid">
+    <div class="grc4 pa05"><a target="f4" href="http://txjia.com/imcat/">贴心猫(Imcat)</a></div>
+    <div class="grc4 pa05"><a target="f4" href="http://txjia.com/custom/">贴心猫-文档</a></div>
+    <div class="grc4 pa05"><a target="f4" href="http://txjia.com/blog/home.php/ftree">家族亲友树</a></div>
+    <div class="grc4 pa05"><a target="f4" href="http://txjia.com/im3n/">大道●至简</a></div>
+</div>
+
+</article>
+
+
+{inc:"incs/weys~foot"}
+
+</body>
+</html>

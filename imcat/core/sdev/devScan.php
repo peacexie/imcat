@@ -45,10 +45,11 @@ class devScan{
     static function clrLogs(){
         $db = glbDBObj::dbObj();
         $stnow = $_SERVER["REQUEST_TIME"];
-        // 432000=5day, 86400=1天 active_online
+        // 432000=5day, 86400=1天 
         $db->table('active_admin')->where("stime<'".($stnow-86400)."'")->delete(); 
         $db->table('active_online')->where("stime<'".($stnow-86400)."'")->delete();     
         $db->table('active_session')->where("exp<'".($stnow-3600)."'")->delete();
+        $db->table('active_login')->where("atime<'".($stnow-5*86400)."'")->delete();    
         $logtabs = array(
             'logs_dbsql','logs_syact','logs_detmp','logs_jifen',
             //'exd_crlog','xtest_keyid', // 'plus_smsend','plus_emsend','plus_paylog',

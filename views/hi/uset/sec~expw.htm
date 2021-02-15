@@ -1,0 +1,61 @@
+
+    <p class="info">修改密码 ● 推荐其他快捷登录；非必要，不用帐密登录</p>
+
+    <form class="list1" id="fmexpw" name="fmexpw" method="post" onsubmit="return chkExpw('fmexpw')">
+
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <?=$uimod['uname']?>
+        </div>
+      </div>
+
+      <!--
+      <input type="hidden" id='ocheck' name="ocheck" value="{=$ocheck}">
+      <div class="row">
+        <div class="col1 tc">旧密码</div>
+        <div class="col5">
+          {if $ocheck!='(reset)'}
+          <input type="text" id='opass' name="opass" value="" placeholder="旧密码">
+          {else}
+          <span class="grc">(您是第一次设置密码)</span>
+          {/if}
+        </div>
+      </div>
+      -->
+
+      <div class="row">
+        <div class="col1 tc">姓名</div>
+        <div class="col5">
+          <input type="text" id='mname' name="mname" value="" >
+          <span>请输入： <span class="emb">{=$uimod['mname']}</span> 提交确认。</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col1 tc">新密码</div>
+        <div class="col5">
+          <input type="text" id='npass' name="npass" value="" placeholder="新密码">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">确认码</div>
+        <div class="col5">
+          <input type="text" id='ncheck' name="ncheck" value="" placeholder="确认码">
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col2">
+          <button type="submit" class="btn btn-act">保存</button>
+        </div>
+        <div class="col2"></div>
+      </div>
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+
+    </form>

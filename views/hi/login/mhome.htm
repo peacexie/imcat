@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/login~imps"}
+<title>用户首页 - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+/* scrollbar-滚动条; thumb-里面小方块; track-里面轨道 *-/
+html::-webkit-scrollbar { width:10px; height:10px; } 
+html::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.2); border-radius:3px; }
+html::-webkit-scrollbar-track { background:rgba(0,0,0,0.1); } */
+.user{ height:85px; overflow:hidden; }
+</style>
+</head>
+<body>
+
+<header class="user">
+    <span class="r">
+        {if $uflag}
+        <i class="fa fa-gear" onclick="opSmenu(1,'smenu')"></i>
+        {elseif $isWexin}
+        请授权登录
+        {else}
+        请扫码登录
+        {/if}
+    </span>
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}">
+    </div>
+    <span class="id">
+        {if !$uflag}
+            {=$null['uname']}
+        {elseif !empty($uinfo['mname'])}
+            {=$uinfo['mname']}
+        {else}
+            {if !empty($uinfo['uname'])}{=$uinfo['uname']}{else}{=$uinfo['pptuid']}{/if}
+        {/if}
+    </span>
+</header>
+
+{inc:"login/mod~menu"}
+
+{if !$uflag}
+    <!--登录-->
+    {inc:"login/mod~login"}
+{elseif $uflag=='(bind)'}
+    <!--绑定-->
+    {inc:"login/mod~bind"}
+{else}
+    <!--首页-->
+    {inc:"login/user~cnav"}
+    {inc:"login/user~uinfo"}
+{/if}
+
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script>
+
+$(function(){
+    return;
+});
+</script>

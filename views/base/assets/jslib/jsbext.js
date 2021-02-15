@@ -43,7 +43,7 @@ function winOpen(e,title,width,height,ext){
         url = e.href;
         title = title ? title : e.innerHTML;    
     }
-    url += (url.indexOf('?')>0 ? '' : '?') + '&' + jsRnd('dialog');
+    url += (url.indexOf('?')>=0 ? '' : '?') + '&' + jsRnd('dialog');
     if(wt==1){ 
         var _x = (scw-width)/2, _y = (sch-height)/2, id = ext ? '_win_'+jsKey(ext) : '_win_';
         var p = ",left="+_x+",top="+_y+",width="+width+",height="+height+"";

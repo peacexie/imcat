@@ -1,0 +1,68 @@
+<?php
+if(empty($umsg)){
+    #header('Location:'.surl(0));
+}
+
+$errmsg = empty($errmsg) ? '' : $errmsg;
+if(!isset($errno)){
+    $errno = (strstr($errmsg,'失败') || strstr($errmsg,'错误') || strstr($errmsg,'Error')) ? '(runError)' : 0; 
+}
+$errtip = empty($errtip) ? ($errno?'操作失败':'操作成功') : $errtip;
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+{inc:"incs/weys-imps"}
+
+<title>{=$errtip}</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header>
+    <b class="">{=$errtip}</b>
+    <h1>{=$_cbase['sys_name']}</h1>
+</header>
+
+<article class="">
+
+<div class="msg">
+    <h3>{=$errtip}</h3>
+    {if $errno}
+    <div class="error"><i class="fa fa-warning "></i></div>
+    {else}
+    <div class="okey"><i class="fa fa-check-square-o"></i></div>
+    {/if}
+    <h4 class="gray">{if $errno}错误信息{else}提示信息{/if}</h4>
+    <ul class="gray">
+        <li>{=$errmsg}</li>
+        <li>错误码：{=$errno}</li>
+        {if !empty($data)}
+        <li>
+            <?php dump($data); ?>
+        </li>
+        {/if}
+    </ul>
+    <h3>
+        <a redir="#" onclick="goPage(this)">用户首页</a> • 
+        <a redir="#" onclick="goPage(this)" id='godef'>返回上一页</a>
+    </h3>
+</div>
+
+</article>
+
+{inc:"incs/weys-foot"}
+
+<script>
+$(function(){
+    return;
+});
+</script>
+
+</body>
+</html>

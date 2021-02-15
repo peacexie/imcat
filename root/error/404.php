@@ -1,41 +1,10 @@
 <?php
 include './cfgs.php';
 
-# dir-伪静态到动态
-// `/chn/cargo.htm`  -=>  `/chn.php?cargo`
-$cfgs = array('chn','dev','doc');
-$url = '';
-if(strpos($uri,'.htm')>0){
-    foreach ($cfgs as $key) {
-        if(substr($uri,0,5)=="/$key/"){
-            if(strpos($uri,'?')>0){
-                $url = str_replace(array("/$key/",'.htm?'),array("/$key.php?",'&'),$uri);
-            }else{
-                $url = str_replace(array("/$key/",'.htm'),array("/$key.php?",''),$uri);
-            }
-        }
-    }
+$_fp = '../cfgs/stinc/404_inc.php'; // 404_inc.php-cdemo
+if(file_exists($_fp)){
+    include($_fp);
 }
-
-# dir-blog
-// /tip/?2011-39-8TR9  -=>  /chn.php?news.2011-39-8tr9
-if(strpos($uri,'tip/?')>0){
-    $url = "http://imcat.txjia.com".str_replace('/tip/?','/chn.php?news.',strtolower($uri));
-}
-
-# baby,kgfood,peace,tools,wee
-$pre3 = substr($uri,1,3);
-if(strpos(",bab,kgf,pea,tip,too,wee,",$pre3)){
-   $url = "http://txjia.com".$uri;
-}
-
-if(ob_get_contents()){ ob_clean(); }
-// 本身是404页,可能存在404的head,所以以下跳转代码无效
-if($url){
-    header("location:$url");
-    //die($url);
-}
-httpStatus(404);
 
 ?>
 <!DOCTYPE html>

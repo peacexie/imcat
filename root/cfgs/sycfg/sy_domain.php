@@ -6,12 +6,10 @@ namespace imcat;
 
 ### 子域名跳主域名设置
 $_sy_domain['subDirs'] = array(
-    #'www.txjia.com' => 'txjia.com', //不要www.域名跳转
-    #'tiexinmao.duapp.com' => 'imcat.txjia.com', //跳转到主域名
-    #'127.0.0.1' => '127.0.0.2', //测试
-    'www.txjia.com'          => 'imcat.txjia.com', 
-    'txmao.txjia.com'        => 'imcat.txjia.com',
-    'imcat.gz01.bdysite.com' => 'imcat.txjia.com',
+    'imcat.txjia.com'        => 'txjia.com', 
+    'www.txjia.com'          => 'txjia.com', 
+    'txmao.txjia.com'        => 'txjia.com',
+    'imcat.gz01.bdysite.com' => 'txjia.com',
 ); //dir-跳转
 // http://imcat.gz01.bdysite.com/
 // http://imcat.pswpower.com/

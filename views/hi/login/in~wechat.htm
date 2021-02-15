@@ -1,0 +1,12 @@
+
+<div class="cont" id='cont_wechat' style="display:none;">
+    <div class="qrcode">
+        {if $isMobile}
+        <p>&nbsp;</p>
+        <p><a href="{=$wx['linkUrl']}" type="submit" class="btn btn-act">微信授权登录</a></p>
+        {else}
+        <p><a class="r">刷新</a>微信扫码登录</p>
+        <p class="qrpelm"><img src="{=$wx['scanUrl']}" /></p>
+        {/if}
+    </div>
+</div>

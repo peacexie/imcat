@@ -132,7 +132,10 @@ class extWework{
             $data = $wecfgs['utab'][$UserId];
         }else{
             if(!file_exists(DIR_VARS.$fp)){
-                self::updUser($UserId, $agentId);
+                $utmp = self::updUser($UserId, $agentId);
+                if(!empty($utmp['errcode'])){
+                    return $utmp;
+                }
             }
             $data = comFiles::get(DIR_VARS.$fp);
         }
@@ -152,9 +155,11 @@ class extWework{
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
         $CorpId = $wecfgs['CorpId']; //read('wework.CorpId', 'ex');
         $api = new \CorpAPI($CorpId, $agentId);
-        $uinfo = $api->GetUserById($UserId);  
+        $uinfo = $api->GetUserById($UserId); 
         // save
-        if(!empty($uinfo['userid'])){
+        if(!empty($uinfo['errcode'])){
+            $uinfo = ['uname'=>$UserId, 'mname'=>"($UserId)", 'mpic'=>''] + $uinfo;
+        }elseif(!empty($uinfo['userid'])){
             extWework::userMin($uinfo); 
             $data = comParse::jsonEncode($uinfo);
             comFiles::put(DIR_VARS.$fp,$data);
@@ -184,14 +189,14 @@ class extWework{
         return $res;
     }
     // 更新:部门/用户列表数据 > 保存到缓存
-    static function updContacts($act='deps'){ // deps,utab
+    static function updContacts($act='deps', $secret=''){ // deps,utab
         $key = $act=='deps' ? 'department' : 'userlist';
         $fp = "/dtmp/wework/_$key.cac_tab";
         $res = ['errno'=>'','errmsg'=>'更新成功'];
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
         $wework = read('wework', 'ex');
         // getData
-        $api = new \CorpAPI($wework['CorpId'], $wework['TxlSecret']);
+        $api = new \CorpAPI($wework['CorpId'], ($secret?$secret:$wework['TxlSecret']));
         if($act=='deps'){
             $res = $api->DepartmentList(null, 1);
         }elseif($act=='utab'){
@@ -253,6 +258,17 @@ class extWework{
         $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=$CorpId&redirect_uri=$redirect&response_type=code&scope=$scope&state=$state#wechat_redirect";
         return $url;
 
+    }
+
+    static function wecfgs(){
+        $wecfgs = read('wework', 'ex'); 
+        $tab1 = ['CorpId','TxlSecret','CHECKIN_APP_SECRET','APPROVAL_APP_SECRET'];
+        $tab2 = ['Secret','Token','EncodingAESKey'];
+        foreach($tab1 as $dek){ unset($wecfgs[$dek]); }
+        foreach($wecfgs['AppsConfig'] as $ak=>&$av){ 
+            foreach($tab2 as $dek){ unset($wecfgs['AppsConfig'][$ak][$dek]); }
+        }
+        return $wecfgs;
     }
 
 }

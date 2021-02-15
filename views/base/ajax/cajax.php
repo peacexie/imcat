@@ -62,11 +62,16 @@ case 'cfield':
 break;
 
 case 'uLogin':
-    $uname = req('uname');
-    $uadm = user('Admin');
+    $uname = req('uname'); $umod = req('umod');
+    $uadm = user('Admin'); $run = $_cbase['run'];
     if($uadm->userFlag=='Login'){
-        usrBase::setLogin('m',$uname);
-        header("Location:".surl("umc:0"));
+        //usrBase::setLogin('m',$uname);
+        //header("Location:".surl("umc:0"));
+        $ckey = usrMember::getCkey('login-uio'); 
+        $rlog = ['ckey'=>$ckey, 'utype'=>'idpwd', 'atime'=>$run['stamp'], 'aip'=>$run['userip']];
+        //dump($rlog);
+        usrMember::loginUser($rlog, $uname, $umod);
+        header("Location:".surl("hi:login"));
     }else{
         echo "(uname=$uname)";    
     }

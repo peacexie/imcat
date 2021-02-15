@@ -1,5 +1,5 @@
 
--- base_menu@2020-10-26 09:08:22 -- 
+-- base_menu@2021-02-15 16:20:49 -- 
 INSERT INTO `{pre}base_menu{ext}` VALUES 
 ('m1info','muadm','0','资讯','bullhorn','320','1','1','','新闻,资讯','','0','','127.0.0.1','1507099250','peace'),
 ('m1012','muadm','0','演示','list-alt','112','1','1','','演示菜单,扩展','','0','','127.0.0.1','1507099250','peace'),
@@ -34,11 +34,8 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3news','muadm','m2info','新闻动态','','124','1','3','新闻动态(!)?dops-a&mod=news\r\n增加(!)news(!)jsadd','','','0','','','0',''),
 ('m3topic','muadm','m2topic','专题新闻','','240','1','3','专题新闻(!)?dops-a&mod=topic\r\n增加(!)topic(!)jsadd','','','0','','','0',''),
 ('m3nrem','muadm','m2info','新闻评论','','132','1','3','新闻评论(!)?dops-a&mod=nrem(!)\r\n栏目(!)?admin-catalog&mod=news(!)frame','','','0','','','0',''),
-('m2indoc','muadm','m1coms','内部公文','','124','1','2','','','','0','','127.0.0.1','1479815451','peace'),
-('m3inread','muadm','m2indoc','阅读记录','','132','1','3','阅读记录(!)?dops-a&mod=inread\r\n栏目(!)?admin-catalog&mod=indoc(!)frame	','','','0','','','0',''),
 ('m3apipay','muadm','m2api','支付记录','','128','1','3','支付记录(!)?apis-pay_logs\r\n接口(!)?apis-pay_logs&view=vcfgs','','','0','','','0',''),
-('m3inmem','muadm','m2indoc','公文会员','','240','1','3','公文会员(!)?dops-a&mod=inmem\n等级(!)?admin-grade&mod=inmem','','','0','','','0',''),
-('m3indoc','muadm','m2indoc','公文管理','','128','1','3','公文管理(!)?dops-a&mod=indoc\n发布(!)indoc(!)jsadd','','','0','','','0',''),
+('m3inmem','muadm','m2cspro','内部会员','','320','1','3','内部会员(!)?dops-a&mod=inmem\n等级(!)?admin-grade&mod=inmem','','','0','','','0',''),
 ('m3apisms','muadm','m2api','短信接口','','124','1','3','短信发送(!)?apis-sms_send\r\n记录(!)?apis-sms_logs','','','0','','','0',''),
 ('m2data','muadm','m1tool','数据工具','','128','1','2','','','','0','','','0',''),
 ('m2api','muadm','m1adm','插件/接口','code-fork','140','1','2','','','','0','','127.0.0.1','1504344490','peace'),
@@ -87,7 +84,6 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('m3env','muadm','m2sys','环境检测','','164','1','3','<a href=\"?admin-ediy&part=binfo\">基础环境</a> \r\n- <a href=\"?admin-ediy&part=check\">检测</a>','','','0','','','0',''),
 ('m3ediy','muadm','m2sys','配置搜索','','172','1','3','<a href=\"?admin-ediy&part=exdiy\">DIY配置</a> \r\n- <a href=\"?admin-ediy&part=search\">搜索</a>','','','0','','','0',''),
 ('m3qadmin','muadm','m2faqs','管理发布','','124','1','3','问答管理(!)?dops-a&mod=faqs\r\n发布(!)faqs(!)jsadd','','','0','','','0',''),
-('m3inrem','muadm','m2indoc','评论设置','','136','1','3','<a href=\"?dops-a&mod=inrem\">评论记录</a> \r\n- <a href=\"?apis-exp_indoc\">设置</a>\r\n','','','0','','','0',''),
 ('indoc-iedit','mkvu','indoc-m','公文发布','','888','1','2','1','indoc/uedit','','0','','127.0.0.1','1506868115','peace'),
 ('indoc-iadm','mkvu','indoc-m','公文管理','','888','1','2','1','indoc/uadm','','0','','127.0.0.1','1506868115','peace'),
 ('m3qrtag','muadm','m2faqs','回复标签','','136','1','3','<a href=\"?dops-a&mod=qarep\">问答回复</a> \r\n- <a href=\"?dops-a&mod=qatag\">标签</a>\r\n','','','0','','','0',''),
@@ -177,5 +173,9 @@ INSERT INTO `{pre}base_menu{ext}` VALUES
 ('dops-a','adm','dops-m','','','888','1','2','','','','0','','','0',''),
 ('m2cdata','muadm','m1info','自由资料','motorcycle','320','1','2','','','','0','','','0',''),
 ('m3upx','muadm','m2cdata','自由资料','','888','1','3','自由资料(!)?dops-a&mod=cdata\r\n增加(!)cdata(!)jsadd','','','0','','','0',''),
-('m3uq0','muadm','m2pro','属性模型','','360','1','3','属性模型(!)?cargo-umods\r\n批量(!)?cargo-umods&view=batch','','','0','','','0',''),
-('m3imp','muadm','m2pro','导入数据','','360','1','3','导入数据(!)?cargo-gbimp\r\nECS(!)?cargo-ecimp&view=cfgs','','','0','','','0','');
+('m3uq0','muadm','m2pro','属性模型','','362','1','3','属性模型(!)?cargo-umods\r\n批量(!)?cargo-umods&view=batch','','','0','','','0',''),
+('m3imp','muadm','m2pro','导入数据','','363','1','3','导入数据(!)?cargo-gbimp\r\nECS(!)?cargo-ecimp&view=cfgs','','','0','','','0',''),
+('m2cspro','muadm','m1coms','工单项目','','116','1','2','','','','0','','','0',''),
+('m3cscorp','muadm','m2cspro','客户管理','','280','1','3','客户管理(!)?dops-a&mod=cscorp\r\n增加(!)cscorp(!)jsadd','','','0','','','0',''),
+('m3cstask','muadm','m2cspro','售后服务','','240','1','3','售后服务(!)?dops-a&mod=cstask\r\n增加(!)cstask(!)jsadd','','','0','','','0',''),
+('m3equip','muadm','m2cspro','设备管理','','260','1','3','设备管理(!)?dops-a&mod=equip\r\n增加(!)equip(!)jsadd','','','0','','','0','');

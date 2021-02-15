@@ -76,7 +76,7 @@ submit: 19820/19830
   
 * How long about the Url 
  - Aticle : [`前端要给力之：URL应该有多长？`](http://blog.csdn.net/aimingoo/article/details/6081964)
- - This System like this : http://imcat.txjia.com/chn.php?news.2015-9g-mvp1
+ - This System like this : http://txjia.com/imcat/home.php?news.2015-9g-mvp1
  - The static url : http://www.my_domain.com/html/news/yyyy/md-6789.html
 
 * txjia.peace 

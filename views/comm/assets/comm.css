@@ -101,9 +101,9 @@ div.sobar p.order{ text-align:right; float: right; display: inline-block; }
 
 /*
 <p class="order">
-   <i id="so_def"><a href="/peace/baedev/imcat/chn.php?cargo" class="def-act">默认</a></i>
-   <i id="so_click"><a href="/peace/baedev/imcat/chn.php?cargo&amp;order=click" class="ondesc">点击</a></i>
-   <i id="so_salse"><a href="/peace/baedev/imcat/chn.php?cargo&amp;order=price&amp;odesc=0" class="onasc">价格</a></i>
+   <i id="so_def"><a href="/peace/baedev/imcat/home.php?cargo" class="def-act">默认</a></i>
+   <i id="so_click"><a href="/peace/baedev/imcat/home.php?cargo&amp;order=click" class="ondesc">点击</a></i>
+   <i id="so_salse"><a href="/peace/baedev/imcat/home.php?cargo&amp;order=price&amp;odesc=0" class="onasc">价格</a></i>
 </p>
 */
 

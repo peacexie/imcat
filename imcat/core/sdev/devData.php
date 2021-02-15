@@ -203,12 +203,14 @@ class devData{
     // data1Exp("/dborg/data~",'base_fields'); 导出单个表数据到文件
     static function data1ExpInsert($path,$tab,$dbcfg=array(),$pfull=0,$where=''){
         $db = db($dbcfg);
-        $tabfull = $db->pre.$tab.$db->ext; 
+        $tabfull = $db->pre.$tab.$db->ext;
         $path = $pfull ? $path : DIR_VARS.$path;
         $list = $db->table($tab)->where($where)->select();
         if($list){ //分块未考虑... 
             $shead = devBase::_tabHead($tab); $i = 0; 
-            $fp = fopen(str_replace("\\","/",$path."$tab.dbsql"), 'w');
+            $full = str_replace("\\","/",$path."$tab.dbsql");
+            if(!is_dir(dirname($full))){ die('Error-Dir:'.dirname($full)); }
+            $fp = fopen($full, 'w');
             fwrite($fp, $shead);
             foreach($list as $row){
                 if(defined('MINI_CUT_DETAIL')&&strpos(MINI_CUT_DETAIL,$tab)) $row['detail']='~';

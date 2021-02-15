@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/login~imps"}
+<title><?=$title='用户信息'?> - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+.grc2, .grc3, .grc4{ text-align:center;border:1px dotted #EEE; padding:0.5rem 0.1rem; margin-bottom:0.5rem; }
+</style>
+</head>
+<body>
+
+
+<header>
+    <!--a href="/imcat/hi.php/weys-pc" class="btn">Pc</a-->
+    <a href="{surl(login)}" class="fa fa-mail-reply"></a>
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}" style="max-width:32px"> <?=$title?>
+    </div>
+</header>
+
+
+<article class="">
+
+    <div class="grid">
+        <div class="grc4"><a href="{surl(uset-minfo-base)}">基本信息</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-exid)}">更换账号</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-expw)}">修改密码</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-udel)}">注销账号</a></div>
+    </div>
+    <div class="grid">
+        <div class="grc4"><a href="{surl(uset-minfo-exmod)}">更改类型</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-bdwx)}">绑定微信</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-bdmob)}">绑定手机</a></div>
+        <div class="grc4"><a href="{surl(uset-minfo-idcard)}">实名绑定</a></div>
+    </div>
+
+    {if $view=='base'}
+        {inc:"uset/sec~base"}
+    {elseif $view=='exid'}
+        {inc:"uset/sec~exid"}
+    {elseif $view=='expw'}
+        {inc:"uset/sec~expw"}
+    {elseif $view=='udel'}
+        {inc:"uset/sec~udel"}
+
+    {elseif $view=='bdwx'}
+        {inc:"uset/sec~bdwx"}
+    {elseif $view=='bdmob'}
+        {inc:"uset/sec~bdmob"}
+    {elseif $view=='idcard'}
+        {inc:"uset/sec~idcard"}
+    {elseif $view=='exmod'}
+        {inc:"uset/sec~exmod"}
+
+    {else}
+        {inc:"uset/sec~base"}
+    {/if}
+
+</article>
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script src="<?=tpath(0,0)?>/uset/minfo.js"></script>
+<script>
+var data = {},
+    saveUrl = '<?=surl("uset-sv$view")?>?_r=';
+$(function(){
+    return;
+});
+</script>

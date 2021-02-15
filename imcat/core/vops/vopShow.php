@@ -4,7 +4,7 @@ namespace imcat;
 // 标签解析,显示 总控类
 class vopShow{
     
-    protected $vars = array(); //存放变量信息
+    public $vars = array(); //存放变量信息
     
     public $tplCfg = array(); //模板配置
     public $ucfg = array(); //url-Configs
@@ -128,6 +128,8 @@ class vopShow{
         if(!empty($res['tplnull'])){
             $this->tplnull = $res['tplnull'];
         }elseif(!empty($res['newtpl'])){
+            // newtpl = [mod/]act
+            if(!strpos($res['newtpl'],'/')){ $res['newtpl'] = $this->ucfg['mod'].'/'.$res['newtpl']; }
             $this->tplname = $res['newtpl'];
         }elseif(!empty($res['tplorg'])){
             $this->tplname = $this->tplorg = $res['tplorg']; 

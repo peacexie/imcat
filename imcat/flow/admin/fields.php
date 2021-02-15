@@ -158,7 +158,7 @@ if($view=='ftest'){
                 $msg = lang('flow.msg_set');
                 if($fs_do=='upd'){ 
                     $db->table($tabid)->data(basReq::in($fm[$id]))->where("model='$mod' AND kid='$id' $cawhr")->update(); 
-                }elseif($fs_do=='del'){ echo 'xxx'; echo $id;
+                }elseif($fs_do=='del'){ 
                      if(!empty($ispara)){
                          $db->table($tabid)->where("issys='0' AND model='$mod' AND kid='$id' $cawhr")->delete(); 
                      }elseif(!empty($catid)){

@@ -30,8 +30,8 @@ class vopComp{
         $tpfp = vopTpls::tinc('_ctrls/texBase',0); $spend = '';
         if(file_exists($tpfp)){
             $class = '\\imcat\\'.$_cbase['tpl']['vdir'].'\\texBase';
-            $shead .= "\ninclude_once '$tpfp';";
-            $shead .= "\nif(method_exists('$class','init')){ $class::init(\$this); }";
+            $shead .= "\ninclude_once '$tpfp';\nif(method_exists('$class','init'))"; 
+            $shead .= "{ \$__i_vars=$class::init(\$this); if(!empty(\$__i_vars)){extract(\$__i_vars,EXTR_OVERWRITE);unset(\$__i_vars);} }";
             $spend = "<?php\nif(method_exists('$class','pend')){ $class::pend(); }\n?>";
         }
         $cfp = empty($_cbase['tpl']['fixmkv']) ? $re[1] : $re[1].'.'.$_cbase['tpl']['fixmkv'];

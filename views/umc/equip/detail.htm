@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>{=$title} - 设备资产浏览</title>
+<style type="text/css">
+.qrcode{ text-align:center; padding-bottom:2rem; }
+.qrcode img{ display:block; margin:auto; }
+</style>
+</head>
+<body>
+
+<header>
+    <a href='{surl("equip-$this->view")}' class="fa fa-mail-reply"></a>
+    <h1>设备详情</h1>
+</header>
+
+<article class="">
+<div class="list2">
+    <div class="shead">
+        <span class="r gr6">{=$ncnt}个</span>
+        <div class="">{=$title}</div>
+    </div>
+    <div class="row">
+        <div class="col5 main">
+            <p>规格型号：{=$speci} ({=$nyear}年)</p>
+            <p class="note">客户：{=$cust['title']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">&nbsp;</span> 
+            <span class="tag">历史报障(888)</span>
+        </div>
+    </div>
+</div>
+</article>
+
+<article class="">
+<?php 
+$qrbase = "{$bfurl}?equip=$cust[csno].$did";
+foreach($apos as $pk=>$pv){ 
+$qrurl = "$qrbase.$pk"; ?>
+<p>
+    [{=$pk}]{=$pv} 
+</p>
+<p class="qrcode">
+    <a href="{=$qrurl}">点击或扫码报障</a>
+    <img src="{=$b0url}/index.php?ajax-vimg&mod=qrShow&data={=$qrurl}" />
+</p>
+<?php } ?>
+</article>
+
+{inc:"incs/weys-foot"}
+
+</body>
+</html>

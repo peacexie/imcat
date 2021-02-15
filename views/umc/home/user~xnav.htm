@@ -1,0 +1,86 @@
+
+<article class=" grbox" style="">
+
+    {if $uflag=='inmem'}
+
+    <div class="grc4">
+        <a href="{surl(task-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            新建
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=waitme" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=history" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            历史记录
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(equip)}" class="nowrap ico-camera">
+            <i class="fa fa-camera"></i>
+            客户设备
+        </a>
+    </div>
+
+    {elseif $uflag=='company'}
+
+    <div class="grc4">
+        <a href='{surl("equip-$cscorp[csno]")}' class="nowrap ico-qrcode">
+            <i class="fa fa-qrcode"></i>
+            快速报障
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=waitme" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=history" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            历史记录
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="#" class="nowrap ico-bar-chart">
+            <i class="fa fa-bar-chart"></i>
+            统计报表
+        </a>
+    </div>
+
+    {else}
+
+    <div class="grc4">
+        <a href="{surl(task-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            新建
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=waitme" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            处理中…
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(task)}?act=history" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            历史记录
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="#" class="nowrap ico-bar-chart">
+            <i class="fa fa-bar-chart"></i>
+            统计报表
+        </a>
+    </div>
+    {/if}
+
+</article>

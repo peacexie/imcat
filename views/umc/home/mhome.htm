@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>用户首页 - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+/* scrollbar-滚动条; thumb-里面小方块; track-里面轨道 *-/
+html::-webkit-scrollbar { width:10px; height:10px; } 
+html::-webkit-scrollbar-thumb { background:rgba(0,0,0,0.2); border-radius:3px; }
+html::-webkit-scrollbar-track { background:rgba(0,0,0,0.1); } */
+.user{ height:85px; overflow:hidden; }
+</style>
+</head>
+<body>
+
+
+<div id='smenu' style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="smenu smenu-right">
+        <i class="fa fa-close close" onclick="opSmenu(0,'smenu')"></i>
+        <div class="hd"><img src="<?=tpath(1)?>/logo/imcat-40x.png">设置中心</div>
+        <div class="bd">
+            <ul>
+                <li><a href="{surl(hi:uset-minfo)}">
+                    <i class="fa fa-id-card"></i> 用户信息
+                </a></li>
+            </ul>
+            <ul>
+                <li><a href="{surl(wework:user-login)}">
+                    <i class="fa fa-random"></i> 稳定版(V1)
+                </a></li>
+            </ul>
+        </div>
+        <div class="ft">
+            <a href="javascript:" class="btn gr3" onclick="opSmenu(0,'smenu')">关闭</a>
+            -
+            <a href="{surl(hi:login-logout-dir)}" class="btn emp">登出</a>
+        </div>
+    </div>
+</div>
+
+
+<header class="user">
+    <span class="r">
+        {if $uflag}
+        <i class="fa fa-gear" onclick="opSmenu(1,'smenu')"></i>
+        {elseif $isWexin}
+        请授权登录
+        {else}
+        请扫码登录
+        {/if}
+    </span>
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}">
+    </div>
+    <span class="id">
+        {if !$uflag}
+            {=$null['uname']}
+        {elseif !empty($uinfo['mname'])}
+            {=$uinfo['mname']}
+        {else}
+            {if !empty($uinfo['uname'])}{=$uinfo['uname']}{else}{=$uinfo['pptuid']}{/if}
+        {/if}
+    </span>
+</header>
+
+
+{if $uflag=='company'} <!--`!empty($cscorp)}`-->
+    <!--客户-->
+    {inc:"home/user~cscorp"}
+    {inc:"home/user~xnav"}
+    {inc:"home/user~xtopn"}
+{elseif $uflag=='inmem'}
+    <!--员工-->
+    {inc:"home/user~inmem"}
+    {inc:"home/user~xnav"}
+    {inc:"home/user~xtopn"}
+{else}
+    <!--首页-->
+    {inc:"home/user~uinfo"}
+    {inc:"home/user~xnav"}
+    {inc:"home/user~xtopn"}
+{/if}
+
+
+{inc:"incs/inc~foot"}
+
+
+</body>
+</html>
+
+<script>
+
+$(function(){
+    return;
+});
+</script>

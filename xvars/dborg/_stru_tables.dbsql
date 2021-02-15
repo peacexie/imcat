@@ -17,11 +17,12 @@ DROP TABLE IF EXISTS `{pre}active_login{ext}`;
 CREATE TABLE `{pre}active_login{ext}` (
   `ckey` varchar(96) NOT NULL DEFAULT '',
   `utype` varchar(12) NOT NULL DEFAULT '',
-  `uid` varchar(96) NOT NULL DEFAULT '',
+  `umod` varchar(12) NOT NULL DEFAULT '',
   `uname` varchar(96) NOT NULL DEFAULT '',
-  `grade` varchar(12) NOT NULL DEFAULT '',
-  `upic` varchar(255) NOT NULL DEFAULT '',
-  `uext` text,
+  `pptuid` varchar(96) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `mpic` varchar(255) NOT NULL DEFAULT '',
+  `mext` text,
   `atime` int(11) NOT NULL DEFAULT '0',
   `aip` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`ckey`),
@@ -525,10 +526,10 @@ CREATE TABLE `{pre}coms_corder{ext}` (
   `ordshto` varchar(12) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(255) NOT NULL DEFAULT '',
+  `auser` varchar(24) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(255) NOT NULL DEFAULT '',
+  `euser` varchar(24) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -547,6 +548,46 @@ CREATE TABLE `{pre}coms_crem{ext}` (
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
   `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}coms_cscust{ext}`;
+CREATE TABLE `{pre}coms_cscust{ext}` (
+  `cid` varchar(24) NOT NULL DEFAULT '',
+  `cno` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mname` varchar(24) NOT NULL DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '0',
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}coms_cslogs{ext}`;
+CREATE TABLE `{pre}coms_cslogs{ext}` (
+  `cid` varchar(24) NOT NULL DEFAULT '',
+  `cno` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mname` varchar(96) NOT NULL DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '0',
+  `mflag` varchar(12) NOT NULL DEFAULT '',
+  `pid` varchar(24) NOT NULL DEFAULT '',
+  `exmsg` varchar(48) DEFAULT '' COMMENT '扩展备注',
+  `exno` tinyint(4) DEFAULT '0' COMMENT '扩展数字',
+  `exqa` text COMMENT '讨论备注',
+  `exqn` text COMMENT '下一个人的讨论备注（未接收前）',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(96) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(96) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -578,39 +619,6 @@ CREATE TABLE `{pre}coms_gbook{ext}` (
   `show` tinyint(4) NOT NULL DEFAULT '0',
   `leixing` varchar(12) NOT NULL DEFAULT 't124',
   `reply` text,
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}coms_inread{ext}`;
-CREATE TABLE `{pre}coms_inread{ext}` (
-  `cid` varchar(24) NOT NULL DEFAULT '',
-  `cno` int(11) NOT NULL DEFAULT '0',
-  `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL DEFAULT '',
-  `readcnt` int(11) NOT NULL,
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`cid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}coms_inrem{ext}`;
-CREATE TABLE `{pre}coms_inrem{ext}` (
-  `cid` varchar(24) NOT NULL DEFAULT '',
-  `cno` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `detail` text NOT NULL,
-  `show` tinyint(4) NOT NULL DEFAULT '0',
-  `pid` varchar(24) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -751,8 +759,8 @@ CREATE TABLE `{pre}dext_cargo{ext}` (
   `seo_des` varchar(255) NOT NULL DEFAULT '',
   `seo_tag` varchar(255) NOT NULL DEFAULT '',
   `rel_pic` text,
-  `rel_pro` text,
   `rel_inf` text,
+  `rel_pro` text,
   `pbat` varchar(255) NOT NULL DEFAULT '',
   `cnt` int(11) NOT NULL DEFAULT '0',
   `menu` varchar(255) DEFAULT '',
@@ -777,6 +785,33 @@ CREATE TABLE `{pre}dext_cdata{ext}` (
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}dext_cscorp{ext}`;
+CREATE TABLE `{pre}dext_cscorp{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `detail` mediumtext,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
+  `rel_doc` text,
+  PRIMARY KEY (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}dext_cstask{ext}`;
+CREATE TABLE `{pre}dext_cstask{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `detail` mediumtext,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
+  `rel_doc` text,
+  `fatts` text,
+  PRIMARY KEY (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}dext_demo{ext}`;
 CREATE TABLE `{pre}dext_demo{ext}` (
   `did` varchar(24) NOT NULL DEFAULT '',
@@ -792,6 +827,21 @@ CREATE TABLE `{pre}dext_demo{ext}` (
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}dext_equip{ext}`;
+CREATE TABLE `{pre}dext_equip{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `detail` mediumtext,
+  `author` varchar(255) NOT NULL DEFAULT '',
+  `source` varchar(255) NOT NULL DEFAULT '',
+  `seo_key` varchar(255) NOT NULL DEFAULT '',
+  `seo_des` varchar(255) NOT NULL DEFAULT '',
+  `seo_tag` varchar(255) NOT NULL DEFAULT '',
+  `rel_doc` text,
+  `speci` varchar(48) NOT NULL DEFAULT '',
+  `npos` text NOT NULL,
+  PRIMARY KEY (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}dext_faqs{ext}`;
 CREATE TABLE `{pre}dext_faqs{ext}` (
   `did` varchar(24) NOT NULL DEFAULT '',
@@ -803,20 +853,6 @@ CREATE TABLE `{pre}dext_faqs{ext}` (
   `seo_tag` varchar(255) DEFAULT NULL,
   `rel_doc` text,
   `mdshow` varchar(12) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}dext_indoc{ext}`;
-CREATE TABLE `{pre}dext_indoc{ext}` (
-  `did` varchar(24) NOT NULL DEFAULT '',
-  `detail` mediumtext,
-  `author` varchar(255) NOT NULL DEFAULT '',
-  `seo_key` varchar(255) NOT NULL DEFAULT '',
-  `seo_des` varchar(255) NOT NULL DEFAULT '',
-  `seo_tag` varchar(255) NOT NULL DEFAULT '',
-  `source` varchar(255) NOT NULL DEFAULT '',
-  `sealpos` varchar(12) DEFAULT 'cseal_br',
-  `sendsms` varchar(12) DEFAULT 'nosend',
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -897,7 +933,7 @@ CREATE TABLE `{pre}docs_cargo{ext}` (
   `did` varchar(24) NOT NULL DEFAULT '',
   `dno` int(11) NOT NULL DEFAULT '0',
   `catid` varchar(255) NOT NULL DEFAULT '',
-  `hinfo` varchar(12) NOT NULL DEFAULT '',
+  `hinfo` varchar(255) NOT NULL DEFAULT '',
   `brand` varchar(12) NOT NULL DEFAULT '',
   `title` varchar(255) NOT NULL DEFAULT '',
   `mpic` varchar(255) NOT NULL DEFAULT '',
@@ -964,6 +1000,66 @@ CREATE TABLE `{pre}docs_cdata{ext}` (
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}docs_cscorp{ext}`;
+CREATE TABLE `{pre}docs_cscorp{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `dno` int(11) NOT NULL DEFAULT '0',
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `hinfo` varchar(12) DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) DEFAULT '',
+  `jump` varchar(255) DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '1',
+  `color` varchar(12) NOT NULL DEFAULT '',
+  `click` int(11) NOT NULL DEFAULT '0',
+  `mtel` varchar(24) DEFAULT '',
+  `maddr` varchar(120) DEFAULT '',
+  `mname` varchar(24) DEFAULT '',
+  `csno` varchar(24) NOT NULL DEFAULT '',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}docs_cstask{ext}`;
+CREATE TABLE `{pre}docs_cstask{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `dno` int(11) NOT NULL DEFAULT '0',
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `hinfo` varchar(12) DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) DEFAULT '',
+  `jump` varchar(255) DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '1',
+  `color` varchar(12) DEFAULT '',
+  `click` int(11) NOT NULL DEFAULT '0',
+  `equip` varchar(12) NOT NULL DEFAULT 't124',
+  `mname` varchar(24) NOT NULL DEFAULT '',
+  `mtel` varchar(24) NOT NULL DEFAULT '',
+  `maddr` varchar(120) DEFAULT '',
+  `mflag` varchar(12) NOT NULL DEFAULT 'apnew',
+  `atuids` varchar(255) DEFAULT '',
+  `mduids` varchar(255) DEFAULT '',
+  `douid` varchar(24) DEFAULT '',
+  `catstr` varchar(24) DEFAULT '',
+  `eqstr` varchar(48) DEFAULT '',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(96) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(96) NOT NULL DEFAULT '',
+  PRIMARY KEY (`did`),
+  KEY `mflag` (`mflag`),
+  KEY `catid` (`catid`),
+  KEY `equip` (`equip`),
+  KEY `atime` (`atime`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}docs_demo{ext}`;
 CREATE TABLE `{pre}docs_demo{ext}` (
   `did` varchar(24) NOT NULL DEFAULT '',
@@ -1007,6 +1103,32 @@ CREATE TABLE `{pre}docs_demo{ext}` (
   PRIMARY KEY (`did`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `{pre}docs_equip{ext}`;
+CREATE TABLE `{pre}docs_equip{ext}` (
+  `did` varchar(24) NOT NULL DEFAULT '',
+  `dno` int(11) NOT NULL DEFAULT '0',
+  `catid` varchar(255) NOT NULL DEFAULT '',
+  `brand` varchar(24) DEFAULT '',
+  `hinfo` varchar(12) DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `mpic` varchar(255) DEFAULT '',
+  `jump` varchar(255) DEFAULT '',
+  `show` tinyint(4) NOT NULL DEFAULT '1',
+  `color` varchar(12) NOT NULL DEFAULT '',
+  `click` int(11) NOT NULL DEFAULT '0',
+  `eqno` varchar(24) DEFAULT '',
+  `nyear` varchar(12) NOT NULL DEFAULT '',
+  `ncnt` int(11) NOT NULL DEFAULT '1',
+  `rpid` varchar(24) NOT NULL DEFAULT '',
+  `aip` varchar(255) NOT NULL DEFAULT '',
+  `atime` int(11) NOT NULL DEFAULT '0',
+  `auser` varchar(24) NOT NULL DEFAULT '',
+  `eip` varchar(255) NOT NULL DEFAULT '',
+  `etime` int(11) NOT NULL DEFAULT '0',
+  `euser` varchar(24) NOT NULL DEFAULT '',
+  PRIMARY KEY (`did`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `{pre}docs_faqs{ext}`;
 CREATE TABLE `{pre}docs_faqs{ext}` (
   `did` varchar(24) NOT NULL DEFAULT '',
@@ -1022,32 +1144,6 @@ CREATE TABLE `{pre}docs_faqs{ext}` (
   `tags` varchar(24) DEFAULT NULL,
   `bugid` varchar(24) DEFAULT NULL,
   `bugst` varchar(12) DEFAULT 'open',
-  `aip` varchar(255) NOT NULL DEFAULT '',
-  `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
-  `eip` varchar(255) NOT NULL DEFAULT '',
-  `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
-  PRIMARY KEY (`did`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `{pre}docs_indoc{ext}`;
-CREATE TABLE `{pre}docs_indoc{ext}` (
-  `did` varchar(24) NOT NULL DEFAULT '',
-  `dno` int(11) NOT NULL DEFAULT '0',
-  `catid` varchar(255) NOT NULL DEFAULT '',
-  `indep` varchar(12) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `mpic` varchar(255) NOT NULL DEFAULT '',
-  `jump` varchar(255) DEFAULT NULL,
-  `show` tinyint(4) NOT NULL DEFAULT '1',
-  `top` int(11) NOT NULL DEFAULT '888',
-  `color` varchar(12) NOT NULL DEFAULT '',
-  `click` int(11) NOT NULL DEFAULT '0',
-  `rdtip` varchar(12) NOT NULL DEFAULT 'v36',
-  `todep` varchar(255) NOT NULL DEFAULT '',
-  `touser` text,
-  `topub` varchar(12) NOT NULL DEFAULT 'isset',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
   `auser` varchar(24) NOT NULL DEFAULT '',
@@ -1213,7 +1309,7 @@ CREATE TABLE `{pre}exd_uatt{ext}` (
   `type` varchar(12) NOT NULL DEFAULT '',
   `def` varchar(48) NOT NULL DEFAULT '',
   `so` tinyint(4) NOT NULL DEFAULT '0',
-  `gkey` varchar(12) NOT NULL DEFAULT '',
+  `gkey` varchar(48) NOT NULL DEFAULT '',
   `cfgs` text,
   `note` varchar(255) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
@@ -2069,6 +2165,64 @@ CREATE TABLE `{pre}users_uppt{ext}` (
   PRIMARY KEY (`uname`,`pptmod`),
   KEY `pptuid` (`pptuid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `{pre}vlog_arcs{ext}`;
+CREATE TABLE `{pre}vlog_arcs{ext}` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `vmod` varchar(12) NOT NULL DEFAULT '' COMMENT 'vmod',
+  `mkv` varchar(24) NOT NULL DEFAULT '' COMMENT 'mkv',
+  `nPVd` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '当天PV(不用)',
+  `nUVd` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '当天UV(不用)',
+  `nPVw` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '周PV',
+  `nUVw` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '周UV',
+  `nPVm` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '月PV',
+  `nUVm` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '月UV',
+  `nPVa` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '总PV',
+  `nUVa` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '总UV',
+  `nIPa` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '总IP',
+  `isfirst` tinyint(4) NOT NULL DEFAULT '0' COMMENT '首次访问',
+  PRIMARY KEY (`id`),
+  KEY `vmod` (`vmod`),
+  KEY `mkv` (`mkv`),
+  KEY `nPVa` (`nPVa`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='文档统计';
+
+DROP TABLE IF EXISTS `{pre}vlog_dsum{ext}`;
+CREATE TABLE `{pre}vlog_dsum{ext}` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `vmod` varchar(12) NOT NULL DEFAULT '' COMMENT 'comm,mob,api(pc,wap,app,mp)',
+  `mkv` varchar(24) NOT NULL COMMENT 'mkv',
+  `vdate` varchar(10) NOT NULL COMMENT '如：2018-02-23',
+  `nPV` int(10) unsigned NOT NULL DEFAULT '0',
+  `nUV` int(10) unsigned NOT NULL DEFAULT '0',
+  `nIP` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `vmod_mkv_vdate` (`vmod`,`mkv`,`vdate`),
+  KEY `vmod` (`vmod`),
+  KEY `mkv` (`mkv`),
+  KEY `vdate` (`vdate`)
+) ENGINE=MyISAM AUTO_INCREMENT=193 DEFAULT CHARSET=utf8 COMMENT='统计汇总';
+
+
+DROP TABLE IF EXISTS `{pre}vlog_list{ext}`;
+CREATE TABLE `{pre}vlog_list{ext}` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `vmod` varchar(12) NOT NULL DEFAULT '' COMMENT 'comm,mob,api(pc,wap,app,mp)',
+  `mkv` varchar(24) NOT NULL COMMENT 'mkv',
+  `kid` varchar(24) NOT NULL DEFAULT '' COMMENT 'kid',
+  `vhour` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0-23代表时间段',
+  `isfirst` tinyint(4) NOT NULL DEFAULT '0' COMMENT '首次访问',
+  `ftime` varchar(24) NOT NULL COMMENT '首访时间',
+  `uri` varchar(255) NOT NULL DEFAULT '' COMMENT '当前页面',
+  `ref` varchar(255) NOT NULL DEFAULT '' COMMENT '来源页面',
+  `aip` varchar(255) NOT NULL DEFAULT '' COMMENT 'IP地址',
+  `atime` int(11) NOT NULL DEFAULT '0' COMMENT '访问时间',
+  `auser` varchar(255) DEFAULT '' COMMENT '浏览器头',
+  PRIMARY KEY (`id`),
+  KEY `vmod` (`vmod`),
+  KEY `mkv` (`mkv`),
+  KEY `kid` (`kid`)
+) ENGINE=MyISAM AUTO_INCREMENT=1202 DEFAULT CHARSET=utf8 COMMENT='访问明细';
 
 DROP TABLE IF EXISTS `{pre}wex_apps{ext}`;
 CREATE TABLE `{pre}wex_apps{ext}` (

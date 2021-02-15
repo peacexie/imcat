@@ -65,18 +65,47 @@ class extWeedu{ // extends extWework
 
     # ================================ 
 
-
-
-
-    // ------------------------- user xxx ---------------------------------
-    static function getDeplist($token='', $id=''){
-        $url = "https://oapi.epaas.qq.com/department/list?access_token=access_token=$token&id=$id";
+    // 部门管理
+    static function getDeplist($token='', $id='', $type=''){
+        $url = "https://oapi.epaas.qq.com/school/department/list?access_token=$token&id=$id&department_type=$type";
         $data = comHttp::curlCrawl($url, [], []);
         $arr = json_decode($data, 1); 
         return $arr;
     }
 
-    // ------------------------- user xxx ---------------------------------
+    // 获取机构凭证 (auth_code )
+    static function xxx_getCorpActoken($sid, $sactoken=''){
+        $url = "https://oapi.epaas.qq.com/service/get_corp_token?suite_access_token=$sactoken";
+        $wecfg = read('weedu.AppsConfig', 'ex');
+        $skey = isset($wecfg[$sid]['SuiteKey']) ? $wecfg[$sid]['SuiteKey'] : '';
+        $json = "{
+            \"auth_corpid\":\"$sid\" ,
+            \"permanent_code\": \"$skey\"
+        }"; echo $json;
+        $data = comHttp::curlCrawl($url, $json, ['type'=>'json']); echo $data;
+        $arr = json_decode($data, 1); 
+        return $arr;
+    }
+
+    //"auth_corpid": "auth_corpid_value",
+    //"permanent_code": "code_value"
+
+    // 获取第三方应用凭证 (sticket - 回调保存)
+    static function getSuiteActoken($sid, $sticket=''){
+        $url = "https://oapi.epaas.qq.com/service/get_suite_token";
+        $wecfg = read('weedu.AppsConfig', 'ex');
+        $skey = isset($wecfg[$sid]['SuiteKey']) ? $wecfg[$sid]['SuiteKey'] : '';
+        $json = "{
+            \"suite_id\":\"$sid\" ,
+            \"suite_secret\": \"$skey\", 
+            \"suite_ticket\": \"$sticket\" 
+        }"; echo $json;
+        $data = comHttp::curlCrawl($url, $json, ['type'=>'json']); echo $data;
+        $arr = json_decode($data, 1); 
+        return $arr;
+    }
+
+    // 2. 获取用户可见架构ID列表
     static function getUserDeps($token=''){
         $url = "https://sso.qq.com/open/get_can_see_departments?access_token=$token";
         $data = comHttp::curlCrawl($url, [], []);
@@ -84,7 +113,7 @@ class extWeedu{ // extends extWework
         return $arr;
     }
 
-    // ------------------------- user info ---------------------------------
+    // 1. 查询用户信息
     function getUserInfo($token){
         $url = "https://sso.qq.com/open/userinfo?access_token=$token";
         $data = comHttp::curlCrawl($url, [], []);

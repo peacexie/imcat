@@ -1,0 +1,31 @@
+
+@media only screen and (min-width:950px){
+  .smenu-left { left:calc(50vw - 460px); }
+  .smenu-right { right:calc(50vw - 460px); }
+}
+
+@media only screen and (max-width:550px){
+  
+}
+
+a.ico-atme, .grbox>div a.ico-atme i{ color:#6c8e05; }
+a.ico-history, .grbox>div a.ico-history i{ color:#0da75a; }
+a.ico-home, .grbox>div a.ico-home i{ color:#1f51e6; }
+
+a.ico-qrcode, .grbox>div a.ico-qrcode i{ color:#bd5105; }
+a.ico-chart, .grbox>div a.ico-chart i{ color:#1f51e6; }
+a.ico-bar-chart, .grbox>div a.ico-bar-chart i{ color:#888; }
+
+a.ico-id-card,       .grbox>div a.ico-id-card       i{ color:#F00; }
+a.ico-shopping-cart, .grbox>div a.ico-shopping-cart i{ color:#0F0; }
+a.ico-list-alt,      .grbox>div a.ico-list-alt      i{ color:#00F; } 
+a.ico-ellipsis-h,    .grbox>div a.ico-ellipsis-h    i{ color:#999; }
+
+.loading{ margin:auto; max-width:32px; }
+
+/* xxx */
+.set1{  }
+
+.toast .text{ font-size:1.0rem; }
+
+

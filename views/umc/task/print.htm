@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-cmn" style="overflow-y:scroll">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>打印-工单</title>
+<style>
+/* 这是审批功能（请假，报销）的打印和导出界面的样式，并且打印样式与管理端主体样式有较大出入， 
+* 因此这里剥离 sass 直接写 css。另外因为导出功能只能使用内嵌样式（style 标签），为了便于复用样式， 
+* 这里的处理方法是单独使用一个 tpl 文件写样式，再拼接到模板中 
+*/
+* { margin: 0; padding: 0; }
+body { /*不要去掉这个注释*/ font-family: "lucida Grande", Verdana, "Microsoft YaHei";  /*不要去掉这个注释*/ }
+.approval_print { width: 640px; margin: 0 auto; padding-top: 18px; }
+.approval_print_pdf { width: 540px; }
+.approval_print_title { margin-bottom: 20px; font-size: 15px; text-align: center; }
+.approval_print_data { width: 100%; border-spacing: 1px; border-collapse: collapse; table-layout: fixed; }
+.approval_print_data tr { border-left: 1px solid #787878; border-right: 1px solid #787878; }
+.approval_print_data_value, .approval_print_data_title { height: 18px; padding: 4px 12px; border: 1px solid #787878; overflow: hidden; word-break: break-word; word-wrap: break-word; }
+.approval_print_data_value { width: 30%; background-color: #fff; font-size: 12px; }
+.approval_print_data_title { width: 20%; background-color: #F3F3F3; color: #000; font-size: 12px; text-align: center; }
+.approval_print_data_value ul, .approval_print_data_value ol { list-style: disc; padding-left: 20px; }
+.approval_print_data_value li { list-style: disc; padding-left: 0; }
+.approval_print_data_value ol li { list-style: decimal; }
+.approval_print_data_value pre { white-space: pre-wrap; overflow-wrap: break-word; font-family: "lucida Grande", Verdana, "Microsoft YaHei"; }
+.approval_print_data_sectionTitle { height: 30px; padding-left: 25px; background-color: #fff; font-size: 12px; color: #000; }
+.approval_print_data_space { height: 15px; background: #fff; border-right: 1px solid #787878; border-left: 1px solid #787878; }
+.approval_print_space_title { height: 20px; background: #F3F3F3; text-align: center; border: 1px solid #787878; font-size: 12px; }
+.approval_print_info { float: right; padding-top: 25px; line-height: 20px; font-size: 12px; text-align: left; }
+.approval_print_data_title_center { text-align: center }
+.approval_print_info_date, .approval_print_info_user { display: inline-block; margin-left: 30px; }
+.approval_print_qr { padding-top: 10px; height: 90px; padding-bottom: 20px; }
+.approval_print_qr_image_wrap img { vertical-align: top; width: 70px; height: 70px; float: left; margin-right: 10px; }
+.approval_print_qr_text { font-size: 12px; line-height: 20px; padding-top: 15px }
+.approval_print_data_value_commentItem { line-height: 25px; }
+
+.intable{ width:100%; border:0px solid #CCC; }
+.intable td{ padding:8px 3px; border-left:1px dashed #999; border-bottom:1px dashed #999; }
+.intable tr:first-child td{ border-bottom:1px dashed #333; }
+.intable tr:last-child td{ border-bottom:0; }
+.intable td:first-child{ border-left:0px; }
+.intable td img{ max-width:40px }
+.intable td.note{ text-align:left; }
+.intable .none{ display:none; }
+.intable .gray{ color:#555; }
+.excss{ display:inline-block; color:#333;padding:0.2rem 0.5rem; border:1px solid #DDD; border-radius:0.3rem; }
+
+</style>
+</head>
+<body>
+<div class="approval_print ">
+  <!--h1 class="approval_print_title">!!!测试!!!</h1-->
+  <h1 class="approval_print_title">贴心猫演示工单：{=$row['did']}</h1>
+  <table class="approval_print_data">
+    <tr>
+      <td class="approval_print_data_title">工单号</td>
+      <td class="approval_print_data_value">{=$row['did']}</td>
+      <td class="approval_print_data_title">提交时间</td>
+      <td class="approval_print_data_value">{=$row['atimeStr']}</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">负责人</td>
+      <td class="approval_print_data_value">{=$doName}</td>
+      <td class="approval_print_data_title">负责人部门</td>
+      <td class="approval_print_data_value">{=$doDepart}</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">当前状态</td>
+      <td class="approval_print_data_value" colspan="3">{=$row['mflagStr']}</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="approval_print_data_title">工单内容</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">标题</td>
+      <td class="approval_print_data_value" colspan="3">{=$row['title']}</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">工单类型</td>
+      <td class="approval_print_data_value">{=$row['catidStr']}</td>
+      <td class="approval_print_data_title">状态</td>
+      <td class="approval_print_data_value"><pre>{=$row['mflagStr']}</pre></td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">联系人</td>
+      <td class="approval_print_data_value">{=$row['mname']}</td>
+      <td class="approval_print_data_title">电话</td>
+      <td class="approval_print_data_value">{=$row['mtel']}</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">联系地址</td>
+      <td class="approval_print_data_value" colspan="3">{=$row['maddr']}</td>
+    </tr>
+    <tr>
+      <td class="approval_print_data_title">详情描述</td>
+      <td class="approval_print_data_value" colspan="3">{html($row['detail'])}</td>
+    </tr>
+    <tr>
+      <td colspan="4" class="approval_print_data_title">处理流程-{=$row['mflagStr']}</td>
+    </tr>
+
+    <tr>
+      <td class="approval_print_data_value approval_print_data_title_center"><div>处理流程</div>
+        <div>已处理<?=count($doLogs)?>步</div></td>
+      <td class="approval_print_data_value approval_print_data_title_center" colspan="3">
+
+            <table class="intable" border="0" cellspacing="0">
+            <tr class="">
+                <!--td class=""></td-->
+                <td class="">处理人●进度</td>
+                <td class="">备注</td>
+                <td class="">时间</td>
+            </tr>
+            <?php foreach($doLogs as $log1){ ?>
+            <tr class="">
+                <!--td class="">
+                    <img src="{=$log1['userData']['avatar']}">
+                </td-->
+                <td class="">
+                    {=$log1['userData']['name']} <br>
+                    <span class="">{=$log1['mflagName']}</span>
+                <td class="note">
+                    {if !empty($log1['exstr'])}<?=str_replace("style=","",$log1['exstr'])?>{/if}
+                    <span class="">{=$log1['title']}</span>
+                </td>
+                </td>
+                <td class="time">
+                    <?=date('m-d H:i',$log1['atime'])?> 
+                    <br> <?=date('Y',$log1['atime'])?>年
+                </td>
+            </tr>
+            <?php } ?>
+
+            <?php if(!empty($uFlags['userNow'])){ $userNow=$uFlags['userNow']; ?>
+            <tr class="gray">
+                <!--td class="" style="">
+                    <img src="{=$userNow['avatar']}">
+                </td-->
+                <td class="">
+                    {=$userNow['name']} <span class="flag">(等待...)</span>
+                </td>
+                <td class="note">
+                    等待处理
+                </td>
+                <td class="time">
+                    ...<br>
+                    未处理
+                </td>
+            </tr>
+            <?php } ?>
+            </table>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td class="approval_print_data_value approval_print_data_title_center"><div>抄送人</div>
+        <div>已抄送</div></td>
+      <td class="approval_print_data_value approval_print_data_title_center" colspan="3">
+        {=$row['atuidsStr']}
+      </td>
+    </tr>
+
+  </table>
+  <div class="approval_print_info">
+    <div class="approval_print_info_date">打印日期：<?=date('Y-m-d H:i')?></div>
+    <br>
+    <div class="approval_print_info_user">打印人：{=$printName}</div>
+  </div>
+  
+  <div class="approval_print_qr">
+    <div class="approval_print_qr_image_wrap"><img src="<?=tpath()?>/wework.png" alt=""></div>
+    <p class="approval_print_qr_text">使用手机企业微信<br>
+      扫一扫</p>
+  </div>
+</div>
+<?php 
+//dump($row); dump($doLogs); 
+?>
+<script>
+    setTimeout(print, 500);
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+
+{inc:"incs/imp-foot"}
+
+<footer>
+  <p>Copyright @ {=$_cbase['sys_name']}<?=date('Y')?></p>
+  {if $this->mod=='debug'}
+  <p>{php echo basDebug::runInfo(); }</p>
+  {/if}
+</footer>

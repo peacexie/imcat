@@ -1,0 +1,30 @@
+
+<article class="">
+<div class="list2">
+    <div class="shead">
+        <span class="r">
+            <a href="{surl(task-apply)}"><i class="fa fa-edit"></i>新建</a>
+            <span class="gr9">●</span>
+            <a href="{surl(task)}">更多<i class="fa fa-angle-double-right"></i></a>   
+        </span>
+        <div class="">最新工单</div>
+    </div>
+    <?php 
+    if(empty($list)){
+    ?>
+    <div class="row">
+        <div class="col6 main">
+            <p class="tc" style="line-height:240px;">
+                {if $uname}暂无资料{else}登录后显示{/if}
+            </p>
+        </div>
+    </div>
+    <?php
+    }else{
+    foreach($list as $rv){
+        extract($rv,EXTR_PREFIX_ALL,'t');
+    ?>
+        {inc:"task/lists~row"}
+    <?php } } ?>
+</div>
+</article>

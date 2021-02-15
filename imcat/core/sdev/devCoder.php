@@ -71,14 +71,15 @@ class devCoder{
     // 得到一个文件信息
     static function expInfos($fp){
         global $rep1,$rep2;
+        $mlen = defined('MAX_LEN') ? MAX_LEN : 60;
         $fpreal = file_exists(EXP_ROOT."$fp-cdemo") ? "$fp-cdemo" : $fp;
         $data = comFiles::get(EXP_ROOT.$fpreal);
-        $data = basStr::filNotes($data, 0);
+        $data = trim(basStr::filNotes($data,0));
         if(!$data) return [0, '', ''];
         if(basStr::isConv($data)){
             $data = comConvert::autoCSet($data, 'gb2312');
         } 
-        $arr = file(EXP_ROOT.$fp); // EXP_HLIGHT
+        $arr = array_filter(file(EXP_ROOT.$fp)); // EXP_HLIGHT
         $line = count($arr);
         if(defined('EXP_HLIGHT') && strpos($fp, '.php')){
             $head = "\n<b>### file: $fp </b><br/>\n"; 
@@ -91,12 +92,12 @@ class devCoder{
         $data = (defined('EXP_NOHEAD') ? "\r\n\r\n" : $head).$data;
         // msg
         $sfp = str_replace($rep1, $rep2, $fp);
-        $sfp = strlen($sfp)>62 ? '...'.substr($sfp,-60) : $sfp; 
-        $spad = str_pad($sfp.' ',68,"-");
-        $sline = str_pad($line,6," ");
-        $kbs = round(filesize(EXP_ROOT.$fp)/1024,2);
-        $skbs = str_pad($kbs, 6, " ").'KB';
-        $msg = "$spad lines: $sline <a href='?fp=$fp' target='_blank'>{$skbs}</a><br>";
+        $sfp = strlen($sfp)>$mlen+2 ? '...'.substr($sfp,-$mlen) : $sfp; 
+        $spad = str_pad($sfp.' ',$mlen+7,"-");
+        $sline = str_repeat(' ',5-strlen($line));
+        $kbs = number_format(filesize(EXP_ROOT.$fp)/1024,2);
+        $skbs = str_repeat(' ',7-strlen($kbs));
+        $msg = "$spad $sline $line 行 $skbs<a href='?fp=$fp' target='_blank'>{$kbs} KB</a><br>";
         return [$line, $data, $msg];
     }
 

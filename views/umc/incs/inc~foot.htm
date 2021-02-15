@@ -1,0 +1,20 @@
+
+{if !empty($isWexin)}
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+{/if}
+<script>
+var uname = '{=$uname}', 
+    cron_url = "<?=PATH_PROJ.'/index.php?ajax-cron&tpldir=umc&rf=&'.safComm::urlStamp('init').'&_v=v605';?>";
+setTimeout(function(){
+    $.ajax({error:function(er1){},success:function(re1){},url:cron_url});
+}, 520);
+</script>
+
+
+{inc:"incs/imp-foot"}
+
+<footer>
+  <p>Copyright @ {=$_cbase['sys_name']}<?=date('Y')?></p>
+  <p>{php echo basDebug::runInfo(); }</p>
+</footer>
+

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>{=$cscorp['title']} - 设备资产浏览</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header>
+    {if $uflag=='inmem'}
+    <a href="{surl(equip)}" class="fa fa-mail-reply"></a>
+    {else}
+    <a href="{surl(0)}" class="fa fa-home"></a>
+    {/if}
+    <h1>设备列表</h1>
+</header>
+
+<article class="">
+<div class="list2">
+    <div class="shead">
+        <div class="">客户信息</div>
+    </div>
+    <div class="row">
+        <div class="col5 main">
+            <p><b href="#">{=$cscorp['title']}</b></p>
+            <p class="note">地址：{=$cscorp['maddr']}</p>
+            <p class="note">{=$cscorp['mname']}：{=$cscorp['mtel']}</p>
+            <p class="note">业务员：{=$cscorp['author']}</p>
+        </div>
+        <div class="col2 more">
+            <span class="time">编号</span> 
+            <span class="tag">{=$cscorp['csno']}</span>
+        </div>
+    </div>
+</div>
+</article>
+
+<article class="">
+{tag:dlist=[Page][modid,equip][where,$whrstr][limit,20]}
+<div class="list1">
+    <div class="row shead">
+        <div class="col6">设备列表</div>
+        <div class="col1">年份</div>
+        <div class="col1">数量</div>
+    </div>
+
+    {:row}
+    <div class="row main">
+        <div class="col6"><a href='{surl("equip.$t_did.$this->key")}'>{=$t_title}</a></div>
+        <div class="col1">{=$t_nyear}</div>
+        <div class="col1">{=$t_ncnt}&nbsp;</div>
+    </div>
+    {/row}
+    {php echo $_cbase['page']['bar']; }
+
+</div>
+{/tag:dlist}
+</article>
+
+{inc:"incs/weys-foot"}
+
+</body>
+</html>

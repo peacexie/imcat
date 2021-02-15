@@ -20,7 +20,8 @@ class vopSapi extends vopApi{
     }
 
     function mkvs(){
-        $this->cfgs['mkv'] = $mkv = req('mkv', 'root-home');
+        $tmp = vopUrl::route('root-home');
+        $this->cfgs['mkv'] = $mkv = $tmp[0]; //req('mkv', 'root-home');
         $this->cfgs['mksp'] = $mksp = strpos($mkv,'.')>0 ? '.' : '-';
         $tmp = explode($mksp, $mkv);
         $this->cfgs['mod'] = $mod = $tmp[0]; // mkv,mksp,mod,key,func

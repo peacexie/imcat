@@ -1,0 +1,67 @@
+
+    <p class="info">绑定手机 ● 开通短信服务了吗？</p>
+
+    <form class="list1" id="fmmobvc" name="fmmobvc" method="post" onsubmit="return chkBdmob('fmmobvc')">
+
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <?=$uimod['uname']?>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col1 tc">图片码</div>
+        <div class="col2 vcode">
+          <input type="text" id="vcode2" name="vcode" placeholder="验证码" x_onblur="chkTel('1')">
+        </div>
+        <div class="col3 vcode">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" id="mobvc_vimg" onclick="setVcode('mobvc')">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">手机号</div>
+        <div class="col5">
+          <input type="text" class="" id="mtel" name="mtel" value="{=$mobvc['pptuid']}" placeholder="手机号" onblur="chkTel()">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col1 tc">短信码</div>
+        <div class="col3 vcode">
+          <input type="text" class="" id="mcode" name="mcode" placeholder="请填入手机短信认证码">
+        </div>
+        <div class="col2">
+          <button type="button" class="btn btn-gray" id='btnSms' onclick="sndfMobvc('smsg')">发短信</button>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col1"></div>
+        <div class="col3"><button type="submit" class="btn btn-act">绑定</button></div>
+        <div class="col1"></div>
+        <div class="col3">
+          {if empty($mobvc)}
+          <button type="button" class="btn btn-gray" onclick="chkIdcard(0, 0)">解绑</button>
+          {else}
+          <button type="button" class="btn btn-red" onclick="chkIdcard(0, 'act=unbind')">解绑</button>
+          {/if}
+        </div>
+        <div class="col1"></div>
+      </div>
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+
+    </form>
+
+<!--script src="<?=tpath(0,0)?>/login/mod~login.js"></script-->
+<script>
+var mobsmapi = "<?=surl('login-mobsm')?>?_r=<?=date('ymdHis')?>";
+//var mobvcapi = "<?=surl($this->mod.'-mobvc')?>?_r=<?=date('ymdHi')?>";
+$(function(){
+  setVcode('mobvc');
+  return;
+});
+</script>

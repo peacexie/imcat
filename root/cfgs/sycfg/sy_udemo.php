@@ -4,34 +4,55 @@ namespace imcat;
 // 注册/登录:相关设置
 
 ### (本地)登录测试 - 指定用户
+// 
 $_sy_udemo = [
+
     'null' => [
-        'ckey' => '2020-xx-guest',
-        'utype' => '(guest)',
-        //'uid' => 'locdemo',
-        'uname' => '(游客)',
-        'grade' => '0',
-        'upic' => PATH_STATIC.'/icons/basic/demo_60x60.gif',
+        'umod' => 'person',
+        'uname' => '(guest)',
+        'mname' => '(游客)',
+        'mpic' => PATH_STATIC.'/icons/basic/demo_60x60.gif',
     ],
+
     'locdemo' => [
-        'ckey' => '2020-bm-6688',
-        'utype' => 'loctest',
-        //'uid' => 'locdemo',
-        'uname' => '测试和平鸽',
-        'grade' => '1',
-        'upic' => 'https://imcat.txjia.com/ximps/static/media/collect/wiki_02-160x120.gif',
+        'uname' => 'locdemo',
+        'mname' => '测试Demo',
+        'mpic' => 'http://txjia.com/share_ximps/static/media/collect/wiki_02-160x120.gif',
     ],
-    'demopeace' => [
-        'ckey' => '2020-bm-8899',
-        'utype' => 'loctest',
-        //'uid' => 'locdemo',
-        'uname' => '测试永顺',
-        'grade' => '1',
-        'upic' => 'https://imcat.txjia.com/ximps/static/media/collect/qiezi_09.jpg',
+
+    'demoxys' => [
+        'uname' => 'demoxys',
+        'mname' => '测试永顺',
+        'mpic' => 'http://txjia.com/share_ximps/static/media/collect/qiezi_09.jpg',
     ],
-    'tester' => [
-        //
+
+    'XieYongShun' => [
+        'pptuid' => 'XieYongShun',
+        'mname' => '谢永顺',
     ],
+
+    'LiHaoYu' => [
+        'pptuid' => 'LiHaoYu',
+        'mname' => '李浩宇',
+    ],
+
+    'wetest' => [
+        'pptuid' => 'oyDK8vjjcn2cFbxMLaMB_8899_Ck',
+        'mext' => 'sex=1',
+        //'uname' => 'demopeace',
+        'mname' => '微信测试者',
+        'mpic' => 'http://txjia.com/share_ximps/static/media/collect/qiezi_09.jpg',
+    ],
+
+    /*
+    $ext = "sex={$user['sex']}".(empty($user['unionid']) ? '' : ";unionid={$user['unionid']}");
+    $utmp = ['pptuid'=>$user['openid'], 'mname'=>$user['nickname'], 'mpic'=>$user['headimgurl'], 'mext'=>$ext];
+    $urow = $utmp + $this->rlog;
+    $this->saveLogin($urow, 'wechat');
+    */
+
+    // 'tester' => [],
+    
 ];
 
 

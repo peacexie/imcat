@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/weys~imp"}
+<title><?=$title='导航菜单'?> - Weys.微样式库</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+{inc:"weys/inc/mpop2"}
+{inc:"incs/weys~head"}
+
+<div class="navh">
+    <ul>
+        <li><a href="">全部</a></li>
+        <li><a href="/product/Home Furnishing/">家居行业</a></li>
+        <li><a href="/product/education/" class="act">教育行业</a></li>
+        <li><a href="/product/Mechanics/">机械行业</a></li>
+        <li><a href="/product/Restaurant/">餐饮行业</a></li>
+    </ul>
+</div>
+
+<hr>
+
+<header>
+    <ol class="navp">
+        <b class="r">
+            <a href="#" class="fa fa-home"></a>
+            <a href="#" class="fa fa-bars" id='smenu1' onclick="opSmenu(1,'smenu1')"></a>
+        </b>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">新闻</a></li>
+        <li class="act">详情</li>
+    </ol>
+</header>
+
+<hr>
+
+<header>
+    <a href="#" class="fa fa-bars" id='smenu2' onclick="opSmenu(1,'smenu2')"></a>
+    <a href="#" class="fa fa-home"></a>
+    <div>
+        <a href="#" class="btn">专题</a> > <a href="{surl(weys-color)}" class="btn">多彩生活</a>
+    </div>
+</header>
+
+
+<hr>
+
+{inc:"incs/weys~foot"}
+
+</body>
+</html>

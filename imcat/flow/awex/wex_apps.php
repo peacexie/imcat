@@ -112,13 +112,13 @@ if($view=='list'){
         if(!empty($kid)){
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150 disc' disabled='disabled' />$ienable");
         }else{
-            $vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=kidExists' tip='".lang('flow.fad_tip31245')."'";
+            $vstr = "url='".surl("hi:wechat-admin-kidExists")."' tip='".lang('flow.fad_tip31245')."'";
             glbHtml::fmae_row(lang('flow.fl_kflag'),"<input name='fm[kid]' type='text' value='$kid' class='txt w150' maxlength='12' reg='key:3-12' $vstr />$ienable");
-        }
+        } 
         
         glbHtml::fmae_row(lang('flow.title_type'),"<select id='fm[type]' name='fm[type]' type='text'>".basElm::setOption($types,$fm['type'])."</select>");
         glbHtml::fmae_row('token',"<input name='fm[token]' type='text' value='$fm[token]' class='txt w320' maxlength='96' reg='str:3-96' tip='".lang('awex.seewepf')."' />");
-        $vstr = "url='".PATH_ROOT."/plus/api/wechat.php?actys=appidExists&oldval=".@$fm['appid']."' tip='eg:wx???,".lang('awex.seewepf')."'";
+        $vstr = "url='".surl("hi:wechat-admin-appidExists")."?oldval=".@$fm['appid']."' tip='eg:wx???,".lang('awex.seewepf')."'";
         glbHtml::fmae_row('appid',"<input name='fm[appid]' type='text' value='$fm[appid]' class='txt w320' maxlength='96' reg='str:3-96' $vstr/>");
         glbHtml::fmae_row('appsecret',"<input name='fm[appsecret]' type='text' value='$fm[appsecret]' class='txt w320' maxlength='96' reg='str:3-96' tip='".lang('awex.seewepf')."' />");
         glbHtml::fmae_row(lang('awex.qrcode'),"<input name='fm[qrcode]' type='text' value='$fm[qrcode]' class='txt w320' maxlength='96' />");

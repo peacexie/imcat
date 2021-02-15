@@ -27,22 +27,22 @@
  - 访问地址：/english.php，Enjoy！
  
 * 参考提示：
- - 选现有的复制一份去修改：如chn(中文版)
- - 参考目录：/views/下：dev, chn, adm
+ - 选现有的复制一份去修改：如home(中文版)
+ - 参考目录：/views/下：dev, home, adm
 
 
 #tplenmodel#模型配置
 
 * 复制首页配置：
- - va_home.php，从/views/chn/_config 到/views/ven/_config目录
+ - va_home.php，从/views/home/_config 到/views/ven/_config目录
 * 复制英文版介绍配置：
- - vc_about.php，从/views/chn/_config 到/views/ven/_config目录
+ - vc_about.php，从/views/home/_config 到/views/ven/_config目录
  - 并改名为：vc_enabt.php，(enabt为模型标识)
 * 复制英文版新闻配置：
- - vc_news.php，从/views/chn/_config 到/views/ven/_config目录
+ - vc_news.php，从/views/home/_config 到/views/ven/_config目录
  - 并改名为：vc_enews.php，(enews为模型标识)
 * 模版/资源等：
- - 复制相关模版/静态资源：从/views/chn/ 到/views/ven/目录
+ - 复制相关模版/静态资源：从/views/home/ 到/views/ven/目录
  - 根据需要，修改配置，模版，资源……
 
 

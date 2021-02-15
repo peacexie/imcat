@@ -55,6 +55,7 @@ return array(
         'init_docs'=>'(初始)[文档]主表', 'init_types'=>'(初始)[分类]表', 'init_users'=>'(初始)[会员]表', 
         'types_common'=>'(常规)分类表', 'users_uacc'=>'(会员)账户表', 'users_uppt'=>'(会员)通行证表',
         'active_admin'=>'(管理员)会话表', 'active_online'=>'(会员)会话表', 'active_session'=>'(Session)会话表', 
+        'active_login'=>'(会员)统一登录表', 
         
         'logs_dbsql'=>'(sql)调试记录表', 'logs_detmp'=>'(用户)调试记录表', 
         'logs_syact'=>'(系统)调试记录表', 'logs_jifen'=>'(积分)操作记录', 

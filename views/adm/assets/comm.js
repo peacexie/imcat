@@ -116,6 +116,12 @@ function setColstr(tabid,cno,title,tpls,flag){
     }
 } 
 
+function altDbpre(url){ // 修改表前缀(`db_act.php`使用)
+    var pre1 = $('#pre1').val(), pre2 = $('#pre2').val(); 
+    url += '&pre1='+pre1+'&pre2='+pre2+''; 
+    return winOpen(url,'修改表前缀');
+}
+
 function stsetLink(e){
     var url = $(e).prop('href'); 
     //var type = $("input[name='mtype']:checked").val();

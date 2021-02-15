@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>客户单位列表 - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+img.qr{ max-width:320px; width:100%; margin:1rem auto; }
+</style>
+</head>
+<body>
+
+<header>
+    <span class="r">
+        {if req('qr')}
+        <a href="{surl(equip)}" class="fa fa-list"></a>
+        {else}
+        <a href="{surl(equip)}?qr=1" class="fa fa-qrcode"></a>
+        {/if}
+        <a href="{surl(0)}" class="fa fa-home"></a>
+    </span>
+    <h1>客户列表</h1>
+</header>
+
+<article class="">
+
+    <div class="navh">
+        <form action="?" id="sofm" name="sofm">
+        <ul>
+            <li><select name="show" class="w60">
+                <option value="title">名称</option>
+                <option value="mname">联系人</option>
+                <option value="mtel">电话</option>
+            </select></li>
+            <li><input value="" name="keywd" class="w80"></li>
+            <li><input value="筛选 [暂不能用]" type="submit" class="act"></li>
+        </ul>
+        </form>
+    </div>
+
+    {tag:dlist=[Page][modid,cscorp][where,$whrstr][limit,20]}
+    <div class="list{if req('qr')}2{else}1{/if}">
+        {if req('qr')}
+        <div class="shead">
+            <a xhref="#" class="r">绑定码<!--DIY填单报障--></a>
+            <div class="">绑定设备管理员</div>
+        </div>
+        {else}
+        <div class="row shead">
+            <div class="col4">客户名称</div>
+            <div class="col2">联系人</div>
+            <div class="col2 tr">电话</div>
+        </div>
+        {/if}
+        {:row} 
+            {if req('qr')}
+            <div class="row">
+                <div class="col1 main tc">
+                    <p class="">扫码绑定:{=$t_title}</p>
+                    <img class="qr" src='{surl(equip-bqr)}?did={=$t_did}' />
+                </div>
+            </div>
+            {else}
+            <div class="row main">
+                <div class="col4"><a href='{surl("equip-$t_csno")}'>{=$t_title}</a></div>
+                <div class="col2">{=$t_mname}</div>
+                <div class="col2 tr">{=$t_mtel}&nbsp;</div>
+            </div>
+            {/if}
+        {/row}
+        {php echo $_cbase['page']['bar']; }
+    </div>
+    {/tag:dlist}
+
+</article>
+
+
+{inc:"incs/inc~foot"}
+
+</body>
+</html>

@@ -30,7 +30,7 @@ class startCtrl{
                 'base/assets/jslib',
                 'base/cssjs',
                 'adm/assets',
-                'chn/assets',
+                'home/assets',
                 'dev/assets',
                 'mob/assets',
                 'umc/assets',

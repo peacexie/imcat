@@ -40,6 +40,24 @@ $_groups = array (
     'etab' => '4',
     'deep' => '2',
   ),
+  'cscust' => 
+  array (
+    'pid' => 'coms',
+    'title' => '客户用户',
+    'top' => '128',
+    'etab' => '0',
+    'deep' => '1',
+    'pmod' => 'cscorp',
+  ),
+  'cslogs' => 
+  array (
+    'pid' => 'coms',
+    'title' => '服务记录',
+    'top' => '128',
+    'etab' => '0',
+    'deep' => '1',
+    'pmod' => 'cstask',
+  ),
   'gbook' => 
   array (
     'pid' => 'coms',
@@ -55,24 +73,6 @@ $_groups = array (
     'top' => '129',
     'etab' => '0',
     'deep' => '1',
-  ),
-  'inrem' => 
-  array (
-    'pid' => 'coms',
-    'title' => '公文评论',
-    'top' => '136',
-    'etab' => '0',
-    'deep' => '1',
-    'pmod' => 'indoc',
-  ),
-  'inread' => 
-  array (
-    'pid' => 'coms',
-    'title' => '阅读记录',
-    'top' => '137',
-    'etab' => '0',
-    'deep' => '1',
-    'pmod' => 'indoc',
   ),
   'crem' => 
   array (
@@ -162,6 +162,30 @@ $_groups = array (
     'etab' => '0',
     'deep' => '1',
   ),
+  'cstask' => 
+  array (
+    'pid' => 'docs',
+    'title' => '售后服务',
+    'top' => '120',
+    'etab' => '1',
+    'deep' => '1',
+  ),
+  'cscorp' => 
+  array (
+    'pid' => 'docs',
+    'title' => '客户资料',
+    'top' => '121',
+    'etab' => '1',
+    'deep' => '1',
+  ),
+  'equip' => 
+  array (
+    'pid' => 'docs',
+    'title' => '设备资料',
+    'top' => '122',
+    'etab' => '1',
+    'deep' => '1',
+  ),
   'demo' => 
   array (
     'pid' => 'docs',
@@ -169,6 +193,14 @@ $_groups = array (
     'top' => '124',
     'etab' => '1',
     'deep' => '2',
+  ),
+  'cdata' => 
+  array (
+    'pid' => 'docs',
+    'title' => '自由资料',
+    'top' => '126',
+    'etab' => '1',
+    'deep' => '1',
   ),
   'about' => 
   array (
@@ -181,7 +213,7 @@ $_groups = array (
   'news' => 
   array (
     'pid' => 'docs',
-    'title' => '新闻动态',
+    'title' => '贴心代码',
     'top' => '132',
     'etab' => '1',
     'deep' => '1',
@@ -192,7 +224,7 @@ $_groups = array (
     'title' => '商品展销',
     'top' => '136',
     'etab' => '1',
-    'deep' => '2',
+    'deep' => '3',
   ),
   'topic' => 
   array (
@@ -210,14 +242,6 @@ $_groups = array (
     'etab' => '1',
     'deep' => '1',
   ),
-  'indoc' => 
-  array (
-    'pid' => 'docs',
-    'title' => '内部公文',
-    'top' => '260',
-    'etab' => '1',
-    'deep' => '1',
-  ),
   'faqs' => 
   array (
     'pid' => 'docs',
@@ -230,7 +254,7 @@ $_groups = array (
   array (
     'pid' => 'groups',
     'title' => '文档/资讯',
-    'top' => '113',
+    'top' => '112',
     'etab' => '0',
     'deep' => '0',
   ),
@@ -269,7 +293,7 @@ $_groups = array (
   'groups' => 
   array (
     'pid' => 'groups',
-    'title' => '群组/模块',
+    'title' => '群组/模型',
     'top' => '208',
     'etab' => '0',
     'deep' => '0',
@@ -488,7 +512,7 @@ $_groups = array (
     'title' => '品牌',
     'top' => '260',
     'etab' => '1',
-    'deep' => '1',
+    'deep' => '2',
   ),
   'auto' => 
   array (
@@ -496,6 +520,14 @@ $_groups = array (
     'title' => '车型',
     'top' => '280',
     'etab' => '1',
+    'deep' => '1',
+  ),
+  'vtype' => 
+  array (
+    'pid' => 'types',
+    'title' => '内容',
+    'top' => '296',
+    'etab' => '0',
     'deep' => '1',
   ),
   'adminer' => 

@@ -1,0 +1,21 @@
+
+<div class="row">
+    <div class="col6 main">
+        <p>
+            <a href='{surl("wxcs.$t_did")}'>{=$t_title}</a>
+        </p>
+        <p class="note">
+            单号:{=$t_did} ● {sopt($t_mflag,cstask.mflag)}
+        </p>
+    </div>
+    <div class="col2 more">
+        <span class="time">
+            {if (!empty($wew_uid) && $t_douid==$wew_uid)}
+            (我)
+            {else}
+            {if (isset($utab[$t_douid]['name']))}{=$utab[$t_douid]['name']}{else}{=$t_douid}{/if}
+            {/if}
+        </span> 
+        <span class="tag">{stime($t_atime,m-d H:i)}</span>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+
+<?php
+$actno = '2';
+?>
+{inc:"login/mod~nav2"}
+
+<article class="">
+
+    <div class="list2">
+        <div class="shead">
+            <a class="r gr6">仅第1次需绑定</a>
+            <div class="">[2] 绑定用户类型</div>
+        </div>
+    </div>
+
+    <form class="list1" id="fmbind" name="fmbind" >
+        <input type="hidden" id="mode" name="mode" value="{=$uinfo['utype']}" />
+        <input type="hidden" id="pptuid" name="pptuid" value="{=$uinfo['pptuid']}" />
+        <div class="row">
+          <div class="col2 tc">会员账号</div>
+          <div class="col6">
+            <input type="text" id="uname" name="uname" value="{=$uinfo['uname']}" placeholder="会员账号" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col2 tc">登录密码</div>
+          <div class="col6">
+            <input type="password" id="passwd" name="passwd" value="" placeholder="密码">
+          </div>
+        </div>
+
+        <!--input type="hidden" id="umod" name="umod" value="person" /-->
+        <div class="row">
+          <div class="col2 tc">会员类型</div>
+          <div class="col6">
+            <select name="umod">{=$umopt}</select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col2 tc">姓名</div>
+          <div class="col6">
+            <input type="text" id="mname" name="mname" value="{=$uinfo['mname']}" placeholder="姓名">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col2"></div>
+          <div class="col2">
+            <button type="button" onclick="bchkForm()" class="btn btn-act">开始绑定</button>
+          </div>
+          <div class="col2"></div>
+        </div>
+
+    </form>
+
+</article>
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+<script src="<?=tpath(0,0)?>/login/mod~bind.js"></script>
+<script>
+var data = {},
+    bindapi = "<?=surl('login-bind')?>";
+</script>
+

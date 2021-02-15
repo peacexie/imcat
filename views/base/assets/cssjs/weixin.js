@@ -28,9 +28,9 @@ function wxGetUserPage(){
     for(var i=pstart;i<pend;i++){
         ids += ','+arr[i];
     }
-    var url = 'actys=getUinfo&ustr='+ids+'&kid='+wu_kid+'';
+    var url = wu_urlbase.replace('-xxx','-getUinfo')+'?ustr='+ids+'&kid='+wu_kid+'';
     $('#tip_errors').hide();
-    $.getScript(wu_urlbase+url, function(){ 
+    $.getScript(url, function(){ 
         if(data.errcode){
             $('#tip_errors').show();
             $('#tip_errors').html('Error:['+data.errcode+']<br>'+data.errmsg);

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>贴心猫工单管理系统 - V1.0</title>
+<script src="<?=tpath()?>/zepto.js"></script>
+<script src="<?=tpath()?>/exfunc.js?_t=v6"></script>
+{php}
+$_uAG = basEnv::userAG();
+{/php}
+<style type="text/css">
+{if strpos($_uAG,'Chrome/80') || strpos($_uAG,'WindowsWechat')}
+{/if}
+
+html, body{ width:100%; height:100%; padding:0; margin:0; }
+a{ color:#DDD; text-decoration:none; }
+/* min-height:560px; xbackground:url("<?=tpath()?>/images/cover.png") no-repeat center;  */
+
+.out{ max-width:640px; height:100%; min-height:520px; background:#3a6ea5; border:0px solid #CCC; margin:auto; }
+.logo{ padding-top:15%; text-align:center; }
+.logo i{ background:#FFF; display:inline-block; padding:0.5rem 1rem; border-radius:0.5rem; }
+.secPub{ text-align:left; padding:5% 10% 5% 10%; }
+.secPub>div{ margin-top:10%; }
+.secPub h1{ font-size:21px; color:#CCC; }
+.secPub p{ font-size:14px; color:#DDD; }
+.secLast{ }
+
+.foot { width:100%; max-width:640px; color:#999; padding:0rem 0; text-align: center; position:fixed; bottom:1rem; margin:auto; }
+.foot img { height:16px; vertical-align:middle; filter:gray; opacity:0.7; filter: grayscale(100%); padding:3px; }
+.debug{ font-size:small; color:#FFF; background:#99C; text-align:center; white-space:nowrap; overflow:hidden; padding:5px; }
+
+</style>
+</head>
+<body>
+
+<div class="out">
+
+    <div class="logo">
+        <i><img src="<?=tpath(1)?>/logo/logo120x60.jpg" alt=" " /></i>
+    </div>
+
+    <div class="foot">
+
+
+    <div class="secPub">
+        <div class="secCS">
+           <h1><a href="{surl(user-login-AppCS)}">贴心猫工单管理系统 - V1.0</a></h1> 
+           <p>
+            工单派单更简单！客服跟踪全程掌控！<br>
+            <a href="{surl(wxcs-apply)}">创建</a> | <a href="{surl(wxcs-waitme)}">处理</a> | <a href="{surl(user-login-AppCS)}">登录</a>
+           </p>
+        </div>
+        <!--div class="secPro secLast">
+           <h1><a href="{surl(user-login-1000003)}">贴心猫项目管理</a></h1> 
+           <p>
+            企业,员工和客户一起来享受 项目管理！<br>
+            <a href="#">创建</a> | <a href="#">处理</a> | <a href="{surl(user-login-1000003)}">登录</a>
+           </p>
+        </div-->
+    </div>
+
+
+        Copyright@<a href="{surl(0)}"><img src="<?=tpath(1)?>/logo/imcat-40x.png"/></a>贴心猫<?=date('Y')?>
+        <!--p class="debug">
+            {=$wew_uid} @ {=$_SERVER["HTTP_HOST"]} @ 测试后移除
+        </p--> 
+    </div>
+
+</div>
+
+
+
+<script>
+
+function reset(){
+    var hinn = window.innerHeight, hscr = screen.height;
+    var hout = hinn>0 ? hinn : hscr;
+    if(hout<520){
+        $('.out').height(hout);
+    }
+    //console.log(hinn,hscr);
+}
+
+window.onload=function(e){
+    reset();
+};
+window.οnresize=function(e){
+    reset();
+}
+
+</script>
+
+</body>
+</html>

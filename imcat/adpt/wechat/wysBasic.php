@@ -45,23 +45,15 @@ class wysBasic{
             $msg .= "$url<br>".$arr;
         } 
         $msg && $msg = "$msg<br>";
-        $debug = cfg('weixin.debug');
-        if(defined('WERR_RETURN') && empty($die)){ 
-            $arr['message'] = $msg;
-            $arr['url'] = $url;
-            return $arr; 
-        }else{ 
-            if(defined('RUN_WECHAT')){
-                basDebug::bugLogs('weixin',$msg,'detmp','db');
+
+        basDebug::bugLogs($msg, $arr, "debugError", 'db');
+        if(defined('RUN_WECHAT')){
+            die(''); //这个回复微信服务器
+        }else{
+            if(defined('RUN_MOB')){ 
+                echo "\n<meta name='viewport' content='width=device-width, initial-scale=1'>";
             }
-            if(defined('RUN_WECHAT') && empty($debug)){
-                die(''); //这个回复微信服务器
-            }else{
-                if(defined('RUN_MOB')){ 
-                    echo "\n<meta name='viewport' content='width=device-width, initial-scale=1'>";
-                }
-                die($msg); //这个给人看的
-            }
+            die($msg); //这个给人看的
         }
     }
     

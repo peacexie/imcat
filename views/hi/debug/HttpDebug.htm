@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src='http://txjia.com/share_ximps/vendui/jquery/jquery-2.x.js'></script>
+<link href='http://txjia.com/imcat/views/base/assets/weys.css?_r=5.2' type='text/css' rel='stylesheet'/>
+<script src='http://txjia.com/imcat/views/base/assets/jslib/jsbase.js?_r=206'></script>
+<title>Http请求 & 跨域Debug</title>
+<style type="text/css">
+.grid{ margin-bottom:1rem; }
+.grc2, .grc3, .grc4{ text-align:center; overflow:hidden; white-space:nowrap; padding:0.5rem; border:1px dotted #EEE; }
+#load_data{ overflow:hidden; word-break:break-all; white-space:normal; }
+</style>
+</head>
+<body>
+
+<header>
+    <a href="#" class=""></a>
+    <b class="">贴心猫(imcat)</b>
+    <h1>Http-Debug</h1>
+</header>
+
+<article class="md" style="">
+    
+    <div class="list1">
+        <div class="row">
+            <div class="col1">
+                <select id="apiOpt" onchange="$('#api').val($(this).val())">
+                    <option value="(Local)">(Local-Http)</option>
+                    <option value="http://127.0.0.1/peace/imcat/catmain/hi.php/login-check">127.0.0.1 : login-check</option>
+                    <option value="http://txjia.com/imcat/hi.php/debug-http">txjia.com : debug-http</option>
+                    <option value="http://txjia.com/imcat/hi.php/debug">txjia.com : debug-home</option>
+                </select>
+                <input type="text" name="api" id="api" value="(Local)">
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="grc4"> <a onclick="loadData('http',  0)">http.常规</a>  </div>
+        <div class="grc4"> <a onclick="loadData('http',  1)">http.跨域</a>  </div>
+        <div class="grc4"> <a onclick="loadData('https', 0)">https.常规</a> </div>
+        <div class="grc4"> <a onclick="loadData('https', 1)">https.跨域</a> </div>
+    </div>
+
+    <fieldset>
+        <legend>Result</legend>
+        <div id="load_data">... Loading ...</div>
+    </fieldset>
+
+    <div class="grid">
+        <div class="grc3"> <a onclick="clearCkey()">Clear:Ckey</a> </div>
+        <div class="grc3"> <a onclick="">Func1</a>  </div>
+        <div class="grc3"> <a onclick="">Func2</a> </div>
+    </div>
+
+</article>
+
+<article class="set1">
+<div class="list2">
+    
+    <div class="shead">
+        <span class="r">-</span>
+        <div class="">Debug-Info</div>
+    </div>
+
+    <div class="row">
+        <div class="col6 main">
+            <p>.host</p>
+            <p class="note ihost">host</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>.pathname</p>
+            <p class="note ipath">path</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>.search</p>
+            <p class="note isearch">search</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>.hash</p>
+            <p class="note ihash">hash</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col6 main">
+            <p>.parent</p>
+            <p class="note iphref">phref</p>
+        </div>
+    </div>
+
+</div>
+</article>
+
+<script>
+
+var loc = window.location,
+    parent = window.parent,
+    host = loc.host,
+    path = loc.pathname,
+    search = loc.search ? loc.search : '(null)',
+    hash = loc.hash ? loc.hash : '(null)',
+    phref = parent ? parent.location.href : '(null)';
+//console.log(loc.href);
+
+$('.ihost').html(host);
+$('.ipath').html(path);
+$('.isearch').html(search);
+$('.ihash').html(hash);
+$('.iphref').html(phref);
+
+var url = './entry.html' + (search=='(null)' ? '' : search);
+$('#ejump').attr('href',url);
+$('#ejump').find('span').html(url);
+
+var url = 'http://weapi.zo-ko.com/weedu.php/home-login-700439' + (search=='(null)' ? '' : search);
+
+// loadData(
+function loadData(pt, al){
+    url = $('#api').val();
+    if(url=='(Local)'){
+        url = loc.href.replace('/debug-HttpDebug', '/debug-http');
+    }
+    if(pt=='https'){
+        url = url.replace('http:', 'https:');
+    }
+    if(pt=='http'){
+        url = url.replace('https:', 'http:');
+    }
+    url += url.indexOf('?')>0 ? '&_p1=v1' : '?_p1=v1';
+    url += al ? '&dallow=dallow' : '&dallow=0';
+    let ckey = getCookie('js_ckey'); //jsLog(ckey);
+    url += ckey ? '&_ckey='+ckey : '&_ckey=';
+    if(url.indexOf('file:///')==0){
+        jsLog(url); 
+        alert('不支持:file///请求！'); 
+        return;
+    }
+    loadHttp(url);
+}
+function loadHttp(url){
+    $('#load_data').html('... Loading ...');
+    $.ajax({
+        url: url+(url.indexOf('?')>0?'&':'?')+'_r='+Math.random(),
+        dataType: 'json',
+        success:function(data){
+            let sdata = JSON.stringify(data);
+            if(data.ckey){ 
+                setCookie('js_ckey', data.ckey, 3);
+            }
+            let html = sdata.replace(/\"\,\"/g, '",<br>"');
+            //html = html.replace(/\"\:\{/g, '":<br>{');
+            $('#load_data').html(html);
+        },
+        error:function(err){
+            let sdata = JSON.stringify(err);
+            $('#load_data').html(sdata);
+            //alert('服务器错误，请稍后刷新试一试!');
+        }
+    })
+}
+
+function clearCkey(){
+    setCookie('js_ckey', '', -3);
+    $('#load_data').html('');
+    jsLog(getCookie('js_ckey'));
+}
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+         }
+         if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+         }
+     }
+    return "";
+}
+
+</script>
+
+<footer>
+  <p>Copyright@贴心猫(imcat)</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+
+<article class=" grbox" style="">
+
+    {if $uflag && !empty($uimod)}
+    <div class="grc4">
+        <a href="{surl(uset-minfo)}" class="nowrap ico-id-card">
+            <i class="fa fa-id-card"></i>
+            用户信息
+        </a>
+    </div>
+    {else}
+    <div class="grc4">
+        <a href="{surl(utmp-minfo)}" class="nowrap ico-id-card">
+            <i class="fa fa-id-card"></i>
+            用户信息
+        </a>
+    </div>
+    {/if}
+
+    <div class="grc4">
+        <a href="{surl(order)}" class="nowrap ico-shopping-cart">
+            <i class="fa fa-shopping-cart"></i>
+            订单
+        </a>
+    </div>
+
+    <div class="grc4">
+        <a href="{surl(task)}" class="nowrap ico-list-alt">
+            <i class="fa fa-list-alt"></i>
+            工单
+        </a>
+    </div>
+
+    <div class="grc4">
+        <a xhref="#" class="nowrap ico-ellipsis-h">
+            <i class="fa fa-ellipsis-h"></i>
+            敬请期待
+        </a>
+    </div>
+
+</article>

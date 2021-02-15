@@ -1,0 +1,71 @@
+
+<?php $actno='1'?>
+
+{if $nav2}
+    {inc:"login/mod~nav2"}
+{/if}
+
+<style type="text/css">
+.qrcode{ text-align:center; padding-bottom:2rem; }
+.qrcode img{ display:block; padding:1rem; margin:auto; }
+.qrpelm{ }
+.qrpelm i{ font-size:120px; color:#CCC; display:block; }
+</style>
+
+<article class="">
+
+<span class="r"><img src="{=PATH_VIEWS}/base/assets/logo/logo120x60.jpg"></span>
+<h1>{=$_cbase['sys_name']}</h1>
+<div class="msg  tc">
+    <h3>请登录使用</h3>
+    <!--div class="error"><i class="fa fa-warning "></i></div-->
+</div>
+
+{if $sec=='full'}
+    <div class="login-cont">
+        <div class="btn-group">
+            <div class="col1" onclick="setTab('wechat')" id='nav_wechat'>微信</div>
+            <div class="col1" onclick="setTab('wework')" id='nav_wework'>员工</div>
+            <div class="col1" onclick="setTab('idpwd')" id='nav_idpwd'>账密</div>
+            <div class="col1" onclick="setTab('mobvc')" id='nav_mobvc'>短信</div>
+        </div>
+    </div>
+    <div class="login-cont">
+        {inc:"login/in~wechat"}
+        {inc:"login/in~wework"}
+        {inc:"login/in~mobvc"}
+        {inc:"login/in~idpwd"}
+    </div>
+{elseif $sec=='wechat'}
+    {inc:"login/in~wechat"}
+{elseif $sec=='wework'}
+    {inc:"login/in~wework"}
+{elseif $sec=='idpwd'}
+    {inc:"login/in~idpwd"}
+{elseif $sec=='mobvc'}
+    {inc:"login/in~mobvc"}
+{else}
+    {inc:"login/in~idpwd"}
+{/if}
+
+</article>
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+<script src="<?=tpath(0,0)?>/{=$this->mod}/mod~login.js"></script>
+<script>
+var checkapi = "<?=surl($this->mod.'-check')?>?_r=<?=date('ymdHi')?>";
+var idpwdapi = "<?=surl($this->mod.'-idpwd')?>?_r=<?=date('ymdHi')?>";
+var mobsmapi = "<?=surl($this->mod.'-mobsm')?>?_r=<?=date('ymdHi')?>";
+var mobvcapi = "<?=surl($this->mod.'-mobvc')?>?_r=<?=date('ymdHi')?>";
+$(function(){
+    setTab('<?=$dsec?>'); // wechat/idpwd/mobvc
+});
+</script>

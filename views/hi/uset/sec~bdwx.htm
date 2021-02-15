@@ -1,0 +1,61 @@
+
+<style type="text/css">
+.qrcode{ text-align:center; padding-bottom:2rem; }
+.qrcode img{ display:block; padding:1rem; margin:auto; }
+.qrpelm{ }
+.qrpelm i{ font-size:120px; color:#CCC; display:block; }
+</style>
+
+    <p class="info">绑定微信 ● 可扫码登录哦！</p>
+
+    <form class="list1" id="fmwechat" name="fmwechat" method="post" x_onsubmit="return chkWechat('fmwechat')">
+
+      <div class="row">
+        <div class="col1 tc">账号</div>
+        <div class="col5">
+          <?=$uimod['uname']?>
+        </div>
+      </div>
+
+      {if empty($wechat)}
+      <div class="row">
+        <div class="col1 qrcode">
+            {if $isMobile}
+            <p>&nbsp;</p>
+            <p><a href="{=$qrs['linkUrl']}" type="submit" class="btn btn-act">微信授权绑定</a></p>
+            {else}
+            <p><a href="{surl(uset-minfo-bdwx)}" class="r">刷新</a>微信扫码绑定</p>
+            <p class="qrpelm"><img src="{=$qrs['scanUrl']}" /></p>
+            {/if}
+        </div>
+      </div>
+      {else}
+      <div class="row">
+        <div class="col1 tc">Openid</div>
+        <div class="col5">
+          {=$wechat['pptuid']}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col2">
+          <button type="button" class="btn btn-act" onclick="chkWechat(0, 'act=unbind')">解绑</button>
+        </div>
+        <div class="col2"></div>
+      </div>
+      {/if}
+
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+
+    </form>
+
+<script>
+$(function(){
+  //setVcode('mobvc');
+  return;
+});
+</script>

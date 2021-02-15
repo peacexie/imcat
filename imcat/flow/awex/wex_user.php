@@ -26,7 +26,7 @@ if($view=='list'){
     $weixin = new wmpUser($wecfg); 
     $data = $weixin->getUserInfoList();
     $jscode = "var wu_total=$data[total], wu_count=$data[count], wu_kid='{$wecfg['kid']}', wu_next='$data[next_openid]', wu_page=1, 
-        wu_msgurl='?awex-wex_msg3&wekid=$wekid&view=form&doend=1&openid=', wu_urlbase='".PATH_ROOT."/plus/api/wechat.php?', 
+        wu_msgurl='?awex-wex_msg3&wekid=$wekid&view=form&doend=1&openid=', wu_urlbase='".surl("hi:wechat-$wekid-xxx")."', 
         wu_list='".(implode(',',$data['data']['openid']))."'; 
         \nwxGetUserPage(); wxGetPageBar(wu_page);";
     echo basJscss::jscode($jscode);
@@ -35,3 +35,4 @@ if($view=='list'){
     
 }
 ?>
+

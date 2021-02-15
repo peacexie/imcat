@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>{=$stitle}</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header>
+    <a href="{surl(hi:login)}" class="fa fa-home"></a>
+    <a href="#" class="fa fa-search" onclick="opDialog('dlog3')"></a>
+    <h1>{=$stitle}</h1>
+</header>
+
+<article class="">
+<div class="list2">
+
+    <div class="list2">
+        <div class="row tc">
+            <div class="col2 main">
+                <p><a href="{surl(order-nodone)}">未完成</a></p>
+            </div>
+            <div class="col2 main">
+                <p><a href="{surl(order-isdone)}">已完成</a></p>
+            </div>
+            <div class="col2 main">
+                <p><a href="{surl(order)}">所有订单</a></p>
+            </div>
+        </div>
+    </div>
+
+    {tag:dlist=[Page][modid,corder][show,all][where,$whrstr][limit,20]}
+        <div class="shead">
+            <span class="r">{=$_cbase['page']['prec']}条记录</span>
+            <div class="">{=$stitle}</div>
+        </div>
+        {:row}
+        <?php $item=exvOcar::ilist('coms_coitem',"ordid='$t_cid'",2); 
+            @$v=@$item['data'][0]; ?>
+
+        <div class="row">
+            <div class="col6 main">
+                <p>
+                    <a href='{surl(comm:0)}?ocar-invoce&ordid={=$t_cid}' target="o">{=$t_title} 金额:{=$t_feeamount}/{=$t_feetotle}</a>
+                </p>
+                <p class="note">
+                    <a href='{surl("comm:cargo.$v[pid]")}' target="detail">{=$v['title']}</a>{if $item['sum']['acnt']>1}<i class="c999">{lang(user.ord_more)}</i>{/if}
+                    
+                </p>
+            </div>
+            <div class="col2 more">
+                <span class="time">
+                    {sopt($t_ordstat,corder.ordstat,0,0)}
+                </span> 
+                <span class="tag">{stime($t_atime,m-d H:i)}</span>
+            </div>
+        </div>
+
+        {/row}
+        <?php if(empty($T_dlist)){ ?>
+        <div class="row">
+            <div class="col6 main">
+                <p class="tc" style="line-height:240px;">
+                    {if $uname}暂无资料{else}登录后显示{/if}
+                </p>
+            </div>
+        </div>
+        <?php } ?>
+        <div class='pg_bar'>
+            {=$_cbase['page']['bar']}
+        </div>
+    {/tag:dlist}
+</div>
+</article>
+
+{inc:"order/lists~so"}
+
+{inc:"incs/inc~foot"}
+
+</body>
+</html>
+
+<?php
+//dump($_cbase['page']);
+?>
+
+<script>
+
+$(function(){
+    return;
+});
+
+</script>
+

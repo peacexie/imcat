@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/login~imps"}
+<title>Debug - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+.user{ height:85px; overflow:hidden; }
+</style>
+</head>
+<body>
+
+<header>
+    <a href="{surl(weys)}" class="btn">Weys</a>
+    <a href="{surl(login)}" class="btn">Login</a>
+    <!--a href="{surl(login)}" class="fa fa-mail-reply"></a-->
+    <div class="logo">
+       Debug
+    </div>
+</header>
+
+
+<?php
+$uname = empty($uname) ? '' : $uname;
+
+$uids = ['XieYongShun','xieys','locdemo','wetest','LiHaoYu','demoxys'];
+if(in_array($uname,$uids) || basEnv::isLocal()){ 
+?>
+<article class="">
+
+<p class="tc">
+
+<a href="{surl(login-locin-xieys)}">login-xieys</a> #
+<a href="{surl(login-logout)}">logout</a> #
+
+<br>
+
+<a href="{surl(login-locin-locdemo)}">login-locdemo</a> #
+<a href="{surl(login-locin-wetest)}?mode=wechat">login-wetest</a> #
+
+<a href="{surl(login-locin-LiHaoYu)}?mode=wework">login-LiHaoYu</a> #
+<a href="{surl(login-locin-XieYongShun)}?mode=wework">login-XieYongShun</a> #
+<a href="{surl(login-locin-demoxys)}?mode=wework">login-demoxys</a> #
+
+<br>
+
+<a href="{surl(login-locdu-locdemo)}">del-locdemo</a> #
+<a href="{surl(login-locdu-oyDK8vjjcn2cFbxMLaMB_8899_Ck)}">del-(wetest-openid)</a> #
+
+<a href="{surl(login-locdu-XieYongShun)}">del-XieYongShun</a> #
+<a href="{surl(login-locdu-LiHaoYu)}">del-LiHaoYu</a> #
+<a href="{surl(login-locdu-demoxys)}">del-demoxys</a> #
+
+<br>
+
+<a href="{surl(login-locdu-PeaceXie)}">del-PeaceXie</a> #
+<a href="{surl(login-locdu-XieYongShun2)}">del-XieYongShun2</a> #
+<a href="{surl(login-locdu-XieYongShun3)}">del-XieYongShun3</a> #
+
+</p>
+
+<div style="overflow:scroll;"><?php
+dump($this->vars);
+?></div>
+
+</article>
+<?php } ?>
+
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script>
+
+$(function(){
+    return;
+});
+</script>
+

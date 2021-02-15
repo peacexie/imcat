@@ -5,16 +5,43 @@ namespace imcat;
 
 class vopApi{
 
+    // [], 'die', $msg
+    // [], 'dir', $url
+    // $data, ''
+    static function v($data, $type='', $msg=''){
+        if($type=='dir'){
+            $msg = preg_match("/[^\w\-\.]+/i", $msg) ? $msg : surl($msg);
+        }
+        if($type=='die'){
+            //
+        }
+        $retype = req('retype'); // retype
+        if($retype || $type=='api'){ // type=api, re=json|jsonp
+            $alp = '*'; glbHtml::dallow($alp);
+            if(isset($data['vars'])){
+                $vars = $data['vars']; unset($data['vars']);
+                $_sys = $data;
+                $data = $vars + ['_sys'=>$_sys, '_msg'=>$msg];
+            }
+            self::view($data);
+        }elseif($type){ // dir, die
+            if($type=='dir'){ header('Location:'.$msg); }
+            if($type=='die'){ $msg = empty($msg) ? $data['vars']['errmsg'] : $msg; }
+            die($msg);
+        }else{ 
+            return $data;
+        }
+    }
+
     // 显示
     static function view($data=array(), $die=1){
         if(empty($data['errno'])){ $data['errno'] = 0; }
         if(empty($data['errmsg'])){ $data['errmsg'] = ''; }
-        $re = req('re', 'json');
+        $re = req('retype', 'json');
         $debug = req('debug');
         if($debug){
             dump($data);
         }else{
-            $re = req('re', 'json');
             $res = basOut::fmt($data, $re);
             header('content-type:application/json');
             echo $res;
@@ -49,11 +76,6 @@ class vopApi{
         return self::view($res);
     }
 
-    // Action测试
-    static function test1Act(){
-        $res['test'] = 'asisv:test1';
-        return self::view($res);
-    }
 }
 
 /*

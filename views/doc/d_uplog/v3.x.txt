@@ -55,10 +55,10 @@
 ## Tips / reference
 
 * Rewrite Config(Apache/Nginx/iis7+)
- -> http://imcat.txjia.com/chn.php?faqs.2017-9h-4bq1
+ -> http://txjia.com/imcat/home.php?faqs.2017-9h-4bq1
 
 * idea: 贴心猫(Imcat)Developer confession
- -> http://imcat.txjia.com/chn.php?faqs.2017-9a-f3a1
+ -> http://txjia.com/imcat/home.php?faqs.2017-9a-f3a1
 
 * Extend[贴心扩展]
  -> http://imcat.txjia.com/dev.php?extend
@@ -534,7 +534,7 @@ tplnamenews=c_mod/mem_ulst）
 
 * Basic target:
  - Admin Center / Member Center / setup: can be switched in English and chinese;
- - Pages in chn.php : Demo the function in Chinese;  
+ - Pages in home.php : Demo the function in Chinese;  
   　　 Pages in dev.php : Chinese documents;  
   　　 Pages in mob.php : Demo the function in Mobile;
  - Add: doc.php, used as an English document;

@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/login~imps"}
+<title><?=$title='模拟登录'?> - {=$_cbase['sys_name']}</title>
+<style type="text/css">
+.grc2, .grc3, .grc4{ text-align:center;border:1px dotted #EEE; padding:0.5rem 0.1rem; margin-bottom:0.5rem; }
+.grc4 span{ cursor:pointer; }
+</style>
+</head>
+<body>
+
+
+<header>
+    <!--a href="/imcat/hi.php/weys-pc" class="btn">Pc</a-->
+    <a href="{surl(login)}" class="fa fa-mail-reply"></a>
+    <div class="logo">
+        <img src="{if empty($uinfo['mpic'])}{=$null['mpic']}{else}{=$uinfo['mpic']}{/if}" style="max-width:32px"> <?=$title?>
+    </div>
+</header>
+
+
+<article class="">
+
+    <div class="grid">
+        <div class="grc3"><a href="{surl(uset-rein)}">系统会员</a></div>
+        <div class="grc3"><a href="{surl(uset-rein-demo)}">测试会员</a></div>
+        <div class="grc3"><a href="{surl(uset-rein-wework)}">企业会员</a></div>
+    </div>
+
+    <p class="info">模拟登录 ● 新注册(快捷登录)两小时内可更换账号</p>
+
+    <form class="list1" id="fmrein" name="fmrein" method="post" onsubmit="return chkRein('fmrein')">
+      <input type="hidden" name="view" value="{=$view}">
+
+      <div class="row">
+        <div class="col1 tc">当前账号</div>
+        <div class="col5">
+          <?=$uimod['uname']?> / <?=$uimod['mname']?>
+        </div>
+      </div>
+
+      {if $view!='wework'}
+      <div class="row">
+        <div class="col1 tc">模拟账号</div>
+        <div class="col5">
+          <input type="text" id='uname' name="uname" value="" _pat='@' pattern="^[\dA-Za-z_.\-]{5,15}$" title="5-15字符" placeholder="新账号">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col2"></div>
+        <div class="col2">
+          <button type="submit" class="btn btn-act">模拟登录</button>
+        </div>
+        <div class="col2"></div>
+      </div>
+      <div class="row" id='row_load' style="display:none;">
+        <div class="col5">
+          <img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'>
+        </div>
+      </div>
+      {/if}
+
+    </form>
+
+    <p></p>
+
+    {if $view=='wework'}
+        <div class="grid">
+            <div class="grc3"><a href="{surl(uset-rein-wework)}?weact=deps">更新部门</a></div>
+            <div class="grc3"><a href="{surl(uset-rein-wework)}?weact=utab">更新人员</a></div>
+            <div class="grc3"><a href="{surl(uset-rein-wework)}">(成员)</a></div>
+        </div>
+        {if $weact}
+        <?dump($data)?>
+        {else}
+        <div class="grid">
+            <?php foreach($deps as $dk=>$dv){ $name=$dv['parentid'] ? $dv['name']:'(无部门)'; ?>
+            <div class="grc4"><a class="{if $dep==$dv['id']}emr{else}gr6{/if}" href="{surl(uset-rein-wework)}?dep={=$dv['id']}">({=$dv['id']}){=$name}</a></div>
+            <?php } ?>
+            <div class="grc4"><a class="{if !$dep}emr{else}gr6{/if}" href="{surl(uset-rein-wework)}?dep=0">(所有)</a></div>
+        </div>
+        <div class="grid">
+            <?php foreach($utab as $uk=>$uv){ if(!$dep || in_array($dep,$uv['department'])){ ?>
+            <div class="grc4"><span style="color:var(--link)" onclick="chkRein('fmrein','uname={=$uv['userid']}')" >
+              {=$uv['userid']}<br>{=$uv['name']}</span></div>
+            <?php } } ?>
+        </div>
+        {/if}
+    {/if}
+
+</article>
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+
+{inc:"incs/login~foot"}
+
+</body>
+</html>
+
+<script src="<?=tpath(0,0)?>/uset/rein.js"></script>
+<script>
+var data = {},
+    saveUrl = '<?=surl("uset-dorein")?>?_r=';
+$(function(){
+    return;
+});
+</script>

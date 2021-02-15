@@ -2,7 +2,7 @@
 ### Dirs Frame
 
 [Site-Project]
-│  chn.php
+│  home.php
 │  ...
 │  robots.txt
 │  
@@ -25,7 +25,7 @@
 ├─views : views/tpls(Eache set of tpl has a sub dir)
 │  ├─adm : Admin Center
 │  ├─base : Basic-views(Include homepage)
-│  ├─chn : Official website
+│  ├─home : Official website
 │  ├─demo : Demo Functions
 │  ├─dev : 文档版
 │  ├─doc : Manual

@@ -58,8 +58,11 @@ class wmpJssdk extends wmpBasic{
         // 如果是企业号用以下 URL 获取 ticket
         // $url = "https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=$accessToken";
         $url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi&access_token=$accessToken";
-        $res = comHttp::doGet($url,3);
+        $res = comHttp::doGet($url,3); 
         $res = json_decode($res);
+        if(!empty($res->errcode)){
+            die("{$res->errcode}:{$res->errmsg}");
+        }
         $ticket = $res->ticket; 
         if ($ticket) {
             $data->expire_time = $_SERVER["REQUEST_TIME"] + $this->act_life;

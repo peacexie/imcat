@@ -9,7 +9,7 @@ $title = 'IP转化地址类（IPv4）';
 $api = req('api',$_cbase['ucfg']['ipapi']); 
 $ubase = surl($this->mkv); 
 $ufix = $ubase.(strpos($ubase,'?')?'&':'?');
-$vfix = "<input name='mkv' type='hidden' value='$this->mkv'>";
+$vfix = "<input name='$this->mkv' type='hidden' value=''>";
 
 $ipObj = new extIPAddr($api);
 $pclass = DIR_IMCAT.'/core/uext/extIPAddr.php';

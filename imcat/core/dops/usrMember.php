@@ -32,35 +32,6 @@ class usrMember extends usrBase{
         }
         return $re1;
     }
-    
-    function remote($uname,$upass,$re1){
-        $db = glbDBObj::dbObj();
-        //$_f = $re1=='noChecked' || is_numeric($re1);
-        if($re1!='noChecked') return $re1; // 非账号密码出错
-        $ubase = $db->table('users_uacc')->where("uname='$uname'")->find(); 
-        if(!empty($ubase)){
-            return $re1;
-        }
-        $epw = MD5_Mem("$upass$uname");
-        $epw = substr($epw,0,16).strrev(substr($epw,16));
-        #Left(MemPW,16)&StrReverse(Mid(MemPW,17))
-        $url = "http://www.xxx.com/member/mcapi.asp?MemID=$uname&MemPW=$epw";
-        $data = comHttp::doGet($url);
-        $data = str_replace("'", '"', $data);
-        $data = json_decode($data,1); //dump($data);
-        if(count($data)<5) return $re1;
-        $re = self::addUser('person',$uname,$upass,$data['MemName'],$data['MemMobile'],$data['MemEmail']);
-        if(empty($re['uid'])) return $re1;
-        $tmp = explode('^', $data['MemFrom']); //dump($tmp);
-        $detail = array(
-            'mphone'=>$data['MemMobile'], 'mtel'=>$data['MemTel'], 'memail'=>$data['MemEmail'],
-            'maddr'=>$tmp[2], 'maddr2'=>$tmp[3], 'mcity'=>$tmp[4], 
-            'mprovince'=>$tmp[5], 'mpcode'=>$tmp[6], 'mstate'=>$tmp[8], 
-            'mtitle'=>($data['MemMobile']=='F'?'Miss':'Mr'), 
-        );
-        $db->table('users_person')->data($detail)->where("uid='{$re['uid']}'")->update();
-        return $this->check_login($uname,$upass);
-    }
 
     // mod,uname,upass; mname,mtel,memail; company,uid,grade,check
     static function addUser($mod,$uname,$upass,$mname='',$mtel='',$memail='',$excfg=array()){ 
@@ -132,8 +103,136 @@ class usrMember extends usrBase{
         return array('uid'=>$uid,'uno'=>$uno);
     }
     
-    static function bindUser($mname,$pptmod,$pptuid){ 
-        glbDBObj::dbObj()->table('users_uppt')->data(array('uname'=>$mname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->insert();
+    static function loginUser($rlog, $uname, $umod=''){
+        if(!$umod){
+            $uacc = $db->table('users_uacc')->where("uname='$uname'")->find();
+            if(empty($uacc)){ return; }
+            $umod = $uacc['umods'];         
+        }
+        $mtp = db()->table("users_$umod")->where("uname='$uname'")->find(); 
+        $exm = [ // mname   mpic
+            'mname' => empty($mtp['mname']) ? "($uname)" : $mtp['mname'],
+            'mpic' => empty($mtp['mpic']) ? "" : $mtp['mpic'],
+        ]; // mname    grade   mfrom   mtel    memail  miui 
+        $row = ['uname'=>$uname,'umod'=>$umod] + $rlog + $exm;
+        $tmp = db()->table('active_login')->data($row)->replace(0); 
+    }
+
+    static function bindUser($uname, $pptmod, $pptuid, $exins=[]){
+        #glbDBObj::dbObj()->table('users_uppt')->data(array('uname'=>$uname, 'pptmod'=>$pptmod, 'pptuid'=>$pptuid))->replace();
+        $idold = db()->table("users_uppt")->where("uname='$uname' AND pptmod='$pptmod'")->find(); 
+        $dins = ['pptuid'=>$pptuid]; if(!empty($exins)){ $dins += $exins; }
+        $dwhr = ['uname'=>$uname, 'pptmod'=>$pptmod];
+        if(empty($idold)){
+            db()->table("users_uppt")->data($dwhr+$dins)->insert(); 
+        }else{
+            db()->table("users_uppt")->data($dins)->where($dwhr)->update(); 
+        }
+    }
+
+    // 更换模型-统一登录
+    static function uexUser($uname, $tomod, $key=0, $ex2=[]){ // $row
+        $uacc = db()->table('users_uacc')->where(($key?'uid':'uname')."='$uname'")->find();
+        if(!empty($uacc)){
+            $uid = $uacc['uid'];
+            $umod = $uacc['umods'];
+            $uname = $uacc['uname'];
+        }else{
+            return []; #die("Error-qexUser:$uname");
+        }
+        // 切换新模型
+        $data1 = ['umods'=>$tomod];
+        $tmp1 = db()->table('users_uacc')->data($data1)->where("uname='$uname'")->update(); 
+        // 更新模型数据
+        $old = db()->table("users_$umod")->where("uname='$uname'")->find();
+        #$new = db()->table("users_$tomod")->where("uname='$uname'")->find();
+        $fileds = read("$tomod.f"); $data2 = [];
+        $data2 = self::umdData($fileds, $old, $ex2); //dump($data2);
+        if(empty($new)){
+            $data2['uname'] = $uname;
+            $tmp2 = db()->table("users_$tomod")->data($data2)->insert(); // ->where("uname='$uname'")
+        }else{
+            foreach($data2 as $fk=>$fr) {
+                if(!strlen($fr)){ unset($data2[$fk]); }
+            } 
+            $tmp2 = db()->table("users_$tomod")->data($data2)->where("uname='$uname'")->replace();
+        }
+        // 删除旧模型
+        $tmp3 = db()->table("users_$umod")->where("uname='$uname'")->delete();
+        return ['old'=>$old, 'data2'=>$data2]; // 'new'=>$new, 
+    }
+    // 保存用户-统一登录
+    static function usvUser($row, $mode, $cfgs, $upass=''){
+        $umod = $row['umod']; 
+        $_groups = glbConfig::read('groups'); 
+        if(!isset($_groups[$umod]) || $_groups[$umod]['pid']!='users'){
+            $re = ['errno'=>"Error-qsUser!",'errmsg'=>"model[$umod]Error!"];
+            vopApi::view($re);
+        }
+        // uid, uname
+        if(empty($row['uid'])){
+            $tmp = usrMember::addUid();
+            $uid = $tmp['uid']; $uno = $tmp['uno'];
+        }else{
+            $uid = $row['uid']; $uno = 1;
+        }
+        if(empty($row['uname']) && $mode && !in_array($mode,['locin','idpwd'])){
+            $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+        }
+        // uacc
+        $dbpass = $upass ? comConvert::sysPass($row['uname'],$upass,$umod) : '(reset)';
+        $acc = array('uid'=>$uid,'uno'=>$uno,'uname'=>$row['uname'],'upass'=>$dbpass,'umods'=>$umod,); 
+        $fileds = read("$umod.f"); $dex = basSql::logData();
+        db()->table('users_uacc')->data($acc+$dex)->insert(); 
+        // umod
+        $umd = ['uid'=>$uid,'uname'=>$row['uname']] + usrMember::umdData($fileds, [], $cfgs); 
+        if(empty($umd['mname'])){ $umd['mname']=$row['mname']; }
+        db()->table("users_$umod")->data($umd)->insert();   
+        // pptuid
+        if($mode && $mode!='idpwd' && !empty($row['pptuid'])){
+            usrMember::bindUser($row['uname'], $mode, $row['pptuid']);
+        }
+        return ['acc'=>$acc, 'umd'=>$umd, 'row'=>$row];
+    }
+
+    // 模型数据-统一登录
+    static function umdData($fileds, $ex1=[], $ex2=[], $gs=1){
+        if($gs){
+            $fileds['grade'] = ['dbtype'=>'varchar', 'dbdef'=>''];
+            $fileds['show'] = ['dbtype'=>'int', 'dbdef'=>'0'];
+        }
+        $obj = []; 
+        $nt = ['float', 'decimal', 'double'];
+        foreach($fileds as $fk=>$fv) {
+            if($fv['dbtype']=='nodb'){ continue; }
+            if(isset($ex2[$fk])){
+                $obj[$fk] = $ex2[$fk];
+            }elseif(isset($ex1[$fk])){
+                $obj[$fk] = $ex1[$fk];
+            }else{
+                if(strlen($fv['dbdef'])>0){
+                    $obj[$fk] = $fv['dbdef'];  
+                }elseif(in_array($fv['dbtype'],$nt)||strstr($fv['dbtype'],'int')){
+                    $obj[$fk] = 0;
+                }else{
+                    $obj[$fk] = '';
+                }
+            }
+        }
+        return $obj;
+    }
+    // 模型数据-统一登录
+    static function umdEdit($umod, $data=[]){
+        $fileds = is_array($umod) ? $umod : read("$umod.f");
+        $obj = []; 
+        $nt = ['float', 'decimal', 'double'];
+        foreach($fileds as $fk=>$fv) {
+            if($fv['dbtype']=='nodb'){ continue; }
+            if(isset($data[$fk])){
+                $obj[$fk] = $data[$fk];
+            }
+        }
+        return $obj;
     }
 
     static function delUser($uname, $key=0){
@@ -207,6 +306,27 @@ class usrMember extends usrBase{
             }
         }
         return "success";
+    }
+
+    /*
+        ### from uioCtrl #######################################################
+    */
+
+    // wechat-0, locin-0, eduid-uio
+    static function getCkey($skey='login-uio'){
+        $ckey = req('_ckey');
+        if($ckey){ 
+            $carr = explode('.', "$ckey.");
+            if($carr[0]==substr(md5($carr[1]),4,8)){
+                return $ckey;
+            }
+        }
+        $udefs = read('udefs', 'sy'); 
+        $_ckss = empty($udefs['_ckss']) ? [] : $udefs['_ckss'];
+        $ckk = empty($_ckss[$skey]) ? 'login-uio' : $_ckss[$skey];
+        $ckey = comSession::getCook($ckk);
+        $ckey = substr(md5($ckey),4,8).".$ckey";
+        return $ckey;
     }
 
 }

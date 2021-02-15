@@ -63,7 +63,7 @@ class glbHtml{
             header('X-Powered-By:'.$_cbase['sys']['xpwby']);
         }
     }
-    
+
     // domain_allow跨域允许
     static function dallow($domain=''){
         if($domain=='*'){ // 请先自行认证,如oauth
@@ -76,12 +76,13 @@ class glbHtml{
             }
         }
         if(in_array($domain, $allow)){ 
-            $aldom = $domain=='*' ? '*' : "http://$domain"; // https ?
-            header("Access-Control-Allow-Origin:$aldom"); // 指定允许其他域名访问
-            header('Access-Control-Allow-Methods:POST'); // 响应类型  
-            header('Access-Control-Allow-Headers:x-requested-with,content-type'); // 响应头设置
+            $aldom = $domain=='*' ? '*' : $domain; // https ?
+            header("Access-Control-Allow-Origin:$aldom"); // http://127.0.0.1, 指定允许其他域名访问
             header('Access-Control-Allow-Credentials:true'); // 允许携带 用户认证凭据（也就是请求携带Cookie）
+            header('Access-Control-Allow-Methods:GET,HEAD,OPTIONS,POST,PUT'); // 响应类型  
+            header('Access-Control-Allow-Headers:X-Requested-With,Content-Type');
             header('X-Frame-Options:ALLOWALL'); //ALLOWALL，ALLOW-FROM
+            // Access-Control-Allow-Headers,Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers
         } 
     }
     

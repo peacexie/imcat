@@ -1,0 +1,11 @@
+
+-- docs_cstask@2021-02-15 16:20:50 -- 
+INSERT INTO `{pre}docs_cstask{ext}` VALUES 
+('2021-2a-hg01','1','c1012','','Title...设备安装','','inmem','1','','0','','王Peace','13484295918','东莞虎门589路663号','apnew','PurchTest,Adm1Test,PeaceXie','','TestKefu','','','127.0.0.1','1612946165','XieYongShun','','0',''),
+('2021-2a-j702','2','c1014','','dsdssd','','inmem','1','','0','','刘先生','13703046650','东莞万江301路570号','apnew','PurchTest,Adm1Test,PeaceXie','','TestKefu','','','127.0.0.1','1612948564','XieYongShun','','0',''),
+('2021-2a-j903','3','c1012','','saassa','','inmem','1','','0','','谢Jack','13140701568','东莞清溪563路780号','apnew','PurchTest,Adm1Test,PeaceXie','','TestKefu','','','127.0.0.1','1612948757','XieYongShun','','0',''),
+('2021-2a-ns04','4','c1012','','Title...设备维修','','inmem','1','','0','','王先生','13354101796','东莞万江511路4号','apnew','PeaceXie,yorian,Adm1Test,PeaceXie','','yorian','','','127.0.0.1','1612961655','XieYongShun','','0',''),
+('2021-2a-p305','5','c1014','','Title...设备安装','','inmem','1','','0','','张Rose','13118490497','东莞凤岗486路516号','apnew','PeaceXie,yorian,Adm1Test,PeaceXie','','yorian','','','127.0.0.1','1612962483','XieYongShun','','0',''),
+('2021-2a-p406','6','c1012','','Title...设备维修','','inmem','1','','0','','司马女士','13397983508','东莞万江566路423号','assign','PeaceXie,yorian,Adm1Test,PeaceXie','','PeaceXie','','','127.0.0.1','1612962533','XieYongShun','127.0.0.1','1613037280','(Guest)'),
+('2021-2g-fs01','1','c1014','','Title...设备安装','','inmem','1','','0','','刘Robbin','13052493365','东莞南城247路744号','apnew','PeaceXie,yorian,Adm1Test,PeaceXie','','yorian','','','127.0.0.1','1613372021','XieYongShun','','0',''),
+('2021-2g-fu02','2','c1014','','Test-工单流程测试2','','inmem','1','','0','','司马先生','13278438503','东莞凤岗161路215号','apnew','PeaceXie,yorian,Adm1Test,PeaceXie','','yorian','','','127.0.0.1','1613372313','XieYongShun','','0','');

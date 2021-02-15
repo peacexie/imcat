@@ -27,22 +27,22 @@
  - View Url : /english.php, Enjoy! 
  
 * Reference Tips:
- - Copy a set of Tpl to modify : eg:chn(中文版)
- - Reference dir: /views/ >> dev, chn, adm
+ - Copy a set of Tpl to modify : eg:home(中文版)
+ - Reference dir: /views/ >> dev, home, adm
 
 
 #tplenmodel#Model-Config
 
 * Copy homepage Config: 
- - va_home.php, from: /views/chn/_config to: /views/ven/_config
+ - va_home.php, from: /views/home/_config to: /views/ven/_config
 * Copy about Config: 
- - vc_about.php, from: /views/chn/_config to: /views/ven/_config
+ - vc_about.php, from: /views/home/_config to: /views/ven/_config
  - Modiy the filename as: vc_enabt.php, (enabt is the model ID)
 * Copy news Config: 
- - vc_news.php, from: /views/chn/_config to: /views/ven/_config
+ - vc_news.php, from: /views/home/_config to: /views/ven/_config
  - Modiy the filename as: vc_enews.php, (enews is the model ID)
 * Tpl/Resources: 
- - Copy the tpls/resources, from: /views/chn/ to: /views/ven/
+ - Copy the tpls/resources, from: /views/home/ to: /views/ven/
  - If you need, Modiy the configs,tpls,resources...
 
 

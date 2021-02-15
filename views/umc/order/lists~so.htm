@@ -1,0 +1,39 @@
+
+<div id='dlog3' style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="dialog">
+        <i class="fa fa-close close" onclick="opDialog(this)"></i>
+        <div class="shead">搜索设置</div>
+        <div class="bd">
+
+            <div class="cont" id='cont_idpwd'>
+                <form class="list1">
+                  <div class="row">
+                    <div class="col1">
+                        <select class="so-select" name="mflag" id='mflag' required><!--weui-select-->
+                            <option value="">-状态-</option>
+                            <option value="done" {if $key=='done'}selected{/if}>未完成</option>
+                            <option value="close" {if $key=='close'}selected{/if}>已完成</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col1">
+                      <input class="weui-input so-input" name="keywd" id='keywd' value="{=$keywd}" placeholder="关键字">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col1"></div>
+                    <div class="col2">
+                      <button type="button" class="btn btn-act">返回</button>
+                    </div>
+                    <div class="col2">
+                      <button type="button" class="btn btn-act">搜索</button>
+                    </div>
+                    <div class="col1"></div>
+                  </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

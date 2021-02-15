@@ -1,0 +1,133 @@
+
+<style type="text/css">
+.grbox{ height:90px; }
+.grc4 { border:0px solid #DDD; border-left:1px dashed #DDD; }
+.grc4:first-child { border-left:0px dashed #DDD; }
+.grc4 a{ display:block; text-align:center; padding:1rem; }
+.grc4 a:hover, .grc4 a:hover i{ color:var(--hover); text-decoration:none; }
+.grc4 a i{ display:block; color:var(--link); font-size:48px; }
+@media only screen and ( max-width:750px) { 
+  .grc4{ width:25%; }
+}
+@media only screen and ( max-width:550px) { 
+  .grc4{ width:25%; }
+  .grbox{ height:48px; }
+  .grc4 a{ padding:0.5rem; }
+  .grc4 a i{ font-size:24px; }
+}
+a.ico-new, a.ico-new i{ color:#bd5105; }
+a.ico-atme, a.ico-atme i{ color:#6c8e05; }
+a.ico-history, a.ico-history i{ color:#0da75a; }
+a.ico-home, a.ico-home i{ color:#1f51e6; }
+a.ico-set, a.ico-set i{ color:#d6061a; }
+a.ico-debug, a.ico-debug i{ color:#333; }
+</style>
+
+<!--
+$roles = [
+    '11' => '学生',
+    '12' => '老师',
+    '13' => '家长',
+];
+-->
+
+<article class=" grbox" style="">
+
+{if !req('apiact')}
+
+    {if $uinfo['umod']=='11'}
+    <div class="grc4">
+        <a href="{surl(wxcs-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            我的作业
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            我的预习
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-atme)}" class="nowrap ico-atme">
+            <i class="fa fa-comment-o"></i>
+            我的复习
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            学生功能4
+        </a>
+    </div>
+    {elseif $uinfo['umod']=='12'}
+    <div class="grc4">
+        <a href="{surl(wxcs-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            布置作业
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            批改作业
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-atme)}" class="nowrap ico-atme">
+            <i class="fa fa-comment-o"></i>
+            老师功能1
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            老师功能2
+        </a>
+    </div>
+    {else}
+    <div class="grc4">
+        <a href="{surl(wxcs-apply)}" class="nowrap ico-new">
+            <i class="fa fa-file-o"></i>
+            查看作业
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-waitme)}" class="nowrap ico-doing">
+            <i class="fa fa-spinner"></i>
+            家长功能1
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-atme)}" class="nowrap ico-atme">
+            <i class="fa fa-comment-o"></i>
+            家长功能2
+        </a>
+    </div>
+    <div class="grc4">
+        <a href="{surl(wxcs-history)}" class="nowrap ico-history">
+            <i class="fa fa-check-square-o"></i>
+            家长功能3
+        </a>
+    </div>
+    {/if}
+
+{else}
+
+    <div class="grc4"><a href="?apido=udeps">用户可见架构ID</a></div>
+    <div class="grc4"><a href="?apido=deplist">获取部门列表</a></div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+    <div class="grc4">x4</div>
+
+{/if}
+
+<div class="c"></div>
+</article>

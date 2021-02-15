@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+{inc:"incs/inc~imps"}
+<title>创建工单 - 工单详情</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+
+<header>
+    <a href="{surl(0)}" class="fa fa-home"></a>
+    <a href="{surl(task)}" class="fa fa-mail-reply"></a>
+    <h1>创建工单</h1>
+</header>
+
+<article class="">
+    <form id='fmApply' name="fmApply" class="list1 task-fmadd" onsubmit="return false">
+        <input type="hidden" name="fm[eqstr]" value="<?=$eqstr?>">
+
+        {if !empty($eqmsg)}
+        <div class="row">
+            <fieldset class="eq-fset">
+                <legend class="tc">设备信息</legend>
+                {=$eqmsg}
+            </fieldset>
+        </div>
+        {/if}
+
+        <div class="row">
+            <div class="col1 gr9" {if !$eqstr}onclick="setTest()"{/if}>工单类型</div>
+            <div class="col5">
+                <select class="imcat-select" name="fm[catid]" id='fm[catid]' required onchange="setCstr()"><!--weui-select-->
+                    <option value="">-请选择-</option>
+                    {tag:tp=[Type,u][modid,cstask][idfix,top]}
+                    <option value="{=$t_kid}" {if $t_kid=='c1012'}selected{/if}>{title($t_title,32,$u)}</option>
+                    {/tag:tp}
+                </select>
+                <input name="fm[catstr]" id='fm[catstr]' type="text" maxlength="96" placeholder="自定义工单类型" style="display:none;">
+            </div>
+        </div>
+        <div class="row" style="display:none;">
+            <div class="col1 gr9">设备类型</div>
+            <div class="col5">
+                <select class="imcat-select" name="fm[equip]" id='fm[equip]' ><!--/required/-->
+                    <option value="">-请选择-</option>
+                    <?php foreach($tabEquip as $k=>$v){ ?>
+                    <option value="{=$k}">{=$v}</option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">服务标题</div>
+            <div class="col5" id="c_title">
+                {if $eqstr}
+                <input name="fm[title]" id='fm[title]' type="text" maxlength="96" required placeholder="如:监控无画面">
+                {else}
+                <input name="fm[title]" id='fm[title]' type="text" maxlength="96" required placeholder="如:某某局监控无画面">
+                {/if}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">
+                详情描述
+                <div class="gr9"><span id='cntDtext' class="gr9">0</span>/2400</div>
+            </div>
+            <div class="col5 tl">
+                <textarea name="fm[detail]" id='fm[detail]' placeholder="详情说明" onkeyup="cntDetail()" oncuechange="cntDetail()" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col1 gr9">联系人　</div>
+            <div class="col5">
+                <input name="fm[mname]" maxlength="12" placeholder="请输入联系人" value="{=$fname}" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">电话　　</div>
+            <div class="col5">
+                <input name="fm[mtel]" id='xxmtel' maxlength="18" placeholder="请输入电话" value="{=$ftel}" required pattern="[0-9]{3}[0-9\-]{3,15}[0-9]{1}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col1 gr9">联系地址</div>
+            <div class="col5">
+                <input name="fm[maddr]" maxlength="120" placeholder="请输入地址" value="{=$faddr}" required>
+            </div>
+        </div>
+
+        <!--div class="">约定详情</div-->
+
+        <div class="weui-cell weui-cell_vcode" style="display:none;">
+            <div class="col1 gr9">
+                <label class="weui-label">抄送人　</label>
+            </div>
+            {if $isWework}
+            <div class="col5">
+                <input name="fm[atuids]" id="fm[atuids]" value="{=$wecfgs['AppCS']['defs']['apply_at']}" readonly placeholder="请选择..." style="display:none;"><!--/已选xxx等5个人/-->
+                <input name="fm[atnames]" id='fm[atnames]' value="" readonly placeholder="请选择...">
+            </div>
+            <div class="weui-cell__ft" onclick="pickList()">
+                <button class="weui-vcode-btn">选择</button>
+            </div>
+            {else}
+            <div class="col5">
+                <input name="fm[atuids]" id='fm[atuids]' value="{=$wecfgs['AppCS']['defs']['apply_at']}" placeholder="手动填写UserID测试" onblur="setName('fm[atuids]','fm[atnames]')" maxlength="120">
+                <input name="fm[atnames]" id='fm[atnames]' value="" placeholder="显示姓名自动获取">
+            </div>
+            {/if}
+        </div>
+
+        <div class="weui-cell weui-cell_vcode" style="display:none;">
+            <div class="col1 gr9">
+                <label class="weui-label">处理人</label>
+            </div>
+            {if $isWework}
+            <div class="col5">
+                <input name="fm[douid]" id='fm[douid]' value="{=$wecfgs['AppCS']['defs']['apnew']}" readonly placeholder="请选择..." style="display:none;">
+                <input name="fm[douname]" id='fm[douname]' value="" readonly placeholder="请选择...">
+            </div>
+            <div class="weui-cell__ft" onclick="pickOne()">
+                <button class="weui-vcode-btn">选择</button>
+            </div>
+            {else}
+            <div class="col5">
+                <input name="fm[douid]" id='fm[douid]' value="{=$wecfgs['AppCS']['defs']['apnew']}" placeholder="手动填写UserID测试" onblur="setName('fm[douid]','fm[douname]')" maxlength="18">
+                <input name="fm[douname]" id='fm[douname]' value="" placeholder="显示姓名自动获取">
+            </div>
+            {/if}
+        </div>
+
+        <div class="row">
+            <div class="col1 gr9">预约时间</div>
+            <div class="col3">
+                <input type="date" name="fm[date]" id="fm[date]" value="" placeholder="为空则不约定" />
+            </div>
+            <div class="col2" style="text-align:right;">
+                <input type="time" name="fm[time]" id="fm[time]" value=">" style="width:70%;"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col1 gr9">备注　　</div>
+            <div class="col5">
+                <input name="fm[domsg]" id='fm[domsg]' placeholder="请输入备注(其他特殊要求)">
+            </div>
+        </div>
+
+        <div class="doBoxs doBtns tc">
+            <a onclick="chkForm()" id='btnApply' class="btn btn-act">
+                创建
+            </a>
+            <a href="javascript:" id='btnNull' class="btn btn-gray" style="display:none;">
+                创建
+                <span id='btnLoad'><img src="<?=tpath(1)?>/aimg/loadbig.gif" class='loading'></span>
+            </a>
+            <a href='?' id='btnReset' class="btn">重填</a>
+        </div>
+        <div style="display:none;"><input type="submit" id='btnSubmit' /></div>
+
+    </form>
+</article>
+
+
+<div id="dtip1" style="opacity:1;display:none">
+    <div class="mask"></div>
+    <div class="toast">
+        <i class="fa fa-warning error"></i>
+        <i class="fa fa-check-square-o okey"></i>
+        <div class="text">{MSG}</div>
+    </div>
+</div>
+
+<script src="<?=tpath(0,0)?>/task/apply.js?_v=904a"></script>
+<script type="text/javascript">
+var fmApply, btnSubmit;
+$(function(){
+    fmApply = eid('fmApply');
+    btnSubmit = eid('btnSubmit');
+    setName('fm[atuids]','fm[atnames]');
+    setName('fm[douid]','fm[douname]'); 
+    return;
+});
+
+var postUrl = '{surl(task-appdo,0,1)}',
+    defOne = '',
+    utab = <?php echo(\imcat\comParse::jsonEncode($utab))?>;
+
+wx.config({
+    //debug: true,
+    beta: true,
+    appId: '<?php echo $signPackage["appId"];?>', //此处的appId等同于企业的CorpID
+    timestamp: <?php echo $signPackage["timestamp"];?>,
+    nonceStr: '<?php echo $signPackage["nonceStr"];?>',
+    signature: '<?php echo $signPackage["signature"];?>',
+    /*success: function(res) {
+        log('config:success:', res);
+    },*/
+    jsApiList: ['selectEnterpriseContact']
+});
+
+wx.error(function (res) {
+    log(res);
+});
+
+</script>
+
+{inc:"incs/inc~foot"}
+
+</body>
+</html>

@@ -17,7 +17,7 @@
 
 #mkv#mkv-Route
 
-* Demos: (The following description omitted the `/chn.php` or `/dev.php`)
+* Demos: (The following description omitted the `/home.php` or `/dev.php`)
  - `?news` The home of the news model(`news` is a model defined at backend)
  - `?news-inner` `inner` a sub column of news(defined at backend)
  - `?news.2017-ab-1234` The detail of the news(id=2017-ab-1234)

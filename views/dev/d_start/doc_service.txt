@@ -16,11 +16,11 @@
 * 免费资料(自助)
  - 中文文档：http://imcat.txjia.com/dev.php
  - 英文文档：http://imcat.txjia.com/doc.php
- - 问答系统：http://imcat.txjia.com/chn.php?faqs
+ - 问答系统：http://txjia.com/imcat/home.php?faqs
 
 * 网友交流(互助)
  - 见：[好消息] 二次开发/定制 供需说明
- - http://imcat.txjia.com/chn.php?faqs.2017-3b-n5b1
+ - http://txjia.com/imcat/home.php?faqs.2017-3b-n5b1
  - 随便吐槽(留言投诉) http://imcat.txjia.com/dev.php?info-gbook
  - QQ群：607070548
 

@@ -12,7 +12,7 @@ if($rs=$dop->getRecs()){
       $uid = $idend = $r['uid'];
       if(empty($idfirst)) $idfirst = $uid;
       echo $cv->Select($uid);
-      echo $cv->Url($r['uname'],1,PATH_BASE."?ajax-cajax&act=uLogin&uname={$r['uname']}","blank"); 
+      echo $cv->Url($r['uname'],1,PATH_BASE."?ajax-cajax&act=uLogin&uname={$r['uname']}&umod=$mod","blank"); 
       echo $cv->Types($r['grade']);
       echo $cv->Field($r['mname']);
       echo $cv->Show($r['show']);

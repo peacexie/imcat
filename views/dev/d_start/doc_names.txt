@@ -17,7 +17,7 @@
 
 #mkv#mkv路由
 
-* 示例: （以下说明中省略了`/chn.php`或`dev.php`）
+* 示例: （以下说明中省略了`/home.php`或`dev.php`）
  - ?news 新闻模型首页(news为后台架构的新闻模型)
  - ?news-inner 新闻-国内新闻栏目(inner为后台架构的新闻栏目)
  - ?news.2017-6b-1234 新闻详情(id=2017-6b-1234)

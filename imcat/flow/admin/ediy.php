@@ -2,6 +2,11 @@
 namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 
+$_cfgfp = '/cfgs/boot/cfg_adbug.php';
+include DIR_ROOT.$_cfgfp; 
+if(empty($can_diycfg)){ 
+    die("Prohibited! Use FTP Edit `$_cfgfp`, And set `\$can_diycfg = '1'; First!`"); 
+}
 $_sy_nava['exdiys'] = array(
     'skin' => '/views',
     'cfgs' => '/root/cfgs',
