@@ -22,9 +22,15 @@ class vopComp{
     //模板编译 ---------- 
     function build($tpl){ 
         global $_cbase;
-        $re = self::checkTpls($tpl);
+        // check
+        $dtpl = strpos($tpl,':') ? str_replace(':', '/', $tpl) : $_cbase['tpl']['vdir'].'/'.$tpl;
+        $tplfp = DIR_VIEWS."/$dtpl.htm";
+        $cacfp = DIR_CTPL.'/'.$dtpl.self::$tplCfg['tpc_ext']; 
+        if(!file_exists($tplfp)) glbError::show("$tplfp NOT Exists!"); 
+        comFiles::chkDirs($dtpl,'ctpl'); 
+        // build
         $_cbase['run']['comp'] = $tpl; //当前编译模板,js标签中使用
-        $stpl = comFiles::get($re[0]); 
+        $stpl = comFiles::get($tplfp); 
         $stpl = $this->bcore($stpl); //获取经编译后的内容
         $shead = NSP_INIT."\n\$this->tagRun('tplnow','$tpl','s');";
         $tpfp = vopTpls::tinc('_ctrls/texBase',0); $spend = '';
@@ -34,7 +40,7 @@ class vopComp{
             $shead .= "{ \$__i_vars=$class::init(\$this); if(!empty(\$__i_vars)){extract(\$__i_vars,EXTR_OVERWRITE);unset(\$__i_vars);} }";
             $spend = "<?php\nif(method_exists('$class','pend')){ $class::pend(); }\n?>";
         }
-        $cfp = empty($_cbase['tpl']['fixmkv']) ? $re[1] : $re[1].'.'.$_cbase['tpl']['fixmkv'];
+        $cfp = empty($_cbase['tpl']['fixmkv']) ? $cacfp : $cacfp.'.'.$_cbase['tpl']['fixmkv'];
         comFiles::put($cfp, "<?php \n$shead \n?>\n".$stpl.$spend); //写入缓存
         return $cfp;
     }
@@ -177,17 +183,5 @@ class vopComp{
         // ----------------------------
         return $stpl;
     }
-    
-    // retpl : 直接返回模版文件路径
-    static function checkTpls($tpl,$retpl=0){ 
-        global $_cbase;
-        $tpldir = $_cbase['tpl']['vdir']; 
-        $tplFile = vopTpls::path('tpl')."/$tpl.htm";
-        if($retpl) return $tplFile;
-        $cacheFile = vopTpls::path('tpc').'/'.$tpl.self::$tplCfg['tpc_ext']; 
-        if(!file_exists($tplFile)) glbError::show("$tplFile NOT Exists!"); 
-        comFiles::chkDirs($tpldir.'/'.$tpl,'ctpl'); 
-        return array($tplFile, $cacheFile);
-    }
-    
+
 }

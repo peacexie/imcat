@@ -94,7 +94,8 @@ class vopShow{
         if(!empty($this->tplorg)){
             $tplfull = $tplorg; // 原始包含,不要解析判断
         }else{ // 编译
-            $tplfull = vopTpls::path('tpc')."/{$this->tplname}".$this->tplCfg['tpc_ext'];
+            $dtpl = strpos($this->tplname,':') ? str_replace(':','/',$this->tplname) : $_cbase['tpl']['vdir']."/$this->tplname";
+            $tplfull = DIR_CTPL. '/'. $dtpl.$this->tplCfg['tpc_ext'];
             if(empty($_cbase['tpl']['tpc_on']) || !file_exists($tplfull)){
                 vopComp::main($this->tplname);
             }   
