@@ -13,7 +13,12 @@ class CLogFileHandler implements ILogHandler
 	
 	public function __construct($file = '')
 	{
-		$this->handle = fopen($file,'a');
+		if(defined('DIR_DTMP')){
+			$path = DIR_VARS."/debug/wepv3_";
+		}else{
+			$path = dirname(__DIR__)."/logs/wepv3_";
+		} //echo "($path$file)";
+		$this->handle = fopen($path.$file,'a');
 	}
 	
 	public function write($msg)

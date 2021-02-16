@@ -11,7 +11,7 @@
 ## ChangeLog
 
 * Publish: Weys`微样式库`(WeCSSLib)：http://txjia.com/imcat/hi.php/weys
-* Publish: Task management module: http://txjia.com/imcat/umc.php/task
+* Publish: Task management module: http://txjia.com/imcat/umc.php/task [Config](http://txjia.com/imcat/hi.php/home-task)
 * Update: User-Multi-Login：http://txjia.com/imcat/hi.php/login?sec=full (Wechat/Wework/Id-passwod/SMS)
 * Reserved api: Tencent Edu-API-Login
 * Official website: All(贴心猫、贴心博客、爱窝房产、开心企业网) system in the same domain `txjia.com`.

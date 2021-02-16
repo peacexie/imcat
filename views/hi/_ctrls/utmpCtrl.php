@@ -10,8 +10,6 @@ use imcat\basStr;
 use imcat\comCookie;
 use imcat\comConvert;
 use imcat\extCache;
-use imcat\extWework;
-use imcat\extWeedu;
 use imcat\glbDBExt;
 use imcat\usrMember;
 

@@ -5,7 +5,7 @@ require_once __DIR__.'/example/WxPay.Config.php';
 function nativeUrl($body, $fee, $ordid, $tag=''){
     global $_cbase;
     $root_url = (\imcat\basEnv::isHttps() ? 'https:' : 'http:') . $_cbase['run']['roots'];
-    $logHandler= new CLogFileHandler(__DIR__."/logs/".date('Y-m-d').'.log'); // 初始化日志
+    $logHandler= new CLogFileHandler(date('Y-m-d').'.log'); // 初始化日志
     $log = Log::Init($logHandler, 15); 
     $notify = new \NativePay();
     $notify_url = $root_url."/a3rd/wepv3/example/native_notify.php";

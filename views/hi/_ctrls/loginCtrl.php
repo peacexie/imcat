@@ -8,8 +8,6 @@ use imcat\basStr;
 
 use imcat\comCookie;
 use imcat\comConvert;
-use imcat\extWeedu;
-use imcat\extWework;
 use imcat\glbDBExt;
 use imcat\safComm;
 use imcat\usrMember;

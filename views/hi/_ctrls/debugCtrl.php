@@ -26,7 +26,10 @@ class debugCtrl extends uioCtrl{
 
     function homeAct(){
         $res = $this->re; // ['vars']
-        //$res['newtpl'] = 'mhome';
+        $setTpl = req('setTpl');
+        if($setTpl){
+            $res['newtpl'] = 'base:home/update';
+        }
         return $res;
     }
 

@@ -41,10 +41,10 @@ class usetCtrl extends uioCtrl{
         $re['vars']['view'] = $this->view; // req('sec','info');
         $uname = $re['vars']['uname'];
         $re['vars']['weact'] = $weact = req('weact');
-        if($weact){
+        if($this->view=='wework' && $weact){
             extWework::updContacts($weact);
             $re['vars']['data'] = extWework::getContacts($weact);
-        }else{
+        }elseif($this->view=='wework'){
             $re['vars']['deps'] = extWework::getContacts('deps');
             $re['vars']['utab'] = extWework::getContacts('utab');
             $dep = req('dep');

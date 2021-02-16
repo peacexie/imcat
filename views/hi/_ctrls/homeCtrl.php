@@ -5,7 +5,6 @@ use imcat\basEnv;
 use imcat\basElm;
 use imcat\basOut;
 use imcat\basReq;
-use imcat\extWework;
 use imcat\glbDBExt;
 
 /*
