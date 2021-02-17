@@ -5,18 +5,18 @@
 
 // 企业的id，在管理端->"我的企业" 可以看到
 // "通讯录同步"应用的secret, 开启api接口同步后，可以在管理端->"通讯录同步"看到
-$_ex_wework['CorpId']    = "wwfeb3c1cfe2989722"; 
-$_ex_wework['TxlSecret'] = '4uYHb_AO3peRHBpVJ_DSqdD08xVqKP5BpaldQhcSCF0'; 
+$_ex_wework['CorpId']    = "ww******"; 
+$_ex_wework['TxlSecret'] = '***Hb_******'; 
 
 // 打卡应用的 id 及secrete， 在管理端 -> 企业应用 -> 基础应用 -> 打卡，
 // 点进去，有个"api"按钮，点开后，会看到
 $_ex_wework['CHECKIN_APP_ID']   = '3010011';
-$_ex_wework['CHECKIN_APP_SECRET']  = 'B8fQTjDbRoKrxNEB-LWqPMcw90rNSuMs0p3MxG44OAs';
+$_ex_wework['CHECKIN_APP_SECRET']  = '***RoKrxNEB-******';
 
 // 审批应用的 id 及secrete， 在管理端 -> 企业应用 -> 基础应用 -> 审批，
 // 点进去，有个"api"按钮，点开后，会看到
 $_ex_wework['APPROVAL_APP_ID']   = '3010040';
-$_ex_wework['APPROVAL_APP_SECRET']   = 'CRbruunuzRv0P4KlFI8mjN4UmOeHLiG0RWgHrqkifso';
+$_ex_wework['APPROVAL_APP_SECRET']   = '***unuz-******';
 
 // 自定义应用
 $_ex_wework['AppsConfig'] = [
@@ -24,9 +24,9 @@ $_ex_wework['AppsConfig'] = [
         'name' => '售后管理',
         "AppDesc" => "应用1的描述",
         "AgentId" => 1000002,
-        "Secret" => "u03WPhF8gBlSnuTCvTiInKFXT2AOkJdKky-qcwhyPt4",
-        "Token" => "4nhqLCNjZHqkQpseA59POR6VD",
-        "EncodingAESKey" => "VKQYxMDGAX7WBxSUYqawxQDhuOWqe4FzdXCH1FwC8SK"
+        "Secret" => "******-qcwhyPt4",
+        "Token" => "4nhq******",
+        "EncodingAESKey" => "***AX7WBxSU******"
     ],
     '1000003' => [
         'name' => '项目管理',
@@ -53,7 +53,7 @@ $_ex_wework['utab'] = [
 ];
 
 $_ex_wework['ucfg'] = [
-    'debug' => 'ChenZhenHong,PeaceXie', // 调试页权限
+    'debug' => 'TestAdmin,PeaceXie', // 调试页权限
 ];
 
 # ===================== 
@@ -61,9 +61,9 @@ $_ex_wework['ucfg'] = [
 $_ex_wework['1000002'] = [
     // 自定义权限(后续考虑做成设置页,再移动端设置)
     'perms' => [
-        'import' => 'ChenZhenHong,PeaceXie', // 导入权限
-        'publish' => 'ChenZhenHong,PeaceXie', // 发布权限
-        'alldata' => 'ChenZhenHong,PeaceXie' // 所有历史单据
+        'import' => 'TestAdmin,PeaceXie', // 导入权限
+        'publish' => 'TestAdmin,PeaceXie', // 发布权限
+        'alldata' => 'TestAdmin,PeaceXie' // 所有历史单据
     ],
     'defs' => [ // 默认值：(人员id,部门id,自己)
         'apply_at' => 'PurchTest,Adm1Test,PeaceXie', // 抄送人
@@ -76,7 +76,7 @@ $_ex_wework['1000002'] = [
         'paied'    => '(me)',
         'score'    => '',
         'close'    => '',
-        'susing'   => 'ChenZhenHong',
+        'susing'   => 'TestAdmin',
         'suspend'  => '(me)',
         'attapply' => '6', // 采购
         'attbuy'   => '(me)'
@@ -127,21 +127,4 @@ $_ex_wework['1000003'] = [
     ],
 ];
 
-# append-setting
-$_fp = "/dtmp/weixin/_set_app2.cac_tab";
-$_data = \imcat\comFiles::get(DIR_VARS.$_fp);
-$excfgs = \imcat\comParse::jsonDecode($_data);
-if(isset($excfgs['ucfg']['debug'])){
-    $_ex_wework['ucfg']['debug'] = $excfgs['ucfg']['debug'];
-}
-if(isset($excfgs['1000002']['perms']['alldata'])){
-    $_ex_wework['1000002']['perms']['alldata'] = $excfgs['1000002']['perms']['alldata'];
-}
-if(isset($excfgs['1000002']['defs'])){
-    foreach ($excfgs['1000002']['defs'] as $_key => $_val) {
-        if(isset($excfgs['1000002']['defs'][$_key])){
-            $_ex_wework['1000002']['defs'][$_key] = $_val;
-        }
-    }
-}  
 //dump($excfgs);
