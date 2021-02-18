@@ -213,7 +213,7 @@ class uioCtrl{
             }
             $vars = ['errtip'=>'登录成功', 'errmsg'=>'已登录，请刷新网页'];
             $vars = $this->uioVInfo($vars);
-            return api::v($vars, 'api');
+            return api::v($vars);
         }else{ // 未登录,跳转去授权
             $scope = req('scope', 'snsapi_userinfo');
             $reurl = surl($this->mod."-wechat", '', 1); 
@@ -229,7 +229,7 @@ class uioCtrl{
     // 绑定 ?
     function wechatAct(){
         $wecfg = wysBasic::getConfig('admin'); 
-        if(empty($this->cfg['enable'])){
+        if(empty($wecfg['enable'])){
             return ['errno'=>'notOpen', 'errmsg'=>'请设置参数'];
         }
         $oauth = new wmpOauth($wecfg);
@@ -340,7 +340,7 @@ class uioCtrl{
                     $vars = $this->uioVInfo($vars);
                     return api::v($vars);
                 }else{
-                    header('Location:'.surl($this->mod));
+                    return api::v($urow, 'dir', surl($this->mod));
                 }
             } catch (Exception $e) {
                 $vars = ['errno'=>'errNowUser', 'errmsg'=>$e->getMessage()];
@@ -618,7 +618,7 @@ class uioCtrl{
             $umarr = explode(',', $udefs[$mode]['umtab']);
             $umtab = [];
             foreach ($umarr as $gk){
-                $umtab[$gk] = isset($umods[$gk]) ? $umods[$gk]['title'] : "【{$gk}】";
+                $umtab[$gk] = isset($umods[$gk]['title']) ? $umods[$gk]['title'] : "【{$gk}】";
             }
             $this->re['vars']['umtab'] = $umtab;
             $this->re['vars']['umopt'] = basElm::setOption($umtab, '', 0);
@@ -659,14 +659,13 @@ class uioCtrl{
             if(empty($d3x)){ 
                 usrMember::usvUser($row, $row['utype'], $mexa);
             }
-            $res = ['uflag'=>$org['umod'], 'errno'=>'0', 'errmsg'=>"由{$row['umod']}切换至{$org['umod']}成功"];
+            $res = ['uflag'=>$org['umod'], 'errno'=>'0', 'errmsg'=>"切换至{$org['umod']}成功"];
         }else{ // Update?
             $res = ['uflag'=>$org['umod'], 'errno'=>'0', 'errmsg'=>"未变更`{$org['umod']}`模型"];
             $exfalg = 0;
         }
         if($exfalg){
-            unset($row['mexa']);
-            $tmp = db()->table('active_login')->data($row)->replace(0); 
+            $tmp = db()->table('active_login')->data(['umod'=>$org['umod']])->where("pptuid='$row[pptuid]'")->update(0); 
         }
         return $res+$d3x;
     }
@@ -723,7 +722,7 @@ class uioCtrl{
             $uname = $row['uname'] = $tmp['uname'];
         }else{
             $uname = $row['uname'];
-        }
+        } 
         if(empty($row['umod'])){ 
             $uacc = $db->table('users_uacc')->where("uname='$uname'")->find();
             if(empty($uacc)){ return []; }
@@ -735,9 +734,9 @@ class uioCtrl{
         $_groups = glbConfig::read('groups');
         if(!isset($_groups[$umod]) || $_groups[$umod]['pid']!='users'){
             return [];
-        }
+        } 
         $uimod = $db->table("users_$umod")->where("uname='$uname'")->find(); // AND `show`='1'
-        if(empty($uimod)) return array();
+        if(empty($uimod)) return array(); 
         return $uimod;
     }
 

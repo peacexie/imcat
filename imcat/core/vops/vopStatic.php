@@ -256,7 +256,7 @@ class vopStatic{
         global $_cbase;
         $tplbak = $_cbase['tpl']['vdir'];
         $vcfg = vopTpls::etr1('tpl'); 
-        $re = array();
+        $re = array(); 
         foreach($vcfg as $tpl=>$suit){
             if(strpos($_cbase['tpl']['no_static'],$tpl)) continue;
             $file = DIR_VIEWS."/$tpl/_config/vc_$mod.php";

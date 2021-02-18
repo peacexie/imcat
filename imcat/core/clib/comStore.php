@@ -27,13 +27,14 @@ class comStore{
     }
     // 删除:删除id下的附件资源
     static function delFiles($mod, $kid){
-        $dir = comStore::getResDir($mod, $kid, 0);
+        if(empty($kid)){ return; }
+        $dir = comStore::getResDir($mod, $kid, 0); 
         $re = comFiles::delDir(DIR_URES.'/'.$dir, 1);
-        $tabs = self::rsType($dir);
+        $tabs = self::rsType($dir); 
         foreach($tabs as $cls=>$cfg) {
             $rsObj = self::rsCobj($cls);
             $re = $rsObj->delFiles($dir);
-        }
+        } 
         return $re;
     } 
     static function rsType($fpdir){

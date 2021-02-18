@@ -76,7 +76,7 @@ class _defCtrl{
             return DIR_ROOT.$fext;
         }elseif(file_exists(DIR_IMCAT.$file)){
             $_cbase['run']['tplname'] = "{imcat}:$file";
-            echo "\n<!--inc:{imcat}:$file-->\n";
+            echo "\n<!--inc:{imcat}:$file-->\n"; 
             return DIR_IMCAT.$file;
         }else{
            die("<h2>File Not Found: <br>{root}$fext or<br>{imcat}$file</h2>"); 

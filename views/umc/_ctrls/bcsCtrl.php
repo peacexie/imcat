@@ -56,6 +56,14 @@ class bcsCtrl extends uioCtrl{
     // bind-check:绑定检查
     function bindCheck(&$row){ 
         $this->bindCheckBase($row); 
+        $re = &$this->re; //dump($this->re['vars']); 
+        /*
+        if(!empty($re['vars']['uinfo'])){
+            $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
+            $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
+            if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+        } //dump($this->re['vars']); 
+        */
         if(smod('cscorp') && !empty($this->re['vars']['uimod']['company'])){
             $this->re['vars']['cscorp'] = data('cscorp.join',"did='{$this->re['vars']['uimod']['company']}'",1); 
         }

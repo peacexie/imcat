@@ -42,6 +42,7 @@ class usetCtrl extends uioCtrl{
         if(empty($wecfg['isOpen'])){
             die('请配置:[ex_wework.php]:isOpen=1');
         }
+        return $wecfg;
     }
     function reinAct(){
         $re = &$this->re; //dump($this->ckey);
@@ -94,7 +95,8 @@ class usetCtrl extends uioCtrl{
                 $re['vars']['errmsg'] = '账号错误'; 
             }
         }elseif($view=='wework'){
-            $this->chkWework();
+            $wecfg = $this->chkWework();
+            $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
             include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
             $api = new \CorpAPI($CorpId, $agentId);
             $user = $api->GetUserById($uname); 

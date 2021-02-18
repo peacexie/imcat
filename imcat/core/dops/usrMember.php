@@ -132,6 +132,7 @@ class usrMember extends usrBase{
 
     // 更换模型-统一登录
     static function uexUser($uname, $tomod, $key=0, $ex2=[]){ // $row
+        if(empty($uname)){ return []; }
         $uacc = db()->table('users_uacc')->where(($key?'uid':'uname')."='$uname'")->find();
         if(!empty($uacc)){
             $uid = $uacc['uid'];
@@ -149,7 +150,7 @@ class usrMember extends usrBase{
         $fileds = read("$tomod.f"); $data2 = [];
         $data2 = self::umdData($fileds, $old, $ex2); //dump($data2);
         if(empty($new)){
-            $data2['uname'] = $uname;
+            $data2['uid'] = $uid; $data2['uname'] = $uname;
             $tmp2 = db()->table("users_$tomod")->data($data2)->insert(); // ->where("uname='$uname'")
         }else{
             foreach($data2 as $fk=>$fr) {
@@ -162,7 +163,7 @@ class usrMember extends usrBase{
         return ['old'=>$old, 'data2'=>$data2]; // 'new'=>$new, 
     }
     // 保存用户-统一登录
-    static function usvUser($row, $mode, $cfgs, $upass=''){
+    static function usvUser(&$row, $mode, $cfgs, $upass=''){
         $umod = $row['umod']; 
         $_groups = glbConfig::read('groups'); 
         if(!isset($_groups[$umod]) || $_groups[$umod]['pid']!='users'){
@@ -177,7 +178,18 @@ class usrMember extends usrBase{
             $uid = $row['uid']; $uno = 1;
         }
         if(empty($row['uname']) && $mode && !in_array($mode,['locin','idpwd'])){
-            $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+            $updUname = 1;
+            if(!empty($row['mname']) && in_array($mode,['mobvc','qq'])){
+                $pre = $mode=='qq' ? 'qq_' : "tel_";
+                $row['uname'] = usrMember::addUname($pre.$row['pptuid'], $umod);
+            }elseif(!empty($row['mname']) && $mode=='wework'){
+                $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+            }elseif(!empty($row['mname']) && $mode=='wechat'){
+                $uname = basStr::filKey(comConvert::pinyinMain($row['mname']));
+                $row['uname'] = usrMember::addUname($uname, $umod);
+            }else{
+                $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+            }
         }
         // uacc
         $dbpass = $upass ? comConvert::sysPass($row['uname'],$upass,$umod) : '(reset)';
@@ -191,6 +203,9 @@ class usrMember extends usrBase{
         // pptuid
         if($mode && $mode!='idpwd' && !empty($row['pptuid'])){
             usrMember::bindUser($row['uname'], $mode, $row['pptuid']);
+        }
+        if(!empty($updUname) && !empty($row['pptuid'])){
+            $tmp = db()->table('active_login')->data(['uname'=>$row['uname']])->where("pptuid='$row[pptuid]'")->update(0); 
         }
         return ['acc'=>$acc, 'umd'=>$umd, 'row'=>$row];
     }

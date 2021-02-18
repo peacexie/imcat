@@ -45,7 +45,8 @@ class equipCtrl extends bcsCtrl{
     }
 
     function bqrAct(){
-        $uname = tex('texBase')->wewIdop(); //req('uname');
+        $re = &$this->re; 
+        $uname = $re['vars']['uname']; //tex('texBase')->wewIdop(); //req('uname');
         $did = req('did'); $atime = time();
         $ckey = "$uname.$did.".substr(md5("$uname.$did"),12,6);
         $mext = "grade=ccom\nshow=1\ncompany=$did\n_enc=".comConvert::sysRevert($ckey);
@@ -57,7 +58,7 @@ class equipCtrl extends bcsCtrl{
         }
         // 
         $exmkv = req('exmkv', '0.0.0');
-        $qrurl = surl('login-wecdir','',1) . "?scope=snsapi_userinfo&state=set^{$ckey}^$exmkv&_v=" . time(); 
+        $qrurl = surl('hi:login-wecdir','',1) . "?scope=snsapi_userinfo&state=set^{$ckey}^$exmkv&_v=" . time(); 
         $qrcode = PATH_BASE . "?ajax-vimg&mod=qrShow&data=" . str_replace(['?','&'],['%3F','%26'],$qrurl);
         #echo "$qrurl"; die();
         header("location:$qrcode");
@@ -112,9 +113,6 @@ class equipCtrl extends bcsCtrl{
 
     function init($ucfg, $vars){
         $re = &$this->re;
-        if($re['vars']['uflag']=='company'){
-            $re['vars']['cscorp'] = data('cscorp.join',"did='{$this->re['vars']['uimod']['company']}'",1); 
-        }
         //global $_cbase;
         $host = empty($_SERVER["HTTP_HOST"]) ? '127.0.0.1' : $_SERVER["HTTP_HOST"]; 
         $iss = basEnv::isHttps() ? 'https' : 'http';

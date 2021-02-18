@@ -313,14 +313,14 @@ class dopBase{
         return 1;
     }
     // opDelete。
-    function opDelete($id){
+    function opDelete($id){ 
         $this->opDelPubpre($id); //删之前执行
         $this->db->table($this->tbid)->where("$this->_kid='$id'")->delete(); 
         $this->opDelPublic($id); //删之后执行
         return 1;
     }
     // opDelPubpre。
-    function opDelPubpre($id){ 
+    function opDelPubpre($id){
         if(!in_array($this->cfg['pid'],array('docs','users','coms'))) return;
         $fme = $this->db->field('aip,auser,atime')->table($this->tbid)->where("$this->_kid='$id'")->find();
         if(!empty($fme)) comJifen::main(array_merge($this->cfg,$fme),'del'); 
