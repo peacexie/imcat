@@ -32,17 +32,17 @@
     <div class="row">
         <div class="col1 tc gr9">增援人</div>
         {if $isWework}
-        <div class="col5">
-            <input class="weui-input" name="fm[atuids]" id="fm[atuids]" value="" readonly placeholder="请选择.." style="display:none;"><!--/已选xxx等5个人/-->
-            <input class="weui-input" name="fm[atnames]" id='fm[atnames]' value="" readonly placeholder=".已增援人的自动过滤">
+        <div class="col4">
+            <input name="fm[atuids]" id="fm[atuids]" value="" readonly placeholder="请选择.." style="display:none;"><!--/已选xxx等5个人/-->
+            <input name="fm[atnames]" id='fm[atnames]' value="" class="wp90" readonly placeholder="已增援人的自动过滤">
         </div>
         <div class="col1 tc curhand" onclick="pickList()">
-            <button class="weui-vcode-btn">增加</button>
+            <button class="btn btn-act">增加</button>
         </div>
         {else}
         <div class="col5 tc">
-            <input class="weui-input" name="fm[atuids]" id='fm[atuids]' value="" placeholder="手动填写UserID测试,已增援人的自动过滤" onblur="setName('fm[atuids]','fm[atnames]')" maxlength="120">
-            <input class="weui-input" name="fm[atnames]" id='fm[atnames]' value="" placeholder="显示姓名为空">
+            <input name="fm[atuids]" id='fm[atuids]' value="" placeholder="手动填写UserID测试,已增援人的自动过滤" onblur="setName('fm[atuids]','fm[atnames]')" maxlength="120">
+            <input name="fm[atnames]" id='fm[atnames]' value="" placeholder="显示姓名为空">
         </div>
         {/if}
     </div>
@@ -50,17 +50,17 @@
     <div class="row">
         <div class="col1 tc gr9">处理人</div>
         {if $isWework}
-        <div class="col5">
-            <input class="weui-input" name="fm[douid]" id='fm[douid]' value="" readonly placeholder="请选择..." style="display:none;">
-            <input class="weui-input" name="fm[douname]" id='fm[douname]' value="" readonly placeholder="处理人默认为自己">
+        <div class="col4">
+            <input name="fm[douid]" id='fm[douid]' value="" readonly placeholder="请选择..." style="display:none;">
+            <input name="fm[douname]" id='fm[douname]' class="wp90" value="" readonly placeholder="处理人默认为自己">
         </div>
-        <div class="col1 tc curhand" onclick="pickOne()">
-            <button class="weui-vcode-btn curhand">选择</button>
+        <div class="col1 tc curhand" onclick="pickOne(1)">
+            <button class="btn btn-act curhand">选择</button>
         </div>
         {else}
         <div class="col5 tc">
-            <input class="weui-input" name="fm[douid]" id='fm[douid]' value="" placeholder="手动填写UserID测试,处理人默认为自己" onblur="setName('fm[douid]','fm[douname]')" maxlength="18">
-            <input class="weui-input" name="fm[douname]" id='fm[douname]' value="" placeholder="显示姓名为空">
+            <input name="fm[douid]" id='fm[douid]' value="" placeholder="手动填写UserID测试,处理人默认为自己" onblur="setName('fm[douid]','fm[douname]')" maxlength="18">
+            <input name="fm[douname]" id='fm[douname]' value="" placeholder="显示姓名为空">
         </div>
         {/if}
     </div>
@@ -79,8 +79,8 @@
     <div class="row" id="row_Map" style="display:none;">
         <div class="col1 tc">定位</div>
         <div class="col5">
-            <input class="weui-input" name="fm[mapMsg]" id='fm[mapMsg]' value="" readonly placeholder="定位中...">
-            <input class="weui-input" name="fm[map]" id='fm[map]' readonly placeholder="定位中..." style="display:none;">
+            <input name="fm[mapMsg]" id='fm[mapMsg]' value="" readonly placeholder="定位中...">
+            <input name="fm[map]" id='fm[map]' readonly placeholder="定位中..." style="display:none;">
         </div>
     </div>
     <div class="row" id="row_Score" style="display:none;">
@@ -99,7 +99,7 @@
     <div class="row" id="row_Fee" style="display:none;">
         <div class="col1 tc">费用</div>
         <div class="col3">
-            <input class="weui-input" type='number' name="fm[fee]" id='fm[fee]' onblur="$(this).val(parseFloat($(this).val()).toFixed(2))" placeholder="费用,为空不收费">
+            <input type='number' name="fm[fee]" id='fm[fee]' onblur="$(this).val(parseFloat($(this).val()).toFixed(2))" placeholder="费用,为空不收费">
         </div>
         <div class="col2">
             (￥)元
@@ -108,7 +108,7 @@
     <div class="row" {if req('Muldo') }style="display:none;"{/if}>
         <div class="col1 tc">备注</div>
         <div class="col5">
-            <input class="weui-input" name="fm[domsg]" id='fm[domsg]' placeholder="请输入备注信息">
+            <input name="fm[domsg]" id='fm[domsg]' placeholder="请输入备注信息">
         </div>
     </div>
 

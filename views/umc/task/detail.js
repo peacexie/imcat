@@ -420,7 +420,7 @@ function purchJSSDK(thirdNo){
 /*
     选人回调
 */
-function pickOne(){
+function pickOne(tg){ 
     var nowUser = $("input[name='fm[douid]']").val();
     wx.invoke("selectEnterpriseContact", {
         "fromDepartmentId": defDept?defDept:0,// 必填，表示打开的通讯录从指定的部门开始展示，-1表示自己所在部门开始, 0表示从最上层开始

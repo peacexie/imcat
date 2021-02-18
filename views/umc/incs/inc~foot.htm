@@ -1,7 +1,4 @@
 
-{if !empty($isWexin)}
-<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-{/if}
 <script>
 var uname = '{=$uname}', 
     cron_url = "<?=PATH_PROJ.'/index.php?ajax-cron&tpldir=umc&rf=&'.safComm::urlStamp('init').'&_v=v605';?>";

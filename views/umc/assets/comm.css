@@ -26,7 +26,8 @@
 }
 
 @media only screen and (max-width:550px){
-  .cs-view h1{ font-size:1.2rem; }
+    .task-fmadd .wp90 { width:90%; }
+    .cs-view h1{ font-size:1.2rem; }
 }
 
 
