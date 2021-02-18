@@ -14,13 +14,17 @@ class extWeedu{ // extends extWework
         // cfgs
         $this->appid = $appId;
         $this->wecfg = read('weedu', 'ex');
+        if(empty($this->wecfg['isOpen'])){
+            die('请配置:[ex_weedu.php]:isOpen=1');
+        }else{
+            include_once(DIR_WEKIT."/sv-api/callback/WXBizMsgCrypt.php");
+            include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
+        }
         if(!isset($this->wecfg['AppsConfig'][$appId])){
             die('Error AppID!');
         }else{
             $this->acfg = $this->wecfg['AppsConfig'][$appId];
         }
-        include_once(DIR_WEKIT."/sv-api/callback/WXBizMsgCrypt.php");
-        include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
     }
 
     function getMsg($encMesg){

@@ -4,12 +4,12 @@
 
 // 系统参数
 $_cbase['sys']['sn']      = '0BAB703D-127A-B479-1979-2010-0424X888'; // 序列号
-$_cbase['sys']['ver']     = '5.4'; // 版本号
+$_cbase['sys']['ver']     = '5.5'; // 版本号
 $_cbase['sys']['cset']    = 'utf-8';// 系统编码
 $_cbase['sys']['tmzone']  = '8'; //
 $_cbase['sys']['tzcode']  = 'PRC'; // 时区+-12, 'ETC/GMT-8'
 $_cbase['sys']['lang']    = 'cn'; // 默认语言:根据语言包,可设置en,cn等
-$_cbase['sys']['xpwby']   = '(imcat.txjia.com)/v5.4+'; // `X-Powered-By`头信息：空为默认, 或自定义
+$_cbase['sys']['xpwby']   = '(imcat.txjia.com)/v5.5+'; // `X-Powered-By`头信息：空为默认, 或自定义
 
 // Cookie
 $_cbase['ck']['pre']      = 'v54_'; // Cookie前缀,8字符以内

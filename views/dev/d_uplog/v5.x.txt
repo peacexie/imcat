@@ -5,15 +5,21 @@
 ## 基本信息：
 
 * 基本信息：
- - 版本：v5.5
- - 发布日期：2021.02
+ -> 版本：v5.5
+ -> 发布日期：2021.02
 
 ## 更新事项
 
-* 发布：Weys.微样式库：http://txjia.com/imcat/hi.php/weys
-* 发布：工单管理模块：http://txjia.com/imcat/umc.php/task [配置](http://txjia.com/imcat/hi.php/home-task)
-* 更新：会员多端登录：http://txjia.com/imcat/hi.php/login?sec=full (微信/企业微信/账密/短信)
-* 预留：腾讯教育号登录
+* 发布：Weys.微样式库：
+ -> 贴心猫子项目
+ -> Url: http://txjia.com/imcat/hi.php/weys
+* 发布：工单管理模块：
+ -> http://txjia.com/imcat/umc.php/task 
+ -> 配置: http://txjia.com/imcat/hi.php/home-cfgs
+* 更新：会员多端登录：
+ -> http://txjia.com/imcat/hi.php/login?sec=full 
+ -> 微信/企业微信/账密/短信登录
+ -> 预留：腾讯教育号登录
 * 调整：官网：贴心猫、贴心博客、爱窝房产、开心企业网：都放到同一域名`txjia.com`不同子目录下
 * 完善：安装更新模块
 * 集成：微信扫码支付接口

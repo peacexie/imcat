@@ -33,6 +33,9 @@ class WxPayConfig extends WxPayConfigInterface
 
 	function __construct($cfgs=[]){
 		$this->cfgs = empty($cfgs) ? read('a3rd.wepay','ex') : $cfgs;
+		if(empty($this->cfgs['isOpen'])){
+			die('请配置:[ex_a3rd.php]:wepay.isOpen=1');
+		}
 		//dump($this->cfgs);
 	}
 

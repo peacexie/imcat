@@ -38,16 +38,24 @@ class homeCtrl extends bcsCtrl{
 
     function init($ucfg, $vars){
         $re = &$this->re; //dump($re);
-        if(!empty($re['vars']['uinfo'])){
-            $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
-            $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
-            if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+        $wecfg = read('wework', 'ex');
+        if(!empty($wecfg['isOpen'])){
+            if(!empty($re['vars']['uinfo'])){
+                $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
+                $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
+                if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+            }
+            $re['vars']['whrstr'] = $whrstr = texBase::sqlType($re['vars']); 
+            $list = data('cstask', $whrstr, '5');
+            texBase::convData($list);
+            $re['vars']['list'] = $list;
+            $this->re = $re;
+        }elseif(smod('corder')){
+            header('Location:'.surl('order'));
+        }else{
+            //
         }
-        $re['vars']['whrstr'] = $whrstr = texBase::sqlType($re['vars']); 
-        $list = data('cstask', $whrstr, '5');
-        texBase::convData($list);
-        $re['vars']['list'] = $list;
-        $this->re = $re;
+    
     }
 
 

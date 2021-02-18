@@ -50,6 +50,9 @@ class wechatCtrl{
         return $this->_defAct();
     }
     function _defAct(){
+        if(empty($this->cfg['enable'])){
+            die("请配置:[微信接口>$this->key]:后台数据！");
+        }
         // 消息推送
         $data = file_get_contents('php://input'); //@$GLOBALS["HTTP_RAW_POST_DATA"]; 
         if(!empty($data)){ 

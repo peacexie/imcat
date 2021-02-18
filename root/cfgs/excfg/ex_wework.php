@@ -2,6 +2,8 @@
 (!defined('RUN_INIT')) && die('No Init');
 
 // wework 配置
+$_ex_wework['isOpen'] = '0'; // 启用企业微信; 并检查：/root/wework/目录及文件 
+defined('DIR_WEKIT') || define('DIR_WEKIT', DIR_ROOT.'/wework');
 
 // 企业的id，在管理端->"我的企业" 可以看到
 // "通讯录同步"应用的secret, 开启api接口同步后，可以在管理端->"通讯录同步"看到

@@ -45,6 +45,9 @@ class weworkCtrl{
     function check(){
         // check appid
         $this->wecfg = read('wework', 'ex');
+        if(empty($this->wecfg['isOpen'])){
+            die('请配置:[ex_wework.php]:isOpen=1');
+        }
         $this->AppId = $this->ucfg['key']; 
         $wew = new extWework($this->AppId);
         if($sVerifyEchoStr = urldecode(req('echostr'))){

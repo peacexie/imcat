@@ -10,9 +10,16 @@
 
 ## ChangeLog
 
-* Publish: Weys`微样式库`(WeCSSLib)：http://txjia.com/imcat/hi.php/weys
-* Publish: Task management module: http://txjia.com/imcat/umc.php/task [Config](http://txjia.com/imcat/hi.php/home-task)
-* Update: User-Multi-Login：http://txjia.com/imcat/hi.php/login?sec=full (Wechat/Wework/Id-passwod/SMS)
+* Publish: Weys`微样式库`(WeCSSLib): 
+ -> 贴心猫子项目
+ -> Url: http://txjia.com/imcat/hi.php/weys
+* Publish: Task management module: 
+ -> http://txjia.com/imcat/umc.php/task 
+ -> Config: http://txjia.com/imcat/hi.php/home-cfgs
+* Update: User-Multi-Login: 
+ -> http://txjia.com/imcat/hi.php/login?sec=full 
+ -> Login mode: Wechat/Wework/Id-passwod/SMS
+ -> 预留：腾讯教育号登录
 * Reserved api: Tencent Edu-API-Login
 * Official website: All(贴心猫、贴心博客、爱窝房产、开心企业网) system in the same domain `txjia.com`.
 * Improve: Install-Update module

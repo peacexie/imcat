@@ -229,6 +229,9 @@ class uioCtrl{
     // 绑定 ?
     function wechatAct(){
         $wecfg = wysBasic::getConfig('admin'); 
+        if(empty($this->cfg['enable'])){
+            return ['errno'=>'notOpen', 'errmsg'=>'请设置参数'];
+        }
         $oauth = new wmpOauth($wecfg);
         $code = req('code');
         $state = req('state'); $stmp = explode('^',$state);
@@ -310,9 +313,12 @@ class uioCtrl{
         $code = req('code');
         $state = req('state'); $stmp = explode('^',$state);
         if($code){
+            $wecfg = read('wework', 'ex');
+            $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
+            if(empty($wecfg['isOpen'])){
+                die('请配置:[ex_wework.php]:isOpen=1');
+            }
             include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
-            $agentId = 'AppCS';
-            $CorpId = read('wework.CorpId', 'ex');
             $api = new \CorpAPI($CorpId, $agentId);
             try {
                 $ures = $api->GetUserInfoByCode($code, 1); 

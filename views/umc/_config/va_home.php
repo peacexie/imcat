@@ -3,8 +3,6 @@
  * 首页模板和通用配置
 /*/
 
-//defined('DIR_WEKIT') || define('DIR_WEKIT', DIR_ROOT.'/wework');
-
 $_va_home = array(
 
     //config配置

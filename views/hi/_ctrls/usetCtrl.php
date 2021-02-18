@@ -36,19 +36,29 @@ class usetCtrl extends uioCtrl{
         return api::v($re);
     }
 
+    function chkWework(){
+        $wecfg = read('wework', 'ex');
+        $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
+        if(empty($wecfg['isOpen'])){
+            die('请配置:[ex_wework.php]:isOpen=1');
+        }
+    }
     function reinAct(){
         $re = &$this->re; //dump($this->ckey);
         $re['vars']['view'] = $this->view; // req('sec','info');
         $uname = $re['vars']['uname'];
         $re['vars']['weact'] = $weact = req('weact');
-        if($this->view=='wework' && $weact){
-            extWework::updContacts($weact);
-            $re['vars']['data'] = extWework::getContacts($weact);
-        }elseif($this->view=='wework'){
-            $re['vars']['deps'] = extWework::getContacts('deps');
-            $re['vars']['utab'] = extWework::getContacts('utab');
-            $dep = req('dep');
-            $re['vars']['dep'] = $dep ? $dep : '0';
+        if($this->view=='wework'){
+            $this->chkWework();
+            if($weact){
+                extWework::updContacts($weact);
+                $re['vars']['data'] = extWework::getContacts($weact);
+            }else{
+                $re['vars']['deps'] = extWework::getContacts('deps');
+                $re['vars']['utab'] = extWework::getContacts('utab');
+                $dep = req('dep');
+                $re['vars']['dep'] = $dep ? $dep : '0';
+            }
         }
         return api::v($re);
     }
@@ -84,9 +94,8 @@ class usetCtrl extends uioCtrl{
                 $re['vars']['errmsg'] = '账号错误'; 
             }
         }elseif($view=='wework'){
+            $this->chkWework();
             include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
-            $agentId = 'AppCS';
-            $CorpId = read('wework.CorpId', 'ex');
             $api = new \CorpAPI($CorpId, $agentId);
             $user = $api->GetUserById($uname); 
             $ext = "gender={$user['gender']}".(empty($user['mobile']) ? '' : "\nmtel={$user['mobile']}");

@@ -1,4 +1,5 @@
 <?php
+global $_cbase;
 
 ### alipay: =======================================================================
 
@@ -22,6 +23,7 @@ $_cfgs['ali']['sandbox']  = false;
 
 ### 微信支付: 
 
+$_cfgs['wepay']['isOpen']    = '0'; // 启用微信支付; 并检查：/root/a3rd/wepv3/
 $_cfgs['wepay']['appid']     = "wx123***"; // 微信支付appid
 $_cfgs['wepay']['appsecret'] = "enc***";  // 微信支付appsecret
 $_cfgs['wepay']['mchid']     = "123***"; // 微信支付mchid

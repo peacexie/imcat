@@ -179,13 +179,10 @@ class texBase{
         $agentId || $agentId = 'AppCS';
         $CorpId = read('wework.CorpId', 'ex');
         $api = new \CorpAPI($CorpId, $agentId);
-        //var_dump($api);
         try {
             return $api->GetUserInfoByCode($code, 1); 
-            //$UserInfo = $api->GetUserById($UserBase->UserId); 
         } catch (Exception $e) {
             return ['errcode'=>'errNowUser', 'errmsg'=>$e->getMessage()];
-            //dump($e->getMessage());
         }
     }
 
@@ -261,6 +258,10 @@ class texBase{
     }
 
     static function msgSend($row=[], $agentId='', $act='0', $touids=[], $toparty=[]){
+        $wecfg = read('wework', 'ex');
+        if(empty($wecfg['isOpen'])){
+            return ['errno'=>'notOpen', 'errmsg'=>'请设置参数'];
+        }
         $agentId || $agentId = 'AppCS';
         $acts = [
             '0' => '请处理',

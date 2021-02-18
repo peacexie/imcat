@@ -82,12 +82,11 @@ class taskCtrl extends bcsCtrl{
                 }elseif($row['mflag']=='paied'){ // 付款
                     $uFlags['hasFee'] = 1;
                 }elseif($row['mflag']=='score' && !empty($row['exmsg'])){ // 评分
-                    $score = $row['exmsg']; $cfg = $this->revars['tabScore'][$score];
+                    $score = $row['exmsg']; $cfg = $re['vars']['tabScore'][$score];
                     $row['exstr'] = "<span class='excss' style='background:#{$cfg['rgb']}'>{$score}分, {$cfg['text']}</span>";
                 }elseif($row['mflag']=='served' && !empty($row['exmsg'])){ // map
                     $mapLink = tex('texBase')->mapLink($row['exmsg']);
-                    $fixAct = $this->revars['fixAct'];
-                    $row['exstr'] = "<a class='excss curhand' href=".(extWework::isWework()?"'javascript:;' $fixAct=\"mapOpen('$row[exmsg]')\"":"'$mapLink'")." target='_map'>打开地图</a>";
+                    $row['exstr'] = "<a class='excss curhand' href=".(extWework::isWework()?"'javascript:;' onclick=\"mapOpen('$row[exmsg]')\"":"'$mapLink'")." target='_map'>打开地图</a>";
                 }
                 if(!$row['exstr'] && !$row['exno'] && !$row['title']) $row['title'] = '(无备注)';
                 $row['exqa'] = empty($row['exqa']) ? [] : $this->doLqas($row['exqa']);
@@ -293,7 +292,7 @@ class taskCtrl extends bcsCtrl{
     function qaAct(){
         $res = &$this->re; 
         $uname = $res['vars']['uname'];
-        $utab = $revars['utab'];
+        $utab = $res['vars']['utab'];
         //
         $cid = req('cid');
         $to = req('to');
@@ -535,7 +534,7 @@ class taskCtrl extends bcsCtrl{
         $re['vars']['doLogs'] = $tmp['doLogs'];
         $re['vars']['uFlags'] = $tmp['uFlags']; //dump($tmp['uFlags']);
         // extra-info
-        $utab = $this->revars['utab']; $deps = $this->revars['deps']; 
+        $utab = $re['vars']['utab']; $deps = $re['vars']['deps']; 
         $puid = req('puid');
         $re['vars']['printName'] = ($puid && isset($utab[$puid])) ? $utab[$puid]['name'] : $puid;
         $re['vars'] = $re['vars'] + tex('texBase')->doUser($tmp, $utab, $deps); 
@@ -544,7 +543,9 @@ class taskCtrl extends bcsCtrl{
 
     function init($ucfg, $vars){
         $re = &$this->re;
-
+        if(empty($re['vars']['wecfgs']['isOpen'])){
+            die('请配置:[ex_wework.php]:isOpen=1');
+        }
         require_once DIR_ROOT."/a3rd/wepv3/example/WxPay.Config.php";
         require_once DIR_ROOT."/a3rd/wepv3/WxPay.funcs.php";
         include_once DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php";

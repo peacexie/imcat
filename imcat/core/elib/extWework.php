@@ -17,13 +17,17 @@ class extWework{
         $this->reqs = $reqs;
         // cfgs
         $this->wecfg = read('wework', 'ex');
+        if(empty($this->wecfg['isOpen'])){
+            die('请配置:[ex_wework.php]:isOpen=1');
+        }else{
+            include_once(DIR_WEKIT."/sv-api/callback/WXBizMsgCrypt.php");
+            $this->wxcpt = new \WXBizMsgCrypt($this->acfg['Token'], $this->acfg['EncodingAESKey'], $this->wecfg['CorpId']);
+        }
         if(!isset($this->wecfg['AppsConfig'][$appId])){
             die('Error AppID!');
         }else{
             $this->acfg = $this->wecfg['AppsConfig'][$appId];
         }
-        include_once(DIR_WEKIT."/sv-api/callback/WXBizMsgCrypt.php");
-        $this->wxcpt = new \WXBizMsgCrypt($this->acfg['Token'], $this->acfg['EncodingAESKey'], $this->wecfg['CorpId']);
     }
 
     function getMsg($encMesg){
@@ -148,12 +152,15 @@ class extWework{
         return $uinfo;
     }
     // 更新:单个用户数据 > 保存到缓存
-    static function updUser($UserId='', $agentId=''){ // deps,utab,uone
-        $wecfgs = read('wework', 'ex'); // DefAppID
-        $agentId = $agentId ?: $wecfgs['DefAppID'];
-        $fp = "/dtmp/wework/$UserId.cac_tab";
+    static function updUser($UserId='', $agentId=''){ // deps,utab,uone  
+        $wecfg = read('wework', 'ex');
+        $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
+        if(empty($wecfg['isOpen'])){
+            return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
+        }
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
-        $CorpId = $wecfgs['CorpId']; //read('wework.CorpId', 'ex');
+        $agentId = $agentId ?: $wecfg['DefAppID'];
+        $fp = "/dtmp/wework/$UserId.cac_tab";
         $api = new \CorpAPI($CorpId, $agentId);
         $uinfo = $api->GetUserById($UserId); 
         // save
@@ -193,10 +200,13 @@ class extWework{
         $key = $act=='deps' ? 'department' : 'userlist';
         $fp = "/dtmp/wework/_$key.cac_tab";
         $res = ['errno'=>'','errmsg'=>'更新成功'];
+        $wecfg = read('wework', 'ex');
+        if(empty($wecfg['isOpen'])){
+            return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
+        }
         include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
-        $wework = read('wework', 'ex');
         // getData
-        $api = new \CorpAPI($wework['CorpId'], ($secret?$secret:$wework['TxlSecret']));
+        $api = new \CorpAPI($wecfg['CorpId'], ($secret?$secret:$wecfg['TxlSecret']));
         if($act=='deps'){
             $res = $api->DepartmentList(null, 1);
         }elseif($act=='utab'){

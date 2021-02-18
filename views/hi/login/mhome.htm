@@ -16,12 +16,12 @@ html::-webkit-scrollbar-track { background:rgba(0,0,0,0.1); } */
 
 <header class="user">
     <span class="r">
-        {if $uflag}
+        {if $uflag=='(bind)'}
+        请绑定
+        {elseif $uflag}
         <i class="fa fa-gear" onclick="opSmenu(1,'smenu')"></i>
-        {elseif $isWexin}
-        请授权登录
         {else}
-        请扫码登录
+        请登录
         {/if}
     </span>
     <div class="logo">

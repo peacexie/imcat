@@ -19,5 +19,3 @@ define('DIR_IMPS',   DIR_PROJ.DS.'ximps'); define('PATH_IMPS',   PATH_PROJ.'/xim
 define('DIR_VENDOR', DIR_IMPS.'/vendor'); define('PATH_VENDOR', PATH_IMPS.'/vendor'); //vendor_package第三方组件目录,访问相对路径
 define('DIR_VENDUI', DIR_IMPS.'/vendui'); define('PATH_VENDUI', PATH_IMPS.'/vendui'); //vendor_ui第三方UI目录,访问相对路径
 define('DIR_STATIC', DIR_IMPS.'/static'); define('PATH_STATIC', PATH_IMPS.'/static'); //static_files静态文件目录,访问相对路径    
-
-define('DIR_WEKIT', DIR_ROOT.'/wework');
