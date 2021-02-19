@@ -65,7 +65,7 @@ Welcome to https://gitee.com/peacexie/imcat!
 
 ### 【v5.4 ChangeLog】 (2020-11)
 
-* [View-Details](http://imcat.txjia.com/doc.php?uplog-5_0)
+* [View-Details](http://txjia.com/imcat/doc.php?uplog-5_0)
 
 
 --- --- --- --- --- --- --- --- --- 
@@ -107,5 +107,5 @@ Welcome to https://gitee.com/peacexie/imcat!
 
 ### 【v5.4更新日志】(2020-11)
 
-* [查看详情](http://imcat.txjia.com/dev.php?uplog-5_0)
+* [查看详情](http://txjia.com/imcat/dev.php?uplog-5_0)
 
