@@ -15,8 +15,8 @@ if(!empty($list)){
         $pids .= "$log[pid],";
         $doc = data('cstask',"did='$log[pid]'",1);
         $row = ['did'=>$log['pid'], 'title'=>$doc['title'], 'mflag'=>$log['mflag'], 'remind_time'=>$log['exmsg']];
-        $res = \imcat\wework\texBase::msgSend($row, '1000002', 'remind', [$log['mname']]);
-        //$res = \imcat\umc\texBase::msgSend($row, '1000002', 'remind', [$log['mname']]);
+        $res = \imcat\wework\texBase::msgSend($row, 'AppCS', 'remind', [$log['mname']]);
+        //$res = \imcat\umc\texBase::msgSend($row, 'AppCS', 'remind', [$log['mname']]);
         dump($res);
     }
 }
