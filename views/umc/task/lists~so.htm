@@ -7,10 +7,11 @@
         <div class="bd">
 
             <div class="cont" id='cont_idpwd'>
-                <form class="list1">
+                <form class="list1" action="{surl(task)}">
+                  <input type="hidden" name="act" value="<?=req('act')?>">
                   <div class="row">
                     <div class="col1">
-                        <select class="so-select" name="catid" id='catid' required><!--weui-select-->
+                        <select class="so-select" name="catid" id='catid' x_required><!--weui-select-->
                             <option value="">-工单类型-</option>
                             {tag:tp=[Type,u][modid,cstask][idfix,top]}
                             <option value="{=$t_kid}" {if @$catid==$t_kid}selected{/if}>{title($t_title,32,$u)}</option>
@@ -20,11 +21,13 @@
                   </div>
                   <div class="row">
                     <div class="col1">
-                        <select class="so-select" name="mflag" id='mflag' required><!--weui-select-->
+                        <select class="so-select" name="mflag" id='mflag' x_required><!--weui-select-->
                             <option value="">-状态-</option>
-                            {if $this->key=='history'}
-                            <option value="done" {if $mflag=='done'}selected{/if}>待评分</option>
+                            {if $this->key=='history'} AND mflag IN('done','paied','score','close')"; 
+                            <option value="done" {if $mflag=='done'}selected{/if}>完成待评分</option>
                             <option value="close" {if $mflag=='close'}selected{/if}>已关闭</option>
+                            <option value="score" {if $mflag=='score'}selected{/if}>已评分</option>
+                            <option value="paied" {if $mflag=='paied'}selected{/if}>已支付</option>
                             {else}
                             <?php foreach($tabMflag as $k=>$v){ ?>
                             <option value="{=$k}" {if $mflag==$k}selected{/if}>{=$v}</option>
@@ -35,16 +38,16 @@
                   </div>
                   <div class="row">
                     <div class="col1">
-                      <input class="weui-input so-input" name="keywd" id='keywd' value="{=$keywd}" placeholder="关键字">
+                      <input class="so-input" name="keywd" id='keywd' value="{=$keywd}" placeholder="关键字">
                     </div>
                   </div>
                   <div class="row">
                     <div class="col1"></div>
                     <div class="col2">
-                      <button type="button" class="btn btn-act">返回</button>
+                      <button type="submit" class="btn btn-act">搜索</button>
                     </div>
                     <div class="col2">
-                      <button type="button" class="btn btn-act">搜索</button>
+                      <button type="button" class="btn" onclick="opSmenu(0,'dlog3')">返回</button>
                     </div>
                     <div class="col1"></div>
                   </div>

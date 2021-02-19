@@ -13,7 +13,7 @@
 <header>
     <a href="{surl(0)}" class="fa fa-home"></a>
     <a href="#" class="fa fa-search" onclick="opDialog('dlog3')"></a>
-    <h1>工单</h1>
+    <h1>工单{=$soname}</h1>
 </header>
 
 <article class="">
@@ -21,7 +21,7 @@
     {tag:dlist=[Page][modid,cstask][where,$whrstr][limit,20]}
         <div class="shead">
             <span class="r">{=$_cbase['page']['prec']}条记录</span>
-            <div class="">所有工单</div>
+            <div class="">工单{=$soname}</div>
         </div>
         {:row}
         {inc:"task/lists~row"}

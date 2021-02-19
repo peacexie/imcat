@@ -28,8 +28,8 @@ class texBase{
     }
 
     // 状态,人员,时间,类型类型,设备类型,关键字
-    static function sqlType($vars){ 
-
+    static function sqlType(&$re){ 
+        $vars = &$re['vars'];
         $user = empty($vars['uinfo']) ? ['umod'=>'(null)','uname'=>'(null)'] : $vars['uinfo'];
         $corp = empty($vars['cscorp']) ? [] : $vars['cscorp']; 
 
@@ -66,18 +66,63 @@ class texBase{
         return $sql;
     }
 
-    static function sqlSo(){
+    /*
+        'apnew' => '新售后单',
+        'assign' => '售后派工',
+        'redo' => '重新派工',
+        'servchk' => '接收任务',
+        'aptime' => '约定时间',
+        'ushift' => '转交任务',
+        'served' => '服务打卡',
+        'done' => '售后完成',
+        'paied' => '付款',
+        'score' => '评分',
+        'close' => '关闭',
+        'susing' => '挂单申请',
+        'suspend' => '已挂单',
+        'attapply' => '配件申请',
+        'attbuy' => '配件购买',
+        'eqfix' => '公司维修',
+        'eqfac' => '返厂维修',
+    */
+    static function sqlAct(&$re, $act='', $mflag=''){ // waitme,history
+        $sql = ''; $soname = ' - (所有)';
+        $act = $act ? $act : req('act'); //dump($re); die();
+        $mflag = $mflag ? $mflag : req('mflag'); //dump($act);
+        if($act=='waitme'){
+            $soname = ' - 处理中';
+            if($mflag){ // 搜索状态
+                $sql .= " AND mflag='".$mflag."'"; 
+            }else{
+                $sql .= " AND mflag IN('apnew','assign','redo','servchk','aptime','ushift','served','susing')"; 
+            }
+        }elseif($act=='history'){
+            $soname = ' - 历史单';
+            if($mflag){ // 搜索状态
+                $sql .= " AND mflag='".$mflag."'"; 
+            }else{ // all:所有状态
+                $sql .= " AND mflag IN('done','paied','score','close')"; 
+            }
+        }
+        $re['vars']['act'] = $act;
+        $re['vars']['mflag'] = $mflag;
+        $re['vars']['soname'] = $soname;
+        return $sql;
+    }
+
+    static function sqlSo(&$re){
+        $vars = &$re['vars'];
         $sql = '';
         // catid+equip
         foreach (['catid','equip'] as $key) {
-            $re['vars'][$key] = $$key = req($key);
+            $vars[$key] = $$key = req($key);
             if($$key){ $sql .= " AND $key='".$$key."'"; }
         }
         // sotime[a-b]+day_start+day_end
         $sotime = req('sotime');
         self::subTime($sotime, $re, $sql);
         // keywd
-        $re['vars']['keywd'] = $keywd = req('keywd');
+        $vars['keywd'] = $keywd = req('keywd');
         if($keywd){ $sql .= " AND title LIKE '%".$keywd."%'"; }
         // sql+return
         #$sql = $sql ? $sql : " AND 1=1"; //dump($sql); //die('');

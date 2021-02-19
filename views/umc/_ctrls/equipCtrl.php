@@ -31,8 +31,14 @@ class equipCtrl extends bcsCtrl{
 
     function homeAct(){
         $re = &$this->re;
-        $re['vars']['whrstr'] = "";
-        //$re['newtpl'] = 'equip/mhome';
+        $whrstr = '';
+        $re['vars']['sokey'] = $sokey = req('sokey');
+        $re['vars']['keywd'] = $keywd = req('keywd');
+        $re['vars']['qr']    = $qr    = req('qr');
+        if(in_array($sokey,['title','mname','mtel']) && $keywd){
+            $whrstr .= " AND $sokey LIKE '%$keywd%'";
+        }
+        $re['vars']['whrstr'] = $whrstr; //dump($whrstr);
         $f1 = $re['vars']['uflag']=='inmem'; //dump([$csno, $key]); 
         if(!$f1){ 
             $re['vars']['errno'] = "Error-Custom-Perm";

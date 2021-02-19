@@ -77,7 +77,9 @@ class bcsCtrl extends uioCtrl{
             $skips = ['task-print'];
             if(in_array($this->ucfg['mkv'],$skips)){ return; }
             $vars = ['errno'=>'NOT-Login', 'errmsg'=>'未登录']; 
-            $url = surl('hi:login-setdf')."?jpmkv=umc:{$this->ucfg['mkv']}&domkv=login?sec=full&_r=".date('mdHi');
+            $jpmkv = req('jpmkv',"umc:{$this->ucfg['mkv']}");
+            $sec = req('sec','full');
+            $url = surl('hi:login-setdf')."?jpmkv=$jpmkv&domkv=login?sec=$sec&_r=".date('mdHi');
             //  {surl(hi:login-setdf)}?jpmkv=comm:{=$this->mkv}&domkv=login-weedu&sec=full
             return api::v($vars, 'dir', $url);
         }

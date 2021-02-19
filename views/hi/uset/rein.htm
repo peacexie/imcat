@@ -29,6 +29,8 @@
         <div class="grc3"><a href="{surl(uset-rein-wework)}">企业会员</a></div>
     </div>
 
+    <div class="c"></div>
+
     <p class="info">模拟登录 ● 更换登录账号,用于模拟测试...</p>
 
     <form class="list1" id="fmrein" name="fmrein" method="post" onsubmit="return chkRein('fmrein')">
@@ -73,7 +75,7 @@
             <div class="grc3"><a href="{surl(uset-rein-wework)}">(成员)</a></div>
         </div>
         {if $weact}
-        <?dump($data)?>
+        <?php dump($data); ?>
         {else}
         <div class="grid">
             <?php foreach($deps as $dk=>$dv){ $name=$dv['parentid'] ? $dv['name']:'(无部门)'; ?>

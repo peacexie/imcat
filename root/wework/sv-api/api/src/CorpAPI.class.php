@@ -44,14 +44,17 @@ class CorpAPI extends API
      */
     public function __construct($corpId=null, $secret=null)
     {
-        Utils::checkNotEmptyStr($corpId, "corpid");
-        Utils::checkNotEmptyStr($secret, "secret");
-
-        $this->corpId = $corpId;
         $config = read('wework', 'ex');
         if(isset($config['AppsConfig'][$secret])){ // 1000002, AppCS
             $secret = $config['AppsConfig'][$secret]['Secret'];
         }
+        if(isset($config['AppsConfig'][$secret]['CorpId'])){ 
+            $CorpId = $config['AppsConfig'][$secret]['CorpId'];
+        }
+        Utils::checkNotEmptyStr($corpId, "corpid");
+        Utils::checkNotEmptyStr($secret, "secret");
+
+        $this->corpId = $corpId; //echo "$corpId:$secret";
         $this->secret = $secret;
         $this->tkKey = "wework_{$corpId}_{$secret}";
     }
@@ -77,20 +80,19 @@ class CorpAPI extends API
 
     protected function RefreshAccessToken()
     {
-        if (!Utils::notEmptyStr($this->corpId) || !Utils::notEmptyStr($this->secret))
+        if(!Utils::notEmptyStr($this->corpId) || !Utils::notEmptyStr($this->secret))
             throw new ParameterError("invalid corpid or secret");
 
         $url = HttpUtils::MakeUrl("/cgi-bin/gettoken?corpid={$this->corpId}&corpsecret={$this->secret}");
         $this->_HttpGetParseToJson($url, false);
         $this->_CheckErrCode(); 
         if(!empty($this->rspJson['errcode'])){
-            $this->accessToken = ''; // dump($this->rspJson); imcat缓存
-            die("{$this->rspJson['errcode']}:{$this->rspJson['errmsg']}");
-        }else{
-            $this->accessToken = $this->rspJson["access_token"]; // dump($this->rspJson); imcat缓存
-            $tkarr = ['token'=>$this->rspJson["access_token"], 'exp'=>$this->rspJson["expires_in"]];
-            \imcat\extCache::tkSet($this->tkKey, $tkarr, 30); 
+            die($this->rspJson['errcode'].''.$this->rspJson['errmsg']);
         }
+
+        $this->accessToken = $this->rspJson["access_token"]; //dump($this->rspJson); //imcat缓存
+        $tkarr = ['token'=>$this->rspJson["access_token"], 'exp'=>$this->rspJson["expires_in"]];
+        \imcat\extCache::tkSet($this->tkKey, $tkarr, 30);
     }
 
     // ------------------------- 成员管理 -------------------------------------
@@ -397,7 +399,7 @@ class CorpAPI extends API
      * @note 1: userIdList/partyIdList 不能同时为空
      * @note 2: 如果存在不合法的 userid/partyid, 不会throw Exception，但是会填充invalidUserIdList/invalidPartyIdList
      */
-    public function TagAddUser($tagid, $userIdList=array(), $partyIdList=array(), &$invalidUserIdList, &$invalidPartyIdList)
+    public function TagAddUser($tagid, $userIdList=[], $partyIdList=[], &$invalidUserIdList=[], &$invalidPartyIdList=[])
     {
         Tag::CheckTagAddUserArgs($tagid, $userIdList, $partyIdList); 
         $args = Tag::ToTagAddUserArray($tagid, $userIdList, $partyIdList);
@@ -539,7 +541,7 @@ class CorpAPI extends API
         * @param $invalidTagIdList : output uint array
      */
     public function BatchInvite(
-        $userIdList=null, $partyIdList=null, $tagIdList=null,
+        $userIdList, $partyIdList, $tagIdList,
         &$invalidUserIdList, &$invalidPartyIdList, &$invalidTagIdList)
     {
         if (is_null($userIdList) && is_null($partyIdList) && is_null($tagIdList)) {

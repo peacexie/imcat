@@ -31,6 +31,7 @@ if(empty($qstr) || in_array($qstr,array('cook','fset','frame','iframe','myoutip'
 }elseif($qstr=='dologin'){ 
   $user = @$_POST['user'];
   $pass = @$_POST['pass'];
+  if($out_pass=='up.<rnd12>'){ die('Initial password prohibits login!'); }
   if(!empty($out_user) && !empty($out_pass) && $user==$out_user && $pass==$out_pass){
     $_SESSION[$sessid] = 'pstools';
   }

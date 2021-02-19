@@ -27,14 +27,15 @@ img.qr{ max-width:320px; width:100%; margin:1rem auto; }
     <div class="navh">
         <form action="?" id="sofm" name="sofm">
         <ul>
-            <li><select name="show" class="w60">
+            <li><select name="sokey" class="w60">
                 <option value="title">名称</option>
                 <option value="mname">联系人</option>
                 <option value="mtel">电话</option>
             </select></li>
             <li><input value="" name="keywd" class="w80"></li>
-            <li><input value="筛选 [暂不能用]" type="submit" class="act"></li>
+            <li><input value="筛选" type="submit" class="act"></li>
         </ul>
+        <input type="hidden" value="{=$qr}" name="qr">  
         </form>
     </div>
 

@@ -53,7 +53,7 @@ class usetCtrl extends uioCtrl{
             $this->chkWework();
             if($weact){
                 extWework::updContacts($weact);
-                $re['vars']['data'] = extWework::getContacts($weact);
+                $re['vars']['data'] = extWework::getContacts($weact); 
             }else{
                 $re['vars']['deps'] = extWework::getContacts('deps');
                 $re['vars']['utab'] = extWework::getContacts('utab');
