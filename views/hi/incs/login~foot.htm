@@ -1,5 +1,10 @@
 
-{inc:"incs/imp-foot"}
+<script>
+var cronUrl = "<?=PATH_BASE.'?ajax-cron&tpldir=hi&rf=&'.safComm::urlStamp('init').'&_v=v204';?>";
+setTimeout(function(){
+    $.ajax({error:function(er1){},success:function(re1){},url:cronUrl});
+}, 520);
+</script>
 
 <footer>
   <p>Copyright @ {=$_cbase['sys_name']}<?=date('Y')?></p>
