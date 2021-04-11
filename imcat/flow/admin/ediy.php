@@ -44,8 +44,8 @@ if(in_array($part,array('edit','restore','down'))){
         die();
     }elseif(!empty($bsend)){
         $ndata = $_POST['ndata']; //req('ndata','','Html',102400);
-        safScan::do($ndata);
-        safScan::do($ndata,1);
+        safScan::deel($ndata); 
+        safScan::deel($ndata,1);
         @unlink("$fp.maobak"); copy($fp,"$fp.maobak");
         comFiles::put($fp,$ndata);
         basMsg::show(lang('admin.ediy_editok'));

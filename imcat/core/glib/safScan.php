@@ -63,7 +63,7 @@ class safScan{ // extends safBase
         ],
     ];
 
-    static function do($str, $no=0){
+    static function deel($str, $no=0){
         $tab = self::getTab($no);
         foreach($tab as $key=>$value){
             $value = str_replace("\\(", "\\s*\\(", $value);
