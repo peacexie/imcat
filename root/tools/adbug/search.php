@@ -2,6 +2,12 @@
 namespace imcat;
 require __DIR__.'/_config.php'; 
 
+$_cfgfp = '/cfgs/boot/cfg_adbug.php';
+include DIR_ROOT.$_cfgfp; 
+if(empty($can_diycfg)){ 
+    die("Prohibited! Use FTP Edit `$_cfgfp`, And set `\$can_diycfg = '1'; First!`"); 
+}
+
 // install;patch;updatedata;
 define('SKIP',';.svn;_svn;.git;_git;'); 
 define('SDIR',';@skipdir;');
@@ -26,9 +32,11 @@ $key = isset($_REQUEST['key'])?$_REQUEST['key']:'';
 $key = stripslashes($key); $keyBak = $key; $key = strtolower($key); 
 
 $file = isset($_REQUEST['file'])?$_REQUEST['file']:'';
+if(strstr($file,'../') || !file_exists(BASE."/$file")){
+    die("Error File `$file`:");
+}
 $cset = isset($_REQUEST['cset'])?$_REQUEST['cset']:'';
 $cset2 = ($cset)?$cset:'utf-8';
-
 
 ?>
 <!DOCTYPE html><html><head>
