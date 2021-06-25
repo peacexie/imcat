@@ -2,7 +2,7 @@
 
 感恩 github.com 相伴多年！
 
-中国（包含港澳台钓鱼岛）用户请尽量移步：https://gitee.com/peacexie/imcat，
+中国（包含港澳台钓鱼岛）用户请尽量移步：https://gitee.com/peacexie/imcat ，
 因为国内访问实在是有点慢！咱们中国人就直接写汉字吧！
 
 如果要 `requests a CVE`，不用转很多弯，请把内容（包含选项）写好给我email（中英文都可）！
