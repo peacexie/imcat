@@ -1,5 +1,15 @@
 
 
+感恩 github.com 相伴多年！
+
+中国用户请尽量异步：https://gitee.com/peacexie/imcat，
+因为国内访问实在是有点慢！咱们中国人就直接写汉字吧！
+
+如果要提交 `requests a CVE`，请把内容写好给我email，不用转很多弯！
+一般情况下我会帮您做的。
+
+--- --- --- --- --- --- --- --- --- 
+
 * 贴心猫(imcat) V5.6 Alpha (2021-06)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
