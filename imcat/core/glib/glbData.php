@@ -113,6 +113,10 @@ class glbData{
 
     // ord: atime-1, atime
     static function iord($ord){
+        if(strpos($ord,',')){
+            self::$ord = $ord;
+            return;
+        }
         $ord || $ord = self::$cfg['ord'].'-1';
         if(strpos($ord,'-')){
             $tmp = explode('-',$ord);
@@ -143,9 +147,11 @@ class glbData{
         if(in_array($pid,array('docs','users','coms','advs'))){
             if(strstr($whr,"`show`='all'")){
                 $whr = str_replace([" AND `show`='all'","`show`='all' AND ","`show`='all'"],'',$whr);
-            }elseif(!strstr($whr,'`show`=')){
+            }elseif(strstr($whr,'`show`')){ 
+                // 
+            }else{ //if(!strstr($whr,'`show`=')){ 
                 $whr .= " AND (`show`='1')";
-            }
+            } 
         }
         if(substr($whr,0,5)==' AND ') $whr = substr($whr,5);
         self::$whr = $whr;

@@ -7,10 +7,10 @@ class vopTpls{
     ### 主要方法 ～～～～～～～～～～～
 
     // 显示解析后的模板内容
-    static function show($file, $ext='', $data=array()){
+    static function show($_file, $_ext='', $_data=array()){
         global $_cbase; 
-        $fpath = self::cinc($file,$ext); 
-        extract($data, EXTR_OVERWRITE); 
+        $fpath = self::cinc($_file, $_ext); 
+        extract($_data, EXTR_OVERWRITE); 
         ob_start(); 
         include $fpath;
         $res = ob_get_contents();

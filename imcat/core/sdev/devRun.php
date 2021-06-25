@@ -263,10 +263,11 @@ class devRun{
                 $a[$type] = array('res'=>FLAGNO,'info'=>basLang::show('devrun_extendset',$type));
             }else{
                 $a[$type] = array('res'=>FLAGYES,'info'=>""); //支持type
-                $link = @$fconn($_cfgs['db_host'], $_cfgs['db_user'], $_cfgs['db_pass']);
-                @$info = $link ? " OK : ".$finfo($link) : " [".$ferrno($link)."] ".$ferror(); 
-                @$_erno = $ferrno($link);
-                if($link && empty($_erno)){
+                $link = @$fconn($_cfgs['db_host'], $_cfgs['db_user'], $_cfgs['db_pass']); //dump($link);
+                //@$info = $link ? " OK : ".$finfo($link) : " [".$ferrno($link)."] ".$ferror(); 
+                //@$_erno = $ferrno($link);
+                if($link){
+                    $info = " OK : ".$finfo($link); 
                     $dbflag = $type=='mysql' ? @mysql_select_db($_cfgs['db_name'],$link) : @mysqli_select_db($link,$_cfgs['db_name']);
                     if($dbflag){
                         $info .= "; OK : {$_cfgs['db_name']}";

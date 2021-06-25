@@ -50,7 +50,7 @@ class CorpAPI extends API
         }
         if(isset($config['AppsConfig'][$secret]['CorpId'])){ 
             $CorpId = $config['AppsConfig'][$secret]['CorpId'];
-        }
+        } 
         Utils::checkNotEmptyStr($corpId, "corpid");
         Utils::checkNotEmptyStr($secret, "secret");
 
@@ -59,6 +59,63 @@ class CorpAPI extends API
         $this->tkKey = "wework_{$corpId}_{$secret}";
     }
 
+
+    // ------------------------- xxx ---------------------------------
+
+
+    /**
+     * @brief DepartmentList : edu:获取部门列表
+     *
+     * @link https://work.weixin.qq.com/api/doc/90000/90135/92343
+     *
+     * @param $departmentId : uint, 如果不填，默认获取全量组织架构
+     *
+     * @return : Department array
+     */
+    public function EduDepartLists($departmentId=null)
+    { 
+        self::_HttpCall(self::EDU_DEPART_LIST, 'GET', array('id'=>$departmentId));
+        //if($getarr){
+            return $this->rspJson;
+        //}
+    }
+
+    /**
+     * @brief UserSimpleList : edu:获取部门成员
+     *
+     * @link https://work.weixin.qq.com/api/doc/90000/90135/92338
+     *
+     * @param $departmentId : uint
+     * @param $fetchChild : 1/0 是否递归获取子部门下面的成员
+     *
+     * @return : User array
+     */
+    public function EduDepartUsers($department_id, $fetchChild=0)
+    {
+        #Utils::checkIsUInt($department_id, "department_id"); 
+        self::_HttpCall(self::EDU_DEPART_USER, 'GET', array('department_id'=>$department_id, 'fetch_child'=>$fetchChild)); 
+        //if($getarr){
+            return $this->rspJson;
+        //}
+    }
+
+    public function EdutUserInfo($userid)
+    {
+        #Utils::checkIsUInt($userid, "department_id"); 
+        self::_HttpCall(self::EDU_USER_INFO, 'GET', array('userid'=>$userid)); 
+        //if($getarr){
+            return $this->rspJson;
+        //}
+    }
+    // 获取外部联系人详情
+    public function EXTUserInfo($exuserid)
+    {
+        #Utils::checkIsUInt($userid, "exuserid"); 
+        self::_HttpCall(self::EXT_USER_INFO, 'GET', array('external_userid'=>$exuserid)); 
+        //if($getarr){
+            return $this->rspJson;
+        //}
+    }
 
     // ------------------------- access token ---------------------------------
     /**
@@ -646,10 +703,7 @@ class CorpAPI extends API
         self::_HttpCall(self::MENU_DELETE, 'GET', array('agentid'=>$agentid)); 
     }
 
-    //
     // --------------------------- 消息推送 -----------------------------------
-    //
-    //
     /**
      * @brief MessageSend : 发送消息
      *
@@ -664,7 +718,6 @@ class CorpAPI extends API
      */
     public function MessageSend(Message $message, &$invalidUserIdList, &$invalidPartyIdList, &$invalidTagIdList)
     {
-        
         if(empty($message->touser) && empty($message->toparty) && empty($message->totag)){ 
             $dlog = [$message, 'MessageSend'];
             basDebug::bugLogs("msg-capi", $dlog, "msg-capi.log", 'file');
@@ -691,6 +744,25 @@ class CorpAPI extends API
             $invalidTagIdList[] = intval($item);
         }
     } 
+
+    // --------------------------- 消息推送 -----------------------------------
+    /**
+     * @brief ExtMessageSend : 发送「学校通知」
+     * @link https://work.weixin.qq.com/api/doc/90000/90135/92321
+     * @return 
+     */
+    public function ExtMessageSend($data, &$errPlist, &$errSlist, &$errDlist)
+    {
+        self::_HttpCall(self::EXT_MSG_SEND, 'POST', $data); 
+
+        $errPlist = $this->rspJson['invalid_parent_userid'];
+        $errSlist = $this->rspJson['invalid_student_userid'];
+        $errDlist = $this->rspJson['invalid_party'];
+
+        //dump($this->rspJson); die();
+
+    } 
+
     //
     // --------------------------- 素材管理 -----------------------------------
     //
@@ -714,7 +786,7 @@ class CorpAPI extends API
         }
 
         // 兼容php5.3-5.6 curl模块的上传操作
-	$args = array();
+	    $args = array();
         if (class_exists('\CURLFile')) {
             $args = array('media' => new \CURLFile(realpath($filePath), 'application/octet-stream', basename($filePath)));
         } else {

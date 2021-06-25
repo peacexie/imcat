@@ -100,6 +100,21 @@ class fldCfgs{
     
     }
     
+    static function getParts($mod='', $skips=[]){
+        $fields = read("$mod.f");
+        $res = []; $key = '';
+        foreach ($fields as $fk=>$fv){ 
+            if(in_array($fk,$skips)){ continue; }
+            if($fv['type']=='parts'){ // 分段开始标记
+                $key = $fk; 
+                $res[$key] = [];
+            }elseif($key){
+                $res[$key][] = $fk;
+            }
+        }
+        return $res;
+    }
+
     static function getSizeArray($cfg=array()){
         if(empty($cfg['fmsize'])){
             $size = array();

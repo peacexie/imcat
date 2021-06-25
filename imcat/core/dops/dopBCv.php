@@ -76,8 +76,8 @@ class dopBCv{
         return "<td class='tc'>$val</td>\n"; 
     }
     // 显示项-Show
-    function Show($val,$td=1){
-        $val = glbHtml::null_cell($val);
+    function Show($val,$td=1){ 
+        $val = in_array($val,['0',0,1]) ? glbHtml::null_cell($val) : "($val)";
         if(empty($td)) return $val;
         return "<td class='tc'>$val</td>\n";
     }

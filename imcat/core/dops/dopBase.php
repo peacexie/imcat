@@ -123,6 +123,9 @@ class dopBase{
             $reg = "";
             $itms = "<option value=''>(default)</option>";
         }
+        if(!empty($dval) && !strpos($itms," selected")){ 
+            $itms .= "<option value='$dval' selected>($dval)</option>";
+        }
         $str = "\n<select name='fm[$key]' id='fm[$key]' class='w$w' $reg>$itms</select>";
         return $str;
     }
@@ -146,9 +149,16 @@ class dopBase{
     }
     // def：0/1; 当前资料优先, 再次是模型设置优先, 最后用$def默认值
     function fmShow($def=1){
-        $val = dopFunc::fmDefval($this,'show',$def);
-        $item = basElm::setOption("1=".basLang::show('flow.op_show')."\n0=".basLang::show('flow.op_hide')."",$val,basLang::show('flow.op0_show')); 
-        $item = "\n<select name='fm[show]' class='w80' reg='n+i:' tip='".basLang::show('flow.tip_ssel')."'>$item</select>";
+        $val = dopFunc::fmDefval($this,'show',$def); //$val = in_array($val,['0',0,1]) ? glbHtml::null_cell($val) : "($val)";
+        $ops = "1=".basLang::show('flow.op_show')."\n0=".basLang::show('flow.op_hide');
+        if(!in_array($val,['0',0,1])){ 
+            $ops .= "\n$val=($val)自定义"; 
+            $reg = "tit:1-2";
+        }else{
+            $reg = "n+i:";
+        }
+        $item = basElm::setOption($ops,$val,basLang::show('flow.op0_show')); 
+        $item = "\n<select name='fm[show]' class='w90' reg='$reg' tip='".basLang::show('flow.tip_ssel')."'>$item</select>";
         return $item;
     }
     function fmAELogs($type,$key){
@@ -156,7 +166,7 @@ class dopBase{
         $run = $_cbase['run'];
         $user = usrBase::userObj();
         if($type=='date'){
-            $val = empty($this->fmo[$key]) ? $run['stamp'] : $this->fmo[$key];
+            $val = $key=='etime' ? $run['stamp'] : (empty($this->fmo[$key]) ? $run['stamp'] : $this->fmo[$key]);
             $val = date('Y-m-d H:i:s',$val); 
             echo basJscss::imp('/My97DatePicker/WdatePicker.js','vendui'); 
             $iinp = "<input id='fm[$key]' name='fm[$key]' type='text' value='$val' class='txt w140' />";

@@ -24,14 +24,7 @@ class ExcelWriter{
         $this->bConvertTypes = $bConvertTypes;
         $this->sEncoding = $sEncoding;
     }
-    // 
-    function setTable($head,$data,$title=''){
-        $this->worksheetStart($title);
-        $this->setTableHeader($head);  //表字段名
-        $this->setTableRows($data); //内容字段
-        $this->worksheetEnd();
-    }
-   
+
     // 向客户端发送Excel头信息; $fname:文件名称,不能是中文 
     function generateXMLHeader($fname=''){
         $fname = $fname ? $fname : 'Book-'.date('md-His',$_SERVER["REQUEST_TIME"]); // preg_replace('/[^aA-zZ0-9\_\-]/', '', $fname)
@@ -48,15 +41,19 @@ class ExcelWriter{
         echo $this->footer;
     }
    
+    // 
+    function setTable($head, $data, $title=''){
+        $this->worksheetStart($title);
+        $this->setTableHeader($head);  //表字段名
+        $this->setTableRows($data); //内容字段
+        $this->worksheetEnd();
+    }
+
     // 开启工作簿
     function worksheetStart($title=''){
         $this->cntSheet++;
         $title = preg_replace("/[\\\|:|\/|\?|\*|\[|\]]/", "", empty($title) ? 'Sheet'.($this->cntSheet) : $title);
         echo "\n<Worksheet ss:Name=\"" . substr($title, 0, 31) . "\">\n<Table>\n";
-    }
-    // 结束工作簿
-    function worksheetEnd(){
-        echo "</Table>\n</Worksheet>\n";
     }
     // 设置表头信息
     function setTableHeader($header=array()){
@@ -66,7 +63,11 @@ class ExcelWriter{
     function setTableRows($rows=array()){
         foreach ($rows as $row) echo $this->_parseRow($row);
     }
-   
+    // 结束工作簿
+    function worksheetEnd(){
+        echo "</Table>\n</Worksheet>\n";
+    }
+
     // 将传人的单行记录数组转换成 xml 标签形式
     private function _parseRow($row=array()){
         $cells = "";

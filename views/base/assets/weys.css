@@ -30,6 +30,7 @@ hr{ clear:both; }
 .tl{ text-align:left; } .tr{ text-align:right; } .tc{ text-align:center; }
 .emr, a.emr{ color:#F00; } .emg, a.emg{ color:#0F0; } .emb, a.emb{ color:#00F; } .emp, a.emp{ color:#F0F; }
 .gr3, a.gr3{ color:#333; } .gr6, a.gr6{ color:#666; } .gr9, a.gr9{ color:#999; } .grc, a.grc{ color:#CCC; }
+.lhp50 { line-height:50%; } .lhp100 { line-height:100%; }
 .close{ float:right; cursor:pointer; padding:0.3rem; margin:0.3rem; border:var(--brdE); border-radius:0.3rem; }
 .disabled, .disabled a, .disabled span{ color:var(--cA) !important; cursor:default !important; text-decoration:none !important; }
 .nowrap, .nowraps>li, .nowraps>p, .nowraps>div{ overflow:hidden; word-break:keep-all; white-space:nowrap; }
@@ -110,6 +111,7 @@ article .info, section .info{ color:#666; text-align:center; background-color:va
   cursor:pointer; padding:4px 12px; border:var(--brdC); }
 .btn{ border-radius:4px; }
 .btn-act{ color:var(--bga); background-color:var(--em); }
+.btn-act .fa{ color:#FFF; }
 a.btn-act:hover{ color:var(--bga); }
 .btn-red{ color:#F00; }
 .btn-gray{ color:var(--c8); }
@@ -148,6 +150,7 @@ input, select, textarea{ display:inline-block; padding:6px 12px; color:(--c5); b
 .grbox>div a{ display:block; text-align:center; padding:1rem; }
 .grbox>div a:hover{ color:var(--hover); text-decoration:none; }
 .grbox>div a i{ display:block; color:var(--link); font-size:48px; }
+.grbox>div a img{ width:48px; width:48px; display:block; margin:auto; }
 .grid{ display:flow-root; }
 .grc2, .grc3, .grc4{ float:left; /*border:1px solid #CCC;*/ box-sizing:border-box; }
 .grc2{ width:50%; } .grc3{ width:33.33%; } .grc4{ width:25%; }
@@ -216,6 +219,11 @@ input, select, textarea{ display:inline-block; padding:6px 12px; color:(--c5); b
 .hmain p{ font-size:1.0rem; padding:0; margin:0; }
 .hext{ float:right; }
 
+.vmaxb, .vmaxi{ display:none; }
+@media only screen and ( min-width:1200px) {
+  .vmaxb{ display:block; }
+  .vmaxi{ display:inline-block; }
+}
 @media only screen and ( max-width:1200px) {
   .tmenu{ max-width:100%; }
   .tmenu>ul{ margin:0; }
@@ -248,6 +256,8 @@ input, select, textarea{ display:inline-block; padding:6px 12px; color:(--c5); b
   .grbox{ min-height:48px; }
   .grbox>div a{ padding:0.5rem; }
   .grbox>div a i{ font-size:24px; }
+  .grbox>div a img{ width:24px; width:24px; }
+  .hmin, .list1 .row>div.hmin, .list2 .row>div.hmin{ display:none; }
 }
 
 /* pager */

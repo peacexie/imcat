@@ -282,6 +282,22 @@ class basStr{
     static function isMail($email) {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
+    static function isIdCard($idno, $rch=0){
+        if(!$rch && strlen($idno)!=18){ return 0; }
+        $w = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+        $y = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']; 
+        $sum = 0;
+        for($i=0; $i<17; $i++){
+            $sum += $idno[$i] * $w[$i];
+        } 
+        $mod = $sum % 11; // 取余
+        if($rch){
+            return $y[$mod];
+        }else{
+            return $idno[17] == $y[$mod];
+        }
+    } //原文链接：https://blog.csdn.net/xfjpeter/article/details/85092576
+
     // 检查字符串是否是UTF8编码,是返回true,否则返回false
     static function isUtf8($str,$re='T/F'){
         $flag = mb_detect_encoding($str, array('ASCII','GB2312','GBK','BIG5','UTF-8'));

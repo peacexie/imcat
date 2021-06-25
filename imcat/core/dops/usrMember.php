@@ -180,16 +180,20 @@ class usrMember extends usrBase{
         if(empty($row['uname']) && $mode && !in_array($mode,['locin','idpwd'])){
             $updUname = 1;
             if(!empty($row['mname']) && in_array($mode,['mobvc','qq'])){
-                $pre = $mode=='qq' ? 'qq_' : "tel_";
-                $row['uname'] = usrMember::addUname($pre.$row['pptuid'], $umod);
+                $uname = ($mode=='qq' ? 'qq_' : "mob_") . $row['pptuid'];
             }elseif(!empty($row['mname']) && $mode=='wework'){
-                $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+                $uname = strlen($row['pptuid'])>15 ? basStr::filKey(comConvert::pinyinMain($row['mname'])) : $row['pptuid'];
             }elseif(!empty($row['mname']) && $mode=='wechat'){
                 $uname = basStr::filKey(comConvert::pinyinMain($row['mname']));
-                $row['uname'] = usrMember::addUname($uname, $umod);
+            }elseif($mode=='edupr'){
+                $uname = 'edu_'.$row['mname'].'_'.substr($row['pptuid'],-3);
+            }elseif($mode=='extin'){
+                $pre = empty($row['mname']) ? substr($row['pptuid'],0,4) : basStr::filKey(comConvert::pinyinMain($row['mname']));
+                $uname = "out_{$pre}_".substr($row['pptuid'],-3);
             }else{
-                $row['uname'] = usrMember::addUname($row['pptuid'], $umod);
+                $uname = empty($row['pptuid']) ? '' : $row['pptuid'];
             }
+            $row['uname'] = usrMember::addUname($uname, $umod);
         }
         // uacc
         $dbpass = $upass ? comConvert::sysPass($row['uname'],$upass,$umod) : '(reset)';
@@ -336,9 +340,9 @@ class usrMember extends usrBase{
                 return $ckey;
             }
         }
-        $udefs = read('udefs', 'sy'); 
-        $_ckss = empty($udefs['_ckss']) ? [] : $udefs['_ckss'];
-        $ckk = empty($_ckss[$skey]) ? 'login-uio' : $_ckss[$skey];
+        //$udefs = read('udefs', 'sy'); 
+        //$_ckss = empty($udefs['_ckss']) ? [] : $udefs['_ckss'];
+        $ckk = empty($skey) ? 'login-uio' : $skey; //dump($ckk);
         $ckey = comSession::getCook($ckk);
         $ckey = substr(md5($ckey),4,8).".$ckey";
         return $ckey;

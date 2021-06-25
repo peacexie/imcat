@@ -9,6 +9,12 @@ abstract class API
     public $rspJson = null;
     public $rspRawStr = null;
 
+    const EDU_DEPART_LIST   = '/cgi-bin/school/department/list?access_token=ACCESS_TOKEN';       // &id=ID
+    const EDU_DEPART_USER   = '/cgi-bin/school/user/list?access_token=ACCESS_TOKEN';             // &department_id=DEPARTMENT_ID&fetch_child=FETCH_CHILD
+    const EDU_USER_INFO     = '/cgi-bin/school/user/get?access_token=ACCESS_TOKEN';              // &userid=USERID
+    const EXT_USER_INFO     = '/cgi-bin/externalcontact/get?access_token=ACCESS_TOKEN';          // &external_userid=EXTERNAL_USERID
+    const EXT_MSG_SEND      = '/cgi-bin/externalcontact/message/send?access_token=ACCESS_TOKEN'; // 
+
     const USER_CREATE       = '/cgi-bin/user/create?access_token=ACCESS_TOKEN';
     const USER_GET          = '/cgi-bin/user/get?access_token=ACCESS_TOKEN';
     const USER_UPDATE       = '/cgi-bin/user/update?access_token=ACCESS_TOKEN';
@@ -171,7 +177,7 @@ abstract class API
         if (!$isPostFile) {
             if (!is_string($args)) {
                 $postData = HttpUtils::Array2Json($args);
-            }
+            } 
         }
         $this->rspJson = null; $this->rspRawStr = null;
 

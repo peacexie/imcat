@@ -4,13 +4,26 @@ namespace imcat;
 // Html类
 class glbHtml{    
 
+    // viewport-v1
+    static function wpscv1($width=480, $script=1){
+        $jstr = "var ua=navigator.userAgent, wscr=window.screen.width, scale=wscr/$width, wpus='user-scalable=yes';\n";
+        $jstr .= "{ wpus = 'minimum-scale='+scale+', maximum-scale='+scale; }\n"; // if(/Android|iPhone|IEMobile/.test(ua)) 
+        $jstr .= "if(wscr<$width) document.write( '<meta name=\"viewport\" content=\"width=$width, '+wpus+'\">');";
+        if($script){ $jstr = "<script>\n$jstr\n</script>\n";}
+        echo $jstr; 
+    }
+    // viewport-v2
+    static function wpscv2($width=480, $script=1){
+        $jstr = "var ww=window.innerWidth, scale=ww/$width; ";
+        //$jsdo = "$('body').css({'transform':'scale('+scale+')','transform-origin':'top center'});";
+        $jstr .= "if(ww<$width){ $(function(){ $('body').css({'fontSize':scale+'%'}); }); }"; 
+        if($script){ $jstr = "<script>$jstr</script>\n";}
+        echo $jstr; 
+    }
     // viewport-scale
     static function wpscale($width=480, $script=1){
-        $jstr = "var ua=navigator.userAgent, wscr=window.screen.width, scale=wscr/$width, wpus='user-scalable=no', wpstr='';\n";
-        $jstr .= "if(/Android/.test(ua)) { wpus = 'minimum-scale='+scale+', maximum-scale='+scale; }\n";
-        $jstr .= "if(wscr<$width) document.write( wpstr='<meta name=\"viewport\" content=\"width=$width, '+wpus+'\">');";
-        if($script){ $jstr = "<script>\n$jstr\n</script>\n";}
-        echo $jstr; return;
+        $method = preg_match("/Android|iPhone|IEMobile/i",$_SERVER['HTTP_USER_AGENT']) ? 'wpscv1' : 'wpscv2';
+        self::$method($width);
     }
 
     // 页面结构

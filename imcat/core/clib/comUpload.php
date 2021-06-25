@@ -167,6 +167,7 @@ class comUpload
         $this->stateInfo = $this->stateMap[0];
         if(in_array($this->fileType,array('.jpg','.jpeg'))){
             comImage::compress($this->fullName);
+            //$res[] = self::compcut($full, $max);
         }
     }
 

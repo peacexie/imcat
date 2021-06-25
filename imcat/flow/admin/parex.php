@@ -24,15 +24,7 @@ if($view=='upd'){
     
     $keys = array('pid','title','detail','numa','numb','cfgs','note');
     foreach ($lnav as $row) {
-        $pid = $row['kid']; $arr = array();
-        $list = $db->table($tabid)->where("pid='$pid' AND enable='1'")->order('top')->select(); 
-        foreach($list as $v){ 
-            $kid = str_replace('-','_',$v['kid']);
-            foreach($keys as $k){
-                $arr[$kid][$k] = $v[$k];
-            }
-        }
-        if(!empty($arr)) glbConfig::save($arr,"parex_$pid",'dset');
+        glbCUpd::upd_parex($row['kid']);
     }
     $arr = array();
     foreach($lnav as $v){ 

@@ -49,7 +49,18 @@ class vopApi{
         $die && die();
     }
 
-    // 错误
+    // 快捷显示错误
+    static function verr($msg='', $code=0){
+        self::error($msg, $code);
+    }
+
+    // Action测试
+    static function _defAct(){
+        $res['ermsg'] = 'EmptyAction!';
+        return self::view($res);
+    }
+
+    // 错误提示(小程序)
     static function error($msg='', $code=0){
         $msg = empty($msg) ? 'Error Message!' : $msg;
         $res['ercode'] = $code ? $code : 1;
@@ -65,15 +76,19 @@ class vopApi{
         self::view($res);
     }
 
-    // 快捷显示错误
-    static function verr($msg='', $code=0){
-        self::error($msg, $code);
-    }
-
-    // Action测试
-    static function _defAct(){
-        $res['ermsg'] = 'EmptyAction!';
-        return self::view($res);
+    // 错误提示(兼容tp)
+    static function errEnd($ek, $tip='', $msg=''){
+        if(empty($row)){
+            $ere['errno'] = $ere['code'] ="Error-$ek"; // code
+            $ere['errtip'] = $tip;
+            $ere['errmsg'] = $ere['msg'] = $msg; // msg
+            if(basEnv::isAjax()){
+                return self::v($ere, 'api'); 
+            }else{ 
+                echo vopTpls::show('home/info', '', $ere);
+            }
+            die();
+        }
     }
 
 }

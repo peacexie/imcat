@@ -46,21 +46,16 @@ class glbConfig{
     // $_sy_keepid = read('keepid','sy');
     static function read($file,$dir='modcm'){ 
         global $_cbase;
-        $modid = $file;
-        if(in_array($dir,array('modcm','modex'))){
-            if($dir=='modex'){ return self::tmpItems($file); }
+        $modid = $file; $base = DIR_DTMP; 
+        if(in_array($dir,array('modcm','dset'))){
             $key = "_$file";
             $file = "/$dir/".$key.".cfg.php";
-            $base = DIR_DTMP; 
+        }elseif($dir=='modex'){
+            return self::tmpItems($file); 
         }elseif(in_array($dir,array('_c'))){ //栏目配置
             $key = "_c_$file"; 
             $file = "/modex/$key.cfg.php";
-            $base = DIR_DTMP;
             if(!file_exists(DIR_DTMP.$file)) return array();
-        }elseif(in_array($dir,array('dset'))){
-            $key = "_$file";
-            $file = "/dset/$key.cfg.php";
-            $base = DIR_DTMP;
         }elseif(in_array($dir,array('sy','ex'))){
             $key = "_{$dir}_$file";
             $file = "/cfgs".($dir=='sy' ? "/sycfg" : "/excfg")."/".substr($key,1).".php";

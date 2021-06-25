@@ -80,18 +80,19 @@ class devCoder{
             $data = comConvert::autoCSet($data, 'gb2312');
         } 
         $arr = array_filter(file(EXP_ROOT.$fp)); // EXP_HLIGHT
+        $fpv = str_replace(['/../'], ['/'], $fp);
         $line = count($arr);
         if(defined('EXP_HLIGHT') && strpos($fp, '.php')){
-            $head = "\n<b>### file: $fp </b><br/>\n"; 
+            $head = "\n<b>### file: $fpv </b><br/>\n"; 
             $data = highlight_string($data, 1);
             $data = str_replace(array('<br />'), array("<br />\n"), $data);
         }else{
-            $head = "\r\n\r\n### file: $fp\r\n\r\n"; 
+            $head = "\r\n\r\n### file: $fpv\r\n\r\n"; 
             $data = $data; //nl2br($data);
         }
         $data = (defined('EXP_NOHEAD') ? "\r\n\r\n" : $head).$data;
         // msg
-        $sfp = str_replace($rep1, $rep2, $fp);
+        $sfp = str_replace($rep1, $rep2, $fpv);
         $sfp = strlen($sfp)>$mlen+2 ? '...'.substr($sfp,-$mlen) : $sfp; 
         $spad = str_pad($sfp.' ',$mlen+7,"-");
         $sline = str_repeat(' ',5-strlen($line));

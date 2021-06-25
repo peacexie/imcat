@@ -196,6 +196,11 @@ class basEnv{
             return false;
         }
     }
+    // 是否ajax请求(jq)
+    static function isAjax(){ 
+        $sk = 'HTTP_X_REQUESTED_WITH'; 
+        return !empty($_SERVER[$sk]) && $_SERVER[$sk]=='XMLHttpRequest';
+    }
 
     # ======================================================
 

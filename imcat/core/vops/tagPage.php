@@ -20,7 +20,7 @@ class tagPage extends tagList{
     function pPgbar(){ 
         global $_cbase; 
         $sfrom = "m.* FROM ".glbDBObj::dbObj()->table($this->sqlArr['tabid'],2)." m ";
-        $where = $this->whrStr; 
+        $where = $this->whrStr;
         $pg = new comPager($sfrom,$where,$this->sqlArr['limit'],"m.".$this->sqlArr['order']); 
         $pg->set('odesc',$this->sqlArr['odesc']); 
         $pg->set('opkey',(!empty($this->exFld2)&&$this->exFld2==$this->sqlArr['order']) ? 1 : 0); 

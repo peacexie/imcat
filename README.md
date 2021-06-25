@@ -1,22 +1,7 @@
 
 
-I will move this project to gitee.com;  
-Welcome to https://gitee.com/peacexie/imcat!  
-
-我将把本项目移到 gitee.com 平台；  
-欢迎进入：https://gitee.com/peacexie/imcat!  
-
-同时，欢迎说中文！(By the way, welcome to speak Chinese!)
-
-* 2021-03之后，以更新`gitee.com`为主。
-
-* github.com 至少持续更新6个月以上，  
-  2022年后，本项目 github.com 可能停更，可能继续维护… 
-
---- --- --- --- --- --- --- --- --- 
-
-* 贴心猫(imcat) V5.5 (2021-02)
-* See: https://gitee.com/peacexie/imcat
+* 贴心猫(imcat) V5.6 Alpha (2021-06)
+* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
 
@@ -34,10 +19,10 @@ Welcome to https://gitee.com/peacexie/imcat!
 
 ### 【Functions】
 
-* Support: PHP5.4 ~ PHP7.4 / custom module / custom field / custom parameter / custom classification
+* Support: PHP5.4 ~ PHP8.0 / custom module / custom field / custom parameter / custom classification
 * Data&share REST-API / sync / ourter import / Crawler / seo push / old vertion import
 * Interface: Ftp store / Sphinx search / WeChat / SMS / ip address / map (Baidu, Google) / payments (PayPal, Alipay, caifutong)
-* Demo Website: [imcat(贴心猫)](http://imcat.txjia.com/)
+* Demo Website: [imcat(贴心猫)](http://txjia.com/imcat/)
 
 
 ### 【Setup】
@@ -63,7 +48,7 @@ Welcome to https://gitee.com/peacexie/imcat!
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.4 ChangeLog】 (2020-11)
+### 【v5.5 ChangeLog】 (2021-06)
 
 * [View-Details](http://txjia.com/imcat/doc.php?uplog-5_0)
 
@@ -105,7 +90,7 @@ Welcome to https://gitee.com/peacexie/imcat!
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.4更新日志】(2020-11)
+### 【v5.5更新日志】(2021-06)
 
 * [查看详情](http://txjia.com/imcat/dev.php?uplog-5_0)
 

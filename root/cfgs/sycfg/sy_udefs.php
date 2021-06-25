@@ -36,13 +36,13 @@ $_sy_udefs = [
         'show' => '1', // 审核
     ],
 
-    /*
+    //*
     'wechat' => [ // 会员模型为空:待绑定
         'umod' => 'person',
         'grade' => 'pcom',
         'show' => '1',
         'umtab' => 'person',
-    ],*/
+    ],//*/
 
     /*
     'wechat' => [ // 会员模型为空:待绑定
@@ -69,7 +69,7 @@ $_sy_udefs = [
     ],
 
     '_canap' => ',person,organize,', 
-    '_debug' => 'Adm1Test,PeaceXie,XieYongShun,TestCS1,jefsky,ChenGuoQiang,michael,yorian,welldone', // 调试页权限 
+    '_debug' => 'Adm1Test,PeaceXie,XieYongShun,TestCS1,ChenGuoQiang,HuangYing,', // 调试页权限 
 
     '_not_exmod' => ',inmem,',
 

@@ -30,6 +30,127 @@ class extWework{
         }
     }
 
+    # Edu:家校沟通-Start -------
+
+    static function getEdutPid($ures){ 
+        if(!empty($ures['parent_userid'])){ 
+            return $ures['parent_userid'];
+        }
+        if(!empty($ures['UserId'])){
+            $uin = self::getUser($ures['UserId']);
+            if(isset($uin['mobile'])){ 
+                //return $uin['mobile'];
+                $rdb = db()->table('exd_edu')->field('pid')->where("mob='$uin[mobile]'")->find(); 
+                if(!empty($rdb['pid'])){ return $rdb['pid']; }
+            }
+        }
+        return '';
+    }
+
+    // 更新班级:学生-家长:对应关系；cid=班级id
+    static function updEduClass($cid='0'){ 
+        $cdata = is_int($cid) ? self::getEduTabs($cid) : $cid;
+        if(is_array($cdata)){
+        foreach($cdata as $cr){
+            $sid = $cr['student_userid'];
+            foreach($cr['parents'] as $pr){
+                $pid = $pr['parent_userid']; 
+                $eid = empty($pr['external_userid']) ? '' : $pr['external_userid'];
+                $rr = ['sid'=>$sid, 'pid'=>$pid, 'mob'=>$pr['mobile'], 'eid'=>$eid];
+                db()->table('exd_edu')->data($rr)->replace(0); 
+                //echo "$sid - $pid - $mob - $eid<br>\n";
+            }
+        } }
+    }
+
+    // 从缓存获取:学校:部门/用户列表数据
+    static function getEduTabs($act='deps', $upd=0){ // deps,utab
+        $key = $act=='deps' ? 'departments' : 'students';
+        $fp = "/dtmp/wework/edu_$act.cac_tab";
+        if(!file_exists(DIR_VARS.$fp) || $upd){
+            self::updEduTab($act);
+        }
+        $data = comFiles::get(DIR_VARS.$fp);
+        return json_decode($data,1);
+    }
+    // 更新:学校:部门/用户列表数据 > 保存到缓存
+    static function updEduTab($act='deps'){ // deps,utab
+        $key = $act=='deps' ? 'departments' : 'students';
+        $fp = "/dtmp/wework/edu_$act.cac_tab";
+        $res = ['errno'=>'','errmsg'=>'更新成功'];
+        $wecfg = read('wework', 'ex');
+        $jiaSecret = $wecfg['JiaSecret'];
+        if(empty($wecfg['isOpen'])){
+            return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
+        }
+        include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
+        // getData
+        $api = new \CorpAPI($wecfg['CorpId'], $jiaSecret);
+        if($act=='deps'){
+            $res = $api->EduDepartLists();
+        }else{ // if($act=='utab')
+            $res = $api->EduDepartUsers($act); //dump($res);
+        }
+        // save
+        if(!empty($res[$key])){
+            $data = comParse::jsonEncode($res[$key]);
+            comFiles::put(DIR_VARS.$fp,$data); //dump($data);
+            unset($res[$key]);
+        }
+        return $res;
+    }
+    // 从缓存获取:家校:用户信息
+    static function getEduUser($uid, $upd=0){ // deps,utab
+        $fp = "/dtmp/wework/eu_$uid.cac_tab";
+        if(!file_exists(DIR_VARS.$fp) || $upd){
+            $res = ['errno'=>'','errmsg'=>'Get.成功'];
+            $wecfg = read('wework', 'ex');
+            $jiaSecret = $wecfg['JiaSecret'];
+            if(empty($wecfg['isOpen'])){
+                return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
+            }
+            include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
+            // getData
+            $api = new \CorpAPI($wecfg['CorpId'], $jiaSecret);
+            $res = $api->EdutUserInfo($uid); 
+            // 
+            $type = empty($res['user_type']) ? 0 : $res['user_type'];
+            $tabs = ['','student','parent']; $key = $tabs[$type];
+            if(!empty($res[$key])){
+                $tmp = ['type'=>$key] + $res[$key];
+                $data = comParse::jsonEncode($tmp);
+                comFiles::put(DIR_VARS.$fp,$data); //dump($data);
+                unset($res['user_type']);
+            }
+        }
+        $data = comFiles::get(DIR_VARS.$fp);
+        return json_decode($data,1);
+    }
+    // 从缓存获取:外部:用户信息
+    static function getExtUser($uid, $upd=0){ // deps,utab
+        $fp = "/dtmp/wework/out_$uid.cac_tab";
+        if(!file_exists(DIR_VARS.$fp) || $upd){
+            $res = ['errno'=>'','errmsg'=>'Get.成功'];
+            $wecfg = read('wework', 'ex');
+            $jiaSecret = $wecfg['JiaSecret'];
+            if(empty($wecfg['isOpen'])){
+                return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
+            }
+            include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
+            // getData
+            $api = new \CorpAPI($wecfg['CorpId'], $jiaSecret);
+            $res = $api->EXTUserInfo($uid); 
+            if(!empty($res['external_contact'])){
+                $data = comParse::jsonEncode($res['external_contact']);
+                comFiles::put(DIR_VARS.$fp,$data); //dump($data);
+            }
+        }
+        $data = comFiles::get(DIR_VARS.$fp);
+        return json_decode($data,1);
+    }
+
+    # Edu:家校沟通-End -------
+
     function getMsg($encMesg){
         $res = ['errCode'=>0, 'strMsg'=>''];
         $reqs = $this->reqs;
@@ -64,6 +185,46 @@ class extWework{
     }
 
     # ================================ 
+
+    static function smsgExtNews($agentId, $arts=[], $to=[]){
+        $wecfg = read('wework', 'ex');
+        //
+        $to['pids'] = empty($to['pids']) ? [] : array_unique(array_filter($to['pids']));
+        $to['sids'] = empty($to['sids']) ? [] : array_unique(array_filter($to['sids']));
+        $to['part'] = empty($to['part']) ? [] : array_unique(array_filter($to['part']));
+        if(empty($to['pids']) && empty($to['sids']) && empty($to['part'])){
+            basDebug::bugLogs("smsgExtNews", $to, "smsgExtNews-null.log", 'file');
+            return ['errcode'=>'82001', 'errmsg'=>"指定的发送对象"]; 
+        }
+        include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php");
+        $api = new \CorpAPI($wecfg['CorpId'], $agentId); // $agentId,$wecfg['JiaSecret']
+        // 
+        $data = [
+            'to_external_user' => [],
+            'to_parent_userid' => $to['pids'],
+            'to_student_userid' => $to['sids'],
+            'to_party' => $to['part'],
+            'toall' => 0,
+            'msgtype' => 'news',
+            'agentid' => $wecfg['AppsConfig'][$agentId]['AgentId'],
+            'news' => ['articles' => $arts],
+            'enable_id_trans' => 0,
+            'enable_duplicate_check' => 0,
+            'duplicate_check_interval' => 1800
+        ];
+
+        try {
+            $errPlist = $errSlist = $errDlist = [];
+            $api->ExtMessageSend($data, $errPlist, $errSlist, $errDlist);
+            if(!empty($errPlist) || !empty($errSlist) || !empty($errDlist)){
+                $dlog = [$errPlist, $errSlist, $errDlist];
+                basDebug::bugLogs("smsgExtNews", $dlog, "smsgExtNews-nul2.log", 'file');
+            }
+            return [$errPlist, $errSlist, $errDlist];
+        } catch (Exception $ex) {
+            return ['errcode'=>'smsgExtNews', 'errmsg'=>$ex->getMessage()];
+        }
+    }
 
     //static function smsgNewsArticle($agentId){}
 
@@ -128,7 +289,7 @@ class extWework{
     // 从缓存获取:单个用户数据
     static function getUser($UserId='', $agentId=''){ // deps,utab,uone
         $wecfgs = read('wework', 'ex'); // DefAppID
-        $agentId = $agentId ?: $wecfgs['DefAppID'];
+        $agentId = $agentId ?: $wecfgs['DefAppID']; 
         $fp = "/dtmp/wework/$UserId.cac_tab";
         if(!$UserId){
             $data = $wecfgs['utab']['(null)'];
@@ -147,14 +308,14 @@ class extWework{
         if(!empty($uinfo)){ // 默认头像,调试权限
             if(empty($uinfo['avatar'])){ $uinfo['avatar']=PATH_STATIC.'/icons/basic/nouser2.png'; }
             $wecfgs = read('wework', 'ex');
-            $uinfo['pdebug'] = $uinfo['userid'] && strstr($wecfgs['ucfg']['debug'],$uinfo['userid']);
+            //$uinfo['pdebug'] = $uinfo['userid'] && strstr($wecfgs['ucfg']['debug'],$uinfo['userid']);
         }
         return $uinfo;
     }
     // 更新:单个用户数据 > 保存到缓存
     static function updUser($UserId='', $agentId=''){ // deps,utab,uone  
         $wecfg = read('wework', 'ex');
-        $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
+        $CorpId = $wecfg['CorpId']; //$agentId = 'AppCS';
         if(empty($wecfg['isOpen'])){
             return ['errno'=>'!isOpen','errmsg'=>'请配置:[ex_wework.php]:isOpen=1'];
         }
@@ -176,14 +337,14 @@ class extWework{
     }
 
     // 从缓存获取:部门/用户列表数据
-    static function getContacts($act='deps'){ // deps,utab
+    static function getContacts($act='deps', $secret='AppAB'){ // deps,utab
         $key = $act=='deps' ? 'department' : 'userlist';
         $fp = "/dtmp/wework/_$key.cac_tab";
         if(!file_exists(DIR_VARS.$fp)){
-            self::updContacts($act);
+            self::updContacts($act, $secret);
         }
         $data = comFiles::get(DIR_VARS.$fp);
-        return json_decode($data,1);
+        return empty($data) ? [] : json_decode($data,1);
     }
     static function getDpuids($dpid=1){
         $utab = self::getContacts('utab');
@@ -196,7 +357,7 @@ class extWework{
         return $res;
     }
     // 更新:部门/用户列表数据 > 保存到缓存
-    static function updContacts($act='deps', $secret=''){ // deps,utab
+    static function updContacts($act='deps', $secret='AppAB'){ // deps,utab
         $key = $act=='deps' ? 'department' : 'userlist';
         $fp = "/dtmp/wework/_$key.cac_tab";
         $res = ['errno'=>'','errmsg'=>'更新成功'];
@@ -280,6 +441,71 @@ class extWework{
         }
         return $wecfgs;
     }
+
+    // 按pid格式化
+    static function lv1Dept($data, &$res, $pid=0, $deep=0){
+        #$cr = $data[1];
+        #$res[1] = ['name'=>$cr['name'], 'deep'=>0, 'pid'=>0];
+        foreach($data as $ck=>$cr){
+            if($cr['parentid']==$pid){
+                $res[$ck] = ['name'=>$cr['name'], 'deep'=>$deep, 'pid'=>$pid];
+                self::lv1Dept($data, $res, $ck, $deep+1);
+            }
+        }
+    }
+
+    // 部门结构格式化:健值是班级id
+    static function fmtDept($class=''){
+        $data = $class ? self::getEduTabs('deps') : self::getContacts('deps');
+        $res = [];
+        foreach($data as $ck=>$cr){ // .':'.$cr['id']
+            $res[$cr['id']] = $cr; //['name'];
+        }
+        return $res;
+    }
+
+    // xxx
+    static function fmtMychs($deps, $userp){
+        if(empty($userp['children'])){ return []; }
+        $tcs = $userp['children'];
+        $chs = []; 
+        foreach($tcs as $tk=>$tr){ 
+            $chs[$tk]['sid'] = $sid = $tr['student_userid']; $ti = extWework::getEduUser($sid); 
+            $chs[$tk]['sid'] = $sid;
+            $chs[$tk]['rel'] = $tr['relation'];
+            $chs[$tk]['name'] = $ti['name'];
+            $chs[$tk]['cid'] = $cid = $ti['department'][0]; 
+            $chs[$tk]['pid'] = $pid = $deps[$cid]['parentid'];
+            $chs[$tk]['cname'] = $deps[$pid]['name'].$deps[$cid]['name'];
+            $aid = '';
+            foreach($deps[$cid]['department_admins'] as $ar){
+                if($ar['type']==3){
+                    $chs[$tk]['aid'] = $aid = $ar['userid']; 
+                    $au = extWework::getUser($aid); //dump($au);
+                    $chs[$tk]['aname'] = $au['name'];
+                    break;
+                }
+            }
+        }
+        return $chs;
+    }
+
+    static function fmtMyprs($ustu){
+        if(is_string($ustu)){
+            $ustu = extWework::getEduUser($ustu); 
+        }
+        $prtab = $ustu['parents'];
+        $prs = []; 
+        foreach($prtab as $tk=>$tr){ 
+            $prs[$tk]['pid'] = $tr['parent_userid']; 
+            $prs[$tk]['rel'] = $tr['relation'];
+            $prs[$tk]['mtel'] = $tr['mobile'];
+            $prs[$tk]['isub'] = $tr['is_subscribe'];
+        }
+        return $prs;
+    }
+
+    //parents
 
 }
 

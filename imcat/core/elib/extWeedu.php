@@ -125,6 +125,16 @@ class extWeedu{ // extends extWework
         return $arr;
     }
 
+    // x. 查询用户信息
+    function getUserSP($token, $userid){
+        $url = "https://oapi.epaas.qq.com/school/user/get?access_token=$token&userid=$userid";
+        $data = comHttp::curlCrawl($url, [], []);
+        $arr = json_decode($data, 1); 
+        return $arr;
+    }
+
+
+
     // ------------------------- access token ---------------------------------
     function getAccessToken($code, $reurl=''){
         $this->accessToken = '';

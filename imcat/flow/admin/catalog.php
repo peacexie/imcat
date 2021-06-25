@@ -142,7 +142,7 @@ if($view=='glist'){
         
         $cfg = []; // 自定义增加字段 ['title'=>'缩略图','etab'=>'0','type'=>'file','enable'=>'1','vmax'=>'255','vreg'=>'nul:fix:image','vtip'=>'gif/jpg/jpeg/png格式.','dbtype'=>'varchar','dblen'=>'255','dbdef'=>NULL]
         $val = empty($fm['icon']) ? '' : $fm['icon']; // ifile($k,$cfg,$val,$size,$vstr,$mod='',$kid='')
-        $filed = fldView::ifile('icon',$cfg,$val,'','','cargo');
+        $filed = fldView::ifile('icon',$cfg,$val,'','',$mod);
         glbHtml::fmae_row('图标',$filed);
 
         glbHtml::fmae_send('bsend',lang('flow.dops_send'),'25');

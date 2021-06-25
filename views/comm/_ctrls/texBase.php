@@ -31,7 +31,7 @@ class texBase{
         $uio = new uioCtrl($obj->ucfg, $obj->vars);
         $re = $uio->re; $vars = $uio->re['vars'];
         $ures = [
-            'uio' => ['uflag'=>$vars['uflag'],'ckey'=>$vars['ckey'],'udebug'=>$vars['udebug'],],
+            'uio' => ['uflag'=>$vars['uflag'], 'ckey'=>$vars['ckey'], 'ucdebug'=>$vars['ucdebug'],],
             'uinfo' => $vars['uinfo'], 'uimod' => empty($vars['uimod']) ? [] : $vars['uimod'], 'unull' => $vars['null'],
         ]; //dump($res); dump($re);
         return $ures;

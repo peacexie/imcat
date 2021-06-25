@@ -34,7 +34,7 @@ class extExcel{
     }
 
     // $data = exRead('./@note/163data-1zz.xls','gbk'); 
-    static function exRead($file,$encode='utf-8',$rtb=0){ 
+    static function exRead($file, $encode='utf-8', $rtb=0){ 
         include_once DIR_VENDOR.'/Excel/reader.php'; 
         $data = new \Spreadsheet_Excel_Reader(); 
         $data->setOutputEncoding($encode);
@@ -44,21 +44,23 @@ class extExcel{
     }
 
     // 建议用: exRead轻量的类
-    static function peRead($file,$encode='utf-8'){
+    static function peRead($file, $encode='utf-8', $rtb=0){ 
         include_once DIR_VENDOR.'/Excel/PHPExcel.php'; // 自行下载PHPExcel到相关目录
-        $Reader = \PHPExcel_IOFactory::createReader('Excel5');
+        $type = strpos(strtolower($file),'.xlsx') ? 'Excel2007' : 'Excel5';
+        $Reader = \PHPExcel_IOFactory::createReader($type); 
         $Reader->setReadDataOnly(true);
         $PHPExcel = $Reader->load($file);
-        $sheet = $PHPExcel->getActiveSheet();
+        $sheet = $PHPExcel->getSheet($rtb); //$PHPExcel->getActiveSheet();
         $hRow = $sheet->getHighestRow(); 
         $hColumn = $sheet->getHighestColumn(); 
-        $hCIndex = PHPExcel_Cell::columnIndexFromString($hColumn); 
-        $data = array(); 
+        $hCIndex = \PHPExcel_Cell::columnIndexFromString($hColumn); 
+        $data = ['hColumn'=>$hColumn, 'numRows'=>$hRow, 'numCols'=>$hCIndex]; $cells = []; 
         for($row = 1; $row <= $hRow; $row++) { 
             for ($col = 0; $col < $hCIndex; $col++) { 
-                $data[$row][] =(string)$sheet->getCellByColumnAndRow($col, $row)->getValue();
+                $cells[$row][] = (string)$sheet->getCellByColumnAndRow($col, $row)->getValue();
            } 
         } 
+        $data['cells'] = $cells;
         return $data;
     }
 

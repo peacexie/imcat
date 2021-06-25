@@ -106,7 +106,8 @@ class fldEdit{
     function fmDbOpts(){ 
         if($this->fmextra=='datetm'){
             $opts = "<option value='int'>int.".basLang::show('admin.fe_int')."</option>";
-            $flen = 11;
+            $opts .= "<option value='varchar' ".($this->cfg['dbtype']=='varchar' ? 'selected' : '').">varchar.".basLang::show('admin.fe_vchar')."</option>";
+            $flen = 12;
         }elseif(in_array($this->fmextra,array('winpop','map','color'))){ 
             $opts = "<option value='varchar'>varchar.".basLang::show('admin.fe_vchar')."</option>";
         }elseif(in_array($this->type,array('parts','repeat'))){ 

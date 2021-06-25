@@ -108,9 +108,14 @@ class tagBase{
         }
         $order || $order = $this->sqlArr['ordef'];
         $odesc = isset($cfg[3]) ? $cfg[3] : basReq::val('odesc','1','N');
-        $this->sqlArr['order'] = $order;
-        $this->sqlArr['odesc'] = $odesc;
-        $this->sqlArr['ofull'] = 'm.'.$order.($odesc ? ' DESC' : '');
+        $this->sqlArr['order'] = $order; 
+        if(strpos($order,',')){ // 符合排序
+            $this->sqlArr['odesc'] = 0;
+            $this->sqlArr['ofull'] = $order;
+        }else{
+            $this->sqlArr['odesc'] = $odesc;
+            $this->sqlArr['ofull'] = 'm.'.$order.($odesc ? ' DESC' : ''); 
+        }
     }
     
     // 
@@ -157,6 +162,8 @@ class tagBase{
         if(in_array($pid,array('docs','users','coms','advs'))){
             if(strpos($whr,"(m.show='all')")){
                 $whr = str_replace([" AND (m.show='all')","(m.show='all')"],'',$whr);
+            }elseif(strstr($whr,'m.show IN(')){
+                //
             }elseif(!strpos($whr,'(m.show=')){
                 $whr .= " AND (m.show='1')";
             } //echo "($whr)<br>\n";

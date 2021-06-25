@@ -9,11 +9,11 @@ class vopUrl{
 
     // get/url初始mkv数据
     static function iget(){
-        $re = self::route(); 
+        $re = self::route();
         $mkv = $re[0]; $q = $re[1]; $ua = $re[2];
-        $re1 = preg_match("/^[A-Za-z0-9]{2}\w*(\-\-(so|list))?$/",$mkv); // modid, (--list)
-        $re2 = preg_match("/^[A-Za-z0-9]{2}\w*\-[A-Za-z0-9]{1}\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
-        $re3 = preg_match("/^[A-Za-z0-9]{2}\w*\.[A-Za-z0-9]{1}[\w-]*(\.\w+)?$/",$mkv); // mod.y-md-88, (-v)
+        $re1 = preg_match("/^\w+(\-\-(so|list))?$/",$mkv); // modid, (--list)
+        $re2 = preg_match("/^\w+\-\w+\w*(\-\w+)?$/",$mkv); // modid-type, dop-a, (-v)
+        $re3 = preg_match("/^\w+\.[\w-]+(\.[\w-]+)?$/",$mkv); // mod.y-md-88, (-v)
         if(!($re1 || $re2 || $re3)){
             vopShow::msg("b:[$mkv]:".basLang::show('vop_parerr'));
         }

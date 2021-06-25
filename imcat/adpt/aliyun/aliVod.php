@@ -3,11 +3,11 @@ namespace imcat;
 
 include_once DIR_VENDOR.'/aliyuncs/Autoloader.php';
 
-use OSS\OssClient;
-use OSS\Core\OssException;
+//use OSS\OssClient;
+//use OSS\Core\OssException;
 
 // 阿里OSS类
-class aliOss extends aliBase
+class aliVod
 {
     public $endpoint = '';
     public $bucket = '';

@@ -67,7 +67,7 @@ class fldView{
         echo basJscss::imp('/My97DatePicker/WdatePicker.js','vendui'); 
         $fmt1 = empty($cfg['fmexstr']) ? 'Y-m-d' : $cfg['fmexstr'];
         $fmt2 = empty($fmt1) ? '' : ",dateFmt:'".str_replace(array('Y','m','d','H','i','s',),array('yyyy','MM','dd','HH','mm','ss',),$fmt1)."'"; 
-        $val = empty($val) ? '' : date($fmt1,$val); 
+        $val = empty($val) ? '' : (is_numeric($val) ? date($fmt1,$val) : $val); 
         $iinp = "<input id='fm[$k]' name='fm[$k]' type='text' value='$val' class='txt' $vstr />";
         $item = "$iinp<span class='fldicon fdate' onClick=\"WdatePicker({el:'fm[$k]'$fmt2})\" /></span>";
         return $item;

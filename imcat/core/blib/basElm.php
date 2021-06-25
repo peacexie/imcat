@@ -27,7 +27,7 @@ class basElm{
         if($title) $cfgs = array(''=>$title) + $cfgs; 
         $str = $pid = '';
         foreach($cfgs as $k=>$v){ 
-            $v = is_string($v) ? $v : $v['title']; // isset($v['title']) 某些环境下出错...
+            $v = is_string($v) ? (empty($v)?$k:$v) : $v['title']; // isset($v['title']) 某些环境下出错...
             if(strstr($k,'^group^')){
                 $str .= "\n<optgroup label='$v'></optgroup>";
                 $pid = str_replace('^group^','',$k);
@@ -46,7 +46,7 @@ class basElm{
         $str = "\n<input id='fm[$k0][]' name='fm[$k0][]' type='hidden' value='' />"; 
         $i = 0; $j = 0;
         foreach($cfgs as $k=>$v){ $i++; $j++;
-            $v = is_string($v) ? $v : $v['title'];
+            $v = is_string($v) ? (empty($v)?$k:$v) : $v['title'];
             $def = in_array($k,$varr) ? " checked='checked' " : '';
             if($brn && $j>$brn) { $str .= "<br>"; $j=1; }
             $str .= "\n<label><input type='checkbox' class='rdcb' name='fm[$k0][]' id='fm_{$k0}_$i' value='$k' $def>$v</label>";
@@ -58,7 +58,7 @@ class basElm{
         $cfgs = self::text2arr($cfgs);
         $str = ""; $i = 0; $j = 0;
         foreach($cfgs as $k=>$v){ $i++; $j++;
-            $v = is_string($v) ? $v : $v['title'];
+            $v = is_string($v) ? (empty($v)?$k:$v) : $v['title'];
             $def = "$val"==="$k" ? " checked='checked' " : '';
             if($brn && $j>$brn) { $str .= "<br>"; $j=1; }
             $str .= "\n<label><input type='radio' class='rdcb' name='fm[$k0]' id='fm_{$k0}_$i' value='$k' $def>$v</label> ";
@@ -121,7 +121,7 @@ class basElm{
         }else{
             $text = self::linestrim($text);
             $text = str_replace(array("\n","\r"),array('&','&'),$text);
-            parse_str($text, $re);
+            parse_str($text, $re); 
         } 
         return $re;
     }

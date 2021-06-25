@@ -192,19 +192,21 @@ class exvJump{
 
     // 设置一个短url地址
     // 利用保留字符做前缀:iloz:用于特殊场合
-    static function tuSet($url,$pre='',$n=0){
+    static function tuSet($url, $pre='', $type='(def)', $n=0){
         $db = glbDBObj::dbObj();
         if(empty($n)){
+            $url = urldecode($url);
             // http://{host}/1234567 : 15
             if(strlen($url)<strlen($_SERVER["HTTP_HOST"])+16) return $url;
-            $row = $db->table('token_turl')->where("url='$url'")->find();
-            if($row) return $row['kid'];
+            $row = $db->table('token_turl')->where("url='$url'")->find(); 
+            if(!empty($row)){ return $row['kid']; } 
         }
-        $m = $n<3 ? 2 : ($n>5 ? 5 : $n);
-        $kid = ($pre?$pre:basKeyid::kidRand('22',1)).basKeyid::kidRand('30',$m);
+        $m = $n<3 ? 6 : 8;
+        $kid = basKeyid::kidRand('30',$m);
+        if($pre && "{$pre}_"!=substr($kid,0,strlen($pre)+1)){ $kid = "{$pre}_$kid"; } 
         $rec = $db->table('token_turl')->where("kid='$kid'")->find(); 
-        if($rec){
-            return self::tuSet($url,$pre,++$n);
+        if(!empty($rec)){
+            return self::tuSet($url, $pre, $type, ++$n);
         }else{
             $db->table('token_turl')->data(array('kid'=>$kid,'url'=>$url))->insert(0);
             return $kid;

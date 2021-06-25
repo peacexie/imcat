@@ -159,7 +159,11 @@ class dopFunc{
             $val = basReq::in($val);
         }elseif($fext=='datetm'){  
             $totime = strtotime(basReq::fmt($val,'1979-09-13'));
-            $val = empty($val) ? $_SERVER["REQUEST_TIME"] : (is_numeric($val) ? $val : $totime); 
+            $val = empty($val) ? 0 : (is_numeric($val) ? $val : $totime); 
+            if($f[$k]['dbtype']=='varchar'){
+                $fmt = empty($f[$k]['fmexstr']) ? 'Y-m-d' : $f[$k]['fmexstr'];
+                $val = $val ? date($fmt,$val) : ''; // 
+            } 
         }elseif($fext=='color'){
             $val = preg_replace('/[^0-9A-Fa-f]/','',$val);
         }elseif($fext=='map'){
