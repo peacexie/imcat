@@ -1,5 +1,24 @@
 
 
+#v5.6# (2021.06)
+
+## Basic-Info：
+
+* Basic-Info：
+ -> version: v5.6
+ -> Release date: 2021.06
+
+## ChangeLog
+
+* Publish: Edu-OA(Wework Self-built-Application)
+ -> Join the wework `贴心猫学校演示`:
+ -> https://work.weixin.qq.com/join/d50j5NArFGPvAEJ5eA7q_Q/scan_web_contacts
+ -> Module preview: Url: http://txjia.com/edu/hi.php/debug-map
+* Fix
+ -> Update some safe issues
+ -> Other issues
+
+
 #v5.5# (2021.02)
 
 ## Basic-Info: 

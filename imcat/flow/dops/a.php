@@ -2,6 +2,7 @@
 namespace imcat;
 (!defined('RUN_INIT')) && die('No Init');
 define('RUN_DOPA',1);
+$_cbase['run']['deelSafe'] = 1;
 
 $mod = dopFunc::getDefmod();
 $view = empty($view) ? 'list' : $view;

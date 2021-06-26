@@ -10,7 +10,7 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心猫(imcat) V5.6 Alpha (2021-06)
+* 贴心猫(imcat) V5.6 Beta (2021-06)
 * THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
 
 --- --- --- --- --- --- --- --- --- 
@@ -58,7 +58,7 @@
   - View Url: `/root/tools/setup/` to Setup.
 
 
-### 【v5.5 ChangeLog】 (2021-06)
+### 【v5.6 ChangeLog】 (2021-06)
 
 * [View-Details](http://txjia.com/imcat/doc.php?uplog-5_0)
 
@@ -100,7 +100,7 @@
   - 访问地址：/root/tools/setup/ 安装程序。
 
 
-### 【v5.5更新日志】(2021-06)
+### 【v5.6更新日志】(2021-06)
 
 * [查看详情](http://txjia.com/imcat/dev.php?uplog-5_0)
 

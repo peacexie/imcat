@@ -126,15 +126,22 @@ class dopFunc{
         }
     }
     
-    // fmSafe使用
+    // 表单使用:fmProp()
     static function fmSafe($pid=''){ 
-        //$cfg,$aurl;
-        //return $str;
+        global $_cbase; 
+        if(!empty($_cbase['run']['deelSafe'])){
+            echo safComm::formCInit('init', 0, 1); // $act='init', $time=3600
+        }
     }
-    // svSafe使用
+    // 保存使用:svPrep()
     static function svSafe($pid=''){ 
-        //$cfg,$aurl;
-        //return $str;
+        global $_cbase; 
+        if(defined('RUN_ADMIN')){ 
+            safComm::urlFrom($_cbase['run']['tplcfg'][1]);
+        };
+        if(!empty($_cbase['run']['deelSafe'])){ 
+            safComm::formCInit('', 7200, 1); // $act='init', $time=3600
+        }
     }    
 
     // 翻页条

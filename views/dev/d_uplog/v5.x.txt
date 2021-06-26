@@ -1,5 +1,24 @@
 
 
+#v5.6# (2021.06)
+
+## 基本信息：
+
+* 基本信息：
+ -> 版本：v5.6
+ -> 发布日期：2021.06
+
+## 更新事项
+
+* 发布：校园办公系统（基于企业微信自建应用）：
+ -> 点击链接加入“贴心猫学校演示”企业微信测试：
+ -> https://work.weixin.qq.com/join/d50j5NArFGPvAEJ5eA7q_Q/scan_web_contacts
+ -> 模块预览: Url: http://txjia.com/edu/hi.php/debug-map
+* Fix
+ -> 一些安全更新
+ -> 其他已知问题
+
+
 #v5.5# (2021.02)
 
 ## 基本信息：

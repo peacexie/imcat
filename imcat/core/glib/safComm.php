@@ -76,7 +76,7 @@ class safComm{ // extends safBase
     }
     
     // 检查表单项 --- 表单时间戳
-    static function formCInit($act='init', $time=3600){  
+    static function formCInit($act='init', $time=3600, $novcode=0){  
         global $_cbase;
         $stamp = $_cbase['run']['stamp']; 
         $sform = $_cbase['safe']['safil'];
@@ -92,6 +92,7 @@ class safComm{ // extends safBase
             $restr = "<input type='hidden' name='{$safix}[dt]' value='$dval' />";
             $restr .= "<input type='hidden' name='{$safix}[tm]' value='$stamp' />";
             $restr .= "<input type='hidden' name='{$safix}[enc]' value='$encode' />";
+            if($novcode){ return $restr; }
             $fmid = basReq::val('fmid',''); $tabi = basReq::val('tabi',19790);
             $pos = basReq::val('pos',''); 
             $css1 = basReq::val('css1','form-control'); // txt w60
