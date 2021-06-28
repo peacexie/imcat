@@ -136,6 +136,19 @@ if($view=='glist'){
     $parts = req('parts','pmod'); 
     if(!empty($bsend)){
         $v = empty($fm['prmcb']) ? '' : implode(',',array_filter($fm['prmcb']));
+        // m1adv
+        if($parts=='pmadm' && strstr($v,'m1adv')){
+            foreach($_groups as $k2=>$v2){
+                if($v2['pid']=='advs'){
+                    $v .= ",$k2,"; 
+                    $cat2 = read("$k2.i");
+                    foreach($cat2 as $k3=>$v3){
+                        $v .= ",$k3,"; 
+                    }
+                } 
+            }
+            $v .= ",adtext,athom,"; //echo $v;
+        }
         $db->table($tabid)->data(basReq::in(array($parts=>$v)))->where("kid='$kid'")->update();
         echo basJscss::Alert(lang('flow.msg_upd'),'Redir',$aurl[1]);
     }else{
