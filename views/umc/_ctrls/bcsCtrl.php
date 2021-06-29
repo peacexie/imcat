@@ -61,7 +61,7 @@ class bcsCtrl extends uioCtrl{
         if(!empty($re['vars']['uinfo'])){
             $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
             $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
-            if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+            if($umod=='adminer'){ $this->re['vars']['ucdebug'] .= ",{$uname},"; } 
         } //dump($this->re['vars']); 
         */
         if(smod('cscorp') && !empty($this->re['vars']['uimod']['company'])){

@@ -61,8 +61,8 @@ class loginCtrl extends uioCtrl{
         $vars = $this->re['vars'];
         $isLoc = basEnv::isLocal();
         $uname = empty($vars['uname']) ? '.^.' : $vars['uname'];
-        #echo "($udebug,$uname)"; die();
-        if($isLoc || strstr($vars['udebug'],$uname)){
+        #echo "($ucdebug,$uname)"; die();
+        if($isLoc || strstr($vars['ucdebug'],$uname)){
             $this->locinBase();
         }else{
             api::v([], 'die', 'Error-Perm!');
@@ -166,7 +166,7 @@ class loginCtrl extends uioCtrl{
         if(!empty($re['vars']['uinfo'])){
             $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
             $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
-            if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+            if($umod=='adminer'){ $this->re['vars']['ucdebug'] .= ",{$uname},"; } 
         }
     }
 

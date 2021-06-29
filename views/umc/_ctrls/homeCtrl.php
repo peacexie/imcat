@@ -43,7 +43,7 @@ class homeCtrl extends bcsCtrl{
             if(!empty($re['vars']['uinfo'])){
                 $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod']; 
                 $uimod = $re['vars']['uimod']; $uname = empty($uimod['uname']) ? $uinfo['uname'] : $uimod['uname'];
-                if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; } 
+                if($umod=='adminer'){ $this->re['vars']['ucdebug'] .= ",{$uname},"; } 
             }
             $re['vars']['whrstr'] = $whrstr = texBase::sqlType($re); 
             $list = data('cstask', $whrstr, '5');

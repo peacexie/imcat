@@ -97,7 +97,6 @@ class usetCtrl extends uioCtrl{
         }elseif($view=='wework'){
             $wecfg = $this->chkWework();
             $CorpId = $wecfg['CorpId']; $agentId = 'AppCS';
-            include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
             $api = new \CorpAPI($CorpId, $agentId);
             $user = $api->GetUserById($uname); 
             $ext = "gender={$user['gender']}".(empty($user['mobile']) ? '' : "\nmtel={$user['mobile']}");
@@ -339,9 +338,9 @@ class usetCtrl extends uioCtrl{
         }
         $uinfo = $re['vars']['uinfo']; $umod = $uinfo['umod'];
         $uimod = $re['vars']['uimod']; $uname = $uimod['uname'];
-        if($umod=='adminer'){ $this->re['vars']['udebug'] .= ",{$uname},"; }
+        if($umod=='adminer'){ $this->re['vars']['ucdebug'] .= ",{$uname},"; }
         //
-        $can_debug = strstr($re['vars']['udebug'], $re['vars']['uname']);
+        $can_debug = strstr($re['vars']['ucdebug'], $re['vars']['uname']);
         $need_debug = in_array($this->key, ['rein', 'dorein']);
         if($need_debug&&(!$can_debug)){
             //return api::v($re, 'dir', 'login');
