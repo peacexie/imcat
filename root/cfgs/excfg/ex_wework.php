@@ -4,6 +4,7 @@
 // wework 配置
 $_ex_wework['isOpen'] = '0'; // 启用企业微信; 并检查：/root/wework/目录及文件 
 defined('DIR_WEKIT') || define('DIR_WEKIT', DIR_ROOT.'/wework');
+include_once(DIR_WEKIT."/sv-api/api/src/CorpAPI.class.php"); 
 
 // 企业的id，在管理端->"我的企业" 可以看到
 // "通讯录同步"应用的secret, 开启api接口同步后，可以在管理端->"通讯录同步"看到
@@ -22,7 +23,7 @@ $_ex_wework['APPROVAL_APP_SECRET']   = 'CRbruunuz-******';
 
 // 自定义应用
 $_ex_wework['AppsConfig'] = [
-    'AppCS' => [
+    'AppAB' => [
         'name' => '工单管理',
         "AppDesc" => "应用1的描述",
         "AgentId" => 1000002,
@@ -58,11 +59,10 @@ $_ex_wework['sktab'] = [
     'ck' => "Jf7gnua1EaXWcfSVnvRuG", // Cookie-安全key
     'ak' => "v1HflNmPxKT6UpN8IF9x0", // Api-安全key
 ];
-$_ex_wework['DefAppID'] = 'AppCS'; // 1000002, AppShouhou, AppCS
 
 # ===================== 
 
-$_ex_wework['AppCS'] = [
+$_ex_wework['AppAB'] = [
     // 自定义权限(后续考虑做成设置页,再移动端设置)
     'perms' => [
         'import' => 'TestAdmin,PeaceXie', // 导入权限
@@ -157,4 +157,11 @@ if(isset($excfgs['1000002']['defs'])){
         }
     }
 }*/
+
+$_ex_wework['DefAppID'] = 'AppAB'; // 1000002, AppShouhou, AppAB
+$_ex_wework['AppCS'] = $_ex_wework['AppAB'];
+$_ex_wework['AppsConfig']['AppCS'] = $_ex_wework['AppsConfig']['AppAB'];
+$_ex_wework['AppsConfig']['AppJI'] = $_ex_wework['AppsConfig']['AppAB'];
+$_ex_wework['AppsConfig']['AppUR'] = $_ex_wework['AppsConfig']['AppAB'];
+
 //dump($excfgs);

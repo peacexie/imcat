@@ -10,8 +10,7 @@
 
 --- --- --- --- --- --- --- --- --- 
 
-* 贴心猫(imcat) V5.6 Beta (2021-06)
-* THIS IS A DEVELOPMENT PREVIEW - DO NOT USE IT IN PRODUCTION!
+* 贴心猫(imcat) V5.6 Released (2021-06)
 
 --- --- --- --- --- --- --- --- --- 
 
