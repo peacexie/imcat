@@ -526,10 +526,10 @@ CREATE TABLE `{pre}coms_corder{ext}` (
   `ordshto` varchar(12) NOT NULL DEFAULT '',
   `aip` varchar(255) NOT NULL DEFAULT '',
   `atime` int(11) NOT NULL DEFAULT '0',
-  `auser` varchar(24) NOT NULL DEFAULT '',
+  `auser` varchar(255) NOT NULL DEFAULT '',
   `eip` varchar(255) NOT NULL DEFAULT '',
   `etime` int(11) NOT NULL DEFAULT '0',
-  `euser` varchar(24) NOT NULL DEFAULT '',
+  `euser` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

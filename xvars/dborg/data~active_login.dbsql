@@ -1,6 +1,0 @@
-
--- active_login@2020-10-26 09:08:21 -- 
-INSERT INTO `{pre}active_login{ext}` VALUES 
-('2020-6r-abcd-jp7vqf7qh-15000000','wechat','oyDK8vjjcn2cFbxMLaMBhKEsYbCk','和平鸽','1','-','tel=13537432147&aa=bb','0','E30F9EDC99B0EBACD6CB446E9'),
-('2020-6r-c1tb-bkcatb69u-7a3283f8e','wechat','oyDK8vjjcn2cFbxMLaMBhKEsYbCk','和平鸽(peace)','','http://thirdwx.qlogo.cn/mmopen/vi_32/KvYfBVHn3FrlbB8mBYvGCqvYjVZmuGcHEJXV3B94AahI5Ivibx1Tzib6ibiakgL6agjqoPx9MQ6ic0CCWgXiaxfyXKvg/132','sex=1','1592987199','14.217.200.185'),
-('2020-6r-b1bv-33fwujdgu-46aa9258b','wechat','oyDK8vjjcn2cFbxMLaMBhKEsYbCk','和平鸽(peace)','','http://thirdwx.qlogo.cn/mmopen/vi_32/KvYfBVHn3FrlbB8mBYvGCqvYjVZmuGcHEJXV3B94AahI5Ivibx1Tzib6ibiakgL6agjqoPx9MQ6ic0CCWgXiaxfyXKvg/132','sex=1','1592892427','14.217.200.185');

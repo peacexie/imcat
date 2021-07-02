@@ -1,4 +1,0 @@
-
--- active_admin@2018-12-21 20:18:05 -- 
-INSERT INTO `{pre}active_admin{ext}` VALUES 
-('2b78285ba64ee1568bb3ec13d094dab3','peace','supper','1','0','0','1545392758','2018-c7-pm1q-k7whdvgfk-84fe24789','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.78 Safari/537.36');
